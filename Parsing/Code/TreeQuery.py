@@ -5,6 +5,9 @@ import os
 import random
 from random import choices, randint
 
+from Parsing.Code.LanguageParser import getLanguage, getParser
+
+
 def getQuery(name, lang):
     treesitter = {"identifiers", "string_literals", "boolean_literals", "numeric_literals", "function_call", "function_name"}
     #regex = {"closing_bracket", "stop", "eol", "keywords", "mathematical_operators", "boolean_operators", "assignment_operators"}
