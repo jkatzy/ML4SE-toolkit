@@ -1,4 +1,4 @@
-from Query import Query
+from ..Query import Query
 import regex as re
 
 class LineCommentQuery(Query):

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml4setk"
+version = "0.0.1"
+authors = [
+  { name="Jonathan Katzy", email="J.B.Katzy@TUDelft.nl" },
+]
+description = "A package aimed at implementing core functionality for ML4SE to simplify and standardize research"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Homepage = "https://github.com/jkatzy/ML4SE-toolkit"
+Issues = "https://github.com/jkatzy/ML4SE-toolkit/issues"
