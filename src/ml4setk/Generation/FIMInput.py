@@ -6,6 +6,10 @@ class FIMInput(AbstractInput):
         self.FIM_SUFFIX = FIM_SUFFIX
         self.FIM_MIDDLE = FIM_MIDDLE
 
-    def generate(self, prefix, suffix, middle):
+    def generate(self, query_tuple):
+        prefix = query_tuple[0]
+        suffix = query_tuple[1]
+        middle = query_tuple[2]
+        
         text = self.FIM_PREFIX + prefix + self.FIM_SUFFIX + suffix + self.FIM_MIDDLE
         return text, middle
