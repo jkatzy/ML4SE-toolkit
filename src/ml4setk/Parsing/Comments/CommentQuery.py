@@ -85,7 +85,7 @@ class LineCommentQuery(Query):
  
     def get_regex_python(self):
         return [
-            r"#.*\\n",
+            r"#.*",
             r"\"{3}([\S\s]*?)\"{3}"
         ]
 
@@ -332,6 +332,6 @@ class CommentQuery(Query):
     
     def parse(self, text):
         comments = []
-        comments.append(self.nested_comments.parse(text))
-        comments.append(self.line_comments.parse(text))
+        comments.extend(self.nested_comments.parse(text))
+        comments.extend(self.line_comments.parse(text))
         return comments
