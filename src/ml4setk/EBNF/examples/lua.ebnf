@@ -1,0 +1,27 @@
+rules:
+ SourceFile ::= _stat*;
+ _chunk ::= (_stat ';'?)+ (_laststat ';'?)?;
+ _block ::= _chunk;
+ _stat ::= (_varlist '=' _explist) | _functioncall | ('do' _block 'end') | ('while' _exp 'do' _block 'end') | ('repeat' _block 'until' _exp) | ('if' _exp 'then' _block ('elseif' _exp 'then' _block)* ('else' _block)? 'end') | ('for' Name '=' _exp ',' _exp (',' _exp)? 'do' _block 'end') | ('for' _namelist 'in' _explist 'do' _block 'end') | ('function' _funcname _funcbody) | ('local function' Name _funcbody) | ('local' _namelist ('=' _explist)?);
+ _laststat ::= ('return' _explist?) | 'break';
+ _funcname ::= Name ('.' Name)* (':' Name)?;
+ _varlist ::= 'var' (',' _var)*;
+ _var ::= Name | (_prefixexp '(' _exp ')?') | (_prefixexp '.' Name);
+ _namelist ::= Name (',' Name)*;
+ _explist ::= (_exp ',')* _exp;
+ _exp ::= 'nil' | 'false' | 'true' | Number | String | '...' | _function | _prefixexp | _tableconstructor | (_exp _binop _exp) | (_unop _exp);
+ _prefixexp ::= 'var' | _functioncall | ('(' _exp ')');
+ _functioncall ::= (_prefixexp _args) | (_prefixexp ':' Name _args);
+ _args ::= ('(' _explist? ')') | _tableconstructor | String;
+ _function ::= 'function' _funcbody;
+ _funcbody ::= '(' _parlist? ')' _block 'end';
+ _parlist ::= (_namelist (',' '...')?) | '...';
+ _tableconstructor ::= '{' _fieldlist? '}';
+ _fieldlist ::= _field (_fieldsep _field)* _fieldsep?;
+ _field ::= ('(' _exp ')?' '=' _exp) | (Name '=' _exp) | _exp;
+ _fieldsep ::= ',' | ';';
+ _binop ::= '+' | '-' | '*' | '/' | '^' | '%' | '..' | '<' | '<=' | '>' | '>=' | '==' | '~=' | 'and' | 'or';
+ _unop ::= '-' | 'not' | '#';
+ Name ::= /[a-zA-Z_0-9]/+;
+ Number ::= /[0-9]/+;
+ String ::= ('"' /[^"]/* '"') | (''' /[^"]/* ''');
