@@ -1,0 +1,48 @@
+<svg class="railroad-diagram" height="146" viewBox="0 0 471.5 146" width="471.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 63v20m10 -20v20m-10 -10h20" /></g><path d="M40 73h10" /><g>
+<path d="M50 73h0.0" /><path d="M421.5 73h0.0" /><g>
+<path d="M50.0 73h0.0" /><path d="M357.5 73h0.0" /><path d="M50.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 31h106.75" /><path d="M230.75 31h106.75" /><g class="terminal ">
+<rect data-text="Name" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="176.75" y="20"></rect><text text-anchor="middle" x="203.75" y="35">Name</text></g></g><path d="M337.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><path d="M50.0 73h20" /><g>
+<path d="M70.0 73h0.0" /><path d="M337.5 73h0.0" /><g class="terminal ">
+<rect data-text="prefixexp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="96.5" x="70" y="62"></rect><text text-anchor="middle" x="118.25" y="77">prefixexp</text></g><path d="M166.5 73h10" /><path d="M176.5 73h10" /><g class="terminal ">
+<rect data-text="(" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="186.5" y="62"></rect><text text-anchor="middle" x="200.75" y="77">(</text></g><path d="M215.0 73h10" /><path d="M225.0 73h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="235" y="62"></rect><text text-anchor="middle" x="257.75" y="77">exp</text></g><path d="M280.5 73h10" /><path d="M290.5 73h10" /><g class="terminal ">
+<rect data-text=")?" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="300.5" y="62"></rect><text text-anchor="middle" x="319" y="77">)?</text></g></g><path d="M337.5 73h20" /><path d="M50.0 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 115h61.25" /><path d="M276.25 115h61.25" /><g class="terminal ">
+<rect data-text="prefixexp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="96.5" x="131.25" y="104"></rect><text text-anchor="middle" x="179.5" y="119">prefixexp</text></g><path d="M227.75 115h10" /><path d="M237.75 115h10" /><g class="terminal ">
+<rect data-text="." fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="247.75" y="104"></rect><text text-anchor="middle" x="262" y="119">.</text></g></g><path d="M337.5 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /></g><path d="M357.5 73h10" /><g class="terminal ">
+<rect data-text="Name" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="367.5" y="62"></rect><text text-anchor="middle" x="394.5" y="77">Name</text></g></g><path d="M421.5 73h10" /><path d="M 431.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

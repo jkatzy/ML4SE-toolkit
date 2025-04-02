@@ -1,59 +1,35 @@
 module.exports = grammar({
   name: 'EBNF',
 
-  extras: $ => [/\s+/],
-
   conflicts: $ => [[$.sequenceNoSelection]],
 
   rules: {
-
     source_file: $ => repeat($.rule),
-
     rule: $ => seq($.lhs, '::=', $.rhs, ';'),
-    lhs: $ => $.identifier,
-
-    rhs: $ => choice(
-      $.set,
-      seq($.sequence, repeat(seq('|', $.sequence)))
-    ),
-
-    set: $ => seq('{', repeat(choice($.identifier, $.terminal, $.regex)), '}'),
-
-    sequence: $ => seq($.statements, repeat($.statements)),
-
-    statements: $ => prec(2, choice(
-      $.quantifiedStatement,
-      $.parenthesizedStatement,
-      $.terminal,
-      $.identifier,
-      $.regex
-    )),
-
-    quantifiedStatement: $ => seq($.quantifierBase, choice('+', '*', '?')),
-    quantifierBase: $ => choice($.parenthesizedStatement, $.identifier, $.terminal, $.regex),
-
+    lhs: $ => seq($.identifier),
+    rhs: $ => seq($.sequence),
+    sequence: $ => repeat1(choice($.statements, $.selectionStatement)),
+    statements: $ => prec(2, choice($.quantifiedStatement, $.parenthesizedStatement, $.terminal, $.identifier)),
+    quantifiedStatement: $ => seq(choice($.oneOrMore, $.zeroOrMore, $.optional), optional('?')),
+    oneOrMore: $ => seq($.quantifierBase, '+'),
+    zeroOrMore: $ => seq($.quantifierBase, '*'),
+    optional: $ => seq($.quantifierBase, '?'),
+    quantifierBase: $ => choice($.parenthesizedStatement, $.identifier, $.terminal),
     parenthesizedStatement: $ => seq('(', $.sequence, ')'),
-
+    selectionStatement: $ => seq($.sequenceNoSelection, repeat1(seq('|', $.sequenceNoSelection))),
     sequenceNoSelection: $ => repeat1($.statementsNoSelection),
-    statementsNoSelection: $ => choice(
-      $.quantifiedStatement,
-      $.parenthesizedStatement,
-      $.terminal,
-      $.identifier,
-      $.regex
-    ),
-
+    statementsNoSelection: $ => choice($.quantifiedStatement, $.parenthesizedStatement, $.terminal, $.identifier),
     terminal: $ => seq("'", $.stringContent, "'"),
-    stringContent: $ => /[^']*/,
-
-    regex: $ => token(seq(
-      '/',
-      repeat(choice(
-        /[^/\\]/,
-        seq('\\', /./)
+    stringContent: $ => /[a-z0-9]*/, //change here for a new line or no quotation
+    identifier: _ => /[_A-z]+/,
+    comma: $ => ',',
+    parameter_list: $ => seq(
+      '(',
+      optional(seq(
+        $.identifier,
+        repeat(seq($.comma, $.identifier))
       )),
-      '/'
-    )),
-    identifier: _ => /[_A-Za-z][_A-Za-z0-9]*/
+      ')'
+    )
   }
 });
