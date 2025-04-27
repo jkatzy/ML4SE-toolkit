@@ -1,0 +1,26 @@
+name,count
+varlist,51
+=,37
+repeat,9
+block,27
+until,14
+exp,53
+while,28
+do,25
+end,43
+functioncall,34
+explist,19
+if,32
+then,33
+elseif,8
+else,33
+for,1
+Name,11
+",",9
+namelist,21
+in,43
+function,15
+funcname,8
+funcbody,38
+local function,44
+local,50

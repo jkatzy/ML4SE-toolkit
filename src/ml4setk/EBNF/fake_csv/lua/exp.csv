@@ -1,0 +1,13 @@
+name,count
+String,23
+Number,34
+true,25
+false,28
+nil,24
+...,18
+function,27
+prefixexp,6
+tableconstructor,12
+exp,43
+binop,29
+unop,39

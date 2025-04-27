@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" class="railroad-diagram" height="102" viewBox="0 0 309.5 102" width="309.5">
+<ns0:g transform="translate(.5 .5)">
+<ns0:g>
+<ns0:path d="M20 41v20m10 -20v20m-10 -10h20" /></ns0:g><ns0:path d="M40 51h10" /><ns0:g>
+<ns0:path d="M50 51h0.0" /><ns0:path d="M259.5 51h0.0" /><ns0:g>
+<ns0:path d="M50.0 51h0.0" /><ns0:path d="M204.0 51h0.0" /><ns0:path d="M50.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 20h114.0" /></ns0:g><ns0:path d="M184.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><ns0:path d="M50.0 51h20" /><ns0:g>
+<ns0:path d="M70.0 51h0.0" /><ns0:path d="M184.0 51h0.0" /><ns0:path d="M70.0 51h10" /><ns0:g>
+<ns0:path d="M80.0 51h0.0" /><ns0:path d="M174.0 51h0.0" /><ns0:g class="terminal ">
+<ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="80" y="40" style="fill:#12EC00;" /><ns0:text text-anchor="middle" x="102.75" y="55">exp</ns0:text></ns0:g><ns0:path d="M125.5 51h10" /><ns0:path d="M135.5 51h10" /><ns0:g class="terminal ">
+<ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="145.5" y="40" style="fill:#2ED000;" /><ns0:text text-anchor="middle" x="159.75" y="55">,</ns0:text></ns0:g></ns0:g><ns0:path d="M174.0 51h10" /><ns0:path d="M80.0 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M80.0 82h94.0" /></ns0:g><ns0:path d="M174.0 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10" /></ns0:g><ns0:path d="M184.0 51h20" /></ns0:g><ns0:path d="M204.0 51h10" /><ns0:g class="terminal ">
+<ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="214" y="40" style="fill:#12EC00;" /><ns0:text text-anchor="middle" x="236.75" y="55">exp</ns0:text></ns0:g></ns0:g><ns0:path d="M259.5 51h10" /><ns0:path d="M 269.5 51 h 20 m -10 -10 v 20 m 10 -20 v 20" /></ns0:g><ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style></ns0:svg>
