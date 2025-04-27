@@ -1,0 +1,58 @@
+<svg class="railroad-diagram" height="166" viewBox="0 0 671.0 166" width="671.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 83v20m10 -20v20m-10 -10h20" /></g><path d="M40 93h10" /><g>
+<path d="M50 93h0.0" /><path d="M621.0 93h0.0" /><g>
+<path d="M50.0 93h0.0" /><path d="M621.0 93h0.0" /><g class="terminal ">
+<rect data-text="val" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="50" y="82"></rect><text text-anchor="middle" x="72.75" y="97">val</text></g><path d="M95.5 93h10" /><g>
+<path d="M105.5 93h0.0" /><path d="M282.0 93h0.0" /><path d="M105.5 93a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><g>
+<path d="M125.5 51h32.75" /><path d="M229.25 51h32.75" /><g class="terminal ">
+<rect data-text="ValDcl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="158.25" y="40"></rect><text text-anchor="middle" x="193.75" y="55">ValDcl</text></g></g><path d="M262.0 51a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><path d="M105.5 93h20" /><g>
+<path d="M125.5 93h0.0" /><path d="M262.0 93h0.0" /><g class="terminal ">
+<rect data-text="var" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="125.5" y="82"></rect><text text-anchor="middle" x="148.25" y="97">var</text></g><path d="M171.0 93h10" /><path d="M181.0 93h10" /><g class="terminal ">
+<rect data-text="VarDcl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="191" y="82"></rect><text text-anchor="middle" x="226.5" y="97">VarDcl</text></g></g><path d="M262.0 93h20" /><path d="M105.5 93a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><g>
+<path d="M125.5 135h45.5" /><path d="M216.5 135h45.5" /><g class="terminal ">
+<rect data-text="def" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="171" y="124"></rect><text text-anchor="middle" x="193.75" y="139">def</text></g></g><path d="M262.0 135a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /></g><path d="M282.0 93h10" /><g class="terminal ">
+<rect data-text="1" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="292" y="82"></rect><text text-anchor="middle" x="306.25" y="97">1</text></g><path d="M320.5 93h10" /><g>
+<path d="M330.5 93h0.0" /><path d="M621.0 93h0.0" /><path d="M330.5 93a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10" /><g>
+<path d="M350.5 31h89.75" /><path d="M511.25 31h89.75" /><g class="terminal ">
+<rect data-text="FunDcl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="440.25" y="20"></rect><text text-anchor="middle" x="475.75" y="35">FunDcl</text></g></g><path d="M601.0 31a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10" /><path d="M330.5 93h20" /><g>
+<path d="M350.5 93h0.0" /><path d="M601.0 93h0.0" /><g class="terminal ">
+<rect data-text="type" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="350.5" y="82"></rect><text text-anchor="middle" x="377.5" y="97">type</text></g><path d="M404.5 93h10" /><g>
+<path d="M414.5 93h0.0" /><path d="M511.5 93h0.0" /><path d="M414.5 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M434.5 62h57.0" /></g><path d="M491.5 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M414.5 93h20" /><g>
+<path d="M434.5 93h0.0" /><path d="M491.5 93h0.0" /><path d="M434.5 93h10" /><g class="terminal ">
+<rect data-text="nl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="444.5" y="82"></rect><text text-anchor="middle" x="463" y="97">nl</text></g><path d="M481.5 93h10" /><path d="M444.5 93a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10" /><g>
+<path d="M444.5 124h37.0" /></g><path d="M481.5 124a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10" /></g><path d="M491.5 93h20" /></g><path d="M511.5 93h10" /><g class="terminal ">
+<rect data-text="TypeDcl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="521.5" y="82"></rect><text text-anchor="middle" x="561.25" y="97">TypeDcl</text></g></g><path d="M601.0 93h20" /></g></g></g><path d="M621.0 93h10" /><path d="M 631.0 93 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

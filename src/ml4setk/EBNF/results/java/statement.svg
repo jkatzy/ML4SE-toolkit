@@ -1,0 +1,79 @@
+<svg class="railroad-diagram" height="902" viewBox="0 0 398.0 902" width="398.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 441v20m10 -20v20m-10 -10h20" /></g><path d="M40 451h10" /><g>
+<path d="M50 451h0.0" /><path d="M348.0 451h0.0" /><g>
+<path d="M50.0 451h0.0" /><path d="M348.0 451h0.0" /><path d="M50.0 451a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 409h51.0" /><path d="M277.0 409h51.0" /><g class="terminal ">
+<rect data-text="assert_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="156" x="121" y="398"></rect><text text-anchor="middle" x="199" y="413">assert_statement</text></g></g><path d="M328.0 409a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 367h114.75" /><path d="M213.25 367h114.75" /><g class="terminal ">
+<rect data-text=";" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="184.75" y="356"></rect><text text-anchor="middle" x="199" y="371">;</text></g></g><path d="M328.0 367a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 325h97.75" /><path d="M230.25 325h97.75" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="167.75" y="314"></rect><text text-anchor="middle" x="199" y="329">block</text></g></g><path d="M328.0 325a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 283h25.5" /><path d="M302.5 283h25.5" /><g class="terminal ">
+<rect data-text="enhanced_for_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="207" x="95.5" y="272"></rect><text text-anchor="middle" x="199" y="287">enhanced_for_statement</text></g></g><path d="M328.0 283a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 241h63.75" /><path d="M264.25 241h63.75" /><g class="terminal ">
+<rect data-text="for_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="130.5" x="133.75" y="230"></rect><text text-anchor="middle" x="199" y="245">for_statement</text></g></g><path d="M328.0 241a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 199h55.25" /><path d="M272.75 199h55.25" /><g class="terminal ">
+<rect data-text="while_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="147.5" x="125.25" y="188"></rect><text text-anchor="middle" x="199" y="203">while_statement</text></g></g><path d="M328.0 199a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 157h68.0" /><path d="M260.0 157h68.0" /><g class="terminal ">
+<rect data-text="if_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="122" x="138" y="146"></rect><text text-anchor="middle" x="199" y="161">if_statement</text></g></g><path d="M328.0 157a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-316a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 115h46.75" /><path d="M281.25 115h46.75" /><g class="terminal ">
+<rect data-text="labeled_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="164.5" x="116.75" y="104"></rect><text text-anchor="middle" x="199" y="119">labeled_statement</text></g></g><path d="M328.0 115a10 10 0 0 1 10 10v316a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-358a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 73h34.0" /><path d="M294.0 73h34.0" /><g class="terminal ">
+<rect data-text="expression_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="190" x="104" y="62"></rect><text text-anchor="middle" x="199" y="77">expression_statement</text></g></g><path d="M328.0 73a10 10 0 0 1 10 10v358a10 10 0 0 0 10 10" /><path d="M50.0 451a10 10 0 0 0 10 -10v-400a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 31h72.25" /><path d="M255.75 31h72.25" /><g class="terminal ">
+<rect data-text="declaration" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="113.5" x="142.25" y="20"></rect><text text-anchor="middle" x="199" y="35">declaration</text></g></g><path d="M328.0 31a10 10 0 0 1 10 10v400a10 10 0 0 0 10 10" /><path d="M50.0 451h20" /><g>
+<path d="M70.0 451h68.0" /><path d="M260.0 451h68.0" /><g class="terminal ">
+<rect data-text="do_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="122" x="138" y="440"></rect><text text-anchor="middle" x="199" y="455">do_statement</text></g></g><path d="M328.0 451h20" /><path d="M50.0 451a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 493h55.25" /><path d="M272.75 493h55.25" /><g class="terminal ">
+<rect data-text="break_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="147.5" x="125.25" y="482"></rect><text text-anchor="middle" x="199" y="497">break_statement</text></g></g><path d="M328.0 493a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 535h42.5" /><path d="M285.5 535h42.5" /><g class="terminal ">
+<rect data-text="continue_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="173" x="112.5" y="524"></rect><text text-anchor="middle" x="199" y="539">continue_statement</text></g></g><path d="M328.0 535a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 577h51.0" /><path d="M277.0 577h51.0" /><g class="terminal ">
+<rect data-text="return_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="156" x="121" y="566"></rect><text text-anchor="middle" x="199" y="581">return_statement</text></g></g><path d="M328.0 577a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 619h55.25" /><path d="M272.75 619h55.25" /><g class="terminal ">
+<rect data-text="yield_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="147.5" x="125.25" y="608"></rect><text text-anchor="middle" x="199" y="623">yield_statement</text></g></g><path d="M328.0 619a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 661h46.75" /><path d="M281.25 661h46.75" /><g class="terminal ">
+<rect data-text="switch_expression" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="164.5" x="116.75" y="650"></rect><text text-anchor="middle" x="199" y="665">switch_expression</text></g></g><path d="M328.0 661a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 703h25.5" /><path d="M302.5 703h25.5" /><g class="terminal ">
+<rect data-text="synchronized_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="207" x="95.5" y="692"></rect><text text-anchor="middle" x="199" y="707">synchronized_statement</text></g></g><path d="M328.0 703a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 745h8.5" /><path d="M319.5 745h8.5" /><g class="terminal ">
+<rect data-text="local_variable_declaration" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="241" x="78.5" y="734"></rect><text text-anchor="middle" x="199" y="749">local_variable_declaration</text></g></g><path d="M328.0 745a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v316a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 787h55.25" /><path d="M272.75 787h55.25" /><g class="terminal ">
+<rect data-text="throw_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="147.5" x="125.25" y="776"></rect><text text-anchor="middle" x="199" y="791">throw_statement</text></g></g><path d="M328.0 787a10 10 0 0 0 10 -10v-316a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v358a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 829h63.75" /><path d="M264.25 829h63.75" /><g class="terminal ">
+<rect data-text="try_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="130.5" x="133.75" y="818"></rect><text text-anchor="middle" x="199" y="833">try_statement</text></g></g><path d="M328.0 829a10 10 0 0 0 10 -10v-358a10 10 0 0 1 10 -10" /><path d="M50.0 451a10 10 0 0 1 10 10v400a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 871h0.0" /><path d="M328.0 871h0.0" /><g class="terminal ">
+<rect data-text="try_with_resources_statement" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="258" x="70" y="860"></rect><text text-anchor="middle" x="199" y="875">try_with_resources_statement</text></g></g><path d="M328.0 871a10 10 0 0 0 10 -10v-400a10 10 0 0 1 10 -10" /></g></g><path d="M348.0 451h10" /><path d="M 358.0 451 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>
