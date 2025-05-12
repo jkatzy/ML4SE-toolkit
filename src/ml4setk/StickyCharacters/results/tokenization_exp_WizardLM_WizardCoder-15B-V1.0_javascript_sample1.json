@@ -1,0 +1,168 @@
+{
+  "model": "WizardLM/WizardCoder-15B-V1.0",
+  "code": "if (a + b > c): x = a else: x = b",
+  "language": "javascript",
+  "table": [
+    {
+      "code_piece": "if",
+      "token": "if",
+      "token_id": 325,
+      "offset": [
+        0,
+        2
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " (",
+      "token": "Ġ(",
+      "token_id": 308,
+      "offset": [
+        2,
+        4
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "a",
+      "token": "a",
+      "token_id": 83,
+      "offset": [
+        4,
+        5
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " +",
+      "token": "Ġ+",
+      "token_id": 474,
+      "offset": [
+        5,
+        7
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " b",
+      "token": "Ġb",
+      "token_id": 323,
+      "offset": [
+        7,
+        9
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " >",
+      "token": "Ġ>",
+      "token_id": 848,
+      "offset": [
+        9,
+        11
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " c",
+      "token": "Ġc",
+      "token_id": 281,
+      "offset": [
+        11,
+        13
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "):",
+      "token": "):",
+      "token_id": 711,
+      "offset": [
+        13,
+        15
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " x",
+      "token": "Ġx",
+      "token_id": 816,
+      "offset": [
+        15,
+        17
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " =",
+      "token": "Ġ=",
+      "token_id": 280,
+      "offset": [
+        17,
+        19
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " a",
+      "token": "Ġa",
+      "token_id": 312,
+      "offset": [
+        19,
+        21
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " else",
+      "token": "Ġelse",
+      "token_id": 813,
+      "offset": [
+        21,
+        26
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ":",
+      "token": ":",
+      "token_id": 44,
+      "offset": [
+        26,
+        27
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " x",
+      "token": "Ġx",
+      "token_id": 816,
+      "offset": [
+        27,
+        29
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " =",
+      "token": "Ġ=",
+      "token_id": 280,
+      "offset": [
+        29,
+        31
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " b",
+      "token": "Ġb",
+      "token_id": 323,
+      "offset": [
+        31,
+        33
+      ],
+      "sticky": false
+    }
+  ],
+  "sticky_tokens": []
+}
