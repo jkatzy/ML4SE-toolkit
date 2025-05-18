@@ -1,0 +1,738 @@
+{
+  "model": "bigcode/starcoder2-3b",
+  "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+  "language": "antlr",
+  "table": [
+    {
+      "code_piece": "\n       ",
+      "token": "ĊĠĠĠĠĠĠĠ",
+      "token_id": 310,
+      "offset": [
+        0,
+        8
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " grammar",
+      "token": "Ġgrammar",
+      "token_id": 21368,
+      "offset": [
+        8,
+        16
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " Simple",
+      "token": "ĠSimple",
+      "token_id": 7169,
+      "offset": [
+        16,
+        23
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "Calc",
+      "token": "Calc",
+      "token_id": 17716,
+      "offset": [
+        23,
+        27
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ";",
+      "token": ";",
+      "token_id": 64,
+      "offset": [
+        27,
+        28
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n       ",
+      "token": "ĊĠĠĠĠĠĠĠ",
+      "token_id": 310,
+      "offset": [
+        28,
+        36
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " options",
+      "token": "Ġoptions",
+      "token_id": 2089,
+      "offset": [
+        36,
+        44
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " {",
+      "token": "Ġ{",
+      "token_id": 320,
+      "offset": [
+        44,
+        46
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " token",
+      "token": "Ġtoken",
+      "token_id": 2421,
+      "offset": [
+        46,
+        52
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "Vocab",
+      "token": "Vocab",
+      "token_id": 33511,
+      "offset": [
+        52,
+        57
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "=",
+      "token": "=",
+      "token_id": 66,
+      "offset": [
+        57,
+        58
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "Simple",
+      "token": "Simple",
+      "token_id": 5302,
+      "offset": [
+        58,
+        64
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "Calc",
+      "token": "Calc",
+      "token_id": 17716,
+      "offset": [
+        64,
+        68
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "Lexer",
+      "token": "Lexer",
+      "token_id": 21031,
+      "offset": [
+        68,
+        73
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ";",
+      "token": ";",
+      "token_id": 64,
+      "offset": [
+        73,
+        74
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " }",
+      "token": "Ġ}",
+      "token_id": 339,
+      "offset": [
+        74,
+        76
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n        \n       ",
+      "token": "ĊĠĠĠĠĠĠĠĠĊĠĠĠĠĠĠĠ",
+      "token_id": 2776,
+      "offset": [
+        76,
+        93
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " program",
+      "token": "Ġprogram",
+      "token_id": 3477,
+      "offset": [
+        93,
+        101
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ":",
+      "token": ":",
+      "token_id": 63,
+      "offset": [
+        101,
+        102
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " statement",
+      "token": "Ġstatement",
+      "token_id": 7627,
+      "offset": [
+        102,
+        112
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "+",
+      "token": "+",
+      "token_id": 48,
+      "offset": [
+        112,
+        113
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " EOF",
+      "token": "ĠEOF",
+      "token_id": 20992,
+      "offset": [
+        113,
+        117
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ";",
+      "token": ";",
+      "token_id": 64,
+      "offset": [
+        117,
+        118
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n        \n       ",
+      "token": "ĊĠĠĠĠĠĠĠĠĊĠĠĠĠĠĠĠ",
+      "token_id": 2776,
+      "offset": [
+        118,
+        135
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " statement",
+      "token": "Ġstatement",
+      "token_id": 7627,
+      "offset": [
+        135,
+        145
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ":",
+      "token": ":",
+      "token_id": 63,
+      "offset": [
+        145,
+        146
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        146,
+        151
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " NEW",
+      "token": "ĠNEW",
+      "token_id": 20809,
+      "offset": [
+        151,
+        155
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "LINE",
+      "token": "LINE",
+      "token_id": 4794,
+      "offset": [
+        155,
+        159
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n               ",
+      "token": "ĊĠĠĠĠĠĠĠĠĠĠĠĠĠĠĠ",
+      "token_id": 419,
+      "offset": [
+        159,
+        175
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " |",
+      "token": "Ġ|",
+      "token_id": 542,
+      "offset": [
+        175,
+        177
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " ID",
+      "token": "ĠID",
+      "token_id": 2502,
+      "offset": [
+        177,
+        180
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " '='",
+      "token": "Ġ'='",
+      "token_id": 33979,
+      "offset": [
+        180,
+        184
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        184,
+        189
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " NEW",
+      "token": "ĠNEW",
+      "token_id": 20809,
+      "offset": [
+        189,
+        193
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "LINE",
+      "token": "LINE",
+      "token_id": 4794,
+      "offset": [
+        193,
+        197
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n               ",
+      "token": "ĊĠĠĠĠĠĠĠĠĠĠĠĠĠĠĠ",
+      "token_id": 419,
+      "offset": [
+        197,
+        213
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " |",
+      "token": "Ġ|",
+      "token_id": 542,
+      "offset": [
+        213,
+        215
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " NEW",
+      "token": "ĠNEW",
+      "token_id": 20809,
+      "offset": [
+        215,
+        219
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "LINE",
+      "token": "LINE",
+      "token_id": 4794,
+      "offset": [
+        219,
+        223
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ";",
+      "token": ";",
+      "token_id": 64,
+      "offset": [
+        223,
+        224
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n        \n       ",
+      "token": "ĊĠĠĠĠĠĠĠĠĊĠĠĠĠĠĠĠ",
+      "token_id": 2776,
+      "offset": [
+        224,
+        241
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        241,
+        246
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": ":",
+      "token": ":",
+      "token_id": 63,
+      "offset": [
+        246,
+        247
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        247,
+        252
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " ('",
+      "token": "Ġ('",
+      "token_id": 2751,
+      "offset": [
+        252,
+        255
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "*'",
+      "token": "*'",
+      "token_id": 37817,
+      "offset": [
+        255,
+        257
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "|",
+      "token": "|",
+      "token_id": 129,
+      "offset": [
+        257,
+        258
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "'/",
+      "token": "'/",
+      "token_id": 18054,
+      "offset": [
+        258,
+        260
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "')",
+      "token": "')",
+      "token_id": 704,
+      "offset": [
+        260,
+        262
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        262,
+        267
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n           ",
+      "token": "ĊĠĠĠĠĠĠĠĠĠĠĠ",
+      "token_id": 343,
+      "offset": [
+        267,
+        279
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " |",
+      "token": "Ġ|",
+      "token_id": 542,
+      "offset": [
+        279,
+        281
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        281,
+        286
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " ('",
+      "token": "Ġ('",
+      "token_id": 2751,
+      "offset": [
+        286,
+        289
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "+'",
+      "token": "+'",
+      "token_id": 6928,
+      "offset": [
+        289,
+        291
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "|'",
+      "token": "|'",
+      "token_id": 19983,
+      "offset": [
+        291,
+        293
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "-",
+      "token": "-",
+      "token_id": 50,
+      "offset": [
+        293,
+        294
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "')",
+      "token": "')",
+      "token_id": 704,
+      "offset": [
+        294,
+        296
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        296,
+        301
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n           ",
+      "token": "ĊĠĠĠĠĠĠĠĠĠĠĠ",
+      "token_id": 343,
+      "offset": [
+        301,
+        313
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " |",
+      "token": "Ġ|",
+      "token_id": 542,
+      "offset": [
+        313,
+        315
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " INT",
+      "token": "ĠINT",
+      "token_id": 5992,
+      "offset": [
+        315,
+        319
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n           ",
+      "token": "ĊĠĠĠĠĠĠĠĠĠĠĠ",
+      "token_id": 343,
+      "offset": [
+        319,
+        331
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " |",
+      "token": "Ġ|",
+      "token_id": 542,
+      "offset": [
+        331,
+        333
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " ID",
+      "token": "ĠID",
+      "token_id": 2502,
+      "offset": [
+        333,
+        336
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n           ",
+      "token": "ĊĠĠĠĠĠĠĠĠĠĠĠ",
+      "token_id": 343,
+      "offset": [
+        336,
+        348
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " |",
+      "token": "Ġ|",
+      "token_id": 542,
+      "offset": [
+        348,
+        350
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " '('",
+      "token": "Ġ'('",
+      "token_id": 32057,
+      "offset": [
+        350,
+        354
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " expr",
+      "token": "Ġexpr",
+      "token_id": 9806,
+      "offset": [
+        354,
+        359
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": " ')",
+      "token": "Ġ')",
+      "token_id": 11172,
+      "offset": [
+        359,
+        362
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "';",
+      "token": "';",
+      "token_id": 938,
+      "offset": [
+        362,
+        364
+      ],
+      "sticky": false
+    },
+    {
+      "code_piece": "\n        ",
+      "token": "ĊĠĠĠĠĠĠĠĠ",
+      "token_id": 295,
+      "offset": [
+        364,
+        373
+      ],
+      "sticky": false
+    }
+  ],
+  "sticky_tokens": []
+}

@@ -15,6 +15,29 @@
   },
   {
     "model": "codellama/CodeLLaMA-7b-hf",
+    "language": "python",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 15,
+    "sticky_tokens": [
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>"
+    ]
+  },
+  {
+    "model": "codellama/CodeLLaMA-7b-hf",
     "language": "javascript",
     "code": "if (a + b > c): x = a else: x = b",
     "sticky_token_count": 0,
@@ -29,6 +52,29 @@
   },
   {
     "model": "codellama/CodeLLaMA-7b-hf",
+    "language": "javascript",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 15,
+    "sticky_tokens": [
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>"
+    ]
+  },
+  {
+    "model": "codellama/CodeLLaMA-7b-hf",
     "language": "java",
     "code": "if (a + b > c): x = a else: x = b",
     "sticky_token_count": 0,
@@ -42,6 +88,66 @@
     "sticky_tokens": []
   },
   {
+    "model": "codellama/CodeLLaMA-7b-hf",
+    "language": "java",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 15,
+    "sticky_tokens": [
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>"
+    ]
+  },
+  {
+    "model": "codellama/CodeLLaMA-7b-hf",
+    "language": "antlr",
+    "code": "if (a + b > c): x = a else: x = b",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "codellama/CodeLLaMA-7b-hf",
+    "language": "antlr",
+    "code": "if (a + b > c) { x = a; } else { x = b; }",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "codellama/CodeLLaMA-7b-hf",
+    "language": "antlr",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 15,
+    "sticky_tokens": [
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>",
+      "<0x0A>"
+    ]
+  },
+  {
     "model": "WizardLM/WizardCoder-15B-V1.0",
     "language": "python",
     "code": "if (a + b > c): x = a else: x = b",
@@ -52,6 +158,13 @@
     "model": "WizardLM/WizardCoder-15B-V1.0",
     "language": "python",
     "code": "if (a + b > c) { x = a; } else { x = b; }",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "WizardLM/WizardCoder-15B-V1.0",
+    "language": "python",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
     "sticky_token_count": 0,
     "sticky_tokens": []
   },
@@ -71,6 +184,13 @@
   },
   {
     "model": "WizardLM/WizardCoder-15B-V1.0",
+    "language": "javascript",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "WizardLM/WizardCoder-15B-V1.0",
     "language": "java",
     "code": "if (a + b > c): x = a else: x = b",
     "sticky_token_count": 0,
@@ -84,6 +204,34 @@
     "sticky_tokens": []
   },
   {
+    "model": "WizardLM/WizardCoder-15B-V1.0",
+    "language": "java",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "WizardLM/WizardCoder-15B-V1.0",
+    "language": "antlr",
+    "code": "if (a + b > c): x = a else: x = b",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "WizardLM/WizardCoder-15B-V1.0",
+    "language": "antlr",
+    "code": "if (a + b > c) { x = a; } else { x = b; }",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "WizardLM/WizardCoder-15B-V1.0",
+    "language": "antlr",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
     "model": "bigcode/starcoder2-3b",
     "language": "python",
     "code": "if (a + b > c): x = a else: x = b",
@@ -94,6 +242,13 @@
     "model": "bigcode/starcoder2-3b",
     "language": "python",
     "code": "if (a + b > c) { x = a; } else { x = b; }",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "bigcode/starcoder2-3b",
+    "language": "python",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
     "sticky_token_count": 0,
     "sticky_tokens": []
   },
@@ -113,6 +268,13 @@
   },
   {
     "model": "bigcode/starcoder2-3b",
+    "language": "javascript",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "bigcode/starcoder2-3b",
     "language": "java",
     "code": "if (a + b > c): x = a else: x = b",
     "sticky_token_count": 0,
@@ -122,6 +284,34 @@
     "model": "bigcode/starcoder2-3b",
     "language": "java",
     "code": "if (a + b > c) { x = a; } else { x = b; }",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "bigcode/starcoder2-3b",
+    "language": "java",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "bigcode/starcoder2-3b",
+    "language": "antlr",
+    "code": "if (a + b > c): x = a else: x = b",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "bigcode/starcoder2-3b",
+    "language": "antlr",
+    "code": "if (a + b > c) { x = a; } else { x = b; }",
+    "sticky_token_count": 0,
+    "sticky_tokens": []
+  },
+  {
+    "model": "bigcode/starcoder2-3b",
+    "language": "antlr",
+    "code": "\n        grammar SimpleCalc;\n        options { tokenVocab=SimpleCalcLexer; }\n        \n        program: statement+ EOF;\n        \n        statement: expr NEWLINE\n                | ID '=' expr NEWLINE\n                | NEWLINE;\n        \n        expr: expr ('*'|'/') expr\n            | expr ('+'|'-') expr\n            | INT\n            | ID\n            | '(' expr ')';\n        ",
     "sticky_token_count": 0,
     "sticky_tokens": []
   }

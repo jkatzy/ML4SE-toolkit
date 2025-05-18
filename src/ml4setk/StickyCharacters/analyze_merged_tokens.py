@@ -41,6 +41,18 @@ LANGUAGE_CONFIGS = {
             'switch', 'synchronized', 'this', 'throw', 'throws', 'transient',
             'try', 'void', 'volatile', 'while'
         }
+    },
+    'antlr': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?@'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'grammar', 'parser', 'lexer', 'options', 'tokens', 'import',
+            'fragment', 'returns', 'throws', 'catch', 'finally', 'mode',
+            'skip', 'channel', 'type', 'locals', 'init', 'after', 'pushMode',
+            'popMode', 'more', 'skip', 'channel', 'type', 'locals', 'init',
+            'after', 'pushMode', 'popMode', 'more', 'skip', 'channel', 'type',
+            'locals', 'init', 'after', 'pushMode', 'popMode', 'more'
+        }
     }
 }
 
@@ -177,6 +189,22 @@ if __name__ == '__main__':
     code_samples = [
         'if (a + b > c): x = a else: x = b',  # Python
         'if (a + b > c) { x = a; } else { x = b; }',  # JavaScript/Java
+        '''
+        grammar SimpleCalc;
+        options { tokenVocab=SimpleCalcLexer; }
+        
+        program: statement+ EOF;
+        
+        statement: expr NEWLINE
+                | ID '=' expr NEWLINE
+                | NEWLINE;
+        
+        expr: expr ('*'|'/') expr
+            | expr ('+'|'-') expr
+            | INT
+            | ID
+            | '(' expr ')';
+        '''
     ]
-    languages = ['python', 'javascript', 'java']
+    languages = ['python', 'javascript', 'java', 'antlr']
     run_experiment(model_names, code_samples, languages)
