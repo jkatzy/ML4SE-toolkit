@@ -1,0 +1,87 @@
+<svg class="railroad-diagram" height="1070" viewBox="0 0 364.0 1070" width="364.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 525v20m10 -20v20m-10 -10h20" /></g><path d="M40 535h10" /><g>
+<path d="M50 535h0.0" /><path d="M314.0 535h0.0" /><g>
+<path d="M50.0 535h0.0" /><path d="M314.0 535h0.0" /><path d="M50.0 535a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 493h42.5" /><path d="M251.5 493h42.5" /><g class="terminal ">
+<rect data-text="unary_operator" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="139" x="112.5" y="482"></rect><text text-anchor="middle" x="182" y="497">unary_operator</text></g></g><path d="M294.0 493a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 451h85.0" /><path d="M209.0 451h85.0" /><g class="terminal ">
+<rect data-text="none" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="155" y="440"></rect><text text-anchor="middle" x="182" y="455">none</text></g></g><path d="M294.0 451a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 409h80.75" /><path d="M213.25 409h80.75" /><g class="terminal ">
+<rect data-text="false" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="150.75" y="398"></rect><text text-anchor="middle" x="182" y="413">false</text></g></g><path d="M294.0 409a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 367h85.0" /><path d="M209.0 367h85.0" /><g class="terminal ">
+<rect data-text="true" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="155" y="356"></rect><text text-anchor="middle" x="182" y="371">true</text></g></g><path d="M294.0 367a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 325h80.75" /><path d="M213.25 325h80.75" /><g class="terminal ">
+<rect data-text="float" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="150.75" y="314"></rect><text text-anchor="middle" x="182" y="329">float</text></g></g><path d="M294.0 325a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 283h72.25" /><path d="M221.75 283h72.25" /><g class="terminal ">
+<rect data-text="integer" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="142.25" y="272"></rect><text text-anchor="middle" x="182" y="287">integer</text></g></g><path d="M294.0 283a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 241h21.25" /><path d="M272.75 241h21.25" /><g class="terminal ">
+<rect data-text="concatenated_string" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="181.5" x="91.25" y="230"></rect><text text-anchor="middle" x="182" y="245">concatenated_string</text></g></g><path d="M294.0 241a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-316a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 199h76.5" /><path d="M217.5 199h76.5" /><g class="terminal ">
+<rect data-text="string" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="146.5" y="188"></rect><text text-anchor="middle" x="182" y="203">string</text></g></g><path d="M294.0 199a10 10 0 0 1 10 10v316a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-358a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 157h25.5" /><path d="M268.5 157h25.5" /><g class="terminal ">
+<rect data-text="keyword_identifier" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="173" x="95.5" y="146"></rect><text text-anchor="middle" x="182" y="161">keyword_identifier</text></g></g><path d="M294.0 157a10 10 0 0 1 10 10v358a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-400a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 115h59.5" /><path d="M234.5 115h59.5" /><g class="terminal ">
+<rect data-text="identifier" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="105" x="129.5" y="104"></rect><text text-anchor="middle" x="182" y="119">identifier</text></g></g><path d="M294.0 115a10 10 0 0 1 10 10v400a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-442a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 73h38.25" /><path d="M255.75 73h38.25" /><g class="terminal ">
+<rect data-text="binary_operator" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="147.5" x="108.25" y="62"></rect><text text-anchor="middle" x="182" y="77">binary_operator</text></g></g><path d="M294.0 73a10 10 0 0 1 10 10v442a10 10 0 0 0 10 10" /><path d="M50.0 535a10 10 0 0 0 10 -10v-484a10 10 0 0 1 10 -10" /><g>
+<path d="M70.0 31h80.75" /><path d="M213.25 31h80.75" /><g class="terminal ">
+<rect data-text="await" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="150.75" y="20"></rect><text text-anchor="middle" x="182" y="35">await</text></g></g><path d="M294.0 31a10 10 0 0 1 10 10v484a10 10 0 0 0 10 10" /><path d="M50.0 535h20" /><g>
+<path d="M70.0 535h63.75" /><path d="M230.25 535h63.75" /><g class="terminal ">
+<rect data-text="attribute" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="96.5" x="133.75" y="524"></rect><text text-anchor="middle" x="182" y="539">attribute</text></g></g><path d="M294.0 535h20" /><path d="M50.0 535a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 577h63.75" /><path d="M230.25 577h63.75" /><g class="terminal ">
+<rect data-text="subscript" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="96.5" x="133.75" y="566"></rect><text text-anchor="middle" x="182" y="581">subscript</text></g></g><path d="M294.0 577a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 619h85.0" /><path d="M209.0 619h85.0" /><g class="terminal ">
+<rect data-text="call" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="155" y="608"></rect><text text-anchor="middle" x="182" y="623">call</text></g></g><path d="M294.0 619a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 661h85.0" /><path d="M209.0 661h85.0" /><g class="terminal ">
+<rect data-text="list" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="155" y="650"></rect><text text-anchor="middle" x="182" y="665">list</text></g></g><path d="M294.0 661a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 703h25.5" /><path d="M268.5 703h25.5" /><g class="terminal ">
+<rect data-text="list_comprehension" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="173" x="95.5" y="692"></rect><text text-anchor="middle" x="182" y="707">list_comprehension</text></g></g><path d="M294.0 703a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 745h59.5" /><path d="M234.5 745h59.5" /><g class="terminal ">
+<rect data-text="dictionary" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="105" x="129.5" y="734"></rect><text text-anchor="middle" x="182" y="749">dictionary</text></g></g><path d="M294.0 745a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 787h0.0" /><path d="M294.0 787h0.0" /><g class="terminal ">
+<rect data-text="dictionary_comprehension" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="224" x="70" y="776"></rect><text text-anchor="middle" x="182" y="791">dictionary_comprehension</text></g></g><path d="M294.0 787a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 829h89.25" /><path d="M204.75 829h89.25" /><g class="terminal ">
+<rect data-text="set" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="159.25" y="818"></rect><text text-anchor="middle" x="182" y="833">set</text></g></g><path d="M294.0 829a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v316a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 871h29.75" /><path d="M264.25 871h29.75" /><g class="terminal ">
+<rect data-text="set_comprehension" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="164.5" x="99.75" y="860"></rect><text text-anchor="middle" x="182" y="875">set_comprehension</text></g></g><path d="M294.0 871a10 10 0 0 0 10 -10v-316a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v358a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 913h80.75" /><path d="M213.25 913h80.75" /><g class="terminal ">
+<rect data-text="tuple" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="150.75" y="902"></rect><text text-anchor="middle" x="182" y="917">tuple</text></g></g><path d="M294.0 913a10 10 0 0 0 10 -10v-358a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v400a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 955h0.0" /><path d="M294.0 955h0.0" /><g class="terminal ">
+<rect data-text="parenthesized_expression" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="224" x="70" y="944"></rect><text text-anchor="middle" x="182" y="959">parenthesized_expression</text></g></g><path d="M294.0 955a10 10 0 0 0 10 -10v-400a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v442a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 997h17.0" /><path d="M277.0 997h17.0" /><g class="terminal ">
+<rect data-text="generator_expression" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="190" x="87" y="986"></rect><text text-anchor="middle" x="182" y="1001">generator_expression</text></g></g><path d="M294.0 997a10 10 0 0 0 10 -10v-442a10 10 0 0 1 10 -10" /><path d="M50.0 535a10 10 0 0 1 10 10v484a10 10 0 0 0 10 10" /><g>
+<path d="M70.0 1039h68.0" /><path d="M226.0 1039h68.0" /><g class="terminal ">
+<rect data-text="ellipsis" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="138" y="1028"></rect><text text-anchor="middle" x="182" y="1043">ellipsis</text></g></g><path d="M294.0 1039a10 10 0 0 0 10 -10v-484a10 10 0 0 1 10 -10" /></g></g><path d="M314.0 535h10" /><path d="M 324.0 535 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

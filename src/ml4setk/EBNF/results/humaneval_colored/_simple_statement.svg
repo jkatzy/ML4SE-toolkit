@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" class="railroad-diagram" height="692" viewBox="0 0 355.5 692" width="355.5">
+<ns0:g transform="translate(.5 .5)">
+<ns0:g>
+<ns0:path d="M20 357v20m10 -20v20m-10 -10h20" /></ns0:g><ns0:path d="M40 367h10" /><ns0:g>
+<ns0:path d="M50 367h0.0" /><ns0:path d="M305.5 367h0.0" /><ns0:g>
+<ns0:path d="M50.0 367h0.0" /><ns0:path d="M305.5 367h0.0" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 325h29.75" /><ns0:path d="M255.75 325h29.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="delete_statement" height="22" stroke="black" stroke-width="3" width="156" x="99.75" y="314" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="329">delete_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 325a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 283h29.75" /><ns0:path d="M255.75 283h29.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="return_statement" height="22" stroke="black" stroke-width="3" width="156" x="99.75" y="272" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="287">return_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 283a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 241h12.75" /><ns0:path d="M272.75 241h12.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="expression_statement" height="22" stroke="black" stroke-width="3" width="190" x="82.75" y="230" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="245">expression_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 241a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 199h29.75" /><ns0:path d="M255.75 199h29.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="assert_statement" height="22" stroke="black" stroke-width="3" width="156" x="99.75" y="188" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="203">assert_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 199a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 157h34.0" /><ns0:path d="M251.5 157h34.0" /><ns0:g class="terminal ">
+<ns0:rect data-text="print_statement" height="22" stroke="black" stroke-width="3" width="147.5" x="104" y="146" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="161">print_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 157a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 115h8.5" /><ns0:path d="M277.0 115h8.5" /><ns0:g class="terminal ">
+<ns0:rect data-text="import_from_statement" height="22" stroke="black" stroke-width="3" width="198.5" x="78.5" y="104" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="119">import_from_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 115a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 73h29.75" /><ns0:path d="M255.75 73h29.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="import_statement" height="22" stroke="black" stroke-width="3" width="156" x="99.75" y="62" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="77">import_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 73a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367a10 10 0 0 0 10 -10v-316a10 10 0 0 1 10 -10" /><ns0:g>
+<ns0:path d="M70.0 31h0.0" /><ns0:path d="M285.5 31h0.0" /><ns0:g class="terminal ">
+<ns0:rect data-text="future_import_statement" height="22" stroke="black" stroke-width="3" width="215.5" x="70" y="20" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="35">future_import_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 31a10 10 0 0 1 10 10v316a10 10 0 0 0 10 10" /><ns0:path d="M50.0 367h20" /><ns0:g>
+<ns0:path d="M70.0 367h34.0" /><ns0:path d="M251.5 367h34.0" /><ns0:g class="terminal ">
+<ns0:rect data-text="raise_statement" height="22" stroke="black" stroke-width="3" width="147.5" x="104" y="356" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="371">raise_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 367h20" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 409h38.25" /><ns0:path d="M247.25 409h38.25" /><ns0:g class="terminal ">
+<ns0:rect data-text="pass_statement" height="22" stroke="black" stroke-width="3" width="139" x="108.25" y="398" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="413">pass_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 409a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 451h34.0" /><ns0:path d="M251.5 451h34.0" /><ns0:g class="terminal ">
+<ns0:rect data-text="break_statement" height="22" stroke="black" stroke-width="3" width="147.5" x="104" y="440" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="455">break_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 451a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 493h21.25" /><ns0:path d="M264.25 493h21.25" /><ns0:g class="terminal ">
+<ns0:rect data-text="continue_statement" height="22" stroke="black" stroke-width="3" width="173" x="91.25" y="482" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="497">continue_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 493a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 535h29.75" /><ns0:path d="M255.75 535h29.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="global_statement" height="22" stroke="black" stroke-width="3" width="156" x="99.75" y="524" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="539">global_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 535a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 577h21.25" /><ns0:path d="M264.25 577h21.25" /><ns0:g class="terminal ">
+<ns0:rect data-text="nonlocal_statement" height="22" stroke="black" stroke-width="3" width="173" x="91.25" y="566" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="581">nonlocal_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 577a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 619h38.25" /><ns0:path d="M247.25 619h38.25" /><ns0:g class="terminal ">
+<ns0:rect data-text="exec_statement" height="22" stroke="black" stroke-width="3" width="139" x="108.25" y="608" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="623">exec_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 619a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10" /><ns0:path d="M50.0 367a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10" /><ns0:g>
+<ns0:path d="M70.0 661h12.75" /><ns0:path d="M272.75 661h12.75" /><ns0:g class="terminal ">
+<ns0:rect data-text="type_alias_statement" height="22" stroke="black" stroke-width="3" width="190" x="82.75" y="650" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="177.75" y="665">type_alias_statement</ns0:text></ns0:g></ns0:g><ns0:path d="M285.5 661a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10" /></ns0:g></ns0:g><ns0:path d="M305.5 367h10" /><ns0:path d="M 315.5 367 h 20 m -10 -10 v 20 m 10 -20 v 20" /></ns0:g><ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style></ns0:svg>

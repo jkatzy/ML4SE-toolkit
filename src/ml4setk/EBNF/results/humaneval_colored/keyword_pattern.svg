@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" class="railroad-diagram" height="62" viewBox="0 0 421.0 62" width="421.0">
+<ns0:g transform="translate(.5 .5)">
+<ns0:g>
+<ns0:path d="M20 21v20m10 -20v20m-10 -10h20" /></ns0:g><ns0:path d="M40 31h10" /><ns0:g>
+<ns0:path d="M50 31h0.0" /><ns0:path d="M371.0 31h0.0" /><ns0:g class="terminal ">
+<ns0:rect data-text="identifier" height="22" stroke="black" stroke-width="3" width="105" x="50" y="20" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="102.5" y="35">identifier</ns0:text></ns0:g><ns0:path d="M155.0 31h10" /><ns0:path d="M165.0 31h10" /><ns0:g class="terminal ">
+<ns0:rect data-text="=" height="22" stroke="black" stroke-width="3" width="28.5" x="175" y="20" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="189.25" y="35">=</ns0:text></ns0:g><ns0:path d="M203.5 31h10" /><ns0:path d="M213.5 31h10" /><ns0:g class="terminal ">
+<ns0:rect data-text="_simple_pattern" height="22" stroke="black" stroke-width="3" width="147.5" x="223.5" y="20" style="fill:#FF0000;" /><ns0:text text-anchor="middle" x="297.25" y="35">_simple_pattern</ns0:text></ns0:g></ns0:g><ns0:path d="M371.0 31h10" /><ns0:path d="M 381.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20" /></ns0:g><ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style></ns0:svg>
