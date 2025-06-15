@@ -42,6 +42,89 @@ LANGUAGE_CONFIGS = {
             'try', 'void', 'volatile', 'while'
         }
     },
+    'c++': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'alignas', 'alignof', 'and', 'and_eq', 'asm', 'auto', 'bitand', 'bitor',
+            'bool', 'break', 'case', 'catch', 'char', 'char16_t', 'char32_t', 'class',
+            'compl', 'const', 'constexpr', 'const_cast', 'continue', 'decltype', 'default',
+            'delete', 'do', 'double', 'dynamic_cast', 'else', 'enum', 'explicit', 'export',
+            'extern', 'false', 'float', 'for', 'friend', 'goto', 'if', 'inline', 'int',
+            'long', 'mutable', 'namespace', 'new', 'noexcept', 'not', 'not_eq', 'nullptr',
+            'operator', 'or', 'or_eq', 'private', 'protected', 'public', 'register',
+            'reinterpret_cast', 'return', 'short', 'signed', 'sizeof', 'static',
+            'static_assert', 'static_cast', 'struct', 'switch', 'template', 'this',
+            'thread_local', 'throw', 'true', 'try', 'typedef', 'typeid', 'typename',
+            'union', 'unsigned', 'using', 'virtual', 'void', 'volatile', 'wchar_t',
+            'while', 'xor', 'xor_eq'
+        }
+    },
+    'c': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'auto', 'break', 'case', 'char', 'const', 'continue', 'default', 'do',
+            'double', 'else', 'enum', 'extern', 'float', 'for', 'goto', 'if',
+            'inline', 'int', 'long', 'register', 'restrict', 'return', 'short',
+            'signed', 'sizeof', 'static', 'struct', 'switch', 'typedef', 'union',
+            'unsigned', 'void', 'volatile', 'while', '_Alignas', '_Alignof',
+            '_Atomic', '_Bool', '_Complex', '_Generic', '_Imaginary',
+            '_Noreturn', '_Static_assert', '_Thread_local'
+        }
+    },
+    'go': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'break', 'case', 'chan', 'const', 'continue', 'default', 'defer',
+            'else', 'fallthrough', 'for', 'func', 'go', 'goto', 'if', 'import',
+            'interface', 'map', 'package', 'range', 'return', 'select', 'struct',
+            'switch', 'type', 'var'
+        }
+    },
+    'rust': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'as', 'break', 'const', 'continue', 'else', 'enum', 'extern', 'false',
+            'fn', 'for', 'if', 'impl', 'in', 'let', 'loop', 'match', 'mod', 'move',
+            'mut', 'pub', 'ref', 'return', 'self', 'Self', 'static', 'struct',
+            'super', 'trait', 'true', 'type', 'unsafe', 'use', 'where', 'while'
+        }
+    },
+    'julia': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'abstract', 'baremodule', 'begin', 'break', 'catch', 'const', 'continue',
+            'do', 'else', 'elseif', 'end', 'export', 'false', 'finally', 'for',
+            'function', 'global', 'if', 'import', 'let', 'local', 'macro', 'module',
+            'quote', 'return', 'struct', 'true', 'try', 'type', 'using', 'while'
+        }
+    },
+    'r': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'if', 'else', 'repeat', 'while', 'function', 'for', 'in', 'next', 'break',
+            'TRUE', 'FALSE', 'NULL', 'Inf', 'NaN', 'NA', 'NA_integer_', 'NA_real_',
+            'NA_complex_', 'NA_character_'
+        }
+    },
+    'sql': {
+        'symbols': set('()[]{}.:=+-*/><%&|^~!,;?'),
+        'operators': set('+-*/><=%&|^~!?'),
+        'keywords': {
+            'SELECT', 'FROM', 'WHERE', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'ALTER',
+            'DROP', 'TABLE', 'INDEX', 'VIEW', 'DATABASE', 'SCHEMA', 'GRANT', 'REVOKE',
+            'COMMIT', 'ROLLBACK', 'TRANSACTION', 'JOIN', 'INNER', 'LEFT', 'RIGHT',
+            'FULL', 'OUTER', 'ON', 'GROUP', 'BY', 'ORDER', 'HAVING', 'UNION', 'ALL',
+            'DISTINCT', 'AS', 'AND', 'OR', 'NOT', 'IN', 'EXISTS', 'BETWEEN', 'LIKE',
+            'IS', 'NULL', 'PRIMARY', 'KEY', 'FOREIGN', 'REFERENCES', 'UNIQUE',
+            'CHECK', 'DEFAULT', 'AUTO_INCREMENT'
+        }
+    },
     'antlr': {
         'symbols': set('()[]{}.:=+-*/><%&|^~!,;?@'),
         'operators': set('+-*/><=%&|^~!?'),
@@ -49,9 +132,7 @@ LANGUAGE_CONFIGS = {
             'grammar', 'parser', 'lexer', 'options', 'tokens', 'import',
             'fragment', 'returns', 'throws', 'catch', 'finally', 'mode',
             'skip', 'channel', 'type', 'locals', 'init', 'after', 'pushMode',
-            'popMode', 'more', 'skip', 'channel', 'type', 'locals', 'init',
-            'after', 'pushMode', 'popMode', 'more', 'skip', 'channel', 'type',
-            'locals', 'init', 'after', 'pushMode', 'popMode', 'more'
+            'popMode', 'more'
         }
     }
 }

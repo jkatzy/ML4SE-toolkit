@@ -1,0 +1,44 @@
+{
+  "timestamp": "2025-06-15T23:50:34.656427",
+  "model_name": "bigcode/santacoder",
+  "total_files_analyzed": 10,
+  "total_sticky_tokens": 2,
+  "languages_detected": [
+    "java",
+    "rust",
+    "c",
+    "julia",
+    "sql",
+    "c++",
+    "javascript",
+    "python",
+    "r",
+    "go"
+  ],
+  "visualizations": [
+    {
+      "filename": "summary_bigcode_santacoder_20250615_235032.png",
+      "full_path": "visualizations/summary_bigcode_santacoder_20250615_235032.png",
+      "type": "Summary Dashboard",
+      "file_size": 499090
+    },
+    {
+      "filename": "language_comparison_bigcode_santacoder_20250615_235032.png",
+      "full_path": "visualizations/language_comparison_bigcode_santacoder_20250615_235032.png",
+      "type": "Language Comparison",
+      "file_size": 230095
+    },
+    {
+      "filename": "token_heatmap_bigcode_santacoder_20250615_235032.png",
+      "full_path": "visualizations/token_heatmap_bigcode_santacoder_20250615_235032.png",
+      "type": "Token Distribution Heatmap",
+      "file_size": 506169
+    },
+    {
+      "filename": "detailed_analysis_bigcode_santacoder_20250615_235032.png",
+      "full_path": "visualizations/detailed_analysis_bigcode_santacoder_20250615_235032.png",
+      "type": "Detailed Token Analysis",
+      "file_size": 285402
+    }
+  ]
+}

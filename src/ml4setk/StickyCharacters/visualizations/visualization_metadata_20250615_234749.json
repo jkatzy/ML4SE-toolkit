@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-06-15T23:47:49.529854",
+  "model_name": "bigcode/santacoder",
+  "total_files_analyzed": 3,
+  "total_sticky_tokens": 1,
+  "languages_detected": [
+    "go",
+    "c",
+    "c++"
+  ],
+  "visualizations": [
+    {
+      "filename": "summary_bigcode_santacoder_20250615_234747.png",
+      "full_path": "visualizations/summary_bigcode_santacoder_20250615_234747.png",
+      "type": "Summary Dashboard",
+      "file_size": 351188
+    },
+    {
+      "filename": "language_comparison_bigcode_santacoder_20250615_234747.png",
+      "full_path": "visualizations/language_comparison_bigcode_santacoder_20250615_234747.png",
+      "type": "Language Comparison",
+      "file_size": 190273
+    },
+    {
+      "filename": "token_heatmap_bigcode_santacoder_20250615_234747.png",
+      "full_path": "visualizations/token_heatmap_bigcode_santacoder_20250615_234747.png",
+      "type": "Token Distribution Heatmap",
+      "file_size": 349441
+    },
+    {
+      "filename": "detailed_analysis_bigcode_santacoder_20250615_234747.png",
+      "full_path": "visualizations/detailed_analysis_bigcode_santacoder_20250615_234747.png",
+      "type": "Detailed Token Analysis",
+      "file_size": 266735
+    }
+  ]
+}
