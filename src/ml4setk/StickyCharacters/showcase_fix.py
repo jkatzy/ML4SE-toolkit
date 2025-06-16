@@ -52,7 +52,7 @@ def showcase_improvement():
         for j, segment in enumerate(segments, 1):
             segment_text = segment['text'].strip()
             
-            # 判断是否是有意义的代码片段
+            # Check if this is a meaningful code segment
             is_meaningful = (
                 '.' in segment_text or 
                 '[' in segment_text or 
@@ -90,11 +90,11 @@ def demonstrate_tokenization():
         print(f"{'-'*50}")
         
         try:
-            # 对整个代码片段进行tokenization
+            # Tokenize the entire code fragment
             tokenization = analyzer.analyze_code_part_tokenization(model_name, code)
             
             print(f"Tokens: {tokenization['tokens']}")
-            print(f"Token数量: {tokenization['token_count']}")
+            print(f"Token count: {tokenization['token_count']}")
             print(f"Sticky tokens: {tokenization['sticky_count']}")
             
             if tokenization['sticky_tokens']:
@@ -116,10 +116,10 @@ def main():
     print("Fix: Now extracts complete code fragments with syntactic meaning")
     print("Effect: Correctly analyzes sticky token patterns in code")
     
-    # 展示改进效果
+    # Showcase improvement
     showcase_improvement()
     
-    # 演示tokenization
+    # Demonstrate tokenization
     demonstrate_tokenization()
     
     print(f"\n{'='*80}")

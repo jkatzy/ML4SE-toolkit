@@ -119,7 +119,7 @@ def demo_new_approach():
                 if len(tokens_str) > 60:
                     tokens_str = tokens_str[:57] + "..."
                 
-                # 检查这是否是有意义的代码段
+                # Check if this is a meaningful code segment
                 segment_text = segment_analysis['text'].strip()
                 is_code_fragment = ('.' in segment_text or '[' in segment_text or '(' in segment_text or 
                                   '>' in segment_text or '=' in segment_text or '"' in segment_text)
@@ -137,7 +137,7 @@ def demo_new_approach():
                         print(f"      -> Sticky: '{sticky['token']}' (Detection rules: {rules_str})")
             
             if result['sticky_tokens']:
-                print(f"\nAll sticky tokens汇总:")
+                print(f"\nAll sticky tokens summary:")
                 for j, sticky in enumerate(result['sticky_tokens'], 1):
                     print(f"  {j}. '{sticky['token']}' from code segment '{sticky['source_code_segment']}'")
                     print(f"     AST node type: {sticky['ast_node_type']}")
@@ -323,31 +323,31 @@ def main():
     
     
     try:
-        # 演示1: 代码拆分功能
+        # Demo 1: Code splitting functionality
         demo_code_splitting()
         
-        # 演示2: 新方法完整流程
+        # Demo 2: New method complete workflow
         results = demo_new_approach()
         
-        # 演示3: 新旧方法对比
+        # Demo 3: New vs old method comparison
         comparison = demo_comparison()
         
-        # 演示4: 逐步详解
+        # Demo 4: Step-by-step detailed explanation
         demo_step_by_step()
         
-        # 保存结果
+        # Save results
         if results:
             save_demo_results(results)
         
-        print_section_header("演示完成", 100)
-        print("🎉 所有演示已成功完成!")
-        print("如有问题，请查看错误信息或检查网络连接和依赖安装。")
+        print_section_header("Demo completed", 100)
+        print("🎉 All demos completed successfully!")
+        print("If you encounter issues, please check error messages or verify network connection and dependencies.")
         
     except KeyboardInterrupt:
-        print("\n\n演示被用户中断")
+        print("\n\nDemo interrupted by user")
     except Exception as e:
-        print(f"\n\n演示过程中出现错误: {e}")
-        print("请检查依赖安装和网络连接")
+        print(f"\n\nError occurred during demo: {e}")
+        print("Please check dependency installation and network connection")
 
 
 if __name__ == '__main__':
