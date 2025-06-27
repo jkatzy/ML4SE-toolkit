@@ -1,0 +1,22 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9143  BLEU: 0.4889  METEOR: 0.8413  ROUGE-L: 0.8000  
+--- Target ---
+public Timestamp getFechaDeReserva() {
+		return momentoDeReserva;
+	}
+--- Generation ---
+public Timestamp getMomentoDeReserva() {
+		return momentoDeReserva;
+	}
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9143  BLEU: 0.4889  METEOR: 0.8413  ROUGE-L: 0.8000  
+--- Target ---
+public Timestamp getFechaDeReserva() {
+		return momentoDeReserva;
+	}
+--- Generation ---
+public Timestamp getMomentoDeReserva() {
+		return momentoDeReserva;
+	}
+

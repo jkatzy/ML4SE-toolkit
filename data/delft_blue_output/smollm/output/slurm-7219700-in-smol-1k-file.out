@@ -1,0 +1,38 @@
+/scratch/lcwitte/env-satd/lib/python3.10/site-packages/datasets/table.py:1427: FutureWarning: promote has been superseded by promote_options='default'.
+  table = cls._concat_blocks(blocks, axis=0)
+100000
+Processing files:   0%|          | 0/1000 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:   4%|▍         | 39/1000 [00:08<03:22,  4.76it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+This is a friendly reminder - the current text generation call will exceed the model's predefined maximum length (2048). Depending on the model, you may observe exceptions, performance degradation, or nothing at all.
+Processing files:   8%|▊         | 83/1000 [00:12<02:05,  7.31it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  13%|█▎        | 134/1000 [00:16<01:31,  9.47it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  15%|█▌        | 154/1000 [00:19<01:45,  8.05it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  27%|██▋       | 271/1000 [00:23<00:47, 15.29it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  28%|██▊       | 279/1000 [00:27<01:04, 11.14it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  28%|██▊       | 285/1000 [00:31<01:27,  8.18it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  29%|██▊       | 286/1000 [00:35<02:04,  5.75it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  32%|███▏      | 315/1000 [00:38<01:48,  6.32it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  32%|███▏      | 316/1000 [00:42<02:32,  4.48it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  33%|███▎      | 334/1000 [00:46<02:26,  4.56it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  34%|███▍      | 344/1000 [00:50<02:45,  3.97it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  35%|███▍      | 347/1000 [00:55<03:52,  2.81it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  36%|███▌      | 361/1000 [00:58<03:29,  3.05it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  38%|███▊      | 377/1000 [01:02<03:04,  3.38it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  38%|███▊      | 385/1000 [01:06<03:24,  3.00it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  45%|████▌     | 454/1000 [01:10<01:13,  7.44it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  46%|████▌     | 457/1000 [01:14<01:39,  5.48it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  46%|████▌     | 461/1000 [01:18<02:09,  4.16it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  52%|█████▏    | 520/1000 [01:21<01:03,  7.50it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  59%|█████▊    | 587/1000 [01:25<00:39, 10.50it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  64%|██████▍   | 644/1000 [01:29<00:30, 11.82it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  66%|██████▌   | 662/1000 [01:33<00:34,  9.70it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  66%|██████▋   | 664/1000 [01:37<00:48,  6.91it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  70%|███████   | 705/1000 [01:41<00:36,  7.99it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  79%|███████▉  | 788/1000 [01:45<00:17, 11.89it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  81%|████████  | 810/1000 [01:49<00:18, 10.04it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  85%|████████▍ | 847/1000 [01:52<00:15,  9.91it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  85%|████████▍ | 848/1000 [01:56<00:21,  7.07it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  88%|████████▊ | 878/1000 [02:02<00:19,  6.25it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  91%|█████████ | 909/1000 [02:06<00:13,  6.72it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  92%|█████████▏| 924/1000 [02:10<00:12,  5.97it/s]The following generation flags are not valid and may be ignored: ['temperature']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Processing files:  96%|█████████▌| 958/1000 [02:14<00:06,  6.81it/s]Processing files: 100%|██████████| 1000/1000 [02:14<00:00,  7.45it/s]

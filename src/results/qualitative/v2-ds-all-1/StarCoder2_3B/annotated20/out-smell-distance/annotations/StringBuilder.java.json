@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.5555555555555556,
+            "BLEU": 0.5682777749323397,
+            "METEOR": 0.7673476240606962,
+            "ROUGE-L": 0.7586206896551724
+        },
+        "target": "final void insert0(int index, char ch) {\r\n        if (0 > index || index > length) {\r\n            // RI compatible exception type\r\n            throw new ArrayIndexOutOfBoundsException(index);\r\n        }\r\n        move(1, index);\r\n        chars[index] = ch;\r\n        length++;\r\n    }",
+        "generation": "final void insert0(int index, char ch) {\r\n        if (0 > index || index > length) {\r\n            throw new StringIndexOutOfBoundsException(index);\r\n        }\r\n        if (length!= chars.length) {\r\n            move(1, index);\r\n            chars[index] = ch;\r\n            length++;\r\n        } else {\r\n            chars[length++] = ch;\r\n        }\r\n    }",
+        "classification": "partial",
+        "comment": "signature + some body"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6880733944954128,
+            "BLEU": 0.6246835514443592,
+            "METEOR": 0.7946389436774054,
+            "ROUGE-L": 0.7719298245614035
+        },
+        "target": "final void insert0(int index, char ch) {\r\n        if (0 > index || index > length) {\r\n            // RI compatible exception type\r\n            throw new ArrayIndexOutOfBoundsException(index);\r\n        }\r\n        move(1, index);\r\n        chars[index] = ch;\r\n        length++;\r\n    }",
+        "generation": "final void insert0(int index, char ch) {\r\n        if (0 > index || index > length) {\r\n            throw new StringIndexOutOfBoundsException(index);\r\n        }\r\n        if (length == chars.length) {\r\n            enlargeBuffer(length + 1);\r\n        }\r\n        move(1, index);\r\n        chars[index] = ch;\r\n        length++;\r\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.549792531120332,
+            "BLEU": 0.30750411144208434,
+            "METEOR": 0.5293425856941425,
+            "ROUGE-L": 0.7027027027027027
+        },
+        "target": "final void insert0(int index, String string) {\r\n        if (0 <= index && index <= length) {\r\n            if (string == null) {\r\n                string = \"null\";\r\n            }\r\n            int min = string.length();\r\n            if (min != 0) {\r\n                move(min, index);\r\n                string.getChars(0, min, chars, index);\r\n                length += min;\r\n            }\r\n        } else {\r\n            throw new StringIndexOutOfBoundsException(index);\r\n        }\r\n    }",
+        "generation": "final void insert0(int index, String string) {\r\n        if (0 > index || index > length) {\r\n            throw new StringIndexOutOfBoundsException(index);\r\n        }\r\n        if (string!= null) {\r\n            int adding = string.length();\r\n            move(adding, index);\r\n            string.getChars(0, adding, chars, index);\r\n            length += adding;\r\n        }\r\n    }",
+        "classification": "partial",
+        "comment": "signature + some body"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.549792531120332,
+            "BLEU": 0.30750411144208434,
+            "METEOR": 0.5293425856941425,
+            "ROUGE-L": 0.7027027027027027
+        },
+        "target": "final void insert0(int index, String string) {\r\n        if (0 <= index && index <= length) {\r\n            if (string == null) {\r\n                string = \"null\";\r\n            }\r\n            int min = string.length();\r\n            if (min != 0) {\r\n                move(min, index);\r\n                string.getChars(0, min, chars, index);\r\n                length += min;\r\n            }\r\n        } else {\r\n            throw new StringIndexOutOfBoundsException(index);\r\n        }\r\n    }",
+        "generation": "final void insert0(int index, String string) {\r\n        if (0 > index || index > length) {\r\n            throw new StringIndexOutOfBoundsException(index);\r\n        }\r\n        if (string!= null) {\r\n            int adding = string.length();\r\n            move(adding, index);\r\n            string.getChars(0, adding, chars, index);\r\n            length += adding;\r\n        }\r\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.5906515580736544,
+            "BLEU": 0.26799888329784904,
+            "METEOR": 0.40350877192982454,
+            "ROUGE-L": 0.6785714285714285
+        },
+        "target": "public boolean equals(Object obj) {\r\n        if (this == obj)\r\n            return true;\r\n        if (obj == null)\r\n            return false;\r\n        if (getClass() != obj.getClass())\r\n            return false;\r\n        StringBuilder other = (StringBuilder) obj;\r\n        int length = this.length;\r\n        if (length != other.length)\r\n            return false;\r\n        char[] chars = this.chars;\r\n        char[] chars2 = other.chars;\r\n        if (chars == chars2)\r\n            return true;\r\n        if (chars == null || chars2 == null)\r\n            return false;\r\n        for (int i = 0; i < length; i++)\r\n            if (chars[i] != chars2[i])\r\n                return false;\r\n        return true;\r\n    }",
+        "generation": "public boolean equals(Object obj) {\r\n        if (this == obj)\r\n            return true;\r\n        if (obj == null)\r\n            return false;\r\n        if (getClass()!= obj.getClass())\r\n            return false;\r\n        StringBuilder other = (StringBuilder) obj;\r\n        if (length!= other.length)\r\n            return false;\r\n        if (!Arrays.equals(chars, other.chars))\r\n            return false;\r\n        return true;\r\n    }",
+        "classification": "partial",
+        "comment": "signature + some body, missing some checks"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4121813031161473,
+            "BLEU": 0.0994592873256057,
+            "METEOR": 0.25016512549537645,
+            "ROUGE-L": 0.5048543689320388
+        },
+        "target": "public boolean equals(Object obj) {\r\n        if (this == obj)\r\n            return true;\r\n        if (obj == null)\r\n            return false;\r\n        if (getClass() != obj.getClass())\r\n            return false;\r\n        StringBuilder other = (StringBuilder) obj;\r\n        int length = this.length;\r\n        if (length != other.length)\r\n            return false;\r\n        char[] chars = this.chars;\r\n        char[] chars2 = other.chars;\r\n        if (chars == chars2)\r\n            return true;\r\n        if (chars == null || chars2 == null)\r\n            return false;\r\n        for (int i = 0; i < length; i++)\r\n            if (chars[i] != chars2[i])\r\n                return false;\r\n        return true;\r\n    }",
+        "generation": "public boolean equals(Object obj) {\r\n        if (obj == this) {\r\n            return true;\r\n        }\r\n        if (!(obj instanceof StringBuilder)) {\r\n            return false;\r\n        }\r\n        StringBuilder other = (StringBuilder) obj;\r\n        if (length!= other.length) {\r\n            return false;\r\n        }\r\n        return Arrays.equals(chars, other.chars);\r\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

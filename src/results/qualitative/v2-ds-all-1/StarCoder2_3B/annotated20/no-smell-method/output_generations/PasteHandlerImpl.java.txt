@@ -1,0 +1,93 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3845  BLEU: 0.1582  METEOR: 0.3240  ROUGE-L: 0.2759  
+--- Target ---
+@Override
+    public CompletableFuture<Void> setBlock(Island island, Location location, BlueprintBlock bpBlock) {
+        return Util.getChunkAtAsync(location).thenRun(() -> {
+            Block block = location.getBlock();
+            // Set the block data - default is AIR
+            BlockData bd = DefaultPasteUtil.createBlockData(bpBlock);
+            CraftBlockData craft = (CraftBlockData) bd;
+            net.minecraft.world.level.World nmsWorld = ((CraftWorld) location.getWorld()).getHandle();
+            Chunk nmsChunk = nmsWorld.d(location.getBlockX() >> 4, location.getBlockZ() >> 4);
+            BlockPosition bp = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+            // Setting the block to air before setting to another state prevents some console errors
+            nmsChunk.a(bp, AIR, false);
+            nmsChunk.a(bp, craft.getState(), false);
+            block.setBlockData(bd, false);
+            DefaultPasteUtil.setBlockState(island, block, bpBlock);
+            // Set biome
+            if (bpBlock.getBiome() != null) {
+                block.setBiome(bpBlock.getBiome());
+            }
+        });
+    }
+--- Generation ---
+@Override
+    public void setBlock(Island island, Location location, BlueprintBlock bpBlock) {
+        Block block = location.getBlock();
+        BlockData blockData = block.getBlockData();
+        IBlockData iBlockData = ((CraftBlockData) blockData).getState();
+        if (iBlockData.equals(AIR)) {
+            return;
+        }
+        if (island.getWorld().equals(location.getWorld().getName())) {
+            BlockPosition blockPosition = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+            Chunk chunk = ((CraftWorld) location.getWorld()).getHandle().getChunk(blockPosition.getX() >> 4, blockPosition.getZ() >> 4);
+            IBlockData iBlockData1 = chunk.getBlockState(blockPosition);
+            if (iBlockData1.equals(iBlockData)) {
+                return;
+            }
+            chunk.setBlock(blockPosition, iBlockData, 3);
+            chunk.setBlock(blockPosition, iBlockData, 3);
+            chunk.setBlock(blockPosition, iBlockData, 3);
+            chunk.setBlock(blockPosition, iBlockData, 3);
+            chunk.setBlock(blockPosition, iBlockData, 3);
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9991  BLEU: 0.9625  METEOR: 0.9800  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public CompletableFuture<Void> setBlock(Island island, Location location, BlueprintBlock bpBlock) {
+        return Util.getChunkAtAsync(location).thenRun(() -> {
+            Block block = location.getBlock();
+            // Set the block data - default is AIR
+            BlockData bd = DefaultPasteUtil.createBlockData(bpBlock);
+            CraftBlockData craft = (CraftBlockData) bd;
+            net.minecraft.world.level.World nmsWorld = ((CraftWorld) location.getWorld()).getHandle();
+            Chunk nmsChunk = nmsWorld.d(location.getBlockX() >> 4, location.getBlockZ() >> 4);
+            BlockPosition bp = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+            // Setting the block to air before setting to another state prevents some console errors
+            nmsChunk.a(bp, AIR, false);
+            nmsChunk.a(bp, craft.getState(), false);
+            block.setBlockData(bd, false);
+            DefaultPasteUtil.setBlockState(island, block, bpBlock);
+            // Set biome
+            if (bpBlock.getBiome() != null) {
+                block.setBiome(bpBlock.getBiome());
+            }
+        });
+    }
+--- Generation ---
+@Override
+    public CompletableFuture<Void> setBlock(Island island, Location location, BlueprintBlock bpBlock) {
+        return Util.getChunkAtAsync(location).thenRun(() -> {
+            Block block = location.getBlock();
+            // Set the block data - default is AIR
+            BlockData bd = DefaultPasteUtil.createBlockData(bpBlock);
+            CraftBlockData craft = (CraftBlockData) bd;
+            net.minecraft.world.level.World nmsWorld = ((CraftWorld) location.getWorld()).getHandle();
+            Chunk nmsChunk = nmsWorld.d(location.getBlockX() >> 4, location.getBlockZ() >> 4);
+            BlockPosition bp = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+            // Setting the block to air before setting to another state prevents some console errors
+            nmsChunk.a(bp, AIR, false);
+            nmsChunk.a(bp, craft.getState(), false);
+            block.setBlockData(bd, false);
+            DefaultPasteUtil.setBlockState(island, block, bpBlock);
+            // Set biome
+            if (bpBlock.getBiome()!= null) {
+                block.setBiome(bpBlock.getBiome());
+            }
+        });
+    }
+

@@ -3,24 +3,34 @@ from ..Query import Query
 
 class TreeSitterQuery(Query):
     def __init__(self, language):
-        self.language = get_language('python')
-        self.parser = get_parser('python')
+        self.language = get_language(language)
+        self.parser = get_parser(language)
 
     def contains(self, text, rule):
         return len(self.parse(text, rule)) > 0
 
 
     def parse(self, text, rule):
-        tree = self.parser.parse(text.encode())
+        encoded_text = text.encode()
+        tree = self.parser.parse(encoded_text)
         node = tree.root_node
 
         query = self.language.query(rule)
         matches = query.captures(node)
 
-        tuples = [
-            (text[:node.start_byte],  # Prefix (before node)
-             text[node.end_byte:],    # Suffix (after node)
-             text[node.start_byte:node.end_byte])  # Node text
-            for node, _ in matches
-        ]
-        return tuples
+        results = []
+        for capture_node, _ in matches:
+            byte_start = capture_node.start_byte
+            byte_end = capture_node.end_byte
+
+            # Convert byte offsets to character offsets
+            char_start = len(encoded_text[:byte_start].decode('utf-8', errors='ignore'))
+            char_end = len(encoded_text[:byte_end].decode('utf-8', errors='ignore'))
+
+            match_text = text[char_start:char_end]
+            prefix_len = char_start
+            suffix_len = len(text) - char_end
+
+            results.append((prefix_len, suffix_len, match_text))
+
+        return results

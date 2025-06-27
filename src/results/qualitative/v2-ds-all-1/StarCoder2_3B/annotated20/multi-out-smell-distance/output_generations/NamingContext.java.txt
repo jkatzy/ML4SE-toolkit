@@ -1,0 +1,414 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3908  BLEU: 0.1257  METEOR: 0.3172  ROUGE-L: 0.5130  
+--- Target ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty()) {
+            // If name is empty, a newly allocated naming context is returned
+            return new NamingContext(env, this.name, bindings);
+        }
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (name.size() > 1) {
+            // If the size of the name is greater that 1, then we go through a
+            // number of subcontexts.
+            if (entry.type != NamingEntry.CONTEXT) {
+                throw new NamingException
+                    (sm.getString("namingContext.contextExpected"));
+            }
+            return ((Context) entry.value).lookup(name.getSuffix(1));
+        } else {
+            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {
+                String link = ((LinkRef) entry.value).getLinkName();
+                if (link.startsWith(".")) {
+                    // Link relative to this context
+                    return lookup(link.substring(1));
+                } else {
+                    return (new InitialContext(env)).lookup(link);
+                }
+            } else if (entry.type == NamingEntry.REFERENCE) {
+                try {
+                    Object obj = NamingManager.getObjectInstance
+                        (entry.value, name, this, env);
+                    if (obj != null) {
+                        entry.value = obj;
+                        entry.type = NamingEntry.ENTRY;
+                    }
+                    return obj;
+                } catch (NamingException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new NamingException(e.getMessage());
+                }
+            } else {
+                return entry.value;
+            }
+        }
+        
+    }
+--- Generation ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty())
+            throw new NamingException
+                (sm.getString("namingContext.invalidName"));
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (resolveLinks && (entry.type == NamingEntry.LINK)) {
+            return ((LinkRef) entry.value).getLink();
+        }
+        
+        if (entry.type == NamingEntry.CONTEXT) {
+            return ((Context) entry.value).lookup(name.getSuffix(1));
+        }
+        
+        return entry.value;
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3760  BLEU: 0.1209  METEOR: 0.3103  ROUGE-L: 0.5283  
+--- Target ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty()) {
+            // If name is empty, a newly allocated naming context is returned
+            return new NamingContext(env, this.name, bindings);
+        }
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (name.size() > 1) {
+            // If the size of the name is greater that 1, then we go through a
+            // number of subcontexts.
+            if (entry.type != NamingEntry.CONTEXT) {
+                throw new NamingException
+                    (sm.getString("namingContext.contextExpected"));
+            }
+            return ((Context) entry.value).lookup(name.getSuffix(1));
+        } else {
+            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {
+                String link = ((LinkRef) entry.value).getLinkName();
+                if (link.startsWith(".")) {
+                    // Link relative to this context
+                    return lookup(link.substring(1));
+                } else {
+                    return (new InitialContext(env)).lookup(link);
+                }
+            } else if (entry.type == NamingEntry.REFERENCE) {
+                try {
+                    Object obj = NamingManager.getObjectInstance
+                        (entry.value, name, this, env);
+                    if (obj != null) {
+                        entry.value = obj;
+                        entry.type = NamingEntry.ENTRY;
+                    }
+                    return obj;
+                } catch (NamingException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new NamingException(e.getMessage());
+                }
+            } else {
+                return entry.value;
+            }
+        }
+        
+    }
+--- Generation ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty())
+            return this;
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (resolveLinks && (entry.type == NamingEntry.LINK_REF)) {
+            return ((LinkRef) entry.value).get();
+        }
+        
+        if (entry.type == NamingEntry.CONTEXT) {
+            return ((Context) entry.value).lookup(name.getSuffix(1));
+        }
+        
+        return entry.value;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4471  BLEU: 0.1989  METEOR: 0.3735  ROUGE-L: 0.5267  
+--- Target ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty()) {
+            // If name is empty, a newly allocated naming context is returned
+            return new NamingContext(env, this.name, bindings);
+        }
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (name.size() > 1) {
+            // If the size of the name is greater that 1, then we go through a
+            // number of subcontexts.
+            if (entry.type != NamingEntry.CONTEXT) {
+                throw new NamingException
+                    (sm.getString("namingContext.contextExpected"));
+            }
+            return ((Context) entry.value).lookup(name.getSuffix(1));
+        } else {
+            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {
+                String link = ((LinkRef) entry.value).getLinkName();
+                if (link.startsWith(".")) {
+                    // Link relative to this context
+                    return lookup(link.substring(1));
+                } else {
+                    return (new InitialContext(env)).lookup(link);
+                }
+            } else if (entry.type == NamingEntry.REFERENCE) {
+                try {
+                    Object obj = NamingManager.getObjectInstance
+                        (entry.value, name, this, env);
+                    if (obj != null) {
+                        entry.value = obj;
+                        entry.type = NamingEntry.ENTRY;
+                    }
+                    return obj;
+                } catch (NamingException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new NamingException(e.getMessage());
+                }
+            } else {
+                return entry.value;
+            }
+        }
+        
+    }
+--- Generation ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty())
+            throw new NamingException
+                (sm.getString("namingContext.invalidName"));
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (resolveLinks && (entry.type == NamingEntry.LINK)) {
+            return ((LinkRef) entry.value).getLink();
+        }
+        
+        if (name.size() > 1) {
+            if (entry.type == NamingEntry.CONTEXT) {
+                return ((Context) entry.value).lookup(name.getSuffix(1));
+            } else {
+                throw new NamingException
+                    (sm.getString("namingContext.contextExpected"));
+            }
+        }
+        
+        return entry.value;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4394  BLEU: 0.2210  METEOR: 0.3947  ROUGE-L: 0.5468  
+--- Target ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty()) {
+            // If name is empty, a newly allocated naming context is returned
+            return new NamingContext(env, this.name, bindings);
+        }
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (name.size() > 1) {
+            // If the size of the name is greater that 1, then we go through a
+            // number of subcontexts.
+            if (entry.type != NamingEntry.CONTEXT) {
+                throw new NamingException
+                    (sm.getString("namingContext.contextExpected"));
+            }
+            return ((Context) entry.value).lookup(name.getSuffix(1));
+        } else {
+            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {
+                String link = ((LinkRef) entry.value).getLinkName();
+                if (link.startsWith(".")) {
+                    // Link relative to this context
+                    return lookup(link.substring(1));
+                } else {
+                    return (new InitialContext(env)).lookup(link);
+                }
+            } else if (entry.type == NamingEntry.REFERENCE) {
+                try {
+                    Object obj = NamingManager.getObjectInstance
+                        (entry.value, name, this, env);
+                    if (obj != null) {
+                        entry.value = obj;
+                        entry.type = NamingEntry.ENTRY;
+                    }
+                    return obj;
+                } catch (NamingException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new NamingException(e.getMessage());
+                }
+            } else {
+                return entry.value;
+            }
+        }
+        
+    }
+--- Generation ---
+protected Object lookup(Name name, boolean resolveLinks)
+        throws NamingException {
+        // Removing empty parts
+        while ((!name.isEmpty()) && (name.get(0).length() == 0))
+            name = name.getSuffix(1);
+        if (name.isEmpty())
+            return this;
+        
+        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+        
+        if (entry == null) {
+            throw new NameNotFoundException
+                (sm.getString("namingContext.nameNotBound", name.get(0)));
+        }
+        
+        if (resolveLinks && (entry.type == NamingEntry.LINK_REF)) {
+            return ((LinkRef) entry.value).get();
+        }
+        
+        if (name.size() > 1) {
+            if (entry.type == NamingEntry.CONTEXT) {
+                return ((Context) entry.value).lookup(name.getSuffix(1));
+            } else {
+                throw new NamingException
+                    (sm.getString("namingContext.contextExpected"));
+            }
+        } else {
+            return entry.value;
+        }
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7500  BLEU: 0.5328  METEOR: 0.8217  ROUGE-L: 0.9286  
+--- Target ---
+protected void checkWritable() 
+        throws NamingException {
+        if (!isWritable())
+            throw new NamingException(sm.getString("namingContext.readOnly"));
+    }
+--- Generation ---
+protected void checkWritable() throws NamingException {
+        if (!isWritable()) {
+            throw new NamingException
+                (sm.getString("namingContext.notWritable"));
+        }
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9997  ROUGE-L: 1.0000  
+--- Target ---
+protected void checkWritable() 
+        throws NamingException {
+        if (!isWritable())
+            throw new NamingException(sm.getString("namingContext.readOnly"));
+    }
+--- Generation ---
+protected void checkWritable() 
+        throws NamingException {
+        if (!isWritable())
+            throw new NamingException(sm.getString("namingContext.readOnly"));
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7500  BLEU: 0.5328  METEOR: 0.8217  ROUGE-L: 0.9286  
+--- Target ---
+protected void checkWritable() 
+        throws NamingException {
+        if (!isWritable())
+            throw new NamingException(sm.getString("namingContext.readOnly"));
+    }
+--- Generation ---
+protected void checkWritable() throws NamingException {
+        if (!isWritable()) {
+            throw new NamingException
+                (sm.getString("namingContext.notWritable"));
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9997  ROUGE-L: 1.0000  
+--- Target ---
+protected void checkWritable() 
+        throws NamingException {
+        if (!isWritable())
+            throw new NamingException(sm.getString("namingContext.readOnly"));
+    }
+--- Generation ---
+protected void checkWritable() 
+        throws NamingException {
+        if (!isWritable())
+            throw new NamingException(sm.getString("namingContext.readOnly"));
+    }
+

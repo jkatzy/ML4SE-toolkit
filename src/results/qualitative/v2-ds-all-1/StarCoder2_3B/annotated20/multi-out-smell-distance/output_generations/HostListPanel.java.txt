@@ -1,0 +1,192 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2994  BLEU: 0.1329  METEOR: 0.1797  ROUGE-L: 0.2800  
+--- Target ---
+@Override
+                        public void onClick(ClickEvent event) {
+                            hostGridStore.getList().remove(hi);
+                            hostService.delete(hi.getName(), new MethodCallback<Void>() {
+                                @Override
+                                public void onFailure(Method method, Throwable exception) {
+
+                                }
+
+                                @Override
+                                public void onSuccess(Method method, Void response) {
+
+                                }
+                            });
+                        }
+--- Generation ---
+@Override
+                                 public void onFailure(Method method, Throwable e) {
+                                     md.error(MDS, "Error removing host " + hi.getName(), e);
+                                 }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2896  BLEU: 0.1116  METEOR: 0.1816  ROUGE-L: 0.2917  
+--- Target ---
+@Override
+                        public void onClick(ClickEvent event) {
+                            hostGridStore.getList().remove(hi);
+                            hostService.delete(hi.getName(), new MethodCallback<Void>() {
+                                @Override
+                                public void onFailure(Method method, Throwable exception) {
+
+                                }
+
+                                @Override
+                                public void onSuccess(Method method, Void response) {
+
+                                }
+                            });
+                        }
+--- Generation ---
+@Override
+                                public void onFailure(Method method, Throwable e) {
+                                    md.error(MDS, "Error removing host", e);
+                                }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2945  BLEU: 0.1116  METEOR: 0.1816  ROUGE-L: 0.2917  
+--- Target ---
+@Override
+                        public void onClick(ClickEvent event) {
+                            hostGridStore.getList().remove(hi);
+                            hostService.delete(hi.getName(), new MethodCallback<Void>() {
+                                @Override
+                                public void onFailure(Method method, Throwable exception) {
+
+                                }
+
+                                @Override
+                                public void onSuccess(Method method, Void response) {
+
+                                }
+                            });
+                        }
+--- Generation ---
+@Override
+                                 public void onFailure(Method method, Throwable e) {
+                                     md.error(MDS, "Error removing host", e);
+                                 }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2896  BLEU: 0.1116  METEOR: 0.1816  ROUGE-L: 0.2917  
+--- Target ---
+@Override
+                        public void onClick(ClickEvent event) {
+                            hostGridStore.getList().remove(hi);
+                            hostService.delete(hi.getName(), new MethodCallback<Void>() {
+                                @Override
+                                public void onFailure(Method method, Throwable exception) {
+
+                                }
+
+                                @Override
+                                public void onSuccess(Method method, Void response) {
+
+                                }
+                            });
+                        }
+--- Generation ---
+@Override
+                                public void onFailure(Method method, Throwable e) {
+                                    md.error(MDS, "Error removing host", e);
+                                }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7698  BLEU: 0.6822  METEOR: 0.9153  ROUGE-L: 0.7895  
+--- Target ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + ": traces");
+        }
+    }
+--- Generation ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            TraceSearchPanel searchPanel = panelFactory.traceSearchPanel((HostInfo) hostInfo, null);
+            shell.get().addView(searchPanel, hostInfo.getName() + ": pivot");
+            searchPanel.refresh();
+        }
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + ": traces");
+        }
+    }
+--- Generation ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + ": traces");
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7698  BLEU: 0.6822  METEOR: 0.9153  ROUGE-L: 0.7895  
+--- Target ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + ": traces");
+        }
+    }
+--- Generation ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            TraceSearchPanel searchPanel = panelFactory.traceSearchPanel((HostInfo) hostInfo, null);
+            shell.get().addView(searchPanel, hostInfo.getName() + ": pivot");
+            searchPanel.refresh();
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + ": traces");
+        }
+    }
+--- Generation ---
+@UiHandler("btnStatTraces")
+    void statTraces(ClickEvent e) {
+        HostListObject hostInfo = selectionModel.getSelectedObject();
+        GWT.log("Selected host: " + hostInfo);
+
+        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {
+            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + ": traces");
+        }
+    }
+

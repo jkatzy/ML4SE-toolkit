@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.34158415841584155,
+            "BLEU": 0.03883469923987226,
+            "METEOR": 0.2735749472202674,
+            "ROUGE-L": 0.45161290322580644
+        },
+        "target": "public HelpCtx getHelp() {\n        // Show no Help button for this panel:\n        return HelpCtx.DEFAULT_HELP;\n    // If you have context help:\n    // return new HelpCtx(SampleWizardPanel1.class);\n    }",
+        "generation": "public HelpCtx getHelp() {\n        return HelpCtx.DEFAULT_HELP;\n    }",
+        "classification": "correct",
+        "comment": "semantically same, just misses comments"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.999968,
+            "ROUGE-L": 1.0
+        },
+        "target": "public HelpCtx getHelp() {\n        // Show no Help button for this panel:\n        return HelpCtx.DEFAULT_HELP;\n    // If you have context help:\n    // return new HelpCtx(SampleWizardPanel1.class);\n    }",
+        "generation": "public HelpCtx getHelp() {\n        // Show no Help button for this panel:\n        return HelpCtx.DEFAULT_HELP;\n    // If you have context help:\n    // return new HelpCtx(SampleWizardPanel1.class);\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

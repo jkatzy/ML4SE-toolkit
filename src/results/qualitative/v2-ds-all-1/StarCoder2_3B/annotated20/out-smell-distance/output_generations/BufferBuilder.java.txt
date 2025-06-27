@@ -1,0 +1,147 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.8647  BLEU: 0.7957  METEOR: 0.9294  ROUGE-L: 0.9639  
+--- Target ---
+public void putColorRGBA(int index, int red, int green, int blue, int alpha)
+    {
+        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)
+            this.rawIntBuffer.put(index, alpha << 24 | blue << 16 | green << 8 | red);
+        else
+            this.rawIntBuffer.put(index, red << 24 | green << 16 | blue << 8 | alpha);
+    }
+--- Generation ---
+public void putColorRGBA(int index, int red, int green, int blue, int alpha)
+    {
+        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)
+        {
+            this.rawIntBuffer.put(index, -16777216 | blue << 16 | green << 8 | red);
+        }
+        else
+        {
+            this.rawIntBuffer.put(index, red << 24 | green << 16 | blue << 8 | alpha);
+        }
+    }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2714  BLEU: 0.0045  METEOR: 0.0787  ROUGE-L: 0.2812  
+--- Target ---
+public void putColorRGBA(int index, int red, int green, int blue, int alpha)
+    {
+        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)
+            this.rawIntBuffer.put(index, alpha << 24 | blue << 16 | green << 8 | red);
+        else
+            this.rawIntBuffer.put(index, red << 24 | green << 16 | blue << 8 | alpha);
+    }
+--- Generation ---
+public static BufferBuilder color(float red, float green, float blue, float alpha, int vertexIndex)
+    {
+        return color(red, green, blue, alpha, vertexIndex, 255);
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0629  BLEU: 0.0033  METEOR: 0.0775  ROUGE-L: 0.0303  
+--- Target ---
+public boolean isColorDisabled()
+    {
+        return this.noColor;
+    }
+--- Generation ---
+public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    {
+        if (entitylivingbaseIn.getHeldItemMainhand()!= null)
+        {
+            this.entityRenderer.bindTexture(ARMOR_LOCATION);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scalef(-1.0F, -1.0F, 1.0F);
+            GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
+            GlStateManager.matrixMode(5888);
+            GlStateManager.pushMatrix();
+            GlStateManager.scalef(1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F);
+            GlStateManager.translatef(0.0F, 0.0F, 0.625F);
+            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotatef(180.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0398  BLEU: 0.0028  METEOR: 0.0709  ROUGE-L: 0.0237  
+--- Target ---
+public boolean isColorDisabled()
+    {
+        return this.noColor;
+    }
+--- Generation ---
+public void putColorRGBA(int index, int red, int green, int blue, float alpha)
+    {
+        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)
+            this.rawIntBuffer.put(index, (int)(alpha * 255.0F) << 24 | blue << 16 | green << 8 | red);
+        else
+            this.rawIntBuffer.put(index, red << 24 | green << 16 | blt.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.client.renderer.vertex.VertexFormatElement;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
+import net.minecraft.client.resources.IResourcePack;
+import net.minecraft.client.resources.IResourcePackRepository;
+import net.minecraft.client.resources.IResourcePackRepositoryReloadListener;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
+import net.minecraft.client.resources.IResourceReloadListener;
+import net.minecraft.client.resources.IResourceReloadListener.ReloadType;
+import net.minecraft.client.resources.IResourceManagerReloadListener.ReloadType;
+import net.minecraft.client.resources.IResourcePackRepository.Entry;
+import net.minecraft.client.resources.IResourcePackRepository.Type;
+import net.minecraft.client.resources.IResourcePackRepository.Type.TypeEntry;
+import net.minecraft.client.resources.IResourcePackRepository.Type.TypeEntry.TypeEntryResourcePack;
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1662  BLEU: 0.0069  METEOR: 0.1384  ROUGE-L: 0.0385  
+--- Target ---
+public void putBulkData(ByteBuffer buffer)
+    {
+        growBuffer(buffer.limit() + this.vertexFormat.getSize());
+        this.byteBuffer.position(this.vertexCount * this.vertexFormat.getSize());
+        this.byteBuffer.put(buffer);
+        this.vertexCount += buffer.limit() / this.vertexFormat.getSize();
+    }
+--- Generation ---
+public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    {
+        if (entitylivingbaseIn.getHeldItemMainhand()!= null)
+        {
+            this.entityRenderer.bindTexture(ARMOR_LOCATION);
+            GlStateManager.matrixMode(5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scalef(-1.0F, -1.0F, 1.0F);
+            GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);
+            GlStateManager.matrixMode(5888);
+            GlStateManager.pushMatrix();
+            GlStateManager.scalef(1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F);
+            GlStateManager.translatef(0.0F, 0.0F, 0.625F);
+            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotatef(180.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9999  ROUGE-L: 1.0000  
+--- Target ---
+public void putBulkData(ByteBuffer buffer)
+    {
+        growBuffer(buffer.limit() + this.vertexFormat.getSize());
+        this.byteBuffer.position(this.vertexCount * this.vertexFormat.getSize());
+        this.byteBuffer.put(buffer);
+        this.vertexCount += buffer.limit() / this.vertexFormat.getSize();
+    }
+--- Generation ---
+public void putBulkData(ByteBuffer buffer)
+    {
+        growBuffer(buffer.limit() + this.vertexFormat.getSize());
+        this.byteBuffer.position(this.vertexCount * this.vertexFormat.getSize());
+        this.byteBuffer.put(buffer);
+        this.vertexCount += buffer.limit() / this.vertexFormat.getSize();
+    }
+

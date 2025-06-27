@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1434846266471449,
+            "BLEU": 0.05069828576951884,
+            "METEOR": 0.2094640522875817,
+            "ROUGE-L": 0.14864864864864866
+        },
+        "target": "static String connectRequestURI(final URL url) {\n        final String host = url.getHost();\n        int port = url.getPort();\n        port = port != -1 ? port : url.getDefaultPort();\n\n        return host + \":\" + port;\n    }",
+        "generation": "/**\n     * send the \"CONNECT\" request to establish a tunnel through proxy server.\n     */\n    private void sendCONNECTRequest() throws IOException {\n        final String host = url.getHost();\n        final int port = url.getPort();\n        final String path = url.getPath();\n        final String query = url.getQuery();\n        final String fragment = url.getRef();\n        final String requestURI = connectRequestURI(url);\n        final String requestLine = \"CONNECT \" + requestURI + \" HTTP/1.1\";\n        final String hostHeader = \"Host: \" + host;\n        final String proxyHost = http.getProxyHostUsed();\n        final String proxyPort = String.valueOf(http.getProxyPortUsed());\n        final String proxyAuth = proxyAuthentication!= null? proxyAuthentication\n               .getHeaderValue(url, method) : null;\n        final String proxyAuthHeader = proxyAuth!= null? \"Proxy-Authorization: \"\n                + proxyAuth : null;\n        final String proxyAuthHeader2 = proxyAuth!= null? \"Proxy-Authorization: \"\n                + proxyAuth : null;\n        final String proxyAuthHeader3 = proxyAuth!= null? \"Proxy-Authorization: \"\n                + proxyAuth : null;\n        final String proxyAuthHeader4 = proxyAuth!= null? \"Proxy-Authorization: \"\n                + proxyAuth : null;\n        final String proxyAuthHeader5 = proxyAuth!= null? \"Proxy-Authorization: \"",
+        "classification": "incorrect",
+        "comment": "diff method (the method after the target), repetition"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.09298085688240654,
+            "BLEU": 0.031650542596018315,
+            "METEOR": 0.16526394022175797,
+            "ROUGE-L": 0.1488372093023256
+        },
+        "target": "static String connectRequestURI(final URL url) {\n        final String host = url.getHost();\n        int port = url.getPort();\n        port = port != -1 ? port : url.getDefaultPort();\n\n        return host + \":\" + port;\n    }",
+        "generation": "private void sendCONNECTRequest() throws IOException {\n        final String host = url.getHost();\n        final int port = url.getPort();\n        final String path = url.getPath();\n        final String query = url.getQuery();\n        final String fragment = url.getRef();\n        final String requestURI = connectRequestURI(url);\n        final String requestLine = \"CONNECT \" + requestURI + \" HTTP/1.1\";\n        final String hostLine = \"Host: \" + host;\n        final String proxyAuthLine = \"Proxy-Authorization: \"\n                + proxyAuthentication.getHeaderValue(url, method);\n        final String userAgentLine = \"User-Agent: \" + userAgent;\n        final String connectionLine = \"Connection: close\";\n        final String proxyConnectionLine = \"Proxy-Connection: close\";\n        final String proxyHostLine = \"Proxy-Host: \" + host;\n        final String proxyPortLine = \"Proxy-Port: \" + proxyPort;\n        final String proxyAuthorizationLine = \"Proxy-Authorization: \"\n                + proxyAuthentication.getHeaderValue(url, method);\n        final String proxyRequestLine = \"CONNECT \" + requestURI + \" HTTP/1.1\";\n        final String proxyHostLine2 = \"Host: \" + host;\n        final String proxyPortLine2 = \"Proxy-Port: \" + proxyPort;\n        final String proxyAuthorizationLine2 = \"Proxy-Authorization: \"\n                + proxyAuthentication.getHeaderValue(url, method);\n        final String proxyConnectionLine2 = \"Proxy-Connection: close\";\n        final String proxyRequestLine2 = \"CONNECT \" + requestURI + \" HTTP/1.1\";\n        final String proxyHostLine3 = \"Host: \" + host;\n        final String proxyPortLine3 = \"Proxy-Port: \" + proxyPort;\n        final String proxyAuthorizationLine3 = \"Proxy-Authorization: \"\n                + proxyAuthentication.getHeaderValue(url, method);\n        final String proxyConnectionLine3 = \"Proxy-Connection: close\";\n        final String proxyRequestLine3 = \"CONNECT \" + requestURI + \" HTTP/1.1\";\n        final String proxyHostLine4 = \"Host: \" + host;\n        final String proxyPortLine4 = \"Proxy-Port: \" + proxyPort;\n        final String proxyAuthorizationLine4 = \"Proxy-Authorization: \"\n                + proxyAuthentication.getHeaderValue(url, method);",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.09011090573012936,
+            "BLEU": 0.056083682695604826,
+            "METEOR": 0.31763824311625133,
+            "ROUGE-L": 0.15306122448979592
+        },
+        "target": "static String connectRequestURI(final URL url) {\n        final String host = url.getHost();\n        int port = url.getPort();\n        port = port != -1 ? port : url.getDefaultPort();\n\n        return host + \":\" + port;\n    }",
+        "generation": "private void sendCONNECTRequest() throws IOException {\n        final String host = url.getHost();\n        final int port = url.getPort();\n        final String path = url.getPath();\n        final String query = url.getQuery();\n        final String fragment = url.getRef();\n        final String urlStr = url.toString();\n        final String connectRequest = \"CONNECT \" + host + \":\" + port + \" HTTP/1.1\"\n                + LINE_FEED + \"Host: \" + host + \":\" + port + LINE_FEED\n                + \"Proxy-Connection: Keep-Alive\" + LINE_FEED\n                + \"User-Agent: \" + userAgent + LINE_FEED + LINE_FEED;\n        final String connectRequestURI = connectRequestURI(url);\n        final String connectRequestURIWithQuery = connectRequestURIWithQuery(url);\n        final String connectRequestURIWithFragment = connectRequestURIWithFragment(url);\n        final String connectRequestURIWithQueryAndFragment = connectRequestURIWithQueryAndFragment(url);\n\n        // set the request headers\n        requests.prepend(connectRequest, urlStr);\n        requests.set(\"Host\", host + \":\" + port);\n        requests.set(\"Proxy-Connection\", \"Keep-Alive\");\n        requests.set(\"User-Agent\", userAgent);\n\n        // send the request\n        if (proxyAuthentication!= null) {\n            if (tunnelState() == TunnelState.SETUP) {\n                requests.set(proxyAuthentication.getHeaderName(),\n                        proxyAuthentication.getHeaderValue(connectRequestURI,\n                                HTTP_CONNECT));\n            } else {\n                requests.set(proxyAuthentication.getHeaderName(),\n                        proxyAuthentication.getHeaderValue(url, method));\n            }\n        }\n\n        if (proxyAuthentication!= null) {\n            proxyAuthentication.beginAuthRequest();\n        }\n\n        if (proxyAuthentication!= null) {\n            proxyAuthentication.beginAuthRequest();\n        }\n\n        http.writeRequests(requests, ps);\n        if (ps.checkError()) {\n            throw new IOException(\"Error writing to server\");\n        }\n\n        // read the response\n        http.parseHTTP(responses, null, this);\n        LOG.debug(responses.toString());\n    }",
+        "classification": "incorrect",
+        "comment": "diff method (the method after the target)"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.45731707317073167,
+            "BLEU": 0.272701844762718,
+            "METEOR": 0.36270224676021784,
+            "ROUGE-L": 0.44827586206896547
+        },
+        "target": "static String connectRequestURI(final URL url) {\n        final String host = url.getHost();\n        int port = url.getPort();\n        port = port != -1 ? port : url.getDefaultPort();\n\n        return host + \":\" + port;\n    }",
+        "generation": "private void sendCONNECTRequest() throws IOException {\n        final String host = url.getHost();\n        final int port = url.getPort();\n        if (port!= -1) {\n            host = host + \":\" + port;\n        }\n        final String request = \"CONNECT \" + host + \" HTTP/1.1\" + LINE_FEED;\n        http.writeRequest(request);\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public int read() {\n        return -1;\n    }",
+        "generation": "@Override\n    public int read() {\n        return -1;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7532467532467533,
+            "BLEU": 0.5253819788848316,
+            "METEOR": 0.9679878048780488,
+            "ROUGE-L": 0.8571428571428571
+        },
+        "target": "@Override\n    public int read() {\n        return -1;\n    }",
+        "generation": "@Override\n    public int read() throws IOException {\n        return -1;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public int read() {\n        return -1;\n    }",
+        "generation": "@Override\n    public int read() {\n        return -1;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7532467532467533,
+            "BLEU": 0.5253819788848316,
+            "METEOR": 0.9679878048780488,
+            "ROUGE-L": 0.8571428571428571
+        },
+        "target": "@Override\n    public int read() {\n        return -1;\n    }",
+        "generation": "@Override\n    public int read() throws IOException {\n        return -1;\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

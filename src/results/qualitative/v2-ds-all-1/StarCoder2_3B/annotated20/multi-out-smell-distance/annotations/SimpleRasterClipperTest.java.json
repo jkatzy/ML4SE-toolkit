@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6197339246119734,
+            "BLEU": 0.4319069967809001,
+            "METEOR": 0.6639939417648179,
+            "ROUGE-L": 0.6666666666666667
+        },
+        "target": "@Test(expected = ClippingException.class)\n    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()\n                            throws Exception {\n        File sourceFile = createNewFile( \"overview.png\" );\n        File destinationFile = createNewTempFileInPngFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        try {\n            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );\n        } finally {\n            inputStream.close();\n            outputStream.close();\n        }\n    }",
+        "generation": "@Test\n    public void testCalculateClippedImageWithJpgImageNullClippingArea()\n                            throws Exception {\n        File sourceFile = createNewFile( \"saltlakecity_0_0.jpg\" );\n        File destinationFile = createNewTempFileInJpgFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithJpgFormatAndEpsg31467() );\n\n        inputStream.close();\n        outputStream.close();\n\n        assertThat( destinationFile, hasSamePixels( sourceFile ) );\n        assertThat( destinationFile, hasSameDimension( sourceFile ) );\n        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );\n    }",
+        "classification": "partial",
+        "comment": "body"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6377777777777778,
+            "BLEU": 0.5186751462093827,
+            "METEOR": 0.7156488549618321,
+            "ROUGE-L": 0.7472527472527474
+        },
+        "target": "@Test(expected = ClippingException.class)\n    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()\n                            throws Exception {\n        File sourceFile = createNewFile( \"overview.png\" );\n        File destinationFile = createNewTempFileInPngFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        try {\n            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );\n        } finally {\n            inputStream.close();\n            outputStream.close();\n        }\n    }",
+        "generation": "@Test\n    public void testCalculateClippedImageWithPngImageNullClippingAreaAndNullVisibleArea()\n                            throws Exception {\n        File sourceFile = createNewFile( \"overview.png\" );\n        File destinationFile = createNewTempFileInPngFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithPngFormat() );\n\n        inputStream.close();\n        outputStream.close();\n\n        assertThat( destinationFile, hasSamePixels( sourceFile ) );\n        assertThat( destinationFile, hasSameDimension( sourceFile ) );\n        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6197339246119734,
+            "BLEU": 0.4319069967809001,
+            "METEOR": 0.6639939417648179,
+            "ROUGE-L": 0.6666666666666667
+        },
+        "target": "@Test(expected = ClippingException.class)\n    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()\n                            throws Exception {\n        File sourceFile = createNewFile( \"overview.png\" );\n        File destinationFile = createNewTempFileInPngFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        try {\n            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );\n        } finally {\n            inputStream.close();\n            outputStream.close();\n        }\n    }",
+        "generation": "@Test\n    public void testCalculateClippedImageWithJpgImageNullClippingArea()\n                            throws Exception {\n        File sourceFile = createNewFile( \"saltlakecity_0_0.jpg\" );\n        File destinationFile = createNewTempFileInJpgFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithJpgFormatAndEpsg31467() );\n\n        inputStream.close();\n        outputStream.close();\n\n        assertThat( destinationFile, hasSamePixels( sourceFile ) );\n        assertThat( destinationFile, hasSameDimension( sourceFile ) );\n        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );\n    }",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6377777777777778,
+            "BLEU": 0.5186751462093827,
+            "METEOR": 0.7156488549618321,
+            "ROUGE-L": 0.7472527472527474
+        },
+        "target": "@Test(expected = ClippingException.class)\n    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()\n                            throws Exception {\n        File sourceFile = createNewFile( \"overview.png\" );\n        File destinationFile = createNewTempFileInPngFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        try {\n            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );\n        } finally {\n            inputStream.close();\n            outputStream.close();\n        }\n    }",
+        "generation": "@Test\n    public void testCalculateClippedImageWithPngImageNullClippingAreaAndNullVisibleArea()\n                            throws Exception {\n        File sourceFile = createNewFile( \"overview.png\" );\n        File destinationFile = createNewTempFileInPngFormat();\n\n        InputStream inputStream = createInputStreamFrom( sourceFile );\n        OutputStream outputStream = createOutputStreamFrom( destinationFile );\n\n        ImageClipper wmsClipper = new SimpleRasterClipper();\n        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithPngFormat() );\n\n        inputStream.close();\n        outputStream.close();\n\n        assertThat( destinationFile, hasSamePixels( sourceFile ) );\n        assertThat( destinationFile, hasSameDimension( sourceFile ) );\n        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9428571428571428,
+            "BLEU": 0.7910665071754358,
+            "METEOR": 0.920940170940171,
+            "ROUGE-L": 0.9090909090909091
+        },
+        "target": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );\n    }",
+        "generation": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBoundingBox() );\n    }",
+        "classification": "correct",
+        "comment": "semantically correct, used in context"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9997724169321802,
+            "ROUGE-L": 1.0
+        },
+        "target": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );\n    }",
+        "generation": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9428571428571428,
+            "BLEU": 0.7910665071754358,
+            "METEOR": 0.920940170940171,
+            "ROUGE-L": 0.9090909090909091
+        },
+        "target": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );\n    }",
+        "generation": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBoundingBox() );\n    }",
+        "classification": "correct",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9997724169321802,
+            "ROUGE-L": 1.0
+        },
+        "target": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );\n    }",
+        "generation": "private Geometry asGeometry( WmsRequest wmsRequest ) {\n        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

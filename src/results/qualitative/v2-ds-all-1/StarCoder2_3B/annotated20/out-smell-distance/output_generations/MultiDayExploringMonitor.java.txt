@@ -1,0 +1,112 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2809  BLEU: 0.0316  METEOR: 0.2083  ROUGE-L: 0.1538  
+--- Target ---
+public int getWindowSize() {
+		return windowSize;
+	}
+--- Generation ---
+@Override
+	public void dayClosed(final DayClosedEvent event) {
+		calculateExploring();
+	}
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4110  BLEU: 0.0699  METEOR: 0.4445  ROUGE-L: 0.3636  
+--- Target ---
+public int getWindowSize() {
+		return windowSize;
+	}
+--- Generation ---
+@Override
+	public double getExploringThreshold() {
+		return threshold;
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3333  BLEU: 0.0544  METEOR: 0.3221  ROUGE-L: 0.3750  
+--- Target ---
+public void setWindowSize(final int windowSize) {
+		this.windowSize = windowSize;
+	}
+--- Generation ---
+public void dayClosed(final DayClosedEvent event) {
+		calculateExploring();
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3095  BLEU: 0.0283  METEOR: 0.1546  ROUGE-L: 0.1429  
+--- Target ---
+public void setWindowSize(final int windowSize) {
+		this.windowSize = windowSize;
+	}
+--- Generation ---
+public double getExploringThreshold() {
+		return threshold;
+	}
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0703  BLEU: 0.0013  METEOR: 0.0263  ROUGE-L: 0.0090  
+--- Target ---
+@Override
+	public String toString() {
+		String s = getClass().getSimpleName();
+		s += "\n" + Utils.indent("threshold:" + threshold);
+		s += "\n" + Utils.indent(" windowsize:" + windowSize);
+
+		return s;
+	}
+--- Generation ---
+}
+/src/edu/cuny/cat/market/charging/TraderExploringMonitor.java
+/*
+ * JCAT - TAC Market Design Competition Platform
+ * Copyright (C) 2006-2010 Jinzhong Niu, Kai Cai
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ */
+
+package edu.cuny.cat.market.charging;
+
+import edu.cuny.cat.event.AuctionEvent;
+import edu.cuny.cat.event.DayClosedEvent;
+import edu.cuny.cat.event.DayOpeningEvent;
+import edu.cuny.cat.event.RegisteredTradersAnnouncedEvent;
+import edu.cuny.cat.market.Market;
+import edu.cuny.cat.market.MarketMonitor;
+import edu.cuny.cat.market.MarketState;
+import edu.cuny.cat.market.MarketState.MarketStateType;
+import edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactory;
+import edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactory.MarketStateTypeFactoryImpl;
+import edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactoryImpl.MarketStateTypeFactoryImplImpl;
+import edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactoryImpl.MarketStateTypeFactoryImplImplImpl;
+import edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactoryImpl.MarketStateTypeFactoryImplImplImplImpl;
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+	public String toString() {
+		String s = getClass().getSimpleName();
+		s += "\n" + Utils.indent("threshold:" + threshold);
+		s += "\n" + Utils.indent(" windowsize:" + windowSize);
+
+		return s;
+	}
+--- Generation ---
+@Override
+	public String toString() {
+		String s = getClass().getSimpleName();
+		s += "\n" + Utils.indent("threshold:" + threshold);
+		s += "\n" + Utils.indent(" windowsize:" + windowSize);
+
+		return s;
+	}
+

@@ -1,0 +1,165 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4105  BLEU: 0.0699  METEOR: 0.3945  ROUGE-L: 0.2667  
+--- Target ---
+@Override
+	public HawkEyeLogger getLogger() {
+		return logger;
+	}
+--- Generation ---
+@Override
+	public void onPlayerJoin(Player player) {
+		sessionManager.createSession(player);
+	}
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4105  BLEU: 0.0699  METEOR: 0.3945  ROUGE-L: 0.2667  
+--- Target ---
+@Override
+	public HawkEyeLogger getLogger() {
+		return logger;
+	}
+--- Generation ---
+@Override
+	public void onPlayerJoin(Player player) {
+		sessionManager.createSession(player);
+	}
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4105  BLEU: 0.0699  METEOR: 0.3945  ROUGE-L: 0.2667  
+--- Target ---
+@Override
+	public HawkEyeLogger getLogger() {
+		return logger;
+	}
+--- Generation ---
+@Override
+	public void onPlayerJoin(Player player) {
+		sessionManager.createSession(player);
+	}
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4105  BLEU: 0.0699  METEOR: 0.3945  ROUGE-L: 0.2667  
+--- Target ---
+@Override
+	public HawkEyeLogger getLogger() {
+		return logger;
+	}
+--- Generation ---
+@Override
+	public void onPlayerJoin(Player player) {
+		sessionManager.createSession(player);
+	}
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1861  BLEU: 0.0010  METEOR: 0.1081  ROUGE-L: 0.2051  
+--- Target ---
+@Override
+	public void handleCommand(CommandSender sender, String command) {
+		try {
+			commandManager.execute(command, sender);
+		} catch (CommandPermissionException e) {
+			sender.sendMessage(Chat.RED + "You do not have permission to do that.");
+		} catch (CommandPlayerException e) {
+			sender.sendMessage(Chat.RED + "That command can only be used by ingame players.");
+		} catch (CommandUsageException e) {
+			sender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());
+		} catch (CommandException e) {
+			sender.sendMessage(Chat.RED + e.getMessage());
+		}
+	}
+--- Generation ---
+@Override
+	public void sendMessage(CommandSender sender, String message) {
+		server.sendMessage(sender, message);
+	}
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+	public void handleCommand(CommandSender sender, String command) {
+		try {
+			commandManager.execute(command, sender);
+		} catch (CommandPermissionException e) {
+			sender.sendMessage(Chat.RED + "You do not have permission to do that.");
+		} catch (CommandPlayerException e) {
+			sender.sendMessage(Chat.RED + "That command can only be used by ingame players.");
+		} catch (CommandUsageException e) {
+			sender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());
+		} catch (CommandException e) {
+			sender.sendMessage(Chat.RED + e.getMessage());
+		}
+	}
+--- Generation ---
+@Override
+	public void handleCommand(CommandSender sender, String command) {
+		try {
+			commandManager.execute(command, sender);
+		} catch (CommandPermissionException e) {
+			sender.sendMessage(Chat.RED + "You do not have permission to do that.");
+		} catch (CommandPlayerException e) {
+			sender.sendMessage(Chat.RED + "That command can only be used by ingame players.");
+		} catch (CommandUsageException e) {
+			sender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());
+		} catch (CommandException e) {
+			sender.sendMessage(Chat.RED + e.getMessage());
+		}
+	}
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1757  BLEU: 0.0007  METEOR: 0.0338  ROUGE-L: 0.1000  
+--- Target ---
+@Override
+	public void handleCommand(CommandSender sender, String command) {
+		try {
+			commandManager.execute(command, sender);
+		} catch (CommandPermissionException e) {
+			sender.sendMessage(Chat.RED + "You do not have permission to do that.");
+		} catch (CommandPlayerException e) {
+			sender.sendMessage(Chat.RED + "That command can only be used by ingame players.");
+		} catch (CommandUsageException e) {
+			sender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());
+		} catch (CommandException e) {
+			sender.sendMessage(Chat.RED + e.getMessage());
+		}
+	}
+--- Generation ---
+public CommandManager(HawkEyeEngine engine) {
+		this.engine = engine;
+		logger = engine.getLogger();
+		commands = new ArrayList<Command>();
+	}
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+	public void handleCommand(CommandSender sender, String command) {
+		try {
+			commandManager.execute(command, sender);
+		} catch (CommandPermissionException e) {
+			sender.sendMessage(Chat.RED + "You do not have permission to do that.");
+		} catch (CommandPlayerException e) {
+			sender.sendMessage(Chat.RED + "That command can only be used by ingame players.");
+		} catch (CommandUsageException e) {
+			sender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());
+		} catch (CommandException e) {
+			sender.sendMessage(Chat.RED + e.getMessage());
+		}
+	}
+--- Generation ---
+@Override
+	public void handleCommand(CommandSender sender, String command) {
+		try {
+			commandManager.execute(command, sender);
+		} catch (CommandPermissionException e) {
+			sender.sendMessage(Chat.RED + "You do not have permission to do that.");
+		} catch (CommandPlayerException e) {
+			sender.sendMessage(Chat.RED + "That command can only be used by ingame players.");
+		} catch (CommandUsageException e) {
+			sender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());
+		} catch (CommandException e) {
+			sender.sendMessage(Chat.RED + e.getMessage());
+		}
+	}
+

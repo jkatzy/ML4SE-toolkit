@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9565217391304348,
+            "BLEU": 0.6434588841607617,
+            "METEOR": 0.8412698412698414,
+            "ROUGE-L": 0.8333333333333334
+        },
+        "target": "public String getCallserverUrl() {\n            return getString(\"callserverUrl\");\n        }",
+        "generation": "public String getCallserverUrl() {\n            return getString(\"callserverhost\");\n        }",
+        "classification": "partial",
+        "comment": "just misses the correct string key"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getCallserverUrl() {\n            return getString(\"callserverUrl\");\n        }",
+        "generation": "public String getCallserverUrl() {\n            return getString(\"callserverUrl\");\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9565217391304348,
+            "BLEU": 0.6434588841607617,
+            "METEOR": 0.8412698412698414,
+            "ROUGE-L": 0.8333333333333334
+        },
+        "target": "public String getCallserverUrl() {\n            return getString(\"callserverUrl\");\n        }",
+        "generation": "public String getCallserverUrl() {\n            return getString(\"callserverhost\");\n        }",
+        "classification": "partial",
+        "comment": "same as above"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getCallserverUrl() {\n            return getString(\"callserverUrl\");\n        }",
+        "generation": "public String getCallserverUrl() {\n            return getString(\"callserverUrl\");\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "generation": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "generation": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "generation": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "classification": "correct",
+        "comment": "exact match, same as above"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "generation": "public String getDomain() {\n            return getString(\"domain\");\n        }",
+        "classification": "",
+        "comment": ""
+    }
+]

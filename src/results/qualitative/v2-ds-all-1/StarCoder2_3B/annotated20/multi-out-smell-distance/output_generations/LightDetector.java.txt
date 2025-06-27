@@ -1,0 +1,56 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6216  BLEU: 0.2403  METEOR: 0.6250  ROUGE-L: 0.6667  
+--- Target ---
+public int getNormalizedLightValue();
+--- Generation ---
+public int getRawValue();
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.7568  BLEU: 0.2403  METEOR: 0.6250  ROUGE-L: 0.6667  
+--- Target ---
+public int getNormalizedLightValue();
+--- Generation ---
+public int getRawLightValue();
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7568  BLEU: 0.2403  METEOR: 0.6250  ROUGE-L: 0.6667  
+--- Target ---
+public int getNormalizedLightValue();
+--- Generation ---
+public int getRawLightValue();
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.7568  BLEU: 0.2403  METEOR: 0.6250  ROUGE-L: 0.6667  
+--- Target ---
+public int getNormalizedLightValue();
+--- Generation ---
+public int getRawLightValue();
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.5623  METEOR: 0.9815  ROUGE-L: 1.0000  
+--- Target ---
+public int getLow();
+--- Generation ---
+public int getLow();
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.5623  METEOR: 0.9815  ROUGE-L: 1.0000  
+--- Target ---
+public int getLow();
+--- Generation ---
+public int getLow();
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.5623  METEOR: 0.9815  ROUGE-L: 1.0000  
+--- Target ---
+public int getLow();
+--- Generation ---
+public int getLow();
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.5623  METEOR: 0.9815  ROUGE-L: 1.0000  
+--- Target ---
+public int getLow();
+--- Generation ---
+public int getLow();
+

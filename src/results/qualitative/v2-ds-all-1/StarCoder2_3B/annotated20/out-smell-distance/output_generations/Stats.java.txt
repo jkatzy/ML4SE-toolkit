@@ -1,0 +1,113 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getValue()
+	{
+		return _value;
+	}
+--- Generation ---
+public String getValue()
+	{
+		return _value;
+	}
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getValue()
+	{
+		return _value;
+	}
+--- Generation ---
+public String getValue()
+	{
+		return _value;
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1812  BLEU: 0.0027  METEOR: 0.0923  ROUGE-L: 0.1000  
+--- Target ---
+public static Stats valueOfXml(String name)
+	{
+		name = name.intern();
+		for (Stats s : values())
+		{
+			if (s.getValue().equals(name))
+			{
+				return s;
+			}
+		}
+		
+		throw new NoSuchElementException("Unknown name '" + name + "' for enum " + Stats.class.getSimpleName());
+	}
+--- Generation ---
+public double get(Creature creature)
+	{
+		return get(creature, 1);
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public static Stats valueOfXml(String name)
+	{
+		name = name.intern();
+		for (Stats s : values())
+		{
+			if (s.getValue().equals(name))
+			{
+				return s;
+			}
+		}
+		
+		throw new NoSuchElementException("Unknown name '" + name + "' for enum " + Stats.class.getSimpleName());
+	}
+--- Generation ---
+public static Stats valueOfXml(String name)
+	{
+		name = name.intern();
+		for (Stats s : values())
+		{
+			if (s.getValue().equals(name))
+			{
+				return s;
+			}
+		}
+		
+		throw new NoSuchElementException("Unknown name '" + name + "' for enum " + Stats.class.getSimpleName());
+	}
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9329  BLEU: 0.6287  METEOR: 0.7841  ROUGE-L: 0.9552  
+--- Target ---
+public static double defaultValue(Creature creature, Stats stat, double baseValue)
+	{
+		final double mul = creature.getStat().getMul(stat);
+		final double add = creature.getStat().getAdd(stat);
+		return (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());
+	}
+--- Generation ---
+public static double defaultValue(Creature creature, Stats stat, double base)
+	{
+		final double mul = creature.getStat().getMul(stat);
+		final double add = creature.getStat().getAdd(stat);
+		return mul * (add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType()));
+	}
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public static double defaultValue(Creature creature, Stats stat, double baseValue)
+	{
+		final double mul = creature.getStat().getMul(stat);
+		final double add = creature.getStat().getAdd(stat);
+		return (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());
+	}
+--- Generation ---
+public static double defaultValue(Creature creature, Stats stat, double baseValue)
+	{
+		final double mul = creature.getStat().getMul(stat);
+		final double add = creature.getStat().getAdd(stat);
+		return (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());
+	}
+

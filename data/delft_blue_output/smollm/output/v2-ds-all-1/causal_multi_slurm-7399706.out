@@ -1,0 +1,589 @@
+/scratch/lcwitte/env-satd/lib/python3.10/site-packages/tree_sitter/__init__.py:36: FutureWarning: Language(path, name) is deprecated. Use Language(ptr, name) instead.
+  warn("{} is deprecated. Use {} instead.".format(old, new), FutureWarning)
+Using model: SmolLM135M
+Max context size: 2048
+Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   0%|          | 0/398 [00:00<?, ?it/s]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   0%|          | 1/398 [00:00<05:37,  1.18it/s]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   1%|          | 2/398 [00:01<03:21,  1.96it/s]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   1%|          | 3/398 [00:01<03:07,  2.11it/s]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   1%|          | 4/398 [00:05<12:52,  1.96s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   1%|▏         | 5/398 [00:13<25:24,  3.88s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   2%|▏         | 6/398 [00:13<17:33,  2.69s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   2%|▏         | 7/398 [00:18<23:16,  3.57s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   2%|▏         | 8/398 [00:19<16:59,  2.61s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   2%|▏         | 9/398 [00:23<20:11,  3.11s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   3%|▎         | 10/398 [00:24<16:02,  2.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   3%|▎         | 11/398 [00:31<24:30,  3.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   3%|▎         | 12/398 [00:33<21:54,  3.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   3%|▎         | 13/398 [00:39<25:36,  3.99s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   4%|▎         | 14/398 [00:43<26:25,  4.13s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   4%|▍         | 15/398 [00:47<26:29,  4.15s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   4%|▍         | 16/398 [01:12<1:05:26, 10.28s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   4%|▍         | 17/398 [01:18<56:32,  8.90s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   5%|▍         | 18/398 [01:19<41:17,  6.52s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   5%|▍         | 19/398 [01:26<43:26,  6.88s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   5%|▌         | 20/398 [01:51<1:16:46, 12.19s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   5%|▌         | 21/398 [02:07<1:23:07, 13.23s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   6%|▌         | 22/398 [02:11<1:06:29, 10.61s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   6%|▌         | 23/398 [02:17<56:56,  9.11s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   6%|▌         | 24/398 [02:26<57:19,  9.20s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   6%|▋         | 25/398 [02:27<40:53,  6.58s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   7%|▋         | 26/398 [02:51<1:13:50, 11.91s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   7%|▋         | 27/398 [02:54<57:23,  9.28s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   7%|▋         | 28/398 [02:58<47:15,  7.66s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   7%|▋         | 29/398 [03:00<36:14,  5.89s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   8%|▊         | 30/398 [03:04<33:48,  5.51s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   8%|▊         | 31/398 [03:06<26:14,  4.29s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   8%|▊         | 32/398 [03:14<33:20,  5.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   8%|▊         | 33/398 [03:15<24:42,  4.06s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   9%|▊         | 34/398 [03:16<20:21,  3.36s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   9%|▉         | 35/398 [03:17<15:06,  2.50s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   9%|▉         | 36/398 [03:22<19:24,  3.22s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:   9%|▉         | 37/398 [03:25<18:45,  3.12s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  10%|▉         | 38/398 [03:26<14:30,  2.42s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  10%|▉         | 39/398 [03:30<18:45,  3.13s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  10%|█         | 40/398 [03:37<24:19,  4.08s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  10%|█         | 41/398 [04:01<1:00:48, 10.22s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  11%|█         | 42/398 [04:03<45:48,  7.72s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  11%|█         | 43/398 [04:06<37:19,  6.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  11%|█         | 44/398 [04:09<31:43,  5.38s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  11%|█▏        | 45/398 [04:12<27:40,  4.70s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  12%|█▏        | 46/398 [04:25<42:20,  7.22s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  12%|█▏        | 47/398 [04:27<32:21,  5.53s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  12%|█▏        | 48/398 [04:52<1:05:44, 11.27s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  12%|█▏        | 49/398 [05:02<1:04:38, 11.11s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  13%|█▎        | 50/398 [05:06<52:01,  8.97s/it]  Processing prInput truncated to fit within available context, file: RestServiceImpl.java
+Input truncated to fit within available context, file: SimpleNode.java
+Input truncated to fit within available context, file: AddonManagerImpl.java
+Stopping in file:AddonManagerImpl.java due to line repetition: '// If the addon is not enabled, it will be enabled.' repeated 5 times
+Input truncated to fit within available context, file: TerraSarXProductDirectory.java
+Stopping in file:TerraSarXProductDirectory.java due to line repetition: 'final MetadataElement productInfoRoot = abstractInfo.getElement("productInfoRoot");' repeated 5 times
+Input truncated to fit within available context, file: NodeImpl.java
+Input truncated to fit within available context, file: LegacyMaterialAnalouge.java
+Stopping in file:LegacyMaterialAnalouge.java due to line repetition: 'for (LegacyMaterialAnalouge m : values()) {' repeated 5 times
+Input truncated to fit within available context, file: StoryWanderer.java
+Input truncated to fit within available context, file: ReliableManager.java
+Stopping in file:ReliableManager.java due to line repetition: 'threadFactory.createThread(new Thread(this, connectionCommands));' repeated 5 times
+Input truncated to fit within available context, file: HistogramData.java
+Input truncated to fit within available context, file: LivingEntity.java
+Stopping in file:LivingEntity.java due to hallucination in long line: 'if(life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()&&life.update()'
+Input truncated to fit within available context, file: SleepChartFragment.java
+Stopping in file:SleepChartFragment.java due to line repetition: 'chart.setNoDataText("");' repeated 5 times
+Input truncated to fit within available context, file: RadioDriver.java
+Stopping in file:RadioDriver.java due to line repetition: '// Start the receiver thread' repeated 5 times
+Input truncated to fit within available context, file: TCharLongHashMap.java
+Stopping in file:TCharLongHashMap.java due to line repetition: '/** {@inheritDoc} */' repeated 5 times
+Input truncated to fit within available context, file: DataLoader.java
+Input truncated to fit within available context, file: ExprTycker.java
+Input truncated to fit within available context, file: NeedleController.java
+Input truncated to fit within available context, file: DBChecker.java
+Stopping in file:DBChecker.java due to line repetition: 'checkRegion(region, (RegionFunction)result, binSearch, errors);' repeated 5 times
+Input truncated to fit within available context, file: EventProcessor.java
+Input truncated to fit within available context, file: Playable.java
+Input truncated to fit within available context, file: IccUtils.java
+Input truncated to fit within available context, file: GGPath.java
+Stopping in file:GGPath.java due to line repetition: 'if (!dirPath.isDirectory())' repeated 5 times
+Input truncated to fit within available context, file: BottomAppBar.java
+Input truncated to fit within available context, file: FireChartSVG.java
+Input truncated to fit within available context, file: DimensionLookupMeta.java
+Stopping in file:DimensionLookupMeta.java due to line repetition: 'I have a check result with 1000 rows and 1000 columns.' repeated 5 times
+Input truncated to fit within available context, file: CopyToClipboardActionTest.java
+Stopping in file:CopyToClipboardActionTest.java due to line repetition: 'if (!checkEnabled(new Object[]{fPackage_Q, fPackage_Q_R}))' repeated 5 times
+Input truncated to fit within available context, file: LayoutOptimizerDist.java
+Input truncated to fit within available context, file: FormsTest.java
+Stopping in file:FormsTest.java due to line repetition: 'MainWindow.setTitle("Simple dialogs2");' repeated 5 times
+Input truncated to fit within available context, file: WxMessageService.java
+Input truncated to fit within available context, file: ToolbarProgressView.java
+Input truncated to fit within available context, file: SystemTray.java
+Stopping in file:SystemTray.java due to line repetition: 'System.out.println("Starting System Tray");' repeated 5 times
+Input truncated to fit within available context, file: HostListPanel.java
+Input truncated to fit within available context, file: MathUtil.java
+Stopping in file:MathUtil.java due to hallucination in long line: 'else if (fpn < Math.min(Math.max(Math.min(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max(Math.max('
+Input truncated to fit within available context, file: NativeRegExp.java
+Stopping in file:NativeRegExp.java due to line repetition: 'import java.util.regex.Pattern.compile;' repeated 5 times
+Input truncated to fit within available context, file: SubsamplingScaleImageView.java
+Input truncated to fit within available context, file: XMLErrorResources_zh_TW.java
+Input truncated to fit within available context, file: ProofVerificationConditionBuilder.java
+Input truncated to fit within available context, file: FinanceWithdrawService.java
+Input truncated to fit within available context, file: Categories.java
+Stopping in file:Categories.java due to line repetition: 'public static final TokenPredicateImpl = new TokenPredicateImpl();' repeated 5 times
+Input truncated to fit within available context, file: BelisClient.java
+Stopping in file:BelisClient.java due to line repetition: '//~ Initialize WebAccessManager object' repeated 5 times
+Input truncated to fit within available context, file: VulnerabilityFilterServiceImpl.java
+Stopping in file:VulnerabilityFilterServiceImpl.java due to line repetition: '// This is a good thing, because it means that the application's filters' repeated 5 times
+Stopping in file:AbstractIOMachine.java due to line repetition: '// TODO: implement the getCharge() method' repeated 5 times
+Input truncated to fit within available context, file: Handshake.java
+Input truncated to fit within available context, file: SectorDamage.java
+Input truncated to fit within available context, file: PAComponentGroup.java
+Input truncated to fit within available context, file: Gson.java
+Stopping in file:Gson.java due to line repetition: 'if (typeOfT == Type.TYPE_STRING) {' repeated 5 times
+Input truncated to fit within available context, file: JPGF5.java
+Stopping in file:JPGF5.java due to line repetition: 'PayloadExtractor payloadExtractor.addPayload(payload);' repeated 5 times
+Input truncated to fit within available context, file: InspectionPane.java
+Input truncated to fit within available context, file: BuildingStep5.java
+Input truncated to fit within available context, file: BeanWrapperImpl.java
+Stopping in file:BeanWrapperImpl.java due to line repetition: 'System.setSecurityManager().disable();' repeated 5 times
+Input truncated to fit within available context, file: MavenRuntimeService.java
+Stopping in file:MavenRuntimeService.java due to line repetition: 'DeployUnit de5 = new DeployUnit();' repeated 5 times
+Input truncated to fit within available context, file: Constants.java
+Stopping in file:Constants.java due to line repetition: 'String methodName = methodName.replace("'", "");' repeated 5 times
+Input truncated to fit within available context, file: DeviceFlowRegistryImpl.java
+eprocessed_multi(-1)_out_smell_distance(0)_500 samples:  13%|█▎        | 51/398 [05:10<42:39,  7.38s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  13%|█▎        | 52/398 [05:13<34:01,  5.90s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  13%|█▎        | 53/398 [05:13<25:00,  4.35s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  14%|█▎        | 54/398 [05:20<29:14,  5.10s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  14%|█▍        | 55/398 [05:22<23:14,  4.07s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  14%|█▍        | 56/398 [05:24<19:54,  3.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  14%|█▍        | 57/398 [05:25<15:26,  2.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  15%|█▍        | 58/398 [05:30<19:55,  3.52s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  15%|█▍        | 59/398 [05:33<19:07,  3.39s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  15%|█▌        | 60/398 [05:38<21:02,  3.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  15%|█▌        | 61/398 [05:40<18:16,  3.25s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  16%|█▌        | 62/398 [05:41<13:53,  2.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  16%|█▌        | 63/398 [05:42<11:13,  2.01s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  16%|█▌        | 64/398 [05:43<09:32,  1.71s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  16%|█▋        | 65/398 [06:07<47:08,  8.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  17%|█▋        | 66/398 [06:12<40:51,  7.38s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  17%|█▋        | 67/398 [06:13<30:10,  5.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  17%|█▋        | 68/398 [06:17<27:54,  5.08s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  17%|█▋        | 69/398 [06:22<27:19,  4.98s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  18%|█▊        | 70/398 [06:26<26:13,  4.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  18%|█▊        | 71/398 [06:32<27:53,  5.12s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  18%|█▊        | 72/398 [06:33<20:58,  3.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  18%|█▊        | 73/398 [06:41<27:56,  5.16s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  19%|█▊        | 74/398 [06:44<23:46,  4.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  19%|█▉        | 75/398 [06:47<21:19,  3.96s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  19%|█▉        | 76/398 [06:52<24:05,  4.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  19%|█▉        | 77/398 [06:54<20:04,  3.75s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  20%|█▉        | 78/398 [06:57<18:29,  3.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  20%|█▉        | 79/398 [07:01<19:20,  3.64s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  20%|██        | 80/398 [07:08<24:15,  4.58s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  20%|██        | 81/398 [07:17<31:13,  5.91s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  21%|██        | 82/398 [07:42<1:00:56, 11.57s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  21%|██        | 83/398 [07:43<45:07,  8.59s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  21%|██        | 84/398 [07:45<33:34,  6.42s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  21%|██▏       | 85/398 [07:45<23:44,  4.55s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  22%|██▏       | 86/398 [08:09<54:29, 10.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  22%|██▏       | 87/398 [08:12<42:07,  8.13s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  22%|██▏       | 88/398 [08:17<36:46,  7.12s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  22%|██▏       | 89/398 [08:21<31:47,  6.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  23%|██▎       | 90/398 [08:25<29:27,  5.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  23%|██▎       | 91/398 [08:35<35:33,  6.95s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  23%|██▎       | 92/398 [08:37<27:47,  5.45s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  23%|██▎       | 93/398 [08:41<24:42,  4.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  24%|██▎       | 94/398 [09:05<55:02, 10.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  24%|██▍       | 95/398 [09:30<1:15:42, 14.99s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  24%|██▍       | 96/398 [09:55<1:30:28, 17.98s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  24%|██▍       | 97/398 [09:55<1:03:54, 12.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  25%|██▍       | 98/398 [10:00<51:37, 10.33s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  25%|██▍       | 99/398 [10:01<37:42,  7.57s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  25%|██▌       | 100/398 [10:06<32:33,  6.55s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  25%|██▌       | 101/398 [10:16<38:14,  7.73s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  26%|██▌       | 102/398 [10:19<31:36,  6.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  26%|██▌       | 103/398 [10:23<27:11,  5.53s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  26%|██▌       | 104/398 [10:48<55:54, 11.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  26%|██▋       | 105/398 [10:52<45:14,  9.26s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  27%|██▋       | 106/398 [10:54<34:11,  7.03s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  27%|██▋       | 107/398 [11:18<59:31, 12.27s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  27%|██▋       | 108/398 [11:29<56:56, 11.78s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  27%|██▋       | 109/398 [11:36<50:08, 10.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  28%|██▊       | 110/398 [11:38<36:57,  7.70s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  28%|██▊       | 111/398 [11:41<31:08,  6.51s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  28%|██▊       | 112/398 [11:55<40:29,  8.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  28%|██▊       | 113/398 [11:56<30:49,  6.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  29%|██▊       | 114/398 [12:00<26:01,  5.50s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  29%|██▉       | 115/398 [12:01<20:23,  4.32s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  29%|██▉       | 116/398 [12:03<17:29,  3.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 Stopping in file:DeviceFlowRegistryImpl.java due to line repetition: '// TODO: Implement this callback.' repeated 5 times
+Input truncated to fit within available context, file: InternalUnorderedGroupsTestLanguageParser.java
+Stopping in file:InternalUnorderedGroupsTestLanguageParser.java due to line repetition: '// InternalUnorderedGroupsTestLanguage.g:1374:1: entryRuleNestedModel returns [EObject current=null] : iv_ruleNestedModel= ruleNestedModel EOF ;' repeated 5 times
+Stopping in file:IssArilRobotSupport.java due to line repetition: 'support.requestSynch( translate(move) );' repeated 5 times
+Input truncated to fit within available context, file: SSLSocketImpl.java
+Stopping in file:SSLSocketImpl.java due to line repetition: '// notify the listeners' repeated 5 times
+Input truncated to fit within available context, file: PhyloTreeEdge.java
+Input truncated to fit within available context, file: BigDecimalMath.java
+Input truncated to fit within available context, file: SemiAutomaticReverseParking.java
+Input truncated to fit within available context, file: Jid.java
+Stopping in file:Jid.java due to line repetition: 'I've tried to use `String.format` to get the string, but it doesn't work.' repeated 5 times
+Input truncated to fit within available context, file: Transformation.java
+Input truncated to fit within available context, file: DIWriterVisitor.java
+Stopping in file:DIWriterVisitor.java due to line repetition: '// write the list of elements to the serialised list' repeated 5 times
+Stopping in file:FormatAction.java due to line repetition: 'The `getTextWidget` method is called when the caret is clicked.' repeated 5 times
+Input truncated to fit within available context, file: InferTypeArgumentsConstraintCreator.java
+Stopping in file:InferTypeArgumentsConstraintCreator.java due to line repetition: '// get the type of the variable's name' repeated 5 times
+Input truncated to fit within available context, file: Blake2b.java
+Stopping in file:Blake2b.java due to line repetition: 'private static final int MAX_Leaf_SIZE = 1000000;' repeated 5 times
+Input truncated to fit within available context, file: TextureCoOcurrence.java
+Input truncated to fit within available context, file: Main.java
+Input truncated to fit within available context, file: ID3v24Frame.java
+Stopping in file:ID3v24Frame.java due to line repetition: 'if (getFrameId() == 4)' repeated 5 times
+Input truncated to fit within available context, file: Visitor.java
+Stopping in file:Visitor.java due to line repetition: '// we need to call the method from the methodBps.get(methodName) method' repeated 5 times
+Input truncated to fit within available context, file: RealUpdateExecutor.java
+Stopping in file:RealUpdateExecutor.java due to line repetition: 'region.putUpdater().chatText.setTextColor(region.getUpdater().chatTextColor);' repeated 5 times
+Input truncated to fit within available context, file: SweetBerryBushBlock.java
+Stopping in file:SweetBerryBushBlock.java due to line repetition: 'world.isClientSide = true;' repeated 5 times
+Input truncated to fit within available context, file: MainUI.java
+Input truncated to fit within available context, file: AutoCompletePopupWindow.java
+Input truncated to fit within available context, file: Polymer.java
+Input truncated to fit within available context, file: EventsPanel.java
+Input truncated to fit within available context, file: RegistrationActivity.java
+Stopping in file:RegistrationActivity.java due to line repetition: '// we need to do something else here' repeated 5 times
+Input truncated to fit within available context, file: TestStressRSetCoarsening.java
+Stopping in file:TestStressRSetCoarsening.java due to line repetition: '// 10% ahead of jtreg timeout' repeated 5 times
+Input truncated to fit within available context, file: BasisLibrary.java
+Stopping in file:BasisLibrary.java due to line repetition: '// The method returns a DOMNode object.' repeated 5 times
+Input truncated to fit within available context, file: DanuarSanctuaryInstance.java
+Stopping in file:DanuarSanctuaryInstance.java due to short line repetition: '}' repeated 20 times
+Input truncated to fit within available context, file: WorldManager.java
+Stopping in file:WorldManager.java due to line repetition: 'block.setTotalDifficulty(block.getStateRoot().getHash());' repeated 5 times
+Input truncated to fit within available context, file: WorldGenSmallPigmanVillage.java
+Stopping in file:WorldGenSmallPigmanVillage.java due to line repetition: 'world.setBlock(world, i, j, k, 0);' repeated 5 times
+Input truncated to fit within available context, file: ViewerArea.java
+Input truncated to fit within available context, file: StaggeredGridLayoutManager.java
+Stopping in file:StaggeredGridLayoutManager.java due to line repetition: 'if (!mCurrentPosition) {' repeated 5 times
+Input truncated to fit within available context, file: EarClippingSeparatorHelper.java
+Input truncated to fit within available context, file: TableToolBar.java
+Input truncated to fit within available context, file: BuscaConvocatoriasForm.java
+Input truncated to fit within available context, file: StreamSerializer.java
+Input truncated to fit within available context, file: MzIdentParser.java
+Stopping in file:MzIdentParser.java due to line repetition: 'I have tried to use the following code to get the score of the peptide:' repeated 5 times
+Input truncated to fit within available context, file: FDBTableStatusCache.java
+Input truncated to fit within available context, file: HTMLUtil.java
+Stopping in file:HTMLUtil.java due to line repetition: 'allow.add("<p>"); allow.add("</p>");' repeated 5 times
+Input truncated to fit within available context, file: DeployCommand.java
+Stopping in file:DeployCommand.java due to line repetition: 'if (safeCopyOfAltDD != null) {' repeated 5 times
+Input truncated to fit within available context, file: WellSearchResultsTest.java
+Input truncated to fit within available context, file: LambdaAnalysis.java
+Stopping in file:LambdaAnalysis.java due to line repetition: '// If the method is invoked, then return the method's invocation site.' repeated 5 times
+Input truncated to fit within available context, file: ShadowCompositeRenderer.java
+Stopping in file:TList.java due to line repetition: '// 6351336: com.sun.tools.javac.util.List.equals() violates java.util.List.equals() contract' repeated 5 times
+Input truncated to fit within available context, file: PropertyManager.java
+Input truncated to fit within available context, file: TestCollisionResolving.java
+Input truncated to fit within available context, file: Level.java
+Stopping in file:Level.java due to line repetition: 'if(item.stackable && item.quantity()>1) {' repeated 5 times
+Input truncated to fit within available context, file: BeautiOptions.java
+Stopping in file:BeautiOptions.java due to line repetition: '// if not a fixed tree then sample tree space' repeated 5 times
+Input truncated to fit within available context, file: RfbProto.java
+Stopping in file:RfbProto.java due to short line repetition: '//' repeated 20 times
+Input truncated to fit within available context, file: WDataManager.java
+Stopping in file:WDataManager.java due to line repetition: 'wdData.m_wgtType = type;' repeated 5 times
+Input truncated to fit within available context, file: Dial.java
+Input truncated to fit within available context, file: XmlParser.java
+Stopping in file:XmlParser.java due to short line repetition: '///' repeated 20 times
+Input truncated to fit within available context, file: LongSorting.java
+Input truncated to fit within available context, file: TestCBCOracle.java
+Stopping in file:TestCBCOracle.java due to line repetition: '// Create a new XML document' repeated 5 times
+Input truncated to fit within available context, file: Cursor.java
+Input truncated to fit within available context, file: W3ProvenanceExport.java
+Stopping in file:W3ProvenanceExport.java due to line repetition: '// This is a simple plugin that will extract the version of the plugin from the' repeated 5 times
+Input truncated to fit within available context, file: Conversion.java
+samples:  29%|██▉       | 117/398 [12:04<13:00,  2.78s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  30%|██▉       | 118/398 [12:07<12:46,  2.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  30%|██▉       | 119/398 [12:11<14:21,  3.09s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  30%|███       | 120/398 [12:13<13:45,  2.97s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  30%|███       | 121/398 [12:16<13:12,  2.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  31%|███       | 122/398 [12:18<12:23,  2.69s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  31%|███       | 123/398 [12:43<42:58,  9.38s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  31%|███       | 124/398 [13:08<1:03:46, 13.96s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  31%|███▏      | 125/398 [13:11<49:12, 10.81s/it]  Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  32%|███▏      | 126/398 [13:14<37:57,  8.37s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  32%|███▏      | 127/398 [13:14<26:38,  5.90s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  32%|███▏      | 128/398 [13:27<36:36,  8.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  32%|███▏      | 129/398 [13:31<30:48,  6.87s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  33%|███▎      | 130/398 [13:33<23:15,  5.21s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  33%|███▎      | 131/398 [13:58<49:36, 11.15s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  33%|███▎      | 132/398 [13:58<35:05,  7.91s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  33%|███▎      | 133/398 [14:23<57:07, 12.93s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  34%|███▎      | 134/398 [14:24<41:38,  9.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  34%|███▍      | 135/398 [14:35<43:06,  9.83s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  34%|███▍      | 136/398 [14:43<41:01,  9.39s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  34%|███▍      | 137/398 [14:48<34:40,  7.97s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  35%|███▍      | 138/398 [14:48<24:34,  5.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  35%|███▍      | 139/398 [14:52<22:18,  5.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  35%|███▌      | 140/398 [14:54<17:24,  4.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  35%|███▌      | 141/398 [15:19<44:27, 10.38s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  36%|███▌      | 142/398 [15:28<42:33,  9.98s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  36%|███▌      | 143/398 [15:33<36:54,  8.69s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  36%|███▌      | 144/398 [15:35<27:52,  6.59s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  36%|███▋      | 145/398 [15:38<22:59,  5.45s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  37%|███▋      | 146/398 [15:42<20:56,  4.99s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  37%|███▋      | 147/398 [15:54<29:21,  7.02s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  37%|███▋      | 148/398 [15:58<25:55,  6.22s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  37%|███▋      | 149/398 [16:08<31:10,  7.51s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  38%|███▊      | 150/398 [16:21<37:54,  9.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  38%|███▊      | 151/398 [16:24<29:47,  7.24s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  38%|███▊      | 152/398 [16:30<27:24,  6.69s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  38%|███▊      | 153/398 [16:37<28:30,  6.98s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  39%|███▊      | 154/398 [16:39<21:48,  5.36s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  39%|███▉      | 155/398 [16:43<20:02,  4.95s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  39%|███▉      | 156/398 [16:57<31:40,  7.85s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  39%|███▉      | 157/398 [16:58<23:01,  5.73s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  40%|███▉      | 158/398 [17:05<23:38,  5.91s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  40%|███▉      | 159/398 [17:08<20:35,  5.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  40%|████      | 160/398 [17:12<19:25,  4.90s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  40%|████      | 161/398 [17:16<18:05,  4.58s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  41%|████      | 162/398 [17:18<14:26,  3.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  41%|████      | 163/398 [17:19<11:17,  2.88s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  41%|████      | 164/398 [17:22<12:00,  3.08s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  41%|████▏     | 165/398 [17:27<13:22,  3.44s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  42%|████▏     | 166/398 [17:28<11:16,  2.92s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  42%|████▏     | 167/398 [17:39<19:47,  5.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  42%|████▏     | 168/398 [17:43<18:43,  4.89s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  42%|████▏     | 169/398 [17:57<29:27,  7.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  43%|████▎     | 170/398 [18:01<24:22,  6.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  43%|████▎     | 171/398 [18:01<18:02,  4.77s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  43%|████▎     | 172/398 [18:03<13:44,  3.65s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  43%|████▎     | 173/398 [18:13<2Stopping in file:Conversion.java due to line repetition: '// we can also use this attribute to convert the tie line to a new one' repeated 5 times
+Input truncated to fit within available context, file: BreakIteratorTest.java
+Stopping in file:BreakIteratorTest.java due to line repetition: 'I'm not sure if I'm doing it right.' repeated 5 times
+Stopping in file:DownloaderService.java due to line repetition: 'import android.content.Intent.OnInit;' repeated 5 times
+Input truncated to fit within available context, file: StaticOptimizer.java
+Input truncated to fit within available context, file: DBNative.java
+Input truncated to fit within available context, file: Cmd.java
+Input truncated to fit within available context, file: ChordNode.java
+Stopping in file:ChordNode.java due to short line repetition: '// updateLoads();' repeated 20 times
+Stopping in file:ComputeLoopFrequenciesClosure.java due to line repetition: '// create a list of states' repeated 5 times
+Last token is EOS, the generation was stopped by the model for file: Log.java
+Stopping in file:ZeebeProcessStarter.java due to line repetition: 'private static final String ZEEBE_WORKFLOW_TIME_FORMAT_FORMAT_FORMAT_FORMAT_FORMAT_FORMAT_FORMAT_FORMAT_FORMAT = "2017-01-01";' repeated 5 times
+Input truncated to fit within available context, file: LifecycleController.java
+Stopping in file:LifecycleController.java due to line repetition: 'if (publicNetwork == "192.168.1.5") {' repeated 5 times
+Input truncated to fit within available context, file: KeyEvent.java
+Stopping in file:KeyEvent.java due to line repetition: '// @see #getKeyChar()' repeated 5 times
+Input truncated to fit within available context, file: DataBaseAdapter.java
+Input truncated to fit within available context, file: SendDevMail.java
+Last token is EOS, the generation was stopped by the model for file: SendDevMail.java
+Input truncated to fit within available context, file: DemuxingServerHandler.java
+Stopping in file:DemuxingServerHandler.java due to line repetition: '//返回栏目数据  #001#appqyLoginOk!' repeated 5 times
+Input truncated to fit within available context, file: JavaTweak_camille.java
+Stopping in file:JavaTweak_camille.java due to line repetition: '//JavaTweakBridge.hookJavaMethod("android.os.Environment","getExternalStorageDirectory");' repeated 5 times
+Input truncated to fit within available context, file: NetworkGraphService.java
+Input truncated to fit within available context, file: FloatList.java
+Input truncated to fit within available context, file: UncertaintyConverter.java
+Input truncated to fit within available context, file: BibtexMergeDialog.java
+Input truncated to fit within available context, file: Experiment.java
+Input truncated to fit within available context, file: PlayerActionProcessor.java
+Stopping in file:PlayerActionProcessor.java due to line repetition: 'case PlayerActionPacket.ACTION_STOP_GLIDE:' repeated 5 times
+Input truncated to fit within available context, file: LC.java
+Stopping in file:LC.java due to hallucination in long line: '// 1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.'
+Input truncated to fit within available context, file: PartitionClockModel.java
+Input truncated to fit within available context, file: EasOutboxService.java
+Stopping in file:EasOutboxService.java due to line repetition: 'String body = "Hello, World!";' repeated 5 times
+Input truncated to fit within available context, file: Context.java
+Input truncated to fit within available context, file: CubicChunkStore.java
+Stopping in file:CubicChunkStore.java due to hallucination in long line: 'return new Chunk16Virtual(new Chunk16Virtual.SerializedColumn(loc, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,'
+Input truncated to fit within available context, file: SunVolatileImage.java
+Stopping in file:SunVolatileImage.java due to line repetition: 'private static final int GAME_COLOR_GREEN = "green";' repeated 5 times
+Input truncated to fit within available context, file: UserDAOImpl.java
+Stopping in file:UserDAOImpl.java due to line repetition: 'if (user instanceof UserImpl.class.getClassName()) {' repeated 5 times
+Input truncated to fit within available context, file: RecyclingTileFactory.java
+Stopping in file:RecyclingTileFactory.java due to line repetition: 'getRasterBufferBufferDataBufferDataBufferDataFormat(),' repeated 5 times
+Input truncated to fit within available context, file: AdqlQueryGenerator.java
+Stopping in file:AdqlQueryGenerator.java due to hallucination in long line: 'String[] queryParams = { "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov", "s_fov",'
+Input truncated to fit within available context, file: UnixPath.java
+Input truncated to fit within available context, file: WolfSSLTrustX509Test.java
+Input truncated to fit within available context, file: XPartition.java
+Input truncated to fit within available context, file: ContactDAO.java
+Stopping in file:ContactDAO.java due to line repetition: '// Create a new business email' repeated 5 times
+Input truncated to fit within available context, file: RoundMarkErrorStrip.java
+Stopping in file:RoundMarkErrorStrip.java due to line repetition: 'g.drawText(textArea.getText(), textArea.getSize(), text);' repeated 5 times
+Input truncated to fit within available context, file: Pass3aVerifier.java
+Stopping in file:Pass3aVerifier.java due to line repetition: 'if (o.getClass() == o.getClass()){' repeated 5 times
+Input truncated to fit within available context, file: KitHider.java
+Stopping in file:KitHider.java due to line repetition: 'private final HashMap<Player, Integer> HACK_MAP.put(player, new HiderDisguise(player, this.game));' repeated 5 times
+Input truncated to fit within available context, file: EntityBoat.java
+Input truncated to fit within available context, file: PhysicalSphere.java
+Stopping in file:PhysicalSphere.java due to line repetition: '// 5) Coordinates transform' repeated 5 times
+Stopping in file:StringUtils.java due to line repetition: '//    return s.length() == 0 || s.length() == 0;' repeated 5 times
+Input truncated to fit within available context, file: Store.java
+Input truncated to fit within available context, file: MediaBottomFilesController.java
+Input truncated to fit within available context, file: DownstreamModule.java
+Input truncated to fit within available context, file: GATKPicardBackendTest.java
+Stopping in file:GATKPicardBackendTest.java due to line repetition: 'String fileName = fileInfo.getName();' repeated 5 times
+Input truncated to fit within available context, file: RelationNotification.java
+Stopping in file:RelationNotification.java due to line repetition: '//  - no role old value (for role update)' repeated 5 times
+Stopping in file:AmazfitGTR2FirmwareInfo.java due to short line repetition: '// latin' repeated 20 times
+Input truncated to fit within available context, file: StringUtils.java
+Input truncated to fit within available context, file: ForgeEvents.java
+Stopping in file:ForgeEvents.java due to line repetition: 'strider.equipSaddle(null);' repeated 5 times
+Input truncated to fit within available context, file: DirListingFileSystem.java
+Input truncated to fit within available context, file: CommunityFullSearcher.java
+1:04,  5.62s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  44%|████▎     | 174/398 [18:18<20:39,  5.53s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  44%|████▍     | 175/398 [18:18<14:41,  3.95s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  44%|████▍     | 176/398 [18:20<11:37,  3.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  44%|████▍     | 177/398 [18:20<08:59,  2.44s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  45%|████▍     | 178/398 [18:24<10:02,  2.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  45%|████▍     | 179/398 [18:26<09:21,  2.56s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  45%|████▌     | 180/398 [18:41<23:00,  6.33s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  45%|████▌     | 181/398 [18:50<25:27,  7.04s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  46%|████▌     | 182/398 [18:55<23:47,  6.61s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  46%|████▌     | 183/398 [18:56<17:02,  4.75s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  46%|████▌     | 184/398 [19:21<38:21, 10.76s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  46%|████▋     | 185/398 [19:21<27:14,  7.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  47%|████▋     | 186/398 [19:21<19:23,  5.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  47%|████▋     | 187/398 [19:23<15:16,  4.34s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  47%|████▋     | 188/398 [19:24<11:31,  3.29s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  47%|████▋     | 189/398 [19:45<30:26,  8.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  48%|████▊     | 190/398 [19:48<23:53,  6.89s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  48%|████▊     | 191/398 [20:13<42:18, 12.26s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  48%|████▊     | 192/398 [20:14<31:14,  9.10s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  48%|████▊     | 193/398 [20:16<23:16,  6.81s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  49%|████▊     | 194/398 [20:23<23:39,  6.96s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  49%|████▉     | 195/398 [20:34<27:37,  8.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  49%|████▉     | 196/398 [20:36<21:05,  6.26s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  49%|████▉     | 197/398 [20:37<16:05,  4.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  50%|████▉     | 198/398 [20:40<13:35,  4.08s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  50%|█████     | 199/398 [20:41<10:26,  3.15s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  50%|█████     | 200/398 [20:48<14:23,  4.36s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  51%|█████     | 201/398 [20:50<12:25,  3.78s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  51%|█████     | 202/398 [20:52<10:25,  3.19s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  51%|█████     | 203/398 [20:57<11:31,  3.54s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  51%|█████▏    | 204/398 [20:57<08:37,  2.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  52%|█████▏    | 205/398 [21:01<09:35,  2.98s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  52%|█████▏    | 206/398 [21:02<07:58,  2.49s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  52%|█████▏    | 207/398 [21:03<05:55,  1.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  52%|█████▏    | 208/398 [21:11<11:45,  3.71s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  53%|█████▎    | 209/398 [21:12<08:56,  2.84s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  53%|█████▎    | 210/398 [21:13<07:44,  2.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  53%|█████▎    | 211/398 [21:18<09:43,  3.12s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  53%|█████▎    | 212/398 [21:42<29:31,  9.52s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  54%|█████▎    | 213/398 [21:56<33:21, 10.82s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  54%|█████▍    | 214/398 [21:59<25:55,  8.46s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  54%|█████▍    | 215/398 [22:00<19:14,  6.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  54%|█████▍    | 216/398 [22:25<35:45, 11.79s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  55%|█████▍    | 217/398 [22:25<25:22,  8.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  55%|█████▍    | 218/398 [22:26<18:31,  6.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  55%|█████▌    | 219/398 [22:31<17:07,  5.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  55%|█████▌    | 220/398 [22:33<13:39,  4.61s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  56%|█████▌    | 221/398 [22:37<12:38,  4.29s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  56%|█████▌    | 222/398 [22:44<15:10,  5.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  56%|█████▌    | 223/398 [22:44<11:00,  3.77s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  56%|█████▋    | 224/398 [22:48<10:54,  3.76s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  57%|█████▋    | 225/398 [22:51<10:24,  3.61s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  57%|█████▋    | 226/398 [23:16<28:25,  9.92s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  57%|█████▋    | 227/398 [23:17<20:20,  7.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  57%|█████▋    | 228/398 [23:22<18:52,  6.66s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  58%|█████▊    | 229/398 [23:27<16:49,  5.97s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  58%|█████▊    | 230/398 [23:27<12:24,  4.43s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  58%|█████▊    | 231/398 [23:28<09:04,  3.26s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  58%|█████▊    | 232/398 [23:53<26:45,  9.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  59%|█████▊    | 233/398 [23:54<19:46,  7.19s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  59%|█████▉    | 234/398 [23:59<18:00,  6.59s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  59%|█████▉    | 235/398 [24:02<14:53,  5.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  59%|█████▉    | 236/398 [24:05<Last token is EOS, the generation was stopped by the model for file: CommunityFullSearcher.java
+Input truncated to fit within available context, file: CollinsHeadFinder.java
+Stopping in file:CollinsHeadFinder.java due to line repetition: '// TODO: Implement this method' repeated 5 times
+Input truncated to fit within available context, file: ApplicationWizard.java
+Input truncated to fit within available context, file: Utility.java
+Input truncated to fit within available context, file: JackrabbitRepository.java
+Stopping in file:JackrabbitRepository.java due to line repetition: '//		if (usersNegativeAce != null && usersNegativeAce.containsPrivilege(IWSlideConstants.PRIVILEGE_ALL)) {' repeated 5 times
+Input truncated to fit within available context, file: BorderLayoutManager.java
+Stopping in file:BorderLayoutManager.java due to short line repetition: '{' repeated 20 times
+Input truncated to fit within available context, file: ForgetTheOtherMethodsThisIsWhereTheMagicHappens.java
+Stopping in file:ForgetTheOtherMethodsThisIsWhereTheMagicHappens.java due to line repetition: 'deleteDirectory(Paths.get((System.getProperty("user.dir") + "/pack/")));' repeated 5 times
+Input truncated to fit within available context, file: This.java
+Input truncated to fit within available context, file: L2SiegeGuardAI.java
+Input truncated to fit within available context, file: NamingContext.java
+Input truncated to fit within available context, file: CSVInterpreter.java
+Last token is EOS, the generation was stopped by the model for file: CSVInterpreter.java
+Input truncated to fit within available context, file: Backend.java
+Input truncated to fit within available context, file: HttpURLConnection.java
+Input truncated to fit within available context, file: ControlProtocolManager.java
+Input truncated to fit within available context, file: SellStorageOperatorTest.java
+Input truncated to fit within available context, file: SkriptConfig.java
+Last token is EOS, the generation was stopped by the model for file: SkriptConfig.java
+Input truncated to fit within available context, file: MapsActivity.java
+Stopping in file:MapsActivity.java due to line repetition: '// TODO: Add this to the View class.' repeated 5 times
+Input truncated to fit within available context, file: Vokabel.java
+Stopping in file:Vokabel.java due to line repetition: '// 'ms-help://MS.VSExpressCC.v80/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"'' repeated 5 times
+Stopping in file:PvProfileHollSingleton.java due to hallucination in long line: 'pvProfileArray = new int[][] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,'
+Input truncated to fit within available context, file: MatrixOps.java
+Input truncated to fit within available context, file: LeftDrawerFragment.java
+Input truncated to fit within available context, file: TripUploader.java
+Stopping in file:TripUploader.java due to line repetition: '// Create a new Trip object' repeated 5 times
+Input truncated to fit within available context, file: Invocable.java
+Input truncated to fit within available context, file: AlgoFournierViger08.java
+Input truncated to fit within available context, file: SendOpcode.java
+Stopping in file:SendOpcode.java due to line repetition: '// this is the code that is sent to the server' repeated 5 times
+Input truncated to fit within available context, file: TableView.java
+Input truncated to fit within available context, file: SimpleRasterClipperTest.java
+Stopping in file:SimpleRasterClipperTest.java due to line repetition: 'test.testCalculateClippedImageWithPngImageRequestInOtherCrsThanVisibleArea();' repeated 5 times
+Input truncated to fit within available context, file: MainActivity.java
+Stopping in file:MainActivity.java due to line repetition: 'speedBar.setValue(speed);' repeated 5 times
+Input truncated to fit within available context, file: JToolBar.java
+Stopping in file:CurrentFrame.java due to line repetition: 'public static final int STACK_MAP_FRAME_STATUS = 4;' repeated 5 times
+Input truncated to fit within available context, file: FuseJExt2.java
+Input truncated to fit within available context, file: StackProfiler2.java
+Stopping in file:StackProfiler2.java due to short line repetition: '//' repeated 20 times
+Stopping in file:MyEMatrixInt.java due to short line repetition: 'matrix[1][1] = 1;' repeated 20 times
+Input truncated to fit within available context, file: ASTLoop.java
+Stopping in file:Tracker.java due to line repetition: '// TODO: implement this' repeated 5 times
+Input truncated to fit within available context, file: PA_StateTracker.java
+Input truncated to fit within available context, file: Record.java
+Input truncated to fit within available context, file: SemesterActivity.java
+Stopping in file:SemesterActivity.java due to short line repetition: 'Thread.sleep(1000);' repeated 20 times
+Input truncated to fit within available context, file: ElevationPlane.java
+Input truncated to fit within available context, file: ClientWmsLayer.java
+Stopping in file:TournamentInfo.java due to line repetition: 'TournamentInfo.setTournament(tournamentInfo);' repeated 5 times
+Input truncated to fit within available context, file: HttpConnectionHandler.java
+Stopping in file:HttpConnectionHandler.java due to short line repetition: 'handler.close();' repeated 20 times
+Input truncated to fit within available context, file: XResources.java
+Input truncated to fit within available context, file: ChunkMesh.java
+Input truncated to fit within available context, file: ClusteringGraphBuilder.java
+Stopping in file:SoftHashMapTest.java due to short line repetition: 'map.remove(i);' repeated 20 times
+Input truncated to fit within available context, file: Surf.java
+Last token is EOS, the generation was stopped by the model for file: Surf.java
+Input truncated to fit within available context, file: DiagramRelation.java
+Stopping in file:EnactorListener.java due to line repetition: 'public static final String ACTION_TRIGGERED = "actionTriggered";' repeated 5 times
+Input truncated to fit within available context, file: TerminalKeyboard.java
+Input truncated to fit within available context, file: ProtocolDeclaration.java
+Stopping in file:ProtocolDeclaration.java due to line repetition: 'implementation.addFunction(new Function<String>(8, 9), 9);' repeated 5 times
+Input truncated to fit within available context, file: CenterArrangement.java
+Stopping in file:CenterArrangement.java due to line repetition: '// clear the current block's constraints.' repeated 5 times
+Input truncated to fit within available context, file: Legup.java
+Input truncated to fit within available context, file: PFtpClient.java
+Input truncated to fit within available context, file: CustomTouchHelper.java
+Stopping in file:CustomTouchHelper.java due to short line repetition: 'mDx = mDy = 0f;' repeated 20 times
+Input truncated to fit within available context, file: DataStructureParser.java
+Stopping in file:DataStructureParser.java due to line repetition: 'XMLEventEventReader eventReader = new XMLEventEventReader(args[5]);' repeated 5 times
+Input truncated to fit within available context, file: QRFirstStep.java
+13:02,  4.83s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  60%|█████▉    | 237/398 [24:08<11:07,  4.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  60%|█████▉    | 238/398 [24:09<08:26,  3.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  60%|██████    | 239/398 [24:12<08:42,  3.29s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  60%|██████    | 240/398 [24:22<13:47,  5.24s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  61%|██████    | 241/398 [24:26<12:20,  4.71s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  61%|██████    | 242/398 [24:37<17:29,  6.73s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  61%|██████    | 243/398 [24:42<16:06,  6.23s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  61%|██████▏   | 244/398 [25:07<30:16, 11.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  62%|██████▏   | 245/398 [25:09<22:27,  8.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  62%|██████▏   | 246/398 [25:14<19:15,  7.60s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  62%|██████▏   | 247/398 [25:15<14:39,  5.83s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  62%|██████▏   | 248/398 [25:16<10:51,  4.34s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  63%|██████▎   | 249/398 [25:17<08:00,  3.22s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  63%|██████▎   | 250/398 [25:18<06:27,  2.62s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  63%|██████▎   | 251/398 [25:18<04:45,  1.94s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  63%|██████▎   | 252/398 [25:19<03:39,  1.51s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  64%|██████▎   | 253/398 [25:28<09:11,  3.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  64%|██████▍   | 254/398 [25:35<11:13,  4.68s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  64%|██████▍   | 255/398 [25:41<12:13,  5.13s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  64%|██████▍   | 256/398 [25:52<16:46,  7.09s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  65%|██████▍   | 257/398 [25:53<11:54,  5.07s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  65%|██████▍   | 258/398 [26:17<25:20, 10.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  65%|██████▌   | 259/398 [26:30<26:23, 11.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  65%|██████▌   | 260/398 [26:33<20:43,  9.01s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  66%|██████▌   | 261/398 [26:39<18:13,  7.98s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  66%|██████▌   | 262/398 [26:39<13:01,  5.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  66%|██████▌   | 263/398 [26:41<09:53,  4.39s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  66%|██████▋   | 264/398 [26:41<07:24,  3.32s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  67%|██████▋   | 265/398 [26:43<06:15,  2.82s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  67%|██████▋   | 266/398 [26:45<05:20,  2.43s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  67%|██████▋   | 267/398 [27:09<19:39,  9.00s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  67%|██████▋   | 268/398 [27:34<29:35, 13.66s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  68%|██████▊   | 269/398 [27:58<36:15, 16.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  68%|██████▊   | 270/398 [27:58<25:19, 11.87s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  68%|██████▊   | 271/398 [28:23<33:14, 15.71s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  68%|██████▊   | 272/398 [28:27<25:29, 12.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  69%|██████▊   | 273/398 [28:31<20:29,  9.84s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  69%|██████▉   | 274/398 [28:33<15:37,  7.56s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  69%|██████▉   | 275/398 [28:36<12:31,  6.11s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  69%|██████▉   | 276/398 [28:36<08:57,  4.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  70%|██████▉   | 277/398 [28:39<07:39,  3.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  70%|██████▉   | 278/398 [28:40<05:51,  2.93s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  70%|███████   | 279/398 [28:44<06:35,  3.32s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  70%|███████   | 280/398 [28:46<05:36,  2.85s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  71%|███████   | 281/398 [28:52<07:25,  3.81s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  71%|███████   | 282/398 [28:59<09:11,  4.76s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  71%|███████   | 283/398 [29:04<09:10,  4.78s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  71%|███████▏  | 284/398 [29:28<20:23, 10.73s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  72%|███████▏  | 285/398 [29:53<28:04, 14.90s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  72%|███████▏  | 286/398 [29:57<21:33, 11.55s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  72%|███████▏  | 287/398 [30:07<20:47, 11.24s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  72%|███████▏  | 288/398 [30:08<14:57,  8.16s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  73%|███████▎  | 289/398 [30:12<12:24,  6.83s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  73%|███████▎  | 2Stopping in file:QRFirstStep.java due to hallucination in long line: 'private void write(String taskTmpDir, String taskName, String taskNameTmp, String taskNameTmpTmp, String taskNameTmpTmpTmp, String taskNameTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmpTmpTmp, String taskNameTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmpTmp'
+Input truncated to fit within available context, file: EntityListener.java
+Stopping in file:EntityListener.java due to line repetition: 'if (event.getEntity() instanceof Player && !ZoneUtils.isInPlot(event.getBlock().getLocation())) {' repeated 5 times
+Input truncated to fit within available context, file: FileDisplayActivity.java
+Input truncated to fit within available context, file: ScenarioParametersManager.java
+Input truncated to fit within available context, file: PaymentChannelClient.java
+Stopping in file:PaymentChannelClient.java due to line repetition: '// If the connection is closed, we can't send any messages to the client.' repeated 5 times
+Input truncated to fit within available context, file: Transition.java
+Input truncated to fit within available context, file: Component3DAnimationTarget.java
+Input truncated to fit within available context, file: UniverseTransaction.java
+Input truncated to fit within available context, file: Currency.java
+Input truncated to fit within available context, file: ClientRead.java
+Input truncated to fit within available context, file: ItemHelper.java
+Input truncated to fit within available context, file: Feeler.java
+Stopping in file:Feeler.java due to line repetition: 'File file = new File("file.txt");' repeated 5 times
+Input truncated to fit within available context, file: DSpotUtils.java
+Input truncated to fit within available context, file: Utils.java
+Input truncated to fit within available context, file: TestRollupRpc.java
+Input truncated to fit within available context, file: JDagEspecialidad.java
+Stopping in file:JDagEspecialidad.java due to line repetition: '//  ee.requestFocus();' repeated 5 times
+Input truncated to fit within available context, file: NewAnalyseDialog.java
+Stopping in file:NewAnalyseDialog.java due to line repetition: 'I have tried to use the `getDialogPane()` method of the `Dialog` class, but it doesn't seem to work.' repeated 5 times
+Input truncated to fit within available context, file: Spu.java
+Stopping in file:Spu.java due to hallucination in long line: '// 1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.'
+Input truncated to fit within available context, file: RTContext.java
+Input truncated to fit within available context, file: SessionConfigGenerator.java
+Input truncated to fit within available context, file: PlayerViewModel.java
+Input truncated to fit within available context, file: GuavaCacheProvider.java
+Stopping in file:GuavaCacheProvider.java due to line repetition: 'layerMap.put(layerName, layerName);' repeated 5 times
+Input truncated to fit within available context, file: ChunkCreatureSpawnManager.java
+Input truncated to fit within available context, file: Ed25519FieldElement.java
+Input truncated to fit within available context, file: RGBSpectrum.java
+Input truncated to fit within available context, file: BlinkingLineVisualizationAction.java
+Input truncated to fit within available context, file: OldBeagleTreeLikelihood.java
+Input truncated to fit within available context, file: CmfActivitySync.java
+Stopping in file:CmfActivitySync.java due to line repetition: 'I have a `CmFWorkoutGpsSample` and a `CmFHeartRateSample` in my `ActivityTrack` class.' repeated 5 times
+Input truncated to fit within available context, file: ShootmeSipServletTest.java
+Input truncated to fit within available context, file: OpcUaXmlStreamDecoder.java
+Input truncated to fit within available context, file: Stamp.java
+Stopping in file:Stamp.java due to line repetition: '//String toStringCache = null; //holds pre-allocated string for toString()' repeated 5 times
+Input truncated to fit within available context, file: BlockPlace.java
+Stopping in file:BlockPlace.java due to line repetition: '// 0.0004 as of 2/24/2022' repeated 5 times
+Input truncated to fit within available context, file: Source.java
+Input truncated to fit within available context, file: Cdda2wavScanBus.java
+Stopping in file:Cdda2wavScanBus.java due to line repetition: 'processBuilder.add(Cdda2wavConstants.ICEDAX_COMMAND_STRING);' repeated 5 times
+Input truncated to fit within available context, file: DomHelper.java
+Stopping in file:DomHelper.java due to line repetition: 'System.out.println(getHeadNode());' repeated 5 times
+Input truncated to fit within available context, file: EntityDefinitionInvocationHandler.java
+Stopping in file:EntityDefinitionInvocationHandler.java due to line repetition: '// @SuppressWarnings("unused")' repeated 5 times
+Input truncated to fit within available context, file: GetRecordsRequest.java
+Stopping in file:GetRecordsRequest.java due to line repetition: 'filter.addContent(filter.substring(filter.length() - 1, filter.length() - 2));' repeated 5 times
+Input truncated to fit within available context, file: GASEngine.java
+Stopping in file:GASEngine.java due to line repetition: '// Create a new instance of the GAS engine' repeated 5 times
+Input truncated to fit within available context, file: MP3AudioHeader.java
+Input truncated to fit within available context, file: InterlevelScene.java
+Input truncated to fit within available context, file: PDFGraphics2D.java
+Stopping in file:PDFGraphics2D.java due to hallucination in long line: 'protected void doDraw(PDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDFPDF'
+Input truncated to fit within available context, file: WindowsLookAndFeel.java
+Stopping in file:WindowsLookAndFeel.java due to line repetition: 'private int fontSize;' repeated 5 times
+Input truncated to fit within available context, file: ServiceDescriptorRegistry.java
+Input truncated to fit within available context, file: ViewContextServiceImpl.java
+Stopping in file:ViewContextServiceImpl.java due to line repetition: '.map(String::toArray)' repeated 5 times
+Input truncated to fit within available context, file: ChartViewWrapper.java
+Input truncated to fit within available context, file: AbstractElement.java
+Input truncated to fit within available context, file: PrismParser.java
+Stopping in file:PrismParser.java due to line repetition: 'return ExpressionTypeExpression(expression);' repeated 5 times
+Stopping in file:Constraints.java due to line repetition: 'public float transformPivotY = 0.0f;' repeated 5 times
+Stopping in file:ISNITests.java due to line repetition: 'I have tried to use the `testISNI5` method in the `ISNITests` class, but it doesn't work.' repeated 5 times
+Input truncated to fit within available context, file: TPSEnrollProcessor.java
+Input truncated to fit within available context, file: NsUriFinder.java
+90/398 [30:14<09:53,  5.50s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  73%|███████▎  | 291/398 [30:15<07:10,  4.03s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  73%|███████▎  | 292/398 [30:22<08:57,  5.07s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  74%|███████▎  | 293/398 [30:24<07:02,  4.02s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  74%|███████▍  | 294/398 [30:27<06:43,  3.88s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  74%|███████▍  | 295/398 [30:32<06:59,  4.07s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  74%|███████▍  | 296/398 [30:35<06:27,  3.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  75%|███████▍  | 297/398 [30:37<05:41,  3.39s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  75%|███████▍  | 298/398 [30:38<04:19,  2.60s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  75%|███████▌  | 299/398 [30:39<03:19,  2.01s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  75%|███████▌  | 300/398 [30:41<03:24,  2.08s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  76%|███████▌  | 301/398 [31:04<13:37,  8.43s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  76%|███████▌  | 302/398 [31:07<10:44,  6.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  76%|███████▌  | 303/398 [31:10<08:39,  5.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  76%|███████▋  | 304/398 [31:12<07:08,  4.56s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  77%|███████▋  | 305/398 [31:15<06:24,  4.14s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  77%|███████▋  | 306/398 [31:19<05:58,  3.90s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  77%|███████▋  | 307/398 [31:23<06:20,  4.18s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  77%|███████▋  | 308/398 [31:29<06:57,  4.64s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  78%|███████▊  | 309/398 [31:30<05:11,  3.50s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  78%|███████▊  | 310/398 [31:36<06:27,  4.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  78%|███████▊  | 311/398 [31:37<04:50,  3.34s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  78%|███████▊  | 312/398 [31:38<03:43,  2.60s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  79%|███████▊  | 313/398 [31:40<03:20,  2.36s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  79%|███████▉  | 314/398 [31:44<04:07,  2.94s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  79%|███████▉  | 315/398 [31:55<07:27,  5.39s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  79%|███████▉  | 316/398 [32:20<15:09, 11.09s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  80%|███████▉  | 317/398 [32:21<11:07,  8.25s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  80%|███████▉  | 318/398 [32:23<08:16,  6.21s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  80%|████████  | 319/398 [32:27<07:11,  5.46s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  80%|████████  | 320/398 [32:31<06:53,  5.30s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  81%|████████  | 321/398 [32:37<06:50,  5.34s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  81%|████████  | 322/398 [32:44<07:28,  5.90s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  81%|████████  | 323/398 [32:46<05:51,  4.69s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  81%|████████▏ | 324/398 [32:53<06:39,  5.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  82%|████████▏ | 325/398 [33:17<13:30, 11.10s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  82%|████████▏ | 326/398 [33:23<11:13,  9.36s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  82%|████████▏ | 327/398 [33:24<08:08,  6.89s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  82%|████████▏ | 328/398 [33:26<06:12,  5.32s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  83%|████████▎ | 329/398 [33:26<04:36,  4.01s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  83%|████████▎ | 330/398 [33:31<04:35,  4.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  83%|████████▎ | 331/398 [33:35<04:44,  4.25s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  83%|████████▎ | 332/398 [33:38<04:05,  3.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  84%|████████▎ | 333/398 [33:38<02:57,  2.73s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  84%|████████▍ | 334/398 [33:46<04:26,  4.16s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  84%|████████▍ | 335/398 [33:48<03:38,  3.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  84%|████████▍ | 336/398 [33:50<03:22,  3.27s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  85%|████████▍ | 337/398 [33:54<03:29,  3.43s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  85%|████████▍ | 338/398 [33:59<03:56,  3.94s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  85%|████████▌ | 339/398 [34:02<03:25,  3.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  85%|████████▌ | 340/398 [34:03<02:43,  2.82s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  86%|████████▌ | 341/398 [34:13<04:41,  4.93s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  86%|████████▌ | 342/398 [34:16<04:09,  4.45s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  86%|████████▌ | 343/398 [34:41<09:35, 10.47s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  86%|████████▋ | 344/398 [34:43<07:11,  7.99s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  87%|████████▋ | 345/398 [34:46<05:51,  6.63s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  87%|████████▋ | 346/398 [34:47<04:06,  4.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  87%|████████▋ | 347/398 [34:50<03:42,  4.37s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  87%|████████▋ | 348/398 [34:56<04:02,  4.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  88%|████████▊ | 349/398 [35:02<04:06,  5.04s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  88%|████████▊ | 350/398 [35:02<03:00,  3.75s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  88%|████████▊ | 351/398 [35:27<07:48,  9.97s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  88%|████████▊ | 352/398 [35:28<05:36,  7.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  89%|████████▊ | 353/398 [35:32<04:42,  6.27s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  89%|████████▉ | 354/398 [35:33<03:33,  4.85s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  89%|████████▉ | 355/398 [35:36<02:56,  4.10s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  89%|████████▉ | 356/398 [35:37<02:12,  3.15s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  90%|████████▉ | 357/398 [35:40<02:15,  3.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  9Stopping in file:NsUriFinder.java due to line repetition: 'Collection<String> platformURIs = vp.getUsePlatformURIs();' repeated 5 times
+Stopping in file:CommandLives.java due to line repetition: 'world.setPlayer(new Player(i));' repeated 5 times
+Input truncated to fit within available context, file: GetCapabilitiesHandler.java
+Input truncated to fit within available context, file: FeatureSelectionWizardPage.java
+Input truncated to fit within available context, file: Introspector.java
+Input truncated to fit within available context, file: PlaylistBrowserActivity.java
+Stopping in file:PlaylistBrowserActivity.java due to line repetition: '// do a query for all songs that are albums' repeated 5 times
+Stopping in file:MessageDeleteUser.java due to line repetition: 'ctx.setUserData(data);' repeated 5 times
+Input truncated to fit within available context, file: Arrays.java
+Stopping in file:Arrays.java due to line repetition: 'if (a1.hasOwnProperty(a2))' repeated 5 times
+Input truncated to fit within available context, file: LoaderCursorSupport.java
+Stopping in file:LoaderCursorSupport.java due to line repetition: 'list.add(new People());' repeated 5 times
+Input truncated to fit within available context, file: ParametricStructureComputer.java
+Input truncated to fit within available context, file: CatalogSecurityFilterBuilderTest.java
+Stopping in file:CatalogSecurityFilterBuilderTest.java due to line repetition: 'I have also tried to use the same code as the one in the question, but it seems to work.' repeated 5 times
+Input truncated to fit within available context, file: DungeonRegion.java
+Input truncated to fit within available context, file: PieRenderer.java
+Input truncated to fit within available context, file: SPVBlockStore.java
+Stopping in file:SPVBlockStore.java due to line repetition: '// Create the block store.' repeated 5 times
+Input truncated to fit within available context, file: HHCO.java
+Input truncated to fit within available context, file: RendezvousServer.java
+Stopping in file:RendezvousServer.java due to line repetition: '// TODO: Add a method to do PRP binding from clientB side' repeated 5 times
+Input truncated to fit within available context, file: MultiPolygon.java
+Stopping in file:MultiPolygon.java due to line repetition: 'List<Segment> psegs6 = psegs4.stream().collect(Collectors.toList());' repeated 5 times
+Input truncated to fit within available context, file: Logic.java
+Stopping in file:Logic.java due to line repetition: 'rightUpper += voCollFindings.get(0).getLeftFinding().intValue() == NOTESTABLE ? 0 : voCollFindings.get(0).getLeftFinding().intValue();' repeated 5 times
+Input truncated to fit within available context, file: RibbonedMultiPane.java
+Input truncated to fit within available context, file: MacFileMenuFactory.java
+Stopping in file:MacFileMenuFactory.java due to line repetition: 'System.out.println("Mac File Menu");' repeated 5 times
+Input truncated to fit within available context, file: SSLContextImpl.java
+Input truncated to fit within available context, file: CollocationFinder.java
+Stopping in file:CollocationFinder.java due to short line repetition: 'col.append("_");' repeated 20 times
+Input truncated to fit within available context, file: ExtensionManager.java
+Stopping in file:ExtensionManager.java due to line repetition: '_cdiManager.addBean(beanBuilder.singleton(bean));' repeated 5 times
+Input truncated to fit within available context, file: FileAclAuthorizer.java
+Input truncated to fit within available context, file: UnmarshallingContext.java
+Stopping in file:UnmarshallingContext.java due to line repetition: '//  NamespaceContext2 implementation' repeated 5 times
+Input truncated to fit within available context, file: MapController.java
+Stopping in file:MapController.java due to line repetition: '//change the status of the stairs' repeated 5 times
+Input truncated to fit within available context, file: S3Directory.java
+Stopping in file:S3Directory.java due to line repetition: 'public ListFilesDelimiter(final String delimiter, final String prefix, final Integer maxKeys, final String continuationToken) {' repeated 5 times
+Input truncated to fit within available context, file: NKCModel.java
+Input truncated to fit within available context, file: GaeSdk.java
+Stopping in file:GaeSdk.java due to line repetition: '* appengine-tools-api marker type.' repeated 5 times
+Stopping in file:ObjectSynchronizer.java due to line repetition: '// TODO Auto-generated method stub' repeated 5 times
+Input truncated to fit within available context, file: UsageEtcMain.java
+Input truncated to fit within available context, file: Charset.java
+Input truncated to fit within available context, file: TagCloudTests.java
+Input truncated to fit within available context, file: JSRInlinerAdapter.java
+Stopping in file:JSRInlinerAdapter.java due to line repetition: 'The `try catch block` is a good example of how to use the `try catch block` to catch a specific exception.' repeated 5 times
+Input truncated to fit within available context, file: Game.java
+Input truncated to fit within available context, file: HgStatusCollector.java
+Stopping in file:HgStatusCollector.java due to line repetition: 'if (!FileName.contains(fnameRev)) {' repeated 5 times
+Input truncated to fit within available context, file: RTaskGrammarAccess.java
+Input truncated to fit within available context, file: ContainerShop.java
+Input truncated to fit within available context, file: ActionManager.java
+Stopping in file:ActionManager.java due to line repetition: 'pstmtUpdate.setStatus(0);' repeated 5 times
+Input truncated to fit within available context, file: DownloadActivity.java
+Stopping in file:DownloadActivity.java due to line repetition: 'listener.dismissOnInsideTouch(false);' repeated 5 times
+Input truncated to fit within available context, file: RequestHttp1.java
+Input truncated to fit within available context, file: GraphViewMXGraph.java
+Stopping in file:GraphViewMXGraph.java due to structural line repetition: 'I have tried to remove the edges and the nodes, but it does not work.' repeated 5 times
+Input truncated to fit within available context, file: L2ContactList.java
+Input truncated to fit within available context, file: NeuronWriter.java
+Stopping in file:NeuronWriter.java due to line repetition: 'StringBuilder eqns.append("    ");' repeated 5 times
+Input truncated to fit within available context, file: AntRxMesg.java
+Stopping in file:AntRxMesg.java due to line repetition: 'public static final int MesgDataFieldNum = 10;' repeated 5 times
+Input truncated to fit within available context, file: Raw.java
+Input truncated to fit within available context, file: BitmapFactory.java
+Stopping in file:BitmapFactory.java due to short line repetition: 'Bitmap.Flush();' repeated 20 times
+Input truncated to fit within available context, file: Utilities.java
+Stopping in file:Utilities.java due to line repetition: 'public int idReplaceReplaceReplaceReplaceAddAddAdd = 0;' repeated 5 times
+Input truncated to fit within available context, file: Renderer.java
+Input truncated to fit within available context, file: CapabilityPermission.java
+Input truncated to fit within available context, file: Configuration.java
+Input truncated to fit within available context, file: BufferedImage.java
+Input truncated to fit within available context, file: ASTNodeArtifact.java
+Input truncated to fit within available context, file: X509KeyManagerImpl.java
+Stopping in file:X509KeyManagerImpl.java due to line repetition: '// http://www.tlsweb.org/tls/tls_cert.html' repeated 5 times
+Input truncated to fit within available context, file: GICSFhirServiceImpl.java
+Input truncated to fit within available context, file: FastInfosetConnector.java
+Input truncated to fit within available context, file: Attribute.java
+Input truncated to fit within available context, file: FuzzySet.java
+Stopping in file:AnnotationIdHelper.java due to line repetition: '//    // extract resourceId from httpUri' repeated 5 times
+Input truncated to fit within available context, file: TypeIO.java
+Input truncated to fit within available context, file: ChessLikeRules.java
+0%|████████▉ | 358/398 [35:42<01:53,  2.83s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  90%|█████████ | 359/398 [35:43<01:30,  2.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  90%|█████████ | 360/398 [35:44<01:09,  1.82s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  91%|█████████ | 361/398 [35:45<00:59,  1.61s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  91%|█████████ | 362/398 [35:51<01:40,  2.80s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  91%|█████████ | 363/398 [35:51<01:13,  2.09s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  91%|█████████▏| 364/398 [35:53<01:06,  1.95s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  92%|█████████▏| 365/398 [35:56<01:23,  2.52s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  92%|█████████▏| 366/398 [36:03<02:03,  3.85s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  92%|█████████▏| 367/398 [36:10<02:24,  4.66s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  92%|█████████▏| 368/398 [36:35<05:22, 10.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  93%|█████████▎| 369/398 [36:35<03:42,  7.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  93%|█████████▎| 370/398 [36:41<03:13,  6.92s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  93%|█████████▎| 371/398 [36:43<02:31,  5.62s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  93%|█████████▎| 372/398 [36:52<02:52,  6.63s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  94%|█████████▎| 373/398 [36:54<02:10,  5.21s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  94%|█████████▍| 374/398 [36:59<02:01,  5.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  94%|█████████▍| 375/398 [37:01<01:39,  4.32s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  94%|█████████▍| 376/398 [37:26<03:48, 10.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  95%|█████████▍| 377/398 [37:29<02:54,  8.32s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  95%|█████████▍| 378/398 [37:32<02:12,  6.65s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  95%|█████████▌| 379/398 [37:33<01:35,  5.02s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  95%|█████████▌| 380/398 [37:34<01:07,  3.76s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  96%|█████████▌| 381/398 [37:49<02:00,  7.09s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  96%|█████████▌| 382/398 [37:50<01:25,  5.36s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  96%|█████████▌| 383/398 [37:51<01:00,  4.03s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  96%|█████████▋| 384/398 [38:16<02:22, 10.17s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  97%|█████████▋| 385/398 [38:16<01:34,  7.25s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  97%|█████████▋| 386/398 [38:18<01:06,  5.58s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  97%|█████████▋| 387/398 [38:23<01:01,  5.57s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  97%|█████████▋| 388/398 [38:26<00:45,  4.54s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  98%|█████████▊| 389/398 [38:33<00:49,  5.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  98%|█████████▊| 390/398 [38:37<00:38,  4.84s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  98%|█████████▊| 391/398 [38:46<00:42,  6.08s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  98%|█████████▊| 392/398 [38:46<00:26,  4.37s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  99%|█████████▊| 393/398 [39:00<00:36,  7.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  99%|█████████▉| 394/398 [39:03<00:24,  6.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  99%|█████████▉| 395/398 [39:09<00:18,  6.02s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples:  99%|█████████▉| 396/398 [39:11<00:09,  4.68s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples: 100%|█████████▉| 397/398 [39:24<00:07,  7.10s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples: 100%|██████████| 398/398 [39:27<00:00,  5.85s/it]Processing preprocessed_multi(-1)_out_smell_distance(0)_500 samples: 100%|██████████| 398/398 [39:27<00:00,  5.95s/it]
+Input truncated to fit within available context, file: CalendarHeaderHandler.java
+Stopping in file:CalendarHeaderHandler.java due to hallucination in long line: 'final Font font = new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font(new Font'
+Input truncated to fit within available context, file: ChartFactory.java
+Stopping in file:LateDriverScanner.java due to structural line repetition: 'import org.lwjgl.opengl.GL11.GL_TRACE_FULL_FULL_FULL_FULL_FULL;' repeated 5 times
+Input truncated to fit within available context, file: TableData.java
+Input truncated to fit within available context, file: XMLEventAllocatorImpl.java
+Stopping in file:XMLEventAllocatorImpl.java due to line repetition: 'private static final XMLEventFactoryFactoryFactoryImplFactoryImplImpl = XMLEventFactoryFactoryFactoryFactory.newInstance();' repeated 5 times
+Input truncated to fit within available context, file: Spresso.java
+Stopping in file:Spresso.java due to line repetition: '// I'm not sure if this is the right place to do this.' repeated 5 times
+Input truncated to fit within available context, file: EntityArrow.java
+Input truncated to fit within available context, file: DiceWare.java
+Input truncated to fit within available context, file: MetadataService.java
+Stopping in file:MetadataService.java due to line repetition: 'Table table5 = new Table(args[4]);' repeated 5 times
+Input truncated to fit within available context, file: EMFServiceProxyHandler.java
+Input truncated to fit within available context, file: HawkEyeEngine.java
+Stopping in file:HawkEyeEngine.java due to line repetition: '// Start the world editor' repeated 5 times
+Input truncated to fit within available context, file: JobServiceImpl.java
+Stopping in file:JobServiceImpl.java due to line repetition: 'I have tried to use the same logic as the one in the question, but it doesn't work.' repeated 5 times
+Input truncated to fit within available context, file: ArgoFigText.java
+Input truncated to fit within available context, file: KxStoreCategoryServiceImpl.java
+Input truncated to fit within available context, file: ViewPagerEx.java
+Input truncated to fit within available context, file: DefaultClusterRenderer.java
+Stopping in file:DefaultClusterRenderer.java due to line repetition: 'mRemoveOnComplete = false;' repeated 5 times
+Input truncated to fit within available context, file: PhyloTree.java
+Input truncated to fit within available context, file: AutoRefPlayer.java
+Input truncated to fit within available context, file: $Gson$Types.java
+Input truncated to fit within available context, file: FabricEventInvokerRegistryImpl.java
+Stopping in file:FabricEventInvokerRegistryImpl.java due to hallucination in long line: '// 1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.'
+Stopping in file:AmazfitGTR2eFirmwareInfo.java due to short line repetition: '// latin' repeated 20 times
+Input truncated to fit within available context, file: LineupScreen.java
+Stopping in file:LineupScreen.java due to line repetition: 'if(mouseTarget.getName() == null || mouseTarget.getShape().getBounds().contains(mouseTarget.getX(), mouseTarget.getY()) ) {' repeated 5 times
+Input truncated to fit within available context, file: Solver.java
+Stopping in file:FXFeatureNameLabel.java due to line repetition: '// show the rename dialog for non-featured features' repeated 5 times
+Input truncated to fit within available context, file: BookManagerModules.java
+Stopping in file:BookManagerModules.java due to line repetition: 'a.setApplication(a.getApplication().getName());' repeated 5 times
+Input truncated to fit within available context, file: CurveFitter.java
+Stopping in file:CurveFitter.java due to line repetition: 'I have tried to use the `set_multiplyParams` function, but I am not sure how to use it.' repeated 5 times
+Input truncated to fit within available context, file: RMIGenerator.java
+Input truncated to fit within available context, file: IVUtility.java
+Input truncated to fit within available context, file: ObjectFactory.java
+Stopping in file:ObjectFactory.java due to line repetition: '// Check if the error is a class error.' repeated 5 times
+Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   0%|          | 0/290 [00:00<?, ?it/s]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   0%|          | 1/290 [00:04<21:21,  4.44s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   1%|          | 2/290 [00:07<17:52,  3.73s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   1%|          | 3/290 [00:08<12:11,  2.55s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   1%|▏         | 4/290 [00:12<13:26,  2.82s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   2%|▏         | 5/290 [00:13<10:37,  2.24s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   2%|▏         | 6/290 [00:15<10:52,  2.30s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   2%|▏         | 7/290 [00:16<08:06,  1.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   3%|▎         | 8/290 [00:16<06:21,  1.35s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   3%|▎         | 9/290 [00:17<05:18,  1.13s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   3%|▎         | 10/290 [00:17<04:29,  1.04it/s]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   4%|▍         | 11/290 [00:22<09:32,  2.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   4%|▍         | 12/290 [00:23<07:19,  1.58s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   4%|▍         | 13/290 [00:26<09:18,  2.02s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   5%|▍         | 14/290 [00:27<07:49,  1.70s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   5%|▌         | 15/290 [00:29<09:19,  2.03s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   6%|▌         | 16/290 [00:36<15:26,  3.38s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   6%|▌         | 17/290 [00:37<12:09,  2.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   6%|▌         | 18/290 [00:38<09:21,  2.06s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   7%|▋         | 19/290 [00:41<11:00,  2.44s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   7%|▋         | 20/290 [00:42<08:56,  1.99s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   7%|▋         | 21/290 [00:43<08:19,  1.86s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   8%|▊         | 22/290 [00:45<07:40,  1.72s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   8%|▊         | 23/290 [00:45<06:16,  1.41s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   8%|▊         | 24/290 [00:46<05:27,  1.23s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   9%|▊         | 25/290 [00:49<07:52,  1.78s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   9%|▉         | 26/290 [00:53<09:59,  2.27s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:   9%|▉         | 27/290 [00:55<09:49,  2.24s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  10%|▉         | 28/290 [00:59<12:50,  2.94s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  10%|█         | 29/290 [01:01<10:25,  2.40s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  10%|█         | 30/290 [01:12<21:44,  5.02s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  11%|█         | 31/290 [01:14<18:02,  4.18s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  11%|█         | 32/290 [01:14<13:07,  3.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  11%|█▏        | 33/290 [01:16<10:45,  2.51s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  12%|█▏        | 34/290 [01:17<08:54,  2.09s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  12%|█▏        | 35/290 [01:27<19:40,  4.63s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  12%|█▏        | 36/290 [01:28<14:58,  3.54s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  13%|█▎        | 37/290 [01:36<20:26,  4.85s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  13%|█▎        | 38/290 [01:37<14:53,  3.55s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  13%|█▎        | 39/290 [01:45<20:33,  4.91s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  14%|█▍        | 40/290 [01:46<15:17,  3.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  14%|█▍        | 41/290 [01:56<23:55,  5.76s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  14%|█▍        | 42/290 [01:59<19:36,  4.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  15%|█▍        | 43/290 [01:59<14:40,  3.56s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  15%|█▌        | 44/290 [02:04<16:12,  3.95s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  16%|█▌        | 45/290 [02:06<12:53,  3.16s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  16%|█▌        | 46/290 [02:06<09:33,  2.35s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  16%|█▌        | 47/290 [02:11<12:55,  3.19s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  17%|█▋        | 48/290 [02:13<11:37,  2.88s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  17%|█▋        | 49/290 [02:14<09:06,  2.27s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  17%|█▋    Input truncated to fit within available context, file: CrosshairLayer.java
+Stopping in file:CrosshairLayer.java due to line repetition: 'gl.glGetIntegerv(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAX_TEXTURE_CACHE_EXT, 0);' repeated 5 times
+Input truncated to fit within available context, file: RestServiceImpl.java
+Input truncated to fit within available context, file: SimpleNode.java
+Input truncated to fit within available context, file: AddonManagerImpl.java
+Input truncated to fit within available context, file: TerraSarXProductDirectory.java
+Input truncated to fit within available context, file: NodeImpl.java
+Input truncated to fit within available context, file: LegacyMaterialAnalouge.java
+Input truncated to fit within available context, file: StoryWanderer.java
+Input truncated to fit within available context, file: ReliableManager.java
+Input truncated to fit within available context, file: HistogramData.java
+Input truncated to fit within available context, file: LivingEntity.java
+Stopping in file:LivingEntity.java due to line repetition: 'if(!inOuterBox(xToBlockCordInt(x1()),yToBlockCordInt(y1()))) {' repeated 5 times
+Input truncated to fit within available context, file: SleepChartFragment.java
+Input truncated to fit within available context, file: TCharLongHashMap.java
+Input truncated to fit within available context, file: NavigationActivity.java
+Input truncated to fit within available context, file: DataLoader.java
+Stopping in file:DataLoader.java due to line repetition: 'filter.setFilter(new Filter());' repeated 5 times
+Input truncated to fit within available context, file: ExprTycker.java
+Stopping in file:ExprTycker.java due to line repetition: 'return result.wellTyped;' repeated 5 times
+Input truncated to fit within available context, file: DBChecker.java
+Input truncated to fit within available context, file: Playable.java
+Input truncated to fit within available context, file: GGPath.java
+Input truncated to fit within available context, file: BottomAppBar.java
+Input truncated to fit within available context, file: FireChartSVG.java
+Input truncated to fit within available context, file: DimensionLookupMeta.java
+Input truncated to fit within available context, file: CopyToClipboardActionTest.java
+Input truncated to fit within available context, file: LayoutOptimizerDist.java
+Stopping in file:LightDetector.java due to line repetition: '* @return the high value' repeated 5 times
+Input truncated to fit within available context, file: WxMessageService.java
+Input truncated to fit within available context, file: HostListPanel.java
+Stopping in file:HostListPanel.java due to line repetition: 'hostGridStore.getList().clear();' repeated 5 times
+Input truncated to fit within available context, file: NativeRegExp.java
+Input truncated to fit within available context, file: SubsamplingScaleImageView.java
+Stopping in file:SubsamplingScaleImageView.java due to line repetition: 'anim.vFocusEnd.setTarget(targetSCenter);' repeated 5 times
+Input truncated to fit within available context, file: Categories.java
+Input truncated to fit within available context, file: BelisClient.java
+Input truncated to fit within available context, file: VulnerabilityFilterServiceImpl.java
+Input truncated to fit within available context, file: AbstractIOMachine.java
+Stopping in file:AbstractIOMachine.java due to line repetition: '// TODO: implement this' repeated 5 times
+Input truncated to fit within available context, file: Handshake.java
+Stopping in file:Handshake.java due to line repetition: 'sessions[delSession(h, p, id, mas)] = new Session();' repeated 5 times
+Input truncated to fit within available context, file: ByteVector.java
+Input truncated to fit within available context, file: Gson.java
+Input truncated to fit within available context, file: InspectionPane.java
+Input truncated to fit within available context, file: BeanWrapperImpl.java
+Stopping in file:BeanWrapperImpl.java due to line repetition: 'I have tried to use the `getValue()` method of the `PropertyChangeEvent` but it is not working.' repeated 5 times
+Input truncated to fit within available context, file: Constants.java
+Input truncated to fit within available context, file: DeviceFlowRegistryImpl.java
+Stopping in file:DeviceFlowRegistryImpl.java due to line repetition: 'final FlowRegistryKey flowRegistryKey = new FlowRegistryKey(flowRegistryKey);' repeated 5 times
+Input truncated to fit within available context, file: InternalUnorderedGroupsTestLanguageParser.java
+Input truncated to fit within available context, file: IssArilRobotSupport.java
+Input truncated to fit within available context, file: PhyloTreeEdge.java
+Stopping in file:PhyloTreeEdge.java due to hallucination in long line: 'return Bipartition.toStringVerbose(this.partition.getPartition().getPartition().getEdge().getPartition().getPartition().getEdge().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPartition().getPart'
+Input truncated to fit within available context, file: SemiAutomaticReverseParking.java
+Input truncated to fit within available context, file: Jid.java
+Input truncated to fit within available context, file: Transformation.java
+Stopping in file:Transformation.java due to line repetition: 'I tried to use the `transformUniform3D` method of the `Vector3f` class, but it doesn't work.' repeated 5 times
+Input truncated to fit within available context, file: FormatAction.java
+Stopping in file:FormatAction.java due to hallucination in long line: 'LineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLineLine'
+Input truncated to fit within available context, file: InferTypeArgumentsConstraintCreator.java
+Input truncated to fit within available context, file: Blake2b.java
+Stopping in file:Blake2b.java due to line repetition: 'assert reverse.length <= Spec.max_reverse_bytes + 5 : assertFail("reverse.length", reverse.length, inclusiveUpperBound, Spec.max_reverse_bytes + 5);' repeated 5 times
+Input truncated to fit within available context, file: TextureCoOcurrence.java
+Stopping in file:TextureCoOcurrence.java due to line repetition: 'System.out.println("Image is loaded successfully");' repeated 5 times
+Input truncated to fit within available context, file: Main.java
+Input truncated to fit within available context, file: ID3v24Frame.java
+Input truncated to fit within available context, file: Visitor.java
+Stopping in file:Visitor.java due to hallucination in long line: 'System.out.println("This is a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method in a method'
+Input truncated to fit within available context, file: RealUpdateExecutor.java
+Stopping in file:RealUpdateExecutor.java due to line repetition: 'outStream.put(out.getFlags().get(UpdateFlag.HIT), 0);' repeated 5 times
+Input truncated to fit within available context, file: SweetBerryBushBlock.java
+    | 50/290 [02:21<14:09,  3.54s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  18%|█▊        | 51/290 [02:24<14:03,  3.53s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  18%|█▊        | 52/290 [02:25<10:53,  2.74s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  18%|█▊        | 53/290 [02:27<09:32,  2.42s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  19%|█▊        | 54/290 [02:31<12:00,  3.05s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  19%|█▉        | 55/290 [02:36<14:31,  3.71s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  19%|█▉        | 56/290 [02:37<11:01,  2.83s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  20%|█▉        | 57/290 [02:41<12:30,  3.22s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  20%|██        | 58/290 [02:48<16:39,  4.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  20%|██        | 59/290 [02:49<12:32,  3.26s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  21%|██        | 60/290 [02:53<13:20,  3.48s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  21%|██        | 61/290 [02:54<10:02,  2.63s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  21%|██▏       | 62/290 [03:00<13:56,  3.67s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  22%|██▏       | 63/290 [03:00<10:14,  2.71s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  22%|██▏       | 64/290 [03:02<08:42,  2.31s/it]Processing preprocessed_multi(-1)_out_smell_distance(-1)_500 samples:  22%|██▏       | 65/290 [03:03<07:22,  1.97s/it]slurmstepd: error: Detected 1 oom-kill event(s) in StepId=7399706.0. Some of your processes may have been killed by the cgroup out-of-memory handler.
+srun: error: gpu004: task 0: Out Of Memory
+srun: launch/slurm: _step_signal: Terminating StepId=7399706.0
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=7399706.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

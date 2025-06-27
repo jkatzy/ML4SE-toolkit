@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.30188679245283023,
+            "BLEU": 0.0566067646269012,
+            "METEOR": 0.2814105163557718,
+            "ROUGE-L": 0.375
+        },
+        "target": "public boolean isValid() {\n        int max = this.getEventType().getMaxParameters();\n        int min = this.getEventType().getMinParameters();\n\n        if (max == min) {\n            if (this.args.length != max) {\n                return false;\n            }\n        } else {\n            if (this.args.length > max || this.args.length < min) {\n                return false;\n            }\n        }\n\n        return true;\n\n    }",
+        "generation": "public boolean checkParams() {\n        if (args.length < getRequiredParams()) {\n            return false;\n        }\n        return true;\n    }",
+        "classification": "partial",
+        "comment": "some correct logic"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1534653465346535,
+            "BLEU": 0.009700911248614937,
+            "METEOR": 0.18821603927986907,
+            "ROUGE-L": 0.12213740458015267
+        },
+        "target": "public boolean isValid() {\n        int max = this.getEventType().getMaxParameters();\n        int min = this.getEventType().getMinParameters();\n\n        if (max == min) {\n            if (this.args.length != max) {\n                return false;\n            }\n        } else {\n            if (this.args.length > max || this.args.length < min) {\n                return false;\n            }\n        }\n\n        return true;\n\n    }",
+        "generation": "public boolean validateParameters() {\n        if (args.length < this.getEventType().getMinParameters() || args.length > this.getEventType().getMaxParameters()) {\n            String message = \"Expected \" + this.getEventType().getMinParameters() + \" parameters, but received \" + args.length + \". \";\n            if (this.getEventType().getMinParameters() == this.getEventType().getMaxParameters()) {\n                message += \"Expected \" + this.getEventType().getMinParameters() + \" parameters. \";\n            } else {\n                message += \"Expected betweet.cui.CUIBaseEvent;\nimport wecui.event.cui.CUIEventType;\n\npublic class CUIHelpEvent extends CUIBaseEvent {\n\n    public CUIHelpEvent(WorldEditCUI controller, String[] args) {\n        super(controller, args);\n    }\n\n    @Override\n    public String run() {\n        return \"Help\";\n    }\n\n    @Override\n    public CUIEventType getEventType() {\n        return CUIEventType.HELP;\n    }\n\n}\npackage wecui.event.cui;\n\nimport wecui.WorldEditCUI;\nimport wecui.event.cui.CUIBaseEvent;\nimport wecui.event.cui.CUIEventType;\n\npublic class CUIQuitEvent extends CUIBaseEvent {\n\n    public CUIQuitEvent(WorldEditCUI controller, String[] args) {\n        super(controller, args);\n    }\n\n    @Override\n    public String run() {\n        return \"Quit\";\n    }\n\n    @Override\n    public CUIEventType getEventType() {\n        return CUIEventType.QUIT;\n    }\n\n}\npackage wecui.event.cui;\n\nimport wecui.WorldEditCUI;\nimport wecui.event.cui.CUIBaseEvent;\nimport wecui.event.cui.CUIEventType;\n\npublic class CUIHelpEvent extends CUIBaseEvent {\n\n    public CUIHelpEvent(WorldEditCUI controller, String[] args) {\n        super(controller, args);\n    }\n\n    @Override\n    public String run() {\n        return \"Help\";\n    }\n\n    @Override\n    public CUIEventType getEventType() {\n        return CUIEventType.HELP;\n    }\n\n}\npackage wecui.event.cui;\n\nimport wecui.WorldEditCUI;\nimport wecui.event.cui.CUIBaseEvent;\nimport wecui.event.cui.CUIEventType;\n\npublic class CUIHelpEvent extends CUIBaseEvent {\n\n    public CUIHelpEvent(WorldEditCUI controller, String[] args) {\n        super(controller, args);\n    }\n\n    @Override\n    public String run() {\n        return \"Help\";\n    }\n\n    @Override\n    public CUIEventType getEventType() {\n        return CUIEventType.HELP;\n    }\n\n}\npackage wecui.event.cui;\n\nimport wecui.WorldEditCUI;\nimport wecui.event.cui.CUIBaseEvent;\nimport wecui.event.cui.CUIEventType;",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.030051813471502542,
+            "BLEU": 4.881442286593518e-13,
+            "METEOR": 0.010245901639344262,
+            "ROUGE-L": 0.07594936708860758
+        },
+        "target": "public final String doRun() {\n        if (controller == null || args == null) {\n            throw new RuntimeException(\"Controller and parameters must both be set.\");\n        }\n\n        if (!this.isValid()) {\n            String message = \"Invalid number of parameters. \" + this.getEventName() + \" event requires \";\n            if (this.getEventType().getMaxParameters() == this.getEventType().getMinParameters()) {\n                message += this.getEventType().getMaxParameters() + \" parameters. \";\n            } else {\n                message += \"between \" + this.getEventType().getMinParameters() + \" and \" + this.getEventType().getMaxParameters() + \" parameters. \";\n            }\n\n            message += \"Received \" + args.length + \" parameters instead. \";\n            for (String arg : args) {\n                message += arg + \" \";\n            }\n\n            throw new RuntimeException(message);\n        } else {\n            return this.run();\n        }\n\n    }",
+        "generation": "public abstract String run();",
+        "classification": "partial",
+        "comment": "semi correct signature, no logic"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.08082901554404143,
+            "BLEU": 2.7525432830058924e-07,
+            "METEOR": 0.037959183673469385,
+            "ROUGE-L": 0.07407407407407407
+        },
+        "target": "public final String doRun() {\n        if (controller == null || args == null) {\n            throw new RuntimeException(\"Controller and parameters must both be set.\");\n        }\n\n        if (!this.isValid()) {\n            String message = \"Invalid number of parameters. \" + this.getEventName() + \" event requires \";\n            if (this.getEventType().getMaxParameters() == this.getEventType().getMinParameters()) {\n                message += this.getEventType().getMaxParameters() + \" parameters. \";\n            } else {\n                message += \"between \" + this.getEventType().getMinParameters() + \" and \" + this.getEventType().getMaxParameters() + \" parameters. \";\n            }\n\n            message += \"Received \" + args.length + \" parameters instead. \";\n            for (String arg : args) {\n                message += arg + \" \";\n            }\n\n            throw new RuntimeException(message);\n        } else {\n            return this.run();\n        }\n\n    }",
+        "generation": "@Override\n            public String run() {\n                return null;\n            }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.27142857142857146,
+            "BLEU": 0.0351487760467425,
+            "METEOR": 0.13157894736842105,
+            "ROUGE-L": 0.3333333333333333
+        },
+        "target": "public String getString(int index) {\n        return args[index];\n    }",
+        "generation": "public abstract String run();",
+        "classification": "incorrect",
+        "comment": "same gen as previous case, no logic"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getString(int index) {\n        return args[index];\n    }",
+        "generation": "public String getString(int index) {\n        return args[index];\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

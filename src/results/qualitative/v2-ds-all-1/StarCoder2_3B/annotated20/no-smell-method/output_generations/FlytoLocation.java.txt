@@ -1,0 +1,22 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2925  BLEU: 0.0271  METEOR: 0.2391  ROUGE-L: 0.1304  
+--- Target ---
+public boolean mPEColor(int mx,int my,int r,int g,int b){
+	return imgcon.pointEcolor(new Point(mapcPoint.x+mx, mapcPoint.y+my),new Color(r,g,b));
+}
+--- Generation ---
+public boolean on3_1(){
+	return (mPEColor(324,100,204,198,125))&&mPEColor(343,100,204,198,125);
+}
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9998  ROUGE-L: 1.0000  
+--- Target ---
+public boolean mPEColor(int mx,int my,int r,int g,int b){
+	return imgcon.pointEcolor(new Point(mapcPoint.x+mx, mapcPoint.y+my),new Color(r,g,b));
+}
+--- Generation ---
+public boolean mPEColor(int mx,int my,int r,int g,int b){
+	return imgcon.pointEcolor(new Point(mapcPoint.x+mx, mapcPoint.y+my),new Color(r,g,b));
+}
+

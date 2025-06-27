@@ -1,0 +1,194 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.5556  BLEU: 0.5683  METEOR: 0.7673  ROUGE-L: 0.7586  
+--- Target ---
+final void insert0(int index, char ch) {
+        if (0 > index || index > length) {
+            // RI compatible exception type
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        move(1, index);
+        chars[index] = ch;
+        length++;
+    }
+--- Generation ---
+final void insert0(int index, char ch) {
+        if (0 > index || index > length) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        if (length!= chars.length) {
+            move(1, index);
+            chars[index] = ch;
+            length++;
+        } else {
+            chars[length++] = ch;
+        }
+    }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.6881  BLEU: 0.6247  METEOR: 0.7946  ROUGE-L: 0.7719  
+--- Target ---
+final void insert0(int index, char ch) {
+        if (0 > index || index > length) {
+            // RI compatible exception type
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        move(1, index);
+        chars[index] = ch;
+        length++;
+    }
+--- Generation ---
+final void insert0(int index, char ch) {
+        if (0 > index || index > length) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        if (length == chars.length) {
+            enlargeBuffer(length + 1);
+        }
+        move(1, index);
+        chars[index] = ch;
+        length++;
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.5498  BLEU: 0.3075  METEOR: 0.5293  ROUGE-L: 0.7027  
+--- Target ---
+final void insert0(int index, String string) {
+        if (0 <= index && index <= length) {
+            if (string == null) {
+                string = "null";
+            }
+            int min = string.length();
+            if (min != 0) {
+                move(min, index);
+                string.getChars(0, min, chars, index);
+                length += min;
+            }
+        } else {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+    }
+--- Generation ---
+final void insert0(int index, String string) {
+        if (0 > index || index > length) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        if (string!= null) {
+            int adding = string.length();
+            move(adding, index);
+            string.getChars(0, adding, chars, index);
+            length += adding;
+        }
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.5498  BLEU: 0.3075  METEOR: 0.5293  ROUGE-L: 0.7027  
+--- Target ---
+final void insert0(int index, String string) {
+        if (0 <= index && index <= length) {
+            if (string == null) {
+                string = "null";
+            }
+            int min = string.length();
+            if (min != 0) {
+                move(min, index);
+                string.getChars(0, min, chars, index);
+                length += min;
+            }
+        } else {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+    }
+--- Generation ---
+final void insert0(int index, String string) {
+        if (0 > index || index > length) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        if (string!= null) {
+            int adding = string.length();
+            move(adding, index);
+            string.getChars(0, adding, chars, index);
+            length += adding;
+        }
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.5907  BLEU: 0.2680  METEOR: 0.4035  ROUGE-L: 0.6786  
+--- Target ---
+public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        StringBuilder other = (StringBuilder) obj;
+        int length = this.length;
+        if (length != other.length)
+            return false;
+        char[] chars = this.chars;
+        char[] chars2 = other.chars;
+        if (chars == chars2)
+            return true;
+        if (chars == null || chars2 == null)
+            return false;
+        for (int i = 0; i < length; i++)
+            if (chars[i] != chars2[i])
+                return false;
+        return true;
+    }
+--- Generation ---
+public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass()!= obj.getClass())
+            return false;
+        StringBuilder other = (StringBuilder) obj;
+        if (length!= other.length)
+            return false;
+        if (!Arrays.equals(chars, other.chars))
+            return false;
+        return true;
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4122  BLEU: 0.0995  METEOR: 0.2502  ROUGE-L: 0.5049  
+--- Target ---
+public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        StringBuilder other = (StringBuilder) obj;
+        int length = this.length;
+        if (length != other.length)
+            return false;
+        char[] chars = this.chars;
+        char[] chars2 = other.chars;
+        if (chars == chars2)
+            return true;
+        if (chars == null || chars2 == null)
+            return false;
+        for (int i = 0; i < length; i++)
+            if (chars[i] != chars2[i])
+                return false;
+        return true;
+    }
+--- Generation ---
+public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof StringBuilder)) {
+            return false;
+        }
+        StringBuilder other = (StringBuilder) obj;
+        if (length!= other.length) {
+            return false;
+        }
+        return Arrays.equals(chars, other.chars);
+    }
+

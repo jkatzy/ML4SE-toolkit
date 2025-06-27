@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.612781954887218,
+            "BLEU": 0.1744681896860116,
+            "METEOR": 0.5035801302769628,
+            "ROUGE-L": 0.6274509803921569
+        },
+        "target": "public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {\n\t\tthis.bodyA = bodyA;\n\t\tthis.bodyB = bodyB;\n\t\tlocalAnchorA.set(bodyA.getLocalPoint(anchor));\n\t\tlocalAnchorB.set(bodyB.getLocalPoint(anchor));\n\t\treferenceAngle = bodyB.getAngle() - bodyA.getAngle();\n\t}",
+        "generation": "public void initialize (Body b1, Body b2, Vector2 anchor) {\n\t\tbodyA = b1;\n\t\tbodyB = b2;\n\t\tlocalAnchorA.set(anchor);\n\t\tlocalAnchorB.set(anchor);\n\t\treferenceAngle = 0;\n\t}",
+        "classification": "partial",
+        "comment": "signature, some body, misses some semantics"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999638310185185,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {\n\t\tthis.bodyA = bodyA;\n\t\tthis.bodyB = bodyB;\n\t\tlocalAnchorA.set(bodyA.getLocalPoint(anchor));\n\t\tlocalAnchorB.set(bodyB.getLocalPoint(anchor));\n\t\treferenceAngle = bodyB.getAngle() - bodyA.getAngle();\n\t}",
+        "generation": "public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {\n\t\tthis.bodyA = bodyA;\n\t\tthis.bodyB = bodyB;\n\t\tlocalAnchorA.set(bodyA.getLocalPoint(anchor));\n\t\tlocalAnchorB.set(bodyB.getLocalPoint(anchor));\n\t\treferenceAngle = bodyB.getAngle() - bodyA.getAngle();\n\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

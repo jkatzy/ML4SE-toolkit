@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.5907859078590786,
+            "BLEU": 0.40988458894920865,
+            "METEOR": 0.6889667673716012,
+            "ROUGE-L": 0.711864406779661
+        },
+        "target": "public void initLogFile() {\n        synchronized(lock) {\n            try {\n                file = new FileAdapter(fileUrl);\n                os = file.openOutputStream(true);\n            } catch (Exception e) {\n                System.out.println(\"Cannot open or create file at: \" + fileUrl);\n                e.printStackTrace();\n            }\n        }\n    }",
+        "generation": "public void initLogFile() {\n        try {\n            file = new FileAdapter(fileUrl);\n            if (!file.exists()) {\n                file.createNewFile();\n            }\n            os = file.openOutputStream();\n        } catch (Exception e) {\n            System.out.println(\"Exception while opening log file. \" + e);\n            e.printStackTrace();\n        }\n    }",
+        "classification": "correct",
+        "comment": "semantically correct, method used in previous code"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.5756756756756757,
+            "BLEU": 0.3752957402179447,
+            "METEOR": 0.653113460892917,
+            "ROUGE-L": 0.6779661016949153
+        },
+        "target": "public void initLogFile() {\n        synchronized(lock) {\n            try {\n                file = new FileAdapter(fileUrl);\n                os = file.openOutputStream(true);\n            } catch (Exception e) {\n                System.out.println(\"Cannot open or create file at: \" + fileUrl);\n                e.printStackTrace();\n            }\n        }\n    }",
+        "generation": "private void initLogFile() {\n        try {\n            file = new FileAdapter(fileUrl);\n            if (!file.exists()) {\n                file.createNewFile();\n            }\n            os = file.openOutputStream();\n        } catch (Exception e) {\n            System.out.println(\"Exception while opening log file. \" + e);\n            e.printStackTrace();\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.08978328173374617,
+            "BLEU": 0.016275776313613193,
+            "METEOR": 0.4265202702702703,
+            "ROUGE-L": 0.15384615384615383
+        },
+        "target": "public void openLogFile() {\n    }",
+        "generation": "public void close() {\n        synchronized(lock) {\n            try {\n                if (os!= null) {\n                    os.close();\n                }\n            } catch (Exception e) {\n                System.out.println(\"Exception while closing. \" + e);\n                e.printStackTrace();\n            }\n        }\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.09830508474576272,
+            "BLEU": 0.015703799285850036,
+            "METEOR": 0.4208333333333334,
+            "ROUGE-L": 0.15384615384615383
+        },
+        "target": "public void openLogFile() {\n    }",
+        "generation": "public void close() {\n        synchronized(lock) {\n            try {\n                if (os!= null) {\n                    os.close();\n                }\n            } catch (Exception e) {\n                System.out.println(\"Exception while closing log file. \" + e);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6264705882352941,
+            "BLEU": 0.3825398171389254,
+            "METEOR": 0.5726927446481478,
+            "ROUGE-L": 0.6984126984126985
+        },
+        "target": "private void merge(InputStream is, OutputStream os) throws IOException {\n\n        byte[] buffer = new byte[4096];\n        int length = 0;\n        do {\n            length = is.read(buffer);\n            if (length > 0) {\n                os.write(buffer, 0, length);\n                os.flush();\n            }\n        } while(length > 0);\n    }",
+        "generation": "private void merge(InputStream is, OutputStream os) throws IOException {\n        byte[] buffer = new byte[1024];\n        int read = 0;\n        while ((read = is.read(buffer))!= -1) {\n            os.write(buffer, 0, read);\n        }\n    }",
+        "classification": "partial",
+        "comment": "correct signature, some logic"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999908878845313,
+            "ROUGE-L": 1.0
+        },
+        "target": "private void merge(InputStream is, OutputStream os) throws IOException {\n\n        byte[] buffer = new byte[4096];\n        int length = 0;\n        do {\n            length = is.read(buffer);\n            if (length > 0) {\n                os.write(buffer, 0, length);\n                os.flush();\n            }\n        } while(length > 0);\n    }",
+        "generation": "private void merge(InputStream is, OutputStream os) throws IOException {\n\n        byte[] buffer = new byte[4096];\n        int length = 0;\n        do {\n            length = is.read(buffer);\n            if (length > 0) {\n                os.write(buffer, 0, length);\n                os.flush();\n            }\n        } while(length > 0);\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

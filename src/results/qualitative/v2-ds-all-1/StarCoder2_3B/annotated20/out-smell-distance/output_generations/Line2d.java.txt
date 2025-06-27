@@ -1,0 +1,204 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3362  BLEU: 0.0228  METEOR: 0.2417  ROUGE-L: 0.1770  
+--- Target ---
+boolean intersection(Line2d l, Point2d p) {
+		// The polynomial judgement
+		double D = (a * l.b) - (b * l.a);
+		if (D == 0) {
+			p.x = 0;
+			p.y = 0;
+			return false;
+		} else {
+			p.x = (c * l.b - b * l.c) / D / 1.0;
+			p.y = (a * l.c - c * l.a) / D / 1.0;
+			return true;
+		}
+	}
+--- Generation ---
+public void calculate(double x1, double y1, double x2, double y2) {
+		seg = new Segment(x1, y1, x2, y2);
+
+		if (y1 == y2) {
+			a = 0;
+			b = 1;
+			c = y1;
+		} else if (x1 == x2) {
+			a = 1;
+			b = 0;
+			c = x1;
+		} else {
+			double dx = x1 - x2;
+			double dy = y1 - y2;
+			double m = dx / dy;
+			a = -1 * m;
+			b = 1;
+			c = a * x1 + b * y1;
+		}
+	}
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3631  BLEU: 0.0250  METEOR: 0.2519  ROUGE-L: 0.2203  
+--- Target ---
+boolean intersection(Line2d l, Point2d p) {
+		// The polynomial judgement
+		double D = (a * l.b) - (b * l.a);
+		if (D == 0) {
+			p.x = 0;
+			p.y = 0;
+			return false;
+		} else {
+			p.x = (c * l.b - b * l.c) / D / 1.0;
+			p.y = (a * l.c - c * l.a) / D / 1.0;
+			return true;
+		}
+	}
+--- Generation ---
+public Line2d(Point2d p1, Point2d p2) {
+		seg = new Segment(p1, p2);
+
+		if (p1.y == p2.y) {
+			a = 0;
+			b = 1;
+			c = p1.y;
+		} else if (p1.x == p2.x) {
+			a = 1;
+			b = 0;
+			c = p1.x;
+		} else {
+			double dx = p1.x - p2.x;
+			double dy = p1.y - p2.y;
+			double m = dx / dy;
+			a = -1 * m;
+			b = 1;
+			c = a * p1.x + b * p1.y;
+		}
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2160  BLEU: 0.0077  METEOR: 0.1424  ROUGE-L: 0.1923  
+--- Target ---
+double dist(Point2d p) {
+		/*
+		 * this.x, this.y); double u;
+		 * 
+		 * // u = ((x3-x1)(x2-x1) + (y3-y1)(y2-y1)) / (p2.dist(p1)^2) u = ((p.x
+		 * - seg.p1.x) * (seg.p2.x - seg.p1.x) + (p.y - seg.p1.y) * (seg.p2.y -
+		 * seg.p1.y)) / (seg.p1.dist (seg.p2))
+		 * 
+		 * double x = seg.p1.x + u * (seg.p2.x - seg.p1.x); double y = seg.p1.y
+		 * + u * (seg.p2.y - seg.p1.y);
+		 * 
+		 * return p.dist (point2d (x, y));
+		 */
+
+		return Math.abs(a * p.x + b * p.y + c)
+				/ Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+	}
+--- Generation ---
+boolean intersection(Line2d l, Point2d p, boolean bisecting) {
+		// The polynomial judgement
+		double D = (a * l.b) - (b * l.a);
+		if (D == 0) {
+			p.x = 0;
+			p.y = 0;
+			return false;
+		} else {
+			p.x = (c * l.b - b * l.c) / D / 1.0;
+			p.y = (a * l.c - c * l.a) / D / 1.0;
+			return true;
+		}
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1751  BLEU: 0.0017  METEOR: 0.0594  ROUGE-L: 0.0645  
+--- Target ---
+double dist(Point2d p) {
+		/*
+		 * this.x, this.y); double u;
+		 * 
+		 * // u = ((x3-x1)(x2-x1) + (y3-y1)(y2-y1)) / (p2.dist(p1)^2) u = ((p.x
+		 * - seg.p1.x) * (seg.p2.x - seg.p1.x) + (p.y - seg.p1.y) * (seg.p2.y -
+		 * seg.p1.y)) / (seg.p1.dist (seg.p2))
+		 * 
+		 * double x = seg.p1.x + u * (seg.p2.x - seg.p1.x); double y = seg.p1.y
+		 * + u * (seg.p2.y - seg.p1.y);
+		 * 
+		 * return p.dist (point2d (x, y));
+		 */
+
+		return Math.abs(a * p.x + b * p.y + c)
+				/ Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+	}
+--- Generation ---
+boolean intersection(Line2d l) {
+		// The polynomial judgement
+		double D = (a * l.b) - (b * l.a);
+		if (D == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4262  BLEU: 0.0477  METEOR: 0.2933  ROUGE-L: 0.3750  
+--- Target ---
+@Override
+	public Object clone() {
+		Line2d clone = new Line2d(this.seg.p1.x, this.seg.p1.y, this.seg.p2.x,
+				this.seg.p2.y);
+
+		clone.a = this.a;
+		clone.b = this.b;
+		clone.c = this.c;
+
+		clone.bisectingID = this.bisectingID.clone();
+		clone.vertexIndex = this.vertexIndex.clone();
+
+		return clone;
+	}
+--- Generation ---
+public Line2d clone() {
+		Line2d l = new Line2d();
+		l.a = a;
+		l.b = b;
+		l.c = c;
+		l.seg = seg.clone();
+		l.vertexIndex[0] = vertexIndex[0];
+		l.vertexIndex[1] = vertexIndex[1];
+		return l;
+	}
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+	public Object clone() {
+		Line2d clone = new Line2d(this.seg.p1.x, this.seg.p1.y, this.seg.p2.x,
+				this.seg.p2.y);
+
+		clone.a = this.a;
+		clone.b = this.b;
+		clone.c = this.c;
+
+		clone.bisectingID = this.bisectingID.clone();
+		clone.vertexIndex = this.vertexIndex.clone();
+
+		return clone;
+	}
+--- Generation ---
+@Override
+	public Object clone() {
+		Line2d clone = new Line2d(this.seg.p1.x, this.seg.p1.y, this.seg.p2.x,
+				this.seg.p2.y);
+
+		clone.a = this.a;
+		clone.b = this.b;
+		clone.c = this.c;
+
+		clone.bisectingID = this.bisectingID.clone();
+		clone.vertexIndex = this.vertexIndex.clone();
+
+		return clone;
+	}
+

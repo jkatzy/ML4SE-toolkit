@@ -1,0 +1,26 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3214  BLEU: 0.0454  METEOR: 0.2500  ROUGE-L: 0.4444  
+--- Target ---
+@Override
+	public String toString()
+	{
+		return noun;
+	}
+--- Generation ---
+public String getWord();
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+	public String toString()
+	{
+		return noun;
+	}
+--- Generation ---
+@Override
+	public String toString()
+	{
+		return noun;
+	}
+

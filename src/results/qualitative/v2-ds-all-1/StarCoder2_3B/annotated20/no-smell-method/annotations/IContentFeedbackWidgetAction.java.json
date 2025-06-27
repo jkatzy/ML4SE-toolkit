@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7878787878787878,
+            "BLEU": 0.24028114141347542,
+            "METEOR": 0.625,
+            "ROUGE-L": 0.6666666666666666
+        },
+        "target": "public String joinContent();",
+        "generation": "public String associateContent();",
+        "classification": "incorrect",
+        "comment": "different method, but short so high scores"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.5623413251903491,
+            "METEOR": 0.9814814814814815,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String joinContent();",
+        "generation": "public String joinContent();",
+        "classification": "",
+        "comment": ""
+    }
+]

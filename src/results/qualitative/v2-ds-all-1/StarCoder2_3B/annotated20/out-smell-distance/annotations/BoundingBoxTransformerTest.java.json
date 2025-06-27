@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.0960548885077187,
+            "BLEU": 0.007434360163166208,
+            "METEOR": 0.13157894736842107,
+            "ROUGE-L": 0.08333333333333334
+        },
+        "target": "public void setUseRnd(boolean useRnd) {\n      this.useRnd = useRnd;\n    }",
+        "generation": "@Override\n    public BoundingBox transformBoundingBox(BoundingBox b) throws CrsTransformationException {\n      cnt++;\n      if (useRnd) {\n        return BoundingBox.of(b.getXmin() + rnd.nextDouble(), b.getYmin() + rnd.nextDouble(), b.getXmax() + rnd.nextDouble(), b.getYmax() + rnd.nextDouble(), b.getCrs());\n      } else {\n        return BoundingBox.of(b.getXmin() + 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "classification": "incorrect",
+        "comment": "diff method + repetition"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void setUseRnd(boolean useRnd) {\n      this.useRnd = useRnd;\n    }",
+        "generation": "public void setUseRnd(boolean useRnd) {\n      this.useRnd = useRnd;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.11385199240986721,
+            "BLEU": 0.023956565612760213,
+            "METEOR": 0.4597938144329897,
+            "ROUGE-L": 0.15789473684210525
+        },
+        "target": "@Override\n    public EpsgCrs getSourceCrs() {\n      return null;\n    }",
+        "generation": "@Override\n    public BoundingBox transformBoundingBox(BoundingBox b) throws CrsTransformationException {\n      cnt++;\n      if (useRnd) {\n        return BoundingBox.of(rnd.nextDouble(), rnd.nextDouble(), rnd.nextDouble(), rnd.nextDouble(), b.getCrs());\n      } else {\n        return BoundingBox.of(b.getXmin() + 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "classification": "incorrect",
+        "comment": "diff method + repetition same as 0"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4642857142857143,
+            "BLEU": 0.07583235673413397,
+            "METEOR": 0.5506172839506173,
+            "ROUGE-L": 0.42857142857142855
+        },
+        "target": "@Override\n    public EpsgCrs getSourceCrs() {\n      return null;\n    }",
+        "generation": "@Override\n    public BoundingBox transformBoundingBox(BoundingBox boundingBox) {\n      return boundingBox;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.044512663085187976,
+            "BLEU": 0.0022947928979879166,
+            "METEOR": 0.06622516556291391,
+            "ROUGE-L": 0.024096385542168676
+        },
+        "target": "@Override\n    public int getTargetDimension() {\n      return 2;\n    }",
+        "generation": "}\n}\n/src/main/java/de/ii/xtraplatform/geometries/domain/BoundingBox.java\n/*\n * Copyright 2022 interactive instruments GmbH\n *\n * This Source Code Form is subject to the terms of the Mozilla Public\n * License, v. 2.0. If a copy of the MPL was not distributed with this\n * file, You can obtain one at http://mozilla.org/MPL/2.0/.\n */\npackage de.ii.xtraplatform.geometries.domain;\n\nimport de.ii.xtraplatform.crs.domain.Crs;\nimport de.ii.xtraplatform.crs.domain.CrsTransformationException;\nimport de.ii.xtraplatform.crs.domain.EpsgCrs;\nimport de.ii.xtraplatform.crs.domain.GeographicCrs;\nimport de.ii.xtraplatform.crs.domain.GeographicCrsFactory;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinate;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateTransformer;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateTransformerFactory;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateTransformerType;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateType;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateUnit;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateUnitType;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateUnitTypeFactory;\nimport de.ii.xtraplatform.crs.domain.GeographicCoordinateUnitTypeFactory.GeographicCoordinateUnitTypeFactoryImpl;",
+        "classification": "incorrect",
+        "comment": "end of file -> new file + repetition"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public int getTargetDimension() {\n      return 2;\n    }",
+        "generation": "@Override\n    public int getTargetDimension() {\n      return 2;\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

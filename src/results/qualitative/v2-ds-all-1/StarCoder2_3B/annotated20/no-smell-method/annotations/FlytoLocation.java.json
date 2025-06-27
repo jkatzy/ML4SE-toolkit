@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2925170068027211,
+            "BLEU": 0.027063257105853833,
+            "METEOR": 0.23910984848484848,
+            "ROUGE-L": 0.13043478260869565
+        },
+        "target": "public boolean mPEColor(int mx,int my,int r,int g,int b){\n\treturn imgcon.pointEcolor(new Point(mapcPoint.x+mx, mapcPoint.y+my),new Color(r,g,b));\n}",
+        "generation": "public boolean on3_1(){\n\treturn (mPEColor(324,100,204,198,125))&&mPEColor(343,100,204,198,125);\n}",
+        "classification": "incorrect",
+        "comment": "different method"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9998177842565598,
+            "ROUGE-L": 1.0
+        },
+        "target": "public boolean mPEColor(int mx,int my,int r,int g,int b){\n\treturn imgcon.pointEcolor(new Point(mapcPoint.x+mx, mapcPoint.y+my),new Color(r,g,b));\n}",
+        "generation": "public boolean mPEColor(int mx,int my,int r,int g,int b){\n\treturn imgcon.pointEcolor(new Point(mapcPoint.x+mx, mapcPoint.y+my),new Color(r,g,b));\n}",
+        "classification": "",
+        "comment": ""
+    }
+]

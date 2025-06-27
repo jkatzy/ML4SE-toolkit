@@ -1,0 +1,125 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9189  BLEU: 0.8409  METEOR: 0.8737  ROUGE-L: 0.8333  
+--- Target ---
+private Row(byte[] keyBytes) {
+            _keyBytes = keyBytes;
+        }
+--- Generation ---
+public Row(byte[] keyBytes) {
+            _keyBytes = keyBytes;
+        }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9189  BLEU: 0.8409  METEOR: 0.8737  ROUGE-L: 0.8333  
+--- Target ---
+private Row(byte[] keyBytes) {
+            _keyBytes = keyBytes;
+        }
+--- Generation ---
+public Row(byte[] keyBytes) {
+            _keyBytes = keyBytes;
+        }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7000  BLEU: 0.3156  METEOR: 0.6722  ROUGE-L: 0.5000  
+--- Target ---
+private boolean isExpanded() {
+            return true;
+        }
+--- Generation ---
+public boolean isExpanded() {
+            return _keyBytes.length > 0;
+        }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.7000  BLEU: 0.3156  METEOR: 0.6722  ROUGE-L: 0.5000  
+--- Target ---
+private boolean isExpanded() {
+            return true;
+        }
+--- Generation ---
+public boolean isExpanded() {
+            return _keyBytes.length > 0;
+        }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4063  BLEU: 0.0242  METEOR: 0.1877  ROUGE-L: 0.2593  
+--- Target ---
+@Override
+        public String getToolTipText(MouseEvent me) {
+            int row = rowAtPoint(me.getPoint());
+            int col = columnAtPoint(me.getPoint());
+            if (row >= 0 && col >= 0) {
+                Object value = getModel().getValueAt(row, col);
+                if (value != null) {
+                    TableCellRenderer tcr = getCellRenderer(row, col);
+                    Component rc = tcr.getTableCellRendererComponent(this, value, false, false, row, col);
+                    if (rc instanceof JLabel) {
+                        String s = ((JLabel) rc).getText();
+                        if (s.length() > 20)
+                            return s;
+                    }
+                }
+            }
+            return null;
+        }
+--- Generation ---
+@Override
+        public void changeSelection(int row, int column, boolean toggle, boolean extend) {
+            if (row < 0)
+                return;
+            if (row >= getRowCount())
+                return;
+            Row rowValue = (Row) getValueAt(row, 0);
+            if (rowValue == null)
+                return;
+            if (rowValue.getKey().getEncodedSize() == 0)
+                return;
+            if (rowValue.isExpanded()) {
+                // TODO - implement expanding
+            } else {
+                // TODO - implement collapsing
+            }
+        }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9987  BLEU: 0.9479  METEOR: 0.9724  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+        public String getToolTipText(MouseEvent me) {
+            int row = rowAtPoint(me.getPoint());
+            int col = columnAtPoint(me.getPoint());
+            if (row >= 0 && col >= 0) {
+                Object value = getModel().getValueAt(row, col);
+                if (value != null) {
+                    TableCellRenderer tcr = getCellRenderer(row, col);
+                    Component rc = tcr.getTableCellRendererComponent(this, value, false, false, row, col);
+                    if (rc instanceof JLabel) {
+                        String s = ((JLabel) rc).getText();
+                        if (s.length() > 20)
+                            return s;
+                    }
+                }
+            }
+            return null;
+        }
+--- Generation ---
+@Override
+        public String getToolTipText(MouseEvent me) {
+            int row = rowAtPoint(me.getPoint());
+            int col = columnAtPoint(me.getPoint());
+            if (row >= 0 && col >= 0) {
+                Object value = getModel().getValueAt(row, col);
+                if (value!= null) {
+                    TableCellRenderer tcr = getCellRenderer(row, col);
+                    Component rc = tcr.getTableCellRendererComponent(this, value, false, false, row, col);
+                    if (rc instanceof JLabel) {
+                        String s = ((JLabel) rc).getText();
+                        if (s.length() > 20)
+                            return s;
+                    }
+                }
+            }
+            return null;
+        }
+

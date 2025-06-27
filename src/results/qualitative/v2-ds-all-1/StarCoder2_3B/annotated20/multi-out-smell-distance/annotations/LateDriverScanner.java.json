@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17167919799498743,
+            "BLEU": 0.00010181686527125942,
+            "METEOR": 0.09363295880149813,
+            "ROUGE-L": 0.20408163265306123
+        },
+        "target": "private static boolean isSupportedNvidiaDriver(GLContextInfo driver) {\n        // The Linux driver has two separate branches which have overlapping version numbers, despite also having\n        // different feature sets. As a result, we can't reliably determine which Linux drivers are broken...\n        if (Util.getPlatform() != Util.OS.WINDOWS) {\n            return true;\n        }\n\n        var version = NvidiaDriverVersion.tryParse(driver);\n\n        if (version != null) {\n            return !version.isWithinRange(\n                    new NvidiaDriverVersion(526, 47), // Broken in 526.47\n                    new NvidiaDriverVersion(536, 23) // Fixed in 536.23\n            );\n        }\n\n        // If we couldn't determine the version, then it's supported either way.\n        return true;\n    }",
+        "generation": "private static boolean isSupportedNvidiaDriver(GLContextInfo driver) {\n        return NvidiaDriverVersion.isSupported(driver.version());\n    }",
+        "classification": "partial",
+        "comment": "correct signature"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.449874686716792,
+            "BLEU": 0.07385798762397605,
+            "METEOR": 0.25233907185628734,
+            "ROUGE-L": 0.2923076923076924
+        },
+        "target": "private static boolean isSupportedNvidiaDriver(GLContextInfo driver) {\n        // The Linux driver has two separate branches which have overlapping version numbers, despite also having\n        // different feature sets. As a result, we can't reliably determine which Linux drivers are broken...\n        if (Util.getPlatform() != Util.OS.WINDOWS) {\n            return true;\n        }\n\n        var version = NvidiaDriverVersion.tryParse(driver);\n\n        if (version != null) {\n            return !version.isWithinRange(\n                    new NvidiaDriverVersion(526, 47), // Broken in 526.47\n                    new NvidiaDriverVersion(536, 23) // Fixed in 536.23\n            );\n        }\n\n        // If we couldn't determine the version, then it's supported either way.\n        return true;\n    }",
+        "generation": "private static boolean isSupportedNvidiaDriver(GLContextInfo driver) {\n        if (driver.vendor() == null) {\n            return false;\n        }\n\n        if (driver.vendor().contains(\"NVIDIA\")) {\n            var version = NvidiaDriverVersion.parse(driver.version());\n\n            if (version == null) {\n                LOGGER.warn(\"Could not parse NVIDIA driver version: {}\", driver.version());\n                return false;\n            }\n\n            return version.isSupported();\n        }\n\n        return true;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.003759398496240629,
+            "BLEU": 0,
+            "METEOR": 0.0,
+            "ROUGE-L": 0.0
+        },
+        "target": "private static boolean isSupportedNvidiaDriver(GLContextInfo driver) {\n        // The Linux driver has two separate branches which have overlapping version numbers, despite also having\n        // different feature sets. As a result, we can't reliably determine which Linux drivers are broken...\n        if (Util.getPlatform() != Util.OS.WINDOWS) {\n            return true;\n        }\n\n        var version = NvidiaDriverVersion.tryParse(driver);\n\n        if (version != null) {\n            return !version.isWithinRange(\n                    new NvidiaDriverVersion(526, 47), // Broken in 526.47\n                    new NvidiaDriverVersion(536, 23) // Fixed in 536.23\n            );\n        }\n\n        // If we couldn't determine the version, then it's supported either way.\n        return true;\n    }",
+        "generation": "",
+        "classification": "incorrect",
+        "comment": "repetition whitespace"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.003759398496240629,
+            "BLEU": 0,
+            "METEOR": 0.0,
+            "ROUGE-L": 0.0
+        },
+        "target": "private static boolean isSupportedNvidiaDriver(GLContextInfo driver) {\n        // The Linux driver has two separate branches which have overlapping version numbers, despite also having\n        // different feature sets. As a result, we can't reliably determine which Linux drivers are broken...\n        if (Util.getPlatform() != Util.OS.WINDOWS) {\n            return true;\n        }\n\n        var version = NvidiaDriverVersion.tryParse(driver);\n\n        if (version != null) {\n            return !version.isWithinRange(\n                    new NvidiaDriverVersion(526, 47), // Broken in 526.47\n                    new NvidiaDriverVersion(536, 23) // Fixed in 536.23\n            );\n        }\n\n        // If we couldn't determine the version, then it's supported either way.\n        return true;\n    }",
+        "generation": "",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.722972972972973,
+            "BLEU": 0.5900468726392808,
+            "METEOR": 0.8627717391304347,
+            "ROUGE-L": 0.6875
+        },
+        "target": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.matches(\"/data/user/[0-9]+/net\\\\.kdt\\\\.pojavlaunch\");\n    }",
+        "generation": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.contains(\"/data/app/\") || path.contains(\"/data/user/0/\");\n    }",
+        "classification": "partial",
+        "comment": "correct signature, but body semantic difference"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.matches(\"/data/user/[0-9]+/net\\\\.kdt\\\\.pojavlaunch\");\n    }",
+        "generation": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.matches(\"/data/user/[0-9]+/net\\\\.kdt\\\\.pojavlaunch\");\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.722972972972973,
+            "BLEU": 0.5900468726392808,
+            "METEOR": 0.8627717391304347,
+            "ROUGE-L": 0.6875
+        },
+        "target": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.matches(\"/data/user/[0-9]+/net\\\\.kdt\\\\.pojavlaunch\");\n    }",
+        "generation": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.contains(\"/data/app/\") || path.contains(\"/data/user/0/\");\n    }",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.matches(\"/data/user/[0-9]+/net\\\\.kdt\\\\.pojavlaunch\");\n    }",
+        "generation": "private static boolean isKnownAndroidPathFragment(String path) {\n        return path.matches(\"/data/user/[0-9]+/net\\\\.kdt\\\\.pojavlaunch\");\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

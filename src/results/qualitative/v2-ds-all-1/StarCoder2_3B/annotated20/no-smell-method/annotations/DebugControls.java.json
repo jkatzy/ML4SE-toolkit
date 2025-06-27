@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.045930701047542266,
+            "BLEU": 0.0029441242789058704,
+            "METEOR": 0.10416666666666669,
+            "ROUGE-L": 0.034482758620689655
+        },
+        "target": "public JPanel getControls() {\n    return controlPanel;\n  }",
+        "generation": "public void setVisible(boolean visible) {\n    if (controlPanel.getTopLevelAncestor() == null) {\n      if (GlobalOptions.getInstance().isUseSingleWindow()) {\n        final Component gmcp = GameModule.getGameModule().getControlPanel();\n        final Container gmcppar = gmcp.getParent();\n        final int i = SwingUtils.getIndexInParent(gmcp, gmcppar);\n\n        splitPane = new SplitPane(SplitPane.HORIZONTAL_SPLIT, gmcp, controlPanel);\n        splitPane.setResizeWeight(1.0);\n        gmcppar.add(splitPane, i);\n      }\n      else {\n        final JFrame frame = new JFrame(Resources.getString(\"Debug.debug_controls\"));  //$NON-NLS-1$\n        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);\n        frame.add(controlPanel);\n        frame.setJMenuBar(MenuManager.getInstance().getMenuBarFor(frame));\n\n        final String key = \"BoundsOfClientWindow\";  //$NON-NLS-1$\n        final PositionOption pos = new VisibilityOption(key, frame);\n        GameModule.getGameModule().getPrefs().addOption(pos);\n        frame.setVisible(true);\n      }\n    }\n    else if (splitPane!= null) {\n      splitPane.setRightVisible(visible);\n    }\n    else {\n      controlPanel.getTopLevelAncestor().setVisible(visible);\n    }\n\n    updateVisible();\n  }",
+        "classification": "incorrect",
+        "comment": "different method"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public JPanel getControls() {\n    return controlPanel;\n  }",
+        "generation": "public JPanel getControls() {\n    return controlPanel;\n  }",
+        "classification": "",
+        "comment": ""
+    }
+]

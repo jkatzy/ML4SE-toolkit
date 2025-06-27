@@ -1,0 +1,590 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.8346  BLEU: 0.4640  METEOR: 0.7097  ROUGE-L: 0.8276  
+--- Target ---
+private Node findNode(PhyloTree tree, String name) {
+        for (Node v = tree.getFirstNode(); v != null; v = v.getNext()) {
+            if (v.getOutDegree() == 0 && tree.getLabel(v).equals(name))
+                return v;
+        }
+        return null;
+    }
+--- Generation ---
+private Node findNode(PhyloTree tree, String taxon) {
+        for (Node v = tree.getFirstNode(); v!= null; v = tree.getNextNode(v)) {
+            if (tree.getLabel(v).equals(taxon))
+                return v;
+        }
+        return null;
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.8346  BLEU: 0.4640  METEOR: 0.7097  ROUGE-L: 0.8276  
+--- Target ---
+private Node findNode(PhyloTree tree, String name) {
+        for (Node v = tree.getFirstNode(); v != null; v = v.getNext()) {
+            if (v.getOutDegree() == 0 && tree.getLabel(v).equals(name))
+                return v;
+        }
+        return null;
+    }
+--- Generation ---
+private Node findNode(PhyloTree tree, String taxon) {
+        for (Node v = tree.getFirstNode(); v!= null; v = tree.getNextNode(v)) {
+            if (tree.getLabel(v).equals(taxon))
+                return v;
+        }
+        return null;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.8346  BLEU: 0.4640  METEOR: 0.7097  ROUGE-L: 0.8276  
+--- Target ---
+private Node findNode(PhyloTree tree, String name) {
+        for (Node v = tree.getFirstNode(); v != null; v = v.getNext()) {
+            if (v.getOutDegree() == 0 && tree.getLabel(v).equals(name))
+                return v;
+        }
+        return null;
+    }
+--- Generation ---
+private Node findNode(PhyloTree tree, String taxon) {
+        for (Node v = tree.getFirstNode(); v!= null; v = tree.getNextNode(v)) {
+            if (tree.getLabel(v).equals(taxon))
+                return v;
+        }
+        return null;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.8346  BLEU: 0.4640  METEOR: 0.7097  ROUGE-L: 0.8276  
+--- Target ---
+private Node findNode(PhyloTree tree, String name) {
+        for (Node v = tree.getFirstNode(); v != null; v = v.getNext()) {
+            if (v.getOutDegree() == 0 && tree.getLabel(v).equals(name))
+                return v;
+        }
+        return null;
+    }
+--- Generation ---
+private Node findNode(PhyloTree tree, String taxon) {
+        for (Node v = tree.getFirstNode(); v!= null; v = tree.getNextNode(v)) {
+            if (tree.getLabel(v).equals(taxon))
+                return v;
+        }
+        return null;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2889  BLEU: 0.0184  METEOR: 0.1478  ROUGE-L: 0.2466  
+--- Target ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, final NodeArray<BitSet> taxaBelow) {
+        for (Node v0 = tree.getFirstNode(); v0 != null; v0 = v0.getNext()) {
+            if (v0.getOutDegree() > 0) {
+                final Node sourceNode = v0;
+
+                /*
+                if(tree.getLabel(v0)==null)
+                        tree.setLabel(v0,Basic.toString(taxaBelow.get(v0)));
+                else
+                    tree.setLabel(v0,tree.getLabel(v0)+"/"+Basic.toString(taxaBelow.get(v0)));
+                */
+
+                /*
+                System.err.println("Source node: " +sourceNode+" "+tree.getLabel(v0));
+
+                System.err.println("original order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+
+				SortedSet<Edge> adjacentEdges = new TreeSet<Edge>((e, f) -> {
+					if (e.getSource() == sourceNode && f.getSource() == sourceNode) // two out edges
+					{
+						Node v = e.getTarget();
+						Node w = f.getTarget();
+
+						// lexicographically smaller is smaller
+						BitSet taxaBelowV = taxaBelow.get(v);
+						BitSet taxaBelowW = taxaBelow.get(w);
+
+						int i = taxaBelowV.nextSetBit(0);
+						int j = taxaBelowW.nextSetBit(0);
+						while (i != -1 && j != -1) {
+							if (i < j)
+								return -1;
+							else if (i > j)
+								return 1;
+							i = taxaBelowV.nextSetBit(i + 1);
+							j = taxaBelowW.nextSetBit(j + 1);
+						}
+						if (i == -1 && j != -1)
+							return -1;
+						else if (i != -1 && j == -1)
+							return 1;
+
+					} else if (e.getTarget() == sourceNode && f.getSource() == sourceNode)
+						return -1;
+					else if (e.getSource() == sourceNode && f.getTarget() == sourceNode)
+						return 1;
+					// no else here!
+					if (e.getId() < f.getId())
+						return -1;
+					else if (e.getId() > f.getId())
+						return 1;
+					else
+						return 0;
+				});
+
+                for (Edge e = v0.getFirstAdjacentEdge(); e != null; e = v0.getNextAdjacentEdge(e)) {
+                    adjacentEdges.add(e);
+                }
+				List<Edge> list = new LinkedList<Edge>(adjacentEdges);
+                v0.rearrangeAdjacentEdges(list);
+
+                /*
+                System.err.println("New order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+            }
+        }
+    }
+--- Generation ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, NodeArray<BitSet> taxaBelow) {
+        for (Node v = tree.getFirstNode(); v!= null; v = tree.getNextNode(v)) {
+            if (v.getOutDegree() > 0) {
+                NodeSet outEdges = new NodeSet(tree);
+                for (Edge e = v.getFirstOutEdge(); e!= null; e = v.getNextOutEdge(e)) {
+                    Node w = e.getTarget();
+                    outEdges.add(e);
+                    for (int i = 1; i <= taxaBelow.get(v).length(); i++) {
+                        if (taxaBelow.get(v).get(i - 1)) {
+                            if (taxaBelow.get(w).get(i)) {
+                                e.setTarget(w);
+                                break;
+                            }
+                        }
+                    }
+                }
+                for (Edge e : outEdges)
+                    tree.removeEdge(e);
+            }
+        }
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9971  BLEU: 0.8949  METEOR: 0.9422  ROUGE-L: 1.0000  
+--- Target ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, final NodeArray<BitSet> taxaBelow) {
+        for (Node v0 = tree.getFirstNode(); v0 != null; v0 = v0.getNext()) {
+            if (v0.getOutDegree() > 0) {
+                final Node sourceNode = v0;
+
+                /*
+                if(tree.getLabel(v0)==null)
+                        tree.setLabel(v0,Basic.toString(taxaBelow.get(v0)));
+                else
+                    tree.setLabel(v0,tree.getLabel(v0)+"/"+Basic.toString(taxaBelow.get(v0)));
+                */
+
+                /*
+                System.err.println("Source node: " +sourceNode+" "+tree.getLabel(v0));
+
+                System.err.println("original order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+
+				SortedSet<Edge> adjacentEdges = new TreeSet<Edge>((e, f) -> {
+					if (e.getSource() == sourceNode && f.getSource() == sourceNode) // two out edges
+					{
+						Node v = e.getTarget();
+						Node w = f.getTarget();
+
+						// lexicographically smaller is smaller
+						BitSet taxaBelowV = taxaBelow.get(v);
+						BitSet taxaBelowW = taxaBelow.get(w);
+
+						int i = taxaBelowV.nextSetBit(0);
+						int j = taxaBelowW.nextSetBit(0);
+						while (i != -1 && j != -1) {
+							if (i < j)
+								return -1;
+							else if (i > j)
+								return 1;
+							i = taxaBelowV.nextSetBit(i + 1);
+							j = taxaBelowW.nextSetBit(j + 1);
+						}
+						if (i == -1 && j != -1)
+							return -1;
+						else if (i != -1 && j == -1)
+							return 1;
+
+					} else if (e.getTarget() == sourceNode && f.getSource() == sourceNode)
+						return -1;
+					else if (e.getSource() == sourceNode && f.getTarget() == sourceNode)
+						return 1;
+					// no else here!
+					if (e.getId() < f.getId())
+						return -1;
+					else if (e.getId() > f.getId())
+						return 1;
+					else
+						return 0;
+				});
+
+                for (Edge e = v0.getFirstAdjacentEdge(); e != null; e = v0.getNextAdjacentEdge(e)) {
+                    adjacentEdges.add(e);
+                }
+				List<Edge> list = new LinkedList<Edge>(adjacentEdges);
+                v0.rearrangeAdjacentEdges(list);
+
+                /*
+                System.err.println("New order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+            }
+        }
+    }
+--- Generation ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, final NodeArray<BitSet> taxaBelow) {
+        for (Node v0 = tree.getFirstNode(); v0!= null; v0 = v0.getNext()) {
+            if (v0.getOutDegree() > 0) {
+                final Node sourceNode = v0;
+
+                /*
+                if(tree.getLabel(v0)==null)
+                        tree.setLabel(v0,Basic.toString(taxaBelow.get(v0)));
+                else
+                    tree.setLabel(v0,tree.getLabel(v0)+"/"+Basic.toString(taxaBelow.get(v0)));
+                */
+
+                /*
+                System.err.println("Source node: " +sourceNode+" "+tree.getLabel(v0));
+
+                System.err.println("original order:");
+                for (Edge e = v0.getFirstOutEdge(); e!= null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+
+				SortedSet<Edge> adjacentEdges = new TreeSet<Edge>((e, f) -> {
+					if (e.getSource() == sourceNode && f.getSource() == sourceNode) // two out edges
+					{
+						Node v = e.getTarget();
+						Node w = f.getTarget();
+
+						// lexicographically smaller is smaller
+						BitSet taxaBelowV = taxaBelow.get(v);
+						BitSet taxaBelowW = taxaBelow.get(w);
+
+						int i = taxaBelowV.nextSetBit(0);
+						int j = taxaBelowW.nextSetBit(0);
+						while (i!= -1 && j!= -1) {
+							if (i < j)
+								return -1;
+							else if (i > j)
+								return 1;
+							i = taxaBelowV.nextSetBit(i + 1);
+							j = taxaBelowW.nextSetBit(j + 1);
+						}
+						if (i == -1 && j!= -1)
+							return -1;
+						else if (i!= -1 && j == -1)
+							return 1;
+
+					} else if (e.getTarget() == sourceNode && f.getSource() == sourceNode)
+						return -1;
+					else if (e.getSource() == sourceNode && f.getTarget() == sourceNode)
+						return 1;
+					// no else here!
+					if (e.getId() < f.getId())
+						return -1;
+					else if (e.getId() > f.getId())
+						return 1;
+					else
+						return 0;
+				});
+
+                for (Edge e = v0.getFirstAdjacentEdge(); e!= null; e = v0.getNextAdjacentEdge(e)) {
+                    adjacentEdges.add(e);
+                }
+				List<Edge> list = new LinkedList<Edge>(adjacentEdges);
+                v0.rearrangeAdjacentEdges(list);
+
+                /*
+                System.err.println("New order:");
+                for (Edge e = v0.getFirstOutEdge(); e!= null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+            }
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2429  BLEU: 0.0086  METEOR: 0.1270  ROUGE-L: 0.2350  
+--- Target ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, final NodeArray<BitSet> taxaBelow) {
+        for (Node v0 = tree.getFirstNode(); v0 != null; v0 = v0.getNext()) {
+            if (v0.getOutDegree() > 0) {
+                final Node sourceNode = v0;
+
+                /*
+                if(tree.getLabel(v0)==null)
+                        tree.setLabel(v0,Basic.toString(taxaBelow.get(v0)));
+                else
+                    tree.setLabel(v0,tree.getLabel(v0)+"/"+Basic.toString(taxaBelow.get(v0)));
+                */
+
+                /*
+                System.err.println("Source node: " +sourceNode+" "+tree.getLabel(v0));
+
+                System.err.println("original order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+
+				SortedSet<Edge> adjacentEdges = new TreeSet<Edge>((e, f) -> {
+					if (e.getSource() == sourceNode && f.getSource() == sourceNode) // two out edges
+					{
+						Node v = e.getTarget();
+						Node w = f.getTarget();
+
+						// lexicographically smaller is smaller
+						BitSet taxaBelowV = taxaBelow.get(v);
+						BitSet taxaBelowW = taxaBelow.get(w);
+
+						int i = taxaBelowV.nextSetBit(0);
+						int j = taxaBelowW.nextSetBit(0);
+						while (i != -1 && j != -1) {
+							if (i < j)
+								return -1;
+							else if (i > j)
+								return 1;
+							i = taxaBelowV.nextSetBit(i + 1);
+							j = taxaBelowW.nextSetBit(j + 1);
+						}
+						if (i == -1 && j != -1)
+							return -1;
+						else if (i != -1 && j == -1)
+							return 1;
+
+					} else if (e.getTarget() == sourceNode && f.getSource() == sourceNode)
+						return -1;
+					else if (e.getSource() == sourceNode && f.getTarget() == sourceNode)
+						return 1;
+					// no else here!
+					if (e.getId() < f.getId())
+						return -1;
+					else if (e.getId() > f.getId())
+						return 1;
+					else
+						return 0;
+				});
+
+                for (Edge e = v0.getFirstAdjacentEdge(); e != null; e = v0.getNextAdjacentEdge(e)) {
+                    adjacentEdges.add(e);
+                }
+				List<Edge> list = new LinkedList<Edge>(adjacentEdges);
+                v0.rearrangeAdjacentEdges(list);
+
+                /*
+                System.err.println("New order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+            }
+        }
+    }
+--- Generation ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, NodeArray<BitSet> taxaBelow) {
+        for (Node v = tree.getFirstNode(); v!= null; v = tree.getNextNode(v)) {
+            if (v.getOutDegree() > 0) {
+                NodeSet outEdges = new NodeSet(tree);
+                for (Edge e = v.getFirstOutEdge(); e!= null; e = v.getNextOutEdge(e)) {
+                    Node w = e.getTarget();
+                    if (taxaBelow.get(w)!= null) {
+                        outEdges.add(e);
+                        e.setSource(w);
+                        e.setTarget(v);
+                    }
+                }
+                for (Edge e : outEdges)
+                    tree.removeEdge(e);
+            }
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9971  BLEU: 0.8949  METEOR: 0.9422  ROUGE-L: 1.0000  
+--- Target ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, final NodeArray<BitSet> taxaBelow) {
+        for (Node v0 = tree.getFirstNode(); v0 != null; v0 = v0.getNext()) {
+            if (v0.getOutDegree() > 0) {
+                final Node sourceNode = v0;
+
+                /*
+                if(tree.getLabel(v0)==null)
+                        tree.setLabel(v0,Basic.toString(taxaBelow.get(v0)));
+                else
+                    tree.setLabel(v0,tree.getLabel(v0)+"/"+Basic.toString(taxaBelow.get(v0)));
+                */
+
+                /*
+                System.err.println("Source node: " +sourceNode+" "+tree.getLabel(v0));
+
+                System.err.println("original order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+
+				SortedSet<Edge> adjacentEdges = new TreeSet<Edge>((e, f) -> {
+					if (e.getSource() == sourceNode && f.getSource() == sourceNode) // two out edges
+					{
+						Node v = e.getTarget();
+						Node w = f.getTarget();
+
+						// lexicographically smaller is smaller
+						BitSet taxaBelowV = taxaBelow.get(v);
+						BitSet taxaBelowW = taxaBelow.get(w);
+
+						int i = taxaBelowV.nextSetBit(0);
+						int j = taxaBelowW.nextSetBit(0);
+						while (i != -1 && j != -1) {
+							if (i < j)
+								return -1;
+							else if (i > j)
+								return 1;
+							i = taxaBelowV.nextSetBit(i + 1);
+							j = taxaBelowW.nextSetBit(j + 1);
+						}
+						if (i == -1 && j != -1)
+							return -1;
+						else if (i != -1 && j == -1)
+							return 1;
+
+					} else if (e.getTarget() == sourceNode && f.getSource() == sourceNode)
+						return -1;
+					else if (e.getSource() == sourceNode && f.getTarget() == sourceNode)
+						return 1;
+					// no else here!
+					if (e.getId() < f.getId())
+						return -1;
+					else if (e.getId() > f.getId())
+						return 1;
+					else
+						return 0;
+				});
+
+                for (Edge e = v0.getFirstAdjacentEdge(); e != null; e = v0.getNextAdjacentEdge(e)) {
+                    adjacentEdges.add(e);
+                }
+				List<Edge> list = new LinkedList<Edge>(adjacentEdges);
+                v0.rearrangeAdjacentEdges(list);
+
+                /*
+                System.err.println("New order:");
+                for (Edge e = v0.getFirstOutEdge(); e != null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+            }
+        }
+    }
+--- Generation ---
+private void rotateTreeByTaxaBelow(PhyloTree tree, final NodeArray<BitSet> taxaBelow) {
+        for (Node v0 = tree.getFirstNode(); v0!= null; v0 = v0.getNext()) {
+            if (v0.getOutDegree() > 0) {
+                final Node sourceNode = v0;
+
+                /*
+                if(tree.getLabel(v0)==null)
+                        tree.setLabel(v0,Basic.toString(taxaBelow.get(v0)));
+                else
+                    tree.setLabel(v0,tree.getLabel(v0)+"/"+Basic.toString(taxaBelow.get(v0)));
+                */
+
+                /*
+                System.err.println("Source node: " +sourceNode+" "+tree.getLabel(v0));
+
+                System.err.println("original order:");
+                for (Edge e = v0.getFirstOutEdge(); e!= null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+
+				SortedSet<Edge> adjacentEdges = new TreeSet<Edge>((e, f) -> {
+					if (e.getSource() == sourceNode && f.getSource() == sourceNode) // two out edges
+					{
+						Node v = e.getTarget();
+						Node w = f.getTarget();
+
+						// lexicographically smaller is smaller
+						BitSet taxaBelowV = taxaBelow.get(v);
+						BitSet taxaBelowW = taxaBelow.get(w);
+
+						int i = taxaBelowV.nextSetBit(0);
+						int j = taxaBelowW.nextSetBit(0);
+						while (i!= -1 && j!= -1) {
+							if (i < j)
+								return -1;
+							else if (i > j)
+								return 1;
+							i = taxaBelowV.nextSetBit(i + 1);
+							j = taxaBelowW.nextSetBit(j + 1);
+						}
+						if (i == -1 && j!= -1)
+							return -1;
+						else if (i!= -1 && j == -1)
+							return 1;
+
+					} else if (e.getTarget() == sourceNode && f.getSource() == sourceNode)
+						return -1;
+					else if (e.getSource() == sourceNode && f.getTarget() == sourceNode)
+						return 1;
+					// no else here!
+					if (e.getId() < f.getId())
+						return -1;
+					else if (e.getId() > f.getId())
+						return 1;
+					else
+						return 0;
+				});
+
+                for (Edge e = v0.getFirstAdjacentEdge(); e!= null; e = v0.getNextAdjacentEdge(e)) {
+                    adjacentEdges.add(e);
+                }
+				List<Edge> list = new LinkedList<Edge>(adjacentEdges);
+                v0.rearrangeAdjacentEdges(list);
+
+                /*
+                System.err.println("New order:");
+                for (Edge e = v0.getFirstOutEdge(); e!= null; e = v0.getNextOutEdge(e)) {
+                    Node w=e.getOpposite(v0) ;
+                    System.err.println(w +" "+tree.getLabel(w)+ " value: " + (Basic.toString(taxaBelow.get(w))));
+                }
+                */
+            }
+        }
+    }
+

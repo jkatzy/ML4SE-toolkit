@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2994082840236686,
+            "BLEU": 0.11410311826876841,
+            "METEOR": 0.2596511855771115,
+            "ROUGE-L": 0.2105263157894737
+        },
+        "target": "@Override\n    public String onAdvEvent(String event, Npc npc, Player player) {\n        switch (event) {\n            case \"ANAKIM_ENTER\" -> onRaidEnter(npc, player, ANAKIM_ZONE_ID, ANAKIM_INSTANCE_TEMPLATE_ID);\n            case \"LILITH_ENTER\" -> onRaidEnter(npc, player, LILITH_ZONE_ID, LILITH_INSTANCE_TEMPLATE_ID);\n            case \"CLEAR_ZONE_ANAKIM\" -> teleportFromZone(ANAKIM_ZONE_ID);\n            case \"CLEAR_ZONE_LILITH\" -> teleportFromZone(LILITH_ZONE_ID);\n            case \"TELEPORT_OUT\" -> player.teleToLocation(TeleportWhereType.TOWN);\n            case \"ANAKIM_DEATH\" -> castInvincibility(LILITH_INSTANCE_TEMPLATE_ID, LILITH);\n            case \"LILITH_DEATH\" -> castInvincibility(ANAKIM_INSTANCE_TEMPLATE_ID, ANAKIM);\n        }\n        return null;\n    }",
+        "generation": "@Override\n    public String onAdvEvent(String event, Npc npc, Player player) {\n        if (event.equals(\"enter\")) {\n            if (player.getLevel() < 75) {\n                player.sendMessage(\"You must be level 75 to enter the Seven Signs.\");\n                return null;\n            }\n\n            if (player.getLevel() > 80) {\n                player.sendMessage(\"You must be level 80 to enter the Seven Signs.\");\n                return null;\n            }\n\n            if (player.getLevel() > 85) {\n                player.sendMessage(\"You must be level 85 to enter the Seven Signs.\");\n                return null;\n            }\n\n            if (player.getLevel() > 90) {\n                player.sendMessage(\"You must be level 90 to enter the Seven Signs.\");\n                return null;\n            }\n\n            if (player.getLevel() > 95) {",
+        "classification": "partial",
+        "comment": "signature, repetition"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2879581151832461,
+            "BLEU": 0.008675672151578539,
+            "METEOR": 0.1049371301775148,
+            "ROUGE-L": 0.21666666666666665
+        },
+        "target": "@Override\n    public String onAdvEvent(String event, Npc npc, Player player) {\n        switch (event) {\n            case \"ANAKIM_ENTER\" -> onRaidEnter(npc, player, ANAKIM_ZONE_ID, ANAKIM_INSTANCE_TEMPLATE_ID);\n            case \"LILITH_ENTER\" -> onRaidEnter(npc, player, LILITH_ZONE_ID, LILITH_INSTANCE_TEMPLATE_ID);\n            case \"CLEAR_ZONE_ANAKIM\" -> teleportFromZone(ANAKIM_ZONE_ID);\n            case \"CLEAR_ZONE_LILITH\" -> teleportFromZone(LILITH_ZONE_ID);\n            case \"TELEPORT_OUT\" -> player.teleToLocation(TeleportWhereType.TOWN);\n            case \"ANAKIM_DEATH\" -> castInvincibility(LILITH_INSTANCE_TEMPLATE_ID, LILITH);\n            case \"LILITH_DEATH\" -> castInvincibility(ANAKIM_INSTANCE_TEMPLATE_ID, ANAKIM);\n        }\n        return null;\n    }",
+        "generation": "@Override\n    public void onEnterInstance(Player player, Npc npc) {\n        if(npc.getId() == ANAKIM_GATEKEEPER_SPIRIT) {\n            player.teleToLocation(-6664, 18501, -5495, 0, TeleportWhereType.INSTANCE_TELEPORT);\n        } else if(npc.getId() == LILITH_GATEKEEPER_SPIRIT) {\n            player.teleToLocation(185062, -9612, -5493, 0, TeleportWhereType.INSTANCE_TELEPORT);\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.138728323699422,
+            "BLEU": 0.00318051352706924,
+            "METEOR": 0.051546391752577324,
+            "ROUGE-L": 0.0
+        },
+        "target": "protected void teleportFromZone(int lilithZoneId) {\n        final var zone = ZoneEngine.getInstance().getZoneById(lilithZoneId);\n        zone.forEachPlayer(p -> p.teleToLocation(TeleportWhereType.TOWN));\n    }",
+        "generation": "@Override\n    public String onTalk(Npc npc, Player player) {\n        if (npc.getNpcId() == ANAKIM_GATEKEEPER_SPIRIT) {\n            if (player.getLevel() < 75) {\n                return \"31089-01.html\";\n            }\n            if (player.getLevel() >= 75 && player.getLevel() < 80) {\n                return \"31089-02.html\";\n            }\n            if (player.getLevel() >= 80 && player.getLevel() < 85) {\n                return \"31089-03.html\";\n            }\n            if (player.getLevel() >= 85 && player.getLevel() < 90) {\n                return \"31089-04.html\";\n            }\n            if (player.getLevel() >= 90 && player.getLevel() < 95) {\n                return \"31089-05.html\";",
+        "classification": "incorrect",
+        "comment": "diff method, repetition"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1256218905472637,
+            "BLEU": 0.003279163301859273,
+            "METEOR": 0.052083333333333336,
+            "ROUGE-L": 0.0
+        },
+        "target": "protected void teleportFromZone(int lilithZoneId) {\n        final var zone = ZoneEngine.getInstance().getZoneById(lilithZoneId);\n        zone.forEachPlayer(p -> p.teleToLocation(TeleportWhereType.TOWN));\n    }",
+        "generation": "@Override\n    public String onTalk(Npc npc, Player player) {\n        switch (npc.getId()) {\n            case ANAKIM_GATEKEEPER_SPIRIT:\n            case LILITH_GATEKEEPER_SPIRIT: {\n                if(player.getLevel() < 75) {\n                    return \"31089-01.html\";\n                }\n                if(player.getLevel() >= 75 && player.getLevel() < 80) {\n                    return \"31089-02.html\";\n                }\n                if(player.getLevel() >= 80 && player.getLevel() < 85) {\n                    return \"31089-03.html\";\n                }\n                if(player.getLevel() >= 85 && player.getLevel() < 90) {\n                    return \"31089-04.html\";\n                }\n                if(player.getLevel() >= 90 && player.getLevel() < 95) {\n                    return \"31089-05.html\";",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1635802469135802,
+            "BLEU": 0.009871721786705418,
+            "METEOR": 0.18518518518518517,
+            "ROUGE-L": 0.0975609756097561
+        },
+        "target": "public static SevenSigns provider() {\n        return new SevenSigns();\n    }",
+        "generation": "@Override\n    public String onInstanceCreate(int instanceId) {\n        addSpawn(ANAKIM_GATEKEEPER_SPIRIT, -6664, 18501, -5495, 0, false, 600000, false, instanceId);\n        addSpawn(LILITH_GATEKEEPER_SPIRIT, 185062, -9612, -5493, 0, false, 600000, false, instanceId);\n        return super.onInstanceCreate(instanceId);\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.07853403141361259,
+            "BLEU": 0.004884387930507875,
+            "METEOR": 0.14925373134328357,
+            "ROUGE-L": 0.045454545454545456
+        },
+        "target": "public static SevenSigns provider() {\n        return new SevenSigns();\n    }",
+        "generation": "@Override\n    public String onAdvEvent(String event, Npc npc, Player player) {\n        switch (event) {\n            case \"ANAKIM_ENTER\" -> onRaidEnter(npc, player, ANAKIM_ZONE_ID, ANAKIM_INSTANCE_TEMPLATE_ID);\n            case \"LILITH_ENTER\" -> onRaidEnter(npc, player, LILITH_ZONE_ID, LILITH_INSTANCE_TEMPLATE_ID);\n            case \"CLEAR_ZONE_ANAKIM\" -> teleportFromZone(ANAKIM_ZONE_ID);\n            case \"CLEAR_ZONE_LILITH\" -> teleportFromZone(LILITH_ZONE_ID);\n            case \"TELEPORT_OUT\" -> player.teleToLocation(TeleportWhereType.TOWN);\n            case \"ANAKIM_DEATH\" -> castInvincibility(LILITH_INSTANCE_TEMPLATE_ID, LILITH);\n            case \"LILITH_DEATH\" -> castInvincibility(ANAKIM_INSTANCE_TEMPLATE_ID, ANAKIM);\n        }\n        return null;\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

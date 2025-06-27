@@ -1,0 +1,113 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4465  BLEU: 0.0437  METEOR: 0.4132  ROUGE-L: 0.3611  
+--- Target ---
+private void compressAndSaveFile(File from, File to) throws IOException {
+    
+        byte[] toCompressByteArray = FileUtils.readFileToByteArray(from);
+        GZIPOutputStream zipOut = new GZIPOutputStream(new FileOutputStream(to));
+        zipOut.write(toCompressByteArray);
+        zipOut.close();
+        
+    }
+--- Generation ---
+private void compressAndSaveFile(File logFile, File compressedLog) throws IOException {
+        
+        FileOutputStream fos = new FileOutputStream(compressedLog);
+        GZIPOutputStream gos = new GZIPOutputStream(fos);
+        byte[] buffer = new byte[1024];
+        int len;
+        FileInputStream fis = new FileInputStream(logFile);
+        while ((len = fis.read(buffer)) > 0) {
+            gos.write(buffer, 0, len);
+        }
+        gos.close();
+        fis.close();
+    }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4737  BLEU: 0.5134  METEOR: 0.6009  ROUGE-L: 0.5116  
+--- Target ---
+private void compressAndSaveFile(File from, File to) throws IOException {
+    
+        byte[] toCompressByteArray = FileUtils.readFileToByteArray(from);
+        GZIPOutputStream zipOut = new GZIPOutputStream(new FileOutputStream(to));
+        zipOut.write(toCompressByteArray);
+        zipOut.close();
+        
+    }
+--- Generation ---
+private void compressAndSaveFile(File from, File to) throws IOException {
+        
+        byte[] toCompressByteArray = this.reat.println("Error: " + e.getMessage());
+        }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0499  BLEU: 0.0045  METEOR: 0.0481  ROUGE-L: 0.0000  
+--- Target ---
+public boolean isActive() {
+        return active;
+    }
+--- Generation ---
+}
+/src/com/stacksync/desktop/gui/components/StackSyncButton.java
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.stacksync.desktop.gui.components;
+
+import com.stacksync.desktop.Environment;
+import com.stacksync.desktop.gui.StackSyncFrame;
+import com.stacksync.desktop.gui.StackSyncPanel;
+import com.stacksync.desktop.gui.StackSyncWindow;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowType;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue.WindowStateTypeValueValue;
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1714  BLEU: 0.0000  METEOR: 0.0000  ROUGE-L: 0.0000  
+--- Target ---
+public boolean isActive() {
+        return active;
+    }
+--- Generation ---
+private void compressAndSaveFile(File from, File to) throws It.println
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0618  BLEU: 0.0045  METEOR: 0.0410  ROUGE-L: 0.0200  
+--- Target ---
+public void setActive(boolean active) {
+        this.active = active;
+    }
+--- Generation ---
+}
+/src/com/stacksync/desktop/gui/components/StackSyncButton.java
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.stacksync.desktop.gui.components;
+
+import com.stacksync.desktop.Environment;
+import com.stacksync.desktop.gui.StackSyncFrame;
+import com.stacksync.desktop.gui.StackSyncPanel;
+import com.stacksync.desktop.gui.StackSyncWindow;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowType;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue;
+import com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue.WindowStateTypeValueValue;
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9993  ROUGE-L: 1.0000  
+--- Target ---
+public void setActive(boolean active) {
+        this.active = active;
+    }
+--- Generation ---
+public void setActive(boolean active) {
+        this.active = active;
+    }
+

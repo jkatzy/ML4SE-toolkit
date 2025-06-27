@@ -1,0 +1,53 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2207  BLEU: 0.1609  METEOR: 0.3494  ROUGE-L: 0.3137  
+--- Target ---
+@BeforeClass
+  public static void init() {
+    orchestrator.resetData();
+
+    SonarScanner build = Tests.createSonarScannerBuild()
+      .setProjectDir(new File("../projects/issues/"))
+      .setProjectKey(PROJECT_KEY)
+      .setProjectName(PROJECT_KEY);
+
+    orchestrator.getServer().provisionProject(PROJECT_KEY, PROJECT_KEY);
+    Tests.setProfile("file-naming-convention-only-profile", PROJECT_KEY);
+    orchestrator.executeBuild(build);
+  }
+--- Generation ---
+@BeforeClass
+  public static void init() {
+    orchestrator.createProject(PROJECT_KEY, "issues");
+  }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9932  BLEU: 1.0000  METEOR: 0.9999  ROUGE-L: 1.0000  
+--- Target ---
+@BeforeClass
+  public static void init() {
+    orchestrator.resetData();
+
+    SonarScanner build = Tests.createSonarScannerBuild()
+      .setProjectDir(new File("../projects/issues/"))
+      .setProjectKey(PROJECT_KEY)
+      .setProjectName(PROJECT_KEY);
+
+    orchestrator.getServer().provisionProject(PROJECT_KEY, PROJECT_KEY);
+    Tests.setProfile("file-naming-convention-only-profile", PROJECT_KEY);
+    orchestrator.executeBuild(build);
+  }
+--- Generation ---
+@BeforeClass
+  public static void init() {
+    orchestrator.resetData();
+
+    SonarScanner build = Tests.createSonarScannerBuild()
+     .setProjectDir(new File("../projects/issues/"))
+     .setProjectKey(PROJECT_KEY)
+     .setProjectName(PROJECT_KEY);
+
+    orchestrator.getServer().provisionProject(PROJECT_KEY, PROJECT_KEY);
+    Tests.setProfile("file-naming-convention-only-profile", PROJECT_KEY);
+    orchestrator.executeBuild(build);
+  }
+

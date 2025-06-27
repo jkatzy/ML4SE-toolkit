@@ -17,10 +17,11 @@ class LineCommentQuery(Query):
         matches = []
         for r in self.regexes:
             for m in re.finditer(r, text):
-                prefix = text[:m.start()]
-                match = m.group()
-                suffix = text[m.end():]
-                matches.append((prefix, suffix, match))
+                start, end = m.span()
+                match_text = m.group()
+                prefix_len = start
+                suffix_len = len(text) - end
+                matches.append((prefix_len, suffix_len, match_text))
         return matches
 
     def get_regex(self, language):
@@ -224,7 +225,7 @@ class NestedCommentQuery(Query):
     def contains(self, string):
         contains = False
         for d in self.delimeters:
-            r = d[0] + "[\s\S]*" + d[1]
+            r = d[0] + r"[\s\S]*" + d[1]
             if(re.search(r, string)):
                 return True
         return False

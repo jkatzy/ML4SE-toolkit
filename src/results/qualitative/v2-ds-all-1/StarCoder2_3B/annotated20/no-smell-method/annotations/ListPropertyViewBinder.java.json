@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2880747126436781,
+            "BLEU": 0.12560202683289828,
+            "METEOR": 0.2838541666666667,
+            "ROUGE-L": 0.26666666666666666
+        },
+        "target": "@Override\n    public void bind(PropertyModel model, RecyclerView view, PropertyKey propertyKey) {\n        if (propertyKey == ListProperties.ENABLE_ITEM_ANIMATIONS) {\n            if (model.getValue(ListProperties.ENABLE_ITEM_ANIMATIONS)) {\n                if (view.getItemAnimator() == null) {\n                    view.setItemAnimator((ItemAnimator) view.getTag(R.id.item_animator));\n                    view.setTag(R.id.item_animator, null);\n                }\n            } else {\n                if (view.getItemAnimator() != null) {\n                    view.setTag(R.id.item_animator, view.getItemAnimator());\n                    view.setItemAnimator(null);\n                }\n            }\n        } else if (propertyKey == ListProperties.CALLBACK_OPEN\n                || propertyKey == ListProperties.CALLBACK_PAUSE\n                || propertyKey == ListProperties.CALLBACK_RESUME\n                || propertyKey == ListProperties.CALLBACK_CANCEL\n                || propertyKey == ListProperties.CALLBACK_SHARE\n                || propertyKey == ListProperties.CALLBACK_REMOVE\n                || propertyKey == ListProperties.PROVIDER_VISUALS\n                || propertyKey == ListProperties.CALLBACK_SELECTION\n                || propertyKey == ListProperties.SELECTION_MODE_ACTIVE) {\n            view.getAdapter().notifyItemRangeChanged(0, view.getAdapter().getItemCount());\n        }\n    }",
+        "generation": "private final ItemAnimator mItemAnimator;\n\n     ListPropertyViewBinder(ItemAnimator itemAnimator) {\n         mItemAnimator = itemAnimator;\n     }\n\n     @Override\n     public void bind(PropertyModel model, RecyclerView view, PropertyKey key) {\n         if (key == ListProperties.LIST_ITEM_MODEL) {\n             ListItemViewBinder.bind(model, view, mItemAnimator);\n         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST) {\n             ListItemViewBinder.bind(model, view, mItemAnimator);\n         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST_WITH_HEADER) {\n             ListItemViewBinder.bind(model, view, mItemAnimator);\n         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST_WITH_FOOTER) {\n             ListItemViewBinder.bind(model, view, mItemAnimator);\n         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST_WITH_FOOTER_AND_HEADER) {\n             ListItemViewBinder.bind(model, view, mItemAnimator);",
+        "classification": "partial",
+        "comment": "signature, repetition"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9992816091954023,
+            "BLEU": 0.9574228920708827,
+            "METEOR": 0.9772972697022532,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public void bind(PropertyModel model, RecyclerView view, PropertyKey propertyKey) {\n        if (propertyKey == ListProperties.ENABLE_ITEM_ANIMATIONS) {\n            if (model.getValue(ListProperties.ENABLE_ITEM_ANIMATIONS)) {\n                if (view.getItemAnimator() == null) {\n                    view.setItemAnimator((ItemAnimator) view.getTag(R.id.item_animator));\n                    view.setTag(R.id.item_animator, null);\n                }\n            } else {\n                if (view.getItemAnimator() != null) {\n                    view.setTag(R.id.item_animator, view.getItemAnimator());\n                    view.setItemAnimator(null);\n                }\n            }\n        } else if (propertyKey == ListProperties.CALLBACK_OPEN\n                || propertyKey == ListProperties.CALLBACK_PAUSE\n                || propertyKey == ListProperties.CALLBACK_RESUME\n                || propertyKey == ListProperties.CALLBACK_CANCEL\n                || propertyKey == ListProperties.CALLBACK_SHARE\n                || propertyKey == ListProperties.CALLBACK_REMOVE\n                || propertyKey == ListProperties.PROVIDER_VISUALS\n                || propertyKey == ListProperties.CALLBACK_SELECTION\n                || propertyKey == ListProperties.SELECTION_MODE_ACTIVE) {\n            view.getAdapter().notifyItemRangeChanged(0, view.getAdapter().getItemCount());\n        }\n    }",
+        "generation": "@Override\n    public void bind(PropertyModel model, RecyclerView view, PropertyKey propertyKey) {\n        if (propertyKey == ListProperties.ENABLE_ITEM_ANIMATIONS) {\n            if (model.getValue(ListProperties.ENABLE_ITEM_ANIMATIONS)) {\n                if (view.getItemAnimator() == null) {\n                    view.setItemAnimator((ItemAnimator) view.getTag(R.id.item_animator));\n                    view.setTag(R.id.item_animator, null);\n                }\n            } else {\n                if (view.getItemAnimator()!= null) {\n                    view.setTag(R.id.item_animator, view.getItemAnimator());\n                    view.setItemAnimator(null);\n                }\n            }\n        } else if (propertyKey == ListProperties.CALLBACK_OPEN\n                || propertyKey == ListProperties.CALLBACK_PAUSE\n                || propertyKey == ListProperties.CALLBACK_RESUME\n                || propertyKey == ListProperties.CALLBACK_CANCEL\n                || propertyKey == ListProperties.CALLBACK_SHARE\n                || propertyKey == ListProperties.CALLBACK_REMOVE\n                || propertyKey == ListProperties.PROVIDER_VISUALS\n                || propertyKey == ListProperties.CALLBACK_SELECTION\n                || propertyKey == ListProperties.SELECTION_MODE_ACTIVE) {\n            view.getAdapter().notifyItemRangeChanged(0, view.getAdapter().getItemCount());\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

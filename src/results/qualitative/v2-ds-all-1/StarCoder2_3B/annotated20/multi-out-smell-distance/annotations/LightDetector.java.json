@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6216216216216216,
+            "BLEU": 0.24028114141347542,
+            "METEOR": 0.625,
+            "ROUGE-L": 0.6666666666666666
+        },
+        "target": "public int getNormalizedLightValue();",
+        "generation": "public int getRawValue();",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7567567567567568,
+            "BLEU": 0.24028114141347542,
+            "METEOR": 0.625,
+            "ROUGE-L": 0.6666666666666666
+        },
+        "target": "public int getNormalizedLightValue();",
+        "generation": "public int getRawLightValue();",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7567567567567568,
+            "BLEU": 0.24028114141347542,
+            "METEOR": 0.625,
+            "ROUGE-L": 0.6666666666666666
+        },
+        "target": "public int getNormalizedLightValue();",
+        "generation": "public int getRawLightValue();",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7567567567567568,
+            "BLEU": 0.24028114141347542,
+            "METEOR": 0.625,
+            "ROUGE-L": 0.6666666666666666
+        },
+        "target": "public int getNormalizedLightValue();",
+        "generation": "public int getRawLightValue();",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.5623413251903491,
+            "METEOR": 0.9814814814814815,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getLow();",
+        "generation": "public int getLow();",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.5623413251903491,
+            "METEOR": 0.9814814814814815,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getLow();",
+        "generation": "public int getLow();",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.5623413251903491,
+            "METEOR": 0.9814814814814815,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getLow();",
+        "generation": "public int getLow();",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.5623413251903491,
+            "METEOR": 0.9814814814814815,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getLow();",
+        "generation": "public int getLow();",
+        "classification": "",
+        "comment": ""
+    }
+]

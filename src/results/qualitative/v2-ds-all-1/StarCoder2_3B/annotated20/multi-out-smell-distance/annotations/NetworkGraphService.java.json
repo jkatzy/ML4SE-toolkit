@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.195838986883763,
+            "BLEU": 0.006934222677207415,
+            "METEOR": 0.13047696237351414,
+            "ROUGE-L": 0.15841584158415842
+        },
+        "target": "public static void writeAlternativeTreesInDS() {\n\n        // for each alternative tree create a topology and write it into the DS\n        for (Map.Entry<Link, Graph<NodeId, Link>> alternativeTree: alternativeTreeGraphs.entrySet()) {\n\n            String alternativeTreeTopologyId = \"mst-alternative-\" + alternativeTree.getKey().getLinkId().getValue();\n\n            LOG.info(\"writeAlternativeTreesInDS: Writing \" + alternativeTreeTopologyId);\n\n            InstanceIdentifier<Topology> topologyInstanceIdentifier = InstanceIdentifierUtils\n                    .generateTopologyInstanceIdentifier(alternativeTreeTopologyId);\n\n            WriteTransaction onlyWriteTransaction = dataBroker.newWriteOnlyTransaction();\n            List<Link> treeEdges = new ArrayList<>(alternativeTree.getValue().getEdges());\n            List<NodeId> treeVerticesIds = new ArrayList<>(alternativeTree.getValue().getVertices());\n            List<org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.network.topology.topology.Node> treeVertices =\n                    InitialFlowUtils.getTopologyNodesFromTopologyNodeIds(treeVerticesIds, topologyId, dataBroker);\n            Topology treeTopologyToWrite = new TopologyBuilder().setTopologyId(new TopologyId(alternativeTreeTopologyId))\n                    .setLink(treeEdges).setNode(treeVertices).build();\n\n            // merge or put  -> merge preserves old data which leads to inconsistent links in the tree\n            onlyWriteTransaction.put(LogicalDatastoreType.OPERATIONAL, topologyInstanceIdentifier, treeTopologyToWrite);\n            CheckedFuture<Void, TransactionCommitFailedException> futureTreeTopology =\n                    onlyWriteTransaction.submit();\n\n            Futures.addCallback(futureTreeTopology, new FutureCallback<Void>() {\n                        public void onSuccess(Void v) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshed\");\n                        }\n\n                        public void onFailure(Throwable thrown) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshing Failed.\");\n                        }\n                    }\n            );\n\n        }\n    }",
+        "generation": "public static void writeAlternativeTreesToDS() {\n\n        if (!alternativeTreeGraphs.isEmpty()) {\n            alternativeTreeGraphs.clear();\n        }\n\n        Collection<Link> currentTreeLinks = currentHopByHopTree.getEdges();\n\n        for (Link currentTreeLink: currentTreeLinks) {\n            Graph<NodeId, Link> alternativeTree = alternativeTreeGraphs.get(currentTreeLink);\n            printGraph(alternativeTree, \"writeAlternativeTreesToDS: alternativeTree for link -> \" + currentTreeLink.getLinkId().getValue());\n            // TODO: write alternative tree to DS\n        }\n    }",
+        "classification": "partial",
+        "comment": "same signature"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2962460425146992,
+            "BLEU": 0.019669654186461088,
+            "METEOR": 0.16577927483018617,
+            "ROUGE-L": 0.19424460431654675
+        },
+        "target": "public static void writeAlternativeTreesInDS() {\n\n        // for each alternative tree create a topology and write it into the DS\n        for (Map.Entry<Link, Graph<NodeId, Link>> alternativeTree: alternativeTreeGraphs.entrySet()) {\n\n            String alternativeTreeTopologyId = \"mst-alternative-\" + alternativeTree.getKey().getLinkId().getValue();\n\n            LOG.info(\"writeAlternativeTreesInDS: Writing \" + alternativeTreeTopologyId);\n\n            InstanceIdentifier<Topology> topologyInstanceIdentifier = InstanceIdentifierUtils\n                    .generateTopologyInstanceIdentifier(alternativeTreeTopologyId);\n\n            WriteTransaction onlyWriteTransaction = dataBroker.newWriteOnlyTransaction();\n            List<Link> treeEdges = new ArrayList<>(alternativeTree.getValue().getEdges());\n            List<NodeId> treeVerticesIds = new ArrayList<>(alternativeTree.getValue().getVertices());\n            List<org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.network.topology.topology.Node> treeVertices =\n                    InitialFlowUtils.getTopologyNodesFromTopologyNodeIds(treeVerticesIds, topologyId, dataBroker);\n            Topology treeTopologyToWrite = new TopologyBuilder().setTopologyId(new TopologyId(alternativeTreeTopologyId))\n                    .setLink(treeEdges).setNode(treeVertices).build();\n\n            // merge or put  -> merge preserves old data which leads to inconsistent links in the tree\n            onlyWriteTransaction.put(LogicalDatastoreType.OPERATIONAL, topologyInstanceIdentifier, treeTopologyToWrite);\n            CheckedFuture<Void, TransactionCommitFailedException> futureTreeTopology =\n                    onlyWriteTransaction.submit();\n\n            Futures.addCallback(futureTreeTopology, new FutureCallback<Void>() {\n                        public void onSuccess(Void v) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshed\");\n                        }\n\n                        public void onFailure(Throwable thrown) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshing Failed.\");\n                        }\n                    }\n            );\n\n        }\n    }",
+        "generation": "public static void writeAlternativeTreesToDS() {\n\n        if (alternativeTreeGraphs.isEmpty()) {\n            LOG.debug(\"Alternative trees are empty, nothing to write to DS\");\n            return;\n        }\n\n        // get all links from flow:1 topology\n        List<Link> networkGraphLinks = new ArrayList<>();\n        List<Topology> storedTopologiesInDS = readAllTopologiesFromDS();\n        for (Topology topology: storedTopologiesInDS) {\n            if (topology.getTopologyId().getValue().equals(topologyId)) {\n                networkGraphLinks = topology.getLink();\n                break;\n            }\n        }\n\n        // find the links that are not in the networkGraph\n        List<Link> linksNotInNetworkGraph = new ArrayList<>();\n        for (Link link: networkGraphLinks) {\n            if (!alternativeTreeGraphs.containsKey(link)) {\n                linksNotInNetworkGraph.add(link);\n            }\n        }\n\n        // remove the links that are not in the networkGraph\n        for (Link link: linksNotInNetworkGraph) {\n            alternativeTreeGraphs.remove(link);\n        }\n\n        // write the alternative trees to DS\n        for (Link link: alternativeTreeGraphs.keySet()) {\n            LOG.debug(\"Writing alternative tree for link {}\", link.getLinkId().getValue());\n            writeAlternativeTreeToDS(link, alternativeTreeGraphs.get(link));\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.31298055178652195,
+            "BLEU": 0.05890379751482368,
+            "METEOR": 0.17583476584883054,
+            "ROUGE-L": 0.17100371747211895
+        },
+        "target": "public static void writeAlternativeTreesInDS() {\n\n        // for each alternative tree create a topology and write it into the DS\n        for (Map.Entry<Link, Graph<NodeId, Link>> alternativeTree: alternativeTreeGraphs.entrySet()) {\n\n            String alternativeTreeTopologyId = \"mst-alternative-\" + alternativeTree.getKey().getLinkId().getValue();\n\n            LOG.info(\"writeAlternativeTreesInDS: Writing \" + alternativeTreeTopologyId);\n\n            InstanceIdentifier<Topology> topologyInstanceIdentifier = InstanceIdentifierUtils\n                    .generateTopologyInstanceIdentifier(alternativeTreeTopologyId);\n\n            WriteTransaction onlyWriteTransaction = dataBroker.newWriteOnlyTransaction();\n            List<Link> treeEdges = new ArrayList<>(alternativeTree.getValue().getEdges());\n            List<NodeId> treeVerticesIds = new ArrayList<>(alternativeTree.getValue().getVertices());\n            List<org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.network.topology.topology.Node> treeVertices =\n                    InitialFlowUtils.getTopologyNodesFromTopologyNodeIds(treeVerticesIds, topologyId, dataBroker);\n            Topology treeTopologyToWrite = new TopologyBuilder().setTopologyId(new TopologyId(alternativeTreeTopologyId))\n                    .setLink(treeEdges).setNode(treeVertices).build();\n\n            // merge or put  -> merge preserves old data which leads to inconsistent links in the tree\n            onlyWriteTransaction.put(LogicalDatastoreType.OPERATIONAL, topologyInstanceIdentifier, treeTopologyToWrite);\n            CheckedFuture<Void, TransactionCommitFailedException> futureTreeTopology =\n                    onlyWriteTransaction.submit();\n\n            Futures.addCallback(futureTreeTopology, new FutureCallback<Void>() {\n                        public void onSuccess(Void v) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshed\");\n                        }\n\n                        public void onFailure(Throwable thrown) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshing Failed.\");\n                        }\n                    }\n            );\n\n        }\n    }",
+        "generation": "public static void writeAlternativeTreesToDS() {\n\n        if (!alternativeTreeGraphs.isEmpty()) {\n            alternativeTreeGraphs.clear();\n        }\n\n        Collection<Link> currentTreeLinks = currentHopByHopTree.getEdges();\n\n        for (Link currentTreeLink: currentTreeLinks) {\n            Graph<NodeId, Link> tempGraph = createGraphClone(networkGraph);\n            tempGraph.removeEdge(currentTreeLink);\n            printGraph(tempGraph, \"writeAlternativeTreesToDS: networkGraph for link -> \" + currentTreeLink.getLinkId().getValue());\n\n            PrimMinimumSpanningTree<NodeId, Link> networkMst = new PrimMinimumSpanningTree<>(\n                    DelegateTree.<NodeId, Link>getFactory());\n            Graph<NodeId, Link> alternativeTree = networkMst.transform(tempGraph);\n            printGraph(alternativeTree, \"writeAlternativeTreesToDS: produced tree for link -> \" + currentTreeLink.getLinkId().getValue());\n            alternativeTreeGraphs.put(currentTreeLink, alternativeTree);\n        }\n\n        // Write alternative trees to DS\n        for (Map.Entry<Link, Graph<NodeId, Link>> entry : alternativeTreeGraphs.entrySet()) {\n            Link link = entry.getKey();\n            Graph<NodeId, Link> alternativeTree = entry.getValue();\n            LOG.debug(\"Alternative tree for link {} is {}\", link.getLinkId().getValue(), alternativeTree.toString());\n            writeAlternativeTreeToDS(link, alternativeTree);\n        }\n    }",
+        "classification": "partial",
+        "comment": "same signature"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2998643147896879,
+            "BLEU": 0.0166994391856831,
+            "METEOR": 0.15667499897192474,
+            "ROUGE-L": 0.1984126984126984
+        },
+        "target": "public static void writeAlternativeTreesInDS() {\n\n        // for each alternative tree create a topology and write it into the DS\n        for (Map.Entry<Link, Graph<NodeId, Link>> alternativeTree: alternativeTreeGraphs.entrySet()) {\n\n            String alternativeTreeTopologyId = \"mst-alternative-\" + alternativeTree.getKey().getLinkId().getValue();\n\n            LOG.info(\"writeAlternativeTreesInDS: Writing \" + alternativeTreeTopologyId);\n\n            InstanceIdentifier<Topology> topologyInstanceIdentifier = InstanceIdentifierUtils\n                    .generateTopologyInstanceIdentifier(alternativeTreeTopologyId);\n\n            WriteTransaction onlyWriteTransaction = dataBroker.newWriteOnlyTransaction();\n            List<Link> treeEdges = new ArrayList<>(alternativeTree.getValue().getEdges());\n            List<NodeId> treeVerticesIds = new ArrayList<>(alternativeTree.getValue().getVertices());\n            List<org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.network.topology.topology.Node> treeVertices =\n                    InitialFlowUtils.getTopologyNodesFromTopologyNodeIds(treeVerticesIds, topologyId, dataBroker);\n            Topology treeTopologyToWrite = new TopologyBuilder().setTopologyId(new TopologyId(alternativeTreeTopologyId))\n                    .setLink(treeEdges).setNode(treeVertices).build();\n\n            // merge or put  -> merge preserves old data which leads to inconsistent links in the tree\n            onlyWriteTransaction.put(LogicalDatastoreType.OPERATIONAL, topologyInstanceIdentifier, treeTopologyToWrite);\n            CheckedFuture<Void, TransactionCommitFailedException> futureTreeTopology =\n                    onlyWriteTransaction.submit();\n\n            Futures.addCallback(futureTreeTopology, new FutureCallback<Void>() {\n                        public void onSuccess(Void v) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshed\");\n                        }\n\n                        public void onFailure(Throwable thrown) {\n                            LOG.info(\"Minimum-Spanning-Tree Alternative Refreshing Failed.\");\n                        }\n                    }\n            );\n\n        }\n    }",
+        "generation": "public static void writeAlternativeTreesToDS() {\n\n        if (alternativeTreeGraphs.isEmpty()) {\n            LOG.warn(\"Alternative trees are empty, nothing to write to DS\");\n            return;\n        }\n\n        // get all links from flow:1 topology\n        List<Link> networkGraphLinks = new ArrayList<>();\n        List<Topology> storedTopologiesInDS = readAllTopologiesFromDS();\n        for (Topology topology: storedTopologiesInDS) {\n            if (topology.getTopologyId().getValue().equals(topologyId)) {\n                networkGraphLinks = topology.getLink();\n                break;\n            }\n        }\n\n        // get all alternative trees from alternativeTreeGraphs\n        for (Link link: networkGraphLinks) {\n            if (alternativeTreeGraphs.containsKey(link)) {\n                Graph<NodeId, Link> alternativeTree = alternativeTreeGraphs.get(link);\n                LOG.info(\"Alternative tree for link {} is {}\", link.getLinkId().getValue(), alternativeTree.toString());\n                // write alternative tree to DS\n                writeAlternativeTreeToDS(link, alternativeTree);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.26943005181347146,
+            "BLEU": 0.1513851459876605,
+            "METEOR": 0.6050000000000001,
+            "ROUGE-L": 0.6
+        },
+        "target": "public static void setFollower() {isLeader = false;}",
+        "generation": "public static void setFollower() {\n\n        isLeader = false;\n\n        // clear the local cache\n        clear();\n        clearCurrentHopByHopTree();\n        alternativeTreeGraphs.clear();\n    }",
+        "classification": "partial",
+        "comment": "same but does too much"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static void setFollower() {isLeader = false;}",
+        "generation": "public static void setFollower() {isLeader = false;}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2184873949579832,
+            "BLEU": 0.1090009697802911,
+            "METEOR": 0.5627906976744185,
+            "ROUGE-L": 0.4799999999999999
+        },
+        "target": "public static void setFollower() {isLeader = false;}",
+        "generation": "public static void setFollower() {\n\n        isLeader = false;\n\n        // clear the local cache\n        clear();\n        clearCurrentHopByHopTree();\n\n        // clear the alternative tree cache\n        alternativeTreeGraphs.clear();\n    }",
+        "classification": "partial",
+        "comment": "same but does too much"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static void setFollower() {isLeader = false;}",
+        "generation": "public static void setFollower() {isLeader = false;}",
+        "classification": "",
+        "comment": ""
+    }
+]

@@ -1,0 +1,160 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1288  BLEU: 0.0072  METEOR: 0.1359  ROUGE-L: 0.0721  
+--- Target ---
+public Player getPlayer() {
+        if (Util.isNPC(uniqueId)) {
+            return Eden.INSTANCE.getHookManager().getCitizensHook().getNPCPlayer(uniqueId);
+        }
+        return Bukkit.getPlayer(uniqueId);
+    }
+--- Generation ---
+public void save() {
+        if (saving) {
+            return;
+        }
+        saving = true;
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                saving = false;
+                Document document = toBson();
+                document.put("uuid", uniqueId.toString());
+                document.put("username", username);
+                document.put("lowerCaseUsername", username.toLowerCase());
+                document.put("temporary", new Document());
+                document.put("settings", new Document());
+                document.put("kitData", new Document());
+                document.put("match", new Document());
+                document.put("party", new Document());
+                document.put("cooldowns", new Document());
+                document.put("playerState", playerState.name());
+                document.put("match", new Document());
+                document.put("party", new Document());
+                document.put("cooldowns", new Document());
+                document.put("playerState", playerState.name());
+                document.put("match", new Document());
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1824  BLEU: 0.0124  METEOR: 0.2855  ROUGE-L: 0.1519  
+--- Target ---
+public Player getPlayer() {
+        if (Util.isNPC(uniqueId)) {
+            return Eden.INSTANCE.getHookManager().getCitizensHook().getNPCPlayer(uniqueId);
+        }
+        return Bukkit.getPlayer(uniqueId);
+    }
+--- Generation ---
+public void save(Consumer<Boolean> callback) {
+        if (saving) {
+            callback.accept(false);
+            return;
+        }
+        saving = true;
+        try {
+            Document document = toBson();
+            if (temporary) {
+                document.remove("temporary");
+            }
+            if (match!= null) {
+                document.put("match", match.getMatchId());
+            }
+            if (party!= null) {
+                document.put("party", party.getPartyId());
+            }
+            if (Eden.getMongo().getCollection("profiles").updateOne(Filters.eq("uuid", uniqueId.toString()), new Document("$set", document), new ReplaceOptt.get(0).getUniqueId());
+        }
+        return null;
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1544  BLEU: 0.0071  METEOR: 0.1632  ROUGE-L: 0.0615  
+--- Target ---
+public void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
+
+        //getPlayer might be null because PlayerProfile.setPlayerState might be trigger when player disconnects
+        if (getPlayer() != null) {
+            VisibilityController.updateVisibility(getPlayer());
+        }
+    }
+--- Generation ---
+public void save() {
+        if (saving) {
+            return;
+        }
+        saving = true;
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                saving = false;
+                Document document = toBson();
+                document.put("uuid", uniqueId.toString());
+                document.put("username", username);
+                document.put("lowerCaseUsername", username.toLowerCase());
+                document.put("temporary", new Document());
+                document.put("settings", new Document());
+                document.put("kitData", new Document());
+                document.put("match", new Document());
+                document.put("party", new Document());
+                document.put("cooldowns", new Document());
+                document.put("playerState", playerState.name());
+                document.put("match", new Document());
+                document.put("party", new Document());
+                document.put("cooldowns", new Document());
+                document.put("temporary", new Document());
+                document.put("settings", new Document());
+                document.put("kitData", new Document());
+                document.put("match", new Document());
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3209  BLEU: 0.0194  METEOR: 0.1738  ROUGE-L: 0.1463  
+--- Target ---
+public void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
+
+        //getPlayer might be null because PlayerProfile.setPlayerState might be trigger when player disconnects
+        if (getPlayer() != null) {
+            VisibilityController.updateVisibility(getPlayer());
+        }
+    }
+--- Generation ---
+public void save() {
+        save(result -> {
+            if (result) {
+                Common.debug(username + " 已儲存");
+            } else {
+                Common.debug(username + " 儲存失敗");
+            }
+        });
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9999  ROUGE-L: 1.0000  
+--- Target ---
+public static PlayerProfile createPlayerProfile(UUID uuid, String username) {
+        PlayerProfile profile = new PlayerProfile(uuid, username);
+        profiles.put(uuid, profile);
+        return profile;
+    }
+--- Generation ---
+public static PlayerProfile createPlayerProfile(UUID uuid, String username) {
+        PlayerProfile profile = new PlayerProfile(uuid, username);
+        profiles.put(uuid, profile);
+        return profile;
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9999  ROUGE-L: 1.0000  
+--- Target ---
+public static PlayerProfile createPlayerProfile(UUID uuid, String username) {
+        PlayerProfile profile = new PlayerProfile(uuid, username);
+        profiles.put(uuid, profile);
+        return profile;
+    }
+--- Generation ---
+public static PlayerProfile createPlayerProfile(UUID uuid, String username) {
+        PlayerProfile profile = new PlayerProfile(uuid, username);
+        profiles.put(uuid, profile);
+        return profile;
+    }
+
