@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3362068965517241,
+            "BLEU": 0.022753226460679014,
+            "METEOR": 0.24166568914956016,
+            "ROUGE-L": 0.17699115044247787
+        },
+        "target": "boolean intersection(Line2d l, Point2d p) {\n\t\t// The polynomial judgement\n\t\tdouble D = (a * l.b) - (b * l.a);\n\t\tif (D == 0) {\n\t\t\tp.x = 0;\n\t\t\tp.y = 0;\n\t\t\treturn false;\n\t\t} else {\n\t\t\tp.x = (c * l.b - b * l.c) / D / 1.0;\n\t\t\tp.y = (a * l.c - c * l.a) / D / 1.0;\n\t\t\treturn true;\n\t\t}\n\t}",
+        "generation": "public void calculate(double x1, double y1, double x2, double y2) {\n\t\tseg = new Segment(x1, y1, x2, y2);\n\n\t\tif (y1 == y2) {\n\t\t\ta = 0;\n\t\t\tb = 1;\n\t\t\tc = y1;\n\t\t} else if (x1 == x2) {\n\t\t\ta = 1;\n\t\t\tb = 0;\n\t\t\tc = x1;\n\t\t} else {\n\t\t\tdouble dx = x1 - x2;\n\t\t\tdouble dy = y1 - y2;\n\t\t\tdouble m = dx / dy;\n\t\t\ta = -1 * m;\n\t\t\tb = 1;\n\t\t\tc = a * x1 + b * y1;\n\t\t}\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.36309523809523814,
+            "BLEU": 0.025000976657878603,
+            "METEOR": 0.25186280955511725,
+            "ROUGE-L": 0.22033898305084745
+        },
+        "target": "boolean intersection(Line2d l, Point2d p) {\n\t\t// The polynomial judgement\n\t\tdouble D = (a * l.b) - (b * l.a);\n\t\tif (D == 0) {\n\t\t\tp.x = 0;\n\t\t\tp.y = 0;\n\t\t\treturn false;\n\t\t} else {\n\t\t\tp.x = (c * l.b - b * l.c) / D / 1.0;\n\t\t\tp.y = (a * l.c - c * l.a) / D / 1.0;\n\t\t\treturn true;\n\t\t}\n\t}",
+        "generation": "public Line2d(Point2d p1, Point2d p2) {\n\t\tseg = new Segment(p1, p2);\n\n\t\tif (p1.y == p2.y) {\n\t\t\ta = 0;\n\t\t\tb = 1;\n\t\t\tc = p1.y;\n\t\t} else if (p1.x == p2.x) {\n\t\t\ta = 1;\n\t\t\tb = 0;\n\t\t\tc = p1.x;\n\t\t} else {\n\t\t\tdouble dx = p1.x - p2.x;\n\t\t\tdouble dy = p1.y - p2.y;\n\t\t\tdouble m = dx / dy;\n\t\t\ta = -1 * m;\n\t\t\tb = 1;\n\t\t\tc = a * p1.x + b * p1.y;\n\t\t}\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.21595330739299612,
+            "BLEU": 0.007695161023594485,
+            "METEOR": 0.14236902050113895,
+            "ROUGE-L": 0.1923076923076923
+        },
+        "target": "double dist(Point2d p) {\n\t\t/*\n\t\t * this.x, this.y); double u;\n\t\t * \n\t\t * // u = ((x3-x1)(x2-x1) + (y3-y1)(y2-y1)) / (p2.dist(p1)^2) u = ((p.x\n\t\t * - seg.p1.x) * (seg.p2.x - seg.p1.x) + (p.y - seg.p1.y) * (seg.p2.y -\n\t\t * seg.p1.y)) / (seg.p1.dist (seg.p2))\n\t\t * \n\t\t * double x = seg.p1.x + u * (seg.p2.x - seg.p1.x); double y = seg.p1.y\n\t\t * + u * (seg.p2.y - seg.p1.y);\n\t\t * \n\t\t * return p.dist (point2d (x, y));\n\t\t */\n\n\t\treturn Math.abs(a * p.x + b * p.y + c)\n\t\t\t\t/ Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));\n\t}",
+        "generation": "boolean intersection(Line2d l, Point2d p, boolean bisecting) {\n\t\t// The polynomial judgement\n\t\tdouble D = (a * l.b) - (b * l.a);\n\t\tif (D == 0) {\n\t\t\tp.x = 0;\n\t\t\tp.y = 0;\n\t\t\treturn false;\n\t\t} else {\n\t\t\tp.x = (c * l.b - b * l.c) / D / 1.0;\n\t\t\tp.y = (a * l.c - c * l.a) / D / 1.0;\n\t\t\treturn true;\n\t\t}\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method, copy context"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17509727626459148,
+            "BLEU": 0.0016936884284047182,
+            "METEOR": 0.05938242280285035,
+            "ROUGE-L": 0.06451612903225806
+        },
+        "target": "double dist(Point2d p) {\n\t\t/*\n\t\t * this.x, this.y); double u;\n\t\t * \n\t\t * // u = ((x3-x1)(x2-x1) + (y3-y1)(y2-y1)) / (p2.dist(p1)^2) u = ((p.x\n\t\t * - seg.p1.x) * (seg.p2.x - seg.p1.x) + (p.y - seg.p1.y) * (seg.p2.y -\n\t\t * seg.p1.y)) / (seg.p1.dist (seg.p2))\n\t\t * \n\t\t * double x = seg.p1.x + u * (seg.p2.x - seg.p1.x); double y = seg.p1.y\n\t\t * + u * (seg.p2.y - seg.p1.y);\n\t\t * \n\t\t * return p.dist (point2d (x, y));\n\t\t */\n\n\t\treturn Math.abs(a * p.x + b * p.y + c)\n\t\t\t\t/ Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));\n\t}",
+        "generation": "boolean intersection(Line2d l) {\n\t\t// The polynomial judgement\n\t\tdouble D = (a * l.b) - (b * l.a);\n\t\tif (D == 0) {\n\t\t\treturn false;\n\t\t} else {\n\t\t\treturn true;\n\t\t}\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.42622950819672134,
+            "BLEU": 0.04772867818167189,
+            "METEOR": 0.2932728212787959,
+            "ROUGE-L": 0.375
+        },
+        "target": "@Override\n\tpublic Object clone() {\n\t\tLine2d clone = new Line2d(this.seg.p1.x, this.seg.p1.y, this.seg.p2.x,\n\t\t\t\tthis.seg.p2.y);\n\n\t\tclone.a = this.a;\n\t\tclone.b = this.b;\n\t\tclone.c = this.c;\n\n\t\tclone.bisectingID = this.bisectingID.clone();\n\t\tclone.vertexIndex = this.vertexIndex.clone();\n\n\t\treturn clone;\n\t}",
+        "generation": "public Line2d clone() {\n\t\tLine2d l = new Line2d();\n\t\tl.a = a;\n\t\tl.b = b;\n\t\tl.c = c;\n\t\tl.seg = seg.clone();\n\t\tl.vertexIndex[0] = vertexIndex[0];\n\t\tl.vertexIndex[1] = vertexIndex[1];\n\t\treturn l;\n\t}",
+        "classification": "partial",
+        "comment": "correct signature, almost all logic"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999832164076399,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\tpublic Object clone() {\n\t\tLine2d clone = new Line2d(this.seg.p1.x, this.seg.p1.y, this.seg.p2.x,\n\t\t\t\tthis.seg.p2.y);\n\n\t\tclone.a = this.a;\n\t\tclone.b = this.b;\n\t\tclone.c = this.c;\n\n\t\tclone.bisectingID = this.bisectingID.clone();\n\t\tclone.vertexIndex = this.vertexIndex.clone();\n\n\t\treturn clone;\n\t}",
+        "generation": "@Override\n\tpublic Object clone() {\n\t\tLine2d clone = new Line2d(this.seg.p1.x, this.seg.p1.y, this.seg.p2.x,\n\t\t\t\tthis.seg.p2.y);\n\n\t\tclone.a = this.a;\n\t\tclone.b = this.b;\n\t\tclone.c = this.c;\n\n\t\tclone.bisectingID = this.bisectingID.clone();\n\t\tclone.vertexIndex = this.vertexIndex.clone();\n\n\t\treturn clone;\n\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

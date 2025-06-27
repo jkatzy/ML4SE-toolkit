@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2808988764044944,
+            "BLEU": 0.03155984539112946,
+            "METEOR": 0.20833333333333331,
+            "ROUGE-L": 0.15384615384615385
+        },
+        "target": "public int getWindowSize() {\n\t\treturn windowSize;\n\t}",
+        "generation": "@Override\n\tpublic void dayClosed(final DayClosedEvent event) {\n\t\tcalculateExploring();\n\t}",
+        "classification": "incorrect",
+        "comment": "different method"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.410958904109589,
+            "BLEU": 0.06985342056580097,
+            "METEOR": 0.4445422535211268,
+            "ROUGE-L": 0.3636363636363636
+        },
+        "target": "public int getWindowSize() {\n\t\treturn windowSize;\n\t}",
+        "generation": "@Override\n\tpublic double getExploringThreshold() {\n\t\treturn threshold;\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.33333333333333337,
+            "BLEU": 0.05440189863686198,
+            "METEOR": 0.32206632653061223,
+            "ROUGE-L": 0.375
+        },
+        "target": "public void setWindowSize(final int windowSize) {\n\t\tthis.windowSize = windowSize;\n\t}",
+        "generation": "public void dayClosed(final DayClosedEvent event) {\n\t\tcalculateExploring();\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method, same gen as previous case"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.30952380952380953,
+            "BLEU": 0.028319415510892395,
+            "METEOR": 0.15463917525773196,
+            "ROUGE-L": 0.14285714285714285
+        },
+        "target": "public void setWindowSize(final int windowSize) {\n\t\tthis.windowSize = windowSize;\n\t}",
+        "generation": "public double getExploringThreshold() {\n\t\treturn threshold;\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.0703173615432483,
+            "BLEU": 0.001312428006446839,
+            "METEOR": 0.02631578947368421,
+            "ROUGE-L": 0.008968609865470852
+        },
+        "target": "@Override\n\tpublic String toString() {\n\t\tString s = getClass().getSimpleName();\n\t\ts += \"\\n\" + Utils.indent(\"threshold:\" + threshold);\n\t\ts += \"\\n\" + Utils.indent(\" windowsize:\" + windowSize);\n\n\t\treturn s;\n\t}",
+        "generation": "}\n/src/edu/cuny/cat/market/charging/TraderExploringMonitor.java\n/*\n * JCAT - TAC Market Design Competition Platform\n * Copyright (C) 2006-2010 Jinzhong Niu, Kai Cai\n *\n * This program is free software; you can redistribute it and/or\n * modify it under the terms of the GNU General Public License as\n * published by the Free Software Foundation; either version 2 of\n * the License, or (at your option) any later version.\n *\n * This program is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n * See the GNU General Public License for more details.\n */\n\npackage edu.cuny.cat.market.charging;\n\nimport edu.cuny.cat.event.AuctionEvent;\nimport edu.cuny.cat.event.DayClosedEvent;\nimport edu.cuny.cat.event.DayOpeningEvent;\nimport edu.cuny.cat.event.RegisteredTradersAnnouncedEvent;\nimport edu.cuny.cat.market.Market;\nimport edu.cuny.cat.market.MarketMonitor;\nimport edu.cuny.cat.market.MarketState;\nimport edu.cuny.cat.market.MarketState.MarketStateType;\nimport edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactory;\nimport edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactory.MarketStateTypeFactoryImpl;\nimport edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactoryImpl.MarketStateTypeFactoryImplImpl;\nimport edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactoryImpl.MarketStateTypeFactoryImplImplImpl;\nimport edu.cuny.cat.market.MarketState.MarketStateType.MarketStateTypeFactoryImpl.MarketStateTypeFactoryImplImplImplImpl;",
+        "classification": "incorrect",
+        "comment": "EOF -> NF + repetition"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999745973682873,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\tpublic String toString() {\n\t\tString s = getClass().getSimpleName();\n\t\ts += \"\\n\" + Utils.indent(\"threshold:\" + threshold);\n\t\ts += \"\\n\" + Utils.indent(\" windowsize:\" + windowSize);\n\n\t\treturn s;\n\t}",
+        "generation": "@Override\n\tpublic String toString() {\n\t\tString s = getClass().getSimpleName();\n\t\ts += \"\\n\" + Utils.indent(\"threshold:\" + threshold);\n\t\ts += \"\\n\" + Utils.indent(\" windowsize:\" + windowSize);\n\n\t\treturn s;\n\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

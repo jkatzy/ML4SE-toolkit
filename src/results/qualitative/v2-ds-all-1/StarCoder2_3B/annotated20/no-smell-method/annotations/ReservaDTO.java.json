@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9142857142857143,
+            "BLEU": 0.488923022434901,
+            "METEOR": 0.8412698412698414,
+            "ROUGE-L": 0.8000000000000002
+        },
+        "target": "public Timestamp getFechaDeReserva() {\n\t\treturn momentoDeReserva;\n\t}",
+        "generation": "public Timestamp getMomentoDeReserva() {\n\t\treturn momentoDeReserva;\n\t}",
+        "classification": "correct",
+        "comment": "semantically the same, just different method name"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9142857142857143,
+            "BLEU": 0.488923022434901,
+            "METEOR": 0.8412698412698414,
+            "ROUGE-L": 0.8000000000000002
+        },
+        "target": "public Timestamp getFechaDeReserva() {\n\t\treturn momentoDeReserva;\n\t}",
+        "generation": "public Timestamp getMomentoDeReserva() {\n\t\treturn momentoDeReserva;\n\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

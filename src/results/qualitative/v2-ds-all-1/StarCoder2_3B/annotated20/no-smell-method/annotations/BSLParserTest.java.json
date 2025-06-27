@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2978723404255319,
+            "BLEU": 0.03478700554542394,
+            "METEOR": 0.12820512820512822,
+            "ROUGE-L": 0.0
+        },
+        "target": "@Override\n  protected String getTestDataPath() {\n    return TestUtils.BASE_TEST_DATA_PATH;\n  }",
+        "generation": "public void testHello2() {\n    doTest(true);\n  }",
+        "classification": "incorrect",
+        "comment": "different method"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n  protected String getTestDataPath() {\n    return TestUtils.BASE_TEST_DATA_PATH;\n  }",
+        "generation": "@Override\n  protected String getTestDataPath() {\n    return TestUtils.BASE_TEST_DATA_PATH;\n  }",
+        "classification": "",
+        "comment": ""
+    }
+]

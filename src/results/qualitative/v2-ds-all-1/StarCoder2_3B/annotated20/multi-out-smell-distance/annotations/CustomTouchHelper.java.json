@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.0806542583192329,
+            "BLEU": 6.153027794417474e-05,
+            "METEOR": 0.04332977031571812,
+            "ROUGE-L": 0.09142857142857143
+        },
+        "target": "private int swipeIfNecessary(ViewHolder viewHolder) {\n    if (mActionState == ACTION_STATE_DRAG) {\n      return 0;\n    }\n    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);\n    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(\n      originalMovementFlags,\n      ViewCompat.getLayoutDirection(mRecyclerView));\n    final int flags = (absoluteMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    if (flags == 0) {\n      return 0;\n    }\n    final int originalFlags = (originalMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    int swipeDir;\n    if (Math.abs(mDx) > Math.abs(mDy)) {\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n    } else {\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n    }\n    return 0;\n  }",
+        "generation": "public int getSwipeDirection(ViewHolder viewHolder) {\n    if (mSelected == null || mSelected!= viewHolder) {\n      return 0;\n    }\n    return mSelectedFlags;\n  }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2690355329949239,
+            "BLEU": 0.005988763417448152,
+            "METEOR": 0.13734460711524538,
+            "ROUGE-L": 0.19305019305019303
+        },
+        "target": "private int swipeIfNecessary(ViewHolder viewHolder) {\n    if (mActionState == ACTION_STATE_DRAG) {\n      return 0;\n    }\n    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);\n    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(\n      originalMovementFlags,\n      ViewCompat.getLayoutDirection(mRecyclerView));\n    final int flags = (absoluteMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    if (flags == 0) {\n      return 0;\n    }\n    final int originalFlags = (originalMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    int swipeDir;\n    if (Math.abs(mDx) > Math.abs(mDy)) {\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n    } else {\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n    }\n    return 0;\n  }",
+        "generation": "public void swipe(ViewHolder viewHolder, int direction) {\n    if (!mCallback.hasSwipeFlag(mRecyclerView, viewHolder)) {\n      if (DEBUG) {\n        Log.e(\"Swipe has been called but swiping is not enabled\");\n      }\n      return;\n    }\n    if (viewHolder.itemView.getParent()!= mRecyclerView) {\n      Log.e(\"Swipe has been called with a view holder which is not a child of \"\n        + \"the RecyclerView controlled by this ItemTouchHelper.\");\n      return;\n    }\n    if (mActionState!= ACTION_STATE_SWIPE) {\n      return;\n    }\n    if (mSelected!= null && mSelected == viewHolder) {\n      return;\n    }\n    if (mSelected!= null) {\n      endRecoverAnimation(mSelected, false); // this may push it into pending cleanup list.\n      if (mPendingCleanup.remove(mSelected.itemView)) {\n        mCallback.clearView(mRecyclerView, mSelected);\n      }\n    }\n    select(viewHolder, ACTION_STATE_SWIPE);\n    mCallback.onSwiped(viewHolder, direction);\n  }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17033276931754093,
+            "BLEU": 0.0005780251826840926,
+            "METEOR": 0.056179775280898875,
+            "ROUGE-L": 0.09574468085106384
+        },
+        "target": "private int swipeIfNecessary(ViewHolder viewHolder) {\n    if (mActionState == ACTION_STATE_DRAG) {\n      return 0;\n    }\n    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);\n    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(\n      originalMovementFlags,\n      ViewCompat.getLayoutDirection(mRecyclerView));\n    final int flags = (absoluteMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    if (flags == 0) {\n      return 0;\n    }\n    final int originalFlags = (originalMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    int swipeDir;\n    if (Math.abs(mDx) > Math.abs(mDy)) {\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n    } else {\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n    }\n    return 0;\n  }",
+        "generation": "private void addChildDrawingOrderCallback() {\n    if (mChildDrawingOrderCallback == null) {\n      mChildDrawingOrderCallback = new ChildDrawingOrderCallback() {\n        @Override\n        public int onGetChildDrawingOrder(int childCount, int i) {\n          if (mOverdrawChild!= null) {\n            return mOverdrawChildPosition;\n          }\n          return i;\n        }\n      };\n    }\n    mRecyclerView.setChildDrawingOrderCallback(mChildDrawingOrderCallback);\n  }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.12239142695995486,
+            "BLEU": 1.5027065434729406e-05,
+            "METEOR": 0.02833753148614609,
+            "ROUGE-L": 0.04444444444444444
+        },
+        "target": "private int swipeIfNecessary(ViewHolder viewHolder) {\n    if (mActionState == ACTION_STATE_DRAG) {\n      return 0;\n    }\n    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);\n    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(\n      originalMovementFlags,\n      ViewCompat.getLayoutDirection(mRecyclerView));\n    final int flags = (absoluteMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    if (flags == 0) {\n      return 0;\n    }\n    final int originalFlags = (originalMovementFlags\n      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);\n    int swipeDir;\n    if (Math.abs(mDx) > Math.abs(mDy)) {\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n    } else {\n      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {\n        return swipeDir;\n      }\n      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {\n        // if swipe dir is not in original flags, it should be the relative direction\n        if ((originalFlags & swipeDir) == 0) {\n          // convert to relative\n          return Callback.convertToRelativeDirection(swipeDir,\n            ViewCompat.getLayoutDirection(mRecyclerView));\n        }\n        return swipeDir;\n      }\n    }\n    return 0;\n  }",
+        "generation": "public boolean onTouch(View v, MotionEvent event) {\n   *             if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {\n   *                 mItemTouchHelper.startSwipe(viewHolder);\n   *             }\n   *             return false;\n   *         }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public void onAnimationRepeat (Animator animator) {\n\n    }",
+        "generation": "@Override\n    public void onAnimationRepeat (Animator animator) {\n\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.24242424242424243,
+            "BLEU": 0.0537621294693616,
+            "METEOR": 0.5495818399044207,
+            "ROUGE-L": 0.4347826086956522
+        },
+        "target": "@Override\n    public void onAnimationRepeat (Animator animator) {\n\n    }",
+        "generation": "@Override\n    public void onAnimationEnd (Animator animation) {\n      if (mAnimationType == ANIMATION_TYPE_DRAG) {\n        mOverdrawChild = null;\n        mOverdrawChildPosition = -1;\n        removeChildDrawingOrderCallbackIfNecessary(mOverdrawChild);\n      }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public void onAnimationRepeat (Animator animator) {\n\n    }",
+        "generation": "@Override\n    public void onAnimationRepeat (Animator animator) {\n\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.24242424242424243,
+            "BLEU": 0.0537621294693616,
+            "METEOR": 0.5495818399044207,
+            "ROUGE-L": 0.4347826086956522
+        },
+        "target": "@Override\n    public void onAnimationRepeat (Animator animator) {\n\n    }",
+        "generation": "@Override\n    public void onAnimationEnd (Animator animation) {\n      if (mAnimationType == ANIMATION_TYPE_DRAG) {\n        mOverdrawChild = null;\n        mOverdrawChildPosition = -1;\n        removeChildDrawingOrderCallbackIfNecessary(mOverdrawChild);\n      }\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

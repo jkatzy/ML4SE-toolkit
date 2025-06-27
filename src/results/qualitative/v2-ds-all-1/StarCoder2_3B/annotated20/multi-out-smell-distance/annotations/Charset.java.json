@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1556291390728477,
+            "BLEU": 0.0011302806743667012,
+            "METEOR": 0.030959752321981424,
+            "ROUGE-L": 0.10256410256410256
+        },
+        "target": "protected Charset(String canonicalName, String[] aliases) {\n        checkName(canonicalName);\n        String[] as = (aliases == null) ? new String[0] : aliases;\n        for (int i = 0; i < as.length; i++)\n            checkName(as[i]);\n        this.name = canonicalName;\n        this.aliases = as;\n    }",
+        "generation": "public final String name() {\n        return name;\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1556291390728477,
+            "BLEU": 0.0011302806743667012,
+            "METEOR": 0.030959752321981424,
+            "ROUGE-L": 0.10256410256410256
+        },
+        "target": "protected Charset(String canonicalName, String[] aliases) {\n        checkName(canonicalName);\n        String[] as = (aliases == null) ? new String[0] : aliases;\n        for (int i = 0; i < as.length; i++)\n            checkName(as[i]);\n        this.name = canonicalName;\n        this.aliases = as;\n    }",
+        "generation": "public final String name() {\n        return name;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1556291390728477,
+            "BLEU": 0.0011302806743667012,
+            "METEOR": 0.030959752321981424,
+            "ROUGE-L": 0.10256410256410256
+        },
+        "target": "protected Charset(String canonicalName, String[] aliases) {\n        checkName(canonicalName);\n        String[] as = (aliases == null) ? new String[0] : aliases;\n        for (int i = 0; i < as.length; i++)\n            checkName(as[i]);\n        this.name = canonicalName;\n        this.aliases = as;\n    }",
+        "generation": "public final String name() {\n        return name;\n    }",
+        "classification": "incorrect",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1556291390728477,
+            "BLEU": 0.0011302806743667012,
+            "METEOR": 0.030959752321981424,
+            "ROUGE-L": 0.10256410256410256
+        },
+        "target": "protected Charset(String canonicalName, String[] aliases) {\n        checkName(canonicalName);\n        String[] as = (aliases == null) ? new String[0] : aliases;\n        for (int i = 0; i < as.length; i++)\n            checkName(as[i]);\n        this.name = canonicalName;\n        this.aliases = as;\n    }",
+        "generation": "public final String name() {\n        return name;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6818181818181819,
+            "BLEU": 0.2907153684841096,
+            "METEOR": 0.6859756097560975,
+            "ROUGE-L": 0.8333333333333334
+        },
+        "target": "public final String toString() {\n        return name();\n    }",
+        "generation": "public String toString() {\n        return \"charset \" + name;\n    }",
+        "classification": "partial",
+        "comment": "signature correct, but body is not"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "public final String toString() {\n        return name();\n    }",
+        "generation": "public final String toString() {\n        return name();\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6818181818181819,
+            "BLEU": 0.2907153684841096,
+            "METEOR": 0.6859756097560975,
+            "ROUGE-L": 0.8333333333333334
+        },
+        "target": "public final String toString() {\n        return name();\n    }",
+        "generation": "public String toString() {\n        return \"charset \" + name;\n    }",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "public final String toString() {\n        return name();\n    }",
+        "generation": "public final String toString() {\n        return name();\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

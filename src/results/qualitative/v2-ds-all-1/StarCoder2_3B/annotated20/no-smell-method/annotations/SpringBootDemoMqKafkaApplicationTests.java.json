@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9181818181818182,
+            "BLEU": 0.4671379777282001,
+            "METEOR": 0.7270233196159123,
+            "ROUGE-L": 0.9523809523809523
+        },
+        "target": "@Test\n    public void testSend() {\n        kafkaTemplate.send(KafkaConsts.TOPIC_TEST, \"hello,kafka...\");\n    }",
+        "generation": "@Test\n    public void testSend() {\n        kafkaTemplate.send(KafkaConsts.TOPIC, \"hello kafka\");\n    }",
+        "classification": "correct",
+        "comment": "semantically the same, just misses one field not in context"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9990234375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Test\n    public void testSend() {\n        kafkaTemplate.send(KafkaConsts.TOPIC_TEST, \"hello,kafka...\");\n    }",
+        "generation": "@Test\n    public void testSend() {\n        kafkaTemplate.send(KafkaConsts.TOPIC_TEST, \"hello,kafka...\");\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

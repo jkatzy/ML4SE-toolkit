@@ -1,0 +1,26 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3950  BLEU: 0.0291  METEOR: 0.2207  ROUGE-L: 0.2500  
+--- Target ---
+@Override
+  public <A, T extends Throwable> A accept(ExpressionVisitor<A, T> v) throws T{
+    return v.visit(this);
+  }
+--- Generation ---
+@Override
+  public String toString() {
+    return "true";
+  }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9999  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+  public <A, T extends Throwable> A accept(ExpressionVisitor<A, T> v) throws T{
+    return v.visit(this);
+  }
+--- Generation ---
+@Override
+  public <A, T extends Throwable> A accept(ExpressionVisitor<A, T> v) throws T{
+    return v.visit(this);
+  }
+

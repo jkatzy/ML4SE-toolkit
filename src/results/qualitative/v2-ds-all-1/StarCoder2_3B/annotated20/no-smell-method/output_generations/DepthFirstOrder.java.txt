@@ -1,0 +1,26 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9538  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public Iterable<Integer> pre()
+    {
+        return pre;
+    }
+--- Generation ---
+public Iterable<Integer> pre()
+     {
+         return pre;
+     }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public Iterable<Integer> pre()
+    {
+        return pre;
+    }
+--- Generation ---
+public Iterable<Integer> pre()
+    {
+        return pre;
+    }
+

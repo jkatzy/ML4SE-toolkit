@@ -1,0 +1,103 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0961  BLEU: 0.0074  METEOR: 0.1316  ROUGE-L: 0.0833  
+--- Target ---
+public void setUseRnd(boolean useRnd) {
+      this.useRnd = useRnd;
+    }
+--- Generation ---
+@Override
+    public BoundingBox transformBoundingBox(BoundingBox b) throws CrsTransformationException {
+      cnt++;
+      if (useRnd) {
+        return BoundingBox.of(b.getXmin() + rnd.nextDouble(), b.getYmin() + rnd.nextDouble(), b.getXmax() + rnd.nextDouble(), b.getYmax() + rnd.nextDouble(), b.getCrs());
+      } else {
+        return BoundingBox.of(b.getXmin() + 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9993  ROUGE-L: 1.0000  
+--- Target ---
+public void setUseRnd(boolean useRnd) {
+      this.useRnd = useRnd;
+    }
+--- Generation ---
+public void setUseRnd(boolean useRnd) {
+      this.useRnd = useRnd;
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1139  BLEU: 0.0240  METEOR: 0.4598  ROUGE-L: 0.1579  
+--- Target ---
+@Override
+    public EpsgCrs getSourceCrs() {
+      return null;
+    }
+--- Generation ---
+@Override
+    public BoundingBox transformBoundingBox(BoundingBox b) throws CrsTransformationException {
+      cnt++;
+      if (useRnd) {
+        return BoundingBox.of(rnd.nextDouble(), rnd.nextDouble(), rnd.nextDouble(), rnd.nextDouble(), b.getCrs());
+      } else {
+        return BoundingBox.of(b.getXmin() + 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4643  BLEU: 0.0758  METEOR: 0.5506  ROUGE-L: 0.4286  
+--- Target ---
+@Override
+    public EpsgCrs getSourceCrs() {
+      return null;
+    }
+--- Generation ---
+@Override
+    public BoundingBox transformBoundingBox(BoundingBox boundingBox) {
+      return boundingBox;
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0445  BLEU: 0.0023  METEOR: 0.0662  ROUGE-L: 0.0241  
+--- Target ---
+@Override
+    public int getTargetDimension() {
+      return 2;
+    }
+--- Generation ---
+}
+}
+/src/main/java/de/ii/xtraplatform/geometries/domain/BoundingBox.java
+/*
+ * Copyright 2022 interactive instruments GmbH
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+package de.ii.xtraplatform.geometries.domain;
+
+import de.ii.xtraplatform.crs.domain.Crs;
+import de.ii.xtraplatform.crs.domain.CrsTransformationException;
+import de.ii.xtraplatform.crs.domain.EpsgCrs;
+import de.ii.xtraplatform.crs.domain.GeographicCrs;
+import de.ii.xtraplatform.crs.domain.GeographicCrsFactory;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinate;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateTransformer;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateTransformerFactory;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateTransformerType;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateType;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateUnit;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateUnitType;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateUnitTypeFactory;
+import de.ii.xtraplatform.crs.domain.GeographicCoordinateUnitTypeFactory.GeographicCoordinateUnitTypeFactoryImpl;
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public int getTargetDimension() {
+      return 2;
+    }
+--- Generation ---
+@Override
+    public int getTargetDimension() {
+      return 2;
+    }
+

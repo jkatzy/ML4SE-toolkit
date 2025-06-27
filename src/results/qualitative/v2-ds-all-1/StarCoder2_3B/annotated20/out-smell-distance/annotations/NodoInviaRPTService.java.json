@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.27596439169139464,
+            "BLEU": 0.021961389809528123,
+            "METEOR": 0.1933838051349573,
+            "ROUGE-L": 0.13513513513513514
+        },
+        "target": "public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,\n                                   NodoSILInviaRP bodyrichiesta) {\n    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);\n\n    NodoInviaRPT result = new NodoInviaRPT();\n    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));\n    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));\n    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());\n    result.setPassword(propIdIntermediarioPaPassword);\n    result.setRpt(byteRPT);\n\n    return result;\n  }",
+        "generation": "public NodoSILInviaRPRisposta nodoSILInviaRPRisposta(NodoSILInviaRP bodyrichiesta, Ente ente) {\n    NodoSILInviaRPRisposta risposta = new NodoSILInviaRPRisposta();\n    risposta.setEsito(\"KO\");\n    risposta.setRedirect(1);\n\n    FaultBean fault = new FaultBean();\n    risposta.setFault(fault);\n\n    return risposta;\n  }",
+        "classification": "incorrect",
+        "comment": "diff method, diff language"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.28672316384180796,
+            "BLEU": 0.05464023684622613,
+            "METEOR": 0.31039136302294196,
+            "ROUGE-L": 0.20454545454545456
+        },
+        "target": "public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,\n                                   NodoSILInviaRP bodyrichiesta) {\n    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);\n\n    NodoInviaRPT result = new NodoInviaRPT();\n    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));\n    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));\n    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());\n    result.setPassword(propIdIntermediarioPaPassword);\n    result.setRpt(byteRPT);\n\n    return result;\n  }",
+        "generation": "public NodoInviaRPT buildBodyRPT(RPT rptObj, RptRt mygovRptRt) {\n    NodoInviaRPT body = new NodoInviaRPT();\n    body.setRPT(rptObj);\n    body.setIdentificativoUnivocoVersamento(mygovRptRt.getCodRptDatiVersIdUnivocoVersamento());\n    body.setIdentificativoUnivocoPagamento(mygovRptRt.getCodRptIdUnivocoPagamento());\n    body.setIdentificativoUnivocoDominio(mygovRptRt.getCodRptIdDominio());\n    body.setIdentificativoUnivocoIntermediarioPA(mygovRptRt.getCodRptIdIntermediarioPa());\n    body.setIdentificativoUnivocoStazioneIntermediarioPA(mygovRptRt.getCodRptIdStazioneIntermediarioPa());\n    body.setIdentificativoUnivocoContestoPagamento(mygovRptRt.getCodRptCodiceContestoPagamento());\n    return body;\n  }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7040971168437026,
+            "BLEU": 0.41965971352197884,
+            "METEOR": 0.6649320219055663,
+            "ROUGE-L": 0.7311827956989247
+        },
+        "target": "public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,\n                                   RptRt mygovRptRt) {\n    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);\n\n    NodoInviaRPT result = new NodoInviaRPT();\n    result.setIdentificativoCanale(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdCanale()));\n    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdIntermediarioPsp()));\n    result.setIdentificativoPSP(mygovRptRt.getCodRptInviarptIdPsp());\n    result.setPassword(propIdIntermediarioPaPassword);\n    result.setRpt(byteRPT);\n\n    return result;\n  }",
+        "generation": "public NodoInviaRPT buildBodyRPT(RptRt mygovRptRt,\n                                   NodoSILInviaRP bodyrichiesta) {\n    RPT rpt = buildRPT(mygovRptRt);\n\n    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);\n\n    NodoInviaRPT result = new NodoInviaRPT();\n    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));\n    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));\n    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());\n    result.setPassword();\n    result.setRpt(byteRPT);\n\n    return result;\n  }",
+        "classification": "partial",
+        "comment": "partial correct signature and body"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7025796661608498,
+            "BLEU": 0.40489936706391494,
+            "METEOR": 0.7160493827160493,
+            "ROUGE-L": 0.7415730337078651
+        },
+        "target": "public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,\n                                   RptRt mygovRptRt) {\n    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);\n\n    NodoInviaRPT result = new NodoInviaRPT();\n    result.setIdentificativoCanale(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdCanale()));\n    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdIntermediarioPsp()));\n    result.setIdentificativoPSP(mygovRptRt.getCodRptInviarptIdPsp());\n    result.setPassword(propIdIntermediarioPaPassword);\n    result.setRpt(byteRPT);\n\n    return result;\n  }",
+        "generation": "public NodoInviaRPT buildBodyRPT(Rpt rpt, NodoSILInviaRP bodyrichiesta) {\n    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, Rpt.class);\n\n    NodoInviaRPT result = new NodoInviaRPT();\n    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));\n    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));\n    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());\n    result.setPassword();\n    result.setRpt(byteRPT);\n\n    return result;\n  }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.22580645161290325,
+            "BLEU": 0.013038399546806585,
+            "METEOR": 0.05967940813810111,
+            "ROUGE-L": 0.06949806949806951
+        },
+        "target": "private void inviaRPTForModello3Impl(RptRt mygovRptRt){\n    //call WS client inviaRpt\n    IntestazionePPT header = buildHeaderRPT(mygovRptRt);\n    RPT rptObj = buildRPT(mygovRptRt);\n    NodoInviaRPT body = buildBodyRPT(rptObj, mygovRptRt);\n    try {\n      NodoInviaRPTRisposta response = pagamentiTelematiciRPTImpl.nodoInviaRPT(\n          mygovRptRt.getMygovRptRtId(),\n          body,\n          header);\n\n      String msg = response.getFault()!=null?\n          StringUtils.joinWith(\" - \", response.getEsito(), response.getFault().getFaultCode(), response.getFault().getFaultString()) :\n          response.getEsito();\n      log.info(\"RESPONSE inviaRPT for mygovRptRtId: {} - esito/fault: {}\", mygovRptRt.getMygovRptRtId(), msg);\n      //save response\n      saveRPTRisposta(response, mygovRptRt.getMygovRptRtId());\n    } catch (UnsupportedEncodingException | MalformedURLException e) {\n      throw new MyPayException(\"internal error\", e);\n    }\n  }",
+        "generation": "private void inviaRPTForModello3Impl(RptRt mygovRptRt){\n    log.info(\"Invio RPT per modello 3\");\n    //TODO: gestire il caso in cui il RPT non sia stato ancora salvato\n    //TODO: gestire il caso in cui il RPT sia stato salvato ma non ancora inviato\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e non ancora risposto\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e non ancora salvato\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato e non ancora risposto\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato e risposto\n    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato e risposto e non ancora salvato",
+        "classification": "partial",
+        "comment": "correct signature, repetition of TODOs "
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999985422740525,
+            "ROUGE-L": 1.0
+        },
+        "target": "private void inviaRPTForModello3Impl(RptRt mygovRptRt){\n    //call WS client inviaRpt\n    IntestazionePPT header = buildHeaderRPT(mygovRptRt);\n    RPT rptObj = buildRPT(mygovRptRt);\n    NodoInviaRPT body = buildBodyRPT(rptObj, mygovRptRt);\n    try {\n      NodoInviaRPTRisposta response = pagamentiTelematiciRPTImpl.nodoInviaRPT(\n          mygovRptRt.getMygovRptRtId(),\n          body,\n          header);\n\n      String msg = response.getFault()!=null?\n          StringUtils.joinWith(\" - \", response.getEsito(), response.getFault().getFaultCode(), response.getFault().getFaultString()) :\n          response.getEsito();\n      log.info(\"RESPONSE inviaRPT for mygovRptRtId: {} - esito/fault: {}\", mygovRptRt.getMygovRptRtId(), msg);\n      //save response\n      saveRPTRisposta(response, mygovRptRt.getMygovRptRtId());\n    } catch (UnsupportedEncodingException | MalformedURLException e) {\n      throw new MyPayException(\"internal error\", e);\n    }\n  }",
+        "generation": "private void inviaRPTForModello3Impl(RptRt mygovRptRt){\n    //call WS client inviaRpt\n    IntestazionePPT header = buildHeaderRPT(mygovRptRt);\n    RPT rptObj = buildRPT(mygovRptRt);\n    NodoInviaRPT body = buildBodyRPT(rptObj, mygovRptRt);\n    try {\n      NodoInviaRPTRisposta response = pagamentiTelematiciRPTImpl.nodoInviaRPT(\n          mygovRptRt.getMygovRptRtId(),\n          body,\n          header);\n\n      String msg = response.getFault()!=null?\n          StringUtils.joinWith(\" - \", response.getEsito(), response.getFault().getFaultCode(), response.getFault().getFaultString()) :\n          response.getEsito();\n      log.info(\"RESPONSE inviaRPT for mygovRptRtId: {} - esito/fault: {}\", mygovRptRt.getMygovRptRtId(), msg);\n      //save response\n      saveRPTRisposta(response, mygovRptRt.getMygovRptRtId());\n    } catch (UnsupportedEncodingException | MalformedURLException e) {\n      throw new MyPayException(\"internal error\", e);\n    }\n  }",
+        "classification": "",
+        "comment": ""
+    }
+]

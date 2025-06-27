@@ -1,0 +1,88 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+--- Generation ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+--- Generation ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+--- Generation ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+--- Generation ---
+public boolean isMapRegionChanging() {
+        return mapRegionChanging;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public Stream getOut() {
+        return out;
+    }
+--- Generation ---
+public Stream getOut() {
+        return out;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public Stream getOut() {
+        return out;
+    }
+--- Generation ---
+public Stream getOut() {
+        return out;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public Stream getOut() {
+        return out;
+    }
+--- Generation ---
+public Stream getOut() {
+        return out;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public Stream getOut() {
+        return out;
+    }
+--- Generation ---
+public Stream getOut() {
+        return out;
+    }
+

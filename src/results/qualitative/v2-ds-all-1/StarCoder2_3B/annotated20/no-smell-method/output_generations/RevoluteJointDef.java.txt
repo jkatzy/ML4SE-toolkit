@@ -1,0 +1,38 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6128  BLEU: 0.1745  METEOR: 0.5036  ROUGE-L: 0.6275  
+--- Target ---
+public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {
+		this.bodyA = bodyA;
+		this.bodyB = bodyB;
+		localAnchorA.set(bodyA.getLocalPoint(anchor));
+		localAnchorB.set(bodyB.getLocalPoint(anchor));
+		referenceAngle = bodyB.getAngle() - bodyA.getAngle();
+	}
+--- Generation ---
+public void initialize (Body b1, Body b2, Vector2 anchor) {
+		bodyA = b1;
+		bodyB = b2;
+		localAnchorA.set(anchor);
+		localAnchorB.set(anchor);
+		referenceAngle = 0;
+	}
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {
+		this.bodyA = bodyA;
+		this.bodyB = bodyB;
+		localAnchorA.set(bodyA.getLocalPoint(anchor));
+		localAnchorB.set(bodyB.getLocalPoint(anchor));
+		referenceAngle = bodyB.getAngle() - bodyA.getAngle();
+	}
+--- Generation ---
+public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {
+		this.bodyA = bodyA;
+		this.bodyB = bodyB;
+		localAnchorA.set(bodyA.getLocalPoint(anchor));
+		localAnchorB.set(bodyB.getLocalPoint(anchor));
+		referenceAngle = bodyB.getAngle() - bodyA.getAngle();
+	}
+

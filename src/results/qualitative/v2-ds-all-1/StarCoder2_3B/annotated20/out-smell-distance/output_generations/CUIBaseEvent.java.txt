@@ -1,0 +1,233 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3019  BLEU: 0.0566  METEOR: 0.2814  ROUGE-L: 0.3750  
+--- Target ---
+public boolean isValid() {
+        int max = this.getEventType().getMaxParameters();
+        int min = this.getEventType().getMinParameters();
+
+        if (max == min) {
+            if (this.args.length != max) {
+                return false;
+            }
+        } else {
+            if (this.args.length > max || this.args.length < min) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+--- Generation ---
+public boolean checkParams() {
+        if (args.length < getRequiredParams()) {
+            return false;
+        }
+        return true;
+    }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1535  BLEU: 0.0097  METEOR: 0.1882  ROUGE-L: 0.1221  
+--- Target ---
+public boolean isValid() {
+        int max = this.getEventType().getMaxParameters();
+        int min = this.getEventType().getMinParameters();
+
+        if (max == min) {
+            if (this.args.length != max) {
+                return false;
+            }
+        } else {
+            if (this.args.length > max || this.args.length < min) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+--- Generation ---
+public boolean validateParameters() {
+        if (args.length < this.getEventType().getMinParameters() || args.length > this.getEventType().getMaxParameters()) {
+            String message = "Expected " + this.getEventType().getMinParameters() + " parameters, but received " + args.length + ". ";
+            if (this.getEventType().getMinParameters() == this.getEventType().getMaxParameters()) {
+                message += "Expected " + this.getEventType().getMinParameters() + " parameters. ";
+            } else {
+                message += "Expected betweet.cui.CUIBaseEvent;
+import wecui.event.cui.CUIEventType;
+
+public class CUIHelpEvent extends CUIBaseEvent {
+
+    public CUIHelpEvent(WorldEditCUI controller, String[] args) {
+        super(controller, args);
+    }
+
+    @Override
+    public String run() {
+        return "Help";
+    }
+
+    @Override
+    public CUIEventType getEventType() {
+        return CUIEventType.HELP;
+    }
+
+}
+package wecui.event.cui;
+
+import wecui.WorldEditCUI;
+import wecui.event.cui.CUIBaseEvent;
+import wecui.event.cui.CUIEventType;
+
+public class CUIQuitEvent extends CUIBaseEvent {
+
+    public CUIQuitEvent(WorldEditCUI controller, String[] args) {
+        super(controller, args);
+    }
+
+    @Override
+    public String run() {
+        return "Quit";
+    }
+
+    @Override
+    public CUIEventType getEventType() {
+        return CUIEventType.QUIT;
+    }
+
+}
+package wecui.event.cui;
+
+import wecui.WorldEditCUI;
+import wecui.event.cui.CUIBaseEvent;
+import wecui.event.cui.CUIEventType;
+
+public class CUIHelpEvent extends CUIBaseEvent {
+
+    public CUIHelpEvent(WorldEditCUI controller, String[] args) {
+        super(controller, args);
+    }
+
+    @Override
+    public String run() {
+        return "Help";
+    }
+
+    @Override
+    public CUIEventType getEventType() {
+        return CUIEventType.HELP;
+    }
+
+}
+package wecui.event.cui;
+
+import wecui.WorldEditCUI;
+import wecui.event.cui.CUIBaseEvent;
+import wecui.event.cui.CUIEventType;
+
+public class CUIHelpEvent extends CUIBaseEvent {
+
+    public CUIHelpEvent(WorldEditCUI controller, String[] args) {
+        super(controller, args);
+    }
+
+    @Override
+    public String run() {
+        return "Help";
+    }
+
+    @Override
+    public CUIEventType getEventType() {
+        return CUIEventType.HELP;
+    }
+
+}
+package wecui.event.cui;
+
+import wecui.WorldEditCUI;
+import wecui.event.cui.CUIBaseEvent;
+import wecui.event.cui.CUIEventType;
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0301  BLEU: 0.0000  METEOR: 0.0102  ROUGE-L: 0.0759  
+--- Target ---
+public final String doRun() {
+        if (controller == null || args == null) {
+            throw new RuntimeException("Controller and parameters must both be set.");
+        }
+
+        if (!this.isValid()) {
+            String message = "Invalid number of parameters. " + this.getEventName() + " event requires ";
+            if (this.getEventType().getMaxParameters() == this.getEventType().getMinParameters()) {
+                message += this.getEventType().getMaxParameters() + " parameters. ";
+            } else {
+                message += "between " + this.getEventType().getMinParameters() + " and " + this.getEventType().getMaxParameters() + " parameters. ";
+            }
+
+            message += "Received " + args.length + " parameters instead. ";
+            for (String arg : args) {
+                message += arg + " ";
+            }
+
+            throw new RuntimeException(message);
+        } else {
+            return this.run();
+        }
+
+    }
+--- Generation ---
+public abstract String run();
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0808  BLEU: 0.0000  METEOR: 0.0380  ROUGE-L: 0.0741  
+--- Target ---
+public final String doRun() {
+        if (controller == null || args == null) {
+            throw new RuntimeException("Controller and parameters must both be set.");
+        }
+
+        if (!this.isValid()) {
+            String message = "Invalid number of parameters. " + this.getEventName() + " event requires ";
+            if (this.getEventType().getMaxParameters() == this.getEventType().getMinParameters()) {
+                message += this.getEventType().getMaxParameters() + " parameters. ";
+            } else {
+                message += "between " + this.getEventType().getMinParameters() + " and " + this.getEventType().getMaxParameters() + " parameters. ";
+            }
+
+            message += "Received " + args.length + " parameters instead. ";
+            for (String arg : args) {
+                message += arg + " ";
+            }
+
+            throw new RuntimeException(message);
+        } else {
+            return this.run();
+        }
+
+    }
+--- Generation ---
+@Override
+            public String run() {
+                return null;
+            }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2714  BLEU: 0.0351  METEOR: 0.1316  ROUGE-L: 0.3333  
+--- Target ---
+public String getString(int index) {
+        return args[index];
+    }
+--- Generation ---
+public abstract String run();
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+public String getString(int index) {
+        return args[index];
+    }
+--- Generation ---
+public String getString(int index) {
+        return args[index];
+    }
+

@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.39495798319327735,
+            "BLEU": 0.02911923797851205,
+            "METEOR": 0.2207167832167832,
+            "ROUGE-L": 0.25
+        },
+        "target": "@Override\n  public <A, T extends Throwable> A accept(ExpressionVisitor<A, T> v) throws T{\n    return v.visit(this);\n  }",
+        "generation": "@Override\n  public String toString() {\n    return \"true\";\n  }",
+        "classification": "incorrect",
+        "comment": "different method"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9998518518518519,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n  public <A, T extends Throwable> A accept(ExpressionVisitor<A, T> v) throws T{\n    return v.visit(this);\n  }",
+        "generation": "@Override\n  public <A, T extends Throwable> A accept(ExpressionVisitor<A, T> v) throws T{\n    return v.visit(this);\n  }",
+        "classification": "",
+        "comment": ""
+    }
+]

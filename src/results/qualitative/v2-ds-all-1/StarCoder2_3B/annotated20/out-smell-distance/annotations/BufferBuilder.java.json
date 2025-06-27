@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.8647214854111406,
+            "BLEU": 0.795719826534306,
+            "METEOR": 0.9294018770135873,
+            "ROUGE-L": 0.963855421686747
+        },
+        "target": "public void putColorRGBA(int index, int red, int green, int blue, int alpha)\n    {\n        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)\n            this.rawIntBuffer.put(index, alpha << 24 | blue << 16 | green << 8 | red);\n        else\n            this.rawIntBuffer.put(index, red << 24 | green << 16 | blue << 8 | alpha);\n    }",
+        "generation": "public void putColorRGBA(int index, int red, int green, int blue, int alpha)\n    {\n        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)\n        {\n            this.rawIntBuffer.put(index, -16777216 | blue << 16 | green << 8 | red);\n        }\n        else\n        {\n            this.rawIntBuffer.put(index, red << 24 | green << 16 | blue << 8 | alpha);\n        }\n    }",
+        "classification": "partial",
+        "comment": "misses one crucial parameter in implementation, but the rest is correct"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.27138643067846613,
+            "BLEU": 0.004535776642702348,
+            "METEOR": 0.07865168539325841,
+            "ROUGE-L": 0.28125
+        },
+        "target": "public void putColorRGBA(int index, int red, int green, int blue, int alpha)\n    {\n        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)\n            this.rawIntBuffer.put(index, alpha << 24 | blue << 16 | green << 8 | red);\n        else\n            this.rawIntBuffer.put(index, red << 24 | green << 16 | blue << 8 | alpha);\n    }",
+        "generation": "public static BufferBuilder color(float red, float green, float blue, float alpha, int vertexIndex)\n    {\n        return color(red, green, blue, alpha, vertexIndex, 255);\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.06291079812206568,
+            "BLEU": 0.003279163301859273,
+            "METEOR": 0.07751937984496125,
+            "ROUGE-L": 0.030303030303030304
+        },
+        "target": "public boolean isColorDisabled()\n    {\n        return this.noColor;\n    }",
+        "generation": "public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)\n    {\n        if (entitylivingbaseIn.getHeldItemMainhand()!= null)\n        {\n            this.entityRenderer.bindTexture(ARMOR_LOCATION);\n            GlStateManager.matrixMode(5890);\n            GlStateManager.pushMatrix();\n            GlStateManager.scalef(-1.0F, -1.0F, 1.0F);\n            GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);\n            GlStateManager.matrixMode(5888);\n            GlStateManager.pushMatrix();\n            GlStateManager.scalef(1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F);\n            GlStateManager.translatef(0.0F, 0.0F, 0.625F);\n            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);\n            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);\n            GlStateManager.rotatef(180.0F, 1.0F, 0.0F, 0.0F);\n            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);\n            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);",
+        "classification": "incorrect",
+        "comment": "diff method + repetition"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.039820166987797,
+            "BLEU": 0.0027646646087298252,
+            "METEOR": 0.07092198581560283,
+            "ROUGE-L": 0.023668639053254437
+        },
+        "target": "public boolean isColorDisabled()\n    {\n        return this.noColor;\n    }",
+        "generation": "public void putColorRGBA(int index, int red, int green, int blue, float alpha)\n    {\n        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN)\n            this.rawIntBuffer.put(index, (int)(alpha * 255.0F) << 24 | blue << 16 | green << 8 | red);\n        else\n            this.rawIntBuffer.put(index, red << 24 | green << 16 | blt.minecraft.client.renderer.texture.TextureAtlasSprite;\nimport net.minecraft.client.renderer.texture.TextureMap;\nimport net.minecraft.client.renderer.vertex.DefaultVertexFormats;\nimport net.minecraft.client.renderer.vertex.VertexFormat;\nimport net.minecraft.client.renderer.vertex.VertexFormatElement;\nimport net.minecraft.client.resources.IResourceManager;\nimport net.minecraft.client.resources.IResourceManagerReloadListener;\nimport net.minecraft.client.resources.IResourcePack;\nimport net.minecraft.client.resources.IResourcePackRepository;\nimport net.minecraft.client.resources.IResourcePackRepositoryReloadListener;\nimport net.minecraft.client.resources.IResourceManagerReloadListener;\nimport net.minecraft.client.resources.IResourceReloadListener;\nimport net.minecraft.client.resources.IResourceReloadListener.ReloadType;\nimport net.minecraft.client.resources.IResourceManagerReloadListener.ReloadType;\nimport net.minecraft.client.resources.IResourcePackRepository.Entry;\nimport net.minecraft.client.resources.IResourcePackRepository.Type;\nimport net.minecraft.client.resources.IResourcePackRepository.Type.TypeEntry;\nimport net.minecraft.client.resources.IResourcePackRepository.Type.TypeEntry.TypeEntryResourcePack;",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.16619718309859155,
+            "BLEU": 0.006934586087029742,
+            "METEOR": 0.13843201754385967,
+            "ROUGE-L": 0.038461538461538464
+        },
+        "target": "public void putBulkData(ByteBuffer buffer)\n    {\n        growBuffer(buffer.limit() + this.vertexFormat.getSize());\n        this.byteBuffer.position(this.vertexCount * this.vertexFormat.getSize());\n        this.byteBuffer.put(buffer);\n        this.vertexCount += buffer.limit() / this.vertexFormat.getSize();\n    }",
+        "generation": "public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)\n    {\n        if (entitylivingbaseIn.getHeldItemMainhand()!= null)\n        {\n            this.entityRenderer.bindTexture(ARMOR_LOCATION);\n            GlStateManager.matrixMode(5890);\n            GlStateManager.pushMatrix();\n            GlStateManager.scalef(-1.0F, -1.0F, 1.0F);\n            GlStateManager.translatef(0.0625F, 0.0625F, 0.0625F);\n            GlStateManager.matrixMode(5888);\n            GlStateManager.pushMatrix();\n            GlStateManager.scalef(1.0F / 16.0F, 1.0F / 16.0F, 1.0F / 16.0F);\n            GlStateManager.translatef(0.0F, 0.0F, 0.625F);\n            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);\n            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);\n            GlStateManager.rotatef(180.0F, 1.0F, 0.0F, 0.0F);\n            GlStateManager.rotatef(180.0F, 0.0F, 0.0F, 1.0F);\n            GlStateManager.rotatef(180.0F, 0.0F, 1.0F, 0.0F);",
+        "classification": "incorrect",
+        "comment": "diff method + repetition"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999142661179699,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void putBulkData(ByteBuffer buffer)\n    {\n        growBuffer(buffer.limit() + this.vertexFormat.getSize());\n        this.byteBuffer.position(this.vertexCount * this.vertexFormat.getSize());\n        this.byteBuffer.put(buffer);\n        this.vertexCount += buffer.limit() / this.vertexFormat.getSize();\n    }",
+        "generation": "public void putBulkData(ByteBuffer buffer)\n    {\n        growBuffer(buffer.limit() + this.vertexFormat.getSize());\n        this.byteBuffer.position(this.vertexCount * this.vertexFormat.getSize());\n        this.byteBuffer.put(buffer);\n        this.vertexCount += buffer.limit() / this.vertexFormat.getSize();\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

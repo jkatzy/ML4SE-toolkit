@@ -1,0 +1,14 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9000  BLEU: 0.2857  METEOR: 0.7500  ROUGE-L: 0.8333  
+--- Target ---
+IContentProposal[] getProposals(String contents, int position);
+--- Generation ---
+IContentProposal[] getContentProposals(String contents, int position);
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9960  ROUGE-L: 1.0000  
+--- Target ---
+IContentProposal[] getProposals(String contents, int position);
+--- Generation ---
+IContentProposal[] getProposals(String contents, int position);
+

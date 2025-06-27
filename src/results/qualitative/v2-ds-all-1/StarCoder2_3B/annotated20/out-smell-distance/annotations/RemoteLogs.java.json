@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.44646464646464645,
+            "BLEU": 0.04366566755848057,
+            "METEOR": 0.4132271653639175,
+            "ROUGE-L": 0.3611111111111111
+        },
+        "target": "private void compressAndSaveFile(File from, File to) throws IOException {\r\n    \r\n        byte[] toCompressByteArray = FileUtils.readFileToByteArray(from);\r\n        GZIPOutputStream zipOut = new GZIPOutputStream(new FileOutputStream(to));\r\n        zipOut.write(toCompressByteArray);\r\n        zipOut.close();\r\n        \r\n    }",
+        "generation": "private void compressAndSaveFile(File logFile, File compressedLog) throws IOException {\r\n        \r\n        FileOutputStream fos = new FileOutputStream(compressedLog);\r\n        GZIPOutputStream gos = new GZIPOutputStream(fos);\r\n        byte[] buffer = new byte[1024];\r\n        int len;\r\n        FileInputStream fis = new FileInputStream(logFile);\r\n        while ((len = fis.read(buffer)) > 0) {\r\n            gos.write(buffer, 0, len);\r\n        }\r\n        gos.close();\r\n        fis.close();\r\n    }",
+        "classification": "partial",
+        "comment": "correct signature"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4736842105263158,
+            "BLEU": 0.5134095182061535,
+            "METEOR": 0.6009357368928031,
+            "ROUGE-L": 0.5116279069767442
+        },
+        "target": "private void compressAndSaveFile(File from, File to) throws IOException {\r\n    \r\n        byte[] toCompressByteArray = FileUtils.readFileToByteArray(from);\r\n        GZIPOutputStream zipOut = new GZIPOutputStream(new FileOutputStream(to));\r\n        zipOut.write(toCompressByteArray);\r\n        zipOut.close();\r\n        \r\n    }",
+        "generation": "private void compressAndSaveFile(File from, File to) throws IOException {\r\n        \r\n        byte[] toCompressByteArray = this.reat.println(\"Error: \" + e.getMessage());\r\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.049940546967895405,
+            "BLEU": 0.004503778123700044,
+            "METEOR": 0.04807692307692308,
+            "ROUGE-L": 0.0
+        },
+        "target": "public boolean isActive() {\r\n        return active;\r\n    }",
+        "generation": "}\r\n/src/com/stacksync/desktop/gui/components/StackSyncButton.java\n/*\r\n * To change this template, choose Tools | Templates\r\n * and open the template in the editor.\r\n */\r\npackage com.stacksync.desktop.gui.components;\r\n\r\nimport com.stacksync.desktop.Environment;\r\nimport com.stacksync.desktop.gui.StackSyncFrame;\r\nimport com.stacksync.desktop.gui.StackSyncPanel;\r\nimport com.stacksync.desktop.gui.StackSyncWindow;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowType;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue.WindowStateTypeValueValue;",
+        "classification": "incorrect",
+        "comment": "EOF - new file, repetition"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17142857142857137,
+            "BLEU": 0,
+            "METEOR": 0.0,
+            "ROUGE-L": 0.0
+        },
+        "target": "public boolean isActive() {\r\n        return active;\r\n    }",
+        "generation": "private void compressAndSaveFile(File from, File to) throws It.println",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.061831153388822835,
+            "BLEU": 0.004503778123700044,
+            "METEOR": 0.040983606557377046,
+            "ROUGE-L": 0.02
+        },
+        "target": "public void setActive(boolean active) {\r\n        this.active = active;\r\n    }",
+        "generation": "}\r\n/src/com/stacksync/desktop/gui/components/StackSyncButton.java\n/*\r\n * To change this template, choose Tools | Templates\r\n * and open the template in the editor.\r\n */\r\npackage com.stacksync.desktop.gui.components;\r\n\r\nimport com.stacksync.desktop.Environment;\r\nimport com.stacksync.desktop.gui.StackSyncFrame;\r\nimport com.stacksync.desktop.gui.StackSyncPanel;\r\nimport com.stacksync.desktop.gui.StackSyncWindow;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowType;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue;\r\nimport com.stacksync.desktop.gui.StackSyncWindow.WindowState.WindowStateType.WindowStateTypeValue.WindowStateTypeValueValue;",
+        "classification": "incorrect",
+        "comment": "EOF - new file, repetition, same as previous"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void setActive(boolean active) {\r\n        this.active = active;\r\n    }",
+        "generation": "public void setActive(boolean active) {\r\n        this.active = active;\r\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

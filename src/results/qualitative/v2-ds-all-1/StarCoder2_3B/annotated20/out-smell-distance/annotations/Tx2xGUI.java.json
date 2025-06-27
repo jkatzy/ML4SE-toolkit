@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.32307692307692304,
+            "BLEU": 0.017395797375642234,
+            "METEOR": 0.2531645569620253,
+            "ROUGE-L": 0.3478260869565218
+        },
+        "target": "public void setVisible(boolean b) {\n\t\tframe.setVisible(b);\n\t}",
+        "generation": "public static void main(String[] args) {\n\t\t// TODO \u81ea\u52d5\u751f\u6210\u3055\u308c\u305f\u30e1\u30bd\u30c3\u30c9\u30fb\u30b9\u30bf\u30d6\n\t\tTx2xGUI gui = new Tx2xGUI();\n\t\tgui.frame.setVisible(true);\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method + copy context"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void setVisible(boolean b) {\n\t\tframe.setVisible(b);\n\t}",
+        "generation": "public void setVisible(boolean b) {\n\t\tframe.setVisible(b);\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7724137931034483,
+            "BLEU": 0.6857241876425023,
+            "METEOR": 0.8524141363862617,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\t\tpublic boolean canImport(TransferSupport support) {\n\t\t\tif (!support.isDrop()) {\n\t\t\t\t// \u30c9\u30ed\u30c3\u30d7\u64cd\u4f5c\u3067\u306a\u3044\u5834\u5408\u306f\u53d7\u3051\u53d6\u3089\u306a\u3044\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\tif (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {\n\t\t\t\t// \u30c9\u30ed\u30c3\u30d7\u3055\u308c\u305f\u306e\u304c\u30d5\u30a1\u30a4\u30eb\u3067\u306a\u3044\u5834\u5408\u306f\u53d7\u3051\u53d6\u3089\u306a\u3044\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\treturn true;\n\t\t}",
+        "generation": "@Override\n\t\t public boolean canImport(TransferSupport support) {\n\t\t\t if (!support.isDrop()) {\n\t\t\t\t return false;\n\t\t\t }\n\t\t\t if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {\n\t\t\t\t return false;\n\t\t\t }\n\t\t\t return true;\n\t\t }",
+        "classification": "correct",
+        "comment": "semantically same, only misses comments"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.999968,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\t\tpublic boolean canImport(TransferSupport support) {\n\t\t\tif (!support.isDrop()) {\n\t\t\t\t// \u30c9\u30ed\u30c3\u30d7\u64cd\u4f5c\u3067\u306a\u3044\u5834\u5408\u306f\u53d7\u3051\u53d6\u3089\u306a\u3044\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\tif (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {\n\t\t\t\t// \u30c9\u30ed\u30c3\u30d7\u3055\u308c\u305f\u306e\u304c\u30d5\u30a1\u30a4\u30eb\u3067\u306a\u3044\u5834\u5408\u306f\u53d7\u3051\u53d6\u3089\u306a\u3044\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\treturn true;\n\t\t}",
+        "generation": "@Override\n\t\tpublic boolean canImport(TransferSupport support) {\n\t\t\tif (!support.isDrop()) {\n\t\t\t\t// \u30c9\u30ed\u30c3\u30d7\u64cd\u4f5c\u3067\u306a\u3044\u5834\u5408\u306f\u53d7\u3051\u53d6\u3089\u306a\u3044\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\tif (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {\n\t\t\t\t// \u30c9\u30ed\u30c3\u30d7\u3055\u308c\u305f\u306e\u304c\u30d5\u30a1\u30a4\u30eb\u3067\u306a\u3044\u5834\u5408\u306f\u53d7\u3051\u53d6\u3089\u306a\u3044\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\treturn true;\n\t\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7023593466424682,
+            "BLEU": 0.5765146559256494,
+            "METEOR": 0.7780396826361128,
+            "ROUGE-L": 0.9148936170212766
+        },
+        "target": "@Override\n\t\tpublic boolean importData(TransferSupport support) {\n\t\t\t// \u53d7\u3051\u53d6\u3063\u3066\u3044\u3044\u3082\u306e\u304b\u78ba\u8a8d\u3059\u308b\n\t\t\tif (!canImport(support)) {\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\t// \u30c9\u30ed\u30c3\u30d7\u51e6\u7406\n\t\t\tTransferable t = support.getTransferable();\n\t\t\ttry {\n\t\t\t\t@SuppressWarnings(\"unchecked\")\n\t\t\t\tList<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);\n\n\t\t\t\t// \u30c6\u30ad\u30b9\u30c8\u30a8\u30ea\u30a2\u306b\u30d5\u30a1\u30a4\u30eb\u540d\u306e\u30ea\u30b9\u30c8\u3092\u8868\u793a\u3059\u308b\n\t\t\t\tif (files.size() > 0) {\n\t\t\t\t\ttext_file.setText(files.get(0).toString());\n\t\t\t\t}\n\t\t\t} catch (UnsupportedFlavorException | IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t\treturn true;\n\t\t}",
+        "generation": "@Override\n\t\t public boolean importData(TransferSupport support) {\n\t\t\t if (!canImport(support)) {\n\t\t\t\t return false;\n\t\t\t }\n\n\t\t\t Transferable t = support.getTransferable();\n\t\t\t try {\n\t\t\t\t List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);\n\t\t\t\t if (files.size() > 0) {\n\t\t\t\t\t text_file.setText(files.get(0).getAbsolutePath());\n\t\t\t\t }\n\t\t\t } catch (UnsupportedFlavorException e) {\n\t\t\t\t e.printStackTrace();\n\t\t\t } catch (IOException e) {\n\t\t\t\t e.printStackTrace();\n\t\t\t }\n\n\t\t\t return true;\n\t\t }",
+        "classification": "correct",
+        "comment": "semantically same, only misses comments"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999957500701239,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\t\tpublic boolean importData(TransferSupport support) {\n\t\t\t// \u53d7\u3051\u53d6\u3063\u3066\u3044\u3044\u3082\u306e\u304b\u78ba\u8a8d\u3059\u308b\n\t\t\tif (!canImport(support)) {\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\t// \u30c9\u30ed\u30c3\u30d7\u51e6\u7406\n\t\t\tTransferable t = support.getTransferable();\n\t\t\ttry {\n\t\t\t\t@SuppressWarnings(\"unchecked\")\n\t\t\t\tList<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);\n\n\t\t\t\t// \u30c6\u30ad\u30b9\u30c8\u30a8\u30ea\u30a2\u306b\u30d5\u30a1\u30a4\u30eb\u540d\u306e\u30ea\u30b9\u30c8\u3092\u8868\u793a\u3059\u308b\n\t\t\t\tif (files.size() > 0) {\n\t\t\t\t\ttext_file.setText(files.get(0).toString());\n\t\t\t\t}\n\t\t\t} catch (UnsupportedFlavorException | IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t\treturn true;\n\t\t}",
+        "generation": "@Override\n\t\tpublic boolean importData(TransferSupport support) {\n\t\t\t// \u53d7\u3051\u53d6\u3063\u3066\u3044\u3044\u3082\u306e\u304b\u78ba\u8a8d\u3059\u308b\n\t\t\tif (!canImport(support)) {\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\t// \u30c9\u30ed\u30c3\u30d7\u51e6\u7406\n\t\t\tTransferable t = support.getTransferable();\n\t\t\ttry {\n\t\t\t\t@SuppressWarnings(\"unchecked\")\n\t\t\t\tList<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);\n\n\t\t\t\t// \u30c6\u30ad\u30b9\u30c8\u30a8\u30ea\u30a2\u306b\u30d5\u30a1\u30a4\u30eb\u540d\u306e\u30ea\u30b9\u30c8\u3092\u8868\u793a\u3059\u308b\n\t\t\t\tif (files.size() > 0) {\n\t\t\t\t\ttext_file.setText(files.get(0).toString());\n\t\t\t\t}\n\t\t\t} catch (UnsupportedFlavorException | IOException e) {\n\t\t\t\te.printStackTrace();\n\t\t\t}\n\t\t\treturn true;\n\t\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

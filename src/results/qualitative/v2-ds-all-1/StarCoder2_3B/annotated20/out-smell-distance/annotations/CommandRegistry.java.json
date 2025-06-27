@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.14883720930232558,
+            "BLEU": 0.0026898894967593793,
+            "METEOR": 0.09852216748768473,
+            "ROUGE-L": 0.13461538461538458
+        },
+        "target": "public void addCommandsTo(RootCommandNode<ISuggestionProvider> root) {\n        Collection<CommandNode<IAIControllable>> toConvert = commands.getRoot().getChildren();\n        convertInto(root, toConvert);\n    }",
+        "generation": "public Collection<String> getSuggestions(String input, int cursor) {\n        try {\n            StringReader reader = new StringReader(input);\n            if (reader.canRead()) {\n                char first = reader.read();\n                if (first == '/') {\n                    return commands.getSuggestions(reader, controllable);\n                }\n            }\n        } catch (Throwable e) {\n            // Do not send on to server if message starts with /minebot\n            for (CommandNode<IAIControllable> literal : commands.getRoot().getChildren()) {\n                if (input.startsWith(\"/\" + ((LiteralCommandNode<IAIControllable>) literal).getLiteral())) {\n                    // Show chat message to client. TODO: Use nice minecraft message\n                    AIChatController.addChatLine(\"ERROR while evaluating: \"\n                            + e.getMessage());\n                    LOGGER.warn(\"Error during command evaluation\", e);\n                }\n            }\n            // Otherwise ignored, let Minecraft handle this\n        }\n        return null;\n    }",
+        "classification": "incorrect",
+        "comment": "copy context"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2375690607734806,
+            "BLEU": 0.008830895300928163,
+            "METEOR": 0.14492753623188406,
+            "ROUGE-L": 0.13333333333333333
+        },
+        "target": "public void addCommandsTo(RootCommandNode<ISuggestionProvider> root) {\n        Collection<CommandNode<IAIControllable>> toConvert = commands.getRoot().getChildren();\n        convertInto(root, toConvert);\n    }",
+        "generation": "public Collection<String> getSuggestions(String input) {\n        StringReader reader = new StringReader(input);\n        if (reader.canRead()) {\n            char first = reader.read();\n            if (first == '/') {\n                return commands.getSuggestions(reader, controllable);\n            }\n        }\n        return ISuggestionProvider.EMPTY_LIST;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2805628847845206,
+            "BLEU": 0.015504562088654385,
+            "METEOR": 0.160072210536776,
+            "ROUGE-L": 0.2823529411764706
+        },
+        "target": "private void convertInto(CommandNode<ISuggestionProvider> into, Collection<CommandNode<IAIControllable>> toConvert) {\n        toConvert.forEach(\n                child -> {\n                    CommandNode<ISuggestionProvider> node;\n                    if (child.getRedirect() != null) {\n                        throw new IllegalArgumentException(\"Cannot redirect\");\n                    }\n                    if (child instanceof LiteralCommandNode) {\n                        LiteralCommandNode<IAIControllable> literal = (LiteralCommandNode<IAIControllable>) child;\n                        node = new LiteralCommandNode<>(literal.getLiteral(),\n                                suggestionContext -> literal.getCommand().run(convertCommandContext(suggestionContext)),\n                                suggestionContext -> literal.getRequirement().test(controllable),\n                                null,\n                                null,\n                                literal.isFork());\n                    } else if (child instanceof ArgumentCommandNode){\n                        ArgumentCommandNode<IAIControllable, ?> argumentNode = (ArgumentCommandNode<IAIControllable, ?>) child;\n\n                        node = new ArgumentCommandNode<>(\n                                argumentNode.getName(),\n                                argumentNode.getType(),\n                                suggestionContext -> argumentNode.getCommand().run(convertCommandContext(suggestionContext)),\n                                suggestionContext -> argumentNode.getRequirement().test(controllable),\n                                null,\n                                null,\n                                argumentNode.isFork(),\n                                argumentNode.getCustomSuggestions() == null ? null : (suggestionContext, builder) -> argumentNode.getCustomSuggestions().getSuggestions(convertCommandContext(suggestionContext), builder)\n\n                        );\n                    } else {\n                        throw new IllegalStateException(\"Could not find node type \" + child.getClass().getSimpleName());\n                    }\n\n                    convertInto(node, child.getChildren());\n\n                    into.addChild(node);\n                }\n        );\n    }",
+        "generation": "private void convertInto(RootCommandNode<ISuggestionProvider> root, Collection<CommandNode<IAIControllable>> toConvert) {\n        for (CommandNode<IAIControllable> command : toConvert) {\n            if (command instanceof LiteralCommandNode) {\n                root.addChild((LiteralCommandNode<ISuggestionProvider>) command);\n            } else if (command instanceof ArgumentCommandNode) {\n                ArgumentCommandNode<ISuggestionProvider> argumentCommandNode = (ArgumentCommandNode<ISuggestionProvider>) command;\n                LiteralCommandNode<ISuggestionProvider> literalCommandNode = new LiteralCommandNode<>(argumentCommandNode.getName(), argumentCommandNode.getArgumentType());\n                root.addChild(literalCommandNode);\n                convertInto(literalCommandNode, argumentCommandNode.getChildren());\n            }\n        }\n    }",
+        "classification": "partial",
+        "comment": "correct signature and some logic"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.00923482849604218,
+            "BLEU": 0,
+            "METEOR": 0.0,
+            "ROUGE-L": 0.0
+        },
+        "target": "private void convertInto(CommandNode<ISuggestionProvider> into, Collection<CommandNode<IAIControllable>> toConvert) {\n        toConvert.forEach(\n                child -> {\n                    CommandNode<ISuggestionProvider> node;\n                    if (child.getRedirect() != null) {\n                        throw new IllegalArgumentException(\"Cannot redirect\");\n                    }\n                    if (child instanceof LiteralCommandNode) {\n                        LiteralCommandNode<IAIControllable> literal = (LiteralCommandNode<IAIControllable>) child;\n                        node = new LiteralCommandNode<>(literal.getLiteral(),\n                                suggestionContext -> literal.getCommand().run(convertCommandContext(suggestionContext)),\n                                suggestionContext -> literal.getRequirement().test(controllable),\n                                null,\n                                null,\n                                literal.isFork());\n                    } else if (child instanceof ArgumentCommandNode){\n                        ArgumentCommandNode<IAIControllable, ?> argumentNode = (ArgumentCommandNode<IAIControllable, ?>) child;\n\n                        node = new ArgumentCommandNode<>(\n                                argumentNode.getName(),\n                                argumentNode.getType(),\n                                suggestionContext -> argumentNode.getCommand().run(convertCommandContext(suggestionContext)),\n                                suggestionContext -> argumentNode.getRequirement().test(controllable),\n                                null,\n                                null,\n                                argumentNode.isFork(),\n                                argumentNode.getCustomSuggestions() == null ? null : (suggestionContext, builder) -> argumentNode.getCustomSuggestions().getSuggestions(convertCommandContext(suggestionContext), builder)\n\n                        );\n                    } else {\n                        throw new IllegalStateException(\"Could not find node type \" + child.getClass().getSimpleName());\n                    }\n\n                    convertInto(node, child.getChildren());\n\n                    into.addChild(node);\n                }\n        );\n    }",
+        "generation": "AIHelper getAiHelper();",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2962962962962963,
+            "BLEU": 0.08088014037440619,
+            "METEOR": 0.3142284951363723,
+            "ROUGE-L": 0.45454545454545453
+        },
+        "target": "public AIStrategy get() {\n            if (strategy == null) {\n                throw new IllegalStateException(\"No strategy has been set\");\n            } else {\n                return strategy;\n            }\n        }",
+        "generation": "public AIStrategy get() {\n            return strategy;\n        }",
+        "classification": "partial",
+        "comment": "only misses the null check"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.999958905235473,
+            "ROUGE-L": 1.0
+        },
+        "target": "public AIStrategy get() {\n            if (strategy == null) {\n                throw new IllegalStateException(\"No strategy has been set\");\n            } else {\n                return strategy;\n            }\n        }",
+        "generation": "public AIStrategy get() {\n            if (strategy == null) {\n                throw new IllegalStateException(\"No strategy has been set\");\n            } else {\n                return strategy;\n            }\n        }",
+        "classification": "",
+        "comment": ""
+    }
+]

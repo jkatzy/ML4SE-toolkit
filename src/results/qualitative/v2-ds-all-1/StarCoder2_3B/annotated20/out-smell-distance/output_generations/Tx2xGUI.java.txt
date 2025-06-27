@@ -1,0 +1,182 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3231  BLEU: 0.0174  METEOR: 0.2532  ROUGE-L: 0.3478  
+--- Target ---
+public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
+--- Generation ---
+public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		Tx2xGUI gui = new Tx2xGUI();
+		gui.frame.setVisible(true);
+	}
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
+--- Generation ---
+public void setVisible(boolean b) {
+		frame.setVisible(b);
+	}
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7724  BLEU: 0.6857  METEOR: 0.8524  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+		public boolean canImport(TransferSupport support) {
+			if (!support.isDrop()) {
+				// ドロップ操作でない場合は受け取らない
+				return false;
+			}
+
+			if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+				// ドロップされたのがファイルでない場合は受け取らない
+				return false;
+			}
+
+			return true;
+		}
+--- Generation ---
+@Override
+		 public boolean canImport(TransferSupport support) {
+			 if (!support.isDrop()) {
+				 return false;
+			 }
+			 if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+				 return false;
+			 }
+			 return true;
+		 }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+		public boolean canImport(TransferSupport support) {
+			if (!support.isDrop()) {
+				// ドロップ操作でない場合は受け取らない
+				return false;
+			}
+
+			if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+				// ドロップされたのがファイルでない場合は受け取らない
+				return false;
+			}
+
+			return true;
+		}
+--- Generation ---
+@Override
+		public boolean canImport(TransferSupport support) {
+			if (!support.isDrop()) {
+				// ドロップ操作でない場合は受け取らない
+				return false;
+			}
+
+			if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+				// ドロップされたのがファイルでない場合は受け取らない
+				return false;
+			}
+
+			return true;
+		}
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7024  BLEU: 0.5765  METEOR: 0.7780  ROUGE-L: 0.9149  
+--- Target ---
+@Override
+		public boolean importData(TransferSupport support) {
+			// 受け取っていいものか確認する
+			if (!canImport(support)) {
+				return false;
+			}
+
+			// ドロップ処理
+			Transferable t = support.getTransferable();
+			try {
+				@SuppressWarnings("unchecked")
+				List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
+
+				// テキストエリアにファイル名のリストを表示する
+				if (files.size() > 0) {
+					text_file.setText(files.get(0).toString());
+				}
+			} catch (UnsupportedFlavorException | IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+--- Generation ---
+@Override
+		 public boolean importData(TransferSupport support) {
+			 if (!canImport(support)) {
+				 return false;
+			 }
+
+			 Transferable t = support.getTransferable();
+			 try {
+				 List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
+				 if (files.size() > 0) {
+					 text_file.setText(files.get(0).getAbsolutePath());
+				 }
+			 } catch (UnsupportedFlavorException e) {
+				 e.printStackTrace();
+			 } catch (IOException e) {
+				 e.printStackTrace();
+			 }
+
+			 return true;
+		 }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+		public boolean importData(TransferSupport support) {
+			// 受け取っていいものか確認する
+			if (!canImport(support)) {
+				return false;
+			}
+
+			// ドロップ処理
+			Transferable t = support.getTransferable();
+			try {
+				@SuppressWarnings("unchecked")
+				List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
+
+				// テキストエリアにファイル名のリストを表示する
+				if (files.size() > 0) {
+					text_file.setText(files.get(0).toString());
+				}
+			} catch (UnsupportedFlavorException | IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+--- Generation ---
+@Override
+		public boolean importData(TransferSupport support) {
+			// 受け取っていいものか確認する
+			if (!canImport(support)) {
+				return false;
+			}
+
+			// ドロップ処理
+			Transferable t = support.getTransferable();
+			try {
+				@SuppressWarnings("unchecked")
+				List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
+
+				// テキストエリアにファイル名のリストを表示する
+				if (files.size() > 0) {
+					text_file.setText(files.get(0).toString());
+				}
+			} catch (UnsupportedFlavorException | IOException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+

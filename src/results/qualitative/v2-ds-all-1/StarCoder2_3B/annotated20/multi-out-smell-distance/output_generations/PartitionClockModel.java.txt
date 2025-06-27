@@ -1,0 +1,872 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0122  BLEU: 0.0000  METEOR: 0.0089  ROUGE-L: 0.0215  
+--- Target ---
+@Override
+    public List<Operator> selectOperators(List<Operator> operators) {
+        if (getPartitionTreeModel().isUsingEmpiricalTrees()) {
+            // empirical trees has no clock model
+            return operators;
+        }
+
+        List<Operator> ops = new ArrayList<Operator>();
+
+        if (options.hasData()) {
+            if (getDataType().getType() != DataType.TREE) {
+                Operator rateOperator = getOperator("clock.rate");
+                switch (clockType) {
+                    case STRICT_CLOCK:
+                        ops.add(rateOperator);
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case SHRINKAGE_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.SHRINKAGE_CLOCK_LOCATION));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("GIBBS_SHRINKAGE_CLOCK"));
+                        ops.add(getOperator("HMC_SHRINKAGE_CLOCK"));
+                        break;
+
+                    case RANDOM_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".relativeRates"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".changes"));
+                        break;
+
+                    case FIXED_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator(taxonSet.getId() + ".rate"));
+                            }
+                        }
+                        break;
+
+                    case MIXED_EFFECTS_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.ME_CLOCK_LOCATION));
+                        ops.add(getOperator(ClockType.ME_CLOCK_SCALE));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("RANDOMWALK_INTERCEPT_ME_CLOCK"));
+                        int coeff = 1;
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator("RANDOMWALK_COEFFICIENT_" + coeff +  "_ME_CLOCK"));
+                                coeff++;
+                            }
+                        }
+                        break;
+
+                    case UNCORRELATED:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case GAMMA:
+                                ops.add(rateOperator = getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case CAUCHY:
+//                                throw new UnsupportedOperationException("Uncorrelated Couchy clock not implemented yet");
+                                break;
+                            case EXPONENTIAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCED_MEAN));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case MODEL_AVERAGING:
+                                ops.add(getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                ops.add(getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                ops.add(getOperator(ClockType.UCED_MEAN));
+
+                                if (!getOperator(ClockType.UCLD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCLDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCGD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCGDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCED_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCEDMeanHeights"));
+                                }
+
+                                ops.add(getOperator("uniformBranchRateDistributionIndex"));
+                                break;
+                        }
+
+                        if (isContinuousQuantile()) {
+                            if (!options.useClassicOperatorsAndPriors()) {
+                                ops.add(getOperator("rwBranchRateQuantiles"));
+                            } else {
+                                ops.add(getOperator("uniformBranchRateQuantiles"));
+                            }
+                        } else {
+                            ops.add(getOperator("swapBranchRateCategories"));
+                            ops.add(getOperator("uniformBranchRateCategories"));
+                        }
+                        break;
+
+                    case HMC_CLOCK:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.HMC_CLOCK_LOCATION));
+                                ops.add(getOperator("HMCRCR"));
+                                ops.add(getOperator("HMCRCS"));
+                                ops.add(getOperator(ClockType.HMCLN_SCALE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            default:
+                                throw new UnsupportedOperationException("Only lognormal supported for HMC relaxed clock");
+                        }
+                        break;
+
+                    case AUTOCORRELATED:
+                        throw new UnsupportedOperationException("Autocorrelated clock not implemented yet");
+//                        break;
+
+                    default:
+                        throw new IllegalArgumentException("Unknown clock model");
+                }
+
+            }
+        }
+
+        Parameter allMuNus = getParameter(options.useNuRelativeRates() ? "allNus" : "allMus");
+
+        if (allMuNus.getSubParameters().size() > 1) {
+            ops.add(getOperator(options.useNuRelativeRates() ? "deltaNus" : "deltaMus"));
+        }
+
+        if (options.operatorSetType == OperatorSetType.ADAPTIVE_MULTIVARIATE) {
+            // unless a custom mix has been chosen these operators should be off if AMTK is on
+            for (Operator op : ops) {
+                if (op.getParameter1() != null && op.getParameter1().isAdaptiveMultivariateCompatible) {
+                    op.setUsed(false);
+                }
+            }
+        }
+
+        operators.addAll(ops);
+
+        return ops;
+    }
+--- Generation ---
+public void setClockType(ClockType clockType) {
+        this.clockType = clockType;
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3221  BLEU: 0.3315  METEOR: 0.3557  ROUGE-L: 0.3150  
+--- Target ---
+@Override
+    public List<Operator> selectOperators(List<Operator> operators) {
+        if (getPartitionTreeModel().isUsingEmpiricalTrees()) {
+            // empirical trees has no clock model
+            return operators;
+        }
+
+        List<Operator> ops = new ArrayList<Operator>();
+
+        if (options.hasData()) {
+            if (getDataType().getType() != DataType.TREE) {
+                Operator rateOperator = getOperator("clock.rate");
+                switch (clockType) {
+                    case STRICT_CLOCK:
+                        ops.add(rateOperator);
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case SHRINKAGE_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.SHRINKAGE_CLOCK_LOCATION));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("GIBBS_SHRINKAGE_CLOCK"));
+                        ops.add(getOperator("HMC_SHRINKAGE_CLOCK"));
+                        break;
+
+                    case RANDOM_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".relativeRates"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".changes"));
+                        break;
+
+                    case FIXED_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator(taxonSet.getId() + ".rate"));
+                            }
+                        }
+                        break;
+
+                    case MIXED_EFFECTS_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.ME_CLOCK_LOCATION));
+                        ops.add(getOperator(ClockType.ME_CLOCK_SCALE));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("RANDOMWALK_INTERCEPT_ME_CLOCK"));
+                        int coeff = 1;
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator("RANDOMWALK_COEFFICIENT_" + coeff +  "_ME_CLOCK"));
+                                coeff++;
+                            }
+                        }
+                        break;
+
+                    case UNCORRELATED:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case GAMMA:
+                                ops.add(rateOperator = getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case CAUCHY:
+//                                throw new UnsupportedOperationException("Uncorrelated Couchy clock not implemented yet");
+                                break;
+                            case EXPONENTIAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCED_MEAN));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case MODEL_AVERAGING:
+                                ops.add(getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                ops.add(getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                ops.add(getOperator(ClockType.UCED_MEAN));
+
+                                if (!getOperator(ClockType.UCLD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCLDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCGD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCGDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCED_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCEDMeanHeights"));
+                                }
+
+                                ops.add(getOperator("uniformBranchRateDistributionIndex"));
+                                break;
+                        }
+
+                        if (isContinuousQuantile()) {
+                            if (!options.useClassicOperatorsAndPriors()) {
+                                ops.add(getOperator("rwBranchRateQuantiles"));
+                            } else {
+                                ops.add(getOperator("uniformBranchRateQuantiles"));
+                            }
+                        } else {
+                            ops.add(getOperator("swapBranchRateCategories"));
+                            ops.add(getOperator("uniformBranchRateCategories"));
+                        }
+                        break;
+
+                    case HMC_CLOCK:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.HMC_CLOCK_LOCATION));
+                                ops.add(getOperator("HMCRCR"));
+                                ops.add(getOperator("HMCRCS"));
+                                ops.add(getOperator(ClockType.HMCLN_SCALE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            default:
+                                throw new UnsupportedOperationException("Only lognormal supported for HMC relaxed clock");
+                        }
+                        break;
+
+                    case AUTOCORRELATED:
+                        throw new UnsupportedOperationException("Autocorrelated clock not implemented yet");
+//                        break;
+
+                    default:
+                        throw new IllegalArgumentException("Unknown clock model");
+                }
+
+            }
+        }
+
+        Parameter allMuNus = getParameter(options.useNuRelativeRates() ? "allNus" : "allMus");
+
+        if (allMuNus.getSubParameters().size() > 1) {
+            ops.add(getOperator(options.useNuRelativeRates() ? "deltaNus" : "deltaMus"));
+        }
+
+        if (options.operatorSetType == OperatorSetType.ADAPTIVE_MULTIVARIATE) {
+            // unless a custom mix has been chosen these operators should be off if AMTK is on
+            for (Operator op : ops) {
+                if (op.getParameter1() != null && op.getParameter1().isAdaptiveMultivariateCompatible) {
+                    op.setUsed(false);
+                }
+            }
+        }
+
+        operators.addAll(ops);
+
+        return ops;
+    }
+--- Generation ---
+public List<Operator> getOperators() {
+        List<Operator> ops = new ArrayList<>();
+
+        if (options.hasData()) {
+            if (getPartitionTreeModel().isUsingEmpiricalTrees()) {
+                // empirical trees has no clock model
+                return ops;
+            }
+
+            if (options.operatorSetType == OperatorSetType.ADAPTIVE_MULTIVARIATE) {
+                // unless a custom mix has been chosen these operators should be off if AMTK is on
+                for (Operator op : operators) {
+                    if (op.getParameter1()!= null && op.getParameter1().isAdaptiveMultivariateCompatible) {
+                        op.setUsed(false);
+                    }
+                }
+            }
+
+            if (options.useTipDates) {
+                ops.add(getOperator("upDownRateHeights"));
+            } else {
+                Parameter rateParam = getClockRateParameter();
+                if (!rateParam.isInitialSet()) {
+                    rateParam.setInitial(0.001);
+                }
+
+                Operator rateOperator = null;
+                switch (clockType) {
+                    case STRICT_CLOCK:
+                        ops.add(rateOperator = getOperator("clock.rate"));
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case SHRINKAGE_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.SHRINKAGE_CLOCK_LOCATION));
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case RANDOM_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.LOCAL_CLOCK + ".relativeRates"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".changes"));
+                        ops.add(getOperator("rateChanges"));
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case FIXED_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator("clock.rate"));
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator(taxonSet.getId() + ".rate"));
+                            }
+                        }
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case MIXED_EFFECTS_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.ME_CLOCK_LOCATION));
+                        ops.add(getOperator(ClockType.ME_CLOCK_SCALE));
+                        ops.add(getOperator(BranchSpecificFixedEffectsParser.INTERCEPT));
+                        int coeff = 1;
+                        for (Taxa taxonSet : ope.
+ *
+ * BEAST is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ *  BEAST is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with BEAST; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA  02110-1301  USA
+ */
+
+package dr.app.beauti.options;
+
+import dr.app.beauti.types.DataType;
+import dr.evolution.datatype.DataTypeFactory;
+import dr.evolution.datatype.DataTypeSet;
+import dr.evolution.datatype.DataTypeSetFactory;
+import dr.evolution.datatype.DataTypeSetFactory.DataTypeSetType;
+import dr.evolution.datatype.DataTypeSetFactory.DataTypeSetType.DataTypeSetTypeFactory;
+import dr.evolution.datatype.DataTypeSetFactory.DataTypeSetType.DataTypeSetTypeFactory.DataTypeSetTypeFactoryImpl;
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1694  BLEU: 0.0091  METEOR: 0.1134  ROUGE-L: 0.2206  
+--- Target ---
+@Override
+    public List<Operator> selectOperators(List<Operator> operators) {
+        if (getPartitionTreeModel().isUsingEmpiricalTrees()) {
+            // empirical trees has no clock model
+            return operators;
+        }
+
+        List<Operator> ops = new ArrayList<Operator>();
+
+        if (options.hasData()) {
+            if (getDataType().getType() != DataType.TREE) {
+                Operator rateOperator = getOperator("clock.rate");
+                switch (clockType) {
+                    case STRICT_CLOCK:
+                        ops.add(rateOperator);
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case SHRINKAGE_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.SHRINKAGE_CLOCK_LOCATION));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("GIBBS_SHRINKAGE_CLOCK"));
+                        ops.add(getOperator("HMC_SHRINKAGE_CLOCK"));
+                        break;
+
+                    case RANDOM_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".relativeRates"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".changes"));
+                        break;
+
+                    case FIXED_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator(taxonSet.getId() + ".rate"));
+                            }
+                        }
+                        break;
+
+                    case MIXED_EFFECTS_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.ME_CLOCK_LOCATION));
+                        ops.add(getOperator(ClockType.ME_CLOCK_SCALE));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("RANDOMWALK_INTERCEPT_ME_CLOCK"));
+                        int coeff = 1;
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator("RANDOMWALK_COEFFICIENT_" + coeff +  "_ME_CLOCK"));
+                                coeff++;
+                            }
+                        }
+                        break;
+
+                    case UNCORRELATED:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case GAMMA:
+                                ops.add(rateOperator = getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case CAUCHY:
+//                                throw new UnsupportedOperationException("Uncorrelated Couchy clock not implemented yet");
+                                break;
+                            case EXPONENTIAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCED_MEAN));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case MODEL_AVERAGING:
+                                ops.add(getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                ops.add(getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                ops.add(getOperator(ClockType.UCED_MEAN));
+
+                                if (!getOperator(ClockType.UCLD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCLDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCGD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCGDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCED_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCEDMeanHeights"));
+                                }
+
+                                ops.add(getOperator("uniformBranchRateDistributionIndex"));
+                                break;
+                        }
+
+                        if (isContinuousQuantile()) {
+                            if (!options.useClassicOperatorsAndPriors()) {
+                                ops.add(getOperator("rwBranchRateQuantiles"));
+                            } else {
+                                ops.add(getOperator("uniformBranchRateQuantiles"));
+                            }
+                        } else {
+                            ops.add(getOperator("swapBranchRateCategories"));
+                            ops.add(getOperator("uniformBranchRateCategories"));
+                        }
+                        break;
+
+                    case HMC_CLOCK:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.HMC_CLOCK_LOCATION));
+                                ops.add(getOperator("HMCRCR"));
+                                ops.add(getOperator("HMCRCS"));
+                                ops.add(getOperator(ClockType.HMCLN_SCALE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            default:
+                                throw new UnsupportedOperationException("Only lognormal supported for HMC relaxed clock");
+                        }
+                        break;
+
+                    case AUTOCORRELATED:
+                        throw new UnsupportedOperationException("Autocorrelated clock not implemented yet");
+//                        break;
+
+                    default:
+                        throw new IllegalArgumentException("Unknown clock model");
+                }
+
+            }
+        }
+
+        Parameter allMuNus = getParameter(options.useNuRelativeRates() ? "allNus" : "allMus");
+
+        if (allMuNus.getSubParameters().size() > 1) {
+            ops.add(getOperator(options.useNuRelativeRates() ? "deltaNus" : "deltaMus"));
+        }
+
+        if (options.operatorSetType == OperatorSetType.ADAPTIVE_MULTIVARIATE) {
+            // unless a custom mix has been chosen these operators should be off if AMTK is on
+            for (Operator op : ops) {
+                if (op.getParameter1() != null && op.getParameter1().isAdaptiveMultivariateCompatible) {
+                    op.setUsed(false);
+                }
+            }
+        }
+
+        operators.addAll(ops);
+
+        return ops;
+    }
+--- Generation ---
+public Operator getUpDownOperator(ClockType clockType) {
+        switch (clockType) {
+            case STRICT_CLOCK:
+                return getOperator("upDownRateHeights");
+            case SHRINKAGE_LOCAL_CLOCK:
+                return getOperator("upDownShrinkageRateHeights");
+            case RANDOM_LOCAL_CLOCK:
+                return getOperator("upDownRateHeights");
+            case FIXED_LOCAL_CLOCK:
+                return getOperator("upDownRateHeights");
+            case MIXED_EFFECTS_CLOCK:
+                return getOperator("upDownMERateHeights");
+
+            case UNCORRELATED:
+                switch (clockDistributionType) {
+                    case LOGNORMAL:
+                        return getOperator("upDownUCLDMeanHeights");
+                    case GAMMA:
+                        return getOperator("upDownUCGDMeanHeights");
+                    case CAUCHY:
+                        throw new UnsupportedOperationException("Uncorrelated Cauchy clock not implemented yet");
+//                            break;
+                    case EXPONENTIAL:
+                        return getOperator("upDownUCEDMeanHeights");
+                    default:
+                        throw new UnsupportedOperationException("Unknown clock distribution type");
+                }
+            case HMC_CLOCK:
+                return getOperator("upDownHMCRateHeights");
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3396  BLEU: 0.2895  METEOR: 0.3868  ROUGE-L: 0.3842  
+--- Target ---
+@Override
+    public List<Operator> selectOperators(List<Operator> operators) {
+        if (getPartitionTreeModel().isUsingEmpiricalTrees()) {
+            // empirical trees has no clock model
+            return operators;
+        }
+
+        List<Operator> ops = new ArrayList<Operator>();
+
+        if (options.hasData()) {
+            if (getDataType().getType() != DataType.TREE) {
+                Operator rateOperator = getOperator("clock.rate");
+                switch (clockType) {
+                    case STRICT_CLOCK:
+                        ops.add(rateOperator);
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case SHRINKAGE_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.SHRINKAGE_CLOCK_LOCATION));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("GIBBS_SHRINKAGE_CLOCK"));
+                        ops.add(getOperator("HMC_SHRINKAGE_CLOCK"));
+                        break;
+
+                    case RANDOM_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".relativeRates"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".changes"));
+                        break;
+
+                    case FIXED_LOCAL_CLOCK:
+                        ops.add(rateOperator);
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator(taxonSet.getId() + ".rate"));
+                            }
+                        }
+                        break;
+
+                    case MIXED_EFFECTS_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.ME_CLOCK_LOCATION));
+                        ops.add(getOperator(ClockType.ME_CLOCK_SCALE));
+                        addUpDownOperator(ops, rateOperator);
+                        ops.add(getOperator("RANDOMWALK_INTERCEPT_ME_CLOCK"));
+                        int coeff = 1;
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator("RANDOMWALK_COEFFICIENT_" + coeff +  "_ME_CLOCK"));
+                                coeff++;
+                            }
+                        }
+                        break;
+
+                    case UNCORRELATED:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case GAMMA:
+                                ops.add(rateOperator = getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case CAUCHY:
+//                                throw new UnsupportedOperationException("Uncorrelated Couchy clock not implemented yet");
+                                break;
+                            case EXPONENTIAL:
+                                ops.add(rateOperator = getOperator(ClockType.UCED_MEAN));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            case MODEL_AVERAGING:
+                                ops.add(getOperator(ClockType.UCLD_MEAN));
+                                ops.add(getOperator(ClockType.UCLD_STDEV));
+                                ops.add(getOperator(ClockType.UCGD_MEAN));
+                                ops.add(getOperator(ClockType.UCGD_SHAPE));
+                                ops.add(getOperator(ClockType.UCED_MEAN));
+
+                                if (!getOperator(ClockType.UCLD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCLDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCGD_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCGDMeanHeights"));
+                                }
+                                if (!getOperator(ClockType.UCED_MEAN).isParameterFixed()) {
+                                    ops.add(getOperator("upDownUCEDMeanHeights"));
+                                }
+
+                                ops.add(getOperator("uniformBranchRateDistributionIndex"));
+                                break;
+                        }
+
+                        if (isContinuousQuantile()) {
+                            if (!options.useClassicOperatorsAndPriors()) {
+                                ops.add(getOperator("rwBranchRateQuantiles"));
+                            } else {
+                                ops.add(getOperator("uniformBranchRateQuantiles"));
+                            }
+                        } else {
+                            ops.add(getOperator("swapBranchRateCategories"));
+                            ops.add(getOperator("uniformBranchRateCategories"));
+                        }
+                        break;
+
+                    case HMC_CLOCK:
+                        switch (clockDistributionType) {
+                            case LOGNORMAL:
+                                ops.add(rateOperator = getOperator(ClockType.HMC_CLOCK_LOCATION));
+                                ops.add(getOperator("HMCRCR"));
+                                ops.add(getOperator("HMCRCS"));
+                                ops.add(getOperator(ClockType.HMCLN_SCALE));
+                                addUpDownOperator(ops, rateOperator);
+                                break;
+                            default:
+                                throw new UnsupportedOperationException("Only lognormal supported for HMC relaxed clock");
+                        }
+                        break;
+
+                    case AUTOCORRELATED:
+                        throw new UnsupportedOperationException("Autocorrelated clock not implemented yet");
+//                        break;
+
+                    default:
+                        throw new IllegalArgumentException("Unknown clock model");
+                }
+
+            }
+        }
+
+        Parameter allMuNus = getParameter(options.useNuRelativeRates() ? "allNus" : "allMus");
+
+        if (allMuNus.getSubParameters().size() > 1) {
+            ops.add(getOperator(options.useNuRelativeRates() ? "deltaNus" : "deltaMus"));
+        }
+
+        if (options.operatorSetType == OperatorSetType.ADAPTIVE_MULTIVARIATE) {
+            // unless a custom mix has been chosen these operators should be off if AMTK is on
+            for (Operator op : ops) {
+                if (op.getParameter1() != null && op.getParameter1().isAdaptiveMultivariateCompatible) {
+                    op.setUsed(false);
+                }
+            }
+        }
+
+        operators.addAll(ops);
+
+        return ops;
+    }
+--- Generation ---
+public List<Operator> getOperators() {
+        List<Operator> ops = new ArrayList<>();
+
+        if (options.hasData()) {
+            if (getPartitionTreeModel().isUsingEmpiricalTrees()) {
+                // empirical trees has no clock model
+                return ops;
+            }
+
+            if (options.operatorSetType == OperatorSetType.ADAPTIVE_MULTIVARIATE) {
+                // unless a custom mix has been chosen these operators should be off if AMTK is on
+                for (Operator op : ops) {
+                    if (op.getParameter1()!= null && op.getParameter1().isAdaptiveMultivariateCompatible) {
+                        op.setUsed(false);
+                    }
+                }
+            }
+
+            if (options.useTipDates) {
+                ops.add(getOperator("upDownRateHeights"));
+            } else {
+                Operator rateOperator = null;
+                switch (clockType) {
+                    case STRICT_CLOCK:
+                        ops.add(rateOperator = getOperator("clock.rate"));
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case SHRINKAGE_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.SHRINKAGE_CLOCK_LOCATION));
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case RANDOM_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator("clock.rate"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".changes"));
+                        ops.add(getOperator("rateChanges"));
+                        ops.add(getOperator(ClockType.LOCAL_CLOCK + ".relativeRates"));
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case FIXED_LOCAL_CLOCK:
+                        ops.add(rateOperator = getOperator("clock.rate"));
+                        for (Taxa taxonSet : options.taxonSets) {
+                            if (options.taxonSetsMono.get(taxonSet)) {
+                                ops.add(getOperator(taxonSet.getId() + ".rate"));
+                            }
+                        }
+                        addUpDownOperator(ops, rateOperator);
+                        break;
+
+                    case MIXED_EFFECTS_CLOCK:
+                        ops.add(rateOperator = getOperator(ClockType.ME_CLOCK_LOCATION));
+                        ops.add(getOperator(ClockType.ME_CLOCK_SCALE));
+                        ops.add(getOperator(BranchSpecificFixedEffectsParser.INTERCEPT));
+                        int coeff = 1;
+                        for (Taxa taxonSet : ope.get(i);
+            if (i == 0) {
+                // first site
+                if (site.isGap()) {
+                    // gap
+                    if (site.isGap()) {
+                        // gap
+                        if (site.isGap()) {
+                            // gap
+                            if (site.isGap()) {
+                                // gap
+                                if (site.isGap()) {
+                                    // gap
+                                    if (site.isGap()) {
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1971  BLEU: 0.0090  METEOR: 0.0888  ROUGE-L: 0.0909  
+--- Target ---
+public void copyFrom(PartitionClockModel source) {
+        clockType = source.clockType;
+        clockDistributionType = source.clockDistributionType;
+        continuousQuantile = source.continuousQuantile;
+        performModelAveraging = source.performModelAveraging;
+    }
+--- Generation ---
+public AbstractPartitionData getPartition() {
+        return partition;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2847  BLEU: 0.0288  METEOR: 0.2078  ROUGE-L: 0.1212  
+--- Target ---
+public void copyFrom(PartitionClockModel source) {
+        clockType = source.clockType;
+        clockDistributionType = source.clockDistributionType;
+        continuousQuantile = source.continuousQuantile;
+        performModelAveraging = source.performModelAveraging;
+    }
+--- Generation ---
+public void setPartitionTreeModel(PartitionTreeModel treeModel, boolean copyParameters) {
+        options.clearDataPartitionCaches();
+        this.treeModel = treeModel;
+        if (copyParameters) {
+            copyParameters(treeModel);
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1971  BLEU: 0.0090  METEOR: 0.0888  ROUGE-L: 0.0909  
+--- Target ---
+public void copyFrom(PartitionClockModel source) {
+        clockType = source.clockType;
+        clockDistributionType = source.clockDistributionType;
+        continuousQuantile = source.continuousQuantile;
+        performModelAveraging = source.performModelAveraging;
+    }
+--- Generation ---
+public AbstractPartitionData getPartition() {
+        return partition;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9999  ROUGE-L: 1.0000  
+--- Target ---
+public void copyFrom(PartitionClockModel source) {
+        clockType = source.clockType;
+        clockDistributionType = source.clockDistributionType;
+        continuousQuantile = source.continuousQuantile;
+        performModelAveraging = source.performModelAveraging;
+    }
+--- Generation ---
+public void copyFrom(PartitionClockModel source) {
+        clockType = source.clockType;
+        clockDistributionType = source.clockDistributionType;
+        continuousQuantile = source.continuousQuantile;
+        performModelAveraging = source.performModelAveraging;
+    }
+

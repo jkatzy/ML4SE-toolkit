@@ -1,0 +1,313 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0807  BLEU: 0.0001  METEOR: 0.0433  ROUGE-L: 0.0914  
+--- Target ---
+private int swipeIfNecessary(ViewHolder viewHolder) {
+    if (mActionState == ACTION_STATE_DRAG) {
+      return 0;
+    }
+    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);
+    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(
+      originalMovementFlags,
+      ViewCompat.getLayoutDirection(mRecyclerView));
+    final int flags = (absoluteMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    if (flags == 0) {
+      return 0;
+    }
+    final int originalFlags = (originalMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    int swipeDir;
+    if (Math.abs(mDx) > Math.abs(mDy)) {
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+    } else {
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+    }
+    return 0;
+  }
+--- Generation ---
+public int getSwipeDirection(ViewHolder viewHolder) {
+    if (mSelected == null || mSelected!= viewHolder) {
+      return 0;
+    }
+    return mSelectedFlags;
+  }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2690  BLEU: 0.0060  METEOR: 0.1373  ROUGE-L: 0.1931  
+--- Target ---
+private int swipeIfNecessary(ViewHolder viewHolder) {
+    if (mActionState == ACTION_STATE_DRAG) {
+      return 0;
+    }
+    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);
+    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(
+      originalMovementFlags,
+      ViewCompat.getLayoutDirection(mRecyclerView));
+    final int flags = (absoluteMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    if (flags == 0) {
+      return 0;
+    }
+    final int originalFlags = (originalMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    int swipeDir;
+    if (Math.abs(mDx) > Math.abs(mDy)) {
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+    } else {
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+    }
+    return 0;
+  }
+--- Generation ---
+public void swipe(ViewHolder viewHolder, int direction) {
+    if (!mCallback.hasSwipeFlag(mRecyclerView, viewHolder)) {
+      if (DEBUG) {
+        Log.e("Swipe has been called but swiping is not enabled");
+      }
+      return;
+    }
+    if (viewHolder.itemView.getParent()!= mRecyclerView) {
+      Log.e("Swipe has been called with a view holder which is not a child of "
+        + "the RecyclerView controlled by this ItemTouchHelper.");
+      return;
+    }
+    if (mActionState!= ACTION_STATE_SWIPE) {
+      return;
+    }
+    if (mSelected!= null && mSelected == viewHolder) {
+      return;
+    }
+    if (mSelected!= null) {
+      endRecoverAnimation(mSelected, false); // this may push it into pending cleanup list.
+      if (mPendingCleanup.remove(mSelected.itemView)) {
+        mCallback.clearView(mRecyclerView, mSelected);
+      }
+    }
+    select(viewHolder, ACTION_STATE_SWIPE);
+    mCallback.onSwiped(viewHolder, direction);
+  }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1703  BLEU: 0.0006  METEOR: 0.0562  ROUGE-L: 0.0957  
+--- Target ---
+private int swipeIfNecessary(ViewHolder viewHolder) {
+    if (mActionState == ACTION_STATE_DRAG) {
+      return 0;
+    }
+    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);
+    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(
+      originalMovementFlags,
+      ViewCompat.getLayoutDirection(mRecyclerView));
+    final int flags = (absoluteMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    if (flags == 0) {
+      return 0;
+    }
+    final int originalFlags = (originalMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    int swipeDir;
+    if (Math.abs(mDx) > Math.abs(mDy)) {
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+    } else {
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+    }
+    return 0;
+  }
+--- Generation ---
+private void addChildDrawingOrderCallback() {
+    if (mChildDrawingOrderCallback == null) {
+      mChildDrawingOrderCallback = new ChildDrawingOrderCallback() {
+        @Override
+        public int onGetChildDrawingOrder(int childCount, int i) {
+          if (mOverdrawChild!= null) {
+            return mOverdrawChildPosition;
+          }
+          return i;
+        }
+      };
+    }
+    mRecyclerView.setChildDrawingOrderCallback(mChildDrawingOrderCallback);
+  }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1224  BLEU: 0.0000  METEOR: 0.0283  ROUGE-L: 0.0444  
+--- Target ---
+private int swipeIfNecessary(ViewHolder viewHolder) {
+    if (mActionState == ACTION_STATE_DRAG) {
+      return 0;
+    }
+    final int originalMovementFlags = mCallback.getMovementFlags(mRecyclerView, viewHolder);
+    final int absoluteMovementFlags = mCallback.convertToAbsoluteDirection(
+      originalMovementFlags,
+      ViewCompat.getLayoutDirection(mRecyclerView));
+    final int flags = (absoluteMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    if (flags == 0) {
+      return 0;
+    }
+    final int originalFlags = (originalMovementFlags
+      & ACTION_MODE_SWIPE_MASK) >> (ACTION_STATE_SWIPE * DIRECTION_FLAG_COUNT);
+    int swipeDir;
+    if (Math.abs(mDx) > Math.abs(mDy)) {
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+    } else {
+      if ((swipeDir = checkVerticalSwipe(viewHolder, flags)) > 0) {
+        return swipeDir;
+      }
+      if ((swipeDir = checkHorizontalSwipe(viewHolder, flags)) > 0) {
+        // if swipe dir is not in original flags, it should be the relative direction
+        if ((originalFlags & swipeDir) == 0) {
+          // convert to relative
+          return Callback.convertToRelativeDirection(swipeDir,
+            ViewCompat.getLayoutDirection(mRecyclerView));
+        }
+        return swipeDir;
+      }
+    }
+    return 0;
+  }
+--- Generation ---
+public boolean onTouch(View v, MotionEvent event) {
+   *             if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+   *                 mItemTouchHelper.startSwipe(viewHolder);
+   *             }
+   *             return false;
+   *         }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public void onAnimationRepeat (Animator animator) {
+
+    }
+--- Generation ---
+@Override
+    public void onAnimationRepeat (Animator animator) {
+
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2424  BLEU: 0.0538  METEOR: 0.5496  ROUGE-L: 0.4348  
+--- Target ---
+@Override
+    public void onAnimationRepeat (Animator animator) {
+
+    }
+--- Generation ---
+@Override
+    public void onAnimationEnd (Animator animation) {
+      if (mAnimationType == ANIMATION_TYPE_DRAG) {
+        mOverdrawChild = null;
+        mOverdrawChildPosition = -1;
+        removeChildDrawingOrderCallbackIfNecessary(mOverdrawChild);
+      }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public void onAnimationRepeat (Animator animator) {
+
+    }
+--- Generation ---
+@Override
+    public void onAnimationRepeat (Animator animator) {
+
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2424  BLEU: 0.0538  METEOR: 0.5496  ROUGE-L: 0.4348  
+--- Target ---
+@Override
+    public void onAnimationRepeat (Animator animator) {
+
+    }
+--- Generation ---
+@Override
+    public void onAnimationEnd (Animator animation) {
+      if (mAnimationType == ANIMATION_TYPE_DRAG) {
+        mOverdrawChild = null;
+        mOverdrawChildPosition = -1;
+        removeChildDrawingOrderCallbackIfNecessary(mOverdrawChild);
+      }
+    }
+

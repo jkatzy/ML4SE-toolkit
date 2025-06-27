@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2102325581395349,
+            "BLEU": 0.018264196773863955,
+            "METEOR": 0.1707832665776591,
+            "ROUGE-L": 0.3
+        },
+        "target": "public boolean lock(T obj)\n    {\n        long count = backoffMin;\n        long timeout = backoffMinSleep;\n        long startTime = System.nanoTime();\n        while(!updater.compareAndSet(obj, UNLOCKED, LOCKED) ){\n\n            if(System.nanoTime() - startTime < spinTimeout){\n                int counter =0;\n                while(counter++ < count);\n                count+= backoffInt;\n            } else{\n                count = backoffMin;\n\n                if(timeout > backoffMaxSleep){\n                    return false;\n                } else{\n                    long millis = timeout/1000000;\n                    long nanos = timeout - millis*1000000;\n                    try {                       \n                        Thread.sleep(millis, (int)nanos);\n                    } catch (InterruptedException e) {\n                        // TODO Auto-generated catch block\n                        //e.printStackTrace();\n                    }\n                    timeout+= backoffSleepInt;\n                }\n            }\n            \n        }\n        return true;\n    }",
+        "generation": "@Override\n    public boolean tryLock(T obj) {\n        long start = System.nanoTime();\n        long end = start + spinTimeout;\n        while(System.nanoTime() < end){\n            if(updater.compareAndSet(obj, UNLOCKED, LOCKED)){\n                return true;\n            }\n        }\n        return false;\n    }",
+        "classification": "partial",
+        "comment": "signature + some body"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17488372093023252,
+            "BLEU": 0.0188692549631245,
+            "METEOR": 0.15021399265113378,
+            "ROUGE-L": 0.31578947368421056
+        },
+        "target": "public boolean lock(T obj)\n    {\n        long count = backoffMin;\n        long timeout = backoffMinSleep;\n        long startTime = System.nanoTime();\n        while(!updater.compareAndSet(obj, UNLOCKED, LOCKED) ){\n\n            if(System.nanoTime() - startTime < spinTimeout){\n                int counter =0;\n                while(counter++ < count);\n                count+= backoffInt;\n            } else{\n                count = backoffMin;\n\n                if(timeout > backoffMaxSleep){\n                    return false;\n                } else{\n                    long millis = timeout/1000000;\n                    long nanos = timeout - millis*1000000;\n                    try {                       \n                        Thread.sleep(millis, (int)nanos);\n                    } catch (InterruptedException e) {\n                        // TODO Auto-generated catch block\n                        //e.printStackTrace();\n                    }\n                    timeout+= backoffSleepInt;\n                }\n            }\n            \n        }\n        return true;\n    }",
+        "generation": "public boolean lock(T obj, long timeout)\n    {\n        long startTime = System.nanoTime();\n        long stopTime = startTime + timeout;\n        int count = backoffMin;\n        while(!updater.case.get(key);\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.07279344858962689,
+            "BLEU": 3.430486391804903e-05,
+            "METEOR": 0.04856396866840731,
+            "ROUGE-L": 0.1627906976744186
+        },
+        "target": "@Override\n    public boolean waitUntil(T obj, int value) {\n        long count = backoffMin;\n        long timeout = backoffMinSleep;\n        long startTime = System.nanoTime();\n        while(  !updater.compareAndSet(obj, value, value) ){\n\n            if(System.nanoTime() - startTime < spinTimeout){\n                int counter =0;\n                while(counter++ < count);\n                count+= backoffInt;\n            } else{\n                count = backoffMin;\n\n                if(timeout > backoffMaxSleep){\n                    return false;\n                } else{\n                    long millis = timeout/1000000;\n                    long nanos = timeout - millis*1000000;\n                    try {                       \n                        Thread.sleep(millis, (int)nanos);\n                    } catch (InterruptedException e) {\n                        // TODO Auto-generated catch block\n                        //e.printStackTrace();\n                    }\n                    timeout+= backoffSleepInt;\n                }\n            }\n            \n        }\n        return true;\n    }",
+        "generation": "public boolean unlock(T obj)\n    {\n        return updater.compareAndSet(obj, LOCKED, UNLOCKED);\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.23374760994263866,
+            "BLEU": 0.07663992333160177,
+            "METEOR": 0.3774696850177029,
+            "ROUGE-L": 0.16334661354581673
+        },
+        "target": "@Override\n    public boolean waitUntil(T obj, int value) {\n        long count = backoffMin;\n        long timeout = backoffMinSleep;\n        long startTime = System.nanoTime();\n        while(  !updater.compareAndSet(obj, value, value) ){\n\n            if(System.nanoTime() - startTime < spinTimeout){\n                int counter =0;\n                while(counter++ < count);\n                count+= backoffInt;\n            } else{\n                count = backoffMin;\n\n                if(timeout > backoffMaxSleep){\n                    return false;\n                } else{\n                    long millis = timeout/1000000;\n                    long nanos = timeout - millis*1000000;\n                    try {                       \n                        Thread.sleep(millis, (int)nanos);\n                    } catch (InterruptedException e) {\n                        // TODO Auto-generated catch block\n                        //e.printStackTrace();\n                    }\n                    timeout+= backoffSleepInt;\n                }\n            }\n            \n        }\n        return true;\n    }",
+        "generation": "@Override\n    public boolean tryLock(T obj, long timeOut /*nanoseconds*/) {\n        long count = backoffMin;\n        long timeout = backoffMinSleep;\n        long spinTimeout = this.spinTimeout;\n        if(timeOut < spinTimeout) spinTimeout = timeOut; \n        long startTime = System.nanoTime();\n        long stopTime =  System.nanoTime() + timeOut;\n        \n        while(!updater.compareAndSet(obj, UNLOCKED, LOCKED) ){\n\n            if( System.nanoTime() - startTime < spinTimeout){\n                int counter =0;\n                while(counter++ < count);\n                count+= backoffInt;\n            } else{\n                count = backoffMin;\n\n                if(timeout > backoffMaxSleep){\ne.get(key);\n    }\n\n    @Override\n    public void put(K key, V value) {\n        cache.put(key, value);\n    }\n\n    @Override\n    public void remove(K key) {\n        cache.remove(key);\n    }\n\n    @Override\n    public void clear() {\n        cache.clear();\n    }\n\n    @Override\n    public int size() {\n        return cache.size();\n    }\n\n    @Override\n    public boolean isEmpty() {\n        return cache.isEmpty();\n    }\n\n    @Override\n    public boolean containsKey(K key) {\n        return cache.containsKey(key);\n    }\n\n    @Override\n    public boolean containsValue(V value) {\n        return cache.containsValue(value);\n    }\n\n    @Override\n    public Set<K> keySet() {\n        return cache.keySet();\n    }\n\n    @Override\n    public Collection<V> values() {\n        return cache.values();\n    }\n\n    @Override\n    public Set<Entry<K, V>> entrySet() {\n        return cache.entrySet();\n    }\n\n}\n/*******************************************************************************\n* Copyright (c) 2013 Vladimir Rodionov. All Rights Reserved\n*\n* This code is released under the GNU Affero General Public License.\n*\n* See: http://www.fsf.org/licensing/licenses/agpl-3.0.html\n*\n* VLADIMIR RODIONOV MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY\n* OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE\n* IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR\n* NON-INFRINGEMENT. Vladimir Rodionov SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED\n* BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR\n* ITS DERIVATIVES.\n*\n* Author: \n*\n*******************************************************************************/\npackage com.koda.common.cache;\n\nimport java.util.Collection;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.concurrent.ConcurrentHashMap;\n\n/**\n * The Class ConcurrentMapCache.\n *\n * @param <K> the key type\n * @param <V> the value type\n */\npublic class ConcurrentMapCache<K, V> implements Cache<K, V> {\n\n    /** The cache. */\n    private Map<K, V> cache;\n\n    /**\n     * Instantiates a new concurrent map cache.\n     */\n    public ConcurrentMapCache() {\n        cache = new ConcurrentHashMap<K, V>();\n    }\n\n    /**\n     * Instantiates a new concurrent map cache.\n     *\n     * @param initialCapacity the initial capacity\n     */\n    public ConcurrentMapCache(int initialCapacity) {\n        cache = new ConcurrentHashMap<K, V>(initialCapacity);\n    }\n\n    /**\n     * Instantiates a new concurrent map cache.\n     *\n     * @param initialCapacity the initial capacity\n     * @param loadFactor the load factor\n     */\n    public ConcurrentMapCache(int initialCapacity, float loadFactor) {\n        cache = new ConcurrentHashMap<K, V>(initialCapacity, loadFactor);\n    }\n\n    /**\n     * Instantiates a new concurrent map cache.\n     *\n     * @param initialCapacity the initial capacity\n     * @param loadFactor the load factor\n     * @param concurrencyLevel the concurrency level\n     */\n    public ConcurrentMapCache(int initialCapacity, float loadFactor, int concurrencyLevel) {\n        cache = new ConcurrentHashMap<K, V>(initialCapacity, loadFactor, concurrencyLevel);\n    }\n\n    @Override\n    public V get(K key) {\n        return cache.get(key);\n    }\n\n    @Override\n    public void put(K key, V value) {\n        cache.put(key, value);\n    }\n\n    @Override\n    public void remove(K key) {\n        cache.remove(key);\n    }\n\n    @Override\n    public void clear() {\n        cache.clear();\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.12075983717774763,
+            "BLEU": 0.008521924222067866,
+            "METEOR": 0.18115942028985507,
+            "ROUGE-L": 0.09999999999999999
+        },
+        "target": "public void setBackoffSleepInt(long backoffSleepInt) {\n        this.backoffSleepInt = backoffSleepInt;\n    }",
+        "generation": "public boolean lock(T obj)\n    {\n        long count = backoffMin;\n        long timeout = backoffMinSleep;\n        while(!updater.compareAndSet(obj, UNLOCKED, LOCKED) ){\n\n            if(timeout > backoffMaxSleep){\n                return false;\n            } else{\n                long millis = timeout/1000000;\n                long nanos = timeout - millis*1000000;\n                try {                       \n                    Thread.sleep(millis, (int)nanos);\n                } catch (InterruptedException e) {\n                    // TODO Auto-generated catch block\n                    //e.printStackTrace();\n                }\n                timeout+= backoffSleepInt;\n            }\n            \n        }\n        return true;\n    }",
+        "classification": "incorrect",
+        "comment": "diff method, copied from another method"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void setBackoffSleepInt(long backoffSleepInt) {\n        this.backoffSleepInt = backoffSleepInt;\n    }",
+        "generation": "public void setBackoffSleepInt(long backoffSleepInt) {\n        this.backoffSleepInt = backoffSleepInt;\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

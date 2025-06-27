@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.363395225464191,
+            "BLEU": 0.17112968951316174,
+            "METEOR": 0.2808289773982183,
+            "ROUGE-L": 0.30769230769230765
+        },
+        "target": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        List<FileInfo> files = listFiles(closeSession, objectKey);\n        /*\n         * if there's an exact match, return it; otherwise return the last\n         * FileInfo matched\n         */\n        return files.stream().filter(fi -> fi.getName().equals(objectKey)).findFirst()\n                .orElse(files.size() != 0 ? files.get(files.size() - 1) : null);\n    }",
+        "generation": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            HeadObjectResponse response = headObject(objectKey).join();\n            completedWithoutError = true;\n            return new FileInfo(objectKey, response.contentLength()!= null,\n                    response.lastModified()!= null? response.lastModified().toEpochMilli() : -1,\n                    response.contentLength()!= null? response.contentLength() : -1);\n        } catch (CompletionException ex) {\n            throw new CompletionException(ex.getCause());\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "classification": "partial",
+        "comment": "signature"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.36401098901098905,
+            "BLEU": 0.16804500806702127,
+            "METEOR": 0.2802327375311308,
+            "ROUGE-L": 0.3030303030303031
+        },
+        "target": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        List<FileInfo> files = listFiles(closeSession, objectKey);\n        /*\n         * if there's an exact match, return it; otherwise return the last\n         * FileInfo matched\n         */\n        return files.stream().filter(fi -> fi.getName().equals(objectKey)).findFirst()\n                .orElse(files.size() != 0 ? files.get(files.size() - 1) : null);\n    }",
+        "generation": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            HeadObjectResponse response = headObject(objectKey).join();\n            completedWithoutError = true;\n            return new FileInfo(objectKey, false, response.lastModified().toEpochMilli(),\n                    response.contentLength());\n        } catch (CompletionException ex) {\n            if (ex.getCause() instanceof NoSuchKeyException) {\n                return null;\n            } else {\n                throw ex;\n            }\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.11210398050365555,
+            "BLEU": 0.0013806915509641214,
+            "METEOR": 0.07200000000000001,
+            "ROUGE-L": 0.03783783783783783
+        },
+        "target": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        List<FileInfo> files = listFiles(closeSession, objectKey);\n        /*\n         * if there's an exact match, return it; otherwise return the last\n         * FileInfo matched\n         */\n        return files.stream().filter(fi -> fi.getName().equals(objectKey)).findFirst()\n                .orElse(files.size() != 0 ? files.get(files.size() - 1) : null);\n    }",
+        "generation": "}\n/metl-core/src/main/java/org/jumpmind/metl/core/model/Resource.java\n/**\n * Licensed to JumpMind Inc under one or more contributor\n * license agreements.  See the NOTICE file distributed\n * with this work for additional information regarding\n * copyright ownership.  JumpMind Inc licenses this file\n * to you under the GNU General Public License, version 3.0 (GPLv3)\n * (the \"License\"); you may not use this file except in compliance\n * with the License.\n *\n * You should have received a copy of the GNU General Public License,\n * version 3.0 (GPLv3) along with this library; if not, see\n * <http://www.gnu.org/licenses/>.\n *\n * Unless required by applicable law or agreed to in writing,\n * software distributed under the License is distributed on an\n * \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n * KIND, either express or implied.  See the License for the\n * specific language governing permissions and limitations\n * under the License.\n */\npackage org.jumpmind.metl.core.model;\n\nimport java.io.File;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.OutputStream;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Collections;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Objects;\nimport java.util.Optional;\nimport java.util.Properties;\nimport java.util.concurrent.CompletableFuture;\nimport java.util.concurrent.CompletionException;\nimport java.util.concurrent.ExecutionException;\nimport java.util.concurrent.Future;\nimport java.util.concurrent.TimeUnit;\nimport java.util.concurrent.TimeoutException;\nimport java.util.function.Function;\nimport java.util.stream.Collectors;\n\nimport org.apache.commons.io.FileUtils;\nimport org.apache.commons.io.IOUtils;\nimport org.apache.commons.lang3.StringUtils;\nimport org.jumpmind.log.JMMLogger;\nimport org.jumpmind.log.JMMLoggerFactory;\nimport org.jumpmind.metl.core.model.runtime.RuntimeContext;\nimport org.jumpmind.metl.core.model.runtime.RuntimeContextFactory;\nimport org.jumpmind.metl.core.model.runtime.RuntimeContextFactory.RuntimeContextFactoryException;\nimport org.jumpmind.metl.core.model.runtime.RuntimeContextFactory.RuntimeContextFactoryResult;\nimport org.jumpmind.metl.core.model.runtime.RuntimeContextFactory.RuntimeContextFactoryResult.RuntimeContextFactoryResultType;\nimport org.jumpmind.metl.core.model.runtime.RuntimeContextFactory.RuntimeContextFactoryResult.RuntimeContextFactoryResultType.RuntimeContextFactoryResultTypeException;",
+        "classification": "incorrect",
+        "comment": "EOF -> NF, repetition"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4099616858237548,
+            "BLEU": 0.20972549147826838,
+            "METEOR": 0.33478893740902477,
+            "ROUGE-L": 0.36781609195402293
+        },
+        "target": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        List<FileInfo> files = listFiles(closeSession, objectKey);\n        /*\n         * if there's an exact match, return it; otherwise return the last\n         * FileInfo matched\n         */\n        return files.stream().filter(fi -> fi.getName().equals(objectKey)).findFirst()\n                .orElse(files.size() != 0 ? files.get(files.size() - 1) : null);\n    }",
+        "generation": "@Override\n    public FileInfo listFile(final String objectKey, final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            FileInfo file = listFile(objectKey).join();\n            completedWithoutError = true;\n            return file;\n        } catch (CompletionException ex) {\n            throw new ListFilesPartialResult(Collections.emptyList(), ex);\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3770161290322581,
+            "BLEU": 0.18877489428887517,
+            "METEOR": 0.3232758620689655,
+            "ROUGE-L": 0.49056603773584906
+        },
+        "target": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            moveFile(fromFilePath, toFilePath);\n            completedWithoutError = true;\n            return true;\n        } catch (Exception ex) {\n            return false;\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "generation": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        throw new UnsupportedOperationException(\"not yet implemented\");\n    }",
+        "classification": "partial",
+        "comment": "signatuere, not implemented body"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999937112455507,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            moveFile(fromFilePath, toFilePath);\n            completedWithoutError = true;\n            return true;\n        } catch (Exception ex) {\n            return false;\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "generation": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            moveFile(fromFilePath, toFilePath);\n            completedWithoutError = true;\n            return true;\n        } catch (Exception ex) {\n            return false;\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3770161290322581,
+            "BLEU": 0.18877489428887517,
+            "METEOR": 0.3232758620689655,
+            "ROUGE-L": 0.49056603773584906
+        },
+        "target": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            moveFile(fromFilePath, toFilePath);\n            completedWithoutError = true;\n            return true;\n        } catch (Exception ex) {\n            return false;\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "generation": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        throw new UnsupportedOperationException(\"not yet implemented\");\n    }",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999937112455507,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            moveFile(fromFilePath, toFilePath);\n            completedWithoutError = true;\n            return true;\n        } catch (Exception ex) {\n            return false;\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "generation": "@Override\n    public boolean renameFile(final String fromFilePath, final String toFilePath,\n            final boolean closeSession) {\n        boolean completedWithoutError = false;\n        try {\n            moveFile(fromFilePath, toFilePath);\n            completedWithoutError = true;\n            return true;\n        } catch (Exception ex) {\n            return false;\n        } finally {\n            if (closeSession) {\n                close(completedWithoutError);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

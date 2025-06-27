@@ -1,0 +1,190 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1133  BLEU: 0.1077  METEOR: 0.3773  ROUGE-L: 0.2247  
+--- Target ---
+@Override
+  public void exec(Game p_game) throws RpcFmpException
+  {
+    super.exec( p_game );
+    p_game.setLastTimeStepChange( new Date( SharedMethods.currentTimeMillis() ) );
+    EbRegistration registration = p_game.getRegistration( getRegistrationId() );
+    if( registration != null )
+    {
+      // backup to keep track of this action
+      m_oldAccountId = registration.getAccount().getId();
+      p_game.addAccount( registration.getAccount() );
+
+      if( !registration.isReplacement() )
+      {
+        registration.setOriginalAccountId( registration.getAccount().getId() );
+      }
+      registration.setAccount( null );
+      registration.getTeam(p_game).setEndTurnDate( null );
+      
+      // update isOpen flag
+      p_game.updateOpenPauseStatus();
+    }
+
+  }
+--- Generation ---
+@Override
+  public void exec(Game p_game) throws RpcFmpException
+  {
+    super.exec( p_game );
+    EbRegistration registration = p_game.getRegistration( getRegistrationId() );
+    if( registration == null )
+    {
+      // no i18n
+      throw new RpcFmpException( "No registration to ban was selected" );
+    }
+    if( registration.getColor() == EnuColor.None )
+    {
+      throw new RpcFmpException( errMsg().cantBanPlayerNoFreighter() );
+    }
+    registration.setBanned( true );
+    registration.setBannedDate( new Date() );
+    registration.setBannedReason( getReason() );
+    registration.setBannedBy( SharedMethods.getAccountId() );
+    registration.setBannedByRegistrationId( getRegistrationId() );
+    registration.setBannedByRegistrationName( getRegistrationName() );
+    registration.setBannedByRegistrationColor( getRegistrationColor() );
+    registration.setBannedByRegistrationColorName( getRegistrationColorName() );
+    registration.setBannedByRegistrationColorHex( getRegistrationColorHex() );
+    registration.setBannedByRegistrationColorRgb( getRegistrationColorRgb() );
+    registration.setBannedByRegistrationColorHsl( getRegistrationColorHsl() );
+    registration.setBannedByRegistrationColorHsv( getRegistrationColorHsv() );
+    registration.setBannedByRegistrationColorHsva( getRegistrationColorHsva() );
+    registration.setBannedByRegistrationColorHsvaHex( getRegistrationColorHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaRgb( getRegistrationColorHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsl( getRegistrationColorHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsv( getRegistrationColorHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsva( getRegistrationColorHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHex( getRegistrationColorHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaRgb( getRegistrationColorHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsl() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsv() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsva() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb() );
+    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaH
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1462  BLEU: 0.0167  METEOR: 0.1964  ROUGE-L: 0.3529  
+--- Target ---
+@Override
+  public void exec(Game p_game) throws RpcFmpException
+  {
+    super.exec( p_game );
+    p_game.setLastTimeStepChange( new Date( SharedMethods.currentTimeMillis() ) );
+    EbRegistration registration = p_game.getRegistration( getRegistrationId() );
+    if( registration != null )
+    {
+      // backup to keep track of this action
+      m_oldAccountId = registration.getAccount().getId();
+      p_game.addAccount( registration.getAccount() );
+
+      if( !registration.isReplacement() )
+      {
+        registration.setOriginalAccountId( registration.getAccount().getId() );
+      }
+      registration.setAccount( null );
+      registration.getTeam(p_game).setEndTurnDate( null );
+      
+      // update isOpen flag
+      p_game.updateOpenPauseStatus();
+    }
+
+  }
+--- Generation ---
+@Override
+  public void exec(Game p_game) throws RpcFmpException
+  {
+    super.exec( p_game );
+    p_game.setGa  }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4626  BLEU: 0.1443  METEOR: 0.3517  ROUGE-L: 0.4762  
+--- Target ---
+@Override
+  public String toString()
+  {
+    String str = super.toString();
+    str += " : " + "accountid = " + m_oldAccountId;
+    return str;
+  }
+--- Generation ---
+@Override
+  public String toString()
+  {
+    return "Ban " + getRegistrationId();
+  }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+  public String toString()
+  {
+    String str = super.toString();
+    str += " : " + "accountid = " + m_oldAccountId;
+    return str;
+  }
+--- Generation ---
+@Override
+  public String toString()
+  {
+    String str = super.toString();
+    str += " : " + "accountid = " + m_oldAccountId;
+    return str;
+  }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9993  ROUGE-L: 1.0000  
+--- Target ---
+public void setRegistrationId(long p_registrationId)
+  {
+    m_registrationId = p_registrationId;
+  }
+--- Generation ---
+public void setRegistrationId(long p_registrationId)
+  {
+    m_registrationId = p_registrationId;
+  }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9993  ROUGE-L: 1.0000  
+--- Target ---
+public void setRegistrationId(long p_registrationId)
+  {
+    m_registrationId = p_registrationId;
+  }
+--- Generation ---
+public void setRegistrationId(long p_registrationId)
+  {
+    m_registrationId = p_registrationId;
+  }
+

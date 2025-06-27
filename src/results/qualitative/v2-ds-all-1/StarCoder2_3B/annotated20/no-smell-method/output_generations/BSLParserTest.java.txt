@@ -1,0 +1,25 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2979  BLEU: 0.0348  METEOR: 0.1282  ROUGE-L: 0.0000  
+--- Target ---
+@Override
+  protected String getTestDataPath() {
+    return TestUtils.BASE_TEST_DATA_PATH;
+  }
+--- Generation ---
+public void testHello2() {
+    doTest(true);
+  }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+  protected String getTestDataPath() {
+    return TestUtils.BASE_TEST_DATA_PATH;
+  }
+--- Generation ---
+@Override
+  protected String getTestDataPath() {
+    return TestUtils.BASE_TEST_DATA_PATH;
+  }
+

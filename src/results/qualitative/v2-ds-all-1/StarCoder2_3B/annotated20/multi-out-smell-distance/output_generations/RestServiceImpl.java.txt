@@ -1,0 +1,183 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1797  BLEU: 0.0019  METEOR: 0.0697  ROUGE-L: 0.0702  
+--- Target ---
+public boolean doRegister(String email, String password) {
+        boolean ret;
+        try {
+            JSONUtils.createObjectMapper().readTree(
+                    postForResource(false,
+                            URL_S_BASE + "/register/user",
+                            "email", email,
+                            "password", password,
+                            "passwordVerification", password));
+            ret = true;
+        } catch (TimeoutException e) {
+            ret = false;
+        } catch (IOException e) {
+            notifyListenersNotOnline();
+            ret = false;
+        } catch (RestException e) {
+            ret = false;
+        }
+        return ret;
+    }
+--- Generation ---
+public void doLogout() {
+        synchronized (lock) {
+            user = null;
+            authTokenByDevice = null;
+            dataService.deleteData();
+        }
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0855  BLEU: 0.0000  METEOR: 0.0203  ROUGE-L: 0.0400  
+--- Target ---
+public boolean doRegister(String email, String password) {
+        boolean ret;
+        try {
+            JSONUtils.createObjectMapper().readTree(
+                    postForResource(false,
+                            URL_S_BASE + "/register/user",
+                            "email", email,
+                            "password", password,
+                            "passwordVerification", password));
+            ret = true;
+        } catch (TimeoutException e) {
+            ret = false;
+        } catch (IOException e) {
+            notifyListenersNotOnline();
+            ret = false;
+        } catch (RestException e) {
+            ret = false;
+        }
+        return ret;
+    }
+--- Generation ---
+private void notifyListenersNotOnline() {
+        doNotifyTimeout();
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1493  BLEU: 0.0010  METEOR: 0.0601  ROUGE-L: 0.0727  
+--- Target ---
+public boolean doRegister(String email, String password) {
+        boolean ret;
+        try {
+            JSONUtils.createObjectMapper().readTree(
+                    postForResource(false,
+                            URL_S_BASE + "/register/user",
+                            "email", email,
+                            "password", password,
+                            "passwordVerification", password));
+            ret = true;
+        } catch (TimeoutException e) {
+            ret = false;
+        } catch (IOException e) {
+            notifyListenersNotOnline();
+            ret = false;
+        } catch (RestException e) {
+            ret = false;
+        }
+        return ret;
+    }
+--- Generation ---
+public void doLogout() {
+        synchronized (lock) {
+            user = null;
+            dataService.deleteData();
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0855  BLEU: 0.0000  METEOR: 0.0203  ROUGE-L: 0.0400  
+--- Target ---
+public boolean doRegister(String email, String password) {
+        boolean ret;
+        try {
+            JSONUtils.createObjectMapper().readTree(
+                    postForResource(false,
+                            URL_S_BASE + "/register/user",
+                            "email", email,
+                            "password", password,
+                            "passwordVerification", password));
+            ret = true;
+        } catch (TimeoutException e) {
+            ret = false;
+        } catch (IOException e) {
+            notifyListenersNotOnline();
+            ret = false;
+        } catch (RestException e) {
+            ret = false;
+        }
+        return ret;
+    }
+--- Generation ---
+private void notifyListenersNotOnline() {
+        doNotifyTimeout();
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0952  BLEU: 0.0036  METEOR: 0.0870  ROUGE-L: 0.0000  
+--- Target ---
+private void doNotifyTimeout() {
+        listener.onRestServiceNotOnline();
+    }
+--- Generation ---
+public Document getGame(String id) {
+        Document document = dataService.loadDocument(id); // document.getProperty("modelId");
+        Document ret = null;
+        try {
+            ret = dataService.loadDocument(document.getProperty("modelId"));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (TimeoutException e) {
+
+        } catch (IOException e) {
+//            doNotifyNotOnline();
+        } catch (RestException e) {
+//            doLogin(false);
+            doLogin();
+        } catch (CouchbaseLiteException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        return ret;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9977  ROUGE-L: 1.0000  
+--- Target ---
+private void doNotifyTimeout() {
+        listener.onRestServiceNotOnline();
+    }
+--- Generation ---
+private void doNotifyTimeout() {
+        listener.onRestServiceNotOnline();
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4683  BLEU: 0.0906  METEOR: 0.4782  ROUGE-L: 0.4286  
+--- Target ---
+private void doNotifyTimeout() {
+        listener.onRestServiceNotOnline();
+    }
+--- Generation ---
+@Override
+    public void doNotifyTimeout() {
+        if (listener!= null) {
+            listener.onTimeout();
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.8916  BLEU: 0.2541  METEOR: 0.8067  ROUGE-L: 0.8000  
+--- Target ---
+private void doNotifyTimeout() {
+        listener.onRestServiceNotOnline();
+    }
+--- Generation ---
+private void doNotifyNotOnline() {
+        listener.onRestServiceNotOnline();
+    }
+

@@ -1,0 +1,202 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4502  BLEU: 0.0091  METEOR: 0.1584  ROUGE-L: 0.3462  
+--- Target ---
+void correct_copyFrom(IActorRef<LeakedState> other) {
+            other.call(a -> a.value //another thread
+                    , result -> value = result //..back to my thread
+            );
+        }
+--- Generation ---
+void WRONG_copyTo(IActorRef<LeakedState> ref) {
+            ref.send(a -> {
+                a.value = value;
+                //Probably in another thread, leading
+                //to shared mutable access - DON'T do this!
+                //Never access local mutable fields from here!
+            });
+        }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4502  BLEU: 0.0091  METEOR: 0.1584  ROUGE-L: 0.3462  
+--- Target ---
+void correct_copyFrom(IActorRef<LeakedState> other) {
+            other.call(a -> a.value //another thread
+                    , result -> value = result //..back to my thread
+            );
+        }
+--- Generation ---
+void WRONG_copyTo(IActorRef<LeakedState> ref) {
+            ref.send(a -> {
+                a.value = value;
+                //Probably in another thread, leading
+                //to shared mutable access - DON'T do this!
+                //Never access local mutable fields from here!
+            });
+        }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4708  BLEU: 0.0109  METEOR: 0.1389  ROUGE-L: 0.3404  
+--- Target ---
+void correct_copyFrom(IActorRef<LeakedState> other) {
+            other.call(a -> a.value //another thread
+                    , result -> value = result //..back to my thread
+            );
+        }
+--- Generation ---
+void WRONG_copyTo(IActorRef<LeakedState> ref) {
+            ref.send(a -> {
+                a.value = value;
+                
+                //to shared mutable access - DON'T do this!
+                //Never access local mutable fields from here!
+            });
+        }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4708  BLEU: 0.0109  METEOR: 0.1389  ROUGE-L: 0.3404  
+--- Target ---
+void correct_copyFrom(IActorRef<LeakedState> other) {
+            other.call(a -> a.value //another thread
+                    , result -> value = result //..back to my thread
+            );
+        }
+--- Generation ---
+void WRONG_copyTo(IActorRef<LeakedState> ref) {
+            ref.send(a -> {
+                a.value = value;
+                
+                //to shared mutable access - DON'T do this!
+                //Never access local mutable fields from here!
+            });
+        }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1863  BLEU: 0.0029  METEOR: 0.1152  ROUGE-L: 0.2154  
+--- Target ---
+public static void main(String[] args) throws InterruptedException {
+//        actorMemoryUse(100000, false);
+//        actorMemoryUse(100000, true);
+        actorMemoryUse(100000, false);
+        actorMemoryUse(100000, true);
+        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {
+            listenToMultipleFactories(f);
+            easy_to_learn(f);
+            nonBlockingFuture(f);
+            new CallChain().demo(f);
+            f.await(1000);
+            Throttle.demo(f, 7);
+            cancelOp(f);
+            minimumExample(f);
+        }
+        asyncConcept("test string");
+    }
+--- Generation ---
+static void actorMemoryUse(int numActors) {
+        actorMemoryUse(numActors, true);
+        actorMemoryUse(numActors, false);
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public static void main(String[] args) throws InterruptedException {
+//        actorMemoryUse(100000, false);
+//        actorMemoryUse(100000, true);
+        actorMemoryUse(100000, false);
+        actorMemoryUse(100000, true);
+        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {
+            listenToMultipleFactories(f);
+            easy_to_learn(f);
+            nonBlockingFuture(f);
+            new CallChain().demo(f);
+            f.await(1000);
+            Throttle.demo(f, 7);
+            cancelOp(f);
+            minimumExample(f);
+        }
+        asyncConcept("test string");
+    }
+--- Generation ---
+public static void main(String[] args) throws InterruptedException {
+//        actorMemoryUse(100000, false);
+//        actorMemoryUse(100000, true);
+        actorMemoryUse(100000, false);
+        actorMemoryUse(100000, true);
+        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {
+            listenToMultipleFactories(f);
+            easy_to_learn(f);
+            nonBlockingFuture(f);
+            new CallChain().demo(f);
+            f.await(1000);
+            Throttle.demo(f, 7);
+            cancelOp(f);
+            minimumExample(f);
+        }
+        asyncConcept("test string");
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1863  BLEU: 0.0029  METEOR: 0.1152  ROUGE-L: 0.2154  
+--- Target ---
+public static void main(String[] args) throws InterruptedException {
+//        actorMemoryUse(100000, false);
+//        actorMemoryUse(100000, true);
+        actorMemoryUse(100000, false);
+        actorMemoryUse(100000, true);
+        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {
+            listenToMultipleFactories(f);
+            easy_to_learn(f);
+            nonBlockingFuture(f);
+            new CallChain().demo(f);
+            f.await(1000);
+            Throttle.demo(f, 7);
+            cancelOp(f);
+            minimumExample(f);
+        }
+        asyncConcept("test string");
+    }
+--- Generation ---
+static void actorMemoryUse(int numActors) {
+        actorMemoryUse(numActors, true);
+        actorMemoryUse(numActors, false);
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public static void main(String[] args) throws InterruptedException {
+//        actorMemoryUse(100000, false);
+//        actorMemoryUse(100000, true);
+        actorMemoryUse(100000, false);
+        actorMemoryUse(100000, true);
+        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {
+            listenToMultipleFactories(f);
+            easy_to_learn(f);
+            nonBlockingFuture(f);
+            new CallChain().demo(f);
+            f.await(1000);
+            Throttle.demo(f, 7);
+            cancelOp(f);
+            minimumExample(f);
+        }
+        asyncConcept("test string");
+    }
+--- Generation ---
+public static void main(String[] args) throws InterruptedException {
+//        actorMemoryUse(100000, false);
+//        actorMemoryUse(100000, true);
+        actorMemoryUse(100000, false);
+        actorMemoryUse(100000, true);
+        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {
+            listenToMultipleFactories(f);
+            easy_to_learn(f);
+            nonBlockingFuture(f);
+            new CallChain().demo(f);
+            f.await(1000);
+            Throttle.demo(f, 7);
+            cancelOp(f);
+            minimumExample(f);
+        }
+        asyncConcept("test string");
+    }
+

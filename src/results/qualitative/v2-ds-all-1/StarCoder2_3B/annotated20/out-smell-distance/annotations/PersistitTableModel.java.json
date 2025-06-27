@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9189189189189189,
+            "BLEU": 0.8408964152537145,
+            "METEOR": 0.8737244897959183,
+            "ROUGE-L": 0.8333333333333334
+        },
+        "target": "private Row(byte[] keyBytes) {\n            _keyBytes = keyBytes;\n        }",
+        "generation": "public Row(byte[] keyBytes) {\n            _keyBytes = keyBytes;\n        }",
+        "classification": "partial",
+        "comment": "only misses encapsulation of method"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9189189189189189,
+            "BLEU": 0.8408964152537145,
+            "METEOR": 0.8737244897959183,
+            "ROUGE-L": 0.8333333333333334
+        },
+        "target": "private Row(byte[] keyBytes) {\n            _keyBytes = keyBytes;\n        }",
+        "generation": "public Row(byte[] keyBytes) {\n            _keyBytes = keyBytes;\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7,
+            "BLEU": 0.3155984539112945,
+            "METEOR": 0.6722222222222223,
+            "ROUGE-L": 0.5
+        },
+        "target": "private boolean isExpanded() {\n            return true;\n        }",
+        "generation": "public boolean isExpanded() {\n            return _keyBytes.length > 0;\n        }",
+        "classification": "correct",
+        "comment": "better implementation than target"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7,
+            "BLEU": 0.3155984539112945,
+            "METEOR": 0.6722222222222223,
+            "ROUGE-L": 0.5
+        },
+        "target": "private boolean isExpanded() {\n            return true;\n        }",
+        "generation": "public boolean isExpanded() {\n            return _keyBytes.length > 0;\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4062909567496723,
+            "BLEU": 0.024159055400511845,
+            "METEOR": 0.18774002954209745,
+            "ROUGE-L": 0.25925925925925924
+        },
+        "target": "@Override\n        public String getToolTipText(MouseEvent me) {\n            int row = rowAtPoint(me.getPoint());\n            int col = columnAtPoint(me.getPoint());\n            if (row >= 0 && col >= 0) {\n                Object value = getModel().getValueAt(row, col);\n                if (value != null) {\n                    TableCellRenderer tcr = getCellRenderer(row, col);\n                    Component rc = tcr.getTableCellRendererComponent(this, value, false, false, row, col);\n                    if (rc instanceof JLabel) {\n                        String s = ((JLabel) rc).getText();\n                        if (s.length() > 20)\n                            return s;\n                    }\n                }\n            }\n            return null;\n        }",
+        "generation": "@Override\n        public void changeSelection(int row, int column, boolean toggle, boolean extend) {\n            if (row < 0)\n                return;\n            if (row >= getRowCount())\n                return;\n            Row rowValue = (Row) getValueAt(row, 0);\n            if (rowValue == null)\n                return;\n            if (rowValue.getKey().getEncodedSize() == 0)\n                return;\n            if (rowValue.isExpanded()) {\n                // TODO - implement expanding\n            } else {\n                // TODO - implement collapsing\n            }\n        }",
+        "classification": "incorrect",
+        "comment": "diff method, produced TODOs"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9986893840104849,
+            "BLEU": 0.9479112999934699,
+            "METEOR": 0.9724108698540959,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n        public String getToolTipText(MouseEvent me) {\n            int row = rowAtPoint(me.getPoint());\n            int col = columnAtPoint(me.getPoint());\n            if (row >= 0 && col >= 0) {\n                Object value = getModel().getValueAt(row, col);\n                if (value != null) {\n                    TableCellRenderer tcr = getCellRenderer(row, col);\n                    Component rc = tcr.getTableCellRendererComponent(this, value, false, false, row, col);\n                    if (rc instanceof JLabel) {\n                        String s = ((JLabel) rc).getText();\n                        if (s.length() > 20)\n                            return s;\n                    }\n                }\n            }\n            return null;\n        }",
+        "generation": "@Override\n        public String getToolTipText(MouseEvent me) {\n            int row = rowAtPoint(me.getPoint());\n            int col = columnAtPoint(me.getPoint());\n            if (row >= 0 && col >= 0) {\n                Object value = getModel().getValueAt(row, col);\n                if (value!= null) {\n                    TableCellRenderer tcr = getCellRenderer(row, col);\n                    Component rc = tcr.getTableCellRendererComponent(this, value, false, false, row, col);\n                    if (rc instanceof JLabel) {\n                        String s = ((JLabel) rc).getText();\n                        if (s.length() > 20)\n                            return s;\n                    }\n                }\n            }\n            return null;\n        }",
+        "classification": "",
+        "comment": ""
+    }
+]

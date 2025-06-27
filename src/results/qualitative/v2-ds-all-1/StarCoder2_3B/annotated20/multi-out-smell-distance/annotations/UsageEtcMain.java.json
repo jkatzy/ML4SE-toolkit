@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4501607717041801,
+            "BLEU": 0.009131246806741877,
+            "METEOR": 0.1583710407239819,
+            "ROUGE-L": 0.34615384615384615
+        },
+        "target": "void correct_copyFrom(IActorRef<LeakedState> other) {\n            other.call(a -> a.value //another thread\n                    , result -> value = result //..back to my thread\n            );\n        }",
+        "generation": "void WRONG_copyTo(IActorRef<LeakedState> ref) {\n            ref.send(a -> {\n                a.value = value;\n                //Probably in another thread, leading\n                //to shared mutable access - DON'T do this!\n                //Never access local mutable fields from here!\n            });\n        }",
+        "classification": "incorrect",
+        "comment": "copy from context (prev methdod)"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4501607717041801,
+            "BLEU": 0.009131246806741877,
+            "METEOR": 0.1583710407239819,
+            "ROUGE-L": 0.34615384615384615
+        },
+        "target": "void correct_copyFrom(IActorRef<LeakedState> other) {\n            other.call(a -> a.value //another thread\n                    , result -> value = result //..back to my thread\n            );\n        }",
+        "generation": "void WRONG_copyTo(IActorRef<LeakedState> ref) {\n            ref.send(a -> {\n                a.value = value;\n                //Probably in another thread, leading\n                //to shared mutable access - DON'T do this!\n                //Never access local mutable fields from here!\n            });\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.47080291970802923,
+            "BLEU": 0.010924856017658639,
+            "METEOR": 0.1388888888888889,
+            "ROUGE-L": 0.3404255319148936
+        },
+        "target": "void correct_copyFrom(IActorRef<LeakedState> other) {\n            other.call(a -> a.value //another thread\n                    , result -> value = result //..back to my thread\n            );\n        }",
+        "generation": "void WRONG_copyTo(IActorRef<LeakedState> ref) {\n            ref.send(a -> {\n                a.value = value;\n                \n                //to shared mutable access - DON'T do this!\n                //Never access local mutable fields from here!\n            });\n        }",
+        "classification": "incorrect",
+        "comment": "copy from context (prev methdod)"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.47080291970802923,
+            "BLEU": 0.010924856017658639,
+            "METEOR": 0.1388888888888889,
+            "ROUGE-L": 0.3404255319148936
+        },
+        "target": "void correct_copyFrom(IActorRef<LeakedState> other) {\n            other.call(a -> a.value //another thread\n                    , result -> value = result //..back to my thread\n            );\n        }",
+        "generation": "void WRONG_copyTo(IActorRef<LeakedState> ref) {\n            ref.send(a -> {\n                a.value = value;\n                \n                //to shared mutable access - DON'T do this!\n                //Never access local mutable fields from here!\n            });\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.18627450980392157,
+            "BLEU": 0.0029244670516714233,
+            "METEOR": 0.11524024024024022,
+            "ROUGE-L": 0.21538461538461537
+        },
+        "target": "public static void main(String[] args) throws InterruptedException {\n//        actorMemoryUse(100000, false);\n//        actorMemoryUse(100000, true);\n        actorMemoryUse(100000, false);\n        actorMemoryUse(100000, true);\n        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {\n            listenToMultipleFactories(f);\n            easy_to_learn(f);\n            nonBlockingFuture(f);\n            new CallChain().demo(f);\n            f.await(1000);\n            Throttle.demo(f, 7);\n            cancelOp(f);\n            minimumExample(f);\n        }\n        asyncConcept(\"test string\");\n    }",
+        "generation": "static void actorMemoryUse(int numActors) {\n        actorMemoryUse(numActors, true);\n        actorMemoryUse(numActors, false);\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999921875,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static void main(String[] args) throws InterruptedException {\n//        actorMemoryUse(100000, false);\n//        actorMemoryUse(100000, true);\n        actorMemoryUse(100000, false);\n        actorMemoryUse(100000, true);\n        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {\n            listenToMultipleFactories(f);\n            easy_to_learn(f);\n            nonBlockingFuture(f);\n            new CallChain().demo(f);\n            f.await(1000);\n            Throttle.demo(f, 7);\n            cancelOp(f);\n            minimumExample(f);\n        }\n        asyncConcept(\"test string\");\n    }",
+        "generation": "public static void main(String[] args) throws InterruptedException {\n//        actorMemoryUse(100000, false);\n//        actorMemoryUse(100000, true);\n        actorMemoryUse(100000, false);\n        actorMemoryUse(100000, true);\n        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {\n            listenToMultipleFactories(f);\n            easy_to_learn(f);\n            nonBlockingFuture(f);\n            new CallChain().demo(f);\n            f.await(1000);\n            Throttle.demo(f, 7);\n            cancelOp(f);\n            minimumExample(f);\n        }\n        asyncConcept(\"test string\");\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.18627450980392157,
+            "BLEU": 0.0029244670516714233,
+            "METEOR": 0.11524024024024022,
+            "ROUGE-L": 0.21538461538461537
+        },
+        "target": "public static void main(String[] args) throws InterruptedException {\n//        actorMemoryUse(100000, false);\n//        actorMemoryUse(100000, true);\n        actorMemoryUse(100000, false);\n        actorMemoryUse(100000, true);\n        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {\n            listenToMultipleFactories(f);\n            easy_to_learn(f);\n            nonBlockingFuture(f);\n            new CallChain().demo(f);\n            f.await(1000);\n            Throttle.demo(f, 7);\n            cancelOp(f);\n            minimumExample(f);\n        }\n        asyncConcept(\"test string\");\n    }",
+        "generation": "static void actorMemoryUse(int numActors) {\n        actorMemoryUse(numActors, true);\n        actorMemoryUse(numActors, false);\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999921875,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static void main(String[] args) throws InterruptedException {\n//        actorMemoryUse(100000, false);\n//        actorMemoryUse(100000, true);\n        actorMemoryUse(100000, false);\n        actorMemoryUse(100000, true);\n        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {\n            listenToMultipleFactories(f);\n            easy_to_learn(f);\n            nonBlockingFuture(f);\n            new CallChain().demo(f);\n            f.await(1000);\n            Throttle.demo(f, 7);\n            cancelOp(f);\n            minimumExample(f);\n        }\n        asyncConcept(\"test string\");\n    }",
+        "generation": "public static void main(String[] args) throws InterruptedException {\n//        actorMemoryUse(100000, false);\n//        actorMemoryUse(100000, true);\n        actorMemoryUse(100000, false);\n        actorMemoryUse(100000, true);\n        try (IGreenThrFactory f = new GreenThrFactory_single(2, false)) {\n            listenToMultipleFactories(f);\n            easy_to_learn(f);\n            nonBlockingFuture(f);\n            new CallChain().demo(f);\n            f.await(1000);\n            Throttle.demo(f, 7);\n            cancelOp(f);\n            minimumExample(f);\n        }\n        asyncConcept(\"test string\");\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

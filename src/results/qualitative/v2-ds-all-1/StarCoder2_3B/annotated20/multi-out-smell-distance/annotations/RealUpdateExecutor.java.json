@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "generation": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "generation": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "generation": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "generation": "public boolean isMapRegionChanging() {\n        return mapRegionChanging;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public Stream getOut() {\n        return out;\n    }",
+        "generation": "public Stream getOut() {\n        return out;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public Stream getOut() {\n        return out;\n    }",
+        "generation": "public Stream getOut() {\n        return out;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public Stream getOut() {\n        return out;\n    }",
+        "generation": "public Stream getOut() {\n        return out;\n    }",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public Stream getOut() {\n        return out;\n    }",
+        "generation": "public Stream getOut() {\n        return out;\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

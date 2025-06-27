@@ -1,0 +1,89 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0741  BLEU: 0.0000  METEOR: 0.0000  ROUGE-L: 0.0000  
+--- Target ---
+default String a() {
+            return "A";
+        }
+--- Generation ---
+void foo();
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2037  BLEU: 0.0123  METEOR: 0.0769  ROUGE-L: 0.5714  
+--- Target ---
+default String a() {
+            return "A";
+        }
+--- Generation ---
+String a();
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+default String b() {
+            return "B";
+        }
+--- Generation ---
+default String b() {
+            return "B";
+        }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+default String b() {
+            return "B";
+        }
+--- Generation ---
+default String b() {
+            return "B";
+        }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7851  BLEU: 0.6691  METEOR: 0.9375  ROUGE-L: 0.8649  
+--- Target ---
+@Test
+    public static void testOverriddenDefaultMethods() throws Throwable {
+        MethodHandle target = MethodHandles.constant(String.class, "F");
+        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);
+
+        assertEquals(proxy.a(), "OA");
+        assertEquals(proxy.b(), "OB");
+        assertEquals(proxy.c(), "OC");
+    }
+--- Generation ---
+@Test
+    public static void testOverrideMethods() throws Throwable {
+        MethodHandle target = MethodHandles.constant(String.class, "F");
+        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);
+
+        assertEquals(proxy.f(), "F");
+        assertEquals(proxy.a(), "OA");
+        assertEquals(proxy.b(), "OB");
+        assertEquals(proxy.c(), "OC");
+        assertEquals(proxy.concat(), "OAOBOC");
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9057  BLEU: 0.8591  METEOR: 0.9900  ROUGE-L: 0.9429  
+--- Target ---
+@Test
+    public static void testOverriddenDefaultMethods() throws Throwable {
+        MethodHandle target = MethodHandles.constant(String.class, "F");
+        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);
+
+        assertEquals(proxy.a(), "OA");
+        assertEquals(proxy.b(), "OB");
+        assertEquals(proxy.c(), "OC");
+    }
+--- Generation ---
+@Test
+    public static void testOverriddenDefaultMethods() throws Throwable {
+        MethodHandle target = MethodHandles.constant(String.class, "F");
+        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);
+
+        assertEquals(proxy.f(), "F");
+        assertEquals(proxy.a(), "OA");
+        assertEquals(proxy.b(), "OB");
+        assertEquals(proxy.c(), "OC");
+    }
+

@@ -1,0 +1,135 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3282  BLEU: 0.0377  METEOR: 0.1433  ROUGE-L: 0.2750  
+--- Target ---
+@Test
+  @WithMockUser(username = "user", authorities = { "CSP-SOL-E" })
+  void findAll_ReturnsPage() {
+    // given: Una lista con 37 SolicitudProyectoEquipo
+    Long solicitudId = 1L;
+    Solicitud solicitud = new Solicitud();
+    solicitud.setId(solicitudId);
+    BDDMockito.given(solicitudRepository.findById(ArgumentMatchers.<Long>any()))
+        .willReturn(Optional.of(solicitud));
+    List<SolicitudProyectoEquipo> solicitudProyectoEquipo = new ArrayList<>();
+    for (long i = 1; i <= 37; i++) {
+      solicitudProyectoEquipo.add(generarSolicitudProyectoEquipo(i, i, i));
+    }
+
+    BDDMockito.given(repository.findAll(ArgumentMatchers.<Specification<SolicitudProyectoEquipo>>any(),
+        ArgumentMatchers.<Pageable>any())).willAnswer(new Answer<Page<SolicitudProyectoEquipo>>() {
+          @Override
+          public Page<SolicitudProyectoEquipo> answer(InvocationOnMock invocation) throws Throwable {
+            Pageable pageable = invocation.getArgument(1, Pageable.class);
+            int size = pageable.getPageSize();
+            int index = pageable.getPageNumber();
+            int fromIndex = size * index;
+            int toIndex = fromIndex + size;
+            toIndex = toIndex > solicitudProyectoEquipo.size() ? solicitudProyectoEquipo.size() : toIndex;
+            List<SolicitudProyectoEquipo> content = solicitudProyectoEquipo.subList(fromIndex, toIndex);
+            Page<SolicitudProyectoEquipo> page = new PageImpl<>(content, pageable, solicitudProyectoEquipo.size());
+            return page;
+          }
+        });
+
+    // when: Get page=3 with pagesize=10
+    Pageable paging = PageRequest.of(3, 10);
+    Page<SolicitudProyectoEquipo> page = service.findAllBySolicitud(solicitudId, null, paging);
+
+    // then: Devuelve la pagina 3 con los Programa del 31 al 37
+    Assertions.assertThat(page.getContent()).as("getContent().size()").hasSize(7);
+    Assertions.assertThat(page.getNumber()).as("getNumber()").isEqualTo(3);
+    Assertions.assertThat(page.getSize()).as("getSize()").isEqualTo(10);
+    Assertions.assertThat(page.getTotalElements()).as("getTotalElements()").isEqualTo(37);
+    for (int i = 31; i <= 37; i++) {
+      SolicitudProyectoEquipo solicitudProyectoEquipoRecuperado = page.getContent()
+          .get(i - (page.getSize() * page.getNumber()) - 1);
+      Assertions.assertThat(solicitudProyectoEquipoRecuperado.getId()).isEqualTo(i);
+    }
+  }
+--- Generation ---
+@Test
+  void findAll_ReturnsPageSolicitudProyectoEquipo() {
+    // given: Una lista de SolicitudProyectoEquipo
+    List<SolicitudProyectoEquipo> solicitudProyectoEquipos = new ArrayList<>();
+    solicitudProyectoEquipos.add(generarSolicitudProyectoEquipo(1L, 1L, 1L));
+    solicitudProyectoEquipos.add(generarSolicitudProyectoEquipo(2L, 2L, 2L));
+    solicitudProyectoEquipos.add(generarSolicitudProyectoEquipo(3L, 3L, 3L));
+
+    // given: Un Page de SolicitudProyectoEquipo
+    Pageable pageable = PageRequest.of(0, 10);
+    Page<SolicitudProyectoEquipo> page = new PageImpl<>(solicitudProyectoEquipos, pageable, solicitudProyectoEquipos.size());
+
+    // given: El Page de SolicitudProyectoEquipo
+    BDDMockito.given(repository.findAll(ArgumentMatchers.any(Specification.class), ArgumentMatchers.any(Pageable.class)))
+       .willReturn(page);
+
+    // when: Buscamos todos los SolicitudProyectoEquipo
+    Page<SolicitudProyectoEquipo> solicitudProyectoEquipoPage = service.findAll(pageable);
+
+    // then: el Page de SolicitudProyectoEquipo
+    Assertions.assertThat(solicitudProyectoEquipoPage).as("isNotNull()").isNotNull();
+    Assertions.assertThat(solicitudProyectoEquipoPage.getContent()).as("getContent()").hasSize(3);
+  }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.3061  BLEU: 0.1245  METEOR: 0.3263  ROUGE-L: 0.4130  
+--- Target ---
+@Test
+  @WithMockUser(username = "user", authorities = { "CSP-SOL-E" })
+  void findAll_ReturnsPage() {
+    // given: Una lista con 37 SolicitudProyectoEquipo
+    Long solicitudId = 1L;
+    Solicitud solicitud = new Solicitud();
+    solicitud.setId(solicitudId);
+    BDDMockito.given(solicitudRepository.findById(ArgumentMatchers.<Long>any()))
+        .willReturn(Optional.of(solicitud));
+    List<SolicitudProyectoEquipo> solicitudProyectoEquipo = new ArrayList<>();
+    for (long i = 1; i <= 37; i++) {
+      solicitudProyectoEquipo.add(generarSolicitudProyectoEquipo(i, i, i));
+    }
+
+    BDDMockito.given(repository.findAll(ArgumentMatchers.<Specification<SolicitudProyectoEquipo>>any(),
+        ArgumentMatchers.<Pageable>any())).willAnswer(new Answer<Page<SolicitudProyectoEquipo>>() {
+          @Override
+          public Page<SolicitudProyectoEquipo> answer(InvocationOnMock invocation) throws Throwable {
+            Pageable pageable = invocation.getArgument(1, Pageable.class);
+            int size = pageable.getPageSize();
+            int index = pageable.getPageNumber();
+            int fromIndex = size * index;
+            int toIndex = fromIndex + size;
+            toIndex = toIndex > solicitudProyectoEquipo.size() ? solicitudProyectoEquipo.size() : toIndex;
+            List<SolicitudProyectoEquipo> content = solicitudProyectoEquipo.subList(fromIndex, toIndex);
+            Page<SolicitudProyectoEquipo> page = new PageImpl<>(content, pageable, solicitudProyectoEquipo.size());
+            return page;
+          }
+        });
+
+    // when: Get page=3 with pagesize=10
+    Pageable paging = PageRequest.of(3, 10);
+    Page<SolicitudProyectoEquipo> page = service.findAllBySolicitud(solicitudId, null, paging);
+
+    // then: Devuelve la pagina 3 con los Programa del 31 al 37
+    Assertions.assertThat(page.getContent()).as("getContent().size()").hasSize(7);
+    Assertions.assertThat(page.getNumber()).as("getNumber()").isEqualTo(3);
+    Assertions.assertThat(page.getSize()).as("getSize()").isEqualTo(10);
+    Assertions.assertThat(page.getTotalElements()).as("getTotalElements()").isEqualTo(37);
+    for (int i = 31; i <= 37; i++) {
+      SolicitudProyectoEquipo solicitudProyectoEquipoRecuperado = page.getContent()
+          .get(i - (page.getSize() * page.getNumber()) - 1);
+      Assertions.assertThat(solicitudProyectoEquipoRecuperado.getId()).isEqualTo(i);
+    }
+  }
+--- Generation ---
+@Override
+          public Page<SolicitudProyectoEquipo> answer(InvocationOnMock invocation) throws Throwable {
+            Pageable pageable = invocation.getArgument(1, Pageable.class);
+            int size = pageable.getPageSize();
+            int index = pageable.getPageNumber();
+            int fromIndex = size * index;
+            int toIndex = fromIndex + size;
+            toIndex = toIndex > solicitudProyectoEquipo.size()? solicitudProyectoEquipo.size() : toIndex;
+            List<SolicitudProyectoEquipo> content = solicitudProyectoEquipo.subList(fromIndex, toIndex);
+            Page<SolicitudProyectoEquipo> page = new PageImpl<>(content, pageable, solicitudProyectoEquipo.size());
+            return page;
+          }
+

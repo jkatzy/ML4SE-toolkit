@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.39081494822152185,
+            "BLEU": 0.12569599798228248,
+            "METEOR": 0.3171911994632769,
+            "ROUGE-L": 0.5130111524163568
+        },
+        "target": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty()) {\r\n            // If name is empty, a newly allocated naming context is returned\r\n            return new NamingContext(env, this.name, bindings);\r\n        }\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (name.size() > 1) {\r\n            // If the size of the name is greater that 1, then we go through a\r\n            // number of subcontexts.\r\n            if (entry.type != NamingEntry.CONTEXT) {\r\n                throw new NamingException\r\n                    (sm.getString(\"namingContext.contextExpected\"));\r\n            }\r\n            return ((Context) entry.value).lookup(name.getSuffix(1));\r\n        } else {\r\n            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {\r\n                String link = ((LinkRef) entry.value).getLinkName();\r\n                if (link.startsWith(\".\")) {\r\n                    // Link relative to this context\r\n                    return lookup(link.substring(1));\r\n                } else {\r\n                    return (new InitialContext(env)).lookup(link);\r\n                }\r\n            } else if (entry.type == NamingEntry.REFERENCE) {\r\n                try {\r\n                    Object obj = NamingManager.getObjectInstance\r\n                        (entry.value, name, this, env);\r\n                    if (obj != null) {\r\n                        entry.value = obj;\r\n                        entry.type = NamingEntry.ENTRY;\r\n                    }\r\n                    return obj;\r\n                } catch (NamingException e) {\r\n                    throw e;\r\n                } catch (Exception e) {\r\n                    throw new NamingException(e.getMessage());\r\n                }\r\n            } else {\r\n                return entry.value;\r\n            }\r\n        }\r\n        \r\n    }",
+        "generation": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty())\r\n            throw new NamingException\r\n                (sm.getString(\"namingContext.invalidName\"));\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (resolveLinks && (entry.type == NamingEntry.LINK)) {\r\n            return ((LinkRef) entry.value).getLink();\r\n        }\r\n        \r\n        if (entry.type == NamingEntry.CONTEXT) {\r\n            return ((Context) entry.value).lookup(name.getSuffix(1));\r\n        }\r\n        \r\n        return entry.value;\r\n    }",
+        "classification": "partial",
+        "comment": "correct signature, good body, misses some semantics"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3759567762269248,
+            "BLEU": 0.12092737066834945,
+            "METEOR": 0.31026207045887894,
+            "ROUGE-L": 0.5283018867924528
+        },
+        "target": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty()) {\r\n            // If name is empty, a newly allocated naming context is returned\r\n            return new NamingContext(env, this.name, bindings);\r\n        }\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (name.size() > 1) {\r\n            // If the size of the name is greater that 1, then we go through a\r\n            // number of subcontexts.\r\n            if (entry.type != NamingEntry.CONTEXT) {\r\n                throw new NamingException\r\n                    (sm.getString(\"namingContext.contextExpected\"));\r\n            }\r\n            return ((Context) entry.value).lookup(name.getSuffix(1));\r\n        } else {\r\n            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {\r\n                String link = ((LinkRef) entry.value).getLinkName();\r\n                if (link.startsWith(\".\")) {\r\n                    // Link relative to this context\r\n                    return lookup(link.substring(1));\r\n                } else {\r\n                    return (new InitialContext(env)).lookup(link);\r\n                }\r\n            } else if (entry.type == NamingEntry.REFERENCE) {\r\n                try {\r\n                    Object obj = NamingManager.getObjectInstance\r\n                        (entry.value, name, this, env);\r\n                    if (obj != null) {\r\n                        entry.value = obj;\r\n                        entry.type = NamingEntry.ENTRY;\r\n                    }\r\n                    return obj;\r\n                } catch (NamingException e) {\r\n                    throw e;\r\n                } catch (Exception e) {\r\n                    throw new NamingException(e.getMessage());\r\n                }\r\n            } else {\r\n                return entry.value;\r\n            }\r\n        }\r\n        \r\n    }",
+        "generation": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty())\r\n            return this;\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (resolveLinks && (entry.type == NamingEntry.LINK_REF)) {\r\n            return ((LinkRef) entry.value).get();\r\n        }\r\n        \r\n        if (entry.type == NamingEntry.CONTEXT) {\r\n            return ((Context) entry.value).lookup(name.getSuffix(1));\r\n        }\r\n        \r\n        return entry.value;\r\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.44709590274651057,
+            "BLEU": 0.19891988327977778,
+            "METEOR": 0.3734647564469914,
+            "ROUGE-L": 0.5266903914590747
+        },
+        "target": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty()) {\r\n            // If name is empty, a newly allocated naming context is returned\r\n            return new NamingContext(env, this.name, bindings);\r\n        }\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (name.size() > 1) {\r\n            // If the size of the name is greater that 1, then we go through a\r\n            // number of subcontexts.\r\n            if (entry.type != NamingEntry.CONTEXT) {\r\n                throw new NamingException\r\n                    (sm.getString(\"namingContext.contextExpected\"));\r\n            }\r\n            return ((Context) entry.value).lookup(name.getSuffix(1));\r\n        } else {\r\n            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {\r\n                String link = ((LinkRef) entry.value).getLinkName();\r\n                if (link.startsWith(\".\")) {\r\n                    // Link relative to this context\r\n                    return lookup(link.substring(1));\r\n                } else {\r\n                    return (new InitialContext(env)).lookup(link);\r\n                }\r\n            } else if (entry.type == NamingEntry.REFERENCE) {\r\n                try {\r\n                    Object obj = NamingManager.getObjectInstance\r\n                        (entry.value, name, this, env);\r\n                    if (obj != null) {\r\n                        entry.value = obj;\r\n                        entry.type = NamingEntry.ENTRY;\r\n                    }\r\n                    return obj;\r\n                } catch (NamingException e) {\r\n                    throw e;\r\n                } catch (Exception e) {\r\n                    throw new NamingException(e.getMessage());\r\n                }\r\n            } else {\r\n                return entry.value;\r\n            }\r\n        }\r\n        \r\n    }",
+        "generation": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty())\r\n            throw new NamingException\r\n                (sm.getString(\"namingContext.invalidName\"));\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (resolveLinks && (entry.type == NamingEntry.LINK)) {\r\n            return ((LinkRef) entry.value).getLink();\r\n        }\r\n        \r\n        if (name.size() > 1) {\r\n            if (entry.type == NamingEntry.CONTEXT) {\r\n                return ((Context) entry.value).lookup(name.getSuffix(1));\r\n            } else {\r\n                throw new NamingException\r\n                    (sm.getString(\"namingContext.contextExpected\"));\r\n            }\r\n        }\r\n        \r\n        return entry.value;\r\n    }",
+        "classification": "partial",
+        "comment": "correct signature, good body, misses some semantics"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4394416929311121,
+            "BLEU": 0.2210062864419059,
+            "METEOR": 0.3946806563777222,
+            "ROUGE-L": 0.5467625899280576
+        },
+        "target": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty()) {\r\n            // If name is empty, a newly allocated naming context is returned\r\n            return new NamingContext(env, this.name, bindings);\r\n        }\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (name.size() > 1) {\r\n            // If the size of the name is greater that 1, then we go through a\r\n            // number of subcontexts.\r\n            if (entry.type != NamingEntry.CONTEXT) {\r\n                throw new NamingException\r\n                    (sm.getString(\"namingContext.contextExpected\"));\r\n            }\r\n            return ((Context) entry.value).lookup(name.getSuffix(1));\r\n        } else {\r\n            if ((resolveLinks) && (entry.type == NamingEntry.LINK_REF)) {\r\n                String link = ((LinkRef) entry.value).getLinkName();\r\n                if (link.startsWith(\".\")) {\r\n                    // Link relative to this context\r\n                    return lookup(link.substring(1));\r\n                } else {\r\n                    return (new InitialContext(env)).lookup(link);\r\n                }\r\n            } else if (entry.type == NamingEntry.REFERENCE) {\r\n                try {\r\n                    Object obj = NamingManager.getObjectInstance\r\n                        (entry.value, name, this, env);\r\n                    if (obj != null) {\r\n                        entry.value = obj;\r\n                        entry.type = NamingEntry.ENTRY;\r\n                    }\r\n                    return obj;\r\n                } catch (NamingException e) {\r\n                    throw e;\r\n                } catch (Exception e) {\r\n                    throw new NamingException(e.getMessage());\r\n                }\r\n            } else {\r\n                return entry.value;\r\n            }\r\n        }\r\n        \r\n    }",
+        "generation": "protected Object lookup(Name name, boolean resolveLinks)\r\n        throws NamingException {\r\n        // Removing empty parts\r\n        while ((!name.isEmpty()) && (name.get(0).length() == 0))\r\n            name = name.getSuffix(1);\r\n        if (name.isEmpty())\r\n            return this;\r\n        \r\n        NamingEntry entry = (NamingEntry) bindings.get(name.get(0));\r\n        \r\n        if (entry == null) {\r\n            throw new NameNotFoundException\r\n                (sm.getString(\"namingContext.nameNotBound\", name.get(0)));\r\n        }\r\n        \r\n        if (resolveLinks && (entry.type == NamingEntry.LINK_REF)) {\r\n            return ((LinkRef) entry.value).get();\r\n        }\r\n        \r\n        if (name.size() > 1) {\r\n            if (entry.type == NamingEntry.CONTEXT) {\r\n                return ((Context) entry.value).lookup(name.getSuffix(1));\r\n            } else {\r\n                throw new NamingException\r\n                    (sm.getString(\"namingContext.contextExpected\"));\r\n            }\r\n        } else {\r\n            return entry.value;\r\n        }\r\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.75,
+            "BLEU": 0.5328009719875519,
+            "METEOR": 0.8217429281730834,
+            "ROUGE-L": 0.9285714285714286
+        },
+        "target": "protected void checkWritable() \r\n        throws NamingException {\r\n        if (!isWritable())\r\n            throw new NamingException(sm.getString(\"namingContext.readOnly\"));\r\n    }",
+        "generation": "protected void checkWritable() throws NamingException {\r\n        if (!isWritable()) {\r\n            throw new NamingException\r\n                (sm.getString(\"namingContext.notWritable\"));\r\n        }\r\n    }",
+        "classification": "correct",
+        "comment": "semantically same"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9997106481481481,
+            "ROUGE-L": 1.0
+        },
+        "target": "protected void checkWritable() \r\n        throws NamingException {\r\n        if (!isWritable())\r\n            throw new NamingException(sm.getString(\"namingContext.readOnly\"));\r\n    }",
+        "generation": "protected void checkWritable() \r\n        throws NamingException {\r\n        if (!isWritable())\r\n            throw new NamingException(sm.getString(\"namingContext.readOnly\"));\r\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.75,
+            "BLEU": 0.5328009719875519,
+            "METEOR": 0.8217429281730834,
+            "ROUGE-L": 0.9285714285714286
+        },
+        "target": "protected void checkWritable() \r\n        throws NamingException {\r\n        if (!isWritable())\r\n            throw new NamingException(sm.getString(\"namingContext.readOnly\"));\r\n    }",
+        "generation": "protected void checkWritable() throws NamingException {\r\n        if (!isWritable()) {\r\n            throw new NamingException\r\n                (sm.getString(\"namingContext.notWritable\"));\r\n        }\r\n    }",
+        "classification": "correct",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9997106481481481,
+            "ROUGE-L": 1.0
+        },
+        "target": "protected void checkWritable() \r\n        throws NamingException {\r\n        if (!isWritable())\r\n            throw new NamingException(sm.getString(\"namingContext.readOnly\"));\r\n    }",
+        "generation": "protected void checkWritable() \r\n        throws NamingException {\r\n        if (!isWritable())\r\n            throw new NamingException(sm.getString(\"namingContext.readOnly\"));\r\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

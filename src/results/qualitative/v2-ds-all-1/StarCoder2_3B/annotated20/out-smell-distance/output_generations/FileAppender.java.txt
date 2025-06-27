@@ -1,0 +1,146 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.5908  BLEU: 0.4099  METEOR: 0.6890  ROUGE-L: 0.7119  
+--- Target ---
+public void initLogFile() {
+        synchronized(lock) {
+            try {
+                file = new FileAdapter(fileUrl);
+                os = file.openOutputStream(true);
+            } catch (Exception e) {
+                System.out.println("Cannot open or create file at: " + fileUrl);
+                e.printStackTrace();
+            }
+        }
+    }
+--- Generation ---
+public void initLogFile() {
+        try {
+            file = new FileAdapter(fileUrl);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            os = file.openOutputStream();
+        } catch (Exception e) {
+            System.out.println("Exception while opening log file. " + e);
+            e.printStackTrace();
+        }
+    }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.5757  BLEU: 0.3753  METEOR: 0.6531  ROUGE-L: 0.6780  
+--- Target ---
+public void initLogFile() {
+        synchronized(lock) {
+            try {
+                file = new FileAdapter(fileUrl);
+                os = file.openOutputStream(true);
+            } catch (Exception e) {
+                System.out.println("Cannot open or create file at: " + fileUrl);
+                e.printStackTrace();
+            }
+        }
+    }
+--- Generation ---
+private void initLogFile() {
+        try {
+            file = new FileAdapter(fileUrl);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            os = file.openOutputStream();
+        } catch (Exception e) {
+            System.out.println("Exception while opening log file. " + e);
+            e.printStackTrace();
+        }
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0898  BLEU: 0.0163  METEOR: 0.4265  ROUGE-L: 0.1538  
+--- Target ---
+public void openLogFile() {
+    }
+--- Generation ---
+public void close() {
+        synchronized(lock) {
+            try {
+                if (os!= null) {
+                    os.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Exception while closing. " + e);
+                e.printStackTrace();
+            }
+        }
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0983  BLEU: 0.0157  METEOR: 0.4208  ROUGE-L: 0.1538  
+--- Target ---
+public void openLogFile() {
+    }
+--- Generation ---
+public void close() {
+        synchronized(lock) {
+            try {
+                if (os!= null) {
+                    os.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Exception while closing log file. " + e);
+            }
+        }
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6265  BLEU: 0.3825  METEOR: 0.5727  ROUGE-L: 0.6984  
+--- Target ---
+private void merge(InputStream is, OutputStream os) throws IOException {
+
+        byte[] buffer = new byte[4096];
+        int length = 0;
+        do {
+            length = is.read(buffer);
+            if (length > 0) {
+                os.write(buffer, 0, length);
+                os.flush();
+            }
+        } while(length > 0);
+    }
+--- Generation ---
+private void merge(InputStream is, OutputStream os) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read = 0;
+        while ((read = is.read(buffer))!= -1) {
+            os.write(buffer, 0, read);
+        }
+    }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+private void merge(InputStream is, OutputStream os) throws IOException {
+
+        byte[] buffer = new byte[4096];
+        int length = 0;
+        do {
+            length = is.read(buffer);
+            if (length > 0) {
+                os.write(buffer, 0, length);
+                os.flush();
+            }
+        } while(length > 0);
+    }
+--- Generation ---
+private void merge(InputStream is, OutputStream os) throws IOException {
+
+        byte[] buffer = new byte[4096];
+        int length = 0;
+        do {
+            length = is.read(buffer);
+            if (length > 0) {
+                os.write(buffer, 0, length);
+                os.flush();
+            }
+        } while(length > 0);
+    }
+

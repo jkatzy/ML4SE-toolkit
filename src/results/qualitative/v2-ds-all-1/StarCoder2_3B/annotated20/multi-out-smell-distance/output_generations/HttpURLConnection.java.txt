@@ -1,0 +1,220 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1435  BLEU: 0.0507  METEOR: 0.2095  ROUGE-L: 0.1486  
+--- Target ---
+static String connectRequestURI(final URL url) {
+        final String host = url.getHost();
+        int port = url.getPort();
+        port = port != -1 ? port : url.getDefaultPort();
+
+        return host + ":" + port;
+    }
+--- Generation ---
+/**
+     * send the "CONNECT" request to establish a tunnel through proxy server.
+     */
+    private void sendCONNECTRequest() throws IOException {
+        final String host = url.getHost();
+        final int port = url.getPort();
+        final String path = url.getPath();
+        final String query = url.getQuery();
+        final String fragment = url.getRef();
+        final String requestURI = connectRequestURI(url);
+        final String requestLine = "CONNECT " + requestURI + " HTTP/1.1";
+        final String hostHeader = "Host: " + host;
+        final String proxyHost = http.getProxyHostUsed();
+        final String proxyPort = String.valueOf(http.getProxyPortUsed());
+        final String proxyAuth = proxyAuthentication!= null? proxyAuthentication
+               .getHeaderValue(url, method) : null;
+        final String proxyAuthHeader = proxyAuth!= null? "Proxy-Authorization: "
+                + proxyAuth : null;
+        final String proxyAuthHeader2 = proxyAuth!= null? "Proxy-Authorization: "
+                + proxyAuth : null;
+        final String proxyAuthHeader3 = proxyAuth!= null? "Proxy-Authorization: "
+                + proxyAuth : null;
+        final String proxyAuthHeader4 = proxyAuth!= null? "Proxy-Authorization: "
+                + proxyAuth : null;
+        final String proxyAuthHeader5 = proxyAuth!= null? "Proxy-Authorization: "
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0930  BLEU: 0.0317  METEOR: 0.1653  ROUGE-L: 0.1488  
+--- Target ---
+static String connectRequestURI(final URL url) {
+        final String host = url.getHost();
+        int port = url.getPort();
+        port = port != -1 ? port : url.getDefaultPort();
+
+        return host + ":" + port;
+    }
+--- Generation ---
+private void sendCONNECTRequest() throws IOException {
+        final String host = url.getHost();
+        final int port = url.getPort();
+        final String path = url.getPath();
+        final String query = url.getQuery();
+        final String fragment = url.getRef();
+        final String requestURI = connectRequestURI(url);
+        final String requestLine = "CONNECT " + requestURI + " HTTP/1.1";
+        final String hostLine = "Host: " + host;
+        final String proxyAuthLine = "Proxy-Authorization: "
+                + proxyAuthentication.getHeaderValue(url, method);
+        final String userAgentLine = "User-Agent: " + userAgent;
+        final String connectionLine = "Connection: close";
+        final String proxyConnectionLine = "Proxy-Connection: close";
+        final String proxyHostLine = "Proxy-Host: " + host;
+        final String proxyPortLine = "Proxy-Port: " + proxyPort;
+        final String proxyAuthorizationLine = "Proxy-Authorization: "
+                + proxyAuthentication.getHeaderValue(url, method);
+        final String proxyRequestLine = "CONNECT " + requestURI + " HTTP/1.1";
+        final String proxyHostLine2 = "Host: " + host;
+        final String proxyPortLine2 = "Proxy-Port: " + proxyPort;
+        final String proxyAuthorizationLine2 = "Proxy-Authorization: "
+                + proxyAuthentication.getHeaderValue(url, method);
+        final String proxyConnectionLine2 = "Proxy-Connection: close";
+        final String proxyRequestLine2 = "CONNECT " + requestURI + " HTTP/1.1";
+        final String proxyHostLine3 = "Host: " + host;
+        final String proxyPortLine3 = "Proxy-Port: " + proxyPort;
+        final String proxyAuthorizationLine3 = "Proxy-Authorization: "
+                + proxyAuthentication.getHeaderValue(url, method);
+        final String proxyConnectionLine3 = "Proxy-Connection: close";
+        final String proxyRequestLine3 = "CONNECT " + requestURI + " HTTP/1.1";
+        final String proxyHostLine4 = "Host: " + host;
+        final String proxyPortLine4 = "Proxy-Port: " + proxyPort;
+        final String proxyAuthorizationLine4 = "Proxy-Authorization: "
+                + proxyAuthentication.getHeaderValue(url, method);
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0901  BLEU: 0.0561  METEOR: 0.3176  ROUGE-L: 0.1531  
+--- Target ---
+static String connectRequestURI(final URL url) {
+        final String host = url.getHost();
+        int port = url.getPort();
+        port = port != -1 ? port : url.getDefaultPort();
+
+        return host + ":" + port;
+    }
+--- Generation ---
+private void sendCONNECTRequest() throws IOException {
+        final String host = url.getHost();
+        final int port = url.getPort();
+        final String path = url.getPath();
+        final String query = url.getQuery();
+        final String fragment = url.getRef();
+        final String urlStr = url.toString();
+        final String connectRequest = "CONNECT " + host + ":" + port + " HTTP/1.1"
+                + LINE_FEED + "Host: " + host + ":" + port + LINE_FEED
+                + "Proxy-Connection: Keep-Alive" + LINE_FEED
+                + "User-Agent: " + userAgent + LINE_FEED + LINE_FEED;
+        final String connectRequestURI = connectRequestURI(url);
+        final String connectRequestURIWithQuery = connectRequestURIWithQuery(url);
+        final String connectRequestURIWithFragment = connectRequestURIWithFragment(url);
+        final String connectRequestURIWithQueryAndFragment = connectRequestURIWithQueryAndFragment(url);
+
+        // set the request headers
+        requests.prepend(connectRequest, urlStr);
+        requests.set("Host", host + ":" + port);
+        requests.set("Proxy-Connection", "Keep-Alive");
+        requests.set("User-Agent", userAgent);
+
+        // send the request
+        if (proxyAuthentication!= null) {
+            if (tunnelState() == TunnelState.SETUP) {
+                requests.set(proxyAuthentication.getHeaderName(),
+                        proxyAuthentication.getHeaderValue(connectRequestURI,
+                                HTTP_CONNECT));
+            } else {
+                requests.set(proxyAuthentication.getHeaderName(),
+                        proxyAuthentication.getHeaderValue(url, method));
+            }
+        }
+
+        if (proxyAuthentication!= null) {
+            proxyAuthentication.beginAuthRequest();
+        }
+
+        if (proxyAuthentication!= null) {
+            proxyAuthentication.beginAuthRequest();
+        }
+
+        http.writeRequests(requests, ps);
+        if (ps.checkError()) {
+            throw new IOException("Error writing to server");
+        }
+
+        // read the response
+        http.parseHTTP(responses, null, this);
+        LOG.debug(responses.toString());
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4573  BLEU: 0.2727  METEOR: 0.3627  ROUGE-L: 0.4483  
+--- Target ---
+static String connectRequestURI(final URL url) {
+        final String host = url.getHost();
+        int port = url.getPort();
+        port = port != -1 ? port : url.getDefaultPort();
+
+        return host + ":" + port;
+    }
+--- Generation ---
+private void sendCONNECTRequest() throws IOException {
+        final String host = url.getHost();
+        final int port = url.getPort();
+        if (port!= -1) {
+            host = host + ":" + port;
+        }
+        final String request = "CONNECT " + host + " HTTP/1.1" + LINE_FEED;
+        http.writeRequest(request);
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public int read() {
+        return -1;
+    }
+--- Generation ---
+@Override
+    public int read() {
+        return -1;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.7532  BLEU: 0.5254  METEOR: 0.9680  ROUGE-L: 0.8571  
+--- Target ---
+@Override
+    public int read() {
+        return -1;
+    }
+--- Generation ---
+@Override
+    public int read() throws IOException {
+        return -1;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public int read() {
+        return -1;
+    }
+--- Generation ---
+@Override
+    public int read() {
+        return -1;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.7532  BLEU: 0.5254  METEOR: 0.9680  ROUGE-L: 0.8571  
+--- Target ---
+@Override
+    public int read() {
+        return -1;
+    }
+--- Generation ---
+@Override
+    public int read() throws IOException {
+        return -1;
+    }
+

@@ -1,0 +1,124 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6278  BLEU: 0.5097  METEOR: 0.6912  ROUGE-L: 0.7429  
+--- Target ---
+public WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), URLEncoder.encode(callback + prefix + "/wx/portal/public/callBack"));
+        String format = String.format(SKIP_URL_SCHEMA, url);
+        return new WechatTextBuilderAdapter().build(format, wxMpXmlMessage);
+    }
+--- Generation ---
+WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        // 发布授权链接
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(),
+                URLEncoder.encode(callback + prefix + "/wx/scan", "UTF-8"));
+        return new WechatTextBuilderAdapter().build(String.format(SKIP_URL_SCHEMA, url), wxMpXmlMessage);
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4527  BLEU: 0.3284  METEOR: 0.4861  ROUGE-L: 0.5526  
+--- Target ---
+public WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), URLEncoder.encode(callback + prefix + "/wx/portal/public/callBack"));
+        String format = String.format(SKIP_URL_SCHEMA, url);
+        return new WechatTextBuilderAdapter().build(format, wxMpXmlMessage);
+    }
+--- Generation ---
+private WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        // 发布授权链接
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), callback);
+        // 发布授权消息
+        return new WechatTextBuilderAdapter().build(String.format(SKIP_URL_SCHEMA, url), wxe.getWxMpService().getWxMpConfigStorage().getAppId(),
+                wxMpService.getWxMpService().getWxMpConfigStorage().getSecret());
+        // 发送消息
+        wxMpService.getWxMpService().getWxMpTemplateMsgService().sendTemplateMsg(templateMsg);
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.5931  BLEU: 0.3365  METEOR: 0.5393  ROUGE-L: 0.6875  
+--- Target ---
+public WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), URLEncoder.encode(callback + prefix + "/wx/portal/public/callBack"));
+        String format = String.format(SKIP_URL_SCHEMA, url);
+        return new WechatTextBuilderAdapter().build(format, wxMpXmlMessage);
+    }
+--- Generation ---
+private WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        // 发布授权信息
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), callback);
+        return new WechatTextBuilderAdapter().build(String.format(SKIP_URL_SCHEMA, url), wxMpXmlMessage);
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.4210  BLEU: 0.3038  METEOR: 0.5339  ROUGE-L: 0.4468  
+--- Target ---
+public WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), URLEncoder.encode(callback + prefix + "/wx/portal/public/callBack"));
+        String format = String.format(SKIP_URL_SCHEMA, url);
+        return new WechatTextBuilderAdapter().build(format, wxMpXmlMessage);
+    }
+--- Generation ---
+private WxMpXmlOutMessage publishAuthorizeUrl(WxMpService wxMpService, WxMpXmlMessage wxMpXmlMessage) {
+        // 发布授权链接
+        String url = String.format(URL, wxMpService.getWxMpConfigStorage().getAppId(), callback);
+        return new WechatTextBuilderAdapter().build(String.format(SKIP_URL_SCHEMA, url), wxe.getWxMpService().getWxMpConfigStorage().getAppId(),
+                "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wxMpService.getWxMpConfigStorage().getAppId() + "&redirect_uri=" + URLEncoder.encode(callback) + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4906  BLEU: 0.2254  METEOR: 0.4509  ROUGE-L: 0.6207  
+--- Target ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        // 扫码关注的渠道事件有前缀，需要去除
+        return wxMpXmlMessage.getEventKey().replace("qrscene_", "");
+    }
+--- Generation ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        String eventKey = wxMpXmlMessage.getEventKey();
+        if (eventKey.startsWith("qrscene_")) {
+            return eventKey.replace("qrscene_", "");
+        }
+        return eventKey;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9996  ROUGE-L: 1.0000  
+--- Target ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        // 扫码关注的渠道事件有前缀，需要去除
+        return wxMpXmlMessage.getEventKey().replace("qrscene_", "");
+    }
+--- Generation ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        // 扫码关注的渠道事件有前缀，需要去除
+        return wxMpXmlMessage.getEventKey().replace("qrscene_", "");
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.4906  BLEU: 0.2254  METEOR: 0.4509  ROUGE-L: 0.6207  
+--- Target ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        // 扫码关注的渠道事件有前缀，需要去除
+        return wxMpXmlMessage.getEventKey().replace("qrscene_", "");
+    }
+--- Generation ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        String eventKey = wxMpXmlMessage.getEventKey();
+        if (eventKey.startsWith("qrscene_")) {
+            return eventKey.replace("qrscene_", "");
+        }
+        return eventKey;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9996  ROUGE-L: 1.0000  
+--- Target ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        // 扫码关注的渠道事件有前缀，需要去除
+        return wxMpXmlMessage.getEventKey().replace("qrscene_", "");
+    }
+--- Generation ---
+private String replacePrefixIfPresent(WxMpXmlMessage wxMpXmlMessage) {
+        // 扫码关注的渠道事件有前缀，需要去除
+        return wxMpXmlMessage.getEventKey().replace("qrscene_", "");
+    }
+
