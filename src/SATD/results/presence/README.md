@@ -1,0 +1,1 @@
+Includes the code and plots for the presence analysis in the paper. In the notebook we first load the data + annotations, then we filter out the files (using `satd_annotate/investigation/non_satd_file_ids.json`) that were falsely identified as high-SATD during manual investigation, and finally we compute the stats and plot the results.
