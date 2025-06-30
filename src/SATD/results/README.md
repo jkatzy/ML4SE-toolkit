@@ -1,0 +1,1 @@
+This folder contains the scripts and plots used to produce the results for the paper. See the subfolders for more detailed information.
