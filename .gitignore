@@ -158,3 +158,11 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# TokenizationOffset - 只保留代码变化和文件夹变化
+src/ml4setk/TokenizationOffset/datasets/*
+src/ml4setk/TokenizationOffset/extracted_multipl_e_files/*
+src/ml4setk/TokenizationOffset/extracted_python_files/*
+src/ml4setk/TokenizationOffset/results/*
+!src/ml4setk/TokenizationOffset/*.py
+
