@@ -1,196 +1,183 @@
-# Grammar-Tokenization Alignment Analysis
+# Tree-sitter Rule-level Alignment Score Analysis Tool User Guide
 
-This project quantifies the misalignment between programming language grammar boundaries (as defined by tree-sitter) and tokenization boundaries of various Large Language Models (LLMs). This analysis is crucial for understanding how well different LLMs handle code structure, which impacts their code generation and understanding capabilities.
+This document provides detailed instructions on how to use the Tree-sitter Rule-level Alignment Score analysis tool.
 
-## Problem Statement
+## Project Introduction
 
-When we use tree-sitter to parse code into syntactic blocks and feed these blocks to LLMs, the block boundaries may fall in the middle of an LLM token. This misalignment can potentially affect the quality of model generation and understanding. This project measures this misalignment across different programming languages and LLM models.
+This project is a multilingual Tree-sitter rule-level alignment score analyzer, used to calculate the alignment degree between code syntax rules and tokenization boundaries. The tool supports 11 programming languages and can generate detailed analysis reports and visualization charts.
 
-## Supported Languages
+## Environment Setup
 
-The analysis currently supports the following programming languages:
-- Python
-- JavaScript
-- TypeScript
-- Java
-- C
-- C++
-- C# (csharp)
-- Go
-- Ruby
-- Rust
-- Scala
+### 1. Install Dependencies
 
-## Supported Models
+First, you need to install all necessary dependency packages:
 
-By default, the analysis tests the following models:
-- `gpt2` (as a baseline general-purpose model)
-- `codellama/CodeLlama-7b-hf` (Meta's code-optimized model)
-- `bigcode/starcoder2-3b` (BigCode project by ServiceNow & Hugging Face)
-
-You can specify any Hugging Face model that has a tokenizer with offset mapping support.
-
-## Project Structure
-
-```
-grammar-tokenization-alignment/
-├── main.py                   # Main analysis script
-├── visualize_tokens.py       # Script to visualize tokenization
-├── detailed_analysis.py      # Script for detailed analysis
-├── code_samples/             # Sample code files for different languages
-│   ├── python/
-│   ├── javascript/
-│   ├── typescript/
-│   └── ...
-├── requirements.txt          # Project dependencies
-├── results/                  # Analysis results (CSV, charts)
-└── vendor/                   # Tree-sitter language repositories
-```
-
-## Installation
-
-1. Clone this repository:
-```bash
-git clone https://github.com/yourusername/grammar-tokenization-alignment.git
-cd grammar-tokenization-alignment
-```
-
-2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+Main dependencies include:
+- tree-sitter: Tree-sitter Python bindings
+- transformers: Hugging Face model library
+- torch: PyTorch deep learning framework
+- pandas: Data processing
+- matplotlib: Chart drawing
+- seaborn: Statistical charts
 
-### Basic Analysis
+### 2. Ensure Language Libraries are Compiled
 
-Run the basic analysis with default settings (Python language, default models):
+The project uses pre-compiled Tree-sitter language libraries, which should be located in the `build/` directory.
 
-```bash
-python main.py
-```
+## Usage Instructions
 
-Specify a different language:
+### 1. Run Environment Test
 
-```bash
-python main.py --language javascript
-```
-
-Specify a specific model:
-
-```bash
-python main.py --model codellama/CodeLlama-7b-hf
-```
-
-Specify a custom code path:
+Before starting analysis, it is recommended to run the test script to ensure the environment is configured correctly:
 
 ```bash
-python main.py --code_path path/to/your/code
+python test.py
 ```
 
-Combine options:
+This command will test core functionality and the code sample directory to ensure everything works properly.
+
+### 2. Run Analysis
+
+#### Basic Analysis (Python only by default)
 
 ```bash
-python main.py --language java --model gpt2 --code_path code_samples/java
+python analyzer.py
 ```
 
-### Token Visualization
-
-Visualize how a model tokenizes code:
+#### Analyze a Specific Language
 
 ```bash
-python visualize_tokens.py --model gpt2 --language python
+python analyzer.py --language javascript
 ```
 
-You can also specify a specific file to visualize:
+#### Analyze All Supported Languages
 
 ```bash
-python visualize_tokens.py --model codellama/CodeLlama-7b-hf --file code_samples/rust/example.rs
+python analyzer.py --all_languages
 ```
 
-### Detailed Analysis
-
-For a more in-depth analysis of misalignments:
+#### Specify Code Sample Directory and Output Directory
 
 ```bash
-python detailed_analysis.py --language typescript
+python analyzer.py --code_dir path/to/code --output_dir path/to/output
 ```
 
-This will generate detailed reports about which types of syntax nodes are most frequently misaligned with tokenization boundaries.
+### 3. Generate Visualization Charts
 
-## Understanding the Results
-
-### Alignment Score
-
-The alignment score is calculated as:
-```
-alignment_score = (1 - mismatched_boundaries / grammar_boundaries) * 100
-```
-
-A higher score indicates better alignment between the model's tokenization and the language's grammar structure.
-
-### Output Files
-
-The analysis generates several output files in the `results/` directory:
-
-1. **CSV Reports**:
-   - `alignment_report_{language}.csv`: Contains alignment scores for each model and file
-
-2. **Charts**:
-   - `alignment_chart_{language}_by_model.png`: Bar chart comparing models' alignment scores
-   - `alignment_chart_{language}_by_file.png`: Bar chart comparing alignment across different files
-
-3. **Detailed Analysis** (when using `detailed_analysis.py`):
-   - JSON files with detailed information about each misalignment
-   - Charts showing which syntax node types are most frequently misaligned
-   - Summary statistics in `results/{language}_detailed/summary.csv`
-
-## Interpreting the Results
-
-- **Higher alignment scores** indicate that the model's tokenization better respects the syntactic structure of the code.
-- **Code-specialized models** (like CodeLlama and StarCoder) typically show better alignment than general-purpose models.
-- **Different languages** may show varying degrees of alignment with the same model, reflecting how well the model's tokenization strategy works for that language.
-- **Certain syntax constructs** may consistently show misalignment across models, indicating fundamental challenges in tokenizing those structures.
-
-## Adding New Languages
-
-To add support for a new language:
-
-1. Add the language to the `SUPPORTED_LANGUAGES` dictionary in the scripts
-2. Add appropriate Tree-sitter repository information in `get_tree_sitter_repo_info()`
-3. Create sample code files in `code_samples/{language}/`
-4. Run the analysis with the new language
-
-## Adding New Models
-
-To test with a new model:
+After analysis is complete, you can generate visualization charts:
 
 ```bash
-python main.py --model organization/model-name --language python
+python visualize_multilang_results.py
 ```
 
-The model must be available on Hugging Face and have a tokenizer that supports offset mapping.
+This will generate various charts, including language ranking charts, rule count vs. alignment rate scatter plots, language category analysis charts, and a comprehensive dashboard.
 
-## Troubleshooting
+### 4. Use the Unified Run Script
 
-### Common Issues
+The project provides a unified run script `run.py` that integrates testing, analysis, and visualization functions:
 
-1. **Tree-sitter compilation errors**:
-   - Make sure you have a C compiler installed
-   - Check if the specified language version is compatible with your tree-sitter version
+```bash
+# Run environment test
+python run.py --test
 
-2. **Model loading errors**:
-   - Ensure you have sufficient disk space for model downloads
-   - Check your internet connection for downloading models
+# Run analysis for all languages
+python run.py --analyze
 
-3. **Memory issues with large models**:
-   - Use smaller models or reduce the batch size
-   - Consider using a machine with more RAM
+# Analyze only a specific language
+python run.py --language python
 
-## Contributing
+# Generate visualization charts
+python run.py --visualize
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+# Run all functions
+python run.py --all
 
-## License
+# Analyze a specific language and generate charts
+python run.py --language python --visualize
+```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Analysis Results
+
+The analyzer will output the following information:
+
+### Console Output
+- Alignment scores and rankings for each language
+- Detailed rule matching information
+- Cross-language comparative analysis
+- Real-time progress display
+
+### Generated Files
+- **Detailed Report**: `results/multilang/detailed_analysis_gpt2.json`
+- **Ranking Report**: `results/multilang/language_rankings_gpt2.json`
+- **Cross-language Comparison**: `results/multilang/cross_language_report_gpt2.json`
+- **Language-specific Reports**: `results/multilang/{language}/analysis_report_gpt2.json`
+- **Visualization Charts**: 
+  - `results/multilang/language_ranking_chart.png`
+  - `results/multilang/rules_vs_alignment_scatter.png`
+  - `results/multilang/language_category_analysis.png`
+  - `results/multilang/comprehensive_dashboard.png`
+
+## Supported Languages
+
+The tool supports the following 11 programming languages:
+
+1. Python (.py)
+2. JavaScript (.js)
+3. TypeScript (.ts)
+4. Java (.java)
+5. C (.c, .h)
+6. C++ (.cpp, .cc, .cxx, .hpp)
+7. C# (.cs)
+8. Go (.go)
+9. Ruby (.rb)
+10. Rust (.rs)
+11. Scala (.scala)
+
+## Project File Structure
+
+```
+TokenizationOffset/
+├── analyzer.py                # Main analyzer
+├── visualize_multilang_results.py  # Visualization tool
+├── test.py                   # Basic test script
+├── run.py                    # Unified run script
+├── README_multilang.md       # Usage documentation
+├── requirements.txt          # Dependencies list
+├── build/                    # Compiled language libraries
+├── code_samples/             # Test code samples
+└── results/                  # Analysis results
+```
+
+## Troubleshooting Common Issues
+
+1. **Language library not found**: Ensure that the compiled language library files are present in the `build/` directory.
+
+2. **Code samples do not exist**: Ensure that the `code_samples/` directory contains code samples for each language.
+
+3. **Dependency installation issues**: Ensure that all dependencies are correctly installed with `pip install -r requirements.txt`.
+
+4. **Visualization chart generation failure**: Check if the necessary analysis result files exist in the `results/multilang/` directory.
+
+## Advanced Usage
+
+### Custom Tokenizer Models
+
+By default, the GPT-2 tokenizer is used. You can specify other models:
+
+```bash
+python analyzer.py --model bert-base-uncased
+```
+
+### Adding Support for New Programming Languages
+
+To add support for a new programming language:
+
+1. Obtain the corresponding Tree-sitter language library
+2. Compile the language library to the `build/` directory
+3. Add language configuration to the `language_configs` dictionary in `analyzer.py`
+4. Prepare test code samples
+5. Verify analysis functionality
