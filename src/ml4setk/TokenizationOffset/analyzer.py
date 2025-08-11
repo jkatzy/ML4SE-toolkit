@@ -44,6 +44,29 @@ class QuickMultiLanguageAnalyzer:
         self.languages = {}
         self._setup_parsers()
     
+    def _normalize_language_name(self, raw_language: Optional[str]) -> Optional[str]:
+        """Normalize various language labels to our internal keys.
+
+        Returns None if cannot map.
+        """
+        if not raw_language:
+            return None
+        name = str(raw_language).strip().lower()
+        aliases = {
+            'python': 'python', 'py': 'python',
+            'javascript': 'javascript', 'js': 'javascript', 'node': 'javascript',
+            'typescript': 'typescript', 'ts': 'typescript',
+            'java': 'java',
+            'c': 'c',
+            'c++': 'cpp', 'cpp': 'cpp', 'cxx': 'cpp',
+            'c#': 'csharp', 'csharp': 'csharp', 'cs': 'csharp',
+            'go': 'go', 'golang': 'go',
+            'ruby': 'ruby', 'rb': 'ruby',
+            'rust': 'rust', 'rs': 'rust',
+            'scala': 'scala'
+        }
+        return aliases.get(name)
+
     def _setup_parsers(self):
         """Set up parsers - Using existing compiled libraries"""
         build_dir = Path('./build')
@@ -269,6 +292,204 @@ class QuickMultiLanguageAnalyzer:
         print(f"  Average processing speed: {result['avg_processing_speed']/1024:.2f} KB/sec")
         
         return result
+
+    def analyze_hf_dataset(
+        self,
+        dataset_name: str,
+        split: str = "train",
+        text_column: str = "content",
+        dataset_config: Optional[str] = None,
+        fixed_language: Optional[str] = None,
+        language_field: Optional[str] = None,
+        limit: Optional[int] = None,
+        streaming: bool = True,
+        use_auth_token: Optional[str] = None,
+        output_dir: str = "results/multilang"
+    ) -> Dict:
+        """Analyze code samples from a HuggingFace dataset.
+
+        - If fixed_language is provided, all samples will be analyzed with that language.
+        - If language_field is provided, each example can specify its language; unsupported ones are skipped.
+        - Results are aggregated per language and saved using the same reporting format.
+        """
+        try:
+            # Lazy import to avoid hard dependency if unused
+            from datasets import load_dataset  # type: ignore
+        except Exception as e:
+            print(f"Error: datasets library not available. Please install with 'pip install datasets'. ({e})")
+            return {}
+
+        available_languages = self.get_available_languages()
+        if not available_languages:
+            print("Error: No available language parsers")
+            return {}
+
+        # Validate language selection strategy
+        if not fixed_language and not language_field:
+            print("Error: Please provide either a fixed language via --hf_language or a dataset language field via --hf_language_field")
+            return {}
+
+        normalized_fixed_language = None
+        if fixed_language:
+            normalized_fixed_language = self._normalize_language_name(fixed_language)
+            if not normalized_fixed_language or normalized_fixed_language not in self.parsers:
+                print(f"Error: Unsupported language: {fixed_language}")
+                return {}
+
+        print("=" * 80)
+        print("Quick Multilingual Rule-level Alignment Score Analysis (HuggingFace Dataset)")
+        print("=" * 80)
+        print(f"Dataset: {dataset_name} | Split: {split} | Text column: {text_column}")
+        if dataset_config:
+            print(f"Dataset config: {dataset_config}")
+        if normalized_fixed_language:
+            print(f"Using fixed language: {normalized_fixed_language}")
+        elif language_field:
+            print(f"Using language field: {language_field}")
+
+        # Load dataset
+        try:
+            ds_kwargs = {
+                "path": dataset_name,
+                "name": dataset_config,
+                "split": split,
+                "streaming": streaming,
+            }
+            if use_auth_token:
+                ds_kwargs["use_auth_token"] = use_auth_token
+            dataset = load_dataset(**ds_kwargs)
+        except Exception as e:
+            print(f"Error loading dataset: {e}")
+            return {}
+
+        # Prepare aggregation structures per language
+        per_language_stats: Dict[str, Dict] = {}
+
+        def ensure_lang_bucket(lang_key: str):
+            if lang_key not in per_language_stats:
+                per_language_stats[lang_key] = {
+                    'language': lang_key,
+                    'file_count': 0,
+                    'avg_score': 0.0,  # will compute later
+                    'total_rules': 0,
+                    'total_aligned': 0,
+                    'total_code_size': 0,
+                    'total_analysis_time': 0.0,
+                    'avg_processing_speed': 0.0,  # will compute later
+                    'files': []
+                }
+
+        processed = 0
+        overall_start_time = time.time()
+        iterator = dataset if streaming else iter(dataset)
+
+        try:
+            pbar = tqdm(iterator, desc="Analyzing HF samples", unit="samples")
+            for i, example in enumerate(pbar):
+                if limit is not None and processed >= limit:
+                    break
+
+                code = example.get(text_column)
+                if not code or not isinstance(code, str) or not code.strip():
+                    continue
+
+                # Determine language
+                language = normalized_fixed_language
+                if not language and language_field:
+                    language = self._normalize_language_name(example.get(language_field))
+                if not language or language not in self.parsers:
+                    # Skip unsupported/unknown languages
+                    continue
+
+                ensure_lang_bucket(language)
+
+                code_size = len(code)
+                sample_start = time.time()
+                score, details = self.calculate_rule_level_alignment(code, language)
+                sample_time = time.time() - sample_start
+
+                aligned_count = sum(1 for d in details.values() if d['fully_aligned'])
+
+                per_language_stats[language]['files'].append({
+                    'file': example.get('id', f'sample_{i}'),
+                    'score': score,
+                    'total_rules': len(details),
+                    'aligned_rules': aligned_count,
+                    'code_size': code_size,
+                    'analysis_time': sample_time,
+                    'processing_speed': code_size / sample_time if sample_time > 0 else 0
+                })
+
+                per_language_stats[language]['file_count'] += 1
+                per_language_stats[language]['total_rules'] += len(details)
+                per_language_stats[language]['total_aligned'] += aligned_count
+                per_language_stats[language]['total_code_size'] += code_size
+                per_language_stats[language]['total_analysis_time'] += sample_time
+
+                processed += 1
+        finally:
+            # tqdm will close itself when pbar goes out of scope
+            pass
+
+        # Post-process aggregates and print summaries
+        results: Dict[str, Dict] = {}
+        for lang, stats in per_language_stats.items():
+            files = stats['files']
+            if not files:
+                continue
+            avg_score = sum(r['score'] for r in files) / len(files)
+            avg_speed = stats['total_code_size'] / stats['total_analysis_time'] if stats['total_analysis_time'] > 0 else 0
+
+            result = {
+                'language': lang,
+                'file_count': stats['file_count'],
+                'avg_score': avg_score,
+                'total_rules': stats['total_rules'],
+                'total_aligned': stats['total_aligned'],
+                'overall_alignment': (stats['total_aligned'] / stats['total_rules'] * 100) if stats['total_rules'] > 0 else 0,
+                'total_code_size': stats['total_code_size'],
+                'total_analysis_time': stats['total_analysis_time'],
+                'avg_processing_speed': avg_speed,
+                'files': files
+            }
+
+            print(f"\n{lang.upper()} (HF) Analysis Summary:")
+            print(f"  File count: {result['file_count']}")
+            print(f"  Average score: {result['avg_score']:.2f}%")
+            print(f"  Total rules: {result['total_rules']}")
+            print(f"  Total aligned: {result['total_aligned']}")
+            print(f"  Overall alignment rate: {result['overall_alignment']:.2f}%")
+            print(f"  Total code size: {result['total_code_size']/1024:.2f} KB")
+            print(f"  Total analysis time: {result['total_analysis_time']:.2f} seconds")
+            print(f"  Average processing speed: {result['avg_processing_speed']/1024:.2f} KB/sec")
+
+            results[lang] = result
+
+        overall_time = time.time() - overall_start_time
+
+        rankings = []
+        if results:
+            print(f"\n{'='*60}")
+            print("Language Rankings (by average score)")
+            print(f"{'='*60}")
+            rankings = sorted(results.items(), key=lambda x: x[1]['avg_score'], reverse=True)
+            for i, (lang, result) in enumerate(rankings, 1):
+                print(f"{i:2d}. {lang:<12} {result['avg_score']:6.2f}% "
+                      f"(Files: {result['file_count']}, Rules: {result['total_rules']})")
+
+            print(f"\nTotal analysis time: {overall_time:.2f} seconds")
+
+            print(f"\n{'='*60}")
+            print("Language Processing Speed Rankings (KB/sec)")
+            print(f"{'='*60}")
+            speed_rankings = sorted(results.items(), key=lambda x: x[1]['avg_processing_speed'], reverse=True)
+            for i, (lang, result) in enumerate(speed_rankings, 1):
+                print(f"{i:2d}. {lang:<12} {result['avg_processing_speed']/1024:.2f} KB/sec "
+                      f"(Total size: {result['total_code_size']/1024:.2f} KB)")
+
+        # Save results
+        self._save_results(results, rankings, output_dir, overall_time)
+        return results
     
     def run_analysis(self, code_dir: str = "code_samples", 
                     target_languages: List[str] = None, 
@@ -530,6 +751,19 @@ def main():
     parser.add_argument('--estimate', action='store_true', help='Estimate large-scale processing time')
     parser.add_argument('--file_count', type=int, default=1000000, help='Number of files for estimation')
     parser.add_argument('--avg_file_size', type=float, default=0, help='Average file size for estimation (bytes)')
+
+    # HuggingFace dataset options
+    parser.add_argument('--hf_dataset', type=str, help='HuggingFace dataset name (e.g., bigcode/the-stack)')
+    parser.add_argument('--hf_config', type=str, default=None, help='HuggingFace dataset config name')
+    parser.add_argument('--hf_split', type=str, default='train', help='Dataset split to analyze')
+    parser.add_argument('--hf_text_column', type=str, default='content', help='Column containing code text')
+    parser.add_argument('--hf_language', type=str, default=None, help='Fixed language to use for all samples')
+    parser.add_argument('--hf_language_field', type=str, default=None, help='Field name containing per-sample language')
+    parser.add_argument('--hf_limit', type=int, default=None, help='Limit number of samples to analyze')
+    parser.add_argument('--hf_streaming', action='store_true', help='Enable streaming mode when loading dataset')
+    parser.add_argument('--no_hf_streaming', dest='hf_streaming', action='store_false', help='Disable streaming mode')
+    parser.set_defaults(hf_streaming=True)
+    parser.add_argument('--hf_token', type=str, default=None, help='HuggingFace auth token (if required)')
     
     args = parser.parse_args()
     
@@ -546,14 +780,28 @@ def main():
         estimate_processing_time(analyzer, language, args.avg_file_size, args.file_count)
     else:
         # Normal analysis mode
-        if args.language:
-            target_languages = [args.language]
-        elif args.all_languages:
-            target_languages = None  # Analyze all available languages
+        if args.hf_dataset:
+            analyzer.analyze_hf_dataset(
+                dataset_name=args.hf_dataset,
+                split=args.hf_split,
+                text_column=args.hf_text_column,
+                dataset_config=args.hf_config,
+                fixed_language=args.hf_language,
+                language_field=args.hf_language_field,
+                limit=args.hf_limit,
+                streaming=args.hf_streaming,
+                use_auth_token=args.hf_token,
+                output_dir=args.output_dir,
+            )
         else:
-            target_languages = ['python']  # Default to analyzing only Python
-        
-        analyzer.run_analysis(args.code_dir, target_languages, args.output_dir)
+            if args.language:
+                target_languages = [args.language]
+            elif args.all_languages:
+                target_languages = None  # Analyze all available languages
+            else:
+                target_languages = ['python']  # Default to analyzing only Python
+
+            analyzer.run_analysis(args.code_dir, target_languages, args.output_dir)
 
 if __name__ == "__main__":
     main()

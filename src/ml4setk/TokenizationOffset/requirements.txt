@@ -1,6 +1,5 @@
-tree-sitter
-transformers
-torch
-pandas
-matplotlib
-seaborn
+
+psutil==5.9.5
+memory_profiler==0.61.0
+matplotlib==3.7.2
+
