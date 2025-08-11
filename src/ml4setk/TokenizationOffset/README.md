@@ -64,6 +64,58 @@ python analyzer.py --all_languages
 
 ```bash
 python analyzer.py --code_dir path/to/code --output_dir path/to/output
+### 2. Read Code From HuggingFace Datasets (New)
+
+You can analyze code loaded directly from HuggingFace Datasets via new CLI flags. This supports both fixed-language mode and per-sample language fields, and works in streaming mode by default to save memory.
+
+- Basic flags:
+  - `--hf_dataset`: dataset name on the Hub (e.g., `code_x_glue_ct_code_to_text`, `mbpp`)
+  - `--hf_config`: optional dataset config name (e.g., `python`, `java`)
+  - `--hf_split`: split to analyze (default: `train`)
+  - `--hf_text_column`: column containing code text (defaults to `content`; many datasets use `code`)
+  - `--hf_language`: fixed language for all samples (e.g., `python`, `javascript`)
+  - `--hf_language_field`: per-sample field name containing language label (choose one of `--hf_language` or `--hf_language_field`)
+  - `--hf_limit`: limit number of samples for quick runs
+  - `--hf_streaming` / `--no_hf_streaming`: enable/disable streaming (default: enabled)
+  - `--hf_token`: auth token if the dataset is gated
+
+- Example: CodeXGLUE code-to-text (open dataset), Python split:
+  ```bash
+  python analyzer.py \
+    --hf_dataset code_x_glue_ct_code_to_text \
+    --hf_config python \
+    --hf_split train \
+    --hf_text_column code \
+    --hf_language python \
+    --hf_limit 500
+  ```
+
+- Example: CodeXGLUE code-to-text, Java split:
+  ```bash
+  python analyzer.py \
+    --hf_dataset code_x_glue_ct_code_to_text \
+    --hf_config java \
+    --hf_split train \
+    --hf_text_column code \
+    --hf_language java \
+    --hf_limit 500
+  ```
+
+- Example: MBPP (Python, open dataset):
+  ```bash
+  python analyzer.py \
+    --hf_dataset mbpp \
+    --hf_split train \
+    --hf_text_column code \
+    --hf_language python \
+    --hf_limit 200
+  ```
+
+Notes:
+- Language aliases are normalized: `js`→`javascript`, `c++/cpp/cxx`→`cpp`, `c#/cs`→`csharp`, `golang`→`go`, etc. Only languages with available compiled parsers will be analyzed.
+- Results, rankings, and saved reports share the same format and output directory as local-file analysis (`results/multilang`).
+- For gated datasets, request access on the dataset page or pass `--hf_token` if you already have access.
+
 ```
 
 ### 3. Generate Visualization Charts
