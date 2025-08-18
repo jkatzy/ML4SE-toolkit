@@ -158,3 +158,25 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# ML4SE-toolkit specific ignores
+# Test results and analysis outputs
+test_results/
+results/
+multilang_test_results/
+demo_hf_results/
+vendor/
+
+# Visualization outputs
+visualization/
+
+# Generated analysis files
+*_rule_counts.json
+*_counts.json
+*_counts.csv
+*_report.md
+
+# Temporary test files
+analyze_*.py
+EBNF_SCORING_CHANGES.md
+

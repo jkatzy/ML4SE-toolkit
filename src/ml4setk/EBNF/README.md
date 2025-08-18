@@ -1,215 +1,182 @@
-# EBNF Tools
+# EBNF Utilities (Rule-level Counting + Railroad Visualization)
 
-## EBNF Railroad Diagram Generator
+This folder contains tools to:
+- Parse source code with Tree-sitter and count grammar rules at the rule-level
+- Support multiple languages via a single `--language` switch
+- Generate Railroad diagrams from EBNF grammars
+- Color Railroad diagrams by per-rule frequency (position-aware), with adaptive labels
 
-The `ebnf.py` script generates railroad diagrams from EBNF grammar files.
+All outputs are designed to be machine-friendly (JSON/CSV) and human-friendly (SVG/Markdown).
 
-### Usage
+## Features
 
+- Rule-level counting (Tree-sitter only)
+  - Parse source code to Tree-sitter AST and count node types (rules)
+  - Single file or JSONL datasets (e.g., HumanEval) supported
+  - Multi-language via `--language` (e.g., `python`, `javascript`, ...)
+  - Outputs JSON with rule counts and metadata, optional summary printing/CSV
+
+- Railroad diagram generation
+  - Generate per-rule SVGs from EBNF (`src/ml4setk/EBNF/ebnfs/*.ebnf`)
+  - Compose all rule SVGs into a combined SVG for quick browsing
+
+- Frequency-based diagram coloring (position-aware)
+  - Read a counts JSON and color each rule diagram
+  - Position-aware: color terminals/nonterminals inside each rule based on their own (or group/alias) frequencies
+  - Adaptive top-left badges show “rule_name: count (global frequency%)”
+  - Robust matching: case/underscore normalization, simple singularization, alias mapping (Python included)
+
+## Installation
+
+Prerequisites:
+- Python 3.9+ recommended
+- pip packages:
+  - Tree-sitter bindings and language pack
+    - `pip install tree-sitter-languages`
+    - Optionally: `pip install tree-sitter tree-sitter-python` (fallbacks where applicable)
+
+Notes:
+- The tools prefer `tree-sitter-languages` to load multiple languages easily.
+- EBNF to Railroad pipeline is implemented in this repo; no extra installation should be needed.
+
+## Quick Start
+
+Count rules for a single file:
 ```bash
-python ebnf.py input_path
+python src/ml4setk/EBNF/rule_counter.py path/to/file.py --language python --output counts.json
 ```
 
-### Arguments
-
-- `input_path`: Path to the EBNF grammar file
-
-### Example
-
+Count rules for a JSONL dataset (default fields include prompt/canonical_solution):
 ```bash
-python ebnf.py grammars/scala.ebnf
+python src/ml4setk/EBNF/rule_counter.py data/HumanEval.jsonl --language python --output humaneval_counts.json --top-n 15
 ```
 
-This will:
-1. Read the EBNF grammar file
-2. Generate railroad diagrams for each grammar rule
-3. Save individual SVG files in the `results/[grammar_name]` directory
-4. Display the diagrams in Jupyter notebook (if running in Jupyter)
-
-## SVG Diagram Combiner
-
-The `combine_svg.py` script combines multiple SVG files into a single large SVG file, which is useful for viewing and sharing EBNF grammar diagrams.
-
-### Usage
-
+Generate Railroad diagrams for one or more languages (based on EBNF files present):
 ```bash
-python combine_svg.py input_directory output_path
+python src/ml4setk/EBNF/visualize_grammars.py --languages python
 ```
 
-### Arguments
-
-- `input_directory`: Directory containing the individual SVG files to be combined
-- `output_path`: Path where the combined SVG file will be saved
-
-### Example
-
+Generate and color Railroad diagrams using rule counts:
 ```bash
-python combine_svg.py results/lua results/lua/combined.svg
+python src/ml4setk/EBNF/visualize_grammars.py --languages python --counts-json src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json
 ```
 
-This will:
-1. Read all SVG files from the `results/lua` directory
-2. Combine them into a single SVG file
-3. Save the result as `combined.svg` in the `results/lua` directory
+Outputs will be placed under:
+- `visualization/<language>/rules/*.svg` (per-rule)
+- `visualization/<language>/combined.svg`
+- `visualization/<language>/colored/*.svg` (frequency-colored)
+- `visualization/<language>/colored_combined.svg`
 
-### Features
+## CLI Reference
 
-- Automatically arranges diagrams vertically
-- Adds titles for each grammar rule
-- Maintains original styling and formatting
-- Preserves diagram readability
-- Handles errors gracefully
+rule_counter.py:
+- Positional:
+  - `INPUT_PATH`: source file or JSONL
+- Options:
+  - `--language <lang>`: e.g., `python`, `javascript`, `typescript`, `java`, `go`, `cpp`, `c`, `csharp`, `rust`, `ruby`, `scala` (availability depends on `tree-sitter-languages`)
+  - `--output <file.json>`: where to write counts JSON
+  - `--top-n <int>`: print top-N summary (console)
+  - Other defaults: counts JSON may include metadata for provenance
 
-## SVG Coloring Tool
+visualize_grammars.py:
+- Options:
+  - `--languages <lang1,lang2,...>`: select subset to visualize (default: all EBNFs found)
+  - `--counts-json <file.json>`: if provided, color each rule SVG based on frequencies; also generate `colored_combined.svg`
 
-The `svg_coloring.py` script colors SVG diagrams based on usage count data from CSV files. This is useful for visualizing the frequency of different grammar rules in your codebase.
+## Output Formats
 
-### Usage
+Counts JSON (accepted/produced):
+- Either a flat dictionary `{ "rule": count, ... }`
+- Or nested `{ "rule_counts": { ... } }`
+- Or `{ "counts": { ... }, "metadata": { ... } }`
+- The coloring pipeline supports all three forms transparently
 
+Colored SVGs:
+- Per-rule SVGs are modified in-place for coloring (style fill + fill attribute + stroke safeguard)
+- Top-left adaptive badge shows `rule_name: total_count (global_frequency%)`
+- Position-aware coloring applies to terminals/nonterminals inside each rule
+
+## Coloring Details
+
+- Frequency basis: global frequency
+  - For any key, `f = count / total_occurrences` (across the entire dataset)
+  - Nonlinear boost for visual clarity: `f_adj = f ** 0.35`
+  - Hue mapping: `h = 120 * f_adj` (HSL), higher frequency → greener
+- Position-aware key resolution per element:
+  1) Use `rect[data-text]` if present and meaningful
+  2) Otherwise, use the nearest group text(s) (recursively collected)
+  3) Normalize keys: lowercase, strip leading `_`, spaces/dashes → `_`, simple singularization (e.g., `statements → statement`)
+  4) Alias mapping (per language). For Python:
+     - `suite → block`
+     - `statement →` union of many statement node types (expression_statement, return_statement, if_statement, for_statement, while_statement, try_statement, with_statement, class_definition, function_definition, import_statement, raise_statement, pass_statement, break_statement, continue_statement, delete_statement, global_statement, nonlocal_statement, assert_statement, type_alias_statement, exec_statement)
+     - `simple_statement →` simple statement subset
+     - `compound_statement →` compound statement subset
+     - `dotted_name → identifier`
+  5) Fallback: rule-file name’s total count
+- “Noisy” keys (e.g., `~1` or purely symbol/number text) are ignored as non-semantic
+
+## Multi-language Support
+
+Counting:
+- `rule_counter.py` uses Tree-sitter for all languages; no AST fallback. If the language cannot be loaded, it will raise an error.
+- Language normalization is supported (e.g., `js → javascript`, `c# → csharp`, `c++ → cpp`).
+
+Visualization:
+- Requires a corresponding EBNF file under `src/ml4setk/EBNF/ebnfs/<language>.ebnf`
+- To add a new language visualization:
+  1) Provide `<language>.ebnf` in `ebnfs/`
+  2) Run `visualize_grammars.py --languages <language>`
+  3) Optionally provide counts via `--counts-json` for coloring
+
+Coloring alias maps:
+- Extend `src/ml4setk/EBNF/color_visualization.py` function `_alias_map(lang)` to add language-specific rule mappings, so diagram nodes align with Tree-sitter node types.
+
+## Troubleshooting
+
+- Tree-sitter cannot load the language
+  - Ensure `pip install tree-sitter-languages`
+  - If still failing, install language-specific packages (e.g., `tree-sitter-python`) or ensure the project’s prebuilt `.so` is available.
+- Colors do not change
+  - Make sure `--counts-json` is provided
+  - Ensure the counts file matches the target language
+  - Consider extending `_alias_map` for better rule name alignment
+- Colors seem “too red”
+  - This is often due to unmatched keys falling back to small totals; improve alignment via aliasing
+  - We also apply a nonlinear boost (`f ** 0.35`) to make mid-high frequencies more green
+- Badge overlaps content
+  - Badge is adaptive to viewBox and text length, with smaller font and semi-transparent background. If still intrusive, relocate or tune margins in `_add_badge`.
+
+## Examples
+
+HumanEval (Python):
 ```bash
-python svg_coloring.py --svg-dir <svg_directory> --csv-dir <csv_directory> --out-dir <output_directory>
+# Count
+python src/ml4setk/EBNF/rule_counter.py data/HumanEval.jsonl --language python --output src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json --top-n 15
+
+# Visualize + Color
+python src/ml4setk/EBNF/visualize_grammars.py --languages python --counts-json src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json
 ```
 
-### Arguments
+Inspect outputs:
+- `visualization/python/combined.svg`
+- `visualization/python/colored/*.svg`
+- `visualization/python/colored_combined.svg`
 
-- `--svg-dir`: Directory containing the input SVG files
-- `--csv-dir`: Directory containing CSV files with count data
-- `--out-dir`: Directory where the colored SVG files will be saved
+## Extending
 
-### Example
+- Add new languages to counting
+  - Ensure Tree-sitter grammar is available via `tree-sitter-languages`
+- Add new languages to visualization
+  - Supply `<language>.ebnf` under `ebnfs/`
+- Improve aliasing/normalization
+  - Edit `_alias_map` and normalization utilities in `color_visualization.py`
+  - Add tests/fixtures as needed
 
-```bash
-python svg_coloring.py --svg-dir results/lua --csv-dir data/lua --out-dir results/lua_colored
-```
+## Repository Layout (relevant)
 
-This will:
-1. Read SVG files from the `results/lua` directory
-2. Read corresponding count data from CSV files in the `data/lua` directory
-3. Color the SVG diagrams based on the count data (higher counts = more green, lower counts = more red)
-4. Save the colored SVG files in the `results/lua_colored` directory
-
-### CSV Format
-
-The CSV files should have the following format:
-```csv
-name,count
-rule_name,count_value
-```
-
-Each CSV file should correspond to an SVG file with the same base name.
-
-## Fake Data Generator
-
-The `fake_data_generator.py` script generates fake count data for SVG files and saves them as CSV files. This is useful for testing and demonstration purposes when you don't have real usage data.
-
-### Usage
-
-```bash
-python fake_data_generator.py --svg-dir <svg_directory> --fake-csv-dir <csv_directory> [--global-max <max_count>] [--random-seed <seed>]
-```
-
-### Arguments
-
-- `--svg-dir`: Directory containing the input SVG files (required)
-- `--fake-csv-dir`: Directory where the generated CSV files will be saved (required)
-- `--global-max`: Maximum count value (optional, if not specified, will be randomly generated between 20 and 100)
-- `--random-seed`: Random seed for reproducibility (optional)
-
-### Example
-
-```bash
-python fake_data_generator.py --svg-dir results/lua --fake-csv-dir fake_csv/lua --global-max 50 --random-seed 42
-```
-
-This will:
-1. Read SVG files from the `results/lua` directory
-2. Extract grammar rule names from the SVG files
-3. Generate random count data for each rule (between 1 and global_max)
-4. Save the generated data as CSV files in the `fake_csv/lua` directory
-
-The generated CSV files will have the same base names as their corresponding SVG files and will follow the same format as required by the SVG Coloring Tool.
-
-## Real Data Processor
-
-The `real_data_processor.py` script processes real code data from JSONL files (like HumanEval), extracts AST node types, and colors SVG diagrams based on the frequency of grammar rules in the code.
-
-### Usage
-
-```bash
-python real_data_processor.py --jsonl-path <jsonl_file> --svg-dir <svg_directory> --csv-dir <csv_directory> --out-dir <output_directory>
-```
-
-### Arguments
-
-- `--jsonl-path`: Path to the JSONL file containing real code data (required)
-- `--svg-dir`: Directory containing input SVG files (required)
-- `--csv-dir`: Directory to save generated CSV files with counts (required)
-- `--out-dir`: Directory to save colored SVG files (required)
-
-### Example
-
-```bash
-python real_data_processor.py --jsonl-path data/humaneval.jsonl --svg-dir results/python --csv-dir real_csv/humaneval --out-dir results/humaneval_colored
-```
-
-This will:
-1. Read the JSONL file containing real code data
-2. Extract and count AST node types from the code
-3. Generate a CSV file with grammar rule counts
-4. Color the SVG diagrams based on the frequency of each grammar rule
-   - Higher frequency = more green
-   - Lower frequency = more red
-5. Save the colored SVG files in the output directory
-
-### Features
-
-- Processes real code data from JSONL files
-- Extracts AST node types and their frequencies
-- Generates grammar rule counts
-- Colors SVG diagrams based on usage frequency
-- Handles errors gracefully
-- Preserves original SVG styling and formatting
-
-# EBNF Conversion Tools
-
-This directory contains tools for working with EBNF (Extended Backus-Naur Form) grammars.
-
-## Converting Tree-sitter Grammars to EBNF
-
-The `tree-sitter-ebnf-generator` directory contains a Node.js script that converts tree-sitter grammar files (`.js`) to EBNF format. To convert all grammar files:
-
-1. Make sure you have Node.js installed
-2. Run the conversion script:
-   ```bash
-   ./convert_grammars.sh
-   ```
-
-This will:
-- Install necessary dependencies if they're not already installed
-- Convert all `.js` files in the `grammars` directory to EBNF format
-- Save the converted files in the `ebnfs` directory with `.ebnf` extension
-
-## Manual Conversion
-
-If you need to convert a single grammar file manually:
-
-1. Navigate to the js directory:
-   ```bash
-   cd tree-sitter-ebnf-generator/src/js
-   ```
-
-2. Install dependencies (if not already installed):
-   ```bash
-   npm install
-   ```
-
-3. Run the conversion script:
-   ```bash
-   node tree_sitter_to_ebnf_new.js /path/to/grammar.js > output.ebnf
-   ```
-
-## Directory Structure
-
-- `grammars/`: Contains tree-sitter grammar files (`.js`)
-- `ebnfs/`: Contains converted EBNF files
-- `tree-sitter-ebnf-generator/`: Contains the conversion script and its dependencies 
+- `rule_counter.py` — Tree-sitter based rule counting (multi-language)
+- `visualize_grammars.py` — Batch EBNF → Railroad → Combined; optional coloring
+- `color_visualization.py` — Position-aware coloring and adaptive badges
+- `ebnfs/` — Language EBNF definitions
+- `results/` — Raw per-language rule SVGs generated by `ebnf.py`
+- `visualization/` — Final per-language outputs (rules, combined, colored, colored_combined)
