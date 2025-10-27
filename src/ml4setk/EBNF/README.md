@@ -1,182 +1,360 @@
 # EBNF Utilities (Rule-level Counting + Railroad Visualization)
 
-This folder contains tools to:
-- Parse source code with Tree-sitter and count grammar rules at the rule-level
-- Support multiple languages via a single `--language` switch
-- Generate Railroad diagrams from EBNF grammars
-- Color Railroad diagrams by per-rule frequency (position-aware), with adaptive labels
-
-All outputs are designed to be machine-friendly (JSON/CSV) and human-friendly (SVG/Markdown).
+This folder contains comprehensive tools for analyzing programming language syntax patterns through EBNF (Extended Backus-Naur Form) grammar visualization and rule frequency analysis.
 
 ## Features
 
-- Rule-level counting (Tree-sitter only)
-  - Parse source code to Tree-sitter AST and count node types (rules)
-  - Single file or JSONL datasets (e.g., HumanEval) supported
-  - Multi-language via `--language` (e.g., `python`, `javascript`, ...)
-  - Outputs JSON with rule counts and metadata, optional summary printing/CSV
+### 🔍 Rule-level Counting (Tree-sitter Based)
+- **Multi-language Support**: Parse source code using Tree-sitter for accurate syntax analysis
+- **Dataset Processing**: Handle single files or JSONL datasets (e.g., HumanEval, LCA datasets)
+- **Comprehensive Output**: Generate JSON with rule counts, metadata, and optional CSV/Markdown reports
+- **Language Coverage**: Support for Python, JavaScript, TypeScript, Java, Go, C/C++, C#, Rust, Ruby, Scala
 
-- Railroad diagram generation
-  - Generate per-rule SVGs from EBNF (`src/ml4setk/EBNF/ebnfs/*.ebnf`)
-  - Compose all rule SVGs into a combined SVG for quick browsing
+### 🚂 Railroad Diagram Generation
+- **EBNF to SVG**: Convert EBNF grammar files to visual railroad diagrams
+- **Batch Processing**: Generate diagrams for multiple languages simultaneously
+- **Combined Views**: Compose individual rule SVGs into comprehensive combined diagrams
 
-- Frequency-based diagram coloring (position-aware)
-  - Read a counts JSON and color each rule diagram
-  - Position-aware: color terminals/nonterminals inside each rule based on their own (or group/alias) frequencies
-  - Adaptive top-left badges show “rule_name: count (global frequency%)”
-  - Robust matching: case/underscore normalization, simple singularization, alias mapping (Python included)
+### 🎨 Frequency-based Visualization
+- **Position-aware Coloring**: Color diagram elements based on actual usage frequency in real code
+- **Adaptive Labeling**: Dynamic badges showing rule names, counts, and global frequency percentages
+- **Smart Matching**: Robust rule name normalization and alias mapping for accurate visualization
+
+### 📊 Integrated Analysis Workflow
+- **Complete Pipeline**: From raw code to colored visualizations in a single command
+- **Multiple Output Formats**: JSON, CSV, SVG, and Markdown reports
+- **Comparative Analysis**: Support for analyzing multiple datasets with consistent methodology
 
 ## Installation
 
-Prerequisites:
+### Prerequisites
 - Python 3.9+ recommended
-- pip packages:
-  - Tree-sitter bindings and language pack
-    - `pip install tree-sitter-languages`
-    - Optionally: `pip install tree-sitter tree-sitter-python` (fallbacks where applicable)
+- Required packages:
+```bash
+pip install tree-sitter-languages
+pip install tree-sitter tree-sitter-python  # Optional fallbacks
+```
 
-Notes:
-- The tools prefer `tree-sitter-languages` to load multiple languages easily.
-- EBNF to Railroad pipeline is implemented in this repo; no extra installation should be needed.
+### Verification
+Test your installation:
+```bash
+python src/ml4setk/EBNF/rule_counter.py --help
+```
 
 ## Quick Start
 
-Count rules for a single file:
+### 1. Basic Rule Counting
+
+**Single File Analysis:**
 ```bash
-python src/ml4setk/EBNF/rule_counter.py path/to/file.py --language python --output counts.json
+python src/ml4setk/EBNF/rule_counter.py path/to/file.py \
+    --language python \
+    --output counts.json
 ```
 
-Count rules for a JSONL dataset (default fields include prompt/canonical_solution):
+**JSONL Dataset Analysis:**
 ```bash
-python src/ml4setk/EBNF/rule_counter.py data/HumanEval.jsonl --language python --output humaneval_counts.json --top-n 15
+python src/ml4setk/EBNF/rule_counter.py data/HumanEval.jsonl \
+    --language python \
+    --output humaneval_treesitter.json \
+    --code-fields prompt canonical_solution
 ```
 
-Generate Railroad diagrams for one or more languages (based on EBNF files present):
+### 2. Complete Analysis Workflow
+
+**Using Integrated Processor:**
+```bash
+python src/ml4setk/EBNF/integrated_rule_processor.py data/dataset.jsonl \
+    --language python \
+    --work-dir results \
+    --base-name dataset_analysis
+```
+
+### 3. Visualization Generation
+
+**Basic Railroad Diagrams:**
 ```bash
 python src/ml4setk/EBNF/visualize_grammars.py --languages python
 ```
 
-Generate and color Railroad diagrams using rule counts:
+**Frequency-colored Diagrams:**
 ```bash
-python src/ml4setk/EBNF/visualize_grammars.py --languages python --counts-json src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json
+python src/ml4setk/EBNF/visualize_grammars.py \
+    --languages python \
+    --counts-json path/to/counts.json
 ```
 
-Outputs will be placed under:
-- `visualization/<language>/rules/*.svg` (per-rule)
-- `visualization/<language>/combined.svg`
-- `visualization/<language>/colored/*.svg` (frequency-colored)
-- `visualization/<language>/colored_combined.svg`
+## Complete Workflow Example
+
+Here's a complete example analyzing a dataset from start to finish:
+
+```bash
+# Step 1: Prepare your JSONL file (ensure proper JSON format)
+# Each line should be valid JSON with a "code" field
+
+# Step 2: Count rules using tree-sitter
+cd src/ml4setk/EBNF
+python rule_counter.py data/your_dataset.jsonl \
+    --output ../../../your_dataset_treesitter.json \
+    --language python \
+    --code-fields code
+
+# Step 3: Generate colored visualizations
+python visualize_grammars.py \
+    --languages python \
+    --counts-json ../../../your_dataset_treesitter.json
+
+# Step 4: View results
+# - Tree-sitter counts: your_dataset_treesitter.json
+# - Standard diagrams: visualization/python/combined.svg
+# - Colored diagrams: visualization/python/colored_combined.svg
+```
+
+## Output Structure
+
+### Generated Files
+```
+├── your_dataset_treesitter.json          # Rule counts with metadata
+├── visualization/python/
+│   ├── rules/                            # Individual rule SVGs
+│   ├── combined.svg                      # All rules in one diagram
+│   ├── colored/                          # Frequency-colored rule SVGs
+│   └── colored_combined.svg              # Colored complete diagram
+└── results/                              # Optional detailed reports
+    ├── counts/
+    ├── csv/
+    └── reports/
+```
+
+### JSON Output Format
+```json
+{
+  "metadata": {
+    "language": "python",
+    "total_rules": 171,
+    "total_occurrences": 498657,
+    "parser_used": "tree-sitter (tree-sitter-languages:python)"
+  },
+  "rule_counts": {
+    "identifier": 106342,
+    "\"": 33784,
+    ",": 24094,
+    ...
+  }
+}
+```
 
 ## CLI Reference
 
-rule_counter.py:
-- Positional:
-  - `INPUT_PATH`: source file or JSONL
-- Options:
-  - `--language <lang>`: e.g., `python`, `javascript`, `typescript`, `java`, `go`, `cpp`, `c`, `csharp`, `rust`, `ruby`, `scala` (availability depends on `tree-sitter-languages`)
-  - `--output <file.json>`: where to write counts JSON
-  - `--top-n <int>`: print top-N summary (console)
-  - Other defaults: counts JSON may include metadata for provenance
+### rule_counter.py
+**Purpose**: Count grammar rules in source code using tree-sitter
 
-visualize_grammars.py:
-- Options:
-  - `--languages <lang1,lang2,...>`: select subset to visualize (default: all EBNFs found)
-  - `--counts-json <file.json>`: if provided, color each rule SVG based on frequencies; also generate `colored_combined.svg`
+**Usage**:
+```bash
+python rule_counter.py INPUT [OPTIONS]
+```
 
-## Output Formats
+**Arguments**:
+- `INPUT`: Source file or JSONL dataset path
 
-Counts JSON (accepted/produced):
-- Either a flat dictionary `{ "rule": count, ... }`
-- Or nested `{ "rule_counts": { ... } }`
-- Or `{ "counts": { ... }, "metadata": { ... } }`
-- The coloring pipeline supports all three forms transparently
+**Options**:
+- `--language LANG`: Target language (python, javascript, java, etc.)
+- `--output FILE`: Output JSON file path
+- `--code-fields FIELD [FIELD ...]`: JSONL fields containing code (default: prompt, canonical_solution)
+- `--top-n N`: Number of top rules to display in summary
 
-Colored SVGs:
-- Per-rule SVGs are modified in-place for coloring (style fill + fill attribute + stroke safeguard)
-- Top-left adaptive badge shows `rule_name: total_count (global_frequency%)`
-- Position-aware coloring applies to terminals/nonterminals inside each rule
+### visualize_grammars.py
+**Purpose**: Generate railroad diagrams with optional frequency coloring
 
-## Coloring Details
+**Usage**:
+```bash
+python visualize_grammars.py [OPTIONS]
+```
 
-- Frequency basis: global frequency
-  - For any key, `f = count / total_occurrences` (across the entire dataset)
-  - Nonlinear boost for visual clarity: `f_adj = f ** 0.35`
-  - Hue mapping: `h = 120 * f_adj` (HSL), higher frequency → greener
-- Position-aware key resolution per element:
-  1) Use `rect[data-text]` if present and meaningful
-  2) Otherwise, use the nearest group text(s) (recursively collected)
-  3) Normalize keys: lowercase, strip leading `_`, spaces/dashes → `_`, simple singularization (e.g., `statements → statement`)
-  4) Alias mapping (per language). For Python:
-     - `suite → block`
-     - `statement →` union of many statement node types (expression_statement, return_statement, if_statement, for_statement, while_statement, try_statement, with_statement, class_definition, function_definition, import_statement, raise_statement, pass_statement, break_statement, continue_statement, delete_statement, global_statement, nonlocal_statement, assert_statement, type_alias_statement, exec_statement)
-     - `simple_statement →` simple statement subset
-     - `compound_statement →` compound statement subset
-     - `dotted_name → identifier`
-  5) Fallback: rule-file name’s total count
-- “Noisy” keys (e.g., `~1` or purely symbol/number text) are ignored as non-semantic
+**Options**:
+- `--languages LANG1,LANG2`: Comma-separated language list (default: all available)
+- `--counts-json FILE`: Rule counts JSON for frequency-based coloring
 
-## Multi-language Support
+### integrated_rule_processor.py
+**Purpose**: Complete analysis workflow from code to reports
 
-Counting:
-- `rule_counter.py` uses Tree-sitter for all languages; no AST fallback. If the language cannot be loaded, it will raise an error.
-- Language normalization is supported (e.g., `js → javascript`, `c# → csharp`, `c++ → cpp`).
+**Usage**:
+```bash
+python integrated_rule_processor.py INPUT [OPTIONS]
+```
 
-Visualization:
-- Requires a corresponding EBNF file under `src/ml4setk/EBNF/ebnfs/<language>.ebnf`
-- To add a new language visualization:
-  1) Provide `<language>.ebnf` in `ebnfs/`
-  2) Run `visualize_grammars.py --languages <language>`
-  3) Optionally provide counts via `--counts-json` for coloring
+**Options**:
+- `--language LANG`: Programming language
+- `--work-dir DIR`: Output directory for all results
+- `--base-name NAME`: Base name for output files
 
-Coloring alias maps:
-- Extend `src/ml4setk/EBNF/color_visualization.py` function `_alias_map(lang)` to add language-specific rule mappings, so diagram nodes align with Tree-sitter node types.
+## Supported Languages
 
-## Troubleshooting
+| Language   | Aliases        | Tree-sitter Support | EBNF Available |
+|------------|----------------|-------------------|----------------|
+| Python     | py             | ✅                | ✅             |
+| JavaScript | js, node       | ✅                | ✅             |
+| TypeScript | ts             | ✅                | ❌             |
+| Java       | -              | ✅                | ✅             |
+| Go         | golang         | ✅                | ✅             |
+| C          | -              | ✅                | ✅             |
+| C++        | cpp            | ✅                | ✅             |
+| C#         | csharp, cs     | ✅                | ✅             |
+| Rust       | -              | ✅                | ❌             |
+| Ruby       | -              | ✅                | ❌             |
+| Scala      | -              | ✅                | ✅             |
 
-- Tree-sitter cannot load the language
-  - Ensure `pip install tree-sitter-languages`
-  - If still failing, install language-specific packages (e.g., `tree-sitter-python`) or ensure the project’s prebuilt `.so` is available.
-- Colors do not change
-  - Make sure `--counts-json` is provided
-  - Ensure the counts file matches the target language
-  - Consider extending `_alias_map` for better rule name alignment
-- Colors seem “too red”
-  - This is often due to unmatched keys falling back to small totals; improve alignment via aliasing
-  - We also apply a nonlinear boost (`f ** 0.35`) to make mid-high frequencies more green
-- Badge overlaps content
-  - Badge is adaptive to viewBox and text length, with smaller font and semi-transparent background. If still intrusive, relocate or tune margins in `_add_badge`.
+## Advanced Features
+
+### Frequency-based Coloring
+The visualization system uses sophisticated coloring algorithms:
+
+1. **Global Frequency Calculation**: `f = count / total_occurrences`
+2. **Nonlinear Boost**: `f_adj = f ** 0.35` for better visual distinction
+3. **HSL Color Mapping**: `hue = 120 * f_adj` (red → yellow → green)
+4. **Position-aware Application**: Colors applied to specific diagram elements
+
+### Rule Name Normalization
+Robust matching system for accurate coloring:
+- Case normalization (lowercase)
+- Underscore prefix removal
+- Space/dash to underscore conversion
+- Simple singularization (statements → statement)
+- Language-specific alias mapping
+
+### Python-specific Aliases
+```python
+aliases = {
+    "suite": "block",
+    "statement": ["expression_statement", "return_statement", "if_statement", ...],
+    "simple_statement": ["expression_statement", "assignment", "pass_statement", ...],
+    "compound_statement": ["if_statement", "for_statement", "while_statement", ...],
+    "dotted_name": "identifier"
+}
+```
+
+## Data Processing Guidelines
+
+### JSONL Format Requirements
+Ensure your JSONL files have proper format:
+```json
+{"code": "def example():\n    return 42", "id": "sample_1"}
+{"code": "print('hello world')", "id": "sample_2"}
+```
+
+### Common Issues and Solutions
+
+**Issue**: "No rules were counted"
+- **Solution**: Check JSONL format, ensure `--code-fields` matches your data structure
+
+**Issue**: Tree-sitter language not found
+- **Solution**: Install `tree-sitter-languages` or verify language name spelling
+
+**Issue**: Colors appear too red/uniform
+- **Solution**: Verify counts JSON matches target language, check rule name alignment
 
 ## Examples
 
-HumanEval (Python):
+### HumanEval Dataset Analysis
 ```bash
-# Count
-python src/ml4setk/EBNF/rule_counter.py data/HumanEval.jsonl --language python --output src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json --top-n 15
+# Complete analysis of HumanEval dataset
+python rule_counter.py data/HumanEval.jsonl \
+    --language python \
+    --output humaneval_treesitter.json \
+    --code-fields prompt canonical_solution
 
-# Visualize + Color
-python src/ml4setk/EBNF/visualize_grammars.py --languages python --counts-json src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json
+python visualize_grammars.py \
+    --languages python \
+    --counts-json humaneval_treesitter.json
 ```
 
-Inspect outputs:
-- `visualization/python/combined.svg`
-- `visualization/python/colored/*.svg`
-- `visualization/python/colored_combined.svg`
+### Custom Dataset Processing
+```bash
+# For datasets with "code" field
+python rule_counter.py data/custom_dataset.jsonl \
+    --language python \
+    --output custom_treesitter.json \
+    --code-fields code
 
-## Extending
+# For datasets with multiple code fields
+python rule_counter.py data/multi_field_dataset.jsonl \
+    --language python \
+    --output multi_treesitter.json \
+    --code-fields solution test_code example_code
+```
 
-- Add new languages to counting
-  - Ensure Tree-sitter grammar is available via `tree-sitter-languages`
-- Add new languages to visualization
-  - Supply `<language>.ebnf` under `ebnfs/`
-- Improve aliasing/normalization
-  - Edit `_alias_map` and normalization utilities in `color_visualization.py`
-  - Add tests/fixtures as needed
+### Multi-language Analysis
+```bash
+# Analyze the same dataset for different languages
+python rule_counter.py data/polyglot_dataset.jsonl \
+    --language python \
+    --output python_analysis.json
 
-## Repository Layout (relevant)
+python rule_counter.py data/polyglot_dataset.jsonl \
+    --language javascript \
+    --output javascript_analysis.json
 
-- `rule_counter.py` — Tree-sitter based rule counting (multi-language)
-- `visualize_grammars.py` — Batch EBNF → Railroad → Combined; optional coloring
-- `color_visualization.py` — Position-aware coloring and adaptive badges
-- `ebnfs/` — Language EBNF definitions
-- `results/` — Raw per-language rule SVGs generated by `ebnf.py`
-- `visualization/` — Final per-language outputs (rules, combined, colored, colored_combined)
+# Generate comparative visualizations
+python visualize_grammars.py \
+    --languages python,javascript \
+    --counts-json python_analysis.json
+```
+
+## Extending the System
+
+### Adding New Languages
+
+1. **For Counting**: Ensure tree-sitter support via `tree-sitter-languages`
+2. **For Visualization**: Add `<language>.ebnf` file to `ebnfs/` directory
+3. **For Better Coloring**: Extend alias mapping in `color_visualization.py`
+
+### Custom Analysis Workflows
+
+Create custom processors by extending `integrated_rule_processor.py`:
+```python
+from integrated_rule_processor import IntegratedRuleProcessor
+
+class CustomProcessor(IntegratedRuleProcessor):
+    def custom_analysis(self, counts):
+        # Your custom analysis logic
+        pass
+```
+
+## Repository Structure
+
+```
+src/ml4setk/EBNF/
+├── rule_counter.py              # Core tree-sitter rule counting
+├── visualize_grammars.py        # Railroad diagram generation
+├── integrated_rule_processor.py # Complete workflow processor
+├── color_visualization.py       # Frequency-based coloring
+├── combine_svg.py              # SVG composition utilities
+├── ebnf.py                     # EBNF to SVG conversion
+├── ebnfs/                      # EBNF grammar definitions
+│   ├── python.ebnf
+│   ├── javascript.ebnf
+│   └── ...
+├── data/                       # Sample datasets
+├── results/                    # Generated analysis results
+└── RRD/                       # Railroad diagram library
+```
+
+## Performance Notes
+
+- **Large Datasets**: Processing time scales linearly with dataset size
+- **Memory Usage**: Tree-sitter parsing is memory-efficient for most datasets
+- **Visualization**: SVG generation may be slow for very large grammars
+- **Optimization**: Use `--top-n` for quick summaries of large analyses
+
+## Contributing
+
+To contribute new features or improvements:
+
+1. **Language Support**: Add EBNF files and test with sample code
+2. **Visualization**: Enhance coloring algorithms or diagram layouts  
+3. **Analysis**: Extend reporting capabilities or add new metrics
+4. **Documentation**: Improve examples and troubleshooting guides
+
+## License
+
+This project is part of the ML4SE-toolkit. See the main repository LICENSE for details.

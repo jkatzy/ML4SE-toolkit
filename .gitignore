@@ -180,3 +180,15 @@ visualization/
 analyze_*.py
 EBNF_SCORING_CHANGES.md
 
+treemap_outputs/
+
+src/ml4setk/EBNF/data/
+src/ml4setk/EBNF/results/
+src/ml4setk/EBNF/visualization/
+src/ml4setk/EBNF/demo_results/
+src/ml4setk/EBNF/fake_csv/
+src/ml4setk/EBNF/real_csv/
+src/ml4setk/EBNF/humaneval_rule_counts_treesitter.json
+src/ml4setk/EBNF/humaneval_rule_counts.json
+src/ml4setk/EBNF/example_usage.py
+src/ml4setk/EBNF/real_data_processor.py

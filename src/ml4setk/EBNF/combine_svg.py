@@ -71,14 +71,14 @@ def combine_svgs(input_dir, output_path):
             
             rule_name = svg_file.stem
             title = ET.SubElement(root, "text", {
-                "x": "20",
+                "x": "80",
                 "y": str(current_y - 20),
                 "class": "rule-title"
             })
             title.text = rule_name
             
             g = ET.SubElement(root, "g", {
-                "transform": f"translate(20, {current_y})"
+                "transform": f"translate(80, {current_y})"
             })
             
             for elem in svg_root:
