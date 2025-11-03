@@ -11,12 +11,13 @@ Notes:
   - Aggregates counts across all matched files
   - Saves JSON and CSV under <work-dir>/counts and <work-dir>/csv
   - Invokes visualize_grammars.py to build combined.svg and colored_combined.svg
+  - Supports checkpointing: save intermediate counts every N files
 """
 
 import argparse
 import os
 from pathlib import Path
-from typing import Dict, Iterable, List
+from typing import Dict, Iterable, List, Callable, Optional
 from collections import Counter
 import subprocess
 import sys
@@ -40,8 +41,14 @@ def iter_code_files(root: Path, exts: Iterable[str]) -> Iterable[Path]:
                 yield p
 
 
-def aggregate_counts(counter: RuleCounter, files: List[Path]) -> Dict[str, int]:
+def aggregate_counts(
+    counter: RuleCounter,
+    files: List[Path],
+    on_checkpoint: Optional[Callable[[Dict[str, int], int, int], None]] = None,
+    checkpoint_every: Optional[int] = None,
+) -> Dict[str, int]:
     total = Counter()
+    total_files = len(files)
     for idx, fp in enumerate(files, 1):
         try:
             counts = counter.count_rules_in_file(str(fp))
@@ -50,7 +57,10 @@ def aggregate_counts(counter: RuleCounter, files: List[Path]) -> Dict[str, int]:
         except Exception as e:
             print(f"[WARN] Failed to analyze {fp}: {e}")
         if idx % 50 == 0:
-            print(f"Processed {idx}/{len(files)} files...")
+            print(f"Processed {idx}/{total_files} files...")
+        if checkpoint_every and checkpoint_every > 0 and on_checkpoint and idx % checkpoint_every == 0:
+            part_index = idx // checkpoint_every
+            on_checkpoint(dict(total), idx, part_index)
     return dict(total)
 
 
@@ -87,6 +97,7 @@ def main():
     parser.add_argument("--work-dir", "-w", default="results", help="Working directory for outputs (default: results)")
     parser.add_argument("--base-name", "-n", default=None, help="Base name for output files (default: derived from directory name)")
     parser.add_argument("--top-n", type=int, default=20, help="Top N to print in summary")
+    parser.add_argument("--checkpoint-every", type=int, default=50000, help="Save intermediate counts every N files (default: 50000)")
     args = parser.parse_args()
 
     root = Path(args.directory).resolve()
@@ -108,9 +119,21 @@ def main():
         return 0
     print(f"Found {len(files)} files under {root} with extensions {args.extensions}")
 
-    # Count
+    # Count with optional checkpointing
     counter = RuleCounter(language=args.language)
-    counts = aggregate_counts(counter, files)
+    def on_checkpoint(counts_snapshot: Dict[str, int], processed: int, part_index: int) -> None:
+        ck_json = work_dir / "counts" / f"{base_name}_part{part_index}_counts.json"
+        ck_csv = work_dir / "csv" / f"{base_name}_part{part_index}_counts.csv"
+        print(f"[CKPT] Saving checkpoint after {processed} files -> {ck_json}, {ck_csv}")
+        save_json(counter, counts_snapshot, ck_json)
+        save_csv(counts_snapshot, ck_csv)
+
+    counts = aggregate_counts(
+        counter,
+        files,
+        on_checkpoint=on_checkpoint,
+        checkpoint_every=args.checkpoint_every,
+    )
 
     if not counts:
         print("No rules were counted. Exiting.")
