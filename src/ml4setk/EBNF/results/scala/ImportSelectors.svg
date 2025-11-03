@@ -1,0 +1,52 @@
+<svg class="railroad-diagram" height="124" viewBox="0 0 623.5 124" width="623.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 63v20m10 -20v20m-10 -10h20" /></g><path d="M40 73h10" /><g>
+<path d="M50 73h0.0" /><path d="M573.5 73h0.0" /><g>
+<path d="M50.0 73h0.0" /><path d="M573.5 73h0.0" /><g class="terminal ">
+<rect data-text="{" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="50" y="62"></rect><text text-anchor="middle" x="64.25" y="77">{</text></g><path d="M78.5 73h10" /><g>
+<path d="M88.5 73h0.0" /><path d="M336.0 73h0.0" /><path d="M88.5 73a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M108.5 42h207.5" /></g><path d="M316.0 42a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M88.5 73h20" /><g>
+<path d="M108.5 73h0.0" /><path d="M316.0 73h0.0" /><path d="M108.5 73h10" /><g>
+<path d="M118.5 73h0.0" /><path d="M306.0 73h0.0" /><g class="terminal ">
+<rect data-text="ImportSelector" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="139" x="118.5" y="62"></rect><text text-anchor="middle" x="188" y="77">ImportSelector</text></g><path d="M257.5 73h10" /><path d="M267.5 73h10" /><g class="terminal ">
+<rect data-text="," fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="277.5" y="62"></rect><text text-anchor="middle" x="291.75" y="77">,</text></g></g><path d="M306.0 73h10" /><path d="M118.5 73a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10" /><g>
+<path d="M118.5 104h187.5" /></g><path d="M306.0 104a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10" /></g><path d="M316.0 73h20" /></g><path d="M336.0 73h10" /><g>
+<path d="M346.0 73h0.0" /><path d="M525.0 73h0.0" /><g>
+<path d="M346.0 73h0.0" /><path d="M525.0 73h0.0" /><path d="M346.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><g>
+<path d="M366.0 31h0.0" /><path d="M505.0 31h0.0" /><g class="terminal ">
+<rect data-text="ImportSelector" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="139" x="366" y="20"></rect><text text-anchor="middle" x="435.5" y="35">ImportSelector</text></g></g><path d="M505.0 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><path d="M346.0 73h20" /><g>
+<path d="M366.0 73h55.25" /><path d="M449.75 73h55.25" /><g class="terminal ">
+<rect data-text="_" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="421.25" y="62"></rect><text text-anchor="middle" x="435.5" y="77">_</text></g></g><path d="M505.0 73h20" /></g></g><path d="M525.0 73h10" /><path d="M535.0 73h10" /><g class="terminal ">
+<rect data-text="}" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="545" y="62"></rect><text text-anchor="middle" x="559.25" y="77">}</text></g></g></g><path d="M573.5 73h10" /><path d="M 583.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

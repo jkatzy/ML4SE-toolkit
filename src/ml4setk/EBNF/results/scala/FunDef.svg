@@ -1,0 +1,69 @@
+<svg class="railroad-diagram" height="166" viewBox="0 0 1219.0 166" width="1219.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 83v20m10 -20v20m-10 -10h20" /></g><path d="M40 93h10" /><g>
+<path d="M50 93h0.0" /><path d="M1169.0 93h0.0" /><g class="terminal ">
+<rect data-text="FunSig" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="50" y="82"></rect><text text-anchor="middle" x="85.5" y="97">FunSig</text></g><path d="M121.0 93h10" /><g>
+<path d="M131.0 93h0.0" /><path d="M273.5 93h0.0" /><path d="M131.0 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M151.0 62h102.5" /></g><path d="M253.5 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M131.0 93h20" /><g>
+<path d="M151.0 93h0.0" /><path d="M253.5 93h0.0" /><g class="terminal ">
+<rect data-text=":" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="151" y="82"></rect><text text-anchor="middle" x="165.25" y="97">:</text></g><path d="M179.5 93h10" /><path d="M189.5 93h10" /><g class="terminal ">
+<rect data-text="Type" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="199.5" y="82"></rect><text text-anchor="middle" x="226.5" y="97">Type</text></g></g><path d="M253.5 93h20" /></g><path d="M273.5 93h10" /><g class="terminal ">
+<rect data-text="=" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="283.5" y="82"></rect><text text-anchor="middle" x="297.75" y="97">=</text></g><path d="M312.0 93h10" /><g>
+<path d="M322.0 93h0.0" /><path d="M689.5 93h0.0" /><path d="M322.0 93a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10" /><g>
+<path d="M342.0 31h136.75" /><path d="M532.75 31h136.75" /><g class="terminal ">
+<rect data-text="Expr" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="478.75" y="20"></rect><text text-anchor="middle" x="505.75" y="35">Expr</text></g></g><path d="M669.5 31a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10" /><path d="M322.0 93h20" /><g>
+<path d="M342.0 93h0.0" /><path d="M669.5 93h0.0" /><g class="terminal ">
+<rect data-text="FunSig" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="342" y="82"></rect><text text-anchor="middle" x="377.5" y="97">FunSig</text></g><path d="M413.0 93h10" /><g>
+<path d="M423.0 93h0.0" /><path d="M500.0 93h0.0" /><path d="M423.0 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M443.0 62h37.0" /></g><path d="M480.0 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M423.0 93h20" /><g class="terminal ">
+<rect data-text="nl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="443" y="82"></rect><text text-anchor="middle" x="461.5" y="97">nl</text></g><path d="M480.0 93h20" /></g><path d="M500.0 93h10" /><g class="terminal ">
+<rect data-text="{" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="510" y="82"></rect><text text-anchor="middle" x="524.25" y="97">{</text></g><path d="M538.5 93h10" /><path d="M548.5 93h10" /><g class="terminal ">
+<rect data-text="Block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="558.5" y="82"></rect><text text-anchor="middle" x="589.75" y="97">Block</text></g><path d="M621.0 93h10" /><path d="M631.0 93h10" /><g class="terminal ">
+<rect data-text="}" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="641" y="82"></rect><text text-anchor="middle" x="655.25" y="97">}</text></g></g><path d="M669.5 93h20" /><path d="M322.0 93a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><g>
+<path d="M342.0 135h70.0" /><path d="M599.5 135h70.0" /><g class="terminal ">
+<rect data-text="this" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="412" y="124"></rect><text text-anchor="middle" x="439" y="139">this</text></g><path d="M466.0 135h10" /><path d="M476.0 135h10" /><g class="terminal ">
+<rect data-text="ParamClause" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="113.5" x="486" y="124"></rect><text text-anchor="middle" x="542.75" y="139">ParamClause</text></g></g><path d="M669.5 135a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /></g><path d="M689.5 93h10" /><g class="terminal ">
+<rect data-text="$" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="699.5" y="82"></rect><text text-anchor="middle" x="713.75" y="97">$</text></g><path d="M728.0 93h10" /><path d="M738.0 93h10" /><g class="terminal ">
+<rect data-text="ParamClauses" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="122" x="748" y="82"></rect><text text-anchor="middle" x="809" y="97">ParamClauses</text></g><path d="M870.0 93h10" /><path d="M880.0 93h10" /><g>
+<path d="M890.0 93h0.0" /><path d="M1169.0 93h0.0" /><g class="terminal ">
+<rect data-text="=" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="890" y="82"></rect><text text-anchor="middle" x="904.25" y="97">=</text></g><path d="M918.5 93h10" /><g>
+<path d="M928.5 93h0.0" /><path d="M1169.0 93h0.0" /><path d="M928.5 93a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10" /><g>
+<path d="M948.5 31h47.75" /><path d="M1101.25 31h47.75" /><g class="terminal ">
+<rect data-text="ConstrExpr" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="105" x="996.25" y="20"></rect><text text-anchor="middle" x="1048.75" y="35">ConstrExpr</text></g></g><path d="M1149.0 31a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10" /><path d="M928.5 93h20" /><g>
+<path d="M948.5 93h0.0" /><path d="M1149.0 93h0.0" /><g>
+<path d="M948.5 93h0.0" /><path d="M1025.5 93h0.0" /><path d="M948.5 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M968.5 62h37.0" /></g><path d="M1005.5 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M948.5 93h20" /><g class="terminal ">
+<rect data-text="nl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="968.5" y="82"></rect><text text-anchor="middle" x="987" y="97">nl</text></g><path d="M1005.5 93h20" /></g><path d="M1025.5 93h10" /><g class="terminal ">
+<rect data-text="ConstrBlock" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="113.5" x="1035.5" y="82"></rect><text text-anchor="middle" x="1092.25" y="97">ConstrBlock</text></g></g><path d="M1149.0 93h20" /></g></g></g><path d="M1169.0 93h10" /><path d="M 1179.0 93 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

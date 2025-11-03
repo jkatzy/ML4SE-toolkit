@@ -1,0 +1,59 @@
+<svg class="railroad-diagram" height="144" viewBox="0 0 955.5 144" width="955.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 83v20m10 -20v20m-10 -10h20" /></g><path d="M40 93h10" /><g>
+<path d="M50 93h0.0" /><path d="M905.5 93h0.0" /><g class="terminal ">
+<rect data-text="for" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="50" y="82"></rect><text text-anchor="middle" x="72.75" y="97">for</text></g><path d="M95.5 93h10" /><path d="M105.5 93h10" /><g>
+<path d="M115.5 93h0.0" /><path d="M632.0 93h0.0" /><g class="terminal ">
+<rect data-text="(" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="115.5" y="82"></rect><text text-anchor="middle" x="129.75" y="97">(</text></g><path d="M144.0 93h10" /><path d="M154.0 93h10" /><g class="terminal ">
+<rect data-text="Enumerators" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="113.5" x="164" y="82"></rect><text text-anchor="middle" x="220.75" y="97">Enumerators</text></g><path d="M277.5 93h10" /><g>
+<path d="M287.5 93h0.0" /><path d="M632.0 93h0.0" /><path d="M287.5 93a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10" /><g>
+<path d="M307.5 31h138.0" /><path d="M474.0 31h138.0" /><g class="terminal ">
+<rect data-text=")" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="445.5" y="20"></rect><text text-anchor="middle" x="459.75" y="35">)</text></g></g><path d="M612.0 31a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10" /><path d="M287.5 93h20" /><g>
+<path d="M307.5 93h0.0" /><path d="M612.0 93h0.0" /><g class="terminal ">
+<rect data-text="{" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="307.5" y="82"></rect><text text-anchor="middle" x="321.75" y="97">{</text></g><path d="M336.0 93h10" /><path d="M346.0 93h10" /><g class="terminal ">
+<rect data-text="Enumerators" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="113.5" x="356" y="82"></rect><text text-anchor="middle" x="412.75" y="97">Enumerators</text></g><path d="M469.5 93h10" /><g>
+<path d="M479.5 93h0.0" /><path d="M573.5 93h0.0" /><path d="M479.5 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M499.5 62h54.0" /></g><path d="M553.5 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M479.5 93h20" /><g class="terminal ">
+<rect data-text="semi" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="499.5" y="82"></rect><text text-anchor="middle" x="526.5" y="97">semi</text></g><path d="M553.5 93h20" /></g><path d="M573.5 93h10" /><g class="terminal ">
+<rect data-text="}" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="583.5" y="82"></rect><text text-anchor="middle" x="597.75" y="97">}</text></g></g><path d="M612.0 93h20" /></g></g><path d="M632.0 93h10" /><g>
+<path d="M642.0 93h0.0" /><path d="M739.0 93h0.0" /><path d="M642.0 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M662.0 62h57.0" /></g><path d="M719.0 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M642.0 93h20" /><g>
+<path d="M662.0 93h0.0" /><path d="M719.0 93h0.0" /><path d="M662.0 93h10" /><g class="terminal ">
+<rect data-text="nl" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="672" y="82"></rect><text text-anchor="middle" x="690.5" y="97">nl</text></g><path d="M709.0 93h10" /><path d="M672.0 93a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10" /><g>
+<path d="M672.0 124h37.0" /></g><path d="M709.0 124a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10" /></g><path d="M719.0 93h20" /></g><g>
+<path d="M739.0 93h0.0" /><path d="M841.5 93h0.0" /><path d="M739.0 93a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M759.0 62h62.5" /></g><path d="M821.5 62a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M739.0 93h20" /><g class="terminal ">
+<rect data-text="yield" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="759" y="82"></rect><text text-anchor="middle" x="790.25" y="97">yield</text></g><path d="M821.5 93h20" /></g><path d="M841.5 93h10" /><g class="terminal ">
+<rect data-text="Expr" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="851.5" y="82"></rect><text text-anchor="middle" x="878.5" y="97">Expr</text></g></g><path d="M905.5 93h10" /><path d="M 915.5 93 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

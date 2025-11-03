@@ -1,0 +1,48 @@
+<svg class="railroad-diagram" height="146" viewBox="0 0 454.0 146" width="454.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 63v20m10 -20v20m-10 -10h20" /></g><path d="M40 73h10" /><g>
+<path d="M50 73h0.0" /><path d="M404.0 73h0.0" /><g class="terminal ">
+<rect data-text="(" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="50" y="62"></rect><text text-anchor="middle" x="64.25" y="77">(</text></g><path d="M78.5 73h10" /><g>
+<path d="M88.5 73h0.0" /><path d="M208.0 73h0.0" /><path d="M88.5 73a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M108.5 42h79.5" /></g><path d="M188.0 42a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M88.5 73h20" /><g>
+<path d="M108.5 73h0.0" /><path d="M188.0 73h0.0" /><g class="terminal ">
+<rect data-text="explist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="108.5" y="62"></rect><text text-anchor="middle" x="148.25" y="77">explist</text></g></g><path d="M188.0 73h20" /></g><g>
+<path d="M208.0 73h0.0" /><path d="M404.0 73h0.0" /><path d="M208.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /><g>
+<path d="M228.0 31h63.75" /><path d="M320.25 31h63.75" /><g class="terminal ">
+<rect data-text=")" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="291.75" y="20"></rect><text text-anchor="middle" x="306" y="35">)</text></g></g><path d="M384.0 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><path d="M208.0 73h20" /><g>
+<path d="M228.0 73h0.0" /><path d="M384.0 73h0.0" /><g class="terminal ">
+<rect data-text="tableconstructor" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="156" x="228" y="62"></rect><text text-anchor="middle" x="306" y="77">tableconstructor</text></g></g><path d="M384.0 73h20" /><path d="M208.0 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10" /><g>
+<path d="M228.0 115h42.5" /><path d="M341.5 115h42.5" /><g class="terminal ">
+<rect data-text="String" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="270.5" y="104"></rect><text text-anchor="middle" x="306" y="119">String</text></g></g><path d="M384.0 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10" /></g></g><path d="M404.0 73h10" /><path d="M 414.0 73 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

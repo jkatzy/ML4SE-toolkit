@@ -1,0 +1,119 @@
+<svg class="railroad-diagram" height="500" viewBox="0 0 1594.5 500" width="1594.5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g transform="translate(.5 .5)">
+<g>
+<path d="M20 251v20m10 -20v20m-10 -10h20" /></g><path d="M40 261h10" /><g>
+<path d="M50 261h0.0" /><path d="M1544.5 261h0.0" /><g class="terminal ">
+<rect data-text="varlist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="50" y="250"></rect><text text-anchor="middle" x="89.75" y="265">varlist</text></g><path d="M129.5 261h10" /><path d="M139.5 261h10" /><g class="terminal ">
+<rect data-text="=" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="149.5" y="250"></rect><text text-anchor="middle" x="163.75" y="265">=</text></g><path d="M178.0 261h10" /><g>
+<path d="M188.0 261h0.0" /><path d="M1082.0 261h0.0" /><path d="M188.0 261a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10" /><g>
+<path d="M208.0 199h276.25" /><path d="M785.75 199h276.25" /><g class="terminal ">
+<rect data-text="repeat" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="484.25" y="188"></rect><text text-anchor="middle" x="519.75" y="203">repeat</text></g><path d="M555.25 199h10" /><path d="M565.25 199h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="575.25" y="188"></rect><text text-anchor="middle" x="606.5" y="203">block</text></g><path d="M637.75 199h10" /><path d="M647.75 199h10" /><g class="terminal ">
+<rect data-text="until" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="657.75" y="188"></rect><text text-anchor="middle" x="689" y="203">until</text></g><path d="M720.25 199h10" /><path d="M730.25 199h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="740.25" y="188"></rect><text text-anchor="middle" x="763" y="203">exp</text></g></g><path d="M1062.0 199a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10" /><path d="M188.0 261a10 10 0 0 0 10 -10v-84a10 10 0 0 1 10 -10" /><g>
+<path d="M208.0 157h260.5" /><path d="M801.5 157h260.5" /><g class="terminal ">
+<rect data-text="while" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="468.5" y="146"></rect><text text-anchor="middle" x="499.75" y="161">while</text></g><path d="M531.0 157h10" /><path d="M541.0 157h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="551" y="146"></rect><text text-anchor="middle" x="573.75" y="161">exp</text></g><path d="M596.5 157h10" /><path d="M606.5 157h10" /><g class="terminal ">
+<rect data-text="do" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="616.5" y="146"></rect><text text-anchor="middle" x="635" y="161">do</text></g><path d="M653.5 157h10" /><path d="M663.5 157h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="673.5" y="146"></rect><text text-anchor="middle" x="704.75" y="161">block</text></g><path d="M736.0 157h10" /><path d="M746.0 157h10" /><g class="terminal ">
+<rect data-text="end" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="756" y="146"></rect><text text-anchor="middle" x="778.75" y="161">end</text></g></g><path d="M1062.0 157a10 10 0 0 1 10 10v84a10 10 0 0 0 10 10" /><path d="M188.0 261a10 10 0 0 0 10 -10v-126a10 10 0 0 1 10 -10" /><g>
+<path d="M208.0 115h334.5" /><path d="M727.5 115h334.5" /><g class="terminal ">
+<rect data-text="do" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="542.5" y="104"></rect><text text-anchor="middle" x="561" y="119">do</text></g><path d="M579.5 115h10" /><path d="M589.5 115h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="599.5" y="104"></rect><text text-anchor="middle" x="630.75" y="119">block</text></g><path d="M662.0 115h10" /><path d="M672.0 115h10" /><g class="terminal ">
+<rect data-text="end" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="682" y="104"></rect><text text-anchor="middle" x="704.75" y="119">end</text></g></g><path d="M1062.0 115a10 10 0 0 1 10 10v126a10 10 0 0 0 10 10" /><path d="M188.0 261a10 10 0 0 0 10 -10v-168a10 10 0 0 1 10 -10" /><g>
+<path d="M208.0 73h366.0" /><path d="M696.0 73h366.0" /><g class="terminal ">
+<rect data-text="functioncall" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="122" x="574" y="62"></rect><text text-anchor="middle" x="635" y="77">functioncall</text></g></g><path d="M1062.0 73a10 10 0 0 1 10 10v168a10 10 0 0 0 10 10" /><path d="M188.0 261a10 10 0 0 0 10 -10v-210a10 10 0 0 1 10 -10" /><g>
+<path d="M208.0 31h387.25" /><path d="M674.75 31h387.25" /><g class="terminal ">
+<rect data-text="explist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="595.25" y="20"></rect><text text-anchor="middle" x="635" y="35">explist</text></g></g><path d="M1062.0 31a10 10 0 0 1 10 10v210a10 10 0 0 0 10 10" /><path d="M188.0 261h20" /><g>
+<path d="M208.0 261h0.0" /><path d="M1062.0 261h0.0" /><g class="terminal ">
+<rect data-text="if" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="208" y="250"></rect><text text-anchor="middle" x="226.5" y="265">if</text></g><path d="M245.0 261h10" /><path d="M255.0 261h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="265" y="250"></rect><text text-anchor="middle" x="287.75" y="265">exp</text></g><path d="M310.5 261h10" /><path d="M320.5 261h10" /><g class="terminal ">
+<rect data-text="then" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="330.5" y="250"></rect><text text-anchor="middle" x="357.5" y="265">then</text></g><path d="M384.5 261h10" /><path d="M394.5 261h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="404.5" y="250"></rect><text text-anchor="middle" x="435.75" y="265">block</text></g><path d="M467.0 261h10" /><g>
+<path d="M477.0 261h0.0" /><path d="M830.0 261h0.0" /><path d="M477.0 261a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M497.0 230h313.0" /></g><path d="M810.0 230a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M477.0 261h20" /><g>
+<path d="M497.0 261h0.0" /><path d="M810.0 261h0.0" /><path d="M497.0 261h10" /><g>
+<path d="M507.0 261h0.0" /><path d="M800.0 261h0.0" /><g class="terminal ">
+<rect data-text="elseif" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="71" x="507" y="250"></rect><text text-anchor="middle" x="542.5" y="265">elseif</text></g><path d="M578.0 261h10" /><path d="M588.0 261h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="598" y="250"></rect><text text-anchor="middle" x="620.75" y="265">exp</text></g><path d="M643.5 261h10" /><path d="M653.5 261h10" /><g class="terminal ">
+<rect data-text="then" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="663.5" y="250"></rect><text text-anchor="middle" x="690.5" y="265">then</text></g><path d="M717.5 261h10" /><path d="M727.5 261h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="737.5" y="250"></rect><text text-anchor="middle" x="768.75" y="265">block</text></g></g><path d="M800.0 261h10" /><path d="M507.0 261a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10" /><g>
+<path d="M507.0 292h293.0" /></g><path d="M800.0 292a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10" /></g><path d="M810.0 261h20" /></g><g>
+<path d="M830.0 261h0.0" /><path d="M1006.5 261h0.0" /><path d="M830.0 261a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M850.0 230h136.5" /></g><path d="M986.5 230a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M830.0 261h20" /><g>
+<path d="M850.0 261h0.0" /><path d="M986.5 261h0.0" /><g class="terminal ">
+<rect data-text="else" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="850" y="250"></rect><text text-anchor="middle" x="877" y="265">else</text></g><path d="M904.0 261h10" /><path d="M914.0 261h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="924" y="250"></rect><text text-anchor="middle" x="955.25" y="265">block</text></g></g><path d="M986.5 261h20" /></g><path d="M1006.5 261h10" /><g class="terminal ">
+<rect data-text="end" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="1016.5" y="250"></rect><text text-anchor="middle" x="1039.25" y="265">end</text></g></g><path d="M1062.0 261h20" /><path d="M188.0 261a10 10 0 0 1 10 10v62a10 10 0 0 0 10 10" /><g>
+<path d="M208.0 343h83.75" /><path d="M978.25 343h83.75" /><g class="terminal ">
+<rect data-text="for" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="291.75" y="332"></rect><text text-anchor="middle" x="314.5" y="347">for</text></g><path d="M337.25 343h10" /><path d="M347.25 343h10" /><g class="terminal ">
+<rect data-text="Name" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="357.25" y="332"></rect><text text-anchor="middle" x="384.25" y="347">Name</text></g><path d="M411.25 343h10" /><path d="M421.25 343h10" /><g class="terminal ">
+<rect data-text="=" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="431.25" y="332"></rect><text text-anchor="middle" x="445.5" y="347">=</text></g><path d="M459.75 343h10" /><path d="M469.75 343h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="479.75" y="332"></rect><text text-anchor="middle" x="502.5" y="347">exp</text></g><path d="M525.25 343h10" /><path d="M535.25 343h10" /><g class="terminal ">
+<rect data-text="," fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="545.25" y="332"></rect><text text-anchor="middle" x="559.5" y="347">,</text></g><path d="M573.75 343h10" /><path d="M583.75 343h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="593.75" y="332"></rect><text text-anchor="middle" x="616.5" y="347">exp</text></g><path d="M639.25 343h10" /><g>
+<path d="M649.25 343h0.0" /><path d="M783.25 343h0.0" /><path d="M649.25 343a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M669.25 312h94.0" /></g><path d="M763.25 312a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M649.25 343h20" /><g>
+<path d="M669.25 343h0.0" /><path d="M763.25 343h0.0" /><g class="terminal ">
+<rect data-text="," fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="669.25" y="332"></rect><text text-anchor="middle" x="683.5" y="347">,</text></g><path d="M697.75 343h10" /><path d="M707.75 343h10" /><g class="terminal ">
+<rect data-text="exp" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="717.75" y="332"></rect><text text-anchor="middle" x="740.5" y="347">exp</text></g></g><path d="M763.25 343h20" /></g><path d="M783.25 343h10" /><g class="terminal ">
+<rect data-text="do" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="793.25" y="332"></rect><text text-anchor="middle" x="811.75" y="347">do</text></g><path d="M830.25 343h10" /><path d="M840.25 343h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="850.25" y="332"></rect><text text-anchor="middle" x="881.5" y="347">block</text></g><path d="M912.75 343h10" /><path d="M922.75 343h10" /><g class="terminal ">
+<rect data-text="end" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="932.75" y="332"></rect><text text-anchor="middle" x="955.5" y="347">end</text></g></g><path d="M1062.0 343a10 10 0 0 0 10 -10v-62a10 10 0 0 1 10 -10" /><path d="M188.0 261a10 10 0 0 1 10 10v104a10 10 0 0 0 10 10" /><g>
+<path d="M208.0 385h169.5" /><path d="M892.5 385h169.5" /><g class="terminal ">
+<rect data-text="for" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="377.5" y="374"></rect><text text-anchor="middle" x="400.25" y="389">for</text></g><path d="M423.0 385h10" /><path d="M433.0 385h10" /><g class="terminal ">
+<rect data-text="namelist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="443" y="374"></rect><text text-anchor="middle" x="487" y="389">namelist</text></g><path d="M531.0 385h10" /><path d="M541.0 385h10" /><g class="terminal ">
+<rect data-text="in" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="551" y="374"></rect><text text-anchor="middle" x="569.5" y="389">in</text></g><path d="M588.0 385h10" /><path d="M598.0 385h10" /><g class="terminal ">
+<rect data-text="explist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="608" y="374"></rect><text text-anchor="middle" x="647.75" y="389">explist</text></g><path d="M687.5 385h10" /><path d="M697.5 385h10" /><g class="terminal ">
+<rect data-text="do" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="37" x="707.5" y="374"></rect><text text-anchor="middle" x="726" y="389">do</text></g><path d="M744.5 385h10" /><path d="M754.5 385h10" /><g class="terminal ">
+<rect data-text="block" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="764.5" y="374"></rect><text text-anchor="middle" x="795.75" y="389">block</text></g><path d="M827.0 385h10" /><path d="M837.0 385h10" /><g class="terminal ">
+<rect data-text="end" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="847" y="374"></rect><text text-anchor="middle" x="869.75" y="389">end</text></g></g><path d="M1062.0 385a10 10 0 0 0 10 -10v-104a10 10 0 0 1 10 -10" /><path d="M188.0 261a10 10 0 0 1 10 10v146a10 10 0 0 0 10 10" /><g>
+<path d="M208.0 427h275.0" /><path d="M787.0 427h275.0" /><g class="terminal ">
+<rect data-text="function" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="483" y="416"></rect><text text-anchor="middle" x="527" y="431">function</text></g><path d="M571.0 427h10" /><path d="M581.0 427h10" /><g class="terminal ">
+<rect data-text="funcname" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="591" y="416"></rect><text text-anchor="middle" x="635" y="431">funcname</text></g><path d="M679.0 427h10" /><path d="M689.0 427h10" /><g class="terminal ">
+<rect data-text="funcbody" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="699" y="416"></rect><text text-anchor="middle" x="743" y="431">funcbody</text></g></g><path d="M1062.0 427a10 10 0 0 0 10 -10v-146a10 10 0 0 1 10 -10" /><path d="M188.0 261a10 10 0 0 1 10 10v188a10 10 0 0 0 10 10" /><g>
+<path d="M208.0 469h357.5" /><path d="M704.5 469h357.5" /><g class="terminal ">
+<rect data-text="local function" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="139" x="565.5" y="458"></rect><text text-anchor="middle" x="635" y="473">local function</text></g></g><path d="M1062.0 469a10 10 0 0 0 10 -10v-188a10 10 0 0 1 10 -10" /></g><path d="M1082.0 261h10" /><g class="terminal ">
+<rect data-text="Name" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="54" x="1092" y="250"></rect><text text-anchor="middle" x="1119" y="265">Name</text></g><path d="M1146.0 261h10" /><g>
+<path d="M1156.0 261h0.0" /><path d="M1544.5 261h0.0" /><path d="M1156.0 261a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10" /><g>
+<path d="M1176.0 199h130.25" /><path d="M1394.25 199h130.25" /><g class="terminal ">
+<rect data-text="funcbody" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="1306.25" y="188"></rect><text text-anchor="middle" x="1350.25" y="203">funcbody</text></g></g><path d="M1524.5 199a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10" /><path d="M1156.0 261h20" /><g>
+<path d="M1176.0 261h0.0" /><path d="M1524.5 261h0.0" /><g class="terminal ">
+<rect data-text="local" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="62.5" x="1176" y="250"></rect><text text-anchor="middle" x="1207.25" y="265">local</text></g><path d="M1238.5 261h10" /><path d="M1248.5 261h10" /><g class="terminal ">
+<rect data-text="namelist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="88" x="1258.5" y="250"></rect><text text-anchor="middle" x="1302.5" y="265">namelist</text></g><path d="M1346.5 261h10" /><g>
+<path d="M1356.5 261h0.0" /><path d="M1524.5 261h0.0" /><path d="M1356.5 261a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10" /><g>
+<path d="M1376.5 230h128.0" /></g><path d="M1504.5 230a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10" /><path d="M1356.5 261h20" /><g>
+<path d="M1376.5 261h0.0" /><path d="M1504.5 261h0.0" /><g class="terminal ">
+<rect data-text="=" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="28.5" x="1376.5" y="250"></rect><text text-anchor="middle" x="1390.75" y="265">=</text></g><path d="M1405.0 261h10" /><path d="M1415.0 261h10" /><g class="terminal ">
+<rect data-text="explist" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="79.5" x="1425" y="250"></rect><text text-anchor="middle" x="1464.75" y="265">explist</text></g></g><path d="M1504.5 261h20" /></g></g><path d="M1524.5 261h20" /></g></g><path d="M1544.5 261h10" /><path d="M 1554.5 261 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g><style>/* <![CDATA[ */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/* ]]> */
+</style></svg>

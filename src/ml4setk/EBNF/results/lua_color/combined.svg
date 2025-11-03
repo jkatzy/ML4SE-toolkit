@@ -1,0 +1,3674 @@
+<?xml version="1.0" ?>
+<svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="railroad-diagram" width="1634.5" height="5870.0" viewBox="0 0 1634.5 5870.0">
+  <title>EBNF Grammar Diagrams</title>
+  <style>
+    svg.railroad-diagram {
+        background-color: hsl(30,20%,95%);
+    }
+    svg.railroad-diagram path {
+        stroke-width: 3;
+        stroke: black;
+        fill: rgba(0,0,0,0);
+    }
+    svg.railroad-diagram text {
+        font: bold 14px monospace;
+        text-anchor: middle;
+    }
+    svg.railroad-diagram text.label {
+        text-anchor: start;
+    }
+    svg.railroad-diagram text.comment {
+        font: italic 12px monospace;
+    }
+    svg.railroad-diagram rect {
+        stroke-width: 3;
+        stroke: black;
+        fill: hsl(120,100%,90%);
+    }
+    .rule-title {
+        font: bold 16px sans-serif;
+        fill: #333;
+    }
+    </style>
+  <text x="20" y="30" class="rule-title">SourceFile</text>
+  <g transform="translate(20, 50)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M164.0 51h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 51h0.0"/>
+          <ns0:path d="M164.0 51h0.0"/>
+          <ns0:path d="M50.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 20h74.0"/>
+          </ns0:g>
+          <ns0:path d="M144.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 51h0.0"/>
+            <ns0:path d="M144.0 51h0.0"/>
+            <ns0:path d="M70.0 51h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="stat" height="22" stroke="black" stroke-width="3" width="54" x="80" y="40" style="fill:#946A00;"/>
+              <ns0:text text-anchor="middle" x="107" y="55">stat</ns0:text>
+            </ns0:g>
+            <ns0:path d="M134.0 51h10"/>
+            <ns0:path d="M80.0 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M80.0 82h54.0"/>
+            </ns0:g>
+            <ns0:path d="M134.0 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M144.0 51h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M164.0 51h10"/>
+      <ns0:path d="M 174.0 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="212.0" class="rule-title">String</text>
+  <g transform="translate(20, 232.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M635.0 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="20" x="50" y="40"/>
+          <ns0:text text-anchor="middle" x="60" y="55"/>
+        </ns0:g>
+        <ns0:path d="M70.0 51h10"/>
+        <ns0:path d="M80.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text=" [^" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="90" y="40"/>
+          <ns0:text text-anchor="middle" x="112.75" y="55"> [^</ns0:text>
+        </ns0:g>
+        <ns0:path d="M135.5 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M145.5 51h0.0"/>
+          <ns0:path d="M234.0 51h0.0"/>
+          <ns0:path d="M145.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M165.5 20h48.5"/>
+          </ns0:g>
+          <ns0:path d="M214.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M145.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M165.5 51h0.0"/>
+            <ns0:path d="M214.0 51h0.0"/>
+            <ns0:path d="M165.5 51h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="]" height="22" stroke="black" stroke-width="3" width="28.5" x="175.5" y="40" style="fill:#7D8100;"/>
+              <ns0:text text-anchor="middle" x="189.75" y="55">]</ns0:text>
+            </ns0:g>
+            <ns0:path d="M204.0 51h10"/>
+            <ns0:path d="M175.5 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M175.5 82h28.5"/>
+            </ns0:g>
+            <ns0:path d="M204.0 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M214.0 51h20"/>
+        </ns0:g>
+        <ns0:path d="M234.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="20" x="244" y="40"/>
+          <ns0:text text-anchor="middle" x="254" y="55"/>
+        </ns0:g>
+        <ns0:path d="M264.0 51h10"/>
+        <ns0:path d="M274.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text=" | " fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="45.5" x="284" y="40"/>
+          <ns0:text text-anchor="middle" x="306.75" y="55"> | </ns0:text>
+        </ns0:g>
+        <ns0:path d="M329.5 51h10"/>
+        <ns0:path d="M339.5 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="20" x="349.5" y="40"/>
+          <ns0:text text-anchor="middle" x="359.5" y="55"/>
+        </ns0:g>
+        <ns0:path d="M369.5 51h10"/>
+        <ns0:path d="M379.5 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="[^" height="22" stroke="black" stroke-width="3" width="37" x="389.5" y="40" style="fill:#37C700;"/>
+          <ns0:text text-anchor="middle" x="408" y="55">[^</ns0:text>
+        </ns0:g>
+        <ns0:path d="M426.5 51h10"/>
+        <ns0:path d="M436.5 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="20" x="446.5" y="40"/>
+          <ns0:text text-anchor="middle" x="456.5" y="55"/>
+        </ns0:g>
+        <ns0:path d="M466.5 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M476.5 51h0.0"/>
+          <ns0:path d="M565.0 51h0.0"/>
+          <ns0:path d="M476.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M496.5 20h48.5"/>
+          </ns0:g>
+          <ns0:path d="M545.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M476.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M496.5 51h0.0"/>
+            <ns0:path d="M545.0 51h0.0"/>
+            <ns0:path d="M496.5 51h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="]" height="22" stroke="black" stroke-width="3" width="28.5" x="506.5" y="40" style="fill:#7D8100;"/>
+              <ns0:text text-anchor="middle" x="520.75" y="55">]</ns0:text>
+            </ns0:g>
+            <ns0:path d="M535.0 51h10"/>
+            <ns0:path d="M506.5 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M506.5 82h28.5"/>
+            </ns0:g>
+            <ns0:path d="M535.0 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M545.0 51h20"/>
+        </ns0:g>
+        <ns0:path d="M565.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="20" x="575" y="40"/>
+          <ns0:text text-anchor="middle" x="585" y="55"/>
+        </ns0:g>
+        <ns0:path d="M595.0 51h10"/>
+        <ns0:path d="M605.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="" fill="hsl(120, 100%, 90%)" height="22" stroke="black" stroke-width="3" width="20" x="615" y="40"/>
+          <ns0:text text-anchor="middle" x="625" y="55"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M635.0 51h10"/>
+      <ns0:path d="M 645.0 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="394.0" class="rule-title">args</text>
+  <g transform="translate(20, 414.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M404.0 73h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="(" height="22" stroke="black" stroke-width="3" width="28.5" x="50" y="62" style="fill:#8F6F00;"/>
+          <ns0:text text-anchor="middle" x="64.25" y="77">(</ns0:text>
+        </ns0:g>
+        <ns0:path d="M78.5 73h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M88.5 73h0.0"/>
+          <ns0:path d="M208.0 73h0.0"/>
+          <ns0:path d="M88.5 73a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M108.5 42h79.5"/>
+          </ns0:g>
+          <ns0:path d="M188.0 42a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M88.5 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M108.5 73h0.0"/>
+            <ns0:path d="M188.0 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="explist" height="22" stroke="black" stroke-width="3" width="79.5" x="108.5" y="62" style="fill:#788600;"/>
+              <ns0:text text-anchor="middle" x="148.25" y="77">explist</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M188.0 73h20"/>
+        </ns0:g>
+        <ns0:g>
+          
+
+          <ns0:path d="M208.0 73h0.0"/>
+          <ns0:path d="M404.0 73h0.0"/>
+          <ns0:path d="M208.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M228.0 31h63.75"/>
+            <ns0:path d="M320.25 31h63.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=")" height="22" stroke="black" stroke-width="3" width="28.5" x="291.75" y="20" style="fill:#B94500;"/>
+              <ns0:text text-anchor="middle" x="306" y="35">)</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M384.0 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M208.0 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M228.0 73h0.0"/>
+            <ns0:path d="M384.0 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="tableconstructor" height="22" stroke="black" stroke-width="3" width="156" x="228" y="62" style="fill:#0DF100;"/>
+              <ns0:text text-anchor="middle" x="306" y="77">tableconstructor</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M384.0 73h20"/>
+          <ns0:path d="M208.0 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M228.0 115h42.5"/>
+            <ns0:path d="M341.5 115h42.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="String" height="22" stroke="black" stroke-width="3" width="71" x="270.5" y="104" style="fill:#3CC200;"/>
+              <ns0:text text-anchor="middle" x="306" y="119">String</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M384.0 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M404.0 73h10"/>
+      <ns0:path d="M 414.0 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="620.0" class="rule-title">binop</text>
+  <g transform="translate(20, 640.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 315v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 325h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 325h0.0"/>
+        <ns0:path d="M152.5 325h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 325h0.0"/>
+          <ns0:path d="M152.5 325h0.0"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 283h12.75"/>
+            <ns0:path d="M119.75 283h12.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=".." height="22" stroke="black" stroke-width="3" width="37" x="82.75" y="272" style="fill:#00FF00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="287">..</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 283a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 241h17.0"/>
+            <ns0:path d="M115.5 241h17.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="%" height="22" stroke="black" stroke-width="3" width="28.5" x="87" y="230" style="fill:#B44A00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="245">%</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 241a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 199h17.0"/>
+            <ns0:path d="M115.5 199h17.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="^" height="22" stroke="black" stroke-width="3" width="28.5" x="87" y="188" style="fill:#DE2000;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="203">^</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 199a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 157h17.0"/>
+            <ns0:path d="M115.5 157h17.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="/" height="22" stroke="black" stroke-width="3" width="28.5" x="87" y="146" style="fill:#B94500;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="161">/</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 157a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 115h17.0"/>
+            <ns0:path d="M115.5 115h17.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="*" height="22" stroke="black" stroke-width="3" width="28.5" x="87" y="104" style="fill:#D92500;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="119">*</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 115a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 73h17.0"/>
+            <ns0:path d="M115.5 73h17.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="-" height="22" stroke="black" stroke-width="3" width="28.5" x="87" y="62" style="fill:#00FF00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="77">-</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 73a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 31h17.0"/>
+            <ns0:path d="M115.5 31h17.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="+" height="22" stroke="black" stroke-width="3" width="28.5" x="87" y="20" style="fill:#B44A00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="35">+</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 31a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 325h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 325h4.25"/>
+            <ns0:path d="M128.25 325h4.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="&amp;lt;" height="22" stroke="black" stroke-width="3" width="54" x="74.25" y="314" style="fill:#738B00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="329">&amp;lt;</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 325h20"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 367h0.0"/>
+            <ns0:path d="M132.5 367h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="&amp;lt;=" height="22" stroke="black" stroke-width="3" width="62.5" x="70" y="356" style="fill:#20DE00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="371">&amp;lt;=</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 367a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 409h4.25"/>
+            <ns0:path d="M128.25 409h4.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="&amp;gt;" height="22" stroke="black" stroke-width="3" width="54" x="74.25" y="398" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="413">&amp;gt;</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 409a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 451h0.0"/>
+            <ns0:path d="M132.5 451h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="&amp;gt;=" height="22" stroke="black" stroke-width="3" width="62.5" x="70" y="440" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="455">&amp;gt;=</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 451a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 493h12.75"/>
+            <ns0:path d="M119.75 493h12.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="==" height="22" stroke="black" stroke-width="3" width="37" x="82.75" y="482" style="fill:#32CC00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="497">==</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 493a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 535h12.75"/>
+            <ns0:path d="M119.75 535h12.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="~=" height="22" stroke="black" stroke-width="3" width="37" x="82.75" y="524" style="fill:#00FF00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="539">~=</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 535a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v232a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 577h8.5"/>
+            <ns0:path d="M124.0 577h8.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="and" height="22" stroke="black" stroke-width="3" width="45.5" x="78.5" y="566" style="fill:#B04E00;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="581">and</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 577a10 10 0 0 0 10 -10v-232a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 325a10 10 0 0 1 10 10v274a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 619h12.75"/>
+            <ns0:path d="M119.75 619h12.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="or" height="22" stroke="black" stroke-width="3" width="37" x="82.75" y="608" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="101.25" y="623">or</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M132.5 619a10 10 0 0 0 10 -10v-274a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M152.5 325h10"/>
+      <ns0:path d="M 162.5 325 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="1350.0" class="rule-title">block</text>
+  <g transform="translate(20, 1370.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 21v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 31h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 31h0.0"/>
+        <ns0:path d="M112.5 31h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="chunk" height="22" stroke="black" stroke-width="3" width="62.5" x="50" y="20" style="fill:#4EB000;"/>
+          <ns0:text text-anchor="middle" x="81.25" y="35">chunk</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M112.5 31h10"/>
+      <ns0:path d="M 122.5 31 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="1492.0" class="rule-title">chunk</text>
+  <g transform="translate(20, 1512.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 61v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 71h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 71h0.0"/>
+        <ns0:path d="M419.0 71h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 71h0.0"/>
+          <ns0:path d="M202.5 71h0.0"/>
+          <ns0:path d="M50.0 71h10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M60.0 71h0.0"/>
+            <ns0:path d="M192.5 71h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="stat" height="22" stroke="black" stroke-width="3" width="54" x="60" y="60" style="fill:#AB5300;"/>
+              <ns0:text text-anchor="middle" x="87" y="75">stat</ns0:text>
+            </ns0:g>
+            <ns0:path d="M114.0 71h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M124.0 71h0.0"/>
+              <ns0:path d="M192.5 71h0.0"/>
+              <ns0:path d="M124.0 71a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M144.0 40h28.5"/>
+              </ns0:g>
+              <ns0:path d="M172.5 40a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M124.0 71h20"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text=";" height="22" stroke="black" stroke-width="3" width="28.5" x="144" y="60" style="fill:#1BE300;"/>
+                <ns0:text text-anchor="middle" x="158.25" y="75">;</ns0:text>
+              </ns0:g>
+              <ns0:path d="M172.5 71h20"/>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M192.5 71h10"/>
+          <ns0:path d="M60.0 71a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M60.0 102h132.5"/>
+          </ns0:g>
+          <ns0:path d="M192.5 102a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+        </ns0:g>
+        <ns0:path d="M202.5 71h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M212.5 71h0.0"/>
+          <ns0:path d="M419.0 71h0.0"/>
+          <ns0:path d="M212.5 71a10 10 0 0 0 10 -10v-31a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M232.5 20h166.5"/>
+          </ns0:g>
+          <ns0:path d="M399.0 20a10 10 0 0 1 10 10v31a10 10 0 0 0 10 10"/>
+          <ns0:path d="M212.5 71h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M232.5 71h0.0"/>
+            <ns0:path d="M399.0 71h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="laststat" height="22" stroke="black" stroke-width="3" width="88" x="232.5" y="60" style="fill:#F10D00;"/>
+              <ns0:text text-anchor="middle" x="276.5" y="75">laststat</ns0:text>
+            </ns0:g>
+            <ns0:path d="M320.5 71h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M330.5 71h0.0"/>
+              <ns0:path d="M399.0 71h0.0"/>
+              <ns0:path d="M330.5 71a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M350.5 40h28.5"/>
+              </ns0:g>
+              <ns0:path d="M379.0 40a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M330.5 71h20"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text=";" height="22" stroke="black" stroke-width="3" width="28.5" x="350.5" y="60" style="fill:#1BE300;"/>
+                <ns0:text text-anchor="middle" x="364.75" y="75">;</ns0:text>
+              </ns0:g>
+              <ns0:path d="M379.0 71h20"/>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M399.0 71h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M419.0 71h10"/>
+      <ns0:path d="M 429.0 71 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="1694.0" class="rule-title">exp</text>
+  <g transform="translate(20, 1714.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 231v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 241h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 241h0.0"/>
+        <ns0:path d="M395.5 241h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 241h0.0"/>
+          <ns0:path d="M246.0 241h0.0"/>
+          <ns0:path d="M50.0 241a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 199h42.5"/>
+            <ns0:path d="M183.5 199h42.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="String" height="22" stroke="black" stroke-width="3" width="71" x="112.5" y="188" style="fill:#946A00;"/>
+              <ns0:text text-anchor="middle" x="148" y="203">String</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 199a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 157h42.5"/>
+            <ns0:path d="M183.5 157h42.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="Number" height="22" stroke="black" stroke-width="3" width="71" x="112.5" y="146" style="fill:#619D00;"/>
+              <ns0:text text-anchor="middle" x="148" y="161">Number</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 157a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 115h51.0"/>
+            <ns0:path d="M175.0 115h51.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="true" height="22" stroke="black" stroke-width="3" width="54" x="121" y="104" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="148" y="119">true</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 115a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 73h46.75"/>
+            <ns0:path d="M179.25 73h46.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="false" height="22" stroke="black" stroke-width="3" width="62.5" x="116.75" y="62" style="fill:#7D8100;"/>
+              <ns0:text text-anchor="middle" x="148" y="77">false</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 73a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 0 10 -10v-190a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 31h55.25"/>
+            <ns0:path d="M170.75 31h55.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="nil" height="22" stroke="black" stroke-width="3" width="45.5" x="125.25" y="20" style="fill:#8F6F00;"/>
+              <ns0:text text-anchor="middle" x="148" y="35">nil</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 31a10 10 0 0 1 10 10v190a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 241h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 241h55.25"/>
+            <ns0:path d="M170.75 241h55.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="..." height="22" stroke="black" stroke-width="3" width="45.5" x="125.25" y="230" style="fill:#AB5300;"/>
+              <ns0:text text-anchor="middle" x="148" y="245">...</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 241h20"/>
+          <ns0:path d="M50.0 241a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 283h34.0"/>
+            <ns0:path d="M192.0 283h34.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="function" height="22" stroke="black" stroke-width="3" width="88" x="104" y="272" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="148" y="287">function</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 283a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 1 10 10v64a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 325h29.75"/>
+            <ns0:path d="M196.25 325h29.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="prefixexp" height="22" stroke="black" stroke-width="3" width="96.5" x="99.75" y="314" style="fill:#E31B00;"/>
+              <ns0:text text-anchor="middle" x="148" y="329">prefixexp</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 325a10 10 0 0 0 10 -10v-64a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 1 10 10v106a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 367h0.0"/>
+            <ns0:path d="M226.0 367h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="tableconstructor" height="22" stroke="black" stroke-width="3" width="156" x="70" y="356" style="fill:#C73700;"/>
+              <ns0:text text-anchor="middle" x="148" y="371">tableconstructor</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 367a10 10 0 0 0 10 -10v-106a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M50.0 241a10 10 0 0 1 10 10v148a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 409h14.0"/>
+            <ns0:path d="M212.0 409h14.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="84" y="398" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="106.75" y="413">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M129.5 409h10"/>
+            <ns0:path d="M139.5 409h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="binop" height="22" stroke="black" stroke-width="3" width="62.5" x="149.5" y="398" style="fill:#788600;"/>
+              <ns0:text text-anchor="middle" x="180.75" y="413">binop</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M226.0 409a10 10 0 0 0 10 -10v-148a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+        <ns0:g>
+          
+
+          <ns0:path d="M246.0 241h0.0"/>
+          <ns0:path d="M340.0 241h0.0"/>
+          <ns0:path d="M246.0 241a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M266.0 199h4.25"/>
+            <ns0:path d="M315.75 199h4.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="270.25" y="188" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="293" y="203">exp</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M320.0 199a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M246.0 241h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M266.0 241h0.0"/>
+            <ns0:path d="M320.0 241h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="unop" height="22" stroke="black" stroke-width="3" width="54" x="266" y="230" style="fill:#4AB400;"/>
+              <ns0:text text-anchor="middle" x="293" y="245">unop</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M320.0 241h20"/>
+        </ns0:g>
+        <ns0:path d="M340.0 241h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="350" y="230" style="fill:#37C700;"/>
+          <ns0:text text-anchor="middle" x="372.75" y="245">exp</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M395.5 241h10"/>
+      <ns0:path d="M 405.5 241 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="2214.0" class="rule-title">explist</text>
+  <g transform="translate(20, 2234.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M259.5 51h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 51h0.0"/>
+          <ns0:path d="M204.0 51h0.0"/>
+          <ns0:path d="M50.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 20h114.0"/>
+          </ns0:g>
+          <ns0:path d="M184.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 51h0.0"/>
+            <ns0:path d="M184.0 51h0.0"/>
+            <ns0:path d="M70.0 51h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M80.0 51h0.0"/>
+              <ns0:path d="M174.0 51h0.0"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="80" y="40" style="fill:#12EC00;"/>
+                <ns0:text text-anchor="middle" x="102.75" y="55">exp</ns0:text>
+              </ns0:g>
+              <ns0:path d="M125.5 51h10"/>
+              <ns0:path d="M135.5 51h10"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="145.5" y="40" style="fill:#2ED000;"/>
+                <ns0:text text-anchor="middle" x="159.75" y="55">,</ns0:text>
+              </ns0:g>
+            </ns0:g>
+            <ns0:path d="M174.0 51h10"/>
+            <ns0:path d="M80.0 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M80.0 82h94.0"/>
+            </ns0:g>
+            <ns0:path d="M174.0 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M184.0 51h20"/>
+        </ns0:g>
+        <ns0:path d="M204.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="214" y="40" style="fill:#12EC00;"/>
+          <ns0:text text-anchor="middle" x="236.75" y="55">exp</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M259.5 51h10"/>
+      <ns0:path d="M 269.5 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="2396.0" class="rule-title">field</text>
+  <g transform="translate(20, 2416.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M467.5 73h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="(" height="22" stroke="black" stroke-width="3" width="28.5" x="50" y="62" style="fill:#867800;"/>
+          <ns0:text text-anchor="middle" x="64.25" y="77">(</ns0:text>
+        </ns0:g>
+        <ns0:path d="M78.5 73h10"/>
+        <ns0:path d="M88.5 73h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="98.5" y="62" style="fill:#738B00;"/>
+          <ns0:text text-anchor="middle" x="121.25" y="77">exp</ns0:text>
+        </ns0:g>
+        <ns0:path d="M144.0 73h10"/>
+        <ns0:path d="M154.0 73h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text=")?" height="22" stroke="black" stroke-width="3" width="37" x="164" y="62" style="fill:#32CC00;"/>
+          <ns0:text text-anchor="middle" x="182.5" y="77">)?</ns0:text>
+        </ns0:g>
+        <ns0:path d="M201.0 73h10"/>
+        <ns0:path d="M211.0 73h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="=" height="22" stroke="black" stroke-width="3" width="28.5" x="221" y="62" style="fill:#00FF00;"/>
+          <ns0:text text-anchor="middle" x="235.25" y="77">=</ns0:text>
+        </ns0:g>
+        <ns0:path d="M249.5 73h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M259.5 73h0.0"/>
+          <ns0:path d="M467.5 73h0.0"/>
+          <ns0:path d="M259.5 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M279.5 31h61.25"/>
+            <ns0:path d="M386.25 31h61.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="340.75" y="20" style="fill:#738B00;"/>
+              <ns0:text text-anchor="middle" x="363.5" y="35">exp</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M447.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M259.5 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M279.5 73h0.0"/>
+            <ns0:path d="M447.5 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="279.5" y="62" style="fill:#BE4000;"/>
+              <ns0:text text-anchor="middle" x="306.5" y="77">Name</ns0:text>
+            </ns0:g>
+            <ns0:path d="M333.5 73h10"/>
+            <ns0:path d="M343.5 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="=" height="22" stroke="black" stroke-width="3" width="28.5" x="353.5" y="62" style="fill:#00FF00;"/>
+              <ns0:text text-anchor="middle" x="367.75" y="77">=</ns0:text>
+            </ns0:g>
+            <ns0:path d="M382.0 73h10"/>
+            <ns0:path d="M392.0 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="402" y="62" style="fill:#738B00;"/>
+              <ns0:text text-anchor="middle" x="424.75" y="77">exp</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M447.5 73h20"/>
+          <ns0:path d="M259.5 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M279.5 115h61.25"/>
+            <ns0:path d="M386.25 115h61.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="340.75" y="104" style="fill:#738B00;"/>
+              <ns0:text text-anchor="middle" x="363.5" y="119">exp</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M447.5 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M467.5 73h10"/>
+      <ns0:path d="M 477.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="2622.0" class="rule-title">fieldlist</text>
+  <g transform="translate(20, 2642.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M481.0 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="field" height="22" stroke="black" stroke-width="3" width="62.5" x="50" y="40" style="fill:#00FF00;"/>
+          <ns0:text text-anchor="middle" x="81.25" y="55">field</ns0:text>
+        </ns0:g>
+        <ns0:path d="M112.5 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M122.5 51h0.0"/>
+          <ns0:path d="M353.0 51h0.0"/>
+          <ns0:path d="M122.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M142.5 20h190.5"/>
+          </ns0:g>
+          <ns0:path d="M333.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M122.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M142.5 51h0.0"/>
+            <ns0:path d="M333.0 51h0.0"/>
+            <ns0:path d="M142.5 51h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M152.5 51h0.0"/>
+              <ns0:path d="M323.0 51h0.0"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="fieldsep" height="22" stroke="black" stroke-width="3" width="88" x="152.5" y="40" style="fill:#996600;"/>
+                <ns0:text text-anchor="middle" x="196.5" y="55">fieldsep</ns0:text>
+              </ns0:g>
+              <ns0:path d="M240.5 51h10"/>
+              <ns0:path d="M250.5 51h10"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="field" height="22" stroke="black" stroke-width="3" width="62.5" x="260.5" y="40" style="fill:#00FF00;"/>
+                <ns0:text text-anchor="middle" x="291.75" y="55">field</ns0:text>
+              </ns0:g>
+            </ns0:g>
+            <ns0:path d="M323.0 51h10"/>
+            <ns0:path d="M152.5 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M152.5 82h170.5"/>
+            </ns0:g>
+            <ns0:path d="M323.0 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M333.0 51h20"/>
+        </ns0:g>
+        <ns0:g>
+          
+
+          <ns0:path d="M353.0 51h0.0"/>
+          <ns0:path d="M481.0 51h0.0"/>
+          <ns0:path d="M353.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M373.0 20h88.0"/>
+          </ns0:g>
+          <ns0:path d="M461.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M353.0 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M373.0 51h0.0"/>
+            <ns0:path d="M461.0 51h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="fieldsep" height="22" stroke="black" stroke-width="3" width="88" x="373" y="40" style="fill:#996600;"/>
+              <ns0:text text-anchor="middle" x="417" y="55">fieldsep</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M461.0 51h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M481.0 51h10"/>
+      <ns0:path d="M 491.0 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="2804.0" class="rule-title">fieldsep</text>
+  <g transform="translate(20, 2824.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M118.5 73h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 73h0.0"/>
+          <ns0:path d="M118.5 73h0.0"/>
+          <ns0:path d="M50.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 31h0.0"/>
+            <ns0:path d="M98.5 31h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="70" y="20" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="84.25" y="35">,</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M98.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 73h0.0"/>
+            <ns0:path d="M98.5 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=";" height="22" stroke="black" stroke-width="3" width="28.5" x="70" y="62" style="fill:#17E700;"/>
+              <ns0:text text-anchor="middle" x="84.25" y="77">;</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M98.5 73h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M118.5 73h10"/>
+      <ns0:path d="M 128.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="2988.0" class="rule-title">funcbody</text>
+  <g transform="translate(20, 3008.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M394.5 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="(" height="22" stroke="black" stroke-width="3" width="28.5" x="50" y="40" style="fill:#1BE300;"/>
+          <ns0:text text-anchor="middle" x="64.25" y="55">(</ns0:text>
+        </ns0:g>
+        <ns0:path d="M78.5 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M88.5 51h0.0"/>
+          <ns0:path d="M208.0 51h0.0"/>
+          <ns0:path d="M88.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M108.5 20h79.5"/>
+          </ns0:g>
+          <ns0:path d="M188.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M88.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M108.5 51h0.0"/>
+            <ns0:path d="M188.0 51h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="parlist" height="22" stroke="black" stroke-width="3" width="79.5" x="108.5" y="40" style="fill:#BE4000;"/>
+              <ns0:text text-anchor="middle" x="148.25" y="55">parlist</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M188.0 51h20"/>
+        </ns0:g>
+        <ns0:path d="M208.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text=")" height="22" stroke="black" stroke-width="3" width="28.5" x="218" y="40" style="fill:#8B7300;"/>
+          <ns0:text text-anchor="middle" x="232.25" y="55">)</ns0:text>
+        </ns0:g>
+        <ns0:path d="M246.5 51h10"/>
+        <ns0:path d="M256.5 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="266.5" y="40" style="fill:#F10D00;"/>
+          <ns0:text text-anchor="middle" x="297.75" y="55">block</ns0:text>
+        </ns0:g>
+        <ns0:path d="M329.0 51h10"/>
+        <ns0:path d="M339.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="end" height="22" stroke="black" stroke-width="3" width="45.5" x="349" y="40" style="fill:#3CC200;"/>
+          <ns0:text text-anchor="middle" x="371.75" y="55">end</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M394.5 51h10"/>
+      <ns0:path d="M 404.5 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="3150.0" class="rule-title">funcname</text>
+  <g transform="translate(20, 3170.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M419.0 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="50" y="40" style="fill:#EC1200;"/>
+          <ns0:text text-anchor="middle" x="77" y="55">Name</ns0:text>
+        </ns0:g>
+        <ns0:path d="M104.0 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M114.0 51h0.0"/>
+          <ns0:path d="M276.5 51h0.0"/>
+          <ns0:path d="M114.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M134.0 20h122.5"/>
+          </ns0:g>
+          <ns0:path d="M256.5 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M114.0 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M134.0 51h0.0"/>
+            <ns0:path d="M256.5 51h0.0"/>
+            <ns0:path d="M134.0 51h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M144.0 51h0.0"/>
+              <ns0:path d="M246.5 51h0.0"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="." height="22" stroke="black" stroke-width="3" width="28.5" x="144" y="40" style="fill:#2ED000;"/>
+                <ns0:text text-anchor="middle" x="158.25" y="55">.</ns0:text>
+              </ns0:g>
+              <ns0:path d="M172.5 51h10"/>
+              <ns0:path d="M182.5 51h10"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="192.5" y="40" style="fill:#EC1200;"/>
+                <ns0:text text-anchor="middle" x="219.5" y="55">Name</ns0:text>
+              </ns0:g>
+            </ns0:g>
+            <ns0:path d="M246.5 51h10"/>
+            <ns0:path d="M144.0 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M144.0 82h102.5"/>
+            </ns0:g>
+            <ns0:path d="M246.5 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M256.5 51h20"/>
+        </ns0:g>
+        <ns0:g>
+          
+
+          <ns0:path d="M276.5 51h0.0"/>
+          <ns0:path d="M419.0 51h0.0"/>
+          <ns0:path d="M276.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M296.5 20h102.5"/>
+          </ns0:g>
+          <ns0:path d="M399.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M276.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M296.5 51h0.0"/>
+            <ns0:path d="M399.0 51h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=":" height="22" stroke="black" stroke-width="3" width="28.5" x="296.5" y="40" style="fill:#45B900;"/>
+              <ns0:text text-anchor="middle" x="310.75" y="55">:</ns0:text>
+            </ns0:g>
+            <ns0:path d="M325.0 51h10"/>
+            <ns0:path d="M335.0 51h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="345" y="40" style="fill:#EC1200;"/>
+              <ns0:text text-anchor="middle" x="372" y="55">Name</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M399.0 51h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M419.0 51h10"/>
+      <ns0:path d="M 429.0 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="3332.0" class="rule-title">function</text>
+  <g transform="translate(20, 3352.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 21v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 31h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 31h0.0"/>
+        <ns0:path d="M246.0 31h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="function" height="22" stroke="black" stroke-width="3" width="88" x="50" y="20" style="fill:#BE4000;"/>
+          <ns0:text text-anchor="middle" x="94" y="35">function</ns0:text>
+        </ns0:g>
+        <ns0:path d="M138.0 31h10"/>
+        <ns0:path d="M148.0 31h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="funcbody" height="22" stroke="black" stroke-width="3" width="88" x="158" y="20" style="fill:#F50900;"/>
+          <ns0:text text-anchor="middle" x="202" y="35">funcbody</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M246.0 31h10"/>
+      <ns0:path d="M 256.0 31 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="3474.0" class="rule-title">functioncall</text>
+  <g transform="translate(20, 3494.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M489.5 73h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="prefixexp" height="22" stroke="black" stroke-width="3" width="96.5" x="50" y="62" style="fill:#EC1200;"/>
+          <ns0:text text-anchor="middle" x="98.25" y="77">prefixexp</ns0:text>
+        </ns0:g>
+        <ns0:path d="M146.5 73h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M156.5 73h0.0"/>
+          <ns0:path d="M489.5 73h0.0"/>
+          <ns0:path d="M156.5 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M176.5 31h119.5"/>
+            <ns0:path d="M350.0 31h119.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="args" height="22" stroke="black" stroke-width="3" width="54" x="296" y="20" style="fill:#FA0400;"/>
+              <ns0:text text-anchor="middle" x="323" y="35">args</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M469.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M156.5 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M176.5 73h0.0"/>
+            <ns0:path d="M469.5 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="prefixexp" height="22" stroke="black" stroke-width="3" width="96.5" x="176.5" y="62" style="fill:#EC1200;"/>
+              <ns0:text text-anchor="middle" x="224.75" y="77">prefixexp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M273.0 73h10"/>
+            <ns0:path d="M283.0 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=":" height="22" stroke="black" stroke-width="3" width="28.5" x="293" y="62" style="fill:#E71700;"/>
+              <ns0:text text-anchor="middle" x="307.25" y="77">:</ns0:text>
+            </ns0:g>
+            <ns0:path d="M321.5 73h10"/>
+            <ns0:path d="M331.5 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="341.5" y="62" style="fill:#9D6100;"/>
+              <ns0:text text-anchor="middle" x="368.5" y="77">Name</ns0:text>
+            </ns0:g>
+            <ns0:path d="M395.5 73h10"/>
+            <ns0:path d="M405.5 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="args" height="22" stroke="black" stroke-width="3" width="54" x="415.5" y="62" style="fill:#FA0400;"/>
+              <ns0:text text-anchor="middle" x="442.5" y="77">args</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M469.5 73h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M489.5 73h10"/>
+      <ns0:path d="M 499.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="3658.0" class="rule-title">laststat</text>
+  <g transform="translate(20, 3678.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 83v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 93h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 93h0.0"/>
+        <ns0:path d="M290.5 93h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="return" height="22" stroke="black" stroke-width="3" width="71" x="50" y="82" style="fill:#D02E00;"/>
+          <ns0:text text-anchor="middle" x="85.5" y="97">return</ns0:text>
+        </ns0:g>
+        <ns0:path d="M121.0 93h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M131.0 93h0.0"/>
+          <ns0:path d="M290.5 93h0.0"/>
+          <ns0:path d="M131.0 93a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M151.0 51h0.0"/>
+            <ns0:path d="M270.5 51h0.0"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M151.0 51h0.0"/>
+              <ns0:path d="M270.5 51h0.0"/>
+              <ns0:path d="M151.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M171.0 20h79.5"/>
+              </ns0:g>
+              <ns0:path d="M250.5 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M151.0 51h20"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="explist" height="22" stroke="black" stroke-width="3" width="79.5" x="171" y="40" style="fill:#09F500;"/>
+                <ns0:text text-anchor="middle" x="210.75" y="55">explist</ns0:text>
+              </ns0:g>
+              <ns0:path d="M250.5 51h20"/>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M270.5 51a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M131.0 93h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M151.0 93h28.5"/>
+            <ns0:path d="M242.0 93h28.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="break" height="22" stroke="black" stroke-width="3" width="62.5" x="179.5" y="82" style="fill:#5CA200;"/>
+              <ns0:text text-anchor="middle" x="210.75" y="97">break</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M270.5 93h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M290.5 93h10"/>
+      <ns0:path d="M 300.5 93 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="3862.0" class="rule-title">namelist</text>
+  <g transform="translate(20, 3882.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M276.5 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="50" y="40" style="fill:#F50900;"/>
+          <ns0:text text-anchor="middle" x="77" y="55">Name</ns0:text>
+        </ns0:g>
+        <ns0:path d="M104.0 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M114.0 51h0.0"/>
+          <ns0:path d="M276.5 51h0.0"/>
+          <ns0:path d="M114.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M134.0 20h122.5"/>
+          </ns0:g>
+          <ns0:path d="M256.5 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M114.0 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M134.0 51h0.0"/>
+            <ns0:path d="M256.5 51h0.0"/>
+            <ns0:path d="M134.0 51h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M144.0 51h0.0"/>
+              <ns0:path d="M246.5 51h0.0"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="144" y="40" style="fill:#0DF100;"/>
+                <ns0:text text-anchor="middle" x="158.25" y="55">,</ns0:text>
+              </ns0:g>
+              <ns0:path d="M172.5 51h10"/>
+              <ns0:path d="M182.5 51h10"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="192.5" y="40" style="fill:#F50900;"/>
+                <ns0:text text-anchor="middle" x="219.5" y="55">Name</ns0:text>
+              </ns0:g>
+            </ns0:g>
+            <ns0:path d="M246.5 51h10"/>
+            <ns0:path d="M144.0 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M144.0 82h102.5"/>
+            </ns0:g>
+            <ns0:path d="M246.5 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M256.5 51h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M276.5 51h10"/>
+      <ns0:path d="M 286.5 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="4044.0" class="rule-title">parlist</text>
+  <g transform="translate(20, 4064.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 83v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 93h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 93h0.0"/>
+        <ns0:path d="M322.0 93h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="namelist" height="22" stroke="black" stroke-width="3" width="88" x="50" y="82" style="fill:#669900;"/>
+          <ns0:text text-anchor="middle" x="94" y="97">namelist</ns0:text>
+        </ns0:g>
+        <ns0:path d="M138.0 93h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M148.0 93h0.0"/>
+          <ns0:path d="M322.0 93h0.0"/>
+          <ns0:path d="M148.0 93a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M168.0 51h0.0"/>
+            <ns0:path d="M302.0 51h0.0"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M168.0 51h0.0"/>
+              <ns0:path d="M302.0 51h0.0"/>
+              <ns0:path d="M168.0 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M188.0 20h94.0"/>
+              </ns0:g>
+              <ns0:path d="M282.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M168.0 51h20"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M188.0 51h0.0"/>
+                <ns0:path d="M282.0 51h0.0"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="188" y="40" style="fill:#6A9400;"/>
+                  <ns0:text text-anchor="middle" x="202.25" y="55">,</ns0:text>
+                </ns0:g>
+                <ns0:path d="M216.5 51h10"/>
+                <ns0:path d="M226.5 51h10"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="..." height="22" stroke="black" stroke-width="3" width="45.5" x="236.5" y="40" style="fill:#946A00;"/>
+                  <ns0:text text-anchor="middle" x="259.25" y="55">...</ns0:text>
+                </ns0:g>
+              </ns0:g>
+              <ns0:path d="M282.0 51h20"/>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M302.0 51a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M148.0 93h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M168.0 93h44.25"/>
+            <ns0:path d="M257.75 93h44.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="..." height="22" stroke="black" stroke-width="3" width="45.5" x="212.25" y="82" style="fill:#946A00;"/>
+              <ns0:text text-anchor="middle" x="235" y="97">...</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M302.0 93h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M322.0 93h10"/>
+      <ns0:path d="M 332.0 93 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="4248.0" class="rule-title">prefixexp</text>
+  <g transform="translate(20, 4268.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M232.5 73h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 73h0.0"/>
+          <ns0:path d="M232.5 73h0.0"/>
+          <ns0:path d="M50.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 31h48.5"/>
+            <ns0:path d="M164.0 31h48.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="var" height="22" stroke="black" stroke-width="3" width="45.5" x="118.5" y="20" style="fill:#3CC200;"/>
+              <ns0:text text-anchor="middle" x="141.25" y="35">var</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M212.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 73h10.25"/>
+            <ns0:path d="M202.25 73h10.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="functioncall" height="22" stroke="black" stroke-width="3" width="122" x="80.25" y="62" style="fill:#4AB400;"/>
+              <ns0:text text-anchor="middle" x="141.25" y="77">functioncall</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M212.5 73h20"/>
+          <ns0:path d="M50.0 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 115h0.0"/>
+            <ns0:path d="M212.5 115h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="(" height="22" stroke="black" stroke-width="3" width="28.5" x="70" y="104" style="fill:#A65800;"/>
+              <ns0:text text-anchor="middle" x="84.25" y="119">(</ns0:text>
+            </ns0:g>
+            <ns0:path d="M98.5 115h10"/>
+            <ns0:path d="M108.5 115h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="118.5" y="104" style="fill:#0DF100;"/>
+              <ns0:text text-anchor="middle" x="141.25" y="119">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M164.0 115h10"/>
+            <ns0:path d="M174.0 115h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=")" height="22" stroke="black" stroke-width="3" width="28.5" x="184" y="104" style="fill:#867800;"/>
+              <ns0:text text-anchor="middle" x="198.25" y="119">)</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M212.5 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M232.5 73h10"/>
+      <ns0:path d="M 242.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="4474.0" class="rule-title">stat</text>
+  <g transform="translate(20, 4494.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 251v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 261h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 261h0.0"/>
+        <ns0:path d="M1544.5 261h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="varlist" height="22" stroke="black" stroke-width="3" width="79.5" x="50" y="250" style="fill:#12EC00;"/>
+          <ns0:text text-anchor="middle" x="89.75" y="265">varlist</ns0:text>
+        </ns0:g>
+        <ns0:path d="M129.5 261h10"/>
+        <ns0:path d="M139.5 261h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="=" height="22" stroke="black" stroke-width="3" width="28.5" x="149.5" y="250" style="fill:#53AB00;"/>
+          <ns0:text text-anchor="middle" x="163.75" y="265">=</ns0:text>
+        </ns0:g>
+        <ns0:path d="M178.0 261h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M188.0 261h0.0"/>
+          <ns0:path d="M1082.0 261h0.0"/>
+          <ns0:path d="M188.0 261a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 199h276.25"/>
+            <ns0:path d="M785.75 199h276.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="repeat" height="22" stroke="black" stroke-width="3" width="71" x="484.25" y="188" style="fill:#D52900;"/>
+              <ns0:text text-anchor="middle" x="519.75" y="203">repeat</ns0:text>
+            </ns0:g>
+            <ns0:path d="M555.25 199h10"/>
+            <ns0:path d="M565.25 199h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="575.25" y="188" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="606.5" y="203">block</ns0:text>
+            </ns0:g>
+            <ns0:path d="M637.75 199h10"/>
+            <ns0:path d="M647.75 199h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="until" height="22" stroke="black" stroke-width="3" width="62.5" x="657.75" y="188" style="fill:#BE4000;"/>
+              <ns0:text text-anchor="middle" x="689" y="203">until</ns0:text>
+            </ns0:g>
+            <ns0:path d="M720.25 199h10"/>
+            <ns0:path d="M730.25 199h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="740.25" y="188" style="fill:#09F500;"/>
+              <ns0:text text-anchor="middle" x="763" y="203">exp</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 199a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 0 10 -10v-84a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 157h260.5"/>
+            <ns0:path d="M801.5 157h260.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="while" height="22" stroke="black" stroke-width="3" width="62.5" x="468.5" y="146" style="fill:#7D8100;"/>
+              <ns0:text text-anchor="middle" x="499.75" y="161">while</ns0:text>
+            </ns0:g>
+            <ns0:path d="M531.0 157h10"/>
+            <ns0:path d="M541.0 157h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="551" y="146" style="fill:#09F500;"/>
+              <ns0:text text-anchor="middle" x="573.75" y="161">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M596.5 157h10"/>
+            <ns0:path d="M606.5 157h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="do" height="22" stroke="black" stroke-width="3" width="37" x="616.5" y="146" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="635" y="161">do</ns0:text>
+            </ns0:g>
+            <ns0:path d="M653.5 157h10"/>
+            <ns0:path d="M663.5 157h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="673.5" y="146" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="704.75" y="161">block</ns0:text>
+            </ns0:g>
+            <ns0:path d="M736.0 157h10"/>
+            <ns0:path d="M746.0 157h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="end" height="22" stroke="black" stroke-width="3" width="45.5" x="756" y="146" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="778.75" y="161">end</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 157a10 10 0 0 1 10 10v84a10 10 0 0 0 10 10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 0 10 -10v-126a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 115h334.5"/>
+            <ns0:path d="M727.5 115h334.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="do" height="22" stroke="black" stroke-width="3" width="37" x="542.5" y="104" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="561" y="119">do</ns0:text>
+            </ns0:g>
+            <ns0:path d="M579.5 115h10"/>
+            <ns0:path d="M589.5 115h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="599.5" y="104" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="630.75" y="119">block</ns0:text>
+            </ns0:g>
+            <ns0:path d="M662.0 115h10"/>
+            <ns0:path d="M672.0 115h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="end" height="22" stroke="black" stroke-width="3" width="45.5" x="682" y="104" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="704.75" y="119">end</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 115a10 10 0 0 1 10 10v126a10 10 0 0 0 10 10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 0 10 -10v-168a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 73h366.0"/>
+            <ns0:path d="M696.0 73h366.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="functioncall" height="22" stroke="black" stroke-width="3" width="122" x="574" y="62" style="fill:#619D00;"/>
+              <ns0:text text-anchor="middle" x="635" y="77">functioncall</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 73a10 10 0 0 1 10 10v168a10 10 0 0 0 10 10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 0 10 -10v-210a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 31h387.25"/>
+            <ns0:path d="M674.75 31h387.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="explist" height="22" stroke="black" stroke-width="3" width="79.5" x="595.25" y="20" style="fill:#A65800;"/>
+              <ns0:text text-anchor="middle" x="635" y="35">explist</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 31a10 10 0 0 1 10 10v210a10 10 0 0 0 10 10"/>
+          <ns0:path d="M188.0 261h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 261h0.0"/>
+            <ns0:path d="M1062.0 261h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="if" height="22" stroke="black" stroke-width="3" width="37" x="208" y="250" style="fill:#6A9400;"/>
+              <ns0:text text-anchor="middle" x="226.5" y="265">if</ns0:text>
+            </ns0:g>
+            <ns0:path d="M245.0 261h10"/>
+            <ns0:path d="M255.0 261h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="265" y="250" style="fill:#09F500;"/>
+              <ns0:text text-anchor="middle" x="287.75" y="265">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M310.5 261h10"/>
+            <ns0:path d="M320.5 261h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="then" height="22" stroke="black" stroke-width="3" width="54" x="330.5" y="250" style="fill:#669900;"/>
+              <ns0:text text-anchor="middle" x="357.5" y="265">then</ns0:text>
+            </ns0:g>
+            <ns0:path d="M384.5 261h10"/>
+            <ns0:path d="M394.5 261h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="404.5" y="250" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="435.75" y="265">block</ns0:text>
+            </ns0:g>
+            <ns0:path d="M467.0 261h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M477.0 261h0.0"/>
+              <ns0:path d="M830.0 261h0.0"/>
+              <ns0:path d="M477.0 261a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M497.0 230h313.0"/>
+              </ns0:g>
+              <ns0:path d="M810.0 230a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M477.0 261h20"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M497.0 261h0.0"/>
+                <ns0:path d="M810.0 261h0.0"/>
+                <ns0:path d="M497.0 261h10"/>
+                <ns0:g>
+                  
+
+                  <ns0:path d="M507.0 261h0.0"/>
+                  <ns0:path d="M800.0 261h0.0"/>
+                  <ns0:g class="terminal ">
+                    
+
+                    <ns0:rect data-text="elseif" height="22" stroke="black" stroke-width="3" width="71" x="507" y="250" style="fill:#D92500;"/>
+                    <ns0:text text-anchor="middle" x="542.5" y="265">elseif</ns0:text>
+                  </ns0:g>
+                  <ns0:path d="M578.0 261h10"/>
+                  <ns0:path d="M588.0 261h10"/>
+                  <ns0:g class="terminal ">
+                    
+
+                    <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="598" y="250" style="fill:#09F500;"/>
+                    <ns0:text text-anchor="middle" x="620.75" y="265">exp</ns0:text>
+                  </ns0:g>
+                  <ns0:path d="M643.5 261h10"/>
+                  <ns0:path d="M653.5 261h10"/>
+                  <ns0:g class="terminal ">
+                    
+
+                    <ns0:rect data-text="then" height="22" stroke="black" stroke-width="3" width="54" x="663.5" y="250" style="fill:#669900;"/>
+                    <ns0:text text-anchor="middle" x="690.5" y="265">then</ns0:text>
+                  </ns0:g>
+                  <ns0:path d="M717.5 261h10"/>
+                  <ns0:path d="M727.5 261h10"/>
+                  <ns0:g class="terminal ">
+                    
+
+                    <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="737.5" y="250" style="fill:#817D00;"/>
+                    <ns0:text text-anchor="middle" x="768.75" y="265">block</ns0:text>
+                  </ns0:g>
+                </ns0:g>
+                <ns0:path d="M800.0 261h10"/>
+                <ns0:path d="M507.0 261a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+                <ns0:g>
+                  
+
+                  <ns0:path d="M507.0 292h293.0"/>
+                </ns0:g>
+                <ns0:path d="M800.0 292a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+              </ns0:g>
+              <ns0:path d="M810.0 261h20"/>
+            </ns0:g>
+            <ns0:g>
+              
+
+              <ns0:path d="M830.0 261h0.0"/>
+              <ns0:path d="M1006.5 261h0.0"/>
+              <ns0:path d="M830.0 261a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M850.0 230h136.5"/>
+              </ns0:g>
+              <ns0:path d="M986.5 230a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M830.0 261h20"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M850.0 261h0.0"/>
+                <ns0:path d="M986.5 261h0.0"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="else" height="22" stroke="black" stroke-width="3" width="54" x="850" y="250" style="fill:#669900;"/>
+                  <ns0:text text-anchor="middle" x="877" y="265">else</ns0:text>
+                </ns0:g>
+                <ns0:path d="M904.0 261h10"/>
+                <ns0:path d="M914.0 261h10"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="924" y="250" style="fill:#817D00;"/>
+                  <ns0:text text-anchor="middle" x="955.25" y="265">block</ns0:text>
+                </ns0:g>
+              </ns0:g>
+              <ns0:path d="M986.5 261h20"/>
+            </ns0:g>
+            <ns0:path d="M1006.5 261h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="end" height="22" stroke="black" stroke-width="3" width="45.5" x="1016.5" y="250" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="1039.25" y="265">end</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 261h20"/>
+          <ns0:path d="M188.0 261a10 10 0 0 1 10 10v62a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 343h83.75"/>
+            <ns0:path d="M978.25 343h83.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="for" height="22" stroke="black" stroke-width="3" width="45.5" x="291.75" y="332" style="fill:#FA0400;"/>
+              <ns0:text text-anchor="middle" x="314.5" y="347">for</ns0:text>
+            </ns0:g>
+            <ns0:path d="M337.25 343h10"/>
+            <ns0:path d="M347.25 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="357.25" y="332" style="fill:#CC3300;"/>
+              <ns0:text text-anchor="middle" x="384.25" y="347">Name</ns0:text>
+            </ns0:g>
+            <ns0:path d="M411.25 343h10"/>
+            <ns0:path d="M421.25 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="=" height="22" stroke="black" stroke-width="3" width="28.5" x="431.25" y="332" style="fill:#53AB00;"/>
+              <ns0:text text-anchor="middle" x="445.5" y="347">=</ns0:text>
+            </ns0:g>
+            <ns0:path d="M459.75 343h10"/>
+            <ns0:path d="M469.75 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="479.75" y="332" style="fill:#09F500;"/>
+              <ns0:text text-anchor="middle" x="502.5" y="347">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M525.25 343h10"/>
+            <ns0:path d="M535.25 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="545.25" y="332" style="fill:#D52900;"/>
+              <ns0:text text-anchor="middle" x="559.5" y="347">,</ns0:text>
+            </ns0:g>
+            <ns0:path d="M573.75 343h10"/>
+            <ns0:path d="M583.75 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="593.75" y="332" style="fill:#09F500;"/>
+              <ns0:text text-anchor="middle" x="616.5" y="347">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M639.25 343h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M649.25 343h0.0"/>
+              <ns0:path d="M783.25 343h0.0"/>
+              <ns0:path d="M649.25 343a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M669.25 312h94.0"/>
+              </ns0:g>
+              <ns0:path d="M763.25 312a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M649.25 343h20"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M669.25 343h0.0"/>
+                <ns0:path d="M763.25 343h0.0"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="669.25" y="332" style="fill:#D52900;"/>
+                  <ns0:text text-anchor="middle" x="683.5" y="347">,</ns0:text>
+                </ns0:g>
+                <ns0:path d="M697.75 343h10"/>
+                <ns0:path d="M707.75 343h10"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="717.75" y="332" style="fill:#09F500;"/>
+                  <ns0:text text-anchor="middle" x="740.5" y="347">exp</ns0:text>
+                </ns0:g>
+              </ns0:g>
+              <ns0:path d="M763.25 343h20"/>
+            </ns0:g>
+            <ns0:path d="M783.25 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="do" height="22" stroke="black" stroke-width="3" width="37" x="793.25" y="332" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="811.75" y="347">do</ns0:text>
+            </ns0:g>
+            <ns0:path d="M830.25 343h10"/>
+            <ns0:path d="M840.25 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="850.25" y="332" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="881.5" y="347">block</ns0:text>
+            </ns0:g>
+            <ns0:path d="M912.75 343h10"/>
+            <ns0:path d="M922.75 343h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="end" height="22" stroke="black" stroke-width="3" width="45.5" x="932.75" y="332" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="955.5" y="347">end</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 343a10 10 0 0 0 10 -10v-62a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 1 10 10v104a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 385h169.5"/>
+            <ns0:path d="M892.5 385h169.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="for" height="22" stroke="black" stroke-width="3" width="45.5" x="377.5" y="374" style="fill:#FA0400;"/>
+              <ns0:text text-anchor="middle" x="400.25" y="389">for</ns0:text>
+            </ns0:g>
+            <ns0:path d="M423.0 385h10"/>
+            <ns0:path d="M433.0 385h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="namelist" height="22" stroke="black" stroke-width="3" width="88" x="443" y="374" style="fill:#9D6100;"/>
+              <ns0:text text-anchor="middle" x="487" y="389">namelist</ns0:text>
+            </ns0:g>
+            <ns0:path d="M531.0 385h10"/>
+            <ns0:path d="M541.0 385h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="in" height="22" stroke="black" stroke-width="3" width="37" x="551" y="374" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="569.5" y="389">in</ns0:text>
+            </ns0:g>
+            <ns0:path d="M588.0 385h10"/>
+            <ns0:path d="M598.0 385h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="explist" height="22" stroke="black" stroke-width="3" width="79.5" x="608" y="374" style="fill:#A65800;"/>
+              <ns0:text text-anchor="middle" x="647.75" y="389">explist</ns0:text>
+            </ns0:g>
+            <ns0:path d="M687.5 385h10"/>
+            <ns0:path d="M697.5 385h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="do" height="22" stroke="black" stroke-width="3" width="37" x="707.5" y="374" style="fill:#8B7300;"/>
+              <ns0:text text-anchor="middle" x="726" y="389">do</ns0:text>
+            </ns0:g>
+            <ns0:path d="M744.5 385h10"/>
+            <ns0:path d="M754.5 385h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="block" height="22" stroke="black" stroke-width="3" width="62.5" x="764.5" y="374" style="fill:#817D00;"/>
+              <ns0:text text-anchor="middle" x="795.75" y="389">block</ns0:text>
+            </ns0:g>
+            <ns0:path d="M827.0 385h10"/>
+            <ns0:path d="M837.0 385h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="end" height="22" stroke="black" stroke-width="3" width="45.5" x="847" y="374" style="fill:#37C700;"/>
+              <ns0:text text-anchor="middle" x="869.75" y="389">end</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 385a10 10 0 0 0 10 -10v-104a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 1 10 10v146a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 427h275.0"/>
+            <ns0:path d="M787.0 427h275.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="function" height="22" stroke="black" stroke-width="3" width="88" x="483" y="416" style="fill:#B94500;"/>
+              <ns0:text text-anchor="middle" x="527" y="431">function</ns0:text>
+            </ns0:g>
+            <ns0:path d="M571.0 427h10"/>
+            <ns0:path d="M581.0 427h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="funcname" height="22" stroke="black" stroke-width="3" width="88" x="591" y="416" style="fill:#D92500;"/>
+              <ns0:text text-anchor="middle" x="635" y="431">funcname</ns0:text>
+            </ns0:g>
+            <ns0:path d="M679.0 427h10"/>
+            <ns0:path d="M689.0 427h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="funcbody" height="22" stroke="black" stroke-width="3" width="88" x="699" y="416" style="fill:#4EB000;"/>
+              <ns0:text text-anchor="middle" x="743" y="431">funcbody</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 427a10 10 0 0 0 10 -10v-146a10 10 0 0 1 10 -10"/>
+          <ns0:path d="M188.0 261a10 10 0 0 1 10 10v188a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M208.0 469h357.5"/>
+            <ns0:path d="M704.5 469h357.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="local function" height="22" stroke="black" stroke-width="3" width="139" x="565.5" y="458" style="fill:#32CC00;"/>
+              <ns0:text text-anchor="middle" x="635" y="473">local function</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1062.0 469a10 10 0 0 0 10 -10v-188a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+        <ns0:path d="M1082.0 261h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="1092" y="250" style="fill:#CC3300;"/>
+          <ns0:text text-anchor="middle" x="1119" y="265">Name</ns0:text>
+        </ns0:g>
+        <ns0:path d="M1146.0 261h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M1156.0 261h0.0"/>
+          <ns0:path d="M1544.5 261h0.0"/>
+          <ns0:path d="M1156.0 261a10 10 0 0 0 10 -10v-42a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M1176.0 199h130.25"/>
+            <ns0:path d="M1394.25 199h130.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="funcbody" height="22" stroke="black" stroke-width="3" width="88" x="1306.25" y="188" style="fill:#4EB000;"/>
+              <ns0:text text-anchor="middle" x="1350.25" y="203">funcbody</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1524.5 199a10 10 0 0 1 10 10v42a10 10 0 0 0 10 10"/>
+          <ns0:path d="M1156.0 261h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M1176.0 261h0.0"/>
+            <ns0:path d="M1524.5 261h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="local" height="22" stroke="black" stroke-width="3" width="62.5" x="1176" y="250" style="fill:#17E700;"/>
+              <ns0:text text-anchor="middle" x="1207.25" y="265">local</ns0:text>
+            </ns0:g>
+            <ns0:path d="M1238.5 261h10"/>
+            <ns0:path d="M1248.5 261h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="namelist" height="22" stroke="black" stroke-width="3" width="88" x="1258.5" y="250" style="fill:#9D6100;"/>
+              <ns0:text text-anchor="middle" x="1302.5" y="265">namelist</ns0:text>
+            </ns0:g>
+            <ns0:path d="M1346.5 261h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M1356.5 261h0.0"/>
+              <ns0:path d="M1524.5 261h0.0"/>
+              <ns0:path d="M1356.5 261a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M1376.5 230h128.0"/>
+              </ns0:g>
+              <ns0:path d="M1504.5 230a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+              <ns0:path d="M1356.5 261h20"/>
+              <ns0:g>
+                
+
+                <ns0:path d="M1376.5 261h0.0"/>
+                <ns0:path d="M1504.5 261h0.0"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="=" height="22" stroke="black" stroke-width="3" width="28.5" x="1376.5" y="250" style="fill:#53AB00;"/>
+                  <ns0:text text-anchor="middle" x="1390.75" y="265">=</ns0:text>
+                </ns0:g>
+                <ns0:path d="M1405.0 261h10"/>
+                <ns0:path d="M1415.0 261h10"/>
+                <ns0:g class="terminal ">
+                  
+
+                  <ns0:rect data-text="explist" height="22" stroke="black" stroke-width="3" width="79.5" x="1425" y="250" style="fill:#A65800;"/>
+                  <ns0:text text-anchor="middle" x="1464.75" y="265">explist</ns0:text>
+                </ns0:g>
+              </ns0:g>
+              <ns0:path d="M1504.5 261h20"/>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M1524.5 261h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M1544.5 261h10"/>
+      <ns0:path d="M 1554.5 261 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="5054.0" class="rule-title">tableconstructor</text>
+  <g transform="translate(20, 5074.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M263.5 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="{" height="22" stroke="black" stroke-width="3" width="28.5" x="50" y="40" style="fill:#C23C00;"/>
+          <ns0:text text-anchor="middle" x="64.25" y="55">{</ns0:text>
+        </ns0:g>
+        <ns0:path d="M78.5 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M88.5 51h0.0"/>
+          <ns0:path d="M225.0 51h0.0"/>
+          <ns0:path d="M88.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M108.5 20h96.5"/>
+          </ns0:g>
+          <ns0:path d="M205.0 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M88.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M108.5 51h0.0"/>
+            <ns0:path d="M205.0 51h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="fieldlist" height="22" stroke="black" stroke-width="3" width="96.5" x="108.5" y="40" style="fill:#6F8F00;"/>
+              <ns0:text text-anchor="middle" x="156.75" y="55">fieldlist</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M205.0 51h20"/>
+        </ns0:g>
+        <ns0:path d="M225.0 51h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="}" height="22" stroke="black" stroke-width="3" width="28.5" x="235" y="40" style="fill:#BE4000;"/>
+          <ns0:text text-anchor="middle" x="249.25" y="55">}</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M263.5 51h10"/>
+      <ns0:path d="M 273.5 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="5216.0" class="rule-title">unop</text>
+  <g transform="translate(20, 5236.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M135.5 73h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 73h0.0"/>
+          <ns0:path d="M135.5 73h0.0"/>
+          <ns0:path d="M50.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 31h8.5"/>
+            <ns0:path d="M107.0 31h8.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="-" height="22" stroke="black" stroke-width="3" width="28.5" x="78.5" y="20" style="fill:#CC3300;"/>
+              <ns0:text text-anchor="middle" x="92.75" y="35">-</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M115.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 73h0.0"/>
+            <ns0:path d="M115.5 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="not" height="22" stroke="black" stroke-width="3" width="45.5" x="70" y="62" style="fill:#669900;"/>
+              <ns0:text text-anchor="middle" x="92.75" y="77">not</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M115.5 73h20"/>
+          <ns0:path d="M50.0 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 115h8.5"/>
+            <ns0:path d="M107.0 115h8.5"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="#" height="22" stroke="black" stroke-width="3" width="28.5" x="78.5" y="104" style="fill:#3CC200;"/>
+              <ns0:text text-anchor="middle" x="92.75" y="119">#</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M115.5 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M135.5 73h10"/>
+      <ns0:path d="M 145.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="5442.0" class="rule-title">var</text>
+  <g transform="translate(20, 5462.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 63v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 73h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 73h0.0"/>
+        <ns0:path d="M421.5 73h0.0"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M50.0 73h0.0"/>
+          <ns0:path d="M357.5 73h0.0"/>
+          <ns0:path d="M50.0 73a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 31h106.75"/>
+            <ns0:path d="M230.75 31h106.75"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="176.75" y="20" style="fill:#1BE300;"/>
+              <ns0:text text-anchor="middle" x="203.75" y="35">Name</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M337.5 31a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:path d="M50.0 73h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 73h0.0"/>
+            <ns0:path d="M337.5 73h0.0"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="prefixexp" height="22" stroke="black" stroke-width="3" width="96.5" x="70" y="62" style="fill:#F10D00;"/>
+              <ns0:text text-anchor="middle" x="118.25" y="77">prefixexp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M166.5 73h10"/>
+            <ns0:path d="M176.5 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="(" height="22" stroke="black" stroke-width="3" width="28.5" x="186.5" y="62" style="fill:#09F500;"/>
+              <ns0:text text-anchor="middle" x="200.75" y="77">(</ns0:text>
+            </ns0:g>
+            <ns0:path d="M215.0 73h10"/>
+            <ns0:path d="M225.0 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="exp" height="22" stroke="black" stroke-width="3" width="45.5" x="235" y="62" style="fill:#C23C00;"/>
+              <ns0:text text-anchor="middle" x="257.75" y="77">exp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M280.5 73h10"/>
+            <ns0:path d="M290.5 73h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text=")?" height="22" stroke="black" stroke-width="3" width="37" x="300.5" y="62" style="fill:#32CC00;"/>
+              <ns0:text text-anchor="middle" x="319" y="77">)?</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M337.5 73h20"/>
+          <ns0:path d="M50.0 73a10 10 0 0 1 10 10v22a10 10 0 0 0 10 10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M70.0 115h61.25"/>
+            <ns0:path d="M276.25 115h61.25"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="prefixexp" height="22" stroke="black" stroke-width="3" width="96.5" x="131.25" y="104" style="fill:#F10D00;"/>
+              <ns0:text text-anchor="middle" x="179.5" y="119">prefixexp</ns0:text>
+            </ns0:g>
+            <ns0:path d="M227.75 115h10"/>
+            <ns0:path d="M237.75 115h10"/>
+            <ns0:g class="terminal ">
+              
+
+              <ns0:rect data-text="." height="22" stroke="black" stroke-width="3" width="28.5" x="247.75" y="104" style="fill:#F50900;"/>
+              <ns0:text text-anchor="middle" x="262" y="119">.</ns0:text>
+            </ns0:g>
+          </ns0:g>
+          <ns0:path d="M337.5 115a10 10 0 0 0 10 -10v-22a10 10 0 0 1 10 -10"/>
+        </ns0:g>
+        <ns0:path d="M357.5 73h10"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="Name" height="22" stroke="black" stroke-width="3" width="54" x="367.5" y="62" style="fill:#1BE300;"/>
+          <ns0:text text-anchor="middle" x="394.5" y="77">Name</ns0:text>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M421.5 73h10"/>
+      <ns0:path d="M 431.5 73 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+  <text x="20" y="5668.0" class="rule-title">varlist</text>
+  <g transform="translate(20, 5688.0)">
+    <ns0:g transform="translate(.5 .5)">
+      
+
+      <ns0:g>
+        
+
+        <ns0:path d="M20 41v20m10 -20v20m-10 -10h20"/>
+      </ns0:g>
+      <ns0:path d="M40 51h10"/>
+      <ns0:g>
+        
+
+        <ns0:path d="M50 51h0.0"/>
+        <ns0:path d="M259.5 51h0.0"/>
+        <ns0:g class="terminal ">
+          
+
+          <ns0:rect data-text="var" height="22" stroke="black" stroke-width="3" width="45.5" x="50" y="40" style="fill:#CC3300;"/>
+          <ns0:text text-anchor="middle" x="72.75" y="55">var</ns0:text>
+        </ns0:g>
+        <ns0:path d="M95.5 51h10"/>
+        <ns0:g>
+          
+
+          <ns0:path d="M105.5 51h0.0"/>
+          <ns0:path d="M259.5 51h0.0"/>
+          <ns0:path d="M105.5 51a10 10 0 0 0 10 -10v-11a10 10 0 0 1 10 -10"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M125.5 20h114.0"/>
+          </ns0:g>
+          <ns0:path d="M239.5 20a10 10 0 0 1 10 10v11a10 10 0 0 0 10 10"/>
+          <ns0:path d="M105.5 51h20"/>
+          <ns0:g>
+            
+
+            <ns0:path d="M125.5 51h0.0"/>
+            <ns0:path d="M239.5 51h0.0"/>
+            <ns0:path d="M125.5 51h10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M135.5 51h0.0"/>
+              <ns0:path d="M229.5 51h0.0"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="," height="22" stroke="black" stroke-width="3" width="28.5" x="135.5" y="40" style="fill:#58A600;"/>
+                <ns0:text text-anchor="middle" x="149.75" y="55">,</ns0:text>
+              </ns0:g>
+              <ns0:path d="M164.0 51h10"/>
+              <ns0:path d="M174.0 51h10"/>
+              <ns0:g class="terminal ">
+                
+
+                <ns0:rect data-text="var" height="22" stroke="black" stroke-width="3" width="45.5" x="184" y="40" style="fill:#CC3300;"/>
+                <ns0:text text-anchor="middle" x="206.75" y="55">var</ns0:text>
+              </ns0:g>
+            </ns0:g>
+            <ns0:path d="M229.5 51h10"/>
+            <ns0:path d="M135.5 51a10 10 0 0 0 -10 10v11a10 10 0 0 0 10 10"/>
+            <ns0:g>
+              
+
+              <ns0:path d="M135.5 82h94.0"/>
+            </ns0:g>
+            <ns0:path d="M229.5 82a10 10 0 0 0 10 -10v-11a10 10 0 0 0 -10 -10"/>
+          </ns0:g>
+          <ns0:path d="M239.5 51h20"/>
+        </ns0:g>
+      </ns0:g>
+      <ns0:path d="M259.5 51h10"/>
+      <ns0:path d="M 269.5 51 h 20 m -10 -10 v 20 m 10 -20 v 20"/>
+    </ns0:g>
+    <ns0:style>/*  */
+	svg.railroad-diagram {
+		background-color:hsl(30,20%,95%);
+	}
+	svg.railroad-diagram path {
+		stroke-width:3;
+		stroke:black;
+		fill:rgba(0,0,0,0);
+	}
+	svg.railroad-diagram text {
+		font:bold 14px monospace;
+		text-anchor:middle;
+	}
+	svg.railroad-diagram text.label{
+		text-anchor:start;
+	}
+	svg.railroad-diagram text.comment{
+		font:italic 12px monospace;
+	}
+	svg.railroad-diagram rect{
+		stroke-width:3;
+		stroke:black;
+		fill:hsl(120,100%,90%);
+	}
+	svg.railroad-diagram rect.group-box {
+		stroke: gray;
+		stroke-dasharray: 10 5;
+		fill: none;
+	}
+
+/*  */
+</ns0:style>
+  </g>
+</svg>
