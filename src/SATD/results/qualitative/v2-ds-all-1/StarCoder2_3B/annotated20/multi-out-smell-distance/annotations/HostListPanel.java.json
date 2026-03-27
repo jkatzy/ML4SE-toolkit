@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.29935275080906154,
+            "BLEU": 0.13287980448509742,
+            "METEOR": 0.17974028716216214,
+            "ROUGE-L": 0.27999999999999997
+        },
+        "target": "@Override\n                        public void onClick(ClickEvent event) {\n                            hostGridStore.getList().remove(hi);\n                            hostService.delete(hi.getName(), new MethodCallback<Void>() {\n                                @Override\n                                public void onFailure(Method method, Throwable exception) {\n\n                                }\n\n                                @Override\n                                public void onSuccess(Method method, Void response) {\n\n                                }\n                            });\n                        }",
+        "generation": "@Override\n                                 public void onFailure(Method method, Throwable e) {\n                                     md.error(MDS, \"Error removing host \" + hi.getName(), e);\n                                 }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.28964401294498376,
+            "BLEU": 0.11163269112246384,
+            "METEOR": 0.18158063139931746,
+            "ROUGE-L": 0.29166666666666663
+        },
+        "target": "@Override\n                        public void onClick(ClickEvent event) {\n                            hostGridStore.getList().remove(hi);\n                            hostService.delete(hi.getName(), new MethodCallback<Void>() {\n                                @Override\n                                public void onFailure(Method method, Throwable exception) {\n\n                                }\n\n                                @Override\n                                public void onSuccess(Method method, Void response) {\n\n                                }\n                            });\n                        }",
+        "generation": "@Override\n                                public void onFailure(Method method, Throwable e) {\n                                    md.error(MDS, \"Error removing host\", e);\n                                }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2944983818770227,
+            "BLEU": 0.11163269112246384,
+            "METEOR": 0.18158063139931746,
+            "ROUGE-L": 0.29166666666666663
+        },
+        "target": "@Override\n                        public void onClick(ClickEvent event) {\n                            hostGridStore.getList().remove(hi);\n                            hostService.delete(hi.getName(), new MethodCallback<Void>() {\n                                @Override\n                                public void onFailure(Method method, Throwable exception) {\n\n                                }\n\n                                @Override\n                                public void onSuccess(Method method, Void response) {\n\n                                }\n                            });\n                        }",
+        "generation": "@Override\n                                 public void onFailure(Method method, Throwable e) {\n                                     md.error(MDS, \"Error removing host\", e);\n                                 }",
+        "classification": "incorrect",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.28964401294498376,
+            "BLEU": 0.11163269112246384,
+            "METEOR": 0.18158063139931746,
+            "ROUGE-L": 0.29166666666666663
+        },
+        "target": "@Override\n                        public void onClick(ClickEvent event) {\n                            hostGridStore.getList().remove(hi);\n                            hostService.delete(hi.getName(), new MethodCallback<Void>() {\n                                @Override\n                                public void onFailure(Method method, Throwable exception) {\n\n                                }\n\n                                @Override\n                                public void onSuccess(Method method, Void response) {\n\n                                }\n                            });\n                        }",
+        "generation": "@Override\n                                public void onFailure(Method method, Throwable e) {\n                                    md.error(MDS, \"Error removing host\", e);\n                                }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.769825918762089,
+            "BLEU": 0.6822469899181285,
+            "METEOR": 0.9153075093442065,
+            "ROUGE-L": 0.7894736842105263
+        },
+        "target": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + \": traces\");\n        }\n    }",
+        "generation": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            TraceSearchPanel searchPanel = panelFactory.traceSearchPanel((HostInfo) hostInfo, null);\n            shell.get().addView(searchPanel, hostInfo.getName() + \": pivot\");\n            searchPanel.refresh();\n        }\n    }",
+        "classification": "partial",
+        "comment": "correct signature, some body, one semantic mismatch"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999847412109375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + \": traces\");\n        }\n    }",
+        "generation": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + \": traces\");\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.769825918762089,
+            "BLEU": 0.6822469899181285,
+            "METEOR": 0.9153075093442065,
+            "ROUGE-L": 0.7894736842105263
+        },
+        "target": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + \": traces\");\n        }\n    }",
+        "generation": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            TraceSearchPanel searchPanel = panelFactory.traceSearchPanel((HostInfo) hostInfo, null);\n            shell.get().addView(searchPanel, hostInfo.getName() + \": pivot\");\n            searchPanel.refresh();\n        }\n    }",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999847412109375,
+            "ROUGE-L": 1.0
+        },
+        "target": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + \": traces\");\n        }\n    }",
+        "generation": "@UiHandler(\"btnStatTraces\")\n    void statTraces(ClickEvent e) {\n        HostListObject hostInfo = selectionModel.getSelectedObject();\n        GWT.log(\"Selected host: \" + hostInfo);\n\n        if (hostInfo instanceof HostInfo && 0 == (((HostInfo)hostInfo).getFlags() & HostInfo.DISABLED)) {\n            shell.get().addView(panelFactory.traceStatsPanel((HostInfo)hostInfo), hostInfo.getName() + \": traces\");\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

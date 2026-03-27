@@ -1,0 +1,51 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.0459  BLEU: 0.0029  METEOR: 0.1042  ROUGE-L: 0.0345  
+--- Target ---
+public JPanel getControls() {
+    return controlPanel;
+  }
+--- Generation ---
+public void setVisible(boolean visible) {
+    if (controlPanel.getTopLevelAncestor() == null) {
+      if (GlobalOptions.getInstance().isUseSingleWindow()) {
+        final Component gmcp = GameModule.getGameModule().getControlPanel();
+        final Container gmcppar = gmcp.getParent();
+        final int i = SwingUtils.getIndexInParent(gmcp, gmcppar);
+
+        splitPane = new SplitPane(SplitPane.HORIZONTAL_SPLIT, gmcp, controlPanel);
+        splitPane.setResizeWeight(1.0);
+        gmcppar.add(splitPane, i);
+      }
+      else {
+        final JFrame frame = new JFrame(Resources.getString("Debug.debug_controls"));  //$NON-NLS-1$
+        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        frame.add(controlPanel);
+        frame.setJMenuBar(MenuManager.getInstance().getMenuBarFor(frame));
+
+        final String key = "BoundsOfClientWindow";  //$NON-NLS-1$
+        final PositionOption pos = new VisibilityOption(key, frame);
+        GameModule.getGameModule().getPrefs().addOption(pos);
+        frame.setVisible(true);
+      }
+    }
+    else if (splitPane!= null) {
+      splitPane.setRightVisible(visible);
+    }
+    else {
+      controlPanel.getTopLevelAncestor().setVisible(visible);
+    }
+
+    updateVisible();
+  }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public JPanel getControls() {
+    return controlPanel;
+  }
+--- Generation ---
+public JPanel getControls() {
+    return controlPanel;
+  }
+

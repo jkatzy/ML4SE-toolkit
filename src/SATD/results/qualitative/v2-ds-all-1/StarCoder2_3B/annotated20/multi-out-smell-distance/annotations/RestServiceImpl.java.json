@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17971014492753623,
+            "BLEU": 0.001861034645136971,
+            "METEOR": 0.0697211155378486,
+            "ROUGE-L": 0.07017543859649122
+        },
+        "target": "public boolean doRegister(String email, String password) {\n        boolean ret;\n        try {\n            JSONUtils.createObjectMapper().readTree(\n                    postForResource(false,\n                            URL_S_BASE + \"/register/user\",\n                            \"email\", email,\n                            \"password\", password,\n                            \"passwordVerification\", password));\n            ret = true;\n        } catch (TimeoutException e) {\n            ret = false;\n        } catch (IOException e) {\n            notifyListenersNotOnline();\n            ret = false;\n        } catch (RestException e) {\n            ret = false;\n        }\n        return ret;\n    }",
+        "generation": "public void doLogout() {\n        synchronized (lock) {\n            user = null;\n            authTokenByDevice = null;\n            dataService.deleteData();\n        }\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.08550724637681162,
+            "BLEU": 1.6286434556198506e-05,
+            "METEOR": 0.02032520325203252,
+            "ROUGE-L": 0.04
+        },
+        "target": "public boolean doRegister(String email, String password) {\n        boolean ret;\n        try {\n            JSONUtils.createObjectMapper().readTree(\n                    postForResource(false,\n                            URL_S_BASE + \"/register/user\",\n                            \"email\", email,\n                            \"password\", password,\n                            \"passwordVerification\", password));\n            ret = true;\n        } catch (TimeoutException e) {\n            ret = false;\n        } catch (IOException e) {\n            notifyListenersNotOnline();\n            ret = false;\n        } catch (RestException e) {\n            ret = false;\n        }\n        return ret;\n    }",
+        "generation": "private void notifyListenersNotOnline() {\n        doNotifyTimeout();\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.14927536231884053,
+            "BLEU": 0.0010380314463679487,
+            "METEOR": 0.060120240480961915,
+            "ROUGE-L": 0.07272727272727274
+        },
+        "target": "public boolean doRegister(String email, String password) {\n        boolean ret;\n        try {\n            JSONUtils.createObjectMapper().readTree(\n                    postForResource(false,\n                            URL_S_BASE + \"/register/user\",\n                            \"email\", email,\n                            \"password\", password,\n                            \"passwordVerification\", password));\n            ret = true;\n        } catch (TimeoutException e) {\n            ret = false;\n        } catch (IOException e) {\n            notifyListenersNotOnline();\n            ret = false;\n        } catch (RestException e) {\n            ret = false;\n        }\n        return ret;\n    }",
+        "generation": "public void doLogout() {\n        synchronized (lock) {\n            user = null;\n            dataService.deleteData();\n        }\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.08550724637681162,
+            "BLEU": 1.6286434556198506e-05,
+            "METEOR": 0.02032520325203252,
+            "ROUGE-L": 0.04
+        },
+        "target": "public boolean doRegister(String email, String password) {\n        boolean ret;\n        try {\n            JSONUtils.createObjectMapper().readTree(\n                    postForResource(false,\n                            URL_S_BASE + \"/register/user\",\n                            \"email\", email,\n                            \"password\", password,\n                            \"passwordVerification\", password));\n            ret = true;\n        } catch (TimeoutException e) {\n            ret = false;\n        } catch (IOException e) {\n            notifyListenersNotOnline();\n            ret = false;\n        } catch (RestException e) {\n            ret = false;\n        }\n        return ret;\n    }",
+        "generation": "private void notifyListenersNotOnline() {\n        doNotifyTimeout();\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.09523809523809523,
+            "BLEU": 0.0035548168188028837,
+            "METEOR": 0.08695652173913046,
+            "ROUGE-L": 0.0
+        },
+        "target": "private void doNotifyTimeout() {\n        listener.onRestServiceNotOnline();\n    }",
+        "generation": "public Document getGame(String id) {\n        Document document = dataService.loadDocument(id); // document.getProperty(\"modelId\");\n        Document ret = null;\n        try {\n            ret = dataService.loadDocument(document.getProperty(\"modelId\"));\n        } catch (JsonProcessingException e) {\n            throw new RuntimeException(e);\n        } catch (TimeoutException e) {\n\n        } catch (IOException e) {\n//            doNotifyNotOnline();\n        } catch (RestException e) {\n//            doLogin(false);\n            doLogin();\n        } catch (CouchbaseLiteException e) {\n            e.printStackTrace();\n            throw new RuntimeException();\n        }\n        return ret;\n    }",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9976851851851852,
+            "ROUGE-L": 1.0
+        },
+        "target": "private void doNotifyTimeout() {\n        listener.onRestServiceNotOnline();\n    }",
+        "generation": "private void doNotifyTimeout() {\n        listener.onRestServiceNotOnline();\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.46825396825396826,
+            "BLEU": 0.09058752341587764,
+            "METEOR": 0.47821969696969696,
+            "ROUGE-L": 0.42857142857142855
+        },
+        "target": "private void doNotifyTimeout() {\n        listener.onRestServiceNotOnline();\n    }",
+        "generation": "@Override\n    public void doNotifyTimeout() {\n        if (listener!= null) {\n            listener.onTimeout();\n        }\n    }",
+        "classification": "partial",
+        "comment": "signature"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.891566265060241,
+            "BLEU": 0.25406637407730737,
+            "METEOR": 0.8066666666666668,
+            "ROUGE-L": 0.8000000000000002
+        },
+        "target": "private void doNotifyTimeout() {\n        listener.onRestServiceNotOnline();\n    }",
+        "generation": "private void doNotifyNotOnline() {\n        listener.onRestServiceNotOnline();\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

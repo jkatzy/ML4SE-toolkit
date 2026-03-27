@@ -1,0 +1,88 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9565  BLEU: 0.6435  METEOR: 0.8413  ROUGE-L: 0.8333  
+--- Target ---
+public String getCallserverUrl() {
+            return getString("callserverUrl");
+        }
+--- Generation ---
+public String getCallserverUrl() {
+            return getString("callserverhost");
+        }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getCallserverUrl() {
+            return getString("callserverUrl");
+        }
+--- Generation ---
+public String getCallserverUrl() {
+            return getString("callserverUrl");
+        }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9565  BLEU: 0.6435  METEOR: 0.8413  ROUGE-L: 0.8333  
+--- Target ---
+public String getCallserverUrl() {
+            return getString("callserverUrl");
+        }
+--- Generation ---
+public String getCallserverUrl() {
+            return getString("callserverhost");
+        }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getCallserverUrl() {
+            return getString("callserverUrl");
+        }
+--- Generation ---
+public String getCallserverUrl() {
+            return getString("callserverUrl");
+        }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getDomain() {
+            return getString("domain");
+        }
+--- Generation ---
+public String getDomain() {
+            return getString("domain");
+        }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getDomain() {
+            return getString("domain");
+        }
+--- Generation ---
+public String getDomain() {
+            return getString("domain");
+        }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getDomain() {
+            return getString("domain");
+        }
+--- Generation ---
+public String getDomain() {
+            return getString("domain");
+        }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public String getDomain() {
+            return getString("domain");
+        }
+--- Generation ---
+public String getDomain() {
+            return getString("domain");
+        }
+

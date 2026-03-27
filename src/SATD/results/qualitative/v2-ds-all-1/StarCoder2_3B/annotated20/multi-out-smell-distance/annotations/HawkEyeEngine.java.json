@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.41052631578947374,
+            "BLEU": 0.06985342056580097,
+            "METEOR": 0.39453125,
+            "ROUGE-L": 0.26666666666666666
+        },
+        "target": "@Override\n\tpublic HawkEyeLogger getLogger() {\n\t\treturn logger;\n\t}",
+        "generation": "@Override\n\tpublic void onPlayerJoin(Player player) {\n\t\tsessionManager.createSession(player);\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.41052631578947374,
+            "BLEU": 0.06985342056580097,
+            "METEOR": 0.39453125,
+            "ROUGE-L": 0.26666666666666666
+        },
+        "target": "@Override\n\tpublic HawkEyeLogger getLogger() {\n\t\treturn logger;\n\t}",
+        "generation": "@Override\n\tpublic void onPlayerJoin(Player player) {\n\t\tsessionManager.createSession(player);\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.41052631578947374,
+            "BLEU": 0.06985342056580097,
+            "METEOR": 0.39453125,
+            "ROUGE-L": 0.26666666666666666
+        },
+        "target": "@Override\n\tpublic HawkEyeLogger getLogger() {\n\t\treturn logger;\n\t}",
+        "generation": "@Override\n\tpublic void onPlayerJoin(Player player) {\n\t\tsessionManager.createSession(player);\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.41052631578947374,
+            "BLEU": 0.06985342056580097,
+            "METEOR": 0.39453125,
+            "ROUGE-L": 0.26666666666666666
+        },
+        "target": "@Override\n\tpublic HawkEyeLogger getLogger() {\n\t\treturn logger;\n\t}",
+        "generation": "@Override\n\tpublic void onPlayerJoin(Player player) {\n\t\tsessionManager.createSession(player);\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.18608695652173912,
+            "BLEU": 0.0010312495020237177,
+            "METEOR": 0.108125021729305,
+            "ROUGE-L": 0.20512820512820512
+        },
+        "target": "@Override\n\tpublic void handleCommand(CommandSender sender, String command) {\n\t\ttry {\n\t\t\tcommandManager.execute(command, sender);\n\t\t} catch (CommandPermissionException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"You do not have permission to do that.\");\n\t\t} catch (CommandPlayerException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"That command can only be used by ingame players.\");\n\t\t} catch (CommandUsageException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());\n\t\t} catch (CommandException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage());\n\t\t}\n\t}",
+        "generation": "@Override\n\tpublic void sendMessage(CommandSender sender, String message) {\n\t\tserver.sendMessage(sender, message);\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999980926513672,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\tpublic void handleCommand(CommandSender sender, String command) {\n\t\ttry {\n\t\t\tcommandManager.execute(command, sender);\n\t\t} catch (CommandPermissionException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"You do not have permission to do that.\");\n\t\t} catch (CommandPlayerException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"That command can only be used by ingame players.\");\n\t\t} catch (CommandUsageException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());\n\t\t} catch (CommandException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage());\n\t\t}\n\t}",
+        "generation": "@Override\n\tpublic void handleCommand(CommandSender sender, String command) {\n\t\ttry {\n\t\t\tcommandManager.execute(command, sender);\n\t\t} catch (CommandPermissionException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"You do not have permission to do that.\");\n\t\t} catch (CommandPlayerException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"That command can only be used by ingame players.\");\n\t\t} catch (CommandUsageException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());\n\t\t} catch (CommandException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage());\n\t\t}\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.17565217391304344,
+            "BLEU": 0.0006633596218715972,
+            "METEOR": 0.0338409475465313,
+            "ROUGE-L": 0.1
+        },
+        "target": "@Override\n\tpublic void handleCommand(CommandSender sender, String command) {\n\t\ttry {\n\t\t\tcommandManager.execute(command, sender);\n\t\t} catch (CommandPermissionException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"You do not have permission to do that.\");\n\t\t} catch (CommandPlayerException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"That command can only be used by ingame players.\");\n\t\t} catch (CommandUsageException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());\n\t\t} catch (CommandException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage());\n\t\t}\n\t}",
+        "generation": "public CommandManager(HawkEyeEngine engine) {\n\t\tthis.engine = engine;\n\t\tlogger = engine.getLogger();\n\t\tcommands = new ArrayList<Command>();\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999980926513672,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n\tpublic void handleCommand(CommandSender sender, String command) {\n\t\ttry {\n\t\t\tcommandManager.execute(command, sender);\n\t\t} catch (CommandPermissionException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"You do not have permission to do that.\");\n\t\t} catch (CommandPlayerException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"That command can only be used by ingame players.\");\n\t\t} catch (CommandUsageException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());\n\t\t} catch (CommandException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage());\n\t\t}\n\t}",
+        "generation": "@Override\n\tpublic void handleCommand(CommandSender sender, String command) {\n\t\ttry {\n\t\t\tcommandManager.execute(command, sender);\n\t\t} catch (CommandPermissionException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"You do not have permission to do that.\");\n\t\t} catch (CommandPlayerException e) {\n\t\t\tsender.sendMessage(Chat.RED + \"That command can only be used by ingame players.\");\n\t\t} catch (CommandUsageException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage(), Chat.RED + e.getUsage());\n\t\t} catch (CommandException e) {\n\t\t\tsender.sendMessage(Chat.RED + e.getMessage());\n\t\t}\n\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

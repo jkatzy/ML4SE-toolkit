@@ -1,0 +1,108 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1556  BLEU: 0.0011  METEOR: 0.0310  ROUGE-L: 0.1026  
+--- Target ---
+protected Charset(String canonicalName, String[] aliases) {
+        checkName(canonicalName);
+        String[] as = (aliases == null) ? new String[0] : aliases;
+        for (int i = 0; i < as.length; i++)
+            checkName(as[i]);
+        this.name = canonicalName;
+        this.aliases = as;
+    }
+--- Generation ---
+public final String name() {
+        return name;
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1556  BLEU: 0.0011  METEOR: 0.0310  ROUGE-L: 0.1026  
+--- Target ---
+protected Charset(String canonicalName, String[] aliases) {
+        checkName(canonicalName);
+        String[] as = (aliases == null) ? new String[0] : aliases;
+        for (int i = 0; i < as.length; i++)
+            checkName(as[i]);
+        this.name = canonicalName;
+        this.aliases = as;
+    }
+--- Generation ---
+public final String name() {
+        return name;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1556  BLEU: 0.0011  METEOR: 0.0310  ROUGE-L: 0.1026  
+--- Target ---
+protected Charset(String canonicalName, String[] aliases) {
+        checkName(canonicalName);
+        String[] as = (aliases == null) ? new String[0] : aliases;
+        for (int i = 0; i < as.length; i++)
+            checkName(as[i]);
+        this.name = canonicalName;
+        this.aliases = as;
+    }
+--- Generation ---
+public final String name() {
+        return name;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.1556  BLEU: 0.0011  METEOR: 0.0310  ROUGE-L: 0.1026  
+--- Target ---
+protected Charset(String canonicalName, String[] aliases) {
+        checkName(canonicalName);
+        String[] as = (aliases == null) ? new String[0] : aliases;
+        for (int i = 0; i < as.length; i++)
+            checkName(as[i]);
+        this.name = canonicalName;
+        this.aliases = as;
+    }
+--- Generation ---
+public final String name() {
+        return name;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6818  BLEU: 0.2907  METEOR: 0.6860  ROUGE-L: 0.8333  
+--- Target ---
+public final String toString() {
+        return name();
+    }
+--- Generation ---
+public String toString() {
+        return "charset " + name;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+public final String toString() {
+        return name();
+    }
+--- Generation ---
+public final String toString() {
+        return name();
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6818  BLEU: 0.2907  METEOR: 0.6860  ROUGE-L: 0.8333  
+--- Target ---
+public final String toString() {
+        return name();
+    }
+--- Generation ---
+public String toString() {
+        return "charset " + name;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9990  ROUGE-L: 1.0000  
+--- Target ---
+public final String toString() {
+        return name();
+    }
+--- Generation ---
+public final String toString() {
+        return name();
+    }
+

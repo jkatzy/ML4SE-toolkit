@@ -1,0 +1,193 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9111  BLEU: 0.1768  METEOR: 0.5118  ROUGE-L: 0.9333  
+--- Target ---
+final void lazyInitBytes () {
+			if( bytes == null ) {
+				bytes = new byte [ Spec.param_bytes ];
+				System.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);
+			}
+		}
+--- Generation ---
+private void lazyInitBytes() {
+			if(bytes == null) {
+				bytes = new byte[ Spec.param_bytes ];
+				System.arraycopy( default_bytes, 0, bytes, 0, Spec.param_bytes );
+			}
+		}
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2632  BLEU: 0.0093  METEOR: 0.0980  ROUGE-L: 0.2143  
+--- Target ---
+final void lazyInitBytes () {
+			if( bytes == null ) {
+				bytes = new byte [ Spec.param_bytes ];
+				System.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);
+			}
+		}
+--- Generation ---
+public Param setDigestLength (final int v) {
+			assert v >= 0 && v <= Spec.max_digest_bytes : Assert.assertFail("digest_length", v, Assert.exclusiveUpperBound, Spec.max_digest_bytes);
+			bytes [ Xoff.digest_length ] = (byte) v;
+			return this;
+		}
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9056  BLEU: 0.1767  METEOR: 0.5098  ROUGE-L: 0.9333  
+--- Target ---
+final void lazyInitBytes () {
+			if( bytes == null ) {
+				bytes = new byte [ Spec.param_bytes ];
+				System.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);
+			}
+		}
+--- Generation ---
+private void lazyInitBytes() {
+			if (bytes == null) {
+				bytes = new byte[ Spec.param_bytes ];
+				System.arraycopy( default_bytes, 0, bytes, 0, Spec.param_bytes );
+			}
+		}
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2530  BLEU: 0.0253  METEOR: 0.2329  ROUGE-L: 0.3023  
+--- Target ---
+final void lazyInitBytes () {
+			if( bytes == null ) {
+				bytes = new byte [ Spec.param_bytes ];
+				System.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);
+			}
+		}
+--- Generation ---
+public Param setKey (final byte[] key) {
+			if(key == null) throw new IllegalArgumentException("key is null");
+			if(key.length > Spec.max_key_bytes) throw new IllegalArgumentException(String.format("key length %d is > %d", key.length, Spec.max_key_bytes));
+			this.hasKey = true;
+			this.key_bytes = new byte [Spec.max_key_bytes * 2];
+			System.arraycopy(key, 0, this.key_bytes, 0, key.length);
+			return this;
+		}
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9553  BLEU: 0.8139  METEOR: 0.9208  ROUGE-L: 0.9935  
+--- Target ---
+public final Param setPersonal(byte[] personal) {
+			assert personal != null : "personal is null";
+			assert personal.length <= Spec.max_personalization_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+--- Generation ---
+public final Param setPersonal(final byte[] personal) {
+			assert personal!= null : "personal is null";
+			assert personal.length <= Spec.max_personal_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personal_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personal_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9984  BLEU: 0.9528  METEOR: 0.9750  ROUGE-L: 1.0000  
+--- Target ---
+public final Param setPersonal(byte[] personal) {
+			assert personal != null : "personal is null";
+			assert personal.length <= Spec.max_personalization_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+--- Generation ---
+public final Param setPersonal(byte[] personal) {
+			assert personal!= null : "personal is null";
+			assert personal.length <= Spec.max_personalization_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9553  BLEU: 0.8139  METEOR: 0.9208  ROUGE-L: 0.9935  
+--- Target ---
+public final Param setPersonal(byte[] personal) {
+			assert personal != null : "personal is null";
+			assert personal.length <= Spec.max_personalization_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+--- Generation ---
+public final Param setPersonal(final byte[] personal) {
+			assert personal!= null : "personal is null";
+			assert personal.length <= Spec.max_personal_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personal_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personal_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9984  BLEU: 0.9528  METEOR: 0.9750  ROUGE-L: 1.0000  
+--- Target ---
+public final Param setPersonal(byte[] personal) {
+			assert personal != null : "personal is null";
+			assert personal.length <= Spec.max_personalization_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+--- Generation ---
+public final Param setPersonal(byte[] personal) {
+			assert personal!= null : "personal is null";
+			assert personal.length <= Spec.max_personalization_bytes : assertFail("personal.length", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);
+
+			lazyInitBytes();
+			Arrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);
+			System.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );
+			h[ 6 ] = readLong( bytes, Xoff.personal );
+			h[ 6 ] ^= Spec.IV [ 6 ];
+			h[ 7 ] = readLong( bytes, Xoff.personal + 8 );
+			h[ 7 ] ^= Spec.IV [ 7 ];
+			return this;
+		}
+

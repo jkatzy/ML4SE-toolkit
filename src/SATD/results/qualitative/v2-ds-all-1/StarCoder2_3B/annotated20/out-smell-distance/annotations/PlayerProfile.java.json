@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1288343558282209,
+            "BLEU": 0.00722045363978039,
+            "METEOR": 0.1358695652173913,
+            "ROUGE-L": 0.07207207207207207
+        },
+        "target": "public Player getPlayer() {\n        if (Util.isNPC(uniqueId)) {\n            return Eden.INSTANCE.getHookManager().getCitizensHook().getNPCPlayer(uniqueId);\n        }\n        return Bukkit.getPlayer(uniqueId);\n    }",
+        "generation": "public void save() {\n        if (saving) {\n            return;\n        }\n        saving = true;\n        new BukkitRunnable() {\n            @Override\n            public void run() {\n                saving = false;\n                Document document = toBson();\n                document.put(\"uuid\", uniqueId.toString());\n                document.put(\"username\", username);\n                document.put(\"lowerCaseUsername\", username.toLowerCase());\n                document.put(\"temporary\", new Document());\n                document.put(\"settings\", new Document());\n                document.put(\"kitData\", new Document());\n                document.put(\"match\", new Document());\n                document.put(\"party\", new Document());\n                document.put(\"cooldowns\", new Document());\n                document.put(\"playerState\", playerState.name());\n                document.put(\"match\", new Document());\n                document.put(\"party\", new Document());\n                document.put(\"cooldowns\", new Document());\n                document.put(\"playerState\", playerState.name());\n                document.put(\"match\", new Document());",
+        "classification": "incorrect",
+        "comment": "diff method, repetition"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1824417009602195,
+            "BLEU": 0.012360545410216943,
+            "METEOR": 0.2854713313896987,
+            "ROUGE-L": 0.15189873417721517
+        },
+        "target": "public Player getPlayer() {\n        if (Util.isNPC(uniqueId)) {\n            return Eden.INSTANCE.getHookManager().getCitizensHook().getNPCPlayer(uniqueId);\n        }\n        return Bukkit.getPlayer(uniqueId);\n    }",
+        "generation": "public void save(Consumer<Boolean> callback) {\n        if (saving) {\n            callback.accept(false);\n            return;\n        }\n        saving = true;\n        try {\n            Document document = toBson();\n            if (temporary) {\n                document.remove(\"temporary\");\n            }\n            if (match!= null) {\n                document.put(\"match\", match.getMatchId());\n            }\n            if (party!= null) {\n                document.put(\"party\", party.getPartyId());\n            }\n            if (Eden.getMongo().getCollection(\"profiles\").updateOne(Filters.eq(\"uuid\", uniqueId.toString()), new Document(\"$set\", document), new ReplaceOptt.get(0).getUniqueId());\n        }\n        return null;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.15439999999999998,
+            "BLEU": 0.007095584130806349,
+            "METEOR": 0.16319976993865032,
+            "ROUGE-L": 0.061538461538461535
+        },
+        "target": "public void setPlayerState(PlayerState playerState) {\n        this.playerState = playerState;\n\n        //getPlayer might be null because PlayerProfile.setPlayerState might be trigger when player disconnects\n        if (getPlayer() != null) {\n            VisibilityController.updateVisibility(getPlayer());\n        }\n    }",
+        "generation": "public void save() {\n        if (saving) {\n            return;\n        }\n        saving = true;\n        new BukkitRunnable() {\n            @Override\n            public void run() {\n                saving = false;\n                Document document = toBson();\n                document.put(\"uuid\", uniqueId.toString());\n                document.put(\"username\", username);\n                document.put(\"lowerCaseUsername\", username.toLowerCase());\n                document.put(\"temporary\", new Document());\n                document.put(\"settings\", new Document());\n                document.put(\"kitData\", new Document());\n                document.put(\"match\", new Document());\n                document.put(\"party\", new Document());\n                document.put(\"cooldowns\", new Document());\n                document.put(\"playerState\", playerState.name());\n                document.put(\"match\", new Document());\n                document.put(\"party\", new Document());\n                document.put(\"cooldowns\", new Document());\n                document.put(\"temporary\", new Document());\n                document.put(\"settings\", new Document());\n                document.put(\"kitData\", new Document());\n                document.put(\"match\", new Document());",
+        "classification": "incorrect",
+        "comment": "diff method, repetition, same gen as previous"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3208722741433022,
+            "BLEU": 0.019375228500471065,
+            "METEOR": 0.17376515823720795,
+            "ROUGE-L": 0.14634146341463417
+        },
+        "target": "public void setPlayerState(PlayerState playerState) {\n        this.playerState = playerState;\n\n        //getPlayer might be null because PlayerProfile.setPlayerState might be trigger when player disconnects\n        if (getPlayer() != null) {\n            VisibilityController.updateVisibility(getPlayer());\n        }\n    }",
+        "generation": "public void save() {\n        save(result -> {\n            if (result) {\n                Common.debug(username + \" \u5df2\u5132\u5b58\");\n            } else {\n                Common.debug(username + \" \u5132\u5b58\u5931\u6557\");\n            }\n        });\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999271030762502,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static PlayerProfile createPlayerProfile(UUID uuid, String username) {\n        PlayerProfile profile = new PlayerProfile(uuid, username);\n        profiles.put(uuid, profile);\n        return profile;\n    }",
+        "generation": "public static PlayerProfile createPlayerProfile(UUID uuid, String username) {\n        PlayerProfile profile = new PlayerProfile(uuid, username);\n        profiles.put(uuid, profile);\n        return profile;\n    }",
+        "classification": "correct",
+        "comment": "exact match, somewhat because of pattern in context"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999271030762502,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static PlayerProfile createPlayerProfile(UUID uuid, String username) {\n        PlayerProfile profile = new PlayerProfile(uuid, username);\n        profiles.put(uuid, profile);\n        return profile;\n    }",
+        "generation": "public static PlayerProfile createPlayerProfile(UUID uuid, String username) {\n        PlayerProfile profile = new PlayerProfile(uuid, username);\n        profiles.put(uuid, profile);\n        return profile;\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

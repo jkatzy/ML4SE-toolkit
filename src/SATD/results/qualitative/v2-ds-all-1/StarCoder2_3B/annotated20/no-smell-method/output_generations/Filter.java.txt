@@ -1,0 +1,14 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.3162  METEOR: 0.9375  ROUGE-L: 1.0000  
+--- Target ---
+EObject getSource();
+--- Generation ---
+EObject getSource();
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.3162  METEOR: 0.9375  ROUGE-L: 1.0000  
+--- Target ---
+EObject getSource();
+--- Generation ---
+EObject getSource();
+

@@ -1,0 +1,14 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3600  BLEU: 0.0000  METEOR: 0.0000  ROUGE-L: 0.0000  
+--- Target ---
+World getClientWorld();
+--- Generation ---
+void registerRenderers();
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 0.3162  METEOR: 0.9375  ROUGE-L: 1.0000  
+--- Target ---
+World getClientWorld();
+--- Generation ---
+World getClientWorld();
+

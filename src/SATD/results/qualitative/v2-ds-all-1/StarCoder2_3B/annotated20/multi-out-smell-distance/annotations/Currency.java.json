@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9764705882352941,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getDefaultFractionDigits() {\n        return defaultFractionDigits;\n    }",
+        "generation": "public int getDefaultFractionDigits() {\n         return defaultFractionDigits;\n     }",
+        "classification": "correct",
+        "comment": "misses one space"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getDefaultFractionDigits() {\n        return defaultFractionDigits;\n    }",
+        "generation": "public int getDefaultFractionDigits() {\n        return defaultFractionDigits;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9764705882352941,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getDefaultFractionDigits() {\n        return defaultFractionDigits;\n    }",
+        "generation": "public int getDefaultFractionDigits() {\n         return defaultFractionDigits;\n     }",
+        "classification": "correct",
+        "comment": "same as not preprocessed, misses one space"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public int getDefaultFractionDigits() {\n        return defaultFractionDigits;\n    }",
+        "generation": "public int getDefaultFractionDigits() {\n        return defaultFractionDigits;\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.6081871345029239,
+            "BLEU": 0.4850736863310145,
+            "METEOR": 0.640109753410246,
+            "ROUGE-L": 0.8000000000000002
+        },
+        "target": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(\"java.util.Currency\");\n        if (logger.isLoggable(level)) {\n            if (t != null) {\n                logger.log(level, message, t);\n            } else {\n                logger.log(level, message);\n            }\n        }\n    }",
+        "generation": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(Currency.class.getName());\n        if (logger.isLoggable(level)) {\n            logger.log(level, message, t);\n        }\n    }",
+        "classification": "partial",
+        "comment": "misses null check"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9970760233918129,
+            "BLEU": 0.8875369289645527,
+            "METEOR": 0.942122725504398,
+            "ROUGE-L": 1.0
+        },
+        "target": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(\"java.util.Currency\");\n        if (logger.isLoggable(level)) {\n            if (t != null) {\n                logger.log(level, message, t);\n            } else {\n                logger.log(level, message);\n            }\n        }\n    }",
+        "generation": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(\"java.util.Currency\");\n        if (logger.isLoggable(level)) {\n            if (t!= null) {\n                logger.log(level, message, t);\n            } else {\n                logger.log(level, message);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3538011695906432,
+            "BLEU": 0.0680879179792449,
+            "METEOR": 0.3033980582524272,
+            "ROUGE-L": 0.576923076923077
+        },
+        "target": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(\"java.util.Currency\");\n        if (logger.isLoggable(level)) {\n            if (t != null) {\n                logger.log(level, message, t);\n            } else {\n                logger.log(level, message);\n            }\n        }\n    }",
+        "generation": "private static void log(String message, Throwable t) {\n        Logger.getLogger(Currency.class.getName()).log(Level.INFO, message, t);\n    }",
+        "classification": "partial",
+        "comment": "misses null check, same semantics as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9970760233918129,
+            "BLEU": 0.8875369289645527,
+            "METEOR": 0.942122725504398,
+            "ROUGE-L": 1.0
+        },
+        "target": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(\"java.util.Currency\");\n        if (logger.isLoggable(level)) {\n            if (t != null) {\n                logger.log(level, message, t);\n            } else {\n                logger.log(level, message);\n            }\n        }\n    }",
+        "generation": "private static void log(Level level, String message, Throwable t) {\n        Logger logger = Logger.getLogger(\"java.util.Currency\");\n        if (logger.isLoggable(level)) {\n            if (t!= null) {\n                logger.log(level, message, t);\n            } else {\n                logger.log(level, message);\n            }\n        }\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

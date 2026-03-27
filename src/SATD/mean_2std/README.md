@@ -1,0 +1,1 @@
+This directory contains Python scripts used to compute thresholds based on the mean + 2 standard deviations of comment and method token lengths in the Java dataset. These thresholds are used as maximums for the number of tokens in comments and methods during code generation.

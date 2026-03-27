@@ -1,0 +1,186 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.1488  BLEU: 0.0027  METEOR: 0.0985  ROUGE-L: 0.1346  
+--- Target ---
+public void addCommandsTo(RootCommandNode<ISuggestionProvider> root) {
+        Collection<CommandNode<IAIControllable>> toConvert = commands.getRoot().getChildren();
+        convertInto(root, toConvert);
+    }
+--- Generation ---
+public Collection<String> getSuggestions(String input, int cursor) {
+        try {
+            StringReader reader = new StringReader(input);
+            if (reader.canRead()) {
+                char first = reader.read();
+                if (first == '/') {
+                    return commands.getSuggestions(reader, controllable);
+                }
+            }
+        } catch (Throwable e) {
+            // Do not send on to server if message starts with /minebot
+            for (CommandNode<IAIControllable> literal : commands.getRoot().getChildren()) {
+                if (input.startsWith("/" + ((LiteralCommandNode<IAIControllable>) literal).getLiteral())) {
+                    // Show chat message to client. TODO: Use nice minecraft message
+                    AIChatController.addChatLine("ERROR while evaluating: "
+                            + e.getMessage());
+                    LOGGER.warn("Error during command evaluation", e);
+                }
+            }
+            // Otherwise ignored, let Minecraft handle this
+        }
+        return null;
+    }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2376  BLEU: 0.0088  METEOR: 0.1449  ROUGE-L: 0.1333  
+--- Target ---
+public void addCommandsTo(RootCommandNode<ISuggestionProvider> root) {
+        Collection<CommandNode<IAIControllable>> toConvert = commands.getRoot().getChildren();
+        convertInto(root, toConvert);
+    }
+--- Generation ---
+public Collection<String> getSuggestions(String input) {
+        StringReader reader = new StringReader(input);
+        if (reader.canRead()) {
+            char first = reader.read();
+            if (first == '/') {
+                return commands.getSuggestions(reader, controllable);
+            }
+        }
+        return ISuggestionProvider.EMPTY_LIST;
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2806  BLEU: 0.0155  METEOR: 0.1601  ROUGE-L: 0.2824  
+--- Target ---
+private void convertInto(CommandNode<ISuggestionProvider> into, Collection<CommandNode<IAIControllable>> toConvert) {
+        toConvert.forEach(
+                child -> {
+                    CommandNode<ISuggestionProvider> node;
+                    if (child.getRedirect() != null) {
+                        throw new IllegalArgumentException("Cannot redirect");
+                    }
+                    if (child instanceof LiteralCommandNode) {
+                        LiteralCommandNode<IAIControllable> literal = (LiteralCommandNode<IAIControllable>) child;
+                        node = new LiteralCommandNode<>(literal.getLiteral(),
+                                suggestionContext -> literal.getCommand().run(convertCommandContext(suggestionContext)),
+                                suggestionContext -> literal.getRequirement().test(controllable),
+                                null,
+                                null,
+                                literal.isFork());
+                    } else if (child instanceof ArgumentCommandNode){
+                        ArgumentCommandNode<IAIControllable, ?> argumentNode = (ArgumentCommandNode<IAIControllable, ?>) child;
+
+                        node = new ArgumentCommandNode<>(
+                                argumentNode.getName(),
+                                argumentNode.getType(),
+                                suggestionContext -> argumentNode.getCommand().run(convertCommandContext(suggestionContext)),
+                                suggestionContext -> argumentNode.getRequirement().test(controllable),
+                                null,
+                                null,
+                                argumentNode.isFork(),
+                                argumentNode.getCustomSuggestions() == null ? null : (suggestionContext, builder) -> argumentNode.getCustomSuggestions().getSuggestions(convertCommandContext(suggestionContext), builder)
+
+                        );
+                    } else {
+                        throw new IllegalStateException("Could not find node type " + child.getClass().getSimpleName());
+                    }
+
+                    convertInto(node, child.getChildren());
+
+                    into.addChild(node);
+                }
+        );
+    }
+--- Generation ---
+private void convertInto(RootCommandNode<ISuggestionProvider> root, Collection<CommandNode<IAIControllable>> toConvert) {
+        for (CommandNode<IAIControllable> command : toConvert) {
+            if (command instanceof LiteralCommandNode) {
+                root.addChild((LiteralCommandNode<ISuggestionProvider>) command);
+            } else if (command instanceof ArgumentCommandNode) {
+                ArgumentCommandNode<ISuggestionProvider> argumentCommandNode = (ArgumentCommandNode<ISuggestionProvider>) command;
+                LiteralCommandNode<ISuggestionProvider> literalCommandNode = new LiteralCommandNode<>(argumentCommandNode.getName(), argumentCommandNode.getArgumentType());
+                root.addChild(literalCommandNode);
+                convertInto(literalCommandNode, argumentCommandNode.getChildren());
+            }
+        }
+    }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.0092  BLEU: 0.0000  METEOR: 0.0000  ROUGE-L: 0.0000  
+--- Target ---
+private void convertInto(CommandNode<ISuggestionProvider> into, Collection<CommandNode<IAIControllable>> toConvert) {
+        toConvert.forEach(
+                child -> {
+                    CommandNode<ISuggestionProvider> node;
+                    if (child.getRedirect() != null) {
+                        throw new IllegalArgumentException("Cannot redirect");
+                    }
+                    if (child instanceof LiteralCommandNode) {
+                        LiteralCommandNode<IAIControllable> literal = (LiteralCommandNode<IAIControllable>) child;
+                        node = new LiteralCommandNode<>(literal.getLiteral(),
+                                suggestionContext -> literal.getCommand().run(convertCommandContext(suggestionContext)),
+                                suggestionContext -> literal.getRequirement().test(controllable),
+                                null,
+                                null,
+                                literal.isFork());
+                    } else if (child instanceof ArgumentCommandNode){
+                        ArgumentCommandNode<IAIControllable, ?> argumentNode = (ArgumentCommandNode<IAIControllable, ?>) child;
+
+                        node = new ArgumentCommandNode<>(
+                                argumentNode.getName(),
+                                argumentNode.getType(),
+                                suggestionContext -> argumentNode.getCommand().run(convertCommandContext(suggestionContext)),
+                                suggestionContext -> argumentNode.getRequirement().test(controllable),
+                                null,
+                                null,
+                                argumentNode.isFork(),
+                                argumentNode.getCustomSuggestions() == null ? null : (suggestionContext, builder) -> argumentNode.getCustomSuggestions().getSuggestions(convertCommandContext(suggestionContext), builder)
+
+                        );
+                    } else {
+                        throw new IllegalStateException("Could not find node type " + child.getClass().getSimpleName());
+                    }
+
+                    convertInto(node, child.getChildren());
+
+                    into.addChild(node);
+                }
+        );
+    }
+--- Generation ---
+AIHelper getAiHelper();
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2963  BLEU: 0.0809  METEOR: 0.3142  ROUGE-L: 0.4545  
+--- Target ---
+public AIStrategy get() {
+            if (strategy == null) {
+                throw new IllegalStateException("No strategy has been set");
+            } else {
+                return strategy;
+            }
+        }
+--- Generation ---
+public AIStrategy get() {
+            return strategy;
+        }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public AIStrategy get() {
+            if (strategy == null) {
+                throw new IllegalStateException("No strategy has been set");
+            } else {
+                return strategy;
+            }
+        }
+--- Generation ---
+public AIStrategy get() {
+            if (strategy == null) {
+                throw new IllegalStateException("No strategy has been set");
+            } else {
+                return strategy;
+            }
+        }
+

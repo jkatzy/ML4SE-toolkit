@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.07407407407407407,
+            "BLEU": 0,
+            "METEOR": 0.0,
+            "ROUGE-L": 0.0
+        },
+        "target": "default String a() {\n            return \"A\";\n        }",
+        "generation": "void foo();",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.20370370370370372,
+            "BLEU": 0.012274570264879268,
+            "METEOR": 0.07692307692307691,
+            "ROUGE-L": 0.5714285714285715
+        },
+        "target": "default String a() {\n            return \"A\";\n        }",
+        "generation": "String a();",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "default String b() {\n            return \"B\";\n        }",
+        "generation": "default String b() {\n            return \"B\";\n        }",
+        "classification": "correct",
+        "comment": "exact match, follows pattern"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "default String b() {\n            return \"B\";\n        }",
+        "generation": "default String b() {\n            return \"B\";\n        }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.7850678733031674,
+            "BLEU": 0.6690849531405022,
+            "METEOR": 0.9375,
+            "ROUGE-L": 0.8648648648648648
+        },
+        "target": "@Test\n    public static void testOverriddenDefaultMethods() throws Throwable {\n        MethodHandle target = MethodHandles.constant(String.class, \"F\");\n        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);\n\n        assertEquals(proxy.a(), \"OA\");\n        assertEquals(proxy.b(), \"OB\");\n        assertEquals(proxy.c(), \"OC\");\n    }",
+        "generation": "@Test\n    public static void testOverrideMethods() throws Throwable {\n        MethodHandle target = MethodHandles.constant(String.class, \"F\");\n        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);\n\n        assertEquals(proxy.f(), \"F\");\n        assertEquals(proxy.a(), \"OA\");\n        assertEquals(proxy.b(), \"OB\");\n        assertEquals(proxy.c(), \"OC\");\n        assertEquals(proxy.concat(), \"OAOBOC\");\n    }",
+        "classification": "correct",
+        "comment": "same but more"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9057071960297767,
+            "BLEU": 0.8590888738245122,
+            "METEOR": 0.990031746031746,
+            "ROUGE-L": 0.9428571428571428
+        },
+        "target": "@Test\n    public static void testOverriddenDefaultMethods() throws Throwable {\n        MethodHandle target = MethodHandles.constant(String.class, \"F\");\n        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);\n\n        assertEquals(proxy.a(), \"OA\");\n        assertEquals(proxy.b(), \"OB\");\n        assertEquals(proxy.c(), \"OC\");\n    }",
+        "generation": "@Test\n    public static void testOverriddenDefaultMethods() throws Throwable {\n        MethodHandle target = MethodHandles.constant(String.class, \"F\");\n        Override proxy = MethodHandleProxies.asInterfaceInstance(Override.class, target);\n\n        assertEquals(proxy.f(), \"F\");\n        assertEquals(proxy.a(), \"OA\");\n        assertEquals(proxy.b(), \"OB\");\n        assertEquals(proxy.c(), \"OC\");\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

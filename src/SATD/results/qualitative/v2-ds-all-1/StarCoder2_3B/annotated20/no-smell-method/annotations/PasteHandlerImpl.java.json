@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.3844842284739983,
+            "BLEU": 0.15815697576698276,
+            "METEOR": 0.3239900490940713,
+            "ROUGE-L": 0.2758620689655172
+        },
+        "target": "@Override\n    public CompletableFuture<Void> setBlock(Island island, Location location, BlueprintBlock bpBlock) {\n        return Util.getChunkAtAsync(location).thenRun(() -> {\n            Block block = location.getBlock();\n            // Set the block data - default is AIR\n            BlockData bd = DefaultPasteUtil.createBlockData(bpBlock);\n            CraftBlockData craft = (CraftBlockData) bd;\n            net.minecraft.world.level.World nmsWorld = ((CraftWorld) location.getWorld()).getHandle();\n            Chunk nmsChunk = nmsWorld.d(location.getBlockX() >> 4, location.getBlockZ() >> 4);\n            BlockPosition bp = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());\n            // Setting the block to air before setting to another state prevents some console errors\n            nmsChunk.a(bp, AIR, false);\n            nmsChunk.a(bp, craft.getState(), false);\n            block.setBlockData(bd, false);\n            DefaultPasteUtil.setBlockState(island, block, bpBlock);\n            // Set biome\n            if (bpBlock.getBiome() != null) {\n                block.setBiome(bpBlock.getBiome());\n            }\n        });\n    }",
+        "generation": "@Override\n    public void setBlock(Island island, Location location, BlueprintBlock bpBlock) {\n        Block block = location.getBlock();\n        BlockData blockData = block.getBlockData();\n        IBlockData iBlockData = ((CraftBlockData) blockData).getState();\n        if (iBlockData.equals(AIR)) {\n            return;\n        }\n        if (island.getWorld().equals(location.getWorld().getName())) {\n            BlockPosition blockPosition = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());\n            Chunk chunk = ((CraftWorld) location.getWorld()).getHandle().getChunk(blockPosition.getX() >> 4, blockPosition.getZ() >> 4);\n            IBlockData iBlockData1 = chunk.getBlockState(blockPosition);\n            if (iBlockData1.equals(iBlockData)) {\n                return;\n            }\n            chunk.setBlock(blockPosition, iBlockData, 3);\n            chunk.setBlock(blockPosition, iBlockData, 3);\n            chunk.setBlock(blockPosition, iBlockData, 3);\n            chunk.setBlock(blockPosition, iBlockData, 3);\n            chunk.setBlock(blockPosition, iBlockData, 3);",
+        "classification": "partial",
+        "comment": "signature, repetition"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9991474850809889,
+            "BLEU": 0.9624501411106489,
+            "METEOR": 0.9799740518312782,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n    public CompletableFuture<Void> setBlock(Island island, Location location, BlueprintBlock bpBlock) {\n        return Util.getChunkAtAsync(location).thenRun(() -> {\n            Block block = location.getBlock();\n            // Set the block data - default is AIR\n            BlockData bd = DefaultPasteUtil.createBlockData(bpBlock);\n            CraftBlockData craft = (CraftBlockData) bd;\n            net.minecraft.world.level.World nmsWorld = ((CraftWorld) location.getWorld()).getHandle();\n            Chunk nmsChunk = nmsWorld.d(location.getBlockX() >> 4, location.getBlockZ() >> 4);\n            BlockPosition bp = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());\n            // Setting the block to air before setting to another state prevents some console errors\n            nmsChunk.a(bp, AIR, false);\n            nmsChunk.a(bp, craft.getState(), false);\n            block.setBlockData(bd, false);\n            DefaultPasteUtil.setBlockState(island, block, bpBlock);\n            // Set biome\n            if (bpBlock.getBiome() != null) {\n                block.setBiome(bpBlock.getBiome());\n            }\n        });\n    }",
+        "generation": "@Override\n    public CompletableFuture<Void> setBlock(Island island, Location location, BlueprintBlock bpBlock) {\n        return Util.getChunkAtAsync(location).thenRun(() -> {\n            Block block = location.getBlock();\n            // Set the block data - default is AIR\n            BlockData bd = DefaultPasteUtil.createBlockData(bpBlock);\n            CraftBlockData craft = (CraftBlockData) bd;\n            net.minecraft.world.level.World nmsWorld = ((CraftWorld) location.getWorld()).getHandle();\n            Chunk nmsChunk = nmsWorld.d(location.getBlockX() >> 4, location.getBlockZ() >> 4);\n            BlockPosition bp = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());\n            // Setting the block to air before setting to another state prevents some console errors\n            nmsChunk.a(bp, AIR, false);\n            nmsChunk.a(bp, craft.getState(), false);\n            block.setBlockData(bd, false);\n            DefaultPasteUtil.setBlockState(island, block, bpBlock);\n            // Set biome\n            if (bpBlock.getBiome()!= null) {\n                block.setBiome(bpBlock.getBiome());\n            }\n        });\n    }",
+        "classification": "",
+        "comment": ""
+    }
+]

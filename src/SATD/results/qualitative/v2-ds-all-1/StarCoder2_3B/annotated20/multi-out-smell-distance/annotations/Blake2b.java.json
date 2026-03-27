@@ -1,0 +1,130 @@
+[
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9111111111111111,
+            "BLEU": 0.17679588126795492,
+            "METEOR": 0.5118499012508231,
+            "ROUGE-L": 0.9333333333333332
+        },
+        "target": "final void lazyInitBytes () {\n\t\t\tif( bytes == null ) {\n\t\t\t\tbytes = new byte [ Spec.param_bytes ];\n\t\t\t\tSystem.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);\n\t\t\t}\n\t\t}",
+        "generation": "private void lazyInitBytes() {\n\t\t\tif(bytes == null) {\n\t\t\t\tbytes = new byte[ Spec.param_bytes ];\n\t\t\t\tSystem.arraycopy( default_bytes, 0, bytes, 0, Spec.param_bytes );\n\t\t\t}\n\t\t}",
+        "classification": "partial",
+        "comment": "two words changed, semantic not same"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.26315789473684215,
+            "BLEU": 0.009337534921653758,
+            "METEOR": 0.09803921568627452,
+            "ROUGE-L": 0.21428571428571427
+        },
+        "target": "final void lazyInitBytes () {\n\t\t\tif( bytes == null ) {\n\t\t\t\tbytes = new byte [ Spec.param_bytes ];\n\t\t\t\tSystem.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);\n\t\t\t}\n\t\t}",
+        "generation": "public Param setDigestLength (final int v) {\n\t\t\tassert v >= 0 && v <= Spec.max_digest_bytes : Assert.assertFail(\"digest_length\", v, Assert.exclusiveUpperBound, Spec.max_digest_bytes);\n\t\t\tbytes [ Xoff.digest_length ] = (byte) v;\n\t\t\treturn this;\n\t\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9055555555555556,
+            "BLEU": 0.1767445234920605,
+            "METEOR": 0.5097942791574462,
+            "ROUGE-L": 0.9333333333333332
+        },
+        "target": "final void lazyInitBytes () {\n\t\t\tif( bytes == null ) {\n\t\t\t\tbytes = new byte [ Spec.param_bytes ];\n\t\t\t\tSystem.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);\n\t\t\t}\n\t\t}",
+        "generation": "private void lazyInitBytes() {\n\t\t\tif (bytes == null) {\n\t\t\t\tbytes = new byte[ Spec.param_bytes ];\n\t\t\t\tSystem.arraycopy( default_bytes, 0, bytes, 0, Spec.param_bytes );\n\t\t\t}\n\t\t}",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2530120481927711,
+            "BLEU": 0.025281749639974697,
+            "METEOR": 0.23293357933579337,
+            "ROUGE-L": 0.3023255813953488
+        },
+        "target": "final void lazyInitBytes () {\n\t\t\tif( bytes == null ) {\n\t\t\t\tbytes = new byte [ Spec.param_bytes ];\n\t\t\t\tSystem.arraycopy(Param.default_bytes, 0, bytes, 0, Spec.param_bytes);\n\t\t\t}\n\t\t}",
+        "generation": "public Param setKey (final byte[] key) {\n\t\t\tif(key == null) throw new IllegalArgumentException(\"key is null\");\n\t\t\tif(key.length > Spec.max_key_bytes) throw new IllegalArgumentException(String.format(\"key length %d is > %d\", key.length, Spec.max_key_bytes));\n\t\t\tthis.hasKey = true;\n\t\t\tthis.key_bytes = new byte [Spec.max_key_bytes * 2];\n\t\t\tSystem.arraycopy(key, 0, this.key_bytes, 0, key.length);\n\t\t\treturn this;\n\t\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9552715654952076,
+            "BLEU": 0.8138979955617461,
+            "METEOR": 0.9207626208378088,
+            "ROUGE-L": 0.9935483870967742
+        },
+        "target": "public final Param setPersonal(byte[] personal) {\n\t\t\tassert personal != null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personalization_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "generation": "public final Param setPersonal(final byte[] personal) {\n\t\t\tassert personal!= null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personal_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personal_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personal_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "classification": "partial",
+        "comment": "misses one field in context"
+    },
+    {
+        "case": "multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9984025559105432,
+            "BLEU": 0.9528293235790642,
+            "METEOR": 0.9749574379421618,
+            "ROUGE-L": 1.0
+        },
+        "target": "public final Param setPersonal(byte[] personal) {\n\t\t\tassert personal != null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personalization_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "generation": "public final Param setPersonal(byte[] personal) {\n\t\t\tassert personal!= null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personalization_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9552715654952076,
+            "BLEU": 0.8138979955617461,
+            "METEOR": 0.9207626208378088,
+            "ROUGE-L": 0.9935483870967742
+        },
+        "target": "public final Param setPersonal(byte[] personal) {\n\t\t\tassert personal != null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personalization_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "generation": "public final Param setPersonal(final byte[] personal) {\n\t\t\tassert personal!= null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personal_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personal_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personal_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "classification": "partial",
+        "comment": "same as not preprocessed"
+    },
+    {
+        "case": "preprocessed_multi(-1)_out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9984025559105432,
+            "BLEU": 0.9528293235790642,
+            "METEOR": 0.9749574379421618,
+            "ROUGE-L": 1.0
+        },
+        "target": "public final Param setPersonal(byte[] personal) {\n\t\t\tassert personal != null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personalization_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "generation": "public final Param setPersonal(byte[] personal) {\n\t\t\tassert personal!= null : \"personal is null\";\n\t\t\tassert personal.length <= Spec.max_personalization_bytes : assertFail(\"personal.length\", personal.length, inclusiveUpperBound, Spec.max_personalization_bytes);\n\n\t\t\tlazyInitBytes();\n\t\t\tArrays.fill ( bytes, Xoff.personal, Xoff.personal + Spec.max_personalization_bytes, (byte)0);\n\t\t\tSystem.arraycopy( personal, 0, bytes, Xoff.personal, personal.length );\n\t\t\th[ 6 ] = readLong( bytes, Xoff.personal );\n\t\t\th[ 6 ] ^= Spec.IV [ 6 ];\n\t\t\th[ 7 ] = readLong( bytes, Xoff.personal + 8 );\n\t\t\th[ 7 ] ^= Spec.IV [ 7 ];\n\t\t\treturn this;\n\t\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

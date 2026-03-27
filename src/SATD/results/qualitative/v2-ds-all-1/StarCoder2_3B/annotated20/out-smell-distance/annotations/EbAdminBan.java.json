@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.11328472345722929,
+            "BLEU": 0.10769171331440164,
+            "METEOR": 0.3773464141440638,
+            "ROUGE-L": 0.2247191011235955
+        },
+        "target": "@Override\n  public void exec(Game p_game) throws RpcFmpException\n  {\n    super.exec( p_game );\n    p_game.setLastTimeStepChange( new Date( SharedMethods.currentTimeMillis() ) );\n    EbRegistration registration = p_game.getRegistration( getRegistrationId() );\n    if( registration != null )\n    {\n      // backup to keep track of this action\n      m_oldAccountId = registration.getAccount().getId();\n      p_game.addAccount( registration.getAccount() );\n\n      if( !registration.isReplacement() )\n      {\n        registration.setOriginalAccountId( registration.getAccount().getId() );\n      }\n      registration.setAccount( null );\n      registration.getTeam(p_game).setEndTurnDate( null );\n      \n      // update isOpen flag\n      p_game.updateOpenPauseStatus();\n    }\n\n  }",
+        "generation": "@Override\n  public void exec(Game p_game) throws RpcFmpException\n  {\n    super.exec( p_game );\n    EbRegistration registration = p_game.getRegistration( getRegistrationId() );\n    if( registration == null )\n    {\n      // no i18n\n      throw new RpcFmpException( \"No registration to ban was selected\" );\n    }\n    if( registration.getColor() == EnuColor.None )\n    {\n      throw new RpcFmpException( errMsg().cantBanPlayerNoFreighter() );\n    }\n    registration.setBanned( true );\n    registration.setBannedDate( new Date() );\n    registration.setBannedReason( getReason() );\n    registration.setBannedBy( SharedMethods.getAccountId() );\n    registration.setBannedByRegistrationId( getRegistrationId() );\n    registration.setBannedByRegistrationName( getRegistrationName() );\n    registration.setBannedByRegistrationColor( getRegistrationColor() );\n    registration.setBannedByRegistrationColorName( getRegistrationColorName() );\n    registration.setBannedByRegistrationColorHex( getRegistrationColorHex() );\n    registration.setBannedByRegistrationColorRgb( getRegistrationColorRgb() );\n    registration.setBannedByRegistrationColorHsl( getRegistrationColorHsl() );\n    registration.setBannedByRegistrationColorHsv( getRegistrationColorHsv() );\n    registration.setBannedByRegistrationColorHsva( getRegistrationColorHsva() );\n    registration.setBannedByRegistrationColorHsvaHex( getRegistrationColorHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaRgb( getRegistrationColorHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsl( getRegistrationColorHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsv( getRegistrationColorHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsva( getRegistrationColorHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHex( getRegistrationColorHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaRgb( getRegistrationColorHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsl() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsv( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsv() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsva( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsva() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaHex() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb( getRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaRgb() );\n    registration.setBannedByRegistrationColorHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsvaHsl( getRegistrationColorHsvaHsvaH",
+        "classification": "partial",
+        "comment": "good siginature, some logic, but copy of previous method and repetition"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.14618369987063384,
+            "BLEU": 0.016662050828200554,
+            "METEOR": 0.19636625165063193,
+            "ROUGE-L": 0.3529411764705882
+        },
+        "target": "@Override\n  public void exec(Game p_game) throws RpcFmpException\n  {\n    super.exec( p_game );\n    p_game.setLastTimeStepChange( new Date( SharedMethods.currentTimeMillis() ) );\n    EbRegistration registration = p_game.getRegistration( getRegistrationId() );\n    if( registration != null )\n    {\n      // backup to keep track of this action\n      m_oldAccountId = registration.getAccount().getId();\n      p_game.addAccount( registration.getAccount() );\n\n      if( !registration.isReplacement() )\n      {\n        registration.setOriginalAccountId( registration.getAccount().getId() );\n      }\n      registration.setAccount( null );\n      registration.getTeam(p_game).setEndTurnDate( null );\n      \n      // update isOpen flag\n      p_game.updateOpenPauseStatus();\n    }\n\n  }",
+        "generation": "@Override\n  public void exec(Game p_game) throws RpcFmpException\n  {\n    super.exec( p_game );\n    p_game.setGa  }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.4625850340136054,
+            "BLEU": 0.144339051541569,
+            "METEOR": 0.3516819571865444,
+            "ROUGE-L": 0.4761904761904762
+        },
+        "target": "@Override\n  public String toString()\n  {\n    String str = super.toString();\n    str += \" : \" + \"accountid = \" + m_oldAccountId;\n    return str;\n  }",
+        "generation": "@Override\n  public String toString()\n  {\n    return \"Ban \" + getRegistrationId();\n  }",
+        "classification": "partial",
+        "comment": "correct signature"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.999958905235473,
+            "ROUGE-L": 1.0
+        },
+        "target": "@Override\n  public String toString()\n  {\n    String str = super.toString();\n    str += \" : \" + \"accountid = \" + m_oldAccountId;\n    return str;\n  }",
+        "generation": "@Override\n  public String toString()\n  {\n    String str = super.toString();\n    str += \" : \" + \"accountid = \" + m_oldAccountId;\n    return str;\n  }",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void setRegistrationId(long p_registrationId)\n  {\n    m_registrationId = p_registrationId;\n  }",
+        "generation": "public void setRegistrationId(long p_registrationId)\n  {\n    m_registrationId = p_registrationId;\n  }",
+        "classification": "correct",
+        "comment": "Exact match, because of explanatory comment"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9993141289437586,
+            "ROUGE-L": 1.0
+        },
+        "target": "public void setRegistrationId(long p_registrationId)\n  {\n    m_registrationId = p_registrationId;\n  }",
+        "generation": "public void setRegistrationId(long p_registrationId)\n  {\n    m_registrationId = p_registrationId;\n  }",
+        "classification": "",
+        "comment": ""
+    }
+]

@@ -1,0 +1,106 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2881  BLEU: 0.1256  METEOR: 0.2839  ROUGE-L: 0.2667  
+--- Target ---
+@Override
+    public void bind(PropertyModel model, RecyclerView view, PropertyKey propertyKey) {
+        if (propertyKey == ListProperties.ENABLE_ITEM_ANIMATIONS) {
+            if (model.getValue(ListProperties.ENABLE_ITEM_ANIMATIONS)) {
+                if (view.getItemAnimator() == null) {
+                    view.setItemAnimator((ItemAnimator) view.getTag(R.id.item_animator));
+                    view.setTag(R.id.item_animator, null);
+                }
+            } else {
+                if (view.getItemAnimator() != null) {
+                    view.setTag(R.id.item_animator, view.getItemAnimator());
+                    view.setItemAnimator(null);
+                }
+            }
+        } else if (propertyKey == ListProperties.CALLBACK_OPEN
+                || propertyKey == ListProperties.CALLBACK_PAUSE
+                || propertyKey == ListProperties.CALLBACK_RESUME
+                || propertyKey == ListProperties.CALLBACK_CANCEL
+                || propertyKey == ListProperties.CALLBACK_SHARE
+                || propertyKey == ListProperties.CALLBACK_REMOVE
+                || propertyKey == ListProperties.PROVIDER_VISUALS
+                || propertyKey == ListProperties.CALLBACK_SELECTION
+                || propertyKey == ListProperties.SELECTION_MODE_ACTIVE) {
+            view.getAdapter().notifyItemRangeChanged(0, view.getAdapter().getItemCount());
+        }
+    }
+--- Generation ---
+private final ItemAnimator mItemAnimator;
+
+     ListPropertyViewBinder(ItemAnimator itemAnimator) {
+         mItemAnimator = itemAnimator;
+     }
+
+     @Override
+     public void bind(PropertyModel model, RecyclerView view, PropertyKey key) {
+         if (key == ListProperties.LIST_ITEM_MODEL) {
+             ListItemViewBinder.bind(model, view, mItemAnimator);
+         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST) {
+             ListItemViewBinder.bind(model, view, mItemAnimator);
+         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST_WITH_HEADER) {
+             ListItemViewBinder.bind(model, view, mItemAnimator);
+         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST_WITH_FOOTER) {
+             ListItemViewBinder.bind(model, view, mItemAnimator);
+         } else if (key == ListProperties.LIST_ITEM_MODEL_LIST_WITH_FOOTER_AND_HEADER) {
+             ListItemViewBinder.bind(model, view, mItemAnimator);
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9993  BLEU: 0.9574  METEOR: 0.9773  ROUGE-L: 1.0000  
+--- Target ---
+@Override
+    public void bind(PropertyModel model, RecyclerView view, PropertyKey propertyKey) {
+        if (propertyKey == ListProperties.ENABLE_ITEM_ANIMATIONS) {
+            if (model.getValue(ListProperties.ENABLE_ITEM_ANIMATIONS)) {
+                if (view.getItemAnimator() == null) {
+                    view.setItemAnimator((ItemAnimator) view.getTag(R.id.item_animator));
+                    view.setTag(R.id.item_animator, null);
+                }
+            } else {
+                if (view.getItemAnimator() != null) {
+                    view.setTag(R.id.item_animator, view.getItemAnimator());
+                    view.setItemAnimator(null);
+                }
+            }
+        } else if (propertyKey == ListProperties.CALLBACK_OPEN
+                || propertyKey == ListProperties.CALLBACK_PAUSE
+                || propertyKey == ListProperties.CALLBACK_RESUME
+                || propertyKey == ListProperties.CALLBACK_CANCEL
+                || propertyKey == ListProperties.CALLBACK_SHARE
+                || propertyKey == ListProperties.CALLBACK_REMOVE
+                || propertyKey == ListProperties.PROVIDER_VISUALS
+                || propertyKey == ListProperties.CALLBACK_SELECTION
+                || propertyKey == ListProperties.SELECTION_MODE_ACTIVE) {
+            view.getAdapter().notifyItemRangeChanged(0, view.getAdapter().getItemCount());
+        }
+    }
+--- Generation ---
+@Override
+    public void bind(PropertyModel model, RecyclerView view, PropertyKey propertyKey) {
+        if (propertyKey == ListProperties.ENABLE_ITEM_ANIMATIONS) {
+            if (model.getValue(ListProperties.ENABLE_ITEM_ANIMATIONS)) {
+                if (view.getItemAnimator() == null) {
+                    view.setItemAnimator((ItemAnimator) view.getTag(R.id.item_animator));
+                    view.setTag(R.id.item_animator, null);
+                }
+            } else {
+                if (view.getItemAnimator()!= null) {
+                    view.setTag(R.id.item_animator, view.getItemAnimator());
+                    view.setItemAnimator(null);
+                }
+            }
+        } else if (propertyKey == ListProperties.CALLBACK_OPEN
+                || propertyKey == ListProperties.CALLBACK_PAUSE
+                || propertyKey == ListProperties.CALLBACK_RESUME
+                || propertyKey == ListProperties.CALLBACK_CANCEL
+                || propertyKey == ListProperties.CALLBACK_SHARE
+                || propertyKey == ListProperties.CALLBACK_REMOVE
+                || propertyKey == ListProperties.PROVIDER_VISUALS
+                || propertyKey == ListProperties.CALLBACK_SELECTION
+                || propertyKey == ListProperties.SELECTION_MODE_ACTIVE) {
+            view.getAdapter().notifyItemRangeChanged(0, view.getAdapter().getItemCount());
+        }
+    }
+

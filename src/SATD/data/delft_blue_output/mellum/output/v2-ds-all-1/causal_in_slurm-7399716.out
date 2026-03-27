@@ -1,0 +1,13 @@
+/scratch/lcwitte/env-satd/lib/python3.10/site-packages/tree_sitter/__init__.py:36: FutureWarning: Language(path, name) is deprecated. Use Language(ptr, name) instead.
+  warn("{} is deprecated. Use {} instead.".format(old, new), FutureWarning)
+Using model: MellumBase4B
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.31s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.55s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.80s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.29s/it]
+Max context size: 8192
+Traceback (most recent call last):
+  File "/home/lcwitte/ML4SE-toolkit/src/results/code_gen/causal_in_smell.py", line 79, in <module>
+    os.makedirs(output_dir_gen)
+  File "/scratch/lcwitte/env-satd/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: '/scratch/lcwitte/results/MellumBase4B/v2-ds-all-1'
+srun: error: gpu008: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=7399716.0

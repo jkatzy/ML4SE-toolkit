@@ -1,0 +1,208 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6197  BLEU: 0.4319  METEOR: 0.6640  ROUGE-L: 0.6667  
+--- Target ---
+@Test(expected = ClippingException.class)
+    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()
+                            throws Exception {
+        File sourceFile = createNewFile( "overview.png" );
+        File destinationFile = createNewTempFileInPngFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        try {
+            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );
+        } finally {
+            inputStream.close();
+            outputStream.close();
+        }
+    }
+--- Generation ---
+@Test
+    public void testCalculateClippedImageWithJpgImageNullClippingArea()
+                            throws Exception {
+        File sourceFile = createNewFile( "saltlakecity_0_0.jpg" );
+        File destinationFile = createNewTempFileInJpgFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithJpgFormatAndEpsg31467() );
+
+        inputStream.close();
+        outputStream.close();
+
+        assertThat( destinationFile, hasSamePixels( sourceFile ) );
+        assertThat( destinationFile, hasSameDimension( sourceFile ) );
+        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );
+    }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.6378  BLEU: 0.5187  METEOR: 0.7156  ROUGE-L: 0.7473  
+--- Target ---
+@Test(expected = ClippingException.class)
+    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()
+                            throws Exception {
+        File sourceFile = createNewFile( "overview.png" );
+        File destinationFile = createNewTempFileInPngFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        try {
+            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );
+        } finally {
+            inputStream.close();
+            outputStream.close();
+        }
+    }
+--- Generation ---
+@Test
+    public void testCalculateClippedImageWithPngImageNullClippingAreaAndNullVisibleArea()
+                            throws Exception {
+        File sourceFile = createNewFile( "overview.png" );
+        File destinationFile = createNewTempFileInPngFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithPngFormat() );
+
+        inputStream.close();
+        outputStream.close();
+
+        assertThat( destinationFile, hasSamePixels( sourceFile ) );
+        assertThat( destinationFile, hasSameDimension( sourceFile ) );
+        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6197  BLEU: 0.4319  METEOR: 0.6640  ROUGE-L: 0.6667  
+--- Target ---
+@Test(expected = ClippingException.class)
+    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()
+                            throws Exception {
+        File sourceFile = createNewFile( "overview.png" );
+        File destinationFile = createNewTempFileInPngFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        try {
+            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );
+        } finally {
+            inputStream.close();
+            outputStream.close();
+        }
+    }
+--- Generation ---
+@Test
+    public void testCalculateClippedImageWithJpgImageNullClippingArea()
+                            throws Exception {
+        File sourceFile = createNewFile( "saltlakecity_0_0.jpg" );
+        File destinationFile = createNewTempFileInJpgFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithJpgFormatAndEpsg31467() );
+
+        inputStream.close();
+        outputStream.close();
+
+        assertThat( destinationFile, hasSamePixels( sourceFile ) );
+        assertThat( destinationFile, hasSameDimension( sourceFile ) );
+        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.6378  BLEU: 0.5187  METEOR: 0.7156  ROUGE-L: 0.7473  
+--- Target ---
+@Test(expected = ClippingException.class)
+    public void testCalculateClippedImageWithTiffImageShouldThrowClippingReport()
+                            throws Exception {
+        File sourceFile = createNewFile( "overview.png" );
+        File destinationFile = createNewTempFileInPngFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        try {
+            wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithTifFormat() );
+        } finally {
+            inputStream.close();
+            outputStream.close();
+        }
+    }
+--- Generation ---
+@Test
+    public void testCalculateClippedImageWithPngImageNullClippingAreaAndNullVisibleArea()
+                            throws Exception {
+        File sourceFile = createNewFile( "overview.png" );
+        File destinationFile = createNewTempFileInPngFormat();
+
+        InputStream inputStream = createInputStreamFrom( sourceFile );
+        OutputStream outputStream = createOutputStreamFrom( destinationFile );
+
+        ImageClipper wmsClipper = new SimpleRasterClipper();
+        wmsClipper.calculateClippedImage( inputStream, null, outputStream, createWmsRequestWithPngFormat() );
+
+        inputStream.close();
+        outputStream.close();
+
+        assertThat( destinationFile, hasSamePixels( sourceFile ) );
+        assertThat( destinationFile, hasSameDimension( sourceFile ) );
+        assertThat( retrieveFileExtension( destinationFile ), is( retrieveFileExtension( sourceFile ) ) );
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9429  BLEU: 0.7911  METEOR: 0.9209  ROUGE-L: 0.9091  
+--- Target ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );
+    }
+--- Generation ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBoundingBox() );
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9998  ROUGE-L: 1.0000  
+--- Target ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );
+    }
+--- Generation ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9429  BLEU: 0.7911  METEOR: 0.9209  ROUGE-L: 0.9091  
+--- Target ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );
+    }
+--- Generation ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBoundingBox() );
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9998  ROUGE-L: 1.0000  
+--- Target ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );
+    }
+--- Generation ---
+private Geometry asGeometry( WmsRequest wmsRequest ) {
+        return new GeometryFactory().toGeometry( wmsRequest.getBbox() );
+    }
+

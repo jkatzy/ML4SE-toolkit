@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.316227766016838,
+            "METEOR": 0.9375,
+            "ROUGE-L": 1.0
+        },
+        "target": "EObject getSource();",
+        "generation": "EObject getSource();",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 0.316227766016838,
+            "METEOR": 0.9375,
+            "ROUGE-L": 1.0
+        },
+        "target": "EObject getSource();",
+        "generation": "EObject getSource();",
+        "classification": "",
+        "comment": ""
+    }
+]

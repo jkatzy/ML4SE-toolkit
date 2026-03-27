@@ -1,0 +1,98 @@
+[
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getValue()\n\t{\n\t\treturn _value;\n\t}",
+        "generation": "public String getValue()\n\t{\n\t\treturn _value;\n\t}",
+        "classification": "correct",
+        "comment": "exact match"
+    },
+    {
+        "case": "out_smell_distance(0)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9985422740524781,
+            "ROUGE-L": 1.0
+        },
+        "target": "public String getValue()\n\t{\n\t\treturn _value;\n\t}",
+        "generation": "public String getValue()\n\t{\n\t\treturn _value;\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.1811594202898551,
+            "BLEU": 0.0026867741609498037,
+            "METEOR": 0.09228801169590643,
+            "ROUGE-L": 0.09999999999999999
+        },
+        "target": "public static Stats valueOfXml(String name)\n\t{\n\t\tname = name.intern();\n\t\tfor (Stats s : values())\n\t\t{\n\t\t\tif (s.getValue().equals(name))\n\t\t\t{\n\t\t\t\treturn s;\n\t\t\t}\n\t\t}\n\t\t\n\t\tthrow new NoSuchElementException(\"Unknown name '\" + name + \"' for enum \" + Stats.class.getSimpleName());\n\t}",
+        "generation": "public double get(Creature creature)\n\t{\n\t\treturn get(creature, 1);\n\t}",
+        "classification": "incorrect",
+        "comment": "diff method"
+    },
+    {
+        "case": "out_smell_distance(1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999901289163524,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static Stats valueOfXml(String name)\n\t{\n\t\tname = name.intern();\n\t\tfor (Stats s : values())\n\t\t{\n\t\t\tif (s.getValue().equals(name))\n\t\t\t{\n\t\t\t\treturn s;\n\t\t\t}\n\t\t}\n\t\t\n\t\tthrow new NoSuchElementException(\"Unknown name '\" + name + \"' for enum \" + Stats.class.getSimpleName());\n\t}",
+        "generation": "public static Stats valueOfXml(String name)\n\t{\n\t\tname = name.intern();\n\t\tfor (Stats s : values())\n\t\t{\n\t\t\tif (s.getValue().equals(name))\n\t\t\t{\n\t\t\t\treturn s;\n\t\t\t}\n\t\t}\n\t\t\n\t\tthrow new NoSuchElementException(\"Unknown name '\" + name + \"' for enum \" + Stats.class.getSimpleName());\n\t}",
+        "classification": "",
+        "comment": ""
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9328859060402684,
+            "BLEU": 0.6286709501665501,
+            "METEOR": 0.7841338087248324,
+            "ROUGE-L": 0.955223880597015
+        },
+        "target": "public static double defaultValue(Creature creature, Stats stat, double baseValue)\n\t{\n\t\tfinal double mul = creature.getStat().getMul(stat);\n\t\tfinal double add = creature.getStat().getAdd(stat);\n\t\treturn (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());\n\t}",
+        "generation": "public static double defaultValue(Creature creature, Stats stat, double base)\n\t{\n\t\tfinal double mul = creature.getStat().getMul(stat);\n\t\tfinal double add = creature.getStat().getAdd(stat);\n\t\treturn mul * (add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType()));\n\t}",
+        "classification": "partial",
+        "comment": "misses one semantic"
+    },
+    {
+        "case": "out_smell_distance(-1)_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 1,
+            "Edit Distance": 1.0,
+            "BLEU": 1.0,
+            "METEOR": 0.9999814814814815,
+            "ROUGE-L": 1.0
+        },
+        "target": "public static double defaultValue(Creature creature, Stats stat, double baseValue)\n\t{\n\t\tfinal double mul = creature.getStat().getMul(stat);\n\t\tfinal double add = creature.getStat().getAdd(stat);\n\t\treturn (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());\n\t}",
+        "generation": "public static double defaultValue(Creature creature, Stats stat, double baseValue)\n\t{\n\t\tfinal double mul = creature.getStat().getMul(stat);\n\t\tfinal double add = creature.getStat().getAdd(stat);\n\t\treturn (mul * baseValue) + add + creature.getStat().getMoveTypeValue(stat, creature.getMoveType());\n\t}",
+        "classification": "",
+        "comment": ""
+    }
+]

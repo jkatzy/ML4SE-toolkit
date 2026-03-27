@@ -1,0 +1,205 @@
+=== out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2760  BLEU: 0.0220  METEOR: 0.1934  ROUGE-L: 0.1351  
+--- Target ---
+public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,
+                                   NodoSILInviaRP bodyrichiesta) {
+    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);
+
+    NodoInviaRPT result = new NodoInviaRPT();
+    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));
+    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));
+    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());
+    result.setPassword(propIdIntermediarioPaPassword);
+    result.setRpt(byteRPT);
+
+    return result;
+  }
+--- Generation ---
+public NodoSILInviaRPRisposta nodoSILInviaRPRisposta(NodoSILInviaRP bodyrichiesta, Ente ente) {
+    NodoSILInviaRPRisposta risposta = new NodoSILInviaRPRisposta();
+    risposta.setEsito("KO");
+    risposta.setRedirect(1);
+
+    FaultBean fault = new FaultBean();
+    risposta.setFault(fault);
+
+    return risposta;
+  }
+
+=== out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.2867  BLEU: 0.0546  METEOR: 0.3104  ROUGE-L: 0.2045  
+--- Target ---
+public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,
+                                   NodoSILInviaRP bodyrichiesta) {
+    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);
+
+    NodoInviaRPT result = new NodoInviaRPT();
+    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));
+    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));
+    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());
+    result.setPassword(propIdIntermediarioPaPassword);
+    result.setRpt(byteRPT);
+
+    return result;
+  }
+--- Generation ---
+public NodoInviaRPT buildBodyRPT(RPT rptObj, RptRt mygovRptRt) {
+    NodoInviaRPT body = new NodoInviaRPT();
+    body.setRPT(rptObj);
+    body.setIdentificativoUnivocoVersamento(mygovRptRt.getCodRptDatiVersIdUnivocoVersamento());
+    body.setIdentificativoUnivocoPagamento(mygovRptRt.getCodRptIdUnivocoPagamento());
+    body.setIdentificativoUnivocoDominio(mygovRptRt.getCodRptIdDominio());
+    body.setIdentificativoUnivocoIntermediarioPA(mygovRptRt.getCodRptIdIntermediarioPa());
+    body.setIdentificativoUnivocoStazioneIntermediarioPA(mygovRptRt.getCodRptIdStazioneIntermediarioPa());
+    body.setIdentificativoUnivocoContestoPagamento(mygovRptRt.getCodRptCodiceContestoPagamento());
+    return body;
+  }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.7041  BLEU: 0.4197  METEOR: 0.6649  ROUGE-L: 0.7312  
+--- Target ---
+public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,
+                                   RptRt mygovRptRt) {
+    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);
+
+    NodoInviaRPT result = new NodoInviaRPT();
+    result.setIdentificativoCanale(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdCanale()));
+    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdIntermediarioPsp()));
+    result.setIdentificativoPSP(mygovRptRt.getCodRptInviarptIdPsp());
+    result.setPassword(propIdIntermediarioPaPassword);
+    result.setRpt(byteRPT);
+
+    return result;
+  }
+--- Generation ---
+public NodoInviaRPT buildBodyRPT(RptRt mygovRptRt,
+                                   NodoSILInviaRP bodyrichiesta) {
+    RPT rpt = buildRPT(mygovRptRt);
+
+    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);
+
+    NodoInviaRPT result = new NodoInviaRPT();
+    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));
+    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));
+    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());
+    result.setPassword();
+    result.setRpt(byteRPT);
+
+    return result;
+  }
+
+=== out_smell_distance(1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.7026  BLEU: 0.4049  METEOR: 0.7160  ROUGE-L: 0.7416  
+--- Target ---
+public NodoInviaRPT buildBodyRPT(it.gov.digitpa.schemas._2011.pagamenti.RPT rpt,
+                                   RptRt mygovRptRt) {
+    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, RPT.class);
+
+    NodoInviaRPT result = new NodoInviaRPT();
+    result.setIdentificativoCanale(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdCanale()));
+    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(mygovRptRt.getCodRptInviarptIdIntermediarioPsp()));
+    result.setIdentificativoPSP(mygovRptRt.getCodRptInviarptIdPsp());
+    result.setPassword(propIdIntermediarioPaPassword);
+    result.setRpt(byteRPT);
+
+    return result;
+  }
+--- Generation ---
+public NodoInviaRPT buildBodyRPT(Rpt rpt, NodoSILInviaRP bodyrichiesta) {
+    byte[] byteRPT = jaxbTransformService.marshallingAsBytes(rpt, Rpt.class);
+
+    NodoInviaRPT result = new NodoInviaRPT();
+    result.setIdentificativoCanale(StringUtils.stripToNull(bodyrichiesta.getIdentificativoCanale()));
+    result.setIdentificativoIntermediarioPSP(StringUtils.stripToNull(bodyrichiesta.getIdentificativoIntermediarioPSP()));
+    result.setIdentificativoPSP(bodyrichiesta.getIdentificativoPSP());
+    result.setPassword();
+    result.setRpt(byteRPT);
+
+    return result;
+  }
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.2258  BLEU: 0.0130  METEOR: 0.0597  ROUGE-L: 0.0695  
+--- Target ---
+private void inviaRPTForModello3Impl(RptRt mygovRptRt){
+    //call WS client inviaRpt
+    IntestazionePPT header = buildHeaderRPT(mygovRptRt);
+    RPT rptObj = buildRPT(mygovRptRt);
+    NodoInviaRPT body = buildBodyRPT(rptObj, mygovRptRt);
+    try {
+      NodoInviaRPTRisposta response = pagamentiTelematiciRPTImpl.nodoInviaRPT(
+          mygovRptRt.getMygovRptRtId(),
+          body,
+          header);
+
+      String msg = response.getFault()!=null?
+          StringUtils.joinWith(" - ", response.getEsito(), response.getFault().getFaultCode(), response.getFault().getFaultString()) :
+          response.getEsito();
+      log.info("RESPONSE inviaRPT for mygovRptRtId: {} - esito/fault: {}", mygovRptRt.getMygovRptRtId(), msg);
+      //save response
+      saveRPTRisposta(response, mygovRptRt.getMygovRptRtId());
+    } catch (UnsupportedEncodingException | MalformedURLException e) {
+      throw new MyPayException("internal error", e);
+    }
+  }
+--- Generation ---
+private void inviaRPTForModello3Impl(RptRt mygovRptRt){
+    log.info("Invio RPT per modello 3");
+    //TODO: gestire il caso in cui il RPT non sia stato ancora salvato
+    //TODO: gestire il caso in cui il RPT sia stato salvato ma non ancora inviato
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e non ancora risposto
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e non ancora salvato
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato e non ancora risposto
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato e risposto
+    //TODO: gestire il caso in cui il RPT sia stato salvato e inviato e risposto e salvato e risposto e non ancora salvato
+
+=== out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+private void inviaRPTForModello3Impl(RptRt mygovRptRt){
+    //call WS client inviaRpt
+    IntestazionePPT header = buildHeaderRPT(mygovRptRt);
+    RPT rptObj = buildRPT(mygovRptRt);
+    NodoInviaRPT body = buildBodyRPT(rptObj, mygovRptRt);
+    try {
+      NodoInviaRPTRisposta response = pagamentiTelematiciRPTImpl.nodoInviaRPT(
+          mygovRptRt.getMygovRptRtId(),
+          body,
+          header);
+
+      String msg = response.getFault()!=null?
+          StringUtils.joinWith(" - ", response.getEsito(), response.getFault().getFaultCode(), response.getFault().getFaultString()) :
+          response.getEsito();
+      log.info("RESPONSE inviaRPT for mygovRptRtId: {} - esito/fault: {}", mygovRptRt.getMygovRptRtId(), msg);
+      //save response
+      saveRPTRisposta(response, mygovRptRt.getMygovRptRtId());
+    } catch (UnsupportedEncodingException | MalformedURLException e) {
+      throw new MyPayException("internal error", e);
+    }
+  }
+--- Generation ---
+private void inviaRPTForModello3Impl(RptRt mygovRptRt){
+    //call WS client inviaRpt
+    IntestazionePPT header = buildHeaderRPT(mygovRptRt);
+    RPT rptObj = buildRPT(mygovRptRt);
+    NodoInviaRPT body = buildBodyRPT(rptObj, mygovRptRt);
+    try {
+      NodoInviaRPTRisposta response = pagamentiTelematiciRPTImpl.nodoInviaRPT(
+          mygovRptRt.getMygovRptRtId(),
+          body,
+          header);
+
+      String msg = response.getFault()!=null?
+          StringUtils.joinWith(" - ", response.getEsito(), response.getFault().getFaultCode(), response.getFault().getFaultString()) :
+          response.getEsito();
+      log.info("RESPONSE inviaRPT for mygovRptRtId: {} - esito/fault: {}", mygovRptRt.getMygovRptRtId(), msg);
+      //save response
+      saveRPTRisposta(response, mygovRptRt.getMygovRptRtId());
+    } catch (UnsupportedEncodingException | MalformedURLException e) {
+      throw new MyPayException("internal error", e);
+    }
+  }
+

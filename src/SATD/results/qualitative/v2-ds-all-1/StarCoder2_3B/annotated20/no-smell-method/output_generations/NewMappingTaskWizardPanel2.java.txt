@@ -1,0 +1,31 @@
+=== no_smell_method_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3416  BLEU: 0.0388  METEOR: 0.2736  ROUGE-L: 0.4516  
+--- Target ---
+public HelpCtx getHelp() {
+        // Show no Help button for this panel:
+        return HelpCtx.DEFAULT_HELP;
+    // If you have context help:
+    // return new HelpCtx(SampleWizardPanel1.class);
+    }
+--- Generation ---
+public HelpCtx getHelp() {
+        return HelpCtx.DEFAULT_HELP;
+    }
+
+=== no_smell_method_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 1.0000  ROUGE-L: 1.0000  
+--- Target ---
+public HelpCtx getHelp() {
+        // Show no Help button for this panel:
+        return HelpCtx.DEFAULT_HELP;
+    // If you have context help:
+    // return new HelpCtx(SampleWizardPanel1.class);
+    }
+--- Generation ---
+public HelpCtx getHelp() {
+        // Show no Help button for this panel:
+        return HelpCtx.DEFAULT_HELP;
+    // If you have context help:
+    // return new HelpCtx(SampleWizardPanel1.class);
+    }
+

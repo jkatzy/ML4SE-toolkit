@@ -1,0 +1,133 @@
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9765  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public int getDefaultFractionDigits() {
+        return defaultFractionDigits;
+    }
+--- Generation ---
+public int getDefaultFractionDigits() {
+         return defaultFractionDigits;
+     }
+
+=== multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public int getDefaultFractionDigits() {
+        return defaultFractionDigits;
+    }
+--- Generation ---
+public int getDefaultFractionDigits() {
+        return defaultFractionDigits;
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.9765  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public int getDefaultFractionDigits() {
+        return defaultFractionDigits;
+    }
+--- Generation ---
+public int getDefaultFractionDigits() {
+         return defaultFractionDigits;
+     }
+
+=== preprocessed_multi(-1)_out_smell_distance(0)_500 | StarCoder2_3B | fim ===
+Exact Match: 1.0000  Edit Distance: 1.0000  BLEU: 1.0000  METEOR: 0.9985  ROUGE-L: 1.0000  
+--- Target ---
+public int getDefaultFractionDigits() {
+        return defaultFractionDigits;
+    }
+--- Generation ---
+public int getDefaultFractionDigits() {
+        return defaultFractionDigits;
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.6082  BLEU: 0.4851  METEOR: 0.6401  ROUGE-L: 0.8000  
+--- Target ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger("java.util.Currency");
+        if (logger.isLoggable(level)) {
+            if (t != null) {
+                logger.log(level, message, t);
+            } else {
+                logger.log(level, message);
+            }
+        }
+    }
+--- Generation ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger(Currency.class.getName());
+        if (logger.isLoggable(level)) {
+            logger.log(level, message, t);
+        }
+    }
+
+=== multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9971  BLEU: 0.8875  METEOR: 0.9421  ROUGE-L: 1.0000  
+--- Target ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger("java.util.Currency");
+        if (logger.isLoggable(level)) {
+            if (t != null) {
+                logger.log(level, message, t);
+            } else {
+                logger.log(level, message);
+            }
+        }
+    }
+--- Generation ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger("java.util.Currency");
+        if (logger.isLoggable(level)) {
+            if (t!= null) {
+                logger.log(level, message, t);
+            } else {
+                logger.log(level, message);
+            }
+        }
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | causal ===
+Exact Match: 0.0000  Edit Distance: 0.3538  BLEU: 0.0681  METEOR: 0.3034  ROUGE-L: 0.5769  
+--- Target ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger("java.util.Currency");
+        if (logger.isLoggable(level)) {
+            if (t != null) {
+                logger.log(level, message, t);
+            } else {
+                logger.log(level, message);
+            }
+        }
+    }
+--- Generation ---
+private static void log(String message, Throwable t) {
+        Logger.getLogger(Currency.class.getName()).log(Level.INFO, message, t);
+    }
+
+=== preprocessed_multi(-1)_out_smell_distance(-1)_500 | StarCoder2_3B | fim ===
+Exact Match: 0.0000  Edit Distance: 0.9971  BLEU: 0.8875  METEOR: 0.9421  ROUGE-L: 1.0000  
+--- Target ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger("java.util.Currency");
+        if (logger.isLoggable(level)) {
+            if (t != null) {
+                logger.log(level, message, t);
+            } else {
+                logger.log(level, message);
+            }
+        }
+    }
+--- Generation ---
+private static void log(Level level, String message, Throwable t) {
+        Logger logger = Logger.getLogger("java.util.Currency");
+        if (logger.isLoggable(level)) {
+            if (t!= null) {
+                logger.log(level, message, t);
+            } else {
+                logger.log(level, message);
+            }
+        }
+    }
+

@@ -1,0 +1,34 @@
+[
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "causal",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.2207207207207207,
+            "BLEU": 0.16091908952714667,
+            "METEOR": 0.3494124922696351,
+            "ROUGE-L": 0.3137254901960785
+        },
+        "target": "@BeforeClass\n  public static void init() {\n    orchestrator.resetData();\n\n    SonarScanner build = Tests.createSonarScannerBuild()\n      .setProjectDir(new File(\"../projects/issues/\"))\n      .setProjectKey(PROJECT_KEY)\n      .setProjectName(PROJECT_KEY);\n\n    orchestrator.getServer().provisionProject(PROJECT_KEY, PROJECT_KEY);\n    Tests.setProfile(\"file-naming-convention-only-profile\", PROJECT_KEY);\n    orchestrator.executeBuild(build);\n  }",
+        "generation": "@BeforeClass\n  public static void init() {\n    orchestrator.createProject(PROJECT_KEY, \"issues\");\n  }",
+        "classification": "partial",
+        "comment": "signature"
+    },
+    {
+        "case": "no_smell_method_500",
+        "model": "StarCoder2_3B",
+        "model_option": "fim",
+        "scores": {
+            "Exact Match": 0,
+            "Edit Distance": 0.9932432432432432,
+            "BLEU": 1.0,
+            "METEOR": 0.9999460101500918,
+            "ROUGE-L": 1.0
+        },
+        "target": "@BeforeClass\n  public static void init() {\n    orchestrator.resetData();\n\n    SonarScanner build = Tests.createSonarScannerBuild()\n      .setProjectDir(new File(\"../projects/issues/\"))\n      .setProjectKey(PROJECT_KEY)\n      .setProjectName(PROJECT_KEY);\n\n    orchestrator.getServer().provisionProject(PROJECT_KEY, PROJECT_KEY);\n    Tests.setProfile(\"file-naming-convention-only-profile\", PROJECT_KEY);\n    orchestrator.executeBuild(build);\n  }",
+        "generation": "@BeforeClass\n  public static void init() {\n    orchestrator.resetData();\n\n    SonarScanner build = Tests.createSonarScannerBuild()\n     .setProjectDir(new File(\"../projects/issues/\"))\n     .setProjectKey(PROJECT_KEY)\n     .setProjectName(PROJECT_KEY);\n\n    orchestrator.getServer().provisionProject(PROJECT_KEY, PROJECT_KEY);\n    Tests.setProfile(\"file-naming-convention-only-profile\", PROJECT_KEY);\n    orchestrator.executeBuild(build);\n  }",
+        "classification": "",
+        "comment": ""
+    }
+]

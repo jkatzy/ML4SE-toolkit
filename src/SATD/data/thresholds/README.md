@@ -1,0 +1,1 @@
+Token length statistics per model for methods and comments. Statistics include the mean, standard deviation, and the treshold (mean + 2 * standard deviation). For comments we also include separate statistics for line and block comments.
