@@ -1,323 +1,119 @@
-from ..Query import Query
 import regex as re
+
+from ..Query import Query, QueryMatch
+from .registry import get_comment_syntax
+
 
 class LineCommentQuery(Query):
     def __init__(self, language):
         self.language = language
-        self.regexes = self.get_regex(language)
+        self.syntax = get_comment_syntax(language)
+        self.regexes = self.syntax.regex_patterns
 
     def contains(self, string):
-        contains = False
-        for r in self.regexes:
-            if(re.search(r, string)):
+        for pattern in self.regexes:
+            if re.search(pattern, string):
                 return True
         return False
 
     def parse(self, text):
         matches = []
-        for r in self.regexes:
-            for m in re.finditer(r, text):
-                prefix = text[:m.start()]
-                match = m.group()
-                suffix = text[m.end():]
-                matches.append((prefix, suffix, match))
+        for start, end in self._dedupe_match_ranges(self._iter_match_ranges(text)):
+            matches.append(
+                QueryMatch(
+                    text[:start],
+                    text[end:],
+                    text[start:end],
+                )
+            )
         return matches
 
-    def get_regex(self, language):
-        lang = language.lower()
-        if lang in ['java', 'c', 'c++', 'c#', 'javascript', 'typescript', 'objective-c', 'go', 'kotlin', 'vue', 'scala', 'dart', 'rust', 'hack', 'less', 'groovy', 'processing', 'apex', 'cuda', 'scilab', 'antlr', 'swift', 'php']:      
-            regex = self.get_regex_java()    
-        elif lang in ['python', 'r', 'elixir', 'nix', 'starlark', 'graphql', 'crystal']: 
-            regex = self.get_regex_python()  
-        elif lang in ['ada']:
-            regex = self.get_regex_ada()     
-        elif lang in ['agda', 'elm']:       
-            regex = self.get_regex_agda()    
-        elif lang in ['assembly', 'netlogo', 'scheme']:
-            regex = self.get_regex_assembly()
-        elif lang in ['cobol']:
-            regex = self.get_regex_cobol()   
-        elif lang in ['coq', 'ocaml']:      
-            regex = self.get_regex_coq()     
-        elif lang in ['d']:
-            regex = self.get_regex_d()       
-        elif lang in ['erlang']:            
-            regex = self.get_regex_erlang()  
-        elif lang in ['f#']:
-            regex = self.get_regex_fsharp()  
-        elif lang in ['forth']:
-            regex = self.get_regex_forth()   
-        elif lang in ['fortran']:           
-            regex = self.get_regex_fortran() 
-        elif lang in ['julia']:
-            regex = self.get_regex_julia()   
-        elif lang in ['lisp']:
-            regex = self.get_regex_lisp()    
-        elif lang in ['lua']:
-            regex = self.get_regex_lua()     
-        elif lang in ['mathematica']:       
-            regex = self.get_regex_mathematica()
-        elif lang in ['matlab']:            
-            regex = self.get_regex_matlab()  
-        elif lang in ['perl']:
-            regex = self.get_regex_perl()    
-        elif lang in ['prolog']:            
-            regex = self.get_regex_prolog()  
-        elif lang in ['raku']:
-            regex = self.get_regex_raku()    
-        elif lang in ['ruby']:
-            regex = self.get_regex_ruby()    
-        elif lang in ['sql']:
-            regex = self.get_regex_sql()     
-        elif lang in ['webassembly']:       
-            regex = self.get_regex_webassembly()
-        elif lang in ['haskell']:           
-            regex = self.get_regex_haskell() 
-        else:
-            raise NotImplemented        
-        return regex
+    def _iter_match_ranges(self, text):
+        for pattern in self.regexes:
+            for match in re.finditer(pattern, text):
+                yield match.start(), match.end()
 
-    def get_regex_java(self):
-        return [
-            r"\/\*[\S\s]*?\*\/",
-            r"/{2}.*.*"
-        ]
- 
-    def get_regex_python(self):
-        return [
-            r"#.*",
-            r"\"{3}([\S\s]*?)\"{3}"
-        ]
+    @staticmethod
+    def _dedupe_match_ranges(ranges):
+        deduped = {}
+        for start, end in ranges:
+            current_end = deduped.get(start, -1)
+            if end > current_end:
+                deduped[start] = end
 
-    def get_regex_erlang(self):
-        return [
-            r"%.*"
-        ]
-        
-    def get_regex_julia(self):
-        return [
-            r"#=([\S\s]*?)=#",
-            r"#.*"
-        ] 
-        
-    def get_regex_lisp(self):
-        return [
-            r";.*"
-        ]
-        
-    def get_regex_fortran(self):
-        return [
-            r"!.*"
-        ]
-        
-    def get_regex_cobol(self):
-        return [
-            r"(^|\n).{6}(\*|/).*",
-            r"\*>.*"
-        ]
-        
-    def get_regex_html(self):
-        return [
-            r"<!--([\S\s]*?)-->"
-        ]
-        
-    def get_regex_matlab(self):
-        return [
-            r"%{([\S\s]*?)%}",
-            r"%.*"
-        ]
-        
-    def get_regex_webassembly(self):
-        return [
-            r"\(;([\S\s]*?);\)",
-            r";;.*"
-        ]
-        
-    def get_regex_assembly(self):
-        return [
-            r";.*"
-        ]
+        result = []
+        current_end = -1
+        for start, end in sorted(deduped.items()):
+            if start < current_end:
+                continue
+            result.append((start, end))
+            current_end = end
+        return result
 
-    def get_regex_ruby(self):
-        return [
-            r"#.*",
-            r"=begin([\S\s]*?)=end"
-        ]
-        
-    def get_regex_ada(self):
-        return [
-            r"--.*"
-        ]
-
-    def get_regex_d(self):
-        return [
-            r"\/\*\*[\S\s]*?\*\/",
-            r"\/\+\+[\S\s]*?\+\/",
-            r"\/\/\/.*"
-        ]
-        
-    def get_regex_forth(self):
-        return [
-            r"\\\s.*",
-            r"\(\s[\s\S]*?\s\)"
-        ]
-        
-    def get_regex_lua(self):
-        return [
-            r"--\[\[[\s\S]*?\]\]",
-            r"--.*"
-        ]
-        
-    def get_regex_perl(self):
-        return [
-            r"=[\s\S]*?=cut",
-            r"#.*"
-        ]
-        
-    def get_regex_prolog(self):
-        return [
-            r"%.*",
-            r"\/\*[\s\S]*?\*\/"
-        ]
-        
-    def get_regex_raku(self):
-        return [
-            r"#'\([\s\S]*?\)",
-            r"#'\{[\s\S]*?\}",
-            r"#'\[[\s\S]*?\]",
-            r"#'\<[\s\S]*?\>",
-            r"#.*"
-        ]
-        
-    def get_regex_sql(self):
-        return [
-            r"\/\*[\s\S]*?\*\/",
-            r"--.*"
-        ] 
-
-    def get_regex_agda(self):
-        return [
-            r"--.*"
-        ]
-
-    def get_regex_fsharp(self):
-        return [
-            r"\/\/.*"
-        ]
-
-    def get_regex_haskell(self):
-        return [
-            r"--.*"
-        ]
-
-    def get_regex_mathematica(self):
-        return []
-
-    def get_regex_coq(self):
-        return []
 
 class NestedCommentQuery(Query):
     def __init__(self, language):
         self.language = language
-        self.delimeters = self.get_delimeters(language)
+        self.syntax = get_comment_syntax(language)
+        self.delimeters = self.syntax.nested_delimiters
 
     def contains(self, string):
-        contains = False
-        for d in self.delimeters:
-            r = d[0] + "[\s\S]*" + d[1]
-            if(re.search(r, string)):
+        for open_delim, close_delim in self.delimeters:
+            pattern = re.escape(open_delim) + r"[\s\S]*?" + re.escape(close_delim)
+            if re.search(pattern, string):
                 return True
         return False
 
     def parse(self, text):
         matches = []
-        for d in self.delimeters:
-            for m in self.parse_nested(d[0], d[1], text):
-                matches.append(m)
-        return matches
+        for open_delim, close_delim in self.delimeters:
+            matches.extend(self.parse_nested(open_delim, close_delim, text))
+        return sorted(matches, key=lambda match: len(match.prefix))
 
+    @staticmethod
     def parse_nested(open_delim, close_delim, text):
-        """Extracts only top-level delimited text (including delimiters) 
-           and returns it with full surrounding text."""
-        
+        """Extract top-level delimited text, including the delimiters."""
+
         result = []
         stack = []
         top_level_ranges = []
-        
         open_len = len(open_delim)
         close_len = len(close_delim)
         i = 0
 
         while i < len(text):
-            if text[i:i+open_len] == open_delim:
-                if not stack:  # Mark start of a top-level section
+            if text.startswith(open_delim, i):
+                if not stack:
                     top_level_ranges.append([i, None])
                 stack.append(i)
-                i += open_len - 1  # Move past the opening delimiter
-            elif text[i:i+close_len] == close_delim and stack:
-                start = stack.pop()
-                if not stack:  # Mark end of a top-level section
-                    top_level_ranges[-1][1] = i + close_len - 1
-                i += close_len - 1  # Move past the closing delimiter
+                i += open_len
+                continue
+
+            if text.startswith(close_delim, i) and stack:
+                stack.pop()
+                if not stack:
+                    top_level_ranges[-1][1] = i + close_len
+                i += close_len
+                continue
+
             i += 1
 
-        # Process each top-level section
         for start, end in top_level_ranges:
-            inner_text = text[start:end + 1]  # Keep delimiters
-            before_text = text[:start]
-            after_text = text[end + 1:]
-            result.append((inner_text, before_text, after_text))
+            if end is None:
+                continue
+
+            result.append(
+                QueryMatch(
+                    text[:start],
+                    text[end:],
+                    text[start:end],
+                )
+            )
 
         return result
 
-    def get_delimeters(self, language):
-        lang = language.lower()
-        if lang in ['java', 'c', 'c++', 'c#', 'javascript', 'typescript', 'objective-c', 'go', 'kotlin', 'vue', 'scala', 'dart', 'rust', 'hack', 'less', 'groovy', 'processing', 'apex', 'cuda', 'scilab', 'antlr', 'swift', 'php', 'python', 'r', 'elixir', 'nix', 'starlark', 'graphql', 'crystal', 'ada', 'assembly', 'netlogo', 'scheme', 'cobol', 'd', 'erlang', 'forth', 'fortran', 'julia', 'lisp', 'lua', 'matlab', 'perl', 'prolog', 'raku', 'ruby', 'sql', 'webassembly']:
-            delimeter = self.get_delimeter_null()
-        elif lang in ['agda', 'elm']:
-            delimeter = self.get_delimeter_agda()
-        elif lang in ['coq', 'ocaml']:
-            delimeter = self.get_delimeter_coq()
-        elif lang in ['f#']:
-            delimeter = self.get_delimeter_fsharp()
-        elif lang in ['mathematica']:
-            delimeter = self.get_delimeter_mathematica()
-        elif lang in ['haskell']:
-            delimeter = self.get_delimeter_haskell()
-        else:
-            raise NotImplemented
-        return delimeter
 
-    def get_delimeter_null(self):
-        return []
-
-    def get_delimeter_mathematica(self):
-        return [
-            ("(*", "*)")
-        ]
-       
-    def get_delimeter_agda(self):
-        return [
-            ('{-', '-}')
-        ]
-        
-    def get_delimeter_coq(self):
-        return [
-            ("(*", " *)")
-        ]
-        
-    def get_delimeter_fsharp(self):
-        return [
-            ("(*", "*)")
-        ]
-        
-    def get_delimeter_haskell(self):
-        return [
-            ("{-", "-}")
-        ]
- 
 class CommentQuery(Query):
-
     def __init__(self, language):
         self.language = language
         self.line_comments = LineCommentQuery(language)
@@ -326,12 +122,171 @@ class CommentQuery(Query):
     def contains(self, text):
         if self.nested_comments.contains(text):
             return True
-        elif self.line_comments.contains(text):
+        if self.line_comments.contains(text):
             return True
         return False
-    
+
     def parse(self, text):
         comments = []
         comments.extend(self.nested_comments.parse(text))
-        comments.extend(self.line_comments.parse(text))
-        return comments
+        comments.extend(self._group_line_comment_blocks(text, self.line_comments.parse(text)))
+        return self._dedupe_comment_matches(text, comments)
+
+    @staticmethod
+    def _group_line_comment_blocks(text, matches):
+        if not matches:
+            return []
+
+        grouped = []
+        group_start = None
+        group_end = None
+
+        for match in matches:
+            start = len(match.prefix)
+            end = len(text) - len(match.suffix)
+            if not CommentQuery._is_standalone_single_line(text, start, end):
+                if group_start is not None:
+                    grouped.append(
+                        QueryMatch(
+                            text[:group_start],
+                            text[group_end:],
+                            text[group_start:group_end],
+                        )
+                    )
+                    group_start = None
+                    group_end = None
+                grouped.append(match)
+                continue
+
+            if group_start is None:
+                group_start = start
+                group_end = end
+                continue
+
+            separator = text[group_end:start]
+            if CommentQuery._is_consecutive_line_separator(separator):
+                group_end = end
+                continue
+
+            grouped.append(
+                QueryMatch(text[:group_start], text[group_end:], text[group_start:group_end])
+            )
+            group_start = start
+            group_end = end
+
+        if group_start is not None:
+            grouped.append(
+                QueryMatch(
+                    text[:group_start],
+                    text[group_end:],
+                    text[group_start:group_end],
+                )
+            )
+
+        return grouped
+
+    @staticmethod
+    def _dedupe_comment_matches(text, matches):
+        ranges = []
+        for match in matches:
+            start = len(match.prefix)
+            end = len(text) - len(match.suffix)
+            ranges.append((start, end))
+
+        deduped_matches = []
+        for start, end in LineCommentQuery._dedupe_match_ranges(ranges):
+            deduped_matches.append(
+                QueryMatch(
+                    text[:start],
+                    text[end:],
+                    text[start:end],
+                )
+            )
+        return deduped_matches
+
+    @staticmethod
+    def _is_standalone_single_line(text, start, end):
+        match_text = text[start:end]
+        if "\n" in match_text:
+            return False
+
+        line_start = text.rfind("\n", 0, start) + 1
+        line_end = text.find("\n", end)
+        if line_end == -1:
+            line_end = len(text)
+
+        before = text[line_start:start]
+        after = text[end:line_end]
+        return before.strip() == "" and after.strip() == ""
+
+    @staticmethod
+    def _is_consecutive_line_separator(separator):
+        separator = separator.replace("\r", "")
+        return separator.count("\n") == 1 and separator.replace("\n", "").strip() == ""
+
+
+class OpeningCommentQuery(Query):
+    def __init__(self, language, max_start_row=3, skip_hashbang=True):
+        if max_start_row < 1:
+            raise ValueError("max_start_row must be at least 1")
+
+        self.language = language
+        self.max_start_row = max_start_row
+        self.skip_hashbang = skip_hashbang
+        self.line_comments = LineCommentQuery(language)
+        self.nested_comments = NestedCommentQuery(language)
+
+    def contains(self, text):
+        return bool(self.parse(text))
+
+    def parse(self, text):
+        start_anchor = self._hashbang_end(text) if self.skip_hashbang else 0
+        ranges = self._opening_comment_ranges(text, start_anchor)
+        if not ranges:
+            return []
+
+        block_start, block_end = ranges[0]
+        if self._row_number(text, block_start) > self.max_start_row:
+            return []
+        if text[start_anchor:block_start].strip():
+            return []
+
+        for next_start, next_end in ranges[1:]:
+            if text[block_end:next_start].strip():
+                break
+            block_end = next_end
+
+        return [QueryMatch(text[:block_start], text[block_end:], text[block_start:block_end])]
+
+    def _opening_comment_ranges(self, text, start_anchor):
+        ranges = []
+        for match in self.line_comments.parse(text):
+            ranges.append(self._match_range(text, match))
+        for match in self.nested_comments.parse(text):
+            ranges.append(self._match_range(text, match))
+
+        filtered = [
+            (start, end)
+            for start, end in LineCommentQuery._dedupe_match_ranges(ranges)
+            if end > start_anchor
+        ]
+        return sorted(filtered)
+
+    @staticmethod
+    def _match_range(text, match):
+        start = len(match.prefix)
+        end = len(text) - len(match.suffix)
+        return start, end
+
+    @staticmethod
+    def _hashbang_end(text):
+        if not text.startswith("#!"):
+            return 0
+        line_end = text.find("\n")
+        if line_end == -1:
+            return len(text)
+        return line_end + 1
+
+    @staticmethod
+    def _row_number(text, offset):
+        return text.count("\n", 0, offset) + 1
