@@ -7,30 +7,33 @@ This report follows the documentation-oriented structure defined in `docs/commen
 ## J
 
 - Registry key: `j`
-- Line comments: unsupported
+- Line comments: `NB.` at the start of a line or after code
 - Block comments: unsupported
-- Termination behavior: unsupported
+- Termination behavior: end of line
 - Nested comments: unsupported
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Community source: search pass unresolved
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://www.jsoftware.com/docs/help602/user/scriptdoc.htm
+- Implementation source: J scriptdoc utility
+- Community source: not used
 - Corpus fallback source: not used
-- Recommended action: defer
-- Notes: No native comment syntax identified.
+- Recommended action: add
+- Notes: J uses `NB.` comments; the scriptdoc utility documents consecutive `NB.` lines as multi-line documentation comments, but the syntax itself is line-oriented.
 
 ### Examples
 
 #### Line comment
-Unsupported or unresolved.
+```text
+NB. square each number
+square =: *:
+square 4
+```
 
 #### Block comment
 Unsupported or unresolved.
 
 #### Nested comment
 Unsupported or unresolved.
-
 ## Jasmin
 
 - Registry key: `jasmin`
@@ -373,26 +376,28 @@ Unsupported or unresolved.
 ## KiCad Layout
 
 - Registry key: `kicad_layout`
-- Line comments: ;
+- Line comments: `#`
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
-- Confidence: unresolved
+- Confidence: verified
 - Evidence mode: implementation_cross_checked
-- Docs source: KiCad docs
-- Implementation source: KiCad parser
-- Community source: search pass unresolved
+- Docs source: https://dev-docs.kicad.org/en/file-formats/index.html
+- Implementation source: https://docs.kicad.org/doxygen/dsnlexer_8cpp_source.html
+- Community source: not used
 - Corpus fallback source: not used
-- Recommended action: research
-- Notes: Confirm against the source listed below before adding.
+- Recommended action: add
+- Notes: KiCad PCB s-expression files use `#` as a line comment marker only when it is the first non-blank character on the line.
 
 ### Examples
 
 #### Line comment
 ```text
-move.w #1, d0
-; TODO: confirm parser coverage
-move.w #2, d1
+(kicad_pcb
+  (version 20240101)
+  # board-level note
+  (generator pcbnew)
+)
 ```
 
 #### Block comment
@@ -433,26 +438,28 @@ Unsupported or unresolved.
 ## KiCad Schematic
 
 - Registry key: `kicad_schematic`
-- Line comments: ;
+- Line comments: `#`
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
-- Confidence: unresolved
+- Confidence: verified
 - Evidence mode: implementation_cross_checked
-- Docs source: KiCad docs
-- Implementation source: KiCad parser
-- Community source: search pass unresolved
+- Docs source: https://dev-docs.kicad.org/en/file-formats/index.html
+- Implementation source: https://docs.kicad.org/doxygen/dsnlexer_8cpp_source.html
+- Community source: not used
 - Corpus fallback source: not used
-- Recommended action: research
-- Notes: Confirm against the source listed below before adding.
+- Recommended action: add
+- Notes: KiCad schematic s-expressions follow the same `#` line-comment rule as the other KiCad s-expression file formats.
 
 ### Examples
 
 #### Line comment
 ```text
-move.w #1, d0
-; TODO: confirm parser coverage
-move.w #2, d1
+(kicad_sch
+  (version 20240101)
+  # schematic note
+  (generator eeschema)
+)
 ```
 
 #### Block comment
@@ -741,26 +748,26 @@ Unsupported or unresolved.
 ## Limbo
 
 - Registry key: `limbo`
-- Line comments: #
+- Line comments: `#`
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Community source: search pass unresolved
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://inferno-os.org/inferno/papers/limbo.html
+- Implementation source: Limbo language reference
+- Community source: not used
 - Corpus fallback source: not used
-- Recommended action: research
-- Notes: Hash comments are line-only.
+- Recommended action: add
+- Notes: The Limbo reference manual defines comments as `#` to end of line.
 
 ### Examples
 
 #### Line comment
 ```text
-value = 1
-# TODO: confirm parser coverage
-value = 2
+implement Hello;
+# note about the module
+include "sys.m";
 ```
 
 #### Block comment
@@ -1297,26 +1304,36 @@ Unsupported or unresolved.
 ## Marko
 
 - Registry key: `marko`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Community source: search pass unresolved
+- Line comments: `//` at top level; HTML comments are also accepted in template markup
+- Block comments: `/** ... */` at top level; `<!-- ... -->` in template markup
+- Termination behavior: end of line for `//`; first closing delimiter wins for block-style comments
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://markojs.com/docs/reference/language
+- Implementation source: Marko language reference / parser
+- Community source: not used
 - Corpus fallback source: not used
-- Recommended action: research
-- Notes: Needs official documentation or a corpus fallback pass.
+- Recommended action: add
+- Notes: Marko supports both HTML comments and top-level JavaScript comments. Keep template markup and embedded JavaScript separate when generating fixtures.
 
 ### Examples
 
 #### Line comment
-Unsupported or unresolved.
+```text
+<div>
+  // top-level JavaScript comment
+  <h1>Hello</h1>
+</div>
+```
 
 #### Block comment
-Unsupported or unresolved.
+```text
+<div>
+  <!-- template comment -->
+  <h1>Hello</h1>
+</div>
+```
 
 #### Nested comment
 Unsupported or unresolved.
@@ -1525,36 +1542,30 @@ Unsupported or unresolved.
 ## Microsoft Developer Studio Project
 
 - Registry key: `msdev_project`
-- Line comments: <!-- ... -->
-- Block comments: <!-- ... -->
-- Termination behavior: end of line for line comments; first closing delimiter wins for block comments
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: end of line
 - Nested comments: unsupported
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Confidence: candidate
+- Evidence mode: corpus_inferred
 - Docs source: unresolved
 - Implementation source: unresolved
-- Community source: search pass unresolved
-- Corpus fallback source: not used
-- Recommended action: research
-- Notes: Template or markup comments terminate at the closing delimiter.
+- Community source: not used
+- Corpus fallback source: https://sources.debian.org/src/libprojectm/1.2.0-1/libprojectM.dsp/ ; https://www.novell.com/developer/documentation/samplecode/gwmapi_sample/Mapi1/CPP/GWMAPI1.DSP.html
+- Recommended action: confirm
+- Notes: The `.dsp` project files inspected in the corpus use `#`-prefixed comment lines for file headers and generated-build warnings.
 
 ### Examples
 
 #### Line comment
 ```text
-<root>
-  <!-- TODO: confirm parser coverage -->
-  <child />
-</root>
+# Microsoft Developer Studio Project File - Name="libprojectM" - Package Owner=<4>
+# Microsoft Developer Studio Generated Build File, Format Version 6.00
+# ** DO NOT EDIT **
 ```
 
 #### Block comment
-```text
-<root>
-  <!-- TODO: confirm parser coverage -->
-  <child />
-</root>
-```
+Unsupported or unresolved.
 
 #### Nested comment
 Unsupported or unresolved.

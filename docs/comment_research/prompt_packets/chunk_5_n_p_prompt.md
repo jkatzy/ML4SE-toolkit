@@ -6,7 +6,7 @@ Use this packet together with:
 
 ## Mission
 
-Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
+Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name plus `programming language` and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
 
 Target output file:
 - `docs/comment_research/chunk_5_n_p_report.md`
@@ -14,15 +14,15 @@ Target output file:
 ## Priority Summary
 
 - Assigned languages: `54`
-- Needs research or confirmation: `53`
-- Ready to implement but should be strengthened with source evidence: `0`
+- Needs research or confirmation: `48`
+- Ready to implement but should be strengthened with source evidence: `5`
 - Resolved non-actionable: `1`
 
 ## Required Workflow
 
 1. Search official docs for comment syntax.
 2. Cross-check with an implementation source when available.
-3. If syntax is still unclear, search the web with the language name and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
+3. If syntax is still unclear, search the web with the language name plus `programming language` and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
 4. If syntax is still unclear after that, download real source files and inspect them directly.
 5. For every language, explicitly classify line comments, block comments, and block-comment delimiter behavior.
 6. Record whether block comments terminate at the first closer, support true nesting, or use depth-qualified delimiters.
@@ -39,7 +39,6 @@ Target output file:
 | high | NCL | ncl | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research official NCL docs before registry updates. |
 | high | Nearley | nearley | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Nearley grammar comment syntax from official docs or grammar sources. |
 | high | Nemerle | nemerle | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Nemerle comment syntax before adding fixtures. |
-| high | NEON | neon | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research official Neon docs before registry updates. |
 | high | nesC | nesc | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-style fixtures and verify against the nesC reference. |
 | high | NetLinx | netlinx | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify NetLinx comment syntax from official docs. |
 | high | NewLisp | newlisp | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify newLISP comment syntax from the reference manual. |
@@ -48,11 +47,9 @@ Target output file:
 | high | NWScript | nwscript | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-style fixtures and verify against the NWScript reference. |
 | high | ObjDump | objdump | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | identify the exact Stack v2 syntax flavor for this entry. |
 | high | Object Data Instance Notation | object_data_instance_notation | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the format supports comments at all. |
-| high | ObjectScript | objectscript | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify ObjectScript comment syntax from the official reference. |
 | high | ooc | ooc | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-family fixtures and verify against ooc docs. |
 | high | Opa | opa | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify the Stack v2 Opa entry before assuming any syntax family. |
 | high | OpenEdge ABL | openedge_abl | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify ABL comment syntax from the official reference. |
-| high | OpenQASM | openqasm | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify the OpenQASM specification before registry changes. |
 | high | OpenRC runscript | openrc_runscript | needs_research_or_confirmation | medium | # | unsupported | newline | unsupported | unresolved | unresolved | add line-comment fixtures and confirm against the runscript reference. |
 | high | OpenStep Property List | openstep_property_list | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the plist variant supports comments at all. |
 | high | OpenType Feature File | opentype_feature_file | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify feature-file comment syntax from the OpenType feature syntax docs. |
@@ -73,7 +70,6 @@ Target output file:
 | high | PicoLisp | picolisp | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PicoLisp comment syntax from the official docs. |
 | high | PigLatin | piglatin | needs_research_or_confirmation | medium | -- | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add SQL-like fixtures and confirm the PigLatin comment rules. |
 | high | Pike | pike | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-family fixtures and verify against Pike docs. |
-| high | PlantUML | plantuml | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PlantUML comment syntax from official docs. |
 | high | Pod | pod | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether this is Perl POD or a different source format. |
 | high | Pod 6 | pod_6 | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Pod 6 / Raku docs before registry changes. |
 | high | PogoScript | pogoscript | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PogoScript syntax from official docs. |
@@ -85,18 +81,22 @@ Target output file:
 | high | Promela | promela | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-style fixtures and confirm against the SPIN reference. |
 | high | Propeller Spin | propeller_spin | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Spin comment syntax from the official reference. |
 | high | Pure Data | pure_data | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the format has true comments or only directives. |
-| high | PureBasic | purebasic | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PureBasic comment syntax before adding fixtures. |
+| medium | NEON | neon | ready_to_implement | verified | # | unsupported | newline | unsupported | https://doc.nette.org/en/neon/format | https://github.com/nette/neon | add hash-comment fixtures and keep block comments unsupported. |
+| medium | ObjectScript | objectscript | ready_to_implement | verified | `//`, `;`, `##;` (`#;` in column 1) | /* ... */ | `newline` for line comments; `first closing delimiter wins` for block comments | unsupported | https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GCOS_syntax | https://docs.rs/crate/tree-sitter-objectscript/1.6.3 | add fixtures for `//`, `;`, `##;`, and `/* */`, but keep nested comments unsupported. |
+| medium | OpenQASM | openqasm | ready_to_implement | verified | // | /* ... */ | `newline` for line comments; `first closing delimiter wins` for block comments | unsupported | https://openqasm.com/versions/3.0/language/comments.html | https://github.com/openqasm/openqasm | add line and block fixtures and keep nested comments unsupported. |
+| medium | PlantUML | plantuml | ready_to_implement | verified | ' | /' ... '/ | `newline` for line comments; `first closing delimiter wins` for block comments | unsupported | https://plantuml.com/en/commons | https://github.com/plantuml/plantuml | add apostrophe-comment fixtures and keep nested comments unsupported. |
+| medium | PureBasic | purebasic | ready_to_implement | verified | ; | unsupported | newline | unsupported | https://www.purebasic.com/documentation/reference/general_rules.html | unresolved | add semicolon-comment fixtures and keep block comments unsupported. |
 | low | Public Key | public_key | resolved_non_actionable | high | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | keep this entry unsupported unless a formal spec changes. |
 
 ## Search Guidance
 
 For each language, try at least these query patterns before falling back:
-- `"<Language> comments syntax"`
-- `"<Language> language reference comments"`
-- `"<Language> lexical grammar comments"`
-- `"<Language> line comment block comment"`
-- `"<Language> nested comments"`
-- `"<Language> block comment delimiter"`
+- `"<Language> programming language comments syntax"`
+- `"<Language> programming language reference comments"`
+- `"<Language> programming language lexical grammar comments"`
+- `"<Language> programming language line comment block comment"`
+- `"<Language> programming language nested comments"`
+- `"<Language> programming language block comment delimiter"`
 
 If the docs are unclear, search for:
 - lexer or tokenizer definitions
@@ -104,15 +104,15 @@ If the docs are unclear, search for:
 - official examples or language test corpora
 
 If official sources are still unclear, run a search-engine pass such as:
-- `"<Language> comment"`
-- `"<Language> comments"`
-- `"<Language> block comment"`
-- `"<Language> nested comment"`
-- `"site:stackoverflow.com <Language> comment"`
-- `"site:stackoverflow.com <Language> block comment"`
-- `"site:stackoverflow.com <Language> nested comment"`
-- `"<Language> comment blog"`
-- `"<Language> comment tutorial"`
+- `"<Language> programming language comment"`
+- `"<Language> programming language comments"`
+- `"<Language> programming language block comment"`
+- `"<Language> programming language nested comment"`
+- `"site:stackoverflow.com <Language> programming language comment"`
+- `"site:stackoverflow.com <Language> programming language block comment"`
+- `"site:stackoverflow.com <Language> programming language nested comment"`
+- `"<Language> programming language comment blog"`
+- `"<Language> programming language comment tutorial"`
 
 When you use Stack Overflow or blog posts:
 - prefer answers with concrete code examples

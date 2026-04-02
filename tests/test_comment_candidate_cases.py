@@ -238,7 +238,7 @@ def _parse_block_token(token):
         open_delim, close_delim = [part.strip() for part in token.split("...", 1)]
         if open_delim and close_delim:
             return open_delim, close_delim
-    if token in {"/* */", "(* *)", "<!-- -->", "#| |#"}:
+    if token in {"/* */", "(* *)", "<!-- -->", "#| |#", "{* *}"}:
         open_delim, close_delim = token.split()
         return open_delim, close_delim
     if token == "////":
@@ -272,6 +272,18 @@ def _block_delimiters(spec):
 
 
 def _build_line_case(spec):
+    if spec.language == "Slim":
+        sample = spec.examples["Line comment"]
+        expected_match = "  / This line won't get displayed.\n    Neither does this line."
+        return CandidateCommentCase(
+            language=spec.language,
+            query_language=spec.query_language,
+            kind="single_line",
+            sample=sample,
+            expected_match=expected_match,
+            case_id=f"{spec.query_language}-candidate-single-line",
+        )
+
     token = _standalone_line_token(spec)
     if token is None:
         return None
@@ -381,11 +393,28 @@ def _build_special_block_case(spec):
             case_id=f"{spec.query_language}-candidate-block",
         )
 
+    if spec.language == "Slim":
+        sample = spec.examples["Block comment"]
+        expected_match = "  /! This will get displayed as html comments."
+        return CandidateCommentCase(
+            language=spec.language,
+            query_language=spec.query_language,
+            kind="block",
+            sample=sample,
+            expected_match=expected_match,
+            case_id=f"{spec.query_language}-candidate-block",
+        )
+
     return None
 
 
 def _build_block_case(spec):
-    if "Block comment" in spec.examples and spec.language in {"Pug", "q", "reStructuredText"}:
+    if "Block comment" in spec.examples and spec.language in {
+        "Pug",
+        "Slim",
+        "q",
+        "reStructuredText",
+    }:
         return _build_special_block_case(spec)
 
     block_delimiters = _block_delimiters(spec)

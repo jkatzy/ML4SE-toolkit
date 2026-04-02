@@ -101,5 +101,7 @@ real surrounding code here
 
 If a language does not support one of the categories, state that explicitly.
 Prefer official language documentation first and implementation or grammar
-sources second. If the syntax is unclear, mark it as unresolved instead of
-guessing.
+sources second. When you need a search-engine fallback, include `programming
+language` in the query so ambiguous names bias toward language results instead
+of tools, frameworks, or products. If the syntax is unclear, mark it as
+unresolved instead of guessing.

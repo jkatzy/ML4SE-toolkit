@@ -6,7 +6,7 @@ Use this packet together with:
 
 ## Mission
 
-Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
+Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name plus `programming language` and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
 
 Target output file:
 - `docs/comment_research/chunk_1_b_c_report.md`
@@ -14,15 +14,15 @@ Target output file:
 ## Priority Summary
 
 - Assigned languages: `46`
-- Needs research or confirmation: `44`
-- Ready to implement but should be strengthened with source evidence: `0`
+- Needs research or confirmation: `38`
+- Ready to implement but should be strengthened with source evidence: `6`
 - Resolved non-actionable: `2`
 
 ## Required Workflow
 
 1. Search official docs for comment syntax.
 2. Cross-check with an implementation source when available.
-3. If syntax is still unclear, search the web with the language name and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
+3. If syntax is still unclear, search the web with the language name plus `programming language` and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
 4. If syntax is still unclear after that, download real source files and inspect them directly.
 5. For every language, explicitly classify line comments, block comments, and block-comment delimiter behavior.
 6. Record whether block comments terminate at the first closer, support true nesting, or use depth-qualified delimiters.
@@ -48,7 +48,6 @@ Target output file:
 | high | Browserslist | browserslist | needs_research_or_confirmation | medium | # | unsupported | unsupported | unsupported | unresolved | unresolved | Confirm config-file comment handling and add hash-comment tests. |
 | high | Cabal Config | cabal_config | needs_research_or_confirmation | medium | -- | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against Cabal syntax docs and add line-comment tests. |
 | high | Cadence | cadence | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Cadence docs and add C-like comment tests. |
-| high | CAP CDS | cap_cds | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against SAP CAP CDS docs and add C-like comment tests. |
 | high | CartoCSS | cartocss | needs_research_or_confirmation | low | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against CartoCSS docs before seeding. |
 | high | Ceylon | ceylon | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Ceylon docs and add C-like comment tests. |
 | high | Chapel | chapel | needs_research_or_confirmation | low | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Chapel docs and add C-like comment tests. |
@@ -61,12 +60,7 @@ Target output file:
 | high | Click | click | needs_research_or_confirmation | medium | # | unsupported | unsupported | unsupported | unresolved | unresolved | Add hash-comment tests after confirming the Click parser docs. |
 | high | CLIPS | clips | needs_research_or_confirmation | medium | ; | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify CLIPS comment syntax and add line/block tests. |
 | high | Closure Templates | closure_templates | needs_research_or_confirmation | low | unsupported | {* ... *} | first closing delimiter wins | unsupported | unresolved | unresolved | Verify Soy/Closure Templates comment syntax before seeding. |
-| high | Cloud Firestore Security Rules | cloud_firestore_security_rules | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Firestore rules docs and add C-like comment tests. |
-| high | CodeQL | codeql | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the QL language reference and add C-like comment tests. |
 | high | CoffeeScript | coffeescript | needs_research_or_confirmation | high | # | ### ... ### | first closing delimiter wins | unsupported | https://coffeescript.org/ | unresolved | Seed line/block coverage and confirm block-comment stripping in tests. |
-| high | ColdFusion | coldfusion | needs_research_or_confirmation | medium | unsupported | <!--- ... ---> | first closing delimiter wins | unsupported | unresolved | unresolved | Verify CFML comment handling and add template-comment tests. |
-| high | ColdFusion CFC | coldfusion_cfc | needs_research_or_confirmation | medium | unsupported | <!--- ... ---> | first closing delimiter wins | unsupported | unresolved | unresolved | Verify CFML component comment handling and add template-comment tests. |
-| high | Common Workflow Language | common_workflow_language | needs_research_or_confirmation | medium | # | unsupported | unsupported | unsupported | unresolved | unresolved | Verify YAML-based comment handling and add hash-comment tests. |
 | high | Component Pascal | component_pascal | needs_research_or_confirmation | low | unresolved | (* ... *) | first closing delimiter wins | unsupported | unresolved | unresolved | Verify before seeding; only the block delimiter is tentatively known. |
 | high | Cool | cool | needs_research_or_confirmation | medium | -- | (* ... *) | true nesting supported | yes | unresolved | unresolved | Verify COOL nesting semantics and add line/block tests. |
 | high | Creole | creole | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the wiki syntax before seeding. |
@@ -77,18 +71,24 @@ Target output file:
 | high | Cue Sheet | cue_sheet | needs_research_or_confirmation | low | REM` and `# | unsupported | unsupported | unsupported | unresolved | unresolved | Verify cue-sheet syntax before seeding. |
 | high | CWeb | cweb | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research WEB/CWEB comment conventions before seeding. |
 | high | Cycript | cycript | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Cycript docs and add C-like comment tests. |
+| medium | CAP CDS | cap_cds | ready_to_implement | high | // | /* ... */ | first closing delimiter wins | unsupported | https://cap.cloud.sap/docs/cds/cdl | unresolved | Seed line and block comment tests, plus doc-comment coverage if needed. |
+| medium | Cloud Firestore Security Rules | cloud_firestore_security_rules | ready_to_implement | high | // | unsupported | unsupported | unsupported | https://firebase.google.com/docs/firestore/security/rules-structure | unresolved | Seed line-comment coverage only; the reviewed docs do not document block comments. |
+| medium | CodeQL | codeql | ready_to_implement | high | // | /* ... */ | first closing delimiter wins | unsupported | https://codeql.github.com/docs/ql-language-reference/ | https://codeql.github.com/docs/ql-language-reference/ql-language-specification/ | Seed one-line and multiline comment tests; keep QLDoc separate if you need doc-comment fixtures. |
+| medium | ColdFusion | coldfusion | ready_to_implement | high | unsupported | <!--- ... ---> | true nesting supported | yes | https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/elements-of-cfml/comments.html | unresolved | Seed nested CFML block-comment coverage. |
+| medium | ColdFusion CFC | coldfusion_cfc | ready_to_implement | high | unsupported | <!--- ... ---> | true nesting supported | yes | https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/elements-of-cfml/comments.html | unresolved | Seed nested CFML block-comment coverage for component files. |
+| medium | Common Workflow Language | common_workflow_language | ready_to_implement | high | # | unsupported | unsupported | unsupported | https://www.commonwl.org/user_guide/introduction/quick-start.html | unresolved | Seed hash-comment tests in YAML-backed CWL sources. |
 | low | Brainfuck | brainfuck | resolved_non_actionable | high | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document that non-command characters are ignored rather than treated as comments. |
 | low | CSV | csv | resolved_non_actionable | high | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document as commentless unless a specific dialect is introduced. |
 
 ## Search Guidance
 
 For each language, try at least these query patterns before falling back:
-- `"<Language> comments syntax"`
-- `"<Language> language reference comments"`
-- `"<Language> lexical grammar comments"`
-- `"<Language> line comment block comment"`
-- `"<Language> nested comments"`
-- `"<Language> block comment delimiter"`
+- `"<Language> programming language comments syntax"`
+- `"<Language> programming language reference comments"`
+- `"<Language> programming language lexical grammar comments"`
+- `"<Language> programming language line comment block comment"`
+- `"<Language> programming language nested comments"`
+- `"<Language> programming language block comment delimiter"`
 
 If the docs are unclear, search for:
 - lexer or tokenizer definitions
@@ -96,15 +96,15 @@ If the docs are unclear, search for:
 - official examples or language test corpora
 
 If official sources are still unclear, run a search-engine pass such as:
-- `"<Language> comment"`
-- `"<Language> comments"`
-- `"<Language> block comment"`
-- `"<Language> nested comment"`
-- `"site:stackoverflow.com <Language> comment"`
-- `"site:stackoverflow.com <Language> block comment"`
-- `"site:stackoverflow.com <Language> nested comment"`
-- `"<Language> comment blog"`
-- `"<Language> comment tutorial"`
+- `"<Language> programming language comment"`
+- `"<Language> programming language comments"`
+- `"<Language> programming language block comment"`
+- `"<Language> programming language nested comment"`
+- `"site:stackoverflow.com <Language> programming language comment"`
+- `"site:stackoverflow.com <Language> programming language block comment"`
+- `"site:stackoverflow.com <Language> programming language nested comment"`
+- `"<Language> programming language comment blog"`
+- `"<Language> programming language comment tutorial"`
 
 When you use Stack Overflow or blog posts:
 - prefer answers with concrete code examples

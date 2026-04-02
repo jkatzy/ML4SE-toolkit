@@ -132,10 +132,11 @@ print(len(languages))
 print(languages[:10])
 ```
 
-As of this revision, the comment extractor implements `296` language keys.
+As of this revision, the comment extractor implements `326` language keys.
 That includes mainstream source languages plus template, markup, config, and
-record-oriented syntaxes such as `astro`, `dafny`, `g_code`, `gams`, `jsp`,
-`liquid`, `lolcode`, `mustache`, `pug`, `q`, `rexx`, `tla`, and `v`.
+record-oriented syntaxes such as `astro`, `coldfusion`, `g_code`, `gams`,
+`genero`, `jsp`, `marko`, `openqasm`, `plantuml`, `q`, `rexx`, `slim`,
+`smarty`, `tla`, and `v`.
 
 Language keys are lowercase registry identifiers such as `java`, `python`,
 `qml`, `dockerfile`, `powershell`, `jinja`, and `xquery`.

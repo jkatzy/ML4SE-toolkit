@@ -555,14 +555,14 @@ pub fun main() {
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://cap.cloud.sap/docs/cds/cdl
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against SAP CAP CDS docs and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Seed line and block comment tests, plus doc-comment coverage if needed.`
+- Notes: `CDL explicitly documents line-end, block, and doc comments.`
 
 - Example - line:
 ```text
@@ -934,28 +934,21 @@ def main():
 ## Cloud Firestore Security Rules
 - Registry key: `cloud_firestore_security_rules`
 - Line comments: `//`
-- Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Block comments: `unsupported`
+- Termination behavior: `unsupported`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://firebase.google.com/docs/firestore/security/rules-structure
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Firestore rules docs and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Seed line-comment coverage only; the reviewed docs do not document block comments.`
+- Notes: `Official rules examples use // comments inside security rules.`
 
 - Example - line:
 ```text
 // comment
-match /databases/{database}/documents {
-  allow read: if true;
-}
-```
-- Example - block:
-```text
-/* comment */
 match /databases/{database}/documents {
   allow read: if true;
 }
@@ -1020,14 +1013,14 @@ set(VAR value)
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://codeql.github.com/docs/ql-language-reference/
+- Implementation source: https://codeql.github.com/docs/ql-language-reference/ql-language-specification/
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against the QL language reference and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Seed one-line and multiline comment tests; keep QLDoc separate if you need doc-comment fixtures.`
+- Notes: `The QL docs distinguish standard comments from QLDoc comments.`
 
 - Example - line:
 ```text
@@ -1074,43 +1067,64 @@ y = 2
 - Registry key: `coldfusion`
 - Line comments: `unsupported`
 - Block comments: `<!--- ... --->`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Termination behavior: `true nesting supported`
+- Nested comments: `yes`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/elements-of-cfml/comments.html
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify CFML comment handling and add template-comment tests.`
-- Notes: `Classic CFML comment delimiter.`
+- Recommended action: `Seed nested CFML block-comment coverage.`
+- Notes: `Adobe documents nested CFML comments and inline placement inside tags and expressions.`
 
-- Example - line:
+- Example - block:
 ```text
-<cfset x = 1>
 <!--- comment --->
-<cfset y = 2>
+<cfset x = 1>
+```
+- Example - nested:
+```text
+<!--- disable this code
+<!--- display error message --->
+<cfset errormessage1="Oops!">
+<cfoutput>
+#errormessage1#
+</cfoutput>
+--->
 ```
 
 ## ColdFusion CFC
 - Registry key: `coldfusion_cfc`
 - Line comments: `unsupported`
 - Block comments: `<!--- ... --->`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Termination behavior: `true nesting supported`
+- Nested comments: `yes`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/elements-of-cfml/comments.html
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify CFML component comment handling and add template-comment tests.`
-- Notes: `Same comment form as ColdFusion templates.`
+- Recommended action: `Seed nested CFML block-comment coverage for component files.`
+- Notes: `CFC files share the CFML comment rules documented by Adobe.`
 
-- Example - line:
+- Example - block:
 ```text
 <cfcomponent>
   <!--- comment --->
+</cfcomponent>
+```
+- Example - nested:
+```text
+<cfcomponent>
+  <!--- disable this code
+  <!--- display error message --->
+  <cfset errormessage1="Oops!">
+  <cfoutput>
+  #errormessage1#
+  </cfoutput>
+  --->
 </cfcomponent>
 ```
 
@@ -1141,14 +1155,14 @@ y = 2
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://www.commonwl.org/user_guide/introduction/quick-start.html
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify YAML-based comment handling and add hash-comment tests.`
-- Notes: `CWL is typically YAML or YAML-like.`
+- Recommended action: `Seed hash-comment tests in YAML-backed CWL sources.`
+- Notes: `The official CWL guide explicitly says comments start with #.`
 
 - Example - line:
 ```text

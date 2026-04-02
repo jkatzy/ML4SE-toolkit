@@ -112,6 +112,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "ecl",
             "game_maker_language",
             "gosu",
+            "cap_cds",
+            "codeql",
+            "gsc",
+            "hyphy",
+            "openqasm",
+            "quake",
         ),
         regex_patterns=(
             r"\/\*[\S\s]*?\*\/",
@@ -189,8 +195,15 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "wavefront_material",
             "wavefront_object",
             "hxml",
+            "common_workflow_language",
+            "kicad_layout",
+            "kicad_schematic",
             "procfile",
             "proguard",
+            "limbo",
+            "neon",
+            "textmate_properties",
+            "wdl",
             "xonsh",
             "yaml",
             "zeek",
@@ -210,7 +223,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="slash_line_style",
         canonical_name="qsharp",
-        aliases=("go_module", "onec_enterprise", "zig", "grace"),
+        aliases=(
+            "go_module",
+            "onec_enterprise",
+            "zig",
+            "grace",
+            "cloud_firestore_security_rules",
+            "igor_pro",
+        ),
         regex_patterns=(r"/{2}.*.*",),
         shared_regex_examples=(
             CommentExample(
@@ -311,7 +331,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="nested_dash_style",
         canonical_name="agda",
-        aliases=("elm",),
+        aliases=("elm", "frege", "grammatical_framework"),
         regex_patterns=(r"--.*",),
         nested_delimiters=(("{-", "-}"),),
         shared_regex_examples=(
@@ -348,6 +368,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "llvm",
             "windows_registry_entries",
             "rebol",
+            "purebasic",
         ),
         regex_patterns=(r";.*",),
         shared_regex_examples=(
@@ -1532,6 +1553,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="astro_style",
         canonical_name="astro",
+        aliases=("marko",),
         regex_patterns=(
             r"<!--[\S\s]*?-->",
             r"\/\*[\S\s]*?\*\/",
@@ -1786,6 +1808,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="jsp_style",
         canonical_name="jsp",
+        aliases=("groovy_server_pages",),
         regex_patterns=(
             r"<%--[\S\s]*?--%>",
             r"<!--[\S\s]*?-->",
@@ -2020,6 +2043,239 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "Column-1 Stata line comment.",
                 kind="line",
                 grouped_line_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="coldfusion_style",
+        canonical_name="coldfusion",
+        aliases=("coldfusion_cfc",),
+        nested_delimiters=(("<!---", "--->"),),
+        shared_nested_examples=(
+            CommentExample(
+                "before <!--- note ---> after",
+                "<!--- note --->",
+                "ColdFusion block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "before <!--- outer <!--- inner ---> outer ---> after",
+                "<!--- outer <!--- inner ---> outer --->",
+                "Nested ColdFusion block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="genero_style",
+        canonical_name="genero",
+        regex_patterns=(
+            r"\{[\S\s]*?\}",
+            r"--.*",
+            r"#.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n-- note\nsuffix",
+                "-- note",
+                "Genero dash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n{ note }\nsuffix",
+                "{ note }",
+                "Genero brace comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "prefix\n# note\nsuffix",
+                "# note",
+                "Genero hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="inform7_style",
+        canonical_name="inform_7",
+        regex_patterns=(r"\[[\S\s]*?\]",),
+        shared_regex_examples=(
+            CommentExample(
+                "The China Shop is a room. [Remember the bull.]",
+                "[Remember the bull.]",
+                "Inform 7 bracket comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="j_style",
+        canonical_name="j",
+        regex_patterns=(r"(?m)(?<!\S)NB\..*$",),
+        shared_regex_examples=(
+            CommentExample(
+                "NB. note\nafter",
+                "NB. note",
+                "J line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "value =: 1 NB. inline note\nvalue",
+                "NB. inline note",
+                "J inline comment.",
+                kind="line",
+                inline_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="objectscript_style",
+        canonical_name="objectscript",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}.*.*",
+            r"##;.*",
+            r"(?m)^#;.*$",
+            r";.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "ObjectScript slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n/* note */\nsuffix",
+                "/* note */",
+                "ObjectScript block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "Set x = 1 ; note\nSet y = 2",
+                "; note",
+                "ObjectScript semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                '#define alphalen ##function($LENGTH("abcdefghijklmnopqrstuvwxyz")) ##; + 100',
+                "##; + 100",
+                "ObjectScript macro comment.",
+                kind="line",
+                inline_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="plantuml_style",
+        canonical_name="plantuml",
+        regex_patterns=(
+            r"/'[\S\s]*?'/",
+            r"'.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "@startuml\n' note\nAlice -> Bob : hello\n@enduml",
+                "' note",
+                "PlantUML apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "@startuml\n/' note '/\nAlice -> Bob : hello\n@enduml",
+                "/' note '/",
+                "PlantUML block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="rdoc_style",
+        canonical_name="rdoc",
+        regex_patterns=(
+            r"=[\s\S]*?=end",
+            r"\/\*[\S\s]*?\*\/",
+            r"#.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\ndef hello(name)\n  name\nend",
+                "# note",
+                "RDoc line comment in Ruby source.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "before\n/* note */\nafter",
+                "/* note */",
+                "RDoc block comment in C source.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "before\n=begin\nnote\n=end\nafter",
+                "=begin\nnote\n=end",
+                "RDoc begin/end block comment.",
+                kind="block",
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="slim_style",
+        canonical_name="slim",
+        regex_patterns=(r"(?m)^([ \t]*)/!?[^\n]*(?:\n\1[ \t]+.*)*",),
+        shared_regex_examples=(
+            CommentExample(
+                "body\n  / note\n  p Visible content.",
+                "  / note",
+                "Slim line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "body\n  /! note\n  p Visible content.",
+                "  /! note",
+                "Slim HTML-comment form opener.",
+                kind="block",
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="smarty_style",
+        canonical_name="smarty",
+        regex_patterns=(r"\{\*[\S\s]*?\*\}",),
+        shared_regex_examples=(
+            CommentExample(
+                "before\n{* note *}\nafter",
+                "{* note *}",
+                "Smarty template comment.",
+                kind="block",
+                inline_compatible=True,
             ),
         ),
     ),

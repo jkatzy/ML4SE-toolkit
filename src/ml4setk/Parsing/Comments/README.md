@@ -23,10 +23,10 @@ For concrete usage, examples, supported-language lookup, and current
 limitations, see
 [`docs/comment_extractor.md`](../../../../docs/comment_extractor.md).
 
-The registry currently covers `296` language keys, including programming,
+The registry currently covers `326` language keys, including programming,
 template, markup, config, and record-oriented syntaxes such as `astro`,
-`dafny`, `liquid`, `mustache`, `pug`, `q`, `restructuredtext`, `rexx`, and
-`tla`.
+`coldfusion`, `genero`, `marko`, `openqasm`, `plantuml`, `q`,
+`restructuredtext`, `rexx`, `slim`, `smarty`, and `tla`.
 
 ## Expansion workflow
 

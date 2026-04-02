@@ -7,6 +7,8 @@ from ml4setk.Parsing.Comments import SUPPORTED_LANGUAGES, iter_comment_syntaxes
 
 pytestmark = pytest.mark.unit
 
+INDENTATION_SCOPED_BLOCK_LANGUAGES = {"slim"}
+
 
 @dataclass(frozen=True)
 class GeneratedCommentCase:
@@ -204,6 +206,8 @@ def _build_block_with_inner_line_cases():
     cases = []
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
+            if language in INDENTATION_SCOPED_BLOCK_LANGUAGES:
+                continue
             line_example = _find_regex_example(syntax, language, kind="line")
             block_example = _find_regex_example(syntax, language, kind="block")
             if line_example is None or block_example is None:
@@ -229,6 +233,8 @@ def _build_outer_block_wins_cases():
     cases = []
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
+            if language in INDENTATION_SCOPED_BLOCK_LANGUAGES:
+                continue
             line_example = _find_regex_example(
                 syntax,
                 language,
@@ -418,6 +424,8 @@ def test_generated_block_with_inner_line_cases_cover_all_block_and_line_language
     expected = set()
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
+            if language in INDENTATION_SCOPED_BLOCK_LANGUAGES:
+                continue
             line_example = _find_regex_example(syntax, language, kind="line")
             block_example = _find_regex_example(syntax, language, kind="block")
             if line_example is not None and block_example is not None:
@@ -430,6 +438,8 @@ def test_generated_outer_block_wins_cases_cover_all_block_and_line_languages():
     expected = set()
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
+            if language in INDENTATION_SCOPED_BLOCK_LANGUAGES:
+                continue
             line_example = _find_regex_example(syntax, language, kind="line")
             block_example = _find_regex_example(syntax, language, kind="block")
             if line_example is None:

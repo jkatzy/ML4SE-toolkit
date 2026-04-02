@@ -87,9 +87,10 @@ nested comments, opening file-header extraction, supported-language lookup, and
 unsupported-language behavior,
 see [docs/comment_extractor.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/comment_extractor.md).
 
-At the moment the comment extractor covers `296` registry keys, including
-template and document syntaxes such as `astro`, `jsp`, `liquid`, `mustache`,
-`pug`, and `restructuredtext`, plus nested-comment languages such as `dafny`,
+At the moment the comment extractor covers `326` registry keys, including
+template and document syntaxes such as `astro`, `coldfusion`, `jsp`, `marko`,
+`plantuml`, `slim`, `smarty`, and `restructuredtext`, plus nested-comment
+languages such as `coldfusion`, `dafny`, `frege`, `grammatical_framework`,
 `rexx`, `tla`, and `v`.
 
 ## Development commands

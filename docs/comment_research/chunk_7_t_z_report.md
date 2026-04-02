@@ -197,14 +197,14 @@ comment
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://macromates.com/textmate/manual/settings
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify the exact properties-file variant used in Stack v2 and add hash-comment tests if confirmed.`
-- Notes: `Candidate shell-style property comments.`
+- Recommended action: `Seed hash-comment tests for .tm_properties files.`
+- Notes: `The TextMate manual defines # comments in the .tm_properties grammar.`
 
 - Example - line:
 ```text
@@ -991,14 +991,14 @@ v 0.0 0.0 0.0
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: https://docs.openwdl.org/reference/stdlib/numeric.html
 - Implementation source: `unresolved`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify the exact WDL dialect before seeding.`
-- Notes: `The Stack v2 label is lowercase, so the exact language family matters.`
+- Recommended action: `Seed hash-comment tests in WDL fixtures.`
+- Notes: `The official WDL docs show # comments in code examples.`
 
 - Example - line:
 ```wdl

@@ -13,11 +13,11 @@ Method: official docs first, implementation/grammar source second, then registry
 - Nested comments: no
 - Confidence: verified
 - Evidence mode: official_docs
-- Docs source: `https://code.kx.com/q4m3/10_Execution_Control/`
+- Docs source: `https://code.kx.com/q/learn/tour/scripts/`
 - Implementation source: `GitHub Linguist languages.yml`
 - Corpus fallback source: unresolved
 - Recommended action: implement
-- Notes: q supports trailing `/` comments and multi-line block comments delimited by a line containing `/` and a line containing `\`.
+- Notes: q supports `/` line comments, trailing comments, and multiline comment blocks opened by `/` and closed by `\`.
 
 ### Examples
 
@@ -145,20 +145,34 @@ return value;
 
 ## Quake
 - Registry key: `quake`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: GitHub Linguist languages.yml
+- Line comments: `//`
+- Block comments: `/* */`
+- Termination behavior: line comments terminate at end-of-line; block comments terminate at first closing delimiter
+- Nested comments: no
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: `https://usdqc.github.io/quakec-resources/qcmanual.html`
+- Implementation source: `GitHub Linguist languages.yml`
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: Likely C-like if this Stack label maps to QuakeC, but I did not find a direct authoritative source here.
+- Recommended action: implement
+- Notes: The available QuakeC manual explicitly describes `//` and `/* */`; the Stack label is likely the QuakeC family.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+float health;
+// keep the next assignment explicit
+health = 100;
+```
+
+#### Block comment
+```text
+float health;
+/* keep the next assignment explicit */
+health = 100;
+```
 
 ## Racket
 - Registry key: `racket`
@@ -283,20 +297,38 @@ return value;
 
 ## RDoc
 - Registry key: `rdoc`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: GitHub Linguist languages.yml
+- Line comments: `#` in Ruby sources
+- Block comments: `=begin` / `=end` in Ruby sources; `/* */` in C sources
+- Termination behavior: line comments terminate at end-of-line; Ruby block comments terminate at `=end`; C-style comment blocks terminate at `*/`
+- Nested comments: no
+- Confidence: high
+- Evidence mode: implementation_cross_checked
+- Docs source: `https://ruby.github.io/rdoc/doc/markup_reference/rdoc_rdoc.html`
+- Implementation source: `https://ruby.github.io/rdoc/RDoc/Parser/Ruby.html`
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: RDoc is documentation-oriented; comment handling depends on the host language and parser mode.
+- Recommended action: implement
+- Notes: RDoc is host-language dependent. The parser docs show Ruby `#` comments and C-style `/* */` comment blocks as inputs to documentation extraction.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+# :call-seq:
+#   hello(name) -> String
+def hello(name)
+  "Hello #{name}"
+end
+```
+
+#### Block comment
+```text
+=begin
+keep the following method documented
+=end
+def hello(name)
+  "Hello #{name}"
+end
+```
 
 ## Readline Config
 - Registry key: `readline_config`
@@ -1049,20 +1081,28 @@ value = 2
 
 ## SELinux Policy
 - Registry key: `selinux_policy`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: GitHub Linguist languages.yml
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: line comments terminate at end-of-line; block comments unsupported
+- Nested comments: no
+- Confidence: medium
+- Evidence mode: implementation_cross_checked
+- Docs source: `https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/using_selinux/writing-a-custom-selinux-policy`
+- Implementation source: `https://github.com/SELinuxProject/refpolicy`
+- Community source: `https://github.com/SELinuxProject/selint`
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: Policy files are usually treated as C-like by tooling, but I did not confirm the exact grammar here.
+- Recommended action: candidate
+- Notes: SELinux policy sources and SELint both treat `#` as the comment form in `.te` / `.if` files. I did not confirm a delimiter-based block comment form.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+policy_module(example, 1.0)
+
+# keep the next rule explicit
+allow example_t self:process signal;
+```
 
 ## ShaderLab
 - Registry key: `shaderlab`
@@ -1183,7 +1223,7 @@ value = 2
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
 - Recommended action: needs manual research
-- Notes: Slash is ambiguous; I did not validate its comment grammar.
+- Notes: I could not find a defensible source for the language label used here.
 
 ### Examples
 - unsupported or unresolved
@@ -1220,20 +1260,34 @@ return value;
 
 ## Slim
 - Registry key: `slim`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `/`
+- Block comments: `/!`
+- Termination behavior: line comments terminate at end-of-line; block comments terminate at dedent
+- Nested comments: no
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: `https://github.com/slim-template/slim`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: Slim comment delimiters vary by mode; confirm against the exact template syntax before adding support.
+- Recommended action: implement
+- Notes: Slim treats `/` as a code comment and `/!` as the HTML-comment form. The comments are indentation-scoped rather than delimiter-nested.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+body
+  / This line won't get displayed.
+    Neither does this line.
+  p Visible content.
+```
+
+#### Block comment
+```text
+body
+  /! This will get displayed as html comments.
+  p Visible content.
+```
 
 ## Smali
 - Registry key: `smali`
@@ -1287,20 +1341,29 @@ value := value + 1.
 
 ## Smarty
 - Registry key: `smarty`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: unsupported
+- Block comments: `{* *}`
+- Termination behavior: block comments terminate at the first closing `*}`
+- Nested comments: no
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: `https://www.smarty.net/docsv2/pt_BR/language.basic.syntax.tpl`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: Smarty uses template comment delimiters rather than ordinary code comments.
+- Recommended action: implement
+- Notes: Smarty comments are template-delimited and can span multiple lines, but they do not nest.
 
 ### Examples
-- unsupported or unresolved
+
+#### Block comment
+```text
+<body>
+{* this multiline
+   comment is
+   not sent to browser *}
+{include file='header.tpl'}
+</body>
+```
 
 ## SmPL
 - Registry key: `smpl`

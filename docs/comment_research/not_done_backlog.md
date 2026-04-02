@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-04-02`
-- Total uncovered languages tracked: `311`
+- Total uncovered languages tracked: `281`
 - Ready to implement now: `0`
-- Needs research or confirmation: `300`
+- Needs research or confirmation: `270`
 - Resolved non-actionable: `11`
 - Missing research records: `0`
 
@@ -49,7 +49,6 @@ Status definitions:
 | Browserslist | browserslist | medium | # | unsupported | unsupported | unsupported | Confirm config-file comment handling and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Cabal Config | cabal_config | medium | -- | unsupported | unsupported | unsupported | Verify against Cabal syntax docs and add line-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Cadence | cadence | medium | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Cadence docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
-| CAP CDS | cap_cds | medium | // | /* ... */ | first closing delimiter wins | unsupported | Verify against SAP CAP CDS docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | CartoCSS | cartocss | low | // | /* ... */ | first closing delimiter wins | unsupported | Verify against CartoCSS docs before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Ceylon | ceylon | medium | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Ceylon docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Chapel | chapel | low | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Chapel docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
@@ -62,12 +61,7 @@ Status definitions:
 | Click | click | medium | # | unsupported | unsupported | unsupported | Add hash-comment tests after confirming the Click parser docs. | docs/comment_research/chunk_1_b_c_report.md |
 | CLIPS | clips | medium | ; | /* ... */ | first closing delimiter wins | unsupported | Verify CLIPS comment syntax and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Closure Templates | closure_templates | low | unsupported | {* ... *} | first closing delimiter wins | unsupported | Verify Soy/Closure Templates comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
-| Cloud Firestore Security Rules | cloud_firestore_security_rules | medium | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Firestore rules docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
-| CodeQL | codeql | medium | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the QL language reference and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | CoffeeScript | coffeescript | high | # | ### ... ### | first closing delimiter wins | unsupported | Seed line/block coverage and confirm block-comment stripping in tests. | docs/comment_research/chunk_1_b_c_report.md |
-| ColdFusion | coldfusion | medium | unsupported | <!--- ... ---> | first closing delimiter wins | unsupported | Verify CFML comment handling and add template-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
-| ColdFusion CFC | coldfusion_cfc | medium | unsupported | <!--- ... ---> | first closing delimiter wins | unsupported | Verify CFML component comment handling and add template-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
-| Common Workflow Language | common_workflow_language | medium | # | unsupported | unsupported | unsupported | Verify YAML-based comment handling and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Component Pascal | component_pascal | low | unresolved | (* ... *) | first closing delimiter wins | unsupported | Verify before seeding; only the block delimiter is tentatively known. | docs/comment_research/chunk_1_b_c_report.md |
 | Cool | cool | medium | -- | (* ... *) | true nesting supported | yes | Verify COOL nesting semantics and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Creole | creole | low | unresolved | unresolved | unresolved | unresolved | Research the wiki syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
@@ -86,34 +80,25 @@ Status definitions:
 | Edje Data Collection | edje_data_collection | unresolved | unresolved | unresolved | unresolved | unresolved | confirm the `.edc` syntax before adding a registry entry. | docs/comment_research/chunk_2_d_f_report.md |
 | EmberScript | emberscript | medium | `#` supported | `### ... ###` supported | first closing delimiter wins | unsupported | keep this as a corpus-backed entry until an official syntax page or grammar is pinned. | docs/comment_research/chunk_2_d_f_report.md |
 | EQ | eq | unresolved | unresolved | unresolved | unresolved | unresolved | identify the language before adding syntax. | docs/comment_research/chunk_2_d_f_report.md |
-| F* | f_star | medium | `//` supported | `(* ... *)` supported | first closing delimiter wins | unresolved | add line and block tests now; confirm nesting before encoding it as supported. | docs/comment_research/chunk_2_d_f_report.md |
+| F* | f_star | high | `//` supported | `(* ... *)` supported | first closing delimiter wins | unresolved | add line and block tests now; confirm nesting before encoding it as supported. | docs/comment_research/chunk_2_d_f_report.md |
 | Fennel | fennel | medium | `;` supported | unsupported | runs to newline | unsupported | keep the corpus-backed line-comment rule and avoid inventing block syntax. | docs/comment_research/chunk_2_d_f_report.md |
 | FIGlet Font | figlet_font | unresolved | unresolved | unresolved | unresolved | unresolved | identify the exact font-file format before adding syntax. | docs/comment_research/chunk_2_d_f_report.md |
 | Filebench WML | filebench_wml | unresolved | unresolved | unresolved | unresolved | unresolved | verify the WML syntax from Filebench docs first. | docs/comment_research/chunk_2_d_f_report.md |
 | FLUX | flux | unresolved | unresolved | unresolved | unresolved | unresolved | pin the exact FLUX language or format first. | docs/comment_research/chunk_2_d_f_report.md |
 | Formatted | formatted | unresolved | unresolved | unresolved | unresolved | unresolved | determine what "Formatted" refers to in Stack v2. | docs/comment_research/chunk_2_d_f_report.md |
-| Frege | frege | medium | `--` supported | `{- ... -}` supported | first closing delimiter wins | unresolved | keep the Haskell-like line and block forms, then confirm nesting against a parser or lexer before registry changes. | docs/comment_research/chunk_2_d_f_report.md |
 | GAML | gaml | medium | // | unresolved | line comments end at newline; block comments unresolved | unsupported | Confirm whether GAML has a distinct block-comment form in the grammar or corpus before adding registry support. | docs/comment_research/chunk_3_g_i_report.md |
 | GCC Machine Description | gcc_machine_description | unresolved | unresolved | unresolved | unresolved | unresolved | Leave unsupported until an official GCC machine-description syntax source is located. | docs/comment_research/chunk_3_g_i_report.md |
 | GEDCOM | gedcom | unresolved | unresolved | unresolved | unresolved | unresolved | Keep unsupported unless a dialect-specific GEDCOM source documents a real comment form. | docs/comment_research/chunk_3_g_i_report.md |
 | Gemfile.lock | gemfile_lock | unsupported | unsupported | unsupported | unsupported | unsupported | Keep unsupported and exclude this file type from comment parsing tests. | docs/comment_research/chunk_3_g_i_report.md |
-| Genero | genero | unresolved | unresolved | unresolved | unresolved | unresolved | Research the official Genero language manual and grammar before adding support. | docs/comment_research/chunk_3_g_i_report.md |
-| Genero Forms | genero_forms | unresolved | unresolved | unresolved | unresolved | unresolved | Treat this as a separate research target from Genero itself. | docs/comment_research/chunk_3_g_i_report.md |
+| Genero Forms | genero_forms | medium | -- | unsupported | line comments end at newline | unsupported | Add `.per` fixtures that keep `--` comment lines in place and do not assume brace or hash comments unless a form-file grammar source confirms them. | docs/comment_research/chunk_3_g_i_report.md |
 | Git Revision List | git_revision_list | unresolved | unresolved | unresolved | unresolved | unresolved | Keep unsupported unless a specific revision-list dialect documents comments. | docs/comment_research/chunk_3_g_i_report.md |
 | Go Checksums | go_checksums | unsupported | unsupported | unsupported | unsupported | unsupported | Keep unsupported and exclude from parser coverage. | docs/comment_research/chunk_3_g_i_report.md |
 | Golo | golo | high | unsupported | ---- ... ---- | first closing `----` wins | unsupported | Add block-comment fixtures using the `----` delimiter and keep line-comment tests absent unless a second source confirms them. | docs/comment_research/chunk_3_g_i_report.md |
-| Grammatical Framework | grammatical_framework | unresolved | unresolved | unresolved | unresolved | unresolved | Research the official GF syntax before adding registry entries. | docs/comment_research/chunk_3_g_i_report.md |
 | Graph Modeling Language | graph_modeling_language | unsupported | unsupported | unsupported | unsupported | unsupported | Keep unsupported; the available references describe `comment` as a data attribute, not a comment delimiter. | docs/comment_research/chunk_3_g_i_report.md |
-| Groovy Server Pages | groovy_server_pages | unresolved | unresolved | unresolved | unresolved | unresolved | Research GSP template-comment syntax before adding any parser rule. | docs/comment_research/chunk_3_g_i_report.md |
-| GSC | gsc | unresolved | unresolved | unresolved | unresolved | unresolved | Leave unsupported until a verified GSC syntax source is found. | docs/comment_research/chunk_3_g_i_report.md |
 | Harbour | harbour | unresolved | unresolved | unresolved | unresolved | unresolved | Leave unresolved until a source-backed Harbour syntax reference confirms the comment forms. | docs/comment_research/chunk_3_g_i_report.md |
-| HolyC | holyc | unresolved | unresolved | unresolved | unresolved | unresolved | Research the official HolyC syntax before adding support. | docs/comment_research/chunk_3_g_i_report.md |
+| HolyC | holyc | medium | // | unresolved | line comments end at newline; block comments unresolved | unresolved | Keep the `//` line-comment fixture and leave block comments unresolved until a source-backed HolyC reference confirms them. | docs/comment_research/chunk_3_g_i_report.md |
 | HTTP | http | unsupported | unsupported | unsupported | unsupported | unsupported | Keep unsupported unless a formal comment syntax is located in a specific HTTP configuration grammar. | docs/comment_research/chunk_3_g_i_report.md |
-| HyPhy | hyphy | unresolved | unresolved | unresolved | unresolved | unresolved | Research the official HyPhy syntax before adding registry support. | docs/comment_research/chunk_3_g_i_report.md |
-| IGOR Pro | igor_pro | unresolved | unresolved | unresolved | unresolved | unresolved | Research official IGOR Pro syntax before adding support. | docs/comment_research/chunk_3_g_i_report.md |
-| Inform 7 | inform_7 | unresolved | unresolved | unresolved | unresolved | unresolved | Verify bracket-comment syntax and nesting behavior in the official Inform 7 docs before adding support. | docs/comment_research/chunk_3_g_i_report.md |
 | IRC log | irc_log | unsupported | unsupported | unsupported | unsupported | unsupported | Keep unsupported. | docs/comment_research/chunk_3_g_i_report.md |
-| J | j | unresolved | unsupported | unsupported | unsupported | unsupported | defer | docs/comment_research/chunk_4_j_m_report.md |
 | Jasmin | jasmin | candidate | ; | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | JavaScript+ERB | javascript_erb | candidate | //, <%# ... %> | /* ... */ | end of line for JS line comments; first closing delimiter wins for block comments; ERB comments terminate at %> | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Jest Snapshot | jest_snapshot | candidate | // | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
@@ -122,9 +107,7 @@ Status definitions:
 | Jolie | jolie | candidate | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Kaitai Struct | kaitai_struct | candidate | # | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | KakouneScript | kakounescript | unresolved | # | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
-| KiCad Layout | kicad_layout | unresolved | ; | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
 | KiCad Legacy Layout | kicad_legacy_layout | unresolved | ; | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
-| KiCad Schematic | kicad_schematic | unresolved | ; | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
 | Kit | kit | unresolved | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | KRL | krl | candidate | ; | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Kusto | kusto | candidate | // | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
@@ -134,7 +117,6 @@ Status definitions:
 | Lasso | lasso | candidate | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Lex | lex | candidate | unsupported | /* ... */ | first closing delimiter wins | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | LFE | lfe | candidate | ; | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
-| Limbo | limbo | unresolved | # | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
 | Linker Script | linker_script | candidate | unsupported | /* ... */ | first closing delimiter wins | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Linux Kernel Module | linux_kernel_module | candidate | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Literate Agda | literate_agda | unresolved | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
@@ -151,14 +133,13 @@ Status definitions:
 | M4 | m4 | candidate | # | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | M4Sugar | m4sugar | candidate | # | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Macaulay2 | macaulay2 | candidate | -- | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| Marko | marko | unresolved | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | Mask | mask | unresolved | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | Max | max | candidate | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | MAXScript | maxscript | candidate | -- | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | mcfunction | mcfunction | candidate | # | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | Mercury | mercury | candidate | % | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Metal | metal | candidate | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| Microsoft Developer Studio Project | msdev_project | unresolved | <!-- ... --> | <!-- ... --> | end of line for line comments; first closing delimiter wins for block comments | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
+| Microsoft Developer Studio Project | msdev_project | candidate | # | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Microsoft Visual Studio Solution | visual_studio_solution | candidate | # | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Mirah | mirah | candidate | # | =begin ... =end | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | mIRC Script | mirc_script | candidate | ; | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
@@ -184,7 +165,6 @@ Status definitions:
 | NCL | ncl | unresolved | unresolved | unresolved | unresolved | unresolved | research official NCL docs before registry updates. | docs/comment_research/chunk_5_n_p_report.md |
 | Nearley | nearley | unresolved | unresolved | unresolved | unresolved | unresolved | verify Nearley grammar comment syntax from official docs or grammar sources. | docs/comment_research/chunk_5_n_p_report.md |
 | Nemerle | nemerle | unresolved | unresolved | unresolved | unresolved | unresolved | verify Nemerle comment syntax before adding fixtures. | docs/comment_research/chunk_5_n_p_report.md |
-| NEON | neon | unresolved | unresolved | unresolved | unresolved | unresolved | research official Neon docs before registry updates. | docs/comment_research/chunk_5_n_p_report.md |
 | nesC | nesc | medium | // | /* ... */ | first closing delimiter wins | unsupported | add C-style fixtures and verify against the nesC reference. | docs/comment_research/chunk_5_n_p_report.md |
 | NetLinx | netlinx | unresolved | unresolved | unresolved | unresolved | unresolved | verify NetLinx comment syntax from official docs. | docs/comment_research/chunk_5_n_p_report.md |
 | NewLisp | newlisp | unresolved | unresolved | unresolved | unresolved | unresolved | verify newLISP comment syntax from the reference manual. | docs/comment_research/chunk_5_n_p_report.md |
@@ -193,11 +173,9 @@ Status definitions:
 | NWScript | nwscript | medium | // | /* ... */ | first closing delimiter wins | unsupported | add C-style fixtures and verify against the NWScript reference. | docs/comment_research/chunk_5_n_p_report.md |
 | ObjDump | objdump | unresolved | unresolved | unresolved | unresolved | unresolved | identify the exact Stack v2 syntax flavor for this entry. | docs/comment_research/chunk_5_n_p_report.md |
 | Object Data Instance Notation | object_data_instance_notation | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the format supports comments at all. | docs/comment_research/chunk_5_n_p_report.md |
-| ObjectScript | objectscript | unresolved | unresolved | unresolved | unresolved | unresolved | verify ObjectScript comment syntax from the official reference. | docs/comment_research/chunk_5_n_p_report.md |
 | ooc | ooc | medium | // | /* ... */ | first closing delimiter wins | unsupported | add C-family fixtures and verify against ooc docs. | docs/comment_research/chunk_5_n_p_report.md |
 | Opa | opa | unresolved | unresolved | unresolved | unresolved | unresolved | verify the Stack v2 Opa entry before assuming any syntax family. | docs/comment_research/chunk_5_n_p_report.md |
 | OpenEdge ABL | openedge_abl | unresolved | unresolved | unresolved | unresolved | unresolved | verify ABL comment syntax from the official reference. | docs/comment_research/chunk_5_n_p_report.md |
-| OpenQASM | openqasm | unresolved | unresolved | unresolved | unresolved | unresolved | verify the OpenQASM specification before registry changes. | docs/comment_research/chunk_5_n_p_report.md |
 | OpenRC runscript | openrc_runscript | medium | # | unsupported | newline | unsupported | add line-comment fixtures and confirm against the runscript reference. | docs/comment_research/chunk_5_n_p_report.md |
 | OpenStep Property List | openstep_property_list | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the plist variant supports comments at all. | docs/comment_research/chunk_5_n_p_report.md |
 | OpenType Feature File | opentype_feature_file | unresolved | unresolved | unresolved | unresolved | unresolved | verify feature-file comment syntax from the OpenType feature syntax docs. | docs/comment_research/chunk_5_n_p_report.md |
@@ -218,7 +196,6 @@ Status definitions:
 | PicoLisp | picolisp | unresolved | unresolved | unresolved | unresolved | unresolved | verify PicoLisp comment syntax from the official docs. | docs/comment_research/chunk_5_n_p_report.md |
 | PigLatin | piglatin | medium | -- | /* ... */ | first closing delimiter wins | unsupported | add SQL-like fixtures and confirm the PigLatin comment rules. | docs/comment_research/chunk_5_n_p_report.md |
 | Pike | pike | medium | // | /* ... */ | first closing delimiter wins | unsupported | add C-family fixtures and verify against Pike docs. | docs/comment_research/chunk_5_n_p_report.md |
-| PlantUML | plantuml | unresolved | unresolved | unresolved | unresolved | unresolved | verify PlantUML comment syntax from official docs. | docs/comment_research/chunk_5_n_p_report.md |
 | Pod | pod | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether this is Perl POD or a different source format. | docs/comment_research/chunk_5_n_p_report.md |
 | Pod 6 | pod_6 | unresolved | unresolved | unresolved | unresolved | unresolved | verify Pod 6 / Raku docs before registry changes. | docs/comment_research/chunk_5_n_p_report.md |
 | PogoScript | pogoscript | unresolved | unresolved | unresolved | unresolved | unresolved | verify PogoScript syntax from official docs. | docs/comment_research/chunk_5_n_p_report.md |
@@ -230,14 +207,11 @@ Status definitions:
 | Promela | promela | medium | // | /* ... */ | first closing delimiter wins | unsupported | add C-style fixtures and confirm against the SPIN reference. | docs/comment_research/chunk_5_n_p_report.md |
 | Propeller Spin | propeller_spin | unresolved | unresolved | unresolved | unresolved | unresolved | verify Spin comment syntax from the official reference. | docs/comment_research/chunk_5_n_p_report.md |
 | Pure Data | pure_data | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the format has true comments or only directives. | docs/comment_research/chunk_5_n_p_report.md |
-| PureBasic | purebasic | unresolved | unresolved | unresolved | unresolved | unresolved | verify PureBasic comment syntax before adding fixtures. | docs/comment_research/chunk_5_n_p_report.md |
 | Qt Script | qt_script | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
-| Quake | quake | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
 | Ragel | ragel | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
 | RAML | raml | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Rascal | rascal | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Raw token data | raw_token_data | unresolved | unsupported | unsupported | unresolved | unsupported | unsupported | docs/comment_research/chunk_6_q_s_report.md |
-| RDoc | rdoc | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
 | REALbasic | realbasic | medium | ' | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_6_q_s_report.md |
 | Reason | reason | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Red | red | seeded-from-implementation | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | implement | docs/comment_research/chunk_6_q_s_report.md |
@@ -256,14 +230,12 @@ Status definitions:
 | SaltStack | saltstack | seeded-from-implementation | # | {# #} | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | sed | sed | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Self | self | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
-| SELinux Policy | selinux_policy | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
+| SELinux Policy | selinux_policy | medium | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_6_q_s_report.md |
 | ShaderLab | shaderlab | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Singularity | singularity | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Slash | slash | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
 | Slice | slice | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
-| Slim | slim | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
 | Smali | smali | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | implement | docs/comment_research/chunk_6_q_s_report.md |
-| Smarty | smarty | unresolved | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_6_q_s_report.md |
 | SmPL | smpl | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | SMT | smt | seeded-from-implementation | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | implement | docs/comment_research/chunk_6_q_s_report.md |
 | Solidity | solidity | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | implement | docs/comment_research/chunk_6_q_s_report.md |
@@ -291,7 +263,6 @@ Status definitions:
 | Terra | terra | medium | -- | --[[ ... ]] | depth-qualified delimiters | yes | Verify Lua-style long-comment handling and add nested coverage if the grammar supports it. | docs/comment_research/chunk_7_t_z_report.md |
 | Texinfo | texinfo | medium | @c` and `@comment | @ignore ... @end ignore | first closing delimiter wins | unsupported | Verify Texinfo comment and ignore-block behavior before seeding. | docs/comment_research/chunk_7_t_z_report.md |
 | Textile | textile | low | unresolved | unresolved | unresolved | unresolved | Research Textile syntax before seeding a registry entry. | docs/comment_research/chunk_7_t_z_report.md |
-| TextMate Properties | textmate_properties | medium | # | unsupported | unsupported | unsupported | Verify the exact properties-file variant used in Stack v2 and add hash-comment tests if confirmed. | docs/comment_research/chunk_7_t_z_report.md |
 | Turing | turing | low | unresolved | unresolved | unresolved | unresolved | Verify Turing comment syntax before seeding. | docs/comment_research/chunk_7_t_z_report.md |
 | TXL | txl | low | unresolved | unresolved | unresolved | unresolved | Verify TXL syntax before adding a registry entry. | docs/comment_research/chunk_7_t_z_report.md |
 | Type Language | type_language | low | unresolved | unresolved | unresolved | unresolved | Research the specific Stack v2 dialect before seeding. | docs/comment_research/chunk_7_t_z_report.md |
@@ -304,7 +275,6 @@ Status definitions:
 | Vim Help File | vim_help_file | low | unresolved | unsupported | unsupported | unsupported | Verify help-file markup rules before seeding. | docs/comment_research/chunk_7_t_z_report.md |
 | Vim Snippet | vim_snippet | low | unresolved | unresolved | unresolved | unresolved | Research the snippet dialect used in Stack v2 before seeding. | docs/comment_research/chunk_7_t_z_report.md |
 | Volt | volt | low | unresolved | unresolved | unresolved | unresolved | Research Volt syntax before seeding. | docs/comment_research/chunk_7_t_z_report.md |
-| wdl | wdl | medium | # | unsupported | unsupported | unsupported | Verify the exact WDL dialect before seeding. | docs/comment_research/chunk_7_t_z_report.md |
 | Web Ontology Language | web_ontology_language | low | unresolved | unresolved | unresolved | unresolved | Research the specific serialization used in Stack v2 before seeding. | docs/comment_research/chunk_7_t_z_report.md |
 | WebVTT | webvtt | medium | unsupported | NOTE ... blank line | first blank line wins | unsupported | Treat NOTE blocks as WebVTT comments and add parser tests for blank-line termination. | docs/comment_research/chunk_7_t_z_report.md |
 | Whiley | whiley | medium | // | /* ... */ | first closing delimiter wins | unsupported | Verify Whiley syntax before seeding. | docs/comment_research/chunk_7_t_z_report.md |
