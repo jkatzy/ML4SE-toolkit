@@ -170,6 +170,38 @@ model_input, ground_truth = FIMInput(
 The generation classes operate on the same `QueryMatch` contract, so the
 extractor output can be used directly.
 
+## Sanitizing extracted comments
+
+If you need the comment text without the surrounding syntax, use
+`CommentSanitizer(language)` or the convenience helper
+`sanitize_comment_text(language, comment)`.
+
+```python
+from ml4setk import CommentQuery, CommentSanitizer
+
+sample = "value = 1 // keep the legacy path\nreturn value"
+match = CommentQuery("java").parse(sample)[0]
+
+text = CommentSanitizer("java").sanitize(match)
+assert text == "keep the legacy path"
+```
+
+Grouped line comments are sanitized line-by-line:
+
+```python
+from ml4setk import sanitize_comment_text
+
+comment = "// first line\n// second line"
+assert sanitize_comment_text("java", comment) == "first line\nsecond line"
+```
+
+Block comments keep their inner text and drop only the outer syntax:
+
+```python
+comment = "/**\n * first line\n * second line\n */"
+assert sanitize_comment_text("java", comment) == "first line\nsecond line"
+```
+
 ## Current limitations
 
 - Regex-based parsing is not fully lexical. Comment-like text inside strings or

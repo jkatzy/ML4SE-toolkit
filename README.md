@@ -7,6 +7,7 @@ reproducible machine-learning examples for software engineering research.
 
 - Comment-oriented parsing utilities that return a normalized
   `QueryMatch(prefix, suffix, match)` contract.
+- Comment sanitization utilities that strip comment syntax after extraction.
 - Input builders for causal and fill-in-the-middle style training examples.
 - Optional integrations for Tree-sitter queries and PyTorch-style iterable
   datasets.
@@ -124,8 +125,8 @@ The parsing contract is stable across the core query implementations:
 - `match`: the extracted region itself
 
 For a fuller extractor guide, including `contains`, grouped line comments,
-nested comments, opening file-header extraction, supported-language lookup, and
-unsupported-language behavior,
+nested comments, comment sanitization, opening file-header extraction,
+supported-language lookup, and unsupported-language behavior,
 see [docs/comment_extractor.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/comment_extractor.md).
 
 At the moment the comment extractor covers `326` registry keys, including

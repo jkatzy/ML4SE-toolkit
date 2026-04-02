@@ -11,6 +11,8 @@ The comment parsing module provides four query implementations:
 - `OpeningCommentQuery`: extracts one logical opening comment block from the
   top of a file, optionally skipping a hashbang and enforcing a configurable
   row limit for where the header starts.
+- `CommentSanitizer`: removes the comment syntax from an extracted comment and
+  returns just the comment text.
 - `registry.py`: the language registry that agents should update when extending
   support, including aliases, syntax patterns, seeded examples, and evidence
   placeholders.
