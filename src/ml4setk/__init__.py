@@ -25,4 +25,4 @@ __all__ = [
     "get_supported_comment_languages",
 ]
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
