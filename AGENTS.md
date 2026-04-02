@@ -43,8 +43,13 @@ verification.
 
 ## Git workflow
 
+- The long-lived `development-base` branch is the base for agent-assisted
+  development work and carries the shared agent instructions.
+- Create all future development branches from `development-base`, not from
+  `main`.
 - Do agent-assisted or research-heavy work on development branches, not on
   `main`.
+- Do not merge `development-base` directly to `main`.
 - `AGENTS.md`, `docs/comment_research/`, `docs/comment_syntax_matrix.md`, and
   `docs/comment_syntax_stack_v2.md` are development-only artifacts.
 - Scratch directories such as `tmp/` and `scratch/`, plus tracked temporary

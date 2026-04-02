@@ -6,7 +6,12 @@ still in progress, but `main` must stay publishable.
 
 ## Branch rules
 
+- `development-base` is the long-lived base branch for agent instructions and
+  shared development workflow files.
+- Create all future development branches from `development-base`, not directly
+  from `main`.
 - Do feature and research work on named development branches.
+- Do not merge `development-base` directly to `main`.
 - Merge to `main` only when the branch is safe to publish and maintain.
 - Before merging to `main`, run `make check-main-branch`.
 

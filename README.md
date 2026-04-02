@@ -104,9 +104,12 @@ template and document syntaxes such as `astro`, `jsp`, `liquid`, `mustache`,
 
 ## Git workflow
 
-Development branches may contain agent instructions, raw research outputs, and
-other temporary working artifacts. `main` may not. The permanent rules and the
-enforced main-branch policy are documented in
+`development-base` is the long-lived base branch for agent-assisted
+development. Create future development branches from `development-base`, not
+directly from `main`. Development branches may contain agent instructions, raw
+research outputs, and other temporary working artifacts. `main` may not, and
+`development-base` itself should not be merged directly to `main`. The
+permanent rules and the enforced main-branch policy are documented in
 [docs/git_workflow.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/git_workflow.md).
 
 ## Repository map
