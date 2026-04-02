@@ -98,17 +98,27 @@ set softwrap
 
 ## NEON
 - Registry key: `neon`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://doc.nette.org/en/neon/format
+- Implementation source: https://github.com/nette/neon
 - Corpus fallback source: unresolved
-- Recommended action: research official Neon docs before registry updates.
-- Notes: unresolved in this pass.
+- Recommended action: add hash-comment fixtures and keep block comments unsupported.
+- Notes: the NEON format docs say `#` starts a comment and the rest of the line is ignored.
+
+### Examples
+
+#### Line comment
+```neon
+# this line will be ignored by the interpreter
+street: 742 Evergreen Terrace
+city: Springfield  # this is ignored too
+country: USA
+```
 
 ## nesC
 - Registry key: `nesc`
@@ -521,17 +531,61 @@ value = value + 1;
 
 ## ObjectScript
 - Registry key: `objectscript`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Line comments: `//`, `;`, `##;` (`#;` in column 1)
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; `first closing delimiter wins` for block comments
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GCOS_syntax
+- Implementation source: https://docs.rs/crate/tree-sitter-objectscript/1.6.3
 - Corpus fallback source: unresolved
-- Recommended action: verify ObjectScript comment syntax from the official reference.
-- Notes: unresolved in this pass.
+- Recommended action: add fixtures for `//`, `;`, `##;`, and `/* */`, but keep nested comments unsupported.
+- Notes: InterSystems docs distinguish INT, MAC, and class-definition comment contexts; `##;` comments out the rest of the current line, and `#;` is the column-1 equivalent in preprocessor contexts.
+
+### Examples
+
+#### `//` line comment
+```objectscript
+Class Demo.Sample
+{
+ClassMethod Main()
+{
+  // increment value
+  Set x = 1
+}
+}
+```
+
+#### `;` line comment
+```objectscript
+Class Demo.Sample
+{
+ClassMethod Main()
+{
+  Set x = 1 ; increment value
+  Set y = x + 1
+}
+}
+```
+
+#### `##;` line comment
+```objectscript
+#define alphalen ##function($LENGTH("abcdefghijklmnopqrstuvwxyz")) ##; + 100
+WRITE $$$alphalen," is the length of the alphabet"
+```
+
+#### Block comment
+```objectscript
+Class Demo.Sample
+{
+ClassMethod Main()
+{
+  /* increment value */
+  Set x = 1
+}
+}
+```
 
 ## Odin
 - Registry key: `odin`
@@ -683,17 +737,34 @@ __kernel void add(__global const float* a, __global const float* b) {
 
 ## OpenQASM
 - Registry key: `openqasm`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; `first closing delimiter wins` for block comments
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://openqasm.com/versions/3.0/language/comments.html
+- Implementation source: https://github.com/openqasm/openqasm
 - Corpus fallback source: unresolved
-- Recommended action: verify the OpenQASM specification before registry changes.
-- Notes: unresolved in this pass.
+- Recommended action: add line and block fixtures and keep nested comments unsupported.
+- Notes: the OpenQASM 3 spec explicitly defines `//` line comments and `/* ... */` block comments.
+
+### Examples
+
+#### Line comment
+```qasm
+// First non-comment is a version string
+OPENQASM 3.0;
+include "stdgates.qasm";
+```
+
+#### Block comment
+```qasm
+/*
+  Repeat-until-success circuit for Rz(theta)
+*/
+OPENQASM 3.0;
+```
 
 ## OpenRC runscript
 - Registry key: `openrc_runscript`
@@ -725,8 +796,8 @@ command="/usr/bin/example"
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: unsupported
-- Confidence: high
-- Evidence mode: unresolved
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: https://openscad.org/documentation.html
 - Implementation source: https://github.com/openscad/openscad
 - Community source: unresolved
@@ -1088,17 +1159,38 @@ int y = x + 1;
 
 ## PlantUML
 - Registry key: `plantuml`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Line comments: `'`
+- Block comments: `/' ... '/`
+- Termination behavior: `newline` for line comments; `first closing delimiter wins` for block comments
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://plantuml.com/en/commons
+- Implementation source: https://github.com/plantuml/plantuml
 - Corpus fallback source: unresolved
-- Recommended action: verify PlantUML comment syntax from official docs.
-- Notes: unresolved in this pass.
+- Recommended action: add apostrophe-comment fixtures and keep nested comments unsupported.
+- Notes: PlantUML line comments use a single apostrophe, and block comments use `/'` ... `'/`.
+
+### Examples
+
+#### Line comment
+```plantuml
+@startuml
+'Line comments use a single apostrophe
+Alice -> Bob : hello
+@enduml
+```
+
+#### Block comment
+```plantuml
+@startuml
+/' 
+many lines comments
+here
+'/
+Alice -> Bob : hello
+@enduml
+```
 
 ## PLpgSQL
 - Registry key: `plpgsql`
@@ -1608,17 +1700,26 @@ class example {
 
 ## PureBasic
 - Registry key: `purebasic`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `;`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://www.purebasic.com/documentation/reference/general_rules.html
 - Implementation source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify PureBasic comment syntax before adding fixtures.
-- Notes: unresolved in this pass.
+- Recommended action: add semicolon-comment fixtures and keep block comments unsupported.
+- Notes: the PureBasic reference manual documents semicolon comments in the general syntax rules.
+
+### Examples
+
+#### Line comment
+```purebasic
+If a = 10 ; This is a comment to indicate something.
+  Debug "value is 10"
+EndIf
+```
 
 ## PureScript
 - Registry key: `purescript`

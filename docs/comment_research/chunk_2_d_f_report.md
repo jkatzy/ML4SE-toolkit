@@ -908,13 +908,13 @@ end if
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unresolved`
 - Evidence mode: `official_docs`
-- Confidence: `medium`
+- Confidence: `high`
 - Docs source: `https://fstar-lang.org/tutorial/book/part1/part1_getting_off_the_ground.html`
 - Implementation source: `https://github.com/FStarLang/FStar`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: add line and block tests now; confirm nesting before encoding it as supported.
-- Notes: the official tutorial states the delimiters, but I did not find an explicit nesting statement in the sources I checked.
+- Notes: the official tutorial explicitly documents both line and block comment delimiters.
 
 ### Examples
 
@@ -1259,15 +1259,15 @@ print "hi"
 - Line comments: `--` supported
 - Block comments: `{- ... -}` supported
 - Termination behavior: `first closing delimiter wins`
-- Nested comments: `unresolved`
-- Evidence mode: `corpus_inferred`
-- Confidence: `medium`
-- Docs source: `https://www.frege-lang.org/doc/frege/Prelude.html`
+- Nested comments: `supported`
+- Evidence mode: `official_docs`
+- Confidence: `high`
+- Docs source: `https://www.frege-lang.org/doc/Language.pdf`
 - Implementation source: `https://github.com/Frege/frege`
-- Community source: `https://github.com/Frege/frege`
-- Corpus fallback source: `https://www.frege-lang.org/doc/frege/control/Arrow.html`
-- Recommended action: keep the Haskell-like line and block forms, then confirm nesting against a parser or lexer before registry changes.
-- Notes: the generated Frege docs use Haskell-like source conventions, but I did not find an explicit nesting statement.
+- Community source: `https://www.frege-lang.org/doc/fregedoc.html`
+- Corpus fallback source: `unresolved`
+- Recommended action: add line, block, and nested-block tests.
+- Notes: the Frege language draft states that block comments nest and that line comments extend to end of line.
 
 ### Examples
 

@@ -6,7 +6,7 @@ Use this packet together with:
 
 ## Mission
 
-Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
+Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name plus `programming language` and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
 
 Target output file:
 - `docs/comment_research/chunk_6_q_s_report.md`
@@ -14,15 +14,15 @@ Target output file:
 ## Priority Summary
 
 - Assigned languages: `55`
-- Needs research or confirmation: `55`
-- Ready to implement but should be strengthened with source evidence: `0`
+- Needs research or confirmation: `51`
+- Ready to implement but should be strengthened with source evidence: `4`
 - Resolved non-actionable: `0`
 
 ## Required Workflow
 
 1. Search official docs for comment syntax.
 2. Cross-check with an implementation source when available.
-3. If syntax is still unclear, search the web with the language name and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
+3. If syntax is still unclear, search the web with the language name plus `programming language` and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
 4. If syntax is still unclear after that, download real source files and inspect them directly.
 5. For every language, explicitly classify line comments, block comments, and block-comment delimiter behavior.
 6. Record whether block comments terminate at the first closer, support true nesting, or use depth-qualified delimiters.
@@ -34,12 +34,10 @@ Target output file:
 | Priority | Language | Registry key | Current status | Confidence | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | high | Qt Script | qt_script | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
-| high | Quake | quake | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
 | high | Ragel | ragel | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
 | high | RAML | raml | needs_research_or_confirmation | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Rascal | rascal | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Raw token data | raw_token_data | needs_research_or_confirmation | unresolved | unsupported | unsupported | unresolved | unsupported | unresolved | GitHub Linguist languages.yml | unsupported |
-| high | RDoc | rdoc | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
 | high | REALbasic | realbasic | needs_research_or_confirmation | medium | ' | unsupported | line comments terminate at end-of-line; block comments unsupported | no | https://docs.xojo.com/api/language/introspection/constructorinfo.html | GitHub Linguist languages.yml | candidate |
 | high | Reason | reason | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Red | red | needs_research_or_confirmation | seeded-from-implementation | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | unresolved | GitHub Linguist languages.yml | implement |
@@ -58,14 +56,12 @@ Target output file:
 | high | SaltStack | saltstack | needs_research_or_confirmation | seeded-from-implementation | # | {# #} | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | sed | sed | needs_research_or_confirmation | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Self | self | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
-| high | SELinux Policy | selinux_policy | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
+| high | SELinux Policy | selinux_policy | needs_research_or_confirmation | medium | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/using_selinux/writing-a-custom-selinux-policy | https://github.com/SELinuxProject/refpolicy | candidate |
 | high | ShaderLab | shaderlab | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Singularity | singularity | needs_research_or_confirmation | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Slash | slash | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
 | high | Slice | slice | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
-| high | Slim | slim | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
 | high | Smali | smali | needs_research_or_confirmation | seeded-from-implementation | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | unresolved | GitHub Linguist languages.yml | implement |
-| high | Smarty | smarty | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unknown | unresolved | GitHub Linguist languages.yml | needs manual research |
 | high | SmPL | smpl | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | SMT | smt | needs_research_or_confirmation | seeded-from-implementation | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | Solidity | solidity | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
@@ -88,16 +84,20 @@ Target output file:
 | high | SugarSS | sugarss | needs_research_or_confirmation | seeded-from-implementation | unsupported | /* */ | block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | SuperCollider | supercollider | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
 | high | SWIG | swig | needs_research_or_confirmation | seeded-from-implementation | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | unresolved | GitHub Linguist languages.yml | implement |
+| medium | Quake | quake | ready_to_implement | verified | // | /* */ | line comments terminate at end-of-line; block comments terminate at first closing delimiter | no | https://usdqc.github.io/quakec-resources/qcmanual.html | GitHub Linguist languages.yml | implement |
+| medium | RDoc | rdoc | ready_to_implement | high | `#` in Ruby sources | `=begin` / `=end` in Ruby sources; `/* */` in C sources | line comments terminate at end-of-line; Ruby block comments terminate at `=end`; C-style comment blocks terminate at `*/` | no | https://ruby.github.io/rdoc/doc/markup_reference/rdoc_rdoc.html | https://ruby.github.io/rdoc/RDoc/Parser/Ruby.html | implement |
+| medium | Slim | slim | ready_to_implement | verified | / | /! | line comments terminate at end-of-line; block comments terminate at dedent | no | https://github.com/slim-template/slim | GitHub Linguist languages.yml | implement |
+| medium | Smarty | smarty | ready_to_implement | verified | unsupported | {* *} | block comments terminate at the first closing `*}` | no | https://www.smarty.net/docsv2/pt_BR/language.basic.syntax.tpl | GitHub Linguist languages.yml | implement |
 
 ## Search Guidance
 
 For each language, try at least these query patterns before falling back:
-- `"<Language> comments syntax"`
-- `"<Language> language reference comments"`
-- `"<Language> lexical grammar comments"`
-- `"<Language> line comment block comment"`
-- `"<Language> nested comments"`
-- `"<Language> block comment delimiter"`
+- `"<Language> programming language comments syntax"`
+- `"<Language> programming language reference comments"`
+- `"<Language> programming language lexical grammar comments"`
+- `"<Language> programming language line comment block comment"`
+- `"<Language> programming language nested comments"`
+- `"<Language> programming language block comment delimiter"`
 
 If the docs are unclear, search for:
 - lexer or tokenizer definitions
@@ -105,15 +105,15 @@ If the docs are unclear, search for:
 - official examples or language test corpora
 
 If official sources are still unclear, run a search-engine pass such as:
-- `"<Language> comment"`
-- `"<Language> comments"`
-- `"<Language> block comment"`
-- `"<Language> nested comment"`
-- `"site:stackoverflow.com <Language> comment"`
-- `"site:stackoverflow.com <Language> block comment"`
-- `"site:stackoverflow.com <Language> nested comment"`
-- `"<Language> comment blog"`
-- `"<Language> comment tutorial"`
+- `"<Language> programming language comment"`
+- `"<Language> programming language comments"`
+- `"<Language> programming language block comment"`
+- `"<Language> programming language nested comment"`
+- `"site:stackoverflow.com <Language> programming language comment"`
+- `"site:stackoverflow.com <Language> programming language block comment"`
+- `"site:stackoverflow.com <Language> programming language nested comment"`
+- `"<Language> programming language comment blog"`
+- `"<Language> programming language comment tutorial"`
 
 When you use Stack Overflow or blog posts:
 - prefer answers with concrete code examples

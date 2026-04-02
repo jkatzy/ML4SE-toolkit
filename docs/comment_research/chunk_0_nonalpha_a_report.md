@@ -41,7 +41,7 @@ EndProcedure
 - Community source: unresolved
 - Corpus fallback source: unresolved
 - Recommended action: needs manual research
-- Notes: This looks like a corpus label rather than a source language; I could not find a defensible comment grammar.
+- Notes: I could not find a defensible programming-language source or comment grammar for this label after checking docs, implementation, and community search results.
 
 ### Examples
 - unsupported or unresolved
@@ -321,7 +321,7 @@ pkgver=1.0
 - Community source: `https://my.altium.com/altium-designer/getting-started/commenting-your-design`
 - Corpus fallback source: unresolved
 - Recommended action: needs manual research
-- Notes: The available Altium documentation is about design-review annotations and tasks, not source-language comment delimiters.
+- Notes: The available Altium documentation is about design-review annotations and tasks, not source-language comment delimiters; I did not find a defensible source-language comment grammar.
 
 ### Examples
 - unsupported or unresolved

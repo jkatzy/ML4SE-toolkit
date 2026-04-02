@@ -87,13 +87,13 @@ draw_self();
 - Termination behavior: line comments end at newline; block comments unresolved
 - Nested comments: unsupported
 - Confidence: medium
-- Evidence mode: community_search
-- Docs source: https://gama-platform.org/wiki/GamlLanguage
+- Evidence mode: official_docs
+- Docs source: https://gama-platform.org/wiki/1.9.3/Statements; https://gama-platform.org/wiki/1.9.3/GamlReference
 - Implementation source: unresolved
-- Community source: https://dphilippon.github.io/wiki/BasicProgrammingConceptsInGAML
+- Community source: not used
 - Corpus fallback source: not used
 - Recommended action: Confirm whether GAML has a distinct block-comment form in the grammar or corpus before adding registry support.
-- Notes: Community examples confirm `//` in GAML code, but this pass did not find a source-backed block-comment specification.
+- Notes: The verified docs show `//` in statement examples, but this pass did not find a source-backed block-comment specification.
 
 ### Examples
 
@@ -265,34 +265,68 @@ move_and_slide()
 ## Genero
 
 - Registry key: genero
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `--` and `#`
+- Block comments: `{ ... }`
+- Termination behavior: line comments end at newline; brace comments end at the first closing `}`
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://4js.com/online_documentation/fjs-fgl-manual-html/fgl-topics/c_fgl_language_features_comment.html; https://4js.com/online_documentation/fjs-fgl-manual-html/fgl-topics/c_fgl_beautifier_usage.html
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Research the official Genero language manual and grammar before adding support.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add fixtures for `--`, `#`, and brace comments, and keep brace nesting explicitly forbidden in tests.
+- Notes: The official BDL docs say brace comments do not nest and that comments are ignored as source comments outside SQL string contexts.
+
+### Examples
+
+#### Line comment
+```text
+MAIN
+  -- ignore this line
+  DISPLAY "Hello"
+END MAIN
+```
+
+#### Block comment
+```text
+MAIN
+  {
+    DISPLAY "ignored"
+    DISPLAY "ignored too"
+  }
+  DISPLAY "Hello"
+END MAIN
+```
 
 ## Genero Forms
 
 - Registry key: genero_forms
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `--`
+- Block comments: unsupported
+- Termination behavior: line comments end at newline
+- Nested comments: unsupported
+- Confidence: medium
+- Evidence mode: official_docs
+- Docs source: https://4js.com/online_documentation/fjs-genero-3.00.06-manual-tutorial-html/genero-tutorial-topics/c_fgl_TutChap10_010.html; https://4js.com/online_documentation/fjs-genero-4.01.38-manual-tutorial-html/genero-tutorial-topics/c_fgl_TutChap10_010.html
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Treat this as a separate research target from Genero itself.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add `.per` fixtures that keep `--` comment lines in place and do not assume brace or hash comments unless a form-file grammar source confirms them.
+- Notes: The official form examples show trailing `--` comments in text-based form files, but they do not document a separate block-comment form.
+
+### Examples
+
+#### Line comment
+```text
+SCHEMA custdemo
+LAYOUT
+  GRID
+  {
+    [lab1      ] [f01  ]
+  } -- grid
+END -- layout
+```
 
 ## Genshi
 
@@ -772,18 +806,34 @@ tasks.register('hello') {
 ## Grammatical Framework
 
 - Registry key: grammatical_framework
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `--`
+- Block comments: `{- ... -}`
+- Termination behavior: line comments end at newline; block comments end at the first `-}`
+- Nested comments: supported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://www.grammaticalframework.org/doc/gf-refman.html
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Research the official GF syntax before adding registry entries.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add both comment forms to the registry and keep the nested-block behavior covered by regression tests.
+- Notes: The GF reference manual explicitly lists single-line `--` comments and multiline `{- ... -}` comments.
+
+### Examples
+
+#### Line comment
+```gf
+fun DetCN : Det -> CN -> NP ;  -- noun phrase from determiner and noun
+```
+
+#### Block comment
+```gf
+{- outer
+  {- inner -}
+  still outer
+-}
+fun UsePN : PN -> NP ;
+```
 
 ## Graph Modeling Language
 
@@ -839,34 +889,66 @@ digraph G {
 ## Groovy Server Pages
 
 - Registry key: groovy_server_pages
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: unsupported
+- Block comments: `<%-- ... --%>`
+- Termination behavior: first closing `--%>` wins
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://grails.apache.org/docs-legacy-gsp/6.2.3/guide/index.html; https://grails.apache.org/docs-legacy-gsp/7.0.0-M1/guide/GSPBasics.html
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Research GSP template-comment syntax before adding any parser rule.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add JSP-style server-side comment fixtures and keep embedded Groovy scriptlets separate from GSP comments.
+- Notes: GSP uses JSP-style comment blocks that are removed before rendering.
+
+### Examples
+
+#### Block comment
+```text
+<html>
+  <body>
+    <%-- hidden note --%>
+    <p>Hello</p>
+  </body>
+</html>
+```
 
 ## GSC
 
 - Registry key: gsc
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: line comments end at newline; block comments end at the first `*/`
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://docs.auroramod.dev/gsc-scripting-syntax
 - Implementation source: unresolved
-- Community source: not used
+- Community source: https://github-wiki-see.page/m/AkbarHashimi/BO2-Plutonium-Modding-Guide/wiki/GSC-Basics
 - Corpus fallback source: not used
-- Recommended action: Leave unsupported until a verified GSC syntax source is found.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add both one-line and block-comment fixtures and keep the grammar C-like.
+- Notes: The official syntax page documents comment support in two forms; the community guide matches the same C-style delimiters.
+
+### Examples
+
+#### Line comment
+```text
+main()
+{
+  // initialize the player
+  wait 0.05;
+}
+```
+
+#### Block comment
+```text
+main()
+{
+  /* temporarily disable debug logic */
+  wait 0.05;
+}
+```
 
 ## Haml
 
@@ -1136,18 +1218,29 @@ service {
 ## HolyC
 
 - Registry key: holyc
-- Line comments: unresolved
+- Line comments: `//`
 - Block comments: unresolved
-- Termination behavior: unresolved
+- Termination behavior: line comments end at newline; block comments unresolved
 - Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Confidence: medium
+- Evidence mode: community_search
 - Docs source: unresolved
-- Implementation source: unresolved
-- Community source: not used
+- Implementation source: https://github.com/Ma11ock/holyc
+- Community source: https://pldb.io/concepts/holyc.html
 - Corpus fallback source: not used
-- Recommended action: Research the official HolyC syntax before adding support.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Keep the `//` line-comment fixture and leave block comments unresolved until a source-backed HolyC reference confirms them.
+- Notes: The strongest evidence found in this pass only confirmed single-line `//` comments.
+
+### Examples
+
+#### Line comment
+```holyc
+U0 Main()
+{
+  U8 *message = "hello world"; // greeting
+  "%s\n", message;
+}
+```
 
 ## hoon
 
@@ -1386,18 +1479,31 @@ x
 ## HyPhy
 
 - Registry key: hyphy
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: line comments end at newline; block comments end at the first `*/`
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://hyphy.org/resources/Getting_Started_With_HyPhy.pdf
+- Implementation source: https://github.com/veg/hyphy
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Research the official HyPhy syntax before adding registry support.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add HBL fixtures for both comment forms and keep nested block comments absent.
+- Notes: The getting-started material and shipped examples use C-style line and block comments in HyPhy batch language.
+
+### Examples
+
+#### Line comment
+```text
+rate = 1; // baseline rate
+```
+
+#### Block comment
+```text
+/* temporary analysis note */
+LikelihoodFunction lf = (tree, data);
+```
 
 ## IDL
 - Registry key: `idl`
@@ -1479,18 +1585,25 @@ dist/
 ## IGOR Pro
 
 - Registry key: igor_pro
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `//`
+- Block comments: unsupported
+- Termination behavior: line comments end at newline
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://docs.wavemetrics.com/igorpro/programming/procedure-windows; https://docs.wavemetrics.com/igorpro/programming/commands
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Research official IGOR Pro syntax before adding support.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add `//` fixtures for procedure windows and keep block-comment tests absent.
+- Notes: The official docs describe comment-friendly procedure windows and show `//` in procedure examples and code-marker lines.
+
+### Examples
+
+#### Line comment
+```igorpro
+SetIgorOption colorize,doColorize=1 // turn syntax coloring on
+```
 
 ## ImageJ Macro
 
@@ -1527,18 +1640,25 @@ run("Sharpen");
 ## Inform 7
 
 - Registry key: inform_7
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Line comments: unsupported
+- Block comments: `[ ... ]`
+- Termination behavior: comments end at the first closing `]`
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://ganelson.github.io/inform-website/book/WI_2_3.html; https://ganelson.github.io/inform-website/book/general_index.html
+- Implementation source: https://github.com/ganelson/inform
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Verify bracket-comment syntax and nesting behavior in the official Inform 7 docs before adding support.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add bracket-comment fixtures and keep text-substitution handling separate from comments.
+- Notes: The Inform 7 documentation treats bracketed text in source as comments, and the index lists `[ ]` comments explicitly.
+
+### Examples
+
+#### Block comment
+```text
+The China Shop is a room. [Remember to work out what happens if the bull gets in here!]
+```
 
 ## INI
 - Registry key: `ini`

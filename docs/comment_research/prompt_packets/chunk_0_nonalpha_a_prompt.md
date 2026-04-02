@@ -6,7 +6,7 @@ Use this packet together with:
 
 ## Mission
 
-Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
+Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name plus `programming language` and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
 
 Target output file:
 - `docs/comment_research/chunk_0_nonalpha_a_report.md`
@@ -22,7 +22,7 @@ Target output file:
 
 1. Search official docs for comment syntax.
 2. Cross-check with an implementation source when available.
-3. If syntax is still unclear, search the web with the language name and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
+3. If syntax is still unclear, search the web with the language name plus `programming language` and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
 4. If syntax is still unclear after that, download real source files and inspect them directly.
 5. For every language, explicitly classify line comments, block comments, and block-comment delimiter behavior.
 6. Record whether block comments terminate at the first closer, support true nesting, or use depth-qualified delimiters.
@@ -43,12 +43,12 @@ Target output file:
 ## Search Guidance
 
 For each language, try at least these query patterns before falling back:
-- `"<Language> comments syntax"`
-- `"<Language> language reference comments"`
-- `"<Language> lexical grammar comments"`
-- `"<Language> line comment block comment"`
-- `"<Language> nested comments"`
-- `"<Language> block comment delimiter"`
+- `"<Language> programming language comments syntax"`
+- `"<Language> programming language reference comments"`
+- `"<Language> programming language lexical grammar comments"`
+- `"<Language> programming language line comment block comment"`
+- `"<Language> programming language nested comments"`
+- `"<Language> programming language block comment delimiter"`
 
 If the docs are unclear, search for:
 - lexer or tokenizer definitions
@@ -56,15 +56,15 @@ If the docs are unclear, search for:
 - official examples or language test corpora
 
 If official sources are still unclear, run a search-engine pass such as:
-- `"<Language> comment"`
-- `"<Language> comments"`
-- `"<Language> block comment"`
-- `"<Language> nested comment"`
-- `"site:stackoverflow.com <Language> comment"`
-- `"site:stackoverflow.com <Language> block comment"`
-- `"site:stackoverflow.com <Language> nested comment"`
-- `"<Language> comment blog"`
-- `"<Language> comment tutorial"`
+- `"<Language> programming language comment"`
+- `"<Language> programming language comments"`
+- `"<Language> programming language block comment"`
+- `"<Language> programming language nested comment"`
+- `"site:stackoverflow.com <Language> programming language comment"`
+- `"site:stackoverflow.com <Language> programming language block comment"`
+- `"site:stackoverflow.com <Language> programming language nested comment"`
+- `"<Language> programming language comment blog"`
+- `"<Language> programming language comment tutorial"`
 
 When you use Stack Overflow or blog posts:
 - prefer answers with concrete code examples

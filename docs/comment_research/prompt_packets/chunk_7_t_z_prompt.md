@@ -6,7 +6,7 @@ Use this packet together with:
 
 ## Mission
 
-Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
+Go online for every language in this chunk. Search official documentation first to find the language's definition of comments. If that fails or remains ambiguous, inspect an implementation source. If that still leaves uncertainty, use a search engine with the language name plus `programming language` and `comment` to find secondary sources such as Stack Overflow answers or blog posts. If that still does not resolve the syntax, download real files for the language and inspect them for likely comments.
 
 Target output file:
 - `docs/comment_research/chunk_7_t_z_report.md`
@@ -14,15 +14,15 @@ Target output file:
 ## Priority Summary
 
 - Assigned languages: `44`
-- Needs research or confirmation: `42`
-- Ready to implement but should be strengthened with source evidence: `0`
+- Needs research or confirmation: `40`
+- Ready to implement but should be strengthened with source evidence: `2`
 - Resolved non-actionable: `2`
 
 ## Required Workflow
 
 1. Search official docs for comment syntax.
 2. Cross-check with an implementation source when available.
-3. If syntax is still unclear, search the web with the language name and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
+3. If syntax is still unclear, search the web with the language name plus `programming language` and `comment` to find Stack Overflow answers, blog posts, tutorials, or issue threads.
 4. If syntax is still unclear after that, download real source files and inspect them directly.
 5. For every language, explicitly classify line comments, block comments, and block-comment delimiter behavior.
 6. Record whether block comments terminate at the first closer, support true nesting, or use depth-qualified delimiters.
@@ -38,7 +38,6 @@ Target output file:
 | high | Terra | terra | needs_research_or_confirmation | medium | -- | --[[ ... ]] | depth-qualified delimiters | yes | unresolved | unresolved | Verify Lua-style long-comment handling and add nested coverage if the grammar supports it. |
 | high | Texinfo | texinfo | needs_research_or_confirmation | medium | @c` and `@comment | @ignore ... @end ignore | first closing delimiter wins | unsupported | https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Comments.html | unresolved | Verify Texinfo comment and ignore-block behavior before seeding. |
 | high | Textile | textile | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Textile syntax before seeding a registry entry. |
-| high | TextMate Properties | textmate_properties | needs_research_or_confirmation | medium | # | unsupported | unsupported | unsupported | unresolved | unresolved | Verify the exact properties-file variant used in Stack v2 and add hash-comment tests if confirmed. |
 | high | Turing | turing | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Verify Turing comment syntax before seeding. |
 | high | TXL | txl | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Verify TXL syntax before adding a registry entry. |
 | high | Type Language | type_language | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the specific Stack v2 dialect before seeding. |
@@ -51,7 +50,6 @@ Target output file:
 | high | Vim Help File | vim_help_file | needs_research_or_confirmation | low | unresolved | unsupported | unsupported | unsupported | unresolved | unresolved | Verify help-file markup rules before seeding. |
 | high | Vim Snippet | vim_snippet | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the snippet dialect used in Stack v2 before seeding. |
 | high | Volt | volt | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Volt syntax before seeding. |
-| high | wdl | wdl | needs_research_or_confirmation | medium | # | unsupported | unsupported | unsupported | unresolved | unresolved | Verify the exact WDL dialect before seeding. |
 | high | Web Ontology Language | web_ontology_language | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the specific serialization used in Stack v2 before seeding. |
 | high | WebVTT | webvtt | needs_research_or_confirmation | medium | unsupported | NOTE ... blank line | first blank line wins | unsupported | https://www.w3.org/TR/webvtt1/ | unresolved | Treat NOTE blocks as WebVTT comments and add parser tests for blank-line termination. |
 | high | Whiley | whiley | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify Whiley syntax before seeding. |
@@ -75,18 +73,20 @@ Target output file:
 | high | Zephir | zephir | needs_research_or_confirmation | medium | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify Zephir syntax before seeding. |
 | high | ZIL | zil | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research ZIL syntax before seeding. |
 | high | Zimpl | zimpl | needs_research_or_confirmation | medium | # | unsupported | unsupported | unsupported | unresolved | unresolved | Seed hash-comment tests. |
+| medium | TextMate Properties | textmate_properties | ready_to_implement | high | # | unsupported | unsupported | unsupported | https://macromates.com/textmate/manual/settings | unresolved | Seed hash-comment tests for .tm_properties files. |
+| medium | wdl | wdl | ready_to_implement | high | # | unsupported | unsupported | unsupported | https://docs.openwdl.org/reference/stdlib/numeric.html | unresolved | Seed hash-comment tests in WDL fixtures. |
 | low | Text | text | resolved_non_actionable | high | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document as commentless. |
 | low | TSV | tsv | resolved_non_actionable | high | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document as commentless unless a dialect extension exists. |
 
 ## Search Guidance
 
 For each language, try at least these query patterns before falling back:
-- `"<Language> comments syntax"`
-- `"<Language> language reference comments"`
-- `"<Language> lexical grammar comments"`
-- `"<Language> line comment block comment"`
-- `"<Language> nested comments"`
-- `"<Language> block comment delimiter"`
+- `"<Language> programming language comments syntax"`
+- `"<Language> programming language reference comments"`
+- `"<Language> programming language lexical grammar comments"`
+- `"<Language> programming language line comment block comment"`
+- `"<Language> programming language nested comments"`
+- `"<Language> programming language block comment delimiter"`
 
 If the docs are unclear, search for:
 - lexer or tokenizer definitions
@@ -94,15 +94,15 @@ If the docs are unclear, search for:
 - official examples or language test corpora
 
 If official sources are still unclear, run a search-engine pass such as:
-- `"<Language> comment"`
-- `"<Language> comments"`
-- `"<Language> block comment"`
-- `"<Language> nested comment"`
-- `"site:stackoverflow.com <Language> comment"`
-- `"site:stackoverflow.com <Language> block comment"`
-- `"site:stackoverflow.com <Language> nested comment"`
-- `"<Language> comment blog"`
-- `"<Language> comment tutorial"`
+- `"<Language> programming language comment"`
+- `"<Language> programming language comments"`
+- `"<Language> programming language block comment"`
+- `"<Language> programming language nested comment"`
+- `"site:stackoverflow.com <Language> programming language comment"`
+- `"site:stackoverflow.com <Language> programming language block comment"`
+- `"site:stackoverflow.com <Language> programming language nested comment"`
+- `"<Language> programming language comment blog"`
+- `"<Language> programming language comment tutorial"`
 
 When you use Stack Overflow or blog posts:
 - prefer answers with concrete code examples

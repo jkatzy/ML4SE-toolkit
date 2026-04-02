@@ -44,16 +44,16 @@ available.
 
 Start with targeted web queries such as:
 
-- `<Language> comments syntax`
-- `<Language> comment`
-- `<Language> language reference comments`
-- `<Language> lexical grammar comments`
-- `<Language> line comment block comment`
-- `site:stackoverflow.com <Language> comment`
-- `site:stackoverflow.com <Language> block comment`
-- `site:stackoverflow.com <Language> nested comments`
-- `<Language> comment tutorial`
-- `<Language> comment blog`
+- `<Language> programming language comments syntax`
+- `<Language> programming language comment`
+- `<Language> programming language reference comments`
+- `<Language> programming language lexical grammar comments`
+- `<Language> programming language line comment block comment`
+- `site:stackoverflow.com <Language> programming language comment`
+- `site:stackoverflow.com <Language> programming language block comment`
+- `site:stackoverflow.com <Language> programming language nested comments`
+- `<Language> programming language comment tutorial`
+- `<Language> programming language comment blog`
 
 When the language has a known project or foundation site, prefer that domain.
 When the docs are versioned, capture the exact URL you used.
@@ -91,8 +91,8 @@ check materially raises confidence.
 ## Phase 3: Search-Engine Community Fallback
 
 If official docs or implementation sources still leave uncertainty, use a
-search engine with the language name and `comment` to find community
-explanations.
+search engine with the language name plus `programming language` and `comment`
+to find community explanations.
 
 Target source types:
 
@@ -103,13 +103,13 @@ Target source types:
 
 Recommended query patterns:
 
-- `<Language> comment`
-- `<Language> comments`
-- `<Language> block comment`
-- `<Language> nested comment`
-- `site:stackoverflow.com <Language> comment`
-- `site:stackoverflow.com <Language> block comment`
-- `site:stackoverflow.com <Language> nested comment`
+- `<Language> programming language comment`
+- `<Language> programming language comments`
+- `<Language> programming language block comment`
+- `<Language> programming language nested comment`
+- `site:stackoverflow.com <Language> programming language comment`
+- `site:stackoverflow.com <Language> programming language block comment`
+- `site:stackoverflow.com <Language> programming language nested comment`
 
 Rules for using community sources:
 
