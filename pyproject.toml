@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools==81.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -10,13 +10,72 @@ authors = [
 ]
 description = "A package aimed at implementing core functionality for ML4SE to simplify and standardize research"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.8"
+dependencies = [
+    "regex==2024.11.6; python_full_version < '3.9'",
+    "regex==2026.1.15; python_full_version == '3.9.*'",
+    "regex==2026.3.32; python_full_version == '3.10.*'",
+    "regex==2026.3.32; python_full_version >= '3.11'",
+]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
-    "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+treesitter = [
+    "tree-sitter==0.21.3",
+    "tree-sitter-languages==1.10.2",
+]
+torch = [
+    "torch==2.5.1; python_full_version < '3.9'",
+    "torch==2.8.0; python_full_version == '3.9.*'",
+    "torch==2.11.0; python_full_version == '3.10.*'",
+    "torch==2.11.0; python_full_version >= '3.11'",
 ]
 
 [project.urls]
 Homepage = "https://github.com/jkatzy/ML4SE-toolkit"
 Issues = "https://github.com/jkatzy/ML4SE-toolkit/issues"
+
+[dependency-groups]
+dev = [
+    "pytest==8.3.5; python_full_version < '3.9'",
+    "pytest==8.4.2; python_full_version == '3.9.*'",
+    "pytest==9.0.2; python_full_version == '3.10.*'",
+    "pytest==9.0.2; python_full_version >= '3.11'",
+    "pytest-cov==5.0.0; python_full_version < '3.9'",
+    "pytest-cov==7.1.0; python_full_version == '3.9.*'",
+    "pytest-cov==7.1.0; python_full_version == '3.10.*'",
+    "pytest-cov==7.1.0; python_full_version >= '3.11'",
+    "ruff==0.15.8",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ml4setk*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "unit: fast deterministic unit coverage for core modules",
+    "integration: checks that exercise multiple modules together",
+    "optional_dependency: tests that require optional extras",
+]
+addopts = [
+    "--strict-markers",
+    "--cov=ml4setk",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests", "examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

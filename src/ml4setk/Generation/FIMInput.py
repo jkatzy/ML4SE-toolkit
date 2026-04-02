@@ -1,4 +1,5 @@
-from .AbstractInput import AbstractInput
+from .AbstractInput import AbstractInput, unpack_query_match
+
 
 class FIMInput(AbstractInput):
     def __init__(self, FIM_PREFIX, FIM_SUFFIX, FIM_MIDDLE):
@@ -7,9 +8,7 @@ class FIMInput(AbstractInput):
         self.FIM_MIDDLE = FIM_MIDDLE
 
     def generate(self, query_tuple):
-        prefix = query_tuple[0]
-        suffix = query_tuple[1]
-        middle = query_tuple[2]
+        prefix, suffix, middle = unpack_query_match(query_tuple)
         
         text = self.FIM_PREFIX + prefix + self.FIM_SUFFIX + suffix + self.FIM_MIDDLE
         return text, middle
