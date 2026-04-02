@@ -1,6 +1,6 @@
 UV ?= uv
 
-.PHONY: setup setup-optional test test-optional lint smoke check-main-branch
+.PHONY: setup setup-optional test test-optional lint smoke build check-main-branch check-release-version
 
 setup:
 	$(UV) sync --group dev
@@ -20,5 +20,11 @@ lint:
 smoke:
 	$(UV) run pytest tests/test_smoke.py -q --no-cov
 
+build:
+	$(UV) build
+
 check-main-branch:
 	python scripts/check_main_branch_policy.py
+
+check-release-version:
+	python scripts/check_release_version.py

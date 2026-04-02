@@ -40,3 +40,15 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync --group dev --extra treesitter
       - run: uv run pytest -m "optional_dependency" --no-cov
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: astral-sh/setup-uv@v5
+      - run: python scripts/check_release_version.py
+      - run: uv build
+      - run: uvx twine check dist/*

@@ -52,6 +52,12 @@ Build source and wheel distributions locally with:
 uv build
 ```
 
+Or via the repo command:
+
+```bash
+make build
+```
+
 Artifacts are written to `dist/`.
 
 To validate the built distributions before uploading:
@@ -59,6 +65,39 @@ To validate the built distributions before uploading:
 ```bash
 uvx twine check dist/*
 ```
+
+## Publishing
+
+The repository includes a dedicated GitHub Actions workflow at
+`.github/workflows/publish.yml`.
+
+- `workflow_dispatch`: build, validate, and publish the current branch to
+  TestPyPI
+- `push` of a tag matching `v*`: build, validate, and publish to PyPI
+
+The workflow uses PyPI Trusted Publishing rather than a long-lived API token.
+Before the first automated release, configure trusted publishers for this
+project in both PyPI and TestPyPI with:
+
+- owner: `jkatzy`
+- repository: `ML4SE-toolkit`
+- workflow name: `publish.yml`
+- environment: `pypi` for PyPI, `testpypi` for TestPyPI
+
+Release flow:
+
+```bash
+git switch main
+python scripts/check_release_version.py
+uv run pytest -m "not optional_dependency"
+uv run pytest -m "optional_dependency" --no-cov
+uv run ruff check src tests examples
+git tag v0.0.2
+git push origin main v0.0.2
+```
+
+The publish workflow checks that the package version in `pyproject.toml`, the
+package `__version__`, and the release tag all agree before uploading.
 
 ## Minimal example
 
@@ -102,8 +141,10 @@ languages such as `coldfusion`, `dafny`, `frege`, `grammatical_framework`,
 - `make test-optional`: run optional-dependency tests without coverage gating
 - `make lint`: run `ruff` on the source tree
 - `make smoke`: run the minimal end-to-end smoke tests
+- `make build`: create source and wheel distributions in `dist/`
 - `make check-main-branch`: fail if development-only artifacts are still
   tracked and the branch is not ready to merge to `main`
+- `make check-release-version`: fail if package version metadata is inconsistent
 
 ## Git workflow
 
