@@ -982,17 +982,20 @@ control MyIngress() {
 
 ## Pascal
 - Registry key: `pascal`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `//`
+- Block comments: `{ ... }`, `(* ... *)`
+- Termination behavior: `true nesting supported in Free Pascal normal mode; disabled in TP/Delphi mode`
+- Nested comments: supported in Free Pascal normal mode; unsupported in TP/Delphi mode; unsupported in Pascal65
+- Version scope: Free Pascal 3.0.0, 3.2.2, and 3.2.4; Pascal65 current docs; Free Pascal TP/Delphi compatibility mode
+- Version-specific syntax: Free Pascal accepts `{...}`, `(*...*)`, and `//`, and nests comments in normal mode; TP/Delphi mode disables nesting; Pascal65 accepts `//` and `(*...*)` but rejects `{...}`
+- Confidence: verified
+- Evidence mode: documentation_cross_checked
+- Docs source: https://www.freepascal.org/docs-html/3.0.0/ref/refse2.html; https://docs.freepascal.org/docs-html/current/ref/ref.html; https://docs.pascal65.org/en/latest/notablediffs/
+- Community source: https://lists.freepascal.org/pipermail/fpc-pascal.old/2013-September/039422.html
 - Implementation source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify the specific Pascal dialect before adding fixtures.
-- Notes: unresolved in this pass.
+- Recommended action: implement the union of `{...}`, `(*...*)`, and `//` for the generic Pascal registry key, but split or gate by dialect if the parser needs to distinguish Free Pascal from TP/Delphi/Pascal65 behavior.
+- Notes: Free Pascal explicitly documents nested comments in normal mode and disables them in TP/Delphi mode.
 
 ## Pawn
 - Registry key: `pawn`
@@ -1132,14 +1135,15 @@ filtered = FILTER data BY age > 18;
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: current Pike tutorial/manual pages; Pike autodoc chapter 32 for C-mode and Pike-mode doc comments
+- Version-specific syntax: no version-specific syntax change found in the checked docs; ordinary Pike code uses `//` and `/*...*/`, while Pike autodoc adds `//!` line doc comments in Pike files and `/*! ... */` blocks with `*!`-prefixed lines in C files
+- Confidence: verified
+- Evidence mode: documentation_cross_checked
+- Docs source: https://pike.lysator.liu.se/docs/tut/browser/index.md; https://pike.lysator.liu.se/docs/man/chapter_32.html
 - Implementation source: unresolved
-- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add C-family fixtures and verify against Pike docs.
-- Notes: Pike is typically C-like for comments.
+- Recommended action: keep ordinary `//` and `/*...*/` in the base registry and decide separately whether autodoc forms should be added as a doc-comment subfamily.
+- Notes: Pike autodoc mode is dialect-specific rather than version-specific, but it introduces additional comment-like forms worth tracking.
 
 ### Examples
 
@@ -1401,17 +1405,19 @@ a {
 
 ## PowerBuilder
 - Registry key: `powerbuilder`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `true nesting supported`
+- Nested comments: supported
+- Version scope: PowerBuilder 2021, 2022, 2022 R3, 2025, and 2025 R2 documentation; PowerServer Mobile feature docs also checked
+- Version-specific syntax: no version split found across the checked releases; `//` comments run to end of line, while `/*...*/` comments can span multiple lines and can nest
+- Confidence: verified
+- Evidence mode: documentation_cross_checked
+- Docs source: https://docs.appeon.com/pb2021/powerscript_reference/xREF_94732_Comments.html; https://docs.appeon.com/pb2022/powerscript_reference/xREF_94732_Comments.html; https://docs.appeon.com/pb2025/powerscript_reference/Language_Basics.html; https://docs.appeon.com/pb2025r2/powerscript_reference/index.html; https://docs.appeon.com/2017/features_help_for_appeon_mobile/ch04s01s02.html
 - Implementation source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify PowerBuilder comment syntax from the official reference.
-- Notes: unresolved in this pass.
+- Recommended action: implement the union of `//` and `/*...*/`, and preserve nesting in the registry entry.
+- Notes: all checked Appeon docs agree on the same comment forms.
 
 ## PowerShell
 - Registry key: `powershell`
@@ -1508,18 +1514,19 @@ worker: bundle exec sidekiq
 
 ## Promela
 - Registry key: `promela`
-- Line comments: `//`
+- Line comments: preprocessor-dependent (`//` accepted by some C preprocessors used with Spin; not native Promela syntax)
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: Spin 2.9.7 quick reference and current Spin manual pages
+- Version-specific syntax: no Promela-language version split found; Promela proper only guarantees `/*...*/`, and `//` appears only when the selected external C preprocessor accepts C++-style comments
+- Confidence: verified
+- Evidence mode: documentation_cross_checked
+- Docs source: https://spinroot.com/spin/Man/comments.html; https://spinroot.com/spin/Man/macros.html; https://spinroot.com/spin/Man/Quick.html
 - Implementation source: unresolved
-- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add C-style fixtures and confirm against the SPIN reference.
-- Notes: Promela is usually treated as C-like for comments.
+- Recommended action: implement block comments only as the native registry form; keep `//` out unless the extractor is explicitly modeling preprocessed source.
+- Notes: Spin's comment handling is mediated by the preprocessor, so line comments are not guaranteed by Promela itself.
 
 ### Examples
 

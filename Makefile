@@ -1,6 +1,6 @@
 UV ?= uv
 
-.PHONY: setup setup-optional test test-optional lint smoke research-prompts check-main-branch
+.PHONY: setup setup-optional test test-optional lint smoke research-prompts comment-test-prompts check-main-branch
 
 setup:
 	$(UV) sync --group dev
@@ -22,6 +22,9 @@ smoke:
 
 research-prompts:
 	$(UV) run python scripts/build_comment_research_packets.py
+
+comment-test-prompts:
+	$(UV) run python scripts/build_comment_test_packets.py
 
 check-main-branch:
 	python scripts/check_main_branch_policy.py

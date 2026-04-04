@@ -6,10 +6,10 @@ These languages are not yet implemented in the current registry, but the researc
 
 ## Summary
 
-- Generated on: `2026-04-02`
+- Generated on: `2026-04-03`
 - Candidate count: `0`
 
 ## Candidates
 
-| Language | Registry key | Confidence | Line | Block | Termination | Nested | Action | Report |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

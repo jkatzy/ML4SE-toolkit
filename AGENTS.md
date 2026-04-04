@@ -17,6 +17,7 @@ verification.
 - `make lint`
 - `make smoke`
 - `make research-prompts`
+- `make comment-test-prompts`
 - `make check-main-branch`
 
 ## Repo map
@@ -28,6 +29,7 @@ verification.
 - `docs/architecture.md`: architecture notes and extension points
 - `docs/comment_syntax_matrix.md`: evidence worksheet for comment-language research
 - `docs/comment_research`: chunk reports, backlog views, and online-first worker packets
+- `docs/comment_testing`: adversarial breaker/fixer testing workflow for implemented languages
 
 ## Invariants
 
@@ -40,13 +42,16 @@ verification.
   not through new `if/elif` branches in the parser.
 - Stronger comment-language research should use the online-first playbook and
   packet generator in `docs/comment_research`.
+- Adversarial parser-test expansion for implemented languages should use the
+  breaker/fixer workflow in `docs/comment_testing`.
 
 ## Git workflow
 
 - Do agent-assisted or research-heavy work on development branches, not on
   `main`.
-- `AGENTS.md`, `docs/comment_research/`, `docs/comment_syntax_matrix.md`, and
-  `docs/comment_syntax_stack_v2.md` are development-only artifacts.
+- `AGENTS.md`, `docs/comment_research/`, `docs/comment_testing/`,
+  `docs/comment_syntax_matrix.md`, and `docs/comment_syntax_stack_v2.md` are
+  development-only artifacts.
 - Scratch directories such as `tmp/` and `scratch/`, plus tracked temporary
   files such as `*.tmp`, `*.bak`, `*.orig`, `*.rej`, and `*.swp`, are allowed
   during development but must not land on `main`.

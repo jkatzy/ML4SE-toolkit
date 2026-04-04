@@ -4,6 +4,8 @@ This report follows the README-driven, documentation-oriented format. I stayed c
 
 ## Talon
 - Registry key: `talon`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -19,6 +21,8 @@ This report follows the README-driven, documentation-oriented format. I stayed c
 
 ## Tcl
 - Registry key: `tcl`
+- Version scope: `Tcl 8.6.x and current Tcl/Tk 8.6.17 documentation; reviewed the Tcl command manual and the 8.6 release pages.`
+- Version-specific syntax: `No syntax split confirmed across the reviewed Tcl 8.6 docs; # is a comment only when it begins the first word of a command, so the registry should keep the line-comment form only.`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -40,6 +44,8 @@ set y 2
 
 ## Tcsh
 - Registry key: `tcsh`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -61,6 +67,8 @@ echo $x
 
 ## Tea
 - Registry key: `tea`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -76,6 +84,8 @@ echo $x
 
 ## Terra
 - Registry key: `terra`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `--[[ ... ]]`
 - Termination behavior: `depth-qualified delimiters`
@@ -112,6 +122,8 @@ local y = 2
 
 ## TeX
 - Registry key: `tex`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `%`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -135,6 +147,8 @@ Hello
 
 ## Texinfo
 - Registry key: `texinfo`
+- Version scope: `GNU Texinfo 7.2 and 7.3 manuals; reviewed both current manual builds and the comments page.`
+- Version-specific syntax: `No version split confirmed in the reviewed manuals; @comment/@c line comments and @ignore ... @end ignore blocks are documented in both, so the registry should implement the union of line and block forms.`
 - Line comments: `@c` and `@comment`
 - Block comments: `@ignore ... @end ignore`
 - Termination behavior: `first closing delimiter wins`
@@ -164,6 +178,8 @@ comment
 
 ## Text
 - Registry key: `text`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -178,6 +194,8 @@ comment
 
 ## Textile
 - Registry key: `textile`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -193,6 +211,8 @@ comment
 
 ## TextMate Properties
 - Registry key: `textmate_properties`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -214,6 +234,8 @@ name = Example
 
 ## Thrift
 - Registry key: `thrift`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `// and #`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -243,6 +265,8 @@ struct Foo {
 
 ## TLA
 - Registry key: `tla`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `\*`
 - Block comments: `(* ... *)`
 - Termination behavior: `true nesting supported`
@@ -276,6 +300,8 @@ Init == x = 0
 
 ## TOML
 - Registry key: `toml`
+- Version scope: `TOML 0.5.0 and 1.0.0; reviewed the archived 0.5.0 spec and the 1.0.0 spec.`
+- Version-specific syntax: `No syntax split confirmed; both reviewed specs use # for line comments, and 1.0.0 is explicitly back-compatible with 0.5.0. The registry should keep line comments only.`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -297,6 +323,8 @@ version = "1.0"
 
 ## TSQL
 - Registry key: `tsql`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -324,6 +352,8 @@ SELECT 2;
 
 ## TSV
 - Registry key: `tsv`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -338,6 +368,8 @@ SELECT 2;
 
 ## TSX
 - Registry key: `tsx`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -367,6 +399,8 @@ export function App() {
 
 ## Turing
 - Registry key: `turing`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -382,6 +416,8 @@ export function App() {
 
 ## Turtle
 - Registry key: `turtle`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -403,6 +439,8 @@ ex:s ex:p ex:o .
 
 ## Twig
 - Registry key: `twig`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `{# ... #}`
 - Termination behavior: `first closing delimiter wins`
@@ -423,6 +461,8 @@ ex:s ex:p ex:o .
 
 ## TXL
 - Registry key: `txl`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -438,6 +478,8 @@ ex:s ex:p ex:o .
 
 ## Type Language
 - Registry key: `type_language`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -453,6 +495,8 @@ ex:s ex:p ex:o .
 
 ## Unified Parallel C
 - Registry key: `upc`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -480,6 +524,8 @@ int y = 2;
 
 ## Unity3D Asset
 - Registry key: `unity3d_asset`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -502,6 +548,8 @@ int y = 2;
 
 ## Unix Assembly
 - Registry key: `unix_assembly`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -517,6 +565,8 @@ int y = 2;
 
 ## Uno
 - Registry key: `uno`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -549,6 +599,8 @@ namespace Example
 
 ## UnrealScript
 - Registry key: `unrealscript`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -580,6 +632,8 @@ defaultproperties
 
 ## UrWeb
 - Registry key: `urweb`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -595,6 +649,8 @@ defaultproperties
 
 ## V
 - Registry key: `v`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `true nesting supported`
@@ -631,6 +687,8 @@ fn main() {
 
 ## Vala
 - Registry key: `vala`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -658,6 +716,8 @@ void main () {
 
 ## Valve Data Format
 - Registry key: `valve_data_format`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -682,6 +742,8 @@ void main () {
 
 ## VBA
 - Registry key: `vba`
+- Version scope: `Microsoft Office VBA docs plus current Visual Basic .NET reference pages.`
+- Version-specific syntax: `No comment-token split confirmed across the reviewed Microsoft docs; both apostrophe (') and REM are supported, with REM requiring a statement boundary while ' is more flexible. Implement the union of both forms.`
 - Line comments: `'` and `Rem`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -711,6 +773,8 @@ End Sub
 
 ## VBScript
 - Registry key: `vbscript`
+- Version scope: `Microsoft VBScript reference pages and the Visual Basic family docs reviewed for comparison.`
+- Version-specific syntax: `No distinct VBScript-only comment token was confirmed beyond the Visual Basic family forms; the safest registry choice is the union of apostrophe (') and REM, with REM treated as statement-level only.`
 - Line comments: `'` and `Rem`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -738,6 +802,8 @@ x = 1
 
 ## VCL
 - Registry key: `vcl`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -753,6 +819,8 @@ x = 1
 
 ## Velocity Template Language
 - Registry key: `velocity_template_language`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `##`
 - Block comments: `#* ... *#`
 - Termination behavior: `first closing delimiter wins`
@@ -778,6 +846,8 @@ x = 1
 
 ## Verilog
 - Registry key: `verilog`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -807,6 +877,8 @@ endmodule
 
 ## VHDL
 - Registry key: `vhdl`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -829,6 +901,8 @@ end rtl;
 
 ## Vim Help File
 - Registry key: `vim_help_file`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -844,6 +918,8 @@ end rtl;
 
 ## Vim Script
 - Registry key: `vim_script`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `"`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -865,6 +941,8 @@ let y = 2
 
 ## Vim Snippet
 - Registry key: `vim_snippet`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -880,6 +958,8 @@ let y = 2
 
 ## Visual Basic .NET
 - Registry key: `visual_basic_net`
+- Version scope: `Current and prior Microsoft Learn Visual Basic .NET pages.`
+- Version-specific syntax: `No syntax split confirmed; both REM and apostrophe comments are documented, and REM cannot continue with line continuation. The registry should keep the union of both forms.`
 - Line comments: `'` and `Rem`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -909,6 +989,8 @@ End Sub
 
 ## Volt
 - Registry key: `volt`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -924,6 +1006,8 @@ End Sub
 
 ## Vyper
 - Registry key: `vyper`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -945,6 +1029,8 @@ y: uint256
 
 ## Wavefront Material
 - Registry key: `wavefront_material`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -966,6 +1052,8 @@ Kd 1.0 1.0 1.0
 
 ## Wavefront Object
 - Registry key: `wavefront_object`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -987,6 +1075,8 @@ v 0.0 0.0 0.0
 
 ## wdl
 - Registry key: `wdl`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1010,6 +1100,8 @@ task example {
 
 ## Web Ontology Language
 - Registry key: `web_ontology_language`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1025,6 +1117,8 @@ task example {
 
 ## WebIDL
 - Registry key: `webidl`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1054,6 +1148,8 @@ interface Example {
 
 ## WebVTT
 - Registry key: `webvtt`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `NOTE ... blank line`
 - Termination behavior: `first blank line wins`
@@ -1079,6 +1175,8 @@ Hello
 
 ## Whiley
 - Registry key: `whiley`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1107,6 +1205,8 @@ function f() -> int:
 
 ## Wikitext
 - Registry key: `wikitext`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -1128,6 +1228,8 @@ After
 
 ## Win32 Message File
 - Registry key: `win32_message_file`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1150,6 +1252,8 @@ Severity=Informational
 
 ## Windows Registry Entries
 - Registry key: `windows_registry_entries`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1171,6 +1275,8 @@ Windows Registry Editor Version 5.00
 
 ## Witcher Script
 - Registry key: `witcher_script`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1199,6 +1305,8 @@ function main() {
 
 ## Wollok
 - Registry key: `wollok`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1227,6 +1335,8 @@ object Example {
 
 ## World of Warcraft Addon Data
 - Registry key: `world_of_warcraft_addon_data`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `--[[ ... ]]`
 - Termination behavior: `depth-qualified delimiters`
@@ -1255,6 +1365,8 @@ frame:Show()
 
 ## Wren
 - Registry key: `wren`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1281,6 +1393,8 @@ class Example {}
 
 ## X BitMap
 - Registry key: `x_bit_map`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1296,6 +1410,8 @@ class Example {}
 
 ## X PixMap
 - Registry key: `x_pix_map`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1311,6 +1427,8 @@ class Example {}
 
 ## X10
 - Registry key: `x10`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1337,6 +1455,8 @@ class Example {}
 
 ## xBase
 - Registry key: `xbase`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1352,6 +1472,8 @@ class Example {}
 
 ## XC
 - Registry key: `xc`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1378,6 +1500,8 @@ void main() {}
 
 ## XML Property List
 - Registry key: `xml_property_list`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -1400,6 +1524,8 @@ void main() {}
 
 ## Xojo
 - Registry key: `xojo`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `'` and `Rem`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1426,6 +1552,8 @@ Dim x As Integer
 
 ## Xonsh
 - Registry key: `xonsh`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1447,6 +1575,8 @@ y = 2
 
 ## XPages
 - Registry key: `xpages`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -1469,6 +1599,8 @@ y = 2
 
 ## XProc
 - Registry key: `xproc`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -1490,6 +1622,8 @@ y = 2
 
 ## XQuery
 - Registry key: `xquery`
+- Version scope: `XQuery 1.0, 1.1, and 3.0 W3C Recommendations/Working Drafts.`
+- Version-specific syntax: `No version split confirmed in the reviewed W3C specs; (: ... :) comments are nested in 1.0, 1.1, and 3.0, so the registry should implement the nested block-comment form only.`
 - Line comments: `unsupported`
 - Block comments: `(: ... :)`
 - Termination behavior: `true nesting supported`
@@ -1517,6 +1651,8 @@ return $x
 
 ## XS
 - Registry key: `xs`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1532,6 +1668,8 @@ return $x
 
 ## XSLT
 - Registry key: `xslt`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -1556,6 +1694,8 @@ return $x
 
 ## Xtend
 - Registry key: `xtend`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1581,6 +1721,8 @@ class Example {}
 
 ## Yacc
 - Registry key: `yacc`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1609,6 +1751,8 @@ class Example {}
 
 ## YAML
 - Registry key: `yaml`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1630,6 +1774,8 @@ version: 1
 
 ## YANG
 - Registry key: `yang`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1660,6 +1806,8 @@ module example {
 
 ## YARA
 - Registry key: `yara`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1691,6 +1839,8 @@ rule example {
 
 ## YASnippet
 - Registry key: `yasnippet`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1706,6 +1856,8 @@ rule example {
 
 ## Yul
 - Registry key: `yul`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1735,6 +1887,8 @@ rule example {
 
 ## Zeek
 - Registry key: `zeek`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1757,6 +1911,8 @@ event zeek_init()
 
 ## ZenScript
 - Registry key: `zenscript`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1783,6 +1939,8 @@ val x = 1;
 
 ## Zephir
 - Registry key: `zephir`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1809,6 +1967,8 @@ let x = 1;
 
 ## Zig
 - Registry key: `zig`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1842,6 +2002,8 @@ const y = 2;
 
 ## ZIL
 - Registry key: `zil`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1857,6 +2019,8 @@ const y = 2;
 
 ## Zimpl
 - Registry key: `zimpl`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`

@@ -16,6 +16,7 @@ These are useful during active work, but they must not land on `main`:
 
 - `AGENTS.md`
 - `docs/comment_research/`
+- `docs/comment_testing/`
 - `docs/comment_syntax_matrix.md`
 - `docs/comment_syntax_stack_v2.md`
 - scratch directories such as `tmp/` and `scratch/`
@@ -27,6 +28,7 @@ These are useful during active work, but they must not land on `main`:
 
 - agent instructions or agent-only workflow files
 - raw agent outputs, prompt packets, or chunk reports
+- adversarial testing prompt packets, breaker findings, or fixer resolution logs
 - temporary research staging artifacts
 - scratch files or editor backup files
 

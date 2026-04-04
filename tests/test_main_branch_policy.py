@@ -16,6 +16,7 @@ def test_find_disallowed_paths_flags_development_only_artifacts():
     paths = [
         "AGENTS.md",
         "docs/comment_research/chunk_0_nonalpha_a_report.md",
+        "docs/comment_testing/chunk_0_findings.md",
         "docs/comment_syntax_matrix.md",
         "tmp/scratch.txt",
         "notes.tmp",
@@ -26,6 +27,7 @@ def test_find_disallowed_paths_flags_development_only_artifacts():
         "AGENTS.md",
         "docs/comment_research/chunk_0_nonalpha_a_report.md",
         "docs/comment_syntax_matrix.md",
+        "docs/comment_testing/chunk_0_findings.md",
         "notes.tmp",
         "tmp/scratch.txt",
     ]

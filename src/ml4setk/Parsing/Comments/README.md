@@ -7,7 +7,9 @@ The comment parsing module provides four query implementations:
 - `NestedCommentQuery`: extracts top-level nested comment regions using
   delimiter pairs for languages that support them.
 - `CommentQuery`: combines both strategies, returns matches in source order,
-  and coalesces adjacent standalone single-line comments into one logical block.
+  coalesces adjacent standalone single-line comments into one logical block,
+  and can union comment matches across multiple candidate languages when you
+  pass a list of language keys.
 - `OpeningCommentQuery`: extracts one logical opening comment block from the
   top of a file, optionally skipping a hashbang and enforcing a configurable
   row limit for where the header starts.
@@ -23,7 +25,7 @@ For concrete usage, examples, supported-language lookup, and current
 limitations, see
 [`docs/comment_extractor.md`](../../../../docs/comment_extractor.md).
 
-The registry currently covers `326` language keys, including programming,
+The registry currently covers `333` language keys, including programming,
 template, markup, config, and record-oriented syntaxes such as `astro`,
 `coldfusion`, `genero`, `marko`, `openqasm`, `plantuml`, `q`,
 `restructuredtext`, `rexx`, `slim`, `smarty`, and `tla`.

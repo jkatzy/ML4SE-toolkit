@@ -210,20 +210,30 @@ health = 100;
 
 ## Ragel
 - Registry key: `ragel`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: line comments terminate at end-of-line; block comments unsupported
+- Nested comments: no
+- Confidence: verified
+- Evidence mode: official_docs
+- Version scope: Ragel 5.17, 6.1, and 6.6 guides
+- Version-specific syntax: no Ragel-specific version split found; the checked guides consistently show `#` line comments in Ragel blocks
+- Docs source: `https://www.colm.net/open-source/ragel/; https://www.colm.net/files/ragel/ragel-guide-5.17.pdf; https://www.colm.net/files/ragel/ragel-guide-6.1.pdf; https://www.colm.net/files/ragel/ragel-guide-6.6.pdf`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: Ragel comment syntax depends on the exact embedded mode; I did not validate a defensible source.
+- Recommended action: implement
+- Notes: Ragel FSM-spec blocks use `#` comments to newline. I checked multiple guides and did not find a versioned delimiter change.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+%%{
+machine example;
+# keep the transition explicit
+main := 'a';
+}%%
+```
 
 ## RAML
 - Registry key: `raml`
@@ -481,6 +491,8 @@ x := 2
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
+- Version scope: not confirmed across redirect-rule dialects; the label is ambiguous in the current corpus
+- Version-specific syntax: unresolved; the available sources do not establish a stable comment delimiter, and one source uses `comment` as a data property rather than syntax
 - Docs source: unresolved
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
@@ -492,20 +504,27 @@ x := 2
 
 ## Regular Expression
 - Registry key: `regular_expression`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `#` in verbose / extended modes
+- Block comments: unsupported
+- Termination behavior: line comments terminate at the next newline in verbose / extended modes; Perl and PCRE2 also support inline `(?#...)` comments that terminate at `)`
+- Nested comments: no
+- Confidence: cross-checked
+- Evidence mode: implementation_cross_checked
+- Version scope: Python 3.9-3.14 `re`, Perl 5.6+ `perlre`, PCRE2 current, ECMAScript 2026 regular expressions
+- Version-specific syntax: Python `re.X`/`(?x)` and Perl `/x` use `#` line comments; Perl and PCRE2 also accept `(?#...)`; ECMAScript RegExp does not define a native comment syntax. The label is flavor-dependent, so a single union key would be misleading.
+- Docs source: `https://docs.python.org/3/library/re.html; https://perldoc.perl.org/perlre; https://www.pcre.org/current/doc/html/pcre2pattern.html; https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
 - Recommended action: needs manual research
-- Notes: Regex comment syntax is flavor-dependent, so do not normalize this without a flavor-specific spec.
+- Notes: Regex comment syntax is flavor-dependent across Python, Perl, PCRE2, and ECMAScript. Do not normalize this without splitting by flavor.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+\d+  # the integral part
+\.\d*  # the fractional part
+```
 
 ## Ren'Py
 - Registry key: `renpy`
@@ -834,6 +853,8 @@ value = 2
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
+- Version scope: not confirmed; the Stack label is too ambiguous to tie to a stable RPC syntax family
+- Version-specific syntax: unresolved; no defensible versioned comment grammar was found
 - Docs source: unresolved
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
@@ -1064,20 +1085,27 @@ value = 2
 
 ## Self
 - Registry key: `self`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: unsupported
+- Block comments: `" ... "`
+- Termination behavior: block comments terminate at the closing double quote
+- Nested comments: no
+- Confidence: verified
+- Evidence mode: official_docs
+- Version scope: Self 4.5.0 handbook
+- Version-specific syntax: no version split found; comments are still delimited by double quotes in the checked handbook
+- Docs source: `https://handbook.selflanguage.org/4.5/langref.html`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: Self comment delimiters were not confirmed from a stable official source here.
+- Recommended action: implement
+- Notes: Self comments are double-quoted and may span multiple lines.
 
 ### Examples
-- unsupported or unresolved
+
+#### Block comment
+```text
+" keep the next step explicit
+  and leave the code readable "
+```
 
 ## SELinux Policy
 - Registry key: `selinux_policy`
@@ -1213,20 +1241,28 @@ value = 2
 
 ## Slash
 - Registry key: `slash`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: line comments terminate at end-of-line; block comments unsupported
+- Nested comments: no
+- Confidence: verified
+- Evidence mode: official_docs
+- Version scope: current Slash book / structure docs
+- Version-specific syntax: no version split found; the checked Slash docs consistently use `#` line comments
+- Docs source: `https://slashlang.org/book/structure; https://slashlang.org/book/intro`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: I could not find a defensible source for the language label used here.
+- Recommended action: implement
+- Notes: Slash comments are hash-prefixed and can appear inline or on their own line.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+println("Hello")
+# keep the next statement explicit
+println("World")
+```
 
 ## Slice
 - Registry key: `slice`
@@ -1652,7 +1688,9 @@ return value;
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: GNU Emacs SRecode manual and CEDET documentation
+- Version-specific syntax: no stable language-wide comment delimiter confirmed; syntax is template-family specific and should be checked against the exact template documentation
+- Docs source: `https://www.gnu.org/software/emacs/manual/html_node/srecode/Template-Naming-Conventions.html`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
 - Recommended action: needs manual research
@@ -1752,6 +1790,8 @@ value + 1
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
+- Version scope: not confirmed; the Stack label is ambiguous across languages and formats
+- Version-specific syntax: unresolved; no defensible versioned comment grammar was found
 - Docs source: unresolved
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
@@ -1811,17 +1851,19 @@ summarize mpg
 
 ## STON
 - Registry key: `ston`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unresolved; STON does not define a native comment delimiter
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Version scope: STON reference docs in Pharo Enterprise and the STON implementation docs
+- Version-specific syntax: no native comment syntax found; comments are handled only by helper streams such as `STONCStyleCommentsSkipStream` and `fromStringWithComments:`
+- Docs source: `https://book.huihoo.com/smalltalk/pharo/enterprise-pharo/book-result/STON/STON.html; https://files.pharo.org/books-pdfs/entreprise-pharo/2016-10-06-EnterprisePharo.pdf`
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: STON comment handling was not confirmed from a stable source.
+- Recommended action: unsupported
+- Notes: STON explicitly says comments are not part of the format; comment stripping is an external helper, not native syntax.
 
 ### Examples
 - unsupported or unresolved
@@ -1834,6 +1876,8 @@ summarize mpg
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
+- Version scope: StringTemplate 3 and 4 docs / grammar pages checked
+- Version-specific syntax: unresolved; no stable comment delimiter was confirmed in the checked versioned docs
 - Docs source: unresolved
 - Implementation source: GitHub Linguist languages.yml
 - Corpus fallback source: unresolved
@@ -2056,4 +2100,4 @@ return value;
 
 This chunk still contains unresolved or unsupported labels that should remain out of the registry until a defensible source is found.
 
-Unresolved or unsupported languages: `q`, `Quake`, `Ragel`, `Raw token data`, `RDoc`, `REALbasic`, `Redirect Rules`, `Regular Expression`, `REXX`, `Rich Text Format`, `Rouge`, `RPC`, `RPGLE`, `Self`, `SELinux Policy`, `Slash`, `Slim`, `Smarty`, `SRecode Template`, `STAR`, `STL`, `STON`, `StringTemplate`, `SubRip Text`.
+Unresolved or unsupported languages: `q`, `Quake`, `Raw token data`, `RDoc`, `REALbasic`, `Redirect Rules`, `Regular Expression`, `REXX`, `Rich Text Format`, `Rouge`, `RPC`, `RPGLE`, `SELinux Policy`, `Slim`, `Smarty`, `SRecode Template`, `STAR`, `STL`, `StringTemplate`, `SubRip Text`.

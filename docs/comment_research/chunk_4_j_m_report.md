@@ -11,6 +11,8 @@ This report follows the documentation-oriented structure defined in `docs/commen
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
+- Version scope: J 6.02 scriptdoc and current J docs checked.
+- Version-specific syntax: no dialect split found; `NB.` is the only native comment form confirmed, and consecutive `NB.` lines are documentation grouping rather than a separate block-comment syntax.
 - Confidence: verified
 - Evidence mode: official_docs
 - Docs source: https://www.jsoftware.com/docs/help602/user/scriptdoc.htm
@@ -41,6 +43,8 @@ Unsupported or unresolved.
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
+- Version scope: current assembler references checked for Jasmin; no version boundary confirmed.
+- Version-specific syntax: unresolved; no delimiter split or dialect-specific comment form was confirmed in the sources checked.
 - Confidence: candidate
 - Evidence mode: implementation_cross_checked
 - Docs source: unresolved
@@ -72,6 +76,8 @@ Unsupported or unresolved.
 - Block comments: /* ... */
 - Termination behavior: end of line for JS line comments; first closing delimiter wins for block comments; ERB comments terminate at %>
 - Nested comments: unsupported
+- Version scope: ECMAScript editions plus Ruby ERB 2.3, 3.0, and 3.4 docs checked.
+- Version-specific syntax: JS `//` and `/* ... */` are stable across the ECMAScript docs checked; ERB `<%# ... %>` is stable across the Ruby versions checked. Registry should implement the union of all confirmed forms for the compound syntax.
 - Confidence: candidate
 - Evidence mode: official_docs
 - Docs source: https://docs.ruby-lang.org/en/3.1/ERB.html + ECMAScript
@@ -109,6 +115,8 @@ Unsupported or unresolved.
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
+- Version scope: current snapshot-format docs and parser behavior checked.
+- Version-specific syntax: unresolved; no version or dialect split for snapshot comments was confirmed in the sources checked.
 - Confidence: candidate
 - Evidence mode: implementation_cross_checked
 - Docs source: unresolved
@@ -140,6 +148,8 @@ Unsupported or unresolved.
 - Block comments: unresolved
 - Termination behavior: unresolved
 - Nested comments: unresolved
+- Version scope: current MPS docs and grammar references were not sufficient to pin a release-specific syntax.
+- Version-specific syntax: unresolved; no versioned delimiter split was confirmed in this pass.
 - Confidence: unresolved
 - Evidence mode: unresolved
 - Docs source: unresolved
@@ -208,6 +218,8 @@ int nextValue = value + 1;
 - Block comments: /* ... */
 - Termination behavior: end of line for line comments; first closing delimiter wins for block comments
 - Nested comments: unsupported
+- Version scope: current Jison grammar / parser references checked.
+- Version-specific syntax: unresolved; no versioned comment split was confirmed in the sources checked.
 - Confidence: candidate
 - Evidence mode: implementation_cross_checked
 - Docs source: unresolved
@@ -245,6 +257,8 @@ Unsupported or unresolved.
 - Block comments: /* ... */
 - Termination behavior: end of line for line comments; first closing delimiter wins for block comments
 - Nested comments: unsupported
+- Version scope: current Jolie docs and parser references checked.
+- Version-specific syntax: unresolved; no version-specific delimiter split was confirmed in the sources checked.
 - Confidence: candidate
 - Evidence mode: implementation_cross_checked
 - Docs source: Jolie docs
@@ -282,6 +296,8 @@ Unsupported or unresolved.
 - Block comments: /* ... */
 - Termination behavior: end of line for line comments; first closing delimiter wins for block comments
 - Nested comments: unsupported
+- Version scope: current JSON-with-comments references checked.
+- Version-specific syntax: unresolved; no version-specific comment split was confirmed in the sources checked.
 - Confidence: verified
 - Evidence mode: official_docs
 - Docs source: https://jsonc.org/
@@ -2245,6 +2261,8 @@ Unsupported or unresolved.
 - Block comments: <!-- ... -->
 - Termination behavior: end of line for line comments; first closing delimiter wins for block comments
 - Nested comments: unsupported
+- Version scope: Jinja 2.10.x, 3.1.x, and 3.2.x docs checked.
+- Version-specific syntax: `{# ... #}` is stable; line-comment support via `line_comment_prefix` was added in version 2.2. Registry should keep the union of confirmed forms and treat `##` as versioned support rather than the baseline in older releases.
 - Confidence: verified
 - Evidence mode: implementation_cross_checked
 - Docs source: https://jakarta.ee/specifications/pages/4.1/jakarta-server-pages-spec-4.1-M1.pdf
@@ -2279,6 +2297,8 @@ Unsupported or unresolved.
 - Block comments: {# ... #}
 - Termination behavior: end of line for line comments; first closing delimiter wins for block comments
 - Nested comments: unsupported
+- Version scope: current Liquid docs, Shopify Liquid docs, and Liquid variation docs checked.
+- Version-specific syntax: no conflicting delimiter split was confirmed among the sources checked; the current docs add inline comments, while `{% comment %}...{% endcomment %}` remains stable across the variants reviewed. Registry should keep the union of the confirmed forms used by the supported Liquid variants.
 - Confidence: verified
 - Evidence mode: implementation_cross_checked
 - Docs source: https://jinja.palletsprojects.com/en/2.10.x/templates/?highlight=placeholder
@@ -2343,6 +2363,8 @@ Unsupported or unresolved.
 - Block comments: /* ... */
 - Termination behavior: end of line for line comments; first closing delimiter wins for block comments
 - Nested comments: unsupported
+- Version scope: Mako 1.3.x docs checked.
+- Version-specific syntax: no syntax split confirmed across the docs checked; `##` and `<%doc>... </%doc>` are stable. Registry should implement the union of the confirmed forms.
 - Confidence: verified
 - Evidence mode: implementation_cross_checked
 - Docs source: https://spec.json5.org/
@@ -2596,6 +2618,8 @@ Unsupported or unresolved.
 - Block comments: unsupported
 - Termination behavior: end of line
 - Nested comments: unsupported
+- Version scope: GNU Make 3.80 and 4.4.1 manuals checked.
+- Version-specific syntax: no comment-syntax split confirmed; `#` remains the only native comment syntax in the manuals checked.
 - Confidence: verified
 - Evidence mode: implementation_cross_checked
 - Docs source: LLVM LangRef

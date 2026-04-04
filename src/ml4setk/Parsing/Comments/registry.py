@@ -117,6 +117,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "gsc",
             "hyphy",
             "openqasm",
+            "pike",
             "quake",
         ),
         regex_patterns=(
@@ -207,6 +208,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "xonsh",
             "yaml",
             "zeek",
+            "ragel",
+            "slash",
         ),
         regex_patterns=(r"#.*",),
         shared_regex_examples=(
@@ -460,6 +463,55 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="pascal_style",
+        canonical_name="pascal",
+        regex_patterns=(
+            r"\{[\S\s]*?\}",
+            r"/{2}.*.*",
+        ),
+        nested_delimiters=(
+            ("{", "}"),
+            ("(*", "*)"),
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "Pascal line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n{ note }\nsuffix",
+                "{ note }",
+                "Brace-delimited Pascal block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_nested_examples=(
+            CommentExample(
+                "before { outer { inner } outer } after",
+                "{ outer { inner } outer }",
+                "Nested brace Pascal comment in Free Pascal normal mode.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "before (* outer (* inner *) outer *) after",
+                "(* outer (* inner *) outer *)",
+                "Nested paren-star Pascal comment in Free Pascal normal mode.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        notes=(
+            "The generic Pascal key implements the union of Free Pascal, TP/Delphi, "
+            "and Pascal65 comment forms. It accepts //, { ... }, and (* ... *)."
+        ),
+    ),
+    CommentSyntax(
         family_name="percent_style",
         canonical_name="erlang",
         aliases=("bibtex", "postscript", "tex"),
@@ -506,7 +558,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="forth",
         regex_patterns=(
             r"\\\s.*",
-            r"\(\s[\s\S]*?\s\)",
+            r"\(\s[\s\S]*?\)",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -602,8 +654,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="lua_style",
         canonical_name="lua",
         regex_patterns=(
-            r"--\[\[[\s\S]*?\]\]",
-            r"--.*",
+            r"--\[(=*)\[[\s\S]*?\]\1\]",
+            r"--(?!\[[=]*\[).*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -671,7 +723,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="perl_style",
         canonical_name="perl",
         regex_patterns=(
-            r"=[\s\S]*?=cut",
+            r"=pod\b[\s\S]*?=cut\b",
             r"#.*",
         ),
         shared_regex_examples=(
@@ -725,11 +777,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="raku_style",
         canonical_name="raku",
         regex_patterns=(
-            r"#'\([\s\S]*?\)",
-            r"#'\{[\s\S]*?\}",
-            r"#'\[[\s\S]*?\]",
-            r"#'\<[\s\S]*?\>",
-            r"#.*",
+            r"#`\([\s\S]*?\)",
+            r"#`\{[\s\S]*?\}",
+            r"#`\[[\s\S]*?\]",
+            r"#`<[\s\S]*?>",
+            r"#(?!`).*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -743,9 +795,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         canonical_regex_examples=(
             CommentExample(
-                "prefix\n#'(note)\nsuffix",
-                "#'(note)",
-                "Bracketed quoted comment.",
+                "prefix\n#`(note)\nsuffix",
+                "#`(note)",
+                "Bracketed embedded comment.",
                 kind="block",
                 inline_compatible=True,
             ),
@@ -914,14 +966,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="java_properties_style",
         canonical_name="java_properties",
-        regex_patterns=(r"[#!].*",),
+        regex_patterns=(r"(?m)^[ \t]*[#!].*",),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n# note\nsuffix",
                 "# note",
                 "Properties file line comment.",
                 kind="line",
-                inline_compatible=True,
+                inline_compatible=False,
                 grouped_line_compatible=True,
             ),
         ),
@@ -1589,7 +1641,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="nested_c_style",
         canonical_name="dafny",
-        aliases=("dm", "dylan", "jflex", "v"),
+        aliases=("dm", "dylan", "jflex", "powerbuilder", "v"),
         regex_patterns=(r"/{2}.*.*",),
         nested_delimiters=(("/*", "*/"),),
         shared_regex_examples=(
@@ -2186,6 +2238,24 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="promela_style",
+        canonical_name="promela",
+        regex_patterns=(r"\/\*[\S\s]*?\*\/",),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n/* note */\nsuffix",
+                "/* note */",
+                "Native Promela block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        notes=(
+            "This entry intentionally models only native Promela comments. "
+            "C-preprocessor // comments are not included."
+        ),
+    ),
+    CommentSyntax(
         family_name="plantuml_style",
         canonical_name="plantuml",
         regex_patterns=(
@@ -2214,7 +2284,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="rdoc_style",
         canonical_name="rdoc",
         regex_patterns=(
-            r"=[\s\S]*?=end",
+            r"=begin\b[\s\S]*?=end\b",
             r"\/\*[\S\s]*?\*\/",
             r"#.*",
         ),
@@ -2240,6 +2310,20 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "=begin\nnote\n=end",
                 "RDoc begin/end block comment.",
                 kind="block",
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="self_style",
+        canonical_name="self",
+        regex_patterns=(r'"[\S\s]*?"',),
+        shared_regex_examples=(
+            CommentExample(
+                'before\n"note"\nafter',
+                '"note"',
+                "Self double-quoted comment.",
+                kind="block",
+                inline_compatible=True,
             ),
         ),
     ),

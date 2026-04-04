@@ -163,6 +163,9 @@ def _line_tokens(spec):
         return list(override_tokens)
 
     text = spec.fields.get("Line comments", "")
+    if "preprocessor-dependent" in text.lower():
+        return []
+
     tokens = [
         token for token in _extract_backtick_tokens(text) if token.lower() not in UNSUPPORTED_VALUES
     ]
@@ -238,7 +241,7 @@ def _parse_block_token(token):
         open_delim, close_delim = [part.strip() for part in token.split("...", 1)]
         if open_delim and close_delim:
             return open_delim, close_delim
-    if token in {"/* */", "(* *)", "<!-- -->", "#| |#", "{* *}"}:
+    if token in {"/* */", "(* *)", "<!-- -->", "#| |#", "{* *}", "{ }", '" "'}:
         open_delim, close_delim = token.split()
         return open_delim, close_delim
     if token == "////":

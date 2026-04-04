@@ -10,6 +10,7 @@ from pathlib import PurePosixPath
 DISALLOWED_MAIN_PATTERNS = (
     "AGENTS.md",
     "docs/comment_research/**",
+    "docs/comment_testing/**",
     "docs/comment_syntax_matrix.md",
     "docs/comment_syntax_stack_v2.md",
     "scratch/**",
