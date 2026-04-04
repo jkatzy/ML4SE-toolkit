@@ -4,6 +4,8 @@ This report is documentation-oriented and test-oriented. I kept unresolved items
 
 ## Ballerina
 - Registry key: `ballerina`
+- Version scope: `Swan Lake-era Ballerina docs; reviewed the current style guide plus the language/spec surface.`
+- Version-specific syntax: `No syntax split confirmed in the reviewed sources; // and /* ... */ remain the documented comment forms, so the registry should keep the union of both.`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -31,6 +33,8 @@ int y = 2;
 
 ## BASIC
 - Registry key: `basic`
+- Version scope: `Classic BASIC family; reviewed QBasic/QuickBASIC, IBM BASIC, and Visual Basic/VBA-style references.`
+- Version-specific syntax: `Older BASIC dialects may only support REM, while newer compatible dialects also accept apostrophe comments. Implement the union of REM and apostrophe forms for BASIC-family coverage.`
 - Line comments: `'` and `REM`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -58,6 +62,8 @@ y = 2
 
 ## Batchfile
 - Registry key: `batchfile`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `REM` and `::`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -85,6 +91,8 @@ echo done
 
 ## Beef
 - Registry key: `beef`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -113,6 +121,8 @@ int y = 2;
 
 ## Berry
 - Registry key: `berry`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -135,6 +145,8 @@ y = 2
 
 ## BibTeX
 - Registry key: `bibtex`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `%`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -156,6 +168,8 @@ y = 2
 
 ## Bicep
 - Registry key: `bicep`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -184,6 +198,8 @@ output x string = name
 
 ## Bikeshed
 - Registry key: `bikeshed`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `<!-- ... -->` is the best candidate, but this needs verification.
 - Termination behavior: `first closing delimiter wins`
@@ -206,6 +222,8 @@ output x string = name
 
 ## BitBake
 - Registry key: `bitbake`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -228,6 +246,8 @@ LICENSE = "MIT"
 
 ## Blade
 - Registry key: `blade`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `{{-- ... --}}`
 - Termination behavior: `first closing delimiter wins`
@@ -250,6 +270,8 @@ LICENSE = "MIT"
 
 ## BlitzBasic
 - Registry key: `blitzbasic`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -272,6 +294,8 @@ Print "world"
 
 ## BlitzMax
 - Registry key: `blitzmax`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `Rem` and `'`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -300,6 +324,8 @@ Print "world"
 
 ## Bluespec
 - Registry key: `bluespec`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -330,6 +356,8 @@ endrule
 
 ## Boo
 - Registry key: `boo`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -352,6 +380,8 @@ y = 2
 
 ## Boogie
 - Registry key: `boogie`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -380,6 +410,8 @@ assume x > 0;
 
 ## Brainfuck
 - Registry key: `brainfuck`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -400,6 +432,8 @@ This text is ignored by the interpreter.
 
 ## BrighterScript
 - Registry key: `brighterscript`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `'` and `REM`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -422,6 +456,8 @@ y = 2
 
 ## Brightscript
 - Registry key: `brightscript`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `'` and `REM`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -444,6 +480,8 @@ y = 2
 
 ## Browserslist
 - Registry key: `browserslist`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -466,6 +504,8 @@ last 2 versions
 
 ## C2hs Haskell
 - Registry key: `c2hs_haskell`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `{- ... -}`
 - Termination behavior: `true nesting supported`
@@ -499,6 +539,8 @@ bar = 2
 
 ## Cabal Config
 - Registry key: `cabal_config`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -521,6 +563,8 @@ version: 1.0
 
 ## Cadence
 - Registry key: `cadence`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -551,6 +595,8 @@ pub fun main() {
 
 ## CAP CDS
 - Registry key: `cap_cds`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -581,6 +627,8 @@ entity Books {
 
 ## Cap'n Proto
 - Registry key: `capn_proto`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -602,6 +650,8 @@ struct Foo {}
 
 ## CartoCSS
 - Registry key: `cartocss`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -625,6 +675,8 @@ struct Foo {}
 
 ## Ceylon
 - Registry key: `ceylon`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -655,6 +707,8 @@ shared void run() {
 
 ## Chapel
 - Registry key: `chapel`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -683,6 +737,8 @@ var y = 2;
 
 ## Checksums
 - Registry key: `checksums`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -704,6 +760,8 @@ deadbeef  file.txt
 
 ## ChucK
 - Registry key: `chuck`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -729,6 +787,8 @@ deadbeef  file.txt
 
 ## CIL
 - Registry key: `cil`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -751,6 +811,8 @@ deadbeef  file.txt
 
 ## Cirru
 - Registry key: `cirru`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -766,6 +828,8 @@ deadbeef  file.txt
 
 ## Clarion
 - Registry key: `clarion`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `!`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -787,6 +851,8 @@ CODE
 
 ## Classic ASP
 - Registry key: `classic_asp`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -810,6 +876,8 @@ CODE
 
 ## Clean
 - Registry key: `clean`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -836,6 +904,8 @@ Start
 
 ## Click
 - Registry key: `click`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -859,6 +929,8 @@ def main():
 
 ## CLIPS
 - Registry key: `clips`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -885,6 +957,8 @@ def main():
 
 ## Clojure
 - Registry key: `clojure`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -910,6 +984,8 @@ def main():
 
 ## Closure Templates
 - Registry key: `closure_templates`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `{* ... *}`
 - Termination behavior: `first closing delimiter wins`
@@ -933,6 +1009,8 @@ def main():
 
 ## Cloud Firestore Security Rules
 - Registry key: `cloud_firestore_security_rules`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -956,6 +1034,8 @@ match /databases/{database}/documents {
 
 ## CMake
 - Registry key: `cmake`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `#[[ ... ]]` with depth-qualified bracket comments
 - Termination behavior: `depth-qualified delimiters`
@@ -989,6 +1069,8 @@ set(VAR value)
 
 ## CODEOWNERS
 - Registry key: `codeowners`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1009,6 +1091,8 @@ set(VAR value)
 
 ## CodeQL
 - Registry key: `codeql`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1035,6 +1119,8 @@ select 1
 
 ## CoffeeScript
 - Registry key: `coffeescript`
+- Version scope: `CoffeeScript 1.x and 2.x; reviewed the main site plus the CoffeeScript 1 annotated source and CoffeeScript 2 announcement.`
+- Version-specific syntax: `No comment-token split confirmed between 1.x and 2.x; both versions use # for line comments and ### ... ### for block comments. CoffeeScript 2 changed output preservation of line comments, not the surface syntax, so the registry should keep the union of both forms.`
 - Line comments: `#`
 - Block comments: `### ... ###`
 - Termination behavior: `first closing delimiter wins`
@@ -1065,6 +1151,8 @@ y = 2
 
 ## ColdFusion
 - Registry key: `coldfusion`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!--- ... --->`
 - Termination behavior: `true nesting supported`
@@ -1096,6 +1184,8 @@ y = 2
 
 ## ColdFusion CFC
 - Registry key: `coldfusion_cfc`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!--- ... --->`
 - Termination behavior: `true nesting supported`
@@ -1130,6 +1220,8 @@ y = 2
 
 ## COLLADA
 - Registry key: `collada`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
@@ -1151,6 +1243,8 @@ y = 2
 
 ## Common Workflow Language
 - Registry key: `common_workflow_language`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1172,6 +1266,8 @@ cwlVersion: v1.2
 
 ## Component Pascal
 - Registry key: `component_pascal`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `(* ... *)`
 - Termination behavior: `first closing delimiter wins`
@@ -1193,6 +1289,8 @@ MODULE Example;
 
 ## CoNLL-U
 - Registry key: `conll_u`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1213,6 +1311,8 @@ MODULE Example;
 
 ## Cool
 - Registry key: `cool`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `(* ... *)`
 - Termination behavior: `true nesting supported`
@@ -1247,6 +1347,8 @@ class Main inherits IO {
 
 ## Creole
 - Registry key: `creole`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1262,6 +1364,8 @@ class Main inherits IO {
 
 ## CSON
 - Registry key: `cson`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `### ... ###`
 - Termination behavior: `first closing delimiter wins`
@@ -1290,6 +1394,8 @@ key: value
 
 ## Csound
 - Registry key: `csound`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1318,6 +1424,8 @@ endin
 
 ## Csound Document
 - Registry key: `csound_document`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1338,6 +1446,8 @@ endin
 
 ## Csound Score
 - Registry key: `csound_score`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `;`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1359,6 +1469,8 @@ f 1 0 1024 10 1
 
 ## CSS
 - Registry key: `css`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1381,6 +1493,8 @@ body {
 
 ## CSV
 - Registry key: `csv`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1395,6 +1509,8 @@ body {
 
 ## CUE
 - Registry key: `cue`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1422,6 +1538,8 @@ y: 2
 
 ## Cue Sheet
 - Registry key: `cue_sheet`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `REM` and `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -1443,6 +1561,8 @@ TRACK 01 AUDIO
 
 ## Curry
 - Registry key: `curry`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `--`
 - Block comments: `{- ... -}`
 - Termination behavior: `true nesting supported`
@@ -1473,6 +1593,8 @@ main :: IO ()
 
 ## CWeb
 - Registry key: `cweb`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1488,6 +1610,8 @@ main :: IO ()
 
 ## Cycript
 - Registry key: `cycript`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
@@ -1514,6 +1638,8 @@ var x = 1;
 
 ## Cython
 - Registry key: `cython`
+- Version scope: `unresolved`
+- Version-specific syntax: `unresolved`
 - Line comments: `#`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`

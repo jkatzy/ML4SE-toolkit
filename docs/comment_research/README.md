@@ -13,7 +13,8 @@ the public Stack v2 language inventory derived from:
   languages.
 - `chunk_*_report.md`: per-agent research output for one chunk.
 - `online_research_playbook.md`: stronger online-first research method with
-  a docs-first, search-engine community fallback, and corpus-fallback workflow.
+  a docs-first, search-engine community fallback, corpus-fallback workflow,
+  and explicit version-aware source comparison.
 - `report_template.md`: report skeleton for the stronger worker output.
 - `prompt_packets/`: generated per-chunk prompt files for stronger workers.
 - `not_done_backlog.md` and `not_done_backlog.csv`: generated backlog for every
@@ -49,6 +50,8 @@ Do not just list tokens. For each assigned language, include:
 
 - Stack v2 name
 - Suggested registry key
+- Version scope: which versions, releases, or dialects were checked
+- Version-specific syntax summary: where comment syntax differs across versions
 - Line comment syntax
 - Block comment syntax
 - Termination behavior for block-style comments
@@ -71,6 +74,8 @@ documentation. A good structure is:
 ## <Language>
 
 - Registry key:
+- Version scope:
+- Version-specific syntax:
 - Line comments:
 - Block comments:
 - Termination behavior:
@@ -103,5 +108,7 @@ If a language does not support one of the categories, state that explicitly.
 Prefer official language documentation first and implementation or grammar
 sources second. When you need a search-engine fallback, include `programming
 language` in the query so ambiguous names bias toward language results instead
-of tools, frameworks, or products. If the syntax is unclear, mark it as
-unresolved instead of guessing.
+of tools, frameworks, or products. When a language has multiple language
+versions or dialects, compare more than one source version and record the
+differences explicitly. If the syntax is unclear, mark it as unresolved instead
+of guessing.

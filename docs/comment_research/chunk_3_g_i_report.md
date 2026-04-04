@@ -92,6 +92,8 @@ draw_self();
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: GAMA 1.9.3 wiki pages and the current GamlReference snapshot
+- Version-specific syntax: both checked versions surface `//`; no source-backed block-comment form or dialect split was confirmed, so the registry should not union extra forms yet
 - Recommended action: Confirm whether GAML has a distinct block-comment form in the grammar or corpus before adding registry support.
 - Notes: The verified docs show `//` in statement examples, but this pass did not find a source-backed block-comment specification.
 
@@ -181,6 +183,8 @@ Print(L);
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: GCC internals manuals checked in the 3.1 and 4.1.1 lines plus current online internals references
+- Version-specific syntax: no source-backed machine-description comment delimiter was confirmed in any checked version; keep unsupported until a real `.md` comment form is documented
 - Recommended action: Leave unsupported until an official GCC machine-description syntax source is located.
 - Notes: No source-backed comment syntax was confirmed in this pass.
 
@@ -243,6 +247,8 @@ move_and_slide()
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: GEDCOM 5.5.1 errata and standard references checked
+- Version-specific syntax: no file-comment delimiter was confirmed; the spec's `/* comment */` wording is explanatory syntax notation, not a source comment form, so the registry should keep GEDCOM unsupported
 - Recommended action: Keep unsupported unless a dialect-specific GEDCOM source documents a real comment form.
 - Notes: No source-backed comment syntax was confirmed in this pass.
 
@@ -259,6 +265,8 @@ move_and_slide()
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: Bundler lockfile format is not versioned for comment syntax
+- Version-specific syntax: no comment syntax was found in the checked lockfile references; keep unsupported and do not union any delimiters
 - Recommended action: Keep unsupported and exclude this file type from comment parsing tests.
 - Notes: Gemfile.lock is generated dependency metadata, not a comment-bearing source format.
 
@@ -312,6 +320,8 @@ END MAIN
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: Genero Forms 3.00.06 and 4.01.38 tutorial docs
+- Version-specific syntax: both checked tutorial versions show `--` comments in `.per` examples; no block-comment form or version split was confirmed, so the registry should not union extra syntax
 - Recommended action: Add `.per` fixtures that keep `--` comment lines in place and do not assume brace or hash comments unless a form-file grammar source confirms them.
 - Notes: The official form examples show trailing `--` comments in text-based form files, but they do not document a separate block-comment form.
 
@@ -544,6 +554,8 @@ docs/** linguist-generated
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: checked revision-list references did not expose a versioned comment syntax
+- Version-specific syntax: no source-backed delimiter was found; keep unsupported and do not infer a union of forms
 - Recommended action: Keep unsupported unless a specific revision-list dialect documents comments.
 - Notes: No source-backed comment syntax was confirmed in this pass.
 
@@ -663,6 +675,8 @@ plot sin(x)
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: Go checksum database metadata is generated, not versioned for comment syntax
+- Version-specific syntax: no comment delimiter was confirmed in any checked checksum format reference; keep unsupported
 - Recommended action: Keep unsupported and exclude from parser coverage.
 - Notes: Go checksum database entries are generated metadata, not a comment-bearing source format.
 
@@ -848,6 +862,8 @@ fun UsePN : PN -> NP ;
 - Implementation source: https://igraph.org/c/html/develop/igraph-Foreign.html
 - Community source: https://en.wikipedia.org/wiki/Graph_Modelling_Language
 - Corpus fallback source: not used
+- Version scope: GML references and igraph foreign-interface docs checked; no versioned comment syntax surfaced
+- Version-specific syntax: the checked sources treat `comment` as data, not syntax; do not union any delimiters and keep GML unsupported
 - Recommended action: Keep unsupported; the available references describe `comment` as a data attribute, not a comment delimiter.
 - Notes: The available GML references treat `comment` as a regular attribute, so this format should stay out of comment parsing.
 
@@ -1057,6 +1073,8 @@ global
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: Harbour core/manual snapshots were checked without finding a versioned comment reference
+- Version-specific syntax: no source-backed Harbour delimiter difference was confirmed; leave unresolved until a primary Harbour reference documents the comment forms
 - Recommended action: Leave unresolved until a source-backed Harbour syntax reference confirms the comment forms.
 - Notes: No source-backed comment syntax was confirmed in this pass.
 
@@ -1427,6 +1445,8 @@ x
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: HTTP is a protocol, not a versioned comment-bearing source language
+- Version-specific syntax: no HTTP comment syntax was found in the checked references; keep unsupported
 - Recommended action: Keep unsupported unless a formal comment syntax is located in a specific HTTP configuration grammar.
 - Notes: HTTP itself is a protocol, not a comment-bearing source format.
 
@@ -1762,6 +1782,8 @@ doStuff
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
+- Version scope: IRC log formats are transcript data, not versioned source languages with comment syntax
+- Version-specific syntax: no comment delimiter was found in the checked references; keep unsupported
 - Recommended action: Keep unsupported.
 - Notes: IRC logs are transcripts, not a comment-bearing source format.
 

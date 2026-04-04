@@ -24,6 +24,8 @@ CANDIDATES_CSV_PATH = RESEARCH_DIR / "registry_ready_candidates.csv"
 
 FIELD_NAMES = (
     "Registry key",
+    "Version scope",
+    "Version-specific syntax",
     "Line comments",
     "Block comments",
     "Termination behavior",
@@ -62,6 +64,8 @@ UNSUPPORTED_MARKERS = {
 class LanguageRecord:
     language: str
     registry_key: str
+    version_scope: str
+    version_specific_syntax: str
     line_comments: str
     block_comments: str
     termination_behavior: str
@@ -147,6 +151,10 @@ def parse_reports(expected_languages: Sequence[str]) -> Dict[str, LanguageRecord
             record = LanguageRecord(
                 language=language,
                 registry_key=normalize_text(current_fields.get("Registry key", "")),
+                version_scope=normalize_text(current_fields.get("Version scope", "")),
+                version_specific_syntax=normalize_text(
+                    current_fields.get("Version-specific syntax", "")
+                ),
                 line_comments=normalize_text(current_fields.get("Line comments", "")),
                 block_comments=normalize_text(current_fields.get("Block comments", "")),
                 termination_behavior=normalize_text(
@@ -211,6 +219,8 @@ def build_backlog_rows(
                     "registry_key": "",
                     "status": "missing_research_record",
                     "confidence": "",
+                    "version_scope": "unresolved",
+                    "version_specific_syntax": "unresolved",
                     "line_comments": "unresolved",
                     "block_comments": "unresolved",
                     "termination_behavior": "unresolved",
@@ -229,6 +239,8 @@ def build_backlog_rows(
                 "registry_key": record.registry_key,
                 "status": classify_status(record),
                 "confidence": record.confidence,
+                "version_scope": record.version_scope,
+                "version_specific_syntax": record.version_specific_syntax,
                 "line_comments": record.line_comments,
                 "block_comments": record.block_comments,
                 "termination_behavior": record.termination_behavior,
@@ -253,6 +265,8 @@ def write_csv(path: Path, rows: Sequence[dict]) -> None:
         "registry_key",
         "status",
         "confidence",
+        "version_scope",
+        "version_specific_syntax",
         "line_comments",
         "block_comments",
         "termination_behavior",
@@ -275,20 +289,23 @@ def escape_cell(value: str) -> str:
 def format_table(rows: Sequence[dict]) -> List[str]:
     header = (
         (
-            "| Language | Registry key | Confidence | Line | Block | Termination | "
-            "Nested | Action | Report |"
+            "| Language | Registry key | Confidence | Version scope | Version syntax | "
+            "Line | Block | Termination | Nested | Action | Report |"
         ),
-        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     )
     body = []
     for row in rows:
         body.append(
-            "| {language} | {registry_key} | {confidence} | {line_comments} | "
-            "{block_comments} | {termination_behavior} | {nested_comments} | "
-            "{recommended_action} | {report_file} |".format(
+            "| {language} | {registry_key} | {confidence} | {version_scope} | "
+            "{version_specific_syntax} | {line_comments} | {block_comments} | "
+            "{termination_behavior} | {nested_comments} | {recommended_action} | "
+            "{report_file} |".format(
                 language=escape_cell(row["language"]),
                 registry_key=escape_cell(row["registry_key"]),
                 confidence=escape_cell(row["confidence"]),
+                version_scope=escape_cell(row["version_scope"]),
+                version_specific_syntax=escape_cell(row["version_specific_syntax"]),
                 line_comments=escape_cell(row["line_comments"]),
                 block_comments=escape_cell(row["block_comments"]),
                 termination_behavior=escape_cell(row["termination_behavior"]),

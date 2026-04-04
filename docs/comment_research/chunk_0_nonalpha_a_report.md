@@ -36,6 +36,8 @@ EndProcedure
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
+- Version scope: not confirmed; no versioned programming-language source or dialect split found
+- Version-specific syntax: unresolved; I did not find a defensible version-specific comment grammar for this label
 - Docs source: unresolved
 - Implementation source: unresolved
 - Community source: unresolved
@@ -316,6 +318,8 @@ pkgver=1.0
 - Nested comments: unknown
 - Confidence: unresolved
 - Evidence mode: unresolved
+- Version scope: Altium Designer documentation and community pages checked; source-language syntax was not confirmed
+- Version-specific syntax: unresolved; the available sources discuss document comments, annotations, and tasks rather than code-comment delimiters
 - Docs source: `https://www.altium.com/documentation/altium-designer/document-commenting`
 - Implementation source: unresolved
 - Community source: `https://my.altium.com/altium-designer/getting-started/commenting-your-design`

@@ -36,10 +36,25 @@ one supported comment.
 - `match`: the extracted comment itself
 - `suffix`: text after the extracted comment
 
+If the language is uncertain, `CommentQuery` also accepts a list of language
+keys and returns the union of unique matches from all of them:
+
+```python
+from ml4setk import CommentQuery
+
+sample = "value = 1 # note\n/* block */\nreturn value\n"
+query = CommentQuery(["python", "java"])
+
+matches = query.parse(sample)
+assert [match.match for match in matches] == ["# note", "/* block */"]
+```
+
 ## Which query to use
 
-- `CommentQuery(language)`: the default. Combines regex-based comments with
-  nested-block comments and returns matches in source order.
+- `CommentQuery(language_or_languages)`: the default. Combines regex-based
+  comments with nested-block comments and returns matches in source order. When
+  you pass a list of languages, it returns the union of unique comment matches
+  across those parsers.
 - `OpeningCommentQuery(language, max_start_row=3)`: extracts one logical
   opening comment block from the top of a file. It skips an initial hashbang
   line, requires the first real comment to start within the first `n` rows, and
@@ -132,7 +147,7 @@ print(len(languages))
 print(languages[:10])
 ```
 
-As of this revision, the comment extractor implements `326` language keys.
+As of this revision, the comment extractor implements `333` language keys.
 That includes mainstream source languages plus template, markup, config, and
 record-oriented syntaxes such as `astro`, `coldfusion`, `g_code`, `gams`,
 `genero`, `jsp`, `marko`, `openqasm`, `plantuml`, `q`, `rexx`, `slim`,

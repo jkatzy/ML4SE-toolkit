@@ -116,18 +116,20 @@ Version: 1.0
 ## DenizenScript
 
 - Registry key: `denizenscript`
+- Version scope: `Current Denizen Beginner's Guide and Meta Documentation pages; reviewed the maintained DenizenCore/Denizen docs surface rather than an archived legacy release.`
+- Version-specific syntax: `No version split confirmed; the current docs use # to comment out whole command lines, so keep the verified line-comment form only and do not infer block syntax.`
 - Line comments: `#` likely supported
 - Block comments: `unresolved`
 - Termination behavior: `runs to newline`
 - Nested comments: `unsupported`
-- Evidence mode: `corpus_inferred`
+- Evidence mode: `official_docs`
 - Confidence: `medium`
-- Docs source: `unresolved`
+- Docs source: `https://guide.denizenscript.com/guides/basics/mechanisms.html; https://guide.denizenscript.com/guides/troubleshooting/common-mistakes; https://meta.denizenscript.com/Docs/Commands/`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `https://github.com/mcmonkeyprojects/DenizenSampleScripts`
 - Corpus fallback source: `https://github.com/mcmonkeyprojects/DenizenSampleScripts`
 - Recommended action: verify the comment form against an official parser or docs page before registry changes.
-- Notes: sample scripts use leading `#` comment lines, but I did not find an official syntax page that stated the rule directly.
+- Notes: sample scripts use leading `#` comment lines, and the current official docs also show `#` used to comment out command lines.
 
 ### Examples
 
@@ -469,18 +471,20 @@ end method;
 ## E
 
 - Registry key: `e`
+- Version scope: `Original E-on-Java specification pages, current ERights language pages, and 0.9-era examples that use pragma.syntax("0.9"); the exact comment policy was not pinned in the sources checked.`
+- Version-specific syntax: `No comment-token split confirmed across the reviewed E materials; the sources expose the E/Kernel-E language family but do not explicitly document a stable comment delimiter, so keep this entry unresolved.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
 - Nested comments: `unresolved`
 - Evidence mode: `unresolved`
 - Confidence: `unresolved`
-- Docs source: `unresolved`
+- Docs source: `https://erights.org/history/original-e/programmers/LanguageSpec.html; https://erights.org/elang/; https://erights.org/elang/quick-ref.html; https://erights.org/history/original-e/programmers/Econcepts.html`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: identify the exact language and source manual first.
-- Notes: the name is too ambiguous to guess safely.
+- Notes: the language family is documented, but I did not find a defensible comment-token rule in the pages checked.
 
 ## E-mail
 
@@ -508,18 +512,20 @@ Subject: status
 ## Eagle
 
 - Registry key: `eagle`
-- Line comments: `unresolved`
+- Version scope: `Autodesk EAGLE ULP docs in current Fusion Electronics help, plus the 2016 Autodesk ULP blog post and recent forum references to EAGLE 5/9.x behavior.`
+- Version-specific syntax: `The reviewed ULP sources present C-like syntax and a sample that uses // comments; no separate block-comment rule was confirmed, so the registry should add only the verified line-comment form until a block form is pinned.`
+- Line comments: `//` supported
 - Block comments: `unresolved`
-- Termination behavior: `unresolved`
+- Termination behavior: `runs to newline`
 - Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `unresolved`
+- Evidence mode: `official_docs`
+- Confidence: `medium`
+- Docs source: `https://help.autodesk.com/cloudhelp/ENU/Fusion-ECAD/files/ECD-WRITE-ULP-REF.htm; https://help.autodesk.com/cloudhelp/ENU/Fusion-ECAD/files/ECD-USER-LANG-REF.htm; https://www.autodesk.com/products/fusion-360/blog/what-you-didnt-know-about-eagle-user-language-programming/`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: identify the exact format or language before adding syntax.
-- Notes: do not generalize from unrelated CAD formats.
+- Recommended action: add the verified `//` line-comment fixture now and keep block syntax out of the registry until a source pins it.
+- Notes: ULP is explicitly described as C-like, and the sample docs show `//` comments in actual ULP code.
 
 ## Easybuild
 
@@ -573,34 +579,38 @@ indent_style = space
 ## EBNF
 
 - Registry key: `ebnf`
+- Version scope: `ISO/IEC 14977:1996, the Cambridge ISO EBNF summary, Microsoft's EBNF-M page, and RFC 2234/5234 ABNF material used only for comparison because the Stack label is generic.`
+- Version-specific syntax: `No canonical comment syntax was found for generic EBNF; the sources reviewed show that comment conventions are dialect-specific, so keep the label unresolved until a concrete EBNF dialect is pinned.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
 - Nested comments: `unresolved`
 - Evidence mode: `unresolved`
 - Confidence: `unresolved`
-- Docs source: `unresolved`
+- Docs source: `https://iso.org/standard/26153.html; https://www.cl.cam.ac.uk/~mgk25/iso-ebnf.html; https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/8deb6d43-3e71-493b-9465-b84bb3cd3c45; https://datatracker.ietf.org/doc/rfc5234/`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: identify the exact EBNF dialect in scope before adding syntax.
-- Notes: EBNF is a grammar notation family, so the comment forms are dialect-specific.
+- Notes: EBNF is a grammar notation family, so the comment forms are dialect-specific rather than standardized by the family name alone.
 
 ## eC
 
 - Registry key: `ec`
+- Version scope: `Current Ecere SDK / eC project materials plus the 2017 Ecere overview article; I did not find a versioned grammar page that pinned comment syntax.`
+- Version-specific syntax: `No version split or dialect split was confirmed in the reviewed sources; the language is described as C-style, but that is not sufficient to encode a comment token safely without an authoritative reference.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
 - Nested comments: `unresolved`
 - Evidence mode: `unresolved`
 - Confidence: `unresolved`
-- Docs source: `unresolved`
+- Docs source: `https://opensource.com/article/17/9/ecere; https://github.com/ecere/ecere-sdk`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: verify the Ecere/eC reference before encoding comment syntax.
-- Notes: the official docs were not pinned in this pass.
+- Notes: the source material confirms the language family and its C-style framing, but not a specific comment rule.
 
 ## ECL
 
@@ -670,18 +680,20 @@ goal :-
 ## Edje Data Collection
 
 - Registry key: `edje_data_collection`
+- Version scope: `Legacy Edje reference material plus current Tizen EDC docs, including the Tizen 2.4+ layouting pages and the newer Tizen 5.x-era EDC editor/deprecation notes.`
+- Version-specific syntax: `No version split was confirmed; the reviewed EDC examples use C-style block comments (/* ... */) in current docs, and I did not find an older dialect that changed the delimiter. If the registry targets .edc, add the block form only.`
 - Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
+- Block comments: `/* ... */` supported
+- Termination behavior: `first closing delimiter wins`
 - Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `unresolved`
+- Evidence mode: `official_docs`
+- Confidence: `medium`
+- Docs source: `https://docs.tizen.org/application/native/guides/ui/efl/learn-edc-intro/; https://docs.tizen.org/application/native/guides/ui/efl/learn-edc-positioning-parts/; https://www.enlightenment.org/_legacy_embed/edje_main.html; https://docs.tizen.org/application/tizen-studio/native-tools/edc-editor/`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: confirm the `.edc` syntax before adding a registry entry.
-- Notes: no defensible comment syntax was pinned.
+- Recommended action: add a block-comment regression test for .edc and keep line comments unresolved until a source pins them.
+- Notes: the reviewed docs show /* ... */ inside EDC examples; I did not find a verified line-comment token.
 
 ## edn
 
@@ -854,18 +866,20 @@ console.log user.name
 ## EQ
 
 - Registry key: `eq`
+- Version scope: `The Stack label was not pinned to a unique language or format; I checked generic EQ references and could not isolate an authoritative manual for a specific EQ dialect.`
+- Version-specific syntax: `No defensible comment syntax was found; the label remains unresolved until the intended language or file format is identified.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
 - Nested comments: `unresolved`
 - Evidence mode: `unresolved`
 - Confidence: `unresolved`
-- Docs source: `unresolved`
+- Docs source: `https://file.org/extension/eq; https://help.altair.com/compose/help/en_us/topics/reference/oml_language/CoreMinimalInterpreter/eq.htm`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: identify the language before adding syntax.
-- Notes: the name is too ambiguous to guess.
+- Notes: the name collides with multiple unrelated EQ concepts, so I did not treat any of them as the intended language.
 
 ## Euphoria
 
@@ -1047,34 +1061,38 @@ process = _;
 ## FIGlet Font
 
 - Registry key: `figlet_font`
+- Version scope: `FIGlet 2.2.1 FIGfont standard draft 2.0 plus parser docs for figlet v0.3.2; the sources also note that older FIGlet/FIGWin versions motivated the format.`
+- Version-specific syntax: `The format uses a counted comment section after the header line rather than a token-based in-band delimiter; no alternate version split was confirmed, so treat the comments as file metadata rather than a source-code comment syntax.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
 - Nested comments: `unresolved`
 - Evidence mode: `unresolved`
 - Confidence: `unresolved`
-- Docs source: `unresolved`
+- Docs source: `https://sources.debian.org/src/figlet/2.2.1-4/figfont.txt; https://www.figlet.org/figlet-man.html; https://hexdocs.pm/figlet/Figlet.Parser.FontFileParser.html`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: identify the exact font-file format before adding syntax.
-- Notes: this may be a data format rather than source code.
+- Recommended action: keep this unresolved unless the stack label is reclassified as FIGfont metadata rather than code comments.
+- Notes: the "comments" are a counted section in the font file, not a token-delimited comment form.
 
 ## Filebench WML
 
 - Registry key: `filebench_wml`
+- Version scope: `Filebench 1.4.9.1 man-page material, the 1.5-alpha1 quick-start docs, and the current filebench GitHub wiki/repo examples.`
+- Version-specific syntax: `No comment delimiter was confirmed in the reviewed WML sources; the versioned docs describe the workload structure and commands but do not pin a stable comment token, so keep the entry unresolved.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
 - Nested comments: `unresolved`
 - Evidence mode: `unresolved`
 - Confidence: `unresolved`
-- Docs source: `unresolved`
+- Docs source: `https://github.com/filebench/filebench; https://github-wiki-see.page/m/filebench/filebench/wiki/Workload-model-language; https://www.mankier.com/package/filebench`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: verify the WML syntax from Filebench docs first.
-- Notes: do not guess.
+- Notes: the reviewed WML docs describe workload structure and versioning, but not a defensible comment syntax.
 
 ## fish
 
@@ -1139,6 +1157,8 @@ brand-name = Example
 ## FLUX
 
 - Registry key: `flux`
+- Version scope: `The label was not pinned to a specific language, file format, or versioned dialect; only the Stack v2 label and the ambiguous name were checked.`
+- Version-specific syntax: `No versioned or dialect-specific comment syntax could be established, so leave this unresolved.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -1155,6 +1175,8 @@ brand-name = Example
 ## Formatted
 
 - Registry key: `formatted`
+- Version scope: `The label was not pinned to a unique language or file format; the Stack v2 name alone does not identify an authoritative manual or dialect family.`
+- Version-specific syntax: `No versioned or dialect-specific comment syntax could be established, so leave this unresolved.`
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
