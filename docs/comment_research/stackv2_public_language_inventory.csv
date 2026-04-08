@@ -1,0 +1,608 @@
+normalized_name,stack_v2_name,currently_supported
+1c enterprise,1C Enterprise,no
+2-dimensional array,2-Dimensional Array,no
+4d,4D,no
+abap,ABAP,no
+actionscript,ActionScript,no
+ada,Ada,yes
+adobe font metrics,Adobe Font Metrics,no
+agda,Agda,yes
+ags script,AGS Script,no
+aidl,AIDL,no
+al,AL,no
+alloy,Alloy,no
+alpine abuild,Alpine Abuild,no
+altium designer,Altium Designer,no
+ampl,AMPL,no
+angelscript,AngelScript,no
+ant build system,Ant Build System,no
+antlers,Antlers,no
+antlr,ANTLR,yes
+apacheconf,ApacheConf,no
+apex,Apex,yes
+api blueprint,API Blueprint,no
+apl,APL,no
+apollo guidance computer,Apollo Guidance Computer,no
+applescript,AppleScript,no
+arc,Arc,no
+asciidoc,AsciiDoc,no
+asl,ASL,no
+asn.1,ASN.1,no
+asp.net,ASP.NET,no
+aspectj,AspectJ,no
+assembly,Assembly,yes
+astro,Astro,no
+asymptote,Asymptote,no
+ats,ATS,no
+augeas,Augeas,no
+autohotkey,AutoHotkey,no
+autoit,AutoIt,no
+avro idl,Avro IDL,no
+awk,Awk,no
+ballerina,Ballerina,no
+basic,BASIC,no
+batchfile,Batchfile,no
+beef,Beef,no
+berry,Berry,no
+bibtex,BibTeX,no
+bicep,Bicep,no
+bikeshed,Bikeshed,no
+bitbake,BitBake,no
+blade,Blade,no
+blitzbasic,BlitzBasic,no
+blitzmax,BlitzMax,no
+bluespec,Bluespec,no
+boo,Boo,no
+boogie,Boogie,no
+brainfuck,Brainfuck,no
+brighterscript,BrighterScript,no
+brightscript,Brightscript,no
+browserslist,Browserslist,no
+c,C,yes
+c#,C#,yes
+c++,C++,yes
+c2hs haskell,C2hs Haskell,no
+cabal config,Cabal Config,no
+cadence,Cadence,no
+cap cds,CAP CDS,no
+cap'n proto,Cap'n Proto,no
+cartocss,CartoCSS,no
+ceylon,Ceylon,no
+chapel,Chapel,no
+checksums,Checksums,no
+chuck,ChucK,no
+cil,CIL,no
+cirru,Cirru,no
+clarion,Clarion,no
+classic asp,Classic ASP,no
+clean,Clean,no
+click,Click,no
+clips,CLIPS,no
+clojure,Clojure,no
+closure templates,Closure Templates,no
+cloud firestore security rules,Cloud Firestore Security Rules,no
+cmake,CMake,no
+cobol,COBOL,yes
+codeowners,CODEOWNERS,no
+codeql,CodeQL,no
+coffeescript,CoffeeScript,no
+coldfusion,ColdFusion,no
+coldfusion cfc,ColdFusion CFC,no
+collada,COLLADA,no
+common workflow language,Common Workflow Language,no
+component pascal,Component Pascal,no
+conll-u,CoNLL-U,no
+cool,Cool,no
+coq,Coq,yes
+creole,Creole,no
+crystal,Crystal,yes
+cson,CSON,no
+csound,Csound,no
+csound document,Csound Document,no
+csound score,Csound Score,no
+css,CSS,no
+csv,CSV,no
+cuda,Cuda,yes
+cue,CUE,no
+cue sheet,Cue Sheet,no
+curry,Curry,no
+cweb,CWeb,no
+cycript,Cycript,no
+cython,Cython,no
+d,D,yes
+dafny,Dafny,no
+dart,Dart,yes
+dataweave,DataWeave,no
+debian package control file,Debian Package Control File,no
+denizenscript,DenizenScript,no
+desktop,desktop,no
+dhall,Dhall,no
+diff,Diff,no
+digital command language,DIGITAL Command Language,no
+dircolors,dircolors,no
+directx 3d file,DirectX 3D File,no
+dm,DM,no
+dns zone,DNS Zone,no
+dockerfile,Dockerfile,no
+dtrace,DTrace,no
+dylan,Dylan,no
+e,E,no
+e-mail,E-mail,no
+eagle,Eagle,no
+easybuild,Easybuild,no
+ebnf,EBNF,no
+ec,eC,no
+ecl,ECL,no
+eclipse,ECLiPSe,no
+editorconfig,EditorConfig,no
+edje data collection,Edje Data Collection,no
+edn,edn,no
+eiffel,Eiffel,no
+ejs,EJS,no
+elixir,Elixir,yes
+elm,Elm,yes
+elvish,Elvish,no
+emacs lisp,Emacs Lisp,no
+emberscript,EmberScript,no
+eq,EQ,no
+erlang,Erlang,yes
+euphoria,Euphoria,no
+f#,F#,yes
+f*,F*,no
+factor,Factor,no
+fantom,Fantom,no
+faust,Faust,no
+fennel,Fennel,no
+figlet font,FIGlet Font,no
+filebench wml,Filebench WML,no
+fish,fish,no
+fluent,Fluent,no
+flux,FLUX,no
+formatted,Formatted,no
+forth,Forth,yes
+fortran,Fortran,yes
+fortran free form,Fortran Free Form,no
+freebasic,FreeBasic,no
+freemarker,FreeMarker,no
+frege,Frege,no
+futhark,Futhark,no
+g-code,G-code,no
+game maker language,Game Maker Language,no
+gaml,GAML,no
+gams,GAMS,no
+gap,GAP,no
+gcc machine description,GCC Machine Description,no
+gdb,GDB,no
+gdscript,GDScript,no
+gedcom,GEDCOM,no
+gemfile.lock,Gemfile.lock,no
+genero,Genero,no
+genero forms,Genero Forms,no
+genshi,Genshi,no
+gentoo ebuild,Gentoo Ebuild,no
+gentoo eclass,Gentoo Eclass,no
+gerber image,Gerber Image,no
+gettext catalog,Gettext Catalog,no
+gherkin,Gherkin,no
+git attributes,Git Attributes,no
+git config,Git Config,no
+git revision list,Git Revision List,no
+glsl,GLSL,no
+glyph bitmap distribution format,Glyph Bitmap Distribution Format,no
+gn,GN,no
+gnuplot,Gnuplot,no
+go,Go,yes
+go checksums,Go Checksums,no
+go module,Go Module,no
+golo,Golo,no
+gosu,Gosu,no
+grace,Grace,no
+gradle,Gradle,no
+grammatical framework,Grammatical Framework,no
+graph modeling language,Graph Modeling Language,no
+graphql,GraphQL,yes
+graphviz (dot),Graphviz (DOT),no
+groovy,Groovy,yes
+groovy server pages,Groovy Server Pages,no
+gsc,GSC,no
+hack,Hack,yes
+haml,Haml,no
+handlebars,Handlebars,no
+haproxy,HAProxy,no
+harbour,Harbour,no
+haskell,Haskell,yes
+haxe,Haxe,no
+hcl,HCL,no
+hiveql,HiveQL,no
+hlsl,HLSL,no
+hocon,HOCON,no
+holyc,HolyC,no
+hoon,hoon,no
+html,HTML,yes
+html+ecr,HTML+ECR,no
+html+eex,HTML+EEX,no
+html+erb,HTML+ERB,no
+html+php,HTML+PHP,no
+html+razor,HTML+Razor,no
+http,HTTP,no
+hxml,HXML,no
+hy,Hy,no
+hyphy,HyPhy,no
+idl,IDL,no
+idris,Idris,no
+ignore list,Ignore List,no
+igor pro,IGOR Pro,no
+imagej macro,ImageJ Macro,no
+inform 7,Inform 7,no
+ini,INI,no
+inno setup,Inno Setup,no
+io,Io,no
+irc log,IRC log,no
+isabelle,Isabelle,no
+isabelle root,Isabelle ROOT,no
+j,J,no
+jar manifest,JAR Manifest,no
+jasmin,Jasmin,no
+java,Java,yes
+java properties,Java Properties,no
+java server pages,Java Server Pages,no
+javascript,JavaScript,yes
+javascript+erb,JavaScript+ERB,no
+jest snapshot,Jest Snapshot,no
+jetbrains mps,JetBrains MPS,no
+jflex,JFlex,no
+jinja,Jinja,no
+jison,Jison,no
+jolie,Jolie,no
+jq,jq,no
+json,JSON,no
+json with comments,JSON with Comments,no
+json5,JSON5,no
+jsoniq,JSONiq,no
+jsonld,JSONLD,no
+jsonnet,Jsonnet,no
+julia,Julia,yes
+jupyter notebook,Jupyter Notebook,no
+kaitai struct,Kaitai Struct,no
+kakounescript,KakouneScript,no
+kicad layout,KiCad Layout,no
+kicad legacy layout,KiCad Legacy Layout,no
+kicad schematic,KiCad Schematic,no
+kit,Kit,no
+kotlin,Kotlin,yes
+krl,KRL,no
+kusto,Kusto,no
+kvlang,kvlang,no
+labview,LabVIEW,no
+lark,Lark,no
+lasso,Lasso,no
+latte,Latte,no
+lean,Lean,no
+less,Less,yes
+lex,Lex,no
+lfe,LFE,no
+lilypond,LilyPond,no
+limbo,Limbo,no
+linker script,Linker Script,no
+linux kernel module,Linux Kernel Module,no
+liquid,Liquid,no
+lisp,Common Lisp,yes
+literate agda,Literate Agda,no
+literate coffeescript,Literate CoffeeScript,no
+literate haskell,Literate Haskell,no
+livescript,LiveScript,no
+llvm,LLVM,no
+logos,Logos,no
+logtalk,Logtalk,no
+lolcode,LOLCODE,no
+lookml,LookML,no
+loomscript,LoomScript,no
+lsl,LSL,no
+ltspice symbol,LTspice Symbol,no
+lua,Lua,yes
+m,M,no
+m4,M4,no
+m4sugar,M4Sugar,no
+macaulay2,Macaulay2,no
+makefile,Makefile,no
+mako,Mako,no
+markdown,Markdown,no
+marko,Marko,no
+mask,Mask,no
+mathematica,Mathematica,yes
+matlab,MATLAB,yes
+maven pom,Maven POM,no
+max,Max,no
+maxscript,MAXScript,no
+mcfunction,mcfunction,no
+mercury,Mercury,no
+meson,Meson,no
+metal,Metal,no
+microsoft developer studio project,Microsoft Developer Studio Project,no
+microsoft visual studio solution,Microsoft Visual Studio Solution,no
+miniyaml,MiniYAML,no
+mirah,Mirah,no
+mirc script,mIRC Script,no
+mlir,MLIR,no
+modelica,Modelica,no
+modula-2,Modula-2,no
+modula-3,Modula-3,no
+module management system,Module Management System,no
+monkey,Monkey,no
+monkey c,Monkey C,no
+moonscript,MoonScript,no
+motoko,Motoko,no
+motorola 68k assembly,Motorola 68K Assembly,no
+move,Move,no
+mql4,MQL4,no
+mql5,MQL5,no
+mtml,MTML,no
+muf,MUF,no
+mupad,mupad,no
+muse,Muse,no
+mustache,Mustache,no
+nanorc,nanorc,no
+nasal,Nasal,no
+nasl,NASL,no
+ncl,NCL,no
+nearley,Nearley,no
+nemerle,Nemerle,no
+neon,NEON,no
+nesc,nesC,no
+netlinx,NetLinx,no
+netlogo,NetLogo,yes
+newlisp,NewLisp,no
+nextflow,Nextflow,no
+nginx,Nginx,no
+nim,Nim,no
+ninja,Ninja,no
+nit,Nit,no
+nix,Nix,yes
+nl,NL,no
+npm config,NPM Config,no
+nsis,NSIS,no
+nunjucks,Nunjucks,no
+nwscript,NWScript,no
+objdump,ObjDump,no
+object data instance notation,Object Data Instance Notation,no
+objective-c,Objective-C,yes
+objective-c++,Objective-C++,no
+objective-j,Objective-J,no
+objectscript,ObjectScript,no
+ocaml,OCaml,yes
+odin,Odin,no
+ooc,ooc,no
+opa,Opa,no
+open policy agent,Open Policy Agent,no
+opencl,OpenCL,no
+openedge abl,OpenEdge ABL,no
+openqasm,OpenQASM,no
+openrc runscript,OpenRC runscript,no
+openscad,OpenSCAD,no
+openstep property list,OpenStep Property List,no
+opentype feature file,OpenType Feature File,no
+org,Org,no
+ox,Ox,no
+oz,Oz,no
+p4,P4,no
+pan,Pan,no
+papyrus,Papyrus,no
+parrot assembly,Parrot Assembly,no
+parrot internal representation,Parrot Internal Representation,no
+pascal,Pascal,no
+pawn,Pawn,no
+peg.js,PEG.js,no
+pep8,Pep8,no
+perl,Perl,yes
+php,PHP,yes
+pic,Pic,no
+pickle,Pickle,no
+picolisp,PicoLisp,no
+piglatin,PigLatin,no
+pike,Pike,no
+plantuml,PlantUML,no
+plpgsql,PLpgSQL,no
+plsql,PLSQL,no
+pod,Pod,no
+pod 6,Pod 6,no
+pogoscript,PogoScript,no
+pony,Pony,no
+portugol,Portugol,no
+postcss,PostCSS,no
+postscript,PostScript,no
+pov-ray sdl,POV-Ray SDL,no
+powerbuilder,PowerBuilder,no
+powershell,PowerShell,no
+prisma,Prisma,no
+processing,Processing,yes
+procfile,Procfile,no
+proguard,Proguard,no
+prolog,Prolog,yes
+promela,Promela,no
+propeller spin,Propeller Spin,no
+protocol buffer,Protocol Buffer,no
+protocol buffer text format,Protocol Buffer Text Format,no
+public key,Public Key,no
+pug,Pug,no
+puppet,Puppet,no
+pure data,Pure Data,no
+purebasic,PureBasic,no
+purescript,PureScript,no
+python,Python,yes
+q,q,no
+q#,Q#,no
+qmake,QMake,no
+qml,QML,no
+qt script,Qt Script,no
+quake,Quake,no
+r,R,yes
+racket,Racket,no
+ragel,Ragel,no
+raku,Raku,yes
+raml,RAML,no
+rascal,Rascal,no
+raw token data,Raw token data,no
+rdoc,RDoc,no
+readline config,Readline Config,no
+realbasic,REALbasic,no
+reason,Reason,no
+rebol,Rebol,no
+red,Red,no
+redcode,Redcode,no
+redirect rules,Redirect Rules,no
+regular expression,Regular Expression,no
+ren'py,Ren'Py,no
+renderscript,RenderScript,no
+rescript,ReScript,no
+restructuredtext,reStructuredText,no
+rexx,REXX,no
+rich text format,Rich Text Format,no
+ring,Ring,no
+rmarkdown,RMarkdown,no
+robotframework,RobotFramework,no
+robots.txt,robots.txt,no
+roff,Roff,no
+roff manpage,Roff Manpage,no
+rouge,Rouge,no
+rpc,RPC,no
+rpgle,RPGLE,no
+rpm spec,RPM Spec,no
+ruby,Ruby,yes
+rust,Rust,yes
+sage,Sage,no
+saltstack,SaltStack,no
+sas,SAS,no
+sass,Sass,no
+scala,Scala,yes
+scheme,Scheme,yes
+scilab,Scilab,yes
+scss,SCSS,no
+sed,sed,no
+self,Self,no
+selinux policy,SELinux Policy,no
+shaderlab,ShaderLab,no
+shell,Shell,no
+sieve,Sieve,no
+singularity,Singularity,no
+slash,Slash,no
+slice,Slice,no
+slim,Slim,no
+smali,Smali,no
+smalltalk,Smalltalk,no
+smarty,Smarty,no
+smpl,SmPL,no
+smt,SMT,no
+solidity,Solidity,no
+soong,Soong,no
+sourcepawn,SourcePawn,no
+sparql,SPARQL,no
+spline font database,Spline Font Database,no
+sqf,SQF,no
+sql,SQL,yes
+sqlpl,SQLPL,no
+squirrel,Squirrel,no
+srecode template,SRecode Template,no
+ssh config,SSH Config,no
+stan,Stan,no
+standard ml,Standard ML,no
+star,STAR,no
+starlark,Starlark,yes
+stata,Stata,no
+stl,STL,no
+ston,STON,no
+stringtemplate,StringTemplate,no
+stylus,Stylus,no
+subrip text,SubRip Text,no
+sugarss,SugarSS,no
+supercollider,SuperCollider,no
+svelte,Svelte,no
+svg,SVG,no
+swift,Swift,yes
+swig,SWIG,no
+systemverilog,SystemVerilog,no
+talon,Talon,no
+tcl,Tcl,no
+tcsh,Tcsh,no
+tea,Tea,no
+terra,Terra,no
+tex,TeX,no
+texinfo,Texinfo,no
+text,Text,no
+textile,Textile,no
+textmate properties,TextMate Properties,no
+thrift,Thrift,no
+tla,TLA,no
+toml,TOML,no
+tsql,TSQL,no
+tsv,TSV,no
+tsx,TSX,no
+turing,Turing,no
+turtle,Turtle,no
+twig,Twig,no
+txl,TXL,no
+type language,Type Language,no
+typescript,TypeScript,yes
+unified parallel c,Unified Parallel C,no
+unity3d asset,Unity3D Asset,no
+unix assembly,Unix Assembly,no
+uno,Uno,no
+unrealscript,UnrealScript,no
+urweb,UrWeb,no
+v,V,no
+vala,Vala,no
+valve data format,Valve Data Format,no
+vba,VBA,no
+vbscript,VBScript,no
+vcl,VCL,no
+velocity template language,Velocity Template Language,no
+verilog,Verilog,no
+vhdl,VHDL,no
+vim help file,Vim Help File,no
+vim script,Vim Script,no
+vim snippet,Vim Snippet,no
+visual basic .net,Visual Basic .NET,no
+volt,Volt,no
+vue,Vue,yes
+vyper,Vyper,no
+wavefront material,Wavefront Material,no
+wavefront object,Wavefront Object,no
+wdl,wdl,no
+web ontology language,Web Ontology Language,no
+webassembly,WebAssembly,yes
+webidl,WebIDL,no
+webvtt,WebVTT,no
+whiley,Whiley,no
+wikitext,Wikitext,no
+win32 message file,Win32 Message File,no
+windows registry entries,Windows Registry Entries,no
+witcher script,Witcher Script,no
+wollok,Wollok,no
+world of warcraft addon data,World of Warcraft Addon Data,no
+wren,Wren,no
+x bitmap,X BitMap,no
+x pixmap,X PixMap,no
+x10,X10,no
+xbase,xBase,no
+xc,XC,no
+xml,XML,yes
+xml property list,XML Property List,no
+xojo,Xojo,no
+xonsh,Xonsh,no
+xpages,XPages,no
+xproc,XProc,no
+xquery,XQuery,no
+xs,XS,no
+xslt,XSLT,no
+xtend,Xtend,no
+yacc,Yacc,no
+yaml,YAML,no
+yang,YANG,no
+yara,YARA,no
+yasnippet,YASnippet,no
+yul,Yul,no
+zeek,Zeek,no
+zenscript,ZenScript,no
+zephir,Zephir,no
+zig,Zig,no
+zil,ZIL,no
+zimpl,Zimpl,no

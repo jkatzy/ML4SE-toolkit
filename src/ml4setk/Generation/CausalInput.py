@@ -1,12 +1,11 @@
-from .AbstractInput import AbstractInput
+from .AbstractInput import AbstractInput, unpack_query_match
+
 
 class CausalInput(AbstractInput):
     def __init__(self):
         pass
 
     def generate(self, query_tuple):
-        prefix = query_tuple[0]
-        suffix = query_tuple[1]
-        middle = query_tuple[2]
+        prefix, _suffix, middle = unpack_query_match(query_tuple)
 
         return prefix, middle

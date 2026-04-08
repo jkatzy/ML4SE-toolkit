@@ -1,19 +1,22 @@
 from abc import ABC, abstractmethod
+from typing import NamedTuple
+
+
+class QueryMatch(NamedTuple):
+    """Represents one match with its surrounding context."""
+
+    prefix: str
+    suffix: str
+    match: str
+
 
 class Query(ABC):
+    """Base interface for query implementations."""
 
-
-    '''
-    This method returns the string if the query matches, else it returns None
-    '''
     @abstractmethod
     def contains(self, string):
-        pass
+        """Return ``True`` when the query matches within ``string``."""
 
-    '''
-    This method returns the a list of all matches for a query in a string.
-    The format is returned as a tuple for each entry consisting of [prefix, match, suffix]
-    '''
     @abstractmethod
     def parse(self, string):
-        pass
+        """Return ``QueryMatch(prefix, suffix, match)`` values in source order."""
