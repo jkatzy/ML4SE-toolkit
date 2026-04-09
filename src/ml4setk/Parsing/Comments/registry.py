@@ -599,10 +599,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="julia_style",
         canonical_name="julia",
-        regex_patterns=(
-            r"#=([\S\s]*?)=#",
-            r"#.*",
-        ),
+        regex_patterns=(r"#(?![=]).*",),
+        nested_delimiters=(("#=", "=#"),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n# note\nsuffix",
@@ -613,12 +611,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        canonical_regex_examples=(
+        canonical_nested_examples=(
             CommentExample(
-                "prefix\n#= note =#\nsuffix",
-                "#= note =#",
-                "Hash-equals block comment.",
-                kind="block",
+                "before #= outer #= inner =# outer =# after",
+                "#= outer #= inner =# outer =#",
+                "Nested hash-equals block comment.",
+                kind="nested",
                 inline_compatible=True,
             ),
         ),
@@ -723,7 +721,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="perl_style",
         canonical_name="perl",
         regex_patterns=(
-            r"=pod\b[\s\S]*?=cut\b",
+            r"(?ms)^[ \t]*=pod\b[\s\S]*?^[ \t]*=cut\b[ \t]*$",
             r"#.*",
         ),
         shared_regex_examples=(
@@ -808,7 +806,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="ruby",
         regex_patterns=(
             r"#.*",
-            r"=begin([\S\s]*?)=end",
+            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[ \t]*$",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -860,10 +858,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="webassembly_style",
         canonical_name="webassembly",
-        regex_patterns=(
-            r"\(;([\S\s]*?);\)",
-            r";;.*",
-        ),
+        regex_patterns=(r";;.*",),
+        nested_delimiters=(("(;", ";)"),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n;; note\nsuffix",
@@ -874,12 +870,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        canonical_regex_examples=(
+        canonical_nested_examples=(
             CommentExample(
-                "prefix\n(; note ;)\nsuffix",
-                "(; note ;)",
-                "Paren-semicolon block comment.",
-                kind="block",
+                "before (; outer (; inner ;) outer ;) after",
+                "(; outer (; inner ;) outer ;)",
+                "Nested paren-semicolon block comment.",
+                kind="nested",
                 inline_compatible=True,
             ),
         ),
@@ -2284,7 +2280,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="rdoc_style",
         canonical_name="rdoc",
         regex_patterns=(
-            r"=begin\b[\s\S]*?=end\b",
+            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[ \t]*$",
             r"\/\*[\S\s]*?\*\/",
             r"#.*",
         ),

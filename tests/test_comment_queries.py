@@ -263,7 +263,6 @@ def test_comment_query_splits_grouped_line_comments_when_continuity_breaks(
 @pytest.mark.parametrize(
     ("language", "sample", "expected_match"),
     [
-        pytest.param("julia", "x = 1\n#= note =#\ny = 2", "#= note =#", id="julia-block-dedupe"),
         pytest.param("lua", "x = 1\n--[[ note ]]\ny = 2", "--[[ note ]]", id="lua-block-dedupe"),
         pytest.param("matlab", "x = 1\n%{ note %}\ny = 2", "%{ note %}", id="matlab-block-dedupe"),
     ],
@@ -434,12 +433,34 @@ def test_lua_long_bracket_comment_handles_equal_sign_variants():
     ]
 
 
+def test_julia_block_comment_wins_over_line_comment_prefix():
+    sample = "x = 1 #= note =# y = 2"
+
+    assert CommentQuery("julia").parse(sample) == [
+        _expected_query_match(sample, "#= note =#")
+    ]
+
+
+def test_julia_nested_block_comment_consumes_full_nested_region():
+    sample = "code #= outer #= inner =# after =# tail"
+
+    assert CommentQuery("julia").parse(sample) == [
+        _expected_query_match(sample, "#= outer #= inner =# after =#")
+    ]
+
+
 def test_perl_pod_block_requires_line_start():
     sample = "x = 1 # note\n=cut\n"
 
     assert CommentQuery("perl").parse(sample) == [
         _expected_query_match(sample, "# note")
     ]
+
+
+def test_perl_pod_block_does_not_start_midline():
+    sample = "code =pod\ninner\n=cut\n"
+
+    assert CommentQuery("perl").parse(sample) == []
 
 
 def test_raku_embedded_comment_uses_backtick_syntax():
@@ -457,6 +478,21 @@ def test_rdoc_block_comment_requires_line_start():
 
     assert CommentQuery("rdoc").parse(sample) == [
         _expected_query_match(sample, "=begin\nline\n=end")
+    ]
+
+
+@pytest.mark.parametrize("language", ["ruby", "rdoc"])
+def test_begin_end_block_comments_do_not_start_midline(language):
+    sample = "code =begin\nline\n=end\n"
+
+    assert CommentQuery(language).parse(sample) == []
+
+
+def test_webassembly_nested_block_comment_consumes_full_nested_region():
+    sample = "code (; outer (; inner ;) after ;) tail"
+
+    assert CommentQuery("webassembly").parse(sample) == [
+        _expected_query_match(sample, "(; outer (; inner ;) after ;)")
     ]
 
 
