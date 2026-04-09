@@ -1,3 +1,6 @@
+import importlib
+import warnings
+
 import pytest
 
 from ml4setk import (
@@ -125,6 +128,36 @@ def test_comment_query_contains_returns_false_when_no_comment_is_present():
     assert CommentQuery("java").contains("int x = 1;\nreturn x;") is False
 
 
+def test_comment_query_accepts_multiple_languages_and_returns_union_of_matches():
+    sample = "value = 1 # note\n/* block */\nreturn value\n"
+
+    assert CommentQuery(["python", "java"]).parse(sample) == [
+        _expected_query_match(sample, "# note"),
+        _expected_query_match(sample, "/* block */"),
+    ]
+
+
+def test_comment_query_multiple_languages_dedupes_identical_matches():
+    sample = "before /* note */ after"
+
+    assert CommentQuery(["java", "css"]).parse(sample) == [
+        _expected_query_match(sample, "/* note */")
+    ]
+
+
+def test_comment_query_multiple_languages_contains_when_any_language_matches():
+    assert CommentQuery(["python", "java"]).contains("value = 1 # note") is True
+    assert CommentQuery(["python", "java"]).contains("int x = 1;") is False
+
+
+def test_comment_query_multiple_languages_validates_input():
+    with pytest.raises(ValueError):
+        CommentQuery([])
+
+    with pytest.raises(TypeError):
+        CommentQuery(["python", 1])
+
+
 @pytest.mark.parametrize(
     ("language", "sample", "expected_match"),
     [
@@ -230,7 +263,6 @@ def test_comment_query_splits_grouped_line_comments_when_continuity_breaks(
 @pytest.mark.parametrize(
     ("language", "sample", "expected_match"),
     [
-        pytest.param("julia", "x = 1\n#= note =#\ny = 2", "#= note =#", id="julia-block-dedupe"),
         pytest.param("lua", "x = 1\n--[[ note ]]\ny = 2", "--[[ note ]]", id="lua-block-dedupe"),
         pytest.param("matlab", "x = 1\n%{ note %}\ny = 2", "%{ note %}", id="matlab-block-dedupe"),
     ],
@@ -372,6 +404,140 @@ def test_supported_aliases_share_the_same_registry_family():
 
     assert get_comment_syntax("c") is java_syntax
     assert get_comment_syntax("typescript") is java_syntax
+
+
+def test_java_properties_comments_only_match_at_line_start():
+    query = CommentQuery("java_properties")
+
+    assert query.parse("x=1!2") == []
+    assert query.parse("x=1 # not comment?") == []
+    assert query.parse("# top=1") == [_expected_query_match("# top=1", "# top=1")]
+    assert query.parse("  ! top=1") == [
+        _expected_query_match("  ! top=1", "  ! top=1")
+    ]
+
+
+def test_forth_parenthesized_comment_accepts_token_adjacent_closer():
+    sample = "before ( a b c--d e) after"
+
+    assert CommentQuery("forth").parse(sample) == [
+        _expected_query_match(sample, "( a b c--d e)")
+    ]
+
+
+def test_lua_long_bracket_comment_handles_equal_sign_variants():
+    sample = "x=1 --[=[ note ]=] y=2"
+
+    assert CommentQuery("lua").parse(sample) == [
+        _expected_query_match(sample, "--[=[ note ]=]")
+    ]
+
+
+def test_julia_block_comment_wins_over_line_comment_prefix():
+    sample = "x = 1 #= note =# y = 2"
+
+    assert CommentQuery("julia").parse(sample) == [
+        _expected_query_match(sample, "#= note =#")
+    ]
+
+
+def test_julia_nested_block_comment_consumes_full_nested_region():
+    sample = "code #= outer #= inner =# after =# tail"
+
+    assert CommentQuery("julia").parse(sample) == [
+        _expected_query_match(sample, "#= outer #= inner =# after =#")
+    ]
+
+
+def test_perl_pod_block_requires_line_start():
+    sample = "x = 1 # note\n=cut\n"
+
+    assert CommentQuery("perl").parse(sample) == [
+        _expected_query_match(sample, "# note")
+    ]
+
+
+def test_perl_pod_block_does_not_start_midline():
+    sample = "code =pod\ninner\n=cut\n"
+
+    assert CommentQuery("perl").parse(sample) == []
+
+
+def test_raku_embedded_comment_uses_backtick_syntax():
+    sample = (
+        'if #`( why would I ever write an inline comment here? ) True { say "something stupid"; }'
+    )
+
+    assert CommentQuery("raku").parse(sample) == [
+        _expected_query_match(sample, "#`( why would I ever write an inline comment here? )")
+    ]
+
+
+def test_rdoc_block_comment_requires_line_start():
+    sample = "code = 1\n=begin\nline\n=end\nmore"
+
+    assert CommentQuery("rdoc").parse(sample) == [
+        _expected_query_match(sample, "=begin\nline\n=end")
+    ]
+
+
+@pytest.mark.parametrize("language", ["ruby", "rdoc"])
+def test_begin_end_block_comments_do_not_start_midline(language):
+    sample = "code =begin\nline\n=end\n"
+
+    assert CommentQuery(language).parse(sample) == []
+
+
+def test_webassembly_nested_block_comment_consumes_full_nested_region():
+    sample = "code (; outer (; inner ;) after ;) tail"
+
+    assert CommentQuery("webassembly").parse(sample) == [
+        _expected_query_match(sample, "(; outer (; inner ;) after ;)")
+    ]
+
+
+@pytest.mark.parametrize(
+    ("language", "sample", "expected_match"),
+    [
+        pytest.param("pascal", "before { note } after", "{ note }", id="pascal-brace-block"),
+        pytest.param(
+            "pascal",
+            "before (* note *) after",
+            "(* note *)",
+            id="pascal-paren-star-block",
+        ),
+        pytest.param(
+            "powerbuilder",
+            "before /* outer /* inner */ outer */ after",
+            "/* outer /* inner */ outer */",
+            id="powerbuilder-nested-block",
+        ),
+        pytest.param("self", 'before "note" after', '"note"', id="self-double-quote-block"),
+    ],
+)
+def test_comment_query_supports_new_version_aware_language_forms(language, sample, expected_match):
+    assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
+
+
+def test_promela_parser_warns_once_and_supports_only_native_comments():
+    comment_query_module = importlib.import_module("ml4setk.Parsing.Comments.CommentQuery")
+    comment_query_module._WARNED_LANGUAGE_CAVEATS.clear()
+
+    with pytest.warns(
+        UserWarning,
+        match=r"Promela parsing only supports native /\* \.\.\. \*/ comments",
+    ):
+        query = CommentQuery("promela")
+
+    sample = "active proctype main() { /* native note */ skip }"
+    assert query.parse(sample) == [_expected_query_match(sample, "/* native note */")]
+    assert query.contains("active proctype main() { // preprocessed note\nskip }") is False
+
+    with warnings.catch_warnings(record=True) as recorded:
+        warnings.simplefilter("always")
+        OpeningCommentQuery("promela")
+
+    assert recorded == []
 
 
 def test_unsupported_languages_raise_clear_errors():

@@ -9,7 +9,11 @@ from .Parsing.Comments.CommentQuery import (
     NestedCommentQuery,
     OpeningCommentQuery,
 )
-from .Parsing.Comments.CommentSanitizer import CommentSanitizer, sanitize_comment_text
+from .Parsing.Comments.CommentSanitizer import (
+    CommentSanitizer,
+    sanitize_comment,
+    sanitize_comment_text,
+)
 from .Parsing.Comments.registry import get_supported_comment_languages
 from .Parsing.Query import Query, QueryMatch
 
@@ -25,6 +29,7 @@ __all__ = [
     "Query",
     "QueryMatch",
     "get_supported_comment_languages",
+    "sanitize_comment",
     "sanitize_comment_text",
 ]
 

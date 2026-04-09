@@ -1,11 +1,32 @@
+import warnings
+from collections.abc import Iterable
+
 import regex as re
 
 from ..Query import Query, QueryMatch
 from .registry import get_comment_syntax
 
+_WARNED_LANGUAGE_CAVEATS = set()
+
+
+def _warn_language_caveat_once(language):
+    normalized = language.lower()
+    if normalized != "promela" or normalized in _WARNED_LANGUAGE_CAVEATS:
+        return
+
+    warnings.warn(
+        "Promela parsing only supports native /* ... */ comments. "
+        "// comments are preprocessor-dependent in Spin and are intentionally "
+        "not parsed by this registry entry.",
+        UserWarning,
+        stacklevel=3,
+    )
+    _WARNED_LANGUAGE_CAVEATS.add(normalized)
+
 
 class LineCommentQuery(Query):
     def __init__(self, language):
+        _warn_language_caveat_once(language)
         self.language = language
         self.syntax = get_comment_syntax(language)
         self.regexes = self.syntax.regex_patterns
@@ -53,6 +74,7 @@ class LineCommentQuery(Query):
 
 class NestedCommentQuery(Query):
     def __init__(self, language):
+        _warn_language_caveat_once(language)
         self.language = language
         self.syntax = get_comment_syntax(language)
         self.delimeters = self.syntax.nested_delimiters
@@ -115,22 +137,51 @@ class NestedCommentQuery(Query):
 
 class CommentQuery(Query):
     def __init__(self, language):
-        self.language = language
-        self.line_comments = LineCommentQuery(language)
-        self.nested_comments = NestedCommentQuery(language)
+        self.languages = self._normalize_languages(language)
+        self.language = self.languages[0] if len(self.languages) == 1 else self.languages
+        self._query_pairs = [
+            (LineCommentQuery(entry), NestedCommentQuery(entry)) for entry in self.languages
+        ]
 
     def contains(self, text):
-        if self.nested_comments.contains(text):
-            return True
-        if self.line_comments.contains(text):
-            return True
+        for line_comments, nested_comments in self._query_pairs:
+            if nested_comments.contains(text):
+                return True
+            if line_comments.contains(text):
+                return True
         return False
 
     def parse(self, text):
+        if len(self._query_pairs) == 1:
+            line_comments, nested_comments = self._query_pairs[0]
+            return self._parse_single_language(text, line_comments, nested_comments)
+
+        matches = []
+        for line_comments, nested_comments in self._query_pairs:
+            matches.extend(self._parse_single_language(text, line_comments, nested_comments))
+        return self._union_comment_matches(text, matches)
+
+    @staticmethod
+    def _normalize_languages(language):
+        if isinstance(language, str):
+            return (language,)
+
+        if not isinstance(language, Iterable):
+            raise TypeError("language must be a string or an iterable of language strings")
+
+        languages = tuple(language)
+        if not languages:
+            raise ValueError("language list must contain at least one language")
+        if any(not isinstance(entry, str) for entry in languages):
+            raise TypeError("every language entry must be a string")
+        return languages
+
+    @staticmethod
+    def _parse_single_language(text, line_comments, nested_comments):
         comments = []
-        comments.extend(self.nested_comments.parse(text))
-        comments.extend(self._group_line_comment_blocks(text, self.line_comments.parse(text)))
-        return self._dedupe_comment_matches(text, comments)
+        comments.extend(nested_comments.parse(text))
+        comments.extend(CommentQuery._group_line_comment_blocks(text, line_comments.parse(text)))
+        return CommentQuery._dedupe_comment_matches(text, comments)
 
     @staticmethod
     def _group_line_comment_blocks(text, matches):
@@ -205,6 +256,24 @@ class CommentQuery(Query):
         return deduped_matches
 
     @staticmethod
+    def _union_comment_matches(text, matches):
+        unique_ranges = set()
+        unique_matches = []
+        for match in matches:
+            start = len(match.prefix)
+            end = len(text) - len(match.suffix)
+            comment_range = (start, end)
+            if comment_range in unique_ranges:
+                continue
+            unique_ranges.add(comment_range)
+            unique_matches.append(match)
+
+        return sorted(
+            unique_matches,
+            key=lambda match: (len(match.prefix), len(text) - len(match.suffix)),
+        )
+
+    @staticmethod
     def _is_standalone_single_line(text, start, end):
         match_text = text[start:end]
         if "\n" in match_text:
@@ -230,6 +299,7 @@ class OpeningCommentQuery(Query):
         if max_start_row < 1:
             raise ValueError("max_start_row must be at least 1")
 
+        _warn_language_caveat_once(language)
         self.language = language
         self.max_start_row = max_start_row
         self.skip_hashbang = skip_hashbang

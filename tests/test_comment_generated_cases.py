@@ -217,7 +217,10 @@ def _build_block_with_inner_line_cases():
                 block_example.expected_match,
                 line_example.expected_match,
             )
-            sample = f"before {expected_match} after"
+            if block_example.inline_compatible:
+                sample = f"before {expected_match} after"
+            else:
+                sample = f"before\n{expected_match}\nafter"
             cases.append(
                 GeneratedCommentCase(
                     language=language,
@@ -249,15 +252,20 @@ def _build_outer_block_wins_cases():
                     block_example.expected_match,
                     line_example.expected_match,
                 )
+                sample = (
+                    f"before {expected_match} after"
+                    if block_example.inline_compatible
+                    else f"before\n{expected_match}\nafter"
+                )
             elif syntax.nested_delimiters:
                 open_delim, close_delim = syntax.nested_delimiters[0]
                 expected_match = (
                     f"{open_delim}\nouter\n{line_example.expected_match}\ninner\n{close_delim}"
                 )
+                sample = f"before {expected_match} after"
             else:
                 continue
 
-            sample = f"before {expected_match} after"
             cases.append(
                 GeneratedCommentCase(
                     language=language,

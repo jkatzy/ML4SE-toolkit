@@ -6,7 +6,11 @@ from .CommentQuery import (
     NestedCommentQuery,
     OpeningCommentQuery,
 )
-from .CommentSanitizer import CommentSanitizer, sanitize_comment_text
+from .CommentSanitizer import (
+    CommentSanitizer,
+    sanitize_comment,
+    sanitize_comment_text,
+)
 from .registry import (
     SUPPORTED_LANGUAGES,
     CommentExample,
@@ -28,5 +32,6 @@ __all__ = [
     "get_comment_syntax",
     "get_supported_comment_languages",
     "iter_comment_syntaxes",
+    "sanitize_comment",
     "sanitize_comment_text",
 ]
