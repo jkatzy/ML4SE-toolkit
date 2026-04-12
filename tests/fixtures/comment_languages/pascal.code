@@ -1,0 +1,9 @@
+value_0 = 0
+// fixture_1
+value_1 = 1
+{ fixture_2 }
+value_2 = 2
+{ outer_3 { inner_3 } outer_3 }
+value_3 = 3
+(* outer_4 (* inner_4 *) outer_4 *)
+value_4 = 4

@@ -1,0 +1,5 @@
+value_0 = 0
+NB. fixture_1
+value_1 = 1
+NB. inline fixture_2
+value_2 = 2

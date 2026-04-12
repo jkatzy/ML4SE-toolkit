@@ -1,0 +1,7 @@
+value_0 = 0
+/// fixture_1
+value_1 = 1
+/** fixture_2 */
+value_2 = 2
+/++ fixture_3 +/
+value_3 = 3
