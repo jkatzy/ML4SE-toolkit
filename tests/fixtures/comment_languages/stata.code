@@ -5,3 +5,31 @@ value_1 = 1
 value_2 = 2
 * fixture_3
 value_3 = 3
+//////// repeated_open_1
+value_4 = 4
+/// odd_repeated_open_1
+value_5 = 5
+******** repeated_open_3
+value_6 = 6
+value_inline_2 = 1 /* inline_block_2 */ + 2
+value_7 = 7
+/**
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+ */
+value_8 = 8
+// grouped_line_1_a
+// grouped_line_1_b
+value_9 = 9
+* grouped_line_3_a
+* grouped_line_3_b
+value_10 = 10
+value_string_1 = "not // string_probe_1";
+value_11 = 11
+value_string_2 = "not /* string_probe_2 */";
+value_12 = 12
+value_string_3 = "not * string_probe_3";
+value_13 = 13

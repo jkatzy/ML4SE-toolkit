@@ -5,3 +5,17 @@ value_1 = 1
 block fixture_2
 {% endcomment %}
 value_2 = 2
+{% comment %}
+block
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+{% endcomment %}
+value_3 = 3
+{% # grouped_line_1_a %}
+{% # grouped_line_1_b %}
+value_4 = 4
+value_string_1 = "not {% # string_probe_1 %}";
+value_5 = 5

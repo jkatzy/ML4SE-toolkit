@@ -5,3 +5,18 @@ value_1 = 1
 fixture_2
 =cut
 value_2 = 2
+######## repeated_open_1
+value_3 = 3
+=pod
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+=cut
+value_4 = 4
+# grouped_line_1_a
+# grouped_line_1_b
+value_5 = 5
+value_string_1 = "not # string_probe_1";
+value_6 = 6

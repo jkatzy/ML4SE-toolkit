@@ -5,5 +5,34 @@ value_1 = 1
 value_2 = 2
 ; fixture_3
 value_3 = 3
-##; + 100
+##; + 100 fixture_4
 value_4 = 4
+//////// repeated_open_1
+value_5 = 5
+/// odd_repeated_open_1
+value_6 = 6
+;;;;;;;; repeated_open_3
+value_7 = 7
+##;##;##;##; repeated_open_4
+value_8 = 8
+value_inline_2 = 1 /* inline_block_2 */ + 2
+value_9 = 9
+/**
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+ */
+value_10 = 10
+// grouped_line_1_a
+// grouped_line_1_b
+value_11 = 11
+value_string_1 = "not // string_probe_1";
+value_12 = 12
+value_string_2 = "not /* string_probe_2 */";
+value_13 = 13
+value_string_3 = "not ; string_probe_3";
+value_14 = 14
+value_string_4 = "not ##; + 100 string_probe_4";
+value_15 = 15

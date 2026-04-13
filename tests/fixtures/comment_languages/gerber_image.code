@@ -1,3 +1,8 @@
 value_0 = 0
 G04 fixture_1 *
 value_1 = 1
+G04 grouped_line_1_a *
+G04 grouped_line_1_b *
+value_2 = 2
+value_string_1 = "not G04 string_probe_1 *";
+value_3 = 3

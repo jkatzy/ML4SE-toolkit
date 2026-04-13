@@ -5,3 +5,21 @@ value_1 = 1
 block fixture_2
 ////
 value_2 = 2
+//////// repeated_open_1
+value_3 = 3
+/// odd_repeated_open_1
+value_4 = 4
+////
+block
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+////
+value_5 = 5
+// grouped_line_1_a
+// grouped_line_1_b
+value_6 = 6
+value_string_1 = "not // string_probe_1";
+value_7 = 7

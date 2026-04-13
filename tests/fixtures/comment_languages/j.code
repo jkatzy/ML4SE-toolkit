@@ -3,3 +3,10 @@ NB. fixture_1
 value_1 = 1
 NB. inline fixture_2
 value_2 = 2
+NB. grouped_line_1_a
+NB. grouped_line_1_b
+value_3 = 3
+value_string_1 = "not NB. string_probe_1";
+value_4 = 4
+value_string_2 = "not NB. inline string_probe_2";
+value_5 = 5

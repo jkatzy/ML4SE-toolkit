@@ -1,3 +1,8 @@
 value_0 = 0
 Comment fixture_1
 value_1 = 1
+Comment grouped_line_1_a
+Comment grouped_line_1_b
+value_2 = 2
+value_string_1 = "not Comment string_probe_1";
+value_3 = 3

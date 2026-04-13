@@ -3,3 +3,22 @@ value_0 = 0
 value_1 = 1
 ( fixture_2 )
 value_2 = 2
+;;;;;;;; repeated_open_1
+value_3 = 3
+value_inline_2 = 1 ( inline_block_2 ) + 2
+value_4 = 4
+(
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+)
+value_5 = 5
+; grouped_line_1_a
+; grouped_line_1_b
+value_6 = 6
+value_string_1 = "not ; string_probe_1";
+value_7 = 7
+value_string_2 = "not ( string_probe_2 )";
+value_8 = 8

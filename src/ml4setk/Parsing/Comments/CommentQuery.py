@@ -24,6 +24,46 @@ def _warn_language_caveat_once(language):
     _WARNED_LANGUAGE_CAVEATS.add(normalized)
 
 
+def _quoted_string_ranges(text):
+    ranges = []
+    quote = None
+    start = None
+    escaped = False
+
+    for index, char in enumerate(text):
+        if quote is None:
+            if char in {"'", '"', "`"}:
+                quote = char
+                start = index
+                escaped = False
+            continue
+
+        if char in {"\n", "\r"}:
+            quote = None
+            start = None
+            escaped = False
+            continue
+
+        if char == "\\" and not escaped:
+            escaped = True
+            continue
+
+        if char == quote and not escaped:
+            ranges.append((start, index + 1))
+            quote = None
+            start = None
+            escaped = False
+            continue
+
+        escaped = False
+
+    return ranges
+
+
+def _starts_inside_quoted_string(start, quoted_ranges):
+    return any(quote_start < start < quote_end for quote_start, quote_end in quoted_ranges)
+
+
 class LineCommentQuery(Query):
     def __init__(self, language):
         _warn_language_caveat_once(language)
@@ -32,14 +72,17 @@ class LineCommentQuery(Query):
         self.regexes = self.syntax.regex_patterns
 
     def contains(self, string):
-        for pattern in self.regexes:
-            if re.search(pattern, string):
-                return True
-        return False
+        return bool(self.parse(string))
 
     def parse(self, text):
         matches = []
-        for start, end in self._dedupe_match_ranges(self._iter_match_ranges(text)):
+        quoted_ranges = _quoted_string_ranges(text)
+        match_ranges = (
+            (start, end)
+            for start, end in self._iter_match_ranges(text)
+            if not _starts_inside_quoted_string(start, quoted_ranges)
+        )
+        for start, end in self._dedupe_match_ranges(match_ranges):
             matches.append(
                 QueryMatch(
                     text[:start],
@@ -51,7 +94,7 @@ class LineCommentQuery(Query):
 
     def _iter_match_ranges(self, text):
         for pattern in self.regexes:
-            for match in re.finditer(pattern, text):
+            for match in re.finditer(pattern, text, overlapped=True):
                 yield match.start(), match.end()
 
     @staticmethod
@@ -80,16 +123,17 @@ class NestedCommentQuery(Query):
         self.delimeters = self.syntax.nested_delimiters
 
     def contains(self, string):
-        for open_delim, close_delim in self.delimeters:
-            pattern = re.escape(open_delim) + r"[\s\S]*?" + re.escape(close_delim)
-            if re.search(pattern, string):
-                return True
-        return False
+        return bool(self.parse(string))
 
     def parse(self, text):
         matches = []
+        quoted_ranges = _quoted_string_ranges(text)
         for open_delim, close_delim in self.delimeters:
-            matches.extend(self.parse_nested(open_delim, close_delim, text))
+            matches.extend(
+                match
+                for match in self.parse_nested(open_delim, close_delim, text)
+                if not _starts_inside_quoted_string(len(match.prefix), quoted_ranges)
+            )
         return sorted(matches, key=lambda match: len(match.prefix))
 
     @staticmethod

@@ -5,3 +5,17 @@ OBTW
 block fixture_2
 TLDR
 value_2 = 2
+OBTW
+block
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+TLDR
+value_3 = 3
+BTW grouped_line_1_a
+BTW grouped_line_1_b
+value_4 = 4
+value_string_1 = "not BTW string_probe_1";
+value_5 = 5

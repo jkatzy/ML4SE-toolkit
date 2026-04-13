@@ -44,7 +44,11 @@ def test_comment_language_fixture_folder_has_one_file_per_language():
     assert FIXTURE_DIR.is_dir()
 
     expected_filenames = {fixture.filename for fixture in LANGUAGE_FIXTURES}
-    actual_filenames = {path.name for path in FIXTURE_DIR.iterdir() if path.is_file()}
+    actual_filenames = {
+        path.name
+        for path in FIXTURE_DIR.iterdir()
+        if path.is_file() and path.name.endswith(FIXTURE_BUILDER.FIXTURE_SUFFIX)
+    }
 
     assert len(LANGUAGE_FIXTURES) == len(SUPPORTED_LANGUAGES)
     assert {fixture.language for fixture in LANGUAGE_FIXTURES} == set(SUPPORTED_LANGUAGES)
@@ -52,15 +56,18 @@ def test_comment_language_fixture_folder_has_one_file_per_language():
 
 
 @pytest.mark.parametrize("fixture", LANGUAGE_FIXTURES, ids=lambda fixture: fixture.language)
-def test_comment_language_fixture_files_keep_seeded_registry_comments(fixture):
+def test_comment_language_fixture_files_keep_expected_comments(fixture):
     content = (FIXTURE_DIR / fixture.filename).read_text(encoding="utf-8")
 
     for expected_match in fixture.expected_matches:
         assert content.count(expected_match) == 1
 
+    for forbidden_sentinel in fixture.forbidden_sentinels:
+        assert forbidden_sentinel in content
+
 
 @pytest.mark.parametrize("fixture", LANGUAGE_FIXTURES, ids=lambda fixture: fixture.language)
-def test_comment_language_fixture_files_parse_seeded_comments(fixture):
+def test_comment_language_fixture_files_parse_expected_comments(fixture):
     content = (FIXTURE_DIR / fixture.filename).read_text(encoding="utf-8")
 
     expected_matches = list(fixture.expected_matches)
@@ -71,3 +78,6 @@ def test_comment_language_fixture_files_parse_seeded_comments(fixture):
     for expected_match in expected_matches:
         assert parsed_matches.count(expected_match) == 1
         assert _expected_query_match(content, expected_match) in matches
+
+    for forbidden_sentinel in fixture.forbidden_sentinels:
+        assert all(forbidden_sentinel not in match.match for match in matches)

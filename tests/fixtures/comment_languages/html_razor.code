@@ -1,3 +1,15 @@
 value_0 = 0
 @* fixture_1 *@
 value_1 = 1
+value_inline_1 = 1 @* inline_block_1 *@ + 2
+value_2 = 2
+@*
+ * star_doc_1 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*@
+value_3 = 3
+value_string_1 = "not @* string_probe_1 *@";
+value_4 = 4

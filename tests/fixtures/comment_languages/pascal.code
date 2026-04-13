@@ -3,7 +3,52 @@ value_0 = 0
 value_1 = 1
 { fixture_2 }
 value_2 = 2
-{ outer_3 { inner_3 } outer_3 }
+{ fixture_3_outer { fixture_3_inner } fixture_3_outer }
 value_3 = 3
-(* outer_4 (* inner_4 *) outer_4 *)
+(* fixture_4_outer (* fixture_4_inner *) fixture_4_outer *)
 value_4 = 4
+//////// repeated_open_1
+value_5 = 5
+/// odd_repeated_open_1
+value_6 = 6
+value_inline_2 = 1 { inline_block_2 } + 2
+value_7 = 7
+value_inline_3 = 1 { inline_block_3_outer { inline_block_3_inner } inline_block_3_outer } + 2
+value_8 = 8
+value_inline_4 = 1 (* inline_block_4_outer (* inline_block_4_inner *) inline_block_4_outer *) + 2
+value_9 = 9
+{
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+}
+value_10 = 10
+{
+ * star_doc_3 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+}
+value_11 = 11
+(*
+ * star_doc_4 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*)
+value_12 = 12
+// grouped_line_1_a
+// grouped_line_1_b
+value_13 = 13
+value_string_1 = "not // string_probe_1";
+value_14 = 14
+value_string_2 = "not { string_probe_2 }";
+value_15 = 15
+value_string_3 = "not { string_probe_3_outer { string_probe_3_inner } string_probe_3_outer }";
+value_16 = 16
+value_string_4 = "not (* string_probe_4_outer (* string_probe_4_inner *) string_probe_4_outer *)";
+value_17 = 17

@@ -3,3 +3,10 @@ value_0 = 0
 value_1 = 1
   /! fixture_2
 value_2 = 2
+  / grouped_line_1_a
+  / grouped_line_1_b
+value_3 = 3
+value_string_1 = "not   / string_probe_1";
+value_4 = 4
+value_string_2 = "not   /! string_probe_2";
+value_5 = 5

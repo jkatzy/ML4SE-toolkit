@@ -1,3 +1,8 @@
 value_0 = 0
 REM fixture_1
 value_1 = 1
+REM grouped_line_1_a
+REM grouped_line_1_b
+value_2 = 2
+value_string_1 = "not REM string_probe_1";
+value_3 = 3
