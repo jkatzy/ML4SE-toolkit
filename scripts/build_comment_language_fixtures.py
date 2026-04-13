@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,6 +19,18 @@ class CommentLanguageFixture:
     filename: str
     content: str
     expected_matches: tuple[str, ...]
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Seed one parser fixture code file per implemented comment language."
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Rewrite existing fixture files from registry examples.",
+    )
+    return parser.parse_args()
 
 
 def language_fixture_stem(language: str) -> str:
@@ -54,9 +67,13 @@ def expected_matches_for_language(language: str) -> tuple[str, ...]:
     examples = [*syntax.shared_regex_examples]
     if language == syntax.canonical_name:
         examples.extend(syntax.canonical_regex_examples)
+    elif not syntax.shared_regex_examples:
+        examples.extend(syntax.canonical_regex_examples)
 
     examples.extend(syntax.shared_nested_examples)
     if language == syntax.canonical_name:
+        examples.extend(syntax.canonical_nested_examples)
+    elif not syntax.shared_nested_examples:
         examples.extend(syntax.canonical_nested_examples)
 
     return tuple(
@@ -97,18 +114,21 @@ def build_language_fixtures() -> tuple[CommentLanguageFixture, ...]:
     return tuple(fixtures)
 
 
-def write_language_fixtures(project_root: Path = Path(".")) -> None:
+def write_language_fixtures(project_root: Path = Path("."), *, force: bool = False) -> None:
     fixture_dir = project_root / FIXTURE_DIR
     fixture_dir.mkdir(parents=True, exist_ok=True)
 
     fixtures = build_language_fixtures()
-    expected_filenames = {fixture.filename for fixture in fixtures}
-    for stale_path in fixture_dir.glob(f"*{FIXTURE_SUFFIX}"):
-        if stale_path.name not in expected_filenames:
-            stale_path.unlink()
+    if force:
+        expected_filenames = {fixture.filename for fixture in fixtures}
+        for stale_path in fixture_dir.glob(f"*{FIXTURE_SUFFIX}"):
+            if stale_path.name not in expected_filenames:
+                stale_path.unlink()
 
     for fixture in fixtures:
-        (fixture_dir / fixture.filename).write_text(fixture.content, encoding="utf-8")
+        fixture_path = fixture_dir / fixture.filename
+        if force or not fixture_path.exists():
+            fixture_path.write_text(fixture.content, encoding="utf-8")
 
 
 def _code_separator(index: int) -> str:
@@ -129,7 +149,8 @@ def _unique_fixture_match(expected_match: str, index: int) -> str:
 
 
 def main() -> None:
-    write_language_fixtures()
+    args = parse_args()
+    write_language_fixtures(force=args.force)
 
 
 if __name__ == "__main__":

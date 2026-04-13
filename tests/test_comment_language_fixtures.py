@@ -52,20 +52,22 @@ def test_comment_language_fixture_folder_has_one_file_per_language():
 
 
 @pytest.mark.parametrize("fixture", LANGUAGE_FIXTURES, ids=lambda fixture: fixture.language)
-def test_comment_language_fixture_files_match_registry(fixture):
+def test_comment_language_fixture_files_keep_seeded_registry_comments(fixture):
     content = (FIXTURE_DIR / fixture.filename).read_text(encoding="utf-8")
 
-    assert content == fixture.content
     for expected_match in fixture.expected_matches:
         assert content.count(expected_match) == 1
 
 
 @pytest.mark.parametrize("fixture", LANGUAGE_FIXTURES, ids=lambda fixture: fixture.language)
-def test_comment_language_fixture_files_parse_to_expected_comments(fixture):
+def test_comment_language_fixture_files_parse_seeded_comments(fixture):
     content = (FIXTURE_DIR / fixture.filename).read_text(encoding="utf-8")
 
     expected_matches = list(fixture.expected_matches)
     matches = CommentQuery(fixture.language).parse(content)
+    parsed_matches = [match.match for match in matches]
 
-    assert [match.match for match in matches] == expected_matches
-    assert matches == [_expected_query_match(content, match) for match in expected_matches]
+    assert matches
+    for expected_match in expected_matches:
+        assert parsed_matches.count(expected_match) == 1
+        assert _expected_query_match(content, expected_match) in matches
