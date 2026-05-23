@@ -6,7 +6,7 @@ These languages are not yet implemented in the current registry, but the researc
 
 ## Summary
 
-- Generated on: `2026-04-03`
+- Generated on: `2026-05-22`
 - Candidate count: `0`
 
 ## Candidates

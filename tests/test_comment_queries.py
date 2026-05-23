@@ -210,6 +210,116 @@ def test_comment_query_parses_inline_comments(language, sample, expected_match):
     assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
+def test_comment_query_parses_inline_block_comment_with_code_before_and_after():
+    sample = "int value = 1 /* inline block */ + 2;"
+
+    assert CommentQuery("java").parse(sample) == [
+        _expected_query_match(sample, "/* inline block */")
+    ]
+
+
+def test_comment_query_parses_star_prefixed_javadoc_block_comment():
+    sample = (
+        "/**\n"
+        " * Description of what the method does.\n"
+        " *\n"
+        " * @param input Description of parameter.\n"
+        " * @return Description of return value.\n"
+        " * @throws Exception Description of exception.\n"
+        " */\n"
+        "public String example(String input) { return input; }"
+    )
+    expected_match = (
+        "/**\n"
+        " * Description of what the method does.\n"
+        " *\n"
+        " * @param input Description of parameter.\n"
+        " * @return Description of return value.\n"
+        " * @throws Exception Description of exception.\n"
+        " */"
+    )
+
+    assert CommentQuery("java").parse(sample) == [_expected_query_match(sample, expected_match)]
+
+
+@pytest.mark.parametrize(
+    ("language", "sample"),
+    [
+        pytest.param(
+            "java",
+            'String url = "https://example.test/path";\nint x = 1;',
+            id="java-line-marker-in-string",
+        ),
+        pytest.param(
+            "java",
+            'String text = "not /* a block */";\nint x = 1;',
+            id="java-block-marker-in-string",
+        ),
+        pytest.param(
+            "python",
+            'value = "# not a comment"\nprint(value)',
+            id="python-hash-marker-in-string",
+        ),
+        pytest.param(
+            "sql",
+            "SELECT '-- not a comment';\nSELECT 1;",
+            id="sql-dash-marker-in-string",
+        ),
+        pytest.param(
+            "haskell",
+            'value = "{- not a block -}"\nvalue',
+            id="haskell-nested-marker-in-string",
+        ),
+    ],
+)
+def test_comment_query_ignores_comment_markers_inside_simple_strings(language, sample):
+    assert CommentQuery(language).parse(sample) == []
+
+
+def test_comment_query_parses_comment_after_string_literal():
+    sample = 'String url = "https://example.test/path"; // actual comment\nint x = 1;'
+
+    assert CommentQuery("java").parse(sample) == [
+        _expected_query_match(sample, "// actual comment")
+    ]
+
+
+def test_comment_query_groups_triple_slash_doc_line_comments():
+    sample = "/// first doc line\n/// second doc line\nint value = 1;"
+    expected_match = "/// first doc line\n/// second doc line"
+
+    assert CommentQuery("java").parse(sample) == [_expected_query_match(sample, expected_match)]
+
+
+@pytest.mark.parametrize(
+    ("language", "sample", "expected_match"),
+    [
+        pytest.param(
+            "java",
+            "//////// repeated opener\nint value = 1;",
+            "//////// repeated opener",
+            id="java-repeated-slash-opener",
+        ),
+        pytest.param(
+            "java",
+            "/// odd repeated opener\nint value = 1;",
+            "/// odd repeated opener",
+            id="java-odd-repeated-slash-opener",
+        ),
+        pytest.param(
+            "python",
+            "######## repeated opener\nvalue = 1",
+            "######## repeated opener",
+            id="python-repeated-hash-opener",
+        ),
+    ],
+)
+def test_comment_query_parses_repeated_line_comment_openers(
+    language, sample, expected_match
+):
+    assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
+
+
 @pytest.mark.parametrize(
     ("language", "sample", "expected_match"),
     [

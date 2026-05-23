@@ -543,33 +543,32 @@ Unsupported or unresolved.
 ## Kusto
 
 - Registry key: `kusto`
-- Line comments: //
-- Block comments: unsupported
-- Termination behavior: end of line
-- Nested comments: unsupported
-- Confidence: candidate
-- Evidence mode: official_docs
-- Docs source: https://learn.microsoft.com/en-us/kusto/query/comment?view=microsoft-fabric
-- Implementation source: Kusto parser
-- Community source: not used
-- Corpus fallback source: not used
-- Recommended action: confirm
-- Notes: KQL uses `//` for comments; they terminate at end of line.
+- Version scope: `Microsoft Learn KQL comment syntax, reviewed 2026-05-22.`
+- Version-specific syntax: `Applies across Kusto Query Language surfaces listed by Microsoft Learn.`
+- Line comments: `//`
+- Block comments: `unsupported`
+- Termination behavior: `end of line`
+- Nested comments: `unsupported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [Add a comment in KQL](https://learn.microsoft.com/en-us/kusto/query/comment?view=microsoft-fabric)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with slash-line fixtures.`
+- Notes: `KQL uses // comments on separate lines or after query text.`
 
 ### Examples
 
 #### Line comment
 ```text
-const total = 2;
-// TODO: confirm parser coverage
-const nextTotal = total + 1;
+StormEvents
+// Return the count
+| count
 ```
 
 #### Block comment
-Unsupported or unresolved.
-
-#### Nested comment
-Unsupported or unresolved.
+Unsupported.
 
 ## kvlang
 
@@ -734,33 +733,33 @@ Unsupported or unresolved.
 ## LFE
 
 - Registry key: `lfe`
-- Line comments: ;
-- Block comments: unsupported
-- Termination behavior: end of line
-- Nested comments: unsupported
-- Confidence: candidate
-- Evidence mode: implementation_cross_checked
-- Docs source: LFE docs
-- Implementation source: LFE parser
-- Community source: search pass unresolved
-- Corpus fallback source: not used
-- Recommended action: add
-- Notes: Confirm against the source listed below before adding.
+- Version scope: `Current LFE programming rules, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found for semicolon comments.`
+- Line comments: `;` with repeated semicolons used as style levels
+- Block comments: `unsupported`
+- Termination behavior: `end of line`
+- Nested comments: `unsupported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [LFE programming rules: comments](https://docs.lfe.io/current/prog-rules/8.html)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with semicolon line fixtures.`
+- Notes: `The LFE rules distinguish one, two, three, and four semicolon comment styles.`
 
 ### Examples
 
 #### Line comment
 ```text
-move.w #1, d0
-; TODO: confirm parser coverage
-move.w #2, d1
+(defun ping ()
+  ; inline comment
+  'pong)
 ```
 
 #### Block comment
-Unsupported or unresolved.
+Unsupported.
 
-#### Nested comment
-Unsupported or unresolved.
 ## Limbo
 
 - Registry key: `limbo`
@@ -1224,99 +1223,96 @@ Unsupported or unresolved.
 ## M4
 
 - Registry key: `m4`
-- Line comments: #
-- Block comments: unsupported
-- Termination behavior: end of line
-- Nested comments: unsupported
-- Confidence: candidate
-- Evidence mode: implementation_cross_checked
-- Docs source: https://www.gnu.org/software/m4/manual/html_node/Comments.html
-- Implementation source: m4 parser
-- Community source: not used
-- Corpus fallback source: not used
-- Recommended action: confirm
-- Notes: GNU m4 comments are `#` to end of line; `dnl` is a discard-to-newline builtin, not a comment form.
+- Version scope: `GNU m4 1.4.20 manual, reviewed 2026-05-22.`
+- Version-specific syntax: `Default delimiters are # and newline; changecom can alter delimiters at runtime.`
+- Line comments: `#`
+- Block comments: `unsupported by default`
+- Termination behavior: `end of line`
+- Nested comments: `unsupported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [GNU m4 comments](https://www.gnu.org/software/m4/manual/html_node/Comments.html)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with default # fixtures.`
+- Notes: `dnl discards input to newline but is a macro, not the default comment delimiter.`
 
 ### Examples
 
 #### Line comment
 ```text
-dnl TODO: confirm parser coverage
 define([name], [value])
+# comment
+name
 ```
 
 #### Block comment
-Unsupported or unresolved.
-
-#### Nested comment
-Unsupported or unresolved.
+Unsupported by the default delimiter configuration.
 
 ## M4Sugar
 
 - Registry key: `m4sugar`
-- Line comments: #
-- Block comments: unsupported
-- Termination behavior: end of line
-- Nested comments: unsupported
-- Confidence: candidate
-- Evidence mode: implementation_cross_checked
-- Docs source: https://www.gnu.org/software/m4/manual/html_node/Comments.html
-- Implementation source: m4sugar parser
-- Community source: not used
-- Corpus fallback source: not used
-- Recommended action: confirm
-- Notes: GNU m4 comments are `#` to end of line; `dnl` is a discard-to-newline builtin, not a comment form.
+- Version scope: `GNU m4 default comment behavior used by M4Sugar inputs, reviewed 2026-05-22.`
+- Version-specific syntax: `Default delimiters are # and newline; changecom can alter delimiters at runtime.`
+- Line comments: `#`
+- Block comments: `unsupported by default`
+- Termination behavior: `end of line`
+- Nested comments: `unsupported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [GNU m4 comments](https://www.gnu.org/software/m4/manual/html_node/Comments.html)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented as an m4 syntax alias with default # fixtures.`
+- Notes: `The registry models the default m4 comment delimiter; project-specific changecom use remains out of scope.`
 
 ### Examples
 
 #### Line comment
 ```text
-dnl TODO: confirm parser coverage
 define([name], [value])
+# comment
+name
 ```
 
 #### Block comment
-Unsupported or unresolved.
-
-#### Nested comment
-Unsupported or unresolved.
+Unsupported by the default delimiter configuration.
 
 ## Macaulay2
 
 - Registry key: `macaulay2`
-- Line comments: --
-- Block comments: /* ... */
-- Termination behavior: end of line for line comments; first closing delimiter wins for block comments
-- Nested comments: unsupported
-- Confidence: candidate
-- Evidence mode: implementation_cross_checked
-- Docs source: Macaulay2 docs
-- Implementation source: Macaulay2 parser
-- Community source: search pass unresolved
-- Corpus fallback source: not used
-- Recommended action: confirm
-- Notes: C/Java-style comments; block comments stop at the first closing delimiter.
+- Version scope: `Current Macaulay2 language documentation, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found for -- and -* ... *- comments.`
+- Line comments: `--`
+- Block comments: `-* ... *-`
+- Termination behavior: `end of line for --; first closing *- wins for enclosed comments`
+- Nested comments: `unsupported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [Macaulay2 comments](https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Macaulay2Doc/html/_comments.html)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with line and enclosed-comment fixtures.`
+- Notes: `The previous candidate block form was corrected from C-style syntax to -* ... *-.`
 
 ### Examples
 
 #### Line comment
 ```text
-value = 1
--- TODO: confirm parser coverage
-next = 2
+x = 1 -- this is a comment
 ```
 
 #### Block comment
 ```text
-int value = 1;
-/* TODO: confirm parser coverage
-   block comment example
-*/
-int nextValue = value + 1;
+y = -* this is an enclosed comment *- 2
 ```
 
 #### Nested comment
-Unsupported or unresolved.
+Unsupported.
+
 ## Marko
 
 - Registry key: `marko`
@@ -1919,44 +1915,41 @@ Unsupported or unresolved.
 ## Motoko
 
 - Registry key: `motoko`
-- Line comments: //
-- Block comments: /* ... */
-- Termination behavior: end of line for line comments; true nesting supported for block comments
-- Nested comments: true nesting supported
-- Confidence: candidate
-- Evidence mode: official_docs
-- Docs source: https://internetcomputer.org/docs/motoko/fundamentals/basic-syntax/comments
-- Implementation source: Motoko parser
-- Community source: not used
-- Corpus fallback source: not used
-- Recommended action: add
-- Notes: Motoko supports `//`, `/* ... */`, and nested block comments.
+- Version scope: `Motoko language manual, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found for comment tokens.`
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `end of line for line comments; balanced nesting for block comments`
+- Nested comments: `true nesting supported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [Motoko language manual: comments](https://docs.internetcomputer.org/motoko/language-manual/)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with line and nested block fixtures.`
+- Notes: `Motoko treats all comments as whitespace and permits nested /* ... */ comments.`
 
 ### Examples
 
 #### Line comment
 ```text
-const total = 2;
-// TODO: confirm parser coverage
-const nextTotal = total + 1;
+actor {
+  // comment
+}
 ```
 
 #### Block comment
 ```text
-int value = 1;
-/* TODO: confirm parser coverage
-   block comment example
-*/
-int nextValue = value + 1;
+actor {
+  /* outer /* inner */ still outer */
+}
 ```
 
 #### Nested comment
 ```text
 actor {
   /* outer /* inner */ still outer */
-  public func ping() : async () {
-    ()
-  };
 }
 ```
 
@@ -1993,39 +1986,36 @@ Unsupported or unresolved.
 ## Move
 
 - Registry key: `move`
-- Line comments: //
-- Block comments: /* ... */
-- Termination behavior: end of line for line comments; first closing delimiter wins for block comments
-- Nested comments: unsupported
-- Confidence: candidate
-- Evidence mode: implementation_cross_checked
-- Docs source: https://move-language.github.io/move/coding-conventions.html
-- Implementation source: Move parser
-- Community source: not used
-- Corpus fallback source: not used
-- Recommended action: add
-- Notes: C/Java-style comments; line comments end at the line break.
+- Version scope: `Move Book coding conventions, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found for standard and doc comment tokens.`
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `end of line for //; first closing delimiter wins for block comments`
+- Nested comments: `unsupported`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [Move Book coding conventions](https://move-language.github.io/move/coding-conventions.html)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with line and block fixtures.`
+- Notes: `The Move Book lists regular and doc forms: //, /* */, ///, and /** */.`
 
 ### Examples
 
 #### Line comment
 ```text
-const total = 2;
-// TODO: confirm parser coverage
-const nextTotal = total + 1;
+module 0x1::m {
+// comment
+}
 ```
 
 #### Block comment
 ```text
-int value = 1;
-/* TODO: confirm parser coverage
-   block comment example
-*/
-int nextValue = value + 1;
+module 0x1::m {
+/* comment */
+}
 ```
-
-#### Nested comment
-Unsupported or unresolved.
 
 ## MQL4
 

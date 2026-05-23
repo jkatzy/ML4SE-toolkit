@@ -1,4 +1,9 @@
-"""Comment sanitization helpers built on the comment registry."""
+"""Comment sanitization helpers built on the comment registry.
+
+The sanitizer accepts raw extracted comments or ``QueryMatch`` values and removes
+comment delimiters while preserving the content-bearing text. It derives wrapper
+syntax from the registry so parser and sanitizer maintenance stay coupled.
+"""
 
 from __future__ import annotations
 
@@ -20,6 +25,13 @@ _EXAMPLE_BODY_PLACEHOLDERS = (
 
 @dataclass(frozen=True)
 class _SanitizerSyntax:
+    """Resolved delimiter wrappers used to normalize extracted comments.
+
+    Attributes:
+        line_wrappers: Ordered ``(open, close)`` pairs for line comments.
+        block_wrappers: Ordered ``(open, close)`` pairs for block comments.
+    """
+
     line_wrappers: tuple[tuple[str, str], ...]
     block_wrappers: tuple[tuple[str, str], ...]
 
@@ -189,7 +201,14 @@ def _sanitize_block_body(body: str, wrapper: tuple[str, str]) -> str:
 
 
 class CommentSanitizer:
-    """Normalize one extracted comment to its content-bearing text."""
+    """Normalize extracted comments for one language.
+
+    Args:
+        language: Registry language key used to resolve comment delimiters.
+
+    Raises:
+        NotImplementedError: If the language is not present in the registry.
+    """
 
     def __init__(self, language: str):
         self.language = language
@@ -197,6 +216,17 @@ class CommentSanitizer:
         self._sanitizer_syntax = _build_sanitizer_syntax(self.syntax)
 
     def sanitize(self, comment: str | QueryMatch) -> str:
+        """Return the content-bearing body for one extracted comment.
+
+        Args:
+            comment: Raw comment text or a ``QueryMatch`` returned by a comment
+                query.
+
+        Returns:
+            The comment body with language delimiters, repeated line prefixes,
+            and common block gutters removed.
+        """
+
         raw_comment = comment.match if isinstance(comment, QueryMatch) else comment
 
         line_result = _strip_grouped_line_wrappers(

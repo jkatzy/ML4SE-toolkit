@@ -1037,18 +1037,20 @@ process = _;
 ## Fennel
 
 - Registry key: `fennel`
-- Line comments: `;` supported
+- Version scope: `Fennel reference, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found for comment tokens.`
+- Line comments: `;`
 - Block comments: `unsupported`
-- Termination behavior: `runs to newline`
+- Termination behavior: `end of line`
 - Nested comments: `unsupported`
-- Evidence mode: `corpus_inferred`
-- Confidence: `medium`
-- Docs source: `unresolved`
-- Implementation source: `https://github.com/bakpakin/Fennel`
-- Community source: `https://github.com/bakpakin/Fennel`
-- Corpus fallback source: `https://gist.github.com/technomancy/9bb2be6bd1a5d8a242be4124306a63c7`
-- Recommended action: keep the corpus-backed line-comment rule and avoid inventing block syntax.
-- Notes: the corpus examples show semicolon-style comments in real `.fnl` files.
+- Evidence mode: `official_docs`
+- Confidence: `verified`
+- Docs source: [Fennel reference](https://raw.githubusercontent.com/bakpakin/Fennel/main/reference.md)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with semicolon line fixtures.`
+- Notes: `The reference states that a semicolon starts a comment through end of line.`
 
 ### Examples
 

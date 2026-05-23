@@ -1,3 +1,10 @@
+"""Registry-backed comment extraction queries.
+
+Language-specific comment syntax belongs in ``registry.py``. The query classes
+in this module are responsible only for matching, grouping, deduplicating, and
+returning the normalized ``QueryMatch(prefix, suffix, match)`` contract.
+"""
+
 import warnings
 from collections.abc import Iterable
 
@@ -10,6 +17,12 @@ _WARNED_LANGUAGE_CAVEATS = set()
 
 
 def _warn_language_caveat_once(language):
+    """Warn once for intentionally narrow language support.
+
+    Args:
+        language: Registry language key requested by the caller.
+    """
+
     normalized = language.lower()
     if normalized != "promela" or normalized in _WARNED_LANGUAGE_CAVEATS:
         return
@@ -24,7 +37,112 @@ def _warn_language_caveat_once(language):
     _WARNED_LANGUAGE_CAVEATS.add(normalized)
 
 
+def _quoted_string_ranges(text):
+    """Return simple single-line quoted string ranges.
+
+    Args:
+        text: Source text to scan.
+
+    Returns:
+        A list of ``(start, end)`` ranges for single, double, and backtick
+        strings. The scanner is deliberately lightweight; it prevents obvious
+        false positives for comment markers in strings without attempting to
+        parse language-specific lexical rules.
+    """
+
+    ranges = []
+    quote = None
+    start = None
+    escaped = False
+
+    for index, char in enumerate(text):
+        if quote is None:
+            if char in {"'", '"', "`"}:
+                quote = char
+                start = index
+                escaped = False
+            continue
+
+        if char in {"\n", "\r"}:
+            quote = None
+            start = None
+            escaped = False
+            continue
+
+        if char == "\\" and not escaped:
+            escaped = True
+            continue
+
+        if char == quote and not escaped:
+            ranges.append((start, index + 1))
+            quote = None
+            start = None
+            escaped = False
+            continue
+
+        escaped = False
+
+    return ranges
+
+
+def _starts_inside_quoted_string(start, quoted_ranges):
+    """Return ``True`` when ``start`` is inside any quoted string range."""
+
+    return any(quote_start < start < quote_end for quote_start, quote_end in quoted_ranges)
+
+
+def _query_match_from_range(text, start, end):
+    """Build a ``QueryMatch`` for a half-open source range.
+
+    Args:
+        text: The source text that produced the match.
+        start: Inclusive match offset.
+        end: Exclusive match offset.
+
+    Returns:
+        A normalized ``QueryMatch(prefix, suffix, match)`` value.
+    """
+
+    return QueryMatch(text[:start], text[end:], text[start:end])
+
+
+def _match_range(text, match):
+    """Return the half-open source range represented by ``match``.
+
+    Args:
+        text: The source text that produced the match.
+        match: Query match from ``text``.
+
+    Returns:
+        ``(start, end)`` offsets for ``match.match``.
+    """
+
+    start = len(match.prefix)
+    end = len(text) - len(match.suffix)
+    return start, end
+
+
+def _match_sort_key(text, match):
+    """Return a stable source-order sort key for a ``QueryMatch``."""
+
+    start, end = _match_range(text, match)
+    return start, end
+
+
+def _query_matches_from_ranges(text, ranges):
+    """Build ``QueryMatch`` values from half-open source ranges."""
+
+    return [_query_match_from_range(text, start, end) for start, end in ranges]
+
+
 class LineCommentQuery(Query):
+    """Extract registry regex comments for one language.
+
+    Args:
+        language: Registry language key or alias understood by
+            ``get_comment_syntax``.
+    """
+
     def __init__(self, language):
         _warn_language_caveat_once(language)
         self.language = language
@@ -32,30 +150,53 @@ class LineCommentQuery(Query):
         self.regexes = self.syntax.regex_patterns
 
     def contains(self, string):
-        for pattern in self.regexes:
-            if re.search(pattern, string):
-                return True
-        return False
+        """Return ``True`` when regex-based extraction finds a comment."""
+
+        return bool(self.parse(string))
 
     def parse(self, text):
+        """Return regex-based comment matches in source order.
+
+        Args:
+            text: Source text to scan.
+
+        Returns:
+            A list of ``QueryMatch`` values for single-line comments and
+            non-nested block comments. Matches starting inside simple quoted
+            strings are ignored.
+        """
+
         matches = []
-        for start, end in self._dedupe_match_ranges(self._iter_match_ranges(text)):
-            matches.append(
-                QueryMatch(
-                    text[:start],
-                    text[end:],
-                    text[start:end],
-                )
-            )
+        quoted_ranges = _quoted_string_ranges(text)
+        match_ranges = (
+            (start, end)
+            for start, end in self._iter_match_ranges(text)
+            if not _starts_inside_quoted_string(start, quoted_ranges)
+        )
+        for start, end in self._dedupe_match_ranges(match_ranges):
+            matches.append(_query_match_from_range(text, start, end))
         return matches
 
     def _iter_match_ranges(self, text):
+        """Yield raw regex match ranges for all configured patterns."""
+
         for pattern in self.regexes:
-            for match in re.finditer(pattern, text):
+            for match in re.finditer(pattern, text, overlapped=True):
                 yield match.start(), match.end()
 
     @staticmethod
     def _dedupe_match_ranges(ranges):
+        """Return non-overlapping ranges, keeping the longest match per start.
+
+        Args:
+            ranges: Iterable of half-open ``(start, end)`` offsets.
+
+        Returns:
+            Source-ordered ranges with overlaps removed. When multiple patterns
+            start at the same offset, the longest match wins so outer block
+            comments can contain line-comment-looking text.
+        """
+
         deduped = {}
         for start, end in ranges:
             current_end = deduped.get(start, -1)
@@ -73,28 +214,59 @@ class LineCommentQuery(Query):
 
 
 class NestedCommentQuery(Query):
+    """Extract top-level nested comment regions for one language.
+
+    Args:
+        language: Registry language key with nested delimiter metadata.
+    """
+
     def __init__(self, language):
         _warn_language_caveat_once(language)
         self.language = language
         self.syntax = get_comment_syntax(language)
-        self.delimeters = self.syntax.nested_delimiters
+        self.delimiters = self.syntax.nested_delimiters
+        self.delimeters = self.delimiters  # Preserve the older misspelled attribute.
 
     def contains(self, string):
-        for open_delim, close_delim in self.delimeters:
-            pattern = re.escape(open_delim) + r"[\s\S]*?" + re.escape(close_delim)
-            if re.search(pattern, string):
-                return True
-        return False
+        """Return ``True`` when nested-delimiter extraction finds a comment."""
+
+        return bool(self.parse(string))
 
     def parse(self, text):
+        """Return nested comment matches in source order.
+
+        Args:
+            text: Source text to scan.
+
+        Returns:
+            Top-level nested comment regions as ``QueryMatch`` values. Inner
+            nested regions are included inside the outer match, not emitted as
+            separate matches.
+        """
+
         matches = []
-        for open_delim, close_delim in self.delimeters:
-            matches.extend(self.parse_nested(open_delim, close_delim, text))
+        quoted_ranges = _quoted_string_ranges(text)
+        for open_delim, close_delim in self.delimiters:
+            matches.extend(
+                match
+                for match in self.parse_nested(open_delim, close_delim, text)
+                if not _starts_inside_quoted_string(len(match.prefix), quoted_ranges)
+            )
         return sorted(matches, key=lambda match: len(match.prefix))
 
     @staticmethod
     def parse_nested(open_delim, close_delim, text):
-        """Extract top-level delimited text, including the delimiters."""
+        """Extract top-level delimited text, including the delimiters.
+
+        Args:
+            open_delim: Opening nested comment delimiter.
+            close_delim: Closing nested comment delimiter.
+            text: Source text to scan.
+
+        Returns:
+            ``QueryMatch`` values for complete top-level nested blocks. Unclosed
+            blocks are ignored.
+        """
 
         result = []
         stack = []
@@ -124,18 +296,24 @@ class NestedCommentQuery(Query):
             if end is None:
                 continue
 
-            result.append(
-                QueryMatch(
-                    text[:start],
-                    text[end:],
-                    text[start:end],
-                )
-            )
+            result.append(_query_match_from_range(text, start, end))
 
         return result
 
 
 class CommentQuery(Query):
+    """Extract comments by combining line/block regex and nested matching.
+
+    Args:
+        language: One registry language key, or an iterable of keys when the
+            source language is ambiguous.
+
+    Raises:
+        TypeError: If ``language`` is not a string or iterable of strings.
+        ValueError: If an iterable of languages is empty.
+        NotImplementedError: If any language key is unknown to the registry.
+    """
+
     def __init__(self, language):
         self.languages = self._normalize_languages(language)
         self.language = self.languages[0] if len(self.languages) == 1 else self.languages
@@ -144,6 +322,8 @@ class CommentQuery(Query):
         ]
 
     def contains(self, text):
+        """Return ``True`` when any configured language finds a comment."""
+
         for line_comments, nested_comments in self._query_pairs:
             if nested_comments.contains(text):
                 return True
@@ -152,6 +332,16 @@ class CommentQuery(Query):
         return False
 
     def parse(self, text):
+        """Return unique comment matches in source order.
+
+        Args:
+            text: Source text to scan.
+
+        Returns:
+            A list of ``QueryMatch`` values. Adjacent standalone single-line
+            comments are grouped into one logical match.
+        """
+
         if len(self._query_pairs) == 1:
             line_comments, nested_comments = self._query_pairs[0]
             return self._parse_single_language(text, line_comments, nested_comments)
@@ -163,6 +353,8 @@ class CommentQuery(Query):
 
     @staticmethod
     def _normalize_languages(language):
+        """Normalize constructor input into a non-empty tuple of language keys."""
+
         if isinstance(language, str):
             return (language,)
 
@@ -178,6 +370,8 @@ class CommentQuery(Query):
 
     @staticmethod
     def _parse_single_language(text, line_comments, nested_comments):
+        """Return grouped and deduplicated matches for one language."""
+
         comments = []
         comments.extend(nested_comments.parse(text))
         comments.extend(CommentQuery._group_line_comment_blocks(text, line_comments.parse(text)))
@@ -185,6 +379,12 @@ class CommentQuery(Query):
 
     @staticmethod
     def _group_line_comment_blocks(text, matches):
+        """Group adjacent standalone line comments into logical blocks.
+
+        Inline comments are intentionally not grouped with neighboring lines;
+        grouping only applies when the comment occupies the whole source line.
+        """
+
         if not matches:
             return []
 
@@ -193,17 +393,10 @@ class CommentQuery(Query):
         group_end = None
 
         for match in matches:
-            start = len(match.prefix)
-            end = len(text) - len(match.suffix)
+            start, end = _match_range(text, match)
             if not CommentQuery._is_standalone_single_line(text, start, end):
                 if group_start is not None:
-                    grouped.append(
-                        QueryMatch(
-                            text[:group_start],
-                            text[group_end:],
-                            text[group_start:group_end],
-                        )
-                    )
+                    grouped.append(_query_match_from_range(text, group_start, group_end))
                     group_start = None
                     group_end = None
                 grouped.append(match)
@@ -219,62 +412,42 @@ class CommentQuery(Query):
                 group_end = end
                 continue
 
-            grouped.append(
-                QueryMatch(text[:group_start], text[group_end:], text[group_start:group_end])
-            )
+            grouped.append(_query_match_from_range(text, group_start, group_end))
             group_start = start
             group_end = end
 
         if group_start is not None:
-            grouped.append(
-                QueryMatch(
-                    text[:group_start],
-                    text[group_end:],
-                    text[group_start:group_end],
-                )
-            )
+            grouped.append(_query_match_from_range(text, group_start, group_end))
 
         return grouped
 
     @staticmethod
     def _dedupe_comment_matches(text, matches):
-        ranges = []
-        for match in matches:
-            start = len(match.prefix)
-            end = len(text) - len(match.suffix)
-            ranges.append((start, end))
+        """Deduplicate combined regex and nested matches by source range."""
 
-        deduped_matches = []
-        for start, end in LineCommentQuery._dedupe_match_ranges(ranges):
-            deduped_matches.append(
-                QueryMatch(
-                    text[:start],
-                    text[end:],
-                    text[start:end],
-                )
-            )
-        return deduped_matches
+        ranges = [_match_range(text, match) for match in matches]
+        return _query_matches_from_ranges(text, LineCommentQuery._dedupe_match_ranges(ranges))
 
     @staticmethod
     def _union_comment_matches(text, matches):
+        """Return unique matches across candidate languages."""
+
         unique_ranges = set()
         unique_matches = []
         for match in matches:
-            start = len(match.prefix)
-            end = len(text) - len(match.suffix)
+            start, end = _match_range(text, match)
             comment_range = (start, end)
             if comment_range in unique_ranges:
                 continue
             unique_ranges.add(comment_range)
             unique_matches.append(match)
 
-        return sorted(
-            unique_matches,
-            key=lambda match: (len(match.prefix), len(text) - len(match.suffix)),
-        )
+        return sorted(unique_matches, key=lambda match: _match_sort_key(text, match))
 
     @staticmethod
     def _is_standalone_single_line(text, start, end):
+        """Return ``True`` when a match is the only non-space content on a line."""
+
         match_text = text[start:end]
         if "\n" in match_text:
             return False
@@ -290,11 +463,26 @@ class CommentQuery(Query):
 
     @staticmethod
     def _is_consecutive_line_separator(separator):
+        """Return ``True`` for whitespace plus exactly one newline."""
+
         separator = separator.replace("\r", "")
         return separator.count("\n") == 1 and separator.replace("\n", "").strip() == ""
 
 
 class OpeningCommentQuery(Query):
+    """Extract a file-opening logical comment block.
+
+    Args:
+        language: Registry language key.
+        max_start_row: Last one-based row where the first real comment may
+            begin.
+        skip_hashbang: Whether to ignore an initial ``#!`` line before applying
+            the opening-comment rule.
+
+    Raises:
+        ValueError: If ``max_start_row`` is less than one.
+    """
+
     def __init__(self, language, max_start_row=3, skip_hashbang=True):
         if max_start_row < 1:
             raise ValueError("max_start_row must be at least 1")
@@ -307,9 +495,21 @@ class OpeningCommentQuery(Query):
         self.nested_comments = NestedCommentQuery(language)
 
     def contains(self, text):
+        """Return ``True`` when an opening comment block is found."""
+
         return bool(self.parse(text))
 
     def parse(self, text):
+        """Return the first contiguous opening comment block, if any.
+
+        Args:
+            text: Source text to scan.
+
+        Returns:
+            A one-item list containing the opening ``QueryMatch`` or an empty
+            list when the file does not begin with a supported comment block.
+        """
+
         start_anchor = self._hashbang_end(text) if self.skip_hashbang else 0
         ranges = self._opening_comment_ranges(text, start_anchor)
         if not ranges:
@@ -326,9 +526,11 @@ class OpeningCommentQuery(Query):
                 break
             block_end = next_end
 
-        return [QueryMatch(text[:block_start], text[block_end:], text[block_start:block_end])]
+        return [_query_match_from_range(text, block_start, block_end)]
 
     def _opening_comment_ranges(self, text, start_anchor):
+        """Return candidate comment ranges that start after the hashbang anchor."""
+
         ranges = []
         for match in self.line_comments.parse(text):
             ranges.append(self._match_range(text, match))
@@ -344,12 +546,14 @@ class OpeningCommentQuery(Query):
 
     @staticmethod
     def _match_range(text, match):
-        start = len(match.prefix)
-        end = len(text) - len(match.suffix)
-        return start, end
+        """Return the half-open source range represented by ``match``."""
+
+        return _match_range(text, match)
 
     @staticmethod
     def _hashbang_end(text):
+        """Return the offset immediately after an initial hashbang line."""
+
         if not text.startswith("#!"):
             return 0
         line_end = text.find("\n")
@@ -359,4 +563,6 @@ class OpeningCommentQuery(Query):
 
     @staticmethod
     def _row_number(text, offset):
+        """Return the one-based source row containing ``offset``."""
+
         return text.count("\n", 0, offset) + 1

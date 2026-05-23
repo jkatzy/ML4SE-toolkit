@@ -6,10 +6,10 @@ This backlog covers Stack v2 public languages that are still not represented in 
 
 ## Summary
 
-- Generated on: `2026-04-03`
-- Total uncovered languages tracked: `274`
+- Generated on: `2026-05-22`
+- Total uncovered languages tracked: `263`
 - Ready to implement now: `0`
-- Needs research or confirmation: `262`
+- Needs research or confirmation: `251`
 - Resolved non-actionable: `12`
 - Missing research records: `0`
 
@@ -36,9 +36,7 @@ Status definitions:
 | ASP.NET | aspnet | candidate |  |  | `//` in embedded C# / `'` in embedded VB | `@* *@` in Razor; `/* */` in embedded C#; `<!-- -->` in markup | line comments terminate at end-of-line; Razor comments terminate at the first closing `*@`; HTML comments terminate at the first closing `-->` | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Beef | beef | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Beef language reference before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Berry | berry | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Verify against Berry docs and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
-| Bicep | bicep | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify the exact doc page and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Bikeshed | bikeshed | low | unresolved | unresolved | unresolved | `<!-- ... -->` is the best candidate, but this needs verification. | first closing delimiter wins | `unsupported` if HTML comments are the only supported form. | Research Bikeshed's parser/docs before adding a registry entry. | docs/comment_research/chunk_1_b_c_report.md |
-| BitBake | bitbake | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Verify against Yocto/BitBake docs and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzBasic | blitzbasic | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | Verify against the BlitzBasic reference and add semicolon-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzMax | blitzmax | medium | unresolved | unresolved | Rem` and `' | unsupported | unsupported | unsupported | Verify dialect details and add tests for both line-comment forms. | docs/comment_research/chunk_1_b_c_report.md |
 | Bluespec | bluespec | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Bluespec language reference and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
@@ -61,7 +59,6 @@ Status definitions:
 | Click | click | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Add hash-comment tests after confirming the Click parser docs. | docs/comment_research/chunk_1_b_c_report.md |
 | CLIPS | clips | medium | unresolved | unresolved | ; | /* ... */ | first closing delimiter wins | unsupported | Verify CLIPS comment syntax and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Closure Templates | closure_templates | low | unresolved | unresolved | unsupported | {* ... *} | first closing delimiter wins | unsupported | Verify Soy/Closure Templates comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
-| CoffeeScript | coffeescript | high | CoffeeScript 1.x and 2.x; reviewed the main site plus the CoffeeScript 1 annotated source and CoffeeScript 2 announcement. | No comment-token split confirmed between 1.x and 2.x; both versions use # for line comments and ### ... ### for block comments. CoffeeScript 2 changed output preservation of line comments, not the surface syntax, so the registry should keep the union of both forms. | # | ### ... ### | first closing delimiter wins | unsupported | Seed line/block coverage and confirm block-comment stripping in tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Component Pascal | component_pascal | low | unresolved | unresolved | unresolved | (* ... *) | first closing delimiter wins | unsupported | Verify before seeding; only the block delimiter is tentatively known. | docs/comment_research/chunk_1_b_c_report.md |
 | Cool | cool | medium | unresolved | unresolved | -- | (* ... *) | true nesting supported | yes | Verify COOL nesting semantics and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Creole | creole | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the wiki syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
@@ -81,7 +78,6 @@ Status definitions:
 | EmberScript | emberscript | medium |  |  | `#` supported | `### ... ###` supported | first closing delimiter wins | unsupported | keep this as a corpus-backed entry until an official syntax page or grammar is pinned. | docs/comment_research/chunk_2_d_f_report.md |
 | EQ | eq | unresolved | The Stack label was not pinned to a unique language or format; I checked generic EQ references and could not isolate an authoritative manual for a specific EQ dialect. | No defensible comment syntax was found; the label remains unresolved until the intended language or file format is identified. | unresolved | unresolved | unresolved | unresolved | identify the language before adding syntax. | docs/comment_research/chunk_2_d_f_report.md |
 | F* | f_star | high |  |  | `//` supported | `(* ... *)` supported | first closing delimiter wins | unresolved | add line and block tests now; confirm nesting before encoding it as supported. | docs/comment_research/chunk_2_d_f_report.md |
-| Fennel | fennel | medium |  |  | `;` supported | unsupported | runs to newline | unsupported | keep the corpus-backed line-comment rule and avoid inventing block syntax. | docs/comment_research/chunk_2_d_f_report.md |
 | FIGlet Font | figlet_font | unresolved | FIGlet 2.2.1 FIGfont standard draft 2.0 plus parser docs for figlet v0.3.2; the sources also note that older FIGlet/FIGWin versions motivated the format. | The format uses a counted comment section after the header line rather than a token-based in-band delimiter; no alternate version split was confirmed, so treat the comments as file metadata rather than a source-code comment syntax. | unresolved | unresolved | unresolved | unresolved | keep this unresolved unless the stack label is reclassified as FIGfont metadata rather than code comments. | docs/comment_research/chunk_2_d_f_report.md |
 | Filebench WML | filebench_wml | unresolved | Filebench 1.4.9.1 man-page material, the 1.5-alpha1 quick-start docs, and the current filebench GitHub wiki/repo examples. | No comment delimiter was confirmed in the reviewed WML sources; the versioned docs describe the workload structure and commands but do not pin a stable comment token, so keep the entry unresolved. | unresolved | unresolved | unresolved | unresolved | verify the WML syntax from Filebench docs first. | docs/comment_research/chunk_2_d_f_report.md |
 | FLUX | flux | unresolved | The label was not pinned to a specific language, file format, or versioned dialect; only the Stack v2 label and the ambiguous name were checked. | No versioned or dialect-specific comment syntax could be established, so leave this unresolved. | unresolved | unresolved | unresolved | unresolved | pin the exact FLUX language or format first. | docs/comment_research/chunk_2_d_f_report.md |
@@ -110,13 +106,11 @@ Status definitions:
 | KiCad Legacy Layout | kicad_legacy_layout | unresolved |  |  | ; | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
 | Kit | kit | unresolved |  |  | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | KRL | krl | candidate |  |  | ; | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| Kusto | kusto | candidate |  |  | // | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | kvlang | kvlang | candidate |  |  | # | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | LabVIEW | labview | unresolved |  |  | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | Lark | lark | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Lasso | lasso | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Lex | lex | candidate |  |  | unsupported | /* ... */ | first closing delimiter wins | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| LFE | lfe | candidate |  |  | ; | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | Linker Script | linker_script | candidate |  |  | unsupported | /* ... */ | first closing delimiter wins | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Linux Kernel Module | linux_kernel_module | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Literate Agda | literate_agda | unresolved |  |  | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
@@ -130,9 +124,6 @@ Status definitions:
 | LSL | lsl | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | LTspice Symbol | ltspice_symbol | unresolved |  |  | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | M | m | candidate |  |  | ; | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| M4 | m4 | candidate |  |  | # | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| M4Sugar | m4sugar | candidate |  |  | # | unsupported | end of line | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
-| Macaulay2 | macaulay2 | candidate |  |  | -- | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | Mask | mask | unresolved |  |  | unresolved | unresolved | unresolved | unresolved | research | docs/comment_research/chunk_4_j_m_report.md |
 | Max | max | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | confirm | docs/comment_research/chunk_4_j_m_report.md |
 | MAXScript | maxscript | candidate |  |  | -- | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
@@ -150,9 +141,7 @@ Status definitions:
 | Monkey | monkey | candidate |  |  | # | unsupported | end of line | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | Monkey C | monkey_c | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | MoonScript | moonscript | candidate |  |  | -- | --[[ ... ]] | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
-| Motoko | motoko | candidate |  |  | // | /* ... */ | end of line for line comments; true nesting supported for block comments | true nesting supported | add | docs/comment_research/chunk_4_j_m_report.md |
 | Motorola 68K Assembly | motorola_68k_assembly | unresolved |  |  | ; | unsupported | end of line | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
-| Move | move | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | MQL4 | mql4 | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | MQL5 | mql5 | candidate |  |  | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | add | docs/comment_research/chunk_4_j_m_report.md |
 | MTML | mtml | unresolved |  |  | <!-- ... --> | <!-- ... --> | end of line for line comments; first closing delimiter wins for block comments | unsupported | research | docs/comment_research/chunk_4_j_m_report.md |
