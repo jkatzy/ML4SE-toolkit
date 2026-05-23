@@ -168,20 +168,20 @@ y = 2
 
 ## Bicep
 - Registry key: `bicep`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Microsoft Learn Bicep file syntax, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found; Bicep uses C-style line and multiline comments.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `end of line for line comments; first closing delimiter wins for multiline comments`
 - Nested comments: `unsupported`
-- Confidence: `medium`
+- Confidence: `verified`
 - Evidence mode: `official_docs`
-- Docs source: [Bicep file syntax](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file)
-- Implementation source: `unresolved`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify the exact doc page and add C-like comment tests.`
-- Notes: `Candidate based on Microsoft docs.`
+- Docs source: [Bicep file structure and syntax](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with line and block fixtures.`
+- Notes: `Microsoft documents // for single-line comments and /* ... */ for multiline comments.`
 
 - Example - line:
 ```text
@@ -222,20 +222,20 @@ output x string = name
 
 ## BitBake
 - Registry key: `bitbake`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `#`
+- Version scope: `Yocto Project 5.3.4 recipe syntax, reviewed 2026-05-22.`
+- Version-specific syntax: `No version split found for recipe comments.`
+- Line comments: `#` at the beginning of a recipe line
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `end of line`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Yocto/BitBake docs and add hash-comment tests.`
-- Notes: `Candidate hash comments.`
+- Confidence: `verified`
+- Evidence mode: `official_docs`
+- Docs source: [Yocto Project recipe syntax](https://docs.yoctoproject.org/5.3.4/dev-manual/new-recipe.html)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with start-of-line hash fixtures.`
+- Notes: `The Yocto recipe guide treats lines beginning with # as comments.`
 
 - Example - line:
 ```text
@@ -1119,20 +1119,20 @@ select 1
 
 ## CoffeeScript
 - Registry key: `coffeescript`
-- Version scope: `CoffeeScript 1.x and 2.x; reviewed the main site plus the CoffeeScript 1 annotated source and CoffeeScript 2 announcement.`
-- Version-specific syntax: `No comment-token split confirmed between 1.x and 2.x; both versions use # for line comments and ### ... ### for block comments. CoffeeScript 2 changed output preservation of line comments, not the surface syntax, so the registry should keep the union of both forms.`
+- Version scope: `CoffeeScript reference site, reviewed 2026-05-22.`
+- Version-specific syntax: `No comment-token split confirmed between 1.x and 2.x.`
 - Line comments: `#`
 - Block comments: `### ... ###`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `end of line for #; first closing ### wins for block comments`
 - Nested comments: `unsupported`
-- Confidence: `high`
+- Confidence: `verified`
 - Evidence mode: `official_docs`
-- Docs source: https://coffeescript.org/
-- Implementation source: `unresolved`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Seed line/block coverage and confirm block-comment stripping in tests.`
-- Notes: `Block comments are triple-hash delimited.`
+- Docs source: [CoffeeScript language reference](https://coffeescript.org/)
+- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: `Implemented in the registry with line and block fixtures.`
+- Notes: `The reference examples use # comments and triple-hash block comments.`
 
 - Example - line:
 ```coffee

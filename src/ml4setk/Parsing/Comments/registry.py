@@ -1,10 +1,28 @@
+"""Comment syntax registry used by comment extraction queries.
+
+This module is intentionally data-heavy. Add or correct comment-language
+support by updating ``COMMENT_SYNTAXES`` with regex patterns, nested delimiters,
+and seeded examples instead of branching in parser code.
+"""
+
 from dataclasses import dataclass
 from typing import Dict, Iterable, Tuple
 
 
 @dataclass(frozen=True)
 class CommentExample:
-    """One seeded example that exercises a comment syntax."""
+    """One seeded example that exercises a comment syntax.
+
+    Attributes:
+        sample: Source fragment containing the target comment.
+        expected_match: Exact substring the parser should extract.
+        description: Human-readable evidence or purpose for the example.
+        kind: Comment category, usually ``line``, ``block``, or ``nested``.
+        inline_compatible: Whether the example can appear beside code on the
+            same line.
+        grouped_line_compatible: Whether adjacent examples can be grouped into
+            one logical line-comment block.
+    """
 
     sample: str
     expected_match: str
@@ -16,7 +34,23 @@ class CommentExample:
 
 @dataclass(frozen=True)
 class CommentSyntax:
-    """Structured comment syntax data for one canonical language family."""
+    """Structured comment syntax data for one canonical language family.
+
+    Attributes:
+        family_name: Stable identifier for a syntax family shared by languages.
+        canonical_name: Primary registry key for the family.
+        aliases: Additional lowercase language keys with the same syntax.
+        regex_patterns: Regexes for line comments and non-nested block comments.
+        nested_delimiters: Recursive block comment delimiter pairs.
+        shared_regex_examples: Seeded examples that apply to every alias.
+        canonical_regex_examples: Seeded examples only for ``canonical_name``.
+        shared_nested_examples: Nested examples that apply to every alias.
+        canonical_nested_examples: Nested examples only for ``canonical_name``.
+        documentation_source: Reference used to justify the syntax entry.
+        implementation_source: File that owns this implementation.
+        confidence: Research confidence level for the syntax entry.
+        notes: Maintainer-facing caveats for parser behavior or dialect scope.
+    """
 
     family_name: str
     canonical_name: str
@@ -34,6 +68,8 @@ class CommentSyntax:
 
     @property
     def language_names(self) -> Tuple[str, ...]:
+        """Return the canonical language key followed by all aliases."""
+
         return (self.canonical_name,) + self.aliases
 
 
@@ -2384,10 +2420,262 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
     ),
+    CommentSyntax(
+        family_name="bicep_style",
+        canonical_name="bicep",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}.*.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "param name string\n// note\noutput x string = name",
+                "// note",
+                "Bicep single-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "param name string\n/* note */\noutput x string = name",
+                "/* note */",
+                "Bicep multiline comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/azure/azure-resource-manager/"
+            "bicep/file"
+        ),
+        confidence="verified",
+        notes="Microsoft Bicep file syntax supports // and /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="bitbake_style",
+        canonical_name="bitbake",
+        regex_patterns=(r"(?m)^[ \t]*#.*$",),
+        shared_regex_examples=(
+            CommentExample(
+                "SUMMARY = \"Example\"\n# note\nLICENSE = \"MIT\"",
+                "# note",
+                "BitBake recipe comment line.",
+                kind="line",
+                inline_compatible=False,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://docs.yoctoproject.org/5.3.4/dev-manual/new-recipe.html",
+        confidence="verified",
+        notes="Yocto recipe syntax treats lines beginning with # as comments.",
+    ),
+    CommentSyntax(
+        family_name="coffeescript_style",
+        canonical_name="coffeescript",
+        regex_patterns=(
+            r"###[\S\s]*?###",
+            r"#.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "x = 1\n# note\ny = 2",
+                "# note",
+                "CoffeeScript line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "x = 1\n###\nnote\n###\ny = 2",
+                "###\nnote\n###",
+                "CoffeeScript block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://coffeescript.org/",
+        confidence="verified",
+        notes="CoffeeScript uses # line comments and ### block comments.",
+    ),
+    CommentSyntax(
+        family_name="fennel_style",
+        canonical_name="fennel",
+        regex_patterns=(r";.*",),
+        shared_regex_examples=(
+            CommentExample(
+                "(print :hello)\n; note\n(print :bye)",
+                "; note",
+                "Fennel semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://raw.githubusercontent.com/bakpakin/Fennel/main/reference.md"
+        ),
+        confidence="verified",
+        notes="Fennel comments run from ; to the end of the line.",
+    ),
+    CommentSyntax(
+        family_name="kusto_style",
+        canonical_name="kusto",
+        regex_patterns=(r"/{2}.*.*",),
+        shared_regex_examples=(
+            CommentExample(
+                "StormEvents\n// note\n| count",
+                "// note",
+                "Kusto line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/kusto/query/comment?view="
+            "microsoft-fabric"
+        ),
+        confidence="verified",
+        notes="Kusto Query Language comments use // and run to end of line.",
+    ),
+    CommentSyntax(
+        family_name="lfe_style",
+        canonical_name="lfe",
+        regex_patterns=(r";.*",),
+        shared_regex_examples=(
+            CommentExample(
+                "(defun ping ()\n  ; note\n  'pong)",
+                "; note",
+                "LFE semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://docs.lfe.io/current/prog-rules/8.html",
+        confidence="verified",
+        notes="LFE uses semicolon comments, with repeated semicolons as style levels.",
+    ),
+    CommentSyntax(
+        family_name="m4_style",
+        canonical_name="m4",
+        aliases=("m4sugar",),
+        regex_patterns=(r"#.*",),
+        shared_regex_examples=(
+            CommentExample(
+                "define([name], [value])\n# note\nname",
+                "# note",
+                "GNU m4 default comment delimiter.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.gnu.org/software/m4/manual/html_node/Comments.html",
+        confidence="verified",
+        notes="GNU m4 defaults to # through newline; changecom can alter delimiters.",
+    ),
+    CommentSyntax(
+        family_name="macaulay2_style",
+        canonical_name="macaulay2",
+        regex_patterns=(
+            r"-\*[\S\s]*?\*-",
+            r"--.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "x = 1 -- note\ny = 2",
+                "-- note",
+                "Macaulay2 line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "x = 1\ny = -* note *- 2",
+                "-* note *-",
+                "Macaulay2 enclosed comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/"
+            "Macaulay2Doc/html/_comments.html"
+        ),
+        confidence="verified",
+        notes="Macaulay2 uses -- line comments and -* ... *- enclosed comments.",
+    ),
+    CommentSyntax(
+        family_name="motoko_style",
+        canonical_name="motoko",
+        regex_patterns=(r"/{2}.*.*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "actor {\n  // note\n}",
+                "// note",
+                "Motoko line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "actor { /* outer /* inner */ outer */ }",
+                "/* outer /* inner */ outer */",
+                "Motoko nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://docs.internetcomputer.org/motoko/language-manual/",
+        confidence="verified",
+        notes="Motoko supports // comments and nested /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="move_style",
+        canonical_name="move",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}.*.*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "module 0x1::m {\n// note\n}",
+                "// note",
+                "Move single-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "module 0x1::m {\n/* note */\n}",
+                "/* note */",
+                "Move block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://move-language.github.io/move/coding-conventions.html",
+        confidence="verified",
+        notes="Move supports //, /* ... */, ///, and /** ... */ comment forms.",
+    ),
+
 )
 
 
 def _build_language_lookup() -> Dict[str, CommentSyntax]:
+    """Build and validate the lowercase language-to-syntax lookup.
+
+    Returns:
+        Mapping from each supported language key to its ``CommentSyntax``.
+
+    Raises:
+        ValueError: If a registry entry lacks examples, uses mixed-case keys, or
+            duplicates an existing language key.
+    """
+
     lookup = {}
     for syntax in COMMENT_SYNTAXES:
         if syntax.regex_patterns and not (
@@ -2426,6 +2714,18 @@ def get_supported_comment_languages() -> list[str]:
 
 
 def get_comment_syntax(language: str) -> CommentSyntax:
+    """Return syntax metadata for one supported language.
+
+    Args:
+        language: Registry key or alias. Lookup is case-insensitive.
+
+    Returns:
+        The matching ``CommentSyntax`` entry.
+
+    Raises:
+        NotImplementedError: If the language is not in the registry.
+    """
+
     try:
         return LANGUAGE_SYNTAX[language.lower()]
     except KeyError as exc:
@@ -2433,4 +2733,6 @@ def get_comment_syntax(language: str) -> CommentSyntax:
 
 
 def iter_comment_syntaxes() -> Iterable[CommentSyntax]:
+    """Return all canonical syntax-family entries in registry order."""
+
     return COMMENT_SYNTAXES
