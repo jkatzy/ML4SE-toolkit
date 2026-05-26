@@ -137,6 +137,58 @@ This development-only ledger records which real-corpus Stack v2 LLM judge bucket
     },
     {
       "case_ids": [
+        "forth-block-1c05f048c7f6960f",
+        "forth-block-4fe9efaa57419499",
+        "forth-block-56851f1b77ce0bac",
+        "forth-block-6a928c66dbe4f506",
+        "forth-block-7b8c9fbd613042f4",
+        "forth-block-9db0aa18f4fad411",
+        "forth-block-ae4c1a13cb6e2f3a",
+        "forth-block-b4e7169686576cff",
+        "forth-block-d96f261df4fbf0e7",
+        "forth-block-f96bcc6986f94875"
+      ],
+      "cases": 10,
+      "code_fingerprint": "3c1b3dc4e34b1b3d25d9471ea4183eda028e135c28192720c8ef00933f6b3f4f",
+      "comment_kind": "block",
+      "failure_type": "",
+      "git_commit": "052d2e20a11ee561aff276ed6c47c8cbf9548715",
+      "judge_model": "gpt-5.4-mini",
+      "language": "forth",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "",
+      "report": "",
+      "status": "passed",
+      "updated_at": "2026-05-26T12:20:43+00:00"
+    },
+    {
+      "case_ids": [
+        "forth-block-1c05f048c7f6960f",
+        "forth-block-4fe9efaa57419499",
+        "forth-block-56851f1b77ce0bac",
+        "forth-block-6a928c66dbe4f506",
+        "forth-block-7b8c9fbd613042f4",
+        "forth-block-9db0aa18f4fad411",
+        "forth-block-ae4c1a13cb6e2f3a",
+        "forth-block-b4e7169686576cff",
+        "forth-block-d96f261df4fbf0e7",
+        "forth-block-f96bcc6986f94875"
+      ],
+      "cases": 10,
+      "code_fingerprint": "e7950d34cf30a02a9ce8d447048815125bd45534763686935461e37a8f3a34a6",
+      "comment_kind": "block",
+      "failure_type": "",
+      "git_commit": "1a3eca563cecbdac23f6e7fa97a9b6fa07bf1c03",
+      "judge_model": "gpt-5.4-mini",
+      "language": "forth",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "",
+      "report": "",
+      "status": "passed",
+      "updated_at": "2026-05-26T13:53:37+00:00"
+    },
+    {
+      "case_ids": [
         "forth-line-ce83fb3b8d1fb2ca"
       ],
       "cases": 10,
@@ -151,6 +203,49 @@ This development-only ledger records which real-corpus Stack v2 LLM judge bucket
       "report": "tmp/stack_v2_comment_judge_less_known_500/reports/forth-line-ce83fb3b8d1fb2ca-forth-line-extraction-6570f987.md",
       "status": "failed",
       "updated_at": "2026-05-26T10:02:51+00:00"
+    },
+    {
+      "case_ids": [
+        "forth-line-ce83fb3b8d1fb2ca"
+      ],
+      "cases": 10,
+      "code_fingerprint": "3c1b3dc4e34b1b3d25d9471ea4183eda028e135c28192720c8ef00933f6b3f4f",
+      "comment_kind": "line",
+      "failure_type": "extraction",
+      "git_commit": "052d2e20a11ee561aff276ed6c47c8cbf9548715",
+      "judge_model": "gpt-5.4-mini",
+      "language": "forth",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "The raw comment is missing the sampled trailing carriage return, so extraction is not an exact match; the cleaned comment matches the expected empty string.",
+      "report": "tmp/stack_v2_comment_judge_raku_forth_fix/reports/forth-line-ce83fb3b8d1fb2ca-forth-line-extraction-6570f987.md",
+      "status": "failed",
+      "updated_at": "2026-05-26T12:19:29+00:00"
+    },
+    {
+      "case_ids": [
+        "forth-line-20d57babac5d01b5",
+        "forth-line-363ac4279c697770",
+        "forth-line-7da007a36d6ab8f9",
+        "forth-line-8479f1e2976c8b5a",
+        "forth-line-aa17df9c781b537f",
+        "forth-line-b605539e7b725776",
+        "forth-line-bc9c8b9ea3a2f1d2",
+        "forth-line-bcc7006650ded0a8",
+        "forth-line-ce83fb3b8d1fb2ca",
+        "forth-line-e1507099f124996a"
+      ],
+      "cases": 10,
+      "code_fingerprint": "e7950d34cf30a02a9ce8d447048815125bd45534763686935461e37a8f3a34a6",
+      "comment_kind": "line",
+      "failure_type": "",
+      "git_commit": "1a3eca563cecbdac23f6e7fa97a9b6fa07bf1c03",
+      "judge_model": "gpt-5.4-mini",
+      "language": "forth",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "",
+      "report": "",
+      "status": "passed",
+      "updated_at": "2026-05-26T13:52:36+00:00"
     },
     {
       "case_ids": [
@@ -355,14 +450,46 @@ This development-only ledger records which real-corpus Stack v2 LLM judge bucket
       "code_fingerprint": "3c1b3dc4e34b1b3d25d9471ea4183eda028e135c28192720c8ef00933f6b3f4f",
       "comment_kind": "block",
       "failure_type": "manifest_generation",
-      "git_commit": "8fe681219afadf26cf3c52ea1ec6788151dd9e8e",
+      "git_commit": "052d2e20a11ee561aff276ed6c47c8cbf9548715",
       "judge_model": "manifest-generator",
       "language": "raku",
       "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
       "rationale": "Only found 1/10 block comment case(s) for raku after scanning 500 record(s).",
       "report": "tmp/stack_v2_comment_judge_raku_forth_fix/reports/manifest-raku-block-manifest_generation-33917390.md",
       "status": "failed",
-      "updated_at": "2026-05-26T11:22:12+00:00"
+      "updated_at": "2026-05-26T12:16:10+00:00"
+    },
+    {
+      "case_ids": [],
+      "cases": 1,
+      "code_fingerprint": "e7950d34cf30a02a9ce8d447048815125bd45534763686935461e37a8f3a34a6",
+      "comment_kind": "block",
+      "failure_type": "manifest_generation",
+      "git_commit": "1a3eca563cecbdac23f6e7fa97a9b6fa07bf1c03",
+      "judge_model": "manifest-generator",
+      "language": "raku",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "Only found 1/10 block comment case(s) for raku after scanning 500 record(s).",
+      "report": "tmp/stack_v2_comment_judge_raku_forth_fix/reports/manifest-raku-block-manifest_generation-33917390.md",
+      "status": "failed",
+      "updated_at": "2026-05-26T13:50:11+00:00"
+    },
+    {
+      "case_ids": [
+        "raku-line-55e9074c7c07ecbd"
+      ],
+      "cases": 10,
+      "code_fingerprint": "3c1b3dc4e34b1b3d25d9471ea4183eda028e135c28192720c8ef00933f6b3f4f",
+      "comment_kind": "line",
+      "failure_type": "extraction",
+      "git_commit": "052d2e20a11ee561aff276ed6c47c8cbf9548715",
+      "judge_model": "gpt-5.4-mini",
+      "language": "raku",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "The cleaned text matches the sample, but the raw extraction drops the trailing carriage return from the sampled comment, so it does not fully preserve the sampled raw comment content.",
+      "report": "tmp/stack_v2_comment_judge_raku_forth_fix/reports/raku-line-55e9074c7c07ecbd-raku-line-extraction-f9ce1915.md",
+      "status": "failed",
+      "updated_at": "2026-05-26T12:17:06+00:00"
     },
     {
       "case_ids": [
@@ -389,6 +516,32 @@ This development-only ledger records which real-corpus Stack v2 LLM judge bucket
       "report": "",
       "status": "passed",
       "updated_at": "2026-05-26T09:57:13+00:00"
+    },
+    {
+      "case_ids": [
+        "raku-line-38ec331a469cb043",
+        "raku-line-55383897eca7895d",
+        "raku-line-55e9074c7c07ecbd",
+        "raku-line-63de5a54bfb75c84",
+        "raku-line-964e0215882485f1",
+        "raku-line-9eb683429726c060",
+        "raku-line-a673064d4753e5f3",
+        "raku-line-bf4e431e940d7486",
+        "raku-line-eb1dc1bf222f83a8",
+        "raku-line-f488f4874683e251"
+      ],
+      "cases": 10,
+      "code_fingerprint": "e7950d34cf30a02a9ce8d447048815125bd45534763686935461e37a8f3a34a6",
+      "comment_kind": "line",
+      "failure_type": "",
+      "git_commit": "1a3eca563cecbdac23f6e7fa97a9b6fa07bf1c03",
+      "judge_model": "gpt-5.4-mini",
+      "language": "raku",
+      "manifest": "tmp/stack_v2_comment_judge_raku_forth_fix/manifest.jsonl",
+      "rationale": "",
+      "report": "",
+      "status": "passed",
+      "updated_at": "2026-05-26T13:51:28+00:00"
     }
   ],
   "schema_version": 1
@@ -404,6 +557,9 @@ STACK_V2_COMMENT_JUDGE_LEDGER_END -->
 | coffeescript | line | passed | 10 | gpt-5.4-mini | `d6c976e35d6f` | `ec077eb7f985` |  | 2026-05-26T09:01:00+00:00 |
 | coffeescript | line | passed | 10 | gpt-5.4-mini | `fc9ab5301c6d` | `a430f45c8797` |  | 2026-05-26T09:27:30+00:00 |
 | forth | block | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T10:04:16+00:00 |
+| forth | block | passed | 10 | gpt-5.4-mini | `052d2e20a11e` | `3c1b3dc4e34b` |  | 2026-05-26T12:20:43+00:00 |
+| forth | block | passed | 10 | gpt-5.4-mini | `1a3eca563cec` | `e7950d34cf30` |  | 2026-05-26T13:53:37+00:00 |
+| forth | line | passed | 10 | gpt-5.4-mini | `1a3eca563cec` | `e7950d34cf30` |  | 2026-05-26T13:52:36+00:00 |
 | haskell | line | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T10:00:40+00:00 |
 | haskell | nested | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T10:01:49+00:00 |
 | julia | line | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T09:58:11+00:00 |
@@ -412,11 +568,15 @@ STACK_V2_COMMENT_JUDGE_LEDGER_END -->
 | nim | line | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T09:54:04+00:00 |
 | nim | nested | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T09:55:13+00:00 |
 | raku | line | passed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` |  | 2026-05-26T09:57:13+00:00 |
+| raku | line | passed | 10 | gpt-5.4-mini | `1a3eca563cec` | `e7950d34cf30` |  | 2026-05-26T13:51:28+00:00 |
 
 ## Failed Coverage
 
 | Language | Kind | Status | Cases | Model | Commit | Fingerprint | Report | Updated |
 | --- | --- | --- | ---: | --- | --- | --- | --- | --- |
 | forth | line | failed | 10 | gpt-5.4-mini | `84de62b2af13` | `a430f45c8797` | [forth-line-ce83fb3b8d1fb2ca-forth-line-extraction-6570f987.md](tmp/stack_v2_comment_judge_less_known_500/reports/forth-line-ce83fb3b8d1fb2ca-forth-line-extraction-6570f987.md) | 2026-05-26T10:02:51+00:00 |
+| forth | line | failed | 10 | gpt-5.4-mini | `052d2e20a11e` | `3c1b3dc4e34b` | [forth-line-ce83fb3b8d1fb2ca-forth-line-extraction-6570f987.md](tmp/stack_v2_comment_judge_raku_forth_fix/reports/forth-line-ce83fb3b8d1fb2ca-forth-line-extraction-6570f987.md) | 2026-05-26T12:19:29+00:00 |
 | raku | block | failed | 1 | manifest-generator | `84de62b2af13` | `a430f45c8797` | [manifest-raku-block-manifest_generation-33917390.md](tmp/stack_v2_comment_judge_less_known_500/reports/manifest-raku-block-manifest_generation-33917390.md) | 2026-05-26T09:52:49+00:00 |
-| raku | block | failed | 1 | manifest-generator | `8fe681219afa` | `3c1b3dc4e34b` | [manifest-raku-block-manifest_generation-33917390.md](tmp/stack_v2_comment_judge_raku_forth_fix/reports/manifest-raku-block-manifest_generation-33917390.md) | 2026-05-26T11:22:12+00:00 |
+| raku | block | failed | 1 | manifest-generator | `052d2e20a11e` | `3c1b3dc4e34b` | [manifest-raku-block-manifest_generation-33917390.md](tmp/stack_v2_comment_judge_raku_forth_fix/reports/manifest-raku-block-manifest_generation-33917390.md) | 2026-05-26T12:16:10+00:00 |
+| raku | block | failed | 1 | manifest-generator | `1a3eca563cec` | `e7950d34cf30` | [manifest-raku-block-manifest_generation-33917390.md](tmp/stack_v2_comment_judge_raku_forth_fix/reports/manifest-raku-block-manifest_generation-33917390.md) | 2026-05-26T13:50:11+00:00 |
+| raku | line | failed | 10 | gpt-5.4-mini | `052d2e20a11e` | `3c1b3dc4e34b` | [raku-line-55e9074c7c07ecbd-raku-line-extraction-f9ce1915.md](tmp/stack_v2_comment_judge_raku_forth_fix/reports/raku-line-55e9074c7c07ecbd-raku-line-extraction-f9ce1915.md) | 2026-05-26T12:17:06+00:00 |
