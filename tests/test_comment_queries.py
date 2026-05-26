@@ -185,6 +185,175 @@ def test_comment_query_groups_adjacent_standalone_line_comments(language, sample
     assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
+def test_stack_v2_csharp_todo_line_comment_extracts_reported_span():
+    sample = (
+        "using System;\n"
+        "using System.Collections;\n"
+        "using System.Collections.Generic;\n"
+        "using UnityEngine;\n"
+        "\n"
+        "//TODO this needs a lot of refractoring, a lot of duped code\n"
+        "//TODO This belongs somewhere else I think maybe on the Object Base class\n"
+        "public enum Interaction {\n"
+    )
+    expected_match = (
+        "//TODO this needs a lot of refractoring, a lot of duped code\n"
+        "//TODO This belongs somewhere else I think maybe on the Object Base class"
+    )
+
+    matches = CommentQuery("c#").parse(sample)
+
+    assert matches == [_expected_query_match(sample, expected_match)]
+    assert len(matches[0].prefix) == 94
+    assert len(matches[0].prefix) + len(matches[0].match) == 228
+    assert matches[0].prefix.count("\n") + 1 == 6
+    assert len(matches[0].prefix) - matches[0].prefix.rfind("\n") == 1
+
+
+def test_stack_v2_csharp_inline_russian_todo_line_comment_extracts_reported_span():
+    raw_comment = "//todo pn возможна исключительная ситуация"
+    sample = (
+        "\ufeff/*Написать программу, которая определяет площадь прямоугольника \n"
+        "со сторонами a и b.Если пользователь вводит некорректные значения \n"
+        "(отрицательные, или 0), должно выдаваться сообщение об ошибке.\n"
+        "Возможность ввода пользователем строки вида «абвгд», или нецелых \n"
+        "чисел игнорировать.*/\n"
+        "\n"
+        "namespace Task01\n"
+        "{\n"
+        "    using System;\n"
+        "\n"
+        "    internal class Program\n"
+        "    {\n"
+        "        private static void Main(string[] args)\n"
+        "        {\n"
+        '            Console.Write("Enter a : ");\n'
+        "            double a = double.Parse(Console.ReadLine());"
+        "//todo pn возможна исключительная ситуация\n"
+        "\t\t\twhile (a <= 0)\n"
+        "            {\n"
+        '                Console.WriteLine("Error! Try again: ");\n'
+        "                a = double.Parse(Console.ReadLine());"
+        "//todo pn возможна исключительная ситуация\n"
+        "\t\t\t}\n"
+        "\n"
+        '            Console.Write("Enter b: ");\n'
+        "            double b = double.Parse(Console.ReadLine());"
+        "//todo pn возможна исключительная ситуация\n"
+        "\t\t\twhile (b <= 0)\n"
+        "            {\n"
+        '                Console.WriteLine("Error! Try again: ");\n'
+        "                b = double.Parse(Console.ReadLine());"
+        "//todo pn возможна исключительная ситуация\n"
+        "\t\t\t}\n"
+        "\n"
+        "            AreaOfRectangle area = new AreaOfRectangle();\n"
+        "            area.FindAreaOfRectangle(a, b);\n"
+        "        }\n"
+        "    }\n"
+        "}\n"
+    )
+    expected_target = _expected_query_match(sample, raw_comment)
+
+    matches = CommentQuery("c#").parse(sample)
+
+    assert expected_target in matches
+    assert len(expected_target.prefix) == 511
+    assert len(expected_target.prefix) + len(expected_target.match) == 553
+    assert expected_target.prefix.count("\n") + 1 == 16
+    assert len(expected_target.prefix) - expected_target.prefix.rfind("\n") == 57
+
+
+def test_stack_v2_csharp_xml_doc_line_comment_extracts_reported_span():
+    raw_comment = (
+        "/// <summary>\n"
+        "    /// Base class for implementing custom movement for the Retro Controller\n"
+        "    /// </summary>"
+    )
+    sample = (
+        "\ufeffusing UnityEngine;\n"
+        "\n"
+        "namespace vnc\n"
+        "{\n"
+        f"    {raw_comment}\n"
+        "    public abstract class RetroMovement : MonoBehaviour\n"
+        "    {\n"
+        "    }\n"
+        "}\n"
+    )
+
+    matches = CommentQuery("c#").parse(sample)
+
+    assert matches == [_expected_query_match(sample, raw_comment)]
+    assert len(matches[0].prefix) == 41
+    assert len(matches[0].prefix) + len(matches[0].match) == 150
+    assert matches[0].prefix.count("\n") + 1 == 5
+    assert len(matches[0].prefix) - matches[0].prefix.rfind("\n") == 5
+
+
+def test_stack_v2_csharp_chinese_xml_doc_line_comment_extracts_reported_span():
+    raw_comment = (
+        "/// <summary>\n"
+        "    /// 单点采集器GPRS通讯对象\n"
+        "    /// </summary>"
+    )
+    sample = (
+        "\ufeffusing JYGCloud.JOBMonitor.Common;\n"
+        "using JYGCloud.JOBMonitor.ICommunicate;\n"
+        "using System;\n"
+        "using System.Collections.Generic;\n"
+        "using System.Linq;\n"
+        "using System.Net;\n"
+        "using System.Net.Sockets;\n"
+        "using System.Runtime.CompilerServices;\n"
+        "using System.Text;\n"
+        "using System.Threading;\n"
+        "using System.Threading.Tasks;\n"
+        "\n"
+        "namespace JYGCloud.JOBMonitor.Communicate\n"
+        "{\n"
+        f"    {raw_comment}\n"
+        "    public sealed class SCMGPRSCommunicate : IBaseCommunicate<string>\n"
+        "    {\n"
+        "    }\n"
+        "}\n"
+    )
+
+    matches = CommentQuery("c#").parse(sample)
+
+    assert matches[0] == _expected_query_match(sample, raw_comment)
+    assert len(matches[0].prefix) == 347
+    assert len(matches[0].prefix) + len(matches[0].match) == 401
+    assert matches[0].prefix.count("\n") + 1 == 15
+    assert len(matches[0].prefix) - matches[0].prefix.rfind("\n") == 5
+
+
+def test_stack_v2_cpp_doxygen_line_header_extracts_reported_span():
+    raw_comment = (
+        "/// @file    Noise.ino\n"
+        "/// @brief   Demonstrates how to use noise generation on a 2D LED matrix\n"
+        "/// @example Noise.ino"
+    )
+    sample = (
+        raw_comment
+        + "\n\n#include <FastLED.h>\n\n"
+        + "//\n"
+        + "// Mark's xy coordinate mapping code.  See the XYMatrix for more information on it.\n"
+        + "//\n"
+        + "\n"
+        + "// Params for width and height\n"
+        + "const uint8_t kMatrixWidth = 16;\n"
+    )
+
+    matches = CommentQuery("c++").parse(sample)
+
+    assert matches[0] == _expected_query_match(sample, raw_comment)
+    assert len(matches[0].prefix) == 0
+    assert len(matches[0].prefix) + len(matches[0].match) == 118
+    assert matches[0].prefix.count("\n") + 1 == 1
+    assert len(matches[0].prefix) - matches[0].prefix.rfind("\n") == 1
+
+
 @pytest.mark.parametrize(
     ("language", "sample", "expected_match"),
     [

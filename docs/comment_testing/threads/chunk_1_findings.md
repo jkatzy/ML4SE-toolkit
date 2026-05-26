@@ -6,300 +6,300 @@ breaker-owned.
 ## Scope
 
 - Language count: `42`
-- Status: `no verified findings in this pass`
+- Status: `reviewed 42 languages at the raw-extraction sanitizer surface; no callable sanitizer implementation found in src/ or tests/`
 
 ## Languages
 
 ### capn_proto
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove leading `#` gutter lines and preserve `#` when it is part of visible text such as a heading or literal example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### chuck
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` line scaffolding and preserve `//` inside URLs or other literal text; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### clojure
 
 - Family: `semicolon_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove leading `;` comment gutters and preserve semicolons that are part of code examples or prose punctuation; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### cloud_firestore_security_rules
 
 - Family: `slash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` comment scaffolding and preserve literal `//` in URLs or other delimiter-like text; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### cmake
 
 - Family: `cmake_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` line comments and bracket-comment wrappers and preserve `#` when it appears in quoted or explanatory text; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### cobol
 
 - Family: `cobol_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove fixed-column comment markers such as `*` and `*>` and preserve literal punctuation in the comment body; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### codeowners
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment lines and preserve `#` when it is part of path text or inline prose; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### codeql
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs, `C#`, and other literal tokens; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### coldfusion
 
 - Family: `coldfusion_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `<!--- --->` comment wrappers and preserve HTML-like text or literal markup examples inside the body; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### coldfusion_cfc
 
 - Family: `coldfusion_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `<!--- --->` comment wrappers and preserve HTML-like text or literal markup examples inside the body; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### collada
 
 - Family: `markup_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove XML-style comment wrappers and preserve markup-like text that is meant to remain visible; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### common_workflow_language
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` gutter lines and preserve `#` when it is meaningful text in an example or heading; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### conll_u
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` metadata lines and preserve `#` inside literal content or examples; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### coq
 
 - Family: `nested_star_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `(* *)` block scaffolding and preserve `*` when it is part of bullets, emphasis, or literal prose; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### crystal
 
 - Family: `hash_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment markers and preserve `#` in meaningful text such as headings or language tokens; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### css
 
 - Family: `c_block_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `/* */` block wrappers and preserve slash-star text when it appears in code examples or prose; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### cuda
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs and tokens such as `C#` or `C++`; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### cue
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs and tokens such as `C#` or `C++`; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### curry
 
 - Family: `haskell_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `--` and `{- -}` comment scaffolding and preserve `--` when it is meaningful text like a flag or example token; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### cython
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` gutter lines and preserve `#` when it is part of a heading or literal example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### d
 
 - Family: `d_doc_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove D doc-comment scaffolding and preserve literal doc text, including `*` and `+` characters that are part of the content; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dafny
 
 - Family: `nested_c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove nested `/* */` scaffolding and preserve literal delimiter text inside examples or quoted content; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dart
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs, `C#`, and other literal tokens; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dataweave
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs, `C#`, and other literal tokens; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### debian_package_control_file
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment lines and preserve `#` when it is part of descriptive text or a package example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### desktop
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment lines and preserve `#` when it is part of descriptive text or a configuration example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dhall
 
 - Family: `haskell_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `--` and `{- -}` comment scaffolding and preserve meaningful dash sequences in literal text; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### digital_command_language
 
 - Family: `bang_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `!` comment markers and preserve `!` when it is part of the body text or an example token; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dircolors
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment lines and preserve `#` in literal descriptions or examples; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### directx_3d_file
 
 - Family: `jsonnet_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve delimiter-like text inside quoted data; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dm
 
 - Family: `nested_c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove nested C-style block wrappers and preserve literal `/*` text in examples or prose; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dns_zone
 
 - Family: `semicolon_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `;` comment gutters and preserve semicolons that are part of record text or examples; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dockerfile
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment lines and preserve `#` inside text such as labels, URLs, or examples; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dtrace
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs and literal tokens such as `C#`; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### dylan
 
 - Family: `nested_c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove nested `/* */` scaffolding and preserve literal delimiter text inside examples or quoted content; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### e_mail
 
 - Family: `email_header_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove mail-style quote and header scaffolding and preserve email addresses plus quoted prose markers; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### easybuild
 
 - Family: `hash_line_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` comment lines and preserve `#` when it is part of a literal or documented example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### ecl
 
 - Family: `c_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `//` and `/* */` scaffolding and preserve URLs and literal symbol tokens; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### eclipse
 
 - Family: `prolog_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `%` line-comment gutters and preserve percent signs when they are part of the body text or an example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### editorconfig
 
 - Family: `editorconfig_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `#` and `;` comment lines and preserve those symbols when they appear in explanatory text or examples; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### edn
 
 - Family: `semicolon_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - TODO
+  - Sanitizer-oriented coverage note: would remove `;` comment gutters and preserve semicolons when they are part of literal EDN/data examples; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.
 
 ### eiffel
 
 - Family: `dash_style`
-- Status: pending
+- Status: reviewed-no-issue
 - Findings:
-  - No high-value breaker case verified in this pass.
+  - Sanitizer-oriented coverage note: would remove leading `--` comment gutters and preserve `--` when it is part of a meaningful token or example; this is a reviewed-no-issue-at-current-surface note because no callable sanitizer entry point exists.

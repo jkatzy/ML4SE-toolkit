@@ -5,254 +5,258 @@ fixer-owned.
 
 ## Resolution log
 
+- Status summary: `42` languages reviewed at the current raw-extraction sanitizer surface, all `no-change-needed`
+- Sanitizer note: no callable sanitizer implementation found in `src/` or
+  `tests/`
+
 ### capn_proto
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### chuck
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### clojure
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### cloud_firestore_security_rules
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### cmake
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### cobol
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### codeowners
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### codeql
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### coldfusion
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### coldfusion_cfc
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### collada
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### common_workflow_language
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### conll_u
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### coq
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### crystal
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### css
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### cuda
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### cue
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### curry
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### cython
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### d
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dafny
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dart
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dataweave
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### debian_package_control_file
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### desktop
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dhall
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### digital_command_language
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dircolors
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### directx_3d_file
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dm
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dns_zone
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dockerfile
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dtrace
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### dylan
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### e_mail
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### easybuild
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### ecl
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### eclipse
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### editorconfig
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### edn
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review
 
 ### eiffel
 
-- Status: pending
-- Resolution: TODO
-- Tests: TODO
+- Status: no-change-needed
+- Resolution: reviewed the current raw-extraction sanitizer surface for this family; keep-vs-remove sanitizer notes were reviewed, and no callable sanitizer implementation was found yet
+- Tests: none added; no callable sanitizer implementation found yet, because this remains a current-surface review

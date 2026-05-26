@@ -7,300 +7,58 @@ breaker-owned.
 
 - Language count: `42`
 - Status: `complete`
-- Note: no retained high-value findings from this pass.
-
-## Languages
-
-### gosu
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### grace
-
-- Family: `slash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gradle
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### grammatical_framework
-
-- Family: `nested_dash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### graphql
-
-- Family: `hash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### graphviz_dot
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### groovy
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### groovy_server_pages
-
-- Family: `jsp_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gsc
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hack
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### haml
-
-- Family: `haml_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### handlebars
-
-- Family: `handlebars_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### haproxy
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### haskell
-
-- Family: `haskell_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### haxe
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hcl
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hiveql
-
-- Family: `sql_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hlsl
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hocon
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hoon
-
-- Family: `hoon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### html
-
-- Family: `markup_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### html_ecr
-
-- Family: `ejs_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### html_eex
-
-- Family: `ejs_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### html_erb
-
-- Family: `ejs_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### html_php
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### html_razor
-
-- Family: `razor_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hxml
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hy
-
-- Family: `semicolon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### hyphy
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### idl
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### idris
-
-- Family: `haskell_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### ignore_list
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### igor_pro
-
-- Family: `slash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### imagej_macro
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### inform_7
-
-- Family: `inform7_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### ini
-
-- Family: `ini_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### inno_setup
-
-- Family: `inno_setup_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### io
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### isabelle
-
-- Family: `nested_star_only_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### isabelle_root
-
-- Family: `nested_star_only_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### j
-
-- Family: `j_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### java
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
+- Sanitizer implementation: no callable sanitizer entry point found in `src/`
+  or `tests/`.
+- Outcome: reviewed-no-issue at the current surface for the assigned
+  languages; no retained failing or ambiguous sanitizer contracts in this
+  pass.
+- Note: this was a sanitizer-first coverage pass. Each language was reviewed
+  for removable scaffolding, preservable meaningful symbols, and the paired
+  keep-vs-remove contract, but only raw extraction surfaces were available.
+
+## Sanitizer Coverage
+
+| Language | Family | Status | Sanitizer | Note |
+| --- | --- | --- | --- | --- |
+| `gosu` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `grace` | `slash_line_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` scaffolding while preserving URLs, paths, and literal slash text. |
+| `gradle` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `grammatical_framework` | `nested_dash_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove nested dash scaffolding while preserving literal `--` or `-` text in the body. |
+| `graphql` | `hash_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `#` scaffolding while preserving headings, tags, and literal hash text. |
+| `graphviz_dot` | `jsonnet_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//`, `/* */`, or `#` scaffolding while preserving literal comment-like text in prose or examples. |
+| `groovy` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `groovy_server_pages` | `jsp_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove embedded comment blocks while preserving template examples with `<%` or `%>`. |
+| `gsc` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `hack` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `haml` | `haml_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove indentation-scoped comment blocks while preserving visible `/` or `#` content. |
+| `handlebars` | `handlebars_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `{{! ... }}` scaffolding while preserving `{{` in examples or expressions. |
+| `haproxy` | `hash_line_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `#` scaffolding while preserving headings, tags, and literal hash text. |
+| `haskell` | `haskell_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `--` and `{- -}` scaffolding while preserving `--flag` and other literal punctuation. |
+| `haxe` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `hcl` | `jsonnet_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//`, `/* */`, or `#` scaffolding while preserving literal comment-like text in prose or examples. |
+| `hiveql` | `sql_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `--` and `/* */` scaffolding while preserving SQL examples and `--flag`-style text. |
+| `hlsl` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `hocon` | `jsonnet_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//`, `/* */`, or `#` scaffolding while preserving literal comment-like text in prose or examples. |
+| `hoon` | `hoon_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove Hoon comment scaffolding while preserving literal punctuation in visible content. |
+| `html` | `markup_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `<!-- -->` scaffolding while preserving HTML-like text in visible content. |
+| `html_ecr` | `ejs_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove embedded comment blocks while preserving template examples with `<%` or `%>`. |
+| `html_eex` | `ejs_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove embedded comment blocks while preserving template examples with `<%` or `%>`. |
+| `html_erb` | `ejs_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove embedded comment blocks while preserving template examples with `<%` or `%>`. |
+| `html_php` | `jsonnet_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove embedded comment scaffolding while preserving PHP/template delimiters in examples. |
+| `html_razor` | `razor_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove Razor comment blocks while preserving `@` text in examples. |
+| `hxml` | `hash_line_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `#` scaffolding while preserving headings, tags, and literal hash text. |
+| `hy` | `semicolon_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `;` scaffolding while preserving semicolons in prose or code samples. |
+| `hyphy` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `idl` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `idris` | `haskell_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `--` and `{- -}` scaffolding while preserving `--flag` and other literal punctuation. |
+| `ignore_list` | `hash_line_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `#` scaffolding while preserving headings, tags, and literal hash text. |
+| `igor_pro` | `slash_line_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` scaffolding while preserving URLs, paths, and literal slash text. |
+| `imagej_macro` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |
+| `inform_7` | `inform7_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove bracket-comment scaffolding while preserving literal brackets in visible text. |
+| `ini` | `ini_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove INI comment prefixes while preserving tokens and literal punctuation in content. |
+| `inno_setup` | `inno_setup_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove Inno Setup comment prefixes while preserving tokens and literal punctuation in content. |
+| `io` | `jsonnet_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//`, `/* */`, or `#` scaffolding while preserving literal comment-like text in prose or examples. |
+| `isabelle` | `nested_star_only_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `(* *)` scaffolding while preserving literal `*` text in the body. |
+| `isabelle_root` | `nested_star_only_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `(* *)` scaffolding while preserving literal `*` text in the body. |
+| `j` | `j_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `NB.` scaffolding while preserving literal `NB.` text in prose or examples. |
+| `java` | `c_style` | `reviewed-no-issue` | `n/a` | Current-surface review only; would remove `//` and `/* */` scaffolding while preserving URLs, `C#`, and literal punctuation. |

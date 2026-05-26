@@ -6,305 +6,62 @@ breaker-owned.
 ## Scope
 
 - Language count: `42`
-- Status: `pending` until findings are recorded
-
-## Languages
-
-### ejs
-
-- Family: `ejs_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### elixir
-
-- Family: `hash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### elm
-
-- Family: `nested_dash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### elvish
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### emacs_lisp
-
-- Family: `hash_pipe_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### erlang
-
-- Family: `percent_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### euphoria
-
-- Family: `dash_c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### f#
-
-- Family: `fsharp_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### factor
-
-- Family: `bang_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### fantom
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### faust
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### fish
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### fluent
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### forth
-
-- Family: `forth_style`
-- Status: pending
-- Findings:
-  - Exact input: `before ( a b c--d e) after`
-  - Parser entry point: `CommentQuery("forth").parse(...)`
-  - Actual output: `[]`
-  - Expected behavior: match the parenthesized comment form used by common Forth stack comments, even when the closing `)` is adjacent to the final token.
-  - Source / provenance: Forth example style at https://www.forth.org/forth_intro/interprt.htm
-  - Why it matters: the current regex requires whitespace before `)`, so it misses a standard real-world comment form and creates a false negative for inline documentation comments.
-
-### fortran
-
-- Family: `bang_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### fortran_free_form
-
-- Family: `bang_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### four_d
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### freebasic
-
-- Family: `freebasic_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### freemarker
-
-- Family: `freemarker_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### frege
-
-- Family: `nested_dash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### futhark
-
-- Family: `dash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### g_code
-
-- Family: `gcode_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### game_maker_language
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gams
-
-- Family: `gams_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gap
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gdb
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gdscript
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### genero
-
-- Family: `genero_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### genshi
-
-- Family: `jinja_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gentoo_ebuild
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gentoo_eclass
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gerber_image
-
-- Family: `gerber_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gettext_catalog
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gherkin
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### git_attributes
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### git_config
-
-- Family: `ini_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### glsl
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### glyph_bitmap_distribution_format
-
-- Family: `comment_record_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gn
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### gnuplot
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### go
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### go_module
-
-- Family: `slash_line_style`
-- Status: pending
-- Findings:
-  - TODO
+- Status: sanitizer-focused exhaustive pass
+- Sanitizer implementation: no callable sanitizer entry point found in `src/`
+  or `tests/`; these notes record current-surface sanitizer coverage only.
+- Status mix: `41` `reviewed-no-issue` and `1` `documented-limitation` (`forth`)
+
+## Coverage Matrix
+
+| Language | Family | Sanitizer note | Paired keep-vs-remove | Status |
+| --- | --- | --- | --- | --- |
+| `ejs` | `ejs_style` | Remove the `<%# ... %>` scaffold; preserve `#` when it is actual comment content. | `# Heading` vs `<%# note %>` | `reviewed-no-issue` |
+| `elixir` | `hash_style` | Remove `#` line comments and `"""` docblock wrappers; preserve `#` in meaningful text. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `elm` | `nested_dash_style` | Remove `--` and `{- -}` scaffolding; preserve `--` when it is a semantic token. | `-- note` vs `--flag` | `reviewed-no-issue` |
+| `elvish` | `hash_line_style` | Remove `#` gutters; preserve `#` in content such as headings or identifiers. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `emacs_lisp` | `hash_pipe_style` | Remove `;` line gutters and `#| |#` blocks; preserve `;` when it is meaningful punctuation. | `; note` vs `;` in prose | `reviewed-no-issue` |
+| `erlang` | `percent_style` | Remove `%` line comments; preserve `%` when it is part of a placeholder or token. | `% note` vs `%VAR%` | `reviewed-no-issue` |
+| `euphoria` | `dash_c_style` | Remove `--` and `/* */` scaffolding; preserve `--` when it is meaningful text. | `-- note` vs `--flag` | `reviewed-no-issue` |
+| `f#` | `fsharp_style` | Remove `//` and `(* *)`; preserve `#` in content such as `C#` or `F#`. | `// note` vs `C#` | `reviewed-no-issue` |
+| `factor` | `bang_style` | Remove `!` line comments; preserve `!` when it is punctuation or emphasis. | `! note` vs `!important` | `reviewed-no-issue` |
+| `fantom` | `c_style` | Remove `//` and `/* */`; preserve `//` in URLs and literal text. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+| `faust` | `c_style` | Remove `//` and `/* */`; preserve `//` in URLs and literal text. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+| `fish` | `hash_line_style` | Remove `#` gutters; preserve `#` in headings or other content. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `fluent` | `hash_line_style` | Remove `#` gutters; preserve `#` in message text or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `forth` | `forth_style` | Remove `\` line comments and parenthesized comment wrappers; preserve literal backslashes and parentheses when they are meaningful. | `\ note` vs `( note )` | `documented-limitation` |
+| `fortran` | `bang_style` | Remove `!` comments; preserve `!` when it is meaningful punctuation. | `! note` vs `!` in prose | `reviewed-no-issue` |
+| `fortran_free_form` | `bang_style` | Remove `!` comments; preserve `!` when it is meaningful punctuation. | `! note` vs `!` in prose | `reviewed-no-issue` |
+| `four_d` | `c_style` | Remove `//` and `/* */`; preserve `//` in literal text. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+| `freebasic` | `freebasic_style` | Remove `'` line comments and `/' '/` blocks; preserve apostrophes in prose. | `' note` vs `don't` | `reviewed-no-issue` |
+| `freemarker` | `freemarker_style` | Remove `<#-- -->` blocks; preserve `<#`-like text only if it is literal content. | `<#-- note -->` vs `${value}` | `reviewed-no-issue` |
+| `frege` | `nested_dash_style` | Remove `--` and `{- -}`; preserve `--` when it is a semantic token. | `-- note` vs `--flag` | `reviewed-no-issue` |
+| `futhark` | `dash_style` | Remove `--`; preserve `--` when it is meaningful text. | `-- note` vs `--flag` | `reviewed-no-issue` |
+| `g_code` | `gcode_style` | Remove `;` line comments and `( ... )` wrappers; preserve semicolons and parentheses when they are literal content. | `; note` vs `(note)` as content | `reviewed-no-issue` |
+| `game_maker_language` | `c_style` | Remove `//` and `/* */`; preserve URLs and other literal `//` content. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+| `gams` | `gams_style` | Remove column-1 `*`, `/* */`, and `!!` comment forms; preserve `*` when it is part of text. | `* note` vs `* Heading` | `reviewed-no-issue` |
+| `gap` | `hash_line_style` | Remove `#` gutters; preserve `#` in content or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `gdb` | `hash_line_style` | Remove `#` gutters; preserve `#` in content or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `gdscript` | `hash_line_style` | Remove `#` gutters; preserve `#` in content or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `genero` | `genero_style` | Remove `--`, `{ }`, and `#` comment forms; preserve those symbols when they are content. | `-- note` vs `--flag` | `reviewed-no-issue` |
+| `genshi` | `jinja_style` | Remove `##` and `{# #}` scaffolding; preserve `#` when it is part of meaningful text. | `## note` vs `# Heading` | `reviewed-no-issue` |
+| `gentoo_ebuild` | `hash_line_style` | Remove `#` gutters; preserve `#` in content or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `gentoo_eclass` | `hash_line_style` | Remove `#` gutters; preserve `#` in content or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `gerber_image` | `gerber_style` | Remove the `G04 ... *` record wrapper; preserve the payload text, including the terminating `*` only as syntax when needed. | `G04 note *` vs `note` as payload | `reviewed-no-issue` |
+| `gettext_catalog` | `hash_line_style` | Remove `#` gutters; preserve `#` when it is part of the translatable text. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `gherkin` | `hash_line_style` | Remove `#` gutters; preserve `#` in literal step text or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `git_attributes` | `hash_line_style` | Remove `#` gutters; preserve `#` in patterns or prose. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `git_config` | `ini_style` | Remove `#` gutters; preserve `#` in values or literal text. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `glsl` | `c_style` | Remove `//` and `/* */`; preserve `//` in URLs and other literal text. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+| `glyph_bitmap_distribution_format` | `comment_record_style` | Remove the `Comment` record wrapper; preserve the payload text rather than stripping meaningful words. | `Comment note` vs `note` as payload | `reviewed-no-issue` |
+| `gn` | `hash_line_style` | Remove `#` gutters; preserve `#` in content or headings. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `gnuplot` | `hash_line_style` | Remove `#` gutters; preserve `#` when it is meaningful text. | `# note` vs `# Heading` | `reviewed-no-issue` |
+| `go` | `c_style` | Remove `//` and `/* */`; preserve `//` in URLs and literal text. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+| `go_module` | `slash_line_style` | Remove `//` and `/* */` wrappers; preserve `//` in URLs and literal text. | `// note` vs `http://example.com` | `reviewed-no-issue` |
+
+## Notable Limitation
+
+- `forth` remains the only raw-extraction limitation in this chunk. The current
+  parser still misses `before ( a b c--d e) after` because the parenthesized
+  form requires whitespace before the closing `)`. That is a parser-side
+  limitation, not a sanitizer finding, and there is still no callable sanitizer
+  entry point to validate against.

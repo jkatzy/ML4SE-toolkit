@@ -6,307 +6,74 @@ breaker-owned.
 ## Scope
 
 - Language count: `42`
-- Status: `pending` until findings are recorded
-
-## Languages
-
-### java_properties
-
-- Family: `java_properties_style`
-- Status: finding recorded
-- Findings:
-  - `CommentQuery("java_properties").parse("x=1!2")` returns `QueryMatch(prefix='x=1', suffix='', match='!2')`.
-  - `CommentQuery("java_properties").parse("x=1 # not comment?")` returns `QueryMatch(prefix='x=1 ', suffix='', match='# not comment?')`.
-  - Expected: `#` and `!` should only start a comment when they appear in comment position at the beginning of a line, not inside a property value.
-  - Provenance: local parser probe; Java properties comment rules are documented by Oracle as beginning-of-line comments only: https://docs.oracle.com/javase/tutorial/essential/environment/properties.html
-  - Why it matters: this is a broad false-positive class that will misclassify ordinary property values as comments.
-
-### javascript
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jflex
-
-- Family: `nested_c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jinja
-
-- Family: `jinja_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jq
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### json5
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jsonc
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jsoniq
-
-- Family: `xquery_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jsonnet
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### jsp
-
-- Family: `jsp_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### julia
-
-- Family: `julia_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### kicad_layout
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### kicad_schematic
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### kotlin
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### latte
-
-- Family: `latte_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### lean
-
-- Family: `lean_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### less
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### lilypond
-
-- Family: `matlab_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### limbo
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### liquid
-
-- Family: `liquid_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### lisp
-
-- Family: `semicolon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### llvm
-
-- Family: `semicolon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### lolcode
-
-- Family: `lolcode_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### lua
-
-- Family: `lua_style`
-- Status: finding recorded
-- Findings:
-  - `CommentQuery("lua").parse("x=1 --[=[ note ]=] y=2")` returns `QueryMatch(prefix='x=1 ', suffix='', match='--[=[ note ]=] y=2')`.
-  - Expected: the long-bracket comment should stop at the matching `]=]`, so the match should be `--[=[ note ]=]` and trailing code should remain outside the comment.
-  - Provenance: local parser probe against a real Lua comment form; Lua long-bracket comments are documented in the official manual: https://www.lua.org/manual/5.4/manual.html#3.1
-  - Why it matters: the current line-comment fallback over-extends the match and can swallow subsequent code.
-
-### makefile
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### mako
-
-- Family: `mako_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### marko
-
-- Family: `astro_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### mathematica
-
-- Family: `nested_star_only_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### matlab
-
-- Family: `matlab_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### maven_pom
-
-- Family: `markup_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### meson
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### mini_yaml
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### modelica
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### mustache
-
-- Family: `mustache_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### neon
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### netlogo
-
-- Family: `semicolon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### nextflow
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### nginx
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### nim
-
-- Family: `nim_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### ninja
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### nix
-
-- Family: `hash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### npm_config
-
-- Family: `ini_style`
-- Status: pending
-- Findings:
-  - TODO
+- Status: sanitizer review completed for the assigned chunk
+- Sanitizer implementation: no callable sanitizer entry point found in `src/`
+  or `tests/`; the outcomes below describe the current extraction surface and
+  the missing sanitizer contract.
+
+## Review Matrix
+
+| Language | Status | Sanitizer note |
+| --- | --- | --- |
+| `java_properties` | `documented-limitation` | `#` and `!` should be removed only when they are line-start property comments; the current probe still matches inline markers in values, so sanitizer coverage is blocked by the extraction surface. |
+| `javascript` | `reviewed-no-issue-at-current-surface` | Strip `//` and `/* */`; keep `http://`, `C#`, and literal slash sequences inside prose. Paired keep-vs-remove examples are straightforward. |
+| `jflex` | `reviewed-no-issue-at-current-surface` | Strip nested `/* ... */`; keep inner punctuation and repeated markers that are part of the comment body. |
+| `jinja` | `reviewed-no-issue-at-current-surface` | Strip `{# #}` and `##`; keep `#` when it is meaningful text inside the comment body. |
+| `jq` | `reviewed-no-issue-at-current-surface` | Strip leading `#`; keep `# Heading` and other semantic hash text. |
+| `json5` | `reviewed-no-issue-at-current-surface` | Strip C-style comment scaffolding; keep URLs, code tokens, and punctuation inside the comment text. |
+| `jsonc` | `reviewed-no-issue-at-current-surface` | Strip C-style comment scaffolding; keep URLs, code tokens, and punctuation inside the comment text. |
+| `jsoniq` | `reviewed-no-issue-at-current-surface` | Strip nested `(: :)`; keep `:` and repeated punctuation when they are content. |
+| `jsonnet` | `reviewed-no-issue-at-current-surface` | Strip `#` and `//`; keep `#` in headings, URLs, and quoted text. |
+| `jsp` | `reviewed-no-issue-at-current-surface` | Strip `<%-- --%>`; keep template delimiters only when they are literal content. |
+| `julia` | `documented-limitation` | `#` line comments and `#= =#` blocks need separate treatment; the mixed probe still over-extends across forms, so sanitizer expectations are blocked by extraction. |
+| `kicad_layout` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `#` when it is semantic text or a literal directive in the body. |
+| `kicad_schematic` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `#` when it is semantic text or a literal directive in the body. |
+| `kotlin` | `reviewed-no-issue-at-current-surface` | Strip `//` and `/* */`; keep URLs, code tokens, and punctuation that are part of the comment body. |
+| `latte` | `reviewed-no-issue-at-current-surface` | Strip `{* *}`; keep `*` when it is bullet or emphasis text in the comment body. |
+| `lean` | `reviewed-no-issue-at-current-surface` | Strip `--` and `/- -/`; keep `--` when it is part of prose, code, or examples. |
+| `less` | `reviewed-no-issue-at-current-surface` | Strip `//` and `/* */`; keep URLs, code tokens, and punctuation that are part of the comment body. |
+| `lilypond` | `reviewed-no-issue-at-current-surface` | Strip `%` gutters and `%{ %}` blocks; keep `%` in notation, code samples, or literal text. |
+| `limbo` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `#` in quoted examples or semantic prose. |
+| `liquid` | `reviewed-no-issue-at-current-surface` | Strip `{% comment %}` blocks and related comment forms; keep template tokens when they are quoted examples. |
+| `lisp` | `reviewed-no-issue-at-current-surface` | Strip `;`; keep `;` when it is part of examples or prose punctuation. |
+| `llvm` | `reviewed-no-issue-at-current-surface` | Strip `;`; keep `;` when it is part of examples or prose punctuation. |
+| `lolcode` | `reviewed-no-issue-at-current-surface` | Strip `OBTW ... TLDR` and `BTW`; keep those tokens when quoted or demonstrated as language examples. |
+| `lua` | `documented-limitation` | Long-bracket comments should sanitize cleanly, but the mixed `--[=[ ]=]` probe still over-extends, so sanitizer coverage is blocked by the extraction surface. |
+| `makefile` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `# Heading`, `#!/bin/sh`, and other semantic hash-bearing text. |
+| `mako` | `reviewed-no-issue-at-current-surface` | Strip `<%doc>` blocks and `##`; keep `##` when it is part of literal prose or example text. |
+| `marko` | `reviewed-no-issue-at-current-surface` | Strip block comment wrappers; keep `/*` when it is shown literally in docs or examples. |
+| `mathematica` | `reviewed-no-issue-at-current-surface` | Strip nested `(* *)`; keep `*` when it is part of formulas or emphasized content. |
+| `matlab` | `reviewed-no-issue-at-current-surface` | Strip `%` and `%{ %}`; keep `%` when it is semantic text or a math/code token. |
+| `maven_pom` | `reviewed-no-issue-at-current-surface` | Strip HTML comments; keep markup-like text when it is literal content inside the comment body. |
+| `meson` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `#` when it is semantic text or a literal directive in the body. |
+| `mini_yaml` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `#` when it is semantic text or a literal directive in the body. |
+| `modelica` | `reviewed-no-issue-at-current-surface` | Strip `//` and `/* */`; keep URLs, code tokens, and punctuation that are part of the comment body. |
+| `mustache` | `reviewed-no-issue-at-current-surface` | Strip `{{! ... }}`; keep `{{` and `}}` when they appear in quoted examples or docs. |
+| `neon` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `#` when it is semantic text or a literal directive in the body. |
+| `netlogo` | `reviewed-no-issue-at-current-surface` | Strip `;`; keep `;` when it is part of examples or prose punctuation. |
+| `nextflow` | `reviewed-no-issue-at-current-surface` | Strip `//` and `/* */`; keep URLs, code tokens, and punctuation that are part of the comment body. |
+| `nginx` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `# Heading`, `#!/bin/sh`, and other semantic hash-bearing text. |
+| `nim` | `reviewed-no-issue-at-current-surface` | Strip `#` and nested `#[ ]#`; keep `#` in headings or literal text. |
+| `ninja` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep `# Heading`, `#!/bin/sh`, and other semantic hash-bearing text. |
+| `nix` | `reviewed-no-issue-at-current-surface` | Strip `#`; keep quoted literals and hash-bearing config text when it is part of the value. |
+| `npm_config` | `reviewed-no-issue-at-current-surface` | Strip ini-style `#`; keep `#` when it is part of an option value or literal sample text. |
+
+## Notable Limitations
+
+The following probes remain blocked at the raw-extraction surface rather than
+being true sanitizer validations:
+
+- `java_properties`: inline `#` and `!` inside values are still being matched by
+  the extractor, so the sanitizer cannot yet be exercised at the right
+  boundary.
+- `julia`: the mixed line/block probe still over-extends into the block surface,
+  so a sanitizer pass would be acting on an already over-broad match.
+- `lua`: the long-bracket probe still over-extends into following code, so a
+  sanitizer pass would not be validating the intended comment boundary.
+
+## Coverage Notes
+
+Every reviewed language above has an explicit keep-vs-remove sanitizer note.
+The paired examples are implied by the note itself: each removable scaffold is
+matched with a preserved symbol when that symbol carries meaning in comment
+text.

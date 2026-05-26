@@ -386,3 +386,161 @@ def test_root_package_exports_comment_sanitizer_helpers():
     assert ml4setk.CommentSanitizer is CommentSanitizer
     assert ml4setk.sanitize_comment is sanitize_comment
     assert ml4setk.sanitize_comment_text is sanitize_comment_text
+
+
+def test_stack_v2_csharp_crlf_perlin_block_sanitizes_reference_text():
+    raw_comment = (
+        "/* Perlin noise class.  ( by Tom Nuydens (tom@delphi3d.net) )\r\n"
+        "* Converted to C# by Mattias Fagerlund, Mattias.Fagerlund@cortego.se\r\n"
+        "\r\n"
+        "******************************************************************************\r\n"
+        "\r\n"
+        "I used the following references for my implementation:\r\n"
+        " http://students.vassar.edu/mazucker/code/perlin-noise-math-faq.html\r\n"
+        ' Darwin Peachey\'s chapter in "Texturing & Modeling: A Procedural Approach"\r\n'
+        "Another good resource is\r\n"
+        " http://freespace.virgin.net/hugo.elias/models/m_perlin.htm\r\n"
+        "\r\n"
+        "******************************************************************************\r\n"
+        "\r\n"
+        "This class generates 3D Perlin noise. The demo that comes with this is 2D, but\r\n"
+        "uses the 3rd dimension to create animated noise. The noise does not tile,\r\n"
+        "although it could be made to do so with a few small modifications to the\r\n"
+        "algorithm.\r\n"
+        "\r\n"
+        "Perlin noise can be used as a starting point for all kinds of things,\r\n"
+        "including terrain generation, cloud rendering, procedural textures, and more.\r\n"
+        'Most of these techniques involve rendering multiple "octaves" of noise. This\r\n'
+        "means you generate multiple noise values for every pixel (each with different\r\n"
+        "X, Y and/or Z coordinates), and then sum them. There's an example of this in\r\n"
+        "the accompanying demo.\r\n"
+        "*/"
+    )
+    expected_cleaned = (
+        " Perlin noise class.  ( by Tom Nuydens (tom@delphi3d.net) )\n"
+        "* Converted to C# by Mattias Fagerlund, Mattias.Fagerlund@cortego.se\n"
+        "\n"
+        "******************************************************************************\n"
+        "\n"
+        "I used the following references for my implementation:\n"
+        " http://students.vassar.edu/mazucker/code/perlin-noise-math-faq.html\n"
+        ' Darwin Peachey\'s chapter in "Texturing & Modeling: A Procedural Approach"\n'
+        "Another good resource is\n"
+        " http://freespace.virgin.net/hugo.elias/models/m_perlin.htm\n"
+        "\n"
+        "******************************************************************************\n"
+        "\n"
+        "This class generates 3D Perlin noise. The demo that comes with this is 2D, but\n"
+        "uses the 3rd dimension to create animated noise. The noise does not tile,\n"
+        "although it could be made to do so with a few small modifications to the\n"
+        "algorithm.\n"
+        "\n"
+        "Perlin noise can be used as a starting point for all kinds of things,\n"
+        "including terrain generation, cloud rendering, procedural textures, and more.\n"
+        'Most of these techniques involve rendering multiple "octaves" of noise. This\n'
+        "means you generate multiple noise values for every pixel (each with different\n"
+        "X, Y and/or Z coordinates), and then sum them. There's an example of this in\n"
+        "the accompanying demo."
+    )
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c#").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c#", raw_comment) == expected_cleaned
+
+
+def test_stack_v2_csharp_todo_line_comment_sanitizes_no_space_delimiters():
+    raw_comment = (
+        "//TODO this needs a lot of refractoring, a lot of duped code\n"
+        "//TODO This belongs somewhere else I think maybe on the Object Base class"
+    )
+    expected_cleaned = (
+        "TODO this needs a lot of refractoring, a lot of duped code\n"
+        "TODO This belongs somewhere else I think maybe on the Object Base class"
+    )
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c#").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c#", raw_comment) == expected_cleaned
+
+
+def test_stack_v2_csharp_inline_russian_todo_line_comment_sanitizes_delimiter():
+    raw_comment = "//todo pn возможна исключительная ситуация"
+    expected_cleaned = "todo pn возможна исключительная ситуация"
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c#").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c#", raw_comment) == expected_cleaned
+
+
+def test_stack_v2_csharp_xml_doc_line_comment_sanitizes_delimiters():
+    raw_comment = (
+        "/// <summary>\n"
+        "    /// Base class for implementing custom movement for the Retro Controller\n"
+        "    /// </summary>"
+    )
+    expected_cleaned = (
+        "<summary>\n"
+        "Base class for implementing custom movement for the Retro Controller\n"
+        "</summary>"
+    )
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c#").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c#", raw_comment) == expected_cleaned
+
+
+def test_stack_v2_csharp_chinese_xml_doc_line_comment_sanitizes_delimiters():
+    raw_comment = (
+        "/// <summary>\n"
+        "    /// 单点采集器GPRS通讯对象\n"
+        "    /// </summary>"
+    )
+    expected_cleaned = (
+        "<summary>\n"
+        "单点采集器GPRS通讯对象\n"
+        "</summary>"
+    )
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c#").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c#", raw_comment) == expected_cleaned
+
+
+def test_stack_v2_cpp_doxygen_line_header_sanitizes_delimiters():
+    raw_comment = (
+        "/// @file    Noise.ino\n"
+        "/// @brief   Demonstrates how to use noise generation on a 2D LED matrix\n"
+        "/// @example Noise.ino"
+    )
+    expected_cleaned = (
+        "@file    Noise.ino\n"
+        "@brief   Demonstrates how to use noise generation on a 2D LED matrix\n"
+        "@example Noise.ino"
+    )
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c++").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c++", raw_comment) == expected_cleaned
+
+
+def test_stack_v2_cpp_qpid_decoder_doxygen_line_comment_sanitizes_delimiters():
+    raw_comment = (
+        "/// **Experimental** - Stream-like decoder from AMQP bytes to C++\n"
+        "/// values.\n"
+        "///\n"
+        "/// For internal use only.\n"
+        "///\n"
+        "/// @see @ref types_page for the recommended ways to manage AMQP data"
+    )
+    expected_cleaned = (
+        "**Experimental** - Stream-like decoder from AMQP bytes to C++\n"
+        "values.\n"
+        "\n"
+        "For internal use only.\n"
+        "\n"
+        "@see @ref types_page for the recommended ways to manage AMQP data"
+    )
+    target = QueryMatch("", "", raw_comment)
+
+    assert CommentSanitizer("c++").sanitize(target) == expected_cleaned
+    assert sanitize_comment("c++", raw_comment) == expected_cleaned
