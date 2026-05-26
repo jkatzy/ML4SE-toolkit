@@ -5,31 +5,53 @@ file by hand.
 
 ## Goal
 
-Produce adversarial parser inputs for the assigned languages. Focus on
-cases that are likely to expose missing tests, ambiguous contracts, or
-comment-syntax edge cases that the current suite does not yet lock down.
+Produce systematic parser and sanitizer coverage for the assigned
+languages. Cover all relevant scenario families, not only the most
+interesting failures, and leave an explicit outcome for each reviewed
+language.
 
 ## Ownership
 
-- Write findings only to `docs/comment_testing/threads/chunk_0_findings.md`.
+- Write findings to `docs/comment_testing/threads/chunk_0_findings.md`.
 - Read `docs/comment_testing/threads/chunk_0_resolution.md` for already-handled cases, but do not edit it.
-- Do not edit production code, registry entries, or test files.
+- Add parseable adversarial cases directly to assigned fixture files under `tests/fixtures/comment_languages/`.
+- Each language's fixture path is listed in the assignment table below.
+- Do not edit production code, registry entries, regular test modules,
+  fixer resolution files, or non-assigned fixture files.
 
 ## Required workflow
 
-1. Inspect the registry, generated tests, and targeted tests for each
-   assigned language.
-2. Try to break the current assumptions with minimal inputs.
-3. If a scenario is believed not to exist for the language, search
+1. Inspect the registry, generated tests, targeted tests, and assigned
+   fixture file for each language.
+2. Enumerate the relevant scenario families for each language.
+3. Add minimal representative cases to the assigned fixture file when
+   the case should parse correctly with current behavior.
+4. Preserve the seeded fixture cases and separate added comments with
+   non-comment code lines when needed to avoid accidental line-comment
+   grouping.
+5. If a scenario is believed not to exist for the language, search
    the internet for real examples anyway and use them as crash or
    misparse probes.
-4. Run the parser locally and record the actual result for each case.
-5. Only keep cases that are either currently failing, currently
-   ambiguous, or missing explicit regression coverage.
-6. Prefer 1-3 high-value cases per language over broad low-signal spam.
+6. Run the parser locally and record the actual result for each case.
+   Cases left in fixture files must still parse correctly.
+7. If a candidate exposes a parser failure, do not leave it as a
+   fixture edit; record it in findings for a fixer-owned regression.
+8. When sanitizer behavior is in scope, record both the raw extracted
+   match and the sanitized output.
+9. For sanitizer cases, state which characters should be removed as
+   syntax noise and which must remain because they carry meaning.
+10. If a sanitizer case removes a symbol, add a paired case where the
+   same symbol is preserved because it is meaningful content.
+11. Run `uv run pytest tests/test_comment_language_fixtures.py -q --no-cov`
+   after fixture edits.
+12. Record an explicit outcome for every reviewed scenario family:
+   confirmed bug, ambiguous contract, or reviewed-no-issue.
+13. Use representative cases rather than redundant duplicates, but do
+   not skip coverage because a case is lower-priority.
 
-## Adversarial themes
+## Coverage themes
 
+Systematically review these as applicable to each assigned language:
 - Outer block comments containing inner line-comment markers.
 - Nested openers and closers at different depths.
 - Unterminated blocks and stray closing delimiters.
@@ -38,7 +60,35 @@ comment-syntax edge cases that the current suite does not yet lock down.
 - Version or dialect variants that share one registry key.
 - Quote-delimited comments containing delimiter-like text.
 - Opening file-header comments and hashbang interaction.
+- Sanitizer under-stripping of delimiters, decorative gutters, or
+  delimiter-only edge lines.
+- Sanitizer over-stripping of Markdown markers, bullets, TODO tags,
+  code examples, CLI flags, or deliberate repeated punctuation.
 - Unsupported or disputed comment forms found in real examples online.
+
+## Sanitizer-specific expectations
+
+A good sanitizer removes comment scaffolding without erasing meaningful
+text.
+
+Treat these as removable only when they are acting as syntax noise:
+- outer delimiters and delimiter-only edge lines
+- decorative per-line gutters such as repeated leading `*`, `#`, `--`,
+  `;`, `%`, or `'` characters used only for formatting
+- padding-only indentation introduced by aligned block comments
+
+Treat these as preservation-sensitive when they are part of the
+comment body:
+- Markdown headings, bullets, emphasis, and checklists
+- tags such as `TODO:`, `FIXME:`, `@param`, or `@return`
+- shell and CLI text such as `#!/bin/sh`, `--flag`, `$HOME`, or `%VAR%`
+- code and language tokens such as `C#`, `F#`, `C++`, `#include`, `::`,
+  `**kwargs`, `%%time`, or `%matplotlib`
+
+Paired-case rule:
+- if one testcase proves that a symbol should be removed, add a
+  companion testcase proving that the same symbol must be kept when it
+  carries meaning
 
 ## Unsupported-scenario probing
 
@@ -60,62 +110,72 @@ Suggested searches:
 - `"site:sourceforge.net <Language> programming language comment"`
 - `"<Language> programming language <delimiter> comment"`
 
-Keep only cases that reveal crashes, exceptions, hangs, obviously
-wrong matches, or missing explicit regression coverage.
+Record representative outcomes for the reviewed unsupported-scenario
+probes. Do not skip a family just because it behaved correctly.
 
 ## Output format
 
-For each kept case, record:
+For each reviewed case family, record:
 - the exact input
-- the parser entry point used
+- the fixture file updated, or `findings-only` if the candidate fails
+- the fixture case label or unique sentinel added to the file
+- the extraction entry point used
+- the sanitizer entry point used when applicable
+- the raw extracted match
 - the actual output
 - the expected behavior
+- the actual sanitized output when applicable
+- the expected sanitized output when applicable
+- the removal contract
+- the preservation contract
+- the paired preservation testcase when a symbol-removal case is kept
 - the source URL or provenance when the case came from the internet
+- the verification command and result for fixture edits
 - why the case matters
 
 ## Assigned languages
 
-| Language | Family | Notes |
-| --- | --- | --- |
-| `abap` | `abap_style` | - |
-| `actionscript` | `c_style` | Slash-based line and non-nested block comments. |
-| `ada` | `dash_style` | - |
-| `adobe_font_metrics` | `comment_record_style` | - |
-| `agda` | `nested_dash_style` | - |
-| `ags_script` | `c_style` | Slash-based line and non-nested block comments. |
-| `aidl` | `c_style` | Slash-based line and non-nested block comments. |
-| `al` | `c_style` | Slash-based line and non-nested block comments. |
-| `alloy` | `alloy_style` | - |
-| `alpine_abuild` | `hash_line_style` | - |
-| `ampl` | `hash_c_style` | - |
-| `angelscript` | `c_style` | Slash-based line and non-nested block comments. |
-| `ant_build_system` | `markup_style` | - |
-| `antlers` | `antlers_style` | - |
-| `antlr` | `c_style` | Slash-based line and non-nested block comments. |
-| `apacheconf` | `hash_line_style` | - |
-| `apex` | `c_style` | Slash-based line and non-nested block comments. |
-| `apl` | `apl_style` | - |
-| `applescript` | `applescript_style` | - |
-| `asciidoc` | `asciidoc_style` | - |
-| `asl` | `c_block_style` | - |
-| `asn1` | `dash_style` | - |
-| `aspectj` | `c_style` | Slash-based line and non-nested block comments. |
-| `assembly` | `semicolon_style` | - |
-| `astro` | `astro_style` | - |
-| `asymptote` | `c_style` | Slash-based line and non-nested block comments. |
-| `ats` | `fsharp_style` | - |
-| `augeas` | `nested_star_only_style` | - |
-| `autohotkey` | `semicolon_c_style` | - |
-| `autoit` | `autoit_style` | - |
-| `avro_idl` | `c_style` | Slash-based line and non-nested block comments. |
-| `awk` | `hash_line_style` | - |
-| `ballerina` | `c_style` | Slash-based line and non-nested block comments. |
-| `basic` | `apostrophe_style` | - |
-| `batchfile` | `batchfile_style` | - |
-| `bibtex` | `percent_style` | - |
-| `blade` | `blade_style` | - |
-| `c` | `c_style` | Slash-based line and non-nested block comments. |
-| `c#` | `c_style` | Slash-based line and non-nested block comments. |
-| `c++` | `c_style` | Slash-based line and non-nested block comments. |
-| `c2hs_haskell` | `haskell_style` | - |
-| `cap_cds` | `c_style` | Slash-based line and non-nested block comments. |
+| Language | Family | Fixture | Notes |
+| --- | --- | --- | --- |
+| `abap` | `abap_style` | `tests/fixtures/comment_languages/abap.code` | - |
+| `actionscript` | `c_style` | `tests/fixtures/comment_languages/actionscript.code` | Slash-based line and non-nested block comments. |
+| `ada` | `dash_style` | `tests/fixtures/comment_languages/ada.code` | - |
+| `adobe_font_metrics` | `comment_record_style` | `tests/fixtures/comment_languages/adobe_font_metrics.code` | - |
+| `agda` | `nested_dash_style` | `tests/fixtures/comment_languages/agda.code` | - |
+| `ags_script` | `c_style` | `tests/fixtures/comment_languages/ags_script.code` | Slash-based line and non-nested block comments. |
+| `aidl` | `c_style` | `tests/fixtures/comment_languages/aidl.code` | Slash-based line and non-nested block comments. |
+| `al` | `c_style` | `tests/fixtures/comment_languages/al.code` | Slash-based line and non-nested block comments. |
+| `alloy` | `alloy_style` | `tests/fixtures/comment_languages/alloy.code` | - |
+| `alpine_abuild` | `hash_line_style` | `tests/fixtures/comment_languages/alpine_abuild.code` | - |
+| `ampl` | `hash_c_style` | `tests/fixtures/comment_languages/ampl.code` | - |
+| `angelscript` | `c_style` | `tests/fixtures/comment_languages/angelscript.code` | Slash-based line and non-nested block comments. |
+| `ant_build_system` | `markup_style` | `tests/fixtures/comment_languages/ant_build_system.code` | - |
+| `antlers` | `antlers_style` | `tests/fixtures/comment_languages/antlers.code` | - |
+| `antlr` | `c_style` | `tests/fixtures/comment_languages/antlr.code` | Slash-based line and non-nested block comments. |
+| `apacheconf` | `hash_line_style` | `tests/fixtures/comment_languages/apacheconf.code` | - |
+| `apex` | `c_style` | `tests/fixtures/comment_languages/apex.code` | Slash-based line and non-nested block comments. |
+| `apl` | `apl_style` | `tests/fixtures/comment_languages/apl.code` | - |
+| `applescript` | `applescript_style` | `tests/fixtures/comment_languages/applescript.code` | - |
+| `asciidoc` | `asciidoc_style` | `tests/fixtures/comment_languages/asciidoc.code` | - |
+| `asl` | `c_block_style` | `tests/fixtures/comment_languages/asl.code` | - |
+| `asn1` | `dash_style` | `tests/fixtures/comment_languages/asn1.code` | - |
+| `aspectj` | `c_style` | `tests/fixtures/comment_languages/aspectj.code` | Slash-based line and non-nested block comments. |
+| `assembly` | `semicolon_style` | `tests/fixtures/comment_languages/assembly.code` | - |
+| `astro` | `astro_style` | `tests/fixtures/comment_languages/astro.code` | - |
+| `asymptote` | `c_style` | `tests/fixtures/comment_languages/asymptote.code` | Slash-based line and non-nested block comments. |
+| `ats` | `fsharp_style` | `tests/fixtures/comment_languages/ats.code` | - |
+| `augeas` | `nested_star_only_style` | `tests/fixtures/comment_languages/augeas.code` | - |
+| `autohotkey` | `semicolon_c_style` | `tests/fixtures/comment_languages/autohotkey.code` | - |
+| `autoit` | `autoit_style` | `tests/fixtures/comment_languages/autoit.code` | - |
+| `avro_idl` | `c_style` | `tests/fixtures/comment_languages/avro_idl.code` | Slash-based line and non-nested block comments. |
+| `awk` | `hash_line_style` | `tests/fixtures/comment_languages/awk.code` | - |
+| `ballerina` | `c_style` | `tests/fixtures/comment_languages/ballerina.code` | Slash-based line and non-nested block comments. |
+| `basic` | `apostrophe_style` | `tests/fixtures/comment_languages/basic.code` | - |
+| `batchfile` | `batchfile_style` | `tests/fixtures/comment_languages/batchfile.code` | - |
+| `bibtex` | `percent_style` | `tests/fixtures/comment_languages/bibtex.code` | - |
+| `blade` | `blade_style` | `tests/fixtures/comment_languages/blade.code` | - |
+| `c` | `c_style` | `tests/fixtures/comment_languages/c.code` | Slash-based line and non-nested block comments. |
+| `c#` | `c_style` | `tests/fixtures/comment_languages/c_sharp.code` | Slash-based line and non-nested block comments. |
+| `c++` | `c_style` | `tests/fixtures/comment_languages/c_plus_plus.code` | Slash-based line and non-nested block comments. |
+| `c2hs_haskell` | `haskell_style` | `tests/fixtures/comment_languages/c2hs_haskell.code` | - |
+| `cap_cds` | `c_style` | `tests/fixtures/comment_languages/cap_cds.code` | Slash-based line and non-nested block comments. |

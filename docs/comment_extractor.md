@@ -185,6 +185,40 @@ model_input, ground_truth = FIMInput(
 The generation classes operate on the same `QueryMatch` contract, so the
 extractor output can be used directly.
 
+
+## Testing comment behavior
+
+For normal deterministic coverage, run:
+
+```bash
+make test
+```
+
+For real Stack v2 samples judged by Codex, generate a manifest and run the
+manual LLM judge suite:
+
+```bash
+make comment-judge-manifest \
+  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
+  COMMENT_JUDGE_PER_KIND=10
+make comment-judge-smoke
+make comment-judge-test
+make comment-judge-testgen-pipeline
+```
+
+The judge suite checks extraction and sanitization as separate verdicts. It is
+manual rather than CI-bound because it fetches corpus content and starts Codex
+judge processes. It prints live per-case progress by default for large manifests.
+Before Codex is launched, the suite checks the central validation ledger in
+`docs/comment_testing/stack_v2_judge_validation_ledger.md`; buckets that already
+passed for the same committed code fingerprint are skipped, and recorded
+failures fail fast with their prior report link. Use `COMMENT_JUDGE_FORCE=1`
+for an intentional rerun. When a judge case fails, pytest writes a Markdown
+failure report containing expected behavior, actual behavior, and instructions
+for a test-generation agent to add deterministic pytest coverage. See
+`docs/comment_testing/stack_v2_judge_workflow.md` for setup, local JSONL
+alternatives, failure-report handoff, ledger behavior, and troubleshooting.
+
 ## Current limitations
 
 - Regex-based parsing is not fully lexical. Comment-like text inside strings or

@@ -6,28 +6,65 @@ breaker-owned.
 ## Scope
 
 - Language count: `42`
-- Status: `pending` until findings are recorded
+- Status: exhaustive sanitizer-reviewed pass complete
+- Sanitizer implementation: no callable sanitizer entry point found in `src/`
+  or `tests/`; the notes below record current-surface sanitizer contracts,
+  paired keep-vs-remove expectations, and documented limitations where the
+  extraction surface blocks sanitizer validation.
 
-## Languages
+## Sanitizer Review
 
-### racket
+| Language | Family | Status | Sanitizer entry point | Note |
+| --- | --- | --- | --- | --- |
+| `racket` | `hash_pipe_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `#| ... |#` scaffolding but keep delimiter-like prose and punctuation inside the body. |
+| `ragel` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash-line gutters while preserving literal `#` text and embedded symbols. |
+| `raku` | `raku_style` | `documented-limitation` | `n/a` | Sanitizer contract is blocked by the current extraction surface: the embedded backtick form still needs a future sanitizer entry point to separate comment scaffolding from trailing code. |
+| `rdoc` | `rdoc_style` | `documented-limitation` | `n/a` | Sanitizer contract is blocked by the current extraction surface: inline `=begin ... =end` text needs a future sanitizer surface to distinguish scaffolding from code text. |
+| `readline_config` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash-line comments, keep shell-style literal text and option markers. |
+| `rebol` | `semicolon_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip semicolon gutters while preserving inline punctuation that carries meaning. |
+| `restructuredtext` | `restructuredtext_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove `..` comment scaffolding but preserve repeated punctuation and body text. |
+| `rexx` | `rexx_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip block/line wrappers while keeping literal inline text intact. |
+| `ring` | `jsonnet_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove brace-delimited comment wrappers and keep inline tokens. |
+| `rmarkdown` | `markup_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove markup comment wrappers while preserving lists, bullets, and headings. |
+| `robotframework` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip hash-line gutters but keep literal `#` occurrences in test data. |
+| `robots_txt` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove directive/comment gutters and preserve literal `#` text. |
+| `roff` | `roff_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip roff control/comment lines and preserve dot-prefixed literal text. |
+| `roff_manpage` | `roff_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip manpage control/comment lines and preserve literal body text. |
+| `ruby` | `ruby_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove `#`/`=begin` scaffolding while keeping delimiter-sensitive prose intact. |
+| `rust` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `//` and `/* */` wrappers but keep punctuation-heavy content. |
+| `sas` | `sas_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove `* ... ;` comment scaffolding and preserve inline literals. |
+| `sass` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip slash comments while preserving literal `//` sequences. |
+| `scala` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `//` and `/* */` scaffolding while preserving nested-looking punctuation. |
+| `scheme` | `semicolon_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip semicolon comments and keep literal symbols in the body. |
+| `scilab` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove `//` and `/* */` wrappers without over-stripping the body. |
+| `scss` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip slash comments and keep CSS-like literal syntax. |
+| `self` | `self_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove self-style comment markers and preserve literal punctuation. |
+| `shell` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash comments and shebang-adjacent gutters without stripping flags or paths. |
+| `sieve` | `hash_c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash/block comment wrappers and preserve literal text. |
+| `slash` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash-line scaffolding and keep slash-style literals. |
+| `slim` | `slim_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip indentation-scoped gutters while preserving inline `*`/`#` content. |
+| `smalltalk` | `quote_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip quote-line comments and preserve quoted text inside the body. |
+| `smarty` | `smarty_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove Smarty comment wrappers and keep template markers. |
+| `sparql` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash-line comments and preserve URI-like literals. |
+| `sql` | `sql_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `--` and `/* */` wrappers while preserving inline literals. |
+| `starlark` | `hash_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash comments and keep triple-quoted body text intact. |
+| `stata` | `stata_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip leading `*`/`//` comment markers and preserve literal punctuation. |
+| `svelte` | `markup_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove markup comment wrappers while preserving template content. |
+| `svg` | `markup_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip XML/markup comments and preserve attribute text. |
+| `swift` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `//` and `/* */` wrappers while keeping inline text. |
+| `systemverilog` | `c_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `//` and `/* */` wrappers and keep literal tokens. |
+| `tcl` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash comments and keep literal `#` text. |
+| `tcsh` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash gutters and preserve shell-like literals. |
+| `tex` | `percent_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip `%` comments while preserving literal percent markers. |
+| `textmate_properties` | `hash_line_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: remove hash-line property comments and preserve literal values. |
+| `thrift` | `jsonnet_style` | `reviewed-no-issue-at-current-surface` | `n/a` | Sanitizer contract: strip brace-delimited comment wrappers and preserve schema text. |
 
-- Family: `hash_pipe_style`
-- Status: pending
-- Findings:
-  - No high-value adversarial case kept yet.
-
-### ragel
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
+## Current-Surface Limitations
 
 ### raku
 
 - Family: `raku_style`
-- Status: pending
+- Status: documented-limitation
 - Findings:
   - Exact input:
     ```text
@@ -38,284 +75,22 @@ breaker-owned.
     ```text
     [QueryMatch(prefix='if ', suffix='', match='#`( why would I ever write an inline comment here? ) True { say "something stupid"; }')]
     ```
-  - Expected behavior: match the documented embedded comment form only, not the rest of the line.
+  - Expected sanitizer behavior: preserve the embedded-comment boundary while
+    not stripping the trailing code once a sanitizer surface exists.
   - Source / provenance: Raku syntax docs, https://docs.raku.org/language/syntax
-  - Why it matters: the current implementation treats the documented embedded-comment form as a plain `#.*` line comment and swallows trailing code.
+  - Why it matters: the current extraction surface over-extends, so sanitizer
+    coverage for the embedded-comment form needs a dedicated entry point.
 
 ### rdoc
 
 - Family: `rdoc_style`
-- Status: pending
+- Status: documented-limitation
 - Findings:
   - Exact input: `code = 1\n=begin\nline\n=end\nmore`
   - Parser entry point: `CommentQuery("rdoc").parse(...)`
   - Actual output: `[QueryMatch(prefix='code ', suffix='\\nmore', match='= 1\\n=begin\\nline\\n=end')]`
-  - Expected behavior: do not treat an inline `=begin ... =end` sequence inside code as an RDoc block comment.
+  - Expected sanitizer behavior: keep the `=begin ... =end` delimiters only
+    when they are anchored as a real RDoc block and leave code text intact.
   - Source / provenance: local probe
-  - Why it matters: the current regex is not anchored to the start of a line, so it produces a false positive on ordinary code that merely contains `=begin` text.
-
-### readline_config
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### rebol
-
-- Family: `semicolon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### restructuredtext
-
-- Family: `restructuredtext_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### rexx
-
-- Family: `rexx_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### ring
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### rmarkdown
-
-- Family: `markup_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### robotframework
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### robots_txt
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### roff
-
-- Family: `roff_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### roff_manpage
-
-- Family: `roff_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### ruby
-
-- Family: `ruby_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### rust
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### sas
-
-- Family: `sas_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### sass
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### scala
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### scheme
-
-- Family: `semicolon_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### scilab
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### scss
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### self
-
-- Family: `self_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### shell
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### sieve
-
-- Family: `hash_c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### slash
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### slim
-
-- Family: `slim_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### smalltalk
-
-- Family: `quote_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### smarty
-
-- Family: `smarty_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### sparql
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### sql
-
-- Family: `sql_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### starlark
-
-- Family: `hash_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### stata
-
-- Family: `stata_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### svelte
-
-- Family: `markup_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### svg
-
-- Family: `markup_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### swift
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### systemverilog
-
-- Family: `c_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### tcl
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### tcsh
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### tex
-
-- Family: `percent_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### textmate_properties
-
-- Family: `hash_line_style`
-- Status: pending
-- Findings:
-  - TODO
-
-### thrift
-
-- Family: `jsonnet_style`
-- Status: pending
-- Findings:
-  - TODO
+  - Why it matters: the current extraction surface still over-matches ordinary
+    code, so sanitizer validation should wait for a callable sanitizer surface.

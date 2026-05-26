@@ -5,27 +5,63 @@ file by hand.
 
 ## Goal
 
-Consume confirmed breaker findings and convert them into stable coverage.
-For valid failures, add regression tests first, then patch the parser or
-registry with the smallest coherent change.
+Consume breaker coverage and convert it into stable coverage. For
+confirmed failures, add regression tests first, then patch the parser,
+registry, or sanitizer with the smallest coherent change. For reviewed
+correct cases, record that no change was needed.
 
 ## Ownership
 
 - Read `docs/comment_testing/threads/chunk_6_findings.md`.
 - Write resolution notes to `docs/comment_testing/threads/chunk_6_resolution.md`.
-- You may edit parser code, registry entries, tests, and user-facing
-  comment-parser docs as needed.
+- You may edit parser code, registry entries, tests, assigned fixture
+  files, and user-facing comment-parser docs as needed.
 - Do not rewrite breaker findings or other chunks.
 
 ## Required workflow
 
 1. Validate each breaker case locally before changing code.
-2. Add or extend tests for every confirmed bug or missing contract.
-3. Patch the parser or registry minimally.
-4. If a case reflects an intentional limitation, document that instead of
+2. Validate breaker fixture-file additions and keep them only when
+   they still parse correctly.
+3. Process every reviewed language and scenario family, not only the
+   failing ones.
+4. For sanitizer cases, validate both the raw extracted match and the
+   sanitized output before changing code.
+5. Add or extend tests for every confirmed bug or missing contract.
+6. Once a previously failing parser case is fixed, add the stable case
+   to the relevant `tests/fixtures/comment_languages/` fixture file.
+7. Pair every new sanitizer symbol-removal testcase with a testcase
+   where the same symbol is preserved when semantically meaningful.
+8. Patch the parser, registry, or sanitizer minimally.
+9. Preserve meaning-bearing punctuation and markers while removing only
+   syntax clutter introduced by comment notation.
+10. Record `no-change-needed` when the reviewed behavior is already
+   correct.
+11. If a case reflects an intentional limitation, document that instead of
    forcing speculative support.
-5. Run targeted tests first, then the default non-optional suite if the
+12. Run `uv run pytest tests/test_comment_language_fixtures.py -q --no-cov`
+   whenever fixture files change.
+13. Run targeted tests first, then the default non-optional suite if the
    change touches shared parser behavior.
+
+## Fixture acceptance rule
+
+A fixture edit is only correct if the file remains useful as a parser
+acceptance sample:
+- seeded registry comments still appear exactly once
+- breaker-added comments are expected to parse with current behavior
+- failing parser probes are recorded in findings until the fixer has
+  added tests or code changes that make them parse correctly
+
+## Sanitizer acceptance rule
+
+A sanitizer fix is only correct if it improves both sides of the
+contract:
+- superfluous delimiters, decorative gutters, and padding noise are removed
+- semantically important markers such as headings, bullets, TODO tags,
+  code examples, and CLI tokens still survive intact
+- whenever a symbol is removed in one test, a paired test proves that the
+  same symbol is preserved when it is meaningful
 
 ## Resolution categories
 
@@ -33,50 +69,53 @@ registry with the smallest coherent change.
 - `fixed-in-tests`: behavior was already correct, but coverage was missing.
 - `documented-limitation`: no code change; the case is now explicit.
 - `needs-policy-decision`: blocked on intended semantics.
+- `no-change-needed`: reviewed coverage was already correct.
+- `ambiguous-contract`: the reviewed case still needs an explicit policy
+  or sanitizer contract before code changes are safe.
 
 ## Assigned languages
 
-| Language | Family | Notes |
-| --- | --- | --- |
-| `racket` | `hash_pipe_style` | - |
-| `ragel` | `hash_line_style` | - |
-| `raku` | `raku_style` | - |
-| `rdoc` | `rdoc_style` | - |
-| `readline_config` | `hash_line_style` | - |
-| `rebol` | `semicolon_style` | - |
-| `restructuredtext` | `restructuredtext_style` | - |
-| `rexx` | `rexx_style` | - |
-| `ring` | `jsonnet_style` | - |
-| `rmarkdown` | `markup_style` | - |
-| `robotframework` | `hash_line_style` | - |
-| `robots_txt` | `hash_line_style` | - |
-| `roff` | `roff_style` | - |
-| `roff_manpage` | `roff_style` | - |
-| `ruby` | `ruby_style` | - |
-| `rust` | `c_style` | Slash-based line and non-nested block comments. |
-| `sas` | `sas_style` | - |
-| `sass` | `c_style` | Slash-based line and non-nested block comments. |
-| `scala` | `c_style` | Slash-based line and non-nested block comments. |
-| `scheme` | `semicolon_style` | - |
-| `scilab` | `c_style` | Slash-based line and non-nested block comments. |
-| `scss` | `c_style` | Slash-based line and non-nested block comments. |
-| `self` | `self_style` | - |
-| `shell` | `hash_line_style` | - |
-| `sieve` | `hash_c_style` | - |
-| `slash` | `hash_line_style` | - |
-| `slim` | `slim_style` | - |
-| `smalltalk` | `quote_line_style` | - |
-| `smarty` | `smarty_style` | - |
-| `sparql` | `hash_line_style` | - |
-| `sql` | `sql_style` | - |
-| `starlark` | `hash_style` | Hash comments plus Python-style triple-quoted blocks in the current implementation. |
-| `stata` | `stata_style` | - |
-| `svelte` | `markup_style` | - |
-| `svg` | `markup_style` | - |
-| `swift` | `c_style` | Slash-based line and non-nested block comments. |
-| `systemverilog` | `c_style` | Slash-based line and non-nested block comments. |
-| `tcl` | `hash_line_style` | - |
-| `tcsh` | `hash_line_style` | - |
-| `tex` | `percent_style` | - |
-| `textmate_properties` | `hash_line_style` | - |
-| `thrift` | `jsonnet_style` | - |
+| Language | Family | Fixture | Notes |
+| --- | --- | --- | --- |
+| `racket` | `hash_pipe_style` | `tests/fixtures/comment_languages/racket.code` | - |
+| `ragel` | `hash_line_style` | `tests/fixtures/comment_languages/ragel.code` | - |
+| `raku` | `raku_style` | `tests/fixtures/comment_languages/raku.code` | - |
+| `rdoc` | `rdoc_style` | `tests/fixtures/comment_languages/rdoc.code` | - |
+| `readline_config` | `hash_line_style` | `tests/fixtures/comment_languages/readline_config.code` | - |
+| `rebol` | `semicolon_style` | `tests/fixtures/comment_languages/rebol.code` | - |
+| `restructuredtext` | `restructuredtext_style` | `tests/fixtures/comment_languages/restructuredtext.code` | - |
+| `rexx` | `rexx_style` | `tests/fixtures/comment_languages/rexx.code` | - |
+| `ring` | `jsonnet_style` | `tests/fixtures/comment_languages/ring.code` | - |
+| `rmarkdown` | `markup_style` | `tests/fixtures/comment_languages/rmarkdown.code` | - |
+| `robotframework` | `hash_line_style` | `tests/fixtures/comment_languages/robotframework.code` | - |
+| `robots_txt` | `hash_line_style` | `tests/fixtures/comment_languages/robots_txt.code` | - |
+| `roff` | `roff_style` | `tests/fixtures/comment_languages/roff.code` | - |
+| `roff_manpage` | `roff_style` | `tests/fixtures/comment_languages/roff_manpage.code` | - |
+| `ruby` | `ruby_style` | `tests/fixtures/comment_languages/ruby.code` | - |
+| `rust` | `c_style` | `tests/fixtures/comment_languages/rust.code` | Slash-based line and non-nested block comments. |
+| `sas` | `sas_style` | `tests/fixtures/comment_languages/sas.code` | - |
+| `sass` | `c_style` | `tests/fixtures/comment_languages/sass.code` | Slash-based line and non-nested block comments. |
+| `scala` | `c_style` | `tests/fixtures/comment_languages/scala.code` | Slash-based line and non-nested block comments. |
+| `scheme` | `semicolon_style` | `tests/fixtures/comment_languages/scheme.code` | - |
+| `scilab` | `c_style` | `tests/fixtures/comment_languages/scilab.code` | Slash-based line and non-nested block comments. |
+| `scss` | `c_style` | `tests/fixtures/comment_languages/scss.code` | Slash-based line and non-nested block comments. |
+| `self` | `self_style` | `tests/fixtures/comment_languages/self.code` | - |
+| `shell` | `hash_line_style` | `tests/fixtures/comment_languages/shell.code` | - |
+| `sieve` | `hash_c_style` | `tests/fixtures/comment_languages/sieve.code` | - |
+| `slash` | `hash_line_style` | `tests/fixtures/comment_languages/slash.code` | - |
+| `slim` | `slim_style` | `tests/fixtures/comment_languages/slim.code` | - |
+| `smalltalk` | `quote_line_style` | `tests/fixtures/comment_languages/smalltalk.code` | - |
+| `smarty` | `smarty_style` | `tests/fixtures/comment_languages/smarty.code` | - |
+| `sparql` | `hash_line_style` | `tests/fixtures/comment_languages/sparql.code` | - |
+| `sql` | `sql_style` | `tests/fixtures/comment_languages/sql.code` | - |
+| `starlark` | `hash_style` | `tests/fixtures/comment_languages/starlark.code` | Hash comments plus Python-style triple-quoted blocks in the current implementation. |
+| `stata` | `stata_style` | `tests/fixtures/comment_languages/stata.code` | - |
+| `svelte` | `markup_style` | `tests/fixtures/comment_languages/svelte.code` | - |
+| `svg` | `markup_style` | `tests/fixtures/comment_languages/svg.code` | - |
+| `swift` | `c_style` | `tests/fixtures/comment_languages/swift.code` | Slash-based line and non-nested block comments. |
+| `systemverilog` | `c_style` | `tests/fixtures/comment_languages/systemverilog.code` | Slash-based line and non-nested block comments. |
+| `tcl` | `hash_line_style` | `tests/fixtures/comment_languages/tcl.code` | - |
+| `tcsh` | `hash_line_style` | `tests/fixtures/comment_languages/tcsh.code` | - |
+| `tex` | `percent_style` | `tests/fixtures/comment_languages/tex.code` | - |
+| `textmate_properties` | `hash_line_style` | `tests/fixtures/comment_languages/textmate_properties.code` | - |
+| `thrift` | `jsonnet_style` | `tests/fixtures/comment_languages/thrift.code` | - |

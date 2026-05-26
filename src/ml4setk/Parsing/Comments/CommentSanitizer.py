@@ -90,6 +90,24 @@ def _is_case_insensitive_token(token: str) -> bool:
     return any(char.isalpha() for char in token)
 
 
+def _line_open_pattern(open_token: str) -> str:
+    """Return a regex fragment for a line-comment opener.
+
+    Args:
+        open_token: Registry-derived line-comment opener.
+
+    Returns:
+        Regex text that strips the opener. Multi-character homogeneous openers
+        such as ``//`` also strip documentation/ruler variants like ``///`` or
+        ``////``. Single-character openers stay exact so Markdown headings inside
+        ``#`` comments remain content.
+    """
+
+    if len(open_token) > 1 and len(set(open_token)) == 1:
+        return rf"{re.escape(open_token[0])}{{{len(open_token)},}}"
+    return re.escape(open_token)
+
+
 def _strip_grouped_line_wrappers(
     raw_comment: str, line_wrappers: tuple[tuple[str, str], ...]
 ) -> str | None:
@@ -108,7 +126,7 @@ def _strip_grouped_line_wrappers(
         for open_token, close_token in line_wrappers:
             flags = re.IGNORECASE if _is_case_insensitive_token(open_token + close_token) else 0
             pattern = re.compile(
-                rf"^[ \t]*{re.escape(open_token)}(?=[ \t]|$)(.*){re.escape(close_token)}$",
+                rf"^[ \t]*(?:{_line_open_pattern(open_token)})(.*){re.escape(close_token)}$",
                 flags,
             )
             match = pattern.match(line)

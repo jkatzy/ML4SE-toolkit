@@ -5,27 +5,63 @@ file by hand.
 
 ## Goal
 
-Consume confirmed breaker findings and convert them into stable coverage.
-For valid failures, add regression tests first, then patch the parser or
-registry with the smallest coherent change.
+Consume breaker coverage and convert it into stable coverage. For
+confirmed failures, add regression tests first, then patch the parser,
+registry, or sanitizer with the smallest coherent change. For reviewed
+correct cases, record that no change was needed.
 
 ## Ownership
 
 - Read `docs/comment_testing/threads/chunk_5_findings.md`.
 - Write resolution notes to `docs/comment_testing/threads/chunk_5_resolution.md`.
-- You may edit parser code, registry entries, tests, and user-facing
-  comment-parser docs as needed.
+- You may edit parser code, registry entries, tests, assigned fixture
+  files, and user-facing comment-parser docs as needed.
 - Do not rewrite breaker findings or other chunks.
 
 ## Required workflow
 
 1. Validate each breaker case locally before changing code.
-2. Add or extend tests for every confirmed bug or missing contract.
-3. Patch the parser or registry minimally.
-4. If a case reflects an intentional limitation, document that instead of
+2. Validate breaker fixture-file additions and keep them only when
+   they still parse correctly.
+3. Process every reviewed language and scenario family, not only the
+   failing ones.
+4. For sanitizer cases, validate both the raw extracted match and the
+   sanitized output before changing code.
+5. Add or extend tests for every confirmed bug or missing contract.
+6. Once a previously failing parser case is fixed, add the stable case
+   to the relevant `tests/fixtures/comment_languages/` fixture file.
+7. Pair every new sanitizer symbol-removal testcase with a testcase
+   where the same symbol is preserved when semantically meaningful.
+8. Patch the parser, registry, or sanitizer minimally.
+9. Preserve meaning-bearing punctuation and markers while removing only
+   syntax clutter introduced by comment notation.
+10. Record `no-change-needed` when the reviewed behavior is already
+   correct.
+11. If a case reflects an intentional limitation, document that instead of
    forcing speculative support.
-5. Run targeted tests first, then the default non-optional suite if the
+12. Run `uv run pytest tests/test_comment_language_fixtures.py -q --no-cov`
+   whenever fixture files change.
+13. Run targeted tests first, then the default non-optional suite if the
    change touches shared parser behavior.
+
+## Fixture acceptance rule
+
+A fixture edit is only correct if the file remains useful as a parser
+acceptance sample:
+- seeded registry comments still appear exactly once
+- breaker-added comments are expected to parse with current behavior
+- failing parser probes are recorded in findings until the fixer has
+  added tests or code changes that make them parse correctly
+
+## Sanitizer acceptance rule
+
+A sanitizer fix is only correct if it improves both sides of the
+contract:
+- superfluous delimiters, decorative gutters, and padding noise are removed
+- semantically important markers such as headings, bullets, TODO tags,
+  code examples, and CLI tokens still survive intact
+- whenever a symbol is removed in one test, a paired test proves that the
+  same symbol is preserved when it is meaningful
 
 ## Resolution categories
 
@@ -33,50 +69,53 @@ registry with the smallest coherent change.
 - `fixed-in-tests`: behavior was already correct, but coverage was missing.
 - `documented-limitation`: no code change; the case is now explicit.
 - `needs-policy-decision`: blocked on intended semantics.
+- `no-change-needed`: reviewed coverage was already correct.
+- `ambiguous-contract`: the reviewed case still needs an explicit policy
+  or sanitizer contract before code changes are safe.
 
 ## Assigned languages
 
-| Language | Family | Notes |
-| --- | --- | --- |
-| `nsis` | `nsis_style` | - |
-| `nunjucks` | `nunjucks_style` | - |
-| `objective-c` | `c_style` | Slash-based line and non-nested block comments. |
-| `objective_cpp` | `c_style` | Slash-based line and non-nested block comments. |
-| `objective_j` | `c_style` | Slash-based line and non-nested block comments. |
-| `objectscript` | `objectscript_style` | - |
-| `ocaml` | `nested_star_style` | Current implementation treats these languages as nested-comment only. |
-| `odin` | `c_style` | Slash-based line and non-nested block comments. |
-| `onec_enterprise` | `slash_line_style` | - |
-| `open_policy_agent` | `hash_line_style` | - |
-| `opencl` | `c_style` | Slash-based line and non-nested block comments. |
-| `openqasm` | `c_style` | Slash-based line and non-nested block comments. |
-| `openscad` | `c_style` | Slash-based line and non-nested block comments. |
-| `pascal` | `pascal_style` | The generic Pascal key implements the union of Free Pascal, TP/Delphi, and Pascal65 comment forms. It accepts //, { ... }, and (* ... *). |
-| `perl` | `perl_style` | - |
-| `php` | `c_style` | Slash-based line and non-nested block comments. |
-| `pike` | `c_style` | Slash-based line and non-nested block comments. |
-| `plantuml` | `plantuml_style` | - |
-| `plpgsql` | `sql_style` | - |
-| `plsql` | `sql_style` | - |
-| `postcss` | `c_block_style` | - |
-| `postscript` | `percent_style` | - |
-| `powerbuilder` | `nested_c_style` | - |
-| `powershell` | `powershell_style` | - |
-| `processing` | `c_style` | Slash-based line and non-nested block comments. |
-| `procfile` | `hash_line_style` | - |
-| `proguard` | `hash_line_style` | - |
-| `prolog` | `prolog_style` | - |
-| `promela` | `promela_style` | This entry intentionally models only native Promela comments. C-preprocessor // comments are not included. |
-| `protocol_buffer` | `c_style` | Slash-based line and non-nested block comments. |
-| `protocol_buffer_text_format` | `hash_line_style` | - |
-| `pug` | `pug_style` | - |
-| `puppet` | `hash_line_style` | - |
-| `purebasic` | `semicolon_style` | - |
-| `purescript` | `haskell_style` | - |
-| `python` | `hash_style` | Hash comments plus Python-style triple-quoted blocks in the current implementation. |
-| `q` | `q_style` | - |
-| `qmake` | `hash_line_style` | - |
-| `qml` | `c_style` | Slash-based line and non-nested block comments. |
-| `qsharp` | `slash_line_style` | - |
-| `quake` | `c_style` | Slash-based line and non-nested block comments. |
-| `r` | `hash_style` | Hash comments plus Python-style triple-quoted blocks in the current implementation. |
+| Language | Family | Fixture | Notes |
+| --- | --- | --- | --- |
+| `nsis` | `nsis_style` | `tests/fixtures/comment_languages/nsis.code` | - |
+| `nunjucks` | `nunjucks_style` | `tests/fixtures/comment_languages/nunjucks.code` | - |
+| `objective-c` | `c_style` | `tests/fixtures/comment_languages/objective_c.code` | Slash-based line and non-nested block comments. |
+| `objective_cpp` | `c_style` | `tests/fixtures/comment_languages/objective_cpp.code` | Slash-based line and non-nested block comments. |
+| `objective_j` | `c_style` | `tests/fixtures/comment_languages/objective_j.code` | Slash-based line and non-nested block comments. |
+| `objectscript` | `objectscript_style` | `tests/fixtures/comment_languages/objectscript.code` | - |
+| `ocaml` | `nested_star_style` | `tests/fixtures/comment_languages/ocaml.code` | Current implementation treats these languages as nested-comment only. |
+| `odin` | `c_style` | `tests/fixtures/comment_languages/odin.code` | Slash-based line and non-nested block comments. |
+| `onec_enterprise` | `slash_line_style` | `tests/fixtures/comment_languages/onec_enterprise.code` | - |
+| `open_policy_agent` | `hash_line_style` | `tests/fixtures/comment_languages/open_policy_agent.code` | - |
+| `opencl` | `c_style` | `tests/fixtures/comment_languages/opencl.code` | Slash-based line and non-nested block comments. |
+| `openqasm` | `c_style` | `tests/fixtures/comment_languages/openqasm.code` | Slash-based line and non-nested block comments. |
+| `openscad` | `c_style` | `tests/fixtures/comment_languages/openscad.code` | Slash-based line and non-nested block comments. |
+| `pascal` | `pascal_style` | `tests/fixtures/comment_languages/pascal.code` | The generic Pascal key implements the union of Free Pascal, TP/Delphi, and Pascal65 comment forms. It accepts //, { ... }, and (* ... *). |
+| `perl` | `perl_style` | `tests/fixtures/comment_languages/perl.code` | - |
+| `php` | `c_style` | `tests/fixtures/comment_languages/php.code` | Slash-based line and non-nested block comments. |
+| `pike` | `c_style` | `tests/fixtures/comment_languages/pike.code` | Slash-based line and non-nested block comments. |
+| `plantuml` | `plantuml_style` | `tests/fixtures/comment_languages/plantuml.code` | - |
+| `plpgsql` | `sql_style` | `tests/fixtures/comment_languages/plpgsql.code` | - |
+| `plsql` | `sql_style` | `tests/fixtures/comment_languages/plsql.code` | - |
+| `postcss` | `c_block_style` | `tests/fixtures/comment_languages/postcss.code` | - |
+| `postscript` | `percent_style` | `tests/fixtures/comment_languages/postscript.code` | - |
+| `powerbuilder` | `nested_c_style` | `tests/fixtures/comment_languages/powerbuilder.code` | - |
+| `powershell` | `powershell_style` | `tests/fixtures/comment_languages/powershell.code` | - |
+| `processing` | `c_style` | `tests/fixtures/comment_languages/processing.code` | Slash-based line and non-nested block comments. |
+| `procfile` | `hash_line_style` | `tests/fixtures/comment_languages/procfile.code` | - |
+| `proguard` | `hash_line_style` | `tests/fixtures/comment_languages/proguard.code` | - |
+| `prolog` | `prolog_style` | `tests/fixtures/comment_languages/prolog.code` | - |
+| `promela` | `promela_style` | `tests/fixtures/comment_languages/promela.code` | This entry intentionally models only native Promela comments. C-preprocessor // comments are not included. |
+| `protocol_buffer` | `c_style` | `tests/fixtures/comment_languages/protocol_buffer.code` | Slash-based line and non-nested block comments. |
+| `protocol_buffer_text_format` | `hash_line_style` | `tests/fixtures/comment_languages/protocol_buffer_text_format.code` | - |
+| `pug` | `pug_style` | `tests/fixtures/comment_languages/pug.code` | - |
+| `puppet` | `hash_line_style` | `tests/fixtures/comment_languages/puppet.code` | - |
+| `purebasic` | `semicolon_style` | `tests/fixtures/comment_languages/purebasic.code` | - |
+| `purescript` | `haskell_style` | `tests/fixtures/comment_languages/purescript.code` | - |
+| `python` | `hash_style` | `tests/fixtures/comment_languages/python.code` | Hash comments plus Python-style triple-quoted blocks in the current implementation. |
+| `q` | `q_style` | `tests/fixtures/comment_languages/q.code` | - |
+| `qmake` | `hash_line_style` | `tests/fixtures/comment_languages/qmake.code` | - |
+| `qml` | `c_style` | `tests/fixtures/comment_languages/qml.code` | Slash-based line and non-nested block comments. |
+| `qsharp` | `slash_line_style` | `tests/fixtures/comment_languages/qsharp.code` | - |
+| `quake` | `c_style` | `tests/fixtures/comment_languages/quake.code` | Slash-based line and non-nested block comments. |
+| `r` | `hash_style` | `tests/fixtures/comment_languages/r.code` | Hash comments plus Python-style triple-quoted blocks in the current implementation. |
