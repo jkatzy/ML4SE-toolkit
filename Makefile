@@ -66,7 +66,10 @@ comment-judge-smoke:
 		COMMENT_JUDGE_CODEX_TIMEOUT=$(COMMENT_JUDGE_CODEX_TIMEOUT) \
 		COMMENT_JUDGE_TIMEOUT=$(COMMENT_JUDGE_TIMEOUT) \
 		COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE=$(COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE) \
-		$(UV) run pytest tests/test_stack_v2_comment_judge.py -q --no-cov
+		$(UV) run pytest \
+			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
+			tests/test_stack_v2_comment_judge.py::test_stack_v2_comment_extraction_and_cleaning_with_llm_judge \
+			-q --no-cov
 
 comment-judge-test:
 	STACK_V2_COMMENT_JUDGE_MANIFEST=$(COMMENT_JUDGE_MANIFEST) \
@@ -79,7 +82,10 @@ comment-judge-test:
 		COMMENT_JUDGE_TIMEOUT=$(COMMENT_JUDGE_TIMEOUT) \
 		COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE=$(COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE) \
 		COMMENT_JUDGE_CASE_LIMIT=$(COMMENT_JUDGE_CASE_LIMIT) \
-		$(UV) run pytest tests/test_stack_v2_comment_judge.py -q --no-cov
+		$(UV) run pytest \
+			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
+			tests/test_stack_v2_comment_judge.py::test_stack_v2_comment_extraction_and_cleaning_with_llm_judge \
+			-q --no-cov
 
 
 comment-judge-generate-tests:
