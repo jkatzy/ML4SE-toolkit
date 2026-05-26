@@ -20,3 +20,5 @@ value_string_1 = "not \ string_probe_1";
 value_6 = 6
 value_string_2 = "not ( string_probe_2 )";
 value_7 = 7
+value_continuation = \
+value_8 = 8

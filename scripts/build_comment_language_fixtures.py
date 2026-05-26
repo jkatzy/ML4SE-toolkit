@@ -94,7 +94,18 @@ def build_fixture_cases(language: str) -> tuple[FixtureCase, ...]:
     cases.extend(_star_prefixed_block_cases_for_examples(examples))
     cases.extend(_grouped_line_cases_for_examples(examples))
     cases.extend(_string_probe_cases_for_examples(examples))
+    cases.extend(_language_specific_cases(language))
     return tuple(cases)
+
+
+def _language_specific_cases(language: str) -> list[FixtureCase]:
+    if language == "forth":
+        return [
+            FixtureCase(
+                content="value_continuation = \\",
+            )
+        ]
+    return []
 
 
 def _registry_examples_for_language(language: str):

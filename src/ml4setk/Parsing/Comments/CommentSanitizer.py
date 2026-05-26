@@ -115,7 +115,6 @@ def _strip_grouped_line_wrappers(
         return None
 
     stripped_lines = []
-    matched_wrapper = None
     for line in raw_comment.split("\n"):
         if line == "":
             stripped_lines.append("")
@@ -138,11 +137,6 @@ def _strip_grouped_line_wrappers(
                 break
 
         if wrapper is None or stripped is None:
-            return None
-
-        if matched_wrapper is None:
-            matched_wrapper = wrapper
-        elif wrapper != matched_wrapper:
             return None
 
         stripped_lines.append(stripped.rstrip())
