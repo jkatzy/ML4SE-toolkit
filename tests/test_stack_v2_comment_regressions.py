@@ -1283,3 +1283,123 @@ def test_stack_v2_csharp_socket_xml_doc_sanitizes_delimiters():
         sanitize_comment("c#", C_SHARP_STACK_V2_SOCKET_XML_DOC_LINE_COMMENT)
         == C_SHARP_STACK_V2_SOCKET_XML_DOC_CLEANED_COMMENT
     )
+
+
+FORTH_STACK_V2_BARE_BACKSLASH_PREFIX = "-makelib ies/xil_defaultlib -sv "
+FORTH_STACK_V2_BARE_BACKSLASH_COMMENT = "\\" + "\r"
+FORTH_STACK_V2_BARE_BACKSLASH_SUFFIX = (
+    "\n"
+    '  "C:/Xilinx/Vivado/2016.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" '
+    "\\"
+    "\r\n"
+    '  "C:/Xilinx/Vivado/2016.2/data/ip/xpm/xpm_memory/hdl/xpm_memory_base.sv" '
+    "\\"
+    "\r\n"
+)
+FORTH_STACK_V2_BARE_BACKSLASH_SOURCE = (
+    FORTH_STACK_V2_BARE_BACKSLASH_PREFIX
+    + FORTH_STACK_V2_BARE_BACKSLASH_COMMENT
+    + FORTH_STACK_V2_BARE_BACKSLASH_SUFFIX
+)
+FORTH_STACK_V2_HEADER_LINE_COMMENT = "\\ *** Block No. 131, Hexblock 83"
+
+RAKU_STACK_V2_EMBEDDED_BLOCK_COMMENT = (
+    "#`(\n"
+    "#| A cool\n"
+    "constant $pi = 3.14159;\n"
+    "#= constant\n"
+    "\n"
+    "test-both($pi.VAR, 'A cool', 'constant');\n"
+    ")"
+)
+RAKU_STACK_V2_EMBEDDED_BLOCK_SOURCE = (
+    "skip 'declaration comments are NYI on constants', 7;\n"
+    + RAKU_STACK_V2_EMBEDDED_BLOCK_COMMENT
+    + "\n\nskip 'declaration comments are NYI on variables', 7;\n"
+)
+RAKU_STACK_V2_EMBEDDED_BLOCK_CLEANED = (
+    "#| A cool\n"
+    "constant $pi = 3.14159;\n"
+    "#= constant\n"
+    "\n"
+    "test-both($pi.VAR, 'A cool', 'constant');"
+)
+RAKU_RAKUDOC_COMMENT_BLOCK = "=begin comment\nThis is hidden.\n=end comment"
+RAKU_RAKUDOC_SOURCE = "unit module Example;\n" + RAKU_RAKUDOC_COMMENT_BLOCK + "\nsub x {}\n"
+
+
+def test_stack_v2_forth_bare_backslash_extracts_only_line_comment():
+    matches = CommentQuery("forth").parse(FORTH_STACK_V2_BARE_BACKSLASH_SOURCE)
+
+    assert matches
+    assert matches[0] == QueryMatch(
+        FORTH_STACK_V2_BARE_BACKSLASH_PREFIX,
+        FORTH_STACK_V2_BARE_BACKSLASH_SUFFIX,
+        FORTH_STACK_V2_BARE_BACKSLASH_COMMENT,
+    )
+    assert "xpm_cdc" not in matches[0].match
+
+
+def test_stack_v2_forth_bare_backslash_sanitizes_to_empty_comment():
+    target = QueryMatch("", "", FORTH_STACK_V2_BARE_BACKSLASH_COMMENT)
+
+    assert CommentSanitizer("forth").sanitize(target) == ""
+    assert sanitize_comment("forth", FORTH_STACK_V2_BARE_BACKSLASH_COMMENT) == ""
+
+
+def test_stack_v2_forth_regular_backslash_comment_still_sanitizes_content():
+    target = QueryMatch("", "", FORTH_STACK_V2_HEADER_LINE_COMMENT)
+
+    assert CommentSanitizer("forth").sanitize(target) == "*** Block No. 131, Hexblock 83"
+    assert (
+        sanitize_comment("forth", FORTH_STACK_V2_HEADER_LINE_COMMENT)
+        == "*** Block No. 131, Hexblock 83"
+    )
+
+
+def test_stack_v2_raku_embedded_comment_handles_inner_parentheses():
+    matches = CommentQuery("raku").parse(RAKU_STACK_V2_EMBEDDED_BLOCK_SOURCE)
+
+    assert matches == [
+        QueryMatch(
+            "skip 'declaration comments are NYI on constants', 7;\n",
+            "\n\nskip 'declaration comments are NYI on variables', 7;\n",
+            RAKU_STACK_V2_EMBEDDED_BLOCK_COMMENT,
+        )
+    ]
+
+
+def test_stack_v2_raku_embedded_comment_sanitizes_full_body():
+    target = QueryMatch("", "", RAKU_STACK_V2_EMBEDDED_BLOCK_COMMENT)
+
+    assert CommentSanitizer("raku").sanitize(target) == RAKU_STACK_V2_EMBEDDED_BLOCK_CLEANED
+    assert (
+        sanitize_comment("raku", RAKU_STACK_V2_EMBEDDED_BLOCK_COMMENT)
+        == RAKU_STACK_V2_EMBEDDED_BLOCK_CLEANED
+    )
+
+
+def test_stack_v2_raku_rakudoc_comment_block_extracts_and_sanitizes():
+    matches = CommentQuery("raku").parse(RAKU_RAKUDOC_SOURCE)
+
+    assert matches == [
+        QueryMatch(
+            "unit module Example;\n",
+            "\nsub x {}\n",
+            RAKU_RAKUDOC_COMMENT_BLOCK,
+        )
+    ]
+    assert CommentSanitizer("raku").sanitize(matches[0]) == "This is hidden."
+
+
+def test_stack_v2_raku_mixed_declarator_lines_strip_each_prefix():
+    raw_comment = "#| leading declarator\n#= trailing declarator"
+
+    assert (
+        CommentSanitizer("raku").sanitize(QueryMatch("", "", raw_comment))
+        == "leading declarator\ntrailing declarator"
+    )
+    assert (
+        sanitize_comment("raku", raw_comment)
+        == "leading declarator\ntrailing declarator"
+    )

@@ -593,7 +593,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="forth_style",
         canonical_name="forth",
         regex_patterns=(
-            r"\\\s.*",
+            r"(?m)(?<!\S)\\(?:[ \t][^\r\n]*)?\r?",
             r"\(\s[\s\S]*?\)",
         ),
         shared_regex_examples=(
@@ -811,11 +811,20 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="raku_style",
         canonical_name="raku",
         regex_patterns=(
-            r"#`\([\s\S]*?\)",
-            r"#`\{[\s\S]*?\}",
-            r"#`\[[\s\S]*?\]",
+            r"#`(?P<raku_paren>\((?:[^()]|(?P>raku_paren))*\))",
+            r"#`(?P<raku_brace>\{(?:[^{}]|(?P>raku_brace))*\})",
+            r"#`(?P<raku_bracket>\[(?:[^\[\]]|(?P>raku_bracket))*\])",
             r"#`<[\s\S]*?>",
-            r"#(?!`).*",
+            r"#(?:\||=)(?P<raku_decl_paren>\((?:[^()]|(?P>raku_decl_paren))*\))",
+            r"#(?:\||=)(?P<raku_decl_brace>\{(?:[^{}]|(?P>raku_decl_brace))*\})",
+            r"#(?:\||=)(?P<raku_decl_bracket>\[(?:[^\[\]]|(?P>raku_decl_bracket))*\])",
+            r"#(?:\||=)<[\s\S]*?>",
+            (
+                r"(?ms)^[ \t]*=begin[ \t]+comment\b[^\r\n]*"
+                r"(?:\r?\n[\s\S]*?)^[ \t]*=end[ \t]+comment\b[^\r\n]*"
+            ),
+            r"#(?:\||=)(?![({\[<]).*",
+            r"#(?![`|=]).*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -829,11 +838,47 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         canonical_regex_examples=(
             CommentExample(
+                "prefix\n#| note\nsuffix",
+                "#| note",
+                "Leading declarator line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n#= note\nsuffix",
+                "#= note",
+                "Trailing declarator line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
                 "prefix\n#`(note)\nsuffix",
                 "#`(note)",
                 "Bracketed embedded comment.",
                 kind="block",
                 inline_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n#`[note]\nsuffix",
+                "#`[note]",
+                "Square-bracket embedded comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n#|(note)\nsuffix",
+                "#|(note)",
+                "Declarator paired block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n=begin comment\nnote\n=end comment\nsuffix",
+                "=begin comment\nnote\n=end comment",
+                "Rakudoc comment block.",
+                kind="block",
             ),
         ),
     ),
