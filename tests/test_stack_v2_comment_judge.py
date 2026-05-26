@@ -356,21 +356,25 @@ def _record_judge_failure_in_ledger(
         return
 
     bucket = _case_bucket(case)
+    case_id = _case_id(case)
+    expected_case_ids = STACK_V2_BUCKET_CASE_IDS.get(bucket, set())
+    if case_id not in expected_case_ids:
+        return
+
     STACK_V2_FAILED_BUCKETS.add(bucket)
     language, comment_kind = bucket
-    bucket_case_ids = STACK_V2_BUCKET_CASE_IDS.get(bucket, {_case_id(case)})
     entry = _COMMENT_JUDGE_LEDGER.build_entry(
         language=language,
         comment_kind=comment_kind,
         status=_COMMENT_JUDGE_LEDGER.FAILED,
-        cases=1,
+        cases=len(expected_case_ids),
         version=_current_ledger_version(),
         judge_model=_judge_model_label(),
         manifest=_ledger_manifest_label(),
         report=_ledger_report_label(report_note),
         failure_type=failure_type,
         rationale=rationale or str((verdict or {}).get("rationale", "")),
-        case_ids=tuple(sorted(set(bucket_case_ids) & {_case_id(case)}) or [_case_id(case)]),
+        case_ids=(case_id,),
     )
     _write_ledger_entry_or_fail(entry)
 
