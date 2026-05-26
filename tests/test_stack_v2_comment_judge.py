@@ -570,7 +570,8 @@ def _read_case_content(case: dict[str, Any]) -> str:
     source_file = Path(case["source_file"])
     if not source_file.is_absolute() and STACK_V2_MANIFEST_PATH is not None:
         source_file = STACK_V2_MANIFEST_PATH.parent / source_file
-    return source_file.read_text(encoding="utf-8")
+    with source_file.open(encoding="utf-8", newline="") as infile:
+        return infile.read()
 
 
 def _observed_comments_near_target(
@@ -1174,6 +1175,19 @@ def test_read_case_content_resolves_manifest_relative_paths(
     monkeypatch.setattr(sys.modules[__name__], "STACK_V2_MANIFEST_PATH", manifest)
 
     assert _read_case_content({"source_file": "files/case.txt"}) == "# note\n"
+
+
+def test_read_case_content_preserves_source_newlines(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    manifest = tmp_path / "manifest.jsonl"
+    source_dir = tmp_path / "files"
+    source_dir.mkdir()
+    source = source_dir / "case.txt"
+    source.write_bytes(b"# note\r\nnext\r")
+    monkeypatch.setattr(sys.modules[__name__], "STACK_V2_MANIFEST_PATH", manifest)
+
+    assert _read_case_content({"source_file": "files/case.txt"}) == "# note\r\nnext\r"
 
 
 def test_progress_prefix_includes_case_position_and_identity() -> None:
