@@ -16,6 +16,7 @@ import os
 import sys
 from collections import defaultdict
 from collections.abc import Iterable, Iterator
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -142,6 +143,16 @@ class StackCase:
         }
 
 
+@dataclass(frozen=True)
+class LanguageCollectionResult:
+    """Sampled cases and failures for one requested language."""
+
+    language_index: int
+    language: str
+    cases: list[StackCase]
+    failures: list[StackFailure]
+
+
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
 
@@ -207,6 +218,15 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=10,
         help="Print manifest-generation progress after this many scanned records.",
+    )
+    parser.add_argument(
+        "--num-workers",
+        type=int,
+        default=1,
+        help=(
+            "Number of languages to sample concurrently. Increase this when "
+            "candidate discovery is I/O-bound."
+        ),
     )
     parser.add_argument(
         "--no-progress",
@@ -290,6 +310,8 @@ def main() -> int:
     """Run the Stack v2 sampling workflow."""
 
     args = parse_args()
+    if args.num_workers < 1:
+        raise SystemExit("--num-workers must be at least 1")
     languages = _selected_languages(args.languages)
     language_map = _load_language_map(args.language_map)
     manifest_path = args.output_root / args.manifest_name
@@ -305,51 +327,18 @@ def main() -> int:
 
     _validate_selected_languages(languages)
 
+    language_results = _collect_requested_languages(
+        args=args,
+        languages=languages,
+        language_map=language_map,
+        source_root=source_root,
+    )
+
     all_cases: list[StackCase] = []
     failures: list[StackFailure] = []
-    for language_index, language in enumerate(languages, start=1):
-        syntax = get_comment_syntax(language)
-        target_kinds = _supported_comment_kinds(syntax, language)
-        if not target_kinds:
-            _emit_manifest_progress(
-                args,
-                f"[stack-v2 manifest] language {language_index}/{len(languages)} "
-                f"{language} skipped no-supported-comment-kinds",
-            )
-            continue
-
-        _emit_manifest_progress(
-            args,
-            f"[stack-v2 manifest] language {language_index}/{len(languages)} "
-            f"{language} start kinds={','.join(target_kinds)}",
-        )
-        result = _collect_language_cases(
-            args=args,
-            language=language,
-            syntax=syntax,
-            target_kinds=target_kinds,
-            language_map=language_map,
-            source_root=source_root,
-        )
-        all_cases.extend(result.cases)
-
-        counts = _counts_by_kind(result.cases)
-        _emit_manifest_progress(
-            args,
-            f"[stack-v2 manifest] language {language_index}/{len(languages)} "
-            f"{language} done scanned={result.scanned_records} "
-            f"{_format_progress_counts(counts, target_kinds, args.per_kind)}",
-        )
-        failures.extend(
-            _build_failures(
-                args=args,
-                language=language,
-                syntax=syntax,
-                target_kinds=target_kinds,
-                counts=counts,
-                result=result,
-            )
-        )
+    for language_result in language_results:
+        all_cases.extend(language_result.cases)
+        failures.extend(language_result.failures)
 
     _emit_manifest_progress(
         args,
@@ -366,6 +355,110 @@ def main() -> int:
         return 1
     return 0
 
+
+def _collect_requested_languages(
+    *,
+    args: argparse.Namespace,
+    languages: list[str],
+    language_map: dict[str, Any],
+    source_root: Path,
+) -> list[LanguageCollectionResult]:
+    worker_count = min(args.num_workers, len(languages))
+    if worker_count <= 1:
+        return [
+            _collect_requested_language(
+                args=args,
+                language_index=language_index,
+                language_count=len(languages),
+                language=language,
+                language_map=language_map,
+                source_root=source_root,
+            )
+            for language_index, language in enumerate(languages, start=1)
+        ]
+
+    _emit_manifest_progress(
+        args,
+        f"[stack-v2 manifest] sampling languages concurrently num_workers={worker_count}",
+    )
+    language_results = []
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        futures = [
+            executor.submit(
+                _collect_requested_language,
+                args=args,
+                language_index=language_index,
+                language_count=len(languages),
+                language=language,
+                language_map=language_map,
+                source_root=source_root,
+            )
+            for language_index, language in enumerate(languages, start=1)
+        ]
+        for future in as_completed(futures):
+            language_results.append(future.result())
+
+    return sorted(language_results, key=lambda result: result.language_index)
+
+
+def _collect_requested_language(
+    *,
+    args: argparse.Namespace,
+    language_index: int,
+    language_count: int,
+    language: str,
+    language_map: dict[str, Any],
+    source_root: Path,
+) -> LanguageCollectionResult:
+    syntax = get_comment_syntax(language)
+    target_kinds = _supported_comment_kinds(syntax, language)
+    if not target_kinds:
+        _emit_manifest_progress(
+            args,
+            f"[stack-v2 manifest] language {language_index}/{language_count} "
+            f"{language} skipped no-supported-comment-kinds",
+        )
+        return LanguageCollectionResult(
+            language_index=language_index,
+            language=language,
+            cases=[],
+            failures=[],
+        )
+
+    _emit_manifest_progress(
+        args,
+        f"[stack-v2 manifest] language {language_index}/{language_count} "
+        f"{language} start kinds={','.join(target_kinds)}",
+    )
+    result = _collect_language_cases(
+        args=args,
+        language=language,
+        syntax=syntax,
+        target_kinds=target_kinds,
+        language_map=language_map,
+        source_root=source_root,
+    )
+    counts = _counts_by_kind(result.cases)
+    _emit_manifest_progress(
+        args,
+        f"[stack-v2 manifest] language {language_index}/{language_count} "
+        f"{language} done scanned={result.scanned_records} "
+        f"{_format_progress_counts(counts, target_kinds, args.per_kind)}",
+    )
+
+    return LanguageCollectionResult(
+        language_index=language_index,
+        language=language,
+        cases=result.cases,
+        failures=_build_failures(
+            args=args,
+            language=language,
+            syntax=syntax,
+            target_kinds=target_kinds,
+            counts=counts,
+            result=result,
+        ),
+    )
 
 def _selected_languages(raw_languages: str | None) -> list[str]:
     if raw_languages is None:

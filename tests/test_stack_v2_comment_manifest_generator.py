@@ -127,6 +127,22 @@ def test_manifest_progress_interval_and_counts() -> None:
     )
 
 
+def test_num_workers_must_be_positive(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "build_stack_v2_comment_judge_cases.py",
+            "--num-workers",
+            "0",
+            "--no-progress",
+        ],
+    )
+
+    with pytest.raises(SystemExit, match="--num-workers must be at least 1"):
+        GENERATOR.main()
+
+
 def test_coffeescript_block_example_classifies_before_hash_line_opener() -> None:
     syntax = GENERATOR.get_comment_syntax("coffeescript")
     raw_comment = "###\nnote\n###"
@@ -303,4 +319,67 @@ def test_local_jsonl_manifest_collects_coffeescript_block_comments(
     assert len(block_rows) == 10
     assert {row["raw_comment"] for row in block_rows} == {"###\nnote\n###"}
     assert {row["syntax_label"] for row in block_rows} == {"###...###"}
+    assert not (output_root / "failures.jsonl").exists()
+
+
+def test_local_jsonl_manifest_can_collect_languages_in_parallel(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    sample = tmp_path / "sample.jsonl"
+    records = [
+        {
+            "id": "coffee-1",
+            "language": "CoffeeScript",
+            "content": "# coffee line\nvalue = 1\n###\ncoffee block\n###\n",
+        },
+        {
+            "id": "java-1",
+            "language": "Java",
+            "content": "// java line\nclass Demo { /* java block */ }\n",
+        },
+    ]
+    with sample.open("w", encoding="utf-8") as outfile:
+        for record in records:
+            outfile.write(json.dumps(record) + "\n")
+    output_root = tmp_path / "out"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "build_stack_v2_comment_judge_cases.py",
+            "--input-jsonl",
+            str(sample),
+            "--languages",
+            "coffeescript,java",
+            "--per-kind",
+            "1",
+            "--max-records-per-language",
+            "10",
+            "--output-root",
+            str(output_root),
+            "--num-workers",
+            "2",
+            "--no-progress",
+        ],
+    )
+
+    assert GENERATOR.main() == 0
+
+    manifest_rows = [
+        json.loads(line)
+        for line in (output_root / "manifest.jsonl").read_text(encoding="utf-8").splitlines()
+    ]
+
+    assert [row["language"] for row in manifest_rows] == [
+        "coffeescript",
+        "coffeescript",
+        "java",
+        "java",
+    ]
+    assert [row["comment_kind"] for row in manifest_rows] == [
+        "line",
+        "block",
+        "line",
+        "block",
+    ]
     assert not (output_root / "failures.jsonl").exists()

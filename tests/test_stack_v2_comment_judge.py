@@ -58,6 +58,7 @@ FAILURES_ENV = "STACK_V2_COMMENT_JUDGE_FAILURES"
 REPORT_DIR_ENV = "STACK_V2_COMMENT_JUDGE_REPORT_DIR"
 AGENT_CMD_ENV = "COMMENT_JUDGE_AGENT_CMD"
 USE_CODEX_ENV = "COMMENT_JUDGE_USE_CODEX"
+USE_LOCAL_ENV = "COMMENT_JUDGE_USE_LOCAL"
 CASE_LIMIT_ENV = "COMMENT_JUDGE_CASE_LIMIT"
 TIMEOUT_ENV = "COMMENT_JUDGE_TIMEOUT"
 PROGRESS_ENV = "COMMENT_JUDGE_PROGRESS"
@@ -176,17 +177,35 @@ _LEDGER_VERSION_CACHE = None
 
 
 def _judge_command() -> list[str] | None:
-    """Return the configured judge command, or the Codex adapter command."""
+    """Return the configured judge command, or a built-in adapter command."""
 
     command = os.environ.get(AGENT_CMD_ENV)
     if command:
         return shlex.split(command)
+
+    if _local_judge_enabled():
+        repo_root = Path(__file__).resolve().parents[1]
+        command = [sys.executable, str(repo_root / "scripts" / "run_local_comment_judge.py")]
+        provider = _local_judge_provider_from_env()
+        if provider is not None and "COMMENT_JUDGE_LOCAL_PROVIDER" not in os.environ:
+            command.extend(["--provider", provider])
+        return command
 
     if os.environ.get(USE_CODEX_ENV, "").lower() in {"1", "true", "yes", "codex"}:
         repo_root = Path(__file__).resolve().parents[1]
         return [sys.executable, str(repo_root / "scripts" / "run_codex_comment_judge.py")]
 
     return None
+
+
+def _local_judge_enabled() -> bool:
+    value = os.environ.get(USE_LOCAL_ENV, "").lower()
+    return value in {"1", "true", "yes", "on", "local", "ollama", "vllm"}
+
+
+def _local_judge_provider_from_env() -> str | None:
+    value = os.environ.get(USE_LOCAL_ENV, "").lower()
+    return value if value in {"ollama", "vllm"} else None
 
 
 def _repo_root() -> Path:
@@ -240,6 +259,14 @@ def _ledger_recording_enabled() -> bool:
 def _judge_model_label() -> str:
     """Return a short label for the configured judge implementation."""
 
+    if _local_judge_enabled():
+        provider = (
+            os.environ.get("COMMENT_JUDGE_LOCAL_PROVIDER")
+            or _local_judge_provider_from_env()
+            or "ollama"
+        )
+        model = os.environ.get("COMMENT_JUDGE_LOCAL_MODEL", "gemma4:31b")
+        return f"{provider}:{model}"
     if os.environ.get(USE_CODEX_ENV, "").lower() in {"1", "true", "yes", "codex"}:
         return os.environ.get("COMMENT_JUDGE_CODEX_MODEL") or "codex-default"
     if os.environ.get(AGENT_CMD_ENV):
@@ -491,7 +518,8 @@ def _format_generation_failure(failure: dict[str, Any]) -> str:
     _judge_command() is None,
     reason=(
         f"set {AGENT_CMD_ENV} to an agent command or set "
-        f"{USE_CODEX_ENV}=1 to run Codex agents"
+        f"{USE_CODEX_ENV}=1 to run Codex agents or {USE_LOCAL_ENV}=1 "
+        "to run a local judge"
     ),
 )
 @pytest.mark.parametrize(
@@ -1155,6 +1183,7 @@ def test_parse_judge_json_requires_consistent_shape() -> None:
 
 def test_judge_command_can_use_codex_adapter(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv(AGENT_CMD_ENV, raising=False)
+    monkeypatch.delenv(USE_LOCAL_ENV, raising=False)
     monkeypatch.setenv(USE_CODEX_ENV, "1")
 
     command = _judge_command()
@@ -1162,6 +1191,36 @@ def test_judge_command_can_use_codex_adapter(monkeypatch: pytest.MonkeyPatch) ->
     assert command is not None
     assert command[0] == sys.executable
     assert command[-1].endswith("scripts/run_codex_comment_judge.py")
+
+
+def test_judge_command_can_use_local_adapter(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv(AGENT_CMD_ENV, raising=False)
+    monkeypatch.delenv(USE_CODEX_ENV, raising=False)
+    monkeypatch.setenv(USE_LOCAL_ENV, "1")
+    monkeypatch.setenv("COMMENT_JUDGE_LOCAL_PROVIDER", "vllm")
+    monkeypatch.setenv("COMMENT_JUDGE_LOCAL_MODEL", "gemma4:31b")
+
+    command = _judge_command()
+
+    assert command is not None
+    assert command[0] == sys.executable
+    assert command[-1].endswith("scripts/run_local_comment_judge.py")
+    assert _judge_model_label() == "vllm:gemma4:31b"
+
+
+def test_judge_command_can_select_local_provider_from_flag(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv(AGENT_CMD_ENV, raising=False)
+    monkeypatch.delenv(USE_CODEX_ENV, raising=False)
+    monkeypatch.delenv("COMMENT_JUDGE_LOCAL_PROVIDER", raising=False)
+    monkeypatch.setenv(USE_LOCAL_ENV, "vllm")
+
+    command = _judge_command()
+
+    assert command is not None
+    assert command[-2:] == ["--provider", "vllm"]
+    assert _judge_model_label() == "vllm:gemma4:31b"
 
 
 def test_read_case_content_resolves_manifest_relative_paths(
