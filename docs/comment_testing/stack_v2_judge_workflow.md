@@ -3,19 +3,22 @@
 This workflow samples real Stack v2 files and checks comment extraction plus
 sanitization with an external LLM-as-a-judge agent. It is an opt-in manual
 workflow: it is not part of `make test` or CI because it streams corpus data and
-launches one Codex judge process per case.
+launches one judge process per case.
 
 ## Prerequisites
 
 - Run from a development branch, not `main`.
 - Sync normal test tooling with `uv sync --group dev`.
-- Install or expose a working `codex` CLI for judge execution.
+- Install or expose a judge backend:
+  - Codex CLI for the default hosted judge path.
+  - Ollama serving the requested local model.
+  - vLLM serving the requested local model through its OpenAI-compatible API.
 - Use `--fetch-stack-v2-content` or `make comment-judge-manifest` when reading
   the official `bigcode/the-stack-v2` dataset. The official stream contains file
   IDs and metadata, not source text.
 - The Stack v2 content fetch uses unsigned requests against the public Software
-  Heritage S3 bucket by default. It needs `boto3` and `smart_open`; the Makefile
-  target supplies them with transient `uv run --with` dependencies.
+  Heritage S3 bucket by default. It needs `datasets`, `boto3`, and `smart_open`;
+  the Makefile target supplies them with transient `uv run --with` dependencies.
 - Pass `--s3-sign-requests` only when you intentionally need the local AWS
   credential chain.
 
@@ -27,7 +30,8 @@ requested language:
 ```bash
 make comment-judge-manifest \
   COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
-  COMMENT_JUDGE_PER_KIND=10
+  COMMENT_JUDGE_PER_KIND=10 \
+  COMMENT_JUDGE_NUM_WORKERS=4
 ```
 
 The target writes:
@@ -47,10 +51,12 @@ per-kind target, or explicitly remove/exclude that kind with a research note.
 Manifest generation prints flushed progress lines such as
 `[stack-v2 manifest] language=python collected ...`, so `nohup.out` should show
 activity before the final manifest is written. Tune the scan interval with
-`COMMENT_JUDGE_PROGRESS_EVERY=50`, or pass advanced generator flags with
+`COMMENT_JUDGE_PROGRESS_EVERY=50`. Increase
+`COMMENT_JUDGE_NUM_WORKERS` to sample multiple languages concurrently when
+candidate discovery is slow. Pass advanced generator flags with
 `COMMENT_JUDGE_MANIFEST_ARGS=...`.
 
-Run one Codex-judged case first as a smoke test:
+Run one judged case first as a smoke test:
 
 ```bash
 make comment-judge-smoke
@@ -60,6 +66,20 @@ Run the full generated judge suite:
 
 ```bash
 make comment-judge-test
+```
+
+Codex remains the default judge backend. To use a local model, set
+`COMMENT_JUDGE_BACKEND` to `ollama` or `vllm` and provide the served model name:
+
+```bash
+make comment-judge-smoke \
+  COMMENT_JUDGE_BACKEND=ollama \
+  COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b
+
+make comment-judge-test \
+  COMMENT_JUDGE_BACKEND=vllm \
+  COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b \
+  COMMENT_JUDGE_LOCAL_BASE_URL=http://localhost:8000/v1
 ```
 
 Run the judge suite and then hand any failure reports to Codex
@@ -79,7 +99,7 @@ make comment-judge-generate-tests
 
 During the run, each case prints progress lines such as
 `[stack-v2 judge 4/90] ... judge-start` and `judge-done elapsed=...`. This is
-intentional for large manifests, where each case launches a separate Codex
+intentional for large manifests, where each case launches a separate judge
 process. Set `COMMENT_JUDGE_PROGRESS=0` if you need to suppress progress output.
 Any judge, judge-command, or manifest-generation failure also writes a per-case
 Markdown report under `tmp/stack_v2_comment_judge/reports/` by default. Judge
@@ -109,12 +129,24 @@ Useful Make variables:
 - `COMMENT_JUDGE_FORCE`: set to `1` to rerun a cached pass/fail bucket for the
   current code fingerprint
 - `COMMENT_JUDGE_TIMEOUT`: outer pytest timeout per case, default `240`
+- `COMMENT_JUDGE_BACKEND`: judge backend for Make targets, default `codex`.
+  Set to `ollama` or `vllm` to use `scripts/run_local_comment_judge.py`.
 - `COMMENT_JUDGE_CODEX_TIMEOUT`: Codex subprocess timeout per case, default
   `180`
+- `COMMENT_JUDGE_LOCAL_PROVIDER`: local provider passed to the local adapter,
+  defaulting to `COMMENT_JUDGE_BACKEND`
+- `COMMENT_JUDGE_LOCAL_MODEL`: local model name, default `gemma4:31b`
+- `COMMENT_JUDGE_LOCAL_BASE_URL`: optional local server URL. Defaults are
+  `http://localhost:11434` for Ollama and `http://localhost:8000/v1` for vLLM.
+- `COMMENT_JUDGE_LOCAL_TIMEOUT`: local HTTP request timeout, default `180`
+- `COMMENT_JUDGE_LOCAL_TEMPERATURE`: local judge temperature, default `0`
 - `COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE`: special non-zero exit code used when
   Codex reports a usage, quota, or rate limit, default `88`
 - `COMMENT_JUDGE_PROGRESS_EVERY`: manifest-generation scanned-record progress
   interval, default `10`
+- `COMMENT_JUDGE_NUM_WORKERS`: number of languages to sample concurrently,
+  default `1`. Start with `4` to `8` for official Stack v2 and tune based on
+  Hugging Face/S3 throughput.
 - `COMMENT_JUDGE_MANIFEST_ARGS`: extra flags appended to
   `scripts/build_stack_v2_comment_judge_cases.py`, for example
   `--no-progress` or `--fail-on-incomplete`
@@ -140,7 +172,7 @@ a committed code fingerprint.
 
 ## Validation Ledger
 
-The judge harness consults `COMMENT_JUDGE_LEDGER` before launching Codex. The
+The judge harness consults `COMMENT_JUDGE_LEDGER` before launching the judge. The
 default ledger path is
 `docs/comment_testing/stack_v2_judge_validation_ledger.md`. Each entry records
 the language, comment kind, pass/fail status, case count, judge model, report
@@ -150,11 +182,11 @@ sanitizer, registry, Stack v2 sampler, and judge-contract files.
 Relevant comment-code files must be clean and committed before a ledger-aware
 judge run starts. This prevents recording expensive LLM validation against a
 working-tree state that cannot be recovered later. If a bucket already passed
-for the current fingerprint, pytest skips it before starting Codex. If a bucket
-has a recorded failure for the current fingerprint, pytest fails fast and prints
-the prior report path. Set `COMMENT_JUDGE_FORCE=1` only when you intentionally
-want to rerun a cached bucket. Partial runs with `COMMENT_JUDGE_CASE_LIMIT` do
-not record passed coverage.
+for the current fingerprint, pytest skips it before starting the judge. If a
+bucket has a recorded failure for the current fingerprint, pytest fails fast and
+prints the prior report path. Set `COMMENT_JUDGE_FORCE=1` only when you
+intentionally want to rerun a cached bucket. Partial runs with
+`COMMENT_JUDGE_CASE_LIMIT` do not record passed coverage.
 
 Inspect current manifest coverage without launching judges:
 
@@ -222,11 +254,12 @@ The Makefile path is preferred for official Stack v2 because it supplies the S3
 fetch dependencies. The equivalent direct command is:
 
 ```bash
-uv run --with boto3 --with 'smart_open[s3]' \
+uv run --with boto3 --with datasets --with 'smart_open[s3]' \
   python scripts/build_stack_v2_comment_judge_cases.py \
   --languages python,java,coffeescript \
   --per-kind 10 \
   --progress-every 10 \
+  --num-workers 4 \
   --fetch-stack-v2-content \
   --output-root tmp/stack_v2_comment_judge
 ```
@@ -265,6 +298,32 @@ This launches one non-interactive Codex agent per pytest case through
 `--sandbox read-only`, `--ask-for-approval never`, and a JSON schema for the
 final verdict.
 
+For a local Ollama judge:
+
+```bash
+STACK_V2_COMMENT_JUDGE_MANIFEST=tmp/stack_v2_comment_judge/manifest.jsonl \
+STACK_V2_COMMENT_JUDGE_REPORT_DIR=tmp/stack_v2_comment_judge/reports \
+COMMENT_JUDGE_USE_LOCAL=1 \
+COMMENT_JUDGE_LOCAL_PROVIDER=ollama \
+COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b \
+uv run pytest tests/test_stack_v2_comment_judge.py -q --no-cov
+```
+
+For a local vLLM judge:
+
+```bash
+STACK_V2_COMMENT_JUDGE_MANIFEST=tmp/stack_v2_comment_judge/manifest.jsonl \
+STACK_V2_COMMENT_JUDGE_REPORT_DIR=tmp/stack_v2_comment_judge/reports \
+COMMENT_JUDGE_USE_LOCAL=1 \
+COMMENT_JUDGE_LOCAL_PROVIDER=vllm \
+COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b \
+COMMENT_JUDGE_LOCAL_BASE_URL=http://localhost:8000/v1 \
+uv run pytest tests/test_stack_v2_comment_judge.py -q --no-cov
+```
+
+Both local paths call `scripts/run_local_comment_judge.py`, which reads stdin
+and calls either Ollama `/api/chat` or vLLM `/v1/chat/completions`.
+
 You can still use another judge command by setting `COMMENT_JUDGE_AGENT_CMD`;
 that command must read the prompt from stdin and print JSON to stdout.
 
@@ -286,6 +345,15 @@ Useful environment variables:
   `120` in the pytest harness
 - `COMMENT_JUDGE_CODEX_TIMEOUT`: per-case Codex process timeout in seconds,
   default `180`
+- `COMMENT_JUDGE_USE_LOCAL`: set to `1`, `ollama`, or `vllm` to use the local
+  judge adapter
+- `COMMENT_JUDGE_LOCAL_PROVIDER`: `ollama` or `vllm`
+- `COMMENT_JUDGE_LOCAL_MODEL`: local model name, default `gemma4:31b`
+- `COMMENT_JUDGE_LOCAL_BASE_URL`: optional local server URL. Defaults are
+  `http://localhost:11434` for Ollama and `http://localhost:8000/v1` for vLLM.
+- `COMMENT_JUDGE_LOCAL_TIMEOUT`: local HTTP request timeout in seconds,
+  default `180`
+- `COMMENT_JUDGE_LOCAL_TEMPERATURE`: local judge temperature, default `0`
 - `COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE`: exit code used to abort the pytest
   session when the judge output indicates an LLM usage, quota, or rate limit;
   default `88`
