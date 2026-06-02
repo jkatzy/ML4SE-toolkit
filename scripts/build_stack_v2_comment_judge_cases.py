@@ -14,6 +14,7 @@ import hashlib
 import json
 import os
 import sys
+import threading
 from collections import defaultdict
 from collections.abc import Iterable, Iterator
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -32,6 +33,9 @@ from ml4setk.Parsing.Comments import (
 
 DEFAULT_DATASET = "bigcode/the-stack-v2"
 DEFAULT_OUTPUT_ROOT = Path("tmp/stack_v2_comment_judge")
+DEFAULT_PER_KIND = 20
+DEFAULT_SCAN_MULTIPLIER = 500
+DEFAULT_MAX_CONTENT_CHARS = 1_000_000
 CONTENT_FIELDS = ("content", "text", "code")
 LANGUAGE_FIELDS = ("language", "lang", "programming_language")
 PATH_FIELDS = ("path", "max_stars_repo_path", "file_name")
@@ -51,6 +55,12 @@ REQUESTED_LANGUAGE_ALIASES = {
     "fsharp": "f#",
     "objective_c": "objective-c",
 }
+_HUGGINGFACE_DATASET_OPEN_LOCK = threading.Lock()
+_HUGGINGFACE_DATASET_ITERATION_LOCK = threading.Lock()
+
+
+class _CorpusCollectionError(Exception):
+    """Raised when corpus access fails during manifest sampling."""
 
 
 @dataclass(frozen=True)
@@ -99,6 +109,7 @@ class StackCollectionResult:
     scanned_records: int
     dataset_config: str | None
     dataset_language: str
+    collection_error: str | None = None
 
 
 @dataclass(frozen=True)
@@ -153,6 +164,15 @@ class LanguageCollectionResult:
     failures: list[StackFailure]
 
 
+@dataclass(frozen=True)
+class PrefetchedRecord:
+    """One corpus record with source text fetched before parser processing."""
+
+    record_index: int
+    record: dict[str, Any]
+    content: str
+
+
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
 
@@ -202,16 +222,28 @@ def parse_args() -> argparse.Namespace:
         help="Comma-separated registry languages to sample. Defaults to all supported languages.",
     )
     parser.add_argument(
+        "--language-count",
+        type=int,
+        default=None,
+        help=(
+            "Sample only the first N selected registry languages. Applies after "
+            "--languages when a list is provided, otherwise to all supported languages."
+        ),
+    )
+    parser.add_argument(
         "--per-kind",
         type=int,
-        default=10,
+        default=DEFAULT_PER_KIND,
         help="Number of distinct source files to collect for each supported comment kind.",
     )
     parser.add_argument(
         "--max-records-per-language",
         type=int,
-        default=50_000,
-        help="Stop scanning a language after this many candidate records.",
+        default=None,
+        help=(
+            "Stop scanning a language after this many candidate records. Defaults "
+            f"to --per-kind * {DEFAULT_SCAN_MULTIPLIER}."
+        ),
     )
     parser.add_argument(
         "--progress-every",
@@ -226,6 +258,24 @@ def parse_args() -> argparse.Namespace:
         help=(
             "Number of languages to sample concurrently. Increase this when "
             "candidate discovery is I/O-bound."
+        ),
+    )
+    parser.add_argument(
+        "--content-prefetch-workers",
+        type=int,
+        default=4,
+        help=(
+            "Number of per-language worker threads used to fetch Stack v2 source "
+            "files ahead of parsing. Set to 1 to disable content prefetching."
+        ),
+    )
+    parser.add_argument(
+        "--content-prefetch-buffer-size",
+        type=int,
+        default=None,
+        help=(
+            "Maximum number of records kept in the per-language prefetch queue. "
+            "Defaults to --content-prefetch-workers."
         ),
     )
     parser.add_argument(
@@ -259,6 +309,15 @@ def parse_args() -> argparse.Namespace:
         "--content-field",
         default=None,
         help="Override source-content field. Defaults to auto-detecting common fields.",
+    )
+    parser.add_argument(
+        "--max-content-chars",
+        type=int,
+        default=DEFAULT_MAX_CONTENT_CHARS,
+        help=(
+            "Skip source files larger than this many decoded characters. Set to "
+            "0 to disable the content-size cap."
+        ),
     )
     parser.add_argument(
         "--language-field",
@@ -310,9 +369,18 @@ def main() -> int:
     """Run the Stack v2 sampling workflow."""
 
     args = parse_args()
+    _normalize_sampling_limits(args)
     if args.num_workers < 1:
         raise SystemExit("--num-workers must be at least 1")
-    languages = _selected_languages(args.languages)
+    if args.content_prefetch_workers < 1:
+        raise SystemExit("--content-prefetch-workers must be at least 1")
+    if args.content_prefetch_buffer_size is None:
+        args.content_prefetch_buffer_size = args.content_prefetch_workers
+    if args.content_prefetch_buffer_size < 1:
+        raise SystemExit("--content-prefetch-buffer-size must be at least 1")
+    if args.max_content_chars < 0:
+        raise SystemExit("--max-content-chars must be non-negative")
+    languages = _selected_languages(args.languages, args.language_count)
     language_map = _load_language_map(args.language_map)
     manifest_path = args.output_root / args.manifest_name
     failure_path = args.output_root / args.failure_name
@@ -354,6 +422,22 @@ def main() -> int:
     if failures and args.fail_on_incomplete:
         return 1
     return 0
+
+
+def _normalize_sampling_limits(args: argparse.Namespace) -> None:
+    """Normalize sampling count defaults after CLI parsing.
+
+    Args:
+        args: Parsed manifest-builder arguments. ``max_records_per_language``
+            is filled in when omitted.
+    """
+
+    if args.per_kind < 1:
+        raise SystemExit("--per-kind must be at least 1")
+    if args.max_records_per_language is None:
+        args.max_records_per_language = args.per_kind * DEFAULT_SCAN_MULTIPLIER
+    if args.max_records_per_language < 1:
+        raise SystemExit("--max-records-per-language must be at least 1")
 
 
 def _collect_requested_languages(
@@ -460,14 +544,22 @@ def _collect_requested_language(
         ),
     )
 
-def _selected_languages(raw_languages: str | None) -> list[str]:
+def _selected_languages(
+    raw_languages: str | None, language_count: int | None = None
+) -> list[str]:
+    if language_count is not None and language_count < 1:
+        raise SystemExit("--language-count must be at least 1")
     if raw_languages is None:
-        return get_supported_comment_languages()
-    return [
-        _normalize_requested_language(language)
-        for language in raw_languages.split(",")
-        if language.strip()
-    ]
+        languages = get_supported_comment_languages()
+    else:
+        languages = [
+            _normalize_requested_language(language)
+            for language in raw_languages.split(",")
+            if language.strip()
+        ]
+    if language_count is not None:
+        return languages[:language_count]
+    return languages
 
 
 def _normalize_requested_language(language: str) -> str:
@@ -554,30 +646,35 @@ def _collect_language_cases(
     )
     dataset_config = _dataset_config_for(args, language, language_map, available_configs)
     records = _iter_records(args, language, language_map)
+    prefetched_records = _iter_prefetched_records(
+        records=records,
+        args=args,
+        language=language,
+        dataset_language=dataset_language,
+    )
     scanned_records = 0
+    collection_error = None
     try:
-        for record_index, record in enumerate(records, start=1):
-            scanned_records = record_index
-            if record_index > args.max_records_per_language:
+        for prefetched in prefetched_records:
+            scanned_records = prefetched.record_index
+            if prefetched.record_index > args.max_records_per_language:
                 scanned_records = args.max_records_per_language
                 break
-            if _should_emit_record_progress(args, record_index):
+            if _should_emit_record_progress(args, prefetched.record_index):
                 progress_counts = _format_collected_progress(
                     collected, target_kinds, args.per_kind
                 )
                 _emit_manifest_progress(
                     args,
-                    f"[stack-v2 manifest] language={language} scanned={record_index} "
-                    f"{progress_counts}",
+                    f"[stack-v2 manifest] language={language} "
+                    f"scanned={prefetched.record_index} {progress_counts}",
                 )
-            if not _record_matches_language(record, args, language, dataset_language):
-                continue
-
-            content = _record_content(record, args)
+            record = prefetched.record
+            content = prefetched.content
             if not content:
                 continue
 
-            source_identity = _source_identity(record, record_index)
+            source_identity = _source_identity(record, prefetched.record_index)
             matches = query.parse(content)
             if not matches:
                 continue
@@ -596,7 +693,7 @@ def _collect_language_cases(
                     kind=kind,
                     syntax_label=syntax_label,
                     record=record,
-                    record_index=record_index,
+                    record_index=prefetched.record_index,
                     match_index=match_index,
                     content=content,
                     match_start=match_start,
@@ -619,7 +716,17 @@ def _collect_language_cases(
 
             if all(len(cases) >= args.per_kind for cases in collected.values()):
                 break
+    except _CorpusCollectionError as exc:
+        collection_error = str(exc)
+        _emit_manifest_progress(
+            args,
+            f"[stack-v2 manifest] language={language} collection-error "
+            f"scanned={scanned_records} error={collection_error}",
+        )
     finally:
+        close_prefetch = getattr(prefetched_records, "close", None)
+        if close_prefetch is not None:
+            close_prefetch()
         close = getattr(records, "close", None)
         if close is not None:
             close()
@@ -629,6 +736,7 @@ def _collect_language_cases(
         scanned_records=scanned_records,
         dataset_config=dataset_config,
         dataset_language=dataset_language,
+        collection_error=collection_error,
     )
 
 
@@ -646,6 +754,24 @@ def _build_failures(
         observed_count = counts.get(kind, 0)
         if observed_count >= args.per_kind:
             continue
+        if result.collection_error is None:
+            reason = (
+                f"Only found {observed_count}/{args.per_kind} {kind} comment "
+                f"case(s) for {language} after scanning {result.scanned_records} "
+                "record(s)."
+            )
+            recommendation = _manifest_failure_recommendation(kind)
+        else:
+            reason = (
+                f"Could not finish collecting {kind} comment case(s) for {language}: "
+                f"{result.collection_error}. Found {observed_count}/{args.per_kind} "
+                f"before aborting after scanning {result.scanned_records} record(s)."
+            )
+            recommendation = (
+                "Resolve the corpus access or streaming error and rerun the manifest "
+                "builder for this language. Treat observed counts as partial samples."
+            )
+
         failures.append(
             StackFailure(
                 language=language,
@@ -659,21 +785,39 @@ def _build_failures(
                 dataset_language=result.dataset_language,
                 syntax_examples=_syntax_examples_for_kind(syntax, kind),
                 observed_kinds=counts,
-                reason=(
-                    f"Only found {observed_count}/{args.per_kind} {kind} comment "
-                    f"case(s) for {language} after scanning {result.scanned_records} "
-                    "record(s)."
-                ),
-                recommendation=(
-                    "Treat this as a corpus-backed syntax failure until reviewed: "
-                    "verify the registry syntax against Stack v2 samples, lower "
-                    "--per-kind for this language, or exclude the kind with an "
-                    "explicit registry/research note if the syntax is not valid "
-                    "for this corpus."
-                ),
+                reason=reason,
+                recommendation=recommendation,
             )
         )
     return failures
+
+
+def _manifest_failure_recommendation(kind: str) -> str:
+    """Return review guidance for an incomplete manifest bucket.
+
+    Args:
+        kind: Missing comment kind such as ``line``, ``block``, or ``nested``.
+
+    Returns:
+        Human guidance for interpreting the missing bucket.
+    """
+
+    if kind == "nested":
+        return (
+            "Treat this as a corpus coverage review signal first: nested comment "
+            "examples can be rare in Stack v2, so an incomplete bucket does not "
+            "by itself prove a parser or registry bug. Inspect samples and "
+            "syntax evidence before deciding whether to lower --per-kind, raise "
+            "--max-records-per-language, exclude the nested bucket with a "
+            "research note, or make a code change."
+        )
+
+    return (
+        "Treat this as a corpus-backed syntax failure until reviewed: verify "
+        "the registry syntax against Stack v2 samples, lower --per-kind for "
+        "this language, or exclude the kind with an explicit registry/research "
+        "note if the syntax is not valid for this corpus."
+    )
 
 
 def _syntax_examples_for_kind(syntax: CommentSyntax, kind: str) -> list[str]:
@@ -704,10 +848,12 @@ def _iter_records(
     available_configs = _safe_dataset_config_names(args.dataset)
     dataset_config = _dataset_config_for(args, language, language_map, available_configs)
     try:
-        if dataset_config:
-            dataset = load_dataset(args.dataset, dataset_config, split=args.split, streaming=True)
-        else:
-            dataset = load_dataset(args.dataset, split=args.split, streaming=True)
+        dataset = _load_streaming_dataset(
+            load_dataset=load_dataset,
+            dataset=args.dataset,
+            dataset_config=dataset_config,
+            split=args.split,
+        )
     except ValueError as exc:
         raise SystemExit(
             _format_dataset_config_error(
@@ -718,15 +864,62 @@ def _iter_records(
                 original_error=exc,
             )
         ) from exc
+    except Exception as exc:
+        raise _CorpusCollectionError(
+            _format_corpus_access_error(
+                dataset=args.dataset,
+                language=language,
+                dataset_config=dataset_config,
+                split=args.split,
+                original_error=exc,
+            )
+        ) from exc
 
-    iterator = iter(dataset)
+    iterator = None
     try:
+        iterator = iter(dataset)
         for row in iterator:
             yield dict(row)
+    except Exception as exc:
+        raise _CorpusCollectionError(
+            _format_corpus_access_error(
+                dataset=args.dataset,
+                language=language,
+                dataset_config=dataset_config,
+                split=args.split,
+                original_error=exc,
+            )
+        ) from exc
     finally:
-        close = getattr(iterator, "close", None)
-        if close is not None:
-            close()
+        if iterator is not None:
+            close = getattr(iterator, "close", None)
+            if close is not None:
+                close()
+
+
+def _load_streaming_dataset(
+    *,
+    load_dataset: Any,
+    dataset: str,
+    dataset_config: str | None,
+    split: str,
+):
+    """Open a Hugging Face streaming dataset under a metadata lock.
+
+    Args:
+        load_dataset: Imported ``datasets.load_dataset`` callable.
+        dataset: Hugging Face dataset name.
+        dataset_config: Optional dataset config.
+        split: Dataset split to stream.
+
+    Returns:
+        The streaming dataset object.
+    """
+
+    with _HUGGINGFACE_DATASET_OPEN_LOCK:
+        if dataset_config:
+            return load_dataset(dataset, dataset_config, split=split, streaming=True)
+        return load_dataset(dataset, split=split, streaming=True)
 
 
 def _iter_jsonl_records(path: Path) -> Iterator[dict[str, Any]]:
@@ -785,7 +978,8 @@ def _safe_dataset_config_names(dataset: str) -> tuple[str, ...] | None:
 def _dataset_config_names(dataset: str) -> tuple[str, ...]:
     from datasets import get_dataset_config_names
 
-    return tuple(get_dataset_config_names(dataset))
+    with _HUGGINGFACE_DATASET_OPEN_LOCK:
+        return tuple(get_dataset_config_names(dataset))
 
 
 def _resolve_dataset_config(config: str, available_configs: tuple[str, ...] | None) -> str:
@@ -842,6 +1036,37 @@ def _format_dataset_config_error(
             "uses a non-obvious Stack v2 config name."
         )
     return f"{message}\nOriginal datasets error: {original_error}"
+
+
+def _format_corpus_access_error(
+    *,
+    dataset: str,
+    language: str,
+    dataset_config: str | None,
+    split: str,
+    original_error: Exception,
+) -> str:
+    """Format a corpus open/read failure for manifest failure rows.
+
+    Args:
+        dataset: Hugging Face dataset name.
+        language: Registry language being sampled.
+        dataset_config: Optional dataset config.
+        split: Dataset split being streamed.
+        original_error: Exception raised by the streaming dataset layer.
+
+    Returns:
+        A compact one-line error summary suitable for progress and JSONL output.
+    """
+
+    error_text = " ".join(str(original_error).split())
+    error_summary = type(original_error).__name__
+    if error_text:
+        error_summary = f"{error_summary}: {error_text}"
+    return (
+        f"Could not open/read dataset '{dataset}' for language '{language}' "
+        f"with config '{dataset_config}' split '{split}': {error_summary}"
+    )
 
 
 def _close_dataset_config_matches(
@@ -908,16 +1133,131 @@ def _record_matches_language(
 def _record_content(record: dict[str, Any], args: argparse.Namespace) -> str:
     content = _first_text_field(record, [args.content_field, *CONTENT_FIELDS])
     if content:
-        return content
+        return _content_within_size_limit(content, args.max_content_chars)
     if args.fetch_stack_v2_content:
         return _download_stack_v2_content(
             record,
             args.s3_content_prefix,
             sign_requests=args.s3_sign_requests,
+            max_content_chars=args.max_content_chars,
         )
     if _has_stack_v2_content_pointer(record):
         raise SystemExit(_stack_v2_content_source_message())
     return ""
+
+
+def _content_within_size_limit(content: str, max_content_chars: int) -> str:
+    """Return content only when it is within the configured size cap.
+
+    Args:
+        content: Decoded source text.
+        max_content_chars: Maximum decoded characters to keep, or ``0`` for no
+            cap.
+
+    Returns:
+        The content when allowed; otherwise an empty string so the caller skips
+        the record.
+    """
+
+    if max_content_chars and len(content) > max_content_chars:
+        return ""
+    return content
+
+
+def _iter_prefetched_records(
+    *,
+    records: Iterator[dict[str, Any]],
+    args: argparse.Namespace,
+    language: str,
+    dataset_language: str,
+) -> Iterator[PrefetchedRecord]:
+    """Yield records with language-matching source content fetched ahead.
+
+    Args:
+        records: Corpus record iterator.
+        args: Manifest builder arguments.
+        language: Registry language currently being sampled.
+        dataset_language: Stack v2 language label accepted for this registry key.
+
+    Returns:
+        Ordered prefetched records. Non-matching language rows are yielded with
+        empty content so scan counts and progress remain unchanged.
+    """
+
+    worker_count = args.content_prefetch_workers
+    buffer_size = max(args.content_prefetch_buffer_size, worker_count)
+    record_iterator = enumerate(records, start=1)
+    if worker_count <= 1:
+        while True:
+            try:
+                record_index, record = _next_record(record_iterator, args)
+            except StopIteration:
+                return
+            if record_index > args.max_records_per_language:
+                yield PrefetchedRecord(record_index, record, "")
+                return
+            content = ""
+            if _record_matches_language(record, args, language, dataset_language):
+                content = _record_content(record, args)
+            yield PrefetchedRecord(record_index, record, content)
+        return
+
+    executor = ThreadPoolExecutor(max_workers=worker_count)
+    pending: list[tuple[int, dict[str, Any], Any]] = []
+    exhausted = False
+
+    def fill_pending() -> None:
+        nonlocal exhausted
+        while not exhausted and len(pending) < buffer_size:
+            try:
+                record_index, record = _next_record(record_iterator, args)
+            except StopIteration:
+                exhausted = True
+                return
+
+            if record_index > args.max_records_per_language:
+                pending.append((record_index, record, None))
+                exhausted = True
+                return
+
+            if _record_matches_language(record, args, language, dataset_language):
+                future = executor.submit(_record_content, record, args)
+            else:
+                future = None
+            pending.append((record_index, record, future))
+
+    try:
+        fill_pending()
+        while pending:
+            record_index, record, future = pending.pop(0)
+            content = "" if future is None else future.result()
+            fill_pending()
+            yield PrefetchedRecord(record_index, record, content)
+    finally:
+        for _, _, future in pending:
+            if future is not None:
+                future.cancel()
+        executor.shutdown(wait=True, cancel_futures=True)
+
+
+def _next_record(
+    record_iterator: Iterator[tuple[int, dict[str, Any]]],
+    args: argparse.Namespace,
+) -> tuple[int, dict[str, Any]]:
+    """Return the next corpus record, serializing Hugging Face stream reads.
+
+    Args:
+        record_iterator: Enumerated corpus iterator.
+        args: Manifest builder arguments.
+
+    Returns:
+        The next ``(record_index, record)`` pair.
+    """
+
+    if args.input_jsonl is not None:
+        return next(record_iterator)
+    with _HUGGINGFACE_DATASET_ITERATION_LOCK:
+        return next(record_iterator)
 
 
 def _needs_stack_v2_content_source(args: argparse.Namespace) -> bool:
@@ -934,7 +1274,11 @@ def _stack_v2_content_source_message() -> str:
 
 
 def _download_stack_v2_content(
-    record: dict[str, Any], s3_content_prefix: str, *, sign_requests: bool
+    record: dict[str, Any],
+    s3_content_prefix: str,
+    *,
+    sign_requests: bool,
+    max_content_chars: int,
 ) -> str:
     blob_id = record.get("blob_id")
     if not blob_id:
@@ -958,9 +1302,13 @@ def _download_stack_v2_content(
             compression=".gz",
             transport_params={"client": s3_client},
         ) as infile:
-            return infile.read().decode(encoding, errors="replace")
+            read_size = -1 if max_content_chars == 0 else max_content_chars + 1
+            content = infile.read(read_size).decode(encoding, errors="replace")
+            return _content_within_size_limit(content, max_content_chars)
     except Exception as exc:
-        raise SystemExit(f"Could not fetch Stack v2 content for {blob_id}: {exc}") from exc
+        raise _CorpusCollectionError(
+            f"Could not fetch Stack v2 content for {blob_id}: {exc}"
+        ) from exc
 
 
 def _stack_v2_s3_client(*, sign_requests: bool):
