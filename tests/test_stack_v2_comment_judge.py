@@ -542,6 +542,15 @@ def test_stack_v2_comment_extraction_and_cleaning_with_llm_judge(
     matches = CommentQuery(language).parse(content)
     actual = _observed_comments_near_target(content, language, matches, case)
 
+    deterministic_verdict = _exact_match_verdict(case, actual)
+    if deterministic_verdict is not None:
+        _emit_progress(
+            capsys,
+            f"{_progress_prefix(case)} deterministic-pass observed_comments={len(actual)}",
+        )
+        _record_case_pass_in_ledger(case, deterministic_verdict)
+        return
+
     prompt = _build_judge_prompt(case, actual)
     _emit_progress(
         capsys,
@@ -705,6 +714,41 @@ def _content_only_actual_comments(
             actual_item["cleaned_comment"] = item.get("cleaned_comment")
         actual_items.append(actual_item)
     return actual_items
+
+
+def _exact_match_verdict(
+    case: dict[str, Any], actual: list[dict[str, Any]]
+) -> dict[str, Any] | None:
+    """Return a passing verdict when parser output exactly matches the sample.
+
+    Args:
+        case: Stack v2 manifest case with sampled raw and cleaned comment text.
+        actual: Parser and sanitizer output near the sampled target.
+
+    Returns:
+        A judge-shaped passing verdict when there is exactly one observed target
+        comment and both its raw and cleaned text match the manifest sample;
+        otherwise, ``None`` so the external judge can assess the case.
+    """
+
+    if len(actual) != 1:
+        return None
+
+    item = actual[0]
+    if item.get("raw_comment") != case.get("raw_comment"):
+        return None
+    if item.get("cleaned_comment") != case.get("cleaned_comment"):
+        return None
+
+    return {
+        "verdict": "pass",
+        "extraction_correct": True,
+        "cleaning_correct": True,
+        "rationale": (
+            "deterministic exact match: observed raw and cleaned comment text "
+            "match the sampled Stack v2 case"
+        ),
+    }
 
 
 def _assert_extraction_verdict(
@@ -1334,6 +1378,72 @@ def test_judge_prompt_and_failure_payload_hide_span_metadata() -> None:
             }
         ],
     }
+
+
+def test_exact_match_verdict_passes_without_external_judge() -> None:
+    case = {
+        "raw_comment": ";; custom section\n;; payload",
+        "cleaned_comment": "custom section\npayload",
+    }
+    actual = [
+        {
+            "index": 0,
+            "raw_comment": ";; custom section\n;; payload",
+            "cleaned_comment": "custom section\npayload",
+        }
+    ]
+
+    verdict = _exact_match_verdict(case, actual)
+
+    assert verdict == {
+        "verdict": "pass",
+        "extraction_correct": True,
+        "cleaning_correct": True,
+        "rationale": (
+            "deterministic exact match: observed raw and cleaned comment text "
+            "match the sampled Stack v2 case"
+        ),
+    }
+
+
+def test_exact_match_verdict_requires_unambiguous_single_comment() -> None:
+    case = {
+        "raw_comment": "# target",
+        "cleaned_comment": "target",
+    }
+
+    assert _exact_match_verdict(case, []) is None
+    assert (
+        _exact_match_verdict(
+            case,
+            [
+                {
+                    "index": 0,
+                    "raw_comment": "# target",
+                    "cleaned_comment": "target",
+                },
+                {
+                    "index": 1,
+                    "raw_comment": "# nearby",
+                    "cleaned_comment": "nearby",
+                },
+            ],
+        )
+        is None
+    )
+    assert (
+        _exact_match_verdict(
+            case,
+            [
+                {
+                    "index": 0,
+                    "raw_comment": "# target",
+                    "cleaned_comment": "wrong",
+                }
+            ],
+        )
+        is None
+    )
 
 
 def test_usage_limit_output_aborts_judge_session(

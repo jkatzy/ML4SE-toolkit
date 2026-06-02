@@ -408,7 +408,11 @@ class CommentQuery(Query):
                 continue
 
             separator = text[group_end:start]
-            if CommentQuery._is_consecutive_line_separator(separator):
+            if (
+                CommentQuery._is_consecutive_line_separator(separator)
+                and CommentQuery._line_comment_group_key(text[group_start:group_end])
+                == CommentQuery._line_comment_group_key(match.match)
+            ):
                 group_end = end
                 continue
 
@@ -467,6 +471,54 @@ class CommentQuery(Query):
 
         separator = separator.replace("\r", "")
         return separator.count("\n") == 1 and separator.replace("\n", "").strip() == ""
+
+    @staticmethod
+    def _line_comment_group_key(comment):
+        """Return the delimiter family used for adjacent line grouping.
+
+        Args:
+            comment: Raw matched comment text.
+
+        Returns:
+            A normalized delimiter key for line comments, or ``None`` for
+            block-like comments that should not merge into line-comment groups.
+        """
+
+        stripped = comment.lstrip()
+        block_prefixes = ("/*", "/+", "(*", "{-", "{", "<!--")
+        if not stripped or stripped.startswith(block_prefixes):
+            return None
+
+        line_prefixes = (
+            "///",
+            "//",
+            "--",
+            "*>",
+            "NB.",
+            "BTW",
+            "dnl",
+            "REM",
+            "\\",
+            ";;",
+            ";",
+            "%%%",
+            "%%",
+            "%",
+            "!",
+            "#",
+            "*",
+            "'",
+            '"',
+        )
+        for prefix in line_prefixes:
+            if stripped.startswith(prefix):
+                if prefix in {"///", "//"}:
+                    return "//"
+                if prefix in {"%%%", "%%", "%"}:
+                    return "%"
+                return prefix
+
+        return None
 
 
 class OpeningCommentQuery(Query):
