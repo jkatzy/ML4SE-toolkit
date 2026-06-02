@@ -1060,7 +1060,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="autohotkey",
         regex_patterns=(
             r"\/\*[\S\s]*?\*\/",
-            r";.*",
+            r";[^\r\n]*\r?",
         ),
         shared_regex_examples=(
             CommentExample(

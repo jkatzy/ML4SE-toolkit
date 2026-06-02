@@ -1403,3 +1403,151 @@ def test_stack_v2_raku_mixed_declarator_lines_strip_each_prefix():
         sanitize_comment("raku", raw_comment)
         == "leading declarator\ntrailing declarator"
     )
+
+
+AUTOHOTKEY_STACK_V2_CR_ONLY_SOURCE = (
+    '; Stay Current Window Always on Top\r'
+    'CapsLock & `:: Do({func: "TopCurrentWindow"}, '
+    '{func: "ShowOrHideFiles", csa: "001"})\r'
+    "\r"
+    "; Rotate Display Screen 1/2/3\r"
+    'CapsLock & Up:: Do({func: "RotateDisplay", param: {deg: 0}}\r'
+)
+AUTOHOTKEY_STACK_V2_FIRST_LINE_COMMENT = "; Stay Current Window Always on Top\r"
+AUTOHOTKEY_STACK_V2_SECOND_LINE_COMMENT = "; Rotate Display Screen 1/2/3\r"
+
+PROLOG_STACK_V2_SEPARATOR = (
+    "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+    "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+)
+PROLOG_STACK_V2_SOURCE = (
+    "/*\n"
+    "Find out whether a list is a palindrome.\n"
+    "A palindrome can be read forward or backward; e.g. [x,a,m,a,x].\n"
+    "*/\n"
+    f"{PROLOG_STACK_V2_SEPARATOR}\n"
+    "\n"
+    "check_palindrome([H|T]):-\n"
+    "    reverse1([H|T],Reverse,[]),\n"
+    "    [H|T]=Reverse.\n"
+    "\n"
+    f"{PROLOG_STACK_V2_SEPARATOR}\n"
+    "/* Execute the Program:-\n"
+    "?-check_palindrome([l,o,l]).\n"
+    "*/\n"
+)
+
+STACK_V2_REPORTED_EXTRACTION_CASES = (
+    pytest.param(
+        "d",
+        "*/\n"
+        "int runApplication(string[]* args_out = null) { return 0; }\n"
+        "/// A simple echo server, listening on a privileged TCP port.\n"
+        "unittest {\n"
+        "    // first, perform any application specific setup\n"
+        "}\n",
+        "/// A simple echo server, listening on a privileged TCP port.",
+        id="d-line-695baf7d4001e436",
+    ),
+    pytest.param(
+        "erlang",
+        "%%%-------------------------------------------------------------------\n"
+        "%% @doc nfdemo public API\n"
+        "%% @end\n"
+        "%%%-------------------------------------------------------------------\n"
+        "\n"
+        "-module(nfdemo_app).\n",
+        "%%%-------------------------------------------------------------------\n"
+        "%% @doc nfdemo public API\n"
+        "%% @end\n"
+        "%%%-------------------------------------------------------------------",
+        id="erlang-line-d377a7a07c46ba63",
+    ),
+    pytest.param(
+        "fortran",
+        "!------------------------------------------------------------------------------\n"
+        "!                  GEOS-Chem Global Chemical Transport Model                  !\n"
+        "!------------------------------------------------------------------------------\n"
+        "!BOP\n"
+        "!\n"
+        "! !MODULE: vistas_anthro_mod\n"
+        "!\n"
+        "! !DESCRIPTION: Module VISTAS\\_ANTHRO\\_MOD contains variables and routines \n"
+        "!  to read the VISTAS anthropogenic emissions.\n"
+        "!\\\\\n"
+        "!\\\\\n"
+        "! !INTERFACE: \n"
+        "!\n"
+        "      MODULE VISTAS_ANTHRO_MOD\n",
+        "!------------------------------------------------------------------------------\n"
+        "!                  GEOS-Chem Global Chemical Transport Model                  !\n"
+        "!------------------------------------------------------------------------------\n"
+        "!BOP\n"
+        "!\n"
+        "! !MODULE: vistas_anthro_mod\n"
+        "!\n"
+        "! !DESCRIPTION: Module VISTAS\\_ANTHRO\\_MOD contains variables and routines \n"
+        "!  to read the VISTAS anthropogenic emissions.\n"
+        "!\\\\\n"
+        "!\\\\\n"
+        "! !INTERFACE: \n"
+        "!",
+        id="fortran-line-5d4096b01df90d1e",
+    ),
+    pytest.param(
+        "lua",
+        "function M:_get_packed_object(path, name)\r\n"
+        "\treturn cobj, tw, th\r\n"
+        "end\r\n"
+        "\r\n"
+        "----------------------------image-------------------------------\r\n"
+        "function M:load_image(path, name, pic_callback)\r\n"
+        "\treturn spr, tw, th\r\n"
+        "end\r\n",
+        "----------------------------image-------------------------------\r",
+        id="lua-line-a2ff8eca29a389c8",
+    ),
+    pytest.param(
+        "mathematica",
+        'exeLinkLibraries[_] := "-lm -lpthread -lrt -ldl"\r\n'
+        "\r\n"
+        "(*****************************************************************************)\r\n"
+        "(* Automatic installation detection *)\r\n"
+        "\r\n"
+        '$PathDirs = StringSplit[Environment["PATH"], $PlatformPathSeparator]\r\n',
+        "(*****************************************************************************)",
+        id="mathematica-nested-3248c6016956a958",
+    ),
+)
+
+
+def test_stack_v2_autohotkey_cr_only_line_comments_stop_at_carriage_return():
+    matches = CommentQuery("autohotkey").parse(AUTOHOTKEY_STACK_V2_CR_ONLY_SOURCE)
+
+    assert [match.match for match in matches] == [
+        AUTOHOTKEY_STACK_V2_FIRST_LINE_COMMENT,
+        AUTOHOTKEY_STACK_V2_SECOND_LINE_COMMENT,
+    ]
+    assert "CapsLock & `::" not in matches[0].match
+    assert "CapsLock & Up::" not in matches[1].match
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "expected_raw_comment"),
+    STACK_V2_REPORTED_EXTRACTION_CASES,
+)
+def test_stack_v2_reported_extraction_includes_expected_raw_comment(
+    language, source, expected_raw_comment
+):
+    raw_comments = [match.match for match in CommentQuery(language).parse(source)]
+
+    assert expected_raw_comment in raw_comments
+
+
+def test_stack_v2_prolog_percent_line_does_not_group_with_following_block():
+    matches = CommentQuery("prolog").parse(PROLOG_STACK_V2_SOURCE)
+    raw_comments = [match.match for match in matches]
+
+    assert PROLOG_STACK_V2_SEPARATOR in raw_comments
+    assert f"{PROLOG_STACK_V2_SEPARATOR}\n/* Execute" not in raw_comments
