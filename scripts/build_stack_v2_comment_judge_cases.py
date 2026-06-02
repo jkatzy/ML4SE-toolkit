@@ -1198,7 +1198,12 @@ def _iter_prefetched_records(
                 return
             content = ""
             if _record_matches_language(record, args, language, dataset_language):
-                content = _record_content(record, args)
+                content = _record_content_or_empty(
+                    record,
+                    args,
+                    language,
+                    record_index,
+                )
             yield PrefetchedRecord(record_index, record, content)
         return
 
@@ -1221,7 +1226,13 @@ def _iter_prefetched_records(
                 return
 
             if _record_matches_language(record, args, language, dataset_language):
-                future = executor.submit(_record_content, record, args)
+                future = executor.submit(
+                    _record_content_or_empty,
+                    record,
+                    args,
+                    language,
+                    record_index,
+                )
             else:
                 future = None
             pending.append((record_index, record, future))
@@ -1238,6 +1249,36 @@ def _iter_prefetched_records(
             if future is not None:
                 future.cancel()
         executor.shutdown(wait=True, cancel_futures=True)
+
+
+def _record_content_or_empty(
+    record: dict[str, Any],
+    args: argparse.Namespace,
+    language: str,
+    record_index: int,
+) -> str:
+    """Return record content, skipping records with transient fetch failures.
+
+    Args:
+        record: Corpus record to fetch or inspect.
+        args: Manifest builder arguments.
+        language: Registry language currently being sampled.
+        record_index: One-based corpus record index for progress output.
+
+    Returns:
+        Source content, or an empty string when this single record could not be
+        fetched.
+    """
+
+    try:
+        return _record_content(record, args)
+    except _CorpusCollectionError as exc:
+        _emit_manifest_progress(
+            args,
+            f"[stack-v2 manifest] language={language} skipped-content "
+            f"record={record_index} error={exc}",
+        )
+        return ""
 
 
 def _next_record(

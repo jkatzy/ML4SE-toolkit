@@ -469,7 +469,9 @@ def test_prefetched_records_buffer_can_exceed_worker_count(
         def __init__(self, max_workers: int) -> None:
             self.max_workers = max_workers
 
-        def submit(self, function: Any, record: dict[str, Any], args: Any) -> FakeFuture:
+        def submit(
+            self, function: Any, record: dict[str, Any], args: Any, *extra_args: Any
+        ) -> FakeFuture:
             submitted_ids.append(record["id"])
             return FakeFuture(record)
 
@@ -855,7 +857,7 @@ def test_parallel_language_collection_reports_streaming_errors_as_failures(
     )
 
 
-def test_prefetch_content_errors_become_language_failures(
+def test_prefetch_content_errors_skip_record_and_continue(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     args = _args(
@@ -877,12 +879,21 @@ def test_prefetch_content_errors_become_language_failures(
             "blob_id": "abc",
             "src_encoding": "utf-8",
         }
+        yield {
+            "id": "java-2",
+            "language": "Java",
+            "content": "// java line\nclass Demo { /* java block */ }\n",
+        }
 
     def fake_record_content(record: dict[str, Any], args: Any) -> str:
+        if record["id"] == "java-2":
+            return record["content"]
         raise GENERATOR._CorpusCollectionError("content endpoint unavailable")
 
     monkeypatch.setattr(GENERATOR, "_iter_records", fake_iter_records)
     monkeypatch.setattr(GENERATOR, "_record_content", fake_record_content)
+    source_root = tmp_path / "files"
+    source_root.mkdir()
 
     result = GENERATOR._collect_requested_language(
         args=args,
@@ -890,11 +901,8 @@ def test_prefetch_content_errors_become_language_failures(
         language_count=1,
         language="java",
         language_map={},
-        source_root=tmp_path / "files",
+        source_root=source_root,
     )
 
-    assert result.cases == []
-    assert {failure.comment_kind for failure in result.failures} == {"line", "block"}
-    assert all(
-        "content endpoint unavailable" in failure.reason for failure in result.failures
-    )
+    assert [case.comment_kind for case in result.cases] == ["line", "block"]
+    assert result.failures == []
