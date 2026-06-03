@@ -24,13 +24,14 @@ launches one judge process per case.
 
 ## Canonical Make Flow
 
-Generate a manifest with ten distinct files per supported comment kind for each
+Generate a manifest with 20 distinct files per supported comment kind for each
 requested language:
 
 ```bash
 make comment-judge-manifest \
-  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
-  COMMENT_JUDGE_PER_KIND=10 \
+  COMMENT_JUDGE_LANGUAGES= \
+  COMMENT_JUDGE_LANGUAGE_COUNT=20 \
+  COMMENT_JUDGE_PER_KIND=20 \
   COMMENT_JUDGE_NUM_WORKERS=4
 ```
 
@@ -44,9 +45,12 @@ tmp/stack_v2_comment_judge/files/
 
 `failures.jsonl` is present only when at least one language/comment-kind bucket
 could not be sampled. Treat those rows as failure cases, not as skipped judge
-cases. For example, if `coffeescript/block` has `0/10` after 1000 scanned
+cases. For example, if `coffeescript/block` has `0/20` after 10000 scanned
 records, review whether the registry syntax is valid for Stack v2, lower the
 per-kind target, or explicitly remove/exclude that kind with a research note.
+For `nested` buckets, start with a corpus-rarity review: nested comments can be
+valid but uncommon in real Stack v2 files, so a missing nested bucket does not
+by itself require a parser or registry change.
 
 Manifest generation prints flushed progress lines such as
 `[stack-v2 manifest] language=python collected ...`, so `nohup.out` should show
@@ -97,6 +101,29 @@ fixes. To process existing reports without rerunning the judge suite, use:
 make comment-judge-generate-tests
 ```
 
+For a comprehensive all-language Ollama pass from an empty validation ledger,
+commit the current judge-harness and comment-code changes first, then run:
+
+```bash
+make comment-judge-clear-ledger
+make comment-judge-full-run
+```
+
+`comment-judge-full-run` selects every registry language by setting both
+`COMMENT_JUDGE_LANGUAGES` and `COMMENT_JUDGE_LANGUAGE_COUNT` to empty values,
+uses the Ollama backend, keeps per-language outputs under
+`tmp/stack_v2_comment_judge/languages/`, aggregates the manifest and failures
+at `tmp/stack_v2_comment_judge/`, and runs test-generation agents for any
+parser, sanitizer, or judge-command reports. Override the usual Make variables
+when needed, for example:
+
+```bash
+make comment-judge-full-run \
+  COMMENT_JUDGE_OUTPUT_ROOT=tmp/stack_v2_comment_judge_full \
+  COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b \
+  COMMENT_JUDGE_PER_KIND=20
+```
+
 During the run, each case prints progress lines such as
 `[stack-v2 judge 4/90] ... judge-start` and `judge-done elapsed=...`. This is
 intentional for large manifests, where each case launches a separate judge
@@ -106,15 +133,25 @@ Markdown report under `tmp/stack_v2_comment_judge/reports/` by default. Judge
 and judge-command reports include a test-generation-agent task block for adding
 deterministic pytest coverage. Manifest-generation reports are missing
 language/comment-kind buckets; they include feature-request guidance for syntax
-research or registry policy instead of parser-test generation instructions.
+research, corpus-rarity review, or registry policy instead of parser-test
+generation instructions.
 
 Useful Make variables:
 
 - `COMMENT_JUDGE_LANGUAGES`: comma-separated registry languages, default
   `python,java,coffeescript`. Use registry keys such as `c++`, `c#`, and
   `f#`; common underscore aliases such as `c_plus_plus`, `c_sharp`, and
-  `f_sharp` are accepted and normalized before sampling.
-- `COMMENT_JUDGE_PER_KIND`: target files per comment kind, default `10`
+  `f_sharp` are accepted and normalized before sampling. Set this to an empty
+  value when using `COMMENT_JUDGE_LANGUAGE_COUNT` against the full supported
+  language list.
+- `COMMENT_JUDGE_LANGUAGE_COUNT`: optional number of selected languages to
+  sample, applied after `COMMENT_JUDGE_LANGUAGES` when a list is provided or to
+  the full supported registry list when `COMMENT_JUDGE_LANGUAGES` is empty.
+  Use values such as `20`, `30`, or `40` for numeric batches.
+- `COMMENT_JUDGE_PER_KIND`: target files per comment kind, default `20`.
+  Manifest generation scans up to `COMMENT_JUDGE_PER_KIND * 500` records per
+  language unless `--max-records-per-language` is explicitly supplied through
+  `COMMENT_JUDGE_MANIFEST_ARGS`.
 - `COMMENT_JUDGE_OUTPUT_ROOT`: generated manifest/source root, default
   `tmp/stack_v2_comment_judge`
 - `COMMENT_JUDGE_MANIFEST`: manifest consumed by pytest, default
@@ -147,6 +184,19 @@ Useful Make variables:
 - `COMMENT_JUDGE_NUM_WORKERS`: number of languages to sample concurrently,
   default `1`. Start with `4` to `8` for official Stack v2 and tune based on
   Hugging Face/S3 throughput.
+- `COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS`: number of per-language worker
+  threads that fetch Stack v2 source files ahead of parser processing, default
+  `4`. Increase this when a single language is slow because S3 reads are the
+  bottleneck; set it to `1` to disable per-language prefetching.
+- `COMMENT_JUDGE_CONTENT_PREFETCH_BUFFER_SIZE`: maximum number of records kept
+  in the per-language prefetch queue, defaulting to
+  `COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS`. Raise this above the worker count
+  when dataset iteration and S3 reads are both slow; it increases lookahead
+  without increasing simultaneous downloads.
+- `COMMENT_JUDGE_MAX_CONTENT_CHARS`: maximum decoded source characters per
+  sampled file, default `1000000`. Oversized files are skipped before parser
+  matching to avoid memory spikes from very large Stack v2 blobs; set to `0` to
+  disable the cap.
 - `COMMENT_JUDGE_MANIFEST_ARGS`: extra flags appended to
   `scripts/build_stack_v2_comment_judge_cases.py`, for example
   `--no-progress` or `--fail-on-incomplete`
@@ -239,7 +289,10 @@ LLM judge should not become the permanent assertion for a known regression.
    syntax research and registry policy. These failures mean the corpus sampler
    could not find a language/comment-kind bucket; they do not prove that
    extraction or sanitation is wrong. Add deterministic tests only after the
-   valid syntax contract is confirmed.
+   valid syntax contract is confirmed. For missing `nested` buckets, first
+   evaluate whether the syntax is simply rare in the sampled corpus; valid but
+   rare nested syntax may be handled by raising the scan cap, lowering the
+   target count, or documenting/excluding the bucket rather than changing code.
 7. After the deterministic test exists, fix the parser, registry, or sanitizer,
    rerun the focused pytest target, and rerun the judge case or manifest bucket
    only when the deterministic failure is resolved.
@@ -257,7 +310,7 @@ fetch dependencies. The equivalent direct command is:
 uv run --with boto3 --with datasets --with 'smart_open[s3]' \
   python scripts/build_stack_v2_comment_judge_cases.py \
   --languages python,java,coffeescript \
-  --per-kind 10 \
+  --per-kind 20 \
   --progress-every 10 \
   --num-workers 4 \
   --fetch-stack-v2-content \
@@ -276,7 +329,7 @@ uv run python scripts/build_stack_v2_comment_judge_cases.py \
   --language-field language \
   --content-field content \
   --languages python,java \
-  --per-kind 10 \
+  --per-kind 20 \
   --output-root tmp/stack_v2_comment_judge
 ```
 
