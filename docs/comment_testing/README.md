@@ -37,7 +37,7 @@ Canonical local flow:
 ```bash
 make comment-judge-manifest \
   COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
-  COMMENT_JUDGE_PER_KIND=10
+  COMMENT_JUDGE_PER_KIND=20
 make comment-judge-smoke
 make comment-judge-test
 make comment-judge-testgen-pipeline
@@ -63,7 +63,10 @@ failures, not generation failures: if a kind such as `coffeescript/block` cannot
 be found in the scanned corpus, `make comment-judge-test` reports it explicitly.
 Treat that as a feature request for syntax research or registry policy, not as
 an extraction/sanitation regression. Review the syntax or document/exclude that
-kind rather than silently skipping it.
+kind rather than silently skipping it. Missing `nested` buckets need extra
+nuance: nested comments can be valid but rare in real Stack v2 files, so first
+review whether the corpus simply did not contain enough examples before making
+a parser or registry change.
 When judge tests fail, they write Markdown reports under
 `tmp/stack_v2_comment_judge/reports/` by default. If Codex reports a usage,
 quota, or rate limit, the run aborts immediately with

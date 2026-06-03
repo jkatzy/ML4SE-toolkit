@@ -1,6 +1,7 @@
 UV ?= uv
 COMMENT_JUDGE_LANGUAGES ?= python,java,coffeescript
-COMMENT_JUDGE_PER_KIND ?= 10
+COMMENT_JUDGE_LANGUAGE_COUNT ?=
+COMMENT_JUDGE_PER_KIND ?= 20
 COMMENT_JUDGE_OUTPUT_ROOT ?= tmp/stack_v2_comment_judge
 COMMENT_JUDGE_MANIFEST ?= $(COMMENT_JUDGE_OUTPUT_ROOT)/manifest.jsonl
 COMMENT_JUDGE_FAILURES ?= $(COMMENT_JUDGE_OUTPUT_ROOT)/failures.jsonl
@@ -12,6 +13,9 @@ COMMENT_JUDGE_TIMEOUT ?= 240
 COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE ?= 88
 COMMENT_JUDGE_PROGRESS_EVERY ?= 10
 COMMENT_JUDGE_NUM_WORKERS ?= 1
+COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS ?= 4
+COMMENT_JUDGE_CONTENT_PREFETCH_BUFFER_SIZE ?= $(COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS)
+COMMENT_JUDGE_MAX_CONTENT_CHARS ?= 1000000
 COMMENT_JUDGE_CASE_LIMIT ?=
 COMMENT_JUDGE_MANIFEST_ARGS ?=
 COMMENT_JUDGE_BACKEND ?= codex
@@ -33,7 +37,8 @@ endif
 
 .PHONY: setup setup-optional test test-optional lint smoke build research-prompts comment-test-prompts
 .PHONY: comment-judge-manifest comment-judge-smoke comment-judge-test
-.PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline check-main-branch check-release-version
+.PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline
+.PHONY: comment-judge-clear-ledger comment-judge-full-run check-main-branch check-release-version
 
 setup:
 	$(UV) sync --group dev
@@ -65,10 +70,14 @@ comment-test-prompts:
 comment-judge-manifest:
 	$(UV) run --with boto3 --with datasets --with 'smart_open[s3]' \
 		python scripts/build_stack_v2_comment_judge_cases.py \
-		--languages $(COMMENT_JUDGE_LANGUAGES) \
+		$(if $(COMMENT_JUDGE_LANGUAGES),--languages $(COMMENT_JUDGE_LANGUAGES),) \
+		$(if $(COMMENT_JUDGE_LANGUAGE_COUNT),--language-count $(COMMENT_JUDGE_LANGUAGE_COUNT),) \
 		--per-kind $(COMMENT_JUDGE_PER_KIND) \
 		--progress-every $(COMMENT_JUDGE_PROGRESS_EVERY) \
 		--num-workers $(COMMENT_JUDGE_NUM_WORKERS) \
+		--content-prefetch-workers $(COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS) \
+		--content-prefetch-buffer-size $(COMMENT_JUDGE_CONTENT_PREFETCH_BUFFER_SIZE) \
+		--max-content-chars $(COMMENT_JUDGE_MAX_CONTENT_CHARS) \
 		--fetch-stack-v2-content \
 		--output-root $(COMMENT_JUDGE_OUTPUT_ROOT) $(COMMENT_JUDGE_MANIFEST_ARGS)
 
@@ -115,6 +124,19 @@ comment-judge-generate-tests:
 comment-judge-testgen-pipeline:
 	-$(MAKE) comment-judge-test
 	$(MAKE) comment-judge-generate-tests
+
+comment-judge-clear-ledger:
+	$(UV) run python scripts/comment_judge_validation_ledger.py clear \
+		--ledger $(COMMENT_JUDGE_LEDGER) \
+		--yes
+
+comment-judge-full-run:
+	COMMENT_JUDGE_LANGUAGES= \
+		COMMENT_JUDGE_LANGUAGE_COUNT= \
+		COMMENT_JUDGE_BACKEND=ollama \
+		COMMENT_JUDGE_LOCAL_PROVIDER=ollama \
+		RUN_TESTGEN=1 \
+		bash scripts/run_stack_v2_comment_judge_pipeline.sh
 
 check-main-branch:
 	python scripts/check_main_branch_policy.py

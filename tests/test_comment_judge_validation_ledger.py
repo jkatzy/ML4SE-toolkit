@@ -87,6 +87,27 @@ def test_upsert_replaces_same_language_kind_and_fingerprint(tmp_path: Path) -> N
     assert "[failure.md](tmp/reports/failure.md)" in path.read_text(encoding="utf-8")
 
 
+def test_clear_entries_resets_ledger_payload(tmp_path: Path) -> None:
+    path = tmp_path / "ledger.md"
+    version = ledger.CodeVersion("abc", "f" * 64, ("src/example.py",))
+    entry = ledger.build_entry(
+        language="python",
+        comment_kind="line",
+        status=ledger.PASSED,
+        cases=1,
+        version=version,
+        judge_model="codex-default",
+    )
+    ledger.write_entries(path, [entry])
+
+    ledger.clear_entries(path)
+
+    assert ledger.load_entries(path) == []
+    text = path.read_text(encoding="utf-8")
+    assert "## Passed Coverage" in text
+    assert "| _none_ |" in text
+
+
 def test_find_entry_matches_current_code_fingerprint() -> None:
     current = ledger.JudgeLedgerEntry(
         language="python",

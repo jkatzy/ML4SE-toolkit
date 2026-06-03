@@ -293,6 +293,16 @@ def write_entries(path: Path, entries: list[JudgeLedgerEntry]) -> None:
     path.write_text(render_ledger(entries), encoding="utf-8")
 
 
+def clear_entries(path: Path) -> None:
+    """Reset the ledger to an empty entry set.
+
+    Args:
+        path: Markdown ledger path to overwrite with an empty ledger.
+    """
+
+    write_entries(path, [])
+
+
 def render_ledger(entries: list[JudgeLedgerEntry]) -> str:
     """Render the human and machine-readable ledger Markdown."""
 
@@ -414,7 +424,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Inspect the comment judge validation ledger.")
     parser.add_argument(
         "command",
-        choices=("fingerprint", "status"),
+        choices=("clear", "fingerprint", "status"),
         help="Ledger operation to run.",
     )
     parser.add_argument(
@@ -435,6 +445,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional manifest to summarize against the current ledger.",
     )
+    parser.add_argument(
+        "--yes",
+        action="store_true",
+        help="Confirm destructive ledger reset for the clear command.",
+    )
     return parser.parse_args()
 
 
@@ -443,6 +458,13 @@ def main() -> int:
 
     args = parse_args()
     try:
+        if args.command == "clear":
+            if not args.yes:
+                print("Refusing to clear ledger without --yes")
+                return 2
+            clear_entries(args.ledger)
+            print(f"cleared ledger: {args.ledger}")
+            return 0
         if args.command == "fingerprint":
             version = current_code_version(args.repo_root)
             print(version.git_commit)
