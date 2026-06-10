@@ -9,8 +9,8 @@ This backlog covers Stack v2 public languages that are still not represented in 
 - Generated on: `2026-06-10`
 - Total uncovered languages tracked: `260`
 - Ready to implement now: `0`
-- Needs research or confirmation: `248`
-- Resolved non-actionable: `12`
+- Needs research or confirmation: `247`
+- Resolved non-actionable: `13`
 - Missing research records: `0`
 
 Status definitions:
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Altium Designer | altium_designer | unresolved | Altium Designer documentation and community pages checked; source-language syntax was not confirmed | unresolved; the available sources discuss document comments, annotations, and tasks rather than code-comment delimiters | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | API Blueprint | api_blueprint | medium |  |  | unsupported | <!-- --> | line comments unsupported; block comments terminate at first closing delimiter | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Apollo Guidance Computer | apollo_guidance_computer | candidate |  |  | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Arc | arc | candidate |  |  | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
@@ -281,6 +280,7 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Altium Designer | altium_designer | cross-checked | current Altium Designer documentation for Output Job and scripting files, plus the current GitHub Linguist language mapping | no source-comment syntax applies to the Stack label; Linguist maps `.OutJob`, `.PcbDoc`, `.PrjPCB`, and `.SchDoc` data files, while Altium documents DelphiScript separately as `.pas` | unsupported | unsupported | unsupported | unsupported | leave unsupported | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Brainfuck | brainfuck | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | Document that non-command characters are ignored rather than treated as comments. | docs/comment_research/chunk_1_b_c_report.md |
 | CSV | csv | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | Document as commentless unless a specific dialect is introduced. | docs/comment_research/chunk_1_b_c_report.md |
 | Diff | diff | high |  |  | unsupported | unsupported | unsupported | unsupported | leave unsupported. | docs/comment_research/chunk_2_d_f_report.md |

@@ -328,23 +328,23 @@ pkgver=1.0
 
 ## Altium Designer
 - Registry key: `altium_designer`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Version scope: Altium Designer documentation and community pages checked; source-language syntax was not confirmed
-- Version-specific syntax: unresolved; the available sources discuss document comments, annotations, and tasks rather than code-comment delimiters
-- Docs source: `https://www.altium.com/documentation/altium-designer/document-commenting`
-- Implementation source: unresolved
-- Community source: `https://my.altium.com/altium-designer/getting-started/commenting-your-design`
-- Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: The available Altium documentation is about design-review annotations and tasks, not source-language comment delimiters; I did not find a defensible source-language comment grammar.
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unsupported
+- Nested comments: unsupported
+- Confidence: cross-checked
+- Evidence mode: implementation_cross_checked
+- Version scope: current Altium Designer documentation for Output Job and scripting files, plus the current GitHub Linguist language mapping
+- Version-specific syntax: no source-comment syntax applies to the Stack label; Linguist maps `.OutJob`, `.PcbDoc`, `.PrjPCB`, and `.SchDoc` data files, while Altium documents DelphiScript separately as `.pas`
+- Docs source: https://www.altium.com/documentation/altium-designer/preparing-for-manufacture/output-jobs; https://www.altium.com/documentation/altium-designer/scripting/writing-scripts
+- Implementation source: `https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml`
+- Community source: not used
+- Corpus fallback source: not used
+- Recommended action: leave unsupported
+- Notes: `.OutJob` is documented as ASCII, but no comment delimiter is defined. DelphiScript comments must not be assigned to this data-format key because Altium treats scripts as separate `.pas`, VBScript, or JScript files.
 
 ### Examples
-- unsupported or unresolved
+- unsupported
 
 ## AMPL
 - Registry key: `ampl`
