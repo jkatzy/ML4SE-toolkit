@@ -578,6 +578,33 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="browserslist_style",
+        canonical_name="browserslist",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "defaults # note\nlast 2 versions",
+                "# note",
+                "Browserslist trailing hash comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/browserslist/browserslist#browserslistrc"
+        ),
+        implementation_source=(
+            "https://github.com/browserslist/browserslist/blob/main/node.js"
+        ),
+        confidence="verified",
+        notes=(
+            "Browserslist strips # through newline before splitting config "
+            "queries, so both full-line and trailing comments are supported. "
+            "Versions 4.28.2 and 4.27.0 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `27`
-- Needs research or confirmation: `25`
+- Assigned languages: `26`
+- Needs research or confirmation: `24`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Browserslist | browserslist | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Confirm config-file comment handling and add hash-comment tests. |
 | high | Cabal Config | cabal_config | needs_research_or_confirmation | medium | unresolved | unresolved | -- | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against Cabal syntax docs and add line-comment tests. |
 | high | Cadence | cadence | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Cadence docs and add C-like comment tests. |
 | high | CartoCSS | cartocss | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against CartoCSS docs before seeding. |

@@ -500,25 +500,24 @@ value = 1
 
 ## Browserslist
 - Registry key: `browserslist`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `4.28.2 and 4.27.0`
+- Version-specific syntax: `No comment-syntax difference found between 4.28.2 and 4.27.0.`
 - Line comments: `#`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `runs to newline and may follow a query`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Browserslist config docs](https://github.com/browserslist/browserslist#browserslistrc)
+- Implementation source: [Browserslist config parser](https://github.com/browserslist/browserslist/blob/main/node.js)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Confirm config-file comment handling and add hash-comment tests.`
-- Notes: `Config-file syntax, not a general-purpose programming language.`
+- Recommended action: `Implemented in the registry with an inline hash-comment fixture.`
+- Notes: `The parser removes # through newline before splitting config queries; official examples include both full-line and trailing comments.`
 
 - Example - line:
-```text
-# comment
-defaults
+```browserslist
+defaults # note
 last 2 versions
 ```
 
