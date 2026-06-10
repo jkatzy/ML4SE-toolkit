@@ -374,6 +374,44 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="bluespec_style",
+        canonical_name="bluespec",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "rule update;\n  // note\n  value <= 1;\nendrule",
+                "// note",
+                "Bluespec one-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "rule update;\n  /* note */\n  value <= 1;\nendrule",
+                "/* note */",
+                "Bluespec non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/B-Lang-org/bsc/blob/main/"
+            "doc/BSV_ref_guide/BSV_lang.tex"
+        ),
+        implementation_source=(
+            "https://github.com/B-Lang-org/bsc/blob/main/"
+            "src/comp/SystemVerilogPreprocess.lhs"
+        ),
+        confidence="verified",
+        notes=(
+            "The BSV reference explicitly states that comments do not nest. "
+            "Current main and the 2021.07 compiler preprocessor agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

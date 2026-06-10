@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `251`
+- Total uncovered languages tracked: `250`
 - Ready to implement now: `0`
-- Needs research or confirmation: `238`
+- Needs research or confirmation: `237`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Bluespec | bluespec | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Bluespec language reference and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Boo | boo | low | unresolved | unresolved | # | unresolved | unresolved | unresolved | Research Boo comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Boogie | boogie | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Boogie reference and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | BrighterScript | brighterscript | medium | unresolved | unresolved | '` and `REM | unsupported | unsupported | unsupported | Verify against BrighterScript docs and add BASIC-style comment tests. | docs/comment_research/chunk_1_b_c_report.md |

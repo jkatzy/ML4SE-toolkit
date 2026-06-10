@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `32`
-- Needs research or confirmation: `30`
+- Assigned languages: `31`
+- Needs research or confirmation: `29`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Bluespec | bluespec | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the Bluespec language reference and add C-like comment tests. |
 | high | Boo | boo | needs_research_or_confirmation | low | unresolved | unresolved | # | unresolved | unresolved | unresolved | unresolved | unresolved | Research Boo comment syntax before seeding. |
 | high | Boogie | boogie | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the Boogie reference and add C-like comment tests. |
 | high | BrighterScript | brighterscript | needs_research_or_confirmation | medium | unresolved | unresolved | '` and `REM | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against BrighterScript docs and add BASIC-style comment tests. |
