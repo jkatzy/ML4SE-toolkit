@@ -202,25 +202,25 @@ output x string = name
 
 ## Bikeshed
 - Registry key: `bikeshed`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `unresolved`
-- Block comments: `<!-- ... -->` is the best candidate, but this needs verification.
+- Version scope: `current parser and v0.9 regression fixture`
+- Version-specific syntax: `HTML comments are present in current documentation/parser behavior and the v0.9 test corpus.`
+- Line comments: `unsupported at the document level`
+- Block comments: `<!-- ... -->`
 - Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported` if HTML comments are the only supported form.
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Nested comments: `unsupported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Bikeshed big-text docs](https://speced.github.io/bikeshed/#big-text)
+- Implementation source: [Bikeshed HTML parser](https://github.com/speced/bikeshed/blob/main/bikeshed/h/parser/parser.py)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Research Bikeshed's parser/docs before adding a registry entry.`
-- Notes: `Bikeshed mixes markup and metadata; comment handling may be inherited from HTML.`
+- Recommended action: `Implemented in the registry with an HTML-comment fixture.`
+- Notes: `Hash comments are supported inside Bikeshed's embedded InfoTree format, not as a universal document-level comment marker, so they are excluded.`
 
 - Example - block:
-```text
+```html
 <p>before</p>
-<!-- comment -->
+<!-- note -->
 <p>after</p>
 ```
 
