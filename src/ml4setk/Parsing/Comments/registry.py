@@ -133,6 +133,29 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="apollo_guidance_computer_style",
+        canonical_name="apollo_guidance_computer",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "SPCOS AD HALF # note\nTS TEMK",
+                "# note",
+                "yaYUL AGC inline comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.ibiblio.org/apollo/assembly_language_manual.html"
+        ),
+        implementation_source=(
+            "https://github.com/virtualagc/virtualagc/blob/master/yaYUL/Pass.c"
+        ),
+        confidence="verified",
+        notes="The yaYUL assembler treats everything following # as a comment.",
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
