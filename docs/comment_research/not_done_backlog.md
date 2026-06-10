@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `260`
+- Total uncovered languages tracked: `259`
 - Ready to implement now: `0`
-- Needs research or confirmation: `247`
+- Needs research or confirmation: `246`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| API Blueprint | api_blueprint | medium |  |  | unsupported | <!-- --> | line comments unsupported; block comments terminate at first closing delimiter | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Apollo Guidance Computer | apollo_guidance_computer | candidate |  |  | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Arc | arc | candidate |  |  | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | ASP.NET | aspnet | candidate |  |  | `//` in embedded C# / `'` in embedded VB | `@* *@` in Razor; `/* */` in embedded C#; `<!-- -->` in markup | line comments terminate at end-of-line; Razor comments terminate at the first closing `*@`; HTML comments terminate at the first closing `-->` | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
