@@ -90,7 +90,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "vue",
             "scala",
             "dart",
-            "rust",
             "hack",
             "less",
             "groovy",
@@ -178,6 +177,39 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         notes="Slash-based line and non-nested block comments.",
+    ),
+    CommentSyntax(
+        family_name="rust_style",
+        canonical_name="rust",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "Rust line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n//! note\nsuffix",
+                "//! note",
+                "Rust inner documentation line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n/* note */\nsuffix",
+                "/* note */",
+                "Rust block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="hash_line_style",
@@ -1038,6 +1070,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+            CommentExample(
+                "prefix\n; note\nsuffix",
+                "; note",
+                "INI-style semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
         ),
     ),
     CommentSyntax(
@@ -1293,6 +1333,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "Slash block comment.",
                 kind="block",
                 inline_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n# note\nsuffix",
+                "# note",
+                "Hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
             ),
         ),
     ),
@@ -1607,7 +1655,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="apl_style",
         canonical_name="apl",
-        regex_patterns=(r"⍝.*",),
+        regex_patterns=(r"⍝[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "value <- 1 ⍝ note\nvalue <- value + 1",
@@ -1659,7 +1707,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="asciidoc_style",
         canonical_name="asciidoc",
         regex_patterns=(
-            r"\/\/\/\/[\S\s]*?\/\/\/\/",
+            r"(?m)^(/{4,})[ \t]*(?:\r\n|\r|\n)[\S\s]*?^\1[ \t]*$",
             r"(?m)\/\/.*$",
         ),
         shared_regex_examples=(
@@ -1795,10 +1843,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="gams_style",
         canonical_name="gams",
         regex_patterns=(
-            r"(?m)^\*.*$",
-            r"!!.*",
+            r"(?m)^\*[^\r\n]*",
+            r"!![^\r\n]*",
             r"\/\*[\S\s]*?\*\/",
-            r"(?ims)^\$onText\b[\S\s]*?^\$offText\b.*$",
+            (
+                r"(?i)(?<![^\r\n])\$onText\b[^\r\n]*(?:\r\n|\r|\n)"
+                r"[\S\s]*?(?<![^\r\n])\$offText\b[^\r\n]*"
+            ),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -1815,10 +1866,16 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
                 inline_compatible=True,
             ),
+            CommentExample(
+                "prefix\n$ontext\nblock note\n$offtext\nsuffix",
+                "$ontext\nblock note\n$offtext",
+                "GAMS text block comment.",
+                kind="block",
+            ),
         ),
         canonical_regex_examples=(
             CommentExample(
-                'value = 1 !! note\nDISPLAY value;',
+                "value = 1 !! note\nDISPLAY value;",
                 "!! note",
                 "End-of-line GAMS comment when $onEolCom is enabled.",
                 kind="line",
@@ -1868,6 +1925,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "prefix\n-# note\nsuffix",
                 "-# note",
                 "Haml silent comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n/ note\nsuffix",
+                "/ note",
+                "Haml slash comment.",
                 kind="line",
                 grouped_line_compatible=True,
             ),
@@ -2490,8 +2554,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://learn.microsoft.com/en-us/azure/azure-resource-manager/"
-            "bicep/file"
+            "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file"
         ),
         confidence="verified",
         notes="Microsoft Bicep file syntax supports // and /* ... */ comments.",
@@ -2502,7 +2565,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(r"(?m)^[ \t]*#.*$",),
         shared_regex_examples=(
             CommentExample(
-                "SUMMARY = \"Example\"\n# note\nLICENSE = \"MIT\"",
+                'SUMMARY = "Example"\n# note\nLICENSE = "MIT"',
                 "# note",
                 "BitBake recipe comment line.",
                 kind="line",
@@ -2576,8 +2639,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://learn.microsoft.com/en-us/kusto/query/comment?view="
-            "microsoft-fabric"
+            "https://learn.microsoft.com/en-us/kusto/query/comment?view=microsoft-fabric"
         ),
         confidence="verified",
         notes="Kusto Query Language comments use // and run to end of line.",
@@ -2706,7 +2768,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         confidence="verified",
         notes="Move supports //, /* ... */, ///, and /** ... */ comment forms.",
     ),
-
 )
 
 
