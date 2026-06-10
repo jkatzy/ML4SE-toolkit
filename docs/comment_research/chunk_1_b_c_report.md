@@ -297,32 +297,32 @@ End Function
 
 ## BlitzMax
 - Registry key: `blitzmax`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `Rem` and `'`
-- Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Version scope: `current bcc and archived BlitzMax v1.51`
+- Version-specific syntax: `No relevant syntax difference found; both accept apostrophe lines and line-oriented Rem blocks.`
+- Line comments: `'`
+- Block comments: `Rem ... EndRem` or `Rem ... End Rem`
+- Termination behavior: `apostrophe comments end at newline; Rem blocks end at the first line beginning with EndRem or End Rem`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `official_docs`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
 - Docs source: [BlitzMax comments](https://blitzmax.org/docs/en/language/comments/)
-- Implementation source: `unresolved`
+- Implementation source: [bcc tokenizer](https://github.com/bmx-ng/bcc/blob/master/toker.bmx)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify dialect details and add tests for both line-comment forms.`
-- Notes: `BASIC-like comment forms.`
+- Recommended action: `Implemented in the registry with apostrophe and Rem-block fixtures.`
+- Notes: `Rem is a block opener, not a second line-comment marker. The registry requires it at the beginning of a source line after optional horizontal whitespace.`
 
 - Example - line:
-```text
-Print "hello"
-' comment
-Print "world"
+```blitzmax
+Print "Comment Test"    ' note
+Print "done"
 ```
-- Example - line:
-```text
-Print "hello"
-Rem comment
-Print "world"
+- Example - block:
+```blitzmax
+Rem
+note
+End Rem
+Print "done"
 ```
 
 ## Bluespec
