@@ -472,26 +472,30 @@ value = 1
 
 ## Brightscript
 - Registry key: `brightscript`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current Roku developer documentation`
+- Version-specific syntax: `No alternative comment syntax is documented for current BrightScript.`
 - Line comments: `'` and `REM`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `both forms run to the end of the line`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Roku expressions and comments](https://developer.roku.com/dev/docs/expressions-variables-types)
+- Implementation source: [Compatible BrighterScript lexer](https://github.com/rokucommunity/brighterscript/blob/master/src/lexer/Lexer.ts)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Roku docs and add BASIC-style comment tests.`
-- Notes: `BrightScript family syntax.`
+- Recommended action: `Implemented in the registry with apostrophe and REM fixtures.`
+- Notes: `Roku explicitly documents both line-comment forms and says to use conditional compilation rather than a block-comment delimiter for larger regions.`
 
 - Example - line:
-```text
-x = 1
-' comment
-y = 2
+```brightscript
+value = 1 ' note
+value = value + 1
+```
+- Example - line:
+```brightscript
+REM note
+value = 1
 ```
 
 ## Browserslist
