@@ -108,6 +108,31 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="api_blueprint_style",
+        canonical_name="api_blueprint",
+        regex_patterns=(r"<!--[\S\s]*?-->",),
+        shared_regex_examples=(
+            CommentExample(
+                "FORMAT: 1A\n<!-- note -->\n# My API",
+                "<!-- note -->",
+                "API Blueprint GFM HTML comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://apiblueprint.org/documentation/specification.html"
+        ),
+        implementation_source=(
+            "https://github.com/apiaryio/api-blueprint/issues/263"
+        ),
+        confidence="cross-checked",
+        notes=(
+            "API Blueprint inherits GitHub Flavored Markdown HTML comments. "
+            "Embedded body formats do not add source-level comment syntax."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

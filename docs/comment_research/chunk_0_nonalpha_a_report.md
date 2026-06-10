@@ -480,18 +480,20 @@ ServerName example.test
 
 ## API Blueprint
 - Registry key: `api_blueprint`
+- Version scope: current API Blueprint specification and Drafter/API Blueprint parser behavior documented since 2015
+- Version-specific syntax: no version split confirmed; API Blueprint inherits GitHub Flavored Markdown, where HTML comments use `<!-- ... -->`
 - Line comments: unsupported
 - Block comments: `<!-- -->`
 - Termination behavior: line comments unsupported; block comments terminate at first closing delimiter
-- Nested comments: no
-- Confidence: medium
+- Nested comments: unsupported
+- Confidence: cross-checked
 - Evidence mode: implementation_cross_checked
-- Docs source: `https://apiblueprint.org/documentation/specification.html`
-- Implementation source: `https://github.com/apiaryio/drafter`
-- Community source: `https://stackoverflow.com/questions/50613231/adding-plain-text-headers-in-api-blueprint`
-- Corpus fallback source: unresolved
-- Recommended action: candidate
-- Notes: API Blueprint is Markdown/GFM-based; HTML comments are the defensible comment-like form here, but the spec does not define a dedicated comment grammar.
+- Docs source: https://apiblueprint.org/documentation/specification.html; https://github.github.com/gfm/#html-blocks
+- Implementation source: https://github.com/apiaryio/api-blueprint/issues/263
+- Community source: not used
+- Corpus fallback source: not used
+- Recommended action: implement HTML comments only
+- Notes: API Blueprint is Markdown/GFM-based. Project parser behavior confirms HTML comments are ignored when rendering; `//` inside embedded JSON or other payload bodies is not a Blueprint comment.
 
 ### Examples
 

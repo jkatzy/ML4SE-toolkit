@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `5`
-- Needs research or confirmation: `4`
+- Assigned languages: `4`
+- Needs research or confirmation: `3`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `1`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | API Blueprint | api_blueprint | needs_research_or_confirmation | medium | unresolved | unresolved | unsupported | <!-- --> | line comments unsupported; block comments terminate at first closing delimiter | no | https://apiblueprint.org/documentation/specification.html | https://github.com/apiaryio/drafter | candidate |
 | high | Apollo Guidance Computer | apollo_guidance_computer | needs_research_or_confirmation | candidate | unresolved | unresolved | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | https://www.ibiblio.org/apollo/assembly_language_manual.html | https://www.ibiblio.org/apollo/yaYUL.html | candidate |
 | high | Arc | arc | needs_research_or_confirmation | candidate | unresolved | unresolved | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | https://www.paulgraham.com/arc.html | GitHub Linguist languages.yml | candidate |
 | high | ASP.NET | aspnet | needs_research_or_confirmation | candidate | unresolved | unresolved | `//` in embedded C# / `'` in embedded VB | `@* *@` in Razor; `/* */` in embedded C#; `<!-- -->` in markup | line comments terminate at end-of-line; Razor comments terminate at the first closing `*@`; HTML comments terminate at the first closing `-->` | no | https://learn.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c | GitHub Linguist languages.yml | candidate |
