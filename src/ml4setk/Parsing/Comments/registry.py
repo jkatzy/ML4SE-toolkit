@@ -75,6 +75,39 @@ class CommentSyntax:
 
 COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
+        family_name="two_dimensional_array_style",
+        canonical_name="two_dimensional_array",
+        regex_patterns=(r"(?m)^[#/][^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# table note\nROW VALUE",
+                "# table note",
+                "GemRB 2DA hash comment at column zero.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "// table note\nROW VALUE",
+                "// table note",
+                "Current GemRB 2DA slash comment at column zero.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://gibberlings3.github.io/iesdp/file_formats/ie_formats/2da.htm"
+        ),
+        implementation_source=(
+            "https://github.com/gemrb/gemrb/blob/master/gemrb/plugins/"
+            "2DAImporter/2DAImporter.cpp"
+        ),
+        confidence="cross-checked",
+        notes=(
+            "GemRB v0.8.8 accepts column-zero # comments; current GemRB also "
+            "accepts lines beginning with /. The registry implements that union."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

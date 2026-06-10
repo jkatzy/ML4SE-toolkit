@@ -30,23 +30,39 @@ EndProcedure
 
 ## 2-Dimensional Array
 - Registry key: `two_dimensional_array`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unknown
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Version scope: not confirmed; no versioned programming-language source or dialect split found
-- Version-specific syntax: unresolved; I did not find a defensible version-specific comment grammar for this label
-- Docs source: unresolved
-- Implementation source: unresolved
-- Community source: unresolved
-- Corpus fallback source: unresolved
-- Recommended action: needs manual research
-- Notes: I could not find a defensible programming-language source or comment grammar for this label after checking docs, implementation, and community search results.
+- Line comments: column-zero `#` and `/` lines
+- Block comments: unsupported
+- Termination behavior: runs to newline
+- Nested comments: unsupported
+- Confidence: cross-checked
+- Evidence mode: implementation_cross_checked
+- Version scope: GemRB v0.8.8 and current master; IESDP 2DA V1 format description
+- Version-specific syntax: GemRB v0.8.8 accepts column-zero `#` comments; current GemRB accepts column-zero `#` and `/` comments, so the registry should implement the union
+- Docs source: https://gibberlings3.github.io/iesdp/file_formats/ie_formats/2da.htm
+- Implementation source: https://github.com/gemrb/gemrb/blob/master/gemrb/plugins/2DAImporter/2DAImporter.cpp
+- Community source: not used
+- Corpus fallback source: https://github.com/gemrb/gemrb/tree/master/gemrb/unhardcoded
+- Recommended action: implement column-zero `#` and `/` line comments
+- Notes: The base 2DA format description does not define comments. These forms are an implementation-supported GemRB extension, and leading whitespace is intentionally not accepted.
 
 ### Examples
-- unsupported or unresolved
+
+#### Line comment
+```text
+2DA V1.0
+****
+# table note
+        VALUE
+ROW     1
+```
+
+```text
+2DA V1.0
+****
+// table note
+        VALUE
+ROW     1
+```
 
 ## 4D
 - Registry key: `four_d`
