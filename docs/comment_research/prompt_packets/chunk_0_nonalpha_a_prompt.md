@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `3`
-- Needs research or confirmation: `2`
+- Assigned languages: `2`
+- Needs research or confirmation: `1`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `1`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Arc | arc | needs_research_or_confirmation | candidate | unresolved | unresolved | ; | unsupported | line comments terminate at end-of-line; block comments unsupported | no | https://www.paulgraham.com/arc.html | GitHub Linguist languages.yml | candidate |
 | high | ASP.NET | aspnet | needs_research_or_confirmation | candidate | unresolved | unresolved | `//` in embedded C# / `'` in embedded VB | `@* *@` in Razor; `/* */` in embedded C#; `<!-- -->` in markup | line comments terminate at end-of-line; Razor comments terminate at the first closing `*@`; HTML comments terminate at the first closing `-->` | no | https://learn.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c | GitHub Linguist languages.yml | candidate |
 | low | Altium Designer | altium_designer | resolved_non_actionable | cross-checked | current Altium Designer documentation for Output Job and scripting files, plus the current GitHub Linguist language mapping | no source-comment syntax applies to the Stack label; Linguist maps `.OutJob`, `.PcbDoc`, `.PrjPCB`, and `.SchDoc` data files, while Altium documents DelphiScript separately as `.pas` | unsupported | unsupported | unsupported | unsupported | https://www.altium.com/documentation/altium-designer/preparing-for-manufacture/output-jobs; https://www.altium.com/documentation/altium-designer/scripting/writing-scripts | https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml | leave unsupported |
 

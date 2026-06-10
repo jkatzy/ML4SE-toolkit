@@ -592,18 +592,20 @@ set value to 1
 
 ## Arc
 - Registry key: `arc`
+- Version scope: Arc 3.1 tutorial material and current Anarki reader tests/corpus
+- Version-specific syntax: current and reviewed legacy material agree on semicolon line comments; no block-comment form was confirmed
 - Line comments: `;`
 - Block comments: unsupported
 - Termination behavior: line comments terminate at end-of-line; block comments unsupported
-- Nested comments: no
-- Confidence: candidate
+- Nested comments: unsupported
+- Confidence: cross-checked
 - Evidence mode: implementation_cross_checked
-- Docs source: `https://www.paulgraham.com/arc.html`
-- Implementation source: `GitHub Linguist languages.yml`
-- Community source: `https://stackoverflow.com/questions/7838727/when-why-did-lisps-start-using-semicolons-for-comments`
-- Corpus fallback source: unresolved
-- Recommended action: candidate
-- Notes: Arc is a Lisp dialect, and the semicolon line-comment form matches the family convention.
+- Docs source: https://arclanguage.github.io/tut-stable.html
+- Implementation source: https://github.com/arclanguage/anarki/blob/master/lib/tests/parser-test.arc
+- Community source: not used
+- Corpus fallback source: https://github.com/arclanguage/anarki
+- Recommended action: implement semicolon line comments
+- Notes: Anarki's parser regression suite explicitly requires comments beginning with `;` to be ignored, and current Arc source files use the same form.
 
 ### Examples
 
