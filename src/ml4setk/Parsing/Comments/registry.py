@@ -156,6 +156,28 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes="The yaYUL assembler treats everything following # as a comment.",
     ),
     CommentSyntax(
+        family_name="arc_style",
+        canonical_name="arc",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "(do ; note\n  (prn \"hello\"))",
+                "; note",
+                "Arc semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://arclanguage.github.io/tut-stable.html",
+        implementation_source=(
+            "https://github.com/arclanguage/anarki/blob/master/"
+            "lib/tests/parser-test.arc"
+        ),
+        confidence="cross-checked",
+        notes="Arc inherits semicolon line comments from its Lisp reader.",
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
