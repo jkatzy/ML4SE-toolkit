@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `244`
+- Total uncovered languages tracked: `243`
 - Ready to implement now: `0`
-- Needs research or confirmation: `231`
+- Needs research or confirmation: `230`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Cadence | cadence | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Cadence docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | CartoCSS | cartocss | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against CartoCSS docs before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Ceylon | ceylon | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Ceylon docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Chapel | chapel | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Chapel docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
