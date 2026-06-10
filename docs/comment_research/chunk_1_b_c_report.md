@@ -274,26 +274,25 @@ LICENSE = "MIT"
 
 ## BlitzBasic
 - Registry key: `blitzbasic`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `archived master and v1.108b`
+- Version-specific syntax: `No comment-syntax difference found between archived master and v1.108b.`
 - Line comments: `;`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `end of line`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Blitz3D comments reference](https://github.com/blitz-research/blitz3d/blob/master/_release/help/language/lang_ref_comments.html)
+- Implementation source: [Blitz3D tokenizer](https://github.com/blitz-research/blitz3d/blob/master/compiler/toker.cpp)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against the BlitzBasic reference and add semicolon-comment tests.`
-- Notes: `Candidate semicolon comment syntax.`
+- Recommended action: `Implemented in the registry with an inline semicolon fixture.`
+- Notes: `The official reference explicitly permits comments on their own line or following code.`
 
 - Example - line:
-```text
-Print "hello"
-; comment
-Print "world"
+```blitzbasic
+Function Redraw() ; note
+End Function
 ```
 
 ## BlitzMax

@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `253`
+- Total uncovered languages tracked: `252`
 - Ready to implement now: `0`
-- Needs research or confirmation: `240`
+- Needs research or confirmation: `239`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BlitzBasic | blitzbasic | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | Verify against the BlitzBasic reference and add semicolon-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzMax | blitzmax | medium | unresolved | unresolved | Rem` and `' | unsupported | unsupported | unsupported | Verify dialect details and add tests for both line-comment forms. | docs/comment_research/chunk_1_b_c_report.md |
 | Bluespec | bluespec | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Bluespec language reference and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Boo | boo | low | unresolved | unresolved | # | unresolved | unresolved | unresolved | Research Boo comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
