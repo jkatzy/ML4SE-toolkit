@@ -312,6 +312,34 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="blitzbasic_style",
+        canonical_name="blitzbasic",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "Function Redraw() ; note\nEnd Function",
+                "; note",
+                "BlitzBasic semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/blitz-research/blitz3d/blob/master/"
+            "_release/help/language/lang_ref_comments.html"
+        ),
+        implementation_source=(
+            "https://github.com/blitz-research/blitz3d/blob/master/"
+            "compiler/toker.cpp"
+        ),
+        confidence="verified",
+        notes=(
+            "Semicolon comments run to the end of the line and may follow "
+            "code. The archived master and v1.108b sources agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
