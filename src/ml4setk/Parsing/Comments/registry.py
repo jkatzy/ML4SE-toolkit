@@ -215,6 +215,42 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="beef_style",
+        canonical_name="beef",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "int value = 1; // note\nvalue++;",
+                "// note",
+                "Beef slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "int value = 1;\n/* outer /* note */ outer */\nvalue++;",
+                "/* outer /* note */ outer */",
+                "Beef nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.beeflang.org/docs/language-guide/",
+        implementation_source=(
+            "https://github.com/beefytech/Beef/blob/master/"
+            "IDEHelper/Compiler/BfParser.cpp"
+        ),
+        confidence="verified",
+        notes=(
+            "Native Beef mode supports recursive /* ... */ comments. Current "
+            "master and release 0.42.1 agree; C++ compatibility mode is "
+            "intentionally outside this registry key."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

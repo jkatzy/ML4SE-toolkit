@@ -91,32 +91,31 @@ echo done
 
 ## Beef
 - Registry key: `beef`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current master and release 0.42.1`
+- Version-specific syntax: `No difference found between current master and release 0.42.1.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Termination behavior: `balanced recursive delimiters in native Beef mode`
+- Nested comments: `supported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Beef language guide](https://www.beeflang.org/docs/language-guide/)
+- Implementation source: [Beef parser](https://github.com/beefytech/Beef/blob/master/IDEHelper/Compiler/BfParser.cpp)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against the Beef language reference before seeding.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Implemented in the registry with line and nested examples.`
+- Notes: `The parser disables recursive block comments only in its separate C++ compatibility mode. Native Beef mode defaults to recursive block comments.`
 
 - Example - line:
-```text
-int x = 1;
-// comment
-int y = 2;
+```beef
+int value = 1; // note
+value++;
 ```
-- Example - block:
-```text
-int x = 1;
-/* comment */
-int y = 2;
+- Example - nested:
+```beef
+int value = 1;
+/* outer /* note */ outer */
+value++;
 ```
 
 ## Berry
