@@ -327,33 +327,33 @@ Print "done"
 
 ## Bluespec
 - Registry key: `bluespec`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current bsc main and release 2021.07`
+- Version-specific syntax: `No comment-syntax difference found between current main and the 2021.07 preprocessor.`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [BSV reference source](https://github.com/B-Lang-org/bsc/blob/main/doc/BSV_ref_guide/BSV_lang.tex)
+- Implementation source: [bsc preprocessor](https://github.com/B-Lang-org/bsc/blob/main/src/comp/SystemVerilogPreprocess.lhs)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against the Bluespec language reference and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Implemented in the registry with line and block fixtures.`
+- Notes: `The reference explicitly states that comments do not nest and that /* inside a block has no special significance.`
 
 - Example - line:
-```text
-rule r;
-  // comment
-  x <= 1;
+```bluespec
+rule update;
+  // note
+  value <= 1;
 endrule
 ```
 - Example - block:
-```text
-rule r;
-  /* comment */
-  x <= 1;
+```bluespec
+rule update;
+  /* note */
+  value <= 1;
 endrule
 ```
 
