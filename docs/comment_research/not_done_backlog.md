@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `248`
+- Total uncovered languages tracked: `247`
 - Ready to implement now: `0`
-- Needs research or confirmation: `235`
+- Needs research or confirmation: `234`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| BrighterScript | brighterscript | medium | unresolved | unresolved | '` and `REM | unsupported | unsupported | unsupported | Verify against BrighterScript docs and add BASIC-style comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Brightscript | brightscript | medium | unresolved | unresolved | '` and `REM | unsupported | unsupported | unsupported | Verify against Roku docs and add BASIC-style comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Browserslist | browserslist | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Confirm config-file comment handling and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Cabal Config | cabal_config | medium | unresolved | unresolved | -- | unsupported | unsupported | unsupported | Verify against Cabal syntax docs and add line-comment tests. | docs/comment_research/chunk_1_b_c_report.md |

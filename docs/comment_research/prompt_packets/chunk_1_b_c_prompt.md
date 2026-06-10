@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `29`
-- Needs research or confirmation: `27`
+- Assigned languages: `28`
+- Needs research or confirmation: `26`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | BrighterScript | brighterscript | needs_research_or_confirmation | medium | unresolved | unresolved | '` and `REM | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against BrighterScript docs and add BASIC-style comment tests. |
 | high | Brightscript | brightscript | needs_research_or_confirmation | medium | unresolved | unresolved | '` and `REM | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against Roku docs and add BASIC-style comment tests. |
 | high | Browserslist | browserslist | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Confirm config-file comment handling and add hash-comment tests. |
 | high | Cabal Config | cabal_config | needs_research_or_confirmation | medium | unresolved | unresolved | -- | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against Cabal syntax docs and add line-comment tests. |

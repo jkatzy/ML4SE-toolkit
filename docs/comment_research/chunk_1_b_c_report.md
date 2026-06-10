@@ -444,26 +444,30 @@ This text is ignored by the interpreter.
 
 ## BrighterScript
 - Registry key: `brighterscript`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `v0.72.5 and v0.71.1`
+- Version-specific syntax: `No comment-syntax difference found between v0.72.5 and v0.71.1.`
 - Line comments: `'` and `REM`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `both forms run to the next CR or LF`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [BrighterScript specification](https://github.com/rokucommunity/brighterscript/blob/master/docs/readme.md)
+- Implementation source: [BrighterScript lexer](https://github.com/rokucommunity/brighterscript/blob/master/src/lexer/Lexer.ts)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against BrighterScript docs and add BASIC-style comment tests.`
-- Notes: `BrightScript family syntax.`
+- Recommended action: `Implemented in the registry with apostrophe and REM fixtures.`
+- Notes: `BrighterScript is a BrightScript superset. REM is case-insensitive, but the lexer preserves rem as an identifier when it follows member-access dot syntax.`
 
 - Example - line:
-```text
-x = 1
-' comment
-y = 2
+```brighterscript
+value = 1 ' note
+value++
+```
+- Example - line:
+```brighterscript
+REM note
+value = 1
 ```
 
 ## Brightscript

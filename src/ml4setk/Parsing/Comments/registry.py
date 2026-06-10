@@ -499,6 +499,46 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="brighterscript_style",
+        canonical_name="brighterscript",
+        regex_patterns=(
+            r"'[^\r\n]*",
+            r"(?i:(?<![.\w])rem\b[^\r\n]*)",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 ' note\nvalue++",
+                "' note",
+                "BrighterScript apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "REM note\nvalue = 1",
+                "REM note",
+                "BrighterScript REM line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/rokucommunity/brighterscript/blob/master/"
+            "docs/readme.md"
+        ),
+        implementation_source=(
+            "https://github.com/rokucommunity/brighterscript/blob/master/"
+            "src/lexer/Lexer.ts"
+        ),
+        confidence="verified",
+        notes=(
+            "BrighterScript inherits apostrophe and case-insensitive REM line "
+            "comments from BrightScript. The lexer preserves .rem as member "
+            "access and explicitly has no block comments. v0.72.5 and v0.71.1 "
+            "agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
