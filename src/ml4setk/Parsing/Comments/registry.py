@@ -666,6 +666,43 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="cartocss_style",
+        canonical_name="cartocss",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"/\*[\S\s]*?\*/",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "#layer {\n  line-color: #fff; // note\n}",
+                "// note",
+                "CartoCSS silent Less-style line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "#layer {\n  /* note */\n  line-color: #fff;\n}",
+                "/* note */",
+                "CartoCSS CSS block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://cartocss.readthedocs.io/en/latest/language_elements.html"
+        ),
+        implementation_source=(
+            "https://github.com/cartocss/carto/blob/master/lib/carto/parser.js"
+        ),
+        confidence="verified",
+        notes=(
+            "CartoCSS skips // comments silently and retains /* ... */ comments "
+            "as comment nodes. Block comments stop at the first closing "
+            "delimiter and do not nest. v1.3.1 and v1.2.0 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

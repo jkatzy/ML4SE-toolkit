@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `24`
-- Needs research or confirmation: `22`
+- Assigned languages: `23`
+- Needs research or confirmation: `21`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | CartoCSS | cartocss | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against CartoCSS docs before seeding. |
 | high | Ceylon | ceylon | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Ceylon docs and add C-like comment tests. |
 | high | Chapel | chapel | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Chapel docs and add C-like comment tests. |
 | high | Checksums | checksums | needs_research_or_confirmation | low | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Confirm the file format before adding a registry entry. |

@@ -665,25 +665,31 @@ struct Foo {}
 
 ## CartoCSS
 - Registry key: `cartocss`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `v1.3.1 and v1.2.0`
+- Version-specific syntax: `No comment-syntax difference found between v1.3.1 and v1.2.0.`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [CartoCSS language elements](https://cartocss.readthedocs.io/en/latest/language_elements.html)
+- Implementation source: [CartoCSS parser](https://github.com/cartocss/carto/blob/master/lib/carto/parser.js)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against CartoCSS docs before seeding.`
-- Notes: `CSS-like syntax is likely, but line comments need confirmation.`
+- Recommended action: `Implemented in the registry with line and non-nested block fixtures.`
+- Notes: `The reference parser skips Less-style // comments silently and creates comment nodes for CSS /* ... */ comments. Its block regex stops at the first close.`
 
 - Example - line:
-```text
+```cartocss
 #layer {
-  // comment
+  line-color: #fff; // note
+}
+```
+- Example - block:
+```cartocss
+#layer {
+  /* note */
   line-color: #fff;
 }
 ```
