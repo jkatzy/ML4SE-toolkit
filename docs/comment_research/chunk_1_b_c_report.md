@@ -581,34 +581,31 @@ remote-repo-cache: /tmp/cabal
 
 ## Cadence
 - Registry key: `cadence`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current master and v1.8.9`
+- Version-specific syntax: `No comment-syntax difference found between current master and v1.8.9.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Termination behavior: `line comments end at newline; block comments require balanced recursive delimiters`
+- Nested comments: `supported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Cadence syntax](https://cadence-lang.org/docs/language/syntax#comments)
+- Implementation source: [Cadence comment parser](https://github.com/onflow/cadence/blob/master/parser/comment.go)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Cadence docs and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Implemented in the registry with line and nested block fixtures.`
+- Notes: `Cadence documentation explicitly describes comments as nested and balanced; the parser increments and decrements a block-comment depth counter. Documentation comments use /// and /** ... **/, which are covered by the regular delimiters.`
 
 - Example - line:
-```text
-pub fun main() {
-  // comment
-  log("hello")
-}
+```cadence
+let value = 1 // note
+log(value)
 ```
-- Example - block:
-```text
-pub fun main() {
-  /* comment */
-  log("hello")
-}
+- Example - nested:
+```cadence
+let value = 1
+/* outer /* note */ outer */
+log(value)
 ```
 
 ## CAP CDS

@@ -631,6 +631,41 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="cadence_style",
+        canonical_name="cadence",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "let value = 1 // note\nlog(value)",
+                "// note",
+                "Cadence slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "let value = 1\n/* outer /* note */ outer */\nlog(value)",
+                "/* outer /* note */ outer */",
+                "Cadence balanced nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://cadence-lang.org/docs/language/syntax#comments",
+        implementation_source=(
+            "https://github.com/onflow/cadence/blob/master/parser/comment.go"
+        ),
+        confidence="verified",
+        notes=(
+            "Cadence line comments run to newline and block comments are "
+            "balanced with recursive nesting. Documentation-comment forms are "
+            "subsets of these delimiters. Current master and v1.8.9 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
