@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `256`
+- Total uncovered languages tracked: `255`
 - Ready to implement now: `0`
-- Needs research or confirmation: `243`
+- Needs research or confirmation: `242`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Beef | beef | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Beef language reference before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Berry | berry | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Verify against Berry docs and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Bikeshed | bikeshed | low | unresolved | unresolved | unresolved | `<!-- ... -->` is the best candidate, but this needs verification. | first closing delimiter wins | `unsupported` if HTML comments are the only supported form. | Research Bikeshed's parser/docs before adding a registry entry. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzBasic | blitzbasic | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | Verify against the BlitzBasic reference and add semicolon-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
