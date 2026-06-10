@@ -359,26 +359,36 @@ endrule
 
 ## Boo
 - Registry key: `boo`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `#`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Version scope: `current master and archived unstable tag`
+- Version-specific syntax: `No comment-syntax difference found between current master and the unstable tag.`
+- Line comments: `#` and `//`
+- Block comments: `/* ... */`
+- Termination behavior: `line comments end at newline; block comments require balanced recursive delimiters`
+- Nested comments: `supported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Boo comments guide](https://github.com/boo-lang/boo/wiki/Language-guide%3A-comments)
+- Implementation source: [Boo lexer grammar](https://github.com/boo-lang/boo/blob/master/src/Boo.Lang.Parser/boo.g)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Research Boo comment syntax before seeding.`
-- Notes: `Hash comments are likely; block comments need confirmation.`
+- Recommended action: `Implemented in the registry with both line markers and a nested block fixture.`
+- Notes: `The lexer calls the multiline-comment rule recursively, and the language guide requires proper nesting.`
 
 - Example - line:
-```text
-x = 1
-# comment
-y = 2
+```boo
+value = 1 # note
+value += 1
+```
+- Example - line:
+```boo
+value = 1 // note
+value += 1
+```
+- Example - nested:
+```boo
+value = 1
+/* outer /* note */ outer */
+value += 1
 ```
 
 ## Boogie
