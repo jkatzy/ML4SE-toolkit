@@ -412,6 +412,54 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="boo_style",
+        canonical_name="boo",
+        regex_patterns=(
+            r"#[^\r\n]*",
+            r"/{2}[^\r\n]*",
+        ),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 # note\nvalue += 1",
+                "# note",
+                "Boo hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "value = 1 // note\nvalue += 1",
+                "// note",
+                "Boo slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "value = 1\n/* outer /* note */ outer */\nvalue += 1",
+                "/* outer /* note */ outer */",
+                "Boo nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/boo-lang/boo/wiki/Language-guide%3A-comments"
+        ),
+        implementation_source=(
+            "https://github.com/boo-lang/boo/blob/master/"
+            "src/Boo.Lang.Parser/boo.g"
+        ),
+        confidence="verified",
+        notes=(
+            "Boo accepts # and // line comments and recursively parses nested "
+            "/* ... */ blocks. Current master and the unstable tag agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
