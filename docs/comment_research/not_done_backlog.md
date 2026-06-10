@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `255`
+- Total uncovered languages tracked: `254`
 - Ready to implement now: `0`
-- Needs research or confirmation: `242`
+- Needs research or confirmation: `241`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Berry | berry | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Verify against Berry docs and add hash-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Bikeshed | bikeshed | low | unresolved | unresolved | unresolved | `<!-- ... -->` is the best candidate, but this needs verification. | first closing delimiter wins | `unsupported` if HTML comments are the only supported form. | Research Bikeshed's parser/docs before adding a registry entry. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzBasic | blitzbasic | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | Verify against the BlitzBasic reference and add semicolon-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzMax | blitzmax | medium | unresolved | unresolved | Rem` and `' | unsupported | unsupported | unsupported | Verify dialect details and add tests for both line-comment forms. | docs/comment_research/chunk_1_b_c_report.md |

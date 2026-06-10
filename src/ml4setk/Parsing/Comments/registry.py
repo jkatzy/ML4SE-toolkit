@@ -251,6 +251,42 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="berry_style",
+        canonical_name="berry",
+        regex_patterns=(
+            r"#-[\S\s]*?-#",
+            r"#(?!-)[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 # note\nvalue += 1",
+                "# note",
+                "Berry hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "value = 1\n#- note -#\nvalue += 1",
+                "#- note -#",
+                "Berry non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://berry.readthedocs.io/en/latest/source/en/Chapter-1.html"
+        ),
+        implementation_source=(
+            "https://github.com/berry-lang/berry/blob/master/src/be_lexer.c"
+        ),
+        confidence="verified",
+        notes=(
+            "Berry block comments stop at the first -# delimiter and do not "
+            "nest. Current master and release v1.1.0 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
