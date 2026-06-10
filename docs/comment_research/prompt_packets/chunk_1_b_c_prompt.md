@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `35`
-- Needs research or confirmation: `33`
+- Assigned languages: `34`
+- Needs research or confirmation: `32`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Bikeshed | bikeshed | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | `<!-- ... -->` is the best candidate, but this needs verification. | first closing delimiter wins | `unsupported` if HTML comments are the only supported form. | unresolved | unresolved | Research Bikeshed's parser/docs before adding a registry entry. |
 | high | BlitzBasic | blitzbasic | needs_research_or_confirmation | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against the BlitzBasic reference and add semicolon-comment tests. |
 | high | BlitzMax | blitzmax | needs_research_or_confirmation | medium | unresolved | unresolved | Rem` and `' | unsupported | unsupported | unsupported | [BlitzMax comments](https://blitzmax.org/docs/en/language/comments/) | unresolved | Verify dialect details and add tests for both line-comment forms. |
 | high | Bluespec | bluespec | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the Bluespec language reference and add C-like comment tests. |

@@ -287,6 +287,31 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="bikeshed_style",
+        canonical_name="bikeshed",
+        regex_patterns=(r"<!--[\S\s]*?-->",),
+        shared_regex_examples=(
+            CommentExample(
+                "<p>before</p>\n<!-- note -->\n<p>after</p>",
+                "<!-- note -->",
+                "Bikeshed HTML comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://speced.github.io/bikeshed/#big-text",
+        implementation_source=(
+            "https://github.com/speced/bikeshed/blob/main/"
+            "bikeshed/h/parser/parser.py"
+        ),
+        confidence="verified",
+        notes=(
+            "HTML comments are valid throughout Bikeshed documents and stop "
+            "at the first --> delimiter. Hash comments are scoped to embedded "
+            "InfoTree data and are intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `254`
+- Total uncovered languages tracked: `253`
 - Ready to implement now: `0`
-- Needs research or confirmation: `241`
+- Needs research or confirmation: `240`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Bikeshed | bikeshed | low | unresolved | unresolved | unresolved | `<!-- ... -->` is the best candidate, but this needs verification. | first closing delimiter wins | `unsupported` if HTML comments are the only supported form. | Research Bikeshed's parser/docs before adding a registry entry. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzBasic | blitzbasic | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | Verify against the BlitzBasic reference and add semicolon-comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | BlitzMax | blitzmax | medium | unresolved | unresolved | Rem` and `' | unsupported | unsupported | unsupported | Verify dialect details and add tests for both line-comment forms. | docs/comment_research/chunk_1_b_c_report.md |
 | Bluespec | bluespec | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the Bluespec language reference and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
