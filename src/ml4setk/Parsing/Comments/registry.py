@@ -460,6 +460,45 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="boogie_style",
+        canonical_name="boogie",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "var value:int; // note\nassume value > 0;",
+                "// note",
+                "Boogie slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "var value:int;\n/* outer /* note */ outer */\n"
+                "assume value > 0;",
+                "/* outer /* note */ outer */",
+                "Boogie nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://boogie-docs.readthedocs.io/en/latest/LangRef.html#comments"
+        ),
+        implementation_source=(
+            "https://github.com/boogie-org/boogie/blob/master/"
+            "Source/Core/BoogiePL.atg"
+        ),
+        confidence="verified",
+        notes=(
+            "The language reference documents // comments; the authoritative "
+            "grammar additionally declares nested /* ... */ comments. Current "
+            "master and release v3.5.6 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

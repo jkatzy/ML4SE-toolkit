@@ -393,32 +393,31 @@ value += 1
 
 ## Boogie
 - Registry key: `boogie`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current master and release v3.5.6`
+- Version-specific syntax: `No comment-syntax difference found between current master and v3.5.6.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Termination behavior: `line comments end at newline; block comments require balanced recursive delimiters`
+- Nested comments: `supported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Boogie language reference](https://boogie-docs.readthedocs.io/en/latest/LangRef.html#comments)
+- Implementation source: [Boogie grammar](https://github.com/boogie-org/boogie/blob/master/Source/Core/BoogiePL.atg)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against the Boogie reference and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Implemented in the registry with line and nested block fixtures.`
+- Notes: `The language reference documents only // comments, while the generated scanner and authoritative grammar also recognize recursively nested /* ... */ comments.`
 
 - Example - line:
-```text
-var x:int;
-// comment
-assume x > 0;
+```boogie
+var value:int; // note
+assume value > 0;
 ```
-- Example - block:
-```text
-var x:int;
-/* comment */
-assume x > 0;
+- Example - nested:
+```boogie
+var value:int;
+/* outer /* note */ outer */
+assume value > 0;
 ```
 
 ## Brainfuck
