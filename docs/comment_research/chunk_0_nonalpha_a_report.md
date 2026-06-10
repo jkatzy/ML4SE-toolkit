@@ -701,33 +701,32 @@ END
 
 ## ASP.NET
 - Registry key: `aspnet`
-- Line comments: `//` in embedded C# / `'` in embedded VB
-- Block comments: `@* *@` in Razor; `/* */` in embedded C#; `<!-- -->` in markup
-- Termination behavior: line comments terminate at end-of-line; Razor comments terminate at the first closing `*@`; HTML comments terminate at the first closing `-->`
-- Nested comments: no
-- Confidence: candidate
-- Evidence mode: official_docs
-- Docs source: `https://learn.microsoft.com/en-us/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c`
-- Implementation source: `GitHub Linguist languages.yml`
-- Community source: unresolved
-- Corpus fallback source: unresolved
-- Recommended action: candidate
-- Notes: ASP.NET is host-syntax dependent. This classification applies to Razor `.cshtml`/`.vbhtml` pages and their embedded code/markup, not to every ASP.NET file type.
+- Version scope: ASP.NET Web Forms documentation for .NET Framework and the current Linguist `text.html.asp` grammar
+- Version-specific syntax: no split confirmed for Web Forms; `<%-- ... --%>` is the server-side comment form and `<!-- ... -->` is the markup comment form
+- Line comments: unsupported at the host-format level
+- Block comments: `<%-- ... --%>` and `<!-- ... -->`
+- Termination behavior: first matching closing delimiter wins
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://learn.microsoft.com/en-us/troubleshoot/developer/webapps/aspnet/development/inline-expressions
+- Implementation source: https://github.com/textmate/asp.tmbundle/blob/master/Syntaxes/HTML-ASP.plist
+- Community source: not used
+- Corpus fallback source: not used
+- Recommended action: implement Web Forms server-side and HTML block comments
+- Notes: GitHub Linguist maps `aspnet` to `.aspx`, `.ascx`, `.ashx`, `.asmx`, `.asax`, and `.axd`, not Razor `.cshtml`. Embedded C#, VB, and JavaScript comments remain context-dependent and are intentionally excluded.
 
 ### Examples
 
-#### Line comment
-```text
-@{ 
-    // keep the next line explicit
-    var value = 1;
-}
-```
-
 #### Block comment
 ```text
-@* keep the next Razor block out of the rendered page *@
-<p>Hello</p>
+<%-- keep this control out of the rendered page --%>
+<asp:Label runat="server" />
+```
+
+```text
+<!-- markup note -->
+<div>Hello</div>
 ```
 
 ## AspectJ
