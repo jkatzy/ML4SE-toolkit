@@ -120,26 +120,31 @@ value++;
 
 ## Berry
 - Registry key: `berry`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current master and release v1.1.0`
+- Version-specific syntax: `No comment-syntax difference found between current master and v1.1.0.`
 - Line comments: `#`
-- Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Block comments: `#- ... -#`
+- Termination behavior: `line comments end at newline; block comments stop at the first -#`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Berry 1.1.0 reference](https://berry.readthedocs.io/en/latest/source/en/Chapter-1.html)
+- Implementation source: [Berry lexer](https://github.com/berry-lang/berry/blob/master/src/be_lexer.c)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Berry docs and add hash-comment tests.`
-- Notes: `Candidate hash-comment syntax.`
+- Recommended action: `Implemented in the registry with line and block examples.`
+- Notes: `The line-comment regex excludes #- so block comments are not emitted twice.`
 
 - Example - line:
-```text
-x = 1
-# comment
-y = 2
+```berry
+value = 1 # note
+value += 1
+```
+- Example - block:
+```berry
+value = 1
+#- note -#
+value += 1
 ```
 
 ## BibTeX
