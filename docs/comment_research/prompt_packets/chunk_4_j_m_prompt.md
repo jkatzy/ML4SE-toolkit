@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `65`
-- Needs research or confirmation: `60`
+- Assigned languages: `58`
+- Needs research or confirmation: `53`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `5`
 
@@ -36,24 +36,22 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Jasmin | jasmin | needs_research_or_confirmation | candidate | unresolved | unresolved | ; | unsupported | end of line | unsupported | unresolved | jasmin assembler grammar | confirm |
-| high | JavaScript+ERB | javascript_erb | needs_research_or_confirmation | candidate | unresolved | unresolved | //, <%# ... %> | /* ... */ | end of line for JS line comments; first closing delimiter wins for block comments; ERB comments terminate at %> | unsupported | https://docs.ruby-lang.org/en/3.1/ERB.html + ECMAScript | erb / JS parser | confirm |
-| high | Jest Snapshot | jest_snapshot | needs_research_or_confirmation | candidate | unresolved | unresolved | // | unsupported | end of line | unsupported | unresolved | jest snapshot format | confirm |
-| high | JetBrains MPS | jetbrains_mps | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research |
-| high | Jison | jison | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | unresolved | jison grammar | confirm |
-| high | Jolie | jolie | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | Jolie docs | jolie parser | confirm |
+| high | Jasmin | jasmin | needs_research_or_confirmation | candidate | current assembler references checked for Jasmin; no version boundary confirmed. | unresolved; no delimiter split or dialect-specific comment form was confirmed in the sources checked. | ; | unsupported | end of line | unsupported | unresolved | jasmin assembler grammar | confirm |
+| high | JavaScript+ERB | javascript_erb | needs_research_or_confirmation | candidate | ECMAScript editions plus Ruby ERB 2.3, 3.0, and 3.4 docs checked. | JS `//` and `/* ... */` are stable across the ECMAScript docs checked; ERB `<%# ... %>` is stable across the Ruby versions checked. Registry should implement the union of all confirmed forms for the compound syntax. | //, <%# ... %> | /* ... */ | end of line for JS line comments; first closing delimiter wins for block comments; ERB comments terminate at %> | unsupported | https://docs.ruby-lang.org/en/3.1/ERB.html + ECMAScript | erb / JS parser | confirm |
+| high | Jest Snapshot | jest_snapshot | needs_research_or_confirmation | candidate | current snapshot-format docs and parser behavior checked. | unresolved; no version or dialect split for snapshot comments was confirmed in the sources checked. | // | unsupported | end of line | unsupported | unresolved | jest snapshot format | confirm |
+| high | JetBrains MPS | jetbrains_mps | needs_research_or_confirmation | unresolved | current MPS docs and grammar references were not sufficient to pin a release-specific syntax. | unresolved; no versioned delimiter split was confirmed in this pass. | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research |
+| high | Jison | jison | needs_research_or_confirmation | candidate | current Jison grammar / parser references checked. | unresolved; no versioned comment split was confirmed in the sources checked. | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | unresolved | jison grammar | confirm |
+| high | Jolie | jolie | needs_research_or_confirmation | candidate | current Jolie docs and parser references checked. | unresolved; no version-specific delimiter split was confirmed in the sources checked. | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | Jolie docs | jolie parser | confirm |
 | high | Kaitai Struct | kaitai_struct | needs_research_or_confirmation | candidate | unresolved | unresolved | # | unsupported | end of line | unsupported | Kaitai Struct docs | YAML parser / Kaitai schema parser | add |
 | high | KakouneScript | kakounescript | needs_research_or_confirmation | unresolved | unresolved | unresolved | # | unsupported | end of line | unsupported | unresolved | unresolved | research |
 | high | KiCad Legacy Layout | kicad_legacy_layout | needs_research_or_confirmation | unresolved | unresolved | unresolved | ; | unsupported | end of line | unsupported | KiCad docs | KiCad parser | research |
 | high | Kit | kit | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research |
 | high | KRL | krl | needs_research_or_confirmation | candidate | unresolved | unresolved | ; | unsupported | end of line | unsupported | KUKA KRL docs | KRL parser | confirm |
-| high | Kusto | kusto | needs_research_or_confirmation | candidate | unresolved | unresolved | // | unsupported | end of line | unsupported | https://learn.microsoft.com/en-us/kusto/query/comment?view=microsoft-fabric | Kusto parser | confirm |
 | high | kvlang | kvlang | needs_research_or_confirmation | candidate | unresolved | unresolved | # | unsupported | end of line | unsupported | Kivy language docs | kv parser | add |
 | high | LabVIEW | labview | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research |
 | high | Lark | lark | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | Lark docs | lark parser | confirm |
 | high | Lasso | lasso | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | unresolved | unresolved | confirm |
 | high | Lex | lex | needs_research_or_confirmation | candidate | unresolved | unresolved | unsupported | /* ... */ | first closing delimiter wins | unsupported | Flex / Lex docs | lex/flex grammar | confirm |
-| high | LFE | lfe | needs_research_or_confirmation | candidate | unresolved | unresolved | ; | unsupported | end of line | unsupported | LFE docs | LFE parser | add |
 | high | Linker Script | linker_script | needs_research_or_confirmation | candidate | unresolved | unresolved | unsupported | /* ... */ | first closing delimiter wins | unsupported | https://sourceware.org/binutils/docs/ld/Script-Format.html | ld script parser | confirm |
 | high | Linux Kernel Module | linux_kernel_module | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | Linux kernel coding style | C parser | confirm |
 | high | Literate Agda | literate_agda | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Agda docs | Agda parser / literate mode | research |
@@ -67,9 +65,6 @@ Target output file:
 | high | LSL | lsl | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | LSL docs | LSL parser | add |
 | high | LTspice Symbol | ltspice_symbol | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research |
 | high | M | m | needs_research_or_confirmation | candidate | unresolved | unresolved | ; | unsupported | end of line | unsupported | M/MUMPS docs | M parser | confirm |
-| high | M4 | m4 | needs_research_or_confirmation | candidate | unresolved | unresolved | # | unsupported | end of line | unsupported | https://www.gnu.org/software/m4/manual/html_node/Comments.html | m4 parser | confirm |
-| high | M4Sugar | m4sugar | needs_research_or_confirmation | candidate | unresolved | unresolved | # | unsupported | end of line | unsupported | https://www.gnu.org/software/m4/manual/html_node/Comments.html | m4sugar parser | confirm |
-| high | Macaulay2 | macaulay2 | needs_research_or_confirmation | candidate | unresolved | unresolved | -- | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | Macaulay2 docs | Macaulay2 parser | confirm |
 | high | Mask | mask | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | research |
 | high | Max | max | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | unresolved | unresolved | confirm |
 | high | MAXScript | maxscript | needs_research_or_confirmation | candidate | unresolved | unresolved | -- | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | https://help.autodesk.com/cloudhelp/2022/ENU/MAXDEV-Overview/files/overview/MAXDEV_Overview_overview_maxscript_html.html | MAXScript parser | add |
@@ -87,9 +82,7 @@ Target output file:
 | high | Monkey | monkey | needs_research_or_confirmation | candidate | unresolved | unresolved | # | unsupported | end of line | unsupported | Monkey docs | Monkey parser | add |
 | high | Monkey C | monkey_c | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | Monkey C docs | Monkey C parser | add |
 | high | MoonScript | moonscript | needs_research_or_confirmation | candidate | unresolved | unresolved | -- | --[[ ... ]] | end of line for line comments; first closing delimiter wins for block comments | unsupported | https://moonscript.org/reference | MoonScript parser | add |
-| high | Motoko | motoko | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; true nesting supported for block comments | true nesting supported | https://internetcomputer.org/docs/motoko/fundamentals/basic-syntax/comments | Motoko parser | add |
 | high | Motorola 68K Assembly | motorola_68k_assembly | needs_research_or_confirmation | unresolved | unresolved | unresolved | ; | unsupported | end of line | unsupported | unresolved | unresolved | research |
-| high | Move | move | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | https://move-language.github.io/move/coding-conventions.html | Move parser | add |
 | high | MQL4 | mql4 | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | MQL4 docs | MQL4 parser | add |
 | high | MQL5 | mql5 | needs_research_or_confirmation | candidate | unresolved | unresolved | // | /* ... */ | end of line for line comments; first closing delimiter wins for block comments | unsupported | MQL5 docs | MQL5 parser | add |
 | high | MTML | mtml | needs_research_or_confirmation | unresolved | unresolved | unresolved | <!-- ... --> | <!-- ... --> | end of line for line comments; first closing delimiter wins for block comments | unsupported | unresolved | unresolved | research |
