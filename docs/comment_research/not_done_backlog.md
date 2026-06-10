@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-10`
-- Total uncovered languages tracked: `261`
+- Total uncovered languages tracked: `260`
 - Ready to implement now: `0`
-- Needs research or confirmation: `249`
+- Needs research or confirmation: `248`
 - Resolved non-actionable: `12`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2-Dimensional Array | two_dimensional_array | unresolved | not confirmed; no versioned programming-language source or dialect split found | unresolved; I did not find a defensible version-specific comment grammar for this label | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Altium Designer | altium_designer | unresolved | Altium Designer documentation and community pages checked; source-language syntax was not confirmed | unresolved; the available sources discuss document comments, annotations, and tasks rather than code-comment delimiters | unresolved | unresolved | unresolved | unknown | needs manual research | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | API Blueprint | api_blueprint | medium |  |  | unsupported | <!-- --> | line comments unsupported; block comments terminate at first closing delimiter | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Apollo Guidance Computer | apollo_guidance_computer | candidate |  |  | # | unsupported | line comments terminate at end-of-line; block comments unsupported | no | candidate | docs/comment_research/chunk_0_nonalpha_a_report.md |
