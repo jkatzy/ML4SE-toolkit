@@ -605,6 +605,32 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="cabal_config_style",
+        canonical_name="cabal_config",
+        regex_patterns=(r"(?m)^[ \t]*--[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "-- note\nremote-repo-cache: /tmp/cabal",
+                "-- note",
+                "Cabal configuration comment-only line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://cabal.readthedocs.io/en/stable/config.html",
+        implementation_source=(
+            "https://github.com/haskell/cabal/blob/master/Cabal-syntax/src/"
+            "Distribution/Fields/Lexer.x"
+        ),
+        confidence="verified",
+        notes=(
+            "Cabal configuration uses the Cabal field-file lexer. Comments begin "
+            "with -- after optional leading whitespace on their own line; "
+            "ordinary trailing comments are excluded because values may contain "
+            "program options. Current master and 3.14.2.0 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

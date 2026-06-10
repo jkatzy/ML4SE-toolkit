@@ -558,26 +558,25 @@ bar = 2
 
 ## Cabal Config
 - Registry key: `cabal_config`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `current master and cabal-install 3.14.2.0`
+- Version-specific syntax: `No comment-syntax difference found between current master and 3.14.2.0.`
 - Line comments: `--`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `runs to newline or EOF on a comment-only field line`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Cabal configuration](https://cabal.readthedocs.io/en/stable/config.html)
+- Implementation source: [Cabal field lexer](https://github.com/haskell/cabal/blob/master/Cabal-syntax/src/Distribution/Fields/Lexer.x)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Cabal syntax docs and add line-comment tests.`
-- Notes: `Cabal configuration files are Haskell-like, but block comments are not confirmed here.`
+- Recommended action: `Implemented in the registry with a line-anchored dash-comment fixture.`
+- Notes: `The field lexer permits optional leading whitespace before --. Cabal documentation warns against ordinary trailing comments because field values may contain program options.`
 
 - Example - line:
-```text
-name: example
--- comment
-version: 1.0
+```cabal
+-- note
+remote-repo-cache: /tmp/cabal
 ```
 
 ## Cadence
