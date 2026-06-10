@@ -340,6 +340,40 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="blitzmax_style",
+        canonical_name="blitzmax",
+        regex_patterns=(
+            r"(?im)^[ \t]*rem\b[\S\s]*?^[ \t]*end[ \t]*rem\b[^\r\n]*",
+            r"'[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                'Print "Comment Test"    \' note\nPrint "done"',
+                "' note",
+                "BlitzMax apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "Rem\nnote\nEnd Rem\nPrint \"done\"",
+                "Rem\nnote\nEnd Rem",
+                "BlitzMax Rem block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://blitzmax.org/docs/en/language/comments/",
+        implementation_source=(
+            "https://github.com/bmx-ng/bcc/blob/master/toker.bmx"
+        ),
+        confidence="verified",
+        notes=(
+            "Apostrophe comments run to newline. Rem blocks are line-oriented, "
+            "non-nested, and accept EndRem or End Rem; current bcc and archived "
+            "BlitzMax v1.51 agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
