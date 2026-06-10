@@ -706,29 +706,29 @@ go 1.22
 ## Golo
 
 - Registry key: golo
-- Line comments: unsupported
-- Block comments: `---- ... ----`
-- Termination behavior: first closing `----` wins
+- Version scope: archived current branch at 3.4.1-SNAPSHOT and tagged release v2.1.0
+- Version-specific syntax: current and v2.1.0 compiler grammars agree on `#` line comments; both tokenize `---- ... ----` separately as documentation
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: runs to newline
 - Nested comments: unsupported
-- Confidence: high
-- Evidence mode: official_docs
-- Docs source: https://gololang.org/GRP-Documentation-Misc.html
-- Implementation source: unresolved
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://github.com/eclipse-archived/golo-lang/blob/master/doc/basics.adoc
+- Implementation source: https://github.com/eclipse-archived/golo-lang/blob/master/src/main/jjtree/org/eclipse/golo/compiler/parser/Golo.jjt
 - Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Add block-comment fixtures using the `----` delimiter and keep line-comment tests absent unless a second source confirms them.
-- Notes: The official docs describe `----` as the multi-line comment syntax.
+- Recommended action: Implement `#` line comments only; do not treat Golo documentation blocks as comments.
+- Notes: The compiler grammar defines `#` as `COMMENT` and `---- ... ----` as `DOCUMENTATION`; official source files use both forms in those distinct roles.
 
 ### Examples
 
-#### Block comment
+#### Line comment
 ```text
 module demo
 
 function main = {
-  ----
-  temporary note
-  ----
+  # temporary note
   println("run")
 }
 ```

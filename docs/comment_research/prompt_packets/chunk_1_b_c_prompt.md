@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `40`
-- Needs research or confirmation: `38`
+- Assigned languages: `37`
+- Needs research or confirmation: `35`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -38,9 +38,7 @@ Target output file:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | high | Beef | beef | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the Beef language reference before seeding. |
 | high | Berry | berry | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against Berry docs and add hash-comment tests. |
-| high | Bicep | bicep | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | [Bicep file syntax](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file) | unresolved | Verify the exact doc page and add C-like comment tests. |
 | high | Bikeshed | bikeshed | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | `<!-- ... -->` is the best candidate, but this needs verification. | first closing delimiter wins | `unsupported` if HTML comments are the only supported form. | unresolved | unresolved | Research Bikeshed's parser/docs before adding a registry entry. |
-| high | BitBake | bitbake | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against Yocto/BitBake docs and add hash-comment tests. |
 | high | BlitzBasic | blitzbasic | needs_research_or_confirmation | medium | unresolved | unresolved | ; | unsupported | unsupported | unsupported | unresolved | unresolved | Verify against the BlitzBasic reference and add semicolon-comment tests. |
 | high | BlitzMax | blitzmax | needs_research_or_confirmation | medium | unresolved | unresolved | Rem` and `' | unsupported | unsupported | unsupported | [BlitzMax comments](https://blitzmax.org/docs/en/language/comments/) | unresolved | Verify dialect details and add tests for both line-comment forms. |
 | high | Bluespec | bluespec | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the Bluespec language reference and add C-like comment tests. |
@@ -63,7 +61,6 @@ Target output file:
 | high | Click | click | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Add hash-comment tests after confirming the Click parser docs. |
 | high | CLIPS | clips | needs_research_or_confirmation | medium | unresolved | unresolved | ; | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify CLIPS comment syntax and add line/block tests. |
 | high | Closure Templates | closure_templates | needs_research_or_confirmation | low | unresolved | unresolved | unsupported | {* ... *} | first closing delimiter wins | unsupported | unresolved | unresolved | Verify Soy/Closure Templates comment syntax before seeding. |
-| high | CoffeeScript | coffeescript | needs_research_or_confirmation | high | unresolved | unresolved | # | ### ... ### | first closing delimiter wins | unsupported | https://coffeescript.org/ | unresolved | Seed line/block coverage and confirm block-comment stripping in tests. |
 | high | Component Pascal | component_pascal | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | (* ... *) | first closing delimiter wins | unsupported | unresolved | unresolved | Verify before seeding; only the block delimiter is tentatively known. |
 | high | Cool | cool | needs_research_or_confirmation | medium | unresolved | unresolved | -- | (* ... *) | true nesting supported | yes | unresolved | unresolved | Verify COOL nesting semantics and add line/block tests. |
 | high | Creole | creole | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the wiki syntax before seeding. |

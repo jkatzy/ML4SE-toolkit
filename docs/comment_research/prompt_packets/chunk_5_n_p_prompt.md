@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `49`
-- Needs research or confirmation: `48`
+- Assigned languages: `45`
+- Needs research or confirmation: `44`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `1`
 
@@ -64,7 +64,6 @@ Target output file:
 | high | Papyrus | papyrus | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Papyrus comment syntax from the language reference. |
 | high | Parrot Assembly | parrot_assembly | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Parrot Assembly comment syntax from the official reference. |
 | high | Parrot Internal Representation | parrot_internal_representation | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PIR comment syntax from the official reference. |
-| high | Pascal | pascal | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify the specific Pascal dialect before adding fixtures. |
 | high | Pawn | pawn | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-style fixtures and confirm against the Pawn reference. |
 | high | PEG.js | peg_js | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PEG.js grammar comment syntax from the grammar docs. |
 | high | Pep8 | pep8 | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify the Pep8 dialect comment syntax before registry work. |
@@ -72,16 +71,13 @@ Target output file:
 | high | Pickle | pickle | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Pickle syntax before adding fixtures. |
 | high | PicoLisp | picolisp | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PicoLisp comment syntax from the official docs. |
 | high | PigLatin | piglatin | needs_research_or_confirmation | medium | unresolved | unresolved | -- | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add SQL-like fixtures and confirm the PigLatin comment rules. |
-| high | Pike | pike | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-family fixtures and verify against Pike docs. |
 | high | Pod | pod | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether this is Perl POD or a different source format. |
 | high | Pod 6 | pod_6 | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Pod 6 / Raku docs before registry changes. |
 | high | PogoScript | pogoscript | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PogoScript syntax from official docs. |
 | high | Pony | pony | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Pony comment syntax from the language reference. |
 | high | Portugol | portugol | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify the Stack v2 Portugol dialect before adding fixtures. |
 | high | POV-Ray SDL | pov_ray_sdl | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify POV-Ray SDL comment syntax from the language reference. |
-| high | PowerBuilder | powerbuilder | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify PowerBuilder comment syntax from the official reference. |
 | high | Prisma | prisma | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Prisma schema comment syntax before adding fixtures. |
-| high | Promela | promela | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | add C-style fixtures and confirm against the SPIN reference. |
 | high | Propeller Spin | propeller_spin | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify Spin comment syntax from the official reference. |
 | high | Pure Data | pure_data | needs_research_or_confirmation | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | verify whether the format has true comments or only directives. |
 | low | Public Key | public_key | resolved_non_actionable | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | keep this entry unsupported unless a formal spec changes. |

@@ -622,6 +622,41 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="f_star_style",
+        canonical_name="f_star",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("(*", "*)"),),
+        shared_regex_examples=(
+            CommentExample(
+                "let x = 1 // note\nin x",
+                "// note",
+                "F* slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "let x = 1\n(* outer (* inner *) outer *)\nin x",
+                "(* outer (* inner *) outer *)",
+                "F* nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://fstar-lang.org/tutorial/book/part1/"
+            "part1_getting_off_the_ground.html"
+        ),
+        implementation_source=(
+            "https://github.com/FStarLang/FStar/blob/master/src/ml/"
+            "FStarC_Parser_LexFStar.ml"
+        ),
+        confidence="verified",
+        notes="F* supports // comments and true nested (* ... *) comments.",
+    ),
+    CommentSyntax(
         family_name="forth_style",
         canonical_name="forth",
         regex_patterns=(
@@ -1881,6 +1916,34 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="line",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="golo_style",
+        canonical_name="golo",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "let x = 1 # note\nprintln(x)",
+                "# note",
+                "Golo hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/eclipse-archived/golo-lang/blob/master/"
+            "doc/basics.adoc"
+        ),
+        implementation_source=(
+            "https://github.com/eclipse-archived/golo-lang/blob/master/"
+            "src/main/jjtree/org/eclipse/golo/compiler/parser/Golo.jjt"
+        ),
+        confidence="verified",
+        notes=(
+            "Golo uses # line comments. The ---- delimited form is a "
+            "documentation token, not a comment."
         ),
     ),
     CommentSyntax(

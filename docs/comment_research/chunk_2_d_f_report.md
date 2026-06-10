@@ -917,18 +917,20 @@ end if
 ## F*
 
 - Registry key: `f_star`
+- Version scope: `Current FStar master lexer and tagged release v2025.12.15; both use the same comment rules.`
+- Version-specific syntax: `Current and reviewed tagged release agree: // line comments and truly nested (* ... *) block comments.`
 - Line comments: `//` supported
 - Block comments: `(* ... *)` supported
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unresolved`
-- Evidence mode: `official_docs`
-- Confidence: `high`
+- Termination behavior: `true nesting supported`
+- Nested comments: `supported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
 - Docs source: `https://fstar-lang.org/tutorial/book/part1/part1_getting_off_the_ground.html`
-- Implementation source: `https://github.com/FStarLang/FStar`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: add line and block tests now; confirm nesting before encoding it as supported.
-- Notes: the official tutorial explicitly documents both line and block comment delimiters.
+- Implementation source: `https://github.com/FStarLang/FStar/blob/master/src/ml/FStarC_Parser_LexFStar.ml`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: implement `//` line comments and nested `(* ... *)` comments in the registry.
+- Notes: the lexer enters a recursive comment rule when it encounters another `(*`, which confirms true nesting rather than first-delimiter termination.
 
 ### Examples
 
@@ -941,7 +943,7 @@ in x
 #### Block comment
 ```text
 let x = 1
-(* note *)
+(* outer (* inner *) outer *)
 in x
 ```
 
