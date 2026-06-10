@@ -6,7 +6,11 @@ cd "${repo_root}"
 
 # Language/sample scope.
 export COMMENT_JUDGE_LANGUAGES="${COMMENT_JUDGE_LANGUAGES:-}"
-export COMMENT_JUDGE_LANGUAGE_COUNT="${COMMENT_JUDGE_LANGUAGE_COUNT:-10}"
+if [[ -z "${COMMENT_JUDGE_LANGUAGE_COUNT+x}" ]]; then
+  export COMMENT_JUDGE_LANGUAGE_COUNT=10
+else
+  export COMMENT_JUDGE_LANGUAGE_COUNT
+fi
 export COMMENT_JUDGE_PER_KIND="${COMMENT_JUDGE_PER_KIND:-20}"
 export COMMENT_JUDGE_PROGRESS_EVERY="${COMMENT_JUDGE_PROGRESS_EVERY:-10}"
 export COMMENT_JUDGE_NUM_WORKERS="${COMMENT_JUDGE_NUM_WORKERS:-50}"
@@ -184,6 +188,7 @@ if [[ -n "${COMMENT_JUDGE_LANGUAGE_COUNT}" ]]; then
 fi
 
 mapfile -t languages < <(selected_languages)
+echo "[comment-judge-pipeline] selected ${#languages[@]} languages"
 if [[ "${#languages[@]}" -eq 0 ]]; then
   echo "[comment-judge-pipeline] no languages selected" >&2
   exit 2

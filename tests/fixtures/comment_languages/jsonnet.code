@@ -3,12 +3,16 @@ value_0 = 0
 value_1 = 1
 /* fixture_2 */
 value_2 = 2
-//////// repeated_open_1
+# fixture_3
 value_3 = 3
-/// odd_repeated_open_1
+//////// repeated_open_1
 value_4 = 4
-value_inline_2 = 1 /* inline_block_2 */ + 2
+/// odd_repeated_open_1
 value_5 = 5
+######## repeated_open_3
+value_6 = 6
+value_inline_2 = 1 /* inline_block_2 */ + 2
+value_7 = 7
 /**
  * star_doc_2 Description of what the method does.
  *
@@ -16,11 +20,16 @@ value_5 = 5
  * @return Description of return value.
  * @throws Exception Description of exception.
  */
-value_6 = 6
+value_8 = 8
 // grouped_line_1_a
 // grouped_line_1_b
-value_7 = 7
-value_string_1 = "not // string_probe_1";
-value_8 = 8
-value_string_2 = "not /* string_probe_2 */";
 value_9 = 9
+# grouped_line_3_a
+# grouped_line_3_b
+value_10 = 10
+value_string_1 = "not // string_probe_1";
+value_11 = 11
+value_string_2 = "not /* string_probe_2 */";
+value_12 = 12
+value_string_3 = "not # string_probe_3";
+value_13 = 13
