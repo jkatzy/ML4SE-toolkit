@@ -178,6 +178,43 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes="Arc inherits semicolon line comments from its Lisp reader.",
     ),
     CommentSyntax(
+        family_name="aspnet_style",
+        canonical_name="aspnet",
+        regex_patterns=(
+            r"<%--[\S\s]*?--%>",
+            r"<!--[\S\s]*?-->",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "<%-- note --%>\n<asp:Label runat=\"server\" />",
+                "<%-- note --%>",
+                "ASP.NET Web Forms server-side comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "<!-- note -->\n<div>content</div>",
+                "<!-- note -->",
+                "ASP.NET markup HTML comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/troubleshoot/developer/"
+            "webapps/aspnet/development/inline-expressions"
+        ),
+        implementation_source=(
+            "https://github.com/textmate/asp.tmbundle/blob/master/"
+            "Syntaxes/HTML-ASP.plist"
+        ),
+        confidence="verified",
+        notes=(
+            "The ASP.NET Stack key covers Web Forms markup. Embedded C#, VB, "
+            "and JavaScript comment tokens are intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
