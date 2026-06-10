@@ -531,18 +531,20 @@ value ← value + 1
 
 ## Apollo Guidance Computer
 - Registry key: `apollo_guidance_computer`
+- Version scope: current Virtual AGC assembly-language manual and current yaYUL assembler
+- Version-specific syntax: no version split confirmed for yaYUL-formatted AGC source; `#` starts a comment wherever it appears on a source line
 - Line comments: `#`
 - Block comments: unsupported
 - Termination behavior: line comments terminate at end-of-line; block comments unsupported
-- Nested comments: no
-- Confidence: candidate
-- Evidence mode: corpus_inferred
-- Docs source: `https://www.ibiblio.org/apollo/assembly_language_manual.html`
-- Implementation source: `https://www.ibiblio.org/apollo/yaYUL.html`
-- Community source: `https://stackoverflow.com/questions/62289017/how-does-this-apollo-guidance-computer-code-work-out-sine-and-cosine`
-- Corpus fallback source: `https://www.ibiblio.org/apollo/listings/Sunburst120/ASSEMBLY_AND_OPERATION_INFORMATION.agc.html`
-- Recommended action: candidate
-- Notes: The corpus shows `#`-prefixed comments in AGC listings. I did not find a direct official syntax statement, so keep this tentative.
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://www.ibiblio.org/apollo/assembly_language_manual.html
+- Implementation source: https://github.com/virtualagc/virtualagc/blob/master/yaYUL/Pass.c
+- Community source: not used
+- Corpus fallback source: https://www.ibiblio.org/apollo/listings/Sunburst120/ASSEMBLY_AND_OPERATION_INFORMATION.agc.html
+- Recommended action: implement `#` line comments
+- Notes: yaYUL's parser documentation states that comments are anything following `#`. Semicolon comments documented by unrelated Block I hobby assemblers are outside this Stack language/toolchain scope.
 
 ### Examples
 
