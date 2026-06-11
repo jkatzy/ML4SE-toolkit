@@ -14,9 +14,9 @@ Target output file:
 ## Priority Summary
 
 - Assigned languages: `21`
-- Needs research or confirmation: `19`
+- Needs research or confirmation: `18`
 - Ready to implement but should be strengthened with source evidence: `0`
-- Resolved non-actionable: `2`
+- Resolved non-actionable: `3`
 
 ## Required Workflow
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Checksums | checksums | needs_research_or_confirmation | low | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Confirm the file format before adding a registry entry. |
 | high | CIL | cil | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the IL syntax docs and add C-style comment tests. |
 | high | Cirru | cirru | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Cirru syntax before adding registry support. |
 | high | Clarion | clarion | needs_research_or_confirmation | low | unresolved | unresolved | ! | unsupported | unsupported | unsupported | unresolved | unresolved | Verify Clarion comment syntax before seeding. |
@@ -56,6 +55,7 @@ Target output file:
 | high | CWeb | cweb | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research WEB/CWEB comment conventions before seeding. |
 | high | Cycript | cycript | needs_research_or_confirmation | medium | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Cycript docs and add C-like comment tests. |
 | low | Brainfuck | brainfuck | resolved_non_actionable | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document that non-command characters are ignored rather than treated as comments. |
+| low | Checksums | checksums | resolved_non_actionable | high | GitHub Linguist 9.6.0 Checksums data family and language-etc grammar at 182cc8d | The label intentionally unions GNU-style, BSD-style, and isolated digest records; no shared comment delimiter is defined. | unsupported | unsupported | unsupported | unsupported | [GitHub Linguist Checksums definition](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml) | [language-etc Checksums grammar](https://github.com/Alhadis/language-etc/blob/master/grammars/checksums.cson) | Keep unsupported; do not infer hash comments for the generic data family. |
 | low | CSV | csv | resolved_non_actionable | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document as commentless unless a specific dialect is introduced. |
 
 ## Search Guidance

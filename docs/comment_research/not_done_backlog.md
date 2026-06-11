@@ -9,8 +9,8 @@ This backlog covers Stack v2 public languages that are still not represented in 
 - Generated on: `2026-06-11`
 - Total uncovered languages tracked: `240`
 - Ready to implement now: `0`
-- Needs research or confirmation: `227`
-- Resolved non-actionable: `13`
+- Needs research or confirmation: `226`
+- Resolved non-actionable: `14`
 - Missing research records: `0`
 
 Status definitions:
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Checksums | checksums | low | unresolved | unresolved | # | unsupported | unsupported | unsupported | Confirm the file format before adding a registry entry. | docs/comment_research/chunk_1_b_c_report.md |
 | CIL | cil | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the IL syntax docs and add C-style comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Cirru | cirru | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Cirru syntax before adding registry support. | docs/comment_research/chunk_1_b_c_report.md |
 | Clarion | clarion | low | unresolved | unresolved | ! | unsupported | unsupported | unsupported | Verify Clarion comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
@@ -262,6 +261,7 @@ Status definitions:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Altium Designer | altium_designer | cross-checked | current Altium Designer documentation for Output Job and scripting files, plus the current GitHub Linguist language mapping | no source-comment syntax applies to the Stack label; Linguist maps `.OutJob`, `.PcbDoc`, `.PrjPCB`, and `.SchDoc` data files, while Altium documents DelphiScript separately as `.pas` | unsupported | unsupported | unsupported | unsupported | leave unsupported | docs/comment_research/chunk_0_nonalpha_a_report.md |
 | Brainfuck | brainfuck | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | Document that non-command characters are ignored rather than treated as comments. | docs/comment_research/chunk_1_b_c_report.md |
+| Checksums | checksums | high | GitHub Linguist 9.6.0 Checksums data family and language-etc grammar at 182cc8d | The label intentionally unions GNU-style, BSD-style, and isolated digest records; no shared comment delimiter is defined. | unsupported | unsupported | unsupported | unsupported | Keep unsupported; do not infer hash comments for the generic data family. | docs/comment_research/chunk_1_b_c_report.md |
 | CSV | csv | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | Document as commentless unless a specific dialect is introduced. | docs/comment_research/chunk_1_b_c_report.md |
 | Diff | diff | high |  |  | unsupported | unsupported | unsupported | unsupported | leave unsupported. | docs/comment_research/chunk_2_d_f_report.md |
 | JAR Manifest | jar_manifest | verified |  |  | unsupported | unsupported | unsupported | unsupported | unsupported | docs/comment_research/chunk_4_j_m_report.md |

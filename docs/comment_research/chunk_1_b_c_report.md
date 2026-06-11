@@ -761,25 +761,24 @@ proc main() {
 
 ## Checksums
 - Registry key: `checksums`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `#`
+- Version scope: `GitHub Linguist 9.6.0 Checksums data family and language-etc grammar at 182cc8d`
+- Version-specific syntax: `The label intentionally unions GNU-style, BSD-style, and isolated digest records; no shared comment delimiter is defined.`
+- Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_classifier_plus_grammar`
+- Docs source: [GitHub Linguist Checksums definition](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml)
+- Implementation source: [language-etc Checksums grammar](https://github.com/Alhadis/language-etc/blob/master/grammars/checksums.cson)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Confirm the file format before adding a registry entry.`
-- Notes: `This looks like a data/config format; comment support is not standardized.`
+- Corpus fallback source: [GitHub Linguist Checksums samples](https://github.com/github-linguist/linguist/tree/main/samples/Checksums)
+- Recommended action: `Keep unsupported; do not infer hash comments for the generic data family.`
+- Notes: `The grammar recognizes checksum records only. A leading # is not a shared comment form across the GNU, BSD, and isolated formats represented by this label.`
 
-- Example - line:
+- Example - GNU-style data:
 ```text
-# comment
-deadbeef  file.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  empty.txt
 ```
 
 ## ChucK
