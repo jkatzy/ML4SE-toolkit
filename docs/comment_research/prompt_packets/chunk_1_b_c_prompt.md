@@ -14,9 +14,9 @@ Target output file:
 ## Priority Summary
 
 - Assigned languages: `19`
-- Needs research or confirmation: `15`
+- Needs research or confirmation: `14`
 - Ready to implement but should be strengthened with source evidence: `0`
-- Resolved non-actionable: `4`
+- Resolved non-actionable: `5`
 
 ## Required Workflow
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Classic ASP | classic_asp | needs_research_or_confirmation | low | unresolved | unresolved | unsupported | <!-- ... --> | first closing delimiter wins | unsupported | unresolved | unresolved | Treat as a mixed-language format and verify HTML/script comment handling separately. |
 | high | Clean | clean | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unresolved | unresolved | unresolved | Verify Clean comment nesting before seeding. |
 | high | Click | click | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Add hash-comment tests after confirming the Click parser docs. |
 | high | CLIPS | clips | needs_research_or_confirmation | medium | unresolved | unresolved | ; | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify CLIPS comment syntax and add line/block tests. |
@@ -54,6 +53,7 @@ Target output file:
 | low | Brainfuck | brainfuck | resolved_non_actionable | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document that non-command characters are ignored rather than treated as comments. |
 | low | Checksums | checksums | resolved_non_actionable | high | GitHub Linguist 9.6.0 Checksums data family and language-etc grammar at 182cc8d | The label intentionally unions GNU-style, BSD-style, and isolated digest records; no shared comment delimiter is defined. | unsupported | unsupported | unsupported | unsupported | [GitHub Linguist Checksums definition](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml) | [language-etc Checksums grammar](https://github.com/Alhadis/language-etc/blob/master/grammars/checksums.cson) | Keep unsupported; do not infer hash comments for the generic data family. |
 | low | Cirru | cirru | resolved_non_actionable | high | Cirru parser 0.2.5 at 14f9a9b7 | The parser preserves ; and ;; as ordinary leaf tokens; only expression consumers interpret a list headed by either token as a comment. | unsupported | unsupported | unsupported | unsupported | [Cirru syntax documentation](https://text.cirru.org/) | [Cirru parser](https://github.com/Cirru/parser.rs) | Keep unsupported in the lexical registry; comment expressions require a Cirru parse tree. |
+| low | Classic ASP | classic_asp | resolved_non_actionable | high | Classic ASP on IIS, including configurable page and application scripting languages | A page may use VBScript, JScript, or another installed COM scripting engine, including multiple languages in one .asp file. | unsupported | unsupported | unsupported | unsupported | [Microsoft Working with Scripting Languages](https://learn.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525153%28v%3Dvs.90%29) | [TextMate HTML-ASP grammar](https://github.com/textmate/asp.tmbundle/blob/master/Syntaxes/HTML-ASP.plist) | Keep unsupported in the lexical registry; extraction requires an ASP-aware parser that tracks script regions and directives. |
 | low | CSV | csv | resolved_non_actionable | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | unresolved | unresolved | Document as commentless unless a specific dialect is introduced. |
 
 ## Search Guidance
