@@ -185,6 +185,15 @@ def test_comment_query_groups_adjacent_standalone_line_comments(language, sample
     assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
+def test_openedge_abl_slash_comment_requires_left_boundary():
+    sample = "value//not\nvalue // yes\n// also yes\n"
+
+    assert CommentQuery("openedge_abl").parse(sample) == [
+        _expected_query_match(sample, "// yes"),
+        _expected_query_match(sample, "// also yes"),
+    ]
+
+
 def test_stack_v2_csharp_todo_line_comment_extracts_reported_span():
     sample = (
         "using System;\n"

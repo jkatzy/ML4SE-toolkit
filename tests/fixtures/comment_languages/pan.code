@@ -1,0 +1,15 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# grouped_line_1_a
+# grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # string_probe_1";
+value_4 = 4
+value_breaker_pan_0 = 0
+# breaker pan # Heading stays content
+value_breaker_pan_1 = 1
+# breaker pan --flag stays content
+value_breaker_pan_2 = 2
