@@ -913,7 +913,7 @@ _LANG_EXTRACTORS = {
     "brainfuck": extract_comments_none,
     "netlogo": extract_comments_assembly,
     "scheme": extract_comments_assembly,
-    "clips": extract_comments_semicolon_cstyle,
+    "clips": extract_comments_semicolon,
     "cobol": extract_comments_cobol,
     "coq": extract_comments_coq,
     "cool": extract_comments_dash_star_nested,
