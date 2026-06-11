@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-11`
-- Total uncovered languages tracked: `235`
+- Total uncovered languages tracked: `234`
 - Ready to implement now: `0`
-- Needs research or confirmation: `219`
+- Needs research or confirmation: `218`
 - Resolved non-actionable: `16`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Closure Templates | closure_templates | low | unresolved | unresolved | unsupported | {* ... *} | first closing delimiter wins | unsupported | Verify Soy/Closure Templates comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Component Pascal | component_pascal | low | unresolved | unresolved | unresolved | (* ... *) | first closing delimiter wins | unsupported | Verify before seeding; only the block delimiter is tentatively known. | docs/comment_research/chunk_1_b_c_report.md |
 | Cool | cool | medium | unresolved | unresolved | -- | (* ... *) | true nesting supported | yes | Verify COOL nesting semantics and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Creole | creole | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research the wiki syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |

@@ -9,7 +9,7 @@ These packets are for the stronger online-first research workflow. Each packet t
 | Chunk | Languages | Needs research | Ready to implement | Resolved non-actionable | Prompt |
 | --- | --- | --- | --- | --- | --- |
 | chunk_0_nonalpha_a | 1 | 0 | 0 | 1 | [chunk_0_nonalpha_a_prompt.md](/home/jonathan/Documents/PhD/ML4SE-toolkit/docs/comment_research/prompt_packets/chunk_0_nonalpha_a_prompt.md) |
-| chunk_1_b_c | 16 | 11 | 0 | 5 | [chunk_1_b_c_prompt.md](/home/jonathan/Documents/PhD/ML4SE-toolkit/docs/comment_research/prompt_packets/chunk_1_b_c_prompt.md) |
+| chunk_1_b_c | 15 | 10 | 0 | 5 | [chunk_1_b_c_prompt.md](/home/jonathan/Documents/PhD/ML4SE-toolkit/docs/comment_research/prompt_packets/chunk_1_b_c_prompt.md) |
 | chunk_2_d_f | 13 | 12 | 0 | 1 | [chunk_2_d_f_prompt.md](/home/jonathan/Documents/PhD/ML4SE-toolkit/docs/comment_research/prompt_packets/chunk_2_d_f_prompt.md) |
 | chunk_3_g_i | 12 | 12 | 0 | 0 | [chunk_3_g_i_prompt.md](/home/jonathan/Documents/PhD/ML4SE-toolkit/docs/comment_research/prompt_packets/chunk_3_g_i_prompt.md) |
 | chunk_4_j_m | 58 | 53 | 0 | 5 | [chunk_4_j_m_prompt.md](/home/jonathan/Documents/PhD/ML4SE-toolkit/docs/comment_research/prompt_packets/chunk_4_j_m_prompt.md) |

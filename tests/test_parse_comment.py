@@ -343,6 +343,7 @@ APL_ALIAS_LANGS = ["apl"]
 ALLOY_ALIAS_LANGS = ["alloy"]
 SEMICOLON_CSTYLE_ALIAS_LANGS = ["autohotkey"]
 CLIPS_ALIAS_LANGS = ["clips"]
+CLOSURE_TEMPLATES_ALIAS_LANGS = ["closure templates"]
 AUTOIT_ALIAS_LANGS = ["autoit"]
 ABAP_ALIAS_LANGS = ["abap"]
 BATCH_ALIAS_LANGS = ["batchfile"]
@@ -933,6 +934,21 @@ def test_clips_alias_is_semicolon_line_only(lang):
     comments = pc.extract_comments(content, [lang])
 
     assert [comment[1] for comment in comments] == ["; first\n; second"]
+
+
+@pytest.mark.parametrize("lang", CLOSURE_TEMPLATES_ALIAS_LANGS)
+def test_closure_templates_alias_uses_soy_comment_rules(lang):
+    content = (
+        '{template .example}\n'
+        '  <a href="https://example.test">link</a>\n'
+        '  // note\n'
+        '  /* block note */\n'
+        '{/template}\n'
+    )
+
+    comments = pc.extract_comments(content, [lang])
+
+    assert [comment[1] for comment in comments] == ["// note", "/* block note */"]
 
 
 @pytest.mark.parametrize("lang", BLITZMAX_ALIAS_LANGS)
@@ -1606,7 +1622,7 @@ def _register(case, *extractors):
         EXTRACTOR_ADVERSARIAL_CASES[extractor] = case
 
 
-_register(CASE_C_STYLE, "extract_comments_java")
+_register(CASE_C_STYLE, "extract_comments_java", "extract_comments_closure_templates")
 _register(CASE_PYTHON_STYLE, "extract_comments_python")
 _register(CASE_HASH, "extract_comments_hash")
 _register(CASE_HASH_CBLOCK, "extract_comments_hash_cblock")

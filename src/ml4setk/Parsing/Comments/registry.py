@@ -965,6 +965,46 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="closure_templates_style",
+        canonical_name="closure_templates",
+        regex_patterns=(
+            r"(?m)(?<![^\s])//[^\r\n]*",
+            r"/\*[\S\s]*?\*/",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "{template .example}\n  // note\n  <div>content</div>\n{/template}",
+                "// note",
+                "Soy single-line comment with required leading whitespace.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "{template .example}\n  /* note */\n  <div>content</div>\n{/template}",
+                "/* note */",
+                "Soy non-nested multiline comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/google/closure-templates/blob/master/"
+            "documentation/reference/comments.md"
+        ),
+        implementation_source=(
+            "https://github.com/google/closure-templates/blob/master/java/src/"
+            "com/google/template/soy/soyparse/SoyFileParser.jj"
+        ),
+        confidence="verified",
+        notes=(
+            "Current Soy uses // and non-nested /* ... */ comments, including "
+            "SoyDoc /** ... */ as a block-comment subset. In template text, "
+            "the parser only accepts // after whitespace to avoid treating URI "
+            "schemes as comments; the registry encodes the same constraint."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
