@@ -1,0 +1,16 @@
+value_0 = 0
+# multi-byte fields are big-endian fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# multi-byte fields are big-endian grouped_line_1_a
+# multi-byte fields are big-endian grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # multi-byte fields are big-endian string_probe_1";
+value_4 = 4
+seq:
+  - id: gl_breaker
+    type: u1 # gl_breaker_kaitai_inline keeps # inside text
+value_gl_breaker_0 = 0
+# gl_breaker_kaitai_heading keeps # Heading marker
+value_gl_breaker_1 = 1

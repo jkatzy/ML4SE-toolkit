@@ -255,7 +255,7 @@ def build_fixture_content(language: str) -> str:
         separator_offset = 1
 
     for index, case in enumerate(cases, start=1):
-        chunks.append(case.content)
+        chunks.append(_source_region_wrapped_content(language, case.content))
         if _requires_blank_separator(case):
             chunks.append("")
         chunks.append(_code_separator(index - 1 + separator_offset))
@@ -306,6 +306,19 @@ def write_language_fixtures(project_root: Path = Path("."), *, force: bool = Fal
 
 def _code_separator(index: int) -> str:
     return f"value_{index} = {index}"
+
+
+def _source_region_wrapped_content(language: str, content: str) -> str:
+    """Wrap synthetic comments in source regions for literate languages."""
+
+    syntax = get_comment_syntax(language)
+    if not syntax.source_region_patterns:
+        return content
+    if language in {"literate_agda", "literate_haskell"}:
+        return f"\\begin{{code}}\n{content}\n\\end{{code}}"
+    if language == "literate_coffeescript":
+        return f"~~~\n{content}\n~~~"
+    return content
 
 
 def _unique_fixture_match(expected_match: str, marker: str, kind: str) -> str:

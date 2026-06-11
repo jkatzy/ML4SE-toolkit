@@ -1,0 +1,13 @@
+value_0 = 0
+; default constructor follows fixture_1
+value_1 = 1
+;;;;;;;; repeated_open_1
+value_2 = 2
+; default constructor follows grouped_line_1_a
+; default constructor follows grouped_line_1_b
+value_3 = 3
+value_string_1 = "not ; default constructor follows string_probe_1";
+value_4 = 4
+value_gl_breaker_0 = 0
+; gl_breaker_jasmin_line keeps --flag and ; literal semicolon
+value_gl_breaker_1 = 1

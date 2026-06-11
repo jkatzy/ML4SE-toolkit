@@ -29,6 +29,16 @@ class SanitizerCase:
     case_id: str
 
 
+def _source_region_wrapped_sample(language, expected_match):
+    if language in {"literate_agda", "literate_haskell"}:
+        body = f"\\begin{{code}}\n{expected_match}\n\\end{{code}}"
+    elif language == "literate_coffeescript":
+        body = f"~~~\n{expected_match}\n~~~"
+    else:
+        body = expected_match
+    return f"before\n{body}\nafter"
+
+
 def _split_example_placeholder(example_text):
     for placeholder in _EXAMPLE_BODY_PLACEHOLDERS:
         if placeholder not in example_text:
@@ -105,7 +115,7 @@ def _build_line_cases():
             removal_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{removal_match}\nafter",
+                    sample=_source_region_wrapped_sample(language, removal_match),
                     expected_match=removal_match,
                     expected_sanitized=removal_expected,
                     case_id=f"{language}-line-removal",
@@ -127,7 +137,7 @@ def _build_line_cases():
             preservation_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{keep_match}\nafter",
+                    sample=_source_region_wrapped_sample(language, keep_match),
                     expected_match=keep_match,
                     expected_sanitized=keep_expected,
                     case_id=f"{language}-line-preservation",
@@ -142,7 +152,7 @@ def _build_block_case(language, example, body, case_id):
     expected_match = f"{prefix}{body}{suffix}"
     return SanitizerCase(
         language=language,
-        sample=f"before\n{expected_match}\nafter",
+        sample=_source_region_wrapped_sample(language, expected_match),
         expected_match=expected_match,
         expected_sanitized=body,
         case_id=case_id,
@@ -153,7 +163,7 @@ def _build_nested_case(language, open_delim, close_delim, body, case_id):
     expected_match = f"{open_delim} {body} {close_delim}"
     return SanitizerCase(
         language=language,
-        sample=f"before {expected_match} after",
+        sample=_source_region_wrapped_sample(language, expected_match),
         expected_match=expected_match,
         expected_sanitized=body,
         case_id=case_id,
@@ -259,7 +269,7 @@ def _build_c_style_block_gutter_cases():
             removal_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{removal_match}\nafter",
+                    sample=_source_region_wrapped_sample(language, removal_match),
                     expected_match=removal_match,
                     expected_sanitized="adversarial *** ### $$$ %%%\nrepeated ### *** $$$ %%%",
                     case_id=f"{language}-c-block-gutter-removal",
@@ -275,7 +285,7 @@ def _build_c_style_block_gutter_cases():
             preservation_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{preservation_match}\nafter",
+                    sample=_source_region_wrapped_sample(language, preservation_match),
                     expected_match=preservation_match,
                     expected_sanitized=(
                         "keep * exactly and *** ### $$$ %%%\n"

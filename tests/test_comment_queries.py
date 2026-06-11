@@ -185,6 +185,55 @@ def test_comment_query_groups_adjacent_standalone_line_comments(language, sample
     assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
+def test_jest_snapshot_ignores_serialized_template_literal_content():
+    sample = "exports[`x 1`] = `\n// rendered text, not metadata\n`;\n"
+
+    assert CommentQuery("jest_snapshot").parse(sample) == []
+
+
+@pytest.mark.parametrize(
+    ("language", "sample", "expected_match"),
+    [
+        pytest.param(
+            "literate_haskell",
+            'This prose mentions -- not code.\n\n> main = putStrLn "ok"\n> -- code comment\n',
+            "-- code comment",
+            id="literate-haskell-bird-track",
+        ),
+        pytest.param(
+            "literate_agda",
+            "Prose mentions -- not Agda code.\n\n\\begin{code}\n-- code comment\n\\end{code}\n",
+            "-- code comment",
+            id="literate-agda-code-block",
+        ),
+        pytest.param(
+            "literate_coffeescript",
+            "Markdown heading # not CoffeeScript code\n\n    value = 1\n    # code comment\n",
+            "# code comment",
+            id="literate-coffeescript-indented-code",
+        ),
+    ],
+)
+def test_literate_language_comments_only_match_inside_code_regions(
+    language, sample, expected_match
+):
+    assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
+
+
+def test_literate_nested_scanner_ignores_unclosed_delimiter_inside_line_comment():
+    sample = (
+        "> -- line comment mentions {- but is still a line comment\n"
+        "\\begin{code}\n"
+        "{- real nested comment -}\n"
+        "\\end{code}\n"
+    )
+
+    assert CommentQuery("literate_haskell").parse(sample) == [
+        _expected_query_match(sample, "-- line comment mentions {- but is still a line comment"),
+        _expected_query_match(sample, "{- real nested comment -}"),
+    ]
+
+
 def test_stack_v2_csharp_todo_line_comment_extracts_reported_span():
     sample = (
         "using System;\n"

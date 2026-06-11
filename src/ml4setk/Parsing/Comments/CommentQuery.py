@@ -58,12 +58,14 @@ def _quoted_string_ranges(text):
     for index, char in enumerate(text):
         if quote is None:
             if char in {"'", '"', "`"}:
+                if char == "`" and index > 0 and text[index - 1] == "#":
+                    continue
                 quote = char
                 start = index
                 escaped = False
             continue
 
-        if char in {"\n", "\r"}:
+        if char in {"\n", "\r"} and quote != "`":
             quote = None
             start = None
             escaped = False
@@ -89,6 +91,53 @@ def _starts_inside_quoted_string(start, quoted_ranges):
     """Return ``True`` when ``start`` is inside any quoted string range."""
 
     return any(quote_start < start < quote_end for quote_start, quote_end in quoted_ranges)
+
+
+def _source_region_ranges(text, patterns):
+    """Return source ranges where registry matching is allowed, if configured."""
+
+    if not patterns:
+        return None
+
+    ranges = []
+    for pattern in patterns:
+        for match in re.finditer(pattern, text):
+            ranges.append((match.start(), match.end()))
+
+    return tuple(_coalesce_ranges(ranges))
+
+
+def _coalesce_ranges(ranges):
+    """Merge overlapping half-open ranges in source order."""
+
+    result = []
+    for start, end in sorted(ranges):
+        if not result or start > result[-1][1]:
+            result.append([start, end])
+            continue
+        result[-1][1] = max(result[-1][1], end)
+    return [(start, end) for start, end in result]
+
+
+def _starts_inside_source_region(start, source_ranges):
+    """Return whether ``start`` is allowed by optional source-region metadata."""
+
+    if source_ranges is None:
+        return True
+    return any(region_start <= start < region_end for region_start, region_end in source_ranges)
+
+
+def _project_ranges_to_region(ranges, region_start, region_end):
+    """Return ``ranges`` clipped and offset into one source region."""
+
+    projected = []
+    for start, end in ranges:
+        clipped_start = max(start, region_start)
+        clipped_end = min(end, region_end)
+        if clipped_start >= clipped_end:
+            continue
+        projected.append((clipped_start - region_start, clipped_end - region_start))
+    return tuple(projected)
 
 
 def _query_match_from_range(text, start, end):
@@ -148,6 +197,7 @@ class LineCommentQuery(Query):
         self.language = language
         self.syntax = get_comment_syntax(language)
         self.regexes = self.syntax.regex_patterns
+        self.source_region_patterns = self.syntax.source_region_patterns
 
     def contains(self, string):
         """Return ``True`` when regex-based extraction finds a comment."""
@@ -168,10 +218,12 @@ class LineCommentQuery(Query):
 
         matches = []
         quoted_ranges = _quoted_string_ranges(text)
+        source_ranges = _source_region_ranges(text, self.source_region_patterns)
         match_ranges = (
             (start, end)
             for start, end in self._iter_match_ranges(text)
             if not _starts_inside_quoted_string(start, quoted_ranges)
+            and _starts_inside_source_region(start, source_ranges)
         )
         for start, end in self._dedupe_match_ranges(match_ranges):
             matches.append(_query_match_from_range(text, start, end))
@@ -225,6 +277,7 @@ class NestedCommentQuery(Query):
         self.language = language
         self.syntax = get_comment_syntax(language)
         self.delimiters = self.syntax.nested_delimiters
+        self.source_region_patterns = self.syntax.source_region_patterns
         self.delimeters = self.delimiters  # Preserve the older misspelled attribute.
 
     def contains(self, string):
@@ -248,15 +301,42 @@ class NestedCommentQuery(Query):
 
         matches = []
         quoted_ranges = _quoted_string_ranges(text)
+        source_ranges = _source_region_ranges(text, self.source_region_patterns)
         for open_delim, close_delim in self.delimiters:
-            matches.extend(
-                match
-                for match in self.parse_nested(
+            if source_ranges is None:
+                candidate_matches = self.parse_nested(
                     open_delim,
                     close_delim,
                     text,
                     ignored_ranges=ignored_ranges,
                 )
+            else:
+                candidate_matches = []
+                for region_start, region_end in source_ranges:
+                    region_text = text[region_start:region_end]
+                    region_ignored_ranges = _project_ranges_to_region(
+                        ignored_ranges,
+                        region_start,
+                        region_end,
+                    )
+                    for match in self.parse_nested(
+                        open_delim,
+                        close_delim,
+                        region_text,
+                        ignored_ranges=region_ignored_ranges,
+                    ):
+                        local_start, local_end = _match_range(region_text, match)
+                        candidate_matches.append(
+                            _query_match_from_range(
+                                text,
+                                region_start + local_start,
+                                region_start + local_end,
+                            )
+                        )
+
+            matches.extend(
+                match
+                for match in candidate_matches
                 if not _starts_inside_quoted_string(len(match.prefix), quoted_ranges)
             )
         return sorted(matches, key=lambda match: len(match.prefix))

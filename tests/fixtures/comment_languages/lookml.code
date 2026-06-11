@@ -1,0 +1,14 @@
+value_0 = 0
+# include all the views fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# include all the views grouped_line_1_a
+# include all the views grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # include all the views string_probe_1";
+value_4 = 4
+dimension: gl_breaker { sql: ${TABLE}.id ;; } # gl_breaker_lookml_inline keeps # in prose
+value_gl_breaker_0 = 0
+# gl_breaker_lookml_header keeps ## markdown marker
+value_gl_breaker_1 = 1

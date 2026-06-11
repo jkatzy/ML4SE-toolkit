@@ -1,0 +1,14 @@
+value_0 = 0
+# formatting pass fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# formatting pass grouped_line_1_a
+# formatting pass grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # formatting pass string_probe_1";
+value_4 = 4
+0123456789abcdef # gl_breaker_git_inline keeps #123 marker text
+value_gl_breaker_0 = 0
+# gl_breaker_git_header keeps #### decorative ruler text
+value_gl_breaker_1 = 1

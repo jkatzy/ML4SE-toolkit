@@ -1,0 +1,14 @@
+value_0 = 0
+# This label is shown on the home screen fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# This label is shown on the home screen grouped_line_1_a
+# This label is shown on the home screen grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # This label is shown on the home screen string_probe_1";
+value_4 = 4
+<GlBreakerLabel>:
+    # gl_breaker_kvlang_indented keeps # Heading after opener
+    text: 'value'
+value_gl_breaker_0 = 0
