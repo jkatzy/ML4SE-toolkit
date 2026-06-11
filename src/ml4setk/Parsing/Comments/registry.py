@@ -6222,6 +6222,372 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes="Motoko supports // comments and nested /* ... */ comments.",
     ),
     CommentSyntax(
+        family_name="graph_modeling_language_style",
+        canonical_name="graph_modeling_language",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "graph [\n  # note\n  node [ id 1 ]\n]",
+                "# note",
+                "NetworkX GML hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_3_g_i_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_3_g_i_confirmation.md"
+        ),
+        confidence="verified",
+        notes=(
+            "Confirmed against NetworkX GML parsing. The GML comment key is "
+            "metadata, not a lexical comment delimiter."
+        ),
+    ),
+    CommentSyntax(
+        family_name="mask_style",
+        canonical_name="mask",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "define foo {\n  // note\n  @title > 'Foo'\n}",
+                "// note",
+                "MaskJS slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "define foo {\n  /* note */\n  @title > 'Foo'\n}",
+                "/* note */",
+                "MaskJS non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_4_j_m_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_4_j_m_confirmation.md"
+        ),
+        confidence="verified",
+        notes="MaskJS accepts // and non-nested /* ... */ template comments.",
+    ),
+    CommentSyntax(
+        family_name="selinux_policy_style",
+        canonical_name="selinux_policy",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "class CLASS1 { PERM1 } # note\nclass CLASS2 { PERM2 }",
+                "# note",
+                "SELinux policy hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_6_q_s_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_6_q_s_confirmation.md"
+        ),
+        confidence="verified",
+        notes="Confirmed with checkpolicy and checkmodule; block comments are unsupported.",
+    ),
+    CommentSyntax(
+        family_name="srecode_template_style",
+        canonical_name="srecode_template",
+        regex_patterns=(r";;[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "set mode \"srecode-template-mode\" ;; note\nset priority 10",
+                ";; note",
+                "GNU Emacs SRecode template semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_6_q_s_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_6_q_s_confirmation.md"
+        ),
+        confidence="verified",
+        notes=(
+            "srecode-template-mode sets comment-start to ;;. Template comment "
+            "macros are not implemented as lexical comments here."
+        ),
+    ),
+    CommentSyntax(
+        family_name="txl_style",
+        canonical_name="txl",
+        regex_patterns=(r"%[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "% note\ndefine program % trailing note\n  [expression]\nend define",
+                "% note",
+                "TXL percent line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "define program % trailing note\n  [expression]\nend define",
+                "% trailing note",
+                "TXL trailing percent line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes="FreeTXL confirms percent comments to end of line; block comments are unsupported.",
+    ),
+    CommentSyntax(
+        family_name="unix_assembly_gas_x86_style",
+        canonical_name="unix_assembly",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                ".text\n# note\nquoted:",
+                "# note",
+                "x86-64 GNU as hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                ".text\n/* note */\nquoted:",
+                "/* note */",
+                "GNU as non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes=(
+            "Confirmed for x86-64 GNU as. Unix assembly line-comment markers "
+            "are target-specific outside that scope."
+        ),
+    ),
+    CommentSyntax(
+        family_name="valve_data_format_style",
+        canonical_name="valve_data_format",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                '"root"\n{\n    // note\n    "key" "value"\n}',
+                "// note",
+                "Valve KeyValues/VDF slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes="ValvePython/vdf confirms // comments; /* ... */ is parsed as data.",
+    ),
+    CommentSyntax(
+        family_name="x_bit_map_style",
+        canonical_name="x_bit_map",
+        regex_patterns=(r"/\*[\S\s]*?\*/",),
+        shared_regex_examples=(
+            CommentExample(
+                "/* note */\n#define dot_width 16\n#define dot_height 16",
+                "/* note */",
+                "Portable C89 XBM block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes="XBM is C source; only portable C89 /* ... */ comments are seeded.",
+    ),
+    CommentSyntax(
+        family_name="x_pix_map_style",
+        canonical_name="x_pix_map",
+        regex_patterns=(r"/\*[\S\s]*?\*/",),
+        shared_regex_examples=(
+            CommentExample(
+                "/* note */\nstatic char * plaid[] = {",
+                "/* note */",
+                "XPM3 C-wrapper block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nstatic char * plaid[] = {",
+                "/* note */",
+                "XPM3 additional C block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes="XPM3/C-style files use C block comments; // is carrier-dialect dependent.",
+    ),
+    CommentSyntax(
+        family_name="xbase_harbour_style",
+        canonical_name="xbase",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+            r"&&[^\r\n]*",
+            r"(?im)^[ \t]*(?:\*[^\r\n]*|note\*?(?=\s|$)[^\r\n]*)",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                '* note\n? "Goodbye!"',
+                "* note",
+                "Harbour/xBase leading star line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                'NOTE note\n? "Goodbye!"',
+                "NOTE note",
+                "Harbour/xBase NOTE statement comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                '? "Goodbye!" && note',
+                "&& note",
+                "Harbour/xBase trailing ampersand line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nRETURN",
+                "/* note */",
+                "Harbour/xBase non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                'NOTE* note\n? "Goodbye!"',
+                "NOTE* note",
+                "Harbour/xBase NOTE* statement comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                '? "Goodbye!" // note',
+                "// note",
+                "Harbour/xBase slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes=(
+            "Confirmed against Harbour/Clipper scope. The broad xBase family "
+            "may need dialect splitting if future corpora require stricter behavior."
+        ),
+    ),
+    CommentSyntax(
+        family_name="zil_string_comment_style",
+        canonical_name="zil",
+        regex_patterns=(r";\"(?:\\.|[^\"\\\r\n])*\"",),
+        shared_regex_examples=(
+            CommentExample(
+                ';"note"\n<ROUTINE GO () <PRINTI "Hello">>',
+                ';"note"',
+                "ZIL semicolon string comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes=(
+            "Conservatively implements only ;\"...\" string comments. General "
+            "semicolon expression comments require a ZIL-aware parser."
+        ),
+    ),
+    CommentSyntax(
+        family_name="zimpl_style",
+        canonical_name="zimpl",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\nmaximize profit: 25 * XB + 30 * XC; # trailing note",
+                "# note",
+                "Zimpl hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "maximize profit: 25 * XB + 30 * XC; # trailing note",
+                "# trailing note",
+                "Zimpl trailing hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="docs/comment_research/chunk_7_t_z_report.md",
+        implementation_source=(
+            "docs/comment_research/confirmation_reports/"
+            "chunk_7_t_z_confirmation.md"
+        ),
+        confidence="verified",
+        notes="Zimpl supports # comments to end of line; block comments are unsupported.",
+    ),
+    CommentSyntax(
         family_name="move_style",
         canonical_name="move",
         regex_patterns=(

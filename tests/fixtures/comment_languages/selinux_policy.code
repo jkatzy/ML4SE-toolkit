@@ -1,0 +1,14 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# grouped_line_1_a
+# grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # string_probe_1";
+value_4 = 4
+allow src_t dst_t:file read; # breaker_selinux_inline keeps #ifdef and C#
+value_10 = 10
+# breaker_selinux_markdown # Heading and C# token stay content
+value_11 = 11
