@@ -24,6 +24,23 @@ def _expected_query_match(sample, expected_match):
     return QueryMatch(sample[:start], sample[end:], expected_match)
 
 
+def _source_region_wrapped_sample(language, sample):
+    if language in {"literate_agda", "literate_haskell"}:
+        return f"\\begin{{code}}\n{sample}\n\\end{{code}}"
+    if language == "literate_coffeescript":
+        return f"~~~\n{sample}\n~~~"
+    return sample
+
+
+def _generated_case(language, sample, expected_match, case_id):
+    return GeneratedCommentCase(
+        language=language,
+        sample=_source_region_wrapped_sample(language, sample),
+        expected_match=expected_match,
+        case_id=case_id,
+    )
+
+
 def _iter_regex_examples_for_language(syntax, language):
     yield from syntax.shared_regex_examples
     if language == syntax.canonical_name:
@@ -54,11 +71,11 @@ def _build_single_line_cases():
                 continue
             sample = f"{example.expected_match}\nafter"
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=example.expected_match,
-                    case_id=f"{language}-generated-single-line",
+                _generated_case(
+                    language,
+                    sample,
+                    example.expected_match,
+                    f"{language}-generated-single-line",
                 )
             )
     return cases
@@ -79,11 +96,11 @@ def _build_grouped_line_cases():
             expected_match = f"{example.expected_match}\n{example.expected_match}"
             sample = f"{expected_match}\nafter"
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=expected_match,
-                    case_id=f"{language}-generated-line-block",
+                _generated_case(
+                    language,
+                    sample,
+                    expected_match,
+                    f"{language}-generated-line-block",
                 )
             )
     return cases
@@ -97,11 +114,11 @@ def _build_block_cases():
             if example is not None:
                 sample = f"{example.expected_match}\nafter"
                 cases.append(
-                    GeneratedCommentCase(
-                        language=language,
-                        sample=sample,
-                        expected_match=example.expected_match,
-                        case_id=f"{language}-generated-block",
+                    _generated_case(
+                        language,
+                        sample,
+                        example.expected_match,
+                        f"{language}-generated-block",
                     )
                 )
                 continue
@@ -113,11 +130,11 @@ def _build_block_cases():
             expected_match = f"{open_delim} block note {close_delim}"
             sample = f"{expected_match}\nafter"
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=expected_match,
-                    case_id=f"{language}-generated-block",
+                _generated_case(
+                    language,
+                    sample,
+                    expected_match,
+                    f"{language}-generated-block",
                 )
             )
     return cases
@@ -136,11 +153,11 @@ def _build_inline_cases():
             if line_example is not None:
                 sample = f"value = 1 {line_example.expected_match}\nreturn value"
                 cases.append(
-                    GeneratedCommentCase(
-                        language=language,
-                        sample=sample,
-                        expected_match=line_example.expected_match,
-                        case_id=f"{language}-generated-inline",
+                    _generated_case(
+                        language,
+                        sample,
+                        line_example.expected_match,
+                        f"{language}-generated-inline",
                     )
                 )
                 continue
@@ -154,11 +171,11 @@ def _build_inline_cases():
             if block_example is not None:
                 sample = f"value = 1 {block_example.expected_match} return value"
                 cases.append(
-                    GeneratedCommentCase(
-                        language=language,
-                        sample=sample,
-                        expected_match=block_example.expected_match,
-                        case_id=f"{language}-generated-inline",
+                    _generated_case(
+                        language,
+                        sample,
+                        block_example.expected_match,
+                        f"{language}-generated-inline",
                     )
                 )
                 continue
@@ -170,11 +187,11 @@ def _build_inline_cases():
             expected_match = f"{open_delim} inline note {close_delim}"
             sample = f"value = 1 {expected_match} return value"
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=expected_match,
-                    case_id=f"{language}-generated-inline",
+                _generated_case(
+                    language,
+                    sample,
+                    expected_match,
+                    f"{language}-generated-inline",
                 )
             )
     return cases
@@ -192,11 +209,11 @@ def _build_nested_cases():
         sample = f"before {expected_match} after"
         for language in syntax.language_names:
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=expected_match,
-                    case_id=f"{language}-generated-nested",
+                _generated_case(
+                    language,
+                    sample,
+                    expected_match,
+                    f"{language}-generated-nested",
                 )
             )
     return cases
@@ -222,11 +239,11 @@ def _build_block_with_inner_line_cases():
             else:
                 sample = f"before\n{expected_match}\nafter"
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=expected_match,
-                    case_id=f"{language}-generated-block-contains-line",
+                _generated_case(
+                    language,
+                    sample,
+                    expected_match,
+                    f"{language}-generated-block-contains-line",
                 )
             )
     return cases
@@ -267,11 +284,11 @@ def _build_outer_block_wins_cases():
                 continue
 
             cases.append(
-                GeneratedCommentCase(
-                    language=language,
-                    sample=sample,
-                    expected_match=expected_match,
-                    case_id=f"{language}-generated-outer-block-wins",
+                _generated_case(
+                    language,
+                    sample,
+                    expected_match,
+                    f"{language}-generated-outer-block-wins",
                 )
             )
     return cases
