@@ -1,0 +1,17 @@
+# breaker_nit_sof_header
+value_0 = 0
+# increment later fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# increment later grouped_line_1_a
+# increment later grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # increment later string_probe_1";
+value_4 = 4
+var breaker_nit = 1 # breaker_nit_inline_line
+value_5 = 5
+# #### breaker_nit_decorative_hashes
+value_6 = 6
+# # Heading breaker_nit_preserve_heading
+value_7 = 7

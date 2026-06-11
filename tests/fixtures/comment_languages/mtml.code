@@ -1,0 +1,37 @@
+<!-- breaker_mtml_sof_header -->
+value_0 = 0
+<!-- block fixture_1 in template output -->
+value_1 = 1
+<mt:Ignore>
+Template-only block fixture_2.
+</mt:Ignore>
+value_2 = 2
+value_inline_1 = 1 <!-- block inline_block_1 in template output --> + 2
+value_3 = 3
+<!-- block
+ * star_doc_1 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+in template output -->
+value_4 = 4
+<mt:Ignore>
+Template-only block
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+.
+</mt:Ignore>
+value_5 = 5
+value_string_1 = "not <!-- block string_probe_1 in template output -->";
+value_6 = 6
+<div><!-- breaker_mtml_inline_html_comment --></div>
+value_7 = 7
+<mt:Ignore>
+# breaker_mtml_hash_inside_ignore
+<!-- breaker_mtml_html_inside_ignore -->
+</mt:Ignore>
+value_8 = 8

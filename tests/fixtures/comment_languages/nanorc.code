@@ -1,0 +1,17 @@
+# breaker_nanorc_sof_header
+value_0 = 0
+# keep this aligned fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# keep this aligned grouped_line_1_a
+# keep this aligned grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # keep this aligned string_probe_1";
+value_4 = 4
+    # breaker_nanorc_indented_comment
+value_5 = 5
+# #### breaker_nanorc_decorative_hashes
+value_6 = 6
+# # Heading breaker_nanorc_preserve_heading
+value_7 = 7

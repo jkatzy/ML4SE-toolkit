@@ -1,0 +1,17 @@
+; breaker_m_sof_header
+value_0 = 0
+; entry point fixture_1
+value_1 = 1
+;;;;;;;; repeated_open_1
+value_2 = 2
+; entry point grouped_line_1_a
+; entry point grouped_line_1_b
+value_3 = 3
+value_string_1 = "not ; entry point string_probe_1";
+value_4 = 4
+set a=1 ; breaker_m_inline_comment
+value_5 = 5
+;;;;;;;; breaker_m_decorative_run
+value_6 = 6
+; # Heading breaker_m_preserve_hash_heading
+value_7 = 7

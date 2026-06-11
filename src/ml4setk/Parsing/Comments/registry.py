@@ -3761,6 +3761,796 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         confidence="verified",
         notes="Move supports //, /* ... */, ///, and /** ... */ comment forms.",
     ),
+    CommentSyntax(
+        family_name="m_style",
+        canonical_name="m",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                'HELLO ; entry point\n WRITE "hello",!\n QUIT',
+                "; entry point",
+                "M/MUMPS semicolon line comment after a label.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://mumps.sourceforge.net/docs.html ; "
+            "https://docs.yottadb.com/ProgrammersGuide/langfeat.html"
+        ),
+        implementation_source="https://gitlab.com/YottaDB/DB/YDB",
+        confidence="verified",
+        notes="M source uses semicolon comments to the end of the physical line.",
+    ),
+    CommentSyntax(
+        family_name="maxscript_style",
+        canonical_name="maxscript",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"--[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "-- create a box\nb = box length:10 width:10 height:10",
+                "-- create a box",
+                "MAXScript dash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\nb = sphere radius:5",
+                "/* block note */",
+                "MAXScript non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://help.autodesk.com/cloudhelp/2022/ENU/"
+            "MAXDEV-Overview/files/overview/"
+            "MAXDEV_Overview_overview_maxscript_html.html"
+        ),
+        implementation_source=(
+            "Autodesk MAXScript interpreter; "
+            "https://github.com/tree-sitter-grammars/tree-sitter-maxscript"
+        ),
+        confidence="verified",
+        notes="MAXScript supports -- line comments and non-nested /* ... */ blocks.",
+    ),
+    CommentSyntax(
+        family_name="mcfunction_style",
+        canonical_name="mcfunction",
+        regex_patterns=(r"(?m)^[ \t]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# load setup commands\nsay ready",
+                "# load setup commands",
+                "Minecraft function comment-only line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://minecraft.wiki/w/Function_(Java_Edition)",
+        implementation_source="https://github.com/SpyglassMC/Spyglass",
+        confidence="high",
+        notes=(
+            "Minecraft function comments must have # as the first non-whitespace "
+            "character; trailing command comments are intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="mercury_style",
+        canonical_name="mercury",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"%[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                ":- module hello.\n% exported predicate\n:- interface.",
+                "% exported predicate",
+                "Mercury percent line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\n:- implementation.",
+                "/* block note */",
+                "Mercury non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.mercurylang.org/information/doc-release/"
+            "mercury_ref/Lexical-syntax.html"
+        ),
+        implementation_source="https://github.com/Mercury-Language/mercury",
+        confidence="verified",
+        notes="Mercury uses % line comments and non-nested /* ... */ blocks.",
+    ),
+    CommentSyntax(
+        family_name="metal_style",
+        canonical_name="metal",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "kernel void fill() {\n  // write value\n}",
+                "// write value",
+                "Metal slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\nfloat twice(float x) { return x * 2.0; }",
+                "/* block note */",
+                "Metal non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://developer.apple.com/metal/"
+            "Metal-Shading-Language-Specification.pdf"
+        ),
+        implementation_source="https://github.com/tree-sitter-grammars/tree-sitter-metal",
+        confidence="verified",
+        notes="Metal source follows C++ lexical comments with non-nesting blocks.",
+    ),
+    CommentSyntax(
+        family_name="mirah_style",
+        canonical_name="mirah",
+        regex_patterns=(
+            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "class Greeter\n  # print a greeting\nend",
+                "# print a greeting",
+                "Mirah hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "=begin\nblock note\n=end\nclass Greeter\nend",
+                "=begin\nblock note\n=end",
+                "Mirah line-oriented begin/end block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://github.com/mirah/mirah/wiki",
+        implementation_source="https://github.com/mirah/mirah",
+        confidence="high",
+        notes="Mirah follows Ruby-style # line comments and =begin/=end blocks.",
+    ),
+    CommentSyntax(
+        family_name="mirc_script_style",
+        canonical_name="mirc_script",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r";[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "alias hello {\n  ; show a message\n  echo -a hello\n}",
+                "; show a message",
+                "mIRC script semicolon line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note\nalias oldhello { echo -a old }\n*/",
+                "/* block note\nalias oldhello { echo -a old }\n*/",
+                "mIRC script non-nested slash block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://www.mirc.com/help/html/index.html",
+        implementation_source="proprietary mIRC interpreter; no public lexer source found",
+        confidence="high",
+        notes="mIRC script supports semicolon line comments and /* ... */ blocks.",
+    ),
+    CommentSyntax(
+        family_name="mlir_style",
+        canonical_name="mlir",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "// A function that returns its argument.\nfunc.func @id()",
+                "// A function that returns its argument.",
+                "MLIR slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://mlir.llvm.org/docs/LangRef/",
+        implementation_source=(
+            "https://github.com/llvm/llvm-project/tree/main/mlir/lib/AsmParser"
+        ),
+        confidence="verified",
+        notes="MLIR supports // comments only; # has other grammar roles.",
+    ),
+    CommentSyntax(
+        family_name="modula_2_style",
+        canonical_name="modula_2",
+        nested_delimiters=(("(*", "*)"),),
+        shared_nested_examples=(
+            CommentExample(
+                "MODULE Demo;\n(* outer (* inner *) outer *)\nBEGIN\nEND Demo.",
+                "(* outer (* inner *) outer *)",
+                "Modula-2 nested star block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.modula2.org/reference/lexical.html ; "
+            "https://gcc.gnu.org/onlinedocs/gm2/Comments.html"
+        ),
+        implementation_source="https://gcc.gnu.org/git/?p=gcc.git;a=tree;f=gcc/m2",
+        confidence="verified",
+        notes="Standard Modula-2 comments use nested (* ... *) blocks only.",
+    ),
+    CommentSyntax(
+        family_name="modula_3_style",
+        canonical_name="modula_3",
+        nested_delimiters=(("(*", "*)"),),
+        shared_nested_examples=(
+            CommentExample(
+                "MODULE Demo;\n(* outer (* inner *) outer *)\nBEGIN\nEND Demo.",
+                "(* outer (* inner *) outer *)",
+                "Modula-3 nested star block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.cs.purdue.edu/homes/hosking/m3/reference/lexical.html",
+        implementation_source="https://github.com/modula3/cm3",
+        confidence="verified",
+        notes="Modula-3 comments use nested (* ... *) blocks only.",
+    ),
+    CommentSyntax(
+        family_name="module_management_system_style",
+        canonical_name="module_management_system",
+        regex_patterns=(r"![^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "! Build the image from object files\nprogram.exe : main.obj",
+                "! Build the image from object files",
+                "OpenVMS MMS exclamation line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.vmssoftware.com/"
+            "vsi-decset-for-openvms-guide-to-the-module-management-system/"
+        ),
+        implementation_source="proprietary OpenVMS MMS; no public lexer source found",
+        confidence="high",
+        notes="Module Management System description files use ! to end of line.",
+    ),
+    CommentSyntax(
+        family_name="monkey_style",
+        canonical_name="monkey",
+        regex_patterns=(
+            r"(?ims)^[ \t]*#rem\b[\S\s]*?^[ \t]*#end\b[^\r\n]*",
+            r"'[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                'Function Main()\n    \' show a greeting\n    Print "hello"\nEnd',
+                "' show a greeting",
+                "Monkey apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "#Rem\nTemporary notes for this module.\n#End\nFunction Main()\nEnd",
+                "#Rem\nTemporary notes for this module.\n#End",
+                "Monkey #Rem/#End block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://monkeycoder.co.nz/Community/posts.php?topic=3441 ; "
+            "https://github.com/blitz-research/monkey"
+        ),
+        implementation_source="https://github.com/blitz-research/monkey",
+        confidence="high",
+        notes="Monkey uses apostrophe line comments and non-nested #Rem/#End blocks.",
+    ),
+    CommentSyntax(
+        family_name="monkey_c_style",
+        canonical_name="monkey_c",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "function initialize() {\n    // configure the view\n}",
+                "// configure the view",
+                "Monkey C slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\nfunction compute() {\n}",
+                "/* block note */",
+                "Monkey C non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://developer.garmin.com/connect-iq/core-topics/monkey-c/",
+        implementation_source="Garmin Connect IQ compiler; no public lexer source found",
+        confidence="verified",
+        notes="Monkey C uses C/Java-style line and non-nested block comments.",
+    ),
+    CommentSyntax(
+        family_name="moonscript_style",
+        canonical_name="moonscript",
+        regex_patterns=(
+            r"--\[(=*)\[[\s\S]*?\]\1\]",
+            r"--(?!\[[=]*\[)[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "-- compute a total\ntotal = 1 + 2",
+                "-- compute a total",
+                "MoonScript dash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "--[[\nblock note\n]]\nprint total",
+                "--[[\nblock note\n]]",
+                "MoonScript Lua-style long block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://moonscript.org/reference/#comments",
+        implementation_source="https://github.com/leafo/moonscript",
+        confidence="verified",
+        notes="MoonScript uses -- line comments and Lua long-bracket block comments.",
+    ),
+    CommentSyntax(
+        family_name="motorola_68k_assembly_style",
+        canonical_name="motorola_68k_assembly",
+        regex_patterns=(
+            r";[^\r\n]*",
+            r"(?m)^\*[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "* reset vector table\n        move.w  #1,d0",
+                "* reset vector table",
+                "Motorola 68K column-one star comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "        move.w  #1,d0      ; load flag\n        rts",
+                "; load flag",
+                "Motorola 68K semicolon trailing comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.nxp.com/docs/en/reference-manual/M68000PRM.pdf",
+        implementation_source=(
+            "https://sourceware.org/git/?p=binutils-gdb.git ; "
+            "https://github.com/vasm-assembler/vasm"
+        ),
+        confidence="high",
+        notes="The * form is intentionally column-sensitive; ; runs to newline.",
+    ),
+    CommentSyntax(
+        family_name="mql4_style",
+        canonical_name="mql4",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "//--- Single-line comment\nint total = 0;",
+                "//--- Single-line comment",
+                "MQL4 slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\nint total = 1;",
+                "/* block note */",
+                "MQL4 non-nested slash block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://docs.mql4.com/basis/syntax/commentaries",
+        implementation_source="MetaQuotes MQL4 compiler; no public lexer source found",
+        confidence="verified",
+        notes="Official MQL4 docs state multi-line comments cannot nest.",
+    ),
+    CommentSyntax(
+        family_name="mql5_style",
+        canonical_name="mql5",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "//--- Single-line comment\nint total = 0;",
+                "//--- Single-line comment",
+                "MQL5 slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\nint total = 1;",
+                "/* block note */",
+                "MQL5 non-nested slash block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://www.mql5.com/en/docs/basis/syntax/commentaries",
+        implementation_source="MetaQuotes MQL5 compiler; no public lexer source found",
+        confidence="verified",
+        notes="MQL5 mirrors the documented MQL4 comment behavior.",
+    ),
+    CommentSyntax(
+        family_name="mtml_style",
+        canonical_name="mtml",
+        regex_patterns=(
+            r"(?is)<mt:ignore\b[^>]*>[\S\s]*?</mt:ignore>",
+            r"<!--[\S\s]*?-->",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "<!-- block note in template output -->\n<mt:Entries />",
+                "<!-- block note in template output -->",
+                "MTML HTML comment block.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "<mt:Ignore>\nTemplate-only block note.\n</mt:Ignore>\n<mt:Entries />",
+                "<mt:Ignore>\nTemplate-only block note.\n</mt:Ignore>",
+                "Movable Type Ignore block.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://www.movabletype.org/documentation/appendices/tags/ ; "
+            "https://www.movabletype.org/documentation/appendices/tags/ignore.html"
+        ),
+        implementation_source="https://github.com/movabletype/movabletype",
+        confidence="high",
+        notes="MTML supports HTML comments and <mt:Ignore> template blocks.",
+    ),
+    CommentSyntax(
+        family_name="mupad_style",
+        canonical_name="mupad",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "// compute a symbolic result\nf := x -> x^2:",
+                "// compute a symbolic result",
+                "MuPAD slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* block note */\ng := x -> x + 1:",
+                "/* block note */",
+                "MuPAD non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.mathworks.com/help/symbolic/mupad_programming.html",
+        implementation_source="proprietary MuPAD engine; no public lexer source found",
+        confidence="high",
+        notes="MuPAD supports // line comments and non-nested /* ... */ blocks.",
+    ),
+    CommentSyntax(
+        family_name="nanorc_style",
+        canonical_name="nanorc",
+        regex_patterns=(r"(?m)^[ \t]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "set tabsize 4\n# keep this aligned\nset softwrap",
+                "# keep this aligned",
+                "nanorc hash-prefixed config comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.nano-editor.org/dist/latest/nanorc.5.html",
+        implementation_source="https://github.com/madnight/nano/blob/master/src/rcfile.c",
+        confidence="verified",
+        notes="nanorc comments require # as the first non-blank line character.",
+    ),
+    CommentSyntax(
+        family_name="nasal_style",
+        canonical_name="nasal",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "var throttle = 0.5; # clamp before use\nvar next = throttle + 0.1;",
+                "# clamp before use",
+                "Nasal hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://wiki.flightgear.org/Nasal_scripting_language",
+        implementation_source="https://github.com/andyross/nasal/blob/master/src/lex.c",
+        confidence="verified",
+        notes="The Nasal lexer skips from # to the line end.",
+    ),
+    CommentSyntax(
+        family_name="nasl_style",
+        canonical_name="nasl",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                'display("probe"); # audit note\nexit(0);',
+                "# audit note",
+                "NASL hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="unresolved",
+        implementation_source=(
+            "https://github.com/greenbone/openvas-scanner/blob/main/"
+            "nasl/nasl_grammar.y"
+        ),
+        confidence="verified",
+        notes="The NASL grammar enters a comment state after # and exits on newline.",
+    ),
+    CommentSyntax(
+        family_name="ncl_style",
+        canonical_name="ncl",
+        regex_patterns=(
+            r"/;[\S\s]*?;/",
+            r";[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "x = 1\n; calibration note\ny = x + 1",
+                "; calibration note",
+                "NCL semicolon line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "x = 1\n/;\n  calibration note\n;/\ny = x + 1",
+                "/;\n  calibration note\n;/",
+                "NCL 6.4.0+ slash-semicolon block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://www.ncl.ucar.edu/Document/Manuals/Ref_Manual/"
+            "NclStatements.shtml#Comments"
+        ),
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="NCL 6.4.0 and later add /; ... ;/ blocks; ; line comments are older.",
+    ),
+    CommentSyntax(
+        family_name="nearley_style",
+        canonical_name="nearley",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "main -> word\n# parser note\nword -> [a-z]:+",
+                "# parser note",
+                "nearley hash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://nearley.js.org/docs/grammar",
+        implementation_source=(
+            "https://github.com/kach/nearley/blob/master/"
+            "lib/nearley-language-bootstrapped.ne"
+        ),
+        confidence="verified",
+        notes="nearley tokenizes # through the rest of the line as a comment.",
+    ),
+    CommentSyntax(
+        family_name="nemerle_style",
+        canonical_name="nemerle",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "def value = 1; // increment later\ndef next = value + 1;",
+                "// increment later",
+                "Nemerle slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "def value = 1;\n/* block note */\ndef next = value + 1;",
+                "/* block note */",
+                "Nemerle non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://github.com/rsdn/nemerle/wiki",
+        implementation_source="https://github.com/rsdn/nemerle/blob/master/ncc/parsing/Lexer.n",
+        confidence="verified",
+        notes="Nemerle documentation comments are variants of // and /* ... */.",
+    ),
+    CommentSyntax(
+        family_name="nesc_style",
+        canonical_name="nesc",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "int value = 1;\n// calibration\nint next = value + 1;",
+                "// calibration",
+                "nesC slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "int value = 1;\n/* block note */\nint next = value + 1;",
+                "/* block note */",
+                "nesC non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://nescc.sourceforge.net/papers/nesc-ref.pdf",
+        implementation_source="https://github.com/tinyos/nesc/blob/master/src/c-lex.c",
+        confidence="verified",
+        notes="nesC inherits C-family lexical comments; doc forms are delimiter variants.",
+    ),
+    CommentSyntax(
+        family_name="netlinx_style",
+        canonical_name="netlinx",
+        regex_patterns=(
+            r"\(\*[\S\s]*?\*\)",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "DEFINE_DEVICE\ndvTP = 10001:1:0 // main touch panel",
+                "// main touch panel",
+                "NetLinx slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "(*\n  block note\n*)\nDEFINE_START",
+                "(*\n  block note\n*)",
+                "NetLinx non-nested paren-star block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://dextra.com.mx/img/files/PRODUCTOS/AMX/NX-2200/"
+            "NetLinx.LanguageReferenceGuide.pdf"
+        ),
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="NetLinx supports // lines and non-nested (* ... *) blocks.",
+    ),
+    CommentSyntax(
+        family_name="newlisp_style",
+        canonical_name="newlisp",
+        regex_patterns=(
+            r";[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "(set 'value 1) ; increment later\n(+ value 1)",
+                "; increment later",
+                "newLISP semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "# same file can use hash comments\n(+ value 1)",
+                "# same file can use hash comments",
+                "newLISP hash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://web.mit.edu/newlisp_v10.7.1/share/doc/newlisp/"
+            "newlisp_manual.html"
+        ),
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="newLISP documents both ; and # as line-comment leaders.",
+    ),
+    CommentSyntax(
+        family_name="nit_style",
+        canonical_name="nit",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "var value = 1 # increment later\nvar next = value + 1",
+                "# increment later",
+                "Nit hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://nitlanguage.org/doc/nitc/grammar.html",
+        implementation_source=(
+            "https://github.com/nitlang/nit/blob/master/src/parser/"
+            "nit.sablecc3xx"
+        ),
+        confidence="verified",
+        notes="Nit grammar defines # comments through the line end.",
+    ),
+    CommentSyntax(
+        family_name="nwscript_style",
+        canonical_name="nwscript",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "void main() {\n  // initialise game state\n  int x = 1;\n}",
+                "// initialise game state",
+                "NWScript slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "void main() {\n  /* block note */\n  int x = 1;\n}",
+                "/* block note */",
+                "NWScript non-nested slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://nwnlexicon.com/index.php?title=NWScript",
+        implementation_source=(
+            "https://github.com/nwneetools/nwnsc/blob/master/"
+            "_NscLib/NscContext.cpp"
+        ),
+        confidence="verified",
+        notes="NWScript consumes // through line end and /* through the first */.",
+    ),
 )
 
 
