@@ -1005,6 +1005,286 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="component_pascal_style",
+        canonical_name="component_pascal",
+        nested_delimiters=(("(*", "*)"),),
+        shared_nested_examples=(
+            CommentExample(
+                "(* outer (* inner *) outer *)\nMODULE Example;",
+                "(* outer (* inner *) outer *)",
+                "Component Pascal nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://blackbox.oberon.org/cp-lang.pdf",
+        confidence="high",
+        notes=(
+            "Component Pascal uses Oberon-family nested (* ... *) comments. "
+            "Pascal brace comments and // line comments are intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="cool_style",
+        canonical_name="cool",
+        regex_patterns=(r"--[^\r\n]*",),
+        nested_delimiters=(("(*", "*)"),),
+        shared_regex_examples=(
+            CommentExample(
+                "-- note\nclass Main inherits IO {\n}",
+                "-- note",
+                "Cool dash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "(* outer (* inner *) outer *)\nclass Main inherits IO {\n}",
+                "(* outer (* inner *) outer *)",
+                "Cool nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://theory.stanford.edu/~aiken/software/cool/cool-manual.pdf"
+        ),
+        implementation_source=(
+            "https://theory.stanford.edu/~aiken/software/cooldist/assignments/"
+            "PA2/cool.flex.SKEL"
+        ),
+        confidence="verified",
+        notes="Cool supports -- line comments and true nested (* ... *) comments.",
+    ),
+    CommentSyntax(
+        family_name="csound_style",
+        canonical_name="csound",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r";[^\r\n]*",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "; note\ninstr 1\nendin",
+                "; note",
+                "Csound orchestra semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "instr 1\n  a1 oscili 0.5, 440 // note\nendin",
+                "// note",
+                "Csound orchestra slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\ninstr 1\nendin",
+                "/* note */",
+                "Csound orchestra block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://csound.com/docs/manual/OrchTop.html; "
+            "https://csound.com/get-started.html"
+        ),
+        implementation_source=(
+            "https://github.com/nwhetsell/language-csound/blob/master/"
+            "grammars/csound.cson"
+        ),
+        confidence="verified",
+        notes="Generic Csound covers orchestra-style ;, //, and non-nested /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="csound_document_style",
+        canonical_name="csound_document",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r";[^\r\n]*",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "<CsoundSynthesizer>\n<CsInstruments>\n; note\n</CsInstruments>\n</CsoundSynthesizer>",
+                "; note",
+                "Csound document instrument semicolon comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "<CsoundSynthesizer>\n<CsInstruments>\n// note\n</CsInstruments>\n</CsoundSynthesizer>",
+                "// note",
+                "Csound document instrument slash comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "<CsoundSynthesizer>\n<CsInstruments>\n/* note */\n</CsInstruments>\n</CsoundSynthesizer>",
+                "/* note */",
+                "Csound document instrument block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://csound.com/docs/manual/CommandUnifile.html; "
+            "https://csound.com/docs/manual/PrefaceGettingStarted.html; "
+            "https://csound.com/docs/manual/ScoreStatements.html"
+        ),
+        implementation_source=(
+            "https://github.com/nwhetsell/language-csound/blob/master/"
+            "grammars/csound-document.cson"
+        ),
+        confidence="high",
+        notes=(
+            "Encodes the registry-safe Csound document delimiters only. "
+            "CsOptions # comments and CsScore c statements are section-specific "
+            "and are excluded from this global lexical entry."
+        ),
+    ),
+    CommentSyntax(
+        family_name="csound_score_style",
+        canonical_name="csound_score",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"(?m)^[ \t]*c(?:[ \t][^\r\n]*)?$",
+            r";[^\r\n]*",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "; note\nf 1 0 1024 10 1",
+                "; note",
+                "Csound score semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "// note\ni 1 0 1",
+                "// note",
+                "Csound score slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "c note\ni 1 0 1",
+                "c note",
+                "Csound score c comment statement.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\ni 1 0 1",
+                "/* note */",
+                "Csound score block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://csound.com/docs/manual/ScoreStatements.html",
+        implementation_source=(
+            "https://github.com/nwhetsell/language-csound/blob/master/"
+            "grammars/csound-score.cson"
+        ),
+        confidence="high",
+        notes=(
+            "Score c comments are line-start statements; the regex keeps them "
+            "anchored so p-field text is not treated as a comment."
+        ),
+    ),
+    CommentSyntax(
+        family_name="cue_sheet_style",
+        canonical_name="cue_sheet",
+        regex_patterns=(r"(?mi)^[ \t]*REM\b[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "REM note\nTRACK 01 AUDIO",
+                "REM note",
+                "Cue sheet REM remark command.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://wiki.hydrogenaudio.org/index.php?title=Cue_sheet; "
+            "https://github.com/libyal/libodraw/blob/main/documentation/"
+            "CUE%20sheet%20format.asciidoc"
+        ),
+        implementation_source=(
+            "https://github.com/lipnitsk/libcue/blob/master/cue_scanner.l"
+        ),
+        confidence="high",
+        notes=(
+            "Only standard line-anchored REM remarks are encoded. Non-standard "
+            "semicolon and // variants are excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="cweb_style",
+        canonical_name="cweb",
+        regex_patterns=(r"@q[^\r\n]*?@>",),
+        shared_regex_examples=(
+            CommentExample(
+                "@q source-only note@>\n@* Introduction.",
+                "@q source-only note@>",
+                "CWEB control text ignored by CTANGLE and CWEAVE.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://mirrors.ctan.org/web/c_cpp/cweb/cwebman.pdf; "
+            "https://www-cs-faculty.stanford.edu/~knuth/cweb.html"
+        ),
+        implementation_source="https://github.com/ascherer/cweb/blob/master/ctangle.w",
+        confidence="high",
+        notes=(
+            "Only CWEB-specific @q ... @> control text is encoded. C/C++ and "
+            "TeX comments are context-dependent within CWEB and are excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="cycript_style",
+        canonical_name="cycript",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "// note\nvar x = 1;",
+                "// note",
+                "Cycript slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nvar x = 1;",
+                "/* note */",
+                "Cycript block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.cycript.org/manual/; https://www.cycript.org/; "
+            "https://tc39.es/ecma262/#sec-comments"
+        ),
+        confidence="high",
+        notes="Cycript uses JavaScript/Objective-C-family non-nested slash comments.",
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
@@ -3573,6 +3853,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="coffeescript_style",
         canonical_name="coffeescript",
+        aliases=("cson", "emberscript"),
         regex_patterns=(
             r"###[\S\s]*?###",
             r"#.*",
@@ -3593,9 +3874,250 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
             ),
         ),
-        documentation_source="https://coffeescript.org/",
+        documentation_source=(
+            "https://coffeescript.org/; https://github.com/bevry/cson; "
+            "https://github.com/ghempton/ember-script"
+        ),
+        implementation_source=(
+            "https://registry.npmjs.org/cson-parser/-/cson-parser-4.0.9.tgz; "
+            "https://github.com/ghempton/ember-script/blob/master/src/grammar.pegjs"
+        ),
         confidence="verified",
-        notes="CoffeeScript uses # line comments and ### block comments.",
+        notes=(
+            "CoffeeScript, CSON, and EmberScript use # line comments and "
+            "non-nested ### block comments."
+        ),
+    ),
+    CommentSyntax(
+        family_name="denizenscript_style",
+        canonical_name="denizenscript",
+        regex_patterns=(r"(?m)^[ \t]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "pay_command:\n  type: command\n  # note\n  script:\n  - narrate \"ready # text\"",
+                "  # note",
+                "DenizenScript full-line hash comment after indentation.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://guide.denizenscript.com/guides/troubleshooting/"
+            "common-mistakes.html; https://meta.denizenscript.com/Docs/Commands/"
+        ),
+        implementation_source=(
+            "https://github.com/DenizenScript/Denizen-Core/blob/"
+            "31300d6ab58c840a3168bd15bc46caf00b5fc418/src/main/java/com/"
+            "denizenscript/denizencore/scripts/ScriptHelper.java"
+        ),
+        confidence="verified",
+        notes=(
+            "Only trimmed full-line # comments are encoded. Inline # in command "
+            "lines is script text and is intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="e_style",
+        canonical_name="e",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\ndef a := 3",
+                "# note",
+                "E line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.skyhunter.com/marcs/ewalnut.html; "
+            "https://erights.org/elang/quick-ref.html"
+        ),
+        confidence="high",
+        notes=(
+            "Ordinary # comments are encoded. Edoc /** ... */ comments are "
+            "definition-context dependent and ordinary /* ... */ was not confirmed."
+        ),
+    ),
+    CommentSyntax(
+        family_name="eagle_style",
+        canonical_name="eagle",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "int i; // note",
+                "// note",
+                "EAGLE ULP slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nint i = 0;",
+                "/* note */",
+                "EAGLE ULP block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://help.autodesk.com/cloudhelp/ENU/Fusion-ECAD/files/"
+            "ECD-ULP-COMMENT-REF.htm; https://web.mit.edu/xavid/arch/i386_rhel4/"
+            "help/133.htm"
+        ),
+        confidence="verified",
+        notes="EAGLE ULP block comments stop at the first */ and do not nest.",
+    ),
+    CommentSyntax(
+        family_name="ebnf_style",
+        canonical_name="ebnf",
+        nested_delimiters=(("(*", "*)"),),
+        shared_nested_examples=(
+            CommentExample(
+                "(* outer (* inner *) outer *)\nsyntax = syntax rule;",
+                "(* outer (* inner *) outer *)",
+                "ISO EBNF nested textual comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf; "
+            "https://www.cl.cam.ac.uk/~mgk25/iso-ebnf.html"
+        ),
+        implementation_source=(
+            "https://slebok.github.io/zoo/%C2%A7wip/metasyntax/"
+            "ebnf-iso-1/extracted/index.html"
+        ),
+        confidence="verified",
+        notes="ISO/IEC 14977 EBNF uses recursive (* ... *) comments; ABNF ; is excluded.",
+    ),
+    CommentSyntax(
+        family_name="ec_style",
+        canonical_name="ec",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "PrintLn(\"hello\"); // note",
+                "// note",
+                "eC slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nclass Greeter : Window { }",
+                "/* note */",
+                "eC block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/ecere/ecere-sdk; "
+            "https://opensource.com/article/17/9/ecere"
+        ),
+        implementation_source=(
+            "https://github.com/ecere/eC/blob/8a633973133bb007e446bead00f30f5492d5a23b/"
+            "ectp/src/lexer.l"
+        ),
+        confidence="cross-checked",
+        notes="eC uses // and non-nested /* ... */ comments; # is preprocessor input.",
+    ),
+    CommentSyntax(
+        family_name="edje_data_collection_style",
+        canonical_name="edje_data_collection",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "collections {\n  // note\n  group { }\n}",
+                "// note",
+                "Edje Data Collection slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "collections {\n  /* note */\n  group { }\n}",
+                "/* note */",
+                "Edje Data Collection block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.enlightenment.org/_legacy_embed/edje_main.html; "
+            "https://github.com/Enlightenment/efl/blob/master/src/examples/edje/"
+            "entry.edc"
+        ),
+        implementation_source=(
+            "https://github.com/Enlightenment/efl/blob/"
+            "12494e95d4070a32bde155e85fe815900651c9c4/src/bin/edje/"
+            "edje_cc_parse.c"
+        ),
+        confidence="verified",
+        notes=(
+            "EDC uses // and non-nested /* ... */ comments outside strings. "
+            "# preprocessor metadata is excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="filebench_wml_style",
+        canonical_name="filebench_wml",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\nset $dir=/tmp\nrun 60",
+                "# note",
+                "Filebench WML hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/filebench/filebench; "
+            "https://github-wiki-see.page/m/filebench/filebench/wiki/"
+            "Workload-model-language"
+        ),
+        implementation_source="https://github.com/filebench/filebench/blob/master/parser_lex.l",
+        confidence="verified",
+        notes="Filebench WML uses # line comments and has no block-comment rule.",
+    ),
+    CommentSyntax(
+        family_name="flux_style",
+        canonical_name="flux",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "from(bucket: \"example\")\n  // note\n  |> range(start: -1h)",
+                "// note",
+                "Flux slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.influxdata.com/flux/v0/spec/lexical-elements/; "
+            "https://docs.influxdata.com/flux/v0/spec/"
+        ),
+        implementation_source=(
+            "https://github.com/influxdata/flux/blob/master/libflux/flux-core/"
+            "src/scanner/scanner.rl"
+        ),
+        confidence="verified",
+        notes="Flux v0 supports // line comments only; multiline comments are excluded.",
     ),
     CommentSyntax(
         family_name="fennel_style",

@@ -1,0 +1,15 @@
+value_0 = 0
+// fixture_1
+value_1 = 1
+//////// repeated_open_1
+value_2 = 2
+/// odd_repeated_open_1
+value_3 = 3
+// grouped_line_1_a
+// grouped_line_1_b
+value_4 = 4
+value_string_1 = "not // string_probe_1";
+value_5 = 5
+from(bucket: "af") // af_flux_inline keeps http://example.test and --flag
+  |> range(start: -1h) // af_flux_second_inline keeps C# token
+value_af_flux_0 = 0
