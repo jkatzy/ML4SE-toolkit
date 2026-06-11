@@ -901,6 +901,43 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="click_style",
+        canonical_name="click",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"/\*[\S\s]*?\*/",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "src -> queue; // note\nqueue -> sink;",
+                "// note",
+                "Click slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "src -> /* note */ queue;",
+                "/* note */",
+                "Click non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/kohler/click/blob/master/doc/click.5"
+        ),
+        implementation_source=(
+            "https://github.com/kohler/click/blob/master/lib/lexer.cc"
+        ),
+        confidence="verified",
+        notes=(
+            "Click uses // and non-nested /* ... */ comments throughout "
+            "configuration files and strings. Column-zero # forms are line "
+            "directives, not comments, and are intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

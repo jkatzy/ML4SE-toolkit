@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `18`
-- Needs research or confirmation: `13`
+- Assigned languages: `17`
+- Needs research or confirmation: `12`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `5`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Click | click | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Add hash-comment tests after confirming the Click parser docs. |
 | high | CLIPS | clips | needs_research_or_confirmation | medium | unresolved | unresolved | ; | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify CLIPS comment syntax and add line/block tests. |
 | high | Closure Templates | closure_templates | needs_research_or_confirmation | low | unresolved | unresolved | unsupported | {* ... *} | first closing delimiter wins | unsupported | unresolved | unresolved | Verify Soy/Closure Templates comment syntax before seeding. |
 | high | Component Pascal | component_pascal | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | (* ... *) | first closing delimiter wins | unsupported | unresolved | unresolved | Verify before seeding; only the block delimiter is tentatively known. |
