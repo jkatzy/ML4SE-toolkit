@@ -731,32 +731,32 @@ shared void run() {
 
 ## Chapel
 - Registry key: `chapel`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Chapel 2.8 current documentation, Chapel 0.98 specification, and current compiler scanner`
+- Version-specific syntax: `No comment-syntax difference found across the checked historical and current specifications.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Termination behavior: `line comments run to newline or EOF; block comments use balanced recursive delimiters`
+- Nested comments: `true nesting supported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Chapel 2.8 lexical structure](https://chapel-lang.org/docs/language/spec/lexical-structure.html#comments); [Chapel 0.98 specification](https://chapel-lang.org/spec/spec-0.98.pdf)
+- Implementation source: [Chapel scanner](https://github.com/chapel-lang/chapel/blob/main/frontend/lib/parsing/lexer-help.h)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Chapel docs and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Implemented in the registry with slash-line and nested-block fixtures.`
+- Notes: `The current scanner increments and decrements a nesting depth for block delimiters.`
 
 - Example - line:
-```text
-var x = 1;
-// comment
-var y = 2;
+```chapel
+proc main() {
+  writeln("hello"); // note
+}
 ```
 - Example - block:
-```text
-var x = 1;
-/* comment */
-var y = 2;
+```chapel
+proc main() {
+  /* outer /* note */ outer */
+}
 ```
 
 ## Checksums

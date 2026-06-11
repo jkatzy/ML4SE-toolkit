@@ -752,6 +752,45 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="chapel_style",
+        canonical_name="chapel",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                'proc main() {\n  writeln("hello"); // note\n}',
+                "// note",
+                "Chapel slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "proc main() {\n  /* outer /* note */ outer */\n}",
+                "/* outer /* note */ outer */",
+                "Chapel recursively nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://chapel-lang.org/docs/language/spec/lexical-structure.html"
+            "#comments"
+        ),
+        implementation_source=(
+            "https://github.com/chapel-lang/chapel/blob/main/frontend/lib/"
+            "parsing/lexer-help.h"
+        ),
+        confidence="verified",
+        notes=(
+            "Chapel line comments run to newline and /* ... */ comments are "
+            "balanced with recursive nesting. The current 2.8 specification, "
+            "the 0.98 specification, and the current compiler scanner agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

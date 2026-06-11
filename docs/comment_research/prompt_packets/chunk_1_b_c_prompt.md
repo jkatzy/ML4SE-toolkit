@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `22`
-- Needs research or confirmation: `20`
+- Assigned languages: `21`
+- Needs research or confirmation: `19`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `2`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Chapel | chapel | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against Chapel docs and add C-like comment tests. |
 | high | Checksums | checksums | needs_research_or_confirmation | low | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Confirm the file format before adding a registry entry. |
 | high | CIL | cil | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | unresolved | unresolved | Verify against the IL syntax docs and add C-style comment tests. |
 | high | Cirru | cirru | needs_research_or_confirmation | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Cirru syntax before adding registry support. |
