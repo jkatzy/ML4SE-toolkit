@@ -1,0 +1,19 @@
+// breaker_mlir_sof_header
+value_0 = 0
+// A function that returns its argument. fixture_1
+value_1 = 1
+//////// repeated_open_1
+value_2 = 2
+/// odd_repeated_open_1
+value_3 = 3
+// A function that returns its argument. grouped_line_1_a
+// A function that returns its argument. grouped_line_1_b
+value_4 = 4
+value_string_1 = "not // A function that returns its argument. string_probe_1";
+value_5 = 5
+func.func @breaker() { // breaker_mlir_inline_line
+  return
+}
+value_6 = 6
+// # breaker_mlir_hash_text_not_delimiter
+value_7 = 7

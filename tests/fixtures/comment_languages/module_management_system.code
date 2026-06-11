@@ -1,0 +1,17 @@
+! breaker_mms_sof_header
+value_0 = 0
+! Build the image from object files fixture_1
+value_1 = 1
+!!!!!!!! repeated_open_1
+value_2 = 2
+! Build the image from object files grouped_line_1_a
+! Build the image from object files grouped_line_1_b
+value_3 = 3
+value_string_1 = "not ! Build the image from object files string_probe_1";
+value_4 = 4
+program.exe : main.obj ! breaker_mms_inline_comment
+value_5 = 5
+!!!!!!!! breaker_mms_decorative_run
+value_6 = 6
+! # Heading breaker_mms_preserve_hash_heading
+value_7 = 7

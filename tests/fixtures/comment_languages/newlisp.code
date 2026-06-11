@@ -1,0 +1,26 @@
+; breaker_newlisp_sof_header
+value_0 = 0
+; increment later fixture_1
+value_1 = 1
+# same file can use hash comments fixture_2
+value_2 = 2
+;;;;;;;; repeated_open_1
+value_3 = 3
+######## repeated_open_2
+value_4 = 4
+; increment later grouped_line_1_a
+; increment later grouped_line_1_b
+value_5 = 5
+# same file can use hash comments grouped_line_2_a
+# same file can use hash comments grouped_line_2_b
+value_6 = 6
+value_string_1 = "not ; increment later string_probe_1";
+value_7 = 7
+value_string_2 = "not # same file can use hash comments string_probe_2";
+value_8 = 8
+(set 'breaker 1) ; breaker_newlisp_semicolon_inline
+value_9 = 9
+# breaker_newlisp_hash_header
+value_10 = 10
+; # Heading breaker_newlisp_preserve_heading
+value_11 = 11

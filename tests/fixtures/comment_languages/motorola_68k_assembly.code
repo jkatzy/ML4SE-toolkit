@@ -1,0 +1,26 @@
+* breaker_m68k_sof_header
+value_0 = 0
+* reset vector table fixture_1
+value_1 = 1
+; load flag fixture_2
+value_2 = 2
+******** repeated_open_1
+value_3 = 3
+;;;;;;;; repeated_open_2
+value_4 = 4
+* reset vector table grouped_line_1_a
+* reset vector table grouped_line_1_b
+value_5 = 5
+; load flag grouped_line_2_a
+; load flag grouped_line_2_b
+value_6 = 6
+value_string_1 = "not * reset vector table string_probe_1";
+value_7 = 7
+value_string_2 = "not ; load flag string_probe_2";
+value_8 = 8
+        move.w  #1,d0 ; breaker_m68k_inline_semicolon
+value_9 = 9
+* #### breaker_m68k_column_star_decorative
+value_10 = 10
+; # Heading breaker_m68k_semicolon_preserve_heading
+value_11 = 11

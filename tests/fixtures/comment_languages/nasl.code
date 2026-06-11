@@ -1,0 +1,15 @@
+# breaker_nasl_sof_header
+value_0 = 0
+# audit fixture_1
+value_1 = 1
+# audit grouped_line_1_a
+# audit grouped_line_1_b
+value_2 = 2
+value_string_1 = "not # audit string_probe_1";
+value_3 = 3
+display("probe"); # breaker_nasl_inline_line
+value_4 = 4
+# #### breaker_nasl_decorative_hashes
+value_5 = 5
+# # Heading breaker_nasl_preserve_heading
+value_6 = 6

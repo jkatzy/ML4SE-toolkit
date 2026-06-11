@@ -1,0 +1,17 @@
+# breaker_nasal_sof_header
+value_0 = 0
+# clamp before use fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# clamp before use grouped_line_1_a
+# clamp before use grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # clamp before use string_probe_1";
+value_4 = 4
+var breaker_nasal = 1; # breaker_nasal_inline_line
+value_5 = 5
+# #### breaker_nasal_decorative_hashes
+value_6 = 6
+# # Heading breaker_nasal_preserve_heading
+value_7 = 7

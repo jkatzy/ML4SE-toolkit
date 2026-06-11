@@ -1,0 +1,37 @@
+// breaker_nwscript_sof_header
+value_0 = 0
+// initialise game state fixture_1
+value_1 = 1
+/* block fixture_2 */
+value_2 = 2
+//////// repeated_open_1
+value_3 = 3
+/// odd_repeated_open_1
+value_4 = 4
+value_inline_2 = 1 /* block inline_block_2 */ + 2
+value_5 = 5
+/* block
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*/
+value_6 = 6
+// initialise game state grouped_line_1_a
+// initialise game state grouped_line_1_b
+value_7 = 7
+value_string_1 = "not // initialise game state string_probe_1";
+value_8 = 8
+value_string_2 = "not /* block string_probe_2 */";
+value_9 = 9
+void fixture_nwscript() { // breaker_nwscript_inline_line
+}
+value_10 = 10
+/* breaker_nwscript_block_with_slashslash // still block */
+value_11 = 11
+/**
+ * breaker_nwscript_doc_gutter_removed
+ * * breaker_nwscript_bullet_preserved
+ */
+value_12 = 12

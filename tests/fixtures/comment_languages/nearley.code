@@ -1,0 +1,15 @@
+# breaker_nearley_sof_header
+value_0 = 0
+# parser fixture_1
+value_1 = 1
+# parser grouped_line_1_a
+# parser grouped_line_1_b
+value_2 = 2
+value_string_1 = "not # parser string_probe_1";
+value_3 = 3
+main -> word # breaker_nearley_inline_line
+value_4 = 4
+# #### breaker_nearley_decorative_hashes
+value_5 = 5
+# # Heading breaker_nearley_preserve_heading
+value_6 = 6
