@@ -703,6 +703,55 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="ceylon_style",
+        canonical_name="ceylon",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"\#![^\r\n]*",
+        ),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                'shared void run() {\n  print("hi"); // note\n}',
+                "// note",
+                "Ceylon slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "#!/usr/bin/ceylon\nshared void run() {}",
+                "#!/usr/bin/ceylon",
+                "Ceylon shebang comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "shared void run() {\n  /* outer /* note */ outer */\n}",
+                "/* outer /* note */ outer */",
+                "Ceylon recursively nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://web.mit.edu/ceylon_v1.3.3/ceylon-1.3.3/doc/en/spec/"
+            "html_single/#comments"
+        ),
+        implementation_source=(
+            "https://github.com/eclipse-archived/ceylon/blob/master/typechecker/"
+            "antlr/org/eclipse/ceylon/compiler/typechecker/parser/Ceylon.g"
+        ),
+        confidence="verified",
+        notes=(
+            "Ceylon 1.3 defines // and #! end-of-line comments plus recursively "
+            "nested /* ... */ comments. The archived 1.3.4-SNAPSHOT compiler "
+            "grammar implements the same forms."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
