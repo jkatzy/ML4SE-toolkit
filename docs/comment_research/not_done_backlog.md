@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-11`
-- Total uncovered languages tracked: `241`
+- Total uncovered languages tracked: `240`
 - Ready to implement now: `0`
-- Needs research or confirmation: `228`
+- Needs research or confirmation: `227`
 - Resolved non-actionable: `13`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Chapel | chapel | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against Chapel docs and add C-like comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Checksums | checksums | low | unresolved | unresolved | # | unsupported | unsupported | unsupported | Confirm the file format before adding a registry entry. | docs/comment_research/chunk_1_b_c_report.md |
 | CIL | cil | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the IL syntax docs and add C-style comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Cirru | cirru | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Cirru syntax before adding registry support. | docs/comment_research/chunk_1_b_c_report.md |
