@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-11`
-- Total uncovered languages tracked: `240`
+- Total uncovered languages tracked: `239`
 - Ready to implement now: `0`
-- Needs research or confirmation: `226`
+- Needs research or confirmation: `225`
 - Resolved non-actionable: `14`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| CIL | cil | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unsupported | Verify against the IL syntax docs and add C-style comment tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Cirru | cirru | low | unresolved | unresolved | unresolved | unresolved | unresolved | unresolved | Research Cirru syntax before adding registry support. | docs/comment_research/chunk_1_b_c_report.md |
 | Clarion | clarion | low | unresolved | unresolved | ! | unsupported | unsupported | unsupported | Verify Clarion comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Classic ASP | classic_asp | low | unresolved | unresolved | unsupported | <!-- ... --> | first closing delimiter wins | unsupported | Treat as a mixed-language format and verify HTML/script comment handling separately. | docs/comment_research/chunk_1_b_c_report.md |

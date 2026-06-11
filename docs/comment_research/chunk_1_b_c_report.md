@@ -810,25 +810,32 @@ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  empty.txt
 
 ## CIL
 - Registry key: `cil`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `.NET runtime ILAsm lexer in .NET 6, .NET 10, and current main`
+- Version-specific syntax: `No comment-syntax difference found across the checked runtime versions.`
 - Line comments: `//`
 - Block comments: `/* ... */`
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Microsoft ILAsm overview](https://learn.microsoft.com/en-us/archive/msdn-magazine/2001/may/bugslayer-ildasm-is-your-new-best-friend)
+- Implementation source: [.NET ILAsm lexer](https://github.com/dotnet/runtime/blob/main/src/coreclr/ilasm/grammar_after.cpp)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against the IL syntax docs and add C-style comment tests.`
-- Notes: `Candidate based on IL assembly conventions.`
+- Recommended action: `Implemented in the registry with line and non-nested block fixtures.`
+- Notes: `The lexer uses one state bit for end-of-line comments and one for block comments. A block opener encountered while already inside a block does not increase depth.`
 
 - Example - line:
-```text
+```cil
 .method public static void Main() cil managed {
-  // comment
+  ret // note
+}
+```
+- Example - block:
+```cil
+.method public static void Main() cil managed {
+  /* note */
+  ret
 }
 ```
 
