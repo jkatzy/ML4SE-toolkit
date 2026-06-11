@@ -1,0 +1,27 @@
+value_0 = 0
+=begin comment
+fixture_1
+=end comment
+value_1 = 1
+=for comment fixture_2
+
+value_2 = 2
+=begin comment
+ * star_doc_1 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+=end comment
+value_3 = 3
+value_string_2 = "not =for comment string_probe_2";
+value_4 = 4
+value_breaker_pod_0 = 0
+=for comment breaker pod # Heading and --flag
+
+value_breaker_pod_1 = 1
+=begin comment
+breaker pod body keeps # Heading
+--flag remains content
+=end comment
+value_breaker_pod_2 = 2

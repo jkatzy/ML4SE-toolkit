@@ -3611,6 +3611,1162 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="object_data_instance_notation_style",
+        canonical_name="object_data_instance_notation",
+        regex_patterns=(r"--[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                'name = <"Django Reinhardt"> -- note\nbirthdate = <1919-01-23>',
+                "-- note",
+                "ODIN double-hyphen line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://specifications.openehr.org/releases/LANG/latest/odin.html#_comments"
+        ),
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="ODIN comments use -- through newline; multiline comments repeat --.",
+    ),
+    CommentSyntax(
+        family_name="ooc_style",
+        canonical_name="ooc",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                'println("hello") // note\nprintln("done")',
+                "// note",
+                "ooc slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                '/* outer /* note */ outer */\nprintln("hello")',
+                "/* outer /* note */ outer */",
+                "ooc recursively nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://ooc-lang.org/docs/lang/",
+        implementation_source=(
+            "https://github.com/ooc-lang/rock/blob/master/source/rock/frontend/"
+            "NagaQueen.c"
+        ),
+        confidence="verified",
+        notes="The rock parser recursively recognizes /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="opa_style",
+        canonical_name="opa",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "x = 1 // note\ny = x + 1",
+                "// note",
+                "Opa slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "/* outer /* note */ outer */\nx = 1",
+                "/* outer /* note */ outer */",
+                "Opa nested star comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="unresolved",
+        implementation_source=(
+            "https://github.com/MLstate/opalang/blob/master/compiler/opalang/"
+            "classic_syntax/opa_lexer.trx"
+        ),
+        confidence="verified",
+        notes="The classic syntax lexer handles slash lines and nested star blocks.",
+    ),
+    CommentSyntax(
+        family_name="openedge_abl_style",
+        canonical_name="openedge_abl",
+        regex_patterns=(r"(?<!\S)/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                'MESSAGE "hello". // note\nMESSAGE "done".',
+                "// note",
+                "OpenEdge ABL single-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                '/* outer /* note */ outer */\nMESSAGE "hello".',
+                "/* outer /* note */ outer */",
+                "OpenEdge ABL nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.progress.com/bundle/abl-reference/page/"
+            "Single-line-comments.html; "
+            "https://docs.progress.com/bundle/abl-reference/page/"
+            "Multi-line-comments.html"
+        ),
+        implementation_source="unresolved",
+        confidence="verified",
+        notes=(
+            "/* ... */ comments are supported across ABL versions checked; // "
+            "single-line comments are current OpenEdge syntax introduced in 11.6."
+        ),
+    ),
+    CommentSyntax(
+        family_name="openrc_runscript_style",
+        canonical_name="openrc_runscript",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                'description="Example service"\n# note\ncommand="/usr/bin/example"',
+                "# note",
+                "OpenRC runscript shell-style hash comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/OpenRC/openrc/blob/master/service-script-guide.md"
+        ),
+        implementation_source="https://github.com/OpenRC/openrc",
+        confidence="verified",
+        notes="Runscripts are shell scripts executed through openrc-run.",
+    ),
+    CommentSyntax(
+        family_name="openstep_property_list_style",
+        canonical_name="openstep_property_list",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "{\n  Name = Example; // note\n}",
+                "// note",
+                "OpenStep property-list slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "{\n  /* note */\n  Name = Example;\n}",
+                "/* note */",
+                "OpenStep property-list slash-star block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://developer.apple.com/library/archive/documentation/Cocoa/"
+            "Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html"
+        ),
+        implementation_source=(
+            "https://github.com/textmate/property-list.tmbundle/blob/textmate-1.x/"
+            "Syntaxes/Property%20List.tmLanguage"
+        ),
+        confidence="verified",
+        notes="Old-style OpenStep property lists use // and /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="opentype_feature_file_style",
+        canonical_name="opentype_feature_file",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\nfeature liga {\n  sub f i by fi;\n} liga;",
+                "# note",
+                "OpenType feature-file hash comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://adobe-type-tools.github.io/afdko/"
+            "OpenTypeFeatureFileSpecification.html"
+        ),
+        implementation_source=(
+            "https://github.com/adobe-type-tools/afdko/blob/develop/docs/"
+            "OpenTypeFeatureFileSpecification.md"
+        ),
+        confidence="verified",
+        notes="The feature-file specification uses # comments through newline.",
+    ),
+    CommentSyntax(
+        family_name="org_style",
+        canonical_name="org",
+        regex_patterns=(
+            r"(?im)^[ \t]*#\+begin_comment\b[^\r\n]*(?:\r?\n[\S\s]*?)"
+            r"^[ \t]*#\+end_comment\b[^\r\n]*",
+            r"(?m)^[ \t]*#(?:[ \t][^\r\n]*|[ \t]*$)",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "* Task\n# note\nBody text",
+                "# note",
+                "Org comment line whose first non-space character is #.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "#+BEGIN_COMMENT\nnote\n#+END_COMMENT\nVisible text",
+                "#+BEGIN_COMMENT\nnote\n#+END_COMMENT",
+                "Org comment block.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://orgmode.org/manual/Comment-Lines.html",
+        implementation_source="https://git.savannah.gnu.org/cgit/emacs/org-mode.git/plain/lisp/org.el",
+        confidence="verified",
+        notes=(
+            "The line pattern excludes #+ keyword lines. COMMENT subtrees and "
+            "inline Org comment constructs are structural features outside this "
+            "lexical registry entry."
+        ),
+    ),
+    CommentSyntax(
+        family_name="ox_style",
+        canonical_name="ox",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "decl value = 1; // note\ndecl next = value + 1;",
+                "// note",
+                "Ox slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "/* outer /* note */ outer */\ndecl value = 1;",
+                "/* outer /* note */ outer */",
+                "Ox nested slash-star block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="http://fmwww.bc.edu/ec-p/obsolete/oxsyntax.htm",
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="The Ox syntax manual documents nested block comments.",
+    ),
+    CommentSyntax(
+        family_name="oz_style",
+        canonical_name="oz",
+        regex_patterns=(r"%[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "declare X = 1 % note\n{Browse X}",
+                "% note",
+                "Oz percent line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "/* outer /* note */ outer */\ndeclare X = 1",
+                "/* outer /* note */ outer */",
+                "Oz nested slash-star block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://mozart2.org/mozart-v1/doc-1.4.0/notation/node2.html",
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="Mozart Oz supports % line comments and nested slash-star blocks.",
+    ),
+    CommentSyntax(
+        family_name="p4_style",
+        canonical_name="p4",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "// note\ncontrol MyIngress() { apply { } }",
+                "// note",
+                "P4 line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\ncontrol MyIngress() { apply { } }",
+                "/* note */",
+                "P4 block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "/** note */\ncontrol MyIngress() { apply { } }",
+                "/** note */",
+                "P4 documentation block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://p4.org/p4-spec/docs/P4-16-v1.2.3.html",
+        implementation_source=(
+            "https://github.com/p4lang/p4c/blob/main/frontends/parsers/p4/"
+            "p4lexer.ll"
+        ),
+        confidence="verified",
+        notes="P4_16 uses C-family comments and explicitly does not nest them.",
+    ),
+    CommentSyntax(
+        family_name="pan_style",
+        canonical_name="pan",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "variable VALUE = 1; # note\nvariable NEXT = VALUE + 1;",
+                "# note",
+                "Pan hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="unresolved",
+        implementation_source=(
+            "https://github.com/quattor/pan/blob/master/panc/src/main/jjtree/"
+            "PanParser.jjt"
+        ),
+        confidence="verified",
+        notes="The Pan JavaCC grammar defines # comments through line end.",
+    ),
+    CommentSyntax(
+        family_name="papyrus_style",
+        canonical_name="papyrus",
+        regex_patterns=(
+            r";/[\S\s]*?/;",
+            r";[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "int value = 1 ; note\nint next = value + 1",
+                "; note",
+                "Papyrus semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                ";/\nnote\n/;\nint value = 1",
+                ";/\nnote\n/;",
+                "Papyrus slash-delimited block comment.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://ck.uesp.net/wiki/Comment_Reference",
+        implementation_source=(
+            "https://github.com/Gawdl3y/atom-language-papyrus/blob/master/"
+            "grammars/papyrus-skyrim.cson"
+        ),
+        confidence="high",
+        notes="Papyrus block comments stop at the first /; delimiter.",
+    ),
+    CommentSyntax(
+        family_name="parrot_assembly_style",
+        canonical_name="parrot_assembly",
+        regex_patterns=(
+            r"(?ms)^[ \t]*=pod\b[\s\S]*?^[ \t]*=cut\b[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "set I0, 1 # note\ninc I0",
+                "# note",
+                "Parrot Assembly hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "=pod\nnote\n=cut\nset I0, 1",
+                "=pod\nnote\n=cut",
+                "Parrot Assembly ignored POD block.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://parrot.github.io/parrot-docs1/1.1.0/html/docs/book/"
+            "ch09_pasm.pod.html"
+        ),
+        implementation_source="https://github.com/parrot/parrot/blob/master/compilers/imcc/imcc.l",
+        confidence="verified",
+        notes="PASM uses # line comments and ignores POD regions.",
+    ),
+    CommentSyntax(
+        family_name="parrot_internal_representation_style",
+        canonical_name="parrot_internal_representation",
+        regex_patterns=(
+            r"(?ms)^[ \t]*=pod\b[\s\S]*?^[ \t]*=cut\b[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                ".sub 'main'\n  $I0 = 1 # note\n.end",
+                "# note",
+                "PIR hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "=pod\nnote\n=cut\n.sub 'main'\n.end",
+                "=pod\nnote\n=cut",
+                "PIR ignored POD block.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://parrot.github.io/parrot-docs1/1.1.0/html/docs/book/"
+            "ch09_pasm.pod.html"
+        ),
+        implementation_source="https://github.com/parrot/parrot/blob/master/compilers/imcc/imcc.l",
+        confidence="verified",
+        notes="PIR uses the IMCC lexer, which skips hash comments and POD blocks.",
+    ),
+    CommentSyntax(
+        family_name="pawn_style",
+        canonical_name="pawn",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "new value = 1; // note\nnew next = value + 1;",
+                "// note",
+                "Pawn line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "new value = 1;\n/* note */\nnew next = value + 1;",
+                "/* note */",
+                "Pawn non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.compuphase.com/pawn/pawnfeatures.htm",
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="Pawn comments use C-family delimiters and do not nest.",
+    ),
+    CommentSyntax(
+        family_name="peg_js_style",
+        canonical_name="peg_js",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "// note\nstart = 'a'",
+                "// note",
+                "PEG.js grammar line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nstart = 'a'",
+                "/* note */",
+                "PEG.js grammar block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://pegjs.org/documentation; https://peggyjs.org/documentation.html",
+        implementation_source="https://github.com/pegjs/pegjs",
+        confidence="verified",
+        notes="PEG.js grammars accept JavaScript-style comments.",
+    ),
+    CommentSyntax(
+        family_name="pep8_style",
+        canonical_name="pep8",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "LDWA 0,i ; note\nSTOP",
+                "; note",
+                "Pep/8 assembler semicolon comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="unresolved",
+        implementation_source="https://github.com/StanWarford/pep8/blob/master/asm.cpp",
+        confidence="verified",
+        notes="This key refers to Pep/8 assembly, not Python PEP 8.",
+    ),
+    CommentSyntax(
+        family_name="pic_style",
+        canonical_name="pic",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                ".PS\n# note\nbox\n.PE",
+                "# note",
+                "GNU pic hash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://man7.org/linux/man-pages/man1/pic.1.html",
+        implementation_source=(
+            "https://github.com/dbarowy/groff/blob/master/src/preproc/pic/"
+            "lex.cpp"
+        ),
+        confidence="verified",
+        notes="pic uses # comments; semicolon is statement syntax.",
+    ),
+    CommentSyntax(
+        family_name="picolisp_style",
+        canonical_name="picolisp",
+        regex_patterns=(r"#(?!\{)[^\r\n]*",),
+        nested_delimiters=(("#{", "}#"),),
+        shared_regex_examples=(
+            CommentExample(
+                "(setq Value 1) # note\n(setq Next 2)",
+                "# note",
+                "PicoLisp hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "#{ outer #{ note }# outer }#\n(setq Value 1)",
+                "#{ outer #{ note }# outer }#",
+                "PicoLisp nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://software-lab.de/doc/ref.html",
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="PicoLisp documents nested #{ ... }# block comments.",
+    ),
+    CommentSyntax(
+        family_name="piglatin_style",
+        canonical_name="piglatin",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"--[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "LOAD 'data.csv';\n-- note\nfiltered = FILTER data BY age > 18;",
+                "-- note",
+                "PigLatin dash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "LOAD 'data.csv';\n/* note */\nfiltered = FILTER data BY age > 18;",
+                "/* note */",
+                "PigLatin non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://pig.apache.org/docs/latest/basic.html",
+        implementation_source="https://github.com/apache/pig/blob/trunk/src/org/apache/pig/parser/QueryLexer.g",
+        confidence="verified",
+        notes="PigLatin uses SQL-style line comments and non-nested slash-star blocks.",
+    ),
+    CommentSyntax(
+        family_name="pod_style",
+        canonical_name="pod",
+        regex_patterns=(
+            r"(?ms)^[ \t]*=begin[ \t]+comment\b[^\r\n]*"
+            r"(?:\r?\n[\s\S]*?)^[ \t]*=end[ \t]+comment\b[^\r\n]*",
+            r"(?m)^[ \t]*=for[ \t]+comment\b[^\r\n]*(?:\r?\n(?!\s*$)[^\r\n]*)*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "=begin comment\nnote\n=end comment\n\n=head1 NAME",
+                "=begin comment\nnote\n=end comment",
+                "POD comment block.",
+                kind="block",
+            ),
+            CommentExample(
+                "=for comment note\n\n=head1 NAME",
+                "=for comment note",
+                "POD comment paragraph.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://perldoc.perl.org/perlpod",
+        implementation_source="https://github.com/Perl/perl5",
+        confidence="verified",
+        notes="POD comments are document comment paragraphs/blocks, not Perl # source comments.",
+    ),
+    CommentSyntax(
+        family_name="pod_6_style",
+        canonical_name="pod_6",
+        regex_patterns=(
+            r"(?ms)^[ \t]*=begin[ \t]+comment\b[^\r\n]*"
+            r"(?:\r?\n[\s\S]*?)^[ \t]*=end[ \t]+comment\b[^\r\n]*",
+            r"(?m)^[ \t]*=comment\b[^\r\n]*(?:\r?\n(?!\s*$)[^\r\n]*)*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "=begin comment\nnote\n=end comment\n\n=head1 Example",
+                "=begin comment\nnote\n=end comment",
+                "Pod 6 comment block.",
+                kind="block",
+            ),
+            CommentExample(
+                "=comment note\n\n=head1 Example",
+                "=comment note",
+                "Pod 6 comment paragraph.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://docs.raku.org/language/pod",
+        implementation_source="https://github.com/raku/roast",
+        confidence="verified",
+        notes="Pod 6 comment markup is document syntax, not Raku source comments.",
+    ),
+    CommentSyntax(
+        family_name="pogoscript_style",
+        canonical_name="pogoscript",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 // note\nnext = value + 1",
+                "// note",
+                "PogoScript line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nvalue = 1",
+                "/* note */",
+                "PogoScript block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="unresolved",
+        implementation_source=(
+            "https://github.com/featurist/pogoscript/blob/master/lib/parser/"
+            "grammar.js"
+        ),
+        confidence="verified",
+        notes="PogoScript uses JavaScript-style comments; hashbang handling is excluded.",
+    ),
+    CommentSyntax(
+        family_name="pony_style",
+        canonical_name="pony",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "actor Main\n  // note\n  new create(env: Env) => None",
+                "// note",
+                "Pony slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "/* outer /* note */ outer */\nactor Main",
+                "/* outer /* note */ outer */",
+                "Pony nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://tutorial.ponylang.io/appendices/syntax.html",
+        implementation_source="https://github.com/ponylang/ponyc/blob/main/src/libponyc/ast/lexer.c",
+        confidence="verified",
+        notes="The Pony lexer uses depth-counted nested block-comment scanning.",
+    ),
+    CommentSyntax(
+        family_name="pov_ray_sdl_style",
+        canonical_name="pov_ray_sdl",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "sphere { <0, 0, 0>, 1 } // note",
+                "// note",
+                "POV-Ray SDL line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "/* outer /* note */ outer */\nsphere { <0, 0, 0>, 1 }",
+                "/* outer /* note */ outer */",
+                "POV-Ray SDL nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.povray.org/documentation/view/3.7.1/228/",
+        implementation_source=(
+            "https://github.com/POV-Ray/povray/blob/master/source/parser/"
+            "scanner.cpp"
+        ),
+        confidence="verified",
+        notes=(
+            "Current scanner defaults support nested blocks; compatibility mode "
+            "can disable nesting for older behavior."
+        ),
+    ),
+    CommentSyntax(
+        family_name="prisma_style",
+        canonical_name="prisma",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "// note\nmodel User { id Int @id }",
+                "// note",
+                "Prisma reader line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* note */\nmodel User { id Int @id }",
+                "/* note */",
+                "Prisma block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "/// note\nid Int @id",
+                "/// note",
+                "Prisma documentation line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/** note */\nmodel User { id Int @id }",
+                "/** note */",
+                "Prisma documentation block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.prisma.io/docs/orm/prisma-schema/overview#comments",
+        implementation_source=(
+            "https://github.com/prisma/prisma-engines/blob/main/psl/"
+            "schema-ast/src/parser/datamodel.pest"
+        ),
+        confidence="verified",
+        notes="Prisma also attaches /// and /** */ documentation comments to AST nodes.",
+    ),
+    CommentSyntax(
+        family_name="propeller_spin_style",
+        canonical_name="propeller_spin",
+        regex_patterns=(
+            r"\{\{[\S\s]*?\}\}",
+            r"\{(?!\{)[\S\s]*?\}",
+            r"'{1,2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "PUB Main\n  value := 1 ' note\n  next := value + 1",
+                "' note",
+                "Propeller Spin apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "{ note }\nPUB Main",
+                "{ note }",
+                "Propeller Spin brace block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        canonical_regex_examples=(
+            CommentExample(
+                "'' note\nPUB Main",
+                "'' note",
+                "Propeller Spin documentation line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "{{ note }}\nPUB Main",
+                "{{ note }}",
+                "Propeller Spin documentation block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://forums.parallax.com/uploads/editor/3l/lzpix2by2k4r.pdf; "
+            "https://raw.githubusercontent.com/parallaxinc/spin-docs/master/pdf/"
+            "P8X32A-Web-PropellerManual-v1.2_0.pdf"
+        ),
+        implementation_source="unresolved",
+        confidence="verified",
+        notes="Spin2 ... continuation comments are excluded because they are version-specific.",
+    ),
+    CommentSyntax(
+        family_name="qt_script_style",
+        canonical_name="qt_script",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "var value = 1; // note\nvalue;",
+                "// note",
+                "Qt Script ECMAScript line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "var value = 1;\n/* note */\nvalue;",
+                "/* note */",
+                "Qt Script ECMAScript block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://doc.qt.io/archives/qt-5.15/qtscript-index.html; "
+            "https://tc39.es/ecma262/multipage/ecmascript-language-lexical-grammar.html#sec-comments"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="high",
+        notes="Qt Script uses ECMAScript comment forms.",
+    ),
+    CommentSyntax(
+        family_name="raml_style",
+        canonical_name="raml",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "title: Example\n# note\nversion: v1",
+                "# note",
+                "RAML YAML-style hash comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/raml-org/raml-spec/blob/master/versions/"
+            "raml-10/raml-10.md; https://yaml.org/spec/1.2.2/#comments"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="high",
+        notes="RAML inherits YAML hash comments.",
+    ),
+    CommentSyntax(
+        family_name="rascal_style",
+        canonical_name="rascal",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "int value = 1; // note\nreturn value;",
+                "// note",
+                "Rascal line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "int value = 1;\n/* note */\nreturn value;",
+                "/* note */",
+                "Rascal block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.rascal-mpl.org/docs/Rascal/Declarations/"
+            "SyntaxDefinition/"
+        ),
+        implementation_source=(
+            "https://github.com/usethesource/rascal/blob/"
+            "6b23b1a0624a94ecad422564fa5eb136e3ed2497/src/org/rascalmpl/"
+            "library/lang/rascal/syntax/Rascal.rsc; GitHub Linguist languages.yml"
+        ),
+        confidence="high",
+        notes="Rascal accepts Java/C-style comments.",
+    ),
+    CommentSyntax(
+        family_name="realbasic_style",
+        canonical_name="realbasic",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"'[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "Var value As Integer = 1 ' note\nVar next As Integer = 2",
+                "' note",
+                "REALbasic/Xojo apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "// note\nVar value As Integer = 1",
+                "// note",
+                "REALbasic/Xojo slash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://documentation.xojo.com/api/language/commenting.html",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="Current Xojo docs list // and apostrophe comments.",
+    ),
+    CommentSyntax(
+        family_name="reason_style",
+        canonical_name="reason",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "let value = 1; // note\nvalue;",
+                "// note",
+                "Reason line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "let value = 1;\n/* note */\nvalue;",
+                "/* note */",
+                "Reason block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://reasonml.github.io/docs/en/syntax-cheatsheet",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="Reason documentation lists // and /* */ comments.",
+    ),
+    CommentSyntax(
+        family_name="redcode_style",
+        canonical_name="redcode",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "MOV 0, 1 ; note\nEND",
+                "; note",
+                "Redcode semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://corewar.co.uk/standards/icws94.htm; "
+            "https://corewar.co.uk/standards/icws88.txt"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="Redcode standards use semicolon line comments.",
+    ),
+    CommentSyntax(
+        family_name="redirect_rules_style",
+        canonical_name="redirect_rules",
+        regex_patterns=(r"(?m)^[ \t]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\n/old-page /new-page 301",
+                "# note",
+                "Redirect rules hash comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.netlify.com/manage/routing/redirects/redirect-options/#comments; "
+            "https://developers.cloudflare.com/pages/configuration/redirects/"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="This key maps to _redirects files, not unrelated redirect formats.",
+    ),
+    CommentSyntax(
+        family_name="renpy_style",
+        canonical_name="renpy",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 # note\nvalue = 2",
+                "# note",
+                "Ren'Py Python-style hash comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.renpy.org/doc/html/language_basics.html#comments",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="Ren'Py scripts follow Python-style hash comments.",
+    ),
+    CommentSyntax(
+        family_name="renderscript_style",
+        canonical_name="renderscript",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "int value = 1; // note\nreturn value;",
+                "// note",
+                "RenderScript C-style line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "int value = 1;\n/* note */\nreturn value;",
+                "/* note */",
+                "RenderScript C-style block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://developer.android.com/guide/topics/renderscript/compute",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="high",
+        notes="RenderScript .rs files are C99-like source files.",
+    ),
+    CommentSyntax(
+        family_name="rescript_style",
+        canonical_name="rescript",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "let value = 1 // note\nvalue",
+                "// note",
+                "ReScript line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "let value = 1\n/* note */\nvalue",
+                "/* note */",
+                "ReScript block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://rescript-lang.org/docs/manual/latest/overview#comments",
+        implementation_source=(
+            "https://github.com/rescript-lang/rescript-lang.org/blob/"
+            "02f7b35815c6020ed09f11e20d44a2e8ff250fba/apps/docs/markdown-pages/"
+            "syntax-lookup/language_line_comment.mdx; "
+            "https://github.com/rescript-lang/rescript-lang.org/blob/"
+            "02f7b35815c6020ed09f11e20d44a2e8ff250fba/apps/docs/markdown-pages/"
+            "syntax-lookup/language_block_comment.mdx; GitHub Linguist languages.yml"
+        ),
+        confidence="verified",
+        notes="ReScript documentation lists // and /* */ comments.",
+    ),
+    CommentSyntax(
+        family_name="rpc_style",
+        canonical_name="rpc",
+        regex_patterns=(r"/\*[\S\s]*?\*/",),
+        shared_regex_examples=(
+            CommentExample(
+                "/* note */\nconst MAX_VALUE = 10;",
+                "/* note */",
+                "ONC RPC/XDR block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://datatracker.ietf.org/doc/html/rfc4506#section-6.1",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="This key is scoped to ONC RPC/XDR interface definitions.",
+    ),
+    CommentSyntax(
+        family_name="rpm_spec_style",
+        canonical_name="rpm_spec",
+        regex_patterns=(r"(?m)^[ \t]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "Name: example\n# note\nVersion: 1",
+                "# note",
+                "RPM spec hash comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://rpm-software-management.github.io/rpm/manual/spec.html",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="RPM spec comments are hash-prefixed lines.",
+    ),
+    CommentSyntax(
         family_name="objectscript_style",
         canonical_name="objectscript",
         regex_patterns=(

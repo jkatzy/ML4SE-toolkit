@@ -234,6 +234,15 @@ def test_literate_nested_scanner_ignores_unclosed_delimiter_inside_line_comment(
     ]
 
 
+def test_openedge_abl_slash_comment_requires_left_boundary():
+    sample = "value//not\nvalue // yes\n// also yes\n"
+
+    assert CommentQuery("openedge_abl").parse(sample) == [
+        _expected_query_match(sample, "// yes"),
+        _expected_query_match(sample, "// also yes"),
+    ]
+
+
 def test_stack_v2_csharp_todo_line_comment_extracts_reported_span():
     sample = (
         "using System;\n"
