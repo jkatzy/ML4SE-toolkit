@@ -3761,6 +3761,571 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         confidence="verified",
         notes="Move supports //, /* ... */, ///, and /** ... */ comment forms.",
     ),
+    CommentSyntax(
+        family_name="s_z_hash_line_style",
+        canonical_name="sage",
+        aliases=(
+            "singularity",
+            "smali",
+            "ssh_config",
+            "star",
+            "unity3d_asset",
+        ),
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 # note\nvalue = 2",
+                "# note",
+                "Hash line comment for S-Z registry candidates.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "docs/comment_research/chunk_6_q_s_report.md; "
+            "docs/comment_research/chunk_7_t_z_report.md"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="cross-checked",
+        notes=(
+            "Shared hash-line entry for Sage, Singularity definition files, "
+            "Smali, OpenSSH config, STAR/CIF data, and UnityYAML assets."
+        ),
+    ),
+    CommentSyntax(
+        family_name="sed_style",
+        canonical_name="sed",
+        regex_patterns=(r"(?m)(?!\A#n[^\r\n]*)^[ \t]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "s/foo/bar/\n# note\np",
+                "# note",
+                "GNU sed script comment command.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.gnu.org/software/sed/manual/html_node/"
+            "Common-Commands.html"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes=(
+            "Sed comments are line-oriented. A first line beginning with #n "
+            "has special printing behavior and is excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="saltstack_style",
+        canonical_name="saltstack",
+        regex_patterns=(
+            r"\{#[\S\s]*?#\}",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "pkg.installed:\n  - name: vim\n# note",
+                "# note",
+                "Salt SLS YAML hash comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "pkg.installed:\n  - name: vim\n{# note #}",
+                "{# note #}",
+                "Salt SLS Jinja template comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.saltproject.io/en/latest/topics/tutorials/"
+            "starting_states.html; "
+            "https://jinja.palletsprojects.com/en/stable/templates/#comments; "
+            "https://yaml.org/spec/1.2.2/#comments"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="cross-checked",
+        notes="Salt state files use the union of YAML # and Jinja {# ... #} comments.",
+    ),
+    CommentSyntax(
+        family_name="s_z_c_style",
+        canonical_name="shaderlab",
+        aliases=(
+            "slice",
+            "smpl",
+            "solidity",
+            "soong",
+            "sourcepawn",
+            "sqf",
+            "squirrel",
+            "stan",
+            "stylus",
+            "sugarss",
+            "supercollider",
+            "swig",
+            "type_language",
+            "uno",
+            "whiley",
+            "witcher_script",
+            "wollok",
+            "yang",
+            "zephir",
+        ),
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "int value = 1;\n// note\nreturn value;",
+                "// note",
+                "C-style slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "int value = 1;\n/* note */\nreturn value;",
+                "/* note */",
+                "C-style block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "docs/comment_research/chunk_6_q_s_report.md; "
+            "docs/comment_research/chunk_7_t_z_report.md"
+        ),
+        implementation_source=(
+            "GitHub Linguist languages.yml and per-language references in "
+            "the current S-Z reports"
+        ),
+        confidence="cross-checked",
+        notes=(
+            "Shared non-nested C/C++-style comment forms for S-Z candidates. "
+            "Dialect-specific doc-comment variants are covered by the same "
+            "block and line delimiters."
+        ),
+    ),
+    CommentSyntax(
+        family_name="smt_style",
+        canonical_name="smt",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "(assert true) ; note\n(check-sat)",
+                "; note",
+                "SMT-LIB semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://smt-lib.org/language.shtml",
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="SMT-LIB 2.x comments begin with semicolon and run to newline.",
+    ),
+    CommentSyntax(
+        family_name="sqlpl_style",
+        canonical_name="sqlpl",
+        regex_patterns=(r"--[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "SELECT 1;\n-- note\nSELECT 2;",
+                "-- note",
+                "Db2 SQL PL simple comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "SELECT 1;\n/* outer /* inner */ outer */\nSELECT 2;",
+                "/* outer /* inner */ outer */",
+                "Db2 SQL PL nested bracketed comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.ibm.com/docs/en/db2-for-zos/12.0.0?"
+            "topic=statements-sql-comments; "
+            "https://www.ibm.com/docs/en/db2/11.5.x?topic=statements-comments"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="verified",
+        notes="Db2 SQL PL supports -- comments and nested /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="s_z_nested_star_style",
+        canonical_name="standard_ml",
+        aliases=("urweb",),
+        nested_delimiters=(("(*", "*)"),),
+        shared_nested_examples=(
+            CommentExample(
+                "let value = 1\n(* outer (* inner *) outer *)\nvalue",
+                "(* outer (* inner *) outer *)",
+                "Nested star block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://smlfamily.github.io/sml97-defn.pdf; "
+            "https://enn.github.io/urweb-doc/manual.html"
+        ),
+        implementation_source="GitHub Linguist languages.yml",
+        confidence="cross-checked",
+        notes="Standard ML and Ur/Web use nested (* ... *) comments and no line comments.",
+    ),
+    CommentSyntax(
+        family_name="stringtemplate_style",
+        canonical_name="stringtemplate",
+        regex_patterns=(r"<![\S\s]*?!>",),
+        shared_regex_examples=(
+            CommentExample(
+                "Hello, <name>\n<! note !>",
+                "<! note !>",
+                "StringTemplate default-delimiter comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.stringtemplate.org/; "
+            "https://github.com/antlr/stringtemplate4/blob/master/doc/cheatsheet.md"
+        ),
+        implementation_source=(
+            "https://github.com/antlr/stringtemplate4/blob/master/src/org/"
+            "stringtemplate/v4/compiler/STLexer.java"
+        ),
+        confidence="cross-checked",
+        notes="ST4 comments use <! ... !> with the default delimiter pair.",
+    ),
+    CommentSyntax(
+        family_name="terra_style",
+        canonical_name="terra",
+        regex_patterns=(
+            r"--\[(=*)\[[\s\S]*?\]\1\]",
+            r"--(?!\[[=]*\[)[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "local x = 1\n-- note\nlocal y = 2",
+                "-- note",
+                "Terra Lua-style line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "local x = 1\n--[=[ note ]=]\nlocal y = 2",
+                "--[=[ note ]=]",
+                "Terra depth-qualified Lua long comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "local x = 1\n--[[ note ]]\nlocal y = 2",
+                "--[[ note ]]",
+                "Terra plain Lua long comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://terralang.org/; "
+            "https://www.lua.org/manual/5.4/manual.html#3.1"
+        ),
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes=(
+            "Terra source is Lua-hosted; Lua line comments and long comments "
+            "apply. Long-bracket equals depth is delimiter matching, not true "
+            "same-depth nesting."
+        ),
+    ),
+    CommentSyntax(
+        family_name="texinfo_style",
+        canonical_name="texinfo",
+        regex_patterns=(
+            r"(?ms)^[ \t]*@ignore\b[^\r\n]*(?:\r\n|\r|\n)[\S\s]*?"
+            r"^[ \t]*@end[ \t]+ignore\b[^\r\n]*",
+            r"(?m)^[ \t]*@(?:c|comment)\b[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "@node Top\n@c note\n@top Example",
+                "@c note",
+                "Texinfo @c source-line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "@node Top\n@comment note\n@top Example",
+                "@comment note",
+                "Texinfo @comment source-line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "@ignore\nnote\n@end ignore\n@node Top",
+                "@ignore\nnote\n@end ignore",
+                "Texinfo ignored region.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://www.gnu.org/software/texinfo/manual/texinfo/html_node/"
+            "Comments.html; "
+            "https://ftp.gnu.org/old-gnu/Manuals/texinfo-4.2/html_node/"
+            "Comments.html"
+        ),
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="@ignore and @end ignore are line-oriented and do not nest.",
+    ),
+    CommentSyntax(
+        family_name="vcl_style",
+        canonical_name="vcl",
+        aliases=("zenscript",),
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "sub vcl_recv {\n  // note\n}",
+                "// note",
+                "Slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "sub vcl_recv {\n  # note\n}",
+                "# note",
+                "Hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "sub vcl_recv {\n  /* note */\n}",
+                "/* note */",
+                "Slash block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://varnish-cache.readthedocs.io/reference/vcl.html; "
+            "https://docs.blamejared.com/1.20.1/en/tutorial/"
+            "IntroductionToScripting/"
+        ),
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="Varnish VCL and ZenScript both support //, #, and /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="volt_style",
+        canonical_name="volt",
+        regex_patterns=(r"\{#[\S\s]*?#\}",),
+        shared_regex_examples=(
+            CommentExample(
+                "{# note #}\n{{ name }}",
+                "{# note #}",
+                "Volt template comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.phalcon.io/5.11/volt/; "
+            "https://docs.phalcon.io/3.4/volt/"
+        ),
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="Volt comments are non-nested {# ... #} template comments.",
+    ),
+    CommentSyntax(
+        family_name="webvtt_style",
+        canonical_name="webvtt",
+        regex_patterns=(
+            r"(?:\A|(?<=\n\n)|(?<=\r\n\r\n))NOTE(?:[ \t][^\r\n]*)?(?:\r?\n(?!\r?\n)[^\r\n]*)*(?:\r?\n)?",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "WEBVTT\n\nNOTE note\n\n00:00.000 --> 00:01.000\nHello",
+                "NOTE note\n",
+                "WebVTT NOTE block terminated by a blank line.",
+                kind="block",
+            ),
+        ),
+        documentation_source="https://www.w3.org/TR/webvtt1/",
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="WebVTT comments are NOTE blocks that terminate at the first blank line.",
+    ),
+    CommentSyntax(
+        family_name="win32_message_file_style",
+        canonical_name="win32_message_file",
+        regex_patterns=(r"(?m)^[ \t]*;[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "; note\nMessageId=1",
+                "; note",
+                "Win32 Message Compiler semicolon comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/windows/win32/wes/"
+            "message-compiler--mc-exe-; "
+            "https://learn.microsoft.com/en-us/windows/win32/eventlog/"
+            "message-files"
+        ),
+        implementation_source=(
+            "https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/"
+            "EventLog/sample-message-text-file.md"
+        ),
+        confidence="cross-checked",
+        notes="Message text file comments are semicolon-prefixed lines.",
+    ),
+    CommentSyntax(
+        family_name="world_of_warcraft_addon_data_style",
+        canonical_name="world_of_warcraft_addon_data",
+        regex_patterns=(r"(?m)^#(?!#)[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "## Interface: 110200\n# note\nMyAddon.lua",
+                "# note",
+                "World of Warcraft TOC comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://warcraft.wiki.gg/wiki/TOC_format",
+        implementation_source="https://addonstudio.org/wiki/WoW:TOC_format",
+        confidence="cross-checked",
+        notes=(
+            "Only column-zero single-# TOC comment lines are matched; ## "
+            "metadata tags and indented # file paths are not comments."
+        ),
+    ),
+    CommentSyntax(
+        family_name="wren_style",
+        canonical_name="wren",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "class Example {}\n// note",
+                "// note",
+                "Wren slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "class Example {}\n/* outer /* inner */ outer */",
+                "/* outer /* inner */ outer */",
+                "Wren nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://wren.io/syntax.html",
+        implementation_source=(
+            "https://raw.githubusercontent.com/wren-lang/wren/main/src/vm/"
+            "wren_compiler.c"
+        ),
+        confidence="cross-checked",
+        notes="Wren supports // comments and nested /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="xojo_style",
+        canonical_name="xojo",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"'[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "Dim x As Integer\n// note",
+                "// note",
+                "Xojo slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "Dim x As Integer\n' note",
+                "' note",
+                "Xojo apostrophe line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://documentation.xojo.com/api/language/commenting.html",
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="Current Xojo docs list // and apostrophe comments; Rem is not seeded.",
+    ),
+    CommentSyntax(
+        family_name="xpages_style",
+        canonical_name="xpages",
+        regex_patterns=(r"<!--[\S\s]*?-->",),
+        shared_regex_examples=(
+            CommentExample(
+                "<xp:view>\n  <!-- note -->\n</xp:view>",
+                "<!-- note -->",
+                "XPages XML source comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.ibm.com/docs/en/domino-designer/8.5.3?topic="
+            "overview-understanding-xpages; https://www.w3.org/TR/xml/"
+        ),
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="XPages source is XML; embedded script comments are excluded.",
+    ),
+    CommentSyntax(
+        family_name="yacc_style",
+        canonical_name="yacc",
+        regex_patterns=(r"\/\*[\S\s]*?\*\/",),
+        shared_regex_examples=(
+            CommentExample(
+                "%token NUMBER\n/* note */\n%%",
+                "/* note */",
+                "Portable POSIX yacc block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://pubs.opengroup.org/onlinepubs/9699919799/utilities/"
+            "yacc.html; https://www.gnu.org/software/bison/manual/html_node/"
+            "Comments.html"
+        ),
+        implementation_source="docs/comment_research/chunk_7_t_z_report.md",
+        confidence="cross-checked",
+        notes="Only portable /* ... */ comments are seeded; GNU Bison // is dialect-specific.",
+    ),
 )
 
 

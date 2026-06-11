@@ -1,0 +1,12 @@
+value_0 = 0
+
+NOTE fixture_1
+
+value_1 = 1
+
+NOTE breaker_webvtt_remove note block
+# breaker_webvtt_keep_heading
+--flag breaker_webvtt_keep_flag
+
+00:00:00.000 --> 00:00:01.000
+caption breaker_webvtt_after

@@ -232,11 +232,13 @@ class NestedCommentQuery(Query):
 
         return bool(self.parse(string))
 
-    def parse(self, text):
+    def parse(self, text, ignored_ranges=()):
         """Return nested comment matches in source order.
 
         Args:
             text: Source text to scan.
+            ignored_ranges: Half-open source ranges where nested delimiters
+                should be ignored, such as already matched line comments.
 
         Returns:
             Top-level nested comment regions as ``QueryMatch`` values. Inner
@@ -249,19 +251,26 @@ class NestedCommentQuery(Query):
         for open_delim, close_delim in self.delimiters:
             matches.extend(
                 match
-                for match in self.parse_nested(open_delim, close_delim, text)
+                for match in self.parse_nested(
+                    open_delim,
+                    close_delim,
+                    text,
+                    ignored_ranges=ignored_ranges,
+                )
                 if not _starts_inside_quoted_string(len(match.prefix), quoted_ranges)
             )
         return sorted(matches, key=lambda match: len(match.prefix))
 
     @staticmethod
-    def parse_nested(open_delim, close_delim, text):
+    def parse_nested(open_delim, close_delim, text, ignored_ranges=()):
         """Extract top-level delimited text, including the delimiters.
 
         Args:
             open_delim: Opening nested comment delimiter.
             close_delim: Closing nested comment delimiter.
             text: Source text to scan.
+            ignored_ranges: Half-open source ranges where delimiters should be
+                skipped.
 
         Returns:
             ``QueryMatch`` values for complete top-level nested blocks. Unclosed
@@ -273,9 +282,22 @@ class NestedCommentQuery(Query):
         top_level_ranges = []
         open_len = len(open_delim)
         close_len = len(close_delim)
+        ignored_ranges = tuple(sorted(ignored_ranges))
+        ignored_index = 0
         i = 0
 
         while i < len(text):
+            while ignored_index < len(ignored_ranges) and i >= ignored_ranges[ignored_index][1]:
+                ignored_index += 1
+            if (
+                ignored_index < len(ignored_ranges)
+                and ignored_ranges[ignored_index][0] <= i < ignored_ranges[ignored_index][1]
+                and not stack
+                and not text.startswith(open_delim, i)
+            ):
+                i = ignored_ranges[ignored_index][1]
+                continue
+
             if text.startswith(open_delim, i):
                 if not stack:
                     top_level_ranges.append([i, None])
@@ -372,9 +394,11 @@ class CommentQuery(Query):
     def _parse_single_language(text, line_comments, nested_comments):
         """Return grouped and deduplicated matches for one language."""
 
+        raw_line_comments = line_comments.parse(text)
+        line_ranges = [_match_range(text, match) for match in raw_line_comments]
         comments = []
-        comments.extend(nested_comments.parse(text))
-        comments.extend(CommentQuery._group_line_comment_blocks(text, line_comments.parse(text)))
+        comments.extend(nested_comments.parse(text, ignored_ranges=line_ranges))
+        comments.extend(CommentQuery._group_line_comment_blocks(text, raw_line_comments))
         return CommentQuery._dedupe_comment_matches(text, comments)
 
     @staticmethod
@@ -408,10 +432,16 @@ class CommentQuery(Query):
                 continue
 
             separator = text[group_end:start]
+            current_key = CommentQuery._line_comment_group_key(text[group_start:group_end])
+            next_key = CommentQuery._line_comment_group_key(match.match)
             if (
                 CommentQuery._is_consecutive_line_separator(separator)
-                and CommentQuery._line_comment_group_key(text[group_start:group_end])
-                == CommentQuery._line_comment_group_key(match.match)
+                and current_key == next_key
+                and (
+                    current_key is not None
+                    or not CommentQuery._is_block_like_comment(text[group_start:group_end])
+                    and not CommentQuery._is_block_like_comment(match.match)
+                )
             ):
                 group_end = end
                 continue
@@ -519,6 +549,48 @@ class CommentQuery(Query):
                 return prefix
 
         return None
+
+    @staticmethod
+    def _is_block_like_comment(comment):
+        """Return ``True`` for standalone comments that should not line-group."""
+
+        stripped = comment.lstrip()
+        if not stripped:
+            return False
+
+        if stripped.startswith("{{!--"):
+            return True
+        if stripped.startswith(("{{!", "<%--", "{% #")):
+            return False
+        if re.match(r"\{%\s*comment\b", stripped):
+            return True
+
+        block_prefixes = (
+            "/*",
+            "/+",
+            "(*",
+            "{-",
+            "{",
+            "<!--",
+            "{#",
+            "<!",
+            "#Rem",
+            "#rem",
+            "#|",
+            "#=",
+            "###",
+            "--[[",
+            "--[=",
+            "/;",
+            "@q",
+            ';"',
+            "=begin",
+            "=for",
+            "=comment",
+            "#+BEGIN_COMMENT",
+            "#+begin_comment",
+        )
+        return stripped.startswith(block_prefixes)
 
 
 class OpeningCommentQuery(Query):

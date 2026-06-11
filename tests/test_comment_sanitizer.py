@@ -3,6 +3,10 @@ from dataclasses import dataclass
 import pytest
 
 from ml4setk import CommentQuery, CommentSanitizer, QueryMatch, sanitize_comment
+from ml4setk.Parsing.Comments.CommentSanitizer import (
+    _known_block_wrappers,
+    _line_wrapper_from_example,
+)
 from ml4setk.Parsing.Comments import SUPPORTED_LANGUAGES, iter_comment_syntaxes
 
 pytestmark = pytest.mark.unit
@@ -25,12 +29,24 @@ class SanitizerCase:
     case_id: str
 
 
+def _sample_for_expected_match(language, expected_match):
+    if language == "webvtt":
+        return f"before\n\n{expected_match}\nafter"
+    return f"before\n{expected_match}\nafter"
+
+
 def _split_example_placeholder(example_text):
     for placeholder in _EXAMPLE_BODY_PLACEHOLDERS:
         if placeholder not in example_text:
             continue
         prefix, suffix = example_text.split(placeholder, 1)
         return prefix, suffix
+    line_wrapper = _line_wrapper_from_example(example_text)
+    if line_wrapper is not None:
+        return line_wrapper
+    block_wrappers = _known_block_wrappers(example_text)
+    if block_wrappers:
+        return block_wrappers[0]
     raise AssertionError(f"Unsupported example placeholder in {example_text!r}")
 
 
@@ -95,7 +111,7 @@ def _build_line_cases():
             removal_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{removal_match}\nafter",
+                    sample=_sample_for_expected_match(language, removal_match),
                     expected_match=removal_match,
                     expected_sanitized=removal_expected,
                     case_id=f"{language}-line-removal",
@@ -117,7 +133,7 @@ def _build_line_cases():
             preservation_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{keep_match}\nafter",
+                    sample=_sample_for_expected_match(language, keep_match),
                     expected_match=keep_match,
                     expected_sanitized=keep_expected,
                     case_id=f"{language}-line-preservation",
@@ -132,7 +148,7 @@ def _build_block_case(language, example, body, case_id):
     expected_match = f"{prefix}{body}{suffix}"
     return SanitizerCase(
         language=language,
-        sample=f"before\n{expected_match}\nafter",
+        sample=_sample_for_expected_match(language, expected_match),
         expected_match=expected_match,
         expected_sanitized=body,
         case_id=case_id,
@@ -143,7 +159,7 @@ def _build_nested_case(language, open_delim, close_delim, body, case_id):
     expected_match = f"{open_delim} {body} {close_delim}"
     return SanitizerCase(
         language=language,
-        sample=f"before {expected_match} after",
+        sample=_sample_for_expected_match(language, expected_match),
         expected_match=expected_match,
         expected_sanitized=body,
         case_id=case_id,
@@ -249,7 +265,7 @@ def _build_c_style_block_gutter_cases():
             removal_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{removal_match}\nafter",
+                    sample=_sample_for_expected_match(language, removal_match),
                     expected_match=removal_match,
                     expected_sanitized="adversarial *** ### $$$ %%%\nrepeated ### *** $$$ %%%",
                     case_id=f"{language}-c-block-gutter-removal",
@@ -265,7 +281,7 @@ def _build_c_style_block_gutter_cases():
             preservation_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{preservation_match}\nafter",
+                    sample=_sample_for_expected_match(language, preservation_match),
                     expected_match=preservation_match,
                     expected_sanitized=(
                         "keep * exactly and *** ### $$$ %%%\n"

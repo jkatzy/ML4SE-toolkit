@@ -143,6 +143,8 @@ def _repeated_opener_cases_for_examples(examples) -> list[FixtureCase]:
     for index, example in enumerate(examples, start=1):
         if example.kind != "line":
             continue
+        if _skip_repeated_line_opener(example):
+            continue
 
         expected_match = _repeated_line_opener_match(
             example.expected_match,
@@ -245,10 +247,20 @@ def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
 
 
 def build_fixture_content(language: str) -> str:
-    chunks = [_code_separator(0)]
-    for index, case in enumerate(build_fixture_cases(language), start=1):
+    cases = list(build_fixture_cases(language))
+    chunks = []
+    separator_offset = 0
+    if not cases or not cases[0].content.startswith("#!"):
+        chunks.append(_code_separator(0))
+        separator_offset = 1
+
+    for index, case in enumerate(cases, start=1):
+        if _requires_leading_blank_separator(language, case):
+            chunks.append("")
         chunks.append(case.content)
-        chunks.append(_code_separator(index))
+        if _requires_blank_separator(case):
+            chunks.append("")
+        chunks.append(_code_separator(index - 1 + separator_offset))
     return "\n".join(chunks) + "\n"
 
 
@@ -309,9 +321,23 @@ def _unique_fixture_match(expected_match: str, marker: str, kind: str) -> str:
         )
     if kind == "line" and "\n" not in expected_match:
         return f"{expected_match} {marker}"
+    bounds = _comment_payload_bounds(expected_match)
+    if kind in {"block", "nested"} and bounds is not None:
+        open_delim, close_delim = bounds
+        body = expected_match[len(open_delim) : len(expected_match) - len(close_delim)]
+        return f"{open_delim}{body.rstrip()} {marker}{close_delim}"
     if expected_match.endswith((")", "]", "}")):
         return f"{expected_match[:-1]} {marker}{expected_match[-1]}"
     return expected_match
+
+
+def _skip_repeated_line_opener(example) -> bool:
+    """Return whether repeated-opener stress cases are invalid for an example."""
+
+    expected = example.expected_match.lstrip(" \t")
+    if not expected.startswith("# note"):
+        return False
+    return "Org " in example.description or "World of Warcraft" in example.description
 
 
 def _repeated_line_opener_match(expected_match: str, marker: str) -> Optional[str]:
@@ -403,6 +429,8 @@ def _star_prefixed_block_match(expected_match: str, marker: str) -> Optional[str
         return None
 
     open_delim, close_delim = bounds
+    if not _supports_star_prefixed_block(open_delim, close_delim):
+        return None
     if open_delim == "/*" and close_delim == "*/":
         open_delim = "/**"
         close_delim = " */"
@@ -429,7 +457,52 @@ def _comment_payload_bounds(expected_match: str) -> Optional[tuple[str, str]]:
 
     if len(expected_match) >= 2 and expected_match[0] in "([{" and expected_match[-1] in ")]}":
         return expected_match[0], expected_match[-1]
+    for open_delim, close_delim in (
+        ("/*", "*/"),
+        ("/**", "*/"),
+        ("<!--", "-->"),
+        ("###", "###"),
+        ("#|", "|#"),
+        ("#=", "=#"),
+        ("%{", "%}"),
+        ("(*", "*)"),
+        ("{-", "-}"),
+        ("#{", "}#"),
+        ("<%#", "%>"),
+        ("{#", "#}"),
+        ("<!", "!>"),
+        ("<mt:Ignore>", "</mt:Ignore>"),
+        ("=begin comment", "=end comment"),
+        ("#+BEGIN_COMMENT", "#+END_COMMENT"),
+        ("#+begin_comment", "#+end_comment"),
+        ("--[[", "]]"),
+        ("--[=[", "]=]"),
+        ("/;", ";/"),
+    ):
+        if expected_match.startswith(open_delim) and expected_match.endswith(close_delim):
+            return open_delim, close_delim
     return None
+
+
+def _supports_star_prefixed_block(open_delim: str, close_delim: str) -> bool:
+    if '"' in open_delim + close_delim:
+        return False
+    if open_delim.startswith("@q"):
+        return False
+    return "\n" not in open_delim + close_delim
+
+
+def _requires_blank_separator(case: FixtureCase) -> bool:
+    expected = case.expected_match
+    if expected is None:
+        return False
+    stripped = expected.lstrip(" \t").lower()
+    return stripped.startswith(("=for comment", "=comment"))
+
+
+def _requires_leading_blank_separator(language: str, case: FixtureCase) -> bool:
+    expected = case.expected_match
+    return language == "webvtt" and expected is not None and expected.startswith("NOTE")
 
 
 def _star_prefixed_doc_body(marker: str) -> str:

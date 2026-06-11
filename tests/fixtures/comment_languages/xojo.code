@@ -1,0 +1,29 @@
+value_0 = 0
+// fixture_1
+value_1 = 1
+' fixture_2
+value_2 = 2
+//////// repeated_open_1
+value_3 = 3
+/// odd_repeated_open_1
+value_4 = 4
+'''''''' repeated_open_2
+value_5 = 5
+// grouped_line_1_a
+// grouped_line_1_b
+value_6 = 6
+' grouped_line_2_a
+' grouped_line_2_b
+value_7 = 7
+value_string_1 = "not // string_probe_1";
+value_8 = 8
+value_string_2 = "not ' string_probe_2";
+value_9 = 9
+Dim breaker_xojo_a As Integer // breaker_xojo_remove slash gutter
+Dim breaker_xojo_b As Integer
+Dim breaker_xojo_c As String // # breaker_xojo_keep_heading
+Dim breaker_xojo_d As Integer
+Dim breaker_xojo_e As Integer ' breaker_xojo_remove_quote gutter
+Dim breaker_xojo_f As Integer
+Dim breaker_xojo_g As Integer ' ' breaker_xojo_keep_quote
+Dim breaker_xojo_h As Integer
