@@ -938,6 +938,33 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="clips_style",
+        canonical_name="clips",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "(defrule example ; note\n  =>\n  (printout t \"ok\" crlf))",
+                "; note",
+                "CLIPS semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.clipsrules.net/documentation/v642/bpg642.pdf"
+        ),
+        implementation_source=(
+            "https://github.com/noxdafox/clips/blob/master/core/scanner.c"
+        ),
+        confidence="verified",
+        notes=(
+            "CLIPS semicolon comments run to the next newline. The scanner "
+            "removes semicolon comments while skipping whitespace; no CLIPS "
+            "block-comment delimiter is documented or implemented."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

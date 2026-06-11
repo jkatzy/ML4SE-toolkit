@@ -341,7 +341,8 @@ BASIC_ALIAS_LANGS = ["inno setup", "visual basic", "realbasic", "xojo", "brights
 APPLE_ALIAS_LANGS = ["applescript"]
 APL_ALIAS_LANGS = ["apl"]
 ALLOY_ALIAS_LANGS = ["alloy"]
-SEMICOLON_CSTYLE_ALIAS_LANGS = ["autohotkey", "clips"]
+SEMICOLON_CSTYLE_ALIAS_LANGS = ["autohotkey"]
+CLIPS_ALIAS_LANGS = ["clips"]
 AUTOIT_ALIAS_LANGS = ["autoit"]
 ABAP_ALIAS_LANGS = ["abap"]
 BATCH_ALIAS_LANGS = ["batchfile"]
@@ -924,6 +925,14 @@ def test_semicolon_cstyle_aliases(lang):
     texts = [comment[1] for comment in comments]
     assert "/* block */" in texts
     assert "; first\n; second" in texts
+
+
+@pytest.mark.parametrize("lang", CLIPS_ALIAS_LANGS)
+def test_clips_alias_is_semicolon_line_only(lang):
+    content = "/* not a CLIPS comment */\n; first\n; second\n(defrule example)\n"
+    comments = pc.extract_comments(content, [lang])
+
+    assert [comment[1] for comment in comments] == ["; first\n; second"]
 
 
 @pytest.mark.parametrize("lang", BLITZMAX_ALIAS_LANGS)

@@ -966,29 +966,24 @@ src -> /* note */ queue;
 
 ## CLIPS
 - Registry key: `clips`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `CLIPS 6.4 Basic Programming Guide and CLIPS 6.40 scanner mirror`
+- Version-specific syntax: `No block-comment syntax is documented or implemented.`
 - Line comments: `;`
-- Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Block comments: `unsupported`
+- Termination behavior: `end of line`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [CLIPS 6.4 Basic Programming Guide](https://www.clipsrules.net/documentation/v642/bpg642.pdf)
+- Implementation source: [CLIPS scanner](https://github.com/noxdafox/clips/blob/master/core/scanner.c)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify CLIPS comment syntax and add line/block tests.`
-- Notes: `Candidate semicolon and block comment syntax.`
+- Recommended action: `Implemented in the registry with semicolon line-comment fixtures.`
+- Notes: `The 6.4 guide says a semicolon starts a comment and also acts as a delimiter. GetToken removes semicolon comments while skipping whitespace and has no logic for CLIPS block comments.`
 
 - Example - line:
 ```text
-; comment
-(defrule example)
-```
-- Example - block:
-```text
-/* comment */
+; note
 (defrule example)
 ```
 
