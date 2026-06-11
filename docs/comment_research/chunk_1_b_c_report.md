@@ -696,33 +696,36 @@ struct Foo {}
 
 ## Ceylon
 - Registry key: `ceylon`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `//`
+- Version scope: `Ceylon 1.3 specification and archived 1.3.4-SNAPSHOT compiler`
+- Version-specific syntax: `No comment-syntax difference found between the final 1.3 specification and archived compiler grammar.`
+- Line comments: `//`, `#!`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Termination behavior: `line comments run to newline or EOF; block comments use balanced recursive delimiters`
+- Nested comments: `true nesting supported`
+- Confidence: `high`
+- Evidence mode: `official_spec_plus_implementation`
+- Docs source: [Ceylon 1.3 specification](https://web.mit.edu/ceylon_v1.3.3/ceylon-1.3.3/doc/en/spec/html_single/#comments)
+- Implementation source: [Ceylon compiler grammar](https://github.com/eclipse-archived/ceylon/blob/master/typechecker/antlr/org/eclipse/ceylon/compiler/typechecker/parser/Ceylon.g)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Ceylon docs and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Recommended action: `Implemented in the registry with slash, shebang, and nested-block fixtures.`
+- Notes: `The specification explicitly defines // and #! end-of-line comments and recursively nested /* ... */ blocks.`
 
 - Example - line:
-```text
+```ceylon
 shared void run() {
-  // comment
-  print("hi");
+  print("hi"); // note
 }
 ```
+- Example - shebang:
+```ceylon
+#!/usr/bin/ceylon
+shared void run() {}
+```
 - Example - block:
-```text
+```ceylon
 shared void run() {
-  /* comment */
-  print("hi");
+  /* outer /* note */ outer */
 }
 ```
 
