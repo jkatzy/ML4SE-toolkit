@@ -912,30 +912,29 @@ CODE
 
 ## Clean
 - Registry key: `clean`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Clean 2.2 language report and compiler master at 0db3c25`
+- Version-specific syntax: `No comment-syntax difference found between the language report and current compiler.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unresolved`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Termination behavior: `line comments end at newline; block comments use balanced delimiter matching`
+- Nested comments: `supported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Clean 2.2 language report](https://clean.cs.ru.nl/download/doc/CleanLangRep.2.2.pdf)
+- Implementation source: [Clean compiler scanner](https://gitlab.science.ru.nl/clean-compiler-and-rts/compiler/-/blob/master/frontend/scanner.icl)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify Clean comment nesting before seeding.`
-- Notes: `C-like syntax is likely, but nesting was not verified.`
+- Recommended action: `Implemented in the registry with line and nested block fixtures.`
+- Notes: `The report grammar recursively embeds Comment inside /* ... */. The compiler scanner likewise calls ScanComment recursively for a nested /* opener and resumes the outer scan after the nested close.`
 
 - Example - line:
-```text
-// comment
-Start
+```clean
+Start = 0 // note
 ```
-- Example - block:
-```text
-/* comment */
-Start
+- Example - nested block:
+```clean
+/* outer /* note */ outer */
+Start = 0
 ```
 
 ## Click

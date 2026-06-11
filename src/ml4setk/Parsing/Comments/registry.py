@@ -863,6 +863,44 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="clean_style",
+        canonical_name="clean",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "Start = 0 // note\n",
+                "// note",
+                "Clean slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "Start = 0\n/* outer /* note */ outer */\n",
+                "/* outer /* note */ outer */",
+                "Clean recursively nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://clean.cs.ru.nl/download/doc/CleanLangRep.2.2.pdf"
+        ),
+        implementation_source=(
+            "https://gitlab.science.ru.nl/clean-compiler-and-rts/compiler/"
+            "-/blob/master/frontend/scanner.icl"
+        ),
+        confidence="verified",
+        notes=(
+            "Clean line comments run to newline and /* ... */ comments are "
+            "balanced recursively. The 2.2 language report and current "
+            "compiler scanner agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
