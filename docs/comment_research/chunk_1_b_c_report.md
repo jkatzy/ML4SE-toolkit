@@ -1016,26 +1016,31 @@ src -> /* note */ queue;
 
 ## Closure Templates
 - Registry key: `closure_templates`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `unsupported`
-- Block comments: `{* ... *}`
-- Termination behavior: `first closing delimiter wins`
+- Version scope: `Closure Templates master at 7f50e1f`
+- Version-specific syntax: `The current Soy reference documents slash comments; the older {* ... *} form is not used by the current parser.`
+- Line comments: `// after whitespace or at the start of a Soy lexical context`
+- Block comments: `/* ... */`
+- Termination behavior: `line comments end at newline; block comments stop at the first closing delimiter`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Soy comments reference](https://github.com/google/closure-templates/blob/master/documentation/reference/comments.md)
+- Implementation source: [Soy parser grammar](https://github.com/google/closure-templates/blob/master/java/src/com/google/template/soy/soyparse/SoyFileParser.jj)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify Soy/Closure Templates comment syntax before seeding.`
-- Notes: `Template comments are likely block-delimited.`
+- Recommended action: `Implemented in the registry with Soy line and non-nested block fixtures.`
+- Notes: `SoyFileParser.jj treats // as a comment only in parser states where it cannot be confused with URI schemes, requiring leading whitespace in template text. Multiline and SoyDoc comments enter comment states on /* or /** and close on the first */.`
 
-- Example - block:
-```text
-{namespace example}
-{* comment *}
+- Example - line:
+```soy
 {template .main}
+  // note
+{/template}
+```
+- Example - block:
+```soy
+{template .main}
+  /* note */
 {/template}
 ```
 

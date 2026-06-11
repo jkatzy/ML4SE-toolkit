@@ -244,6 +244,12 @@ def extract_comments_semicolon_cstyle(content):
     return _sorted_spans(blocks, lines)
 
 
+def extract_comments_closure_templates(content):
+    blocks = _regex_matches(content, [r"\/\*[\S\s]*?\*\/"])
+    lines = _regex_line_matches(content, [r"(?m)(?<![^\s])//[^\r\n]*"])
+    return _sorted_spans(blocks, lines)
+
+
 def extract_comments_ini(content):
     return _regex_line_matches(content, [r"^\s*[#;].*"])
 
@@ -914,6 +920,7 @@ _LANG_EXTRACTORS = {
     "netlogo": extract_comments_assembly,
     "scheme": extract_comments_assembly,
     "clips": extract_comments_semicolon,
+    "closure templates": extract_comments_closure_templates,
     "cobol": extract_comments_cobol,
     "coq": extract_comments_coq,
     "cool": extract_comments_dash_star_nested,
