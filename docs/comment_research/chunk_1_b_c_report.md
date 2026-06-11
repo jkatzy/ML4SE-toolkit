@@ -841,20 +841,27 @@ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  empty.txt
 
 ## Cirru
 - Registry key: `cirru`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Version scope: `Cirru parser 0.2.5 at 14f9a9b7`
+- Version-specific syntax: `The parser preserves ; and ;; as ordinary leaf tokens; only expression consumers interpret a list headed by either token as a comment.`
+- Line comments: `unsupported`
+- Block comments: `unsupported`
+- Termination behavior: `unsupported`
+- Nested comments: `unsupported`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Cirru syntax documentation](https://text.cirru.org/)
+- Implementation source: [Cirru parser](https://github.com/Cirru/parser.rs)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Research Cirru syntax before adding registry support.`
-- Notes: `No verified comment syntax gathered.`
+- Recommended action: `Keep unsupported in the lexical registry; comment expressions require a Cirru parse tree.`
+- Notes: `The lexer accepts semicolons inside ordinary tokens. Cirru::is_comment recognizes only leaf values equal to ; or ;;, and format_to_lisp applies that predicate to the head of a parsed list. Regex delimiter matching would overmatch ordinary semicolon tokens and cannot determine the indentation-defined extent of a comment expression.`
+
+- Example - expression comment:
+```cirru
+defn main ()
+  ; this parsed expression is treated as a comment
+  println |ready
+```
 
 ## Clarion
 - Registry key: `clarion`
