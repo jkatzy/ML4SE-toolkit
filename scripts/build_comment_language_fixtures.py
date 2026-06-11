@@ -255,6 +255,8 @@ def build_fixture_content(language: str) -> str:
         separator_offset = 1
 
     for index, case in enumerate(cases, start=1):
+        if _requires_leading_blank_separator(language, case):
+            chunks.append("")
         chunks.append(_source_region_wrapped_content(language, case.content))
         if _requires_blank_separator(case):
             chunks.append("")
@@ -509,6 +511,11 @@ def _requires_blank_separator(case: FixtureCase) -> bool:
         return False
     stripped = expected.lstrip(" \t").lower()
     return stripped.startswith(("=for comment", "=comment"))
+
+
+def _requires_leading_blank_separator(language: str, case: FixtureCase) -> bool:
+    expected = case.expected_match
+    return language == "webvtt" and expected is not None and expected.startswith("NOTE")
 
 
 def _star_prefixed_doc_body(marker: str) -> str:

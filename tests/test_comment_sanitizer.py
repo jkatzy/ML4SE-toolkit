@@ -30,6 +30,8 @@ class SanitizerCase:
 
 
 def _source_region_wrapped_sample(language, expected_match):
+    if language == "webvtt":
+        return f"before\n\n{expected_match}\nafter"
     if language in {"literate_agda", "literate_haskell"}:
         body = f"\\begin{{code}}\n{expected_match}\n\\end{{code}}"
     elif language == "literate_coffeescript":

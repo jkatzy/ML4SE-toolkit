@@ -243,6 +243,16 @@ def test_openedge_abl_slash_comment_requires_left_boundary():
     ]
 
 
+def test_webvtt_note_cue_text_is_not_comment():
+    sample = (
+        "WEBVTT\n\n"
+        "00:00:00.000 --> 00:00:01.000\n"
+        "NOTE spoken cue text, not a comment\n\n"
+    )
+
+    assert CommentQuery("webvtt").parse(sample) == []
+
+
 def test_stack_v2_csharp_todo_line_comment_extracts_reported_span():
     sample = (
         "using System;\n"

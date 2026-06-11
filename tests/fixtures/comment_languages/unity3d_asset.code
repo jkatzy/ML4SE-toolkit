@@ -1,0 +1,17 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# grouped_line_1_a
+# grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # string_probe_1";
+value_4 = 4
+value_breaker_unity3d_asset_0 = 0
+value_breaker_unity3d_asset_line = 1 # breaker_unity3d_asset_remove hash gutter
+value_breaker_unity3d_asset_1 = 1
+value_breaker_unity3d_asset_heading = 2 # # breaker_unity3d_asset_keep_heading
+value_breaker_unity3d_asset_2 = 2
+value_breaker_unity3d_asset_string = "not # breaker_unity3d_asset_string";
+value_breaker_unity3d_asset_3 = 3

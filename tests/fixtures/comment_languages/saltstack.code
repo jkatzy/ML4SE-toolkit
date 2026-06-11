@@ -1,0 +1,35 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+{# fixture_2 #}
+value_2 = 2
+######## repeated_open_1
+value_3 = 3
+value_inline_2 = 1 {# inline_block_2 #} + 2
+value_4 = 4
+{#
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+#}
+value_5 = 5
+# grouped_line_1_a
+# grouped_line_1_b
+value_6 = 6
+value_string_1 = "not # string_probe_1";
+value_7 = 7
+value_string_2 = "not {# string_probe_2 #}";
+value_8 = 8
+value_breaker_saltstack_0 = 0
+# breaker_saltstack_remove yaml gutter
+value_breaker_saltstack_1 = 1
+# # breaker_saltstack_keep_heading
+value_breaker_saltstack_2 = 2
+{# breaker_saltstack_remove jinja wrapper #}
+value_breaker_saltstack_3 = 3
+{# # breaker_saltstack_keep_heading #}
+value_breaker_saltstack_4 = 4
+value_breaker_saltstack_string = "not {# breaker_saltstack_string #}";
+value_breaker_saltstack_5 = 5

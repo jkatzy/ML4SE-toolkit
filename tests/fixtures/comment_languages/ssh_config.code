@@ -1,0 +1,17 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# grouped_line_1_a
+# grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # string_probe_1";
+value_4 = 4
+value_breaker_ssh_config_0 = 0
+value_breaker_ssh_config_line = 1 # breaker_ssh_config_remove hash gutter
+value_breaker_ssh_config_1 = 1
+value_breaker_ssh_config_heading = 2 # # breaker_ssh_config_keep_heading
+value_breaker_ssh_config_2 = 2
+value_breaker_ssh_config_string = "not # breaker_ssh_config_string";
+value_breaker_ssh_config_3 = 3
