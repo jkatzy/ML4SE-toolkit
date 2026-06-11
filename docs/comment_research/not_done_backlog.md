@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-11`
-- Total uncovered languages tracked: `238`
+- Total uncovered languages tracked: `237`
 - Ready to implement now: `0`
-- Needs research or confirmation: `222`
+- Needs research or confirmation: `221`
 - Resolved non-actionable: `16`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Clean | clean | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unresolved | Verify Clean comment nesting before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Click | click | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Add hash-comment tests after confirming the Click parser docs. | docs/comment_research/chunk_1_b_c_report.md |
 | CLIPS | clips | medium | unresolved | unresolved | ; | /* ... */ | first closing delimiter wins | unsupported | Verify CLIPS comment syntax and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
 | Closure Templates | closure_templates | low | unresolved | unresolved | unsupported | {* ... *} | first closing delimiter wins | unsupported | Verify Soy/Closure Templates comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
