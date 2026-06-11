@@ -1,0 +1,51 @@
+#!/usr/bin/env node fixture_2
+value_0 = 0
+// rendered by ERB fixture_1
+value_1 = 1
+value_2 = 2
+<%# server-side fixture_3: do not emit debug data %>
+value_3 = 3
+/* client-side fixture_4 */
+value_4 = 4
+//////// repeated_open_1
+value_5 = 5
+/// odd_repeated_open_1
+value_6 = 6
+value_inline_3 = 1 <%# server-side inline_block_3: do not emit debug data %> + 2
+value_7 = 7
+value_inline_4 = 1 /* client-side inline_block_4 */ + 2
+value_8 = 8
+<%# server-side
+ * star_doc_3 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+: do not emit debug data %>
+value_9 = 9
+/* client-side
+ * star_doc_4 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*/
+value_10 = 10
+// rendered by ERB grouped_line_1_a
+// rendered by ERB grouped_line_1_b
+value_11 = 11
+value_string_1 = "not // rendered by ERB string_probe_1";
+value_12 = 12
+value_string_2 = "not #!/usr/bin/env node string_probe_2";
+value_13 = 13
+value_string_3 = "not <%# server-side string_probe_3: do not emit debug data %>";
+value_14 = 14
+value_string_4 = "not /* client-side string_probe_4 */";
+value_15 = 15
+value_gl_breaker_0 = 0
+<%# gl_breaker_javascript_erb_server keeps ERB-only marker %>
+value_gl_breaker_1 = 1
+/* client-side gl_breaker_javascript_erb_block with // marker */
+value_gl_breaker_2 = 2
+// gl_breaker_javascript_erb_line keeps http://example.test/path
+value_gl_breaker_3 = 3

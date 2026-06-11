@@ -42,6 +42,8 @@ class CommentSyntax:
         aliases: Additional lowercase language keys with the same syntax.
         regex_patterns: Regexes for line comments and non-nested block comments.
         nested_delimiters: Recursive block comment delimiter pairs.
+        source_region_patterns: Optional regexes limiting extraction to
+            language-bearing source regions, useful for literate formats.
         shared_regex_examples: Seeded examples that apply to every alias.
         canonical_regex_examples: Seeded examples only for ``canonical_name``.
         shared_nested_examples: Nested examples that apply to every alias.
@@ -57,6 +59,7 @@ class CommentSyntax:
     aliases: Tuple[str, ...] = ()
     regex_patterns: Tuple[str, ...] = ()
     nested_delimiters: Tuple[Tuple[str, str], ...] = ()
+    source_region_patterns: Tuple[str, ...] = ()
     shared_regex_examples: Tuple[CommentExample, ...] = ()
     canonical_regex_examples: Tuple[CommentExample, ...] = ()
     shared_nested_examples: Tuple[CommentExample, ...] = ()
@@ -3654,6 +3657,813 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         documentation_source="https://docs.lfe.io/current/prog-rules/8.html",
         confidence="verified",
         notes="LFE uses semicolon comments, with repeated semicolons as style levels.",
+    ),
+    CommentSyntax(
+        family_name="gaml_style",
+        canonical_name="gaml",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "species pedestrian {\n  int speed <- 4; // movement speed\n}",
+                "// movement speed",
+                "GAML slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* temporary note */\nexperiment main type: gui { }",
+                "/* temporary note */",
+                "GAML non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://gama-platform.org/wiki/1.9.3/Statements; "
+            "https://gama-platform.org/wiki/1.9.3/GamlReference"
+        ),
+        implementation_source=(
+            "https://github.com/gama-platform/gama/blob/main/gaml.grammar/src/"
+            "gaml/grammar/Gaml.xtext"
+        ),
+        confidence="high",
+        notes="GAML uses // line comments and non-nested /* ... */ block comments.",
+    ),
+    CommentSyntax(
+        family_name="gcc_machine_description_style",
+        canonical_name="gcc_machine_description",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r";[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "(define_attr \"type\" \"alu\" (const_string \"alu\")) ; note",
+                "; note",
+                "GCC machine-description semicolon comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* constraint note */\n(define_attr \"type\" \"alu\")",
+                "/* constraint note */",
+                "GCC machine-description C-style block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://gcc.gnu.org/onlinedocs/gccint/Machine-Desc.html",
+        implementation_source=(
+            "https://github.com/gcc-mirror/gcc/blob/master/gcc/read-md.cc"
+        ),
+        confidence="high",
+        notes=(
+            "The reader treats semicolon line comments and C-style block "
+            "comments as whitespace. Block comments are non-nested."
+        ),
+    ),
+    CommentSyntax(
+        family_name="git_revision_list_style",
+        canonical_name="git_revision_list",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  # formatting pass",
+                "# formatting pass",
+                "Git revision-list trailing hash comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://git-scm.com/docs/git-blame",
+        implementation_source="https://github.com/git/git/blob/master/oidset.c",
+        confidence="high",
+        notes=(
+            "Git ignore-revs style files discard # and following text before "
+            "trimming whitespace; no block form is supported."
+        ),
+    ),
+    CommentSyntax(
+        family_name="harbour_style",
+        canonical_name="harbour",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+            r"&&[^\r\n]*",
+            r"(?m)^[ \t]*\*[^\r\n]*",
+            r"(?im)^[ \t]*note\b[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "QOut( \"Ok!\" )  && inline legacy comment",
+                "&& inline legacy comment",
+                "Harbour inline legacy line comment.",
+                kind="line",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "PROCEDURE Main()\n   // file header comment\nRETURN",
+                "// file header comment",
+                "Harbour slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "* legacy full-line comment\nPROCEDURE Main()",
+                "* legacy full-line comment",
+                "Harbour first-token star line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "NOTE old-style full-line comment\nPROCEDURE Main()",
+                "NOTE old-style full-line comment",
+                "Harbour first-token NOTE line comment.",
+                kind="line",
+            ),
+            CommentExample(
+                "PROCEDURE Main()\n   /* multiple\n      note lines */\nRETURN",
+                "/* multiple\n      note lines */",
+                "Harbour non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        implementation_source=(
+            "https://github.com/harbour/core/blob/master/src/pp/ppcore.c; "
+            "https://github.com/harbour/core/blob/master/include/hbpp.h"
+        ),
+        confidence="high",
+        notes=(
+            "Harbour supports //, &&, first-token *, first-token NOTE, and "
+            "non-nested /* ... */ comments. Semicolon is a command separator."
+        ),
+    ),
+    CommentSyntax(
+        family_name="holyc_style",
+        canonical_name="holyc",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "U8 *message = \"hello\"; // greeting",
+                "// greeting",
+                "HolyC slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "/* outer note\n   /* nested disabled code */\n   still inside outer */",
+                "/* outer note\n   /* nested disabled code */\n   still inside outer */",
+                "HolyC nested block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        implementation_source=(
+            "https://github.com/cia-foundation/TempleOS/blob/archive/Compiler/Lex.HC; "
+            "https://github.com/Zeal-Operating-System/ZealOS/blob/master/src/Compiler/Lex.ZC"
+        ),
+        confidence="high",
+        notes="HolyC supports // comments and recursively nested /* ... */ blocks.",
+    ),
+    CommentSyntax(
+        family_name="jasmin_style",
+        canonical_name="jasmin",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "; default constructor follows\n.method public <init>()V",
+                "; default constructor follows",
+                "Jasmin semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://jasmin.sourceforge.net/guide.html",
+        implementation_source="https://github.com/davidar/jasmin",
+        confidence="verified",
+        notes="Jasmin assembly uses semicolon line comments and no block form.",
+    ),
+    CommentSyntax(
+        family_name="javascript_erb_style",
+        canonical_name="javascript_erb",
+        regex_patterns=(
+            r"<%#[\S\s]*?%>",
+            r"/\*[\S\s]*?\*/",
+            r"\A#![^\r\n]*",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "const user = \"Ada\"; // rendered by ERB",
+                "// rendered by ERB",
+                "JavaScript+ERB JavaScript line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "#!/usr/bin/env node\nconst user = \"Ada\";",
+                "#!/usr/bin/env node",
+                "JavaScript+ERB script-start hashbang comment.",
+                kind="line",
+            ),
+            CommentExample(
+                "<%# server-side note: do not emit debug data %>\nconsole.log(user);",
+                "<%# server-side note: do not emit debug data %>",
+                "JavaScript+ERB server-side ERB comment tag.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "const total = 1 + 2;\n/* client-side note */",
+                "/* client-side note */",
+                "JavaScript+ERB JavaScript block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://tc39.es/ecma262/#sec-comments; "
+            "https://docs.ruby-lang.org/en/3.4/ERB.html"
+        ),
+        implementation_source=(
+            "https://github.com/tc39/ecma262; https://github.com/ruby/erb"
+        ),
+        confidence="verified",
+        notes=(
+            "Layered template syntax: JavaScript comments, script-start "
+            "hashbangs, and ERB <%# ... %> comments are all recognized."
+        ),
+    ),
+    CommentSyntax(
+        family_name="jest_snapshot_style",
+        canonical_name="jest_snapshot",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "// Jest Snapshot v1, https://goo.gl/fbAQLP\n\nexports[`button renders 1`] = `<button>Save</button>`;",
+                "// Jest Snapshot v1, https://goo.gl/fbAQLP",
+                "Jest generated snapshot header comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://jestjs.io/docs/snapshot-testing",
+        implementation_source="https://github.com/jestjs/jest/tree/main/packages/jest-snapshot",
+        confidence="high",
+        notes=(
+            "Only generated // snapshot metadata is modeled; block comments "
+            "inside serialized snapshot text are intentionally excluded."
+        ),
+    ),
+    CommentSyntax(
+        family_name="jison_style",
+        canonical_name="jison",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "%start expressions\n// parse a sequence of expressions",
+                "// parse a sequence of expressions",
+                "Jison grammar line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* operator note */\n%left '+' '-'",
+                "/* operator note */",
+                "Jison non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://gerhobbelt.github.io/jison/docs/",
+        implementation_source="https://github.com/zaach/jison; https://github.com/zaach/jison-lex",
+        confidence="high",
+        notes="Jison grammar files use JavaScript-style non-nested comments.",
+    ),
+    CommentSyntax(
+        family_name="jolie_style",
+        canonical_name="jolie",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "main {\n  // receive a request\n}",
+                "// receive a request",
+                "Jolie slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* shared service note */\ninterface PingInterface { }",
+                "/* shared service note */",
+                "Jolie non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://docs.jolie-lang.org/",
+        implementation_source="https://github.com/jolie/jolie",
+        confidence="high",
+        notes="Jolie uses Java/C-style line and non-nested block comments.",
+    ),
+    CommentSyntax(
+        family_name="kaitai_struct_style",
+        canonical_name="kaitai_struct",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "meta:\n  id: png\n  endian: be # multi-byte fields are big-endian",
+                "# multi-byte fields are big-endian",
+                "Kaitai Struct YAML hash comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://doc.kaitai.io/user_guide.html; "
+            "https://yaml.org/spec/1.2.2/#61-indentation-spaces"
+        ),
+        implementation_source="https://github.com/kaitai-io/kaitai_struct_compiler",
+        confidence="verified",
+        notes="Kaitai .ksy schemas inherit YAML # comments and no block form.",
+    ),
+    CommentSyntax(
+        family_name="kakounescript_style",
+        canonical_name="kakounescript",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# load project options\ndeclare-option str project_root %sh{pwd}",
+                "# load project options",
+                "KakouneScript hash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/mawww/kakoune/blob/master/doc/pages/"
+            "command-parsing.asciidoc"
+        ),
+        implementation_source="https://github.com/mawww/kakoune",
+        confidence="high",
+        notes="Kakoune command files use # line comments outside quoted arguments.",
+    ),
+    CommentSyntax(
+        family_name="kicad_legacy_layout_style",
+        canonical_name="kicad_legacy_layout",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "PCBNEW-BOARD Version 2 date 2024-01-01\n# Created by KiCad",
+                "# Created by KiCad",
+                "KiCad legacy board hash comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://dev-docs.kicad.org/en/file-formats/legacy-pcb/"
+        ),
+        implementation_source="https://gitlab.com/kicad/code/kicad",
+        confidence="high",
+        notes="KiCad legacy layout files use # line comments; ; was not confirmed.",
+    ),
+    CommentSyntax(
+        family_name="kit_style",
+        canonical_name="kit",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# normal comment\n## Documentation for the next definition",
+                "# normal comment",
+                "Kit hash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "## Documentation for the next definition\nlet answer = 42",
+                "## Documentation for the next definition",
+                "Kit doc-comment line form.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://kit-lang.org/docs/2026.6.9/index.html",
+        implementation_source="https://github.com/kitlang/kit",
+        confidence="high",
+        notes="Current Kit uses # comments, with ## as a documentation-comment subset.",
+    ),
+    CommentSyntax(
+        family_name="krl_style",
+        canonical_name="krl",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "PTP HOME ; move to start position",
+                "; move to start position",
+                "KRL semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://support.industry.siemens.com/cs/attachments/109477421/"
+            "KUKA_KRL_Reference_en.pdf"
+        ),
+        implementation_source="https://github.com/tree-sitter-grammars/tree-sitter-krl",
+        confidence="high",
+        notes="KRL comments begin with ; and continue to the end of the physical line.",
+    ),
+    CommentSyntax(
+        family_name="kvlang_style",
+        canonical_name="kvlang",
+        regex_patterns=(r"(?m)^[ \t]*#(?!:)[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# This label is shown on the home screen\nLabel:",
+                "# This label is shown on the home screen",
+                "Kivy language full-line hash comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://kivy.org/doc/stable/guide/lang.html",
+        implementation_source="https://github.com/kivy/kivy/blob/master/kivy/lang/parser.py",
+        confidence="verified",
+        notes="kvlang strips # comment lines only when # is the first non-space character.",
+    ),
+    CommentSyntax(
+        family_name="lark_style",
+        canonical_name="lark",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "start: item+\n// comment supported by baseline Lark grammar",
+                "// comment supported by baseline Lark grammar",
+                "Lark slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "# comment supported in Lark 1.1.6+\nitem: WORD",
+                "# comment supported in Lark 1.1.6+",
+                "Lark 1.1.6 hash line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://lark-parser.readthedocs.io/en/latest/grammar.html; "
+            "https://github.com/lark-parser/lark/releases/tag/1.1.6"
+        ),
+        implementation_source="https://github.com/lark-parser/lark",
+        confidence="verified",
+        notes="Lark supports // comments and, since 1.1.6, # comments; no block form.",
+    ),
+    CommentSyntax(
+        family_name="lex_style",
+        canonical_name="lex",
+        regex_patterns=(r"/\*[\S\s]*?\*/",),
+        shared_regex_examples=(
+            CommentExample(
+                "%{\n#include <stdio.h>\n%}\n/* scanner rules for identifiers */\n%%",
+                "/* scanner rules for identifiers */",
+                "Lex/flex input block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.gnu.org/software/flex/manual/html_node/Comments-in-the-Input.html"
+        ),
+        implementation_source="https://github.com/westes/flex",
+        confidence="verified",
+        notes="Lex/flex input files support non-nested C-style block comments only.",
+    ),
+    CommentSyntax(
+        family_name="linker_script_style",
+        canonical_name="linker_script",
+        regex_patterns=(r"/\*[\S\s]*?\*/",),
+        shared_regex_examples=(
+            CommentExample(
+                "/* place text first */\nSECTIONS { .text : { *(.text) } }",
+                "/* place text first */",
+                "GNU ld linker-script block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://sourceware.org/binutils/docs/ld/Script-Format.html",
+        implementation_source="https://sourceware.org/git/?p=binutils-gdb.git",
+        confidence="verified",
+        notes="GNU ld scripts use C-style block comments as whitespace; no line form.",
+    ),
+    CommentSyntax(
+        family_name="linux_kernel_module_style",
+        canonical_name="linux_kernel_module",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "static int demo_init(void) {\n\t// short local note\n\treturn 0;\n}",
+                "// short local note",
+                "Linux kernel module C99 line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* Module initialization note. */\nmodule_init(demo_init);",
+                "/* Module initialization note. */",
+                "Linux kernel module C block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://docs.kernel.org/process/coding-style.html; "
+            "https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf"
+        ),
+        implementation_source="GCC/Clang C preprocessors used for kernel builds",
+        confidence="verified",
+        notes="Kernel modules are C sources; // and non-nested /* ... */ are accepted.",
+    ),
+    CommentSyntax(
+        family_name="literate_agda_style",
+        canonical_name="literate_agda",
+        regex_patterns=(r"--[^\r\n]*",),
+        nested_delimiters=(("{-", "-}"),),
+        source_region_patterns=(
+            r"(?s)\\begin\{code\}[\S\s]*?\\end\{code\}",
+            r"(?ms)^```(?:[ \t]*agda)?[^\r\n]*\r?\n[\S\s]*?^```[ \t]*$",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "\\begin{code}\nmodule Demo where\n-- visible only to Agda readers\n\\end{code}",
+                "-- visible only to Agda readers",
+                "Literate Agda code-block line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "\\begin{code}\n{- outer {- inner -} outer -}\nid : Set -> Set\n\\end{code}",
+                "{- outer {- inner -} outer -}",
+                "Literate Agda nested block comment inside code.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://agda.readthedocs.io/en/latest/language/lexical-structure.html; "
+            "https://agda.readthedocs.io/en/latest/tools/literate-programming.html"
+        ),
+        implementation_source="https://github.com/agda/agda",
+        confidence="verified",
+        notes="Literate prose is not a delimiter; Agda code comments keep Agda syntax.",
+    ),
+    CommentSyntax(
+        family_name="literate_coffeescript_style",
+        canonical_name="literate_coffeescript",
+        regex_patterns=(
+            r"###[\S\s]*?###",
+            r"#[^\r\n]*",
+        ),
+        source_region_patterns=(
+            r"(?m)^(?:    |\t)[^\r\n]*(?:\r?\n|$)",
+            r"(?ms)^~~~[^\r\n]*\r?\n[\S\s]*?^~~~[ \t]*$",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "    square = (x) -> x * x\n    # code comment",
+                "# code comment",
+                "Literate CoffeeScript code line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "    ###\n    block note in code\n    ###\n    answer = 42",
+                "###\n    block note in code\n    ###",
+                "Literate CoffeeScript block comment inside code.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://coffeescript.org/#comments; https://coffeescript.org/#literate"
+        ),
+        implementation_source="https://github.com/jashkenas/coffeescript",
+        confidence="verified",
+        notes=(
+            "Literate CoffeeScript prose is not a lexical comment; code uses "
+            "CoffeeScript # and ### ... ### comments."
+        ),
+    ),
+    CommentSyntax(
+        family_name="literate_haskell_style",
+        canonical_name="literate_haskell",
+        regex_patterns=(r"--[^\r\n]*",),
+        nested_delimiters=(("{-", "-}"),),
+        source_region_patterns=(
+            r"(?m)^>[^\r\n]*(?:\r?\n|$)",
+            r"(?s)\\begin\{code\}[\S\s]*?\\end\{code\}",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "> main = do\n>   -- print a greeting\n>   putStrLn \"hello\"",
+                "-- print a greeting",
+                "Literate Haskell bird-track line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "\\begin{code}\nmain = do\n  {- outer {- inner -} outer -}\n\\end{code}",
+                "{- outer {- inner -} outer -}",
+                "Literate Haskell nested block comment inside code.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.haskell.org/onlinereport/haskell2010/haskellch2.html; "
+            "https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/"
+            "literate_haskell.html"
+        ),
+        implementation_source="https://gitlab.haskell.org/ghc/ghc",
+        confidence="verified",
+        notes="Literate source selects code regions; comments inside code use Haskell syntax.",
+    ),
+    CommentSyntax(
+        family_name="livescript_style",
+        canonical_name="livescript",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "# compute a total\ntotal = 1 + 2",
+                "# compute a total",
+                "LiveScript hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* this note is preserved\n   in generated JavaScript */\ntotal = 1 + 2",
+                "/* this note is preserved\n   in generated JavaScript */",
+                "LiveScript non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://livescript.net/#literals-comments",
+        implementation_source="https://github.com/gkz/LiveScript",
+        confidence="verified",
+        notes="LiveScript uses # line comments and /* ... */ multiline comments.",
+    ),
+    CommentSyntax(
+        family_name="logos_style",
+        canonical_name="logos",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "%hook SpringBoard\n// called when SpringBoard finishes launching",
+                "// called when SpringBoard finishes launching",
+                "Logos Objective-C-style line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* hook note for this tweak group */\n%group Enabled",
+                "/* hook note for this tweak group */",
+                "Logos non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://theos.dev/docs/logos-syntax",
+        implementation_source="https://github.com/theos/logos",
+        confidence="high",
+        notes="Logos embeds Objective-C/C-like code; % directives are not comments.",
+    ),
+    CommentSyntax(
+        family_name="logtalk_style",
+        canonical_name="logtalk",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"%[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                ":- object(counter).\n  % public predicate\n:- end_object.",
+                "% public predicate",
+                "Logtalk percent line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* example note used in tests */\n:- object(example).",
+                "/* example note used in tests */",
+                "Logtalk non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://logtalk.org/manuals/refman/syntax.html",
+        implementation_source="https://github.com/LogtalkDotOrg/logtalk3",
+        confidence="verified",
+        notes="Logtalk follows Prolog-style % line and non-nested /* ... */ comments.",
+    ),
+    CommentSyntax(
+        family_name="lookml_style",
+        canonical_name="lookml",
+        regex_patterns=(r"#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "connection: order_database\ninclude: \"*.view\" # include all the views",
+                "# include all the views",
+                "LookML trailing hash comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://cloud.google.com/looker/docs/lookml-terms-and-concepts; "
+            "https://cloud.google.com/looker/docs/reference/param-model-include"
+        ),
+        implementation_source="proprietary Looker parser; public Google Cloud examples",
+        confidence="verified",
+        notes="LookML uses # line comments; no block comment form was confirmed.",
+    ),
+    CommentSyntax(
+        family_name="lsl_style",
+        canonical_name="lsl",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "state_entry() {\n    // say hello when rezzed\n}",
+                "// say hello when rezzed",
+                "LSL slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "/* listen handler note disabled during setup */\ndefault { }",
+                "/* listen handler note disabled during setup */",
+                "LSL non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://wiki.secondlife.com/wiki/LSL_Portal",
+        implementation_source="https://github.com/buildersbrewery/lsl-parser",
+        confidence="high",
+        notes="LSL uses C-style // line and non-nested /* ... */ block comments.",
     ),
     CommentSyntax(
         family_name="m4_style",

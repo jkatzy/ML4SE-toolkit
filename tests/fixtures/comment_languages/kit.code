@@ -1,0 +1,26 @@
+value_0 = 0
+# normal comment fixture_1
+value_1 = 1
+## Documentation for the next definition fixture_2
+value_2 = 2
+######## repeated_open_1
+value_3 = 3
+######## repeated_open_2
+value_4 = 4
+### odd_repeated_open_2
+value_5 = 5
+# normal comment grouped_line_1_a
+# normal comment grouped_line_1_b
+value_6 = 6
+## Documentation for the next definition grouped_line_2_a
+## Documentation for the next definition grouped_line_2_b
+value_7 = 7
+value_string_1 = "not # normal comment string_probe_1";
+value_8 = 8
+value_string_2 = "not ## Documentation for the next definition string_probe_2";
+value_9 = 9
+value_gl_breaker_0 = 0
+## gl_breaker_kit_doc keeps # Heading marker
+value_gl_breaker_1 = 1
+# gl_breaker_kit_line keeps ## documentation marker
+value_gl_breaker_2 = 2

@@ -1,0 +1,31 @@
+value_0 = 0
+# compute a total fixture_1
+value_1 = 1
+/* this fixture_2 is preserved
+   in generated JavaScript */
+value_2 = 2
+######## repeated_open_1
+value_3 = 3
+value_inline_2 = 1 /* this inline_block_2 is preserved
+   in generated JavaScript */ + 2
+value_4 = 4
+/* this
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+is preserved
+   in generated JavaScript */
+value_5 = 5
+# compute a total grouped_line_1_a
+# compute a total grouped_line_1_b
+value_6 = 6
+value_string_1 = "not # compute a total string_probe_1";
+value_7 = 7
+value_gl_breaker_0 = 0
+# gl_breaker_livescript_line keeps # Heading marker
+value_gl_breaker_1 = 1
+/* this gl_breaker_livescript_block is preserved
+   in generated JavaScript */
+value_gl_breaker_2 = 2

@@ -1,0 +1,29 @@
+value_0 = 0
+% public predicate fixture_1
+value_1 = 1
+/* example fixture_2 used in tests */
+value_2 = 2
+%%%%%%%% repeated_open_1
+value_3 = 3
+value_inline_2 = 1 /* example inline_block_2 used in tests */ + 2
+value_4 = 4
+/* example
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+used in tests */
+value_5 = 5
+% public predicate grouped_line_1_a
+% public predicate grouped_line_1_b
+value_6 = 6
+value_string_1 = "not % public predicate string_probe_1";
+value_7 = 7
+value_string_2 = "not /* example string_probe_2 used in tests */";
+value_8 = 8
+value_gl_breaker_0 = 0
+% gl_breaker_logtalk_line keeps :- operator text
+value_gl_breaker_1 = 1
+/* example gl_breaker_logtalk_block keeps % nested marker used in tests */
+value_gl_breaker_2 = 2

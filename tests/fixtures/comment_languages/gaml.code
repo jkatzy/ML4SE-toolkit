@@ -1,0 +1,31 @@
+value_0 = 0
+// movement speed fixture_1
+value_1 = 1
+/* temporary fixture_2 */
+value_2 = 2
+//////// repeated_open_1
+value_3 = 3
+/// odd_repeated_open_1
+value_4 = 4
+value_inline_2 = 1 /* temporary inline_block_2 */ + 2
+value_5 = 5
+/* temporary
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*/
+value_6 = 6
+// movement speed grouped_line_1_a
+// movement speed grouped_line_1_b
+value_7 = 7
+value_string_1 = "not // movement speed string_probe_1";
+value_8 = 8
+value_string_2 = "not /* temporary string_probe_2 */";
+value_9 = 9
+value_gl_breaker_0 = 0
+/* gl_breaker_gaml_block contains // line marker and C# text */
+value_gl_breaker_1 = 1
+// gl_breaker_gaml_line keeps http://example.test/path and C++ token
+value_gl_breaker_2 = 2

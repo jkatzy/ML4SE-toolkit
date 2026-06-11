@@ -1,0 +1,15 @@
+value_0 = 0
+// Jest Snapshot v1, https://goo.gl/fbAQLP fixture_1
+value_1 = 1
+//////// repeated_open_1
+value_2 = 2
+/// odd_repeated_open_1
+value_3 = 3
+// Jest Snapshot v1, https://goo.gl/fbAQLP grouped_line_1_a
+// Jest Snapshot v1, https://goo.gl/fbAQLP grouped_line_1_b
+value_4 = 4
+value_string_1 = "not // Jest Snapshot v1, https://goo.gl/fbAQLP string_probe_1";
+value_5 = 5
+value_gl_breaker_0 = 0
+// gl_breaker_jest_metadata keeps https://jestjs.io and // inside prose
+value_gl_breaker_1 = 1

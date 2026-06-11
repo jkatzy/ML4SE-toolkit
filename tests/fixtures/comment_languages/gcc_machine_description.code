@@ -1,0 +1,29 @@
+value_0 = 0
+; fixture_1
+value_1 = 1
+/* constraint fixture_2 */
+value_2 = 2
+;;;;;;;; repeated_open_1
+value_3 = 3
+value_inline_2 = 1 /* constraint inline_block_2 */ + 2
+value_4 = 4
+/* constraint
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*/
+value_5 = 5
+; grouped_line_1_a
+; grouped_line_1_b
+value_6 = 6
+value_string_1 = "not ; string_probe_1";
+value_7 = 7
+value_string_2 = "not /* constraint string_probe_2 */";
+value_8 = 8
+value_gl_breaker_0 = 0
+; gl_breaker_gcc_line keeps --flag and ; literal semicolon
+value_gl_breaker_1 = 1
+/* constraint gl_breaker_gcc_block keeps // marker inside */
+value_gl_breaker_2 = 2

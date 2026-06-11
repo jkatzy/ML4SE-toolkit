@@ -1,0 +1,25 @@
+value_0 = 0
+// comment supported by baseline Lark grammar fixture_1
+value_1 = 1
+# comment supported in Lark 1.1.6+ fixture_2
+value_2 = 2
+//////// repeated_open_1
+value_3 = 3
+/// odd_repeated_open_1
+value_4 = 4
+######## repeated_open_2
+value_5 = 5
+// comment supported by baseline Lark grammar grouped_line_1_a
+// comment supported by baseline Lark grammar grouped_line_1_b
+value_6 = 6
+# comment supported in Lark 1.1.6+ grouped_line_2_a
+# comment supported in Lark 1.1.6+ grouped_line_2_b
+value_7 = 7
+value_string_1 = "not // comment supported by baseline Lark grammar string_probe_1";
+value_8 = 8
+value_string_2 = "not # comment supported in Lark 1.1.6+ string_probe_2";
+value_9 = 9
+%ignore WS // gl_breaker_lark_slash_inline keeps # terminal marker
+value_gl_breaker_0 = 0
+# gl_breaker_lark_hash_line keeps // literal marker
+value_gl_breaker_1 = 1

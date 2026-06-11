@@ -1,0 +1,53 @@
+value_0 = 0
+&& inline legacy comment fixture_1
+value_1 = 1
+// file header comment fixture_2
+value_2 = 2
+* legacy full-line comment fixture_3
+value_3 = 3
+NOTE old-style full-line comment fixture_4
+value_4 = 4
+/* multiple
+      fixture_5 lines */
+value_5 = 5
+&&&&&&&& repeated_open_1
+value_6 = 6
+&&& odd_repeated_open_1
+value_7 = 7
+//////// repeated_open_2
+value_8 = 8
+/// odd_repeated_open_2
+value_9 = 9
+******** repeated_open_3
+value_10 = 10
+value_inline_5 = 1 /* multiple
+      inline_block_5 lines */ + 2
+value_11 = 11
+/* multiple
+ * star_doc_5 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+lines */
+value_12 = 12
+// file header comment grouped_line_2_a
+// file header comment grouped_line_2_b
+value_13 = 13
+* legacy full-line comment grouped_line_3_a
+* legacy full-line comment grouped_line_3_b
+value_14 = 14
+value_string_1 = "not && inline legacy comment string_probe_1";
+value_15 = 15
+value_string_2 = "not // file header comment string_probe_2";
+value_16 = 16
+value_string_3 = "not * legacy full-line comment string_probe_3";
+value_17 = 17
+value_string_4 = "not NOTE old-style full-line comment string_probe_4";
+value_18 = 18
+note gl_breaker_harbour_note lower-case NOTE form keeps --flag
+value_gl_breaker_0 = 0
+* gl_breaker_harbour_star full-line keeps ** semantic stars
+value_gl_breaker_1 = 1
+value := 1 && gl_breaker_harbour_amp keeps && literal marker
+value_gl_breaker_2 = 2

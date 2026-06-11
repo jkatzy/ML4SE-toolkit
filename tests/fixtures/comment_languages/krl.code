@@ -1,0 +1,13 @@
+value_0 = 0
+; move to start position fixture_1
+value_1 = 1
+;;;;;;;; repeated_open_1
+value_2 = 2
+; move to start position grouped_line_1_a
+; move to start position grouped_line_1_b
+value_3 = 3
+value_string_1 = "not ; move to start position string_probe_1";
+value_4 = 4
+value_gl_breaker_0 = 0
+; gl_breaker_krl_line keeps ; literal command separator text
+value_gl_breaker_1 = 1

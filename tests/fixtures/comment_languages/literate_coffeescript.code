@@ -1,0 +1,33 @@
+~~~
+value_0 = 0
+# code comment fixture_1
+value_1 = 1
+###
+    block fixture_2 in code
+    ###
+value_2 = 2
+######## repeated_open_1
+value_3 = 3
+###
+    block
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+in code
+    ###
+value_4 = 4
+# code comment grouped_line_1_a
+# code comment grouped_line_1_b
+value_5 = 5
+value_string_1 = "not # code comment string_probe_1";
+value_6 = 6
+value_gl_breaker_0 = 0
+# gl_breaker_litcoffee_line keeps # Heading marker
+value_gl_breaker_1 = 1
+###
+gl_breaker_litcoffee_block keeps # Heading and triple-hash text marker
+###
+value_gl_breaker_2 = 2
+~~~
