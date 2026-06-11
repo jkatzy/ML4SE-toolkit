@@ -7,9 +7,9 @@ This backlog covers Stack v2 public languages that are still not represented in 
 ## Summary
 
 - Generated on: `2026-06-11`
-- Total uncovered languages tracked: `239`
+- Total uncovered languages tracked: `238`
 - Ready to implement now: `0`
-- Needs research or confirmation: `224`
+- Needs research or confirmation: `223`
 - Resolved non-actionable: `15`
 - Missing research records: `0`
 
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Clarion | clarion | low | unresolved | unresolved | ! | unsupported | unsupported | unsupported | Verify Clarion comment syntax before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Classic ASP | classic_asp | low | unresolved | unresolved | unsupported | <!-- ... --> | first closing delimiter wins | unsupported | Treat as a mixed-language format and verify HTML/script comment handling separately. | docs/comment_research/chunk_1_b_c_report.md |
 | Clean | clean | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unresolved | Verify Clean comment nesting before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Click | click | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Add hash-comment tests after confirming the Click parser docs. | docs/comment_research/chunk_1_b_c_report.md |
