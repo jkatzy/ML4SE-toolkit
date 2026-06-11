@@ -791,6 +791,50 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="cil_style",
+        canonical_name="cil",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"/\*[\S\s]*?\*/",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                ".method public static void Main() cil managed {\n"
+                "  ret // note\n"
+                "}",
+                "// note",
+                "ILAsm slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                ".method public static void Main() cil managed {\n"
+                "  /* note */\n"
+                "  ret\n"
+                "}",
+                "/* note */",
+                "ILAsm non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/archive/msdn-magazine/2001/may/"
+            "bugslayer-ildasm-is-your-new-best-friend"
+        ),
+        implementation_source=(
+            "https://github.com/dotnet/runtime/blob/main/src/coreclr/ilasm/"
+            "grammar_after.cpp"
+        ),
+        confidence="verified",
+        notes=(
+            "The ILAsm lexer treats // as an end-of-line comment and /* ... */ "
+            "as a non-nested block comment that stops at the first closing "
+            "delimiter. .NET 6, .NET 10, and current main agree."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(
