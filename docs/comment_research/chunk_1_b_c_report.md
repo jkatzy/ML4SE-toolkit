@@ -865,24 +865,24 @@ defn main ()
 
 ## Clarion
 - Registry key: `clarion`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Clarion .clw source documented by the current online language reference`
+- Version-specific syntax: `Clarion# adds separate multiline and XML documentation forms; those are excluded from the Clarion Stack key.`
 - Line comments: `!`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `end of line`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Clarion special characters](https://clarion.help/doku.php?id=special_characters.htm)
+- Implementation source: [SublimeClarion language configuration](https://github.com/fushnisoft/SublimeClarion/blob/master/clarion.configuration.json)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Verify Clarion comment syntax before seeding.`
-- Notes: `Candidate Clarion comment marker.`
+- Recommended action: `Implemented in the registry with an inline line-comment fixture.`
+- Notes: `The reference states that ! begins a source-code comment and its PROGRAM and MEMBER examples use both whole-line and trailing forms. The editor configuration also declares ! as the line-comment token.`
 
 - Example - line:
-```text
-! comment
+```clarion
+PROGRAM ! note
 CODE
 ```
 

@@ -835,6 +835,34 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="clarion_style",
+        canonical_name="clarion",
+        regex_patterns=(r"![^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "PROGRAM ! note\nCODE",
+                "! note",
+                "Clarion inline exclamation comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://clarion.help/doku.php?id=special_characters.htm"
+        ),
+        implementation_source=(
+            "https://github.com/fushnisoft/SublimeClarion/blob/master/"
+            "clarion.configuration.json"
+        ),
+        confidence="verified",
+        notes=(
+            "Clarion ! comments run to the end of the source line and may "
+            "follow code. Clarion# multiline comments are a separate dialect "
+            "and are intentionally excluded from the Clarion Stack key."
+        ),
+    ),
+    CommentSyntax(
         family_name="c_style",
         canonical_name="java",
         aliases=(

@@ -13,8 +13,8 @@ Target output file:
 
 ## Priority Summary
 
-- Assigned languages: `20`
-- Needs research or confirmation: `16`
+- Assigned languages: `19`
+- Needs research or confirmation: `15`
 - Ready to implement but should be strengthened with source evidence: `0`
 - Resolved non-actionable: `4`
 
@@ -36,7 +36,6 @@ Target output file:
 
 | Priority | Language | Registry key | Current status | Confidence | Current version scope | Current version syntax | Current line | Current block | Current termination | Current nested | Existing docs source | Existing impl source | Current recommendation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| high | Clarion | clarion | needs_research_or_confirmation | low | unresolved | unresolved | ! | unsupported | unsupported | unsupported | unresolved | unresolved | Verify Clarion comment syntax before seeding. |
 | high | Classic ASP | classic_asp | needs_research_or_confirmation | low | unresolved | unresolved | unsupported | <!-- ... --> | first closing delimiter wins | unsupported | unresolved | unresolved | Treat as a mixed-language format and verify HTML/script comment handling separately. |
 | high | Clean | clean | needs_research_or_confirmation | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unresolved | unresolved | unresolved | Verify Clean comment nesting before seeding. |
 | high | Click | click | needs_research_or_confirmation | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | unresolved | unresolved | Add hash-comment tests after confirming the Click parser docs. |
