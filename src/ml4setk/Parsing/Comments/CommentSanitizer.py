@@ -64,6 +64,101 @@ def _split_example_placeholder(example_text: str) -> tuple[str, str, str] | None
     return None
 
 
+def _line_wrapper_from_example(example_text: str) -> tuple[str, str] | None:
+    parts = _split_example_placeholder(example_text)
+    if parts is not None:
+        return parts[0].strip(), parts[2]
+
+    if _known_block_wrappers(example_text):
+        return None
+
+    if "\n" in example_text or "\r" in example_text:
+        return None
+
+    stripped = example_text.lstrip(" \t")
+    if not stripped:
+        return None
+
+    token_candidates = (
+        "NOTE*",
+        "NOTE",
+        "REM",
+        "BTW",
+        "dnl",
+        "NB.",
+        "@comment",
+        "@c",
+    )
+    for token in token_candidates:
+        if stripped[: len(token)].lower() != token.lower():
+            continue
+        if len(stripped) == len(token) or stripped[len(token)].isspace():
+            return token, ""
+
+    token_match = re.match(r"[^\w\s]+", stripped)
+    if token_match is None:
+        token_match = re.match(r"[^\s]+", stripped)
+    if token_match is None:
+        return None
+    return token_match.group(0), ""
+
+
+def _known_block_wrappers(example_text: str) -> tuple[tuple[str, str], ...]:
+    stripped = example_text.strip()
+    fixed_wrappers = (
+        ("<%--", "--%>"),
+        ("<%#", "%>"),
+        ("<!--", "-->"),
+        ("<mt:Ignore>", "</mt:Ignore>"),
+        ("<comment>", "</comment>"),
+        ("<#--", "-->"),
+        ("{#", "#}"),
+        ("{{!", "}}"),
+        ("<!", "!>"),
+        ("#Rem", "#End"),
+        ("#rem", "#end"),
+        ("#-", "-#"),
+        ("#|", "|#"),
+        ("#=", "=#"),
+        ("%{", "%}"),
+        ("###", "###"),
+        ("--[[", "]]"),
+        ("/*", "*/"),
+        ("/**", "*/"),
+        ("/+", "+/"),
+        ("/;", ";/"),
+        ("(*", "*)"),
+        ("{-", "-}"),
+        ("#{", "}#"),
+        ("@q", "@>"),
+        (';"', '"'),
+    )
+
+    wrappers = []
+    for wrapper in fixed_wrappers:
+        if _wrapper_matches(stripped, wrapper[0], wrapper[1]):
+            wrappers.append(wrapper)
+
+    lua_long = re.match(r"--\[(=*)\[[\s\S]*\]\1\]$", stripped)
+    if lua_long is not None:
+        equals = lua_long.group(1)
+        wrappers.append((f"--[{equals}[", f"]{equals}]"))
+
+    if re.match(r"(?is)^=begin[ \t]+comment\b", stripped) and re.search(
+        r"(?im)^=end[ \t]+comment\b[^\r\n]*$",
+        stripped,
+    ):
+        wrappers.append(("=begin comment", "=end comment"))
+    elif re.match(r"(?i)^=for[ \t]+comment\b", stripped):
+        wrappers.append(("=for comment", ""))
+    elif re.match(r"(?i)^=comment\b", stripped):
+        wrappers.append(("=comment", ""))
+    elif re.match(r"(?i)^NOTE(?:[ \t]|\n|$)", stripped):
+        wrappers.append(("NOTE", ""))
+
+    return tuple(dict.fromkeys(wrappers))
+
+
 def _iter_regex_examples(syntax: CommentSyntax):
     yield from syntax.shared_regex_examples
     yield from syntax.canonical_regex_examples
@@ -74,15 +169,15 @@ def _build_sanitizer_syntax(syntax: CommentSyntax) -> _SanitizerSyntax:
     for example in _iter_regex_examples(syntax):
         if example.kind != "line":
             continue
-        parts = _split_example_placeholder(example.expected_match)
-        if parts is None:
+        wrapper = _line_wrapper_from_example(example.expected_match)
+        if wrapper is None:
             continue
-        for wrapper in (
-            (parts[0].strip(), parts[2]),
-            (parts[0].strip(), parts[2].lstrip()),
+        for candidate in (
+            wrapper,
+            (wrapper[0], wrapper[1].lstrip()),
         ):
-            if wrapper not in line_wrappers:
-                line_wrappers.append(wrapper)
+            if candidate not in line_wrappers:
+                line_wrappers.append(candidate)
 
     block_wrappers = []
     for open_delim, close_delim in syntax.nested_delimiters:
@@ -94,12 +189,14 @@ def _build_sanitizer_syntax(syntax: CommentSyntax) -> _SanitizerSyntax:
         if example.kind != "block":
             continue
         parts = _split_example_placeholder(example.expected_match)
-        if parts is None:
-            continue
-        for wrapper in (
-            (parts[0], parts[2]),
-            (parts[0].rstrip(), parts[2].lstrip()),
-        ):
+        candidates: tuple[tuple[str, str], ...] = ()
+        if parts is not None:
+            candidates = (
+                (parts[0], parts[2]),
+                (parts[0].rstrip(), parts[2].lstrip()),
+            )
+        candidates = (*candidates, *_known_block_wrappers(example.expected_match))
+        for wrapper in candidates:
             if wrapper not in block_wrappers:
                 block_wrappers.append(wrapper)
 

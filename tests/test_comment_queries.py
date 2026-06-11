@@ -185,6 +185,27 @@ def test_comment_query_groups_adjacent_standalone_line_comments(language, sample
     assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
+def test_xbase_note_requires_keyword_boundary():
+    sample = 'NOTEBOOK := "field"\n? NOTEBOOK\nNOTE real comment\n'
+
+    assert CommentQuery("xbase").parse(sample) == [
+        _expected_query_match(sample, "NOTE real comment")
+    ]
+
+
+def test_xbase_note_line_does_not_group_with_adjacent_block_comment():
+    sample = (
+        "NOTE breaker_xbase_note keeps NOTE: tag in body\n"
+        "/* breaker_xbase_block contains && and NOTE tokens */\n"
+        '? "after"\n'
+    )
+
+    assert CommentQuery("xbase").parse(sample) == [
+        _expected_query_match(sample, "NOTE breaker_xbase_note keeps NOTE: tag in body"),
+        _expected_query_match(sample, "/* breaker_xbase_block contains && and NOTE tokens */"),
+    ]
+
+
 def test_stack_v2_csharp_todo_line_comment_extracts_reported_span():
     sample = (
         "using System;\n"

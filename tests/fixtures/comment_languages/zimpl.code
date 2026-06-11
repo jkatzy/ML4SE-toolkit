@@ -1,0 +1,21 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+# trailing fixture_2
+value_2 = 2
+######## repeated_open_1
+value_3 = 3
+# grouped_line_1_a
+# grouped_line_1_b
+value_4 = 4
+# trailing grouped_line_2_a
+# trailing grouped_line_2_b
+value_5 = 5
+value_string_1 = "not # string_probe_1";
+value_6 = 6
+value_string_2 = "not # trailing string_probe_2";
+value_7 = 7
+set I := {1,2}; # breaker_zimpl_inline keeps #heading and C#
+value_10 = 10
+# breaker_zimpl_markdown # Heading and C# token stay content
+value_11 = 11

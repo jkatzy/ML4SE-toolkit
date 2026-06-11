@@ -1,0 +1,66 @@
+value_0 = 0
+* fixture_1
+value_1 = 1
+NOTE fixture_2
+value_2 = 2
+&& fixture_3
+value_3 = 3
+/* fixture_4 */
+value_4 = 4
+NOTE* fixture_5
+value_5 = 5
+// fixture_6
+value_6 = 6
+******** repeated_open_1
+value_7 = 7
+&&&&&&&& repeated_open_3
+value_8 = 8
+&&& odd_repeated_open_3
+value_9 = 9
+//////// repeated_open_6
+value_10 = 10
+/// odd_repeated_open_6
+value_11 = 11
+value_inline_4 = 1 /* inline_block_4 */ + 2
+value_12 = 12
+/**
+ * star_doc_4 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+ */
+value_13 = 13
+* grouped_line_1_a
+* grouped_line_1_b
+value_14 = 14
+NOTE grouped_line_2_a
+NOTE grouped_line_2_b
+value_15 = 15
+&& grouped_line_3_a
+&& grouped_line_3_b
+value_16 = 16
+NOTE* grouped_line_5_a
+NOTE* grouped_line_5_b
+value_17 = 17
+// grouped_line_6_a
+// grouped_line_6_b
+value_18 = 18
+value_string_1 = "not * string_probe_1";
+value_19 = 19
+value_string_2 = "not NOTE string_probe_2";
+value_20 = 20
+value_string_3 = "not && string_probe_3";
+value_21 = 21
+value_string_4 = "not /* string_probe_4 */";
+value_22 = 22
+value_string_5 = "not NOTE* string_probe_5";
+value_23 = 23
+value_string_6 = "not // string_probe_6";
+value_24 = 24
+? "value" && breaker_xbase_inline keeps && literal and --flag
+value_30 = 30
+NOTE breaker_xbase_note keeps NOTE: tag in body
+? "separator"
+/* breaker_xbase_block contains && and NOTE tokens */
+value_31 = 31
