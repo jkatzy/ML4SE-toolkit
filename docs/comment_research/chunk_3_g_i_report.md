@@ -82,27 +82,36 @@ draw_self();
 ## GAML
 
 - Registry key: gaml
+- Version scope: GAMA 1.9.3 wiki examples plus the current GAMA Xtext and generated ANTLR grammars
+- Version-specific syntax: the checked docs and current grammar use the same C-style forms; no version split was found
 - Line comments: `//`
-- Block comments: unresolved
-- Termination behavior: line comments end at newline; block comments unresolved
+- Block comments: `/* ... */`
+- Termination behavior: line comments end at newline; block comments end at the first `*/`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: official_docs
+- Confidence: high
+- Evidence mode: implementation_cross_checked
 - Docs source: https://gama-platform.org/wiki/1.9.3/Statements; https://gama-platform.org/wiki/1.9.3/GamlReference
-- Implementation source: unresolved
+- Implementation source: https://github.com/gama-platform/gama/blob/main/gaml.grammar/src/gaml/grammar/Gaml.xtext; https://github.com/gama-platform/gama/blob/main/gaml.compiler/src-gen/gaml/compiler/parser/antlr/internal/InternalGaml.g
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: GAMA 1.9.3 wiki pages and the current GamlReference snapshot
-- Version-specific syntax: both checked versions surface `//`; no source-backed block-comment form or dialect split was confirmed, so the registry should not union extra forms yet
-- Recommended action: Confirm whether GAML has a distinct block-comment form in the grammar or corpus before adding registry support.
-- Notes: The verified docs show `//` in statement examples, but this pass did not find a source-backed block-comment specification.
+- Recommended action: Add GAML coverage for `//` and non-nested `/* ... */` comments.
+- Notes: The Xtext grammar hides `WS`, `ML_COMMENT`, and `SL_COMMENT`; the generated ANTLR rule for `ML_COMMENT` is non-greedy and therefore closes at the first `*/`.
 
 ### Examples
 
 #### Line comment
 ```text
-int speed <- 4; // movement speed
-display speed;
+species pedestrian {
+  int speed <- 4; // movement speed
+  reflex move { do wander; }
+}
+```
+
+#### Block comment
+```text
+/* temporary calibration
+   keep disabled while comparing runs */
+experiment main type: gui { }
 ```
 
 ## GAMS
@@ -173,20 +182,38 @@ Print(L);
 ## GCC Machine Description
 
 - Registry key: gcc_machine_description
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: current GCC internals manual and current GCC `read-md.cc` reader
+- Version-specific syntax: the manual documents semicolon line comments; the current reader also treats C-style block comments as whitespace
+- Line comments: `;`
+- Block comments: `/* ... */`
+- Termination behavior: semicolon comments run to newline unless inside a quoted string; block comments end at the first `*/`
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: implementation_cross_checked
+- Docs source: https://gcc.gnu.org/onlinedocs/gccint/Machine-Desc.html
+- Implementation source: https://github.com/gcc-mirror/gcc/blob/master/gcc/read-md.cc
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: GCC internals manuals checked in the 3.1 and 4.1.1 lines plus current online internals references
-- Version-specific syntax: no source-backed machine-description comment delimiter was confirmed in any checked version; keep unsupported until a real `.md` comment form is documented
-- Recommended action: Leave unsupported until an official GCC machine-description syntax source is located.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add GCC machine-description fixtures for `;` line comments and non-nested `/* ... */` block comments.
+- Notes: `read_skip_spaces` explicitly says Lisp-style and C-style comments are treated as whitespace; a stray `/` that is not followed by `*` is rejected.
+
+### Examples
+
+#### Line comment
+```text
+;; Integer move pattern
+(define_insn "movsi"
+  [(set (match_operand:SI 0 "general_operand" "=r")
+        (match_operand:SI 1 "general_operand" "r"))]
+  ""
+  "mov\t%1,%0") ; trailing machine-description comment
+```
+
+#### Block comment
+```text
+/* Disabled while the constraint set is being retuned. */
+(define_attr "type" "alu,load,store" (const_string "alu"))
+```
 
 ## GDB
 
@@ -237,38 +264,75 @@ move_and_slide()
 ## GEDCOM
 
 - Registry key: gedcom
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Community source: not used
-- Corpus fallback source: not used
-- Version scope: GEDCOM 5.5.1 errata and standard references checked
-- Version-specific syntax: no file-comment delimiter was confirmed; the spec's `/* comment */` wording is explanatory syntax notation, not a source comment form, so the registry should keep GEDCOM unsupported
-- Recommended action: Keep unsupported unless a dialect-specific GEDCOM source documents a real comment form.
-- Notes: No source-backed comment syntax was confirmed in this pass.
-
-## Gemfile.lock
-
-- Registry key: gemfile_lock
+- Version scope: FamilySearch GEDCOM 7.x specification and GEDCOM 5.5.1 standard references
+- Version-specific syntax: no checked GEDCOM version defines lexical source comments; `NOTE` is genealogical data, not a parser comment
 - Line comments: unsupported
 - Block comments: unsupported
 - Termination behavior: unsupported
 - Nested comments: unsupported
-- Confidence: unsupported
-- Evidence mode: unresolved
-- Docs source: Ruby/Bundler lockfile format; no comment syntax located
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#lines; https://gedcom.io/specifications/FamilySearchGEDCOMv7.html#structures; https://gedcom.io/specifications/ged551.pdf
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: Bundler lockfile format is not versioned for comment syntax
-- Version-specific syntax: no comment syntax was found in the checked lockfile references; keep unsupported and do not union any delimiters
+- Recommended action: Keep unsupported; do not classify `NOTE`, `CONT`, or spec-metasyntax prose as source comments.
+- Notes: GEDCOM lines are hierarchical records with a level, optional pointer, tag, and optional payload. User notes are serialized data and must be preserved.
+
+### Examples
+
+#### Unsupported note data
+```text
+0 @I1@ INDI
+1 NAME Ada /Lovelace/
+1 NOTE This is genealogical note data, not a source comment.
+```
+
+#### No supported comment form
+```text
+0 HEAD
+1 GEDC
+2 VERS 7.0
+0 TRLR
+```
+
+## Gemfile.lock
+
+- Registry key: gemfile_lock
+- Version scope: Bundler lockfile parser sections introduced from Bundler 1.0 through 2.5.0 and current Bundler lockfile documentation
+- Version-specific syntax: checked Bundler versions add lockfile sections, not comment syntax; no delimiter union is needed
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unsupported
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: implementation_cross_checked
+- Docs source: https://bundler.io/man/bundle-lock.1.html
+- Implementation source: https://github.com/rubygems/rubygems/blob/master/bundler/lib/bundler/lockfile_parser.rb
+- Community source: not used
+- Corpus fallback source: not used
 - Recommended action: Keep unsupported and exclude this file type from comment parsing tests.
-- Notes: Gemfile.lock is generated dependency metadata, not a comment-bearing source format.
+- Notes: Bundler's parser skips blank lines only, recognizes section headings, and dispatches indented content to section parsers. There is no comment-stripping pass.
+
+### Examples
+
+#### No supported comment form
+```text
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.2.1)
+
+DEPENDENCIES
+  rake
+```
+
+#### Invalid comment-like line
+```text
+# This is not a Gemfile.lock comment.
+GEM
+  remote: https://rubygems.org/
+```
 
 ## Genero
 
@@ -310,6 +374,8 @@ END MAIN
 ## Genero Forms
 
 - Registry key: genero_forms
+- Version scope: Genero Forms `.per` examples in Genero 3.00.06 and 4.01.38 tutorials
+- Version-specific syntax: both checked tutorial versions show `--` comments in `.per` form files; no form-file-specific block syntax was confirmed
 - Line comments: `--`
 - Block comments: unsupported
 - Termination behavior: line comments end at newline
@@ -320,8 +386,6 @@ END MAIN
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: Genero Forms 3.00.06 and 4.01.38 tutorial docs
-- Version-specific syntax: both checked tutorial versions show `--` comments in `.per` examples; no block-comment form or version split was confirmed, so the registry should not union extra syntax
 - Recommended action: Add `.per` fixtures that keep `--` comment lines in place and do not assume brace or hash comments unless a form-file grammar source confirms them.
 - Notes: The official form examples show trailing `--` comments in text-based form files, but they do not document a separate block-comment form.
 
@@ -544,20 +608,34 @@ docs/** linguist-generated
 ## Git Revision List
 
 - Registry key: git_revision_list
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: current Git `blame.ignoreRevsFile` / `--ignore-revs-file` documentation and current `oidset_parse_file_carefully` implementation
+- Version-specific syntax: no versioned delimiter split found; the format accepts one object id per line with optional whitespace and `#` comments
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `#` starts a comment anywhere on the line after the line is read; content after `#` is discarded, then whitespace is trimmed
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: implementation_cross_checked
+- Docs source: https://git-scm.com/docs/git-blame
+- Implementation source: https://github.com/git/git/blob/master/oidset.c
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: checked revision-list references did not expose a versioned comment syntax
-- Version-specific syntax: no source-backed delimiter was found; keep unsupported and do not infer a union of forms
-- Recommended action: Keep unsupported unless a specific revision-list dialect documents comments.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Recommended action: Add `#` line-comment coverage for Git revision-list files such as `.git-blame-ignore-revs`; do not add block comments.
+- Notes: The implementation allows trailing comments, leading whitespace, empty lines, and whitespace-only lines before parsing the object id.
+
+### Examples
+
+#### Line comment
+```text
+# formatting-only rewrite
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  # formatting pass
+```
+
+#### No block comment form
+```text
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+```
 
 ## GLSL
 - Registry key: `glsl`
@@ -665,20 +743,33 @@ plot sin(x)
 ## Go Checksums
 
 - Registry key: go_checksums
+- Version scope: current Go module reference for `go.sum` files and current Go command `readGoSum` implementation
+- Version-specific syntax: the `go.sum` format is a fixed three-field line format; no checked Go version allows comments in checksum files
 - Line comments: unsupported
 - Block comments: unsupported
 - Termination behavior: unsupported
 - Nested comments: unsupported
-- Confidence: unsupported
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Confidence: high
+- Evidence mode: implementation_cross_checked
+- Docs source: https://go.dev/ref/mod#go-sum-files
+- Implementation source: https://github.com/golang/go/blob/master/src/cmd/go/internal/modfetch/fetch.go; https://github.com/golang/go/blob/master/src/cmd/go/testdata/script/malformed_gosum_issue62345.txt
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: Go checksum database metadata is generated, not versioned for comment syntax
-- Version-specific syntax: no comment delimiter was confirmed in any checked checksum format reference; keep unsupported
-- Recommended action: Keep unsupported and exclude from parser coverage.
-- Notes: Go checksum database entries are generated metadata, not a comment-bearing source format.
+- Recommended action: Keep unsupported and exclude checksum files from comment parsing coverage.
+- Notes: `readGoSum` skips blank lines only and requires exactly three whitespace-separated fields. A Go test fixture shows `rsc.io/quote v1.5.2 # invalid line` fails as five fields, confirming `#` is not a comment.
+
+### Examples
+
+#### No supported comment form
+```text
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c h1:pvCbr/wm8HzDD3fVywevekufpn6tCGPY3spdHeZJEsw=
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
+```
+
+#### Invalid comment-like line
+```text
+rsc.io/quote v1.5.2 # invalid line
+```
 
 ## Go Module
 - Registry key: `go_module`
@@ -852,20 +943,38 @@ fun UsePN : PN -> NP ;
 ## Graph Modeling Language
 
 - Registry key: graph_modeling_language
-- Line comments: unsupported
+- Version scope: original GML technical report references plus current NetworkX GML parser behavior
+- Version-specific syntax: the original format uses a `comment` key-value attribute for graph metadata; common parsers such as NetworkX also accept `#` line comments as lexical comments
+- Line comments: `#` in NetworkX/common-parser dialects; no semicolon or slash line comments confirmed
 - Block comments: unsupported
-- Termination behavior: unsupported
+- Termination behavior: `#` comments run to the end of the physical line
 - Nested comments: unsupported
-- Confidence: unsupported
-- Evidence mode: unresolved
-- Docs source: https://en.wikipedia.org/wiki/Graph_Modelling_Language
-- Implementation source: https://igraph.org/c/html/develop/igraph-Foreign.html
-- Community source: https://en.wikipedia.org/wiki/Graph_Modelling_Language
+- Confidence: medium
+- Evidence mode: implementation_cross_checked
+- Docs source: https://raw.githubusercontent.com/GunterMueller/UNI_PASSAU_FMI_Graph_Drawing/master/GML/gml-technical-report.pdf
+- Implementation source: https://networkx.org/documentation/stable/_modules/networkx/readwrite/gml.html; https://github.com/networkx/networkx/blob/main/networkx/readwrite/gml.py
+- Community source: https://jakobandersen.github.io/mod/formats/index.html
 - Corpus fallback source: not used
-- Version scope: GML references and igraph foreign-interface docs checked; no versioned comment syntax surfaced
-- Version-specific syntax: the checked sources treat `comment` as data, not syntax; do not union any delimiters and keep GML unsupported
-- Recommended action: Keep unsupported; the available references describe `comment` as a data attribute, not a comment delimiter.
-- Notes: The available GML references treat `comment` as a regular attribute, so this format should stay out of comment parsing.
+- Recommended action: Add `#` line-comment support if the registry targets common Graph Modeling Language parser behavior; do not treat the `comment "..."` key as a lexical comment delimiter.
+- Notes: NetworkX tokenization groups `#.*$` with whitespace and skips it. The `comment` key shown in many GML examples is graph data/metadata, not a delimiter pair.
+
+### Examples
+
+#### Line comment
+```text
+# created by graph exporter
+graph [
+  node [ id 1 label "A" ]
+]
+```
+
+#### Comment attribute, not lexical comment
+```text
+graph [
+  comment "This string is a GML attribute value."
+  directed 1
+]
+```
 
 ## Graphviz (DOT)
 
@@ -1063,20 +1172,41 @@ global
 ## Harbour
 
 - Registry key: harbour
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: current Harbour core preprocessor and Harbour test corpus
+- Version-specific syntax: current Harbour supports Clipper-compatible line forms plus C-style multiline comments; strict Clipper mode changes one `NOTE` placement nuance but not the delimiter set
+- Line comments: `//`; `&&`; `*` only at the first token on a line; `NOTE` at the start of a new statement
+- Block comments: `/* ... */`
+- Termination behavior: line comments end at newline; block comments end at the first `*/`; unterminated block comments are reported as errors
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/harbour/core/blob/master/src/pp/ppcore.c; https://github.com/harbour/core/blob/master/include/hbpp.h
 - Community source: not used
-- Corpus fallback source: not used
-- Version scope: Harbour core/manual snapshots were checked without finding a versioned comment reference
-- Version-specific syntax: no source-backed Harbour delimiter difference was confirmed; leave unresolved until a primary Harbour reference documents the comment forms
-- Recommended action: Leave unresolved until a source-backed Harbour syntax reference confirms the comment forms.
-- Notes: No source-backed comment syntax was confirmed in this pass.
+- Corpus fallback source: https://github.com/harbour/core/blob/master/tests/comments.prg
+- Recommended action: Add Harbour fixtures for all four line forms and non-nested `/* ... */` blocks; keep `*` and `NOTE` position-sensitive.
+- Notes: The preprocessor strips `//` and `&&` for the rest of a line, strips `*` only when no tokens precede it, and strips `NOTE` only as a first/new-statement token. Semicolon is a command separator, not a comment.
+
+### Examples
+
+#### Line comment
+```text
+// file header comment
+* legacy full-line comment
+NOTE old-style full-line comment
+PROCEDURE Main()
+   QOut( "Ok!" )  && inline legacy comment
+RETURN
+```
+
+#### Block comment
+```text
+PROCEDURE Main()
+   /* multiple
+      lines */
+   QOut( "Ok!" )
+RETURN
+```
 
 ## Haxe
 - Registry key: `haxe`
@@ -1236,18 +1366,20 @@ service {
 ## HolyC
 
 - Registry key: holyc
+- Version scope: TempleOS archive lexer and current ZealOS lexer
+- Version-specific syntax: both checked lexers use the same C-style line comment and nested block-comment handling
 - Line comments: `//`
-- Block comments: unresolved
-- Termination behavior: line comments end at newline; block comments unresolved
-- Nested comments: unresolved
-- Confidence: medium
-- Evidence mode: community_search
+- Block comments: `/* ... */`
+- Termination behavior: line comments end at newline; block comments maintain depth and close only after the matching outer `*/`
+- Nested comments: supported
+- Confidence: high
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: https://github.com/Ma11ock/holyc
-- Community source: https://pldb.io/concepts/holyc.html
+- Implementation source: https://github.com/cia-foundation/TempleOS/blob/archive/Compiler/Lex.HC; https://github.com/Zeal-Operating-System/ZealOS/blob/master/src/Compiler/Lex.ZC
+- Community source: not used
 - Corpus fallback source: not used
-- Recommended action: Keep the `//` line-comment fixture and leave block comments unresolved until a source-backed HolyC reference confirms them.
-- Notes: The strongest evidence found in this pass only confirmed single-line `//` comments.
+- Recommended action: Add HolyC fixtures for `//` and nested `/* ... */` block comments.
+- Notes: Both lexers increment comment depth on nested `/*` and decrement on `*/`; EOF inside a comment returns EOF rather than finding a synthetic closer.
 
 ### Examples
 
@@ -1258,6 +1390,14 @@ U0 Main()
   U8 *message = "hello world"; // greeting
   "%s\n", message;
 }
+```
+
+#### Nested comment
+```holyc
+/* outer note
+   /* nested disabled code */
+   still inside outer */
+U0 Main() {}
 ```
 
 ## hoon
@@ -1435,20 +1575,32 @@ x
 ## HTTP
 
 - Registry key: http
+- Version scope: HTTP Semantics RFC 9110 field-value grammar, with older RFC 7230-compatible behavior considered through the same ABNF concept
+- Version-specific syntax: RFC 9110 defines parenthesized comments only inside specific HTTP field grammars that include `comment`; HTTP messages do not have generic source comments
 - Line comments: unsupported
-- Block comments: unsupported
-- Termination behavior: unsupported
-- Nested comments: unsupported
-- Confidence: unsupported
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Block comments: context-sensitive `(...)` field-value comments only where a header field definition allows `comment`
+- Termination behavior: generic source-comment termination is unsupported; HTTP field comments use balanced parentheses, allow quoted-pair escapes, and can nest recursively
+- Nested comments: supported only inside the RFC field-value `comment` production
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.5; https://www.rfc-editor.org/rfc/rfc9110.html#section-5.6.4
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: HTTP is a protocol, not a versioned comment-bearing source language
-- Version-specific syntax: no HTTP comment syntax was found in the checked references; keep unsupported
-- Recommended action: Keep unsupported unless a formal comment syntax is located in a specific HTTP configuration grammar.
-- Notes: HTTP itself is a protocol, not a comment-bearing source format.
+- Recommended action: Keep generic HTTP files unsupported unless the parser becomes context-aware for specific header field grammars; do not add a global parenthesized block delimiter.
+- Notes: Treating all parenthesized HTTP text as comments would corrupt valid field values and message bodies. The RFC comment production is protocol grammar, not a free-standing file comment.
+
+### Examples
+
+#### Context-sensitive field comment
+```http
+User-Agent: ExampleClient/1.0 (compatible; local test)
+```
+
+#### Nested field comment production
+```http
+Example-Field: token (outer (inner) text)
+```
 
 ## HXML
 
@@ -1772,20 +1924,28 @@ doStuff
 ## IRC log
 
 - Registry key: irc_log
+- Version scope: IRC RFC 2812 message grammar, modern IRC client protocol documentation, and common transcript/log interpretation
+- Version-specific syntax: IRC messages/logs are line-oriented transcript data; no checked IRC protocol or log reference defines source comments
 - Line comments: unsupported
 - Block comments: unsupported
 - Termination behavior: unsupported
 - Nested comments: unsupported
-- Confidence: unsupported
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Confidence: high
+- Evidence mode: official_docs
+- Docs source: https://www.rfc-editor.org/rfc/rfc2812#section-2.3.1; https://modern.ircdocs.horse/#message-format
 - Implementation source: unresolved
 - Community source: not used
 - Corpus fallback source: not used
-- Version scope: IRC log formats are transcript data, not versioned source languages with comment syntax
-- Version-specific syntax: no comment delimiter was found in the checked references; keep unsupported
 - Recommended action: Keep unsupported.
-- Notes: IRC logs are transcripts, not a comment-bearing source format.
+- Notes: IRC protocol parameters named `comment` are message payload fields such as reasons for KICK/KILL/SQUIT, not lexical comments. Semicolons in RFC examples are explanatory prose formatting, not log syntax.
+
+### Examples
+
+#### No supported comment form
+```text
+[12:00] <alice> #channel is text in the transcript, not a comment marker
+[12:01] *** bob has quit (Quit: leaving)
+```
 
 ## Isabelle
 - Registry key: `isabelle`

@@ -422,24 +422,25 @@ assume value > 0;
 
 ## Brainfuck
 - Registry key: `brainfuck`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Urban Mueller-era Brainfuck as documented by brainfuck.org, plus current community reference behavior.`
+- Version-specific syntax: `Current and historical references agree that Brainfuck has eight command characters and ignores every other character; there is no delimiter-based comment syntax to seed.`
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
 - Confidence: `high`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Evidence mode: `official_docs`
+- Docs source: [brainfuck.org reference](https://brainfuck.org/brainfuck.html); [brainfuck.org implementor notes](https://brainfuck.org/epistle.html)
 - Implementation source: `unresolved`
-- Corpus fallback source: `unresolved`
+- Community source: [Esolangs Brainfuck](https://esolangs.org/wiki/Brainfuck)
+- Corpus fallback source: `not used`
 - Recommended action: `Document that non-command characters are ignored rather than treated as comments.`
-- Notes: `Brainfuck does not define comment syntax; arbitrary non-instruction characters are ignored.`
+- Notes: `A comment extractor should not treat arbitrary ignored text as a comment, because any of the eight command characters inside that text is still executable Brainfuck.`
 
 - Example - unsupported:
 ```text
 ++[>+++<-]>.
-This text is ignored by the interpreter.
+hello world
 ```
 
 ## BrighterScript
@@ -768,7 +769,7 @@ proc main() {
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
 - Confidence: `high`
-- Evidence mode: `official_classifier_plus_grammar`
+- Evidence mode: `implementation_cross_checked`
 - Docs source: [GitHub Linguist Checksums definition](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml)
 - Implementation source: [language-etc Checksums grammar](https://github.com/Alhadis/language-etc/blob/master/grammars/checksums.cson)
 - Community source: `unresolved`
@@ -848,7 +849,7 @@ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  empty.txt
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
 - Confidence: `high`
-- Evidence mode: `official_docs_plus_implementation`
+- Evidence mode: `implementation_cross_checked`
 - Docs source: [Cirru syntax documentation](https://text.cirru.org/)
 - Implementation source: [Cirru parser](https://github.com/Cirru/parser.rs)
 - Community source: `unresolved`
@@ -895,7 +896,7 @@ CODE
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
 - Confidence: `high`
-- Evidence mode: `official_docs_plus_implementation`
+- Evidence mode: `implementation_cross_checked`
 - Docs source: [Microsoft Working with Scripting Languages](https://learn.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525153%28v%3Dvs.90%29)
 - Implementation source: [TextMate HTML-ASP grammar](https://github.com/textmate/asp.tmbundle/blob/master/Syntaxes/HTML-ASP.plist)
 - Community source: `unresolved`
@@ -1303,24 +1304,29 @@ cwlVersion: v1.2
 
 ## Component Pascal
 - Registry key: `component_pascal`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `unresolved`
+- Version scope: `Oberon microsystems Component Pascal language report for BlackBox/Component Pascal.`
+- Version-specific syntax: `No dialect split found in the checked language report; Component Pascal uses only Oberon-family nested (* ... *) comments, not Pascal { ... } comments or // line comments.`
+- Line comments: `unsupported`
 - Block comments: `(* ... *)`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Termination behavior: `block comments require balanced nested delimiters`
+- Nested comments: `yes`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: [Component Pascal language report](https://blackbox.oberon.org/cp-lang.pdf)
 - Implementation source: `unresolved`
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify before seeding; only the block delimiter is tentatively known.`
-- Notes: `Pascal-family syntax often uses `(* ... *)`.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed nested (* ... *) block comments only; keep line comments and Pascal brace comments unsupported.`
+- Notes: `The language report explicitly says comments may be nested, so a non-recursive Pascal-style matcher would be wrong for Component Pascal.`
 
 - Example - block:
 ```text
 (* comment *)
+MODULE Example;
+```
+- Example - nested:
+```text
+(* outer (* inner *) outer *)
 MODULE Example;
 ```
 
@@ -1348,20 +1354,20 @@ MODULE Example;
 
 ## Cool
 - Registry key: `cool`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Stanford Cool reference manual and Stanford cooldist lexer assignment skeleton.`
+- Version-specific syntax: `No version split found; the reference manual defines -- line comments and nested (* ... *) comments.`
 - Line comments: `--`
 - Block comments: `(* ... *)`
-- Termination behavior: `true nesting supported`
+- Termination behavior: `line comments run to newline or EOF; block comments require balanced nested delimiters and cannot cross file boundaries`
 - Nested comments: `yes`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `verified`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [The Cool Reference Manual](https://theory.stanford.edu/~aiken/software/cool/cool-manual.pdf)
+- Implementation source: [Stanford cool.flex skeleton](https://theory.stanford.edu/~aiken/software/cooldist/assignments/PA2/cool.flex.SKEL)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify COOL nesting semantics and add line/block tests.`
-- Notes: `Candidate based on COOL language conventions.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed -- line comments and recursively nested (* ... *) block comments.`
+- Notes: `The manual states that -- runs to newline or EOF, block comments may nest, and comments cannot cross file boundaries.`
 
 - Example - line:
 ```text
@@ -1384,37 +1390,43 @@ class Main inherits IO {
 
 ## Creole
 - Registry key: `creole`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Version scope: `WikiCreole 1.0 final specification and published WikiCreole 1.0 ANTLR grammar without extensions.`
+- Version-specific syntax: `The checked 1.0 specification and grammar define wiki markup constructs but no comment delimiters; engine-specific macro names such as "Comment" are not Creole comments.`
+- Line comments: `unsupported`
+- Block comments: `unsupported`
+- Termination behavior: `unsupported`
+- Nested comments: `unsupported`
+- Confidence: `high`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [WikiCreole home/spec site](https://www.wikicreole.org/)
+- Implementation source: [WikiCreole 1.0 ANTLR grammar without extensions](https://dirkriehle.com/wp-content/uploads/2008/01/creole10_wout_extension.g)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Research the wiki syntax before seeding.`
-- Notes: `No verified comment syntax gathered.`
+- Corpus fallback source: `not used`
+- Recommended action: `Keep unsupported unless a specific wiki-engine dialect with comment markup is split into its own registry key.`
+- Notes: `The grammar has tokens for headings, lists, tables, links, images, nowiki, and escapes, but no comment token.`
+
+- Example - unsupported:
+```text
+This is ordinary Creole text.
+//this is emphasis, not a comment//
+```
 
 ## CSON
 - Registry key: `cson`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `bevry/cson 8.4.0 README, groupon/cson-parser 4.0.9 package, and CoffeeScript 1.x/2.x comment syntax.`
+- Version-specific syntax: `CSON is CoffeeScript Object Notation; no CSON-specific syntax split found. Implement the CoffeeScript comment union used by CSON parsers: # line comments and ### ... ### block comments.`
 - Line comments: `#`
 - Block comments: `### ... ###`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `line comments run to newline; block comments stop at the first closing ###`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [bevry CSON README](https://github.com/bevry/cson); [CoffeeScript comments reference](https://coffeescript.org/#comments)
+- Implementation source: [groupon cson-parser package](https://www.npmjs.com/package/cson-parser); [cson-parser 4.0.9 tarball](https://registry.npmjs.org/cson-parser/-/cson-parser-4.0.9.tgz)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify against CSON docs and add CoffeeScript-style comment tests.`
-- Notes: `CSON generally follows CoffeeScript conventions.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed # line and non-nested ### block comments.`
+- Notes: `The CSON README demonstrates # comments and describes CSON as CoffeeScript object notation; cson-parser builds a CoffeeScript AST, so CoffeeScript's herecomment form is the block-comment source of truth.`
 
 - Example - line:
 ```text
@@ -1431,25 +1443,31 @@ key: value
 
 ## Csound
 - Registry key: `csound`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `;`
+- Version scope: `Csound 6.18 canonical manual, current Csound 7 score/orchestra docs, and language-csound grammar master.`
+- Version-specific syntax: `Current orchestra docs add // line comments alongside the traditional semicolon form; current score docs also add the score-only c comment statement. For the generic Csound/orchestra key, implement ;, //, and /* ... */.`
+- Line comments: `;` and `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `line comments run to newline; block comments stop at the first closing */`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `verified`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [Csound orchestra syntax](https://csound.com/docs/manual/OrchTop.html); [Csound get started comments](https://csound.com/get-started.html)
+- Implementation source: [language-csound grammar](https://github.com/nwhetsell/language-csound/blob/master/grammars/csound.cson)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Csound docs and add line/block tests.`
-- Notes: `Candidate semicolon and block comment syntax.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed ;, //, and non-nested /* ... */ tests for orchestra-style Csound.`
+- Notes: `The syntax-highlighting grammar uses a simple begin/end rule for block comments, so there is no evidence of nested /* ... */ support. Score-only c comments belong under the Csound Score key.`
 
 - Example - line:
 ```text
 ; comment
 instr 1
+endin
+```
+- Example - line:
+```text
+instr 1
+  a1 oscili 0.5, 440 // comment
 endin
 ```
 - Example - block:
@@ -1461,47 +1479,86 @@ endin
 
 ## Csound Document
 - Registry key: `csound_document`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `;`
+- Version scope: `Csound 6.18 unified .csd manual, current Csound 7 docs, and language-csound document grammar master.`
+- Version-specific syntax: `.csd files are sectioned documents: CsOptions allows line-start # or ;, CsInstruments uses orchestra comments, and CsScore uses score comments. Do not treat XML/HTML comments as a universal Csound-document delimiter unless an HTML/XML-aware parser is in use.`
+- Line comments: `;` and `//`; line-start `#` in `<CsOptions>`; score statement `c` in `<CsScore>`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `line comments run to newline; block comments stop at the first closing */`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [Csound unified file format](https://csound.com/docs/manual/CommandUnifile.html); [Csound getting started .csd example](https://csound.com/docs/manual/PrefaceGettingStarted.html); [Csound score statements](https://csound.com/docs/manual/ScoreStatements.html)
+- Implementation source: [language-csound document grammar](https://github.com/nwhetsell/language-csound/blob/master/grammars/csound-document.cson); [language-csound score grammar](https://github.com/nwhetsell/language-csound/blob/master/grammars/csound-score.cson); [language-csound orchestra grammar](https://github.com/nwhetsell/language-csound/blob/master/grammars/csound.cson)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify the document dialect before seeding.`
-- Notes: `Likely shares Csound comment forms.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed semicolon, double-slash, and block comments; add context-aware or line-anchored coverage for CsOptions # and CsScore c if the registry can express those restrictions.`
+- Notes: `A global # or c comment rule would overmatch outside the documented sections; the document grammar embeds Csound and Csound Score grammars by tag context.`
 
 - Example - line:
 ```text
-; comment
+<CsoundSynthesizer>
+<CsOptions>
+# comment
+</CsOptions>
+</CsoundSynthesizer>
+```
+- Example - line:
+```text
+<CsoundSynthesizer>
+<CsInstruments>
+instr 1
+  a1 oscili 0.5, 440 ; comment
+endin
+</CsInstruments>
+</CsoundSynthesizer>
+```
+- Example - block:
+```text
+<CsoundSynthesizer>
+<CsInstruments>
+/* comment */
+instr 1
+endin
+</CsInstruments>
+</CsoundSynthesizer>
 ```
 
 ## Csound Score
 - Registry key: `csound_score`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `;`
+- Version scope: `Legacy Csound 3.48 score manual, Csound 6.18 manual, current Csound 7 score statements, and language-csound score grammar master.`
+- Version-specific syntax: `Older score docs document semicolon-only comments; current score docs document semicolon, //, and c-to-newline comments plus C-style block comments. Implement the current union for the score key.`
+- Line comments: `;`, `//`, and score comment statement `c`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `line comments run to newline; block comments stop at the first closing */`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [Current Csound score statements](https://csound.com/docs/manual/ScoreStatements.html); [Legacy numeric score syntax](https://www.classes.cs.uchicago.edu/archive/1999/spring/CS295/Computing_Resources/Csound/CsManual3.48b1.HTML/NumScore/scsynt.html)
+- Implementation source: [language-csound score grammar](https://github.com/nwhetsell/language-csound/blob/master/grammars/csound-score.cson); [language-csound shared comments grammar](https://github.com/nwhetsell/language-csound/blob/master/grammars/csound.cson)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify the score dialect before seeding.`
-- Notes: `Likely shares Csound comment forms.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed ;, //, line-start c, and non-nested /* ... */ coverage for score files.`
+- Notes: `The current official score docs are stronger than the TextMate grammar for the score-only c form, so tests should line-anchor c to avoid overmatching ordinary p-field text.`
 
 - Example - line:
 ```text
 ; comment
 f 1 0 1024 10 1
+```
+- Example - line:
+```text
+// comment
+i 1 0 1
+```
+- Example - line:
+```text
+c comment
+i 1 0 1
+```
+- Example - block:
+```text
+/* comment */
+i 1 0 1
 ```
 
 ## CSS
@@ -1530,19 +1587,26 @@ body {
 
 ## CSV
 - Registry key: `csv`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `RFC 4180 CSV, RFC 7111 URI fragments for CSV, and Python 3 csv module dialect surface.`
+- Version-specific syntax: `Core CSV has records, fields, quoting, and line breaks but no comment delimiter; some tools add dialect-specific comment options, which should not be unioned into the generic CSV key.`
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
 - Nested comments: `unsupported`
 - Confidence: `high`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [RFC 4180](https://www.rfc-editor.org/rfc/rfc4180); [RFC 7111](https://www.rfc-editor.org/rfc/rfc7111)
+- Implementation source: [Python csv module](https://docs.python.org/3/library/csv.html)
+- Community source: `unresolved`
 - Corpus fallback source: `unresolved`
 - Recommended action: `Document as commentless unless a specific dialect is introduced.`
-- Notes: `CSV does not standardize comment syntax.`
+- Notes: `A leading #, semicolon, or slash sequence is ordinary field data in generic CSV.`
+
+- Example - unsupported:
+```text
+# not a standard CSV comment
+name,value
+```
 
 ## CUE
 - Registry key: `cue`
@@ -1575,24 +1639,29 @@ y: 2
 
 ## Cue Sheet
 - Registry key: `cue_sheet`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `REM` and `#`
+- Version scope: `CDRWIN-derived cue-sheet syntax as summarized by cue-sheet references, libcue 2.3.0 parser, and libodraw cue-sheet format notes.`
+- Version-specific syntax: `REM is the standard cue-sheet remark command. Some parsers/documentation also mention semicolon and // comments as non-standard/cdrdao-style variants. No reviewed source confirms # as a cue-sheet comment marker, so do not seed #.`
+- Line comments: `REM`; dialect candidates `;` and `//`
 - Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Termination behavior: `line comments run to newline`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [Hydrogenaudio cue sheet reference](https://wiki.hydrogenaudio.org/index.php?title=Cue_sheet); [CUE sheet format notes](https://github.com/libyal/libodraw/blob/main/documentation/CUE%20sheet%20format.asciidoc)
+- Implementation source: [libcue scanner](https://github.com/lipnitsk/libcue/blob/master/cue_scanner.l); [libcue parser](https://github.com/lipnitsk/libcue/blob/master/cue_parser.y)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify cue-sheet syntax before seeding.`
-- Notes: `Audio cue sheets often use REM-style comments.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed line-anchored REM only for the generic key; consider ; and // only if the registry intentionally targets permissive cue-sheet dialects.`
+- Notes: `REM is parsed as a command, not a free-form delimiter, and some applications reject a bare REM line. The packet's # candidate was not corroborated.`
 
 - Example - line:
 ```text
 REM comment
+TRACK 01 AUDIO
+```
+- Example - dialect line:
+```text
+; comment
 TRACK 01 AUDIO
 ```
 
@@ -1630,37 +1699,54 @@ main :: IO ()
 
 ## CWeb
 - Registry key: `cweb`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Version scope: `Knuth/Levy CWEB 4.12.2 manual, CWEBx manual notes, and mirrored CWEB source behavior.`
+- Version-specific syntax: `CWEB mixes TeX text, C/C++/Java code, and CWEB control text. CWEB-specific @q ... @> control text is ignored by CTANGLE and CWEAVE; C/C++ comments are valid only in C text; TeX % comments are valid only in TeX text. Do not implement an unconditional union without a CWEB-aware parser.`
+- Line comments: `// in C++/Java code fragments; % in TeX text`
+- Block comments: `@q ... @>` on one source line; `/* ... */` in C/C++/Java code fragments`
+- Termination behavior: `@q control text ends at the next @> on the same line; C block comments stop at the first closing delimiter; line comments end at newline`
+- Nested comments: `unsupported`
+- Confidence: `high`
+- Evidence mode: `implementation_cross_checked`
+- Docs source: [CWEB manual 4.12.2](https://mirrors.ctan.org/web/c_cpp/cweb/cwebman.pdf); [Knuth CWEB page](https://www-cs-faculty.stanford.edu/~knuth/cweb.html); [CWEBx manual](https://ctan.math.illinois.edu/web/c_cpp/cwebx/manual.pdf)
+- Implementation source: [CWEB CTANGLE source mirror](https://github.com/ascherer/cweb/blob/master/ctangle.w)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Research WEB/CWEB comment conventions before seeding.`
-- Notes: `TeX and C fragments make comment handling format-specific.`
+- Corpus fallback source: `not used`
+- Recommended action: `Prefer a CWEB-aware extractor. If a lexical registry entry is required, seed @q ... @> as the CWEB-specific comment form and document C/TeX comments as context-dependent.`
+- Notes: `The manual warns that C comments inside CWEB must be valid TeX text for CWEAVE, and comments are not permitted in inline |...| C text.`
+
+- Example - block:
+```text
+@q source-only note@>
+@* Introduction.
+```
+- Example - block:
+```text
+@c
+int value = 1; /* C fragment comment */
+```
+- Example - line:
+```text
+This TeX text is copied by CWEAVE. % TeX comment
+@c
+int value = 1; // C++ fragment comment
+```
 
 ## Cycript
 - Registry key: `cycript`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Cycript 0.9.594 official site/manual plus ECMAScript and Objective-C/C-family comment syntax.`
+- Version-specific syntax: `No Cycript-specific comment delimiter split found. Cycript is a JavaScriptCore-backed JavaScript console with Objective-C++ syntax, so C-family // and /* ... */ comments are the supported lexical forms.`
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `line comments run to line terminator; block comments stop at the first closing */`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs`
+- Docs source: [Cycript manual](https://www.cycript.org/manual/); [Cycript official site](https://www.cycript.org/); [ECMAScript lexical grammar](https://tc39.es/ecma262/#sec-comments)
 - Implementation source: `unresolved`
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Verify against Cycript docs and add C-like comment tests.`
-- Notes: `Candidate C-like syntax.`
+- Corpus fallback source: `not used`
+- Recommended action: `Seed // and non-nested /* ... */ tests.`
+- Notes: `The manual describes the REPL input as JavaScript executed by JavaScriptCore and syntax-highlighted by Cycript's lexer; Objective-C++ fragments use the same C-family comment forms.`
 
 - Example - line:
 ```text

@@ -116,32 +116,31 @@ Version: 1.0
 ## DenizenScript
 
 - Registry key: `denizenscript`
-- Version scope: `Current Denizen Beginner's Guide and Meta Documentation pages; reviewed the maintained DenizenCore/Denizen docs surface rather than an archived legacy release.`
-- Version-specific syntax: `No version split confirmed; the current docs use # to comment out whole command lines, so keep the verified line-comment form only and do not infer block syntax.`
-- Line comments: `#` likely supported
-- Block comments: `unresolved`
-- Termination behavior: `runs to newline`
+- Version scope: Current Denizen Beginner's Guide examples and current Denizen-Core script loader source; no older syntax split was found.
+- Version-specific syntax: No version split confirmed. The current loader strips lines whose trimmed content starts with `#`; inline `#` in command lines is escaped rather than treated as a comment.
+- Line comments: `#` full-line comments supported after optional leading whitespace; inline `#` comments are unsupported.
+- Block comments: `unsupported`
+- Termination behavior: `runs to newline; only recognized when the trimmed line starts with #`
 - Nested comments: `unsupported`
-- Evidence mode: `official_docs`
-- Confidence: `medium`
-- Docs source: `https://guide.denizenscript.com/guides/basics/mechanisms.html; https://guide.denizenscript.com/guides/troubleshooting/common-mistakes; https://meta.denizenscript.com/Docs/Commands/`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `https://github.com/mcmonkeyprojects/DenizenSampleScripts`
-- Corpus fallback source: `https://github.com/mcmonkeyprojects/DenizenSampleScripts`
-- Recommended action: verify the comment form against an official parser or docs page before registry changes.
-- Notes: sample scripts use leading `#` comment lines, and the current official docs also show `#` used to comment out command lines.
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
+- Docs source: `https://guide.denizenscript.com/guides/troubleshooting/common-mistakes.html; https://meta.denizenscript.com/Docs/Commands/`
+- Implementation source: `https://github.com/DenizenScript/Denizen-Core/blob/31300d6ab58c840a3168bd15bc46caf00b5fc418/src/main/java/com/denizenscript/denizencore/scripts/ScriptHelper.java`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: add a DenizenScript full-line `#` fixture and a regression proving inline `#` inside a command line is not stripped.
+- Notes: `ScriptHelper.clearComments` appends a blank line for trimmed `#` lines and preserves command lines, replacing inline `#` with Denizen's escaped `<&ns>` token.
 
 ### Examples
 
 #### Line comment
 ```text
-demo_world:
-  type: world
-  events:
-  on server start:
-  - narrate "hello"
-  # keep the startup narrate
-  - narrate "done"
+pay_command:
+  type: command
+  # require permission before commands run
+  permission: myscript.pay
+  script:
+  - narrate "ready # this hash is command text, not a comment"
 ```
 
 ## desktop
@@ -209,6 +208,8 @@ in x
 ## Diff
 
 - Registry key: `diff`
+- Version scope: GNU diffutils unified-format documentation, with the registry treating `diff` as a patch/data format rather than a source language.
+- Version-specific syntax: No comment syntax was found for diff files; leading `#`, `-`, `+`, and space characters are patch content or metadata depending on context, not comments.
 - Line comments: `unsupported`
 - Block comments: `unsupported`
 - Termination behavior: `unsupported`
@@ -217,9 +218,19 @@ in x
 - Confidence: `high`
 - Docs source: `https://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
+- Community source: `not used`
 - Corpus fallback source: `unresolved`
 - Recommended action: leave unsupported.
 - Notes: unified diff is a patch format, not a comment-bearing language.
+
+### Examples
+
+#### Non-comment patch content
+```text
+@@ -1 +1 @@
+-# removed source line, not a diff comment
++# added source line, not a diff comment
+```
 
 ## DIGITAL Command Language
 
@@ -471,20 +482,37 @@ end method;
 ## E
 
 - Registry key: `e`
-- Version scope: `Original E-on-Java specification pages, current ERights language pages, and 0.9-era examples that use pragma.syntax("0.9"); the exact comment policy was not pinned in the sources checked.`
-- Version-specific syntax: `No comment-token split confirmed across the reviewed E materials; the sources expose the E/Kernel-E language family but do not explicitly document a stable comment delimiter, so keep this entry unresolved.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `https://erights.org/history/original-e/programmers/LanguageSpec.html; https://erights.org/elang/; https://erights.org/elang/quick-ref.html; https://erights.org/history/original-e/programmers/Econcepts.html`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: identify the exact language and source manual first.
-- Notes: the language family is documented, but I did not find a defensible comment-token rule in the pages checked.
+- Version scope: E-on-Java / E language tutorial material, including 0.9-era examples using `pragma.syntax("0.9")`; no newer syntax split was confirmed.
+- Version-specific syntax: `#` line comments are documented for ordinary E source. `/** ... */` is reserved for Edoc documentation comments before `def` or `to`; ordinary `/* ... */` block comments were not confirmed.
+- Line comments: `#` supported
+- Block comments: `/** ... */` supported only as Edoc documentation comments before function/object or method definitions; ordinary `/* ... */` unresolved/unsupported.
+- Termination behavior: `#` runs to newline; Edoc blocks stop at the first `*/`
+- Nested comments: `unsupported`
+- Evidence mode: `official_docs`
+- Confidence: `high`
+- Docs source: `https://www.skyhunter.com/marcs/ewalnut.html; https://erights.org/elang/quick-ref.html`
+- Implementation source: `unresolved`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: add `#` line-comment support; add Edoc `/** ... */` only if documentation comments are in parser scope, and do not add ordinary `/* ... */`.
+- Notes: the most explicit accessible source states that `#` comments end at the line boundary and that `/** ... */` is reserved for Javadoc-style E comments.
+
+### Examples
+
+#### Line comment
+```text
+# E sample
+# Comment on this piece of code
+def a := 3
+```
+
+#### Block comment
+```text
+/**
+ * Add 2 numbers together.
+ */
+def adder(a, b) { return a + b }
+```
 
 ## E-mail
 
@@ -512,20 +540,35 @@ Subject: status
 ## Eagle
 
 - Registry key: `eagle`
-- Version scope: `Autodesk EAGLE ULP docs in current Fusion Electronics help, plus the 2016 Autodesk ULP blog post and recent forum references to EAGLE 5/9.x behavior.`
-- Version-specific syntax: `The reviewed ULP sources present C-like syntax and a sample that uses // comments; no separate block-comment rule was confirmed, so the registry should add only the verified line-comment form until a block form is pinned.`
+- Version scope: Current Autodesk Fusion Electronics EAGLE ULP syntax reference plus a 2005 CadSoft EAGLE help copy.
+- Version-specific syntax: No version split found between current Autodesk ULP docs and the older CadSoft help page; both document `//` line comments and non-nesting `/* ... */` block comments.
 - Line comments: `//` supported
-- Block comments: `unresolved`
-- Termination behavior: `runs to newline`
-- Nested comments: `unresolved`
+- Block comments: `/* ... */` supported
+- Termination behavior: `//` runs to newline; block comments stop at the first `*/`
+- Nested comments: `unsupported`
 - Evidence mode: `official_docs`
-- Confidence: `medium`
-- Docs source: `https://help.autodesk.com/cloudhelp/ENU/Fusion-ECAD/files/ECD-WRITE-ULP-REF.htm; https://help.autodesk.com/cloudhelp/ENU/Fusion-ECAD/files/ECD-USER-LANG-REF.htm; https://www.autodesk.com/products/fusion-360/blog/what-you-didnt-know-about-eagle-user-language-programming/`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: add the verified `//` line-comment fixture now and keep block syntax out of the registry until a source pins it.
-- Notes: ULP is explicitly described as C-like, and the sample docs show `//` comments in actual ULP code.
+- Confidence: `verified`
+- Docs source: `https://help.autodesk.com/cloudhelp/ENU/Fusion-ECAD/files/ECD-ULP-COMMENT-REF.htm; https://web.mit.edu/xavid/arch/i386_rhel4/help/133.htm`
+- Implementation source: `unresolved`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: add EAGLE ULP fixtures for `//`, `/* ... */`, and a non-nesting block termination case.
+- Notes: Autodesk explicitly says the first `*/` after `/*` ends the comment.
+
+### Examples
+
+#### Line comment
+```text
+int i; // some comment text
+```
+
+#### Block comment
+```text
+/* This is a
+   multi line comment
+*/
+int i = 0;
+```
 
 ## Easybuild
 
@@ -579,38 +622,73 @@ indent_style = space
 ## EBNF
 
 - Registry key: `ebnf`
-- Version scope: `ISO/IEC 14977:1996, the Cambridge ISO EBNF summary, Microsoft's EBNF-M page, and RFC 2234/5234 ABNF material used only for comparison because the Stack label is generic.`
-- Version-specific syntax: `No canonical comment syntax was found for generic EBNF; the sources reviewed show that comment conventions are dialect-specific, so keep the label unresolved until a concrete EBNF dialect is pinned.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `https://iso.org/standard/26153.html; https://www.cl.cam.ac.uk/~mgk25/iso-ebnf.html; https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/8deb6d43-3e71-493b-9465-b84bb3cd3c45; https://datatracker.ietf.org/doc/rfc5234/`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: identify the exact EBNF dialect in scope before adding syntax.
-- Notes: EBNF is a grammar notation family, so the comment forms are dialect-specific rather than standardized by the family name alone.
+- Version scope: ISO/IEC 14977:1996(E) Extended BNF, checked against a browsable grammar extraction; ABNF/RFC 5234 and other EBNF-like dialects were checked only to avoid mixing dialects.
+- Version-specific syntax: ISO EBNF defines bracketed textual comments using `(* ... *)`; the ISO grammar is recursive, so comments can contain comments. Do not union ABNF `;` line comments or other dialect-specific forms into this key unless the registry explicitly targets those dialects.
+- Line comments: `unsupported` in ISO EBNF
+- Block comments: `(* ... *)` supported
+- Termination behavior: `true nesting supported`
+- Nested comments: `supported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
+- Docs source: `https://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf; https://www.cl.cam.ac.uk/~mgk25/iso-ebnf.html`
+- Implementation source: `https://slebok.github.io/zoo/%C2%A7wip/metasyntax/ebnf-iso-1/extracted/index.html`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: if `ebnf` means ISO/IEC 14977, add recursive `(* ... *)` support; otherwise split the Stack label by concrete grammar dialect.
+- Notes: ISO clause 6.7 and the self-definition make `comment symbol` recursive, which confirms true nested comments.
+
+### Examples
+
+#### Block comment
+```text
+(* see 7.2 *) letter = 'a' | 'b' | 'c';
+```
+
+#### Nested comment
+```text
+(* outer (* inner *) outer *)
+syntax = syntax rule, {syntax rule};
+```
 
 ## eC
 
 - Registry key: `ec`
-- Version scope: `Current Ecere SDK / eC project materials plus the 2017 Ecere overview article; I did not find a versioned grammar page that pinned comment syntax.`
-- Version-specific syntax: `No version split or dialect split was confirmed in the reviewed sources; the language is described as C-style, but that is not sufficient to encode a comment token safely without an authoritative reference.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `https://opensource.com/article/17/9/ecere; https://github.com/ecere/ecere-sdk`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: verify the Ecere/eC reference before encoding comment syntax.
-- Notes: the source material confirms the language family and its C-style framing, but not a specific comment rule.
+- Version scope: Current Ecere SDK/eC project materials and the standalone eC lexer in the `ecere/eC` repository.
+- Version-specific syntax: No version split found. The lexer recognizes C/C++-style `//` and `/* ... */`; `#` is handled as preprocessor input, not as an ordinary comment token.
+- Line comments: `//` supported
+- Block comments: `/* ... */` supported
+- Termination behavior: `//` runs to newline; block comments stop at the first `*/`
+- Nested comments: `unsupported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `cross-checked`
+- Docs source: `https://github.com/ecere/ecere-sdk; https://opensource.com/article/17/9/ecere`
+- Implementation source: `https://github.com/ecere/eC/blob/8a633973133bb007e446bead00f30f5492d5a23b/ectp/src/lexer.l`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: keep eC aligned with the C-style registry family and add an eC-specific fixture if the generated Stack coverage needs the alias pinned.
+- Notes: the lexer dispatches `"/*"` to `comment()` and `"//"` to `commentCPP()`; `comment()` stops on the first `*/`.
+
+### Examples
+
+#### Line comment
+```text
+class Greeter : Window
+{
+   void OnCreate()
+   {
+      PrintLn("hello"); // startup message
+   }
+}
+```
+
+#### Block comment
+```text
+/* window startup hook */
+class Greeter : Window
+{
+   void OnCreate() { PrintLn("hello"); }
+}
+```
 
 ## ECL
 
@@ -680,20 +758,43 @@ goal :-
 ## Edje Data Collection
 
 - Registry key: `edje_data_collection`
-- Version scope: `Legacy Edje reference material plus current Tizen EDC docs, including the Tizen 2.4+ layouting pages and the newer Tizen 5.x-era EDC editor/deprecation notes.`
-- Version-specific syntax: `No version split was confirmed; the reviewed EDC examples use C-style block comments (/* ... */) in current docs, and I did not find an older dialect that changed the delimiter. If the registry targets .edc, add the block form only.`
-- Line comments: `unresolved`
+- Version scope: Current EFL `edje_cc` parser source, current EFL `.edc` examples, and legacy Edje reference material; current parser carries EFL 1.18 through 1.26 compatibility defines.
+- Version-specific syntax: No version split found. The current parser skips `//` single-line comments and `/* ... */` block comments outside quoted strings; `#` is treated as preprocessor line metadata rather than a normal EDC comment.
+- Line comments: `//` supported
 - Block comments: `/* ... */` supported
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: `unresolved`
-- Evidence mode: `official_docs`
-- Confidence: `medium`
-- Docs source: `https://docs.tizen.org/application/native/guides/ui/efl/learn-edc-intro/; https://docs.tizen.org/application/native/guides/ui/efl/learn-edc-positioning-parts/; https://www.enlightenment.org/_legacy_embed/edje_main.html; https://docs.tizen.org/application/tizen-studio/native-tools/edc-editor/`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: add a block-comment regression test for .edc and keep line comments unresolved until a source pins them.
-- Notes: the reviewed docs show /* ... */ inside EDC examples; I did not find a verified line-comment token.
+- Termination behavior: `//` runs to newline; block comments stop at the first `*/`
+- Nested comments: `unsupported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
+- Docs source: `https://www.enlightenment.org/_legacy_embed/edje_main.html; https://github.com/Enlightenment/efl/blob/master/src/examples/edje/entry.edc`
+- Implementation source: `https://github.com/Enlightenment/efl/blob/12494e95d4070a32bde155e85fe815900651c9c4/src/bin/edje/edje_cc_parse.c`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: add `.edc` fixtures for `//`, `/* ... */`, and non-nesting block termination; do not treat `#` preprocessor lines as ordinary comments.
+- Notes: `next_token` tracks `in_comment_ss` for `//` and `in_comment_sa` for `/* ... */`; the block state is a boolean, so nested blocks are not supported.
+
+### Examples
+
+#### Line comment
+```text
+collections {
+   group {
+      name: "example/main";
+      // Position text relative to background.
+      parts { }
+   }
+}
+```
+
+#### Block comment
+```text
+collections {
+   /* Main visible group. */
+   group {
+      name: "example/main";
+   }
+}
+```
 
 ## edn
 
@@ -834,18 +935,20 @@ put world
 ## EmberScript
 
 - Registry key: `emberscript`
+- Version scope: EmberScript master / npm 0.0.14 project source, its CoffeeScript-derived grammar and preprocessor, and current CoffeeScript reference documentation.
+- Version-specific syntax: No EmberScript-specific split found. EmberScript inherits CoffeeScript-style comments, and its own grammar defines `#` single-line comments and `### ... ###` block comments.
 - Line comments: `#` supported
 - Block comments: `### ... ###` supported
 - Termination behavior: `first closing delimiter wins`
 - Nested comments: `unsupported`
-- Evidence mode: `corpus_inferred`
-- Confidence: `medium`
-- Docs source: `unresolved`
-- Implementation source: `https://github.com/ghempton/ember-script`
-- Community source: `https://packagecontrol.io/packages/EmberScript`
-- Corpus fallback source: `https://packagecontrol.io/packages/EmberScript`
-- Recommended action: keep this as a corpus-backed entry until an official syntax page or grammar is pinned.
-- Notes: the corpus examples and package metadata show CoffeeScript-style semicolon-compatible line comments and triple-hash block comments.
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
+- Docs source: `https://github.com/ghempton/ember-script; https://coffeescript.org/`
+- Implementation source: `https://github.com/ghempton/ember-script/blob/master/src/grammar.pegjs; https://github.com/ghempton/ember-script/blob/master/src/preprocessor.coffee`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: keep EmberScript aligned with the CoffeeScript-style registry family and include a language-alias fixture if needed.
+- Notes: `src/grammar.pegjs` defines `singleLineComment = "#" ...` and `blockComment = "###" ... "###"`; the preprocessor also tracks `#` and `###` comment contexts.
 
 ### Examples
 
@@ -866,8 +969,8 @@ console.log user.name
 ## EQ
 
 - Registry key: `eq`
-- Version scope: `The Stack label was not pinned to a unique language or format; I checked generic EQ references and could not isolate an authoritative manual for a specific EQ dialect.`
-- Version-specific syntax: `No defensible comment syntax was found; the label remains unresolved until the intended language or file format is identified.`
+- Version scope: Search pass over the Stack label, `.eq` file-extension references, Altair Compose `eq` function documentation, and generic programming-language search results.
+- Version-specific syntax: No unique source language or format was identified; `EQ` collides with operators, file extensions, product names, and mathematical/equality terminology.
 - Line comments: `unresolved`
 - Block comments: `unresolved`
 - Termination behavior: `unresolved`
@@ -876,10 +979,19 @@ console.log user.name
 - Confidence: `unresolved`
 - Docs source: `https://file.org/extension/eq; https://help.altair.com/compose/help/en_us/topics/reference/oml_language/CoreMinimalInterpreter/eq.htm`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
+- Community source: `not used`
+- Corpus fallback source: `not used`
 - Recommended action: identify the language before adding syntax.
 - Notes: the name collides with multiple unrelated EQ concepts, so I did not treat any of them as the intended language.
+
+### Examples
+
+#### Unresolved label sample
+```text
+eq(value1, value2)
+```
+
+This is a representative equality/function spelling from one EQ collision, not a parser-safe comment example for an `eq` language.
 
 ## Euphoria
 
@@ -1065,38 +1177,58 @@ process = _;
 ## FIGlet Font
 
 - Registry key: `figlet_font`
-- Version scope: `FIGlet 2.2.1 FIGfont standard draft 2.0 plus parser docs for figlet v0.3.2; the sources also note that older FIGlet/FIGWin versions motivated the format.`
-- Version-specific syntax: `The format uses a counted comment section after the header line rather than a token-based in-band delimiter; no alternate version split was confirmed, so treat the comments as file metadata rather than a source-code comment syntax.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
+- Version scope: FIGfont Version 2 / FIGlet 2.2.1 standard material plus figlet parser documentation for font files.
+- Version-specific syntax: No token-delimited source comments were found. FIGfont files use a counted comment section immediately after the header line, with the count stored in the `Comment_Lines` header field.
+- Line comments: `unsupported` as token syntax; counted FIGfont metadata comment lines are supported by the format.
+- Block comments: `unsupported`
+- Termination behavior: `counted metadata lines, not delimiter-based`
+- Nested comments: `unsupported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
 - Docs source: `https://sources.debian.org/src/figlet/2.2.1-4/figfont.txt; https://www.figlet.org/figlet-man.html; https://hexdocs.pm/figlet/Figlet.Parser.FontFileParser.html`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: keep this unresolved unless the stack label is reclassified as FIGfont metadata rather than code comments.
-- Notes: the "comments" are a counted section in the font file, not a token-delimited comment form.
+- Implementation source: `https://hexdocs.pm/figlet/Figlet.Parser.FontFileParser.html`
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: leave source-comment extraction unsupported unless a future feature explicitly parses FIGfont header metadata.
+- Notes: the FIGfont standard says comment lines are after the header and that blank lines count; this is structural metadata rather than an in-band comment token.
+
+### Examples
+
+#### Counted metadata comments
+```text
+flf2a$ 6 5 20 15 2 0 143
+Example font by Ada
+Permission notice
+<FIGcharacter data starts here>
+```
 
 ## Filebench WML
 
 - Registry key: `filebench_wml`
-- Version scope: `Filebench 1.4.9.1 man-page material, the 1.5-alpha1 quick-start docs, and the current filebench GitHub wiki/repo examples.`
-- Version-specific syntax: `No comment delimiter was confirmed in the reviewed WML sources; the versioned docs describe the workload structure and commands but do not pin a stable comment token, so keep the entry unresolved.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `https://github.com/filebench/filebench; https://github-wiki-see.page/m/filebench/filebench/wiki/Workload-model-language; https://www.mankier.com/package/filebench`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: verify the WML syntax from Filebench docs first.
-- Notes: the reviewed WML docs describe workload structure and versioning, but not a defensible comment syntax.
+- Version scope: Current Filebench repository, Filebench 1.5-alpha1+ quick-start documentation, current WML lexer, and shipped `.f` workload personalities.
+- Version-specific syntax: No version split found. The lexer skips `#.*` in the initial state; no block-comment rule is present for WML.
+- Line comments: `#` supported
+- Block comments: `unsupported`
+- Termination behavior: `runs to newline`
+- Nested comments: `unsupported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
+- Docs source: `https://github.com/filebench/filebench; https://github-wiki-see.page/m/filebench/filebench/wiki/Workload-model-language; https://www.usenix.org/system/files/login/articles/login_spring16_02_tarasov.pdf`
+- Implementation source: `https://github.com/filebench/filebench/blob/master/parser_lex.l`
+- Community source: `not used`
+- Corpus fallback source: `https://github.com/filebench/filebench/blob/master/workloads/filemicro_create.f`
+- Recommended action: add `#` line-comment support for Filebench WML and keep block syntax unsupported.
+- Notes: `parser_lex.l` has an `<INITIAL>#.*` skip rule; shipped workload files use leading `#` header and explanatory comments.
+
+### Examples
+
+#### Line comment
+```text
+# Simple way to create a file.
+set $dir=/tmp
+set $count=1024
+run 60
+```
 
 ## fish
 
@@ -1161,38 +1293,55 @@ brand-name = Example
 ## FLUX
 
 - Registry key: `flux`
-- Version scope: `The label was not pinned to a specific language, file format, or versioned dialect; only the Stack v2 label and the ambiguous name were checked.`
-- Version-specific syntax: `No versioned or dialect-specific comment syntax could be established, so leave this unresolved.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: pin the exact FLUX language or format first.
-- Notes: the name is ambiguous.
+- Version scope: InfluxData Flux v0 language specification and the current `influxdata/flux` scanner source.
+- Version-specific syntax: No version split found in the checked Flux v0 sources. Flux supports `//` line comments only; requests for multiline comments were tracked separately and not reflected in the scanner grammar.
+- Line comments: `//` supported
+- Block comments: `unsupported`
+- Termination behavior: `runs to newline`
+- Nested comments: `unsupported`
+- Evidence mode: `implementation_cross_checked`
+- Confidence: `verified`
+- Docs source: `https://docs.influxdata.com/flux/v0/spec/lexical-elements/; https://docs.influxdata.com/flux/v0/spec/`
+- Implementation source: `https://github.com/influxdata/flux/blob/master/libflux/flux-core/src/scanner/scanner.rl; https://github.com/influxdata/flux/blob/0573ed7ea2e000b3dc4314f37f66cf3a57b3bd34/libflux/flux-core/src/scanner/mod.rs`
+- Community source: `https://github.com/influxdata/flux/issues/4911`
+- Corpus fallback source: `not used`
+- Recommended action: add Flux `//` line-comment support and keep block syntax unsupported.
+- Notes: the spec says comments cannot start inside string or regexp literals and act like newlines; `scanner.rl` defines `single_line_comment = "//" [^\n]* newline?`.
+
+### Examples
+
+#### Line comment
+```text
+from(bucket: "example")
+  // keep the range small for testing
+  |> range(start: -1h)
+```
 
 ## Formatted
 
 - Registry key: `formatted`
-- Version scope: `The label was not pinned to a unique language or file format; the Stack v2 name alone does not identify an authoritative manual or dialect family.`
-- Version-specific syntax: `No versioned or dialect-specific comment syntax could be established, so leave this unresolved.`
-- Line comments: `unresolved`
-- Block comments: `unresolved`
-- Termination behavior: `unresolved`
-- Nested comments: `unresolved`
-- Evidence mode: `unresolved`
-- Confidence: `unresolved`
-- Docs source: `unresolved`
+- Version scope: Stack Exchange/Stack Overflow formatted code-block documentation and local registry/test treatment of `formatted` as a non-language label.
+- Version-specific syntax: `Formatted` is not a source language or file format with its own lexical grammar; no versioned comment syntax applies.
+- Line comments: `unsupported`
+- Block comments: `unsupported`
+- Termination behavior: `unsupported`
+- Nested comments: `unsupported`
+- Evidence mode: `official_docs`
+- Confidence: `high`
+- Docs source: `https://meta.stackoverflow.com/questions/251361/how-do-i-format-my-code-blocks; https://meta.stackexchange.com/questions/108171/how-do-i-get-code-to-show-up-with-color-syntax-highlighting`
 - Implementation source: `src/ml4setk/Parsing/Comments/registry.py`
-- Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: determine what "Formatted" refers to in Stack v2.
-- Notes: no safe syntax assumptions can be made from the label alone.
+- Community source: `not used`
+- Corpus fallback source: `not used`
+- Recommended action: leave unsupported unless Stack v2 can map `formatted` to a concrete language label.
+- Notes: local tests already group `formatted` with no-comment/non-language labels; do not infer comments from the code content inside formatted blocks.
+
+### Examples
+
+#### Non-comment formatted content
+```text
+# This is only formatted text until a concrete embedded language is known.
+/* This is also only formatted text for the `formatted` label. */
+```
 
 ## Fortran Free Form
 

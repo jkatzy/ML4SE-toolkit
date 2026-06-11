@@ -36,7 +36,8 @@ else
 COMMENT_JUDGE_AGENT_ENV = COMMENT_JUDGE_USE_LOCAL=1 COMMENT_JUDGE_LOCAL_PROVIDER=$(COMMENT_JUDGE_LOCAL_PROVIDER) COMMENT_JUDGE_LOCAL_MODEL=$(COMMENT_JUDGE_LOCAL_MODEL) COMMENT_JUDGE_LOCAL_BASE_URL=$(COMMENT_JUDGE_LOCAL_BASE_URL) COMMENT_JUDGE_LOCAL_TIMEOUT=$(COMMENT_JUDGE_LOCAL_TIMEOUT) COMMENT_JUDGE_LOCAL_TEMPERATURE=$(COMMENT_JUDGE_LOCAL_TEMPERATURE)
 endif
 
-.PHONY: setup setup-optional test test-optional lint smoke research-prompts comment-test-prompts
+.PHONY: setup setup-optional test test-optional lint smoke research-prompts
+.PHONY: comment-confirmation-prompts comment-test-prompts
 .PHONY: comment-judge-manifest comment-judge-smoke comment-judge-test
 .PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline
 .PHONY: comment-judge-clear-ledger comment-judge-full-run check-main-branch
@@ -61,6 +62,9 @@ smoke:
 
 research-prompts:
 	$(UV) run python scripts/build_comment_research_packets.py
+
+comment-confirmation-prompts:
+	$(UV) run python scripts/build_comment_confirmation_packets.py
 
 comment-test-prompts:
 	$(UV) run python scripts/build_comment_test_packets.py

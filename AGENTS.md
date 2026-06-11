@@ -17,6 +17,7 @@ verification.
 - `make lint`
 - `make smoke`
 - `make research-prompts`
+- `make comment-confirmation-prompts`
 - `make comment-test-prompts`
 - `make comment-judge-manifest`
 - `make comment-judge-smoke`
@@ -33,7 +34,8 @@ verification.
 - `tests`: unit, regression, integration, and optional-dependency coverage
 - `docs/architecture.md`: architecture notes and extension points
 - `docs/comment_syntax_matrix.md`: evidence worksheet for comment-language research
-- `docs/comment_research`: chunk reports, backlog views, and online-first worker packets
+- `docs/comment_research`: chunk reports, backlog views, online-first worker
+  packets, and implementation-confirmation worker packets
 - `docs/comment_testing`: adversarial breaker/fixer and Stack v2 LLM judge testing workflows for implemented languages
 
 ## Invariants
