@@ -1,0 +1,17 @@
+value_0 = 0
+@q source-only fixture_1@>
+value_1 = 1
+value_inline_1 = 1 @q source-only inline_block_1@> + 2
+value_2 = 2
+@q source-only
+ * star_doc_1 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+@>
+value_3 = 3
+value_string_1 = "not @q source-only string_probe_1@>";
+value_4 = 4
+@q source-only af_cweb_control keeps // and % markers @>
+@* af visible section.

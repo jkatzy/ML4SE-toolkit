@@ -3,6 +3,10 @@ from dataclasses import dataclass
 import pytest
 
 from ml4setk import CommentQuery, CommentSanitizer, QueryMatch, sanitize_comment
+from ml4setk.Parsing.Comments.CommentSanitizer import (
+    _known_block_wrappers,
+    _line_wrapper_from_example,
+)
 from ml4setk.Parsing.Comments import SUPPORTED_LANGUAGES, iter_comment_syntaxes
 
 pytestmark = pytest.mark.unit
@@ -31,6 +35,12 @@ def _split_example_placeholder(example_text):
             continue
         prefix, suffix = example_text.split(placeholder, 1)
         return prefix, suffix
+    line_wrapper = _line_wrapper_from_example(example_text)
+    if line_wrapper is not None:
+        return line_wrapper
+    block_wrappers = _known_block_wrappers(example_text)
+    if block_wrappers:
+        return block_wrappers[0]
     raise AssertionError(f"Unsupported example placeholder in {example_text!r}")
 
 

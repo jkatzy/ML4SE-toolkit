@@ -1,0 +1,50 @@
+value_0 = 0
+; fixture_1
+value_1 = 1
+// fixture_2
+value_2 = 2
+c fixture_3
+value_3 = 3
+/* fixture_4 */
+value_4 = 4
+;;;;;;;; repeated_open_1
+value_5 = 5
+//////// repeated_open_2
+value_6 = 6
+/// odd_repeated_open_2
+value_7 = 7
+value_inline_4 = 1 /* inline_block_4 */ + 2
+value_8 = 8
+/**
+ * star_doc_4 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+ */
+value_9 = 9
+; grouped_line_1_a
+; grouped_line_1_b
+value_10 = 10
+// grouped_line_2_a
+// grouped_line_2_b
+value_11 = 11
+c grouped_line_3_a
+c grouped_line_3_b
+value_12 = 12
+value_string_1 = "not ; string_probe_1";
+value_13 = 13
+value_string_2 = "not // string_probe_2";
+value_14 = 14
+value_string_3 = "not c string_probe_3";
+value_15 = 15
+value_string_4 = "not /* string_probe_4 */";
+value_16 = 16
+i 1 0 1 ; af_csound_score_inline_semicolon keeps --flag
+  c af_csound_score_indented_c statement keeps C# token
+/*
+ * af_csound_score_doc_gutter
+ * * bullet must remain
+ * # Heading must remain
+ */
+value_af_csound_score_0 = 0

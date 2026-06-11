@@ -1,0 +1,14 @@
+value_0 = 0
+# fixture_1
+value_1 = 1
+######## repeated_open_1
+value_2 = 2
+# grouped_line_1_a
+# grouped_line_1_b
+value_3 = 3
+value_string_1 = "not # string_probe_1";
+value_4 = 4
+set $dir=/tmp # af_filebench_wml_inline keeps # Heading and C# token
+value_af_filebench_wml_0 = 0
+# af_filebench_wml_preserve_heading # Heading should remain
+value_af_filebench_wml_1 = 1
