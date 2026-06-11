@@ -939,27 +939,29 @@ Start = 0
 
 ## Click
 - Registry key: `click`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
-- Line comments: `#`
-- Block comments: `unsupported`
-- Termination behavior: `unsupported`
+- Version scope: `Click master at 9197a59 and the bundled click(5) language manual`
+- Version-specific syntax: `The manual and lexer agree; column-zero hash forms are line directives rather than comments.`
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `line comments end at newline; block comments stop at the first closing delimiter`
 - Nested comments: `unsupported`
-- Confidence: `medium`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Click language manual](https://github.com/kohler/click/blob/master/doc/click.5)
+- Implementation source: [Click lexer](https://github.com/kohler/click/blob/master/lib/lexer.cc)
 - Community source: `unresolved`
 - Corpus fallback source: `unresolved`
-- Recommended action: `Add hash-comment tests after confirming the Click parser docs.`
-- Notes: `Python-like command-line config syntax.`
+- Recommended action: `Implemented in the registry with line and non-nested block fixtures.`
+- Notes: `The lexer skips // to the line ending and scans /* until the first */ without maintaining nesting depth. Hash-prefixed lines are parsed by process_line_directive and must not be extracted as comments.`
 
 - Example - line:
-```text
-# comment
-@click.command()
-def main():
-    pass
+```click
+src -> queue; // note
+queue -> sink;
+```
+- Example - block:
+```click
+src -> /* note */ queue;
 ```
 
 ## CLIPS

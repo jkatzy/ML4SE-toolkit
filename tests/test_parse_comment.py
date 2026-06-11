@@ -173,6 +173,7 @@ C_STYLE_ALIAS_LANGS = [
     "bluespec",
     "ceylon",
     "chapel",
+    "click",
     "chuck",
     "cycript",
     "dtrace",
@@ -243,7 +244,6 @@ HASH_ALIAS_LANGS = [
     "bitbake",
     "bro",
     "cap'n proto",
-    "click",
     "cmake",
     "cucumber",
     "dockerfile",
@@ -424,6 +424,14 @@ def test_c_style_aliases(lang):
     texts = [comment[1] for comment in comments]
     assert "/* block */" in texts
     assert "// first\n// second" in texts
+
+
+def test_click_hash_line_directive_is_not_a_comment():
+    content = '# 42 "input.click"\nsrc -> queue; // note\nsrc -> /* block note */ sink;\n'
+
+    comments = pc.extract_comments(content, ["click"])
+
+    assert [comment[1] for comment in comments] == ["// note", "/* block note */"]
 
 
 @pytest.mark.parametrize("lang", HASH_ALIAS_LANGS)
