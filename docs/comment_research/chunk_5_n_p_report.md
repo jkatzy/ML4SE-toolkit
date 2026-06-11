@@ -4,18 +4,20 @@ This report follows the online-first workflow from `docs/comment_research/online
 
 ## nanorc
 - Registry key: `nanorc`
-- Line comments: `#`
+- Version scope: GNU nano current/latest `nanorc` parser and man page.
+- Version-specific syntax: no version-specific split found; hash-prefixed config comment lines are the only confirmed form.
+- Line comments: `#` at the first non-blank character of a config line
 - Block comments: unsupported
 - Termination behavior: `newline`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://www.nano-editor.org/dist/latest/nanorc.5.html
+- Implementation source: https://github.com/madnight/nano/blob/master/src/rcfile.c
 - Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add a line-comment fixture and verify the nano manual before registry changes.
-- Notes: common nanorc usage is hash-prefixed comments.
+- Recommended action: add a line-comment fixture only; keep block comments unsupported.
+- Notes: the `comment` nanorc command configures editor comment toggling for edited files, not comments in nanorc files.
 
 ### Examples
 
@@ -28,73 +30,146 @@ set softwrap
 
 ## Nasal
 - Registry key: `nasal`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: Andy Ross Nasal master and FlightGear Nasal scripting usage.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/andyross/nasal/blob/master/src/lex.c
+- Community source: https://wiki.flightgear.org/Nasal_scripting_language
 - Corpus fallback source: unresolved
-- Recommended action: research official Nasal docs before registry updates.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep block comments unsupported.
+- Notes: the lexer skips from `#` to the line end.
+
+### Examples
+
+#### Line comment
+```nasal
+var throttle = 0.5; # clamp before use
+var next = throttle + 0.1;
+```
 
 ## NASL
 - Registry key: `nasl`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: Greenbone/OpenVAS NASL scanner grammar on current main.
+- Version-specific syntax: no version-specific split found in the checked grammar.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/greenbone/openvas-scanner/blob/main/nasl/nasl_grammar.y
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: research official NASL docs before registry updates.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep block comments unsupported.
+- Notes: the grammar enters `ST_COMMENT` after `#` and leaves it on newline.
+
+### Examples
+
+#### Line comment
+```nasl
+display("probe"); # audit note
+exit(0);
+```
 
 ## NCL
 - Registry key: `ncl`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: NCL reference manual, including NCL 6.4.0 block-comment syntax.
+- Version-specific syntax: before NCL 6.4.0, only semicolon line comments are documented; NCL 6.4.0 and later add `/; ... ;/` block comments.
+- Line comments: `;`
+- Block comments: `/; ... ;/`
+- Termination behavior: `newline` for line comments; `first ;/ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://www.ncl.ucar.edu/Document/Manuals/Ref_Manual/NclStatements.shtml#Comments
 - Implementation source: unresolved
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: research official NCL docs before registry updates.
-- Notes: unresolved in this pass.
+- Recommended action: add semicolon line comments and gated block-comment examples noting the NCL 6.4.0 floor.
+- Notes: multi-line comments are represented by a single `/;` opener and `;/` closer, not repeated semicolon leaders.
+
+### Examples
+
+#### Line comment
+```ncl
+x = 1
+; calibration note
+y = x + 1
+```
+
+#### Block comment
+```ncl
+x = 1
+/;
+  calibration note
+;/
+y = x + 1
+```
 
 ## Nearley
 - Registry key: `nearley`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: nearley current grammar documentation and compiler grammar.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://nearley.js.org/docs/grammar
+- Implementation source: https://github.com/kach/nearley/blob/master/lib/nearley-language-bootstrapped.ne
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Nearley grammar comment syntax from official docs or grammar sources.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep block comments unsupported.
+- Notes: the bootstrapped grammar tokenizes `#` through the rest of the line as `%comment`.
+
+### Examples
+
+#### Line comment
+```nearley
+main -> word
+# parser note
+word -> [a-z]:+
+```
 
 ## Nemerle
 - Registry key: `nemerle`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: Nemerle compiler source on current master and historical Nemerle language usage.
+- Version-specific syntax: no version-specific split found; documentation comments are lexical comment variants.
+- Line comments: `//`; documentation line comments `///`
+- Block comments: `/* ... */`; documentation block comments `/** ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/rsdn/nemerle/blob/master/ncc/parsing/Lexer.n
+- Community source: https://github.com/rsdn/nemerle/wiki
 - Corpus fallback source: unresolved
-- Recommended action: verify Nemerle comment syntax before adding fixtures.
-- Notes: unresolved in this pass.
+- Recommended action: add C-family line and block fixtures, plus doc-comment examples if the registry tracks documentation comments.
+- Notes: the lexer distinguishes one-line and block comments and scans a block until the first `*/`.
+
+### Examples
+
+#### Line comment
+```nemerle
+def value = 1; // increment later
+def next = value + 1;
+```
+
+#### Block comment
+```nemerle
+def value = 1;
+/* increment later */
+def next = value + 1;
+```
 
 ## NEON
 - Registry key: `neon`
@@ -122,18 +197,20 @@ country: USA
 
 ## nesC
 - Registry key: `nesc`
+- Version scope: nesC 1.1/1.3 reference material and current TinyOS nesC compiler sources.
+- Version-specific syntax: no syntax split found; C++-style `//` comments are enabled in the lexer, and `/**` / `///` documentation comments are recognized.
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://nescc.sourceforge.net/papers/nesc-ref.pdf
+- Implementation source: https://github.com/tinyos/nesc/blob/master/src/c-lex.c
 - Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add C-style fixtures and verify against the nesC reference.
-- Notes: nesC is C-derived for comments.
+- Recommended action: add C-family line and block fixtures; include doc-comment variants only if the registry models documentation comments separately.
+- Notes: nesC inherits C-family lexical comments and the compiler enables C++-style line comments.
 
 ### Examples
 
@@ -153,31 +230,62 @@ int next = value + 1;
 
 ## NetLinx
 - Registry key: `netlinx`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: AMX NetLinx language reference/style guide era through NetLinx Studio v4.
+- Version-specific syntax: no version-specific split found in the checked references.
+- Line comments: `//`
+- Block comments: `(* ... *)`
+- Termination behavior: `newline` for line comments; `first *) closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://dextra.com.mx/img/files/PRODUCTOS/AMX/NX-2200/NetLinx.LanguageReferenceGuide.pdf
 - Implementation source: unresolved
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify NetLinx comment syntax from official docs.
-- Notes: unresolved in this pass.
+- Recommended action: add `//` and `(* ... *)` fixtures; do not add C-style `/* ... */` without a stronger NetLinx source.
+- Notes: the AMX language reference describes `(*COMMENT*)` block comments and `//` line comments; the cited copy is a vendor/distributor-hosted PDF.
+
+### Examples
+
+#### Line comment
+```netlinx
+DEFINE_DEVICE
+dvTP = 10001:1:0 // main touch panel
+```
+
+#### Block comment
+```netlinx
+(*
+  controlled device notes
+*)
+DEFINE_START
+```
 
 ## NewLisp
 - Registry key: `newlisp`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: newLISP manual v10.7.1.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `;`, `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://web.mit.edu/newlisp_v10.7.1/share/doc/newlisp/newlisp_manual.html
 - Implementation source: unresolved
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify newLISP comment syntax from the reference manual.
-- Notes: unresolved in this pass.
+- Recommended action: add line-comment fixtures for both semicolon and hash forms.
+- Notes: the manual documents both `;` and `#` as line-comment leaders.
+
+### Examples
+
+#### Line comment
+```newlisp
+(set 'value 1) ; increment later
+# same file can use hash comments
+(+ value 1)
+```
 
 ## Nextflow
 - Registry key: `nextflow`
@@ -300,31 +408,53 @@ build app.o: cc app.c
 
 ## Nit
 - Registry key: `nit`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Nit compiler grammar on current master.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://nitlanguage.org/doc/nitc/grammar.html
+- Implementation source: https://github.com/nitlang/nit/blob/master/src/parser/nit.sablecc3xx
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Nit comment syntax before registry updates.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep block comments unsupported.
+- Notes: the grammar defines `comment = '#' any* eol_helper?`; adjacent comments also feed doc extraction.
+
+### Examples
+
+#### Line comment
+```nit
+var value = 1 # increment later
+var next = value + 1
+```
 
 ## NL
 - Registry key: `nl`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
+- Version scope: GitHub Linguist `NL` data label as used by corpus metadata.
+- Version-specific syntax: no language version identified; the label is classified as data with no TextMate scope.
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unsupported
+- Nested comments: unsupported
+- Confidence: low
 - Evidence mode: unresolved
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: clarify what Stack v2 means by NL before further research.
-- Notes: unresolved in this pass.
+- Recommended action: keep unsupported/unresolved until Stack v2 identifies a concrete NL format and syntax.
+- Notes: Linguist classifies `NL` as `type: data`, extension `.nl`, and `tm_scope: none`; no stable comment grammar was found.
+
+### Examples
+
+#### No comment form
+```text
+value 1
+next 2
+```
 
 ## NPM Config
 - Registry key: `npm_config`
@@ -408,18 +538,20 @@ OutFile "example.exe"
 
 ## NWScript
 - Registry key: `nwscript`
+- Version scope: NWScript compiler-compatible syntax as implemented by `nwnsc`.
+- Version-specific syntax: no version-specific split found.
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Community source: unresolved
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://nwnlexicon.com/index.php?title=NWScript
+- Implementation source: https://github.com/nwneetools/nwnsc/blob/master/_NscLib/NscContext.cpp
+- Community source: https://nwnlexicon.com/index.php?title=NWScript
 - Corpus fallback source: unresolved
-- Recommended action: add C-style fixtures and verify against the NWScript reference.
-- Notes: NWScript follows the common C-style comment convention.
+- Recommended action: add C-family line and block fixtures; keep nesting unsupported.
+- Notes: the compiler context consumes `//` through line end and `/*` through the first `*/`.
 
 ### Examples
 
@@ -441,31 +573,53 @@ void main() {
 
 ## ObjDump
 - Registry key: `objdump`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
+- Version scope: GitHub Linguist `ObjDump` data/disassembly-output label.
+- Version-specific syntax: no stable source-language version identified; objdump output varies by architecture and options.
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unsupported
+- Nested comments: unsupported
+- Confidence: medium
 - Evidence mode: unresolved
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: identify the exact Stack v2 syntax flavor for this entry.
-- Notes: unresolved in this pass.
+- Recommended action: keep unsupported until the registry has a specific objdump flavor with a defensible comment convention.
+- Notes: Linguist marks ObjDump as `type: data`; any `#`, `;`, or source annotation text in disassembly is not a language-wide lexical comment grammar.
+
+### Examples
+
+#### No comment form
+```objdump
+0000000000000000 <main>:
+   0: 55                    push   %rbp
+```
 
 ## Object Data Instance Notation
 - Registry key: `object_data_instance_notation`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: openEHR ODIN latest language specification.
+- Version-specific syntax: no version-specific split found in the latest specification.
+- Line comments: `--`
+- Block comments: unsupported; multi-line comments repeat `--` on each line
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://specifications.openehr.org/releases/LANG/latest/odin.html#_comments
 - Implementation source: unresolved
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify whether the format supports comments at all.
-- Notes: unresolved in this pass.
+- Recommended action: add a double-hyphen line-comment fixture; keep block comments unsupported.
+- Notes: the ODIN spec states that comments are indicated by `--` and multi-line comments use the same leader on each continued line.
+
+### Examples
+
+#### Line comment
+```odin
+name = <"Django Reinhardt"> -- person's name
+birthdate = <1919-01-23>
+```
 
 ## Objective-C++
 - Registry key: `objective_cpp`
@@ -622,18 +776,20 @@ main :: proc() {
 
 ## ooc
 - Registry key: `ooc`
+- Version scope: ooc-lang `rock` compiler on current master.
+- Version-specific syntax: no version-specific split found; oocdoc forms are documentation-comment variants.
 - Line comments: `//`
-- Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
+- Block comments: `/* ... */`; documentation block comments `/** ... */`
+- Termination behavior: `newline` for line comments; recursive/depth-balanced block scanning in the checked parser
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
-- Community source: unresolved
+- Implementation source: https://github.com/ooc-lang/rock/blob/master/source/rock/frontend/NagaQueen.c
+- Community source: https://ooc-lang.org/docs/lang/
 - Corpus fallback source: unresolved
-- Recommended action: add C-family fixtures and verify against ooc docs.
-- Notes: ooc appears to follow a C-like comment model.
+- Recommended action: add C-family line and block fixtures and include a nested block case if the registry supports nested comment metadata.
+- Notes: the generated parser has separate rules for line, block, and oocdoc comments and recursively recognizes multiline comments.
 
 ### Examples
 
@@ -646,23 +802,44 @@ println("hello") // say hello
 ```ooc
 /*
   say hello
+  /* nested implementation note */
 */
 println("hello")
 ```
 
 ## Opa
 - Registry key: `opa`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: MLstate/opalang classic syntax lexer on current master.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; recursive/depth-balanced block scanning
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/MLstate/opalang/blob/master/compiler/opalang/classic_syntax/opa_lexer.trx
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify the Stack v2 Opa entry before assuming any syntax family.
-- Notes: unresolved in this pass.
+- Recommended action: add `//` and nested-capable `/* ... */` fixtures.
+- Notes: the lexer grammar handles slash-line comments and recursively nested star comments.
+
+### Examples
+
+#### Line comment
+```opa
+x = 1 // increment later
+y = x + 1
+```
+
+#### Block comment
+```opa
+/*
+  outer note
+  /* nested note */
+*/
+x = 1
+```
 
 ## Open Policy Agent
 - Registry key: `open_policy_agent`
@@ -723,17 +900,35 @@ __kernel void add(__global const float* a, __global const float* b) {
 
 ## OpenEdge ABL
 - Registry key: `openedge_abl`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: Progress OpenEdge ABL 13.0 reference, with historical note for OpenEdge 11.6 single-line comments.
+- Version-specific syntax: `/* ... */` comments exist in older ABL releases; `//` single-line comments are supported as of OpenEdge 11.6.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline`, `carriage return`, or EOF for `//`; nested/depth-balanced scanning for `/* ... */`
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://docs.progress.com/bundle/abl-reference/page/Single-line-comments.html; https://docs.progress.com/bundle/abl-reference/page/Multi-line-comments.html
 - Implementation source: unresolved
+- Community source: https://community.progress.com/s/article/How-does-Single-line-comment-feature-work-and-can-it-be-disabled
 - Corpus fallback source: unresolved
-- Recommended action: verify ABL comment syntax from the official reference.
-- Notes: unresolved in this pass.
+- Recommended action: add block-comment fixtures for all supported ABL versions and gate `//` examples behind an OpenEdge 11.6+ note.
+- Notes: official docs describe both current comment forms; Progress support material records the 11.6 introduction of single-line comments.
+
+### Examples
+
+#### Line comment
+```abl
+MESSAGE "hello". // OpenEdge 11.6+
+```
+
+#### Block comment
+```abl
+/* outer note
+   /* nested note */
+*/
+MESSAGE "hello".
+```
 
 ## OpenQASM
 - Registry key: `openqasm`
@@ -768,18 +963,20 @@ OPENQASM 3.0;
 
 ## OpenRC runscript
 - Registry key: `openrc_runscript`
+- Version scope: OpenRC current service-script/runscript format.
+- Version-specific syntax: no version-specific split found; runscripts are shell scripts executed through `openrc-run`.
 - Line comments: `#`
 - Block comments: unsupported
 - Termination behavior: `newline`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://github.com/OpenRC/openrc/blob/master/service-script-guide.md
+- Implementation source: https://github.com/OpenRC/openrc
 - Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add line-comment fixtures and confirm against the runscript reference.
-- Notes: runscript files are shell-like and typically use hash comments.
+- Recommended action: add a shell-style hash line-comment fixture; keep block comments unsupported.
+- Notes: runscript files use shell syntax around OpenRC helper functions.
 
 ### Examples
 
@@ -823,88 +1020,182 @@ sphere(5);
 
 ## OpenStep Property List
 - Registry key: `openstep_property_list`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: old-style/OpenStep ASCII property lists; XML property lists have separate XML comment syntax.
+- Version-specific syntax: no old-style version split found; XML plist comments are not part of this registry key's OpenStep syntax.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html
+- Implementation source: https://github.com/textmate/property-list.tmbundle/blob/textmate-1.x/Syntaxes/Property%20List.tmLanguage
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify whether the plist variant supports comments at all.
-- Notes: unresolved in this pass.
+- Recommended action: add old-style plist `//` and `/* ... */` fixtures; do not mix XML `<!-- ... -->` into this entry.
+- Notes: the TextMate plist grammar includes OpenStep double-slash and slash-star comments.
+
+### Examples
+
+#### Line comment
+```plist
+{
+  Name = Example; // display name
+}
+```
+
+#### Block comment
+```plist
+{
+  /* display name */
+  Name = Example;
+}
+```
 
 ## OpenType Feature File
 - Registry key: `opentype_feature_file`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Adobe AFDKO OpenType Feature File Specification current.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://adobe-type-tools.github.io/afdko/OpenTypeFeatureFileSpecification.html
+- Implementation source: https://github.com/adobe-type-tools/afdko/blob/develop/docs/OpenTypeFeatureFileSpecification.md
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify feature-file comment syntax from the OpenType feature syntax docs.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep block comments unsupported.
+- Notes: the spec states that `#` starts a comment that continues to the end of the line.
+
+### Examples
+
+#### Line comment
+```fea
+# liga substitutions
+feature liga {
+  sub f i by fi;
+} liga;
+```
 
 ## Org
 - Registry key: `org`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: current Org manual and org-mode implementation.
+- Version-specific syntax: no version-specific split found in the checked manual.
+- Line comments: lines whose first non-space character is `#` followed by whitespace or line end; `#+` keyword lines are not ordinary comments
+- Block comments: `#+BEGIN_COMMENT` ... `#+END_COMMENT`
+- Termination behavior: `newline` for line comments; first matching `#+END_COMMENT` line closes a comment block
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://orgmode.org/manual/Comment-Lines.html
+- Implementation source: https://git.savannah.gnu.org/cgit/emacs/org-mode.git/plain/lisp/org.el
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Org comment syntax separately from source comments.
-- Notes: unresolved in this pass.
+- Recommended action: add Org line and block fixtures; treat `COMMENT` subtrees and `@@comment:...@@` as structural/inline Org features rather than source comments unless the parser explicitly models them.
+- Notes: Org comment handling is line-oriented and document-structure aware.
+
+### Examples
+
+#### Line comment
+```org
+* Task
+# local note
+Body text
+```
+
+#### Block comment
+```org
+#+BEGIN_COMMENT
+hidden planning notes
+#+END_COMMENT
+Visible text
+```
 
 ## Ox
 - Registry key: `ox`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Corpus fallback source: unresolved
-- Recommended action: verify Ox comment syntax from the official reference.
-- Notes: unresolved in this pass.
-
-## Oz
-- Registry key: `oz`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Corpus fallback source: unresolved
-- Recommended action: verify Oz comment syntax from the language reference.
-- Notes: unresolved in this pass.
-
-## P4
-- Registry key: `p4`
+- Version scope: Ox language syntax manual.
+- Version-specific syntax: no version-specific split found.
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Termination behavior: `newline` for line comments; nested/depth-balanced `*/` for block comments
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: http://fmwww.bc.edu/ec-p/obsolete/oxsyntax.htm
 - Implementation source: unresolved
 - Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add C-style fixtures if the P4 reference confirms this syntax.
-- Notes: P4 is usually treated as C-like for comments.
+- Recommended action: add `//` and nested-capable `/* ... */` fixtures.
+- Notes: the syntax manual states that block comments may be nested and that `//` inside a block is ignored as comment syntax.
+
+### Examples
+
+#### Line comment
+```ox
+decl value = 1; // increment later
+decl next = value + 1;
+```
+
+#### Block comment
+```ox
+/*
+  outer note
+  /* nested note */
+*/
+decl value = 1;
+```
+
+## Oz
+- Registry key: `oz`
+- Version scope: Mozart Oz 1.4 lexical syntax.
+- Version-specific syntax: no version-specific split found in the checked Mozart documentation.
+- Line comments: `%`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` or EOF for `%`; nested/depth-balanced `*/` for block comments
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://mozart2.org/mozart-v1/doc-1.4.0/notation/node2.html
+- Implementation source: unresolved
+- Community source: https://stackoverflow.com/questions/33210687/what-is-the-syntax-for-a-block-comment-in-the-oz-programming-language
+- Corpus fallback source: unresolved
+- Recommended action: add percent line comments and nested-capable slash-star block fixtures.
+- Notes: the Mozart notation reference documents lexical comments; community/compiler usage confirms slash-star block comments.
+
+### Examples
+
+#### Line comment
+```oz
+declare X = 1 % increment later
+```
+
+#### Block comment
+```oz
+/*
+  outer note
+  /* nested note */
+*/
+declare X = 1
+```
+
+## P4
+- Registry key: `p4`
+- Version scope: P4_16 specification v1.2.3 and current p4c lexer.
+- Version-specific syntax: no version-specific split found; Javadoc-style `/** ... */` comments are documented as a block-comment variant.
+- Line comments: `//`
+- Block comments: `/* ... */`; documentation block comments `/** ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://p4.org/p4-spec/docs/P4-16-v1.2.3.html
+- Implementation source: https://github.com/p4lang/p4c/blob/main/frontends/parsers/p4/p4lexer.ll
+- Community source: unresolved
+- Corpus fallback source: unresolved
+- Recommended action: add C-family line and block fixtures; add a doc-comment fixture only if the registry tracks documentation comments.
+- Notes: the P4_16 spec states that nested comments are not supported.
 
 ### Examples
 
@@ -926,59 +1217,129 @@ control MyIngress() {
 
 ## Pan
 - Registry key: `pan`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: Quattor pan compiler grammar on current master.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/quattor/pan/blob/master/panc/src/main/jjtree/PanParser.jjt
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Pan comment syntax from the language reference.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep block comments unsupported.
+- Notes: the JavaCC grammar defines `#` comments as special tokens through the line end.
+
+### Examples
+
+#### Line comment
+```pan
+variable VALUE = 1; # increment later
+variable NEXT = VALUE + 1;
+```
 
 ## Papyrus
 - Registry key: `papyrus`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Bethesda Papyrus as used by Skyrim/Fallout Creation Kit tooling.
+- Version-specific syntax: no version-specific split found in the checked Papyrus references.
+- Line comments: `;`
+- Block comments: `;/ ... /;`
+- Termination behavior: `newline` for line comments; `first /; closes block comments`
+- Nested comments: unsupported
+- Confidence: high
+- Evidence mode: implementation_cross_checked
+- Docs source: https://ck.uesp.net/wiki/Comment_Reference
+- Implementation source: https://github.com/Gawdl3y/atom-language-papyrus/blob/master/grammars/papyrus-skyrim.cson
+- Community source: https://forums.ultraedit.com/papyrus-creation-kit-comments-t18261.html
 - Corpus fallback source: unresolved
-- Recommended action: verify Papyrus comment syntax from the language reference.
-- Notes: unresolved in this pass.
+- Recommended action: add semicolon line comments and `;/ ... /;` block fixtures; keep nesting unsupported.
+- Notes: official Creation Kit documentation is mirrored/community-hosted; source evidence consistently describes `;` and `;/ ... /;`.
+
+### Examples
+
+#### Line comment
+```papyrus
+int value = 1 ; increment later
+int next = value + 1
+```
+
+#### Block comment
+```papyrus
+;/
+  increment later
+/;
+int value = 1
+```
 
 ## Parrot Assembly
 - Registry key: `parrot_assembly`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Parrot PASM 1.1 documentation and IMCC lexer on master.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: POD blocks beginning with a POD directive such as `=pod` at column 1 and ending at `=cut`
+- Termination behavior: `newline` for `#`; first `=cut` line ends POD comment blocks
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://parrot.github.io/parrot-docs1/1.1.0/html/docs/book/ch09_pasm.pod.html
+- Implementation source: https://github.com/parrot/parrot/blob/master/compilers/imcc/imcc.l
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Parrot Assembly comment syntax from the official reference.
-- Notes: unresolved in this pass.
+- Recommended action: add hash line-comment fixtures; consider POD block fixtures if the parser models multiline comment blocks for Parrot languages.
+- Notes: Parrot assembly documentation says comments run from `#` to line end and that POD blocks are ignored by the assembler.
+
+### Examples
+
+#### Line comment
+```pasm
+set I0, 1 # increment later
+inc I0
+```
+
+#### Block comment
+```pasm
+=pod
+assembler note
+=cut
+set I0, 1
+```
 
 ## Parrot Internal Representation
 - Registry key: `parrot_internal_representation`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Parrot PIR/IMCC lexer on master and Parrot documentation generation conventions.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: POD blocks beginning with a POD directive such as `=pod` at column 1 and ending at `=cut`
+- Termination behavior: `newline` for `#`; first `=cut` line ends POD comment blocks
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://parrot.github.io/parrot-docs1/1.1.0/html/docs/book/ch09_pasm.pod.html
+- Implementation source: https://github.com/parrot/parrot/blob/master/compilers/imcc/imcc.l
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify PIR comment syntax from the official reference.
-- Notes: unresolved in this pass.
+- Recommended action: add hash line-comment fixtures; consider shared POD block handling with PASM.
+- Notes: PASM and PIR are both handled by the IMCC lexer, which skips hash comments and POD regions.
+
+### Examples
+
+#### Line comment
+```pir
+.sub 'main'
+  $I0 = 1 # increment later
+.end
+```
+
+#### Block comment
+```pir
+=pod
+PIR note
+=cut
+.sub 'main'
+.end
+```
 
 ## Pascal
 - Registry key: `pascal`
@@ -999,18 +1360,20 @@ control MyIngress() {
 
 ## Pawn
 - Registry key: `pawn`
+- Version scope: CompuPhase Pawn language guide/current feature documentation.
+- Version-specific syntax: no version-specific split found.
 - Line comments: `//`
 - Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
 - Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://www.compuphase.com/pawn/pawnfeatures.htm
 - Implementation source: unresolved
 - Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add C-style fixtures and confirm against the Pawn reference.
-- Notes: Pawn follows the common C-family comment model.
+- Recommended action: add C-family line and block fixtures; add an explicit non-nesting regression case.
+- Notes: Pawn documentation states that nested comments are not allowed.
 
 ### Examples
 
@@ -1030,88 +1393,167 @@ new next = value + 1;
 
 ## PEG.js
 - Registry key: `peg_js`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: PEG.js grammar documentation and Peggy successor documentation.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://pegjs.org/documentation; https://peggyjs.org/documentation.html
+- Implementation source: https://github.com/pegjs/pegjs
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify PEG.js grammar comment syntax from the grammar docs.
-- Notes: unresolved in this pass.
+- Recommended action: add JavaScript-style line and block fixtures.
+- Notes: PEG.js grammars accept JavaScript-style comments.
+
+### Examples
+
+#### Line comment
+```pegjs
+// entry point
+start = "a"
+```
+
+#### Block comment
+```pegjs
+/*
+  entry point
+*/
+start = "a"
+```
 
 ## Pep8
 - Registry key: `pep8`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: Stan Warford Pep/8 assembler source.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `;`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/StanWarford/pep8/blob/master/asm.cpp
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify the Pep8 dialect comment syntax before registry work.
-- Notes: unresolved in this pass.
+- Recommended action: add a semicolon line-comment fixture; keep block comments unsupported.
+- Notes: this registry key refers to Pep/8 assembly, not Python PEP 8; assembler code recognizes semicolon comments.
+
+### Examples
+
+#### Line comment
+```pep8
+LDWA 0,i ; load zero
+STOP
+```
 
 ## Pic
 - Registry key: `pic`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: GNU groff `pic` preprocessor lexer.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: unsupported
+- Termination behavior: `newline`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://man7.org/linux/man-pages/man1/pic.1.html
+- Implementation source: https://github.com/dbarowy/groff/blob/master/src/preproc/pic/lex.cpp
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Pic comment syntax from the language reference.
-- Notes: unresolved in this pass.
+- Recommended action: add a hash line-comment fixture; keep semicolon as syntax, not a comment leader.
+- Notes: the lexer skips from `#` to newline; semicolon is a statement separator in pic.
+
+### Examples
+
+#### Line comment
+```pic
+.PS
+# draw a box
+box
+.PE
+```
 
 ## Pickle
 - Registry key: `pickle`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Python pickle protocols, including text protocol 0 and binary protocols.
+- Version-specific syntax: no pickle protocol defines lexical comments.
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unsupported
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://docs.python.org/3/library/pickle.html
+- Implementation source: https://github.com/python/cpython/blob/main/Lib/pickle.py
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Pickle syntax before adding fixtures.
-- Notes: unresolved in this pass.
+- Recommended action: keep unsupported; do not add text comment fixtures to pickle data.
+- Notes: pickle is a serialized data format/opcode stream, not a source language with comments.
+
+### Examples
+
+#### No comment form
+```text
+(dp0
+Vname
+p1
+Vexample
+p2
+s.
+```
 
 ## PicoLisp
 - Registry key: `picolisp`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
-- Corpus fallback source: unresolved
-- Recommended action: verify PicoLisp comment syntax from the official docs.
-- Notes: unresolved in this pass.
-
-## PigLatin
-- Registry key: `piglatin`
-- Line comments: `--`
-- Block comments: `/* ... */`
-- Termination behavior: `first closing delimiter wins`
-- Nested comments: unsupported
-- Confidence: medium
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: PicoLisp current reference.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `#`
+- Block comments: `#{ ... }#`
+- Termination behavior: `newline` for line comments; nested/depth-balanced `}#` for block comments
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://software-lab.de/doc/ref.html
 - Implementation source: unresolved
 - Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: add SQL-like fixtures and confirm the PigLatin comment rules.
-- Notes: PigLatin appears to use SQL-style comment delimiters.
+- Recommended action: add hash line comments and nested-capable `#{ ... }#` block fixtures.
+- Notes: PicoLisp documents nested block comments using `#{` and `}#`.
+
+### Examples
+
+#### Line comment
+```picolisp
+(setq Value 1) # increment later
+```
+
+#### Block comment
+```picolisp
+#{
+  outer note
+  #{ nested note }#
+}#
+(setq Value 1)
+```
+
+## PigLatin
+- Registry key: `piglatin`
+- Version scope: Apache Pig trunk QueryLexer/PigLatin parser.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `--`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://pig.apache.org/docs/latest/basic.html
+- Implementation source: https://github.com/apache/pig/blob/trunk/src/org/apache/pig/parser/QueryLexer.g
+- Community source: unresolved
+- Corpus fallback source: unresolved
+- Recommended action: add SQL-style line and block fixtures; keep nesting unsupported.
+- Notes: the lexer defines `--` line comments and slash-star block comments.
 
 ### Examples
 
@@ -1272,73 +1714,164 @@ END;
 
 ## Pod
 - Registry key: `pod`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Perl POD as documented by current `perlpod`.
+- Version-specific syntax: no version-specific split found for POD comment paragraphs/blocks.
+- Line comments: unsupported as ordinary line comments
+- Block comments: `=for comment` paragraph form; `=begin comment` ... `=end comment` multi-paragraph form
+- Termination behavior: `=for comment` ends at the next paragraph boundary; `=begin comment` ends at the matching `=end comment`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://perldoc.perl.org/perlpod
+- Implementation source: https://github.com/Perl/perl5
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify whether this is Perl POD or a different source format.
-- Notes: unresolved in this pass.
+- Recommended action: add POD comment paragraph/block fixtures rather than Perl `#` fixtures.
+- Notes: generic POD files do not use Perl source `#` comments; Perl files can embed POD sections, but that is a host-language concern.
+
+### Examples
+
+#### Block comment
+```pod
+=begin comment
+
+internal note for maintainers
+
+=end comment
+
+=head1 NAME
+
+Example
+```
 
 ## Pod 6
 - Registry key: `pod_6`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Raku Pod 6 documentation format as documented by current Raku docs.
+- Version-specific syntax: no version-specific split found.
+- Line comments: unsupported as ordinary line comments
+- Block comments: `=comment` paragraph form; `=begin comment` ... `=end comment` block form
+- Termination behavior: `=comment` ends at the paragraph boundary; `=begin comment` ends at the matching `=end comment`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://docs.raku.org/language/pod
+- Implementation source: https://github.com/raku/roast
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Pod 6 / Raku docs before registry changes.
-- Notes: unresolved in this pass.
+- Recommended action: add Pod 6 comment paragraph/block fixtures and keep Raku `#` source comments out of this registry key.
+- Notes: Pod 6 comment markup is document syntax, not Raku code syntax.
+
+### Examples
+
+#### Block comment
+```pod6
+=begin comment
+internal note for maintainers
+=end comment
+
+=head1 Example
+```
 
 ## PogoScript
 - Registry key: `pogoscript`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: featurist PogoScript parser grammar and TextMate grammar.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/featurist/pogoscript/blob/master/lib/parser/grammar.js
+- Community source: https://github.com/featurist/PogoScript.tmbundle/blob/master/Syntaxes/PogoScript.tmLanguage
 - Corpus fallback source: unresolved
-- Recommended action: verify PogoScript syntax from official docs.
-- Notes: unresolved in this pass.
+- Recommended action: add JavaScript-style line and block fixtures; do not treat `#` as a comment leader except for file-initial hashbang handling.
+- Notes: the grammar ignores `//` and `/* ... */` comments and has separate hashbang handling.
+
+### Examples
+
+#### Line comment
+```pogoscript
+value = 1 // increment later
+next = value + 1
+```
+
+#### Block comment
+```pogoscript
+/*
+  increment later
+*/
+value = 1
+```
 
 ## Pony
 - Registry key: `pony`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Pony compiler lexer on current main and current tutorial syntax page.
+- Version-specific syntax: no version-specific split found.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; nested/depth-balanced `*/` for block comments
+- Nested comments: supported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://tutorial.ponylang.io/appendices/syntax.html
+- Implementation source: https://github.com/ponylang/ponyc/blob/main/src/libponyc/ast/lexer.c
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Pony comment syntax from the language reference.
-- Notes: unresolved in this pass.
+- Recommended action: add `//` and nested-capable `/* ... */` fixtures.
+- Notes: the compiler lexer has separate line-comment handling and a depth-counted nested block-comment scanner.
+
+### Examples
+
+#### Line comment
+```pony
+actor Main
+  new create(env: Env) =>
+    // increment later
+    let value: U32 = 1
+```
+
+#### Block comment
+```pony
+/*
+  outer note
+  /* nested note */
+*/
+actor Main
+```
 
 ## Portugol
 - Registry key: `portugol`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
+- Version scope: Portugol Studio / UNIVALI-LITE ANTLR grammar.
+- Version-specific syntax: Stack v2's generic `Portugol` label is dialect-ambiguous; this evidence covers Portugol Studio.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` or EOF for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
 - Docs source: unresolved
-- Implementation source: unresolved
+- Implementation source: https://github.com/UNIVALI-LITE/Portugol-Studio/blob/master/core/src/main/antlr/PortugolLexico.g4
+- Community source: https://github.com/UNIVALI-LITE/Portugol-Studio
 - Corpus fallback source: unresolved
-- Recommended action: verify the Stack v2 Portugol dialect before adding fixtures.
-- Notes: unresolved in this pass.
+- Recommended action: add Portugol Studio C-family fixtures only if the registry accepts that dialect scope; otherwise split/gate by dialect.
+- Notes: educational Portugol dialects may vary, so this should not be generalized without dialect metadata.
+
+### Examples
+
+#### Line comment
+```portugol
+inteiro valor = 1 // incrementar depois
+```
+
+#### Block comment
+```portugol
+/*
+  incrementar depois
+*/
+inteiro valor = 1
+```
 
 ## PostCSS
 - Registry key: `postcss`
@@ -1391,17 +1924,36 @@ a {
 
 ## POV-Ray SDL
 - Registry key: `pov_ray_sdl`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: POV-Ray SDL 3.7/3.8 scanner behavior and current documentation examples.
+- Version-specific syntax: current scanner defaults to nested block comments to match the 3.7 parser; a compatibility switch can disable nested block comments to mimic older behavior.
+- Line comments: `//`
+- Block comments: `/* ... */`
+- Termination behavior: `newline` for line comments; nested/depth-balanced `*/` by default, or first `*/` when nested-block compatibility is disabled
+- Nested comments: supported by current default scanner; compatibility-disabled mode is unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://www.povray.org/documentation/view/3.7.1/228/
+- Implementation source: https://github.com/POV-Ray/povray/blob/master/source/parser/scanner.cpp
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify POV-Ray SDL comment syntax from the language reference.
-- Notes: unresolved in this pass.
+- Recommended action: add `//` and `/* ... */` fixtures and include a nested block fixture with a version/compatibility note.
+- Notes: scanner options explicitly control nested block-comment support.
+
+### Examples
+
+#### Line comment
+```pov
+sphere { <0, 0, 0>, 1 } // unit sphere
+```
+
+#### Block comment
+```pov
+/*
+  outer note
+  /* nested note */
+*/
+sphere { <0, 0, 0>, 1 }
+```
 
 ## PowerBuilder
 - Registry key: `powerbuilder`
@@ -1453,17 +2005,41 @@ $value = $value + 1
 
 ## Prisma
 - Registry key: `prisma`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Prisma Schema Language current documentation and prisma-engines parser grammar.
+- Version-specific syntax: no version-specific split found; `///` and `/** ... */` comments are AST-attached documentation comments.
+- Line comments: `//`; documentation line comments `///`
+- Block comments: `/* ... */`; documentation block comments `/** ... */`
+- Termination behavior: `newline` for line comments; `first */ closes block comments`
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://www.prisma.io/docs/orm/prisma-schema/overview#comments
+- Implementation source: https://github.com/prisma/prisma-engines/blob/main/psl/schema-ast/src/parser/datamodel.pest
+- Community source: unresolved
 - Corpus fallback source: unresolved
-- Recommended action: verify Prisma schema comment syntax before adding fixtures.
-- Notes: unresolved in this pass.
+- Recommended action: add line, block, and doc-comment fixtures; keep nested comments unsupported.
+- Notes: Prisma distinguishes reader comments from documentation comments that are retained in the schema AST.
+
+### Examples
+
+#### Line comment
+```prisma
+// reader-only note
+model User {
+  /// field documentation
+  id Int @id
+}
+```
+
+#### Block comment
+```prisma
+/**
+ * model documentation
+ */
+model User {
+  id Int @id
+}
+```
 
 ## Procfile
 - Registry key: `procfile`
@@ -1548,17 +2124,37 @@ active proctype Example() {
 
 ## Propeller Spin
 - Registry key: `propeller_spin`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
+- Version scope: Parallax Propeller Spin 1 tutorial/manual material and Spin2 language documentation.
+- Version-specific syntax: Spin and Spin2 both use apostrophe line comments and brace block comments; Spin2 documentation also records `...` continuation comments, where the rest of the line is ignored and parsing continues on the next line.
+- Line comments: `'`; documentation line comments `''`; Spin2 continuation comments `...`
+- Block comments: `{ ... }`; documentation block comments `{{ ... }}`
+- Termination behavior: `newline` for apostrophe and double-apostrophe comments; first matching `}` or `}}` closes block comments; `...` ignores the rest of the line and continues parsing on the next line
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://forums.parallax.com/uploads/editor/3l/lzpix2by2k4r.pdf; https://raw.githubusercontent.com/parallaxinc/spin-docs/master/pdf/P8X32A-Web-PropellerManual-v1.2_0.pdf
 - Implementation source: unresolved
+- Community source: https://forums.parallax.com/discussion/download/85706/Propeller_Tutorial_1.01.pdf
 - Corpus fallback source: unresolved
-- Recommended action: verify Spin comment syntax from the official reference.
-- Notes: unresolved in this pass.
+- Recommended action: add apostrophe and brace comment fixtures, include documentation-comment variants, and gate `...` as Spin2-specific.
+- Notes: Parallax material distinguishes code comments from documentation comments by doubled delimiters.
+
+### Examples
+
+#### Line comment
+```spin
+PUB Main
+  value := 1 ' code comment
+  next := value + 1
+```
+
+#### Block comment
+```spin
+{ code comment
+  over multiple lines }
+PUB Main
+  value := 1
+```
 
 ## Protocol Buffer
 - Registry key: `protocol_buffer`
@@ -1622,17 +2218,29 @@ name: "John Smith"
 
 ## Public Key
 - Registry key: `public_key`
+- Version scope: OpenPGP ASCII-armored public key blocks and SSH public key `.pub` lines as represented by the Linguist `Public Key` data label.
+- Version-specific syntax: authorized_keys files may allow `#` comment lines, but that is a different file context from standalone public key blobs.
 - Line comments: unsupported
 - Block comments: unsupported
 - Termination behavior: unsupported
 - Nested comments: unsupported
-- Confidence: high
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Confidence: verified
+- Evidence mode: official_docs
+- Docs source: https://www.rfc-editor.org/rfc/rfc9580.html; https://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT
+- Implementation source: https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml
+- Community source: unresolved
 - Corpus fallback source: unresolved
 - Recommended action: keep this entry unsupported unless a formal spec changes.
-- Notes: armored public key files use headers and footers, not comments.
+- Notes: OpenPGP armor headers/footers are data delimiters; an SSH trailing key comment is a field label, not lexical comment syntax.
+
+### Examples
+
+#### No comment form
+```text
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+...
+-----END PGP PUBLIC KEY BLOCK-----
+```
 
 ## Pug
 - Registry key: `pug`
@@ -1693,17 +2301,28 @@ class example {
 
 ## Pure Data
 - Registry key: `pure_data`
-- Line comments: unresolved
-- Block comments: unresolved
-- Termination behavior: unresolved
-- Nested comments: unresolved
-- Confidence: unresolved
-- Evidence mode: unresolved
-- Docs source: unresolved
-- Implementation source: unresolved
+- Version scope: Pure Data `.pd` patch text format/current source.
+- Version-specific syntax: no lexical comment syntax found; `#X text` records are GUI text/comment objects in the patch graph, not ignored source comments.
+- Line comments: unsupported
+- Block comments: unsupported
+- Termination behavior: unsupported
+- Nested comments: unsupported
+- Confidence: verified
+- Evidence mode: implementation_cross_checked
+- Docs source: https://puredata.info/docs/developer/PdFileFormat
+- Implementation source: https://github.com/pure-data/pure-data/blob/master/src/g_readwrite.c
+- Community source: https://github.com/pure-data/pure-data/blob/master/doc/5.reference/help-intro.pd
 - Corpus fallback source: unresolved
-- Recommended action: verify whether the format has true comments or only directives.
-- Notes: unresolved in this pass.
+- Recommended action: keep unsupported for lexical comments; do not treat `#X text` as ignored comment syntax.
+- Notes: `.pd` files are serialized patch data where each `#N`/`#X` line is a patch record.
+
+### Examples
+
+#### No comment form
+```puredata
+#N canvas 0 0 450 300 10;
+#X text 20 20 this is a visible text object, not ignored syntax;
+```
 
 ## PureBasic
 - Registry key: `purebasic`

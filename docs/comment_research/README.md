@@ -17,6 +17,15 @@ the public Stack v2 language inventory derived from:
   and explicit version-aware source comparison.
 - `report_template.md`: report skeleton for the stronger worker output.
 - `prompt_packets/`: generated per-chunk prompt files for stronger workers.
+- `implementation_confirmation_playbook.md`: second-stage workflow for
+  confirming `needs_research_or_confirmation` entries against downloaded
+  language implementations and designated hello-world/example files.
+- `confirmation_report_template.md`: report skeleton for implementation
+  confirmation workers.
+- `confirmation_packets/`: generated per-chunk prompt files for implementation
+  confirmation workers.
+- `confirmation_reports/`: per-chunk confirmation output files produced by
+  implementation confirmation workers.
 - `not_done_backlog.md` and `not_done_backlog.csv`: generated backlog for every
   still-unimplemented Stack v2 language, split by implementation readiness.
 - `registry_ready_candidates.md` and `registry_ready_candidates.csv`: generated
@@ -29,11 +38,15 @@ Run:
 ```bash
 uv run python scripts/build_comment_research_views.py
 uv run python scripts/build_comment_research_packets.py
+uv run python scripts/build_comment_confirmation_packets.py
 ```
 
 The script reads the chunk reports, cross-checks them against the Stack v2
 inventory, and rebuilds the backlog and candidate views.
 The packet builder creates stronger online-first worker prompts for each chunk.
+The confirmation packet builder creates second-stage prompts only for entries
+that still have `needs_research_or_confirmation` status in the regenerated
+backlog.
 
 ## Worker contract
 
@@ -112,3 +125,24 @@ of tools, frameworks, or products. When a language has multiple language
 versions or dialects, compare more than one source version and record the
 differences explicitly. If the syntax is unclear, mark it as unresolved instead
 of guessing.
+
+## Implementation confirmation workers
+
+Use implementation confirmation workers after the normal research reports and
+derived backlog have been regenerated. These workers operate only on entries
+that remain `needs_research_or_confirmation`.
+
+Start from:
+
+- `implementation_confirmation_playbook.md`
+- `confirmation_report_template.md`
+- the relevant file in `confirmation_packets/`
+
+Each worker owns exactly one file under `confirmation_reports/`. It downloads
+the language implementation into `tmp/comment_research_confirmation/`, locates
+official hello-world or equivalent parser fixture files, adds scratch comment
+probes, and runs the implementation's parser/tokenizer/syntax-check path. The
+worker records whether the current research is `confirmed`,
+`partially-confirmed`, `contradicted`, or `blocked`. It must not edit
+`registry.py`, tests, or the original `chunk_*_report.md` files during this
+second-stage pass.
