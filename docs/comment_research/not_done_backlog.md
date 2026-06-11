@@ -9,8 +9,8 @@ This backlog covers Stack v2 public languages that are still not represented in 
 - Generated on: `2026-06-11`
 - Total uncovered languages tracked: `238`
 - Ready to implement now: `0`
-- Needs research or confirmation: `223`
-- Resolved non-actionable: `15`
+- Needs research or confirmation: `222`
+- Resolved non-actionable: `16`
 - Missing research records: `0`
 
 Status definitions:
@@ -28,7 +28,6 @@ Status definitions:
 
 | Language | Registry key | Confidence | Version scope | Version syntax | Line | Block | Termination | Nested | Action | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Classic ASP | classic_asp | low | unresolved | unresolved | unsupported | <!-- ... --> | first closing delimiter wins | unsupported | Treat as a mixed-language format and verify HTML/script comment handling separately. | docs/comment_research/chunk_1_b_c_report.md |
 | Clean | clean | low | unresolved | unresolved | // | /* ... */ | first closing delimiter wins | unresolved | Verify Clean comment nesting before seeding. | docs/comment_research/chunk_1_b_c_report.md |
 | Click | click | medium | unresolved | unresolved | # | unsupported | unsupported | unsupported | Add hash-comment tests after confirming the Click parser docs. | docs/comment_research/chunk_1_b_c_report.md |
 | CLIPS | clips | medium | unresolved | unresolved | ; | /* ... */ | first closing delimiter wins | unsupported | Verify CLIPS comment syntax and add line/block tests. | docs/comment_research/chunk_1_b_c_report.md |
@@ -260,6 +259,7 @@ Status definitions:
 | Brainfuck | brainfuck | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | Document that non-command characters are ignored rather than treated as comments. | docs/comment_research/chunk_1_b_c_report.md |
 | Checksums | checksums | high | GitHub Linguist 9.6.0 Checksums data family and language-etc grammar at 182cc8d | The label intentionally unions GNU-style, BSD-style, and isolated digest records; no shared comment delimiter is defined. | unsupported | unsupported | unsupported | unsupported | Keep unsupported; do not infer hash comments for the generic data family. | docs/comment_research/chunk_1_b_c_report.md |
 | Cirru | cirru | high | Cirru parser 0.2.5 at 14f9a9b7 | The parser preserves ; and ;; as ordinary leaf tokens; only expression consumers interpret a list headed by either token as a comment. | unsupported | unsupported | unsupported | unsupported | Keep unsupported in the lexical registry; comment expressions require a Cirru parse tree. | docs/comment_research/chunk_1_b_c_report.md |
+| Classic ASP | classic_asp | high | Classic ASP on IIS, including configurable page and application scripting languages | A page may use VBScript, JScript, or another installed COM scripting engine, including multiple languages in one .asp file. | unsupported | unsupported | unsupported | unsupported | Keep unsupported in the lexical registry; extraction requires an ASP-aware parser that tracks script regions and directives. | docs/comment_research/chunk_1_b_c_report.md |
 | CSV | csv | high | unresolved | unresolved | unsupported | unsupported | unsupported | unsupported | Document as commentless unless a specific dialect is introduced. | docs/comment_research/chunk_1_b_c_report.md |
 | Diff | diff | high |  |  | unsupported | unsupported | unsupported | unsupported | leave unsupported. | docs/comment_research/chunk_2_d_f_report.md |
 | JAR Manifest | jar_manifest | verified |  |  | unsupported | unsupported | unsupported | unsupported | unsupported | docs/comment_research/chunk_4_j_m_report.md |

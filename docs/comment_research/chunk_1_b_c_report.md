@@ -888,27 +888,26 @@ CODE
 
 ## Classic ASP
 - Registry key: `classic_asp`
-- Version scope: `unresolved`
-- Version-specific syntax: `unresolved`
+- Version scope: `Classic ASP on IIS, including configurable page and application scripting languages`
+- Version-specific syntax: `A page may use VBScript, JScript, or another installed COM scripting engine, including multiple languages in one .asp file.`
 - Line comments: `unsupported`
-- Block comments: `<!-- ... -->`
-- Termination behavior: `first closing delimiter wins`
+- Block comments: `unsupported`
+- Termination behavior: `unsupported`
 - Nested comments: `unsupported`
-- Confidence: `low`
-- Evidence mode: `unresolved`
-- Docs source: `unresolved`
-- Implementation source: `unresolved`
+- Confidence: `high`
+- Evidence mode: `official_docs_plus_implementation`
+- Docs source: [Microsoft Working with Scripting Languages](https://learn.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525153%28v%3Dvs.90%29)
+- Implementation source: [TextMate HTML-ASP grammar](https://github.com/textmate/asp.tmbundle/blob/master/Syntaxes/HTML-ASP.plist)
 - Community source: `unresolved`
-- Corpus fallback source: `unresolved`
-- Recommended action: `Treat as a mixed-language format and verify HTML/script comment handling separately.`
-- Notes: `ASP pages can contain HTML, VBScript, and JScript; comment syntax depends on the embedded language.`
+- Corpus fallback source: [Microsoft ASP include directives](https://learn.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms524876%28v%3Dvs.90%29)
+- Recommended action: `Keep unsupported in the lexical registry; extraction requires an ASP-aware parser that tracks script regions and directives.`
+- Notes: `VBScript apostrophe comments and JScript slash comments are valid only inside regions assigned to those languages. HTML comments are returned as page markup rather than removed as server comments, and the same <!-- ... --> delimiters carry executable #include directives. A global regex would therefore overmatch HTML text, URLs, string apostrophes, or server-side directives.`
 
-- Example - block:
-```text
-<html>
-<!-- comment -->
-<body>hello</body>
-</html>
+- Example - context-dependent forms:
+```asp
+<%@ LANGUAGE="JScript" %>
+<% // JScript comment %>
+<!-- #include file="header.inc" -->
 ```
 
 ## Clean
