@@ -13,6 +13,9 @@ pytestmark = pytest.mark.unit
 ROOT = Path(__file__).resolve().parents[1]
 RESEARCH_DIR = ROOT / "docs" / "comment_research"
 CANDIDATE_CSV_PATH = RESEARCH_DIR / "registry_ready_candidates.csv"
+if not CANDIDATE_CSV_PATH.exists():
+    pytest.skip("comment research candidate artifacts are not present", allow_module_level=True)
+
 SECTION_RE = re.compile(r"^##\s+(.+?)\s*$")
 FIELD_RE = re.compile(r"^-\s+([^:]+):\s*(.*)$")
 EXAMPLE_HEADING_RE = re.compile(r"^####\s+(.+?)\s*$")
