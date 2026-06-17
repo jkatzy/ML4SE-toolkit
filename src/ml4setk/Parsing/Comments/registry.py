@@ -2272,7 +2272,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "directx_3d_file",
             "graphviz_dot",
             "hcl",
-            "hocon",
             "html_php",
             "io",
             "ring",
@@ -2307,6 +2306,39 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="hocon_style",
+        canonical_name="hocon",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "service {\n  // note\n  host = \"localhost\"\n}",
+                "// note",
+                "HOCON slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "service {\n  # note\n  host = \"localhost\"\n}",
+                "# note",
+                "HOCON hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://github.com/lightbend/config/blob/main/HOCON.md",
+        implementation_source="https://github.com/lightbend/config/blob/main/HOCON.md",
+        confidence="verified",
+        notes=(
+            "HOCON supports # and // line comments. C-style /* ... */ block "
+            "comments are not part of the documented HOCON syntax."
         ),
     ),
     CommentSyntax(

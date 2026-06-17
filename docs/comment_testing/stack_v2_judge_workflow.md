@@ -60,6 +60,22 @@ activity before the final manifest is written. Tune the scan interval with
 candidate discovery is slow. Pass advanced generator flags with
 `COMMENT_JUDGE_MANIFEST_ARGS=...`.
 
+For a coverage-only run that checks the extractor can find enough real Stack v2
+files per implemented comment kind without invoking an LLM judge:
+
+```bash
+make comment-judge-coverage \
+  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
+  COMMENT_JUDGE_PER_KIND=10 \
+  COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE=5000
+```
+
+This generates a manifest, then runs only
+`test_stack_v2_manifest_generation_has_no_missing_comment_kinds`. Each requested
+language/query must produce at least `COMMENT_JUDGE_PER_KIND` distinct source
+files for each registry-supported comment kind before the sampler reaches
+`COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE` records for that language.
+
 Run one judged case first as a smoke test:
 
 ```bash
@@ -150,8 +166,12 @@ Useful Make variables:
   Use values such as `20`, `30`, or `40` for numeric batches.
 - `COMMENT_JUDGE_PER_KIND`: target files per comment kind, default `20`.
   Manifest generation scans up to `COMMENT_JUDGE_PER_KIND * 500` records per
-  language unless `--max-records-per-language` is explicitly supplied through
+  language unless `COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE` is set or
+  `--max-records-per-language` is explicitly supplied through
   `COMMENT_JUDGE_MANIFEST_ARGS`.
+- `COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE`: optional maximum Stack v2 records
+  to scan per selected language/query. When unset, manifest generation keeps
+  the existing default of `COMMENT_JUDGE_PER_KIND * 500`.
 - `COMMENT_JUDGE_OUTPUT_ROOT`: generated manifest/source root, default
   `tmp/stack_v2_comment_judge`
 - `COMMENT_JUDGE_MANIFEST`: manifest consumed by pytest, default

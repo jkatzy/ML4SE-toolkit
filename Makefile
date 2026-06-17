@@ -2,6 +2,7 @@ UV ?= uv
 COMMENT_JUDGE_LANGUAGES ?= python,java,coffeescript
 COMMENT_JUDGE_LANGUAGE_COUNT ?=
 COMMENT_JUDGE_PER_KIND ?= 20
+COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE ?=
 COMMENT_JUDGE_OUTPUT_ROOT ?= tmp/stack_v2_comment_judge
 COMMENT_JUDGE_MANIFEST ?= $(COMMENT_JUDGE_OUTPUT_ROOT)/manifest.jsonl
 COMMENT_JUDGE_FAILURES ?= $(COMMENT_JUDGE_OUTPUT_ROOT)/failures.jsonl
@@ -38,7 +39,7 @@ endif
 
 .PHONY: setup setup-optional test test-optional lint smoke build research-prompts
 .PHONY: comment-confirmation-prompts comment-test-prompts
-.PHONY: comment-judge-manifest comment-judge-smoke comment-judge-test
+.PHONY: comment-judge-manifest comment-judge-coverage comment-judge-smoke comment-judge-test
 .PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline
 .PHONY: comment-judge-clear-ledger comment-judge-full-run check-main-branch check-release-version
 
@@ -78,6 +79,7 @@ comment-judge-manifest:
 		$(if $(COMMENT_JUDGE_LANGUAGES),--languages $(COMMENT_JUDGE_LANGUAGES),) \
 		$(if $(COMMENT_JUDGE_LANGUAGE_COUNT),--language-count $(COMMENT_JUDGE_LANGUAGE_COUNT),) \
 		--per-kind $(COMMENT_JUDGE_PER_KIND) \
+		$(if $(COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE),--max-records-per-language $(COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE),) \
 		--progress-every $(COMMENT_JUDGE_PROGRESS_EVERY) \
 		--num-workers $(COMMENT_JUDGE_NUM_WORKERS) \
 		--content-prefetch-workers $(COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS) \
@@ -85,6 +87,16 @@ comment-judge-manifest:
 		--max-content-chars $(COMMENT_JUDGE_MAX_CONTENT_CHARS) \
 		--fetch-stack-v2-content \
 		--output-root $(COMMENT_JUDGE_OUTPUT_ROOT) $(COMMENT_JUDGE_MANIFEST_ARGS)
+
+comment-judge-coverage:
+	$(MAKE) comment-judge-manifest
+	STACK_V2_COMMENT_JUDGE_MANIFEST=$(COMMENT_JUDGE_MANIFEST) \
+		STACK_V2_COMMENT_JUDGE_FAILURES=$(COMMENT_JUDGE_FAILURES) \
+		STACK_V2_COMMENT_JUDGE_REPORT_DIR=$(COMMENT_JUDGE_REPORT_DIR) \
+		COMMENT_JUDGE_LEDGER=0 \
+		$(UV) run pytest \
+			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
+			-q --no-cov
 
 comment-judge-smoke:
 	STACK_V2_COMMENT_JUDGE_MANIFEST=$(COMMENT_JUDGE_MANIFEST) \

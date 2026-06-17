@@ -6,6 +6,7 @@ returning the normalized ``QueryMatch(prefix, suffix, match)`` contract.
 """
 
 import warnings
+from bisect import bisect_right
 from collections.abc import Iterable
 
 import regex as re
@@ -14,6 +15,7 @@ from ..Query import Query, QueryMatch
 from .registry import get_comment_syntax
 
 _WARNED_LANGUAGE_CAVEATS = set()
+_RANGE_END_SENTINEL = float("inf")
 
 
 def _warn_language_caveat_once(language):
@@ -88,7 +90,15 @@ def _quoted_string_ranges(text):
 def _starts_inside_quoted_string(start, quoted_ranges):
     """Return ``True`` when ``start`` is inside any quoted string range."""
 
-    return any(quote_start < start < quote_end for quote_start, quote_end in quoted_ranges)
+    if not quoted_ranges:
+        return False
+
+    index = bisect_right(quoted_ranges, (start, _RANGE_END_SENTINEL)) - 1
+    if index < 0:
+        return False
+
+    quote_start, quote_end = quoted_ranges[index]
+    return quote_start < start < quote_end
 
 
 def _query_match_from_range(text, start, end):
@@ -152,7 +162,14 @@ class LineCommentQuery(Query):
     def contains(self, string):
         """Return ``True`` when regex-based extraction finds a comment."""
 
-        return bool(self.parse(string))
+        if not self.regexes:
+            return False
+
+        quoted_ranges = _quoted_string_ranges(string)
+        return any(
+            not _starts_inside_quoted_string(start, quoted_ranges)
+            for start, _ in self._iter_match_ranges(string)
+        )
 
     def parse(self, text):
         """Return regex-based comment matches in source order.
@@ -165,6 +182,9 @@ class LineCommentQuery(Query):
             non-nested block comments. Matches starting inside simple quoted
             strings are ignored.
         """
+
+        if not self.regexes:
+            return []
 
         matches = []
         quoted_ranges = _quoted_string_ranges(text)
@@ -230,6 +250,9 @@ class NestedCommentQuery(Query):
     def contains(self, string):
         """Return ``True`` when nested-delimiter extraction finds a comment."""
 
+        if not self.delimiters:
+            return False
+
         return bool(self.parse(string))
 
     def parse(self, text):
@@ -243,6 +266,9 @@ class NestedCommentQuery(Query):
             nested regions are included inside the outer match, not emitted as
             separate matches.
         """
+
+        if not self.delimiters:
+            return []
 
         matches = []
         quoted_ranges = _quoted_string_ranges(text)
@@ -325,9 +351,9 @@ class CommentQuery(Query):
         """Return ``True`` when any configured language finds a comment."""
 
         for line_comments, nested_comments in self._query_pairs:
-            if nested_comments.contains(text):
-                return True
             if line_comments.contains(text):
+                return True
+            if nested_comments.contains(text):
                 return True
         return False
 

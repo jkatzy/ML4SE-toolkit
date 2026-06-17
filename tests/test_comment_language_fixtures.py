@@ -1,5 +1,7 @@
 import importlib.util
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from os import cpu_count
 from pathlib import Path
 
 import pytest
@@ -38,6 +40,18 @@ def _expected_query_match(sample, expected_match):
     start = sample.index(expected_match)
     end = start + len(expected_match)
     return QueryMatch(sample[:start], sample[end:], expected_match)
+
+
+def _fixture_comment_detection_result(fixture):
+    content = (FIXTURE_DIR / fixture.filename).read_text(encoding="utf-8")
+    matches = CommentQuery(fixture.language).parse(content)
+    return fixture.language, len(matches)
+
+
+def _parallel_fixture_results(fixtures):
+    workers = min(len(fixtures), cpu_count() or 1)
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        return list(executor.map(_fixture_comment_detection_result, fixtures))
 
 
 def test_comment_language_fixture_folder_has_one_file_per_language():
@@ -81,3 +95,11 @@ def test_comment_language_fixture_files_parse_expected_comments(fixture):
 
     for forbidden_sentinel in fixture.forbidden_sentinels:
         assert all(forbidden_sentinel not in match.match for match in matches)
+
+
+def test_stack_v2_language_fixtures_detect_at_least_one_comment_for_every_language():
+    results = _parallel_fixture_results(LANGUAGE_FIXTURES)
+
+    missing_languages = [language for language, match_count in results if match_count == 0]
+
+    assert not missing_languages, "No comments found for: " + ", ".join(missing_languages)

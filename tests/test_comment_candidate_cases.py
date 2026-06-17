@@ -241,7 +241,7 @@ def _parse_block_token(token):
         open_delim, close_delim = [part.strip() for part in token.split("...", 1)]
         if open_delim and close_delim:
             return open_delim, close_delim
-    if token in {"/* */", "(* *)", "<!-- -->", "#| |#", "{* *}", "{ }", '" "'}:
+    if token in {"/* */", "(* *)", "<!-- -->", "<! !>", "#| |#", "{* *}", "{ }", '" "'}:
         open_delim, close_delim = token.split()
         return open_delim, close_delim
     if token == "////":

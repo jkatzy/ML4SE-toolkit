@@ -43,6 +43,22 @@ make comment-judge-test
 make comment-judge-testgen-pipeline
 ```
 
+To check only corpus coverage before running any LLM judge, use:
+
+```bash
+make comment-judge-coverage \
+  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
+  COMMENT_JUDGE_PER_KIND=10 \
+  COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE=5000
+```
+
+This verifies that each requested language/query finds at least
+`COMMENT_JUDGE_PER_KIND` source files for every implemented comment kind
+(`line`, `block`, or `nested`) before scanning more than
+`COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE` Stack v2 records for that language.
+It reports missing language/kind buckets from `failures.jsonl` and does not
+launch an LLM judge.
+
 The judge test prints live per-case progress by default so large manifests do
 not look hung. Disable that with `COMMENT_JUDGE_PROGRESS=0` when needed.
 

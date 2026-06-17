@@ -3911,13 +3911,13 @@ float4 main() : SV_Target {
 ### HOCON
 - Registry key: `hocon`
 - Line comments: `#` and `//`
-- Block comments: `/* ... */`
+- Block comments: unsupported
 - Nested comments: unsupported
 - Confidence: verified
-- Docs source: Lightbend Config / HOCON docs
-- Implementation source: unresolved
-- Recommended action: add hash, slash, and block comment tests.
-- Notes: keep tests for line and block forms separate.
+- Docs source: `https://github.com/lightbend/config/blob/main/HOCON.md`
+- Implementation source: `https://github.com/lightbend/config/blob/main/HOCON.md`
+- Recommended action: keep hash and slash line-comment tests; do not seed C-style block comments.
+- Notes: HOCON supports same-line `#` and `//` comments. C-style block comments are not documented for HOCON.
 - Example: line comment
 ```hocon
 service {
@@ -3929,13 +3929,6 @@ service {
 ```hocon
 service {
   // enable local mode
-  host = "localhost"
-}
-```
-- Example: block comment
-```hocon
-/* development override */
-service {
   host = "localhost"
 }
 ```
