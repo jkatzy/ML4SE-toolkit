@@ -59,13 +59,32 @@ def test_stack_v2_dataset_config_resolves_current_config_names() -> None:
     available_configs = (
         "Python",
         "CoffeeScript",
+        "4D",
         "ABAP",
         "Adobe_Font_Metrics",
         "ASN.1",
+        "ASP.NET",
         "C-Sharp",
+        "Cap-n_Proto",
+        "ColdFusion",
+        "ColdFusion_CFC",
+        "F-Star",
         "F-Sharp",
+        "Graphviz_(DOT)",
+        "HOCON",
+        "HTML+ECR",
+        "HTML+EEX",
+        "HTML+ERB",
+        "HTML+PHP",
+        "HTML+Razor",
+        "MiniYAML",
         "Objective-C",
         "C++",
+        "Pascal",
+        "Q-Sharp",
+        "robots.txt",
+        "Slim",
+        "Visual_Basic_.NET",
     )
     args = _args()
 
@@ -79,14 +98,93 @@ def test_stack_v2_dataset_config_resolves_current_config_names() -> None:
         GENERATOR._dataset_config_for(args, "adobe_font_metrics", {}, available_configs)
         == "Adobe_Font_Metrics"
     )
+    assert GENERATOR._dataset_config_for(args, "four_d", {}, available_configs) == "4D"
     assert GENERATOR._dataset_config_for(args, "asn1", {}, available_configs) == "ASN.1"
+    assert GENERATOR._dataset_config_for(args, "aspnet", {}, available_configs) == "ASP.NET"
     assert GENERATOR._dataset_config_for(args, "c#", {}, available_configs) == "C-Sharp"
+    assert (
+        GENERATOR._dataset_config_for(args, "capn_proto", {}, available_configs)
+        == "Cap-n_Proto"
+    )
+    assert (
+        GENERATOR._dataset_config_for(args, "coldfusion", {}, available_configs)
+        == "ColdFusion"
+    )
+    assert (
+        GENERATOR._dataset_config_for(args, "coldfusion_cfc", {}, available_configs)
+        == "ColdFusion_CFC"
+    )
+    assert GENERATOR._dataset_config_for(args, "f_star", {}, available_configs) == "F-Star"
     assert GENERATOR._dataset_config_for(args, "f#", {}, available_configs) == "F-Sharp"
+    assert (
+        GENERATOR._dataset_config_for(args, "graphviz_dot", {}, available_configs)
+        == "Graphviz_(DOT)"
+    )
+    assert GENERATOR._dataset_config_for(args, "hocon", {}, available_configs) == "HOCON"
+    assert GENERATOR._dataset_config_for(args, "html_ecr", {}, available_configs) == "HTML+ECR"
+    assert GENERATOR._dataset_config_for(args, "html_eex", {}, available_configs) == "HTML+EEX"
+    assert GENERATOR._dataset_config_for(args, "html_erb", {}, available_configs) == "HTML+ERB"
+    assert GENERATOR._dataset_config_for(args, "html_php", {}, available_configs) == "HTML+PHP"
+    assert (
+        GENERATOR._dataset_config_for(args, "html_razor", {}, available_configs)
+        == "HTML+Razor"
+    )
+    assert GENERATOR._dataset_config_for(args, "mini_yaml", {}, available_configs) == "MiniYAML"
     assert (
         GENERATOR._dataset_config_for(args, "objective-c", {}, available_configs)
         == "Objective-C"
     )
     assert GENERATOR._dataset_config_for(args, "c++", {}, available_configs) == "C++"
+    assert GENERATOR._dataset_config_for(args, "pascal", {}, available_configs) == "Pascal"
+    assert GENERATOR._dataset_config_for(args, "qsharp", {}, available_configs) == "Q-Sharp"
+    assert (
+        GENERATOR._dataset_config_for(args, "robots_txt", {}, available_configs)
+        == "robots.txt"
+    )
+    assert GENERATOR._dataset_config_for(args, "slim", {}, available_configs) == "Slim"
+    assert (
+        GENERATOR._dataset_config_for(args, "visual_basic_net", {}, available_configs)
+        == "Visual_Basic_.NET"
+    )
+
+
+@pytest.mark.parametrize(
+    ("language", "row_language"),
+    [
+        ("asn1", "ASN.1"),
+        ("aspnet", "ASP.NET"),
+        ("capn_proto", "Cap'n Proto"),
+        ("coldfusion", "ColdFusion"),
+        ("coldfusion_cfc", "ColdFusion CFC"),
+        ("f_star", "F*"),
+        ("four_d", "4D"),
+        ("graphviz_dot", "Graphviz (DOT)"),
+        ("hocon", "HOCON"),
+        ("html_ecr", "HTML+ECR"),
+        ("html_eex", "HTML+EEX"),
+        ("html_erb", "HTML+ERB"),
+        ("html_php", "HTML+PHP"),
+        ("html_razor", "HTML+Razor"),
+        ("mini_yaml", "MiniYAML"),
+        ("pascal", "Pascal"),
+        ("qsharp", "Q#"),
+        ("robots_txt", "robots.txt"),
+        ("slim", "Slim"),
+        ("visual_basic_net", "Visual Basic .NET"),
+    ],
+)
+def test_record_language_matching_accepts_stack_v2_punctuation_labels(
+    language: str, row_language: str
+) -> None:
+    args = _args()
+    dataset_language = GENERATOR._dataset_language_for(language, {})
+
+    assert GENERATOR._record_matches_language(
+        {"language": row_language},
+        args,
+        language,
+        dataset_language,
+    )
 
 
 def test_selected_languages_accepts_common_stack_v2_aliases() -> None:
@@ -541,6 +639,37 @@ def test_coffeescript_block_example_classifies_before_hash_line_opener() -> None
     assert GENERATOR._classify_comment(syntax, raw_comment) == ("block", "###...###")
 
 
+def test_nested_capable_single_level_comments_can_fill_block_bucket() -> None:
+    pascal = GENERATOR.get_comment_syntax("pascal")
+    coldfusion = GENERATOR.get_comment_syntax("coldfusion")
+
+    assert GENERATOR._classify_comment(pascal, "{ block }") == ("block", "{...}")
+    assert GENERATOR._classify_comment(
+        pascal, "{ outer { inner } outer }"
+    ) == ("nested", "{...}")
+    assert GENERATOR._classify_comment(coldfusion, "<!--- note --->") == (
+        "block",
+        "<!---...--->",
+    )
+    assert GENERATOR._classify_comment(
+        coldfusion, "<!--- outer <!--- inner ---> outer --->"
+    ) == ("nested", "<!---...--->")
+
+
+def test_line_like_block_openers_classify_before_shorter_line_openers() -> None:
+    syntax = GENERATOR.get_comment_syntax("slim")
+
+    assert GENERATOR._classify_comment(syntax, "  /! note") == ("block", "/!")
+    assert GENERATOR._classify_comment(syntax, "  / note") == ("line", "/")
+
+
+def test_hocon_manifest_sampling_targets_line_comments_only() -> None:
+    syntax = GENERATOR.get_comment_syntax("hocon")
+
+    assert GENERATOR._supported_comment_kinds(syntax, "hocon") == ("line",)
+    assert GENERATOR.CommentQuery("hocon").parse("a = 1\n/* not hocon */\n") == []
+
+
 def test_incomplete_comment_kind_becomes_failure_row() -> None:
     args = _args(per_kind=10, max_records_per_language=1000)
     syntax = GENERATOR.get_comment_syntax("coffeescript")
@@ -739,6 +868,137 @@ def test_local_jsonl_manifest_collects_coffeescript_block_comments(
     assert {row["raw_comment"] for row in block_rows} == {"###\nnote\n###"}
     assert {row["syntax_label"] for row in block_rows} == {"###...###"}
     assert not (output_root / "failures.jsonl").exists()
+
+
+def test_local_jsonl_manifest_requires_n_cases_per_kind_within_m_files(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    sample = tmp_path / "sample.jsonl"
+    records = [
+        {
+            "id": f"java-{index}",
+            "language": "Java",
+            "content": f"// java line {index}\nclass Demo {{ /* java block {index} */ }}\n",
+        }
+        for index in range(2)
+    ]
+    records.extend(
+        {
+            "id": f"haskell-{index}",
+            "language": "Haskell",
+            "content": f"-- haskell line {index}\nvalue = {index}\n"
+            "{- outer {- inner -} outer -}\n",
+        }
+        for index in range(2)
+    )
+    with sample.open("w", encoding="utf-8") as outfile:
+        for record in records:
+            outfile.write(json.dumps(record) + "\n")
+
+    expected_counts = {
+        ("java", "line"): 2,
+        ("java", "block"): 2,
+        ("haskell", "line"): 2,
+        ("haskell", "nested"): 2,
+    }
+
+    for language in ("java", "haskell"):
+        output_root = tmp_path / f"out-{language}"
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            [
+                "build_stack_v2_comment_judge_cases.py",
+                "--input-jsonl",
+                str(sample),
+                "--languages",
+                language,
+                "--per-kind",
+                "2",
+                "--max-records-per-language",
+                "4",
+                "--output-root",
+                str(output_root),
+                "--no-progress",
+            ],
+        )
+
+        assert GENERATOR.main() == 0
+
+        manifest_rows = [
+            json.loads(line)
+            for line in (output_root / "manifest.jsonl").read_text(
+                encoding="utf-8"
+            ).splitlines()
+        ]
+        actual_counts = {
+            (language, kind): sum(
+                1
+                for row in manifest_rows
+                if row["language"] == language and row["comment_kind"] == kind
+            )
+            for kind in {"line", "block", "nested"}
+        }
+
+        for bucket, expected_count in expected_counts.items():
+            if bucket[0] == language:
+                assert actual_counts[bucket] == expected_count
+        assert not (output_root / "failures.jsonl").exists()
+
+
+def test_local_jsonl_manifest_reports_missing_kinds_when_file_limit_is_too_low(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    sample = tmp_path / "sample.jsonl"
+    with sample.open("w", encoding="utf-8") as outfile:
+        for index in range(2):
+            outfile.write(
+                json.dumps(
+                    {
+                        "id": f"java-{index}",
+                        "language": "Java",
+                        "content": (
+                            f"// java line {index}\n"
+                            f"class Demo {{ /* java block {index} */ }}\n"
+                        ),
+                    }
+                )
+                + "\n"
+            )
+    output_root = tmp_path / "out"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "build_stack_v2_comment_judge_cases.py",
+            "--input-jsonl",
+            str(sample),
+            "--languages",
+            "java",
+            "--per-kind",
+            "2",
+            "--max-records-per-language",
+            "1",
+            "--output-root",
+            str(output_root),
+            "--no-progress",
+        ],
+    )
+
+    assert GENERATOR.main() == 0
+
+    failures = [
+        json.loads(line)
+        for line in (output_root / "failures.jsonl").read_text(
+            encoding="utf-8"
+        ).splitlines()
+    ]
+
+    assert {
+        (failure["comment_kind"], failure["observed_count"], failure["expected_count"])
+        for failure in failures
+    } == {("line", 1, 2), ("block", 1, 2)}
+    assert {failure["max_records_per_language"] for failure in failures} == {1}
 
 
 def test_local_jsonl_manifest_can_collect_languages_in_parallel(

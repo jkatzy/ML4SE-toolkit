@@ -44,6 +44,18 @@ ID_FIELDS = ("id", "blob_id", "hexsha", "sha")
 STACK_CONFIG_OVERRIDES = {
     "c#": "C-Sharp",
     "f#": "F-Sharp",
+    "f_star": "F-Star",
+    "four_d": "4D",
+    "qsharp": "Q-Sharp",
+}
+STACK_LABEL_OVERRIDES = {
+    "c#": "C#",
+    "c++": "C++",
+    "f#": "F#",
+    "f_star": "F*",
+    "four_d": "4D",
+    "objective-c": "Objective-C",
+    "qsharp": "Q#",
 }
 REQUESTED_LANGUAGE_ALIASES = {
     "c_plus_plus": "c++",
@@ -1101,14 +1113,8 @@ def _dataset_language_for(language: str, language_map: dict[str, Any]) -> str:
 
 
 def _default_stack_label(language: str) -> str:
-    special = {
-        "c#": "C#",
-        "c++": "C++",
-        "f#": "F#",
-        "objective-c": "Objective-C",
-    }
-    if language in special:
-        return special[language]
+    if language in STACK_LABEL_OVERRIDES:
+        return STACK_LABEL_OVERRIDES[language]
     return " ".join(part.capitalize() for part in language.replace("-", "_").split("_"))
 
 
@@ -1124,10 +1130,8 @@ def _record_matches_language(
     value = record.get(language_field)
     if value is None:
         return True
-    return _normalize_language(value) in {
-        _normalize_language(language),
-        _normalize_language(dataset_language),
-    }
+    expected_keys = _language_match_keys(language) | _language_match_keys(dataset_language)
+    return bool(_language_match_keys(value).intersection(expected_keys))
 
 
 def _record_content(record: dict[str, Any], args: argparse.Namespace) -> str:
@@ -1393,6 +1397,25 @@ def _normalize_language(value: Any) -> str:
     return str(value).strip().lower().replace("-", "_").replace(" ", "_")
 
 
+def _language_match_keys(value: Any) -> set[str]:
+    """Return normalized keys for comparing Stack v2 language labels.
+
+    Args:
+        value: Registry key, configured Stack label, or corpus row language.
+
+    Returns:
+        The conventional normalized label plus a punctuation-insensitive key
+        for labels long enough to avoid short C-family collisions.
+    """
+
+    normalized = _normalize_language(value)
+    compact = "".join(char for char in normalized if char.isalnum())
+    keys = {normalized}
+    if len(compact) >= 3:
+        keys.add(compact)
+    return keys
+
+
 def _source_identity(record: dict[str, Any], record_index: int) -> str:
     for fields in (ID_FIELDS, PATH_FIELDS):
         value = _first_text_field(record, fields)
@@ -1403,11 +1426,17 @@ def _source_identity(record: dict[str, Any], record_index: int) -> str:
 
 def _classify_comment(syntax: CommentSyntax, raw_comment: str) -> tuple[str, str]:
     stripped = raw_comment.strip()
+    examples = [*syntax.shared_regex_examples, *syntax.canonical_regex_examples]
+    examples.extend(syntax.shared_nested_examples)
+    examples.extend(syntax.canonical_nested_examples)
+
+    matching_nested_delimiters = []
     for open_delim, close_delim in syntax.nested_delimiters:
         if stripped.startswith(open_delim) and stripped.endswith(close_delim):
-            return "nested", f"{open_delim}...{close_delim}"
+            if _contains_nested_opener(stripped, open_delim):
+                return "nested", f"{open_delim}...{close_delim}"
+            matching_nested_delimiters.append((open_delim, close_delim))
 
-    examples = [*syntax.shared_regex_examples, *syntax.canonical_regex_examples]
     for example in examples:
         if example.kind != "block":
             continue
@@ -1417,7 +1446,18 @@ def _classify_comment(syntax: CommentSyntax, raw_comment: str) -> tuple[str, str
         ):
             return "block", f"{wrapper[0]}...{wrapper[1]}"
 
-    for example in examples:
+    if matching_nested_delimiters:
+        open_delim, close_delim = matching_nested_delimiters[0]
+        return "nested", f"{open_delim}...{close_delim}"
+
+    for example in _examples_by_opener_length(examples):
+        if example.kind == "line":
+            continue
+        opener = _line_opener(example.expected_match)
+        if opener and stripped.startswith(opener):
+            return example.kind, opener
+
+    for example in _examples_by_opener_length(examples):
         if example.kind != "line":
             continue
         opener = _line_opener(example.expected_match)
@@ -1427,6 +1467,38 @@ def _classify_comment(syntax: CommentSyntax, raw_comment: str) -> tuple[str, str
     if "\n" in raw_comment:
         return "block", "multiline"
     return "line", "single-line"
+
+
+def _contains_nested_opener(raw_comment: str, open_delim: str) -> bool:
+    """Return ``True`` when a wrapped comment contains another opener.
+
+    Args:
+        raw_comment: Stripped raw comment text.
+        open_delim: Opening delimiter already matched at the start.
+
+    Returns:
+        Whether the same opener appears again inside the comment body.
+    """
+
+    return raw_comment.find(open_delim, len(open_delim)) != -1
+
+
+def _examples_by_opener_length(examples: Iterable[Any]) -> list[Any]:
+    """Return examples ordered so specific line-like openers win first.
+
+    Args:
+        examples: Comment examples whose expected matches may share opener
+            prefixes.
+
+    Returns:
+        Examples sorted by descending opener length.
+    """
+
+    return sorted(
+        examples,
+        key=lambda example: len(_line_opener(example.expected_match)),
+        reverse=True,
+    )
 
 
 def _line_opener(expected_match: str) -> str:
