@@ -21,6 +21,10 @@ def _expected_query_match(sample, expected_match):
     return QueryMatch(sample[:start], sample[end:], expected_match)
 
 
+def _comment_matches(language, sample):
+    return [match.match for match in CommentQuery(language).parse(sample)]
+
+
 def _iter_regex_cases():
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
@@ -64,10 +68,27 @@ def _iter_regex_only_cases():
                 yield pytest.param(language, examples[0], id=f"{language}-regex-only")
 
 
+def _iter_slash_line_comment_cases():
+    for syntax in iter_comment_syntaxes():
+        examples = syntax.shared_regex_examples + syntax.canonical_regex_examples
+        for example_index, example in enumerate(examples):
+            if not example.expected_match.startswith("//"):
+                continue
+            if "\n" in example.expected_match or "\r" in example.expected_match:
+                continue
+            for language in syntax.language_names:
+                yield pytest.param(
+                    language,
+                    example,
+                    id=f"{language}-slash-url-{example_index}",
+                )
+
+
 REGEX_CASES = list(_iter_regex_cases())
 NESTED_CASES = list(_iter_nested_cases())
 NESTED_ONLY_LANGUAGES = list(_iter_nested_only_languages())
 REGEX_ONLY_CASES = list(_iter_regex_only_cases())
+SLASH_LINE_COMMENT_CASES = list(_iter_slash_line_comment_cases())
 
 
 @pytest.mark.parametrize(("language", "example"), REGEX_CASES)
@@ -156,6 +177,167 @@ def test_comment_query_multiple_languages_validates_input():
 
     with pytest.raises(TypeError):
         CommentQuery(["python", 1])
+
+
+@pytest.mark.parametrize(
+    ("language", "sample", "expected_matches"),
+    [
+        pytest.param(
+            "berry",
+            'print("before") # line\nprint("after")\n#- block -#\n',
+            ["# line", "#- block -#"],
+            id="berry-line-and-block",
+        ),
+        pytest.param(
+            "cmake",
+            'message("before") # line\n#[[ block ]]\n#[=[ equal ]=]\n',
+            ["# line", "#[[ block ]]", "#[=[ equal ]=]"],
+            id="cmake-line-and-bracket-blocks",
+        ),
+        pytest.param(
+            "cue",
+            "value: 1 // line\nother: 2\n",
+            ["// line"],
+            id="cue-line-only",
+        ),
+        pytest.param(
+            "directx_3d_file",
+            "xof 0303txt 0032\n// slash\nHeader {}\n# hash\n",
+            ["// slash", "# hash"],
+            id="directx-line-forms",
+        ),
+        pytest.param(
+            "emacs_lisp",
+            '(message "before") ; line\n(message "after")\n',
+            ["; line"],
+            id="emacs-lisp-line-only",
+        ),
+        pytest.param(
+            "genshi",
+            "<div><!-- html --><span>${value}</span></div>\n",
+            ["<!-- html -->"],
+            id="genshi-xml-template-comment",
+        ),
+        pytest.param(
+            "html_ecr",
+            "<%# ecr %>\n<% # crystal %>\n<!-- html -->\n",
+            ["<%# ecr %>", "<% # crystal %>", "<!-- html -->"],
+            id="html-ecr-template-forms",
+        ),
+        pytest.param(
+            "liquid",
+            "{% # inline %}\n{%\n  # first\n  # second\n%}\n"
+            "{% comment %}block{% endcomment %}\n",
+            [
+                "{% # inline %}",
+                "{%\n  # first\n  # second\n%}",
+                "{% comment %}block{% endcomment %}",
+            ],
+            id="liquid-comment-tags",
+        ),
+        pytest.param(
+            "openqasm",
+            "OPENQASM 3.0;\n// line\n/* block */\nqubit q;\n",
+            ["// line", "/* block */"],
+            id="openqasm-line-and-block",
+        ),
+        pytest.param(
+            "sieve",
+            'if header :contains "Subject" "x" {\n# line\n/* block */\n}\n',
+            ["# line", "/* block */"],
+            id="sieve-line-and-block",
+        ),
+    ],
+)
+def test_sparse_comment_syntaxes_match_audited_forms(
+    language, sample, expected_matches
+):
+    assert _comment_matches(language, sample) == expected_matches
+
+
+@pytest.mark.parametrize(
+    ("language", "sample"),
+    [
+        pytest.param("cue", "value: 1 /* not a comment */\n", id="cue-no-block"),
+        pytest.param(
+            "directx_3d_file",
+            "xof 0303txt 0032\n/* not a comment */\n",
+            id="directx-no-block",
+        ),
+        pytest.param(
+            "emacs_lisp",
+            '(message "before") #| not a comment |#\n',
+            id="emacs-lisp-no-hash-pipe",
+        ),
+        pytest.param(
+            "genshi",
+            "before\n{# text template #}\n## legacy text template\n",
+            id="genshi-no-text-template-comments",
+        ),
+    ],
+)
+def test_sparse_comment_syntaxes_reject_unsupported_inherited_forms(language, sample):
+    assert CommentQuery(language).parse(sample) == []
+
+
+def test_cmake_bracket_comments_are_not_nested_comments():
+    sample = "before #[[ outer #[[ inner ]] outer ]] after"
+
+    assert NestedCommentQuery("cmake").parse(sample) == []
+    assert _comment_matches("cmake", sample) == ["#[[ outer #[[ inner ]]"]
+
+
+@pytest.mark.parametrize(
+    ("language", "sample", "expected_match"),
+    [
+        pytest.param(
+            "berry",
+            "#- outer #- inner -# outer -#",
+            "#- outer #- inner -#",
+            id="berry",
+        ),
+        pytest.param(
+            "openqasm",
+            "/* outer /* inner */ outer */",
+            "/* outer /* inner */",
+            id="openqasm",
+        ),
+        pytest.param(
+            "sieve",
+            "/* outer /* inner */ outer */",
+            "/* outer /* inner */",
+            id="sieve",
+        ),
+    ],
+)
+def test_sparse_block_comment_syntaxes_stop_at_first_closer(
+    language, sample, expected_match
+):
+    assert _comment_matches(language, sample) == [expected_match]
+
+
+def test_jsonc_comments_ignore_delimiters_inside_closed_strings():
+    sample = (
+        "{\n"
+        '  "url": "https://example.com/a//b", // real line\n'
+        '  "block": "/* not a block */",\n'
+        "  /* real block */\n"
+        '  "enabled": true\n'
+        "}\n"
+    )
+
+    assert _comment_matches("jsonc", sample) == ["// real line", "/* real block */"]
+
+
+def test_jsonc_comments_ignore_delimiters_inside_unterminated_string():
+    sample = (
+        "{\n"
+        '\t"contents": "<link rel=\\"stylesheet\\" '
+        'href=\\"https://www.facebook.com/rsrc.css\\"'
+    )
+
+    assert CommentQuery("jsonc").contains(sample) is False
+    assert _comment_matches("jsonc", sample) == []
 
 
 @pytest.mark.parametrize(
@@ -409,6 +591,26 @@ def test_comment_query_parses_star_prefixed_javadoc_block_comment():
     )
 
     assert CommentQuery("java").parse(sample) == [_expected_query_match(sample, expected_match)]
+
+
+@pytest.mark.parametrize(("language", "example"), SLASH_LINE_COMMENT_CASES)
+def test_slash_line_comment_parses_url_inside_comment(language, example):
+    url = "https://example.test/path//segment"
+    opener = example.expected_match.split(maxsplit=1)[0]
+    expected_match = f"{opener} see {url}"
+    sample = example.sample.replace(example.expected_match, expected_match, 1)
+
+    assert CommentQuery(language).parse(sample) == [
+        _expected_query_match(sample, expected_match)
+    ]
+
+
+@pytest.mark.parametrize(("language", "example"), SLASH_LINE_COMMENT_CASES)
+def test_slash_line_comment_ignores_url_inside_string(language, example):
+    url_string = '"https://example.test/path//segment"'
+    sample = example.sample.replace(example.expected_match, url_string, 1)
+
+    assert CommentQuery(language).parse(sample) == []
 
 
 @pytest.mark.parametrize(

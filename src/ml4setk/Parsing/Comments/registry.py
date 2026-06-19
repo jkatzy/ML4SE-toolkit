@@ -255,7 +255,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="berry",
         regex_patterns=(
             r"#-[\S\s]*?-#",
-            r"#(?!-)[^\r\n]*",
+            r"(?<!-)#(?!-)[^\r\n]*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -1041,7 +1041,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "avro_idl",
             "ballerina",
             "chuck",
-            "cue",
             "dataweave",
             "fantom",
             "faust",
@@ -1081,7 +1080,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "codeql",
             "gsc",
             "hyphy",
-            "openqasm",
             "pike",
             "quake",
         ),
@@ -1107,6 +1105,60 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         notes="Slash-based line and non-nested block comments.",
+    ),
+    CommentSyntax(
+        family_name="cue_style",
+        canonical_name="cue",
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "value: 1 // note\nother: 2",
+                "// note",
+                "CUE line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://cuelang.org/docs/reference/spec/",
+        implementation_source="https://github.com/cue-lang/cue",
+        confidence="verified",
+        notes=(
+            "CUE v0.16.1 accepts // line comments and rejects C-style "
+            "/* ... */ block comments."
+        ),
+    ),
+    CommentSyntax(
+        family_name="openqasm_style",
+        canonical_name="openqasm",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "OPENQASM 3.0;\n// note\nqubit q;",
+                "// note",
+                "OpenQASM line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "OPENQASM 3.0;\n/* note */\nqubit q;",
+                "/* note */",
+                "OpenQASM block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://openqasm.com/language/comments.html",
+        implementation_source="https://github.com/openqasm/openqasm",
+        confidence="verified",
+        notes=(
+            "OpenQASM 3 supports // line comments and non-nested /* ... */ "
+            "block comments."
+        ),
     ),
     CommentSyntax(
         family_name="rust_style",
@@ -1262,7 +1314,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="hash_c_style",
         canonical_name="ampl",
-        aliases=("sieve",),
         regex_patterns=(
             r"\/\*[\S\s]*?\*\/",
             r"#.*",
@@ -1283,6 +1334,38 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="sieve_style",
+        canonical_name="sieve",
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "if true {\n  # note\n}",
+                "# note",
+                "Sieve hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "if true {\n  /* note */\n}",
+                "/* note */",
+                "Sieve bracketed comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://datatracker.ietf.org/doc/html/rfc5228",
+        implementation_source="https://github.com/roundcube/sievelib",
+        confidence="verified",
+        notes=(
+            "RFC 5228 defines hash line comments and bracketed /* ... */ "
+            "comments. Bracketed comments may span lines and do not nest."
         ),
     ),
     CommentSyntax(
@@ -2166,7 +2249,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="hash_pipe_style",
         canonical_name="racket",
-        aliases=("emacs_lisp",),
         regex_patterns=(r";.*",),
         nested_delimiters=(("#|", "|#"),),
         shared_regex_examples=(
@@ -2187,6 +2269,31 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="nested",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="emacs_lisp_style",
+        canonical_name="emacs_lisp",
+        regex_patterns=(r";[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "(message \"before\") ; note\n(message \"after\")",
+                "; note",
+                "Emacs Lisp semicolon line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.gnu.org/software/emacs/manual/html_node/elisp/"
+            "Comment-Tips.html"
+        ),
+        implementation_source="https://git.savannah.gnu.org/cgit/emacs.git",
+        confidence="verified",
+        notes=(
+            "Emacs Lisp uses semicolon line comments. Common Lisp #| ... |# "
+            "block comments are not valid Emacs Lisp syntax."
         ),
     ),
     CommentSyntax(
@@ -2269,7 +2376,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="jsonnet_style",
         canonical_name="jsonnet",
         aliases=(
-            "directx_3d_file",
             "graphviz_dot",
             "hcl",
             "html_php",
@@ -2306,6 +2412,45 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="directx_3d_file_style",
+        canonical_name="directx_3d_file",
+        regex_patterns=(
+            r"/{2}[^\r\n]*",
+            r"#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "xof 0303txt 0032\n// note\n",
+                "// note",
+                "DirectX .x slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "xof 0303txt 0032\n# note\n",
+                "# note",
+                "DirectX .x hash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/windows/win32/direct3d9/"
+            "reserved-words--header--and-comments"
+        ),
+        implementation_source=(
+            "https://github.com/MicrosoftDocs/win32/blob/docs/desktop-src/"
+            "direct3d9/reserved-words--header--and-comments.md"
+        ),
+        confidence="verified",
+        notes=(
+            "DirectX .x text files support // and # comments to end of line. "
+            "The Microsoft reference does not define /* ... */ block comments."
         ),
     ),
     CommentSyntax(
@@ -2373,8 +2518,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="cmake_style",
         canonical_name="cmake",
-        regex_patterns=(r"(?<!\])#(?!\[\[).*",),
-        nested_delimiters=(("#[[", "]]"),),
+        regex_patterns=(
+            r"#\[\[[\S\s]*?\]\]",
+            r"#\[(=+)\[[\S\s]*?\]\1\]",
+            r"#(?!\[=*\[)[^\r\n]*",
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n# note\nsuffix",
@@ -2384,15 +2532,30 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
-        ),
-        shared_nested_examples=(
             CommentExample(
-                "before #[[ outer #[[ inner ]] outer ]] after",
-                "#[[ outer #[[ inner ]] outer ]]",
-                "Bracketed CMake block comment.",
-                kind="nested",
+                "before #[[ note ]] after",
+                "#[[ note ]]",
+                "CMake bracket comment.",
+                kind="block",
                 inline_compatible=True,
             ),
+            CommentExample(
+                "before #[=[ note ]=] after",
+                "#[=[ note ]=]",
+                "CMake equal-delimited bracket comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://cmake.org/cmake/help/latest/manual/"
+            "cmake-language.7.html"
+        ),
+        implementation_source="https://gitlab.kitware.com/cmake/cmake",
+        confidence="verified",
+        notes=(
+            "CMake bracket comments use the same equal-delimited bracket "
+            "syntax as bracket arguments, and bracket arguments do not nest."
         ),
     ),
     CommentSyntax(
@@ -2426,7 +2589,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="ejs_style",
         canonical_name="ejs",
-        aliases=("html_ecr", "html_eex", "html_erb"),
+        aliases=("html_eex", "html_erb"),
         regex_patterns=(r"<%#[\S\s]*?%>",),
         shared_regex_examples=(
             CommentExample(
@@ -2436,6 +2599,45 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="html_ecr_style",
+        canonical_name="html_ecr",
+        regex_patterns=(
+            r"<!--[\S\s]*?-->",
+            r"<%-?\s*#(?:(?!-?%>)[\S\s])*-?%>",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n<%# note %>\nsuffix",
+                "<%# note %>",
+                "Crystal ECR comment tag.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "prefix\n<% # note %>\nsuffix",
+                "<% # note %>",
+                "Crystal code tag containing a Crystal comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "<p>before</p>\n<!-- note -->\n<p>after</p>",
+                "<!-- note -->",
+                "HTML comment in an ECR template.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://crystal-lang.org/api/latest/ECR.html",
+        implementation_source="https://github.com/crystal-lang/crystal/tree/master/src/ecr",
+        confidence="verified",
+        notes=(
+            "Crystal ECR strips <%# ... %> and <% # ... %> comments. HTML "
+            "comments remain template text but are still source comments in "
+            "html_ecr files."
         ),
     ),
     CommentSyntax(
@@ -2455,7 +2657,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="jinja_style",
         canonical_name="jinja",
-        aliases=("genshi",),
         regex_patterns=(
             r"\{#[\S\s]*?#\}",
             r"##.*",
@@ -2476,6 +2677,34 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="genshi_style",
+        canonical_name="genshi",
+        regex_patterns=(r"<!--[\S\s]*?-->",),
+        shared_regex_examples=(
+            CommentExample(
+                "<div><!-- note --><span>${value}</span></div>",
+                "<!-- note -->",
+                "Genshi XML/HTML template comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://genshi.readthedocs.io/en/latest/xml-templates.html; "
+            "https://github.com/github-linguist/linguist/blob/master/"
+            "lib/linguist/languages.yml"
+        ),
+        implementation_source="https://github.com/edgewall/genshi",
+        confidence="verified",
+        notes=(
+            "The Stack/GitHub Genshi language is XML-based .kid content "
+            "(text.xml.genshi), so this registry key follows Genshi XML "
+            "templates and accepts normal HTML comments. Genshi's separate "
+            "text-template dialects use {# ... #} and legacy ## comments, but "
+            "they are not part of this language key."
         ),
     ),
     CommentSyntax(
@@ -3092,8 +3321,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="liquid_style",
         canonical_name="liquid",
         regex_patterns=(
-            r"\{%\s*comment\s*%\}[\S\s]*?\{%\s*endcomment\s*%\}",
-            r"\{%\s*#.*?%\}",
+            r"\{%-?\s*comment\s*-?%\}[\S\s]*?\{%-?\s*endcomment\s*-?%\}",
+            r"\{%-?\s*(?:#[^\r\n]*(?:\r?\n\s*#[^\r\n]*)*)\s*-?%\}",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -3105,11 +3334,26 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
             CommentExample(
+                "prefix\n{%\n  # note\n  # more\n%}\nsuffix",
+                "{%\n  # note\n  # more\n%}",
+                "Liquid multiline inline comment tag.",
+                kind="line",
+                inline_compatible=False,
+            ),
+            CommentExample(
                 "prefix\n{% comment %}\nblock note\n{% endcomment %}\nsuffix",
                 "{% comment %}\nblock note\n{% endcomment %}",
                 "Liquid block comment tag.",
                 kind="block",
             ),
+        ),
+        documentation_source="https://shopify.dev/docs/api/liquid/tags/comment",
+        implementation_source="https://github.com/Shopify/liquid",
+        confidence="verified",
+        notes=(
+            "Liquid supports {% comment %} blocks plus inline {% # ... %} "
+            "comment tags. Multiline inline comment tags require each content "
+            "line to begin with #."
         ),
     ),
     CommentSyntax(

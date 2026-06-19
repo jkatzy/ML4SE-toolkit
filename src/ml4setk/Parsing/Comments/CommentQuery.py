@@ -16,6 +16,7 @@ from .registry import get_comment_syntax
 
 _WARNED_LANGUAGE_CAVEATS = set()
 _RANGE_END_SENTINEL = float("inf")
+_JSON_STRING_AWARE_LANGUAGES = {"jsonc"}
 
 
 def _warn_language_caveat_once(language):
@@ -52,6 +53,9 @@ def _quoted_string_ranges(text):
         parse language-specific lexical rules.
     """
 
+    if "'" not in text and '"' not in text and "`" not in text:
+        return []
+
     ranges = []
     quote = None
     start = None
@@ -85,6 +89,48 @@ def _quoted_string_ranges(text):
         escaped = False
 
     return ranges
+
+
+def _json_string_ranges(text):
+    """Return JSON double-quoted string ranges, including unterminated values."""
+
+    if '"' not in text:
+        return []
+
+    ranges = []
+    index = 0
+    text_length = len(text)
+
+    while index < text_length:
+        if text[index] != '"':
+            index += 1
+            continue
+
+        start = index
+        index += 1
+        escaped = False
+        while index < text_length:
+            char = text[index]
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                index += 1
+                break
+            index += 1
+
+        ranges.append((start, index))
+
+    return ranges
+
+
+def _comment_start_ignored_ranges(language, text):
+    """Return source ranges where comment delimiters should be ignored."""
+
+    if language.lower() in _JSON_STRING_AWARE_LANGUAGES:
+        return _json_string_ranges(text)
+    return _quoted_string_ranges(text)
 
 
 def _starts_inside_quoted_string(start, quoted_ranges):
@@ -157,7 +203,8 @@ class LineCommentQuery(Query):
         _warn_language_caveat_once(language)
         self.language = language
         self.syntax = get_comment_syntax(language)
-        self.regexes = self.syntax.regex_patterns
+        self.regex_patterns = self.syntax.regex_patterns
+        self.regexes = tuple(re.compile(pattern) for pattern in self.regex_patterns)
 
     def contains(self, string):
         """Return ``True`` when regex-based extraction finds a comment."""
@@ -165,7 +212,7 @@ class LineCommentQuery(Query):
         if not self.regexes:
             return False
 
-        quoted_ranges = _quoted_string_ranges(string)
+        quoted_ranges = _comment_start_ignored_ranges(self.language, string)
         return any(
             not _starts_inside_quoted_string(start, quoted_ranges)
             for start, _ in self._iter_match_ranges(string)
@@ -183,25 +230,32 @@ class LineCommentQuery(Query):
             strings are ignored.
         """
 
+        return _query_matches_from_ranges(text, self.parse_ranges(text))
+
+    def parse_ranges(self, text, quoted_ranges=None):
+        """Return regex-based comment ranges in source order."""
+
         if not self.regexes:
             return []
 
-        matches = []
-        quoted_ranges = _quoted_string_ranges(text)
+        if quoted_ranges is None:
+            quoted_ranges = _comment_start_ignored_ranges(self.language, text)
         match_ranges = (
             (start, end)
             for start, end in self._iter_match_ranges(text)
             if not _starts_inside_quoted_string(start, quoted_ranges)
         )
-        for start, end in self._dedupe_match_ranges(match_ranges):
-            matches.append(_query_match_from_range(text, start, end))
-        return matches
+        return self._dedupe_match_ranges(match_ranges)
 
     def _iter_match_ranges(self, text):
         """Yield raw regex match ranges for all configured patterns."""
 
         for pattern in self.regexes:
-            for match in re.finditer(pattern, text, overlapped=True):
+            seen_starts = set()
+            for match in pattern.finditer(text, overlapped=True):
+                if match.start() in seen_starts:
+                    continue
+                seen_starts.add(match.start())
                 yield match.start(), match.end()
 
     @staticmethod
@@ -267,18 +321,24 @@ class NestedCommentQuery(Query):
             separate matches.
         """
 
+        return _query_matches_from_ranges(text, self.parse_ranges(text))
+
+    def parse_ranges(self, text, quoted_ranges=None):
+        """Return nested comment ranges in source order."""
+
         if not self.delimiters:
             return []
 
-        matches = []
-        quoted_ranges = _quoted_string_ranges(text)
+        if quoted_ranges is None:
+            quoted_ranges = _comment_start_ignored_ranges(self.language, text)
+        ranges = []
         for open_delim, close_delim in self.delimiters:
-            matches.extend(
-                match
-                for match in self.parse_nested(open_delim, close_delim, text)
-                if not _starts_inside_quoted_string(len(match.prefix), quoted_ranges)
+            ranges.extend(
+                (start, end)
+                for start, end in self.parse_nested_ranges(open_delim, close_delim, text)
+                if not _starts_inside_quoted_string(start, quoted_ranges)
             )
-        return sorted(matches, key=lambda match: len(match.prefix))
+        return sorted(ranges)
 
     @staticmethod
     def parse_nested(open_delim, close_delim, text):
@@ -294,35 +354,40 @@ class NestedCommentQuery(Query):
             blocks are ignored.
         """
 
+        return _query_matches_from_ranges(
+            text, NestedCommentQuery.parse_nested_ranges(open_delim, close_delim, text)
+        )
+
+    @staticmethod
+    def parse_nested_ranges(open_delim, close_delim, text):
+        """Extract top-level delimited text ranges, including the delimiters."""
+
         result = []
-        stack = []
-        top_level_ranges = []
+        stack_depth = 0
+        block_start = None
         open_len = len(open_delim)
         close_len = len(close_delim)
-        i = 0
+        search_from = 0
 
-        while i < len(text):
-            if text.startswith(open_delim, i):
-                if not stack:
-                    top_level_ranges.append([i, None])
-                stack.append(i)
-                i += open_len
+        while True:
+            open_index = text.find(open_delim, search_from)
+            close_index = text.find(close_delim, search_from)
+            if open_index == -1 and close_index == -1:
+                break
+
+            if open_index != -1 and (close_index == -1 or open_index <= close_index):
+                if stack_depth == 0:
+                    block_start = open_index
+                stack_depth += 1
+                search_from = open_index + open_len
                 continue
 
-            if text.startswith(close_delim, i) and stack:
-                stack.pop()
-                if not stack:
-                    top_level_ranges[-1][1] = i + close_len
-                i += close_len
-                continue
-
-            i += 1
-
-        for start, end in top_level_ranges:
-            if end is None:
-                continue
-
-            result.append(_query_match_from_range(text, start, end))
+            if stack_depth:
+                stack_depth -= 1
+                if stack_depth == 0 and block_start is not None:
+                    result.append((block_start, close_index + close_len))
+                    block_start = None
+            search_from = close_index + close_len
 
         return result
 
@@ -368,14 +433,26 @@ class CommentQuery(Query):
             comments are grouped into one logical match.
         """
 
+        return _query_matches_from_ranges(text, self.parse_ranges(text))
+
+    def parse_ranges(self, text):
+        """Return unique comment ranges in source order."""
+
         if len(self._query_pairs) == 1:
             line_comments, nested_comments = self._query_pairs[0]
-            return self._parse_single_language(text, line_comments, nested_comments)
+            return self._parse_single_language_ranges(text, line_comments, nested_comments)
 
-        matches = []
+        ranges = []
         for line_comments, nested_comments in self._query_pairs:
-            matches.extend(self._parse_single_language(text, line_comments, nested_comments))
-        return self._union_comment_matches(text, matches)
+            ranges.extend(
+                self._parse_single_language_ranges(text, line_comments, nested_comments)
+            )
+        return self._union_comment_ranges(ranges)
+
+    def iter_ranges(self, text):
+        """Yield unique comment ranges in source order."""
+
+        yield from self.parse_ranges(text)
 
     @staticmethod
     def _normalize_languages(language):
@@ -398,10 +475,26 @@ class CommentQuery(Query):
     def _parse_single_language(text, line_comments, nested_comments):
         """Return grouped and deduplicated matches for one language."""
 
-        comments = []
-        comments.extend(nested_comments.parse(text))
-        comments.extend(CommentQuery._group_line_comment_blocks(text, line_comments.parse(text)))
-        return CommentQuery._dedupe_comment_matches(text, comments)
+        return _query_matches_from_ranges(
+            text,
+            CommentQuery._parse_single_language_ranges(
+                text, line_comments, nested_comments
+            ),
+        )
+
+    @staticmethod
+    def _parse_single_language_ranges(text, line_comments, nested_comments):
+        """Return grouped and deduplicated match ranges for one language."""
+
+        quoted_ranges = _comment_start_ignored_ranges(line_comments.language, text)
+        ranges = []
+        ranges.extend(nested_comments.parse_ranges(text, quoted_ranges))
+        ranges.extend(
+            CommentQuery._group_line_comment_block_ranges(
+                text, line_comments.parse_ranges(text, quoted_ranges)
+            )
+        )
+        return LineCommentQuery._dedupe_match_ranges(ranges)
 
     @staticmethod
     def _group_line_comment_blocks(text, matches):
@@ -411,21 +504,28 @@ class CommentQuery(Query):
         grouping only applies when the comment occupies the whole source line.
         """
 
-        if not matches:
+        ranges = [_match_range(text, match) for match in matches]
+        grouped_ranges = CommentQuery._group_line_comment_block_ranges(text, ranges)
+        return _query_matches_from_ranges(text, grouped_ranges)
+
+    @staticmethod
+    def _group_line_comment_block_ranges(text, ranges):
+        """Group adjacent standalone line comment ranges into logical blocks."""
+
+        if not ranges:
             return []
 
         grouped = []
         group_start = None
         group_end = None
 
-        for match in matches:
-            start, end = _match_range(text, match)
+        for start, end in ranges:
             if not CommentQuery._is_standalone_single_line(text, start, end):
                 if group_start is not None:
-                    grouped.append(_query_match_from_range(text, group_start, group_end))
+                    grouped.append((group_start, group_end))
                     group_start = None
                     group_end = None
-                grouped.append(match)
+                grouped.append((start, end))
                 continue
 
             if group_start is None:
@@ -434,20 +534,22 @@ class CommentQuery(Query):
                 continue
 
             separator = text[group_end:start]
+            group_key = CommentQuery._line_comment_group_key(text[group_start:group_end])
+            next_key = CommentQuery._line_comment_group_key(text[start:end])
             if (
                 CommentQuery._is_consecutive_line_separator(separator)
-                and CommentQuery._line_comment_group_key(text[group_start:group_end])
-                == CommentQuery._line_comment_group_key(match.match)
+                and group_key is not None
+                and group_key == next_key
             ):
                 group_end = end
                 continue
 
-            grouped.append(_query_match_from_range(text, group_start, group_end))
+            grouped.append((group_start, group_end))
             group_start = start
             group_end = end
 
         if group_start is not None:
-            grouped.append(_query_match_from_range(text, group_start, group_end))
+            grouped.append((group_start, group_end))
 
         return grouped
 
@@ -462,17 +564,24 @@ class CommentQuery(Query):
     def _union_comment_matches(text, matches):
         """Return unique matches across candidate languages."""
 
+        return _query_matches_from_ranges(
+            text,
+            CommentQuery._union_comment_ranges(_match_range(text, match) for match in matches),
+        )
+
+    @staticmethod
+    def _union_comment_ranges(ranges):
+        """Return unique ranges across candidate languages in source order."""
+
         unique_ranges = set()
-        unique_matches = []
-        for match in matches:
-            start, end = _match_range(text, match)
+        result = []
+        for start, end in ranges:
             comment_range = (start, end)
             if comment_range in unique_ranges:
                 continue
             unique_ranges.add(comment_range)
-            unique_matches.append(match)
-
-        return sorted(unique_matches, key=lambda match: _match_sort_key(text, match))
+            result.append(comment_range)
+        return sorted(result)
 
     @staticmethod
     def _is_standalone_single_line(text, start, end):
@@ -511,14 +620,33 @@ class CommentQuery(Query):
         """
 
         stripped = comment.lstrip()
-        block_prefixes = ("/*", "/+", "(*", "{-", "{", "<!--")
+        block_prefixes = (
+            "/*",
+            "/+",
+            "(*",
+            "{-",
+            "{#",
+            "<!--",
+            "<%#",
+            "<% #",
+            "#-",
+            "#[[",
+            "#[=",
+        )
         if not stripped or stripped.startswith(block_prefixes):
             return None
 
         line_prefixes = (
+            "Comment",
+            "G04",
+            "<%--",
+            "{{!",
+            "{% #",
             "///",
             "//",
             "--",
+            "-#",
+            "::",
             "*>",
             "NB.",
             "BTW",
@@ -531,6 +659,8 @@ class CommentQuery(Query):
             "%%",
             "%",
             "!",
+            "⍝",
+            "/",
             "#",
             "*",
             "'",
@@ -610,10 +740,9 @@ class OpeningCommentQuery(Query):
         """Return candidate comment ranges that start after the hashbang anchor."""
 
         ranges = []
-        for match in self.line_comments.parse(text):
-            ranges.append(self._match_range(text, match))
-        for match in self.nested_comments.parse(text):
-            ranges.append(self._match_range(text, match))
+        quoted_ranges = _comment_start_ignored_ranges(self.language, text)
+        ranges.extend(self.line_comments.parse_ranges(text, quoted_ranges))
+        ranges.extend(self.nested_comments.parse_ranges(text, quoted_ranges))
 
         filtered = [
             (start, end)

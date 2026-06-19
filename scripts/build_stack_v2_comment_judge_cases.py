@@ -15,7 +15,7 @@ import json
 import os
 import sys
 import threading
-from collections import defaultdict
+from collections import defaultdict, deque
 from collections.abc import Iterable, Iterator
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -46,6 +46,7 @@ STACK_CONFIG_OVERRIDES = {
     "f#": "F-Sharp",
     "f_star": "F-Star",
     "four_d": "4D",
+    "jsonc": "JSON_with_Comments",
     "qsharp": "Q-Sharp",
 }
 STACK_LABEL_OVERRIDES = {
@@ -54,8 +55,20 @@ STACK_LABEL_OVERRIDES = {
     "f#": "F#",
     "f_star": "F*",
     "four_d": "4D",
+    "jsonc": "JSON with Comments",
     "objective-c": "Objective-C",
     "qsharp": "Q#",
+}
+STACK_V2_KIND_EXCLUSIONS = {
+    # Reviewed from comment-judge-coverage.log: these buckets are too sparse in
+    # Stack v2 to require 20 corpus-backed judge cases for this manifest.
+    ("berry", "block"),
+    ("cmake", "block"),
+    ("genshi", "block"),
+    ("html_ecr", "block"),
+    ("liquid", "line"),
+    ("openqasm", "block"),
+    ("sieve", "block"),
 }
 REQUESTED_LANGUAGE_ALIASES = {
     "c_plus_plus": "c++",
@@ -635,7 +648,9 @@ def _supported_comment_kinds(syntax: CommentSyntax, language: str) -> tuple[str,
     for example in examples:
         if example.kind not in kinds:
             kinds.append(example.kind)
-    return tuple(kinds)
+    return tuple(
+        kind for kind in kinds if (language, kind) not in STACK_V2_KIND_EXCLUSIONS
+    )
 
 
 def _collect_language_cases(
@@ -649,6 +664,7 @@ def _collect_language_cases(
 ) -> StackCollectionResult:
     query = CommentQuery(language)
     sanitizer = CommentSanitizer(language)
+    classification_rules = _comment_classification_rules(syntax)
     collected: dict[str, list[StackCase]] = {kind: [] for kind in target_kinds}
     seen_sources: set[tuple[str, str]] = set()
 
@@ -687,19 +703,19 @@ def _collect_language_cases(
                 continue
 
             source_identity = _source_identity(record, prefetched.record_index)
-            matches = query.parse(content)
-            if not matches:
-                continue
-
-            for match_index, match in enumerate(matches):
-                kind, syntax_label = _classify_comment(syntax, match.match)
+            match_ranges = query.iter_ranges(content)
+            for match_index, (match_start, match_end) in enumerate(match_ranges):
+                raw_comment = content[match_start:match_end]
+                kind, syntax_label = _classify_comment_with_rules(
+                    syntax.nested_delimiters,
+                    classification_rules,
+                    raw_comment,
+                )
                 if kind not in collected or len(collected[kind]) >= args.per_kind:
                     continue
                 if (kind, source_identity) in seen_sources:
                     continue
 
-                match_start = len(match.prefix)
-                match_end = len(content) - len(match.suffix)
                 case = _build_case(
                     language=language,
                     kind=kind,
@@ -710,8 +726,8 @@ def _collect_language_cases(
                     content=content,
                     match_start=match_start,
                     match_end=match_end,
-                    raw_comment=match.match,
-                    cleaned_comment=sanitizer.sanitize(match),
+                    raw_comment=raw_comment,
+                    cleaned_comment=sanitizer.sanitize(raw_comment),
                     source_root=source_root,
                     context_chars=args.context_chars,
                 )
@@ -1212,7 +1228,7 @@ def _iter_prefetched_records(
         return
 
     executor = ThreadPoolExecutor(max_workers=worker_count)
-    pending: list[tuple[int, dict[str, Any], Any]] = []
+    pending: deque[tuple[int, dict[str, Any], Any]] = deque()
     exhausted = False
 
     def fill_pending() -> None:
@@ -1244,7 +1260,7 @@ def _iter_prefetched_records(
     try:
         fill_pending()
         while pending:
-            record_index, record, future = pending.pop(0)
+            record_index, record, future = pending.popleft()
             content = "" if future is None else future.result()
             fill_pending()
             yield PrefetchedRecord(record_index, record, content)
@@ -1425,48 +1441,88 @@ def _source_identity(record: dict[str, Any], record_index: int) -> str:
 
 
 def _classify_comment(syntax: CommentSyntax, raw_comment: str) -> tuple[str, str]:
+    return _classify_comment_with_rules(
+        syntax.nested_delimiters,
+        _comment_classification_rules(syntax),
+        raw_comment,
+    )
+
+
+def _classify_comment_with_rules(
+    nested_delimiters: tuple[tuple[str, str], ...],
+    classification_rules: tuple[
+        tuple[tuple[str, tuple[str, str]], ...],
+        tuple[tuple[str, str], ...],
+        tuple[str, ...],
+    ],
+    raw_comment: str,
+) -> tuple[str, str]:
     stripped = raw_comment.strip()
-    examples = [*syntax.shared_regex_examples, *syntax.canonical_regex_examples]
-    examples.extend(syntax.shared_nested_examples)
-    examples.extend(syntax.canonical_nested_examples)
+    block_wrappers, non_line_openers, line_openers = classification_rules
 
     matching_nested_delimiters = []
-    for open_delim, close_delim in syntax.nested_delimiters:
+    for open_delim, close_delim in nested_delimiters:
         if stripped.startswith(open_delim) and stripped.endswith(close_delim):
             if _contains_nested_opener(stripped, open_delim):
                 return "nested", f"{open_delim}...{close_delim}"
             matching_nested_delimiters.append((open_delim, close_delim))
 
-    for example in examples:
-        if example.kind != "block":
-            continue
-        wrapper = _block_wrapper(example.expected_match)
-        if wrapper is not None and stripped.startswith(wrapper[0]) and stripped.endswith(
-            wrapper[1]
-        ):
-            return "block", f"{wrapper[0]}...{wrapper[1]}"
+    for kind, wrapper in block_wrappers:
+        if stripped.startswith(wrapper[0]) and stripped.endswith(wrapper[1]):
+            return kind, f"{wrapper[0]}...{wrapper[1]}"
 
     if matching_nested_delimiters:
         open_delim, close_delim = matching_nested_delimiters[0]
         return "nested", f"{open_delim}...{close_delim}"
 
-    for example in _examples_by_opener_length(examples):
-        if example.kind == "line":
-            continue
-        opener = _line_opener(example.expected_match)
+    for kind, opener in non_line_openers:
         if opener and stripped.startswith(opener):
-            return example.kind, opener
+            return kind, opener
 
-    for example in _examples_by_opener_length(examples):
-        if example.kind != "line":
-            continue
-        opener = _line_opener(example.expected_match)
+    for opener in line_openers:
         if opener and stripped.startswith(opener):
             return "line", opener
 
     if "\n" in raw_comment:
         return "block", "multiline"
     return "line", "single-line"
+
+
+@lru_cache(maxsize=None)
+def _comment_classification_rules(
+    syntax: CommentSyntax,
+) -> tuple[
+    tuple[tuple[str, tuple[str, str]], ...],
+    tuple[tuple[str, str], ...],
+    tuple[str, ...],
+]:
+    examples = (
+        *syntax.shared_regex_examples,
+        *syntax.canonical_regex_examples,
+        *syntax.shared_nested_examples,
+        *syntax.canonical_nested_examples,
+    )
+    block_wrappers = tuple(
+        (example.kind, wrapper)
+        for example in examples
+        if example.kind == "block"
+        for wrapper in (_block_wrapper(example.expected_match),)
+        if wrapper is not None
+    )
+    non_line_examples = _examples_by_opener_length(
+        example for example in examples if example.kind != "line"
+    )
+    line_examples = _examples_by_opener_length(
+        example for example in examples if example.kind == "line"
+    )
+    non_line_openers = tuple(
+        (example.kind, _line_opener(example.expected_match))
+        for example in non_line_examples
+    )
+    line_openers = tuple(
+        _line_opener(example.expected_match) for example in line_examples
+    )
+    return block_wrappers, non_line_openers, line_openers
 
 
 def _contains_nested_opener(raw_comment: str, open_delim: str) -> bool:

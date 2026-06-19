@@ -77,6 +77,7 @@ def test_stack_v2_dataset_config_resolves_current_config_names() -> None:
         "HTML+ERB",
         "HTML+PHP",
         "HTML+Razor",
+        "JSON_with_Comments",
         "MiniYAML",
         "Objective-C",
         "C++",
@@ -129,6 +130,10 @@ def test_stack_v2_dataset_config_resolves_current_config_names() -> None:
         GENERATOR._dataset_config_for(args, "html_razor", {}, available_configs)
         == "HTML+Razor"
     )
+    assert (
+        GENERATOR._dataset_config_for(args, "jsonc", {}, available_configs)
+        == "JSON_with_Comments"
+    )
     assert GENERATOR._dataset_config_for(args, "mini_yaml", {}, available_configs) == "MiniYAML"
     assert (
         GENERATOR._dataset_config_for(args, "objective-c", {}, available_configs)
@@ -165,6 +170,7 @@ def test_stack_v2_dataset_config_resolves_current_config_names() -> None:
         ("html_erb", "HTML+ERB"),
         ("html_php", "HTML+PHP"),
         ("html_razor", "HTML+Razor"),
+        ("jsonc", "JSON with Comments"),
         ("mini_yaml", "MiniYAML"),
         ("pascal", "Pascal"),
         ("qsharp", "Q#"),
@@ -668,6 +674,35 @@ def test_hocon_manifest_sampling_targets_line_comments_only() -> None:
 
     assert GENERATOR._supported_comment_kinds(syntax, "hocon") == ("line",)
     assert GENERATOR.CommentQuery("hocon").parse("a = 1\n/* not hocon */\n") == []
+
+
+def test_genshi_manifest_sampling_excludes_reviewed_xml_block_bucket() -> None:
+    syntax = GENERATOR.get_comment_syntax("genshi")
+
+    assert GENERATOR._supported_comment_kinds(syntax, "genshi") == ()
+    assert GENERATOR.CommentQuery("genshi").parse(
+        "<div><!-- note --><span>${value}</span></div>"
+    )
+    assert GENERATOR.CommentQuery("genshi").parse("{# text template #}\n") == []
+    assert GENERATOR.CommentQuery("genshi").parse("## legacy text template\n") == []
+
+
+def test_stack_v2_manifest_excludes_reviewed_sparse_corpus_buckets() -> None:
+    excluded_buckets = {
+        ("berry", "block"),
+        ("cmake", "block"),
+        ("genshi", "block"),
+        ("html_ecr", "block"),
+        ("liquid", "line"),
+        ("openqasm", "block"),
+        ("sieve", "block"),
+    }
+
+    for language, comment_kind in excluded_buckets:
+        syntax = GENERATOR.get_comment_syntax(language)
+        assert comment_kind not in GENERATOR._supported_comment_kinds(
+            syntax, language
+        )
 
 
 def test_incomplete_comment_kind_becomes_failure_row() -> None:
