@@ -1,0 +1,18 @@
+value_0 = 0
+shh much fixture_1
+value_1 = 1
+quiet
+  much fixture_2
+loud
+value_2 = 2
+quiet
+  much
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+loud
+value_3 = 3
+value_string_1 = "not shh much string_probe_1";
+value_4 = 4

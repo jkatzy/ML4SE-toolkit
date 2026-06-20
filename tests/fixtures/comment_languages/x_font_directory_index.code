@@ -1,0 +1,8 @@
+value_0 = 0
+! font alias fixture_1
+value_1 = 1
+! font alias grouped_line_1_a
+! font alias grouped_line_1_b
+value_2 = 2
+value_string_1 = "not ! font alias string_probe_1";
+value_3 = 3

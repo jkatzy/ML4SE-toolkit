@@ -13,6 +13,7 @@ import os
 import subprocess
 import sys
 import tempfile
+from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
@@ -43,6 +44,8 @@ VERDICT_SCHEMA: dict[str, Any] = {
         "rationale": {"type": "string"},
     },
 }
+MAX_FORWARDED_OUTPUT_CHARS = 24_000
+FORWARDED_OUTPUT_EDGE_CHARS = 4_000
 
 
 def parse_args() -> argparse.Namespace:
@@ -132,18 +135,16 @@ def main() -> int:
                 _print_usage_limit_abort(stdout, stderr)
                 return usage_limit_exit_code()
             print(f"Codex judge timed out after {args.timeout}s", file=sys.stderr)
-            if stderr:
-                print(stderr, file=sys.stderr)
-            if stdout:
-                print(stdout, file=sys.stderr)
+            _print_if_present(stderr)
+            _print_if_present(stdout)
             return 124
 
         if result.returncode != 0:
             if looks_like_usage_limit(result.stdout, result.stderr):
                 _print_usage_limit_abort(result.stdout, result.stderr)
                 return usage_limit_exit_code()
-            print(result.stderr, file=sys.stderr)
-            print(result.stdout, file=sys.stderr)
+            _print_if_present(result.stderr)
+            _print_if_present(result.stdout)
             return result.returncode
 
         verdict_text = output_path.read_text(encoding="utf-8").strip()
@@ -168,10 +169,34 @@ def _print_usage_limit_abort(stdout: Any, stderr: Any) -> None:
     )
     normalized_stderr = normalize_output(stderr)
     normalized_stdout = normalize_output(stdout)
-    if normalized_stderr:
-        print(normalized_stderr, file=sys.stderr)
-    if normalized_stdout:
-        print(normalized_stdout, file=sys.stderr)
+    _print_if_present(normalized_stderr)
+    _print_if_present(normalized_stdout)
+
+
+def _print_if_present(value: Any) -> None:
+    """Print external process output after limiting echoed prompt payloads."""
+
+    text = _limit_forwarded_output(value)
+    if text:
+        print(text, file=sys.stderr)
+
+
+def _limit_forwarded_output(value: Any) -> str | None:
+    """Return process output capped to an inspectable prefix/suffix summary."""
+
+    text = normalize_output(value)
+    if text is None or len(text) <= MAX_FORWARDED_OUTPUT_CHARS:
+        return text
+
+    prefix = text[:FORWARDED_OUTPUT_EDGE_CHARS]
+    suffix = text[-FORWARDED_OUTPUT_EDGE_CHARS:]
+    omitted = len(text) - len(prefix) - len(suffix)
+    digest = sha256(text.encode("utf-8", errors="surrogatepass")).hexdigest()
+    return (
+        f"{prefix}\n"
+        f"... [truncated {omitted} chars; sha256={digest}] ...\n"
+        f"{suffix}"
+    )
 
 
 def _parse_json_object(text: str) -> dict[str, Any]:

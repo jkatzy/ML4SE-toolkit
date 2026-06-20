@@ -1023,7 +1023,7 @@ def test_promela_parser_warns_once_and_supports_only_native_comments():
 
 def test_unsupported_languages_raise_clear_errors():
     with pytest.raises(NotImplementedError):
-        LineCommentQuery("brainfuck")
+        LineCommentQuery("befunge")
 
     with pytest.raises(NotImplementedError):
-        NestedCommentQuery("brainfuck")
+        NestedCommentQuery("befunge")

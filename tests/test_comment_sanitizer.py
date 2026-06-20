@@ -212,6 +212,28 @@ def _build_block_cases():
     return removal_cases, preservation_cases
 
 
+def _build_registry_sample_cases():
+    cases = []
+    generic_kinds = {"line", "block", "nested"}
+
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            for index, example in enumerate(_iter_regex_examples_for_language(syntax, language)):
+                if example.kind in generic_kinds:
+                    continue
+                cases.append(
+                    SanitizerCase(
+                        language=language,
+                        sample=example.sample,
+                        expected_match=example.expected_match,
+                        expected_sanitized=example.expected_match,
+                        case_id=f"{language}-registry-sample-{index}",
+                    )
+                )
+
+    return cases
+
+
 def _build_c_style_block_gutter_cases():
     removal_cases = []
     preservation_cases = []
@@ -285,6 +307,7 @@ def _build_c_style_block_gutter_cases():
 
 LINE_REMOVAL_CASES, LINE_PRESERVATION_CASES = _build_line_cases()
 BLOCK_REMOVAL_CASES, BLOCK_PRESERVATION_CASES = _build_block_cases()
+REGISTRY_SAMPLE_CASES = _build_registry_sample_cases()
 (
     C_BLOCK_GUTTER_REMOVAL_CASES,
     C_BLOCK_GUTTER_PRESERVATION_CASES,
@@ -322,6 +345,14 @@ def test_comment_sanitizer_preserves_meaningful_symbols(case):
     assert CommentSanitizer(case.language).sanitize(match[0]) == case.expected_sanitized
 
 
+@pytest.mark.parametrize("case", REGISTRY_SAMPLE_CASES, ids=lambda case: case.case_id)
+def test_comment_sanitizer_preserves_custom_registry_samples(case):
+    match = CommentQuery(case.language).parse(case.sample)
+
+    assert match == [_expected_query_match(case.sample, case.expected_match)]
+    assert CommentSanitizer(case.language).sanitize(match[0]) == case.expected_sanitized
+
+
 @pytest.mark.parametrize(
     "case",
     C_BLOCK_GUTTER_REMOVAL_CASES,
@@ -349,7 +380,7 @@ def test_comment_sanitizer_preserves_semantic_symbols_inside_c_style_blocks(case
 def test_sanitizer_generated_cases_cover_every_supported_language():
     covered = _case_languages(SANITIZER_REMOVAL_CASES) | _case_languages(
         SANITIZER_PRESERVATION_CASES
-    )
+    ) | _case_languages(REGISTRY_SAMPLE_CASES)
 
     assert covered == set(SUPPORTED_LANGUAGES)
 

@@ -1,0 +1,6 @@
+value_0 = 0
+graph [
+  comment "Graph note"
+  directed 1
+]
+value_1 = 1

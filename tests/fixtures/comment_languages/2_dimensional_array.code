@@ -1,0 +1,15 @@
+value_0 = 0
+# table fixture_1
+value_1 = 1
+// table fixture_2
+value_2 = 2
+# table grouped_line_1_a
+# table grouped_line_1_b
+value_3 = 3
+// table grouped_line_2_a
+// table grouped_line_2_b
+value_4 = 4
+value_string_1 = "not # table string_probe_1";
+value_5 = 5
+value_string_2 = "not // table string_probe_2";
+value_6 = 6

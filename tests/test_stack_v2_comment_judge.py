@@ -10,7 +10,7 @@ import shlex
 import subprocess
 import sys
 import time
-from hashlib import sha1
+from hashlib import sha1, sha256
 from pathlib import Path
 from typing import Any
 
@@ -64,6 +64,10 @@ TIMEOUT_ENV = "COMMENT_JUDGE_TIMEOUT"
 PROGRESS_ENV = "COMMENT_JUDGE_PROGRESS"
 LEDGER_ENV = "COMMENT_JUDGE_LEDGER"
 FORCE_LEDGER_ENV = "COMMENT_JUDGE_FORCE"
+MAX_JUDGE_TEXT_CHARS = 12_000
+JUDGE_TEXT_EDGE_CHARS = 2_000
+MAX_JUDGE_OUTPUT_CHARS = 24_000
+JUDGE_OUTPUT_EDGE_CHARS = 4_000
 
 
 def _manifest_path() -> Path | None:
@@ -656,8 +660,8 @@ def _build_judge_prompt(case: dict[str, Any], actual: list[dict[str, Any]]) -> s
         "syntax_label": case.get("syntax_label"),
         "repo": case.get("repo"),
         "path": case.get("path"),
-        "sampled_raw_comment": case.get("raw_comment"),
-        "sampled_cleaned_comment": case.get("cleaned_comment"),
+        "sampled_raw_comment": _judge_visible_text(case.get("raw_comment")),
+        "sampled_cleaned_comment": _judge_visible_text(case.get("cleaned_comment")),
     }
     observed = {"actual_extracted_comments": _content_only_actual_comments(actual)}
 
@@ -674,7 +678,10 @@ def _build_judge_prompt(case: dict[str, Any], actual: list[dict[str, Any]]) -> s
         "source code. Correct cleaning means the cleaned comment removes only "
         "comment syntax scaffolding, decorative gutters, delimiter-only edges, "
         "and padding while preserving content-bearing text, punctuation, "
-        "examples, TODO tags, Markdown, and code-like text.\n\n"
+        "examples, TODO tags, Markdown, and code-like text. Very long comment "
+        "strings may be represented as a summary object with length, sha256, "
+        "prefix, and suffix; matching hashes and lengths are exact-content "
+        "evidence for the omitted middle.\n\n"
         "Return JSON only, with this shape:\n"
         "{\n"
         '  "verdict": "pass" | "fail",\n'
@@ -699,12 +706,40 @@ def _content_only_actual_comments(
     for item in actual:
         actual_item = {
             "index": item.get("index"),
-            "raw_comment": item.get("raw_comment"),
+            "raw_comment": _judge_visible_text(item.get("raw_comment")),
         }
         if include_cleaned:
-            actual_item["cleaned_comment"] = item.get("cleaned_comment")
+            actual_item["cleaned_comment"] = _judge_visible_text(
+                item.get("cleaned_comment")
+            )
         actual_items.append(actual_item)
     return actual_items
+
+
+def _judge_visible_text(value: Any) -> Any:
+    """Return short text unchanged and summarize oversized judge payload strings."""
+
+    return _summarize_oversized_text(
+        value, max_chars=MAX_JUDGE_TEXT_CHARS, edge_chars=JUDGE_TEXT_EDGE_CHARS
+    )
+
+
+def _summarize_oversized_text(value: Any, *, max_chars: int, edge_chars: int) -> Any:
+    """Return short text unchanged and summarize oversized strings."""
+
+    if not isinstance(value, str) or len(value) <= max_chars:
+        return value
+
+    prefix = value[:edge_chars]
+    suffix = value[-edge_chars:]
+    return {
+        "truncated": True,
+        "length": len(value),
+        "sha256": sha256(value.encode("utf-8", errors="surrogatepass")).hexdigest(),
+        "prefix": prefix,
+        "suffix": suffix,
+        "omitted_char_count": len(value) - len(prefix) - len(suffix),
+    }
 
 
 def _assert_extraction_verdict(
@@ -767,9 +802,9 @@ def _format_expected_actual(
 def _judge_expected_actual_payload(
     case: dict[str, Any], actual: list[dict[str, Any]], *, include_cleaned: bool
 ) -> dict[str, Any]:
-    expected = {"raw_comment": case.get("raw_comment")}
+    expected = {"raw_comment": _judge_visible_text(case.get("raw_comment"))}
     if include_cleaned:
-        expected["cleaned_comment"] = case.get("cleaned_comment")
+        expected["cleaned_comment"] = _judge_visible_text(case.get("cleaned_comment"))
 
     return {
         "expected": expected,
@@ -1028,6 +1063,8 @@ def _run_judge(
         stderr=result.stderr,
     )
     if result.returncode != 0:
+        stdout = _process_output_text(result.stdout)
+        stderr = _process_output_text(result.stderr)
         report_note = _write_judge_failure_report(
             "judge_command",
             case or {},
@@ -1035,8 +1072,8 @@ def _run_judge(
             None,
             judge_error={
                 "returncode": result.returncode,
-                "stdout": result.stdout,
-                "stderr": result.stderr,
+                "stdout": stdout,
+                "stderr": stderr,
             },
         )
         _record_judge_failure_in_ledger(
@@ -1048,7 +1085,8 @@ def _run_judge(
         )
         pytest.fail(
             f"judge command failed with exit code {result.returncode}\n"
-            f"stderr:\n{result.stderr}\nstdout:\n{result.stdout}"
+            f"stderr:\n{_format_processed_output(stderr)}\n"
+            f"stdout:\n{_format_processed_output(stdout)}"
             f"{_format_report_note(report_note)}"
         )
     try:
@@ -1061,8 +1099,8 @@ def _run_judge(
             None,
             judge_error={
                 "error": str(exc),
-                "stdout": result.stdout,
-                "stderr": result.stderr,
+                "stdout": _process_output_text(result.stdout),
+                "stderr": _process_output_text(result.stderr),
             },
         )
         _record_judge_failure_in_ledger(
@@ -1113,11 +1151,23 @@ def _exit_for_usage_limit_if_present(
     )
 
 
-def _process_output_text(value: Any) -> str | None:
+def _process_output_text(value: Any) -> Any:
     if value is None:
         return None
     if isinstance(value, bytes):
-        return value.decode("utf-8", errors="replace")
+        value = value.decode("utf-8", errors="replace")
+    else:
+        value = str(value)
+    return _summarize_oversized_text(
+        value, max_chars=MAX_JUDGE_OUTPUT_CHARS, edge_chars=JUDGE_OUTPUT_EDGE_CHARS
+    )
+
+
+def _format_processed_output(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, dict):
+        return json.dumps(value, ensure_ascii=False, indent=2)
     return str(value)
 
 
@@ -1334,6 +1384,59 @@ def test_judge_prompt_and_failure_payload_hide_span_metadata() -> None:
             }
         ],
     }
+
+
+def test_judge_prompt_summarizes_oversized_comment_text() -> None:
+    oversized_comment = "# " + ("prefix-" * 500) + ("middle-" * 2000) + ("suffix-" * 500)
+    case = {
+        "case_id": "python-line-large",
+        "language": "python",
+        "comment_kind": "line",
+        "syntax_label": "hash",
+        "repo": "owner/repo",
+        "path": "pkg/large.py",
+        "raw_comment": oversized_comment,
+        "cleaned_comment": oversized_comment[2:],
+    }
+    actual = [
+        {
+            "index": 0,
+            "raw_comment": oversized_comment,
+            "cleaned_comment": oversized_comment[2:],
+        }
+    ]
+
+    prompt = _build_judge_prompt(case, actual)
+    payload = _judge_expected_actual_payload(case, actual, include_cleaned=True)
+
+    expected_raw = payload["expected"]["raw_comment"]
+    actual_raw = payload["actual"][0]["raw_comment"]
+    assert expected_raw["truncated"] is True
+    assert actual_raw["truncated"] is True
+    assert expected_raw["length"] == len(oversized_comment)
+    assert expected_raw["sha256"] == actual_raw["sha256"]
+    assert "middle-middle-middle-middle" not in prompt
+    assert '"sha256"' in prompt
+    assert '"omitted_char_count"' in prompt
+
+
+def test_judge_command_output_summarizes_oversized_text() -> None:
+    oversized_output = (
+        "stderr-prefix-"
+        + ("prefix-body-" * 1_000)
+        + "OMITTED_SENTINEL"
+        + ("suffix-body-" * 1_000)
+        + "stderr-suffix"
+    )
+
+    processed = _process_output_text(oversized_output)
+
+    assert processed["truncated"] is True
+    assert processed["length"] == len(oversized_output)
+    assert processed["prefix"].startswith("stderr-prefix-")
+    assert processed["suffix"].endswith("stderr-suffix")
+    assert "OMITTED_SENTINEL" not in _format_processed_output(processed)
+    assert '"sha256"' in _format_processed_output(processed)
 
 
 def test_exact_match_case_still_runs_external_judge(

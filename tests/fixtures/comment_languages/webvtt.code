@@ -1,0 +1,9 @@
+value_0 = 0
+WEBVTT
+
+NOTE cue timing
+more detail
+
+00:01.000 --> 00:02.000
+Hi
+value_1 = 1

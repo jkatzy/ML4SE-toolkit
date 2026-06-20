@@ -180,6 +180,25 @@ def _build_inline_cases():
     return cases
 
 
+def _build_registry_sample_cases():
+    cases = []
+    generic_kinds = {"line", "block", "nested"}
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            for index, example in enumerate(_iter_regex_examples_for_language(syntax, language)):
+                if example.kind in generic_kinds:
+                    continue
+                cases.append(
+                    GeneratedCommentCase(
+                        language=language,
+                        sample=example.sample,
+                        expected_match=example.expected_match,
+                        case_id=f"{language}-registry-sample-{index}",
+                    )
+                )
+    return cases
+
+
 def _build_nested_cases():
     cases = []
     for syntax in iter_comment_syntaxes():
@@ -291,6 +310,7 @@ GROUPED_LINE_CASES = _build_grouped_line_cases()
 BLOCK_CASES = _build_block_cases()
 INLINE_CASES = _build_inline_cases()
 NESTED_CASES = _build_nested_cases()
+REGISTRY_SAMPLE_CASES = _build_registry_sample_cases()
 BLOCK_WITH_INNER_LINE_CASES = _build_block_with_inner_line_cases()
 OUTER_BLOCK_WINS_CASES = _build_outer_block_wins_cases()
 
@@ -355,12 +375,23 @@ def test_generated_outer_block_wins_over_inner_line_comment_cases(case):
     assert query.parse(case.sample) == [_expected_query_match(case.sample, case.expected_match)]
 
 
+@pytest.mark.parametrize("case", REGISTRY_SAMPLE_CASES, ids=lambda case: case.case_id)
+def test_generated_registry_sample_cases(case):
+    query = CommentQuery(case.language)
+
+    assert query.contains(case.sample) is True
+    assert query.parse(case.sample) == [
+        _expected_query_match(case.sample, case.expected_match)
+    ]
+
+
 def test_generated_cases_cover_every_supported_language():
     covered = (
         _case_languages(SINGLE_LINE_CASES)
         | _case_languages(BLOCK_CASES)
         | _case_languages(INLINE_CASES)
         | _case_languages(NESTED_CASES)
+        | _case_languages(REGISTRY_SAMPLE_CASES)
     )
 
     assert covered == set(SUPPORTED_LANGUAGES)

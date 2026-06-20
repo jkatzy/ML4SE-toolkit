@@ -1,0 +1,7 @@
+value_0 = 0
+@c note
+@node Top
+value_1 = 1
+@comment note
+@node Top
+value_2 = 2

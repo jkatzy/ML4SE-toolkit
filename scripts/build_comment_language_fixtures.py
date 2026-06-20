@@ -52,7 +52,7 @@ def language_fixture_stem(language: str) -> str:
         elif char == "+":
             parts.append("_plus_")
         elif char == "#":
-            parts.append("_sharp_")
+            parts.append("_hash_")
         else:
             parts.append("_")
 
@@ -129,6 +129,15 @@ def _registry_examples_for_language(language: str):
 def _seeded_cases_for_examples(examples) -> list[FixtureCase]:
     cases = []
     for index, example in enumerate(examples, start=1):
+        if example.kind not in {"line", "block", "nested"}:
+            cases.append(
+                FixtureCase(
+                    content=example.sample,
+                    expected_match=example.expected_match,
+                )
+            )
+            continue
+
         expected_match = _unique_fixture_match(
             example.expected_match,
             f"fixture_{index}",
@@ -224,6 +233,11 @@ def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
     cases = []
     comment_start_chars = _comment_start_characters(examples)
     for index, example in enumerate(examples, start=1):
+        if example.kind not in {"line", "block", "nested"}:
+            continue
+        if example.expected_match.startswith("\\\\") or example.expected_match.endswith("\\"):
+            continue
+
         expected_match = _unique_fixture_match(
             example.expected_match,
             f"string_probe_{index}",

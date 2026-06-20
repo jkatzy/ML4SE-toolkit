@@ -1,6 +1,12 @@
 import pytest
 
-from ml4setk import CommentQuery, CommentSanitizer, QueryMatch, sanitize_comment
+from ml4setk import (
+    CommentQuery,
+    CommentSanitizer,
+    LineCommentQuery,
+    QueryMatch,
+    sanitize_comment,
+)
 
 pytestmark = pytest.mark.unit
 
@@ -1531,6 +1537,36 @@ def test_stack_v2_autohotkey_cr_only_line_comments_stop_at_carriage_return():
     ]
     assert "CapsLock & `::" not in matches[0].match
     assert "CapsLock & Up::" not in matches[1].match
+
+
+def test_stack_v2_xojo_cr_only_apostrophe_line_comment_stops_at_carriage_return():
+    source = (
+        "Sub Constructor(f as FolderItem)\r"
+        "  ' saves the current res file\r"
+        "  dim ref as MemoryBlock = f.MacFSRef\r"
+        "  if ref = nil then\r"
+        "    break ' file not accessible\r"
+        "  end if\r"
+        "End Sub\r"
+    )
+
+    raw_comments = [match.match for match in CommentQuery("xojo").parse(source)]
+
+    assert raw_comments == [
+        "' saves the current res file",
+        "' file not accessible",
+    ]
+    assert all("dim ref" not in comment for comment in raw_comments)
+
+
+def test_stack_v2_brainfuck_ignored_text_is_scanned_at_run_boundaries():
+    source = "+++++[>++++<-] Brainfuck note\n+" + ("A" * 500) + "\n."
+
+    raw_comments = [match.match for match in CommentQuery("brainfuck").parse(source)]
+    raw_ranges = list(LineCommentQuery("brainfuck")._iter_match_ranges(source))
+
+    assert raw_comments == ["Brainfuck note", "A" * 500]
+    assert raw_ranges == [(15, 29), (31, 531)]
 
 
 @pytest.mark.parametrize(
