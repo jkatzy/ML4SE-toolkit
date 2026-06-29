@@ -18,10 +18,30 @@ class GeneratedCommentCase:
     case_id: str
 
 
+@dataclass(frozen=True)
+class GeneratedCommentSequenceCase:
+    language: str
+    sample: str
+    expected_matches: tuple[str, ...]
+    forbidden_match: str
+    case_id: str
+
+
 def _expected_query_match(sample, expected_match):
     start = sample.index(expected_match)
     end = start + len(expected_match)
     return QueryMatch(sample[:start], sample[end:], expected_match)
+
+
+def _expected_query_matches(sample, expected_matches):
+    matches = []
+    cursor = 0
+    for expected_match in expected_matches:
+        start = sample.index(expected_match, cursor)
+        end = start + len(expected_match)
+        matches.append(QueryMatch(sample[:start], sample[end:], expected_match))
+        cursor = end
+    return matches
 
 
 def _iter_regex_examples_for_language(syntax, language):
@@ -76,7 +96,15 @@ def _build_grouped_line_cases():
             )
             if example is None:
                 continue
-            expected_match = f"{example.expected_match}\n{example.expected_match}"
+            first_line = _line_comment_match_with_marker(
+                example.expected_match,
+                "grouped_line_a",
+            )
+            second_line = _line_comment_match_with_marker(
+                example.expected_match,
+                "grouped_line_b",
+            )
+            expected_match = f"{first_line}\n{second_line}"
             sample = f"{expected_match}\nafter"
             cases.append(
                 GeneratedCommentCase(
@@ -84,6 +112,78 @@ def _build_grouped_line_cases():
                     sample=sample,
                     expected_match=expected_match,
                     case_id=f"{language}-generated-line-block",
+                )
+            )
+    return cases
+
+
+def _build_blank_separated_line_cases():
+    cases = []
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            example = _find_regex_example(
+                syntax,
+                language,
+                kind="line",
+                predicate=lambda example: example.grouped_line_compatible,
+            )
+            if example is None:
+                continue
+
+            first_line = _line_comment_match_with_marker(
+                example.expected_match,
+                "blank_separated_a",
+            )
+            second_line = _line_comment_match_with_marker(
+                example.expected_match,
+                "blank_separated_b",
+            )
+            forbidden_match = f"{first_line}\n\n{second_line}"
+            sample = f"{forbidden_match}\nafter"
+            cases.append(
+                GeneratedCommentSequenceCase(
+                    language=language,
+                    sample=sample,
+                    expected_matches=(first_line, second_line),
+                    forbidden_match=forbidden_match,
+                    case_id=f"{language}-generated-line-block-blank-separated",
+                )
+            )
+    return cases
+
+
+def _build_inline_adjacent_line_cases():
+    cases = []
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            example = _find_regex_example(
+                syntax,
+                language,
+                kind="line",
+                predicate=lambda example: (
+                    example.grouped_line_compatible and example.inline_compatible
+                ),
+            )
+            if example is None:
+                continue
+
+            inline_line = _line_comment_match_with_marker(
+                example.expected_match,
+                "inline_adjacent_a",
+            )
+            standalone_line = _line_comment_match_with_marker(
+                example.expected_match,
+                "inline_adjacent_b",
+            )
+            forbidden_match = f"{inline_line}\n{standalone_line}"
+            sample = f"value = 1 {forbidden_match}\nafter"
+            cases.append(
+                GeneratedCommentSequenceCase(
+                    language=language,
+                    sample=sample,
+                    expected_matches=(inline_line, standalone_line),
+                    forbidden_match=forbidden_match,
+                    case_id=f"{language}-generated-inline-line-does-not-group",
                 )
             )
     return cases
@@ -305,8 +405,16 @@ def _build_block_with_inner_line_comment(block_match, line_match):
     raise ValueError(f"Cannot synthesize block overlap case from {block_match!r}")
 
 
+def _line_comment_match_with_marker(expected_match, marker):
+    if "note" not in expected_match:
+        raise ValueError(f"Cannot synthesize line grouping case from {expected_match!r}")
+    return expected_match.replace("note", marker, 1)
+
+
 SINGLE_LINE_CASES = _build_single_line_cases()
 GROUPED_LINE_CASES = _build_grouped_line_cases()
+BLANK_SEPARATED_LINE_CASES = _build_blank_separated_line_cases()
+INLINE_ADJACENT_LINE_CASES = _build_inline_adjacent_line_cases()
 BLOCK_CASES = _build_block_cases()
 INLINE_CASES = _build_inline_cases()
 NESTED_CASES = _build_nested_cases()
@@ -333,6 +441,34 @@ def test_generated_grouped_line_block_cases(case):
 
     assert query.contains(case.sample) is True
     assert query.parse(case.sample) == [_expected_query_match(case.sample, case.expected_match)]
+
+
+@pytest.mark.parametrize(
+    "case",
+    BLANK_SEPARATED_LINE_CASES,
+    ids=lambda case: case.case_id,
+)
+def test_generated_blank_separated_line_comments_do_not_group(case):
+    query = CommentQuery(case.language)
+
+    assert query.contains(case.sample) is True
+    matches = query.parse(case.sample)
+    assert matches == _expected_query_matches(case.sample, case.expected_matches)
+    assert all(match.match != case.forbidden_match for match in matches)
+
+
+@pytest.mark.parametrize(
+    "case",
+    INLINE_ADJACENT_LINE_CASES,
+    ids=lambda case: case.case_id,
+)
+def test_generated_inline_line_comment_does_not_group_with_following_line(case):
+    query = CommentQuery(case.language)
+
+    assert query.contains(case.sample) is True
+    matches = query.parse(case.sample)
+    assert matches == _expected_query_matches(case.sample, case.expected_matches)
+    assert all(match.match != case.forbidden_match for match in matches)
 
 
 @pytest.mark.parametrize("case", BLOCK_CASES, ids=lambda case: case.case_id)
@@ -411,6 +547,40 @@ def test_generated_grouped_line_cases_cover_all_supported_line_languages():
                 expected.add(language)
 
     assert _case_languages(GROUPED_LINE_CASES) == expected
+
+
+def test_generated_blank_separated_line_cases_cover_all_supported_line_languages():
+    expected = set()
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            example = _find_regex_example(
+                syntax,
+                language,
+                kind="line",
+                predicate=lambda example: example.grouped_line_compatible,
+            )
+            if example is not None:
+                expected.add(language)
+
+    assert _case_languages(BLANK_SEPARATED_LINE_CASES) == expected
+
+
+def test_generated_inline_adjacent_line_cases_cover_all_inline_grouped_line_languages():
+    expected = set()
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            example = _find_regex_example(
+                syntax,
+                language,
+                kind="line",
+                predicate=lambda example: (
+                    example.grouped_line_compatible and example.inline_compatible
+                ),
+            )
+            if example is not None:
+                expected.add(language)
+
+    assert _case_languages(INLINE_ADJACENT_LINE_CASES) == expected
 
 
 def test_generated_block_cases_cover_all_supported_block_languages():
