@@ -8,6 +8,8 @@ and seeded examples instead of branching in parser code.
 from dataclasses import dataclass
 from typing import Dict, Iterable, Tuple
 
+from .contextual import SUPPORTED_CONTEXTUAL_EXTRACTORS
+
 
 @dataclass(frozen=True)
 class CommentExample:
@@ -22,6 +24,8 @@ class CommentExample:
             same line.
         grouped_line_compatible: Whether adjacent examples can be grouped into
             one logical line-comment block.
+        standalone_compatible: Whether the comment marker is valid without
+            language syntax before it on the same physical line.
     """
 
     sample: str
@@ -30,6 +34,7 @@ class CommentExample:
     kind: str = "line"
     inline_compatible: bool = False
     grouped_line_compatible: bool = False
+    standalone_compatible: bool = True
 
 
 @dataclass(frozen=True)
@@ -46,6 +51,15 @@ class CommentSyntax:
         canonical_regex_examples: Seeded examples only for ``canonical_name``.
         shared_nested_examples: Nested examples that apply to every alias.
         canonical_nested_examples: Nested examples only for ``canonical_name``.
+        contextual_extractor: Optional named range extractor for formats whose
+            comments depend on file-level structure rather than delimiters.
+        shared_contextual_examples: Contextual examples for every alias.
+        canonical_contextual_examples: Contextual examples only for the
+            canonical language.
+        unclosed_block_openers: Block openers that intentionally consume through
+            end of file when no closing delimiter is present.
+        sanitizer_mode: ``wrapped`` for delimiter-based comments or ``raw`` for
+            contextual comments whose text must be preserved verbatim.
         documentation_source: Reference used to justify the syntax entry.
         implementation_source: File that owns this implementation.
         confidence: Research confidence level for the syntax entry.
@@ -61,6 +75,11 @@ class CommentSyntax:
     canonical_regex_examples: Tuple[CommentExample, ...] = ()
     shared_nested_examples: Tuple[CommentExample, ...] = ()
     canonical_nested_examples: Tuple[CommentExample, ...] = ()
+    contextual_extractor: str = ""
+    shared_contextual_examples: Tuple[CommentExample, ...] = ()
+    canonical_contextual_examples: Tuple[CommentExample, ...] = ()
+    unclosed_block_openers: Tuple[str, ...] = ()
+    sanitizer_mode: str = "wrapped"
     documentation_source: str = "TODO"
     implementation_source: str = "src/ml4setk/Parsing/Comments/registry.py"
     confidence: str = "seeded-from-implementation"
@@ -5430,6 +5449,251 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         confidence="verified",
         notes="Move supports //, /* ... */, ///, and /** ... */ comment forms.",
     ),
+    CommentSyntax(
+        family_name="gnu_checksum_manifest_style",
+        canonical_name="checksums",
+        regex_patterns=(r"(?m)^#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\n"
+                "e3b0c44298fc1c149afbf4c8996fb924"
+                "27ae41e4649b934ca495991b7852b855  empty",
+                "# note",
+                "GNU Coreutils checksum checker column-zero comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.gnu.org/software/coreutils/manual/html_node/cksum.html"
+        ),
+        implementation_source=(
+            "https://github.com/coreutils/coreutils/blob/"
+            "6e812858bb8b5cc1a4c91b16502a3092ead1d72f/src/cksum.c#L1414-L1416"
+        ),
+        confidence="verified",
+        notes=(
+            "GNU Coreutils checksum check-file dialect only. # must be the "
+            "first byte of the physical line; indented hashes and hashes in "
+            "filenames are data."
+        ),
+    ),
+    CommentSyntax(
+        family_name="ecere_econ_style",
+        canonical_name="ecere_projects",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"//[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                '{\n  // note\n  "Version": 0.2\n}',
+                "// note",
+                "Ecere .epj ECON line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                '{ /* note */ "Version": 0.2 }',
+                "/* note */",
+                "Ecere .epj ECON non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/ecere/ecere-sdk/blob/"
+            "cca43ca73c12aba5a152a8dba909483eef494faf/"
+            "ecere/src/sys/JSON.ec#L317-L339"
+        ),
+        implementation_source=(
+            "https://github.com/ecere/ecere-sdk/blob/"
+            "cca43ca73c12aba5a152a8dba909483eef494faf/"
+            "ide/src/project/Project.ec#L4912-L4923"
+        ),
+        confidence="verified",
+        notes=(
+            ".epj projects use Ecere Object Notation rather than strict JSON. "
+            "Its reader accepts // and non-nested /* ... */ comments outside "
+            "double-quoted strings."
+        ),
+    ),
+    CommentSyntax(
+        family_name="figlet_counted_header_style",
+        canonical_name="figlet_font",
+        contextual_extractor="figlet_header_comments",
+        canonical_contextual_examples=(
+            CommentExample(
+                "flf2a$ 1 1 1 0 2\n"
+                "FIGlet font attribution\n"
+                "  leading space is content\n"
+                "@ glyph sentinel\n",
+                "FIGlet font attribution\n  leading space is content",
+                "FIGfont header-declared comment lines.",
+                kind="contextual",
+            ),
+        ),
+        sanitizer_mode="raw",
+        documentation_source=(
+            "https://sources.debian.org/data/main/f/figlet/"
+            "2.2.5-3/figfont.txt"
+        ),
+        implementation_source=(
+            "https://github.com/cmatsuoka/figlet/blob/"
+            "202a0a8110650a943f1125f536b3bb455cf72ee1/figlet.c"
+        ),
+        confidence="verified",
+        notes=(
+            "The byte-oriented FIGfont header requires a single-byte hardblank "
+            "and C whitespace between numeric fields. The fifth numeric field is "
+            "Comment_Lines. Exactly that many following physical lines are "
+            "comments; they have no lexical wrapper."
+        ),
+    ),
+    CommentSyntax(
+        family_name="visual_studio_solution_style",
+        canonical_name="microsoft_visual_studio_solution",
+        regex_patterns=(r"(?:\A|(?<=[\r\n]))[^\S\r\n]*#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "Microsoft Visual Studio Solution File, Format Version 12.00\n"
+                "# note\n"
+                "Global\nEndGlobal\n",
+                "# note",
+                "MSBuild .sln full-line comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://learn.microsoft.com/en-us/visualstudio/extensibility/"
+            "internals/solution-dot-sln-file"
+        ),
+        implementation_source=(
+            "https://github.com/dotnet/msbuild/blob/"
+            "fecd32cb8181813b4d9fd2ffea6691746461fabd/"
+            "src/Build/Construction/Solution/SolutionFile.cs"
+        ),
+        confidence="verified",
+        notes=(
+            "MSBuild trims solution lines and ignores a line whose first "
+            "non-whitespace character is #. It does not define inline or block "
+            "comments."
+        ),
+    ),
+    CommentSyntax(
+        family_name="ampl_nl_style",
+        canonical_name="nl",
+        regex_patterns=(
+            r"(?m)^(?![ \t]*#)[^#\r\n]*\S[ \t]*\K#[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "g3 0 1 0\t# note\n"
+                "0 0\n",
+                "# note",
+                "AMPL text .nl record annotation.",
+                kind="line",
+                inline_compatible=True,
+                standalone_compatible=False,
+            ),
+        ),
+        documentation_source="https://ampl.github.io/nlwrite.pdf",
+        implementation_source=(
+            "https://github.com/ampl/mp/blob/"
+            "3521b072f65527bf3b810ca3e47c79fc80a28256/"
+            "include/mp/nl-reader.h"
+        ),
+        confidence="verified",
+        notes=(
+            "Text .nl comments begin with # after a record and run to EOL. "
+            "The query masks h<N>: raw-string records using C whitespace and "
+            "the binary payload after a complete ten-line b-format header; "
+            "standalone # lines are not records."
+        ),
+    ),
+    CommentSyntax(
+        family_name="omgrofl_style",
+        canonical_name="omgrofl",
+        regex_patterns=(
+            r"(?i)(?:\A|(?<=[\r\n\u0085\u2028\u2029]))"
+            r"[ \t\x0b\f\x1c-\x1f\u1680\u2000-\u2006\u2008-\u200a\u205f\u3000]*"
+            r"w00t"
+            r"(?=[ \t\x0b\f\x1c-\x1f\u1680\u2000-\u2006\u2008-\u200a\u205f"
+            r"\u3000\r\n\u0085\u2028\u2029]|\Z)"
+            r"[^\r\n\u0085\u2028\u2029]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "w00t note\nlol iz 71\n",
+                "w00t note",
+                "Omgrofl whole-line w00t comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "\tW00T note\nlol iz 71\n",
+                "\tW00T note",
+                "Omgrofl comment operator is case-insensitive.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/OlegSmelov/omgrofl-interpreter/blob/"
+            "6c621627b913771f3896c75ea8a27f06e34f2e65/README.md"
+        ),
+        implementation_source=(
+            "https://github.com/OlegSmelov/omgrofl-interpreter/blob/"
+            "6c621627b913771f3896c75ea8a27f06e34f2e65/"
+            "src/omgrofl/interpreter/ScriptParser.java"
+        ),
+        confidence="verified",
+        notes=(
+            "w00t must be the first complete token under Java Scanner's default "
+            "whitespace and line-separator rules. The parser ignores that "
+            "physical line case-insensitively; there is no inline or block form."
+        ),
+    ),
+    CommentSyntax(
+        family_name="pogoscript_style",
+        canonical_name="pogoscript",
+        regex_patterns=(
+            r"/\*[\S\s]*?(?:\*/|\Z)",
+            r"//[^\r\n]*",
+        ),
+        unclosed_block_openers=("/*",),
+        shared_regex_examples=(
+            CommentExample(
+                "value = 1 // note\nnext = 2",
+                "// note",
+                "PogoScript line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "a = 1 /* block note */ b = 2",
+                "/* block note */",
+                "PogoScript non-nested block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://featurist.github.io/pogoscript/cheatsheet.html",
+        implementation_source=(
+            "https://github.com/featurist/pogoscript/blob/"
+            "51ab449cd05e3ed30386fae816569514416039ff/"
+            "lib/parser/grammar.pogo"
+        ),
+        confidence="verified",
+        notes=(
+            "The lexer accepts // comments and non-nested /* ... */ comments, "
+            "including an unterminated block through EOF. PogoScript's "
+            "multiline strings are masked before comment matching."
+        ),
+    ),
 )
 
 
@@ -5459,6 +5723,49 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
         ):
             raise ValueError(
                 "Registry entries with nested delimiters must provide seeded nested examples: "
+                + syntax.family_name
+            )
+
+        contextual_examples = (
+            syntax.shared_contextual_examples
+            or syntax.canonical_contextual_examples
+        )
+        if syntax.contextual_extractor and not contextual_examples:
+            raise ValueError(
+                "Registry entries with contextual extractors must provide "
+                "seeded contextual examples: " + syntax.family_name
+            )
+        if contextual_examples and not syntax.contextual_extractor:
+            raise ValueError(
+                "Contextual examples require a contextual extractor: "
+                + syntax.family_name
+            )
+        if (
+            syntax.contextual_extractor
+            and syntax.contextual_extractor not in SUPPORTED_CONTEXTUAL_EXTRACTORS
+        ):
+            raise ValueError(
+                "Unknown contextual extractor "
+                f"{syntax.contextual_extractor!r}: {syntax.family_name}"
+            )
+        if syntax.sanitizer_mode not in {"wrapped", "raw"}:
+            raise ValueError(
+                f"Unknown sanitizer mode {syntax.sanitizer_mode!r}: "
+                + syntax.family_name
+            )
+        if any(not opener for opener in syntax.unclosed_block_openers):
+            raise ValueError(
+                "Unclosed block openers must not be empty: "
+                + syntax.family_name
+            )
+        if syntax.sanitizer_mode == "raw" and syntax.unclosed_block_openers:
+            raise ValueError(
+                "Raw sanitizers cannot declare unclosed block openers: "
+                + syntax.family_name
+            )
+        if syntax.unclosed_block_openers and not syntax.regex_patterns:
+            raise ValueError(
+                "Unclosed block openers require regex patterns: "
                 + syntax.family_name
             )
 

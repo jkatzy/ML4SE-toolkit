@@ -747,15 +747,22 @@ def _format_progress_counts(
 
 def _supported_comment_kinds(syntax: CommentSyntax, language: str) -> tuple[str, ...]:
     kinds = []
-    examples = [*syntax.shared_regex_examples, *syntax.shared_nested_examples]
+    examples = [
+        *syntax.shared_regex_examples,
+        *syntax.shared_nested_examples,
+        *syntax.shared_contextual_examples,
+    ]
     if language == syntax.canonical_name:
         examples.extend(syntax.canonical_regex_examples)
         examples.extend(syntax.canonical_nested_examples)
+        examples.extend(syntax.canonical_contextual_examples)
     else:
         if not syntax.shared_regex_examples:
             examples.extend(syntax.canonical_regex_examples)
         if not syntax.shared_nested_examples:
             examples.extend(syntax.canonical_nested_examples)
+        if not syntax.shared_contextual_examples:
+            examples.extend(syntax.canonical_contextual_examples)
 
     for example in examples:
         if example.kind not in kinds:
@@ -964,6 +971,8 @@ def _syntax_examples_for_kind(syntax: CommentSyntax, kind: str) -> list[str]:
     examples = [*syntax.shared_regex_examples, *syntax.canonical_regex_examples]
     examples.extend(syntax.shared_nested_examples)
     examples.extend(syntax.canonical_nested_examples)
+    examples.extend(syntax.shared_contextual_examples)
+    examples.extend(syntax.canonical_contextual_examples)
     return [example.expected_match for example in examples if example.kind == kind]
 
 
@@ -1566,11 +1575,14 @@ def _classify_comment_with_rules(
         tuple[tuple[str, tuple[str, str]], ...],
         tuple[tuple[str, str], ...],
         tuple[str, ...],
+        str,
     ],
     raw_comment: str,
 ) -> tuple[str, str]:
     stripped = raw_comment.strip()
-    block_wrappers, non_line_openers, line_openers = classification_rules
+    block_wrappers, non_line_openers, line_openers, fallback_kind = (
+        classification_rules
+    )
 
     matching_nested_delimiters = []
     for open_delim, close_delim in nested_delimiters:
@@ -1595,6 +1607,8 @@ def _classify_comment_with_rules(
         if opener and stripped.startswith(opener):
             return "line", opener
 
+    if fallback_kind:
+        return fallback_kind, fallback_kind
     if "\n" in raw_comment:
         return "block", "multiline"
     return "line", "single-line"
@@ -1607,6 +1621,7 @@ def _comment_classification_rules(
     tuple[tuple[str, tuple[str, str]], ...],
     tuple[tuple[str, str], ...],
     tuple[str, ...],
+    str,
 ]:
     examples = (
         *syntax.shared_regex_examples,
@@ -1634,7 +1649,8 @@ def _comment_classification_rules(
     line_openers = tuple(
         _line_opener(example.expected_match) for example in line_examples
     )
-    return block_wrappers, non_line_openers, line_openers
+    fallback_kind = "contextual" if syntax.contextual_extractor else ""
+    return block_wrappers, non_line_openers, line_openers, fallback_kind
 
 
 def _contains_nested_opener(raw_comment: str, open_delim: str) -> bool:

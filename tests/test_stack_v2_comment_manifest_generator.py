@@ -676,6 +676,20 @@ def test_hocon_manifest_sampling_targets_line_comments_only() -> None:
     assert GENERATOR.CommentQuery("hocon").parse("a = 1\n/* not hocon */\n") == []
 
 
+def test_figlet_manifest_sampling_targets_contextual_comments() -> None:
+    syntax = GENERATOR.get_comment_syntax("figlet_font")
+
+    assert GENERATOR._supported_comment_kinds(syntax, "figlet_font") == (
+        "contextual",
+    )
+    assert GENERATOR._syntax_examples_for_kind(syntax, "contextual") == [
+        "FIGlet font attribution\n  leading space is content"
+    ]
+    assert GENERATOR._classify_comment(
+        syntax, "font attribution\n  leading space is content"
+    ) == ("contextual", "contextual")
+
+
 def test_genshi_manifest_sampling_excludes_reviewed_xml_block_bucket() -> None:
     syntax = GENERATOR.get_comment_syntax("genshi")
 

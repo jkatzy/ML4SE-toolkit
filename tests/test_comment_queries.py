@@ -53,6 +53,24 @@ def _iter_nested_cases():
             )
 
 
+def _iter_contextual_cases():
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            for index, example in enumerate(syntax.shared_contextual_examples):
+                yield pytest.param(
+                    language,
+                    example,
+                    id=f"{language}-shared-contextual-{index}",
+                )
+
+        for index, example in enumerate(syntax.canonical_contextual_examples):
+            yield pytest.param(
+                syntax.canonical_name,
+                example,
+                id=f"{syntax.canonical_name}-canonical-contextual-{index}",
+            )
+
+
 def _iter_nested_only_languages():
     for syntax in iter_comment_syntaxes():
         if syntax.nested_delimiters and not syntax.regex_patterns:
@@ -86,6 +104,7 @@ def _iter_slash_line_comment_cases():
 
 REGEX_CASES = list(_iter_regex_cases())
 NESTED_CASES = list(_iter_nested_cases())
+CONTEXTUAL_CASES = list(_iter_contextual_cases())
 NESTED_ONLY_LANGUAGES = list(_iter_nested_only_languages())
 REGEX_ONLY_CASES = list(_iter_regex_only_cases())
 SLASH_LINE_COMMENT_CASES = list(_iter_slash_line_comment_cases())
@@ -102,6 +121,14 @@ def test_line_comment_query_matches_registry_examples(language, example):
 @pytest.mark.parametrize(("language", "example"), REGEX_CASES)
 def test_line_comment_query_contains_registry_examples(language, example):
     assert LineCommentQuery(language).contains(example.sample) is True
+
+
+@pytest.mark.parametrize(("language", "example"), CONTEXTUAL_CASES)
+def test_comment_queries_match_contextual_registry_examples(language, example):
+    expected = _expected_query_match(example.sample, example.expected_match)
+
+    assert LineCommentQuery(language).parse(example.sample) == [expected]
+    assert CommentQuery(language).parse(example.sample) == [expected]
 
 
 @pytest.mark.parametrize("language", NESTED_ONLY_LANGUAGES)

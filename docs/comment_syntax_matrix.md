@@ -4,20 +4,20 @@ Development note: this file tracks Stack v2 comment-syntax expansion evidence.
 It is a development artifact under the git workflow; promote only stable code,
 tests, and user-facing docs before merging to `main`.
 
-## 2026-06-19 Stack v2 Audit
+## 2026-07-24 Stack v2 Audit Status
 
 Audit command: `uv run --with datasets python ...` using
 `scripts/build_stack_v2_comment_judge_cases.py` against
 `bigcode/the-stack-v2`.
 
 - Stack v2 configs: `659`
-- Raw Stack v2 configs resolved by the registry: `615`
-- Registry keys including aliases: `664`
-- Remaining unresolved Stack v2 configs: `44`
+- Raw Stack v2 configs resolved by the registry: `622`
+- Registry keys including aliases: `671`
+- Remaining unresolved Stack v2 configs: `37`
 
-The registry only maps formats with a documented lexical comment form. The
-remaining labels are left unsupported rather than represented as empty syntaxes
-or broad data-format guesses.
+The registry only maps formats with documented lexical or structural comment
+behavior. The remaining labels are left unsupported rather than represented as
+empty syntaxes or broad data-format guesses.
 
 ## Source-Backed Additions
 
@@ -49,6 +49,45 @@ or broad data-format guesses.
 | `world_of_warcraft_addon_data` | Single-`#` TOC comments, excluding `##` metadata tags | WoW TOC format references | New family |
 | `x_font_directory_index` | Leading `!` comment lines in `fonts.alias` | Xorg `mkfontdir` manual (`https://xorg.freedesktop.org/archive/X11R7.5/doc/man/man1/mkfontdir.1.html`) | New family |
 
+## 2026-07-24 Missing-Language Follow-Up
+
+Each addition below was checked against documentation and a local checkout of
+the referenced implementation. Formats without a defensible aggregate syntax
+remain unresolved.
+
+| Registry key | Syntax implemented | Evidence | Status |
+| --- | --- | --- | --- |
+| `checksums` | Column-zero `#` lines in GNU checksum check files | GNU Coreutils `src/cksum.c` | New family |
+| `ecere_projects` | ECON `//` and non-nested `/* ... */`, excluding strings | Ecere SDK `JSON.ec` and `Project.ec` | New family with string-aware masking |
+| `figlet_font` | Header-declared `Comment_Lines` region | FIGfont 2 specification and FIGlet `figlet.c` | New contextual extractor |
+| `microsoft_visual_studio_solution` | Full-line `#` after optional indentation | MSBuild `SolutionFile.cs` | New family |
+| `nl` | End-of-record `#` in text headers and records | AMPL NL specification and AMPL MP `nl-reader` | New family with counted-string and binary-body masking |
+| `omgrofl` | Case-insensitive leading `w00t` token | Omgrofl interpreter `ScriptParser.java` | New family |
+| `pogoscript` | `//` and non-nested `/* ... */`, including block-to-EOF | PogoScript lexer grammar and compiler tests | New family with multiline string/interpolation masking |
+
+`Public_Key` remains unresolved because the Stack label aggregates OpenSSH
+key lists, RFC4716 keys, and OpenPGP armor. A leading-`#` rule would only be
+correct for the OpenSSH subset.
+
+## 2026-07-24 Missing-Language Validation
+
+The seven additions and their shared query/sanitizer changes were validated
+with deterministic property fuzzing and local reference implementations:
+
+- `make comment-fuzz`: `67,100` cases across all `671` registry keys, with
+  zero match-bound, reconstruction, ordering, API-consistency, or sanitizer
+  totality failures. This campaign is not a language-semantics oracle.
+- Seeded non-English payload mutation: `985` registry examples covering CJK,
+  Cyrillic, Arabic, emoji, and combining marks, with zero extraction or
+  sanitization failures.
+- Language-aware differential fuzzing: `18,146` cases across FIGlet, NL,
+  PogoScript, ECON, Omgrofl, Visual Studio Solution, and GNU checksum files,
+  with zero residual failures. PogoScript cases were compared with the locally
+  checked-out reference lexer.
+- `make test`: `11,441 passed, 2 skipped, 29 deselected`, with `93.25%`
+  coverage.
+- Targeted Ruff checks and `git diff --check` passed.
+
 ## 2026-06-20 Validation
 
 Affected-language Codex LLM judge rerun:
@@ -77,13 +116,13 @@ formats whose visible marker lines are metadata/directives rather than lexical
 comments. Obscure programming labels are left unresolved where no reliable
 comment syntax evidence was found.
 
-`default`, `Altium_Designer`, `Befunge`, `C-ObjDump`, `CSV`, `Checksums`,
-`Cirru`, `Creole`, `Darcs_Patch`, `Diff`, `Ecere_Projects`, `FIGlet_Font`,
+`default`, `Altium_Designer`, `Befunge`, `C-ObjDump`, `CSV`,
+`Cirru`, `Creole`, `Darcs_Patch`, `Diff`,
 `Formatted`, `GEDCOM`, `Gemfile.lock`, `Gemini`, `Go_Checksums`, `IRC_log`,
 `JAR_Manifest`, `JSON`, `JSONLD`, `Jupyter_Notebook`, `Linux_Kernel_Module`,
 `Max`, `Microsoft_Developer_Studio_Project`,
-`Microsoft_Visual_Studio_Solution`, `NL`, `ObjDump`, `Omgrofl`, `Pickle`,
-`PogoScript`, `Public_Key`, `Pure_Data`, `Python_traceback`,
+`ObjDump`, `Pickle`,
+`Public_Key`, `Pure_Data`, `Python_traceback`,
 `Raw_token_data`, `Rich_Text_Format`, `STL`, `STON`,
 `Spline_Font_Database`, `SubRip_Text`, `TSV`, `Text`, `Unity3D_Asset`,
 `Vim_Help_File`.

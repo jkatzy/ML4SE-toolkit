@@ -3,7 +3,7 @@
 The comment parsing module provides four query implementations:
 
 - `LineCommentQuery`: detects single-line and non-nested block comments based
-  on language-specific regexes.
+  on language-specific regexes or named contextual extractors.
 - `NestedCommentQuery`: extracts top-level nested comment regions using
   delimiter pairs for languages that support them.
 - `CommentQuery`: combines both strategies, returns matches in source order,
@@ -27,7 +27,7 @@ For concrete usage, examples, supported-language lookup, and current
 limitations, see
 [`docs/comment_extractor.md`](../../../../docs/comment_extractor.md).
 
-The registry currently covers `333` language keys, including programming,
+The registry currently covers `671` language keys, including programming,
 template, markup, config, and record-oriented syntaxes such as `astro`,
 `coldfusion`, `genero`, `marko`, `openqasm`, `plantuml`, `q`,
 `restructuredtext`, `rexx`, `slim`, `smarty`, and `tla`.
@@ -36,7 +36,17 @@ template, markup, config, and record-oriented syntaxes such as `astro`,
 
 When adding a language or revising syntax support:
 
-1. Update `registry.py` instead of editing branching logic in the parser.
+1. Update `registry.py`; add a narrowly scoped lexical or contextual helper
+   only when delimiters alone cannot express the format.
 2. Record the evidence in `docs/comment_syntax_matrix.md`.
 3. Add or adjust seeded examples in the registry so the pytest suite exercises
    the new behavior automatically.
+4. Run `make comment-fuzz`; minimize every confirmed failure into a deterministic
+   regression test.
+
+The fuzz target covers all registry keys with delimiter-heavy Unicode text,
+including multiple writing systems, combining marks, bidi controls, uncommon
+whitespace and line separators, emoji, NULs, and lone surrogates. It checks
+match-range and API contracts plus sanitizer totality, not complete language
+semantics; retain focused fixtures and reference comparisons for syntax and
+sanitizer normalization.

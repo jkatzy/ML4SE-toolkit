@@ -87,6 +87,16 @@ def forbidden_sentinels_for_language(language: str) -> tuple[str, ...]:
 
 
 def build_fixture_cases(language: str) -> tuple[FixtureCase, ...]:
+    contextual_examples = _contextual_examples_for_language(language)
+    if contextual_examples:
+        example = contextual_examples[0]
+        return (
+            FixtureCase(
+                content=example.sample,
+                expected_match=example.expected_match,
+            ),
+        )
+
     examples = _registry_examples_for_language(language)
     cases = _seeded_cases_for_examples(examples)
     cases.extend(_repeated_opener_cases_for_examples(examples))
@@ -126,6 +136,17 @@ def _registry_examples_for_language(language: str):
     return tuple(examples)
 
 
+def _contextual_examples_for_language(language: str):
+    syntax = get_comment_syntax(language)
+
+    examples = [*syntax.shared_contextual_examples]
+    if language == syntax.canonical_name:
+        examples.extend(syntax.canonical_contextual_examples)
+    elif not syntax.shared_contextual_examples:
+        examples.extend(syntax.canonical_contextual_examples)
+    return tuple(examples)
+
+
 def _seeded_cases_for_examples(examples) -> list[FixtureCase]:
     cases = []
     for index, example in enumerate(examples, start=1):
@@ -143,14 +164,20 @@ def _seeded_cases_for_examples(examples) -> list[FixtureCase]:
             f"fixture_{index}",
             example.kind,
         )
-        cases.append(FixtureCase(content=expected_match, expected_match=expected_match))
+        if example.standalone_compatible:
+            content = expected_match
+        else:
+            content = example.sample.replace(
+                example.expected_match, expected_match, 1
+            )
+        cases.append(FixtureCase(content=content, expected_match=expected_match))
     return cases
 
 
 def _repeated_opener_cases_for_examples(examples) -> list[FixtureCase]:
     cases = []
     for index, example in enumerate(examples, start=1):
-        if example.kind != "line":
+        if example.kind != "line" or not example.standalone_compatible:
             continue
 
         expected_match = _repeated_line_opener_match(
@@ -235,6 +262,8 @@ def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
     for index, example in enumerate(examples, start=1):
         if example.kind not in {"line", "block", "nested"}:
             continue
+        if not example.standalone_compatible:
+            continue
         if example.expected_match.startswith("\\\\") or example.expected_match.endswith("\\"):
             continue
 
@@ -259,6 +288,10 @@ def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
 
 
 def build_fixture_content(language: str) -> str:
+    contextual_examples = _contextual_examples_for_language(language)
+    if contextual_examples:
+        return contextual_examples[0].sample
+
     chunks = [_code_separator(0)]
     for index, case in enumerate(build_fixture_cases(language), start=1):
         chunks.append(case.content)

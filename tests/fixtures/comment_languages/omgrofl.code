@@ -1,0 +1,15 @@
+value_0 = 0
+w00t fixture_1
+value_1 = 1
+	W00T fixture_2
+value_2 = 2
+w00t grouped_line_1_a
+w00t grouped_line_1_b
+value_3 = 3
+	W00T grouped_line_2_a
+	W00T grouped_line_2_b
+value_4 = 4
+value_string_1 = "not w00t string_probe_1";
+value_5 = 5
+value_string_2 = "not 	W00T string_probe_2";
+value_6 = 6

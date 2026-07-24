@@ -47,6 +47,19 @@ def _iter_regex_examples_for_language(syntax, language):
         yield from syntax.canonical_regex_examples
 
 
+def _iter_registry_examples_for_language(syntax, language):
+    yield from _iter_regex_examples_for_language(syntax, language)
+    yield from syntax.shared_contextual_examples
+    if language == syntax.canonical_name:
+        yield from syntax.canonical_contextual_examples
+
+
+def _line_case_sample(example, expected_match):
+    if example.standalone_compatible:
+        return f"before\n{expected_match}\nafter"
+    return f"before\nn1 {expected_match}\nafter"
+
+
 def _first_line_example(syntax, language):
     for example in _iter_regex_examples_for_language(syntax, language):
         if example.kind == "line":
@@ -100,7 +113,7 @@ def _build_line_cases():
             removal_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{removal_match}\nafter",
+                    sample=_line_case_sample(example, removal_match),
                     expected_match=removal_match,
                     expected_sanitized=removal_expected,
                     case_id=f"{language}-line-removal",
@@ -122,7 +135,7 @@ def _build_line_cases():
             preservation_cases.append(
                 SanitizerCase(
                     language=language,
-                    sample=f"before\n{keep_match}\nafter",
+                    sample=_line_case_sample(example, keep_match),
                     expected_match=keep_match,
                     expected_sanitized=keep_expected,
                     case_id=f"{language}-line-preservation",
@@ -218,7 +231,9 @@ def _build_registry_sample_cases():
 
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
-            for index, example in enumerate(_iter_regex_examples_for_language(syntax, language)):
+            for index, example in enumerate(
+                _iter_registry_examples_for_language(syntax, language)
+            ):
                 if example.kind in generic_kinds:
                     continue
                 cases.append(
