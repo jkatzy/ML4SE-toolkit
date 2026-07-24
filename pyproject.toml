@@ -74,6 +74,8 @@ addopts = [
 [tool.ruff]
 line-length = 100
 src = ["src", "tests", "examples"]
+# Legacy EBNF utilities include bundled and generated code with a separate baseline.
+extend-exclude = ["src/ml4setk/EBNF"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]

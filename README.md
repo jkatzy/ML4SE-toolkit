@@ -147,7 +147,8 @@ marker-only scanning would misclassify strings, counted records, or binary data.
 - `make test-optional`: run optional-dependency tests without coverage gating
 - `make comment-fuzz`: run deterministic Unicode-heavy parser invariants across
   every registered language
-- `make lint`: run `ruff` on the source tree
+- `make lint`: run `ruff` on maintained source, tests, and examples; the legacy
+  EBNF utility tree keeps its existing separate style baseline
 - `make smoke`: run the minimal end-to-end smoke tests
 - `make build`: create source and wheel distributions in `dist/`
 - `make check-main-branch`: fail if development-only artifacts are still
