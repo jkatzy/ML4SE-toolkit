@@ -228,6 +228,25 @@ except NotImplementedError:
     pass
 ```
 
+### Legacy tuple API
+
+Existing dataset code can continue to use
+`ml4setk.Comment_util.parse_comment.extract_comments`. It returns historical
+`((start, end), text, kind)` tuples and now accepts registry-only language keys:
+
+```python
+from ml4setk.Comment_util.parse_comment import extract_comments
+
+comments = extract_comments("value // note\n", ["jsonc"])
+assert comments == [((6, 13), "// note", "line")]
+```
+
+Candidate languages are processed independently, so their order and duplicate
+matches are preserved; unknown names are ignored. Exact names supported by the
+original compatibility table retain their historical behavior, while newer keys
+use the registry-backed parser. New code should prefer `CommentQuery` and its
+`QueryMatch` contract.
+
 ## Feeding matches into generation
 
 ```python
