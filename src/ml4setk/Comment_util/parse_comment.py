@@ -3,16 +3,25 @@
 New parser work should use ``ml4setk.Parsing.Comments.CommentQuery`` and the
 registry-backed ``QueryMatch`` contract. This module preserves the older
 ``((start, end), text, kind)`` API for datasets and callers that still depend on
-it. Keep language-specific syntax changes aligned with the registry whenever a
-compatibility extractor must be updated here.
+it. Established legacy language names retain their historical extractors;
+registry-only names are adapted automatically so the compatibility API also
+benefits from current language coverage.
 """
 
 import ast
 import json
+from functools import lru_cache
 from importlib import resources
 from typing import Iterable, List, Tuple
 
 import regex as re
+
+from ..Parsing.Comments.CommentQuery import (
+    CommentQuery,
+    LineCommentQuery,
+    NestedCommentQuery,
+)
+from ..Parsing.Comments.registry import get_comment_syntax
 
 CommentSpan = Tuple[Tuple[int, int], str, str]  # ((start, end), text, kind)
 
@@ -1022,28 +1031,200 @@ _LANG_EXTRACTORS = {
 }
 
 
+_LINE_LIKE_EXAMPLE_KINDS = frozenset({"line", "directive", "attribute", "ignored"})
+# These patterns share a family with seeded examples but do not have a direct
+# example-to-pattern match. Keep the compatibility kind explicit until the
+# registry carries per-pattern kind metadata.
+_REGEX_KIND_OVERRIDES = {
+    ("webvtt", 0): "block",
+    ("webvtt", 2): "block",
+    ("raku", 1): "block",
+    ("raku", 3): "block",
+    ("raku", 5): "block",
+    ("raku", 6): "block",
+    ("raku", 7): "block",
+    ("visual_basic_net", 1): "line",
+    ("nsis", 1): "line",
+    ("applescript", 0): "line",
+    ("freebasic", 2): "line",
+    ("q", 0): "block",
+    ("objectscript", 3): "line",
+    ("textile", 1): "block",
+    ("netlinx", 0): "block",
+    ("propeller_spin", 0): "block",
+    ("xbase", 2): "line",
+    ("xbase", 3): "line",
+}
+
+
+def _legacy_kind_from_example_kind(kind: str) -> str:
+    """Collapse registry example categories into the legacy two-kind contract."""
+
+    return "line" if kind in _LINE_LIKE_EXAMPLE_KINDS else "block"
+
+
+@lru_cache(maxsize=None)
+def _registry_pattern_kinds(canonical_name: str) -> tuple[frozenset[str], ...]:
+    """Infer legacy kinds for registry regexes from their seeded examples."""
+
+    syntax = get_comment_syntax(canonical_name)
+    examples = syntax.shared_regex_examples + syntax.canonical_regex_examples
+    result = []
+    for pattern_index, pattern_text in enumerate(syntax.regex_patterns):
+        override = _REGEX_KIND_OVERRIDES.get((canonical_name, pattern_index))
+        if override is not None:
+            result.append(frozenset({override}))
+            continue
+
+        pattern = re.compile(pattern_text)
+        kinds = set()
+        for example in examples:
+            if any(
+                match.group() == example.expected_match
+                for match in pattern.finditer(example.sample, overlapped=True)
+            ):
+                kinds.add(_legacy_kind_from_example_kind(example.kind))
+        if not kinds:
+            raise ValueError(
+                "Registry regex lacks legacy kind metadata: "
+                f"{canonical_name}[{pattern_index}]"
+            )
+        result.append(frozenset(kinds))
+    return tuple(result)
+
+
+def _resolve_ambiguous_registry_kind(
+    canonical_name: str, match_text: str, kinds: frozenset[str]
+) -> str:
+    """Resolve the few registry patterns that intentionally cover two kinds."""
+
+    if len(kinds) == 1:
+        return next(iter(kinds))
+    stripped = match_text.lstrip()
+    if canonical_name == "handlebars":
+        return "block" if stripped.startswith("{{!--") else "line"
+    if canonical_name == "slim":
+        return "block" if stripped.startswith("/!") else "line"
+    if "block" in kinds:
+        return "block"
+    if "line" in kinds:
+        return "line"
+    return "block"
+
+
+def _registry_comment_spans(content: str, language: str) -> List[CommentSpan]:
+    """Return registry-backed matches adapted to the legacy tuple contract."""
+
+    syntax = get_comment_syntax(language)
+    line_query = LineCommentQuery(language)
+    nested_query = NestedCommentQuery(language)
+    line_ranges = line_query.parse_ranges(content)
+    nested_ranges = nested_query.parse_ranges(content)
+    final_ranges = CommentQuery(language).parse_ranges(content)
+
+    accepted_line_ranges = set(line_ranges)
+    range_kinds: dict[tuple[int, int], set[str]] = {}
+    pattern_kinds = _registry_pattern_kinds(syntax.canonical_name)
+    for pattern_index, pattern in enumerate(line_query.regexes):
+        kinds = pattern_kinds[pattern_index]
+        for match in pattern.finditer(content, overlapped=True):
+            comment_range = (match.start(), match.end())
+            if comment_range not in accepted_line_ranges:
+                continue
+            resolved_kind = _resolve_ambiguous_registry_kind(
+                syntax.canonical_name, match.group(), kinds
+            )
+            range_kinds.setdefault(comment_range, set()).add(resolved_kind)
+
+    contextual_ranges = (
+        accepted_line_ranges - set(range_kinds) if syntax.contextual_extractor else set()
+    )
+    spans = []
+    for start, end in final_ranges:
+        if any(
+            start <= nested_start and nested_end <= end
+            for nested_start, nested_end in nested_ranges
+        ):
+            kind = "block"
+        elif any(
+            start <= contextual_start and contextual_end <= end
+            for contextual_start, contextual_end in contextual_ranges
+        ):
+            kind = "block"
+        else:
+            component_kinds = {
+                component_kind
+                for (component_start, component_end), kinds in range_kinds.items()
+                if start <= component_start and component_end <= end
+                for component_kind in kinds
+            }
+            kind = (
+                "block"
+                if "block" in component_kinds
+                else "line"
+                if "line" in component_kinds
+                else "block"
+            )
+        spans.append(((start, end), content[start:end], kind))
+    return _merge_legacy_line_spans(content, spans)
+
+
+def _merge_legacy_line_spans(
+    content: str, comments: List[CommentSpan]
+) -> List[CommentSpan]:
+    """Preserve the legacy cross-delimiter consecutive-line grouping rule."""
+
+    merged: List[CommentSpan] = []
+    for span, text, kind in comments:
+        if merged and kind == "line" and merged[-1][2] == "line":
+            previous_span, _previous_text, _previous_kind = merged[-1]
+            separator = content[previous_span[1] : span[0]]
+            if re.fullmatch(r"[ \t]*\r?\n[ \t]*", separator):
+                combined_span = (previous_span[0], span[1])
+                merged[-1] = (
+                    combined_span,
+                    content[combined_span[0] : combined_span[1]],
+                    "line",
+                )
+                continue
+        merged.append((span, text, kind))
+    return merged
+
+
 def extract_comments(content, langs):
-    """Return all detected comments for the provided languages.
+    """Return registry-backed comments using the historical tuple API.
 
     Args:
         content: Source text to scan.
-        langs: Candidate language names. Unknown names are ignored so callers
-            can pass every extension-derived candidate without pre-filtering.
+        langs: Candidate language names. Each language is queried independently,
+            preserving candidate order and duplicates. Unknown names are ignored
+            so callers can pass every extension-derived candidate without
+            pre-filtering.
 
     Returns:
-        Comment tuples in extractor order. Multiple languages can share an
-        extension; collecting every applicable language avoids false negatives
-        but can introduce duplicates. Each tuple is ``((start, end), text, kind)``
-        where ``kind`` is ``line`` or ``block``.
+        Comment tuples in per-language source order. Multiple languages can share
+        an extension; collecting every applicable language avoids false negatives
+        but can introduce duplicates. Each tuple is
+        ``((start, end), text, kind)`` where ``kind`` is ``line`` or ``block``.
+
+        Established legacy names retain their historical extractor behavior.
+        Other names use the registry-backed parser, which extends this API to
+        every modern registry key without changing existing legacy results.
     """
+
     comments: List[CommentSpan] = []
     langs = [lang.lower() for lang in langs]
     for lang in langs:
         extractor = _LANG_EXTRACTORS.get(lang)
-        if extractor is None:
-            # Unknown language: skip to avoid raising for multi-extension files
+        if extractor is not None:
+            comments.extend(extractor(content))
             continue
-        comments.extend(extractor(content))
+
+        try:
+            comments.extend(_registry_comment_spans(content, lang))
+        except NotImplementedError:
+            # Unknown language: skip to preserve the permissive legacy contract.
+            continue
     return comments
 
 

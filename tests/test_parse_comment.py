@@ -8,8 +8,36 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.append(str(ROOT / "src"))
 
 from ml4setk.Comment_util import parse_comment as pc  # noqa: E402
+from ml4setk.Parsing.Comments.registry import COMMENT_SYNTAXES  # noqa: E402
 
 FIXTURES_DIR = ROOT / "tests" / "fixtures" / "comments"
+
+
+REGISTRY_ONLY_LEGACY_CASES = [
+    pytest.param(
+        syntax.canonical_name,
+        example,
+        id=f"{syntax.canonical_name}-{example.kind}-{example_index}",
+    )
+    for syntax in COMMENT_SYNTAXES
+    if syntax.canonical_name not in pc._LANG_EXTRACTORS
+    for example_index, example in enumerate(
+        syntax.shared_regex_examples
+        + syntax.canonical_regex_examples
+        + syntax.shared_nested_examples
+        + syntax.canonical_nested_examples
+        + syntax.shared_contextual_examples
+        + syntax.canonical_contextual_examples
+    )
+]
+
+
+@pytest.mark.parametrize(
+    "canonical_name",
+    [syntax.canonical_name for syntax in COMMENT_SYNTAXES],
+)
+def test_every_registry_pattern_has_a_legacy_tuple_kind(canonical_name):
+    assert all(pc._registry_pattern_kinds(canonical_name))
 
 
 def test_extract_nested_returns_top_level_only():
@@ -40,6 +68,80 @@ def test_extract_comments_combines_multiple_languages():
     texts = [c[1] for c in comments]
     assert "# py comment" in texts
     assert "/* sql block */" in texts
+
+
+def test_extract_comments_supports_registry_only_languages():
+    content = (
+        '{"url": "https://example.test//path"} // real note\n'
+        "/* block note */\n"
+    )
+
+    comments = pc.extract_comments(content, ["jsonc"])
+
+    assert [(text, kind) for _span, text, kind in comments] == [
+        ("// real note", "line"),
+        ("/* block note */", "block"),
+    ]
+    for (start, end), text, _kind in comments:
+        assert content[start:end] == text
+
+
+def test_extract_comments_adapts_contextual_registry_matches_to_blocks():
+    content = "flf2a$ 1 1 1 0 2\nfirst attribution line\nsecond attribution line\n@glyph\n"
+
+    comments = pc.extract_comments(content, ["figlet_font"])
+
+    expected_text = "first attribution line\nsecond attribution line"
+    expected_start = content.index(expected_text)
+    assert comments == [
+        (
+            (expected_start, expected_start + len(expected_text)),
+            expected_text,
+            "block",
+        )
+    ]
+
+
+@pytest.mark.parametrize(("language", "example"), REGISTRY_ONLY_LEGACY_CASES)
+def test_registry_only_families_preserve_seeded_matches_and_kinds(language, example):
+    comments = pc.extract_comments(example.sample, [language])
+    matching_comments = [
+        comment for comment in comments if example.expected_match in comment[1]
+    ]
+    expected_kind = (
+        "line"
+        if example.kind in {"line", "directive", "attribute", "ignored"}
+        else "block"
+    )
+
+    assert matching_comments
+    assert any(comment[2] == expected_kind for comment in matching_comments)
+    for (start, end), text, kind in comments:
+        assert example.sample[start:end] == text
+        assert kind in {"line", "block"}
+
+
+def test_registry_adapter_preserves_candidate_order_duplicates_and_unknowns():
+    content = "/* early */\n# late\n"
+
+    comments = pc.extract_comments(
+        content,
+        ["checksums", "not-a-language", "jsonc", "checksums"],
+    )
+
+    assert [(text, kind) for _span, text, kind in comments] == [
+        ("# late", "line"),
+        ("/* early */", "block"),
+        ("# late", "line"),
+    ]
+
+
+def test_remove_comments_uses_the_updated_legacy_adapter():
+    content = '{"url": "https://example.test//path"} // note\n'
+
+    assert pc.remove_comments(content, ["jsonc"]) == pc.extract_comments(
+        content, ["jsonc"]
+    )
 
 
 def test_line_comments_merge_consecutive_lines():
@@ -73,6 +175,18 @@ def test_opening_comment_skips_preprocessor():
     _span, text, kind = opening
     assert text.startswith("// header comment")
     assert kind == "line"
+
+
+def test_opening_comment_accepts_registry_only_language_without_row_limit():
+    content = "\n\n\n\n/* registry header */\nvalue = 1\n"
+
+    opening = pc.extract_opening_comment(content, ["jsonc"])
+
+    assert opening is not None
+    span, text, kind = opening
+    assert span == (content.index("/*"), content.index("*/") + 2)
+    assert text == "/* registry header */"
+    assert kind == "block"
 
 
 # Language fixtures: (filename, language name, expects_block_comment, expects_line_comments)
