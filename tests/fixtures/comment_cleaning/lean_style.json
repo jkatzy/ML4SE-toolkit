@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "family_name": "lean_style",
+  "canonical_language": "lean",
+  "language_keys": [
+    "lean"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "-- cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "grouped-shared_regex-000-line",
+      "source": "generated-group:registry:shared_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "-- cleaning_payload_grouped_shared_regex_000_first\n-- cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "nested-delimiter-000",
+      "source": "registry:nested_delimiters[0]",
+      "kind": "nested",
+      "raw_comment": "/- cleaning_payload_nested_delimiter_000_outer_before /- cleaning_payload_nested_delimiter_000_inner -/ cleaning_payload_nested_delimiter_000_outer_after -/",
+      "expected_cleaned": "cleaning_payload_nested_delimiter_000_outer_before /- cleaning_payload_nested_delimiter_000_inner -/ cleaning_payload_nested_delimiter_000_outer_after",
+      "payload_marker": "cleaning_payload_nested_delimiter_000"
+    }
+  ]
+}

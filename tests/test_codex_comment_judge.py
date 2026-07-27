@@ -5,6 +5,8 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 
+import pytest
+
 
 def _load_codex_judge():
     script_path = Path(__file__).resolve().parents[1] / "scripts" / "run_codex_comment_judge.py"
@@ -47,3 +49,21 @@ def test_forwarded_output_is_limited_with_digest() -> None:
     assert "OMITTED_SENTINEL" not in limited
     assert "truncated" in limited
     assert "sha256=" in limited
+
+
+def test_cleaning_scope_uses_cleaning_only_schema() -> None:
+    verdict = {
+        "verdict": "pass",
+        "cleaning_correct": True,
+        "rationale": "clean",
+    }
+
+    schema = CODEX_JUDGE._verdict_schema(CODEX_JUDGE.CLEANING_SCOPE)
+    CODEX_JUDGE._validate_verdict(
+        verdict, scope=CODEX_JUDGE.CLEANING_SCOPE
+    )
+
+    assert schema["required"] == ["verdict", "cleaning_correct", "rationale"]
+    assert "extraction_correct" not in schema["properties"]
+    with pytest.raises(ValueError, match="extraction_correct"):
+        CODEX_JUDGE._validate_verdict(verdict)

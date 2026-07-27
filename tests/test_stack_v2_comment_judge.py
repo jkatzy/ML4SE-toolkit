@@ -64,10 +64,18 @@ TIMEOUT_ENV = "COMMENT_JUDGE_TIMEOUT"
 PROGRESS_ENV = "COMMENT_JUDGE_PROGRESS"
 LEDGER_ENV = "COMMENT_JUDGE_LEDGER"
 FORCE_LEDGER_ENV = "COMMENT_JUDGE_FORCE"
+SCOPE_ENV = "COMMENT_JUDGE_SCOPE"
+COMBINED_SCOPE = "combined"
+CLEANING_SCOPE = "cleaning"
 MAX_JUDGE_TEXT_CHARS = 12_000
 JUDGE_TEXT_EDGE_CHARS = 2_000
 MAX_JUDGE_OUTPUT_CHARS = 24_000
 JUDGE_OUTPUT_EDGE_CHARS = 4_000
+CLEANING_CONTRACT = (
+    "Remove only comment syntax scaffolding, decorative gutters, delimiter-only "
+    "edges, and padding. Preserve all content-bearing text, punctuation, examples, "
+    "TODO tags, Markdown, and code-like text."
+)
 
 
 def _manifest_path() -> Path | None:
@@ -224,6 +232,17 @@ def _truthy_env(name: str) -> bool:
     return os.environ.get(name, "").lower() in {"1", "true", "yes", "on"}
 
 
+def _judge_scope() -> str:
+    """Return the configured judge contract scope."""
+
+    scope = os.environ.get(SCOPE_ENV, COMBINED_SCOPE).strip().lower()
+    if scope not in {COMBINED_SCOPE, CLEANING_SCOPE}:
+        raise ValueError(
+            f"{SCOPE_ENV} must be {COMBINED_SCOPE!r} or {CLEANING_SCOPE!r}, got {scope!r}"
+        )
+    return scope
+
+
 def _ledger_enabled() -> bool:
     """Return whether the judge validation ledger is active."""
 
@@ -324,8 +343,12 @@ def _ledger_preflight_for_case(case: dict[str, Any]) -> None:
         language=language,
         comment_kind=comment_kind,
         code_fingerprint=version.fingerprint,
+        scope=_judge_scope(),
     )
     if entry is None:
+        return
+    current_case_ids = STACK_V2_BUCKET_CASE_IDS.get((language, comment_kind), set())
+    if set(entry.case_ids) != current_case_ids:
         return
 
     if entry.status == _COMMENT_JUDGE_LEDGER.PASSED:
@@ -367,6 +390,7 @@ def _record_case_pass_in_ledger(case: dict[str, Any], verdict: dict[str, Any]) -
         cases=len(expected_case_ids),
         version=_current_ledger_version(),
         judge_model=_judge_model_label(),
+        scope=_judge_scope(),
         manifest=_ledger_manifest_label(),
         case_ids=tuple(sorted(expected_case_ids)),
     )
@@ -401,11 +425,12 @@ def _record_judge_failure_in_ledger(
         cases=len(expected_case_ids),
         version=_current_ledger_version(),
         judge_model=_judge_model_label(),
+        scope=_judge_scope(),
         manifest=_ledger_manifest_label(),
         report=_ledger_report_label(report_note),
         failure_type=failure_type,
         rationale=rationale or str((verdict or {}).get("rationale", "")),
-        case_ids=(case_id,),
+        case_ids=tuple(sorted(expected_case_ids)),
     )
     _write_ledger_entry_or_fail(entry)
 
@@ -431,6 +456,7 @@ def _record_generation_failure_in_ledger(
         cases=int(failure.get("observed_count", 0)),
         version=version,
         judge_model="manifest-generator",
+        scope=_judge_scope(),
         manifest=_ledger_manifest_label(),
         report=_ledger_report_label(report_note),
         failure_type="manifest_generation",
@@ -526,6 +552,10 @@ def _format_generation_failure(failure: dict[str, Any]) -> str:
         "to run a local judge"
     ),
 )
+@pytest.mark.skipif(
+    _judge_scope() != COMBINED_SCOPE,
+    reason=f"set {SCOPE_ENV}={COMBINED_SCOPE} for the combined judge",
+)
 @pytest.mark.parametrize(
     "case",
     STACK_V2_CASES,
@@ -570,6 +600,73 @@ def test_stack_v2_comment_extraction_and_cleaning_with_llm_judge(
     _assert_cleaning_verdict(case, verdict, actual)
     _assert_overall_verdict(case, verdict, actual)
     _record_case_pass_in_ledger(case, verdict)
+
+
+@pytest.mark.skipif(
+    not STACK_V2_CASES,
+    reason=f"set {MANIFEST_ENV} to a Stack v2 judge-case manifest",
+)
+@pytest.mark.skipif(
+    _judge_command() is None,
+    reason=(
+        f"set {AGENT_CMD_ENV} to an agent command or set "
+        f"{USE_CODEX_ENV}=1 to run Codex agents or {USE_LOCAL_ENV}=1 "
+        "to run a local judge"
+    ),
+)
+@pytest.mark.skipif(
+    _judge_scope() != CLEANING_SCOPE,
+    reason=f"set {SCOPE_ENV}={CLEANING_SCOPE} for the cleaning-only judge",
+)
+@pytest.mark.parametrize(
+    "case",
+    STACK_V2_CASES,
+    ids=lambda case: case.get("case_id", "stack-v2-cleaning-case"),
+)
+def test_stack_v2_comment_cleaning_with_llm_judge(
+    case: dict[str, Any],
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    """Judge cleaning of the sampled raw comment without rerunning extraction."""
+
+    started_at = time.monotonic()
+    _emit_progress(capsys, f"{_progress_prefix(case)} cleaning-start")
+    _ledger_preflight_for_case(case)
+
+    actual = _cleaning_observation(case)
+    prompt = _build_cleaning_judge_prompt(case, actual)
+    _emit_progress(capsys, f"{_progress_prefix(case)} judge-start")
+    try:
+        verdict = _run_judge(prompt, case=case, actual=actual)
+    except Exception:
+        elapsed = time.monotonic() - started_at
+        _emit_progress(capsys, f"{_progress_prefix(case)} judge-error elapsed={elapsed:.1f}s")
+        raise
+
+    elapsed = time.monotonic() - started_at
+    _emit_progress(
+        capsys,
+        f"{_progress_prefix(case)} judge-done elapsed={elapsed:.1f}s "
+        f"verdict={verdict.get('verdict')} "
+        f"cleaning={verdict.get('cleaning_correct')}",
+    )
+    _assert_cleaning_verdict(case, verdict, actual)
+    _assert_overall_verdict(case, verdict, actual)
+    _record_case_pass_in_ledger(case, verdict)
+
+
+def _cleaning_observation(case: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return the current sanitizer output for the manifest's raw comment."""
+
+    raw_comment = str(case["raw_comment"])
+    cleaned_comment = CommentSanitizer(str(case["language"])).sanitize(raw_comment)
+    return [
+        {
+            "index": 0,
+            "raw_comment": raw_comment,
+            "cleaned_comment": cleaned_comment,
+        }
+    ]
 
 
 def _progress_enabled() -> bool:
@@ -696,6 +793,43 @@ def _build_judge_prompt(case: dict[str, Any], actual: list[dict[str, Any]]) -> s
     )
 
 
+def _build_cleaning_judge_prompt(
+    case: dict[str, Any], actual: list[dict[str, Any]]
+) -> str:
+    """Build a cleaning-only prompt with no sanitizer-produced oracle."""
+
+    candidate = actual[0] if actual else {}
+    judge_case = {
+        "case_id": case.get("case_id"),
+        "language": case.get("language"),
+        "comment_kind": case.get("comment_kind"),
+        "syntax_label": case.get("syntax_label"),
+        "repo": case.get("repo"),
+        "path": case.get("path"),
+        "raw_comment": _judge_visible_text(case.get("raw_comment")),
+        "candidate_cleaned_comment": _judge_visible_text(
+            candidate.get("cleaned_comment")
+        ),
+    }
+    return (
+        "You are an LLM-as-a-judge for a comment cleaning library.\n"
+        "The raw comment was sampled from a real Stack v2 source file. Judge only "
+        "whether the current sanitizer cleaned that raw input correctly. Treat the "
+        "raw comment as the accepted input boundary: do not judge extraction, source "
+        "offsets, parser coverage, or whether surrounding source should have been "
+        "included.\n\n"
+        f"Cleaning contract: {CLEANING_CONTRACT}\n\n"
+        "Return JSON only, with this shape:\n"
+        "{\n"
+        '  "verdict": "pass" | "fail",\n'
+        '  "cleaning_correct": true | false,\n'
+        '  "rationale": "short explanation"\n'
+        "}\n\n"
+        "Cleaning case:\n"
+        f"{json.dumps(judge_case, ensure_ascii=False, indent=2)}\n"
+    )
+
+
 
 def _content_only_actual_comments(
     actual: list[dict[str, Any]], *, include_cleaned: bool = True
@@ -764,10 +898,13 @@ def _assert_cleaning_verdict(
     """Fail with a sanitation-specific message when the judge rejects cleaning."""
 
     if verdict.get("cleaning_correct") is not True:
-        report_note = _write_judge_failure_report("sanitation", case, actual, verdict)
-        _record_judge_failure_in_ledger("sanitation", case, verdict, report_note)
+        cleaning_only = _judge_scope() == CLEANING_SCOPE
+        failure_type = "cleaning" if cleaning_only else "sanitation"
+        label = "cleaning" if cleaning_only else "sanitation"
+        report_note = _write_judge_failure_report(failure_type, case, actual, verdict)
+        _record_judge_failure_in_ledger(failure_type, case, verdict, report_note)
         pytest.fail(
-            "Stack v2 sanitation judge rejected case "
+            f"Stack v2 {label} judge rejected case "
             f"{case.get('case_id')}: {verdict.get('rationale', verdict)}\n"
             f"{_format_expected_actual(case, actual, include_cleaned=True)}"
             f"{_format_report_note(report_note)}"
@@ -793,9 +930,12 @@ def _assert_overall_verdict(
 def _format_expected_actual(
     case: dict[str, Any], actual: list[dict[str, Any]], *, include_cleaned: bool
 ) -> str:
-    payload = _judge_expected_actual_payload(
-        case, actual, include_cleaned=include_cleaned
-    )
+    if _judge_scope() == CLEANING_SCOPE and include_cleaned:
+        payload = _cleaning_expected_actual_payload(case, actual)
+    else:
+        payload = _judge_expected_actual_payload(
+            case, actual, include_cleaned=include_cleaned
+        )
     return f"Expected vs actual:\n{json.dumps(payload, ensure_ascii=False, indent=2)}"
 
 
@@ -809,6 +949,20 @@ def _judge_expected_actual_payload(
     return {
         "expected": expected,
         "actual": _content_only_actual_comments(actual, include_cleaned=include_cleaned),
+    }
+
+
+def _cleaning_expected_actual_payload(
+    case: dict[str, Any], actual: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Return a semantic cleaning expectation and the current candidate output."""
+
+    return {
+        "expected": {
+            "raw_comment": _judge_visible_text(case.get("raw_comment")),
+            "cleaning_contract": CLEANING_CONTRACT,
+        },
+        "actual": _content_only_actual_comments(actual, include_cleaned=True),
     }
 
 
@@ -858,11 +1012,15 @@ def _write_judge_failure_report(
     judge_error: dict[str, Any] | None = None,
 ) -> str | None:
     include_cleaned = failure_type != "extraction"
-    expected_actual = _judge_expected_actual_payload(
-        case, actual, include_cleaned=include_cleaned
-    )
+    if _judge_scope() == CLEANING_SCOPE and include_cleaned:
+        expected_actual = _cleaning_expected_actual_payload(case, actual)
+    else:
+        expected_actual = _judge_expected_actual_payload(
+            case, actual, include_cleaned=include_cleaned
+        )
     payload = {
         "failure_type": failure_type,
+        "judge_scope": _judge_scope(),
         "case": {
             "case_id": case.get("case_id"),
             "language": case.get("language"),
@@ -995,6 +1153,11 @@ def _format_report_note(report_note: str | None) -> str:
 def _verdict_passed(verdict: dict[str, Any]) -> bool:
     """Return true only when every judge contract field agrees."""
 
+    if _judge_scope() == CLEANING_SCOPE:
+        return (
+            verdict.get("verdict") == "pass"
+            and verdict.get("cleaning_correct") is True
+        )
     return (
         verdict.get("verdict") == "pass"
         and verdict.get("extraction_correct") is True
@@ -1195,19 +1358,25 @@ def _validate_verdict(verdict: dict[str, Any]) -> None:
     if not isinstance(verdict, dict):
         raise ValueError("judge verdict must be a JSON object")
 
-    required_fields = (
-        "verdict",
-        "extraction_correct",
-        "cleaning_correct",
-        "rationale",
-    )
+    required_fields = ["verdict", "cleaning_correct", "rationale"]
+    if _judge_scope() == COMBINED_SCOPE:
+        required_fields.insert(1, "extraction_correct")
     missing = [field for field in required_fields if field not in verdict]
     if missing:
         raise ValueError(f"judge verdict missing required field(s): {', '.join(missing)}")
+    if _judge_scope() == CLEANING_SCOPE:
+        unexpected = sorted(set(verdict) - set(required_fields))
+        if unexpected:
+            raise ValueError(
+                f"cleaning judge verdict has unexpected field(s): {', '.join(unexpected)}"
+            )
 
     if verdict["verdict"] not in {"pass", "fail"}:
         raise ValueError("judge verdict must be 'pass' or 'fail'")
-    for field in ("extraction_correct", "cleaning_correct"):
+    boolean_fields = ["cleaning_correct"]
+    if _judge_scope() == COMBINED_SCOPE:
+        boolean_fields.insert(0, "extraction_correct")
+    for field in boolean_fields:
         if not isinstance(verdict[field], bool):
             raise ValueError(f"judge {field} must be a boolean")
     if not isinstance(verdict["rationale"], str):
@@ -1229,6 +1398,24 @@ def test_parse_judge_json_requires_consistent_shape() -> None:
 
     with pytest.raises(ValueError, match="JSON object"):
         _parse_judge_json("[]")
+
+
+def test_cleaning_scope_accepts_cleaning_only_verdict(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv(SCOPE_ENV, CLEANING_SCOPE)
+
+    verdict = _parse_judge_json(
+        '{"verdict":"pass","cleaning_correct":true,"rationale":"ok"}'
+    )
+
+    assert _verdict_passed(verdict)
+    assert "extraction_correct" not in verdict
+    with pytest.raises(ValueError, match="unexpected field"):
+        _parse_judge_json(
+            '{"verdict":"pass","extraction_correct":true,'
+            '"cleaning_correct":true,"rationale":"extra"}'
+        )
 
 
 def test_judge_command_can_use_codex_adapter(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -1490,6 +1677,60 @@ def test_exact_match_case_still_runs_external_judge(
     ]
     assert '"sampled_raw_comment": "# target"' in prompt
     assert '"raw_comment": "# target"' in prompt
+
+
+def test_cleaning_judge_uses_raw_comment_without_reparsing_or_manifest_oracle(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    case = {
+        "case_id": "python-line-cleaning",
+        "language": "python",
+        "comment_kind": "line",
+        "syntax_label": "#...",
+        "raw_comment": "# real payload",
+        "cleaned_comment": "WRONG LEGACY ORACLE",
+        "content": "this source must not be parsed",
+    }
+    calls = []
+
+    def reject_parse(*args: Any, **kwargs: Any) -> None:
+        raise AssertionError("cleaning-only judge must not run CommentQuery")
+
+    def fake_run_judge(
+        prompt: str,
+        *,
+        case: dict[str, Any] | None = None,
+        actual: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
+        calls.append((prompt, case, actual))
+        return {
+            "verdict": "pass",
+            "cleaning_correct": True,
+            "rationale": "candidate preserves the payload",
+        }
+
+    monkeypatch.setenv(SCOPE_ENV, CLEANING_SCOPE)
+    monkeypatch.setenv(LEDGER_ENV, "0")
+    monkeypatch.setattr(CommentQuery, "parse", reject_parse)
+    monkeypatch.setattr(sys.modules[__name__], "_run_judge", fake_run_judge)
+
+    test_stack_v2_comment_cleaning_with_llm_judge(case, capsys)
+
+    assert len(calls) == 1
+    prompt, judged_case, actual = calls[0]
+    assert judged_case is case
+    assert actual == [
+        {
+            "index": 0,
+            "raw_comment": "# real payload",
+            "cleaned_comment": "real payload",
+        }
+    ]
+    assert '"raw_comment": "# real payload"' in prompt
+    assert '"candidate_cleaned_comment": "real payload"' in prompt
+    assert "WRONG LEGACY ORACLE" not in prompt
+    assert "sampled_cleaned_comment" not in prompt
+    assert "extraction_correct" not in prompt
 
 
 def test_usage_limit_output_aborts_judge_session(
@@ -1771,6 +2012,35 @@ def test_ledger_preflight_skips_already_passed_bucket(
 
     with pytest.raises(pytest.skip.Exception, match="already passed"):
         _ledger_preflight_for_case({"language": "python", "comment_kind": "line"})
+
+
+def test_ledger_preflight_ignores_a_different_manifest_case_set(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    ledger_path = tmp_path / "ledger.md"
+    version = _COMMENT_JUDGE_LEDGER.CodeVersion("abc", "f" * 64, ("parser.py",))
+    entry = _COMMENT_JUDGE_LEDGER.build_entry(
+        language="python",
+        comment_kind="line",
+        status=_COMMENT_JUDGE_LEDGER.PASSED,
+        cases=1,
+        version=version,
+        judge_model="codex-default",
+        case_ids=("old-case",),
+    )
+    _COMMENT_JUDGE_LEDGER.write_entries(ledger_path, [entry])
+    monkeypatch.setenv(LEDGER_ENV, str(ledger_path))
+    monkeypatch.delenv(FORCE_LEDGER_ENV, raising=False)
+    monkeypatch.setattr(sys.modules[__name__], "_LEDGER_VERSION_CACHE", version)
+    monkeypatch.setattr(
+        sys.modules[__name__],
+        "STACK_V2_BUCKET_CASE_IDS",
+        {("python", "line"): {"new-case"}},
+    )
+
+    _ledger_preflight_for_case(
+        {"case_id": "new-case", "language": "python", "comment_kind": "line"}
+    )
 
 
 def test_ledger_preflight_fails_known_failed_bucket(

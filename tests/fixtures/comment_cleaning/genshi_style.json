@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "family_name": "genshi_style",
+  "canonical_language": "genshi",
+  "language_keys": [
+    "genshi"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "<!-- cleaning_payload_shared_regex_000 -->",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

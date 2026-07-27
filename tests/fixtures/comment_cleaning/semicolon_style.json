@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "family_name": "semicolon_style",
+  "canonical_language": "assembly",
+  "language_keys": [
+    "assembly",
+    "abnf",
+    "clarity",
+    "gcc_machine_description",
+    "mirc_script",
+    "motorola_68k_assembly",
+    "netlogo",
+    "pep8",
+    "scheme",
+    "lisp",
+    "clojure",
+    "dns_zone",
+    "edn",
+    "hy",
+    "ioke",
+    "jasmin",
+    "llvm",
+    "m",
+    "newlisp",
+    "papyrus",
+    "red",
+    "redcode",
+    "rouge",
+    "srecode_template",
+    "smt",
+    "zap",
+    "zil",
+    "windows_registry_entries",
+    "rebol",
+    "purebasic",
+    "wisp"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "; cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "grouped-shared_regex-000-line",
+      "source": "generated-group:registry:shared_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "; cleaning_payload_grouped_shared_regex_000_first\n; cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    }
+  ]
+}

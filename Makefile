@@ -19,6 +19,8 @@ COMMENT_JUDGE_CONTENT_PREFETCH_BUFFER_SIZE ?= $(COMMENT_JUDGE_CONTENT_PREFETCH_W
 COMMENT_JUDGE_MAX_CONTENT_CHARS ?= 1000000
 COMMENT_JUDGE_CASE_LIMIT ?=
 COMMENT_JUDGE_MANIFEST_ARGS ?=
+COMMENT_JUDGE_SCOPE ?= combined
+COMMENT_JUDGE_TEST_NODE ?= tests/test_stack_v2_comment_judge.py::test_stack_v2_comment_extraction_and_cleaning_with_llm_judge
 COMMENT_JUDGE_BACKEND ?= codex
 COMMENT_JUDGE_LOCAL_PROVIDER ?= $(COMMENT_JUDGE_BACKEND)
 COMMENT_JUDGE_LOCAL_MODEL ?= gemma4:31b
@@ -30,9 +32,12 @@ COMMENT_TESTGEN_CODEX_SANDBOX ?= workspace-write
 COMMENT_TESTGEN_REPORT_LIMIT ?=
 COMMENT_TESTGEN_REPORTS ?=
 COMMENT_JUDGE_RUN_TESTGEN ?= 1
+COMMENT_CLEANER_JUDGE_OUTPUT_ROOT ?= tmp/stack_v2_comment_cleaner_judge
+COMMENT_CLEANER_JUDGE_TEST_NODE ?= tests/test_stack_v2_comment_judge.py::test_stack_v2_comment_cleaning_with_llm_judge
 COMMENT_FUZZ_SEED ?= 0xC0FFEE
 COMMENT_FUZZ_CASES_PER_LANGUAGE ?= 100
 COMMENT_FUZZ_MAX_LENGTH ?= 128
+COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE ?= 4
 
 ifeq ($(COMMENT_JUDGE_BACKEND),codex)
 COMMENT_JUDGE_AGENT_ENV = COMMENT_JUDGE_USE_CODEX=1 COMMENT_JUDGE_CODEX_TIMEOUT=$(COMMENT_JUDGE_CODEX_TIMEOUT)
@@ -42,8 +47,9 @@ endif
 
 .PHONY: setup setup-optional test test-optional lint smoke build research-prompts
 .PHONY: comment-confirmation-prompts comment-test-prompts
-.PHONY: comment-fuzz
+.PHONY: comment-cleaner-fixtures comment-fuzz comment-cleaner-fuzz
 .PHONY: comment-judge-manifest comment-judge-coverage comment-judge-smoke comment-judge-test
+.PHONY: comment-cleaner-judge-manifest comment-cleaner-judge-smoke comment-cleaner-judge-test
 .PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline
 .PHONY: comment-judge-clear-ledger comment-judge-full-run check-main-branch check-release-version
 
@@ -77,11 +83,24 @@ comment-confirmation-prompts:
 comment-test-prompts:
 	$(UV) run python scripts/build_comment_test_packets.py
 
+comment-cleaner-fixtures:
+	$(UV) run python scripts/build_comment_cleaning_fixtures.py --force
+
 comment-fuzz:
 	$(UV) run python scripts/fuzz_comment_parsers.py \
 		--seed $(COMMENT_FUZZ_SEED) \
 		--cases-per-language $(COMMENT_FUZZ_CASES_PER_LANGUAGE) \
-		--max-length $(COMMENT_FUZZ_MAX_LENGTH)
+		--max-length $(COMMENT_FUZZ_MAX_LENGTH) \
+		--sanitizer-payloads-per-example $(COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE) \
+		--campaign all
+
+comment-cleaner-fuzz:
+	$(UV) run python scripts/fuzz_comment_parsers.py \
+		--seed $(COMMENT_FUZZ_SEED) \
+		--cases-per-language $(COMMENT_FUZZ_CASES_PER_LANGUAGE) \
+		--max-length $(COMMENT_FUZZ_MAX_LENGTH) \
+		--sanitizer-payloads-per-example $(COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE) \
+		--campaign sanitizer
 
 comment-judge-manifest:
 	$(UV) run --with boto3 --with datasets --with 'smart_open[s3]' \
@@ -114,13 +133,14 @@ comment-judge-smoke:
 		STACK_V2_COMMENT_JUDGE_REPORT_DIR=$(COMMENT_JUDGE_REPORT_DIR) \
 		COMMENT_JUDGE_LEDGER=$(COMMENT_JUDGE_LEDGER) \
 		COMMENT_JUDGE_FORCE=$(COMMENT_JUDGE_FORCE) \
+		COMMENT_JUDGE_SCOPE=$(COMMENT_JUDGE_SCOPE) \
 		$(COMMENT_JUDGE_AGENT_ENV) \
 		COMMENT_JUDGE_CASE_LIMIT=1 \
 		COMMENT_JUDGE_TIMEOUT=$(COMMENT_JUDGE_TIMEOUT) \
 		COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE=$(COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE) \
 		$(UV) run pytest \
 			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
-			tests/test_stack_v2_comment_judge.py::test_stack_v2_comment_extraction_and_cleaning_with_llm_judge \
+			$(COMMENT_JUDGE_TEST_NODE) \
 			-q --no-cov
 
 comment-judge-test:
@@ -129,14 +149,32 @@ comment-judge-test:
 		STACK_V2_COMMENT_JUDGE_REPORT_DIR=$(COMMENT_JUDGE_REPORT_DIR) \
 		COMMENT_JUDGE_LEDGER=$(COMMENT_JUDGE_LEDGER) \
 		COMMENT_JUDGE_FORCE=$(COMMENT_JUDGE_FORCE) \
+		COMMENT_JUDGE_SCOPE=$(COMMENT_JUDGE_SCOPE) \
 		$(COMMENT_JUDGE_AGENT_ENV) \
 		COMMENT_JUDGE_TIMEOUT=$(COMMENT_JUDGE_TIMEOUT) \
 		COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE=$(COMMENT_JUDGE_USAGE_LIMIT_EXIT_CODE) \
 		COMMENT_JUDGE_CASE_LIMIT=$(COMMENT_JUDGE_CASE_LIMIT) \
 		$(UV) run pytest \
 			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
-			tests/test_stack_v2_comment_judge.py::test_stack_v2_comment_extraction_and_cleaning_with_llm_judge \
+			$(COMMENT_JUDGE_TEST_NODE) \
 			-q --no-cov
+
+
+comment-cleaner-judge-manifest:
+	$(MAKE) comment-judge-manifest \
+		COMMENT_JUDGE_OUTPUT_ROOT=$(COMMENT_CLEANER_JUDGE_OUTPUT_ROOT)
+
+comment-cleaner-judge-smoke:
+	$(MAKE) comment-judge-smoke \
+		COMMENT_JUDGE_OUTPUT_ROOT=$(COMMENT_CLEANER_JUDGE_OUTPUT_ROOT) \
+		COMMENT_JUDGE_SCOPE=cleaning \
+		COMMENT_JUDGE_TEST_NODE=$(COMMENT_CLEANER_JUDGE_TEST_NODE)
+
+comment-cleaner-judge-test:
+	$(MAKE) comment-judge-test \
+		COMMENT_JUDGE_OUTPUT_ROOT=$(COMMENT_CLEANER_JUDGE_OUTPUT_ROOT) \
+		COMMENT_JUDGE_SCOPE=cleaning \
+		COMMENT_JUDGE_TEST_NODE=$(COMMENT_CLEANER_JUDGE_TEST_NODE)
 
 
 comment-judge-generate-tests:

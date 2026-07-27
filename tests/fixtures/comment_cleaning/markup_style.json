@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "family_name": "markup_style",
+  "canonical_language": "html",
+  "language_keys": [
+    "html",
+    "xml",
+    "ant_build_system",
+    "collada",
+    "eagle",
+    "jetbrains_mps",
+    "kit",
+    "labview",
+    "markdown",
+    "maven_pom",
+    "mediawiki",
+    "mtml",
+    "riot",
+    "rmarkdown",
+    "svelte",
+    "svg",
+    "web_ontology_language",
+    "wikitext",
+    "xml_property_list",
+    "xpages",
+    "xproc",
+    "xslt"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "<!-- cleaning_payload_shared_regex_000 -->",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

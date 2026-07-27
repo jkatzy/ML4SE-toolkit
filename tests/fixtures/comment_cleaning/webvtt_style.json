@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "family_name": "webvtt_style",
+  "canonical_language": "webvtt",
+  "language_keys": [
+    "webvtt"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-cue_block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "cue_block",
+      "raw_comment": "NOTE cue timing\nmore detail",
+      "expected_cleaned": "NOTE cue timing\nmore detail",
+      "payload_marker": null
+    }
+  ]
+}

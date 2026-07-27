@@ -306,9 +306,30 @@ make test
 make comment-fuzz
 ```
 
-`make comment-fuzz` defaults to 100 cases per registry key. Its seed and input
-size are configurable through the variables documented above, so a failing
-campaign is reproducible.
+Cleaning has one committed JSON oracle for each of the 191 comment syntax
+families under `tests/fixtures/comment_cleaning`. The fixture tests apply those
+505 explicit raw-to-cleaned cases to all 671 supported language keys. Expected
+cleaned text is derived from registry syntax rather than by calling the
+sanitizer under test. Regenerate and verify the files with:
+
+```bash
+make comment-cleaner-fixtures
+uv run pytest \
+  tests/test_comment_cleaning_fixtures.py \
+  tests/test_comment_sanitizer.py
+```
+
+`make comment-fuzz` runs both parser and sanitizer campaigns and defaults to 100
+random cases per registry key, plus structured sanitizer mutations built from
+registry examples. Run only the cleaner campaign with:
+
+```bash
+make comment-cleaner-fuzz
+```
+
+The seed, random input size, and structured payload count are configurable
+through `COMMENT_FUZZ_SEED`, `COMMENT_FUZZ_MAX_LENGTH`, and
+`COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE`, so failures are reproducible.
 
 For real Stack v2 samples judged by Codex, generate a manifest and run the
 manual LLM judge suite:
@@ -325,15 +346,51 @@ make comment-judge-testgen-pipeline
 The judge suite checks extraction and sanitization as separate verdicts. It is
 manual rather than CI-bound because it fetches corpus content and starts Codex
 judge processes. It prints live per-case progress by default for large manifests.
+
+To judge only the cleaner against real-world raw comments, use the isolated
+cleaner targets:
+
+```bash
+make comment-cleaner-judge-manifest \
+  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
+  COMMENT_JUDGE_PER_KIND=10
+make comment-cleaner-judge-smoke COMMENT_JUDGE_BACKEND=codex
+make comment-cleaner-judge-test COMMENT_JUDGE_BACKEND=codex
+```
+
+These targets write under `tmp/stack_v2_comment_cleaner_judge` by default. The
+cleaning-only judge passes each manifest row's `raw_comment` directly to
+`CommentSanitizer`; it does not rerun extraction and does not treat the
+manifest's sanitizer-produced `cleaned_comment` snapshot as an oracle. The LLM
+instead judges the current candidate against the documented content-preservation
+contract.
+
+Codex is the default backend. Its adapter starts an ephemeral, read-only
+`codex exec` process with approval requests disabled. To use a local Ollama
+model instead:
+
+```bash
+make comment-cleaner-judge-test \
+  COMMENT_JUDGE_BACKEND=ollama \
+  COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b
+```
+
+Set `COMMENT_JUDGE_LOCAL_BASE_URL` for a non-default Ollama endpoint, or use
+`COMMENT_JUDGE_BACKEND=vllm` with an OpenAI-compatible vLLM server. A custom
+JSON judge command can be supplied through `COMMENT_JUDGE_AGENT_CMD`. Combined
+judges return `verdict`, `extraction_correct`, `cleaning_correct`, and
+`rationale`; cleaning-only judges return `verdict`, `cleaning_correct`, and
+`rationale`.
+
 Before Codex is launched, the suite checks the central validation ledger in
 `docs/comment_testing/stack_v2_judge_validation_ledger.md`; buckets that already
-passed for the same committed code fingerprint are skipped, and recorded
-failures fail fast with their prior report link. Use `COMMENT_JUDGE_FORCE=1`
-for an intentional rerun. When a judge case fails, pytest writes a Markdown
-failure report containing expected behavior, actual behavior, and instructions
-for a test-generation agent to add deterministic pytest coverage. See
-`docs/comment_testing/stack_v2_judge_workflow.md` for setup, local JSONL
-alternatives, failure-report handoff, ledger behavior, and troubleshooting.
+passed for the same judge scope, committed code fingerprint, and exact manifest
+case set are skipped, and recorded failures fail fast with their prior report
+link. Use `COMMENT_JUDGE_FORCE=1` for an intentional rerun, or
+`COMMENT_JUDGE_LEDGER=0` for an uncommitted scratch run. When a judge case fails,
+pytest writes a Markdown failure report containing expected behavior, actual
+behavior, and instructions for a test-generation agent to add deterministic
+pytest coverage.
 
 ## Current limitations
 

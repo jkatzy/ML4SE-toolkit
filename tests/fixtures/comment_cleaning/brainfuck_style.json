@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "family_name": "brainfuck_style",
+  "canonical_language": "brainfuck",
+  "language_keys": [
+    "brainfuck"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-ignored",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "ignored",
+      "raw_comment": "Brainfuck cleaning_payload_shared_regex_000",
+      "expected_cleaned": "Brainfuck cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

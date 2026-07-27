@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family_name": "runoff_style",
+  "canonical_language": "runoff",
+  "language_keys": [
+    "runoff"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "!cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-directive",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "directive",
+      "raw_comment": ".!Place comment here.",
+      "expected_cleaned": ".!Place comment here.",
+      "payload_marker": null
+    }
+  ]
+}

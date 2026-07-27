@@ -27,6 +27,8 @@ from comment_judge_limits import (  # noqa: E402
     usage_limit_exit_code,
 )
 
+COMBINED_SCOPE = "combined"
+CLEANING_SCOPE = "cleaning"
 VERDICT_SCHEMA: dict[str, Any] = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
@@ -40,6 +42,17 @@ VERDICT_SCHEMA: dict[str, Any] = {
     "properties": {
         "verdict": {"type": "string", "enum": ["pass", "fail"]},
         "extraction_correct": {"type": "boolean"},
+        "cleaning_correct": {"type": "boolean"},
+        "rationale": {"type": "string"},
+    },
+}
+CLEANING_VERDICT_SCHEMA: dict[str, Any] = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["verdict", "cleaning_correct", "rationale"],
+    "properties": {
+        "verdict": {"type": "string", "enum": ["pass", "fail"]},
         "cleaning_correct": {"type": "boolean"},
         "rationale": {"type": "string"},
     },
@@ -78,6 +91,12 @@ def parse_args() -> argparse.Namespace:
         default=int(os.environ.get("COMMENT_JUDGE_CODEX_TIMEOUT", "180")),
         help="Codex process timeout in seconds.",
     )
+    parser.add_argument(
+        "--scope",
+        choices=(COMBINED_SCOPE, CLEANING_SCOPE),
+        default=os.environ.get("COMMENT_JUDGE_SCOPE", COMBINED_SCOPE),
+        help="Judge contract to enforce. Defaults to COMMENT_JUDGE_SCOPE or combined.",
+    )
     return parser.parse_args()
 
 
@@ -94,7 +113,9 @@ def main() -> int:
         temp_path = Path(temp_dir)
         schema_path = temp_path / "verdict.schema.json"
         output_path = temp_path / "last_message.json"
-        schema_path.write_text(json.dumps(VERDICT_SCHEMA), encoding="utf-8")
+        schema_path.write_text(
+            json.dumps(_verdict_schema(args.scope)), encoding="utf-8"
+        )
 
         command = [
             args.codex_bin,
@@ -155,7 +176,7 @@ def main() -> int:
                 _print_usage_limit_abort(verdict_text, result.stderr)
                 return usage_limit_exit_code()
             raise
-        _validate_verdict(verdict)
+        _validate_verdict(verdict, scope=args.scope)
         print(json.dumps(verdict, ensure_ascii=False))
         return 0
 
@@ -222,12 +243,35 @@ def _parse_json_object(text: str) -> dict[str, Any]:
     return value
 
 
-def _validate_verdict(verdict: dict[str, Any]) -> None:
+def _verdict_schema(scope: str) -> dict[str, Any]:
+    """Return the structured-output schema for the configured judge scope."""
+
+    if scope == CLEANING_SCOPE:
+        return CLEANING_VERDICT_SCHEMA
+    if scope == COMBINED_SCOPE:
+        return VERDICT_SCHEMA
+    raise ValueError(f"unsupported comment judge scope: {scope}")
+
+
+def _validate_verdict(
+    verdict: dict[str, Any], *, scope: str = COMBINED_SCOPE
+) -> None:
     """Validate the minimal verdict shape expected by pytest."""
 
+    if scope == CLEANING_SCOPE:
+        unexpected = sorted(set(verdict) - set(CLEANING_VERDICT_SCHEMA["required"]))
+        if unexpected:
+            raise ValueError(
+                f"cleaning verdict has unexpected field(s): {', '.join(unexpected)}"
+            )
     if verdict.get("verdict") not in {"pass", "fail"}:
         raise ValueError("verdict must be 'pass' or 'fail'")
-    for field in ("extraction_correct", "cleaning_correct"):
+    boolean_fields = ("cleaning_correct",)
+    if scope == COMBINED_SCOPE:
+        boolean_fields = ("extraction_correct", *boolean_fields)
+    elif scope != CLEANING_SCOPE:
+        raise ValueError(f"unsupported comment judge scope: {scope}")
+    for field in boolean_fields:
         if not isinstance(verdict.get(field), bool):
             raise ValueError(f"{field} must be a boolean")
     if not isinstance(verdict.get("rationale"), str):

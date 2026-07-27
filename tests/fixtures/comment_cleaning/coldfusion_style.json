@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "family_name": "coldfusion_style",
+  "canonical_language": "coldfusion",
+  "language_keys": [
+    "coldfusion",
+    "coldfusion_cfc"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "nested-delimiter-000",
+      "source": "registry:nested_delimiters[0]",
+      "kind": "nested",
+      "raw_comment": "<!--- cleaning_payload_nested_delimiter_000_outer_before <!--- cleaning_payload_nested_delimiter_000_inner ---> cleaning_payload_nested_delimiter_000_outer_after --->",
+      "expected_cleaned": "cleaning_payload_nested_delimiter_000_outer_before <!--- cleaning_payload_nested_delimiter_000_inner ---> cleaning_payload_nested_delimiter_000_outer_after",
+      "payload_marker": "cleaning_payload_nested_delimiter_000"
+    }
+  ]
+}

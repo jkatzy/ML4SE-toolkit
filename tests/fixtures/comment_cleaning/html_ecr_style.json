@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "family_name": "html_ecr_style",
+  "canonical_language": "html_ecr",
+  "language_keys": [
+    "html_ecr",
+    "rhtml",
+    "html_plus_ecr"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "<%# cleaning_payload_shared_regex_000 %>",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-block",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "block",
+      "raw_comment": "<% # cleaning_payload_shared_regex_001 %>",
+      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    },
+    {
+      "id": "shared_regex-002-block",
+      "source": "registry:shared_regex_examples[2]",
+      "kind": "block",
+      "raw_comment": "<!-- cleaning_payload_shared_regex_002 -->",
+      "expected_cleaned": "cleaning_payload_shared_regex_002",
+      "payload_marker": "cleaning_payload_shared_regex_002"
+    }
+  ]
+}

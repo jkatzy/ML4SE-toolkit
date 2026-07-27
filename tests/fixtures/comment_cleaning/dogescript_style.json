@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family_name": "dogescript_style",
+  "canonical_language": "dogescript",
+  "language_keys": [
+    "dogescript"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "shh much cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-block",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "block",
+      "raw_comment": "quiet\n  much cleaning_payload_shared_regex_001\nloud",
+      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    }
+  ]
+}

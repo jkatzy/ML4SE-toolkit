@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family_name": "textile_style",
+  "canonical_language": "textile",
+  "language_keys": [
+    "textile"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "<!-- cleaning_payload_shared_regex_000 -->",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-textile",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "textile",
+      "raw_comment": "###. Textile cleaning_payload_shared_regex_001",
+      "expected_cleaned": "###. Textile cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    }
+  ]
+}

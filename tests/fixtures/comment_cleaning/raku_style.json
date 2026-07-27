@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "family_name": "raku_style",
+  "canonical_language": "raku",
+  "language_keys": [
+    "raku",
+    "perl6"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "# cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "grouped-shared_regex-000-line",
+      "source": "generated-group:registry:shared_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "# cleaning_payload_grouped_shared_regex_000_first\n# cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "canonical_regex-000-line",
+      "source": "registry:canonical_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "#| cleaning_payload_canonical_regex_000",
+      "expected_cleaned": "cleaning_payload_canonical_regex_000",
+      "payload_marker": "cleaning_payload_canonical_regex_000"
+    },
+    {
+      "id": "grouped-canonical_regex-000-line",
+      "source": "generated-group:registry:canonical_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "#| cleaning_payload_grouped_canonical_regex_000_first\n#| cleaning_payload_grouped_canonical_regex_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_canonical_regex_000_first\ncleaning_payload_grouped_canonical_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_canonical_regex_000"
+    },
+    {
+      "id": "canonical_regex-001-line",
+      "source": "registry:canonical_regex_examples[1]",
+      "kind": "line",
+      "raw_comment": "#= cleaning_payload_canonical_regex_001",
+      "expected_cleaned": "cleaning_payload_canonical_regex_001",
+      "payload_marker": "cleaning_payload_canonical_regex_001"
+    },
+    {
+      "id": "grouped-canonical_regex-001-line",
+      "source": "generated-group:registry:canonical_regex_examples[1]",
+      "kind": "grouped_line",
+      "raw_comment": "#= cleaning_payload_grouped_canonical_regex_001_first\n#= cleaning_payload_grouped_canonical_regex_001_second",
+      "expected_cleaned": "cleaning_payload_grouped_canonical_regex_001_first\ncleaning_payload_grouped_canonical_regex_001_second",
+      "payload_marker": "cleaning_payload_grouped_canonical_regex_001"
+    },
+    {
+      "id": "canonical_regex-002-block",
+      "source": "registry:canonical_regex_examples[2]",
+      "kind": "block",
+      "raw_comment": "#`(cleaning_payload_canonical_regex_002)",
+      "expected_cleaned": "cleaning_payload_canonical_regex_002",
+      "payload_marker": "cleaning_payload_canonical_regex_002"
+    },
+    {
+      "id": "canonical_regex-003-block",
+      "source": "registry:canonical_regex_examples[3]",
+      "kind": "block",
+      "raw_comment": "#`[cleaning_payload_canonical_regex_003]",
+      "expected_cleaned": "cleaning_payload_canonical_regex_003",
+      "payload_marker": "cleaning_payload_canonical_regex_003"
+    },
+    {
+      "id": "canonical_regex-004-block",
+      "source": "registry:canonical_regex_examples[4]",
+      "kind": "block",
+      "raw_comment": "#|(cleaning_payload_canonical_regex_004)",
+      "expected_cleaned": "cleaning_payload_canonical_regex_004",
+      "payload_marker": "cleaning_payload_canonical_regex_004"
+    },
+    {
+      "id": "canonical_regex-005-block",
+      "source": "registry:canonical_regex_examples[5]",
+      "kind": "block",
+      "raw_comment": "=begin comment\ncleaning_payload_canonical_regex_005\n=end comment",
+      "expected_cleaned": "cleaning_payload_canonical_regex_005",
+      "payload_marker": "cleaning_payload_canonical_regex_005"
+    }
+  ]
+}

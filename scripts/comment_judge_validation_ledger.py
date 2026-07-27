@@ -28,12 +28,16 @@ DEFAULT_RELEVANT_PATHS = (
     "src/ml4setk/Parsing/Comments/CommentSanitizer.py",
     "src/ml4setk/Parsing/Comments/registry.py",
     "scripts/build_stack_v2_comment_judge_cases.py",
+    "scripts/comment_judge_validation_ledger.py",
     "scripts/comment_judge_limits.py",
     "scripts/run_codex_comment_judge.py",
+    "scripts/run_local_comment_judge.py",
     "tests/test_stack_v2_comment_judge.py",
 )
 PASSED = "passed"
 FAILED = "failed"
+COMBINED_SCOPE = "combined"
+CLEANING_SCOPE = "cleaning"
 
 
 class LedgerError(RuntimeError):
@@ -86,6 +90,7 @@ class JudgeLedgerEntry:
         git_commit: Commit used to compute the fingerprint.
         judge_model: Judge model or command label.
         updated_at: UTC ISO-8601 timestamp.
+        scope: Judge contract scope, such as ``combined`` or ``cleaning``.
         manifest: Manifest path used for the run.
         report: Optional Markdown failure-report path.
         failure_type: Optional failure type from the judge harness.
@@ -101,6 +106,7 @@ class JudgeLedgerEntry:
     git_commit: str
     judge_model: str
     updated_at: str
+    scope: str = COMBINED_SCOPE
     manifest: str = ""
     report: str = ""
     failure_type: str = ""
@@ -127,6 +133,7 @@ class JudgeLedgerEntry:
             git_commit=str(data.get("git_commit", "")),
             judge_model=str(data.get("judge_model", "")),
             updated_at=str(data.get("updated_at", "")),
+            scope=str(data.get("scope", COMBINED_SCOPE)).lower(),
             manifest=str(data.get("manifest", "")),
             report=str(data.get("report", "")),
             failure_type=str(data.get("failure_type", "")),
@@ -146,6 +153,7 @@ class JudgeLedgerEntry:
             "git_commit": self.git_commit,
             "judge_model": self.judge_model,
             "updated_at": self.updated_at,
+            "scope": self.scope,
             "manifest": self.manifest,
             "report": self.report,
             "failure_type": self.failure_type,
@@ -233,6 +241,7 @@ def find_entry(
     language: str,
     comment_kind: str,
     code_fingerprint: str,
+    scope: str = COMBINED_SCOPE,
 ) -> JudgeLedgerEntry | None:
     """Return the latest entry for one language/kind/code version.
 
@@ -241,6 +250,7 @@ def find_entry(
         language: Registry language key.
         comment_kind: Comment bucket.
         code_fingerprint: Current code fingerprint.
+        scope: Judge contract scope.
 
     Returns:
         Matching entry, or ``None``.
@@ -248,12 +258,14 @@ def find_entry(
 
     language = language.lower()
     comment_kind = comment_kind.lower()
+    scope = scope.lower()
     matches = [
         entry
         for entry in entries
         if entry.language == language
         and entry.comment_kind == comment_kind
         and entry.code_fingerprint == code_fingerprint
+        and entry.scope == scope
     ]
     if not matches:
         return None
@@ -275,6 +287,7 @@ def upsert_entry(path: Path, entry: JudgeLedgerEntry) -> None:
             existing.language == entry.language
             and existing.comment_kind == entry.comment_kind
             and existing.code_fingerprint == entry.code_fingerprint
+            and existing.scope == entry.scope
         )
     ]
     entries.append(entry)
@@ -311,6 +324,7 @@ def render_ledger(entries: list[JudgeLedgerEntry]) -> str:
         key=lambda entry: (
             entry.language,
             entry.comment_kind,
+            entry.scope,
             entry.status,
             entry.updated_at,
         ),
@@ -325,7 +339,7 @@ def render_ledger(entries: list[JudgeLedgerEntry]) -> str:
         "# Stack v2 Comment Judge Validation Ledger\n\n"
         "This development-only ledger records which real-corpus Stack v2 LLM "
         "judge buckets have already run for a committed comment extraction and "
-        "sanitization code version. The JSON block is the source of truth for "
+        "sanitization code version and judge scope. The JSON block is the source of truth for "
         "tooling; edit entries through the judge workflow whenever possible.\n\n"
         f"{LEDGER_START}\n"
         f"{json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True)}\n"
@@ -345,6 +359,7 @@ def build_entry(
     cases: int,
     version: CodeVersion,
     judge_model: str,
+    scope: str = COMBINED_SCOPE,
     manifest: str = "",
     report: str = "",
     failure_type: str = "",
@@ -362,6 +377,7 @@ def build_entry(
         git_commit=version.git_commit,
         judge_model=judge_model,
         updated_at=datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        scope=scope.lower(),
         manifest=manifest,
         report=report,
         failure_type=failure_type,
@@ -392,6 +408,7 @@ def status_lines(
     ledger_path: Path,
     repo_root: Path,
     manifest_path: Path | None = None,
+    scope: str = COMBINED_SCOPE,
 ) -> list[str]:
     """Return CLI-readable status lines for the current code version."""
 
@@ -411,6 +428,7 @@ def status_lines(
             language=language,
             comment_kind=kind,
             code_fingerprint=version.fingerprint,
+            scope=scope,
         )
         status = entry.status if entry is not None else "untested"
         report = f" report={entry.report}" if entry is not None and entry.report else ""
@@ -446,6 +464,12 @@ def parse_args() -> argparse.Namespace:
         help="Optional manifest to summarize against the current ledger.",
     )
     parser.add_argument(
+        "--scope",
+        choices=(COMBINED_SCOPE, CLEANING_SCOPE),
+        default=COMBINED_SCOPE,
+        help="Judge scope to summarize. Defaults to combined.",
+    )
+    parser.add_argument(
         "--yes",
         action="store_true",
         help="Confirm destructive ledger reset for the clear command.",
@@ -474,6 +498,7 @@ def main() -> int:
             ledger_path=args.ledger,
             repo_root=args.repo_root,
             manifest_path=args.manifest,
+            scope=args.scope,
         ):
             print(line)
         return 0
@@ -498,12 +523,12 @@ def _extract_payload(text: str) -> dict[str, Any] | None:
 
 def _render_table(entries: list[JudgeLedgerEntry]) -> str:
     header = (
-        "| Language | Kind | Status | Cases | Model | Commit | Fingerprint | "
+        "| Language | Kind | Scope | Status | Cases | Model | Commit | Fingerprint | "
         "Report | Updated |\n"
-        "| --- | --- | --- | ---: | --- | --- | --- | --- | --- |"
+        "| --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- |"
     )
     if not entries:
-        return f"{header}\n| _none_ |  |  |  |  |  |  |  |  |"
+        return f"{header}\n| _none_ |  |  |  |  |  |  |  |  |  |"
 
     rows = []
     for entry in entries:
@@ -514,6 +539,7 @@ def _render_table(entries: list[JudgeLedgerEntry]) -> str:
                 [
                     _escape_table(entry.language),
                     _escape_table(entry.comment_kind),
+                    _escape_table(entry.scope),
                     _escape_table(entry.status),
                     str(entry.cases),
                     _escape_table(entry.judge_model),

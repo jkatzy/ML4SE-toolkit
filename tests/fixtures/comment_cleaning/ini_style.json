@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "family_name": "ini_style",
+  "canonical_language": "git_config",
+  "language_keys": [
+    "git_config",
+    "ini",
+    "npm_config"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "# cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "grouped-shared_regex-000-line",
+      "source": "generated-group:registry:shared_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "# cleaning_payload_grouped_shared_regex_000_first\n# cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-line",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "line",
+      "raw_comment": "; cleaning_payload_shared_regex_001",
+      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    },
+    {
+      "id": "grouped-shared_regex-001-line",
+      "source": "generated-group:registry:shared_regex_examples[1]",
+      "kind": "grouped_line",
+      "raw_comment": "; cleaning_payload_grouped_shared_regex_001_first\n; cleaning_payload_grouped_shared_regex_001_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_001_first\ncleaning_payload_grouped_shared_regex_001_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_001"
+    }
+  ]
+}

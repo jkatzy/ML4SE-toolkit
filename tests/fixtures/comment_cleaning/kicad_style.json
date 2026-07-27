@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "family_name": "kicad_style",
+  "canonical_language": "kicad",
+  "language_keys": [
+    "kicad"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-attribute",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "attribute",
+      "raw_comment": "(comment 1 \"Board cleaning_payload_shared_regex_000\")",
+      "expected_cleaned": "(comment 1 \"Board cleaning_payload_shared_regex_000\")",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

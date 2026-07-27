@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "family_name": "razor_style",
+  "canonical_language": "html_razor",
+  "language_keys": [
+    "html_razor",
+    "html_plus_razor"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "@* cleaning_payload_shared_regex_000 *@",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

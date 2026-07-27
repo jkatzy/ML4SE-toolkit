@@ -65,6 +65,7 @@ def test_ollama_call_uses_chat_endpoint(monkeypatch: pytest.MonkeyPatch) -> None
     args = Namespace(
         base_url="http://localhost:11434",
         model="gemma4:31b",
+        scope=LOCAL_JUDGE.COMBINED_SCOPE,
         temperature=0,
         timeout=7,
     )
@@ -100,6 +101,7 @@ def test_vllm_call_uses_openai_compatible_endpoint(monkeypatch: pytest.MonkeyPat
     args = Namespace(
         base_url="http://localhost:8000/v1",
         model="gemma4:31b",
+        scope=LOCAL_JUDGE.COMBINED_SCOPE,
         temperature=0,
         timeout=11,
     )
@@ -110,3 +112,25 @@ def test_vllm_call_uses_openai_compatible_endpoint(monkeypatch: pytest.MonkeyPat
     assert calls[0][1]["model"] == "gemma4:31b"
     assert calls[0][1]["response_format"]["type"] == "json_schema"
     assert calls[0][2] == 11
+
+
+def test_cleaning_scope_uses_cleaning_only_contract() -> None:
+    verdict = {
+        "verdict": "pass",
+        "cleaning_correct": True,
+        "rationale": "clean",
+    }
+
+    schema = LOCAL_JUDGE._verdict_schema(LOCAL_JUDGE.CLEANING_SCOPE)
+    messages = LOCAL_JUDGE._messages(
+        "prompt", scope=LOCAL_JUDGE.CLEANING_SCOPE
+    )
+    LOCAL_JUDGE._validate_verdict(
+        verdict, scope=LOCAL_JUDGE.CLEANING_SCOPE
+    )
+
+    assert schema["required"] == ["verdict", "cleaning_correct", "rationale"]
+    assert "extraction_correct" not in schema["properties"]
+    assert "extraction_correct" not in messages[0]["content"]
+    with pytest.raises(ValueError, match="extraction_correct"):
+        LOCAL_JUDGE._validate_verdict(verdict)

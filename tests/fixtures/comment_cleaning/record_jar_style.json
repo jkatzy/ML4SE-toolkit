@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "family_name": "record_jar_style",
+  "canonical_language": "record_jar",
+  "language_keys": [
+    "record_jar"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-directive",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "directive",
+      "raw_comment": "%% cleaning_payload_shared_regex_000",
+      "expected_cleaned": "%% cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}
