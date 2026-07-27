@@ -24,6 +24,13 @@ _EXAMPLE_BODY_PLACEHOLDERS = (
 )
 _DECORATIVE_RULER_CHARS = frozenset("#-=*_<>/")
 _LINE_ONLY_DECORATIVE_CHARS = frozenset("#-*_/<>")
+_JAVA_SCANNER_LINE_ENDINGS = str.maketrans(
+    {
+        "\u0085": "\n",
+        "\u2028": "\n",
+        "\u2029": "\n",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -158,7 +165,8 @@ def _token_endswith(text: str, token: str) -> bool:
 
 
 def _strip_wrapped_line(line: str, wrappers: tuple[tuple[str, str], ...]) -> _WrappedLine | None:
-    indent_length = len(line) - len(line.lstrip(" \t"))
+    indent_match = re.match(r"[^\S\r\n]*", line)
+    indent_length = indent_match.end() if indent_match is not None else 0
     outer_indent = line[:indent_length]
     candidate = line[indent_length:]
 
@@ -272,7 +280,8 @@ def _strip_grouped_line_wrappers(
         for open_token, close_token in line_wrappers:
             flags = re.IGNORECASE if _is_case_insensitive_token(open_token + close_token) else 0
             pattern = re.compile(
-                rf"^[ \t]*(?:{_line_open_pattern(open_token)})(.*){re.escape(close_token)}$",
+                rf"^[^\S\r\n]*(?:{_line_open_pattern(open_token)})"
+                rf"(.*){re.escape(close_token)}$",
                 flags,
             )
             match = pattern.match(line)
@@ -816,7 +825,11 @@ class CommentSanitizer:
         """
 
         raw_comment = _coerce_comment_text(comment)
+        if self.syntax.canonical_name == "omgrofl":
+            raw_comment = raw_comment.translate(_JAVA_SCANNER_LINE_ENDINGS)
         raw_comment = _normalize_newlines(raw_comment)
+        if self.syntax.sanitizer_mode == "raw":
+            return raw_comment
 
         grouped_block_result = _strip_grouped_wrapped_lines(
             raw_comment, self._sanitizer_syntax.block_wrappers
@@ -858,6 +871,15 @@ class CommentSanitizer:
                 self._sanitizer_syntax.line_wrappers,
                 allow_doc_star=False,
             )
+
+        for open_text in self.syntax.unclosed_block_openers:
+            if raw_comment.startswith(open_text):
+                return _sanitize_block_body(
+                    raw_comment[len(open_text) :],
+                    (open_text, ""),
+                    self._sanitizer_syntax.line_wrappers,
+                    allow_doc_star=True,
+                )
 
         line_result = _strip_grouped_line_wrappers(
             raw_comment, self._sanitizer_syntax.line_wrappers

@@ -5,8 +5,8 @@ The parsing layer extracts source-code regions and returns them as
 
 ## Modules
 
-- `Comments`: regex- and delimiter-based comment extraction across multiple
-  programming languages, including top-of-file opening-comment extraction.
+- `Comments`: registry-driven regex, delimiter, lexical, and contextual
+  structural comment extraction, including top-of-file opening comments.
 - `Code`: Tree-sitter powered structural queries for language-aware matching.
 
 ## Contract

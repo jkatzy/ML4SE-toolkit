@@ -129,18 +129,26 @@ nested comments, comment sanitization, opening file-header extraction,
 supported-language lookup, and unsupported-language behavior,
 see [docs/comment_extractor.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/comment_extractor.md).
 
-At the moment the comment extractor covers `333` registry keys, including
+At the moment the comment extractor covers `671` registry keys, including
 template and document syntaxes such as `astro`, `coldfusion`, `jsp`, `marko`,
 `plantuml`, `slim`, `smarty`, and `restructuredtext`, plus nested-comment
 languages such as `coldfusion`, `dafny`, `frege`, `grammatical_framework`,
 `rexx`, `tla`, and `v`.
+
+Format-aware coverage includes GNU `checksums`, `ecere_projects`, `figlet_font`,
+`microsoft_visual_studio_solution`, AMPL `nl`, `omgrofl`, and `pogoscript`.
+These entries use narrowly scoped structural or syntax-aware guards where
+marker-only scanning would misclassify strings, counted records, or binary data.
 
 ## Development commands
 
 - `make setup`: create and sync the local development environment with `uv`
 - `make test`: run the default unit and integration suite with coverage
 - `make test-optional`: run optional-dependency tests without coverage gating
-- `make lint`: run `ruff` on the source tree
+- `make comment-fuzz`: run deterministic Unicode-heavy parser invariants across
+  every registered language
+- `make lint`: run `ruff` on maintained source, tests, and examples; the legacy
+  EBNF utility tree keeps its existing separate style baseline
 - `make smoke`: run the minimal end-to-end smoke tests
 - `make build`: create source and wheel distributions in `dist/`
 - `make check-main-branch`: fail if development-only artifacts are still

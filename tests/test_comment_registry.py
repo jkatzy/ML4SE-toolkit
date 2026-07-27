@@ -34,6 +34,12 @@ def test_registry_entries_seed_examples_for_each_implemented_feature():
         if syntax.nested_delimiters:
             assert syntax.shared_nested_examples or syntax.canonical_nested_examples
 
+        if syntax.contextual_extractor:
+            assert (
+                syntax.shared_contextual_examples
+                or syntax.canonical_contextual_examples
+            )
+
 
 def test_registry_examples_use_known_kinds_and_consistent_generation_flags():
     known_kinds = {
@@ -45,6 +51,7 @@ def test_registry_examples_use_known_kinds_and_consistent_generation_flags():
         "textile",
         "cue_block",
         "directive",
+        "contextual",
     }
     for syntax in iter_comment_syntaxes():
         for example in (
@@ -52,6 +59,8 @@ def test_registry_examples_use_known_kinds_and_consistent_generation_flags():
             *syntax.canonical_regex_examples,
             *syntax.shared_nested_examples,
             *syntax.canonical_nested_examples,
+            *syntax.shared_contextual_examples,
+            *syntax.canonical_contextual_examples,
         ):
             assert example.kind in known_kinds
             if example.grouped_line_compatible:
@@ -78,3 +87,19 @@ def test_registry_accepts_raw_stack_style_labels():
     assert get_comment_syntax("Web Ontology Language") is get_comment_syntax(
         "web_ontology_language"
     )
+    assert get_comment_syntax("Checksums") is get_comment_syntax("checksums")
+    assert get_comment_syntax("Ecere_Projects") is get_comment_syntax(
+        "ecere_projects"
+    )
+    assert get_comment_syntax("FIGlet_Font") is get_comment_syntax("figlet_font")
+    assert get_comment_syntax(
+        "Microsoft_Visual_Studio_Solution"
+    ) is get_comment_syntax("microsoft_visual_studio_solution")
+    assert get_comment_syntax("NL") is get_comment_syntax("nl")
+    assert get_comment_syntax("Omgrofl") is get_comment_syntax("omgrofl")
+    assert get_comment_syntax("PogoScript") is get_comment_syntax("pogoscript")
+
+
+def test_public_key_aggregate_remains_unsupported():
+    with pytest.raises(NotImplementedError):
+        get_comment_syntax("Public_Key")

@@ -50,6 +50,13 @@ def _iter_regex_examples_for_language(syntax, language):
         yield from syntax.canonical_regex_examples
 
 
+def _iter_registry_examples_for_language(syntax, language):
+    yield from _iter_regex_examples_for_language(syntax, language)
+    yield from syntax.shared_contextual_examples
+    if language == syntax.canonical_name:
+        yield from syntax.canonical_contextual_examples
+
+
 def _find_regex_example(syntax, language, *, kind, predicate=None):
     for example in _iter_regex_examples_for_language(syntax, language):
         if example.kind != kind:
@@ -285,7 +292,9 @@ def _build_registry_sample_cases():
     generic_kinds = {"line", "block", "nested"}
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
-            for index, example in enumerate(_iter_regex_examples_for_language(syntax, language)):
+            for index, example in enumerate(
+                _iter_registry_examples_for_language(syntax, language)
+            ):
                 if example.kind in generic_kinds:
                     continue
                 cases.append(

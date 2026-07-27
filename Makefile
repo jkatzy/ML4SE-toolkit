@@ -30,6 +30,9 @@ COMMENT_TESTGEN_CODEX_SANDBOX ?= workspace-write
 COMMENT_TESTGEN_REPORT_LIMIT ?=
 COMMENT_TESTGEN_REPORTS ?=
 COMMENT_JUDGE_RUN_TESTGEN ?= 1
+COMMENT_FUZZ_SEED ?= 0xC0FFEE
+COMMENT_FUZZ_CASES_PER_LANGUAGE ?= 100
+COMMENT_FUZZ_MAX_LENGTH ?= 128
 
 ifeq ($(COMMENT_JUDGE_BACKEND),codex)
 COMMENT_JUDGE_AGENT_ENV = COMMENT_JUDGE_USE_CODEX=1 COMMENT_JUDGE_CODEX_TIMEOUT=$(COMMENT_JUDGE_CODEX_TIMEOUT)
@@ -39,6 +42,7 @@ endif
 
 .PHONY: setup setup-optional test test-optional lint smoke build research-prompts
 .PHONY: comment-confirmation-prompts comment-test-prompts
+.PHONY: comment-fuzz
 .PHONY: comment-judge-manifest comment-judge-coverage comment-judge-smoke comment-judge-test
 .PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline
 .PHONY: comment-judge-clear-ledger comment-judge-full-run check-main-branch check-release-version
@@ -72,6 +76,12 @@ comment-confirmation-prompts:
 
 comment-test-prompts:
 	$(UV) run python scripts/build_comment_test_packets.py
+
+comment-fuzz:
+	$(UV) run python scripts/fuzz_comment_parsers.py \
+		--seed $(COMMENT_FUZZ_SEED) \
+		--cases-per-language $(COMMENT_FUZZ_CASES_PER_LANGUAGE) \
+		--max-length $(COMMENT_FUZZ_MAX_LENGTH)
 
 comment-judge-manifest:
 	$(UV) run --with boto3 --with datasets --with 'smart_open[s3]' \

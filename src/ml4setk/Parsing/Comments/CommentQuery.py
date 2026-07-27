@@ -12,11 +12,24 @@ from collections.abc import Iterable
 import regex as re
 
 from ..Query import Query, QueryMatch
+from .contextual import contextual_comment_ranges
 from .registry import get_comment_syntax
 
 _WARNED_LANGUAGE_CAVEATS = set()
 _RANGE_END_SENTINEL = float("inf")
 _JSON_STRING_AWARE_LANGUAGES = {"jsonc"}
+_ECERE_STRING_AWARE_LANGUAGES = {"ecere_projects"}
+_POGOSCRIPT_STRING_AWARE_LANGUAGES = {"pogoscript"}
+_NL_RAW_RECORD = re.compile(r"(?m)^h[ \t\v\f\r]*([0-9]+):")
+_NL_BINARY_HEADER = re.compile(
+    r"^b(?:"
+    r"[ \t\v\f\r]*[0-9]+(?=[ \t\v\f\r\n]|\Z)"
+    r"|[ \t\v\f\r]*(?=\n|\Z)"
+    r")"
+)
+_NL_HEADER_REQUIRED_UINTS = (3, 2, 2, 2, 2, 2, 2, 2, 5)
+_NL_C_WHITESPACE = " \t\v\f\r"
+_PHYSICAL_LINE_ENDINGS = "\r\n\u0085\u2028\u2029"
 
 
 def _warn_language_caveat_once(language):
@@ -125,26 +138,367 @@ def _json_string_ranges(text):
     return ranges
 
 
+def _c_style_double_quoted_string_ranges(text):
+    """Return ECON-style double-quoted ranges while skipping real comments."""
+
+    ranges = []
+    index = 0
+    text_length = len(text)
+
+    while index < text_length:
+        if text.startswith("//", index):
+            line_end = index + 2
+            while line_end < text_length and text[line_end] not in "\r\n":
+                line_end += 1
+            index = line_end
+            continue
+
+        if text.startswith("/*", index):
+            block_end = text.find("*/", index + 2)
+            index = text_length if block_end == -1 else block_end + 2
+            continue
+
+        if text[index] != '"':
+            index += 1
+            continue
+
+        start = index
+        index += 1
+        while index < text_length:
+            if text[index] == "\\":
+                index = min(index + 2, text_length)
+                continue
+            if text[index] == '"':
+                index += 1
+                break
+            index += 1
+        ranges.append((start, index))
+
+    return ranges
+
+
+def _pogoscript_string_ranges(text):
+    """Return PogoScript string and regexp ranges outside interpolation code."""
+
+    ranges = []
+    text_length = len(text)
+
+    def skip_line_comment(index):
+        index += 2
+        while index < text_length and text[index] not in "\r\n":
+            index += 1
+        return index
+
+    def skip_block_comment(index):
+        block_end = text.find("*/", index + 2)
+        return text_length if block_end == -1 else block_end + 2
+
+    def is_identifier_start(char):
+        return (
+            char.isascii()
+            and char.isalpha()
+            or "\u3400" <= char <= "\u4dff"
+            or "\u4e00" <= char <= "\u9fff"
+            or char in {"_", "$"}
+        )
+
+    def is_identifier_tail(char):
+        return is_identifier_start(char) or "0" <= char <= "9"
+
+    def preceding_token_is_identifier(index):
+        token_start = index
+        while token_start and is_identifier_tail(text[token_start - 1]):
+            token_start -= 1
+
+        token_text = text[token_start:index]
+        token_index = 0
+        last_kind = None
+        while token_index < len(token_text):
+            if "0" <= token_text[token_index] <= "9":
+                if (
+                    token_text.startswith("0x", token_index)
+                    and token_index + 2 < len(token_text)
+                    and token_text[token_index + 2] in "0123456789abcdefABCDEF"
+                ):
+                    token_index += 2
+                    while (
+                        token_index < len(token_text)
+                        and token_text[token_index] in "0123456789abcdefABCDEF"
+                    ):
+                        token_index += 1
+                else:
+                    while (
+                        token_index < len(token_text)
+                        and "0" <= token_text[token_index] <= "9"
+                    ):
+                        token_index += 1
+                last_kind = "number"
+                continue
+
+            if is_identifier_start(token_text[token_index]):
+                token_index += 1
+                while (
+                    token_index < len(token_text)
+                    and is_identifier_tail(token_text[token_index])
+                ):
+                    token_index += 1
+                last_kind = "identifier"
+                continue
+
+            token_index += 1
+            last_kind = None
+
+        return last_kind == "identifier"
+
+    def starts_regexp(index):
+        return text.startswith("r/", index) and not preceding_token_is_identifier(
+            index
+        )
+
+    def scan_regexp(index):
+        start = index
+        index += 2
+        while index < text_length:
+            if text[index] == "\\":
+                index = min(index + 2, text_length)
+                continue
+            if text[index] == "/":
+                index += 1
+                while index < text_length and text[index] in {"i", "m", "g"}:
+                    index += 1
+                ranges.append((start, index))
+                return index
+            index += 1
+        return text_length
+
+    def scan_single_quoted(index):
+        start = index
+        index += 1
+        while index < text_length:
+            if text[index] != "'":
+                index += 1
+                continue
+            if index + 1 < text_length and text[index + 1] == "'":
+                index += 2
+                continue
+            index += 1
+            ranges.append((start, index))
+            return index
+        return text_length
+
+    def scan_interpolation(index):
+        depth = 1
+        while index < text_length:
+            if text.startswith("//", index):
+                index = skip_line_comment(index)
+                continue
+            if text.startswith("/*", index):
+                index = skip_block_comment(index)
+                continue
+            if starts_regexp(index):
+                index = scan_regexp(index)
+                continue
+            if text[index] == "'":
+                index = scan_single_quoted(index)
+                continue
+            if text[index] == '"':
+                index = scan_double_quoted(index)
+                continue
+            if text[index] == "(":
+                depth += 1
+            elif text[index] == ")":
+                depth -= 1
+                if depth == 0:
+                    return index + 1
+            index += 1
+        return None
+
+    def scan_double_quoted(index):
+        checkpoint = len(ranges)
+        segment_start = index
+        index += 1
+        while index < text_length:
+            if text[index] == "\\":
+                index = min(index + 2, text_length)
+                continue
+            if text.startswith("#(", index):
+                if segment_start < index:
+                    ranges.append((segment_start, index))
+                interpolation_end = scan_interpolation(index + 2)
+                if interpolation_end is None:
+                    del ranges[checkpoint:]
+                    return text_length
+                segment_start = interpolation_end - 1
+                index = interpolation_end
+                continue
+            if text[index] == '"':
+                index += 1
+                ranges.append((segment_start, index))
+                return index
+            index += 1
+
+        del ranges[checkpoint:]
+        return text_length
+
+    index = 0
+    while index < text_length:
+        if text.startswith("//", index):
+            index = skip_line_comment(index)
+            continue
+        if text.startswith("/*", index):
+            index = skip_block_comment(index)
+            continue
+        if starts_regexp(index):
+            index = scan_regexp(index)
+            continue
+        if text[index] == "'":
+            index = scan_single_quoted(index)
+            continue
+        if text[index] == '"':
+            index = scan_double_quoted(index)
+            continue
+        index += 1
+
+    return sorted(ranges)
+
+
+def _nl_comment_scan_context(text):
+    """Return protected NL ranges and the textual scan limit."""
+
+    scan_limit = len(text)
+    binary_scan_limit = _nl_binary_header_scan_limit(text)
+    if binary_scan_limit is not None:
+        scan_limit = binary_scan_limit
+
+    ranges = []
+    search_from = 0
+    while search_from < scan_limit:
+        match = _NL_RAW_RECORD.search(text, search_from, scan_limit)
+        if match is None:
+            break
+
+        digits = match.group(1)
+        if len(digits) > 9:
+            payload_end = scan_limit
+        else:
+            payload_end = _advance_utf8_bytes(
+                text, match.end(), int(digits), scan_limit
+            )
+
+        record_end = payload_end
+        while record_end < scan_limit and text[record_end] not in "\r\n":
+            record_end += 1
+        if record_end < scan_limit:
+            if (
+                text[record_end] == "\r"
+                and record_end + 1 < scan_limit
+                and text[record_end + 1] == "\n"
+            ):
+                record_end += 2
+            else:
+                record_end += 1
+
+        ranges.append((match.start(), record_end))
+        search_from = max(match.end(), record_end)
+
+    return ranges, scan_limit
+
+
+def _nl_binary_header_scan_limit(text):
+    """Return the text-header boundary for a likely binary NL file."""
+
+    if not text.startswith("b"):
+        return None
+
+    strong_prefix = _NL_BINARY_HEADER.match(text) is not None
+    line_end = -1
+    for _ in range(10):
+        line_end = text.find("\n", line_end + 1)
+        if line_end == -1:
+            return 0 if strong_prefix else None
+
+    scan_limit = line_end + 1
+    if strong_prefix:
+        return scan_limit
+
+    header_lines = text[:scan_limit].split("\n")[:10]
+    if all(
+        _nl_line_has_unsigned_prefix(line, required)
+        for line, required in zip(
+            header_lines[1:], _NL_HEADER_REQUIRED_UINTS
+        )
+    ):
+        return scan_limit
+    return None
+
+
+def _nl_line_has_unsigned_prefix(line, required):
+    """Return whether an NL header line starts with ``required`` uints."""
+
+    index = 0
+    for field_index in range(required):
+        while index < len(line) and line[index] in _NL_C_WHITESPACE:
+            index += 1
+        start = index
+        while index < len(line) and "0" <= line[index] <= "9":
+            index += 1
+        if index == start:
+            return False
+        if (
+            field_index < required - 1
+            and (index >= len(line) or line[index] not in _NL_C_WHITESPACE)
+        ):
+            return False
+    return True
+
+
+def _advance_utf8_bytes(text, start, byte_count, limit):
+    """Advance over a byte-counted field represented as decoded UTF-8 text."""
+
+    index = start
+    consumed = 0
+    while index < limit and consumed < byte_count:
+        consumed += len(text[index].encode("utf-8", errors="surrogatepass"))
+        index += 1
+    return index
+
+
+def _comment_scan_context(language, text):
+    """Return ignored ranges and the maximum source offset to scan."""
+
+    normalized = re.sub(
+        r"[^a-z0-9]+", "_", language.strip().lower()
+    ).strip("_")
+    if normalized == "nl":
+        return _nl_comment_scan_context(text)
+    if normalized in _JSON_STRING_AWARE_LANGUAGES:
+        return _json_string_ranges(text), len(text)
+    if normalized in _ECERE_STRING_AWARE_LANGUAGES:
+        return _c_style_double_quoted_string_ranges(text), len(text)
+    if normalized in _POGOSCRIPT_STRING_AWARE_LANGUAGES:
+        return _pogoscript_string_ranges(text), len(text)
+    return _quoted_string_ranges(text), len(text)
+
+
 def _comment_start_ignored_ranges(language, text):
     """Return source ranges where comment delimiters should be ignored."""
 
-    if language.lower() in _JSON_STRING_AWARE_LANGUAGES:
-        return _json_string_ranges(text)
-    return _quoted_string_ranges(text)
+    ignored_ranges, _ = _comment_scan_context(language, text)
+    return ignored_ranges
 
 
-def _starts_inside_quoted_string(start, quoted_ranges):
-    """Return ``True`` when ``start`` is inside any quoted string range."""
+def _starts_inside_ignored_range(start, ignored_ranges):
+    """Return ``True`` when ``start`` is inside a protected source range."""
 
-    if not quoted_ranges:
+    if not ignored_ranges:
         return False
 
-    index = bisect_right(quoted_ranges, (start, _RANGE_END_SENTINEL)) - 1
+    index = bisect_right(ignored_ranges, (start, _RANGE_END_SENTINEL)) - 1
     if index < 0:
         return False
 
-    quote_start, quote_end = quoted_ranges[index]
-    return quote_start < start < quote_end
+    range_start, range_end = ignored_ranges[index]
+    return range_start < start < range_end
 
 
 def _query_match_from_range(text, start, end):
@@ -205,46 +559,52 @@ class LineCommentQuery(Query):
         self.syntax = get_comment_syntax(language)
         self.regex_patterns = self.syntax.regex_patterns
         self.regexes = tuple(re.compile(pattern) for pattern in self.regex_patterns)
+        self.contextual_extractor = self.syntax.contextual_extractor
 
     def contains(self, string):
-        """Return ``True`` when regex-based extraction finds a comment."""
+        """Return ``True`` when extraction finds a comment."""
 
-        if not self.regexes:
-            return False
-
-        quoted_ranges = _comment_start_ignored_ranges(self.language, string)
-        return any(
-            not _starts_inside_quoted_string(start, quoted_ranges)
-            for start, _ in self._iter_match_ranges(string)
-        )
+        return bool(self.parse_ranges(string))
 
     def parse(self, text):
-        """Return regex-based comment matches in source order.
+        """Return non-nested comment matches in source order.
 
         Args:
             text: Source text to scan.
 
         Returns:
-            A list of ``QueryMatch`` values for single-line comments and
-            non-nested block comments. Matches starting inside simple quoted
-            strings are ignored.
+            A list of ``QueryMatch`` values for single-line comments,
+            non-nested block comments, and contextual comment regions.
+            Matches starting inside protected source ranges are ignored.
         """
 
         return _query_matches_from_ranges(text, self.parse_ranges(text))
 
-    def parse_ranges(self, text, quoted_ranges=None):
-        """Return regex-based comment ranges in source order."""
+    def parse_ranges(self, text, quoted_ranges=None, scan_limit=None):
+        """Return regex and contextual comment ranges in source order."""
 
-        if not self.regexes:
+        if not self.regexes and not self.contextual_extractor:
             return []
 
-        if quoted_ranges is None:
-            quoted_ranges = _comment_start_ignored_ranges(self.language, text)
-        match_ranges = (
+        if quoted_ranges is None or scan_limit is None:
+            default_ranges, default_limit = _comment_scan_context(
+                self.language, text
+            )
+            if quoted_ranges is None:
+                quoted_ranges = default_ranges
+            if scan_limit is None:
+                scan_limit = default_limit
+
+        match_ranges = [
             (start, end)
             for start, end in self._iter_match_ranges(text)
-            if not _starts_inside_quoted_string(start, quoted_ranges)
-        )
+            if end <= scan_limit
+            and not _starts_inside_ignored_range(start, quoted_ranges)
+        ]
+        if self.contextual_extractor:
+            match_ranges.extend(
+                contextual_comment_ranges(self.contextual_extractor, text)
+            )
         return self._dedupe_match_ranges(match_ranges)
 
     def _iter_match_ranges(self, text):
@@ -330,13 +690,15 @@ class NestedCommentQuery(Query):
             return []
 
         if quoted_ranges is None:
-            quoted_ranges = _comment_start_ignored_ranges(self.language, text)
+            quoted_ranges = _comment_start_ignored_ranges(
+                self.language, text
+            )
         ranges = []
         for open_delim, close_delim in self.delimiters:
             ranges.extend(
                 (start, end)
                 for start, end in self.parse_nested_ranges(open_delim, close_delim, text)
-                if not _starts_inside_quoted_string(start, quoted_ranges)
+                if not _starts_inside_ignored_range(start, quoted_ranges)
             )
         return sorted(ranges)
 
@@ -486,12 +848,17 @@ class CommentQuery(Query):
     def _parse_single_language_ranges(text, line_comments, nested_comments):
         """Return grouped and deduplicated match ranges for one language."""
 
-        quoted_ranges = _comment_start_ignored_ranges(line_comments.language, text)
+        quoted_ranges, scan_limit = _comment_scan_context(
+            line_comments.language, text
+        )
         ranges = []
         ranges.extend(nested_comments.parse_ranges(text, quoted_ranges))
         ranges.extend(
             CommentQuery._group_line_comment_block_ranges(
-                text, line_comments.parse_ranges(text, quoted_ranges)
+                text,
+                line_comments.parse_ranges(
+                    text, quoted_ranges, scan_limit=scan_limit
+                ),
             )
         )
         return LineCommentQuery._dedupe_match_ranges(ranges)
@@ -588,13 +955,19 @@ class CommentQuery(Query):
         """Return ``True`` when a match is the only non-space content on a line."""
 
         match_text = text[start:end]
-        if "\n" in match_text:
+        if any(ending in match_text for ending in _PHYSICAL_LINE_ENDINGS):
             return False
 
-        line_start = text.rfind("\n", 0, start) + 1
-        line_end = text.find("\n", end)
-        if line_end == -1:
-            line_end = len(text)
+        previous_endings = (
+            text.rfind(ending, 0, start) for ending in _PHYSICAL_LINE_ENDINGS
+        )
+        line_start = max(previous_endings) + 1
+        next_endings = (
+            index
+            for ending in _PHYSICAL_LINE_ENDINGS
+            if (index := text.find(ending, end)) != -1
+        )
+        line_end = min(next_endings, default=len(text))
 
         before = text[line_start:start]
         after = text[end:line_end]
@@ -604,8 +977,15 @@ class CommentQuery(Query):
     def _is_consecutive_line_separator(separator):
         """Return ``True`` for whitespace plus exactly one newline."""
 
-        separator = separator.replace("\r", "")
-        return separator.count("\n") == 1 and separator.replace("\n", "").strip() == ""
+        return (
+            re.fullmatch(
+                r"[^\S\r\n\u0085\u2028\u2029]*"
+                r"(?:\r\n|[\r\n\u0085\u2028\u2029])"
+                r"[^\S\r\n\u0085\u2028\u2029]*",
+                separator,
+            )
+            is not None
+        )
 
     @staticmethod
     def _line_comment_group_key(comment):
@@ -635,6 +1015,8 @@ class CommentQuery(Query):
         )
         if not stripped or stripped.startswith(block_prefixes):
             return None
+        if stripped.lower().startswith("w00t"):
+            return "w00t"
 
         line_prefixes = (
             "Comment",

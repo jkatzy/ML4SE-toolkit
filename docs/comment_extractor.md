@@ -6,8 +6,8 @@ records that can be fed into downstream generation utilities such as
 
 ## Default entry point
 
-Use `CommentQuery(language)` unless you specifically need only regex-based
-matching or only nested block matching.
+Use `CommentQuery(language)` unless you specifically need only non-nested or
+only nested block matching.
 
 ```python
 from ml4setk import CommentQuery
@@ -49,6 +49,10 @@ matches = query.parse(sample)
 assert [match.match for match in matches] == ["# note", "/* block */"]
 ```
 
+Only identical source ranges are deduplicated. Ambiguous multi-language queries
+can return overlapping matches, which callers that need a non-overlapping token
+stream must resolve.
+
 ## Which query to use
 
 - `CommentQuery(language_or_languages)`: the default. Combines regex-based
@@ -60,7 +64,7 @@ assert [match.match for match in matches] == ["# note", "/* block */"]
   line, requires the first real comment to start within the first `n` rows, and
   then expands across contiguous top-of-file comments until code appears.
 - `LineCommentQuery(language)`: finds line comments and non-nested block
-  comments driven by registry regexes.
+  comments driven by registry regexes or a named contextual extractor.
 - `NestedCommentQuery(language)`: finds top-level nested comment regions for
   languages with recursive delimiters such as Haskell, Agda, Racket, or Nim.
 
@@ -87,6 +91,26 @@ assert match.match == "// first line\n// second line"
 This is useful when a training target should preserve a multi-line comment
 block instead of splitting it into per-line matches.
 
+### Deterministic Unicode fuzzing
+
+Run the property fuzzer across every registry key after changing shared query
+or sanitizer behavior:
+
+```bash
+make comment-fuzz
+```
+
+The default campaign uses a stable seed and exercises delimiter-heavy text,
+multiple writing systems, combining marks, bidi controls, Unicode whitespace,
+line-separator variants, emoji, NULs, and lone surrogates. Override
+`COMMENT_FUZZ_SEED`, `COMMENT_FUZZ_CASES_PER_LANGUAGE`, or
+`COMMENT_FUZZ_MAX_LENGTH` to broaden or reproduce a campaign.
+
+This is a contract fuzzer: it validates match bounds, source reconstruction,
+ordering, `parse`/iteration/`contains` consistency, and sanitizer totality. It is
+not a language-semantics oracle, so retain focused fixtures and differential
+tests for syntax and sanitizer normalization behavior.
+
 ### Inline comments are preserved as-is
 
 ```python
@@ -106,6 +130,24 @@ sample = "answer = 42 {- outer {- inner -} outer -} done"
 match = CommentQuery("haskell").parse(sample)[0]
 assert match.match == "{- outer {- inner -} outer -}"
 ```
+
+### Structural formats can declare comment regions
+
+FIGfont files store their comment count in the header rather than using a
+delimiter. The `figlet_font` parser returns exactly the declared physical lines
+including blank lines, permits the last declared line to end at EOF, and does
+not scan later glyph data for comment-like markers.
+
+```python
+from ml4setk import CommentQuery
+
+sample = "flf2a$ 1 1 1 0 1\nfont attribution\n@glyph\n"
+match = CommentQuery("figlet_font").parse(sample)[0]
+assert match.match == "font attribution"
+```
+
+Because FIGfont header comments have no delimiter, sanitization preserves their
+content and indentation apart from newline normalization.
 
 ### Opening file headers can be extracted directly
 
@@ -147,11 +189,30 @@ print(len(languages))
 print(languages[:10])
 ```
 
-As of this revision, the comment extractor implements `333` language keys.
+As of this revision, the comment extractor implements `671` language keys.
 That includes mainstream source languages plus template, markup, config, and
 record-oriented syntaxes such as `astro`, `coldfusion`, `g_code`, `gams`,
 `genero`, `jsp`, `marko`, `openqasm`, `plantuml`, `q`, `rexx`, `slim`,
 `smarty`, `tla`, and `v`.
+
+The format-aware keys `checksums`, `ecere_projects`, `figlet_font`,
+`microsoft_visual_studio_solution`, `nl`, `omgrofl`, and `pogoscript` have
+additional scope constraints:
+
+- `checksums` implements GNU Coreutils check-file comments, not `go.sum`; `#`
+  must be in column zero because an indented hash is checksum data.
+- `figlet_font` reads the header-declared `Comment_Lines` region.
+- `nl` recognizes an end-of-record `#`, not a standalone `#`, protects counted
+  raw strings, and scans only a complete 10-line textual header before a binary
+  payload.
+- `ecere_projects` masks double-quoted ECON values before finding comments.
+- `pogoscript` masks quoted strings and `r/.../` literals while leaving comments
+  in `#(...)` interpolation code visible.
+- `microsoft_visual_studio_solution` accepts Unicode indentation before a
+  full-line `#`.
+- `omgrofl` recognizes a complete, case-insensitive `w00t` token when it is the
+  first Java Scanner token on a physical line, including Java whitespace and
+  U+0085, U+2028, and U+2029 line separators; it has no inline form.
 
 Language keys are lowercase registry identifiers such as `java`, `python`,
 `qml`, `dockerfile`, `powershell`, `jinja`, and `xquery`.
@@ -223,7 +284,12 @@ For normal deterministic coverage, run:
 
 ```bash
 make test
+make comment-fuzz
 ```
+
+`make comment-fuzz` defaults to 100 cases per registry key. Its seed and input
+size are configurable through the variables documented above, so a failing
+campaign is reproducible.
 
 For real Stack v2 samples judged by Codex, generate a manifest and run the
 manual LLM judge suite:
@@ -258,6 +324,8 @@ alternatives, failure-report handoff, ledger behavior, and troubleshooting.
   `src/ml4setk/Parsing/Comments/registry.py` are supported.
 - Nested parsing is delimiter-based. It is accurate for supported delimiter
   pairs, but it is not a full parser for the host language grammar.
+- Multi-language queries deduplicate only identical ranges and can return
+  overlapping matches.
 
 ## Extending support
 
@@ -268,3 +336,5 @@ To add a language, update the registry instead of editing branching logic:
 2. Include seeded examples so the generated tests cover the new behavior.
 3. Record research evidence under `docs/comment_research/` and promote the
    result into the registry once it is ready.
+4. Run `make comment-fuzz` and add a minimized regression for every confirmed
+   failure.
