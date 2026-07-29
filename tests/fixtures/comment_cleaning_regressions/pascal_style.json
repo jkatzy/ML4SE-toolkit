@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "pascal_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "ffe07e0ddae9d1b8328e2afbd6f490472556fb2c6796db451c1ee0e190acab33",
+      "case_id": "pascal-block-5a7c03a4fcef552d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "UNITE\nAuteur  ...... :\nCr\u00e9\u00e9 le ...... : 24/08/2006\nModifi\u00e9 le ... :   /  /\nDescription .. : Source TOF de la FICHE : PGHISTRETRO ()\nMots clefs ... : TOF;PGHISTRETRO",
+      "expected_cleaned_sha256": "9b242a87934c7dd179cbe82704c0c31ef86bce8597adb04e9cd2943e10274b5f",
+      "language": "pascal",
+      "raw_comment": "{***********UNITE*************************************************\nAuteur  ...... :\nCr\u00e9\u00e9 le ...... : 24/08/2006\nModifi\u00e9 le ... :   /  /\nDescription .. : Source TOF de la FICHE : PGHISTRETRO ()\nMots clefs ... : TOF;PGHISTRETRO\n*****************************************************************}",
+      "raw_sha256": "450d82c0b2a4a7c514f4d98f7832ba787a8801cb5fe69edc317d3c4da153f121",
+      "raw_utf8_length": 295,
+      "source_provenance": {
+        "source_excerpt_sha256": "a4873a7fd51b52120b51c445abd620e89f1761fb89471c3c6de66804f51e81b3",
+        "source_id": "259f47261f515a14df0ac5b02ae42d51b42c62f8"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "679283c9fb8b473494700079d3dc1431d677fdb85d985d6fcd45d6f711b1f330",
+      "case_id": "pascal-block-f015b6202490078d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Author:       Fran\u00e7ois PIETTE\nDescription:  TBuffer is an object wich buffers data in a single dynamically\n              allocated memory block. It is a kind of FIFO wich manages\n              characters in blocks of various sizes.\nCreation:     April 1996\nVersion:      5.01\nEMail:        francois.piette@overbyte.be  http://www.overbyte.be\n              francois.piette@rtfm.be      http://www.rtfm.be/fpiette\n              francois.piette@pophost.eunet.be\nSupport:      Use the mailing list twsocket@elists.org\n              Follow \"support\" link at http://www.overbyte.be for subscription.\nLegal issues: Copyright (C) 1996-2005 by Fran\u00e7ois PIETTE\n              Rue de Grady 24, 4053 Embourg, Belgium. Fax: +32-4-365.74.56\n              <francois.piette@overbyte.be>\n\n              This software is provided 'as-is', without any express or\n              implied warranty.  In no event will the author be held liable\n              for any  damages arising from the use of this software.\n\n              Permission is granted to anyone to use this software for any\n              purpose, including commercial applications, and to alter it\n              and redistribute it freely, subject to the following\n              restrictions:\n\n              1. The origin of this software must not be misrepresented,\n                 you must not claim that you wrote the original software.\n                 If you use this software in a product, an acknowledgment\n                 in the product documentation would be appreciated but is\n                 not required.\n\n              2. Altered source versions must be plainly marked as such, and\n                 must not be misrepresented as being the original software.\n\n              3. This notice may not be removed or altered from any source\n                 distribution.\n\n              4. You must register this software by sending a picture postcard\n                 to the author. Use a nice stamp and mention your name, street\n                 address, EMail address and any comment you like to say.\n\nUpdates:\nMar 06, 1998  V2.00 Added a property and a parameter for the create method\n              to select the buffer size. Using a 0 value will make the object\n              use the default 1514 bytes (the largest size for an ethernet\n              packet).\nJul 08, 1998  V2.01 Adadpted for Delphi 4\nJan 19, 2003  V5.00 First pre-release for ICS-SSL. New major version number.\n              Skipped version numbers to mach wsocket.pas major version number.\nJan 26, 2004  V5.01 Use ICSDEFS.INC and reordered uses clause for FPC\n              compatibility.\nMay 23, 2005  V5.03 Added BufUsed property.",
+      "expected_cleaned_sha256": "5e84ccee489850cbafaeb4823fcf60504232bbed7725ce55af2433678f09c0fe",
+      "language": "pascal",
+      "raw_comment": "{*_* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\r\n\r\nAuthor:       Fran\u00e7ois PIETTE\r\nDescription:  TBuffer is an object wich buffers data in a single dynamically\r\n              allocated memory block. It is a kind of FIFO wich manages\r\n              characters in blocks of various sizes.\r\nCreation:     April 1996\r\nVersion:      5.01\r\nEMail:        francois.piette@overbyte.be  http://www.overbyte.be\r\n              francois.piette@rtfm.be      http://www.rtfm.be/fpiette\r\n              francois.piette@pophost.eunet.be\r\nSupport:      Use the mailing list twsocket@elists.org\r\n              Follow \"support\" link at http://www.overbyte.be for subscription.\r\nLegal issues: Copyright (C) 1996-2005 by Fran\u00e7ois PIETTE\r\n              Rue de Grady 24, 4053 Embourg, Belgium. Fax: +32-4-365.74.56\r\n              <francois.piette@overbyte.be>\r\n\r\n              This software is provided 'as-is', without any express or\r\n              implied warranty.  In no event will the author be held liable\r\n              for any  damages arising from the use of this software.\r\n\r\n              Permission is granted to anyone to use this software for any\r\n              purpose, including commercial applications, and to alter it\r\n              and redistribute it freely, subject to the following\r\n              restrictions:\r\n\r\n              1. The origin of this software must not be misrepresented,\r\n                 you must not claim that you wrote the original software.\r\n                 If you use this software in a product, an acknowledgment\r\n                 in the product documentation would be appreciated but is\r\n                 not required.\r\n\r\n              2. Altered source versions must be plainly marked as such, and\r\n                 must not be misrepresented as being the original software.\r\n\r\n              3. This notice may not be removed or altered from any source\r\n                 distribution.\r\n\r\n              4. You must register this software by sending a picture postcard\r\n                 to the author. Use a nice stamp and mention your name, street\r\n                 address, EMail address and any comment you like to say.\r\n\r\nUpdates:\r\nMar 06, 1998  V2.00 Added a property and a parameter for the create method\r\n              to select the buffer size. Using a 0 value will make the object\r\n              use the default 1514 bytes (the largest size for an ethernet\r\n              packet).\r\nJul 08, 1998  V2.01 Adadpted for Delphi 4\r\nJan 19, 2003  V5.00 First pre-release for ICS-SSL. New major version number.\r\n              Skipped version numbers to mach wsocket.pas major version number.\r\nJan 26, 2004  V5.01 Use ICSDEFS.INC and reordered uses clause for FPC\r\n              compatibility.\r\nMay 23, 2005  V5.03 Added BufUsed property.\r\n\r\n\r\n * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *}",
+      "raw_sha256": "9280241cdeac8d3c448b97dda780cd6f675982904299837df5ff65a5ad132b2b",
+      "raw_utf8_length": 2871,
+      "source_provenance": {
+        "source_excerpt_sha256": "edf50efd077d46c41bdc76435377ae6ed9c9e19fffecfc65cd72babfcb066e83",
+        "source_id": "bb496a339d1e55b01abe1f5256c3c498be35124e"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "ff19d855a17c2b6c51b68fd7ff9fb720ee361a1e2374eeace6bc40b757d70615",
+      "case_id": "pascal-nested-6b06909ebd4e6c2e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Author      Banshee\n\nDate        08/03/2007\n\nCopyright\n\n// This option form was imported and modified from Voxel Section Editor III\n// by Banshee. This means that this part of the program also has some\n// remaining codes from Stucuk.",
+      "expected_cleaned_sha256": "d4d9d071192905f39bb5bf496828cde3aec1db82092903d07db28c86529490a1",
+      "language": "pascal",
+      "raw_comment": "(*******************************************************************************\n * Author      Banshee\n *\n * Date        08/03/2007\n *\n * Copyright\n\n// This option form was imported and modified from Voxel Section Editor III\n// by Banshee. This means that this part of the program also has some\n// remaining codes from Stucuk.\n\n ******************************************************************************)",
+      "raw_sha256": "805eeb523a9205d6de201eb0257d42eeaf67c71e42132843d26e877ac3fe0de9",
+      "raw_utf8_length": 409,
+      "source_provenance": {
+        "source_excerpt_sha256": "1daeb761c3ab1eefe8046aae3418a6f52b39981d4149b529fb3e0023e91a5f68",
+        "source_id": "4b2077dc1e2e014591798b54bb16cb61804bac5c"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

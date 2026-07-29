@@ -1,0 +1,110 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "lfe_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "ba66a1606953fc089da37c1abd7b5bb64323f52ef94be85026b30a356633f220",
+      "case_id": "lfe-line-1e55f0513eaa34d8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2015-2020 Robert Virding\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "c68613e27a6d196ba48f1576310bbbf4dae5156d64ae1662563e8ac80ad80340",
+      "language": "lfe",
+      "raw_comment": ";; Copyright (c) 2015-2020 Robert Virding\n;;\n;; Licensed under the Apache License, Version 2.0 (the \"License\");\n;; you may not use this file except in compliance with the License.\n;; You may obtain a copy of the License at\n;;\n;;     http://www.apache.org/licenses/LICENSE-2.0\n;;\n;; Unless required by applicable law or agreed to in writing, software\n;; distributed under the License is distributed on an \"AS IS\" BASIS,\n;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n;; See the License for the specific language governing permissions and\n;; limitations under the License.",
+      "raw_sha256": "e38d2661cc8e475592c8b4c4c25067bdd28c309933911a80b6dfb604aa072371",
+      "raw_utf8_length": 599,
+      "source_provenance": {
+        "source_excerpt_sha256": "a0f7fdf397f5a0f91a899606d076d8588060765820ac413f9895e5529283303a",
+        "source_id": "22ff7d15adba98999f76eb515c3f1ec8f7b831e0"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "f4ccfb0c0a7d96889fbf0b9a696e23779cf60af021e41a05483c0634bff540de",
+      "case_id": "lfe-line-3319c51cf69a7abb",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2011-2014 Robert Virding. All rights reserved.\nCopyright (c) 2016      Eric Bailey.    All rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright\n   notice, this list of conditions and the following disclaimer in the\n   documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\nFOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\nCOPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,\nBUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\nANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE.",
+      "expected_cleaned_sha256": "ea41c1074c36244799840bee7c1c3bd770085c7c2db837b1181ed14d81c1d8f9",
+      "language": "lfe",
+      "raw_comment": ";;; Copyright (c) 2011-2014 Robert Virding. All rights reserved.\n;;; Copyright (c) 2016      Eric Bailey.    All rights reserved.\n;;;\n;;; Redistribution and use in source and binary forms, with or without\n;;; modification, are permitted provided that the following conditions\n;;; are met:\n;;;\n;;; 1. Redistributions of source code must retain the above copyright\n;;;    notice, this list of conditions and the following disclaimer.\n;;; 2. Redistributions in binary form must reproduce the above copyright\n;;;    notice, this list of conditions and the following disclaimer in the\n;;;    documentation and/or other materials provided with the distribution.\n;;;\n;;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n;;; \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n;;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\n;;; FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\n;;; COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\n;;; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,\n;;; BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n;;; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\n;;; CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n;;; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\n;;; ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n;;; POSSIBILITY OF SUCH DAMAGE.",
+      "raw_sha256": "9b8bc3d3f7fc3bd64feb8a3b79aa09a6f9db05b4d7dc38c6df21182be97b17b6",
+      "raw_utf8_length": 1464,
+      "source_provenance": {
+        "source_excerpt_sha256": "51052d49fe35a91e5b013b260a6b660163e9151ccbe681a2ee8ded6a27a8caab",
+        "source_id": "33dca52fa68881cd3fc480d27596eb5df95b7947"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "aa8f060942f0f821c0feec7b2d10925ed288bee3d1f1a6f8eb11822278916527",
+      "case_id": "lfe-line-5aaa8bf30e4e8945",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- mode: lfe; -*-\nCopyright (c) 2016-2020 Eric Bailey.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "5bbb44deaab68a53f705549bcffc306763bfd6ab1734f4a01895a376362ae4d5",
+      "language": "lfe",
+      "raw_comment": ";; -*- mode: lfe; -*-\n;; Copyright (c) 2016-2020 Eric Bailey.\n;;\n;; Licensed under the Apache License, Version 2.0 (the \"License\");\n;; you may not use this file except in compliance with the License.\n;; You may obtain a copy of the License at\n;;\n;;     http://www.apache.org/licenses/LICENSE-2.0\n;;\n;; Unless required by applicable law or agreed to in writing, software\n;; distributed under the License is distributed on an \"AS IS\" BASIS,\n;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n;; See the License for the specific language governing permissions and\n;; limitations under the License.",
+      "raw_sha256": "480de9e6a01b33b5d56e3e5378ee225b1b977464b8544ac9fa8d80dea4218354",
+      "raw_utf8_length": 619,
+      "source_provenance": {
+        "source_excerpt_sha256": "2ef377c03be668eba879f9c9595834782bc6fd60c359d06a313d4d5fbf7a0b3c",
+        "source_id": "07b8501ab255d5cb7e0b4a1229832698ddcadb2a"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "f4ccfb0c0a7d96889fbf0b9a696e23779cf60af021e41a05483c0634bff540de",
+      "case_id": "lfe-line-d7fc5df50b02b912",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2011-2014 Robert Virding. All rights reserved.\nCopyright (c) 2016      Eric Bailey.    All rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright\n   notice, this list of conditions and the following disclaimer in the\n   documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\nFOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\nCOPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,\nBUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\nANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE.",
+      "expected_cleaned_sha256": "ea41c1074c36244799840bee7c1c3bd770085c7c2db837b1181ed14d81c1d8f9",
+      "language": "lfe",
+      "raw_comment": ";;; Copyright (c) 2011-2014 Robert Virding. All rights reserved.\n;;; Copyright (c) 2016      Eric Bailey.    All rights reserved.\n;;;\n;;; Redistribution and use in source and binary forms, with or without\n;;; modification, are permitted provided that the following conditions\n;;; are met:\n;;;\n;;; 1. Redistributions of source code must retain the above copyright\n;;;    notice, this list of conditions and the following disclaimer.\n;;; 2. Redistributions in binary form must reproduce the above copyright\n;;;    notice, this list of conditions and the following disclaimer in the\n;;;    documentation and/or other materials provided with the distribution.\n;;;\n;;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n;;; \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n;;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\n;;; FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\n;;; COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\n;;; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,\n;;; BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n;;; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\n;;; CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n;;; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\n;;; ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n;;; POSSIBILITY OF SUCH DAMAGE.",
+      "raw_sha256": "9b8bc3d3f7fc3bd64feb8a3b79aa09a6f9db05b4d7dc38c6df21182be97b17b6",
+      "raw_utf8_length": 1464,
+      "source_provenance": {
+        "source_excerpt_sha256": "cd5b335e2e30e63a85fd49b4dd035a79f6ff79ae5af41d9523a8b2ac797c6dbc",
+        "source_id": "9e6e27faea702ba80542521a0fc0904ab646363a"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "e47d3d662f87b06893a85eeb824a1d5da9dadc4fac85fdc6dccc7cd691374b92",
+      "case_id": "lfe-line-de45a3efb28d0a38",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- mode: lfe; -*-\nCopyright (c) 2008-2014 Robert Virding.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "e58a39ea9bb36c06f2db54f4bb1c9d1f415afb0db7e5fda9d144c37a6ef5d597",
+      "language": "lfe",
+      "raw_comment": ";; -*- mode: lfe; -*-\n;; Copyright (c) 2008-2014 Robert Virding.\n;;\n;; Licensed under the Apache License, Version 2.0 (the \"License\");\n;; you may not use this file except in compliance with the License.\n;; You may obtain a copy of the License at\n;;\n;;     http://www.apache.org/licenses/LICENSE-2.0\n;;\n;; Unless required by applicable law or agreed to in writing, software\n;; distributed under the License is distributed on an \"AS IS\" BASIS,\n;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n;; See the License for the specific language governing permissions and\n;; limitations under the License.",
+      "raw_sha256": "92c0120052a80707bfd9ce420becd325d83b415984387ef952465327b73d5ae9",
+      "raw_utf8_length": 622,
+      "source_provenance": {
+        "source_excerpt_sha256": "67093734138d6023e60fb6cc474ae5a86c304629e8207be32f9993d617b099b0",
+        "source_id": "f8cee8c97126be33936b3dc7b10a9ea31e26255b"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "f4ccfb0c0a7d96889fbf0b9a696e23779cf60af021e41a05483c0634bff540de",
+      "case_id": "lfe-line-e2214edc3906a2b3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2011-2014 Robert Virding. All rights reserved.\nCopyright (c) 2016      Eric Bailey.    All rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright\n   notice, this list of conditions and the following disclaimer in the\n   documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\nFOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\nCOPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,\nBUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\nANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE.",
+      "expected_cleaned_sha256": "ea41c1074c36244799840bee7c1c3bd770085c7c2db837b1181ed14d81c1d8f9",
+      "language": "lfe",
+      "raw_comment": ";;; Copyright (c) 2011-2014 Robert Virding. All rights reserved.\n;;; Copyright (c) 2016      Eric Bailey.    All rights reserved.\n;;;\n;;; Redistribution and use in source and binary forms, with or without\n;;; modification, are permitted provided that the following conditions\n;;; are met:\n;;;\n;;; 1. Redistributions of source code must retain the above copyright\n;;;    notice, this list of conditions and the following disclaimer.\n;;; 2. Redistributions in binary form must reproduce the above copyright\n;;;    notice, this list of conditions and the following disclaimer in the\n;;;    documentation and/or other materials provided with the distribution.\n;;;\n;;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n;;; \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n;;; LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\n;;; FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE\n;;; COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\n;;; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,\n;;; BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n;;; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\n;;; CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n;;; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\n;;; ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n;;; POSSIBILITY OF SUCH DAMAGE.",
+      "raw_sha256": "9b8bc3d3f7fc3bd64feb8a3b79aa09a6f9db05b4d7dc38c6df21182be97b17b6",
+      "raw_utf8_length": 1464,
+      "source_provenance": {
+        "source_excerpt_sha256": "f521abd4fc93909bb0fd2ff462f54ef51f4105f6b80ae92c9ec15f27c8389f76",
+        "source_id": "7cb5cf9cc7ce15e870239e67c6d337afed5a5a16"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

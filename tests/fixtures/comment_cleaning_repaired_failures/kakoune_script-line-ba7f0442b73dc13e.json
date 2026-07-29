@@ -1,0 +1,38 @@
+{
+  "case_id": "kakoune_script-line-ba7f0442b73dc13e",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u203e",
+  "disposition": "executable_regression",
+  "language": "kakoune_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7449d4eba9e7b0680bdcc5de9cab227137ec22c00dd61a56acbf0dc068df9850",
+      "utf8_length": 80
+    },
+    "manifest_old_output": {
+      "sha256": "8e8c59aa96898ddc3bf9f7b3663c6a8375f3c81d51a330178560c17dfbf5ab67",
+      "utf8_length": 19
+    },
+    "raw_comment": {
+      "sha256": "2f73273bc861463158fc4643468d9244d4bd76f1fdd91ba6d473f9f3c93bef0d",
+      "utf8_length": 84
+    },
+    "recommended_expected_output": {
+      "sha256": "8e8c59aa96898ddc3bf9f7b3663c6a8375f3c81d51a330178560c17dfbf5ab67",
+      "utf8_length": 19
+    }
+  },
+  "regression": {
+    "expected_output": "http://asp-lang.org",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# http://asp-lang.org\n# \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ebd74d6f19e2e0d5673af8f520a58b15cc4795cb5e882e2437de7b5bfcd853a8",
+    "source_id": "3a272d261e032f514a10c89fb3bc110ee2cb9d45"
+  },
+  "source_record_sha256": "9bef0f7ecb0677df334af04d63f4fb478248d9a0094892019eb6de3253298a20"
+}

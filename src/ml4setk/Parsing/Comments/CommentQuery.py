@@ -20,6 +20,13 @@ _RANGE_END_SENTINEL = float("inf")
 _JSON_STRING_AWARE_LANGUAGES = {"jsonc"}
 _ECERE_STRING_AWARE_LANGUAGES = {"ecere_projects"}
 _POGOSCRIPT_STRING_AWARE_LANGUAGES = {"pogoscript"}
+_RDF_IRI_AWARE_LANGUAGES = {"sparql", "turtle"}
+_SMALLTALK_STRING_AWARE_LANGUAGES = {"smalltalk"}
+_GENERO_FORMS_SCREEN_OPEN = re.compile(
+    r"(?im)^[ \t]*screen[ \t]*"
+    r"(?:(?:\r\n|[\r\n\u0085\u2028\u2029])[ \t]*)*"
+    r"(?P<open>\{)"
+)
 _NL_RAW_RECORD = re.compile(r"(?m)^h[ \t\v\f\r]*([0-9]+):")
 _NL_BINARY_HEADER = re.compile(
     r"^b(?:"
@@ -102,6 +109,129 @@ def _quoted_string_ranges(text):
         escaped = False
 
     return ranges
+
+
+def _rdf_iri_ranges(text):
+    """Return complete SPARQL/Turtle IRIREF ranges."""
+
+    ranges = []
+    search_from = 0
+    text_length = len(text)
+    forbidden = frozenset('<"{}|^`')
+    hex_digits = frozenset("0123456789abcdefABCDEF")
+    while search_from < text_length:
+        start = text.find("<", search_from)
+        if start < 0:
+            break
+
+        index = start + 1
+        while index < text_length:
+            char = text[index]
+            if char == ">":
+                ranges.append((start, index + 1))
+                search_from = index + 1
+                break
+            if char == "\\":
+                escape_marker = text[index + 1 : index + 2]
+                escape_width = {"u": 4, "U": 8}.get(escape_marker)
+                escape_end = index + 2 + (escape_width or 0)
+                escaped_digits = text[index + 2 : escape_end]
+                if (
+                    escape_width is None
+                    or len(escaped_digits) != escape_width
+                    or any(digit not in hex_digits for digit in escaped_digits)
+                ):
+                    search_from = start + 1
+                    break
+                code_point = int(escaped_digits, 16)
+                if code_point > 0x10FFFF or 0xD800 <= code_point <= 0xDFFF:
+                    search_from = start + 1
+                    break
+                index = escape_end
+                continue
+            if char in forbidden or ord(char) <= 0x20:
+                search_from = start + 1
+                break
+            index += 1
+        else:
+            break
+
+    return ranges
+
+
+def _smalltalk_literal_ranges(text):
+    """Return Smalltalk string and character literal ranges.
+
+    Smalltalk single-quoted strings may cross physical lines and escape an
+    apostrophe by doubling it. Paired double quotes are comments, so the
+    scanner skips them while looking for literals.
+    """
+
+    ranges = []
+    index = 0
+    text_length = len(text)
+    while index < text_length:
+        if text[index] == "$" and index + 1 < text_length:
+            ranges.append((index, index + 2))
+            index += 2
+            continue
+
+        if text[index] == '"':
+            comment_end = text.find('"', index + 1)
+            if comment_end == -1:
+                break
+            index = comment_end + 1
+            continue
+
+        if text[index] != "'":
+            index += 1
+            continue
+
+        start = index
+        index += 1
+        while index < text_length:
+            if text[index] != "'":
+                index += 1
+                continue
+            if index + 1 < text_length and text[index + 1] == "'":
+                index += 2
+                continue
+            index += 1
+            break
+        ranges.append((start, index))
+
+    return ranges
+
+
+def _tcsh_initial_hashbang_range(text):
+    """Return a protected range for a tcsh interpreter directive at byte zero."""
+
+    if not text.startswith("#!"):
+        return []
+
+    line_ending = re.search(r"\r\n|[\r\n\u0085\u2028\u2029]", text)
+    line_end = len(text) if line_ending is None else line_ending.end()
+    # The comment delimiter starts at zero. A -1 sentinel keeps it strictly
+    # inside the protected range without changing quote-range boundary rules.
+    return [(-1, line_end)]
+
+
+def _genero_forms_screen_header_ranges(text):
+    """Return headers whose opening brace starts a Genero Forms screen body."""
+
+    return [match.span() for match in _GENERO_FORMS_SCREEN_OPEN.finditer(text)]
+
+
+def _merge_ignored_ranges(ranges):
+    """Return sorted overlapping protected ranges as disjoint spans."""
+
+    merged = []
+    for start, end in sorted(ranges):
+        if merged and start <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((start, end))
+    return merged
 
 
 def _json_string_ranges(text):
@@ -227,20 +357,14 @@ def _pogoscript_string_ranges(text):
                     ):
                         token_index += 1
                 else:
-                    while (
-                        token_index < len(token_text)
-                        and "0" <= token_text[token_index] <= "9"
-                    ):
+                    while token_index < len(token_text) and "0" <= token_text[token_index] <= "9":
                         token_index += 1
                 last_kind = "number"
                 continue
 
             if is_identifier_start(token_text[token_index]):
                 token_index += 1
-                while (
-                    token_index < len(token_text)
-                    and is_identifier_tail(token_text[token_index])
-                ):
+                while token_index < len(token_text) and is_identifier_tail(token_text[token_index]):
                     token_index += 1
                 last_kind = "identifier"
                 continue
@@ -251,9 +375,7 @@ def _pogoscript_string_ranges(text):
         return last_kind == "identifier"
 
     def starts_regexp(index):
-        return text.startswith("r/", index) and not preceding_token_is_identifier(
-            index
-        )
+        return text.startswith("r/", index) and not preceding_token_is_identifier(index)
 
     def scan_regexp(index):
         start = index
@@ -381,9 +503,7 @@ def _nl_comment_scan_context(text):
         if len(digits) > 9:
             payload_end = scan_limit
         else:
-            payload_end = _advance_utf8_bytes(
-                text, match.end(), int(digits), scan_limit
-            )
+            payload_end = _advance_utf8_bytes(text, match.end(), int(digits), scan_limit)
 
         record_end = payload_end
         while record_end < scan_limit and text[record_end] not in "\r\n":
@@ -424,9 +544,7 @@ def _nl_binary_header_scan_limit(text):
     header_lines = text[:scan_limit].split("\n")[:10]
     if all(
         _nl_line_has_unsigned_prefix(line, required)
-        for line, required in zip(
-            header_lines[1:], _NL_HEADER_REQUIRED_UINTS
-        )
+        for line, required in zip(header_lines[1:], _NL_HEADER_REQUIRED_UINTS)
     ):
         return scan_limit
     return None
@@ -444,9 +562,8 @@ def _nl_line_has_unsigned_prefix(line, required):
             index += 1
         if index == start:
             return False
-        if (
-            field_index < required - 1
-            and (index >= len(line) or line[index] not in _NL_C_WHITESPACE)
+        if field_index < required - 1 and (
+            index >= len(line) or line[index] not in _NL_C_WHITESPACE
         ):
             return False
     return True
@@ -466,9 +583,7 @@ def _advance_utf8_bytes(text, start, byte_count, limit):
 def _comment_scan_context(language, text):
     """Return ignored ranges and the maximum source offset to scan."""
 
-    normalized = re.sub(
-        r"[^a-z0-9]+", "_", language.strip().lower()
-    ).strip("_")
+    normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
     if normalized == "nl":
         return _nl_comment_scan_context(text)
     if normalized in _JSON_STRING_AWARE_LANGUAGES:
@@ -477,6 +592,25 @@ def _comment_scan_context(language, text):
         return _c_style_double_quoted_string_ranges(text), len(text)
     if normalized in _POGOSCRIPT_STRING_AWARE_LANGUAGES:
         return _pogoscript_string_ranges(text), len(text)
+    if normalized in _SMALLTALK_STRING_AWARE_LANGUAGES:
+        return _smalltalk_literal_ranges(text), len(text)
+    if normalized == "tcsh":
+        return (
+            _merge_ignored_ranges(_quoted_string_ranges(text) + _tcsh_initial_hashbang_range(text)),
+            len(text),
+        )
+    if normalized == "genero_forms":
+        return (
+            _merge_ignored_ranges(
+                _quoted_string_ranges(text) + _genero_forms_screen_header_ranges(text)
+            ),
+            len(text),
+        )
+    if normalized in _RDF_IRI_AWARE_LANGUAGES:
+        return (
+            _merge_ignored_ranges(_quoted_string_ranges(text) + _rdf_iri_ranges(text)),
+            len(text),
+        )
     return _quoted_string_ranges(text), len(text)
 
 
@@ -499,6 +633,12 @@ def _starts_inside_ignored_range(start, ignored_ranges):
 
     range_start, range_end = ignored_ranges[index]
     return range_start < start < range_end
+
+
+def _starts_with_excluded_comment_prefix(text, start, prefixes):
+    """Return whether a comment-like range begins with excluded source syntax."""
+
+    return any(text.startswith(prefix, start) for prefix in prefixes)
 
 
 def _query_match_from_range(text, start, end):
@@ -560,6 +700,9 @@ class LineCommentQuery(Query):
         self.regex_patterns = self.syntax.regex_patterns
         self.regexes = tuple(re.compile(pattern) for pattern in self.regex_patterns)
         self.contextual_extractor = self.syntax.contextual_extractor
+        self.excluded_comment_prefixes = self.syntax.excluded_comment_prefixes_for_language(
+            language
+        )
 
     def contains(self, string):
         """Return ``True`` when extraction finds a comment."""
@@ -587,9 +730,7 @@ class LineCommentQuery(Query):
             return []
 
         if quoted_ranges is None or scan_limit is None:
-            default_ranges, default_limit = _comment_scan_context(
-                self.language, text
-            )
+            default_ranges, default_limit = _comment_scan_context(self.language, text)
             if quoted_ranges is None:
                 quoted_ranges = default_ranges
             if scan_limit is None:
@@ -600,11 +741,14 @@ class LineCommentQuery(Query):
             for start, end in self._iter_match_ranges(text)
             if end <= scan_limit
             and not _starts_inside_ignored_range(start, quoted_ranges)
+            and not _starts_with_excluded_comment_prefix(
+                text,
+                start,
+                self.excluded_comment_prefixes,
+            )
         ]
         if self.contextual_extractor:
-            match_ranges.extend(
-                contextual_comment_ranges(self.contextual_extractor, text)
-            )
+            match_ranges.extend(contextual_comment_ranges(self.contextual_extractor, text))
         return self._dedupe_match_ranges(match_ranges)
 
     def _iter_match_ranges(self, text):
@@ -660,6 +804,9 @@ class NestedCommentQuery(Query):
         self.syntax = get_comment_syntax(language)
         self.delimiters = self.syntax.nested_delimiters
         self.delimeters = self.delimiters  # Preserve the older misspelled attribute.
+        self.excluded_comment_prefixes = self.syntax.excluded_comment_prefixes_for_language(
+            language
+        )
 
     def contains(self, string):
         """Return ``True`` when nested-delimiter extraction finds a comment."""
@@ -690,15 +837,18 @@ class NestedCommentQuery(Query):
             return []
 
         if quoted_ranges is None:
-            quoted_ranges = _comment_start_ignored_ranges(
-                self.language, text
-            )
+            quoted_ranges = _comment_start_ignored_ranges(self.language, text)
         ranges = []
         for open_delim, close_delim in self.delimiters:
             ranges.extend(
                 (start, end)
                 for start, end in self.parse_nested_ranges(open_delim, close_delim, text)
                 if not _starts_inside_ignored_range(start, quoted_ranges)
+                and not _starts_with_excluded_comment_prefix(
+                    text,
+                    start,
+                    self.excluded_comment_prefixes,
+                )
             )
         return sorted(ranges)
 
@@ -806,9 +956,7 @@ class CommentQuery(Query):
 
         ranges = []
         for line_comments, nested_comments in self._query_pairs:
-            ranges.extend(
-                self._parse_single_language_ranges(text, line_comments, nested_comments)
-            )
+            ranges.extend(self._parse_single_language_ranges(text, line_comments, nested_comments))
         return self._union_comment_ranges(ranges)
 
     def iter_ranges(self, text):
@@ -839,26 +987,20 @@ class CommentQuery(Query):
 
         return _query_matches_from_ranges(
             text,
-            CommentQuery._parse_single_language_ranges(
-                text, line_comments, nested_comments
-            ),
+            CommentQuery._parse_single_language_ranges(text, line_comments, nested_comments),
         )
 
     @staticmethod
     def _parse_single_language_ranges(text, line_comments, nested_comments):
         """Return grouped and deduplicated match ranges for one language."""
 
-        quoted_ranges, scan_limit = _comment_scan_context(
-            line_comments.language, text
-        )
+        quoted_ranges, scan_limit = _comment_scan_context(line_comments.language, text)
         ranges = []
         ranges.extend(nested_comments.parse_ranges(text, quoted_ranges))
         ranges.extend(
             CommentQuery._group_line_comment_block_ranges(
                 text,
-                line_comments.parse_ranges(
-                    text, quoted_ranges, scan_limit=scan_limit
-                ),
+                line_comments.parse_ranges(text, quoted_ranges, scan_limit=scan_limit),
             )
         )
         return LineCommentQuery._dedupe_match_ranges(ranges)
@@ -958,14 +1100,10 @@ class CommentQuery(Query):
         if any(ending in match_text for ending in _PHYSICAL_LINE_ENDINGS):
             return False
 
-        previous_endings = (
-            text.rfind(ending, 0, start) for ending in _PHYSICAL_LINE_ENDINGS
-        )
+        previous_endings = (text.rfind(ending, 0, start) for ending in _PHYSICAL_LINE_ENDINGS)
         line_start = max(previous_endings) + 1
         next_endings = (
-            index
-            for ending in _PHYSICAL_LINE_ENDINGS
-            if (index := text.find(ending, end)) != -1
+            index for ending in _PHYSICAL_LINE_ENDINGS if (index := text.find(ending, end)) != -1
         )
         line_end = min(next_endings, default=len(text))
 

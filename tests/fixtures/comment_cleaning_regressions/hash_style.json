@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "hash_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "3b9b9a60369fd41f0c23ef1b5ee9fe607226e25be95906a5ef901d531af2291b",
+      "case_id": "crystal-line-db38b6de5391dc23",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Yields `self` to the given block, disables character echoing for the\nduration of the block, and returns the block's value.\n\nThis will prevent displaying back to the user what they enter on the terminal.\n\nRaises `IO::Error` if this `IO` is not a terminal device.\n\n```\nprint \"Enter password: \"\npassword = STDIN.noecho &.gets.try &.chomp\nputs\n```",
+      "expected_cleaned_sha256": "a2226536e7a89a384e88d0f6a2e5bd5ea62ecc03011a14230e338f4ff2af7b22",
+      "language": "crystal",
+      "raw_comment": "# Yields `self` to the given block, disables character echoing for the\n  # duration of the block, and returns the block's value.\n  #\n  # This will prevent displaying back to the user what they enter on the terminal.\n  #\n  # Raises `IO::Error` if this `IO` is not a terminal device.\n  #\n  # ```\n  # print \"Enter password: \"\n  # password = STDIN.noecho &.gets.try &.chomp\n  # puts\n  # ```",
+      "raw_sha256": "521e742b60192f3761bdf7a20b854ffce528c8f12c40c34559b6ade1c9190e3d",
+      "raw_utf8_length": 386,
+      "source_provenance": {
+        "source_excerpt_sha256": "2aa88b59e249148b2a48a884712833822b10b4a5e20c21868fafd23d336e1f45",
+        "source_id": "5f4915f599e6ad2fae836e0b9ba036b183c32d4b"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "b18400c97a361e029b569ac7f4430f7d1e5a2fca7ec94e7b5d419f2f4dd48f23",
+      "case_id": "nix-line-6b1b3fe264ebc12b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usage example:\n\n```Nix\n{ pkgs ? import <nixpkgs> { } }:\n\nlet command-wrapper = pkgs.callPackage ./nix/command-wrapper { };\n\nin pkgs.callPackage ./nix/command-wrapper-toolset {\n  toolset = \"yx\";\n  inherit command-wrapper;\n}\n```",
+      "expected_cleaned_sha256": "541c18e84c1907bbb1c96147d1da8701ee1b4b00a6c5ede3908b40dea5c69f48",
+      "language": "nix",
+      "raw_comment": "# Usage example:\n#\n# ```Nix\n# { pkgs ? import <nixpkgs> { } }:\n#\n# let command-wrapper = pkgs.callPackage ./nix/command-wrapper { };\n#\n# in pkgs.callPackage ./nix/command-wrapper-toolset {\n#   toolset = \"yx\";\n#   inherit command-wrapper;\n# }\n# ```",
+      "raw_sha256": "70001d77a49102c90fa7adcb3c28e79828e3c13dc8388d7dc6e5c4c7e69d50f7",
+      "raw_utf8_length": 247,
+      "source_provenance": {
+        "source_excerpt_sha256": "8fba31bb18af56d666adc14aae6684c2f21667ef4c38b945a540ca740a65905a",
+        "source_id": "073bafb63b40cd6add3e66157bb3ca151dee92e6"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "c4169696d49260edd144ef6705598536b9abad01d247238d5f032543da38076b",
+      "case_id": "nix-line-fcca42b104e91afa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "for debugging\nflake.nixosConfigurations = {\n  sd-image = lib.nixosSystem {\n    modules = [\n      {\n        nixpkgs.hostPlatform = lib.mkDefault \"x86_64-linux\";\n      }\n      defaultModule\n    ];\n  };\n};",
+      "expected_cleaned_sha256": "52e4854a510570519562596f9937c8b027668bd1e2558d181dd3fa4624026a2b",
+      "language": "nix",
+      "raw_comment": "# for debugging\n  #flake.nixosConfigurations = {\n  #  sd-image = lib.nixosSystem {\n  #    modules = [\n  #      {\n  #        nixpkgs.hostPlatform = lib.mkDefault \"x86_64-linux\";\n  #      }\n  #      defaultModule\n  #    ];\n  #  };\n  #};",
+      "raw_sha256": "82f124f4436d320a1b73bb09a9ec73869fb3b6cca8e5a7fb193fed1ab35514c4",
+      "raw_utf8_length": 234,
+      "source_provenance": {
+        "source_excerpt_sha256": "691ce5d1b390bd277c599a2d09836addaf16bea8aadaec9085ad3cbadd7a7d39",
+        "source_id": "f1d2298cb086fa445c3d069cdf334de043de44ff"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2b6440c393a2f682af4463e36f3de0916f70606efca920802a8135fd81daa2c7",
+      "case_id": "r-line-36dc203f7df90f40",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@title Score the FACIT-Fatigue\n\n@description\nScores the Functional Assessment of Chronic Illness Therapy-Fatigue\n(FACIT-Fatigue) from item responses.\n\n\n@template paramsFACTG\n\n\n@templateVar MEASURE FACIT-Fatigue\n@templateVar NAMESUB FACIT_Fatigue\n@templateVar SCORENAME FACIT Fatigue\n@templateVar SCOREFUN scoreFACIT_Fatigue\n@template details1score\n\n@templateVar ITEMS1 'HI7', 'HI12', 'An1', 'An2', 'An3', 'An4', 'An5', 'An7', 'An8',\n@templateVar ITEMS2 'An12', 'An14', 'An15', 'An16'\n@template example1score_items2\n\n\n@references FACIT-Fatigue Scoring Guidelines, available at\n  \\url{http://www.facit.org}\n\n\n@export",
+      "expected_cleaned_sha256": "3ffa3320f14a3b5bd92ea5d98c5b64b1fc556824aa9f60de82e5aaabedd63754",
+      "language": "r",
+      "raw_comment": "#' @title Score the FACIT-Fatigue\n#'\n#' @description\n#' Scores the Functional Assessment of Chronic Illness Therapy-Fatigue\n#' (FACIT-Fatigue) from item responses.\n#'\n#'\n#' @template paramsFACTG\n#'\n#'\n#' @templateVar MEASURE FACIT-Fatigue\n#' @templateVar NAMESUB FACIT_Fatigue\n#' @templateVar SCORENAME FACIT Fatigue\n#' @templateVar SCOREFUN scoreFACIT_Fatigue\n#' @template details1score\n#'\n#' @templateVar ITEMS1 'HI7', 'HI12', 'An1', 'An2', 'An3', 'An4', 'An5', 'An7', 'An8',\n#' @templateVar ITEMS2 'An12', 'An14', 'An15', 'An16'\n#' @template example1score_items2\n#'\n#'\n#' @references FACIT-Fatigue Scoring Guidelines, available at\n#'   \\url{http://www.facit.org}\n#'\n#'\n#' @export",
+      "raw_sha256": "35544bd9e131004b3a3a41b37ed5df0510e8dfca8ad2da5aba0335911b8e54ba",
+      "raw_utf8_length": 682,
+      "source_provenance": {
+        "source_excerpt_sha256": "71fd765c7a13daa60773fb34f2d6e0816483938c27bf819ebbfcdf30968b0763",
+        "source_id": "a198ffd618a4fa1393644426a5bce43218046856"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "6d39abe0349ae67a73ae12d72bf921bbc714874eb4c17d461c70684139bfb501",
+      "case_id": "starlark-line-3f367a25cc7137f6",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\":cuesheet\",\n\":hash\",",
+      "expected_cleaned_sha256": "24c1e52958e2336110169918d9fc25b7b3927b33b73f70038b6b9a7f6f17e7b9",
+      "language": "starlark",
+      "raw_comment": "#\":cuesheet\",\n        #\":hash\",",
+      "raw_sha256": "e29fbe42415649c37c10b5b0771fd0c9ab0b8d46484b47e0ad7392da0dd1b0be",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "08937491a1802761e68adee39b9e5dcf1156c2d9fd672f4543b87026ad1760e2",
+        "source_id": "3517c6de96cd887eaf9534d38f748796907de420"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

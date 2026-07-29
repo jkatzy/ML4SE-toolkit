@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-89931421e5106eae",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ee3e30acd088b66a2dabe675e58cd7827e5ea0b4d929afdfbe31964fb2e883d4",
+      "utf8_length": 50
+    },
+    "manifest_old_output": {
+      "sha256": "5ad4a968065244a3096b85f10adf6e496b312895aac050cb19bf690e1531ca5f",
+      "utf8_length": 53
+    },
+    "raw_comment": {
+      "sha256": "4d537f61b439379797b97d3fcadc41883d6e9f2fb437daa993040f3289e19a68",
+      "utf8_length": 57
+    },
+    "recommended_expected_output": {
+      "sha256": "5ad4a968065244a3096b85f10adf6e496b312895aac050cb19bf690e1531ca5f",
+      "utf8_length": 53
+    }
+  },
+  "regression": {
+    "expected_output": "** BrightScript program for implementation of atof **",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "REM ** BrightScript program for implementation of atof **"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fe419366230e3ee5811b1a0f8b5abe72c6c7e1912267d9ec008415f52ab6b211",
+    "source_id": "f58130f8ee1fdd329e35faad5c6bdce895f32c57"
+  },
+  "source_record_sha256": "5fb87a4f390bb7ed585399a13cc2c83e99bfd2342e74e820dafdc96ae47eba14"
+}

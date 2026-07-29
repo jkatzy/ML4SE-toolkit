@@ -1,0 +1,38 @@
+{
+  "case_id": "monkey-line-6d93807a043604e8",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "monkey",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fc81d819834c81fb33c5e8367b09547c917cbfa279dfbcb6b8126a5930b7f3ff",
+      "utf8_length": 96
+    },
+    "manifest_old_output": {
+      "sha256": "99e087e6099a16b4e6f60d4c58fc6bf30c43476e57a1b98edc4ed4c8c3af2b49",
+      "utf8_length": 99
+    },
+    "raw_comment": {
+      "sha256": "422e1068126f00712fe76bd0f61a4b92d144618ef601f953aa0a21a6e386cd0d",
+      "utf8_length": 101
+    },
+    "recommended_expected_output": {
+      "sha256": "99e087e6099a16b4e6f60d4c58fc6bf30c43476e57a1b98edc4ed4c8c3af2b49",
+      "utf8_length": 99
+    }
+  },
+  "regression": {
+    "expected_output": "The overall Game object, handling loading, mouse position, high-level game control and rendering...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "' The overall Game object, handling loading, mouse position, high-level game control and rendering..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b5de9303e68ccac25a6c4c77d158bc2ccee230d9dc1a096f7410a26f41a7ad8e",
+    "source_id": "ae6a64d56e0e42989997a08e8c38dfc64862769f"
+  },
+  "source_record_sha256": "a73ca7d385483ca62ab8b8e135fe9549129027da18149412093b3a1402e6329c"
+}

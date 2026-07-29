@@ -59,9 +59,7 @@ def test_cleaning_scope_uses_cleaning_only_schema() -> None:
     }
 
     schema = CODEX_JUDGE._verdict_schema(CODEX_JUDGE.CLEANING_SCOPE)
-    CODEX_JUDGE._validate_verdict(
-        verdict, scope=CODEX_JUDGE.CLEANING_SCOPE
-    )
+    CODEX_JUDGE._validate_verdict(verdict, scope=CODEX_JUDGE.CLEANING_SCOPE)
 
     assert schema["required"] == ["verdict", "cleaning_correct", "rationale"]
     assert "extraction_correct" not in schema["properties"]

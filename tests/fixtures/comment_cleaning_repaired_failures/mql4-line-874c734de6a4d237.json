@@ -1,0 +1,29 @@
+{
+  "case_id": "mql4-line-874c734de6a4d237",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:rewrite",
+  "disposition": "accounting_only_no_oracle",
+  "language": "mql4",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9901eb86e6245594dc5b1ebad810bd494472553b8b2742aa6dd092ca7a518d80",
+      "utf8_length": 71
+    },
+    "manifest_old_output": {
+      "sha256": "b6e17b749d836db5173d6713df22004571f6408f3969d51b3434f2c136a30876",
+      "utf8_length": 72
+    },
+    "raw_comment": {
+      "sha256": "cbcc56405ab0fce057b85fb3183358d874565f56074b6a82e7c6d1307be73634",
+      "utf8_length": 76
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "89bccc265d326ccb4180aa53855c8a036d30cbc621beb696650a2700a15ce149",
+    "source_id": "03c2a97a0fb41c14672c99db2f1f3ccbacec52a0"
+  },
+  "source_record_sha256": "32e77aedaffdb96c74b824a40a873dabee773cf1124d101a105eac17b39d4cf5"
+}

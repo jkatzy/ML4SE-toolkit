@@ -1,0 +1,29 @@
+{
+  "case_id": "maxscript-line-fc05250a2d33c7e8",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "maxscript",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "eaace0e2ea0e7e384ffaf474985f35a34c6d47877fb854d26b211ebe8d19d319",
+      "utf8_length": 1675
+    },
+    "manifest_old_output": {
+      "sha256": "eaace0e2ea0e7e384ffaf474985f35a34c6d47877fb854d26b211ebe8d19d319",
+      "utf8_length": 1675
+    },
+    "raw_comment": {
+      "sha256": "13653492c304da614da09739708034d08d2d20e5ff8c623535d7a21d16213616",
+      "utf8_length": 1679
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d56c94f8b24cfd7e096283eac74610cf756a501b44b0b2be9dd327c6886106ed",
+    "source_id": "9def14983ed84c05b879bba101ef657d27bd953b"
+  },
+  "source_record_sha256": "9d56052a2710f9f9988379f53744a9ac986444f149fc1aecfed3c20c62813cbe"
+}

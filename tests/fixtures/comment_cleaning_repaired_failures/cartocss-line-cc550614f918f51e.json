@@ -1,0 +1,38 @@
+{
+  "case_id": "cartocss-line-cc550614f918f51e",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "cartocss",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "948c104d588765d97ddd7b74360727ab9e74448ba9c0ddc3bc70c9595074cb8f",
+      "utf8_length": 16
+    },
+    "manifest_old_output": {
+      "sha256": "2f3e2dbb1f60c7d829f87afca9c2220fd0b07ee3f169a5c15bed00c8acc66e7e",
+      "utf8_length": 13
+    },
+    "raw_comment": {
+      "sha256": "cbebc60d17b4e566c27c083b5bb173459ac16252bd985b1d2be692140750b0bf",
+      "utf8_length": 19
+    },
+    "recommended_expected_output": {
+      "sha256": "2f3e2dbb1f60c7d829f87afca9c2220fd0b07ee3f169a5c15bed00c8acc66e7e",
+      "utf8_length": 13
+    }
+  },
+  "regression": {
+    "expected_output": "Common Colors",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// Common Colors //"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "037b5bb27bad1d82f558e8bac9c1a6e207e60b9e42e37a65b8225ea3c77a2415",
+    "source_id": "dd22ff3462f3f848c695f1b40d7836dd715e4ce0"
+  },
+  "source_record_sha256": "1b4685159dc08fd0f19bc0e81dff5fb0eee96fda0af5bd2ad45702a702d36eaa"
+}

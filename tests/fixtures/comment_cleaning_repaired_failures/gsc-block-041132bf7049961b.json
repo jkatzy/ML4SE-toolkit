@@ -1,0 +1,38 @@
+{
+  "case_id": "gsc-block-041132bf7049961b",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "gsc",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f02c5770849bc882459a23bf01589ee2a7083c02b7bd26882204919186d8d8bd",
+      "utf8_length": 1509
+    },
+    "manifest_old_output": {
+      "sha256": "f02c5770849bc882459a23bf01589ee2a7083c02b7bd26882204919186d8d8bd",
+      "utf8_length": 1509
+    },
+    "raw_comment": {
+      "sha256": "699e87466e52a1098f436543c32db2958cb58ab9f556f74f8b9eeef7b9e2b487",
+      "utf8_length": 1664
+    },
+    "recommended_expected_output": {
+      "sha256": "f02c5770849bc882459a23bf01589ee2a7083c02b7bd26882204919186d8d8bd",
+      "utf8_length": 1509
+    }
+  },
+  "regression": {
+    "expected_output": "by: M.A.K.E C E N T S\n#####################\nScript:\n\nAdd to top of mapname.gsc\n#using scripts\\zm\\mc_dyn_zones\\mc_dyn_zones;\nComment out the following:\n    // level.zone_manager_init_func =&usermap_test_zone_init;\nAdd the following under the previous:\n    level.zone_manager_init_func =&mc_dyn_zones::SetUpZones;\n\nif using dyn doors change it to the following:\n\tlevel.zones = [];\n\t// level.zone_manager_init_func =&usermap_test_zone_init;\n\n\tinit_zones[0] = \"start_zone\";\n\tforeach(zone in init_zones)\n\t{\n\t\tzm_zonemgr::zone_init( zone );\n\t\tzm_zonemgr::enable_zone( zone );\n\t}\n\tlevel.zone_manager_init_func =&mc_dyn_zones::SetUpZones;\n\tlevel thread zm_zonemgr::manage_zones( init_zones );\n\n\nAdd to zone file\nscriptparsetree,scripts/zm/mc_dyn_zones/mc_dyn_zones.gsc\n\nRadiant:\nAdd zones (info_volume) with spawners as targets (can be auto targets), no targetname needed\nAdd a struct between zones with kvps:\ntargetname or script_noteworthy>mc_dyn_zones (or whatever you define MCDYNZONESSCRIPTNOTE is)\nIf you place structs away from triggers then make them the target of the structs that are near\n\ttriggers, that you want to activate at the same time (for splitting zones) or give it a known\n\tscript_flag\tlike zones_initialized or something your using to activate it\n\nThe struct needs placed within MCDYNTRIGDISTANCEMAX units of the trigger you want to trigger it\nSetting USEZONESFLAGFORNONEFOUND to true will enable any zone a struct didn't have a script_flag kvp\n\tthat is touching it\n\nStructs placed near triggers",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\r\n#####################\r\nby: M.A.K.E C E N T S\r\n#####################\r\nScript:\r\n\r\nAdd to top of mapname.gsc\r\n#using scripts\\zm\\mc_dyn_zones\\mc_dyn_zones;\r\nComment out the following:\r\n    // level.zone_manager_init_func =&usermap_test_zone_init;\r\nAdd the following under the previous:\r\n    level.zone_manager_init_func =&mc_dyn_zones::SetUpZones;\r\n\r\nif using dyn doors change it to the following:\r\n\tlevel.zones = [];\r\n\t// level.zone_manager_init_func =&usermap_test_zone_init;\r\n\t\r\n\tinit_zones[0] = \"start_zone\";\r\n\tforeach(zone in init_zones)\r\n\t{\r\n\t\tzm_zonemgr::zone_init( zone );\r\n\t\tzm_zonemgr::enable_zone( zone );\r\n\t}\r\n\tlevel.zone_manager_init_func =&mc_dyn_zones::SetUpZones;\r\n\tlevel thread zm_zonemgr::manage_zones( init_zones );\r\n\r\n\r\nAdd to zone file\r\nscriptparsetree,scripts/zm/mc_dyn_zones/mc_dyn_zones.gsc\r\n\r\nRadiant:\r\nAdd zones (info_volume) with spawners as targets (can be auto targets), no targetname needed\r\nAdd a struct between zones with kvps:\r\ntargetname or script_noteworthy>mc_dyn_zones (or whatever you define MCDYNZONESSCRIPTNOTE is)\r\nIf you place structs away from triggers then make them the target of the structs that are near\r\n\ttriggers, that you want to activate at the same time (for splitting zones) or give it a known\r\n\tscript_flag\tlike zones_initialized or something your using to activate it\r\n\r\nThe struct needs placed within MCDYNTRIGDISTANCEMAX units of the trigger you want to trigger it\r\nSetting USEZONESFLAGFORNONEFOUND to true will enable any zone a struct didn't have a script_flag kvp\r\n\tthat is touching it\r\n\r\nStructs placed near triggers\r\n\r\n###############################################################################\r\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "dac2e1121725e51413abf983407faf2692201c0d8e6dce86fe4936ed2d8c7687",
+    "source_id": "f28bfdc4f088c087083b36321886c46234480c56"
+  },
+  "source_record_sha256": "d18c2cb2cfeb90214be1942c34de56065b23839dbc7ec189f1a2d1e39600f26f"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-fb6453824977c3eb",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "846438683a967f85d9b5ae04af4133922e6a50893aed410ba5032bc6198b7269",
+      "utf8_length": 371
+    },
+    "manifest_old_output": {
+      "sha256": "86e0b8254c5531b5b7739fcd62e934b197f57cd499b81d97fd4686715d70bab6",
+      "utf8_length": 351
+    },
+    "raw_comment": {
+      "sha256": "8adf94073280825554bf07d51bbf7454891444af5e23e2944eaac1d9c295999d",
+      "utf8_length": 377
+    },
+    "recommended_expected_output": {
+      "sha256": "86e0b8254c5531b5b7739fcd62e934b197f57cd499b81d97fd4686715d70bab6",
+      "utf8_length": 351
+    }
+  },
+  "regression": {
+    "expected_output": "This package implements the first compiler pass after lexical analysis.\nIt fixes the list of definitions by incorporating document comments into\ndefinitions, and joining separate equations of functions that come out as\nseparate 'FunDcl' definitions from parsing.\n\nThe function 'fixdefs' will also be used from other modules for fixing\nsub definitions.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n * This package implements the first compiler pass after lexical analysis.\n * It fixes the list of definitions by incorporating document comments into\n * definitions, and joining separate equations of functions that come out as\n * separate 'FunDcl' definitions from parsing.\n\n * The function 'fixdefs' will also be used from other modules for fixing\n * sub definitions.\n -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "de4b8c8240406a6a8151d1cd4f4c91a0f3537d2f1428dbdbc92e51c15d84825b",
+    "source_id": "e3667250b84db9b21e240859b361119c8da29175"
+  },
+  "source_record_sha256": "99ad105906cc27b780a9f22d56c71c801d29a0d1731487e355b4f34a2242a28a"
+}

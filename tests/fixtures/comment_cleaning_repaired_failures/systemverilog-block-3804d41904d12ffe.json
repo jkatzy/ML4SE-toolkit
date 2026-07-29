@@ -1,0 +1,38 @@
+{
+  "case_id": "systemverilog-block-3804d41904d12ffe",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "systemverilog",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "622d98b5838533bfb5a8f92f2fa09a9d32a58cb0e45060eb22f4600544433a9c",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "7f472455b684d572c26808149b89bbc678000875526e053d0a5cc0b29dc0df15",
+      "utf8_length": 22
+    },
+    "raw_comment": {
+      "sha256": "63d49bbbe175bda98ea6c08dd8ddc3e3375a5edb35eef10f5302dd30596745fb",
+      "utf8_length": 182
+    },
+    "recommended_expected_output": {
+      "sha256": "7f472455b684d572c26808149b89bbc678000875526e053d0a5cc0b29dc0df15",
+      "utf8_length": 22
+    }
+  },
+  "regression": {
+    "expected_output": "wb_dma_reg_adapter.svh",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/****************************************************************************\n * wb_dma_reg_adapter.svh\n ****************************************************************************/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c07249a7043f60b1b15d008c8b67e594bb9febeafc828cb11aa5c9fab0b5bae9",
+    "source_id": "103f608bbdd4ae3499302fd93ac02c897649836f"
+  },
+  "source_record_sha256": "0415a611056331b551db1578c44dcbe34921255d587d27738a0608582a7ebff3"
+}

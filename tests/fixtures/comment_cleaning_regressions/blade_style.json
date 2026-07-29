@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "blade_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "61ca7a14a18edd0870fee9601100da4bc08e40612025c6cd72b400c223c9ee52",
+      "case_id": "blade-block-f908789547d4004d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "{{ Form::label('tags', 'Tags:') }}\n{{ Form::select('tags[]', $tagsInArray, null, ['class' => 'form-control', 'multiple' => 'multiple'])}}",
+      "expected_cleaned_sha256": "95163f94d007f3a128c17216159b91cb5ab562724c62508ae5d9d38ffd7a34d8",
+      "language": "blade",
+      "raw_comment": "{{-- \t\t\t\t\t{{ Form::label('tags', 'Tags:') }}\n\t\t\t{{ Form::select('tags[]', $tagsInArray, null, ['class' => 'form-control', 'multiple' => 'multiple'])}} --}}",
+      "raw_sha256": "abfd75827970a2815f6aa53ca4961f638943502fbfeda40a1120eb43ec566d82",
+      "raw_utf8_length": 155,
+      "source_provenance": {
+        "source_excerpt_sha256": "4009abec18472b61be72c75772e303871e4f7ca3be93542480c3cea87156ca3c",
+        "source_id": "4ded3212def03a2b45a8e4f71490baf2309322d9"
+      },
+      "syntax_label": "{{--...--}}"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "motoko_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "064216f656144984c8e4f76b0878e5c9781cc94e77d22c63681dda016cbc88e6",
+      "case_id": "motoko-line-35bda1610d36a402",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "public func updateOne(userId: UserId, profile: Profile) {\n  hashMap.put(userId, profile);\n};",
+      "expected_cleaned_sha256": "6bf7efc32f65b89ef206b590c0bbc14b9fd2d92521a4466d9e824760ce83195f",
+      "language": "motoko",
+      "raw_comment": "//    public func updateOne(userId: UserId, profile: Profile) {\n//      hashMap.put(userId, profile);\n//    };",
+      "raw_sha256": "e3afaf451597900c575ee286a0579fef44c348e0cea0228fc20e228ca2c60c05",
+      "raw_utf8_length": 110,
+      "source_provenance": {
+        "source_excerpt_sha256": "10d11b919d8f10e3fc42e2f9d3edce8c631d789e774b292aac188c03c730a469",
+        "source_id": "37750b8cd1f6288090effa440599245e3323d3f3"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "064216f656144984c8e4f76b0878e5c9781cc94e77d22c63681dda016cbc88e6",
+      "case_id": "motoko-line-3f7b641fcb47fabc",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "public func updateOne(userId: UserId, profile: Profile) {\n  hashMap.put(userId, profile);\n};",
+      "expected_cleaned_sha256": "6bf7efc32f65b89ef206b590c0bbc14b9fd2d92521a4466d9e824760ce83195f",
+      "language": "motoko",
+      "raw_comment": "//    public func updateOne(userId: UserId, profile: Profile) {\n//      hashMap.put(userId, profile);\n//    };",
+      "raw_sha256": "e3afaf451597900c575ee286a0579fef44c348e0cea0228fc20e228ca2c60c05",
+      "raw_utf8_length": 110,
+      "source_provenance": {
+        "source_excerpt_sha256": "55950922f2fbb62a438bb52ab80e98aa7cf6310f009d469d8eb71caf7f07f015",
+        "source_id": "6ca2883701677354b0bc2a80397b5233a155dafd"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "8589b65f0b298464937ccf0e66a6ac8666ff9d343edacb5be1acbd99868f7b02",
+      "case_id": "motoko-nested-06ec0d11cca3d49b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TBR: Should this work? It's fine coinductively.\ndo {\ntype A = A;\ntype B = B;\nfunc f(x : A) : A = x : B;\n};",
+      "expected_cleaned_sha256": "2c3b377f862cdb94a33f823cce003eba74dfb25256327e6a3b63d22bd2b7a3a6",
+      "language": "motoko",
+      "raw_comment": "/* TBR: Should this work? It's fine coinductively.\ndo {\ntype A = A;\ntype B = B;\nfunc f(x : A) : A = x : B;\n};\n*/",
+      "raw_sha256": "9bb561fcf53f21d204e2ff4bdfc007ff527bdb7643b37d637aa195380cc216f9",
+      "raw_utf8_length": 112,
+      "source_provenance": {
+        "source_excerpt_sha256": "acdcdd5aef317d997b1a1242362c6322e801117a3df86a255ba6ffba17d353ef",
+        "source_id": "5ec1be3ae9a4e2ecbd9a71ae7b55f11c9aa6a636"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "b70cf44e5a11f3bf3ae966ea56cf0e4548eb85723b8d38538b3331dfc0949d82",
+      "case_id": "motoko-nested-3c71454e62fcaa4e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Tis file is part of Lepton\n\n@license http://www.gnu.org/licenses/gpl-3.0.txt\n\nCopyright (c) 2012-Present, mandalorien\nAll rights reserved.\n=========================================================\n  _   _\n | \\ | |\n |  \\| | _____  ____ _  __ _ _ __ ___   ___\n | . ` |/ _ \\ \\/ / _` |/ _` | '_ ` _ \\ / _ \\\n | |\\  | (_) >  < (_| | (_| | | | | | |  __/\n |_| \\_|\\___/_/\\_\\__, |\\__,_|_| |_| |_|\\___|\n                  __/ |\n                 |___/\n=========================================================",
+      "expected_cleaned_sha256": "e058c95ffb1ece6282d1df3ec25f9b9185abf94e12c62972671efec196d3fddf",
+      "language": "motoko",
+      "raw_comment": "/**\n * Tis file is part of Lepton\n *\n * @license http://www.gnu.org/licenses/gpl-3.0.txt\n *\n * Copyright (c) 2012-Present, mandalorien\n * All rights reserved.\n *=========================================================\n  _   _                                     \n | \\ | |                                    \n |  \\| | _____  ____ _  __ _ _ __ ___   ___ \n | . ` |/ _ \\ \\/ / _` |/ _` | '_ ` _ \\ / _ \\\n | |\\  | (_) >  < (_| | (_| | | | | | |  __/\n |_| \\_|\\___/_/\\_\\__, |\\__,_|_| |_| |_|\\___|\n                  __/ |                     \n                 |___/                                                                             \n *=========================================================\n *\n */",
+      "raw_sha256": "5262ccf07d321c204976dd2f88b12ccee9bf05102f35aa3657261d3903316b1d",
+      "raw_utf8_length": 700,
+      "source_provenance": {
+        "source_excerpt_sha256": "9160e3936722f2f0bd4473ed98aad0ea0374ff6bff8fe2eff13dae3899a7bf39",
+        "source_id": "778856c2e430bafdfecf1bf1ef5ef026a92c5fcf"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "b70cf44e5a11f3bf3ae966ea56cf0e4548eb85723b8d38538b3331dfc0949d82",
+      "case_id": "motoko-nested-e9a2bc0a96367f66",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Tis file is part of Lepton\n\n@license http://www.gnu.org/licenses/gpl-3.0.txt\n\nCopyright (c) 2012-Present, mandalorien\nAll rights reserved.\n=========================================================\n  _   _\n | \\ | |\n |  \\| | _____  ____ _  __ _ _ __ ___   ___\n | . ` |/ _ \\ \\/ / _` |/ _` | '_ ` _ \\ / _ \\\n | |\\  | (_) >  < (_| | (_| | | | | | |  __/\n |_| \\_|\\___/_/\\_\\__, |\\__,_|_| |_| |_|\\___|\n                  __/ |\n                 |___/\n=========================================================",
+      "expected_cleaned_sha256": "e058c95ffb1ece6282d1df3ec25f9b9185abf94e12c62972671efec196d3fddf",
+      "language": "motoko",
+      "raw_comment": "/**\n * Tis file is part of Lepton\n *\n * @license http://www.gnu.org/licenses/gpl-3.0.txt\n *\n * Copyright (c) 2012-Present, mandalorien\n * All rights reserved.\n *=========================================================\n  _   _                                     \n | \\ | |                                    \n |  \\| | _____  ____ _  __ _ _ __ ___   ___ \n | . ` |/ _ \\ \\/ / _` |/ _` | '_ ` _ \\ / _ \\\n | |\\  | (_) >  < (_| | (_| | | | | | |  __/\n |_| \\_|\\___/_/\\_\\__, |\\__,_|_| |_| |_|\\___|\n                  __/ |                     \n                 |___/                                                                             \n *=========================================================\n *\n */",
+      "raw_sha256": "5262ccf07d321c204976dd2f88b12ccee9bf05102f35aa3657261d3903316b1d",
+      "raw_utf8_length": 700,
+      "source_provenance": {
+        "source_excerpt_sha256": "8df9138a71c06ea7f7cae9a98b07344fa3b14d2d15772496f47773eecbb9c18e",
+        "source_id": "3578950b2398516fd2aeefa957f909c4cdf3a49a"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

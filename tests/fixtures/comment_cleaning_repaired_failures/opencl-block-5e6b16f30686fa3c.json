@@ -1,0 +1,38 @@
+{
+  "case_id": "opencl-block-5e6b16f30686fa3c",
+  "category": "policy_or_judge_conflict",
+  "cluster": "layout:whitespace_restoration",
+  "disposition": "executable_regression",
+  "language": "opencl",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "34b37927b1c27e888bcb943cd85213bef09219ba7d204cbe5074c156bbf72a7e",
+      "utf8_length": 612
+    },
+    "manifest_old_output": {
+      "sha256": "07c7f2efc20097d5bdad3058e34ef8e41edcdc515ccea74825a8db078f17fae6",
+      "utf8_length": 603
+    },
+    "raw_comment": {
+      "sha256": "ce8ded70aa247c594d82bb4a95f861d0cfa43ad11c86a0d654dbfc1f3f3a8042",
+      "utf8_length": 618
+    },
+    "recommended_expected_output": {
+      "sha256": "34b37927b1c27e888bcb943cd85213bef09219ba7d204cbe5074c156bbf72a7e",
+      "utf8_length": 612
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright (c) 2019 Anakin Authors, Inc. All Rights Reserved.\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/* Copyright (c) 2019 Anakin Authors, Inc. All Rights Reserved.\n\n   Licensed under the Apache License, Version 2.0 (the \"License\");\n   you may not use this file except in compliance with the License.\n   You may obtain a copy of the License at\n\n       http://www.apache.org/licenses/LICENSE-2.0\n\n   Unless required by applicable law or agreed to in writing, software\n   distributed under the License is distributed on an \"AS IS\" BASIS,\n   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n   See the License for the specific language governing permissions and\n   limitations under the License.\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3dc6706159417c5f0390d16f3109801b389959977c5a02ba84294582308fedf5",
+    "source_id": "f48f0ad68e497c8c6b254032319e0d2c52f9d2f3"
+  },
+  "source_record_sha256": "0fcb82ff43e1ddf6a019df1c8495d86f47777db4d30ce6bba69ef10666dc339d"
+}

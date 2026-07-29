@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-32f303eae89dac3f",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "51d876f4c73fce0aa1a9cfda1f0d97bdb8c42fc44c3ba3b7bb7a3861e9a9438f",
+      "utf8_length": 80
+    },
+    "manifest_old_output": {
+      "sha256": "23c83431d802a518a9bd8370d873f66cdb357ee69c0b27e417b5ac50676817e4",
+      "utf8_length": 76
+    },
+    "raw_comment": {
+      "sha256": "be7bfcbe000279adffa60a07d937724ab40dff99622fc565f9b481fe6097958b",
+      "utf8_length": 84
+    },
+    "recommended_expected_output": {
+      "sha256": "23c83431d802a518a9bd8370d873f66cdb357ee69c0b27e417b5ac50676817e4",
+      "utf8_length": 76
+    }
+  },
+  "regression": {
+    "expected_output": "Checks whether the application of an operation to a Entry\nentity is allowed.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--- Checks whether the application of an operation to a Entry\n--- entity is allowed."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5280bdcb2bf3e47ef65a963e8caeb3f69247ffbcea5d6658f07ec0e1152c09f5",
+    "source_id": "88f11613083e7bd7723838a291e67f3fd82c0651"
+  },
+  "source_record_sha256": "c39ca2964df327036f39872134eb13ad40249edf9c8e0b4c107f78a6be8ab2f0"
+}

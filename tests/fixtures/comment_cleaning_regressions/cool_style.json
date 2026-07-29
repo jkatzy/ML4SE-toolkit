@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cool_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "6a8137c201874f24959db5861b04fbc21f44b9aeea3227428fc543633e1d260f",
+      "case_id": "cool-nested-68149ca4eb6f3734",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Tests for simple block imlementation\nBlocks are evaluated from the first expression to the last expression,\nin order. The result is the result of the last expression\nNo Lets",
+      "expected_cleaned_sha256": "4d6fc3aed96bdcffb05a563f59e47acf5c137660a0dba10079c965c40212997f",
+      "language": "cool",
+      "raw_comment": "(* Tests for simple block imlementation\n * Blocks are evaluated from the first expression to the last expression, \n * in order. The result is the result of the last expression\n * No Lets \n*)",
+      "raw_sha256": "74c82b893d213045ac545c5ccd6a3e4b9543f59e975369be269d10b1d1bf02df",
+      "raw_utf8_length": 190,
+      "source_provenance": {
+        "source_excerpt_sha256": "d96dd099f9b2ed2b8a90cdba7a399228dfefcb11027abe15db0180675e3bde96",
+        "source_id": "a0be050d8de492aecabbc46f0e0949810569e3c1"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "03f914bf1e565646ce9c12e2ef914c7ed37060643663140a2ea3fb1546a5d53e",
+      "case_id": "cool-nested-b600c51bfc211813",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The following error is generated\n\ntest4.cl:17: Class 'A' cannot inherit class 'Int'.",
+      "expected_cleaned_sha256": "b4488141fa36a61300a0d356b18e7cf26caf139a00c3cf95d818343c7748b953",
+      "language": "cool",
+      "raw_comment": "(* The following error is generated\n\ntest4.cl:17: Class 'A' cannot inherit class 'Int'.\n\n*)",
+      "raw_sha256": "cc79f789b520192513ac6cb01fc9b6e9dfdeb2504b158b1a6ff435c0559ca8ef",
+      "raw_utf8_length": 91,
+      "source_provenance": {
+        "source_excerpt_sha256": "ce749c678ab14e8d1ae9c21883cd00a90b2775fe41e417af8d3104ccddb37f8a",
+        "source_id": "a1cdd10d7905dfea3126a83e949343c4999c9f08"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

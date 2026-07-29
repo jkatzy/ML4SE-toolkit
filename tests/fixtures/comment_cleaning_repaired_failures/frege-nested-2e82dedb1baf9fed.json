@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-2e82dedb1baf9fed",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "33889607c19185c8d71d6e0777e3faaacdd7746bf29cec656dcca3077ea42d79",
+      "utf8_length": 238
+    },
+    "manifest_old_output": {
+      "sha256": "29dfb5d686ae83d74a3989dc5e85864558f3e673cdf02a6379d96c0dabf1a163",
+      "utf8_length": 216
+    },
+    "raw_comment": {
+      "sha256": "d6cbf0c670b8228a6b2e0cbc3dab632d024262ca6815ec62711d56f42e48b334",
+      "utf8_length": 255
+    },
+    "recommended_expected_output": {
+      "sha256": "29dfb5d686ae83d74a3989dc5e85864558f3e673cdf02a6379d96c0dabf1a163",
+      "utf8_length": 216
+    }
+  },
+  "regression": {
+    "expected_output": "Walk a 'ZipFile' and find Frege modules.\n\nThe classes inside the ZIP/JAR must be loadable with the given\n'ClassLoader'\n\nIgnores 'ClassNotFoundException's and the strange 'Error's\nthat can happen during class loading.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Walk a 'ZipFile' and find Frege modules.\n    \n    The classes inside the ZIP/JAR must be loadable with the given\n    'ClassLoader'\n    \n    Ignores 'ClassNotFoundException's and the strange 'Error's\n    that can happen during class loading.\n    -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a2725d6f7aff0df7a887132cb9ae01b1a0cb3d5cec9cbc81dda24fb09ccbf81e",
+    "source_id": "83f39b0da6ec48be04833cec802640d69d554487"
+  },
+  "source_record_sha256": "062832c8e2da1944e293a7ceca0cc0b56991034b7bf39b210b6b8d388b6fc228"
+}

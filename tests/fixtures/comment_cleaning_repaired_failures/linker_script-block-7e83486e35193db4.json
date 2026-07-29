@@ -1,0 +1,38 @@
+{
+  "case_id": "linker_script-block-7e83486e35193db4",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "linker_script",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0874639ccbb0c3f4f2700d24d9f73be17787156058ab65f80665eed2d36e56d6",
+      "utf8_length": 102
+    },
+    "manifest_old_output": {
+      "sha256": "0874639ccbb0c3f4f2700d24d9f73be17787156058ab65f80665eed2d36e56d6",
+      "utf8_length": 102
+    },
+    "raw_comment": {
+      "sha256": "e77e55b98c1ee669cb96a8e7a64f65ee1115f6afc63c2a468e2c6e8768caa230",
+      "utf8_length": 108
+    },
+    "recommended_expected_output": {
+      "sha256": "0874639ccbb0c3f4f2700d24d9f73be17787156058ab65f80665eed2d36e56d6",
+      "utf8_length": 102
+    }
+  },
+  "regression": {
+    "expected_output": "The 9 tests below excercise all combinations of 0/1/unknown values\n   for an #if and #elif combination",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/* The 9 tests below excercise all combinations of 0/1/unknown values\n   for an #if and #elif combination */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "560b8daad3feabe76eb89962370849c473a63d18c7acacfc96249131f546262e",
+    "source_id": "812f9b88d3fda891b43ea9d4f6859c817c896ecb"
+  },
+  "source_record_sha256": "4661c67b2a09c8b03a36008b7e7ac5ade8b9596f305607165cf24be118f95f21"
+}

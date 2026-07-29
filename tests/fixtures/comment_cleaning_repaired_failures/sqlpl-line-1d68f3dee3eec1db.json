@@ -1,0 +1,38 @@
+{
+  "case_id": "sqlpl-line-1d68f3dee3eec1db",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "sqlpl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ef53b4085929a6de2a80f7849588c707da28e63eb4be11368a52e68911d1bcd0",
+      "utf8_length": 13
+    },
+    "manifest_old_output": {
+      "sha256": "1e0a532c534847a7039c88469782f6e4664b9fea5ee412ba0ca3c7a631d5e978",
+      "utf8_length": 4
+    },
+    "raw_comment": {
+      "sha256": "29ed87f33eb97e5a5ba389cf64a6ec60e60cd712a5fd8d492795f0a8a3cbbfbe",
+      "utf8_length": 21
+    },
+    "recommended_expected_output": {
+      "sha256": "1e0a532c534847a7039c88469782f6e4664b9fea5ee412ba0ca3c7a631d5e978",
+      "utf8_length": 4
+    }
+  },
+  "regression": {
+    "expected_output": "F'X'",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--***** F'X' *****---"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "caff432f1d1a0d70b6e98647719efb00b24fcec5f6597c6084b2259c28a60d63",
+    "source_id": "83d10660fecef19ec27b09e1db6c5294ce98a772"
+  },
+  "source_record_sha256": "9d586c6cffe1a49b6c92144710b76b7f3b18cf5550c8cdc44a3c13ad8097cf4f"
+}

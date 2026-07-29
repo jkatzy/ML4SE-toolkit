@@ -1,0 +1,38 @@
+{
+  "case_id": "classic_asp-block-88dad7c308f278be",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "classic_asp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4213c8c54ba4fa1d77c99b6b27b2b3c63789b9e0b7a818d846775072a6adb13c",
+      "utf8_length": 569
+    },
+    "manifest_old_output": {
+      "sha256": "e22cb6e62eac091efe33372efe86ad6ca42999cf8e938a85483c6fd17eea626c",
+      "utf8_length": 566
+    },
+    "raw_comment": {
+      "sha256": "c45daaa4cc4d72bc738547d2b3b8318dae99d3c4ad033d194e50953cf34265fd",
+      "utf8_length": 579
+    },
+    "recommended_expected_output": {
+      "sha256": "e22cb6e62eac091efe33372efe86ad6ca42999cf8e938a85483c6fd17eea626c",
+      "utf8_length": 566
+    }
+  },
+  "regression": {
+    "expected_output": "function check()\n{\n\tvar errmsg;\n  \terrmsg='';\n\tvar abbr = document.form2;\n\n\tif ((abbr.adsoyad.value == \"\"))\n\terrmsg += \"L\u00fctfen AD ve SOYADINIZI Giriniz !\\n\";\n\tif ((abbr.MailTo.value == \"\"))\n\terrmsg += \"L\u00fctfen E-Mail Adresinizi Giriniz !\\n\";\n\tif ((abbr.subject.value == \"\"))\n\terrmsg += \"L\u00fctfen Mesaj Konunuzu Giriniz !\\n\";\n\tif ((abbr.tel.value == \"\"))\n\terrmsg += \"L\u00fctfen Telefon Numaran\u0131z\u0131 Giriniz !\\n\";\n\tif ((abbr.body.value == \"\"))\n\terrmsg += \"L\u00fctfen Mesaj\u0131n\u0131z\u0131 Giriniz !\\n\";\n\n\tif (errmsg!=\"\")\n\t{\n\t\talert(errmsg);\n\t\treturn false;\n\t}\n\telse\n\t\treturn true;\n}",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!--\nfunction check()\n{\n\tvar errmsg;\n  \terrmsg='';\n\tvar abbr = document.form2;\n\t\n\tif ((abbr.adsoyad.value == \"\"))\n\terrmsg += \"L\u00fctfen AD ve SOYADINIZI Giriniz !\\n\";\n\tif ((abbr.MailTo.value == \"\"))\n\terrmsg += \"L\u00fctfen E-Mail Adresinizi Giriniz !\\n\";\n\tif ((abbr.subject.value == \"\"))\n\terrmsg += \"L\u00fctfen Mesaj Konunuzu Giriniz !\\n\";\n\tif ((abbr.tel.value == \"\"))\n\terrmsg += \"L\u00fctfen Telefon Numaran\u0131z\u0131 Giriniz !\\n\";\n\tif ((abbr.body.value == \"\"))\n\terrmsg += \"L\u00fctfen Mesaj\u0131n\u0131z\u0131 Giriniz !\\n\";\n\t\n\tif (errmsg!=\"\")\n\t{\n\t\talert(errmsg);\n\t\treturn false;\n\t}\n\telse\n\t\treturn true;\n}\n//-->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a779a41a1fb4c063d3316de4b34b9e5def329679b828b66e55db209ed03ef71c",
+    "source_id": "52e031eb4a53d03004e98bd84886ca3c620b91fc"
+  },
+  "source_record_sha256": "ccedbe5f2658f1c5bdeb376d879b4639573097841af76ed7e1c4b6364fd9c15b"
+}

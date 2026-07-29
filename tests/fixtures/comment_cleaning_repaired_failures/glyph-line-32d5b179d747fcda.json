@@ -1,0 +1,38 @@
+{
+  "case_id": "glyph-line-32d5b179d747fcda",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "glyph",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7d6abd6211136bfb4afb14aed56e334a6ff615ea88afa4ab8f2becbf2ad8a414",
+      "utf8_length": 701
+    },
+    "manifest_old_output": {
+      "sha256": "f525992d44d892c3b48986dc81a76d9f60f454d7d43da881f3647785e9db2aa9",
+      "utf8_length": 707
+    },
+    "raw_comment": {
+      "sha256": "dc6f44babf35c02dd6c90aceda8138b23b8c37aff74b711ecabfc9de6790b0b0",
+      "utf8_length": 918
+    },
+    "recommended_expected_output": {
+      "sha256": "f525992d44d892c3b48986dc81a76d9f60f454d7d43da881f3647785e9db2aa9",
+      "utf8_length": 707
+    }
+  },
+  "regression": {
+    "expected_output": "Pointwise Glyph Script\nThis script will create a database spline curve with\ntwo end points and two endpoint derivatives specified\nby the user from existing curves. The user may select\nexisting connectors, database curves, or boundaries\nfor curves 1 and 2; if selecting a connector, a separate\nscript is called that converts the connector into a\ndatabase curve before proceeding. The two points selected\nwill be the two control points defining the spline, and\nthe end derivatives of the selected curves will be taken\nat the selected points and used as start and end derivatives\nfor the new database curve that will be created.\n\nAuthor: Luis Fernandes\nDate: 09-18-2020\n\nChange Log:\n  - Date:\n    Author:\n    -",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "####################################################################################\n# Pointwise Glyph Script\n# This script will create a database spline curve with\n# two end points and two endpoint derivatives specified\n# by the user from existing curves. The user may select\n# existing connectors, database curves, or boundaries\n# for curves 1 and 2; if selecting a connector, a separate\n# script is called that converts the connector into a\n# database curve before proceeding. The two points selected\n# will be the two control points defining the spline, and\n# the end derivatives of the selected curves will be taken\n# at the selected points and used as start and end derivatives\n# for the new database curve that will be created.\n#\n# Author: Luis Fernandes\n# Date: 09-18-2020\n#\n# Change Log:\n#   - Date:\n#     Author:\n#     - \n#\n####################################################################################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3a82de4363777f941ab026180a01619f31c256173f1ae2be5aef496e0a9d8b01",
+    "source_id": "3b07c98179901aff05e7c4254cf9eb77efd6fea0"
+  },
+  "source_record_sha256": "9145d893bcf7d3c521f94adc7c8d759efb929a63fd4dfb6ac8e8354b9a61754d"
+}

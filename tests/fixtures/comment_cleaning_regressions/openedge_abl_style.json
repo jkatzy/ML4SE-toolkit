@@ -1,0 +1,110 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "openedge_abl_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "c2bab976c6a9f51a3e4f74d117dac863fa5a228de5a983abe1bdda6be450ad17",
+      "case_id": "openedge_abl-block-1a826b4dc5a47da0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Advent of code 2018\nday 5",
+      "expected_cleaned_sha256": "5e3361ea20a1bbf8a76660447c5334b4121a1200b15fc3f33e6b5032b5a264ee",
+      "language": "openedge_abl",
+      "raw_comment": "/* Advent of code 2018\r\n** day 5\r\n*/",
+      "raw_sha256": "fd6237bdc4a17d39e486b8870d5a9315a2033244ecab1e24b84ffb70e63a40bf",
+      "raw_utf8_length": 36,
+      "source_provenance": {
+        "source_excerpt_sha256": "0fd6173e04232280bf39b7f4ebe90e9e8e78e81519b71911c7cd7685554d071e",
+        "source_id": "34a9766964fbf9ba79e3fcfc8c03c798e044bcbb"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "4b4c5d3da598e23c5b459b9439dadb46122bdd29041e35e6095cf82ae578b1c1",
+      "case_id": "openedge_abl-block-4deb998123bda64b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright University of Sussex 1993. All rights reserved.\nFile:\t\t\tC.all/lib/lr_parser/lib/lr_output.p\nPurpose:\t\t\tLALR(1) Parser Generator: saving the parser to a file\nAuthor:\t\t\tRobert John Duncan, Nov 27 1992 (see revisions)\nDocumentation:\tREF * LR_PARSER\nRelated Files:",
+      "expected_cleaned_sha256": "82a16ca4686166505227ed62e1b9b8235339c56483517a284de6610b92a3936a",
+      "language": "openedge_abl",
+      "raw_comment": "/* --- Copyright University of Sussex 1993. All rights reserved. ----------\n > File:\t\t\tC.all/lib/lr_parser/lib/lr_output.p\n > Purpose:\t\t\tLALR(1) Parser Generator: saving the parser to a file\n > Author:\t\t\tRobert John Duncan, Nov 27 1992 (see revisions)\n > Documentation:\tREF * LR_PARSER\n > Related Files:\n */",
+      "raw_sha256": "2a3546eaf07df4b4f0fbf59dac32073204f5bfe132c0b0e414a648878f24969d",
+      "raw_utf8_length": 307,
+      "source_provenance": {
+        "source_excerpt_sha256": "f38540fa3cd99bed37120063b18ad67f0fac3f420c72786d26c6523ec84c12fb",
+        "source_id": "25bb9731b60f0189627da8c7863f95784f649bb6"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "51f55f1f599acfadf0b441d22fa81c45cd2212273ef057ab2d3a88a8a9a08847",
+      "case_id": "openedge_abl-block-7034397620ee6510",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "xxgetwropwip.p",
+      "expected_cleaned_sha256": "6db6462e9e03cac1a442dd5844d0c1776575b0095f8e889145e4a322bdfa1df6",
+      "language": "openedge_abl",
+      "raw_comment": "/* xxgetwropwip.p ---- */",
+      "raw_sha256": "8380022707ebf0e8b0eecda28b11258c8ab794557e63b8f97776d107ef629782",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "0e0a8c5209166a375a5f963ea850c727b1746bc06c762796b42309167e6587dd",
+        "source_id": "37bdf6bfd7ecd35390e2193d6b2019af1b653141"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "315e69c36fec1f49bcb7e55e73de813cf99d77da70b365d69473fee37cb4ddba",
+      "case_id": "openedge_abl-block-89c1c11a2a5e1999",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright University of Sussex 1995. All rights reserved.\nFile:           C.all/lib/auto/log10.p\nPurpose:        Logs to the base 10\nAuthor:         Aaron Sloman, March 1984 (see revisions)\nDocumentation:\tREF * NUMBERS",
+      "expected_cleaned_sha256": "5516a670328cc819c038425995821620ef7579b146167b2c6615c2240930884d",
+      "language": "openedge_abl",
+      "raw_comment": "/*  --- Copyright University of Sussex 1995. All rights reserved. ----------\n >  File:           C.all/lib/auto/log10.p\n >  Purpose:        Logs to the base 10\n >  Author:         Aaron Sloman, March 1984 (see revisions)\n >  Documentation:\tREF * NUMBERS\n */",
+      "raw_sha256": "7b6d64b6d50b65a27ae53d5a9447b15e935bcdb81cc2a1ef6f497e3af81cd6c2",
+      "raw_utf8_length": 257,
+      "source_provenance": {
+        "source_excerpt_sha256": "1170314a0a8b5e27b7531def01fbe0fa8edbd500842d6e485e18ee49dcf4d879",
+        "source_id": "e9c7206df26356ac608eddcc7ed51a44832999f3"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "84dd583c191abaff5f47e8cdebf24672c36dac6eb3bf52c6b57f3ab3bf7ba71d",
+      "case_id": "openedge_abl-block-a5fb879a3f425888",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright University of Birmingham 2000. All rights reserved.\nFile:            $poplocal/local/rclib/auto/rc_draw_coloured_line.p\nPurpose:\t\t\tDraw coloured line with specified colour and linewidth\nAuthor:          Aaron Sloman, 24 Dec 2000\nDocumentation: \tHELP RCLIB\nRelated Files:   LIB rc_draw_lines, rc_graphic/rc_drawline,",
+      "expected_cleaned_sha256": "9abf5e2f8c420c1314f9f3ab60418916931be52d778fe00cf6c556d525e4d9a1",
+      "language": "openedge_abl",
+      "raw_comment": "/* --- Copyright University of Birmingham 2000. All rights reserved. ------\n > File:            $poplocal/local/rclib/auto/rc_draw_coloured_line.p\n > Purpose:\t\t\tDraw coloured line with specified colour and linewidth\n > Author:          Aaron Sloman, 24 Dec 2000\n > Documentation: \tHELP RCLIB\n > Related Files:   LIB rc_draw_lines, rc_graphic/rc_drawline,\n */",
+      "raw_sha256": "088e601ee832b0d8d4e669c28259bcf29d1c275a2fe5f0ac553e9a6b2ae92554",
+      "raw_utf8_length": 358,
+      "source_provenance": {
+        "source_excerpt_sha256": "8ce92523eaf6c429261e4e048fd8141dc47ac0b31546d9ede9b4b11e4a439c93",
+        "source_id": "7469f982278b49333c7b74d1a77b914ed2223633"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "41e11b63f8758b935da83576884a6aa21bd232968b2c4e983c31cd3bc9a2422b",
+      "case_id": "openedge_abl-block-fed23220f25cb416",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "local variable",
+      "expected_cleaned_sha256": "35412d3994b637f65899b9fc544c1374ba61278936a33577a2407a0e6323bd2f",
+      "language": "openedge_abl",
+      "raw_comment": "/***************   local variable   ************************/",
+      "raw_sha256": "7a21069101929957dc61356ed0aa2e2304304dc1a14a5965d0145f3a96543349",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "977b01e40cd2e420d8b08c300fbbe1ba49bc2eb694c927b98db90441f26b6c7a",
+        "source_id": "507c92cbbfee22a66695ac9d880b37719ea05424"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

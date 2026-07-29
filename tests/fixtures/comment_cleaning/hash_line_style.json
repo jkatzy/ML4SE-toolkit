@@ -40,7 +40,6 @@
     "gn",
     "gnuplot",
     "haproxy",
-    "ignore_list",
     "jq",
     "janet",
     "kaitai_struct",

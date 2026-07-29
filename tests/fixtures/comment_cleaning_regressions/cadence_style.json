@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cadence_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "aa125ca51096c1edbb07a882c75de2cb97c01a2bc24337664344ce164c91110d",
+      "case_id": "cadence-line-016084206ca4673c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "create_auction/create_auction.cdc\nThis transaction takes an epochCount UInt64 and an\nepochLengthInBlocks UInt64 and creates a new Auction\nfor the signer using a DemoToken Vault and Rock Collection\nfor bid currency and prizes\n\nThe signer must already have a Rock Collection and Orbital\nAuction Collection in storage",
+      "expected_cleaned_sha256": "c81ac6922d976c3ed283b7386546658a916cf0f9c795b16ee4a3c5ba8c9a5c4b",
+      "language": "cadence",
+      "raw_comment": "// create_auction/create_auction.cdc\n// *************************\n// This transaction takes an epochCount UInt64 and an\n// epochLengthInBlocks UInt64 and creates a new Auction\n// for the signer using a DemoToken Vault and Rock Collection\n// for bid currency and prizes\n//\n// The signer must already have a Rock Collection and Orbital\n// Auction Collection in storage",
+      "raw_sha256": "1ca73d41a371918fe2b494573bce51f31fdc31a9c258803148fcfb0f018e4922",
+      "raw_utf8_length": 366,
+      "source_provenance": {
+        "source_excerpt_sha256": "5b80f4f5f48f05e29657e90a0cfbfc1b3eab2c9cf55632e0b6e61207a5514e70",
+        "source_id": "dc6c8de3f8eff0219eaaa918fb0a871fe7b13390"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "91ad33526ed374df6f2d46a1cbbc5a674a04815a47f3d80862d105e402b88229",
+      "case_id": "cadence-line-71c33a7f87c558c1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "setup/mint_nft.cdc\nThis transaction must be signed by the Rocks NonFungibleToken Admin\nwith a valid Rock Minter in account storage\n\nThis transaction takes a receiver address, mints a new Rock and deposits\nit in the receiver's Rock Collection. The receiver must already have a\nRock Collection in account storage.",
+      "expected_cleaned_sha256": "754e1b6132afd94b535f320c3f5c62b26520e1b24aec7d86b8b1962520afa56b",
+      "language": "cadence",
+      "raw_comment": "// setup/mint_nft.cdc\n// *************************\n// This transaction must be signed by the Rocks NonFungibleToken Admin\n// with a valid Rock Minter in account storage\n//\n// This transaction takes a receiver address, mints a new Rock and deposits\n// it in the receiver's Rock Collection. The receiver must already have a \n// Rock Collection in account storage.",
+      "raw_sha256": "daa5e3b91208457408cbf6cbea304abb5b8a56c3f4987a335a3b943dd21f4b3a",
+      "raw_utf8_length": 361,
+      "source_provenance": {
+        "source_excerpt_sha256": "d43ca35d23f5c6156c76982bc8fc5c6dc83253641b5200403941820cba1d2ce6",
+        "source_id": "9086f297aa2c5aa016baef66995a8ae868ed3154"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "d8b9ed6f080482be48f5d359362954503acf0170e3579e65b70006e714096b3f",
+      "case_id": "cadence-nested-b008e65b92f11713",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Sample Metadata Struct\nVouchers.Metadata(\n    name: \"The Best Vouchers\",\n    description: \"All Vouchers of this Type share this metadata, and as such they are all the best.\",\n    mediaType: \"image/png\",\n    mediaHash: \"0x64EC88CA00B268E5BA1A35678A1B5316D212F4F366B2477232534A8AECA37F3C\",\n    mediaURI: \"https://static.wikia.nocookie.net/meme/images/d/db/Rick-astley.png\"\n)",
+      "expected_cleaned_sha256": "423f06034c82b7223caaba05dc6f568de1ad0348b7f6e1417c9db44e8929cdef",
+      "language": "cadence",
+      "raw_comment": "/** Sample Metadata Struct \nVouchers.Metadata(\n    name: \"The Best Vouchers\",\n    description: \"All Vouchers of this Type share this metadata, and as such they are all the best.\",\n    mediaType: \"image/png\",\n    mediaHash: \"0x64EC88CA00B268E5BA1A35678A1B5316D212F4F366B2477232534A8AECA37F3C\",\n    mediaURI: \"https://static.wikia.nocookie.net/meme/images/d/db/Rick-astley.png\"\n)\n**/",
+      "raw_sha256": "f571d0fc0fe8c2a3ecb8e7082fd4ee6796b6f0e55cb6b47611b7adef243c0638",
+      "raw_utf8_length": 381,
+      "source_provenance": {
+        "source_excerpt_sha256": "107d7142abcdc67bfa2776429d89f40a6ebeb8f86a90d7ae9c341046d9d0fd07",
+        "source_id": "c590c5305d236661c7dd68a9ef15d5326cc39cb8"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

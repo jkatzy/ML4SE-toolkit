@@ -1,0 +1,38 @@
+{
+  "case_id": "harbour-line-bc011299014ce9a1",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "harbour",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0a766a190b139ef1f9d7dd62b4ec3209f4e83496e190d89eb193d3dd4e282980",
+      "utf8_length": 10
+    },
+    "manifest_old_output": {
+      "sha256": "7df60b64e7ef61e31fc47caa6f57b0ddce2fbbd9eb6a49d425ea04f34f5a542c",
+      "utf8_length": 7
+    },
+    "raw_comment": {
+      "sha256": "ca7610ee9b73c404c2d10d0c955e596f43124b3a84fb6a682a090ad755c84cc3",
+      "utf8_length": 41
+    },
+    "recommended_expected_output": {
+      "sha256": "7df60b64e7ef61e31fc47caa6f57b0ddce2fbbd9eb6a49d425ea04f34f5a542c",
+      "utf8_length": 7
+    }
+  },
+  "regression": {
+    "expected_output": "Imports",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//---------//\n// Imports //\n//---------//"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0c97da5d48ebcdf0c70643b1cc2e40b1a8e436c9912e93c50eef5efc248db09e",
+    "source_id": "8e45377775e0afa13e9f780c561a91a270f1df81"
+  },
+  "source_record_sha256": "3967e071c2be2a3c6658986717bbd9fbf9f43b0d2f1efd102f95c16b95c42cd3"
+}

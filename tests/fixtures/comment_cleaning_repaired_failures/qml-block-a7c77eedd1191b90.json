@@ -1,0 +1,33 @@
+{
+  "case_id": "qml-block-a7c77eedd1191b90",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "accounting_only_superseded",
+  "language": "qml",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7b166f88d1a9286297ca47cdbf5771666c37bc90261a43e151cae6b1bcce6f28",
+      "utf8_length": 89
+    },
+    "manifest_old_output": {
+      "sha256": "9a8fcb2412d291ed70233873910fd1844e0011e7a13b2117d44448d908d489b4",
+      "utf8_length": 86
+    },
+    "raw_comment": {
+      "sha256": "c5d0bcbfec05afc294191ce91c0df60b4b70f0d84b968f6e2e355da61fc1dffd",
+      "utf8_length": 245
+    },
+    "recommended_expected_output": {
+      "sha256": "9a8fcb2412d291ed70233873910fd1844e0011e7a13b2117d44448d908d489b4",
+      "utf8_length": 86
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "8186ae37d43a0576fc4a10aebe6def2660afb3158ae43365af10d29454251a78",
+    "source_id": "949900d18b5fc093ea6864a70b2ae59687f2e8db"
+  },
+  "source_record_sha256": "9749d4c3795b6523a040510df2029ebc631c678634357bd2a3df2d6bcb986f95"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-68d6242a7b22c468",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0741df968fc812e74ac2600e1dd197912f5db96318bc176c6095c0fc4ba7aa3c",
+      "utf8_length": 42
+    },
+    "manifest_old_output": {
+      "sha256": "f7d81f67b60e5775cba8f1dc67961c42bb8180a73edbd3b83830d8335a0fbc10",
+      "utf8_length": 37
+    },
+    "raw_comment": {
+      "sha256": "c4212641603f72934001a967981a9e5ce07f0c16012541d8d78c66ff89ca06e9",
+      "utf8_length": 54
+    },
+    "recommended_expected_output": {
+      "sha256": "f7d81f67b60e5775cba8f1dc67961c42bb8180a73edbd3b83830d8335a0fbc10",
+      "utf8_length": 37
+    }
+  },
+  "regression": {
+    "expected_output": "Login code for web UI\n\n/hoon/code/gen",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::  Login code for web UI\n::\n::::  /hoon/code/gen\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fdea96fd9caa45b96f3dbfa13783d85e7d5498b015b24f74dacb519eb68111bf",
+    "source_id": "bc88388321677e585aae9f6e3af8f66acba7e0ea"
+  },
+  "source_record_sha256": "e728c17235009783f1e933738e01fb048a7079bafd1d0700def990bb20041169"
+}

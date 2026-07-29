@@ -1,0 +1,29 @@
+{
+  "case_id": "cobol-line-4cc6fc04c647201d",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:mislabeled_xml_code",
+  "disposition": "accounting_only_no_oracle",
+  "language": "cobol",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "66503e37d3258572cc258bdcb316423c45af7c2663e8e6fc7390f0a24bd88fd9",
+      "utf8_length": 8
+    },
+    "manifest_old_output": {
+      "sha256": "718141ee8e25bfdbfdc697cb44f51058977522ed590bb93d9970797b958c407e",
+      "utf8_length": 9
+    },
+    "raw_comment": {
+      "sha256": "c662cdf0fefd85bfe490240ad24c3b33d0c036c2f9b6864e6ae53e01e17b5854",
+      "utf8_length": 15
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ded2e6ed3066d1b8d2d976301baabaf05666f45214ca58f3b4500a7519718c51",
+    "source_id": "a59e466866c56c607f73eefc67596bf8470a096c"
+  },
+  "source_record_sha256": "c090c4d7a0ab059685697e78604dc52f925f365989dc65ae191cffe71dbac3bf"
+}

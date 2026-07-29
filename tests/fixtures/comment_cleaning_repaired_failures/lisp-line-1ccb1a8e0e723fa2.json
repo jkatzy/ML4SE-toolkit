@@ -1,0 +1,38 @@
+{
+  "case_id": "lisp-line-1ccb1a8e0e723fa2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "lisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "30d9b8e0071a5a2a287d02d4312ba9ae7a349a2a649d77b4c299ad40c8d67ed1",
+      "utf8_length": 93
+    },
+    "manifest_old_output": {
+      "sha256": "ebb48a9cfeb4984d2708779ab17bd0fc63c3549c0cf3d121432bbccd8c9e0523",
+      "utf8_length": 89
+    },
+    "raw_comment": {
+      "sha256": "60271d567776de6c5fea0248b658296dbca8e09bdd95d90c50d85351f774ae85",
+      "utf8_length": 99
+    },
+    "recommended_expected_output": {
+      "sha256": "ebb48a9cfeb4984d2708779ab17bd0fc63c3549c0cf3d121432bbccd8c9e0523",
+      "utf8_length": 89
+    }
+  },
+  "regression": {
+    "expected_output": "cl-rrd - Common Lisp bindings to librrd2\nCopyright (C) 2008 Harry Bock <harry@oshean.org>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; cl-rrd - Common Lisp bindings to librrd2\n;;;; Copyright (C) 2008 Harry Bock <harry@oshean.org>"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7ed337fe6f08152f408958fbe660a5f295299cba119cc9cce884e882b1907833",
+    "source_id": "36807e3f7be16205e0e4a20ea8a9771b5173e8f0"
+  },
+  "source_record_sha256": "d6acbc7b9d5b8a67737e44a4b451cddad2fab5927de0521da72be9846e044bbf"
+}

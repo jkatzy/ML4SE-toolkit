@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "closure_templates_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "a12317301767b636b52cd723bfdd16397f02179514e955495e2524cf56cf2a74",
+      "case_id": "closure_templates-block-852b9fc7ae2445c4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Template for icon",
+      "expected_cleaned_sha256": "49bd1cc269825c3aba5a32388efa87b947f8f2c036c544f894adf1a8cb032fdd",
+      "language": "closure_templates",
+      "raw_comment": "/** Template for icon */",
+      "raw_sha256": "604e214c1dd457cc928fff917f6a30b30523d710b6853638f96bad7ef330e681",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "3fc95d2087c583d2921085cb051092b3f56005998b251aadf34402ab394cb8cf",
+        "source_id": "05f551477876f1ca793c0dcf51fb2020398f8034"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

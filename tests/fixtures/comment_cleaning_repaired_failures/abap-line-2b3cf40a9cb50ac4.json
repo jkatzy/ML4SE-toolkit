@@ -1,0 +1,38 @@
+{
+  "case_id": "abap-line-2b3cf40a9cb50ac4",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:abap",
+  "disposition": "executable_regression",
+  "language": "abap",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b735705092f182d15089e157ea9f3366701b7cb8c95bf50bc0da8bfccb57bf26",
+      "utf8_length": 63
+    },
+    "manifest_old_output": {
+      "sha256": "7ec190ce409af5905f6fabb95af80e82c38c14d3401f8c323a28731ea603a9c6",
+      "utf8_length": 29
+    },
+    "raw_comment": {
+      "sha256": "0a44e8e13a795b4ba5b96a6d3b640ef976f023a817096e6671ce78a4967a53b7",
+      "utf8_length": 203
+    },
+    "recommended_expected_output": {
+      "sha256": "7ec190ce409af5905f6fabb95af80e82c38c14d3401f8c323a28731ea603a9c6",
+      "utf8_length": 29
+    }
+  },
+  "regression": {
+    "expected_output": "System-defined Include-files.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "*******************************************************************\n*   System-defined Include-files.                                 *\n*******************************************************************"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5d8612fcc14ccfcd40c42c2c5d6100ab16cda5c7408a3f77d78e75875057abb3",
+    "source_id": "fb1d021f5eaf4aa98db85d8a4add296ed575d1a2"
+  },
+  "source_record_sha256": "4def802202c5f007986d1e60c2b6bbf266953b2aa1cbbaff1bee2ea03f6fb5c7"
+}

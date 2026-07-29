@@ -1,0 +1,616 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "haskell_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "5a63e01a0b1c67d2e2303eb187257eaeebb79230e4ed80f3f7aa3c5dbd9f8305",
+      "case_id": "idris-nested-dea1c92d78bca697",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "idris",
+      "oracle_exception_record_sha256": "64df66bdf86c5982e2c848cc27647488f20aea0562a83ade1a9212736183df48",
+      "raw_sha256": "241fed37f55b4821dc14e2182e0119dd3569b2a8a1f203b9e723f6d0339771ba",
+      "raw_utf8_length": 93,
+      "source_provenance": {
+        "source_excerpt_sha256": "4b81d7ae254eb92a72d2462fc617e5d5daa934fe820efbfb67e1fbff31b46f53",
+        "source_id": "aefee43bf9a550c0b6089ef3dde1eea75e9a5153"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "843bb60598f79ecd34c1a61ec21c27d30f2adf8d283ba2f11f1fa8cc246927d5",
+      "case_id": "literate_haskell-nested-762fdebeedc338fb",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "literate_haskell",
+      "oracle_exception_record_sha256": "5b9ce9cc93e7ad95963b5a6ebcfa563d583b64c0cb92590f4d9daaaf2730355f",
+      "raw_sha256": "b7a69c320c65e3db93c27d02f457c67cd88770fec7446356e460fe06bfdb28c0",
+      "raw_utf8_length": 172,
+      "source_provenance": {
+        "source_excerpt_sha256": "3ce5484db9412bcca3470fa2f6688a7b34b778bb729f8562dd1c4a88bb84bff0",
+        "source_id": "1f201e653af3a8dc5357fa01ec6cbabbebc93b27"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "44dfa3fa84dd27e8a53d4a6e210fadac9aebbd7251b075126120b7a4c627fbea",
+      "case_id": "purescript-line-f1a8d7a74923abf3",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "purescript",
+      "oracle_exception_record_sha256": "b3b42634495aa6c12538c935ecb90b018436da406c9ca945b97e88d43f0322fe",
+      "raw_sha256": "b1d2cb20cd9bc1007194ec3cde4971aac0e40e21513aec9c6dd2ca0ecfdbe43f",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "48c34c8723ef052a2235a46adcfb991666dd359f8ea3e3a0a47af0dd6b8b2d85",
+        "source_id": "16ccf6c33a42795e4838c83f7cc8415c7281582a"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "492a13a28104cfb64ac908e5c798980b667a29a4a6c40371500dd859049cba29",
+      "case_id": "purescript-line-fa9d09ac7f4b8bab",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "purescript",
+      "oracle_exception_record_sha256": "ecea0b8e73768821c8e6640b5ea010fa63ecfa2fe7e78bd885889694a54ee769",
+      "raw_sha256": "d204ae21837c01fad7c7ef852d39d1eeb3f06c46f93a04db8ba8a53954f5d6f4",
+      "raw_utf8_length": 343,
+      "source_provenance": {
+        "source_excerpt_sha256": "dbb3cf0fc0b8f18c2333095a400c8ae630b3f06d1c2b7d9214bad79909bc8aa3",
+        "source_id": "4f1769482766d4db1adb60f30432e030574ba5bf"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "6a7e2c6a49c15530b05c8aee8394c4935dd3f64fa9141c86484bd44a6dea0537",
+      "case_id": "purescript-nested-3059fc42fbbc68d2",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "purescript",
+      "oracle_exception_record_sha256": "6221ea325f70e9ec92de432e7324e82047b96bfe2fd33a44cef6e53f9771a263",
+      "raw_sha256": "b61d01288473be3bd707ac497257630916d32d0c4be534eb77c906db50b06c4f",
+      "raw_utf8_length": 92,
+      "source_provenance": {
+        "source_excerpt_sha256": "6e2015055ab1e9182fed594ff182681786f5356988a407f703eb809aa5c522ef",
+        "source_id": "412dd307c6635e5c78a7633a40b7584d33fda30b"
+      },
+      "syntax_label": "{-...-}"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "dd2582b2030e4a0d5d0c8f107603b60c7956532847cfd892502325cb439e676c",
+      "case_id": "dhall-line-007606ab513715eb",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Unzip an `Optional` value into two separate `Optional` values",
+      "expected_cleaned_sha256": "ea2b98d7b203750c957062e35a22b5db2683cc481a17f23106bd4bdd44d819f3",
+      "language": "dhall",
+      "raw_comment": "--| Unzip an `Optional` value into two separate `Optional` values",
+      "raw_sha256": "e5125480cec5b6e6c38e27b7142c0227b0e53476a909e456f1d9929a3681098d",
+      "raw_utf8_length": 65,
+      "source_provenance": {
+        "source_excerpt_sha256": "0681ae4b74d251fc6fdde2efa3c0de4feacf0c5d401225d4b09bb290d903458f",
+        "source_id": "3f0d17bf4796e378c6a6907c7b163e3dbe56cab3"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "ee9b1641b7735938ba0ec422dd53b19b554268e0e7a58bee30c5e632a69314cc",
+      "case_id": "dhall-line-7d6bd89f72377a58",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "`equal` checks if two Integers are equal.",
+      "expected_cleaned_sha256": "2202bd8c5a77dff3fdae568c6a4acf935600945b57550e11a82c6f4ecbc0a655",
+      "language": "dhall",
+      "raw_comment": "--| `equal` checks if two Integers are equal.",
+      "raw_sha256": "0b8b8890c7e6680af0a40b12e3d7b37f21bfb6833b92942bebf7676ec4a5fb22",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "7eb00bbf4a391ed7835855fc948626e79bab0ae34dce73eecd9fd4785aff0738",
+        "source_id": "83a904cf12db957dd361f904e318ea899533da11"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "aef79c459b5a4bd472584311e68b99711f8b03260f216635786052123cae2f52",
+      "case_id": "dhall-line-91e5624fd3952c71",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: define log settings in the Config",
+      "expected_cleaned_sha256": "ba01676abbd8a2434e52272fa67d0461df960fd35f55cfa1f5efe4037efff72f",
+      "language": "dhall",
+      "raw_comment": "--| TODO: define log settings in the Config",
+      "raw_sha256": "1f110cdbd01b0cd5a09c1878f48a7358e0f0b68e1ba3a9095f56ff301b5bea06",
+      "raw_utf8_length": 43,
+      "source_provenance": {
+        "source_excerpt_sha256": "a26fb6400b723af817d103318ab24e816860932d4e112d380e0bc9adcfd99f1b",
+        "source_id": "e8157eb2f1b6401087ca2a387df57d4bff82a767"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "23d5bc4f5db171bee1ca72436f67ca61c6299818730027b0f02f51f9cf2e94b4",
+      "case_id": "dhall-nested-18c80d921c6ad359",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# The dhall-infra packages\n\n> Get started with dhall by reading [tutorial](https://docs.dhall-lang.org/tutorials/Getting-started_Generate-JSON-or-YAML.html)\n\nThis is a collection of dhall packages to manage an infrastructure with Ansible like sf-infra.\n\nMost notably:\n\n* The `Server` package define an OpenStack server\n* The `Instance` package define a `Server` along with `Security-Group`, `Volumes`, `Connection`..\n\n> Note that this dhall-infra package does not have to be part of sf-infra and it will\n> be extracted once the API is more stable.\n\n\n## Directory structure\n\nEach directory contains a `package.dhall` that indexes all the `*.dhall` files and\nthe `*/package.dhall` for the subdirectories.\n\nFor example to access an attribute, this expression:\n\n```dhall\nlet Infra = ./package.dhall\nin Infra.Instance.Type\n```\n\nis equivalent to `./Instance/Type.dhall`.\n\n> The `package.dhall` can be generated using the shake command, see the `Shakefile.hs` file\n\n\n## Schemas\n\nWhen a package contains a `Type` and `default` attribute, they can be used as a completable record:\n\n```dhall\nlet Infra = ./package.dhall\nin Infra.Rule::{ port = +29418 }\n```\n\n(which is equivalent to `(./Rule/package.dhall)::{ port = +29418 }`\n\n> For more information, see [Language Tour documentation](https://docs.dhall-lang.org/tutorials/Language-Tour.html#record-completion)\n\n\n## Function\n\nPackages also contain functions related to their associated Type.\nSee for example: `Network/create.dhall`.\n\nThe documentation is also available in HTML at https://docs.softwarefactory-project.io/dhall-infra/\n\n\n## Group\n\nThe Group package was incorrectly modeled as an Union of possible group\nand a future change will remove it from the Infra package.",
+      "expected_cleaned_sha256": "154ce42ee08629cb9009edc2ed88f8a706d4fe2d09a1a808d4a1f8a1898ff020",
+      "language": "dhall",
+      "raw_comment": "{-|\n# The dhall-infra packages\n\n> Get started with dhall by reading [tutorial](https://docs.dhall-lang.org/tutorials/Getting-started_Generate-JSON-or-YAML.html)\n\nThis is a collection of dhall packages to manage an infrastructure with Ansible like sf-infra.\n\nMost notably:\n\n* The `Server` package define an OpenStack server\n* The `Instance` package define a `Server` along with `Security-Group`, `Volumes`, `Connection`..\n\n> Note that this dhall-infra package does not have to be part of sf-infra and it will\n> be extracted once the API is more stable.\n\n\n## Directory structure\n\nEach directory contains a `package.dhall` that indexes all the `*.dhall` files and\nthe `*/package.dhall` for the subdirectories.\n\nFor example to access an attribute, this expression:\n\n```dhall\nlet Infra = ./package.dhall\nin Infra.Instance.Type\n```\n\nis equivalent to `./Instance/Type.dhall`.\n\n> The `package.dhall` can be generated using the shake command, see the `Shakefile.hs` file\n\n\n## Schemas\n\nWhen a package contains a `Type` and `default` attribute, they can be used as a completable record:\n\n```dhall\nlet Infra = ./package.dhall\nin Infra.Rule::{ port = +29418 }\n```\n\n(which is equivalent to `(./Rule/package.dhall)::{ port = +29418 }`\n\n> For more information, see [Language Tour documentation](https://docs.dhall-lang.org/tutorials/Language-Tour.html#record-completion)\n\n\n## Function\n\nPackages also contain functions related to their associated Type.\nSee for example: `Network/create.dhall`.\n\nThe documentation is also available in HTML at https://docs.softwarefactory-project.io/dhall-infra/\n\n\n## Group\n\nThe Group package was incorrectly modeled as an Union of possible group\nand a future change will remove it from the Infra package.\n-}",
+      "raw_sha256": "d516d5a2f8ce4fcf35c9e44dd3553fea605d764129fc71a770303d1787e2619f",
+      "raw_utf8_length": 1723,
+      "source_provenance": {
+        "source_excerpt_sha256": "2ce6cf45031cb7406f1faf84c4e602f8d14137dd44fdae61566ceebfb11ab0be",
+        "source_id": "4935e3106272eed28274fe5a0b4c4c2fc6ba020b"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "f5a0384e4c337f657d243acb66ddc7e2dc540ac3786b613bf14020057e0b861a",
+      "case_id": "dhall-nested-565271579c0db18c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Although we have a similar example on this [file](./RenderTypeIndexesExample.dhall),\nthis example showcases the jump-to-definition feature when indexes are used.",
+      "expected_cleaned_sha256": "5000f530a12bb384ce0068647810ca3a9d0e229757f5ea3cfa15ea7659764dc2",
+      "language": "dhall",
+      "raw_comment": "{-|\nAlthough we have a similar example on this [file](./RenderTypeIndexesExample.dhall),\nthis example showcases the jump-to-definition feature when indexes are used.\n-}",
+      "raw_sha256": "3d30babc1e84ac21e7f0bb3def53a91dea1d3161dc7a2eb89fecab6b486d2ff8",
+      "raw_utf8_length": 168,
+      "source_provenance": {
+        "source_excerpt_sha256": "a6b42b2e010db6893530e2c93094a49fa380cc10631812ab82bbdec973e1fb83",
+        "source_id": "af5de4071a6538838a8a1f85a29396bcd37ba84f"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "91fedaffc61ba17fd932259e75ef631a6c72e7567a62e34372f95c8b4f237d3a",
+      "case_id": "dhall-nested-a40866e9bbcf8d18",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Build a list by calling the supplied function on all `Natural` numbers from `0`\nup to but not including the supplied `Natural` number",
+      "expected_cleaned_sha256": "51fdaf6befb453e5dc818abe14861567dbbbb58ec248f6ff2ee7c02035687da2",
+      "language": "dhall",
+      "raw_comment": "{-|\nBuild a list by calling the supplied function on all `Natural` numbers from `0`\nup to but not including the supplied `Natural` number\n-}",
+      "raw_sha256": "b4c6513f9d8a503795b8e334f748b41bd66474ac549dd9c3da5f1647f0ac2d3f",
+      "raw_utf8_length": 140,
+      "source_provenance": {
+        "source_excerpt_sha256": "3078c1545f791e9e56a3058f7eb2b79645e10b1ac91461791ddbf32fede81e16",
+        "source_id": "48fcf375bc559f3725463a030f2bd64d507435e1"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "219d52ee67527e0942a5fe035b1c1e28ae9b2e50c9cc27b1a305e3a092873014",
+      "case_id": "dhall-nested-bad1c092f7f7b09a",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Create a JSON object from a Dhall `Map`\n\n```\nlet JSON = ./package.dhall\nin  JSON.render\n    ( JSON.object\n      [ { mapKey = \"foo\", mapValue = JSON.double 1.0 }\n      , { mapKey = \"bar\", mapValue = JSON.bool True  }\n      ]\n    )\n= \"{ \\\"foo\\\": 1.0, \\\"bar\\\": true }\"\n\nlet JSON/Type = ./Type\nlet JSON = ./package.dhall\nin  JSON.render\n    (JSON.object ([] : List { mapKey : Text, mapValue : JSON/Type }))\n= \"{ }\"\n```",
+      "expected_cleaned_sha256": "be06c97c309891517d886641124642ab841487710e322f63e622f91585fffa79",
+      "language": "dhall",
+      "raw_comment": "{-|\nCreate a JSON object from a Dhall `Map`\n\n```\nlet JSON = ./package.dhall\nin  JSON.render\n    ( JSON.object\n      [ { mapKey = \"foo\", mapValue = JSON.double 1.0 }\n      , { mapKey = \"bar\", mapValue = JSON.bool True  }\n      ]\n    )\n= \"{ \\\"foo\\\": 1.0, \\\"bar\\\": true }\"\n\nlet JSON/Type = ./Type\nlet JSON = ./package.dhall\nin  JSON.render\n    (JSON.object ([] : List { mapKey : Text, mapValue : JSON/Type }))\n= \"{ }\"\n```\n-}",
+      "raw_sha256": "d4553a669f06952f7d6b6269e9bd24858feb3975e3a9b3a22b41f8b669cb78b4",
+      "raw_utf8_length": 421,
+      "source_provenance": {
+        "source_excerpt_sha256": "1daee3b07e9cc2b5616900af9d8635c992c73b00ae8986ef95652196d7aa56c0",
+        "source_id": "3e4986a2990f7ac0d5c82d82d2644c1907322b0b"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "02823b8a850dca218694a7fbeee51e7125bf363bdbeadf42f773a9644e68e9c3",
+      "case_id": "dhall-nested-e237971cb1777ba3",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "bucketchain =\n  { dependencies =\n    [ \"aff\", \"console\", \"node-http\", \"node-streams\", \"transformers\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-basic-auth =\n  { dependencies = [ \"basic-auth\", \"bucketchain\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-basic-auth.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-conditional =\n  { dependencies = [ \"bucketchain\", \"js-date\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-conditional.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-cors =\n  { dependencies = [ \"bucketchain\", \"bucketchain-header-utils\", \"http-methods\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-cors.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-csrf =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-csrf.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-header-utils =\n  { dependencies = [ \"bucketchain\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-header-utils.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-health =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-health.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-history-api-fallback =\n  { dependencies = [ \"bucketchain\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-history-api-fallback.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-logger =\n  { dependencies = [ \"bucketchain\", \"js-date\", \"node-process\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-logger.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-secure =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-secure.git\"\n  , version = \"v0.2.0\"\n  }\n, bucketchain-simple-api =\n  { dependencies = [ \"bucketchain\", \"media-types\", \"simple-json\", \"freet\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-simple-api.git\"\n  , version = \"v4.0.0\"\n  }\n, bucketchain-sslify =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-sslify.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-static =\n  { dependencies = [ \"bucketchain\", \"node-fs-aff\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-static.git\"\n  , version = \"v0.4.0\"\n  }",
+      "expected_cleaned_sha256": "8ecec70e2f7e14a91caeafd11f2c043d66729aa6b5fab3e92b52c1562214d5f5",
+      "language": "dhall",
+      "raw_comment": "{- bucketchain =\n  { dependencies =\n    [ \"aff\", \"console\", \"node-http\", \"node-streams\", \"transformers\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-basic-auth =\n  { dependencies = [ \"basic-auth\", \"bucketchain\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-basic-auth.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-conditional =\n  { dependencies = [ \"bucketchain\", \"js-date\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-conditional.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-cors =\n  { dependencies = [ \"bucketchain\", \"bucketchain-header-utils\", \"http-methods\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-cors.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-csrf =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-csrf.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-header-utils =\n  { dependencies = [ \"bucketchain\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-header-utils.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-health =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-health.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-history-api-fallback =\n  { dependencies = [ \"bucketchain\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-history-api-fallback.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-logger =\n  { dependencies = [ \"bucketchain\", \"js-date\", \"node-process\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-logger.git\"\n  , version = \"v0.4.0\"\n  }\n, bucketchain-secure =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-secure.git\"\n  , version = \"v0.2.0\"\n  }\n, bucketchain-simple-api =\n  { dependencies = [ \"bucketchain\", \"media-types\", \"simple-json\", \"freet\" ]\n  , repo =\n      \"https://github.com/Bucketchain/purescript-bucketchain-simple-api.git\"\n  , version = \"v4.0.0\"\n  }\n, bucketchain-sslify =\n  { dependencies = [ \"bucketchain\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-sslify.git\"\n  , version = \"v0.3.0\"\n  }\n, bucketchain-static =\n  { dependencies = [ \"bucketchain\", \"node-fs-aff\" ]\n  , repo = \"https://github.com/Bucketchain/purescript-bucketchain-static.git\"\n  , version = \"v0.4.0\"\n  }\n-}",
+      "raw_sha256": "fbd2cb6352c5fad472de093322243a70b8fd567a9e1a3af0756322d22e3ad68e",
+      "raw_utf8_length": 2424,
+      "source_provenance": {
+        "source_excerpt_sha256": "c20e75f6c959cf7f9b70d5c44ea4537087326b6a3e3c1cec0d2c1c02337dc482",
+        "source_id": "0fa9c444624ce5dc1ad4da8c438bda3576333ce3"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "ced10ef37c230ed083a1727562eb905bf1a458e4dc777d41b358e6b734ac8ad5",
+      "case_id": "haskell-line-1f8a926f64e0d61d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Amount of seconds we give a node to send us blocks either retry.",
+      "expected_cleaned_sha256": "a68e2e9e542aade3ae2447e78fafa68541c5a58791e568544b8d693ee1a5cd77",
+      "language": "haskell",
+      "raw_comment": "-- | Amount of seconds we give a node to send us blocks either retry.",
+      "raw_sha256": "21fdac0ed09163aeead5be54618834f596a9c5ab4dd05e52ed7b037f7897114e",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "5b30d003145574c91bc5a095711cfefe7e1c42c8db610ac34ebca4bec398f5e8",
+        "source_id": "0e431e8ffa40e3ce5ca365b9187cd4f3cd16cc00"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "085eea6a2ab4b6e74d6c488f0d466884ac0c7ec4a075dab3242d758d43c7963c",
+      "case_id": "haskell-line-2e0ab078160887c1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: Add Bits instance",
+      "expected_cleaned_sha256": "8de5f18ce084706a9963690f2a272a162865dab2bd172436c0573026eda0da29",
+      "language": "haskell",
+      "raw_comment": "-- | TODO: Add Bits instance",
+      "raw_sha256": "e93377976acd460f1b553f4f036d108db84b9e7e9caf4332447584c48470c418",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "b0ed3cf3d17224cbe5936a006bca0a05b92a88840a676c683afb50f63c546453",
+        "source_id": "6f9f056acacb4ac22434ff7c44ff5aea79c7bdfd"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "89aa0c73cda5d20c250ba1818e3fba560d4e6a726f9b04ed0dd67a49baaf91ef",
+      "case_id": "haskell-line-b6843c89f1efa6ce",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module contains the code for converting an `Expr` to a \"A-Normal\" form.",
+      "expected_cleaned_sha256": "746645ea90b07defb489b27ea6b859549291e08f1eb97ba58e2c017c88841036",
+      "language": "haskell",
+      "raw_comment": "--------------------------------------------------------------------------------\n-- | This module contains the code for converting an `Expr` to a \"A-Normal\" form.\n--------------------------------------------------------------------------------",
+      "raw_sha256": "6e7e8f18877844d478b079a3c8fdb2c28eed3500f16798d6879d95657c2aeb24",
+      "raw_utf8_length": 243,
+      "source_provenance": {
+        "source_excerpt_sha256": "ebc01bb3bde5beac88c6c99cbbc9de04e85bf2cec3cdede7f610c2805de86ebb",
+        "source_id": "9fc02e05b8cd49a35f79ab15bb75edb5ca44b967"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "61fa0cd15d109f1f4a54917ae2e4808a36045c5b3c6627cbe4dce4251b8478ba",
+      "case_id": "haskell-line-c99159416db98d6a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#name_types#\nGHC uses several kinds of name internally:\n\n* 'OccName.OccName': see \"OccName#name_types\"\n\n* 'RdrName.RdrName': see \"RdrName#name_types\"\n\n* 'Name.Name': see \"Name#name_types\"\n\n* 'Id.Id' represents names that not only have a 'Name.Name' but also a 'TyCoRep.Type' and some additional\n  details (a 'IdInfo.IdInfo' and one of 'Var.LocalIdDetails' or 'IdInfo.GlobalIdDetails') that\n  are added, modified and inspected by various compiler passes. These 'Var.Var' names may either\n  be global or local, see \"Var#globalvslocal\"\n\n* 'Var.Var': see \"Var#name_types\"",
+      "expected_cleaned_sha256": "5aa53929d0753942dd3dcc0b5d04e2fec584f292183aeafaae5d6e9fe540469b",
+      "language": "haskell",
+      "raw_comment": "-- |\n-- #name_types#\n-- GHC uses several kinds of name internally:\n--\n-- * 'OccName.OccName': see \"OccName#name_types\"\n--\n-- * 'RdrName.RdrName': see \"RdrName#name_types\"\n--\n-- * 'Name.Name': see \"Name#name_types\"\n--\n-- * 'Id.Id' represents names that not only have a 'Name.Name' but also a 'TyCoRep.Type' and some additional\n--   details (a 'IdInfo.IdInfo' and one of 'Var.LocalIdDetails' or 'IdInfo.GlobalIdDetails') that\n--   are added, modified and inspected by various compiler passes. These 'Var.Var' names may either\n--   be global or local, see \"Var#globalvslocal\"\n--\n-- * 'Var.Var': see \"Var#name_types\"",
+      "raw_sha256": "9ac1777c03cb51190f4b55cd8f1da18d08767d849f4cc073b2b8ced27a19fc2a",
+      "raw_utf8_length": 612,
+      "source_provenance": {
+        "source_excerpt_sha256": "48c3d7aa62f7379bd985874a093c1d428299c303357a530d691145ec79a05f31",
+        "source_id": "c943ba91982bd38e67e9dfa2054a478e64244097"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "da1915b0f0e6ceba4e282edce903817b462095532c403ae7d184c24d23f96a78",
+      "case_id": "haskell-line-e6ac74228ac5296f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DSL for Neovim syntax definitions.",
+      "expected_cleaned_sha256": "7c4021df33bd9305635ccfbe0b800d160165211f4ae4b6ab20da412dc67693bc",
+      "language": "haskell",
+      "raw_comment": "-- |DSL for Neovim syntax definitions.",
+      "raw_sha256": "31f2509ed2b1607c3ac3d51a88bb8a78edd60594f8f78eede3617c9196995ab5",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "387e0b52ae93218560876f9d1f856b084ed9a8ccaf386d568bb00bb0c7167881",
+        "source_id": "4c21eee9004b13c65a9b20623d0be2db131161d3"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "68f04f6e38b9c909919413888f39560a979fea2485aa0d74dbdec36d9de324f2",
+      "case_id": "haskell-nested-1d09c267fcf15b69",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[@ISO639-1@]        -\n\n[@ISO639-2@]        -\n\n[@ISO639-3@]        djk\n\n[@Native name@]     Aukan\n\n[@English name@]    Ndyuka",
+      "expected_cleaned_sha256": "c47e61f07266fd582c680d942f31d1148aacca143bc31d3a09aec1385ce3252f",
+      "language": "haskell",
+      "raw_comment": "{-|\n[@ISO639-1@]        -\n\n[@ISO639-2@]        -\n\n[@ISO639-3@]        djk\n\n[@Native name@]     Aukan\n\n[@English name@]    Ndyuka\n-}",
+      "raw_sha256": "5a60c95a9b5ae5acea533174a5d161d1a412b3122623b97a39495ce4e6b98644",
+      "raw_utf8_length": 131,
+      "source_provenance": {
+        "source_excerpt_sha256": "39b5e4b2d1e6602f28945f12e244864a9c5dba78ff15d3293b84fc520094c642",
+        "source_id": "e05b6b392c15068a67f989be6a4d6426ba4cb970"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "a3b2d3a131924830342a08066cf1bbcecfbe39f60b4c64e84a358e9ededaf9d6",
+      "case_id": "idris-line-6135e6ada905751f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "NOTE The Implementation of Functional Programming Languages\n11.3.1 Weak Head Normal Form\n\nOriginal expression (Term)\n  -- Normal order reductions of top-level redexes ->\nWeak Head normal form (no top-level redexes)\n  -- Normal order reductions of inner redexes ->\nNormal form (no redexes at all)",
+      "expected_cleaned_sha256": "c54693575ad3c264e259c49a4ccf3f17f163b3703c3d0638154d69e053745b0c",
+      "language": "idris",
+      "raw_comment": "-- | NOTE The Implementation of Functional Programming Languages\n-- | 11.3.1 Weak Head Normal Form\n-- |\n-- | Original expression (Term)\n-- |   -- Normal order reductions of top-level redexes ->\n-- | Weak Head normal form (no top-level redexes)\n-- |   -- Normal order reductions of inner redexes ->\n-- | Normal form (no redexes at all)",
+      "raw_sha256": "836f06a8978586e50b153be8604c3eba87bfa3f9dd61ce392b0154cc5cba76eb",
+      "raw_utf8_length": 334,
+      "source_provenance": {
+        "source_excerpt_sha256": "0d30f751e71cb123e66b475c6ae100609f50949710c057e5d29735d6c5850e52",
+        "source_id": "c3eea1a0985fa24c1b8adebeadef9b20d227a46e"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "a5081bf12915ec04be600efa1f03f4faff6c09208cb90ed14640880946e15708",
+      "case_id": "idris-nested-3e8ab0c53cb2b8aa",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:\n\n- Make a decent set of test cases\n- Option to keep vs discard FCs for faster quoting where we don't need FC\n\nAdvanced TODO (possibly not worth it...):\n- Write a conversion check\n- Extend unification to use SObj; include SObj in Glued",
+      "expected_cleaned_sha256": "06d9d3b5c09f25d26147d43a2b6cfc6d1ffb9ea92cff7568d491b51b5f9428d6",
+      "language": "idris",
+      "raw_comment": "{- TODO:\n\n- Make a decent set of test cases\n- Option to keep vs discard FCs for faster quoting where we don't need FC\n\nAdvanced TODO (possibly not worth it...):\n- Write a conversion check\n- Extend unification to use SObj; include SObj in Glued\n\n-}",
+      "raw_sha256": "5709b177cb6748c5cff3e82d206c12f893215d466b01dc82602ecca6d42552c8",
+      "raw_utf8_length": 247,
+      "source_provenance": {
+        "source_excerpt_sha256": "dd11bf8d45fcba07bcc25eeac0b7dbc6658b8c488a84ebd48af93146efab72a5",
+        "source_id": "9add11bc5d961fc97eb5eaa1f28237bc0ad1eaed"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "4d904f7c0bac0b38b3bb0a1688bf0ae6cd5c120a0ffa0614c9fe2db141a43f1b",
+      "case_id": "purescript-line-099855eb6428aae2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usage: `getCanvas gl`\n\nDocumentation: [WebGL 1.0 spec, section 5.14.1](https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.1)",
+      "expected_cleaned_sha256": "830863c14f4ef2574734acbf401f20095045591a48c8f661e28917e4f7b0ecf0",
+      "language": "purescript",
+      "raw_comment": "-- |\n-- | Usage: `getCanvas gl`\n-- |\n-- | Documentation: [WebGL 1.0 spec, section 5.14.1](https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.1)\n-- |",
+      "raw_sha256": "20b29f9c312087b7b3304ae0b238d3a543c4b695bccaa3ff71ad43d4b5da966e",
+      "raw_utf8_length": 159,
+      "source_provenance": {
+        "source_excerpt_sha256": "568f11b1a28d32cfce2ff252698abc4aa13a9511a3642c32486e1f073ce1cf1f",
+        "source_id": "a6a9e4651e68dd3d1e3ce0c05e80ab0da82fa264"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "72088e4c3a003a4e92c43d116b8000e7cf6f2f2dee0c4f829b6c67dc28e57e63",
+      "case_id": "purescript-line-0f95ecdf337d1da6",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Module      :  Control.Monad.Unify\nCopyright   :  (c) Phil Freeman 2013\nLicense     :  MIT\n\nMaintainer  :  Phil Freeman <paf31@cantab.net>\nStability   :  experimental\nPortability :",
+      "expected_cleaned_sha256": "5cc374623bbf5781fbb7e60cdda0578c1b786dd53d2baadb262686509b617897",
+      "language": "purescript",
+      "raw_comment": "-----------------------------------------------------------------------------\n--\n-- Module      :  Control.Monad.Unify\n-- Copyright   :  (c) Phil Freeman 2013\n-- License     :  MIT\n--\n-- Maintainer  :  Phil Freeman <paf31@cantab.net>\n-- Stability   :  experimental\n-- Portability :\n--\n-- |\n--\n--\n-----------------------------------------------------------------------------",
+      "raw_sha256": "b2aa2df9c51d97b2f06317771f493b878533f9a5f94cc70c18b7c55e542f52f7",
+      "raw_utf8_length": 373,
+      "source_provenance": {
+        "source_excerpt_sha256": "1af4550bba56cb28a91d570543316abb3d7c978594f4b9120d6fe789fb6214f3",
+        "source_id": "8db22d13e7e45da3387ab61addbe07d2f4f047da"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "243e87a185a6266da72302a4da7eea9f819efbc2d48d9bec4e80272cafb9650e",
+      "case_id": "purescript-line-30cd17722363247c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Create a StrMap from an Array of (key, value) pairs",
+      "expected_cleaned_sha256": "fd688abba211843b730ad4faa0faacc0d295772c026bc7d6cd90923103fdd7ed",
+      "language": "purescript",
+      "raw_comment": "-- | Create a StrMap from an Array of (key, value) pairs",
+      "raw_sha256": "42dceaf18ba1de867013882eb05b13921c7a91608b3e54d1035a8ebb9069fd81",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "5f260117b33a97d96484826928a3b576fc1946d12b0b253e86cf8b0a621de900",
+        "source_id": "b945b09d7cc8c4a471cad42e411339184f9c4f3e"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "cc238ccaa85315c908764d11266aebcc5fee39da81a3ff2edb7b814ea09e0de6",
+      "case_id": "purescript-line-376d1b9202f5fe82",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Works with the example server in this project",
+      "expected_cleaned_sha256": "1d3e29b8553954a7a4e8e381df070da391cde3ed5a791014e71cd173a27be8a2",
+      "language": "purescript",
+      "raw_comment": "-- | Works with the example server in this project",
+      "raw_sha256": "fb4a563fb3a98a98345f947a64255eed522a45b8d21cb70ab4c367d8f6269043",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "10972c975a3efa5d0e98c67dde930502605f20740028a481748c920cb391074a",
+        "source_id": "4d4a39db6925ba1336f33b15a9abe112f77030fc"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "bf2f2b52977341f94a3cd12a357bfdcdfcfca499f9212b0a79992b40cc66191e",
+      "case_id": "purescript-line-3f59ef87f2c3c518",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The REST request utilities functions\n\nWritten by Tomas Stenlund, Sundsvall, Sweden (c) 2019",
+      "expected_cleaned_sha256": "a24825d9314a65f1d166aa9d52d124c0248772f261b230703a5ca9f050587ff7",
+      "language": "purescript",
+      "raw_comment": "-- |\n-- | The REST request utilities functions\n-- |\n-- | Written by Tomas Stenlund, Sundsvall, Sweden (c) 2019\n-- |",
+      "raw_sha256": "b0f6848ff31309d172b718e6df8cc7e78d09178e9f8c9c297a03bda89f0d49ed",
+      "raw_utf8_length": 115,
+      "source_provenance": {
+        "source_excerpt_sha256": "fb31dc589570c8d8147325554ca8da28940de455b2d1895b65b572c4258be93c",
+        "source_id": "5fa885e02966da63720ec047b1f418f3ea3d78a3"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "d96d2cd4186fae757b5347b7a370f4f27cc9a1f98682e05f85142a9a9b545bc1",
+      "case_id": "purescript-line-514a8cbb0ea0e8dc",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Creates a text style builder initialized with the values of this text style.",
+      "expected_cleaned_sha256": "9499ef964419be9a6618e0f5c6c7cf2d5bf95d627eb1412013a585d47c39f44c",
+      "language": "purescript",
+      "raw_comment": "-- | Creates a text style builder initialized with the values of this text style.",
+      "raw_sha256": "40bd3efee9e17beac5e8c27058207b405ac12e41b1a37331628311ddcd8e465b",
+      "raw_utf8_length": 81,
+      "source_provenance": {
+        "source_excerpt_sha256": "fa67ebd66e978cbf975a0c2eacdb3ee11b66924bf5548a54b997d7249997c42d",
+        "source_id": "4b6cff5de5e4312b3dba71cc72b8321c1c05cac5"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "fec306e58302fde102e9c9ce74ad5d14bc58b7e19819b4a7137fe4502b990c55",
+      "case_id": "purescript-line-5e690af2861d0298",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Functions for creating HTML elements and programs.",
+      "expected_cleaned_sha256": "f7e7dbbb4711c513757ab88c26787a28dad47b44f96d5fc5a80eca573bc0cccf",
+      "language": "purescript",
+      "raw_comment": "--| Functions for creating HTML elements and programs.",
+      "raw_sha256": "a210b288f3b2ffcf6dcecb35ba3e34b14a5731d09fa03a16f755e15192ddde51",
+      "raw_utf8_length": 54,
+      "source_provenance": {
+        "source_excerpt_sha256": "de0021fd9003caacd149068a13a246cb694c67c41c4cc54148a4d6ab73de6cf0",
+        "source_id": "efa7f6357dae49d535e0595423521baeee6f7ab7"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "ba97d79166077955bd033d8d4d546f4b2e70b14254405629b498ede7f6ff68ea",
+      "case_id": "purescript-line-7fe60092d66c7296",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Gets a lock that prevents any user of the current document from concurrently\nrunning a section of code.",
+      "expected_cleaned_sha256": "30c4c204130bce525b4e996192e1450ebb99636f4ed487fb3694a049a064aaa0",
+      "language": "purescript",
+      "raw_comment": "-- | Gets a lock that prevents any user of the current document from concurrently\n-- | running a section of code.",
+      "raw_sha256": "b879677674e8ec6a77ef9e5e1bdd03563c00602cb9948948c4ec44495ccbb73e",
+      "raw_utf8_length": 113,
+      "source_provenance": {
+        "source_excerpt_sha256": "e2ef928054a1ebb9b6b92fcf3ad205879e245a5fc778fca9fa591c69b60243c6",
+        "source_id": "e92f8f5d67681a108cf6e5720bcd101baec83323"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "76fa9e0818e743eb1e3227a965a95702378c15a77d6b11396992b5f74ed2edff",
+      "case_id": "purescript-line-8199484e96e3bf15",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module provides convenience functions for creating _input groups_.",
+      "expected_cleaned_sha256": "0152fe466ba704d45b6f5f8a7775a02c980b0ab574bd7e33f1dbd76bd5fa3d27",
+      "language": "purescript",
+      "raw_comment": "-- | This module provides convenience functions for creating _input groups_.",
+      "raw_sha256": "b6a42ed44bfe5c58f0d47ca9e50ff38ad5bf3798ee3a6f99a681c8cc1d99b8fd",
+      "raw_utf8_length": 76,
+      "source_provenance": {
+        "source_excerpt_sha256": "10f6b995411e56fc06d78c08dbc4959ddf4f4575e64c11f4fe1ebab6fb65a732",
+        "source_id": "78d762225c9f0c7da497ec5c1c52a98896ca42f4"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "299cba246b4ef12a40ccc560cfb94a2876eedf7906d8b366d76f4df83b16fc65",
+      "case_id": "purescript-line-87fed50dbf575ca4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The class for things which can be perturbed.\n\nLaws:\n  forall a, 0 >= n <= 1:\n  ((>=) n) <<< dist a <$> (perturb n a) must be an infinite generator of `true` values.",
+      "expected_cleaned_sha256": "ea5d099638ca6f1a9a6c65a4271029aad0e70d39a651cd4745657eb317ecb35b",
+      "language": "purescript",
+      "raw_comment": "-- | The class for things which can be perturbed.\n-- |\n-- | Laws:\n-- |   forall a, 0 >= n <= 1:\n-- |   ((>=) n) <<< dist a <$> (perturb n a) must be an infinite generator of `true` values.",
+      "raw_sha256": "0670a304eb95664c2cddfea1677d1d23d681e34418a611f4157e2e00f6770c4d",
+      "raw_utf8_length": 188,
+      "source_provenance": {
+        "source_excerpt_sha256": "b4005f33a48af003d44489402391fe09af200d585f7fef9ef9fe946e892e4ce9",
+        "source_id": "b938c0e3de6e6154bb13d5625dc0339cfbeaff20"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "a6538511f963589fde93ac66a6165c1db24d6fe174cc2db316edd1a1b1e51eae",
+      "case_id": "purescript-line-8ef78bc82a5dfaf5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Sets the maximum allowed value for the range lower extent.",
+      "expected_cleaned_sha256": "ed393c3c89425d42bc70fa874ed595d1586bab563400704440dacad4d691218e",
+      "language": "purescript",
+      "raw_comment": "-- | Sets the maximum allowed value for the range lower extent.",
+      "raw_sha256": "9ec085630ab6626d22e651860c2e88aaffa3e4f0029314c5a2187258a19c10f1",
+      "raw_utf8_length": 63,
+      "source_provenance": {
+        "source_excerpt_sha256": "3a865a2c4097d6b51fd613fb75c1b953c40da7848cb124de5f31222967b7db49",
+        "source_id": "82af0198dd6c87f07e5ec719c2e5f425e76a3a86"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "adb4baf071ce357efee4355a66c6e85ba1d4c0a7469753ff2a2aaff10b56f549",
+      "case_id": "purescript-line-993b95aa920d4104",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "App configuration",
+      "expected_cleaned_sha256": "707e7a5ec1b955f0b5f7b19d2e38fb13c7eb1c75665e0bc1574e2a497e7edfff",
+      "language": "purescript",
+      "raw_comment": "-- | App configuration",
+      "raw_sha256": "40f6553971d3417412bf7bf28e42fed380371456831458b23149727abf6a19bc",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "6be88e84ca997c84c51b1d7e65ef984d8babb51b03fd28059ddba5f61b3c4536",
+        "source_id": "ed00652ada8000c748d9971691b9d04982360769"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "4f15548f4a0e3945dfe79fb821945ace8957a5c331e2c62306746d4634bb150b",
+      "case_id": "purescript-line-a27ab05a9cb0fc13",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "our State type",
+      "expected_cleaned_sha256": "c4639dfe5f88efcf30217090def39c3bce889ec69319f61d8a35513cef7e3f71",
+      "language": "purescript",
+      "raw_comment": "-- | our State type",
+      "raw_sha256": "d8109943d4c274701e10ad1252eaa772e17b9d08b674e19b0334c5f27d802ed6",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "838d5e765518af4332e2b3913d5d090ff5b99a9d7491fbf7db921f9015f669c3",
+        "source_id": "5e495689e3391fac049e087bf9fdacf706873819"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "15122d583e2df2be0e2f6f73925a5d326b885808f9599deacb5e0899e9a8fbda",
+      "case_id": "purescript-line-a9f53619eeff38d2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module defines bitwise operations for the `Long` type.",
+      "expected_cleaned_sha256": "f90a20eed5a49e6b8c266f7ee6a08a95363d80205277984c6ee56ad9dca8741c",
+      "language": "purescript",
+      "raw_comment": "-- | This module defines bitwise operations for the `Long` type.",
+      "raw_sha256": "9889d9e8ebc7213a515dc0cae275ef63a28d53865d8855adda870373295aaf6f",
+      "raw_utf8_length": 64,
+      "source_provenance": {
+        "source_excerpt_sha256": "a3f73440e5e2c95be93fa56f881aa7153793381c0f220d3eeff835a2e4f2314b",
+        "source_id": "9cc74a98014bd7895809ed529aa6d768985d272e"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "4bc9d142c9699d27f08ae3ae55622070c562927360614e98206d141c36050ab5",
+      "case_id": "purescript-line-afa0c5331f049c09",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module defines a generic non-empty data structure, which adds an\nadditional element to any container type.",
+      "expected_cleaned_sha256": "a64c0689c6ddf6a814de480c699976f77ef38c511ba1c0423f38e3ecd0a6406a",
+      "language": "purescript",
+      "raw_comment": "-- | This module defines a generic non-empty data structure, which adds an\n-- | additional element to any container type.",
+      "raw_sha256": "47b5037f8ea3da75bf0f22e7e29ea6b807aade64f054a610ac97fdd9bea2f1e6",
+      "raw_utf8_length": 121,
+      "source_provenance": {
+        "source_excerpt_sha256": "263a7f51abafc4d89684f64559431593a0434f16d27480acbac0b5af41b0c3ce",
+        "source_id": "9b398b24ade81c82167da81a59db9f61f0719eb2"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "schema_version": 5
+}

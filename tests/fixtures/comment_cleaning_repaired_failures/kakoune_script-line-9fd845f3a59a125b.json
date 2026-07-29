@@ -1,0 +1,38 @@
+{
+  "case_id": "kakoune_script-line-9fd845f3a59a125b",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u203e",
+  "disposition": "executable_regression",
+  "language": "kakoune_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "afaf7c3025e225689e0042b186f7cdcbc172f79b5ca06ac84aec886bf8352ad0",
+      "utf8_length": 37
+    },
+    "manifest_old_output": {
+      "sha256": "e3818c7886164dae9924fa5fb18ad2433eebae0564363c66912e0cfb7e25973d",
+      "utf8_length": 9
+    },
+    "raw_comment": {
+      "sha256": "61b5d7fe2e889935d75faa2aad1fefb27f4cfea18978ee62d64f804b026711b0",
+      "utf8_length": 41
+    },
+    "recommended_expected_output": {
+      "sha256": "e3818c7886164dae9924fa5fb18ad2433eebae0564363c66912e0cfb7e25973d",
+      "utf8_length": 9
+    }
+  },
+  "regression": {
+    "expected_output": "Detection",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Detection\n# \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "faca37b76b8baedce427c10f9b6d33b5bb447a8e1b8729daecd7ac660eb4707c",
+    "source_id": "c839fb7009dc16706752d0140c2caa672696c145"
+  },
+  "source_record_sha256": "a63c0c1c8d87b8464e1405af9a0246e59b456f3cbdba55a85cfcaa76d286e0b1"
+}

@@ -1,0 +1,110 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cartocss_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "6e967d02b9bfb38a4913dbe7457189892730cc1f46f1c78062ad2507d7283f71",
+      "case_id": "cartocss-block-9549069dbe50ea3d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BASE.MSS CONTENTS\n- Landuse & landcover\n- Water areas\n- Water ways\n- Administrative Boundaries",
+      "expected_cleaned_sha256": "e4d2071861a115a140dea1b91d55f3cfc1581c6d9902552867828d580784b10b",
+      "language": "cartocss",
+      "raw_comment": "/* BASE.MSS CONTENTS\n * - Landuse & landcover\n * - Water areas\n * - Water ways\n * - Administrative Boundaries\n *\n */",
+      "raw_sha256": "fab471117f7269a91f3a1bbb559aed687cb4bd5aef6c80192a5beb64740d6519",
+      "raw_utf8_length": 116,
+      "source_provenance": {
+        "source_excerpt_sha256": "8a9936f114da01683c3d56bc0dd9de7e7ebe2b521b9fc928604d4989a5adea54",
+        "source_id": "682676ca7b6a320531710a9a938b64ff1e094c72"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "45332eccfa1e045160d8280dd74beb446f7b5217ac32b4ac99aeefe1ab2cec85",
+      "case_id": "cartocss-block-968415ab731c99cf",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "LABELS.MSS CONTENTS:\n- place names\n- area labels\n- waterway labels",
+      "expected_cleaned_sha256": "bc6c289bf6ce7ec4c7d2f5a9de717c7377f83ce742a824b179abed57e9cfc98a",
+      "language": "cartocss",
+      "raw_comment": "/* LABELS.MSS CONTENTS:\n * - place names\n * - area labels\n * - waterway labels \n */",
+      "raw_sha256": "a700ffde105189b98e8ab20b20bbfa0754f28d9a7cb1f4ee90c832c1bc4544b2",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "74f3bcba92e9ec55bc842347dce8e631e1b3ae6ef428e9f5ffe3cf2f890af8b6",
+        "source_id": "53e1076d5ddf902683061a843cff84be53d9034b"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "4d2165be79b445c1ddd86310f66dbcaa31d868ef659768a102ba102abfb2d8c0",
+      "case_id": "cartocss-block-a3619b44698781d6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "ROAD & RAIL LINES",
+      "expected_cleaned_sha256": "020cccd12eff2f5dca07cb5df58150e466c49d6100c96b2f83a258b0e4e9f70d",
+      "language": "cartocss",
+      "raw_comment": "/* ==================================================================\n   ROAD & RAIL LINES\n/* ================================================================== */",
+      "raw_sha256": "9abf1020d1ada6f838633068f87ad8043c388455533da20bda1c4ef4dfe10ff5",
+      "raw_utf8_length": 163,
+      "source_provenance": {
+        "source_excerpt_sha256": "e475025c5fc8144555fb311f21d8ec9588c4eb984642ee4d5700458d72c9b11c",
+        "source_id": "aab8925d52cfae921d5421ba1026f5cb70bf783d"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "45332eccfa1e045160d8280dd74beb446f7b5217ac32b4ac99aeefe1ab2cec85",
+      "case_id": "cartocss-block-e8402b9155b137b1",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "LABELS.MSS CONTENTS:\n- place names\n- area labels\n- waterway labels",
+      "expected_cleaned_sha256": "bc6c289bf6ce7ec4c7d2f5a9de717c7377f83ce742a824b179abed57e9cfc98a",
+      "language": "cartocss",
+      "raw_comment": "/* LABELS.MSS CONTENTS:\n * - place names\n * - area labels\n * - waterway labels \n */",
+      "raw_sha256": "a700ffde105189b98e8ab20b20bbfa0754f28d9a7cb1f4ee90c832c1bc4544b2",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "489bed493f3e9ced260a9a32d28c18dac09fcf97c4ce055b85e8d17a2b946ea3",
+        "source_id": "fc54f3e0ee54920b33ccc7eb16443cb85a4ed58a"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "159f7531c9c263cfaab8334e886551cb9c2a7dc51c24c1a4e92cb8b21ac95a0d",
+      "case_id": "cartocss-block-fe0e4dca5954ee7d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AFGHANISTAN & PAKISTAN\nRoads & Borders",
+      "expected_cleaned_sha256": "2a3c949de5d324fefa150f817b224b7a461dd1185f1cb862b53ef1fa9acb1c69",
+      "language": "cartocss",
+      "raw_comment": "/* ======================================================== *\n * AFGHANISTAN & PAKISTAN                                   *\n * Roads & Borders                                          *\n * ======================================================== */",
+      "raw_sha256": "77d1d8c0942379656d6319a25c233e73c5f2cb2b60acae731991549dcc42ddd4",
+      "raw_utf8_length": 248,
+      "source_provenance": {
+        "source_excerpt_sha256": "73754acab8ad40ff14d0795dd832ccf1c151b1a5d6a05d32226f88e4a3d3b97b",
+        "source_id": "304c9f104cb9d8170e76c51138c3b91ebb2bd3f7"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e8c37f9ee773fc42288f64659245bc144d90a43a0f278419b625b926f9247632",
+      "case_id": "cartocss-line-a2f2b36dcf0f88c4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "global palette file\nchange this file to change color theme\nthis one assumes you use medium to light colors, change\n'lighten' to 'darken' if your theme is dark",
+      "expected_cleaned_sha256": "79f697989b610df860553cab77f0bf334cdb933bd2f565827d7e7bb54cafdc0f",
+      "language": "cartocss",
+      "raw_comment": "//====== global palette file ======\n// change this file to change color theme\n// this one assumes you use medium to light colors, change\n// 'lighten' to 'darken' if your theme is dark",
+      "raw_sha256": "7c921c5a8e4346d19ee851640cc3a09ad8cac3b352f5e1ab1828d64d455b8d99",
+      "raw_utf8_length": 183,
+      "source_provenance": {
+        "source_excerpt_sha256": "64256c5a6197e36ae5b808e4ef6df1dfdf2144f0621caa37022885a6596b4398",
+        "source_id": "30519f0f7012c4b3940ee680041697b9742669aa"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

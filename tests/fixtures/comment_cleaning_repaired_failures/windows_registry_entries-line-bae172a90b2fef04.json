@@ -1,0 +1,38 @@
+{
+  "case_id": "windows_registry_entries-line-bae172a90b2fef04",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u007e",
+  "disposition": "executable_regression",
+  "language": "windows_registry_entries",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6d5883da19388e44ebfdf32f60917fa04665201b17f5cf3d0f1acf6bbc8284f9",
+      "utf8_length": 239
+    },
+    "manifest_old_output": {
+      "sha256": "a6c6a9956d17455fab48fbbe488c1744f89fac5c7b3929260f32f2d9a13da755",
+      "utf8_length": 218
+    },
+    "raw_comment": {
+      "sha256": "7aa3ffa6a312c781d8bc83951e539d47329ee2e391ca1e2ef139b7212b72f701",
+      "utf8_length": 247
+    },
+    "recommended_expected_output": {
+      "sha256": "a6c6a9956d17455fab48fbbe488c1744f89fac5c7b3929260f32f2d9a13da755",
+      "utf8_length": 218
+    }
+  },
+  "regression": {
+    "expected_output": "Enable \"chakra\" engine (~ecmaScript 1.9) for use with cscript\nuse with cscript.exe  <file>  //E:chakra\nhttp://stackoverflow.com/questions/7167690/what-is-the-progid-or-clsid-for-ie9s-javascript-engine-code-named-chakra",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "; ~~~~~~~~~~~~~~~~~~~~\n; Enable \"chakra\" engine (~ecmaScript 1.9) for use with cscript\n; use with cscript.exe  <file>  //E:chakra\n; http://stackoverflow.com/questions/7167690/what-is-the-progid-or-clsid-for-ie9s-javascript-engine-code-named-chakra"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "85f086e5f54cff93c73f1e5c618253ed8b418b669ab239bcabf6769cbac06458",
+    "source_id": "222350489c05562173177ce68adb8fb01c699c11"
+  },
+  "source_record_sha256": "03e681e278c837823d2bcc84725d0ebeff286422281c481acb684e0ee7364659"
+}

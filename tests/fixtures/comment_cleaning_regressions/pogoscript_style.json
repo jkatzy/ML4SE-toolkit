@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "pogoscript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "fa770b58a71ced52801b56f37640350575cca9a4809f02a94828fb602bcb93b3",
+      "case_id": "pogoscript-block-631fc1788c77eca6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<!--\n<script src='/runner/mocha.js'></script>\n<script src='/runner/mocha-reporter.js'></script>\n<script>mocha.setup({ui: 'bdd', reporter: Remote})</script>\n<script src='/runner/test?src=#(src)'></script>\n<script>mocha.run();</script>-->",
+      "expected_cleaned_sha256": "3f362cc2eaf3f44a1d4f0581ceeb60f68f6ebabb41420fcc5a01c5ecd141d960",
+      "language": "pogoscript",
+      "raw_comment": "/*<!--\n<script src='/runner/mocha.js'></script>\n<script src='/runner/mocha-reporter.js'></script>\n<script>mocha.setup({ui: 'bdd', reporter: Remote})</script>\n<script src='/runner/test?src=#(src)'></script>\n<script>mocha.run();</script>-->*/",
+      "raw_sha256": "e59782874c37955fdcc6972dfbf3ee37c7f34260d8a2d8ee612bdeac51ce914f",
+      "raw_utf8_length": 240,
+      "source_provenance": {
+        "source_excerpt_sha256": "454113badf5c0d39113019543a9d808ad5a11d3e2efe35f4c2356ff9e687bee5",
+        "source_id": "7cbc974febd0eb10c56b4241e2016666444bcf7d"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

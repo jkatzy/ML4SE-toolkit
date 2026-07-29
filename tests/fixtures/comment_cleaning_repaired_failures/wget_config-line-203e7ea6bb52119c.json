@@ -1,0 +1,38 @@
+{
+  "case_id": "wget_config-line-203e7ea6bb52119c",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "wget_config",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6f8ea4079bd0f30f214b64d3a5ceda9b5855117d0476acbaa034bb8e086ba055",
+      "utf8_length": 66
+    },
+    "manifest_old_output": {
+      "sha256": "6f8ea4079bd0f30f214b64d3a5ceda9b5855117d0476acbaa034bb8e086ba055",
+      "utf8_length": 66
+    },
+    "raw_comment": {
+      "sha256": "fd8ac5805627ae94e7bdb787d730929a715eed872e50645a5482fcac61d60d3c",
+      "utf8_length": 68
+    },
+    "recommended_expected_output": {
+      "sha256": "6f8ea4079bd0f30f214b64d3a5ceda9b5855117d0476acbaa034bb8e086ba055",
+      "utf8_length": 66
+    }
+  },
+  "regression": {
+    "expected_output": "===========Sample of wgetrc=================\n\u6dfb\u52a0\u4ee3\u7406\u670d\u52a1\u5668",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#===========Sample of wgetrc=================\n#\u6dfb\u52a0\u4ee3\u7406\u670d\u52a1\u5668"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "88808896754f157f15bb67e37913e9b256804815446005465542f18ec4c2b4c1",
+    "source_id": "c485c7ac5d79ebac3557db85dc7ea423c96e4f96"
+  },
+  "source_record_sha256": "526955814b2d712368bbabdd401f5780d9fbd0b4d111b63f1b8969b5a9d7abd8"
+}

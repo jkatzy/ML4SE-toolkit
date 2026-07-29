@@ -1,0 +1,29 @@
+{
+  "case_id": "fortran_free_form-line-826bb6f92ef389da",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:deletion",
+  "disposition": "accounting_only_no_oracle",
+  "language": "fortran_free_form",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3e4c5e437e76cfe5652cf4b74a025630320c52a2d7d1c98443e8f27cc0e41491",
+      "utf8_length": 177
+    },
+    "manifest_old_output": {
+      "sha256": "5aea247873c45abd5353a8e4223a2442af17d1060ab7bb1606814e7bf13b4925",
+      "utf8_length": 207
+    },
+    "raw_comment": {
+      "sha256": "4fa7464599cfa79ca73f42aa9ce16a11d92310574e93acd0b47fd5be4063cd8c",
+      "utf8_length": 213
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b31f48849f9a7be4685620d58e6600b44074c83875cd082112cbbef1d5b27abc",
+    "source_id": "eef65902286858fc4abe790ae4d85eec5fd60c4d"
+  },
+  "source_record_sha256": "abf7a3ee6a76073d72883208186f2f2e4a2ef604d8eddfc15521f7477f192cf5"
+}

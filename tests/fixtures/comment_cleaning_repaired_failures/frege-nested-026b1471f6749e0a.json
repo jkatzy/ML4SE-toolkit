@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-026b1471f6749e0a",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4709087770f13856f0919fe481aaed18f1bbcabacc3c2104dc723481af9ba86c",
+      "utf8_length": 103
+    },
+    "manifest_old_output": {
+      "sha256": "f03bd21cd275023974ca8933a9abfb77fc584871261aab86f2154f741068a49f",
+      "utf8_length": 93
+    },
+    "raw_comment": {
+      "sha256": "acc8b23fad68903255c44903204f0b741dead11c9daad2d862af8447046d82fa",
+      "utf8_length": 109
+    },
+    "recommended_expected_output": {
+      "sha256": "f03bd21cd275023974ca8933a9abfb77fc584871261aab86f2154f741068a49f",
+      "utf8_length": 93
+    }
+  },
+  "regression": {
+    "expected_output": "The property 'p_test' checks the claim that\nevery integral number must be either odd or even.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{-- \n    The property 'p_test' checks the claim that\n    every integral number must be either odd or even.\n-}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "17fca653a8561ad4c96c0a6386f67584c557a443793338a8f33612fa430d9210",
+    "source_id": "8606172a915d5498cdbf419838f669e52e4aa957"
+  },
+  "source_record_sha256": "a7418010c534c28de8865f331790b396faa05f55150369323a8a4297866b90e3"
+}

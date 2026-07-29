@@ -1,0 +1,229 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "bang_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "ef68464564f388623eec018a934721dfc16dd2ccfca72b6bbeea5edb59fc4f4d",
+      "case_id": "digital_command_language-line-485a1cee678c9565",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "digital_command_language",
+      "raw_comment": "!========================================================================",
+      "raw_sha256": "4ce93e88b55da08615d5eeea2bd7ace1e18953b941cea12f9419f82d3968ef72",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "1cacf365b6a19627cf565e0328480b8b115a9a0d3f6624699713404648e237e1",
+        "source_id": "f2d9d5863a9a28aab32a08aeb1721e3ac6d7b3e1"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "ef68464564f388623eec018a934721dfc16dd2ccfca72b6bbeea5edb59fc4f4d",
+      "case_id": "digital_command_language-line-803550c7591cb54f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "digital_command_language",
+      "raw_comment": "!========================================================================",
+      "raw_sha256": "4ce93e88b55da08615d5eeea2bd7ace1e18953b941cea12f9419f82d3968ef72",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "a4f190fc2866cbaca158b8ece2313585f7e2a3bc4ab472613b5264f0c852bce1",
+        "source_id": "263615c8d84f0aa55f89b7f8ada05860e5947198"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "47db61bc5bf0b34c1630a5351d05e203ff9f12695e272697f00fece4082c7c14",
+      "case_id": "fortran-line-29801ed07a9252e3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Subroutine",
+      "expected_cleaned_sha256": "c37681a4d636da2b2723d9669f1920cc5602132d40e60fa533c203046e47ad56",
+      "language": "fortran",
+      "raw_comment": "!----------------------Subroutine--------------------------------------!\n!",
+      "raw_sha256": "d443076e4d8763519fa8f3003f38dec4b17b98cfa6d6376510b9ac86a2271d6f",
+      "raw_utf8_length": 74,
+      "source_provenance": {
+        "source_excerpt_sha256": "4590672e5d1c2146630f90cbf833fc7c07bca76409c198a5ab5943e406258aa9",
+        "source_id": "2c0d3ad5591599725289af0dd1177eee70bfba8b"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "8348ab326569c8a4ef98f68ccafa4f95e6ef379917eccf1460e45b883c0c4320",
+      "case_id": "fortran-line-552c252ba79fb8e5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "compare symmetry operations with structfile",
+      "expected_cleaned_sha256": "cc7c0658812318c2cb4701bd7f9d16b79e78e8d494b4667a4a7082b57e5d942d",
+      "language": "fortran",
+      "raw_comment": "!\n!.....compare symmetry operations with structfile",
+      "raw_sha256": "dbacf49b0f3039c2e61226b0df1d0d438bd4204e44883100f7f8d54ad8d31105",
+      "raw_utf8_length": 51,
+      "source_provenance": {
+        "source_excerpt_sha256": "66821068253fddaaaebd72c8c39a6d7be6e2aebb59fce18dabaf43910235fbb9",
+        "source_id": "1f3ffc3bd90c077825471e56a1430042391c56ec"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "3aed9ed4b0c5171aab0d64b774a1e7152ae77c53fa7d553f91d921c77514b256",
+      "case_id": "fortran-line-69f26a5c9fe81469",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "fortran",
+      "raw_comment": "!     .................................................\r",
+      "raw_sha256": "3f3fe0cbc03f7352b29021c101998ccd74e9fac62702d714bfdb0b31dcf87cbe",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "aeb392430e4ccc258467203647a8232baebc1042759b96d2fd0ddd97f5f97291",
+        "source_id": "f067f7dadc40fbac237238b571e9cb1f4157fea6"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "55b362b77400cbf77eb1f0e358d81b0857cf092395edd6a04ec15431ce6a3dbf",
+      "case_id": "fortran-line-db4b77334e8f0251",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$OMP PARALLEL PRIVATE(k,i,j,c,irho)\n$OMP DO",
+      "expected_cleaned_sha256": "46bf37f7cd45734fa199d85757478fa6d7da9ef2c44d2f3ad7415747f8bed7f3",
+      "language": "fortran",
+      "raw_comment": "!$OMP PARALLEL PRIVATE(k,i,j,c,irho)\n!$OMP DO",
+      "raw_sha256": "14c5b464bd43cb27b5d3e52fe3d66ab6b1a7b0dab59e94eb28d5e4021de7886a",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "405bf344e125d9cfdff4cafbdd5a06654aa55338d4e5e60ea8dfda6abb1246f7",
+        "source_id": "78140c97b35f63506b4a425b9fc989cf625b2b96"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "a7f999c22817fc4e2cea54416f6a45b8d01d5f16d703816e64b17cf67392ea0c",
+      "case_id": "fortran_free_form-line-549b311d67db7e56",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "fortran_free_form",
+      "raw_comment": "!=======================================================================",
+      "raw_sha256": "c8b75abfb56a089ed74526ac7fc81734aae72f3f990e38d267cf34ba837b95da",
+      "raw_utf8_length": 72,
+      "source_provenance": {
+        "source_excerpt_sha256": "f698d14a92352c6136209c869f2d50526e56818ad3a6cd54dbbf4a15db11c0e0",
+        "source_id": "ad565d433d5f51a79c3092c5c9da0908f5cf8c59"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "a4b9eeef6e737c941e20525d217b79ce3c935784179c4c3a926079596f697713",
+      "case_id": "fortran_free_form-line-7ae4e4405dfa0063",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\\brief \u041c\u043e\u0434\u0443\u043b\u044c \u0432\u0432\u043e\u0434\u0430 \u0432\u044b\u0432\u043e\u0434\u0430 .xyz \u0444\u0430\u0439\u043b\u043e\u0432 \u0438 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a \u043c\u043e\u0434\u0435\u043b\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f.\n\\todo \u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0447\u0442\u0435\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u0430 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a.",
+      "expected_cleaned_sha256": "3e7780c72efe7c11e41311603c1f0bf5c3246aef3dcc2057ea832995075305cf",
+      "language": "fortran_free_form",
+      "raw_comment": "!> \\brief \u041c\u043e\u0434\u0443\u043b\u044c \u0432\u0432\u043e\u0434\u0430 \u0432\u044b\u0432\u043e\u0434\u0430 .xyz \u0444\u0430\u0439\u043b\u043e\u0432 \u0438 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a \u043c\u043e\u0434\u0435\u043b\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f.\n!> \\todo \u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0447\u0442\u0435\u043d\u0438\u0435 \u0444\u0430\u0439\u043b\u0430 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a.",
+      "raw_sha256": "3e2d3cd3ce8a4e5990dc9fc3ca9e0bd22f58dd0e80b69a9e944f4fa0f258d16f",
+      "raw_utf8_length": 180,
+      "source_provenance": {
+        "source_excerpt_sha256": "e084712bdeb995569425851726dd778dff82802d1020ac7ede549ef3a7effffd",
+        "source_id": "0e3d1390147c3abfaa97154a31e1a4b245fce3ca"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "8a8077e341bf4ad9f737f39d65cf78900e1effa6f4cccf83594a2da32097949e",
+      "case_id": "fortran_free_form-line-96be0e592e723099",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file  t_assembled_field_IO.f90\n       module t_assembled_field_IO\n\n@author H. Matsui\n@date   Programmed in May, 2015\n\n@brief gzipped data IO for\n\n@verbatim\n     subroutine sel_write_SPH_assemble_field(num_pe, istep_fld,      &\n    &          nloop, fst_IO_param, t_IO, fld_IO)\n       type(field_IO_params), intent(in) :: fst_IO_param\n       type(time_data), intent(inout) :: t_IO\n       type(field_IO), intent(inout) :: fld_IO(nloop)\n\n  Data format for the merged ascii field data\n    1.   Number of process\n    2.   Time step\n    3.   Time, Delta t\n    4.   Stacks of numbe of data points\n    5.   Number of fields\n    6.   List of number of components\n    7.   Each field data  (Itarate 7.1 - 7.3)\n     7.1   Field name\n     7.2   List of data size (Byte)\n     7.3   Field data\n\n  Data format for the merged binary field data\n    1.   Number of process\n    2.   Time step\n    3.   Time, Delta t\n    4.   Stacks of numbe of data points\n    5.   Number of fields\n    6.   List of number of components\n    7.   Field names\n    8.   List of data size (Byte)\n    9.   All Field data\n@endverbatim",
+      "expected_cleaned_sha256": "81a6568694e8ebb79f7a2d77abf1da21b4be4ca65a068477e0bb7d056640e404",
+      "language": "fortran_free_form",
+      "raw_comment": "!>@file  t_assembled_field_IO.f90\n!!       module t_assembled_field_IO\n!!\n!!@author H. Matsui\n!!@date   Programmed in May, 2015\n!\n!> @brief gzipped data IO for \n!!\n!!@verbatim\n!!      subroutine sel_write_SPH_assemble_field(num_pe, istep_fld,      &\n!!     &          nloop, fst_IO_param, t_IO, fld_IO)\n!!        type(field_IO_params), intent(in) :: fst_IO_param\n!!        type(time_data), intent(inout) :: t_IO\n!!        type(field_IO), intent(inout) :: fld_IO(nloop)\n!!\n!!   Data format for the merged ascii field data\n!!     1.   Number of process\n!!     2.   Time step\n!!     3.   Time, Delta t\n!!     4.   Stacks of numbe of data points\n!!     5.   Number of fields\n!!     6.   List of number of components\n!!     7.   Each field data  (Itarate 7.1 - 7.3)\n!!      7.1   Field name\n!!      7.2   List of data size (Byte)\n!!      7.3   Field data\n!!\n!!   Data format for the merged binary field data\n!!     1.   Number of process\n!!     2.   Time step\n!!     3.   Time, Delta t\n!!     4.   Stacks of numbe of data points\n!!     5.   Number of fields\n!!     6.   List of number of components\n!!     7.   Field names\n!!     8.   List of data size (Byte)\n!!     9.   All Field data\n!!@endverbatim\n!",
+      "raw_sha256": "4aa1df5e0d1e843a873613041f0f4fc65ffbafe4665522a32b1c5e743d188945",
+      "raw_utf8_length": 1198,
+      "source_provenance": {
+        "source_excerpt_sha256": "4df58a8369be2c3322c7903b5075f9632465a4141932c2e36b068af68ba0bef3",
+        "source_id": "134bfc2ae445391510ed708d7f1a073928b1800b"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "dbc3d547793cdef5664e450f48f9c6e4cc593e293e10e3bc9d7a51dd45965641",
+      "case_id": "fortran_free_form-line-9b428351db7400ff",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file  gz_field_data_IO_b.f90\n       module gz_field_data_IO_b\n\n@author H. Matsui\n@date   Programmed in May, 2015\n\n@brief Output merged binary field file using MPI-IO\n\n@verbatim\n     subroutine gz_write_step_data_b                                 &\n    &         (id_rank, i_time_step_IO, time_IO, delta_t_IO)\n     subroutine gz_write_field_data_b(nnod, num_field,               &\n    &          ntot_comp, ncomp_field, field_name, d_nod)\n\n     subroutine gz_read_step_data_b                                  &\n    &         (my_rank, i_time_step_IO, time_IO, delta_t_IO,         &\n    &          istack_merged, num_field)\n     subroutine gz_read_field_data_b(nnod, num_field, ncomp,         &\n    &          field_name, vect)\n@endverbatim",
+      "expected_cleaned_sha256": "6ce81a28d0f217a42c0147cb5f3fa6f655a1c119266a7e91aa95a649e71467df",
+      "language": "fortran_free_form",
+      "raw_comment": "!>@file  gz_field_data_IO_b.f90\n!!       module gz_field_data_IO_b\n!!\n!!@author H. Matsui\n!!@date   Programmed in May, 2015\n!\n!> @brief Output merged binary field file using MPI-IO\n!!\n!!@verbatim\n!!      subroutine gz_write_step_data_b                                 &\n!!     &         (id_rank, i_time_step_IO, time_IO, delta_t_IO)\n!!      subroutine gz_write_field_data_b(nnod, num_field,               &\n!!     &          ntot_comp, ncomp_field, field_name, d_nod)\n!!\n!!      subroutine gz_read_step_data_b                                  &\n!!     &         (my_rank, i_time_step_IO, time_IO, delta_t_IO,         &\n!!     &          istack_merged, num_field)\n!!      subroutine gz_read_field_data_b(nnod, num_field, ncomp,         &\n!!     &          field_name, vect)\n!!@endverbatim\n!",
+      "raw_sha256": "1f7ab4fc69aa6703ffbacb7939fab22f6f064ad59d4a26b6051cd9107ef7620a",
+      "raw_utf8_length": 790,
+      "source_provenance": {
+        "source_excerpt_sha256": "8e89b911ef31f0b4a11558801d3d248121dfda80e6943638852d81aa05dfa2ab",
+        "source_id": "dc594cf26367edf6cf581ca2bfd8a7977b97f335"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "0be76d8292315c1aa58af94bdab018bba55e6eb20b2ddb199ccf93944233701a",
+      "case_id": "fortran_free_form-line-a5192d5264812b06",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MAE 5093 DOCUMENTATION | Engineering Numerical Analysis\n\n>>> Adaptive Numerical Integration with Simpson Base\n\nReferences:\n* Fundamentals of Engineering Numerical Analysis by P. Moin (2012) -- Ch.1\n* Numerical Recipes: The Art of Scientific Computing, 2nd Edition (1992)\n\nWritten by Omer San\n           CFDLab, Oklahoma State University, cfdlab.osu@gmail.com\n           www.cfdlab.org\n\nLast updated: Sep. 8, 2015",
+      "expected_cleaned_sha256": "c2925ecf6bb368b7153a368e5c510776164b51e3332bee22014ae5019f6d033a",
+      "language": "fortran_free_form",
+      "raw_comment": "!-----------------------------------------------------------------------------!\n! MAE 5093 DOCUMENTATION | Engineering Numerical Analysis\n!-----------------------------------------------------------------------------!\n! >>> Adaptive Numerical Integration with Simpson Base\n!-----------------------------------------------------------------------------!\n! References: \n! * Fundamentals of Engineering Numerical Analysis by P. Moin (2012) -- Ch.1\n! * Numerical Recipes: The Art of Scientific Computing, 2nd Edition (1992) \n!-----------------------------------------------------------------------------!\n! Written by Omer San\n!            CFDLab, Oklahoma State University, cfdlab.osu@gmail.com\n!            www.cfdlab.org\n! \n! Last updated: Sep. 8, 2015\n!-----------------------------------------------------------------------------!",
+      "raw_sha256": "3c342882d4530c7d6803dc76b3b6ac41c9f6805f9b050abed3fbfad0b61d06fa",
+      "raw_utf8_length": 831,
+      "source_provenance": {
+        "source_excerpt_sha256": "7aeaa22558674d89a9a6c44e91f2655c0b904bbbc5209c82fe0449e946d244e9",
+        "source_id": "f5611b95ad489f02050bdedfa94008982486ed85"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "69a55ce22140371d53107e2a5e760fb35d7fef7b5a11d525ca8bd69f42cc49ae",
+      "case_id": "fortran_free_form-line-e9bf743f7223b81e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2021, Liheng Zheng\n\nThis file is part of UBER.\n\n   UBER is free software: you can redistribute it and/or modify it under the\n   terms of the MIT License as published by Massachusetts Institute of\n   Technology. UBER is distributed in the hope that it will be useful, but\n   WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or\n   FITNESS FOR A PARTICULAR PURPOSE. See the MIT License for more details.\n\n   You should have received a copy of the MIT License along with UBER. If not,\n   see <https://opensource.org/licenses/MIT>.",
+      "expected_cleaned_sha256": "20577de609dfa18701882b534f732924ea6b4a123ae2466bb0af12a98ee6e42a",
+      "language": "fortran_free_form",
+      "raw_comment": "! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n! Copyright 2021, Liheng Zheng\n!\n! This file is part of UBER.\n!\n!    UBER is free software: you can redistribute it and/or modify it under the\n!    terms of the MIT License as published by Massachusetts Institute of\n!    Technology. UBER is distributed in the hope that it will be useful, but\n!    WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or\n!    FITNESS FOR A PARTICULAR PURPOSE. See the MIT License for more details.\n!\n!    You should have received a copy of the MIT License along with UBER. If not,\n!    see <https://opensource.org/licenses/MIT>.\n! * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",
+      "raw_sha256": "5e152bc6659d743f8331ff66fc91077e8fe315955ef7484625dfe40c71175f6b",
+      "raw_utf8_length": 751,
+      "source_provenance": {
+        "source_excerpt_sha256": "c690b1c76c7704b41f4fe70a33addc87a9de2409cedcacfb92ee57acfa310c31",
+        "source_id": "accc4b8e928dab1923ea69de85b5050e2dbbcfd2"
+      },
+      "syntax_label": "!"
+    },
+    {
+      "baseline_cleaned_sha256": "72ee12c6a27d9a8e7e9786b61967ce8b23efba2b1c8d1923adcb1247b1da1757",
+      "case_id": "fortran_free_form-line-fbaa22613e923102",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2020 National Center for Atmospheric Research\nSPDX-License-Identifier: Apache-2.0\n\n\\file\nMock domain_state_t class for use in tests",
+      "expected_cleaned_sha256": "d43cbf9fb5d17e774f04424f2c2baf7f564268750dc48978431834b7900938c1",
+      "language": "fortran_free_form",
+      "raw_comment": "! Copyright (C) 2020 National Center for Atmospheric Research\n! SPDX-License-Identifier: Apache-2.0\n!\n!> \\file\n!> Mock domain_state_t class for use in tests",
+      "raw_sha256": "acd23310a8ac1eb75c381867ce19f6e1c01940a140ed172437c9f551d1d3149b",
+      "raw_utf8_length": 156,
+      "source_provenance": {
+        "source_excerpt_sha256": "e683d4ca1aed835deab7faad39cadc62baac28ce8e3a640093cdce8dfa3b23f6",
+        "source_id": "b652d0008014f7788d13208cee227104fdc601d0"
+      },
+      "syntax_label": "!"
+    }
+  ],
+  "schema_version": 5
+}

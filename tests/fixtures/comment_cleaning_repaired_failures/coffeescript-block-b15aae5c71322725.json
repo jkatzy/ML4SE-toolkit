@@ -1,0 +1,38 @@
+{
+  "case_id": "coffeescript-block-b15aae5c71322725",
+  "category": "policy_or_judge_conflict",
+  "cluster": "layout:whitespace_restoration",
+  "disposition": "executable_regression",
+  "language": "coffeescript",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7045b07781d19a2df482bb50df02c6504e54a5d1c363d49bc538e033d8465983",
+      "utf8_length": 588
+    },
+    "manifest_old_output": {
+      "sha256": "33326701955320770ba65ffde0860a75a1fd80b1d9bf1e0cf6559444aceaa651",
+      "utf8_length": 579
+    },
+    "raw_comment": {
+      "sha256": "298ce2c3cf4581a1955b91890cd610281ea9ea3a92b0d7b0a527b4a636afd5f4",
+      "utf8_length": 597
+    },
+    "recommended_expected_output": {
+      "sha256": "7045b07781d19a2df482bb50df02c6504e54a5d1c363d49bc538e033d8465983",
+      "utf8_length": 588
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright 2010 Red Hat, Inc.\n\n Red Hat licenses this file to you under the Apache License, version\n 2.0 (the \"License\"); you may not use this file except in compliance\n with the License.  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n implied.  See the License for the specific language governing\n permissions and limitations under the License.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "###\n Copyright 2010 Red Hat, Inc.\n\n Red Hat licenses this file to you under the Apache License, version\n 2.0 (the \"License\"); you may not use this file except in compliance\n with the License.  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n implied.  See the License for the specific language governing\n permissions and limitations under the License.\n###"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "67e00cfc7acd9b9511a13d37ac757f65c9388d80df471fc05bbb54abba7f3d5a",
+    "source_id": "ef0bdb1b06b8e71e08f2e2939716d161ef02b4fd"
+  },
+  "source_record_sha256": "d78a43d0b9f2179c0e3626c45b278e0cd316f9712cf0e4ec6babea975d5ee04c"
+}

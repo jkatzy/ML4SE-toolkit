@@ -1,0 +1,131 @@
+{
+  "extractor_boundary_cases": [
+    {
+      "baseline_cleaned_sha256": "b2f50bbef19386a44dee3eddfd8cea39a3a9499c94b7a5dd96393c4fbf1ff9f7",
+      "boundary_assertion": {
+        "expected_match": "-- boundary",
+        "expected_match_sha256": "97edcf521fec0db2721baa7853a8a60c4bac8b8f2e7d230e1f6259717ef964b1",
+        "kind": "line_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "-- boundary\rsource",
+        "raw_sha256": "8d3753b6eb538eef095ca7b64e8bd7e8ef70664ff3bf5d16b8a78c2181242dcd",
+        "raw_utf8_length": 18
+      },
+      "case_id": "applescript-line-84e7784a36ce9a4e",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "applescript",
+      "oracle_exception_record_sha256": "b1b15b3ba4eb6d2bbb909fc34f45284bc37208449f7803fe12c683c973fa0c95",
+      "raw_sha256": "5ec04a23b0a9fec7d3b141b9694a5d6f1183115aac98ff80794eae90175951eb",
+      "raw_utf8_length": 6754,
+      "source_provenance": {
+        "source_excerpt_sha256": "4495840d2fff25bb829c0293eb41dccddb6c96bd8ce6a1ab6cbfc3d817d959e0",
+        "source_id": "4477e88a25f8ae775e7050a14c2e499509fdc0ad"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "581effb5bc31a0ad92fdac92515b74797d2f9044406f7050bbf7dc9974f8f819",
+      "boundary_assertion": {
+        "expected_match": "-- boundary",
+        "expected_match_sha256": "97edcf521fec0db2721baa7853a8a60c4bac8b8f2e7d230e1f6259717ef964b1",
+        "kind": "line_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "-- boundary\rsource",
+        "raw_sha256": "8d3753b6eb538eef095ca7b64e8bd7e8ef70664ff3bf5d16b8a78c2181242dcd",
+        "raw_utf8_length": 18
+      },
+      "case_id": "applescript-line-bb4da6b6e83a9273",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "applescript",
+      "oracle_exception_record_sha256": "f78002a7a27111cd9cfc88560fb474c0d404e7bfab97e5fb4be161de13e5f947",
+      "raw_sha256": "220a493598816482f50d709ce5717b5ebb14daccff2d9348f70b771ba5a4b28c",
+      "raw_utf8_length": 1726,
+      "source_provenance": {
+        "source_excerpt_sha256": "301ba6008927c11b697ff9782c14bdefdc06432bb66e527c5222423cdd737765",
+        "source_id": "17877142784837039c02d431cac1a36459edc4b2"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "family_name": "applescript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "e2e5b3b5d125ccc6c923b1aef76c8e02c07cba019b8de34e2c2a36630dd77eb8",
+      "case_id": "applescript-line-cb073574a1f8222b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "User-defined Attributes",
+      "expected_cleaned_sha256": "3c717c0edd145bef2d5facc29fa847bc05d1632c59d7a441bbbd9a10d079b2ba",
+      "language": "applescript",
+      "raw_comment": "# User-defined Attributes",
+      "raw_sha256": "e2e5b3b5d125ccc6c923b1aef76c8e02c07cba019b8de34e2c2a36630dd77eb8",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "9384d9e819aec8b1ad07f69e6ea64a4a8df1d78868f62fee32b33110d54a59b5",
+        "source_id": "c1564124c9c93337ed1fe0396c695ab928976993"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "65022f9310707c747dfdf346112d03ee73c1aa3faafc26b2ca01f13e36a5e52a",
+      "case_id": "applescript-line-d1ceac3f90aa3268",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "applescript",
+      "raw_comment": "#-#-#-#-#-#-#-",
+      "raw_sha256": "65022f9310707c747dfdf346112d03ee73c1aa3faafc26b2ca01f13e36a5e52a",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "3747c65d9ef3fabe6cd535ac55c6f7fed723d7d90caa8c7d98c8ea3d84ef6714",
+        "source_id": "d169f76339c4504718a43056348c87ff231a1552"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4f9b8675d91a5aa4fe2590a39d135dfb618fc5b2c1300c1231d42f59b7a21e49",
+      "case_id": "applescript-nested-ad1ab7d564cb4f7b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "the purpose of this script is to clear out Lync settings for Macs\n:: Created by Daniel James March 11, 2015 at 5:03:51 PM CDT For the College of Applied Health Sciences ::\n\nUniversity of Illinois, Urbana-Champaign",
+      "expected_cleaned_sha256": "4423b67e9ea2eae42b5f6d8a14a403ddbef02ac8a91c17966da71f839f9f0a08",
+      "language": "applescript",
+      "raw_comment": "(*\nthe purpose of this script is to clear out Lync settings for Macs\n:: Created by Daniel James March 11, 2015 at 5:03:51 PM CDT For the College of Applied Health Sciences :: \n\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n+++ University of Illinois, Urbana-Champaign ++++\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n*)",
+      "raw_sha256": "5c130b12ee71048f99462fcbe9159dfbf0d2fb45f83a266e207728457fb6a27c",
+      "raw_utf8_length": 403,
+      "source_provenance": {
+        "source_excerpt_sha256": "caaedf2cd74230317796cbd194cdc039ed6efce4ae09175dad91b711d5904102",
+        "source_id": "43548c88a5c01904263aa2153a2f0c31feaa99cd"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "761320cbc0d9890226ba09f408b4e2d84f4ace42919c73010fedb629054b4139",
+      "case_id": "applescript-nested-b3c58bd60642c691",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This script uses TextExpander to paste the OmniFocus tasks I've copied to the\nclipboard into a new email and send the email to the chosen team member\n\nThom Rosario\n9.11.2015\nv 1.0 -- Initial functionality.\n\nset myList to {\"Problem\", \"There was a problem\", \"Bummer\"}\nset theChoice to item 2 of myList\nsay theChoice\n\nset teamMembers to {\"Uty\", \"Robert\", \"Chuck\", \"Kim\", \"Erik\", \"Jason\", \"Hassan\", \"Lauretta\", \"Michael\", \"Brian\", \"Rashaan\", \"Chad\"}\n--set teamMembers to {{\"Uty\", \"uthman@jhuapl.edu\"},\n\t\t\t\t\t  {\"Robert\"}\nrepeat with mbr in teamMembers\n\topen of\n\tcmd+o\n\tmbr\nend repeat",
+      "expected_cleaned_sha256": "8b0377354e382bf4fecbd819850e375bbbabc121f99c886851527e80969c0d83",
+      "language": "applescript",
+      "raw_comment": "(* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \nThis script uses TextExpander to paste the OmniFocus tasks I've copied to the\nclipboard into a new email and send the email to the chosen team member\n\nThom Rosario\n9.11.2015\nv 1.0 -- Initial functionality. \n\nset myList to {\"Problem\", \"There was a problem\", \"Bummer\"}\nset theChoice to item 2 of myList\nsay theChoice\n\nset teamMembers to {\"Uty\", \"Robert\", \"Chuck\", \"Kim\", \"Erik\", \"Jason\", \"Hassan\", \"Lauretta\", \"Michael\", \"Brian\", \"Rashaan\", \"Chad\"}\n--set teamMembers to {{\"Uty\", \"uthman@jhuapl.edu\"}, \n\t\t\t\t\t  {\"Robert\"}\nrepeat with mbr in teamMembers\n\topen of\n\tcmd+o\n\tmbr\nend repeat\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *)",
+      "raw_sha256": "fc637dc3a72ee6f403ad3c33ab0da22489f5ad2d546db841c76e2b0f3411b0d7",
+      "raw_utf8_length": 741,
+      "source_provenance": {
+        "source_excerpt_sha256": "f138138d4025480d573bf3f2978c691a046da3051842806c226e15b19f3c1c31",
+        "source_id": "5f5bb59c02768d4d4a9f87842f25eca831e4ae79"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

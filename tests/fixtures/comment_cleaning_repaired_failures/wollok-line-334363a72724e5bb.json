@@ -1,0 +1,38 @@
+{
+  "case_id": "wollok-line-334363a72724e5bb",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "wollok",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a2883f66ca394692e4bf8f874a98cfa18569ce9ffff36b9f73db97cbfdd67d38",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "608281878746a8bc3e92bba8196708c59437a9850f582b4142ee36411c1eb240",
+      "utf8_length": 19
+    },
+    "raw_comment": {
+      "sha256": "4313046239b1427fd248ad89777391da7c65094bf1253f163e612df3407aca83",
+      "utf8_length": 29
+    },
+    "recommended_expected_output": {
+      "sha256": "608281878746a8bc3e92bba8196708c59437a9850f582b4142ee36411c1eb240",
+      "utf8_length": 19
+    }
+  },
+  "regression": {
+    "expected_output": "#CUENTAS BANCARIAS#",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//\t\t\t#CUENTAS BANCARIAS#\t\t\t//"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "15d00fdf3bba90898ed8ccda2a30ea577ae84d276f1ce8524885aa0d1a55952e",
+    "source_id": "ad2aa55b1792105d8e3fb6b3f848b0fc14bccadd"
+  },
+  "source_record_sha256": "2028d4f782466036895613cff2b9e4cf530e4b81c44e104c41b6243a6ab7bf75"
+}

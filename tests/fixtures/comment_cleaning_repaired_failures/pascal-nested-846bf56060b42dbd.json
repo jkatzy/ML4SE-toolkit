@@ -1,0 +1,38 @@
+{
+  "case_id": "pascal-nested-846bf56060b42dbd",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "pascal",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "8a3f797939ff5eeb307c4ac331dbcc1d878b5eb9b79168a01d01d4888621a005",
+      "utf8_length": 552
+    },
+    "manifest_old_output": {
+      "sha256": "cacb75535717373ea317252aae5b89364635a79e10c2014400394a04e18a4562",
+      "utf8_length": 256
+    },
+    "raw_comment": {
+      "sha256": "f1c77d775375ca32f17689ef8b401738b52835301b49321ad221f5d9f8192b9f",
+      "utf8_length": 736
+    },
+    "recommended_expected_output": {
+      "sha256": "cacb75535717373ea317252aae5b89364635a79e10c2014400394a04e18a4562",
+      "utf8_length": 256
+    }
+  },
+  "regression": {
+    "expected_output": "Author    :  Angus Johnson\nVersion   :  2.22\nDate      :  2 April 2021\nWebsite   :  http://www.angusj.com\nCopyright :  Angus Johnson 2019-2021\nPurpose   :  For image transformations (scaling, rotating etc.)\nLicense   :  http://www.boost.org/LICENSE_1_0.txt",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "(*******************************************************************************\r\n* Author    :  Angus Johnson                                                   *\r\n* Version   :  2.22                                                            *\r\n* Date      :  2 April 2021                                                    *\r\n* Website   :  http://www.angusj.com                                           *\r\n* Copyright :  Angus Johnson 2019-2021                                         *\r\n* Purpose   :  For image transformations (scaling, rotating etc.)              *\r\n* License   :  http://www.boost.org/LICENSE_1_0.txt                            *\r\n*******************************************************************************)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "aebc77e85dc05ec2a15632027c7a0f26096224e0c937d3aa94a8af73bf5cf459",
+    "source_id": "8839973b0b63158d41fd73270a794ccf33a409aa"
+  },
+  "source_record_sha256": "c7b3c335d93b59e43368b2b223a8571e457630ac7e1fcb7361b15baa474248e2"
+}

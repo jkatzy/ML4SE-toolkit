@@ -31,13 +31,9 @@ def _load_comment_judge_limits():
 
 def _load_comment_judge_validation_ledger():
     script_path = (
-        Path(__file__).resolve().parents[1]
-        / "scripts"
-        / "comment_judge_validation_ledger.py"
+        Path(__file__).resolve().parents[1] / "scripts" / "comment_judge_validation_ledger.py"
     )
-    spec = importlib.util.spec_from_file_location(
-        "comment_judge_validation_ledger", script_path
-    )
+    spec = importlib.util.spec_from_file_location("comment_judge_validation_ledger", script_path)
     assert spec is not None
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -153,7 +149,6 @@ def _load_failures() -> list[dict[str, Any]]:
     return failures
 
 
-
 def _case_bucket(item: dict[str, Any]) -> tuple[str, str]:
     """Return the ledger bucket for a manifest case or generation failure."""
 
@@ -185,7 +180,6 @@ STACK_V2_BUCKET_CASE_IDS = _bucket_case_ids(STACK_V2_CASES)
 STACK_V2_PASSED_CASE_IDS: dict[tuple[str, str], set[str]] = {}
 STACK_V2_FAILED_BUCKETS: set[tuple[str, str]] = set()
 _LEDGER_VERSION_CACHE = None
-
 
 
 def _judge_command() -> list[str] | None:
@@ -377,9 +371,7 @@ def _record_case_pass_in_ledger(case: dict[str, Any], verdict: dict[str, Any]) -
 
     STACK_V2_PASSED_CASE_IDS.setdefault(bucket, set()).add(_case_id(case))
     expected_case_ids = STACK_V2_BUCKET_CASE_IDS.get(bucket, set())
-    if not expected_case_ids or not expected_case_ids.issubset(
-        STACK_V2_PASSED_CASE_IDS[bucket]
-    ):
+    if not expected_case_ids or not expected_case_ids.issubset(STACK_V2_PASSED_CASE_IDS[bucket]):
         return
 
     language, comment_kind = bucket
@@ -532,9 +524,14 @@ def _format_generation_failure(failure: dict[str, Any]) -> str:
             "scanned_records": scanned,
         },
     }
+    subject = (
+        "distinct source files containing supported comments"
+        if comment_kind == "source_files"
+        else f"{comment_kind} comments"
+    )
     return (
-        f"Stack v2 manifest generation did not find enough {comment_kind} "
-        f"comments for {language}: {observed}/{expected} after {scanned} "
+        f"Stack v2 manifest generation did not find enough {subject} "
+        f"for {language}: {observed}/{expected} after {scanned} "
         f"scanned record(s). {reason} {recommendation}\n"
         f"Expected vs actual:\n{json.dumps(expected_actual, ensure_ascii=False, indent=2)}"
     )
@@ -793,9 +790,7 @@ def _build_judge_prompt(case: dict[str, Any], actual: list[dict[str, Any]]) -> s
     )
 
 
-def _build_cleaning_judge_prompt(
-    case: dict[str, Any], actual: list[dict[str, Any]]
-) -> str:
+def _build_cleaning_judge_prompt(case: dict[str, Any], actual: list[dict[str, Any]]) -> str:
     """Build a cleaning-only prompt with no sanitizer-produced oracle."""
 
     candidate = actual[0] if actual else {}
@@ -807,9 +802,7 @@ def _build_cleaning_judge_prompt(
         "repo": case.get("repo"),
         "path": case.get("path"),
         "raw_comment": _judge_visible_text(case.get("raw_comment")),
-        "candidate_cleaned_comment": _judge_visible_text(
-            candidate.get("cleaned_comment")
-        ),
+        "candidate_cleaned_comment": _judge_visible_text(candidate.get("cleaned_comment")),
     }
     return (
         "You are an LLM-as-a-judge for a comment cleaning library.\n"
@@ -830,7 +823,6 @@ def _build_cleaning_judge_prompt(
     )
 
 
-
 def _content_only_actual_comments(
     actual: list[dict[str, Any]], *, include_cleaned: bool = True
 ) -> list[dict[str, Any]]:
@@ -843,9 +835,7 @@ def _content_only_actual_comments(
             "raw_comment": _judge_visible_text(item.get("raw_comment")),
         }
         if include_cleaned:
-            actual_item["cleaned_comment"] = _judge_visible_text(
-                item.get("cleaned_comment")
-            )
+            actual_item["cleaned_comment"] = _judge_visible_text(item.get("cleaned_comment"))
         actual_items.append(actual_item)
     return actual_items
 
@@ -933,9 +923,7 @@ def _format_expected_actual(
     if _judge_scope() == CLEANING_SCOPE and include_cleaned:
         payload = _cleaning_expected_actual_payload(case, actual)
     else:
-        payload = _judge_expected_actual_payload(
-            case, actual, include_cleaned=include_cleaned
-        )
+        payload = _judge_expected_actual_payload(case, actual, include_cleaned=include_cleaned)
     return f"Expected vs actual:\n{json.dumps(payload, ensure_ascii=False, indent=2)}"
 
 
@@ -1080,6 +1068,15 @@ def _render_failure_report(payload: dict[str, Any]) -> str:
 
 def _render_followup_task(payload: dict[str, Any]) -> str:
     if payload.get("failure_type") == "manifest_generation":
+        if _payload_comment_kind(payload) == "source_files":
+            return (
+                "## Corpus Coverage Investigation\n\n"
+                "This language did not satisfy its distinct-source-file quota. "
+                "Review corpus access, the Stack v2 language mapping, sampling "
+                "limits, and any explicit kind exclusions. Do not convert the "
+                "quota shortfall directly into a parser or sanitizer regression "
+                "test."
+            )
         return (
             "## Feature Request Task\n\n"
             "This is a missing language/comment-kind bucket, not a failed "
@@ -1154,10 +1151,7 @@ def _verdict_passed(verdict: dict[str, Any]) -> bool:
     """Return true only when every judge contract field agrees."""
 
     if _judge_scope() == CLEANING_SCOPE:
-        return (
-            verdict.get("verdict") == "pass"
-            and verdict.get("cleaning_correct") is True
-        )
+        return verdict.get("verdict") == "pass" and verdict.get("cleaning_correct") is True
     return (
         verdict.get("verdict") == "pass"
         and verdict.get("extraction_correct") is True
@@ -1214,10 +1208,7 @@ def _run_judge(
             report_note,
             rationale=f"judge command timed out after {timeout}s",
         )
-        pytest.fail(
-            f"judge command timed out after {timeout}s"
-            f"{_format_report_note(report_note)}"
-        )
+        pytest.fail(f"judge command timed out after {timeout}s{_format_report_note(report_note)}")
     _exit_for_usage_limit_if_present(
         case=case,
         actual=actual,
@@ -1385,8 +1376,7 @@ def _validate_verdict(verdict: dict[str, Any]) -> None:
 
 def test_parse_judge_json_requires_consistent_shape() -> None:
     valid = _parse_judge_json(
-        '{"verdict":"pass","extraction_correct":true,'
-        '"cleaning_correct":true,"rationale":"ok"}'
+        '{"verdict":"pass","extraction_correct":true,"cleaning_correct":true,"rationale":"ok"}'
     )
     assert _verdict_passed(valid)
 
@@ -1405,9 +1395,7 @@ def test_cleaning_scope_accepts_cleaning_only_verdict(
 ) -> None:
     monkeypatch.setenv(SCOPE_ENV, CLEANING_SCOPE)
 
-    verdict = _parse_judge_json(
-        '{"verdict":"pass","cleaning_correct":true,"rationale":"ok"}'
-    )
+    verdict = _parse_judge_json('{"verdict":"pass","cleaning_correct":true,"rationale":"ok"}')
 
     assert _verdict_passed(verdict)
     assert "extraction_correct" not in verdict
@@ -1496,8 +1484,7 @@ def test_progress_prefix_includes_case_position_and_identity() -> None:
     }
 
     assert _progress_prefix(case) == (
-        "[stack-v2 judge 3/12] "
-        "case=python-line-sample language=python kind=line"
+        "[stack-v2 judge 3/12] case=python-line-sample language=python kind=line"
     )
 
 
@@ -1795,6 +1782,25 @@ def test_generation_failure_message_is_specific() -> None:
     assert '"line": 10' in message
 
 
+def test_generation_failure_message_describes_total_source_file_quota() -> None:
+    message = _format_generation_failure(
+        {
+            "language": "java",
+            "comment_kind": "source_files",
+            "observed_count": 42,
+            "expected_count": 50,
+            "scanned_records": 25_000,
+            "observed_kinds": {"line": 30, "block": 12},
+            "reason": "The corpus was sparse.",
+            "recommendation": "Review the language mapping.",
+        }
+    )
+
+    assert "distinct source files containing supported comments" in message
+    assert "42/50" in message
+    assert "source_files comments" not in message
+
+
 def test_load_failures_treats_missing_configured_path_as_empty(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -1981,15 +1987,10 @@ def test_verdict_assertions_fail_independently() -> None:
 
 def test_parse_judge_json_reports_missing_required_fields() -> None:
     with pytest.raises(ValueError, match="extraction_correct"):
-        _parse_judge_json(
-            '{"verdict":"pass","cleaning_correct":true,"rationale":"missing"}'
-        )
+        _parse_judge_json('{"verdict":"pass","cleaning_correct":true,"rationale":"missing"}')
 
     with pytest.raises(ValueError, match="cleaning_correct"):
-        _parse_judge_json(
-            '{"verdict":"pass","extraction_correct":true,"rationale":"missing"}'
-        )
-
+        _parse_judge_json('{"verdict":"pass","extraction_correct":true,"rationale":"missing"}')
 
 
 def test_ledger_preflight_skips_already_passed_bucket(

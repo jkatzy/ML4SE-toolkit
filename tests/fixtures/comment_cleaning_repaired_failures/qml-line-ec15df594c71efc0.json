@@ -1,0 +1,38 @@
+{
+  "case_id": "qml-line-ec15df594c71efc0",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qml",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "97b39c04c9675ea5db0411c4b56cce878461ec41cccb65a3fd8e0fac63199485",
+      "utf8_length": 450
+    },
+    "manifest_old_output": {
+      "sha256": "2ab63c998bf0fb832884b5756fba54f0fca345b54914c92d296fabf75949ba5f",
+      "utf8_length": 401
+    },
+    "raw_comment": {
+      "sha256": "4bf774ad969be1d310ed48b518f9e52677a1d0ad22b89afa54bfe25f7ef3dfd3",
+      "utf8_length": 495
+    },
+    "recommended_expected_output": {
+      "sha256": "2ab63c998bf0fb832884b5756fba54f0fca345b54914c92d296fabf75949ba5f",
+      "utf8_length": 401
+    }
+  },
+  "regression": {
+    "expected_output": "states: [\n    State {\n        name: \"\"\n        PropertyChanges { target: previousWorkoutSummaryText; visible: true }\n        PropertyChanges { target: previousWorkoutSummaryValue; visible: true }\n    },\n    State {\n        name: \"workout\"\n        PropertyChanges { target: signal; color: \"red\"}\n    },\n    State {\n        name: \"summary\"\n        PropertyChanges { target: signal; color: \"red\"}\n    }\n]",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//    states: [\n//        State {\n//            name: \"\"\n//            PropertyChanges { target: previousWorkoutSummaryText; visible: true }\n//            PropertyChanges { target: previousWorkoutSummaryValue; visible: true }\n//        },\n//        State {\n//            name: \"workout\"\n////            PropertyChanges { target: signal; color: \"red\"}\n//        },\n//        State {\n//            name: \"summary\"\n////            PropertyChanges { target: signal; color: \"red\"}\n//        }\n//    ]"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "19319c9ad7389855b11c07f176d7771a3cb777970dea076da718ee2176aede11",
+    "source_id": "41b7df1c5ade8d1a7733b053da6118a87d55829b"
+  },
+  "source_record_sha256": "556bf66c76dd743e712a78c34218fa306e31d96a507c9c63e5b7a40a2975ff5a"
+}

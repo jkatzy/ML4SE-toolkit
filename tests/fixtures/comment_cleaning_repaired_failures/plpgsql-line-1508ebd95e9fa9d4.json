@@ -1,0 +1,38 @@
+{
+  "case_id": "plpgsql-line-1508ebd95e9fa9d4",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "plpgsql",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c8e3e1a74d0f32105f3be0d463d8de3b29092c32632e7b9f5e64aa331558d31d",
+      "utf8_length": 52
+    },
+    "manifest_old_output": {
+      "sha256": "df13f79d07f34e32e4d6b4d2da479ed2cc5bf5783bb48587b068c9cb5867fd81",
+      "utf8_length": 49
+    },
+    "raw_comment": {
+      "sha256": "d02f2ecfffa10902869eafd2ee54e80c80863346e7d33cad9427450e2e7b689a",
+      "utf8_length": 57
+    },
+    "recommended_expected_output": {
+      "sha256": "df13f79d07f34e32e4d6b4d2da479ed2cc5bf5783bb48587b068c9cb5867fd81",
+      "utf8_length": 49
+    }
+  },
+  "regression": {
+    "expected_output": "DML\u89e6\u53d1\u5668\n\u5220\u9664\u524d\u5148\u4fdd\u5b58\u5230\u5386\u53f2\u6570\u636e\u5e93",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "---- DML\u89e6\u53d1\u5668\n-- \u5220\u9664\u524d\u5148\u4fdd\u5b58\u5230\u5386\u53f2\u6570\u636e\u5e93"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e35865955a0e99ef8e97b4272dde549f5a742ab7028615ccbde465c6a26e82d3",
+    "source_id": "180c0e2aa592b053a267f64e95fae108c2b28b9e"
+  },
+  "source_record_sha256": "7fa2363515ffe83088f92f3b1aff1425ad084a383c7081b8b1d59ba26476643c"
+}

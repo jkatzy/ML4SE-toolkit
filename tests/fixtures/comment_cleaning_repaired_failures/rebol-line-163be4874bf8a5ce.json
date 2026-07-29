@@ -1,0 +1,29 @@
+{
+  "case_id": "rebol-line-163be4874bf8a5ce",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "rebol",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "bc43552a85a8a422bbcfdbf3c162aa446da564ecdc9db05e509444d17f23f707",
+      "utf8_length": 16868
+    },
+    "manifest_old_output": {
+      "sha256": "bc43552a85a8a422bbcfdbf3c162aa446da564ecdc9db05e509444d17f23f707",
+      "utf8_length": 16868
+    },
+    "raw_comment": {
+      "sha256": "7cc82c934a935c3baf42515b1f0a2b3a0d5afbb2b766f435086a153723d8df95",
+      "utf8_length": 17772
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d4bdae52d1e998532d733050644ba945a4483ff62753389fa11c4fe95f8b9fd0",
+    "source_id": "d93605b0b61be16b93aaf79c48b9b789e8c189f7"
+  },
+  "source_record_sha256": "9b1a10ab84686a05cbc43d8f8269399b37aac13c529c3e7c7a3c903f41033d27"
+}

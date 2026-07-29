@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "golo_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "20cde9ecb9c7b9312dfd33638755e482779aef7d8adbccb187b3a4e018dd061a",
+      "case_id": "golo-line-6fe5135adb248173",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2012-2014 Institut National des Sciences Appliqu\u00e9es de Lyon (INSA-Lyon)\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "3f0c09db42da75359505cdadfd79a05636aa2e9ee09cffefe62e51c9fbd3f3dd",
+      "language": "golo",
+      "raw_comment": "# ............................................................................................... #\n#\n# Copyright 2012-2014 Institut National des Sciences Appliqu\u00e9es de Lyon (INSA-Lyon)\n# \n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n# \n#     http://www.apache.org/licenses/LICENSE-2.0\n# \n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\n# ............................................................................................... #",
+      "raw_sha256": "2cc57aad03502c2607a082495e43994a78a3f427f08d617bfe07aa92dfdfd576",
+      "raw_utf8_length": 837,
+      "source_provenance": {
+        "source_excerpt_sha256": "6fdaf9759d833d00225d5552b50ab3a08eb93e5ae148766d964c3180d367c64e",
+        "source_id": "f576b938bc24bc401cb2ba0d0ceb262b6d3640d4"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

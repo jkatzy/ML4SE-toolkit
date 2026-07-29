@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-8f7f9c64cc0a07bb",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "146bf326adee8ed21372b265426236a1bb1fc5ff32a33f30bb9cf79ed6045835",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "4af98c500e69009e079d6688ea3bde49cdc55f23a199401b902a00a82b84deec",
+      "utf8_length": 20
+    },
+    "raw_comment": {
+      "sha256": "6f597402720c8b131e603478478d368f00fc6ed8920a18a884a6e31f5e96bde2",
+      "utf8_length": 34
+    },
+    "recommended_expected_output": {
+      "sha256": "4af98c500e69009e079d6688ea3bde49cdc55f23a199401b902a00a82b84deec",
+      "utf8_length": 20
+    }
+  },
+  "regression": {
+    "expected_output": "/hoon/elem/x-urb/ren",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::\n::::  /hoon/elem/x-urb/ren\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "db79fcc0bb42ce8e45e149f42935fcf09e4f344d9fd86a8524eaa4351fe7a88e",
+    "source_id": "7d7ddce8510a199e1b26fee2cd3ddf8117f1017f"
+  },
+  "source_record_sha256": "6e3f8ad5b2eb57d1f5ccde68a5354e7f70ad5d3bcef8523d2fa50adf08b0ae49"
+}

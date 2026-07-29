@@ -1,0 +1,33 @@
+{
+  "case_id": "curry-line-23444fdefd068fb2",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "accounting_only_superseded",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9a070b98d92504f94c2535efd77ed8776845ca1b9f12e4db41cc7196f23690c6",
+      "utf8_length": 258
+    },
+    "manifest_old_output": {
+      "sha256": "0d83cd798ddcf71391cdef5a28029d9a0c8bc4961b5df7a8c86cdf36e0ac3c4e",
+      "utf8_length": 247
+    },
+    "raw_comment": {
+      "sha256": "fc2925437323ae36055a218042559f1380491d3cad3052e44350f25216a46a0c",
+      "utf8_length": 431
+    },
+    "recommended_expected_output": {
+      "sha256": "0d83cd798ddcf71391cdef5a28029d9a0c8bc4961b5df7a8c86cdf36e0ac3c4e",
+      "utf8_length": 247
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "85ca5d690199261c2329ba1658cc6faa4af8d9c35584afb36b81945f6012ff42",
+    "source_id": "99a55a62ddbd9a0e6e4824339caac1c1019bd280"
+  },
+  "source_record_sha256": "6c44a516a69165fd6eaaba53701938e594f05b6d38b270fdb983bc038c463f96"
+}

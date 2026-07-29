@@ -1,0 +1,38 @@
+{
+  "case_id": "kakoune_script-line-69b04bbd9fae91df",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "kakoune_script",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3efb4a66186e5c35ffcfe8f99a7976f3c4f199d0e82edf9e456092b7cc15eed0",
+      "utf8_length": 207
+    },
+    "manifest_old_output": {
+      "sha256": "3efb4a66186e5c35ffcfe8f99a7976f3c4f199d0e82edf9e456092b7cc15eed0",
+      "utf8_length": 207
+    },
+    "raw_comment": {
+      "sha256": "943ca4c0eaaefa92002522d6f2c6016919f6af6f97437adaac86ed2e97ee2931",
+      "utf8_length": 294
+    },
+    "recommended_expected_output": {
+      "sha256": "3efb4a66186e5c35ffcfe8f99a7976f3c4f199d0e82edf9e456092b7cc15eed0",
+      "utf8_length": 207
+    }
+  },
+  "regression": {
+    "expected_output": "EXAMPLES\n==============================================================================\nhttps://github.com/andreyorst/dotfiles/blob/187ebb84f9542b76a4f3c3e08f9533cd8187faa1/.config/kak/mnemonic-user-mode.kak",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# ==============================================================================\n# EXAMPLES\n# ==============================================================================\n# https://github.com/andreyorst/dotfiles/blob/187ebb84f9542b76a4f3c3e08f9533cd8187faa1/.config/kak/mnemonic-user-mode.kak"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f21615ce3b9cbda887ab16ba0c4291d67f0aabad48d51d72440591f999e59787",
+    "source_id": "a3eac5d3d2ebeb442c27640bb42824571afc24a6"
+  },
+  "source_record_sha256": "83230963e355921f1520d2f725abd11878e8317fbc8a4529fe4b32bf1666506d"
+}

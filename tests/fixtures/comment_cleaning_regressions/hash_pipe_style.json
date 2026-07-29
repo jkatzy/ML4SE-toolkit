@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "hash_pipe_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "59ca36b807ddb42c6f63929e8b995a0626abb2a98197345403e21d840e60c5c0",
+      "case_id": "common_lisp-line-197f61d54a7f842a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- syntax: common-lisp; package: KEIM; base: 10; mode: LISP -*-\n\nCopyright (C) 1993 by AG Siekmann, Fachbereich Informatik,\nUniversitaet des Saarlandes, Saarbruecken, Germany.\nAll rights reserved.\nFor information about this program, write to:\n  KEIM Project\n  AG Siekmann/FB Informatik\n  Universitaet des Saarlandes\n  Postfach 1150\n  D-66041 Saarbruecken\n  Germany\nelectronic mail: keim@cs.uni-sb.de\n\nThe author makes no representations about the suitability of this\nsoftware for any purpose.  It is provided \"AS IS\" without express or\nimplied warranty.  In particular, it must be understood that this\nsoftware is an experimental version, and is not suitable for use in\nany safety-critical application, and the author denies a license for\nsuch use.\n\nYou may use, copy, modify and distribute this software for any\nnoncommercial and non-safety-critical purpose.  Use of this software\nin a commercial product is not included under this license.  You must\nmaintain this copyright statement in all copies of this software that\nyou modify or distribute.",
+      "expected_cleaned_sha256": "a4780a3cc71b1d182c02b2bf5b04937335bd083060a634f004148ab105942219",
+      "language": "common_lisp",
+      "raw_comment": ";;; -*- syntax: common-lisp; package: KEIM; base: 10; mode: LISP -*-\n;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;\n;;                                                                          ;;\n;;   Copyright (C) 1993 by AG Siekmann, Fachbereich Informatik,             ;;\n;;   Universitaet des Saarlandes, Saarbruecken, Germany.                    ;;\n;;   All rights reserved.                                                   ;;\n;;   For information about this program, write to:                          ;;\n;;     KEIM Project                                                         ;;\n;;     AG Siekmann/FB Informatik                                            ;;\n;;     Universitaet des Saarlandes                                          ;;\n;;     Postfach 1150                                                        ;;\n;;     D-66041 Saarbruecken                                                 ;;\n;;     Germany                                                              ;;\n;;   electronic mail: keim@cs.uni-sb.de                                     ;;\n;;                                                                          ;;\n;;   The author makes no representations about the suitability of this      ;;\n;;   software for any purpose.  It is provided \"AS IS\" without express or   ;;\n;;   implied warranty.  In particular, it must be understood that this      ;;\n;;   software is an experimental version, and is not suitable for use in    ;;\n;;   any safety-critical application, and the author denies a license for   ;;\n;;   such use.                                                              ;;\n;;                                                                          ;;\n;;   You may use, copy, modify and distribute this software for any         ;;\n;;   noncommercial and non-safety-critical purpose.  Use of this software   ;;\n;;   in a commercial product is not included under this license.  You must  ;;\n;;   maintain this copyright statement in all copies of this software that  ;;\n;;   you modify or distribute.                                              ;;\n;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;",
+      "raw_sha256": "125dd33495fe714f66d4d5e807f3ee89c9a8be37a099f3c3f0e026d08170508a",
+      "raw_utf8_length": 2201,
+      "source_provenance": {
+        "source_excerpt_sha256": "129cfa662adf8b0b77952566056f22ae3ce81a0dc066d46887ceb0fff87f4445",
+        "source_id": "68f27bdbcc0e660e9c7ac39b583a635cc5342c99"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "82e7fd453c63ed20de108f1bd3395f855cbb71d55737cc17fea8acbba9dd6aa6",
+      "case_id": "common_lisp-line-b9e67d97fa97b6c9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*-Lisp-*-\nGOAL Data Description File",
+      "expected_cleaned_sha256": "7a3e89f39787e40c5b486c56c72039d78fc30e88bae948913b383258634fc07b",
+      "language": "common_lisp",
+      "raw_comment": ";;-*-Lisp-*-\n;; GOAL Data Description File",
+      "raw_sha256": "3321002fc8d77df009a3b31fdffcd8f2ffe14e257608a1ac95fb338b209e39cf",
+      "raw_utf8_length": 42,
+      "source_provenance": {
+        "source_excerpt_sha256": "509791750c043f02bc56381839f284d81911e3dbe8a80c04a3efc887ba4b7f50",
+        "source_id": "4161f67418d8f5021fac35274ff0eab737d62cfa"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "8698cadaed40b59937c06cd77b4474827ef975eb38c8eea5cbbf1c1ad872f090",
+      "case_id": "common_lisp-line-d757ae5f369b7d1b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[TODO] fully implement positions-if to match position-if spec\n[TODO] also add positions-if-not and positions: could be all be useful",
+      "expected_cleaned_sha256": "b2480be525f724f8c54eb49ef57919b11bf94ec4e41ceaa4de4ba0b820ed1b9d",
+      "language": "common_lisp",
+      "raw_comment": ";; [TODO] fully implement positions-if to match position-if spec\n;; [TODO] also add positions-if-not and positions: could be all be useful",
+      "raw_sha256": "89d9463bb2931a8fc487fa52fb69dfbcc03d7090ea521cbc5e99bb68263d2ea4",
+      "raw_utf8_length": 138,
+      "source_provenance": {
+        "source_excerpt_sha256": "00ee1c9548bfaa447d4747e9c2d04e7d2245db143924ee863153c2366a03e512",
+        "source_id": "9e1a3cbc9808d792be5a780032780afbbb1cb4ec"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

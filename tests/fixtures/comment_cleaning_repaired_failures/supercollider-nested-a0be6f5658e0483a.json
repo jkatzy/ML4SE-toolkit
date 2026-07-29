@@ -1,0 +1,38 @@
+{
+  "case_id": "supercollider-nested-a0be6f5658e0483a",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "supercollider",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "11a903bde8573e31fc232d91c4062e62e41c6d724f85dc8f4605d9593f5e7b91",
+      "utf8_length": 648
+    },
+    "manifest_old_output": {
+      "sha256": "c0446b33e0938c2bedb13a45454ec6b0eadfd3576fa045139f4fb6a89f99ed4b",
+      "utf8_length": 685
+    },
+    "raw_comment": {
+      "sha256": "1fdd56123fd57cd070c3f756873666847c8b65aef7fa1e8bf15d35c1ac25f114",
+      "utf8_length": 762
+    },
+    "recommended_expected_output": {
+      "sha256": "c0446b33e0938c2bedb13a45454ec6b0eadfd3576fa045139f4fb6a89f99ed4b",
+      "utf8_length": 685
+    }
+  },
+  "regression": {
+    "expected_output": "Digital filter frequency response.\n[h, w] = freqz(b, a, n) returns the n-point complex frequency response\nvector h and the n-point frequency vector w in radians/sample of\nthe filter:\n          jw               -jw              -jmw\n   jw  B(e)    b(1) + b(2)e + .... + b(m+1)e\nH(e) = ---- = ------------------------------------\n          jw               -jw              -jnw\n       A(e)    a(1) + a(2)e + .... + a(n+1)e\ngiven numerator and denominator coefficients in vectors b and a. The\nfrequency response is evaluated at N points equally spaced around the\nupper half of the unit circle. If N isn't specified, it defaults to\n512.\n\nNOTE: this is a SC port of MATLAB's freqz function",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/**\n\t * Digital filter frequency response.\n     * [h, w] = freqz(b, a, n) returns the n-point complex frequency response\n\t * vector h and the n-point frequency vector w in radians/sample of\n\t * the filter:\n     *           jw               -jw              -jmw\n\t *    jw  B(e)    b(1) + b(2)e + .... + b(m+1)e\n\t * H(e) = ---- = ------------------------------------\n\t *           jw               -jw              -jnw\n\t *        A(e)    a(1) + a(2)e + .... + a(n+1)e\n\t * given numerator and denominator coefficients in vectors b and a. The\n\t * frequency response is evaluated at N points equally spaced around the\n\t * upper half of the unit circle. If N isn't specified, it defaults to\n     * 512.\n\t *\n\t * NOTE: this is a SC port of MATLAB's freqz function\n\t */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "28a0af35c2aaae8803b57d3b023c8c79a04236e2152269eccfa3be55cf544da4",
+    "source_id": "fb6fe8450276a6f3930787325e9b7486f61c7cb4"
+  },
+  "source_record_sha256": "3e609e088cfdc6360afd6523a369adc53cff64cf277f508812c5d082e4454fd1"
+}

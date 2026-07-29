@@ -1,0 +1,38 @@
+{
+  "case_id": "plpgsql-line-a5920ffb6141bc8b",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "plpgsql",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b9d8e5a2287d98e45ef3794033d346b2592921d87de33f0490174bb6681899e7",
+      "utf8_length": 5
+    },
+    "manifest_old_output": {
+      "sha256": "dcc839a4015c4b7dd9db959a8f757833b8adb92462a751b973386e453c6d58a3",
+      "utf8_length": 4
+    },
+    "raw_comment": {
+      "sha256": "d882b305698828ef38f8ee2f0ec15d25ce9ad4b43e8769c416df18d5d5e1957b",
+      "utf8_length": 11
+    },
+    "recommended_expected_output": {
+      "sha256": "dcc839a4015c4b7dd9db959a8f757833b8adb92462a751b973386e453c6d58a3",
+      "utf8_length": 4
+    }
+  },
+  "regression": {
+    "expected_output": "View",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "---View----"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0f03e7c36d859b59f7a0bb80891e82694eca9667b8fe11424bb115aeb3d019bc",
+    "source_id": "a4ff38e2637287500893531c5f7ce3ac9611c532"
+  },
+  "source_record_sha256": "6bc20ce6b25a04f28a8d9177d4814d621e4a4f377eca09ea6e8c5d30b78d56ed"
+}

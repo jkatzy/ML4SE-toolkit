@@ -1,0 +1,38 @@
+{
+  "case_id": "kakoune_script-line-4b2103695168c2c9",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u203e",
+  "disposition": "executable_regression",
+  "language": "kakoune_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ff8aa9dd4ba71cfb2ce2c10a26f22786dc06ff9dd14875567471f9214b80520b",
+      "utf8_length": 125
+    },
+    "manifest_old_output": {
+      "sha256": "acb72fbd151e2d6b4c147a981bdf8af98675d5f27a9ab27681730ba28210947e",
+      "utf8_length": 31
+    },
+    "raw_comment": {
+      "sha256": "b7beaec8165dc5b8fe983f2f53eebd10cdeb3322c6ccb273a38c1064b02278b8",
+      "utf8_length": 129
+    },
+    "recommended_expected_output": {
+      "sha256": "acb72fbd151e2d6b4c147a981bdf8af98675d5f27a9ab27681730ba28210947e",
+      "utf8_length": 31
+    }
+  },
+  "regression": {
+    "expected_output": "http://gnu.org/software/screen/",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# http://gnu.org/software/screen/\n# \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ae9dcbfa8ccfed8fb8c41c524753a15723a4d2c1b442488732ff942e06b0c95b",
+    "source_id": "5a72d153c11207b2456c768642ffcb69a5c0fd67"
+  },
+  "source_record_sha256": "f8f60c84606956506bf26d1fa200bc2d8b3f9f889ce7b5698e6c156967bd06ac"
+}

@@ -1,0 +1,29 @@
+{
+  "case_id": "adobe_font_metrics-line-c18e56abf59ba425",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "adobe_font_metrics",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "5a5c0daf5f26e702bb692abbe5459503a5424e1f78a056f614142e353e86017a",
+      "utf8_length": 26548
+    },
+    "manifest_old_output": {
+      "sha256": "5a5c0daf5f26e702bb692abbe5459503a5424e1f78a056f614142e353e86017a",
+      "utf8_length": 26548
+    },
+    "raw_comment": {
+      "sha256": "2f4c91710e5cd63b6b198772ecce999b4bd717cb62cd60bc92729cca698db171",
+      "utf8_length": 26550
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "15060da844ef68b31d5f0e674287c5872bce8e401b36c50d6099a3c65f2d2f4e",
+    "source_id": "2d66fe025c9c746504fdef2c1f377032072ead3f"
+  },
+  "source_record_sha256": "65ac67c2070e0640f54f92785c438b01cb292ad3f9e9e4265ef571e5347e6d4f"
+}

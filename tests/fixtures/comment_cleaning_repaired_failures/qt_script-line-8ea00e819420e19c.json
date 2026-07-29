@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-8ea00e819420e19c",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "609ebe77de4013ab84f8cacd6cdde482322076bc1201fd8ba6db889a34b518d8",
+      "utf8_length": 56
+    },
+    "manifest_old_output": {
+      "sha256": "fbc39a74068756b0a89ab90505bc7b082135c07c2bac1e72e3693fb76934ed0b",
+      "utf8_length": 54
+    },
+    "raw_comment": {
+      "sha256": "58a2b64fae63962020dca805bc00bce789ed69c1a41cfc21fb1745bc4d0def06",
+      "utf8_length": 183
+    },
+    "recommended_expected_output": {
+      "sha256": "fbc39a74068756b0a89ab90505bc7b082135c07c2bac1e72e3693fb76934ed0b",
+      "utf8_length": 54
+    }
+  },
+  "regression": {
+    "expected_output": "GOAL: Ignore the Swear Filter call and return 0 always",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "///////////////////////////////////////////////////////////\n  // GOAL: Ignore the Swear Filter call and return 0 always//\n  ///////////////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d2f56cf9320e47761932e80bae8c86642a9e55f404740c3c21829deb271da54d",
+    "source_id": "8134596f69f81ed9494205d00478704d01c562bb"
+  },
+  "source_record_sha256": "1a3c6506577b5f850ed88e627a586d2ead5cc8b76f7e68bfcd08b0d4985acfb4"
+}

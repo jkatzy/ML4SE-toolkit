@@ -113,9 +113,7 @@ def main() -> int:
         temp_path = Path(temp_dir)
         schema_path = temp_path / "verdict.schema.json"
         output_path = temp_path / "last_message.json"
-        schema_path.write_text(
-            json.dumps(_verdict_schema(args.scope)), encoding="utf-8"
-        )
+        schema_path.write_text(json.dumps(_verdict_schema(args.scope)), encoding="utf-8")
 
         command = [
             args.codex_bin,
@@ -213,11 +211,7 @@ def _limit_forwarded_output(value: Any) -> str | None:
     suffix = text[-FORWARDED_OUTPUT_EDGE_CHARS:]
     omitted = len(text) - len(prefix) - len(suffix)
     digest = sha256(text.encode("utf-8", errors="surrogatepass")).hexdigest()
-    return (
-        f"{prefix}\n"
-        f"... [truncated {omitted} chars; sha256={digest}] ...\n"
-        f"{suffix}"
-    )
+    return f"{prefix}\n... [truncated {omitted} chars; sha256={digest}] ...\n{suffix}"
 
 
 def _parse_json_object(text: str) -> dict[str, Any]:
@@ -253,17 +247,13 @@ def _verdict_schema(scope: str) -> dict[str, Any]:
     raise ValueError(f"unsupported comment judge scope: {scope}")
 
 
-def _validate_verdict(
-    verdict: dict[str, Any], *, scope: str = COMBINED_SCOPE
-) -> None:
+def _validate_verdict(verdict: dict[str, Any], *, scope: str = COMBINED_SCOPE) -> None:
     """Validate the minimal verdict shape expected by pytest."""
 
     if scope == CLEANING_SCOPE:
         unexpected = sorted(set(verdict) - set(CLEANING_VERDICT_SCHEMA["required"]))
         if unexpected:
-            raise ValueError(
-                f"cleaning verdict has unexpected field(s): {', '.join(unexpected)}"
-            )
+            raise ValueError(f"cleaning verdict has unexpected field(s): {', '.join(unexpected)}")
     if verdict.get("verdict") not in {"pass", "fail"}:
         raise ValueError("verdict must be 'pass' or 'fail'")
     boolean_fields = ("cleaning_correct",)

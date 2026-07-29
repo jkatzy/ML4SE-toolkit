@@ -1,0 +1,38 @@
+{
+  "case_id": "antlers-block-11a4afb83edfcff8",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "antlers",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "42868f65e7169e23329f9bf4b0dec5efd0de6e320ab8055399bc0bc0c0c1a21f",
+      "utf8_length": 183
+    },
+    "manifest_old_output": {
+      "sha256": "6a83bac4128bcdf82a82f9eb1655607f0af7bde4e179c398e4f36d20445ad59d",
+      "utf8_length": 191
+    },
+    "raw_comment": {
+      "sha256": "d6d78da173ca78622d150dfdd22162889edd991da81a661046eb759b7bfc3be5",
+      "utf8_length": 212
+    },
+    "recommended_expected_output": {
+      "sha256": "6a83bac4128bcdf82a82f9eb1655607f0af7bde4e179c398e4f36d20445ad59d",
+      "utf8_length": 191
+    }
+  },
+  "regression": {
+    "expected_output": "{{ if hero_image }}\n           {{ hero_image }}\n               <img class=\"absolute object-cover w-full h-full\" src=\"{{ url }} \" alt=\"{{ alt }}\">\n           {{ /hero_image }}\n       {{ /if }}",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{{#  {{ if hero_image }}\n            {{ hero_image }}\n                <img class=\"absolute object-cover w-full h-full\" src=\"{{ url }} \" alt=\"{{ alt }}\">\n            {{ /hero_image }}\n        {{ /if }}\n        #}}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f419e9260bfd2977298a6228769a9e16923b5349c10eb8913964cc70f7e1f257",
+    "source_id": "a9af5d446b4c832e2bddd318f2c57f2d0f5a8530"
+  },
+  "source_record_sha256": "29d0d7e6042e00c6aadbe51bd0b5251fb830260a7419070cdd4e8cdbc731af99"
+}

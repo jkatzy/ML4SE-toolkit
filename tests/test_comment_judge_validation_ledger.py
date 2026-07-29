@@ -10,9 +10,7 @@ import pytest
 
 def load_module():
     script_path = (
-        Path(__file__).resolve().parents[1]
-        / "scripts"
-        / "comment_judge_validation_ledger.py"
+        Path(__file__).resolve().parents[1] / "scripts" / "comment_judge_validation_ledger.py"
     )
     spec = importlib.util.spec_from_file_location("comment_judge_validation_ledger", script_path)
     assert spec is not None

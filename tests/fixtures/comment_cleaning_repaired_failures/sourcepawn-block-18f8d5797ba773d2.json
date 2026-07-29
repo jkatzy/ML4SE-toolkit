@@ -1,0 +1,38 @@
+{
+  "case_id": "sourcepawn-block-18f8d5797ba773d2",
+  "category": "policy_or_judge_conflict",
+  "cluster": "layout:whitespace_restoration",
+  "disposition": "executable_regression",
+  "language": "sourcepawn",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "20b6883de76512f61473842ad88257661d586bdbc21ae5c943f5498d18cc6cc9",
+      "utf8_length": 44
+    },
+    "manifest_old_output": {
+      "sha256": "e8c9fb037269b25f591e8836f29c9857fbe4b2f4cd4c8fe5f1985b17a46d168a",
+      "utf8_length": 42
+    },
+    "raw_comment": {
+      "sha256": "6298e3efb651a681d241dba53eb48456a5cd0ad82db80376672f83fd815c00d8",
+      "utf8_length": 49
+    },
+    "recommended_expected_output": {
+      "sha256": "20b6883de76512f61473842ad88257661d586bdbc21ae5c943f5498d18cc6cc9",
+      "utf8_length": 44
+    }
+  },
+  "regression": {
+    "expected_output": ", __hasAddCmd\n\t, __hasDelCmd\n\t, __hasShowCmd",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\t, __hasAddCmd\n\t, __hasDelCmd\n\t, __hasShowCmd*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "850be3c9ae5c76dfadd772468f64ef8027ddb9d23598504ce3e87c1dbc9d388a",
+    "source_id": "11ff0727a6ab0f7cb957dc4ecdf732925097e058"
+  },
+  "source_record_sha256": "25652c55143854d2259bd5f64d396ed684944ecf53e2320220171aa71bd7b825"
+}

@@ -12,7 +12,7 @@
       "source": "registry:shared_regex_examples[0]",
       "kind": "directive",
       "raw_comment": "%% cleaning_payload_shared_regex_000",
-      "expected_cleaned": "%% cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
       "payload_marker": "cleaning_payload_shared_regex_000"
     }
   ]

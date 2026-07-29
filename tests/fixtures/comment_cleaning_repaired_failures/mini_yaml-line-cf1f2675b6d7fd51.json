@@ -1,0 +1,38 @@
+{
+  "case_id": "mini_yaml-line-cf1f2675b6d7fd51",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "mini_yaml",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c93d1a94ab46688f941ef67611d2871115bc6f2893a5e9f1a8859c6e6253d70d",
+      "utf8_length": 133
+    },
+    "manifest_old_output": {
+      "sha256": "dd1ae9bbe21e6a8f745a89e88a08f540eec60205c3d4b3861ec604d687c81f82",
+      "utf8_length": 125
+    },
+    "raw_comment": {
+      "sha256": "dc22f0be10b07a1478e4749dc6232fa5b2d7fc55c9ce9fb57143632e6b9ff08f",
+      "utf8_length": 139
+    },
+    "recommended_expected_output": {
+      "sha256": "dd1ae9bbe21e6a8f745a89e88a08f540eec60205c3d4b3861ec604d687c81f82",
+      "utf8_length": 125
+    }
+  },
+  "regression": {
+    "expected_output": "Configuration for the Admin Interface\nhttps://www.envoyproxy.io/docs/envoy/latest/operations/admin#operations-admin-interface",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "####\n# Configuration for the Admin Interface\n# https://www.envoyproxy.io/docs/envoy/latest/operations/admin#operations-admin-interface\n####"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e2080dd20474c6c109f8c8fe2dd6b5b86f423422513de7b568ea1c3ec58d98fb",
+    "source_id": "b3cd681902189a2c8b4cf79c9df73be0040e82d0"
+  },
+  "source_record_sha256": "c0b2f508cb76a4185d4b4323d7ed0f8762a3996f3c967ee000147893d1e1ff74"
+}

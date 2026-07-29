@@ -1,0 +1,29 @@
+{
+  "case_id": "haskell-line-8d107f4c38793fe3",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:haskell_operator",
+  "disposition": "accounting_only_no_oracle",
+  "language": "haskell",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "manifest_old_output": {
+      "sha256": "62b67e1f685b7fef51102005dddd27774be3fee38c42965c53aab035d0b6b221",
+      "utf8_length": 1
+    },
+    "raw_comment": {
+      "sha256": "5d5b9de6d9b95f3e0c950afe742a5bb39cb25f6e6e886c10603310b7bf3cba35",
+      "utf8_length": 3
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b4a7203354c3b59157172b4f93f77a25eeb095fba9686eb9bcdfd1b141b67413",
+    "source_id": "6f4138256f8fdafba99c6346c665d94637e9a6ac"
+  },
+  "source_record_sha256": "ec634a9ecb3a24a460ed2d98baf86fb6d03ae57df6b1422ba47457255b3c8881"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "sql-line-1fc7c4f6653c9fbb",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "sql",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "de24ea66e47b2186dbacdd524910a0a91d14818fd05476c34030f6dc7c626432",
+      "utf8_length": 66
+    },
+    "manifest_old_output": {
+      "sha256": "fdc41127cbe2c5d38bc7aac8a8c125cb829677845d9bef10e406d2d490b335a3",
+      "utf8_length": 63
+    },
+    "raw_comment": {
+      "sha256": "47bd0e319e56d3e25c5ab3f2e64edb2e355dd5bedfbcf478d251e652ec0887be",
+      "utf8_length": 69
+    },
+    "recommended_expected_output": {
+      "sha256": "fdc41127cbe2c5d38bc7aac8a8c125cb829677845d9bef10e406d2d490b335a3",
+      "utf8_length": 63
+    }
+  },
+  "regression": {
+    "expected_output": "12.6 Pivoting a Result Set to Facilitate Inter-Row Calculations",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "-- 12.6 Pivoting a Result Set to Facilitate Inter-Row Calculations --"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f1b177a4b373bc77400ae5087c3dd20d7f9ada2b95659c497227c44da4b0bc0e",
+    "source_id": "2ab838cf5df8c4cde38eb1479e74d7cabe84863c"
+  },
+  "source_record_sha256": "0134b200526e8acfba6fea7553fb6139d71d642461d2e9c8c9d8ee5fb7d7b756"
+}

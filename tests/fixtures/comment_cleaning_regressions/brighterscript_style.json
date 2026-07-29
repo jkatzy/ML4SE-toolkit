@@ -1,0 +1,229 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "brighterscript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-041985284d7dc1f9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "612dc438e7daec389076b33dafdf37a200fc9085849d1f2a9d5a93ec717687fd",
+        "source_id": "a068520164a6466939dcd6b2d4af5ea004437f9f"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "b411d0972f5627b8379c830b95b4726ad4a99f914ec50c2df70b7304eb293b66",
+      "case_id": "brighterscript-line-575c9be592e58837",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@module DelayedTaskManager\n@description allows certain tasks to be scheduled at a certain time. Useful for things such as refreshing tokens, etc",
+      "expected_cleaned_sha256": "4b6065c63f52e3fedeb37c6ad607f50fa3d63dea3c1a565172193a3b25fd0020",
+      "language": "brighterscript",
+      "raw_comment": "' /**\n  '  * @module DelayedTaskManager\n  '  * @description allows certain tasks to be scheduled at a certain time. Useful for things such as refreshing tokens, etc\n  '  */",
+      "raw_sha256": "7c60d956aab125b65af66a2c3e4590e2781b0d0d0c2ddd5a5abcb2c3ffdeaa7c",
+      "raw_utf8_length": 172,
+      "source_provenance": {
+        "source_excerpt_sha256": "e889b80cc606df6d9a79a8acfd9991d6a143e8fe09c528a20bde9673ebdb4c76",
+        "source_id": "59707f7580c26c62cf585bfe497007073e1dc63a"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "d7bb5f5d1a3fb66cdf48464793d59a02eebf83c3b2af053de70d456b6101aa08",
+      "case_id": "brighterscript-line-68310a8f9d9d5880",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@module FocusMixin\n@description Mixin methods for managing focus",
+      "expected_cleaned_sha256": "92556268f5f6e9a9ba14c8de9b7bf11e7f3c12c773f790f4bb4b1e3ef247d898",
+      "language": "brighterscript",
+      "raw_comment": "' /**\n'  * @module FocusMixin\n'  * @description Mixin methods for managing focus\n'  */",
+      "raw_sha256": "94698b051d40c0fdf2e7a4ea57d31c23eb94da573174e1b53c6f63119264bf17",
+      "raw_utf8_length": 86,
+      "source_provenance": {
+        "source_excerpt_sha256": "e8f6f2cff0c0f2096624706f19e6f2d519a30067eb1664343096f04690e4e7ef",
+        "source_id": "153fe44f19aed44eaf0b85330c15f992f2034a1a"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-74f3dff4a3141103",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "2db92d27a432542b99f5a136d04afe4be4569a468282a6fcbe5787e5b45bf52d",
+        "source_id": "e58c4cdfcc8e3c771b7de2c256e2cf7ee03ccd47"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-7a219d373fd5d99e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "01f0f7ce76f5c2a166daa360c1a25cd6782838728dafd90a21885fc8f7cb8d4d",
+        "source_id": "5e0b56d655acbfd5be1ae02bf173f80374d5d267"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-88593916a2515430",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "4570b200809fccb1dbd406b1d3296e9f21dc1c657b93a64b98908c8f518245af",
+        "source_id": "dcfc34de1108feeaf515f4fb3ca761bf94959ab1"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "ca8702522bbd9d3ef386b52f58be5d9377b5c9c790283fcaf7d6b934616e9724",
+      "case_id": "brighterscript-line-8f4bfcde1a90ee93",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@module mc.NetHelper\n@description helper class to make it easy to fire off async requests",
+      "expected_cleaned_sha256": "2d0b56a957a1e73311a5b2862f3023083cecc87b31addddffa2922790714c234",
+      "language": "brighterscript",
+      "raw_comment": "' /**\n  '  * @module mc.NetHelper\n  '  * @description helper class to make it easy to fire off async requests\n  '  */",
+      "raw_sha256": "d45f213fb17142a3e201d97a47b635d4df8a41d402bf71ffe2f8d276dde67b67",
+      "raw_utf8_length": 117,
+      "source_provenance": {
+        "source_excerpt_sha256": "127aee1777021b4548ea2b633481dfc9f4b935614626c04f3f4ac5fce294729e",
+        "source_id": "b6ace33ef3444fadbc40e44de766f0ffd9d0dff6"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-abe6de68d75c1da2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "3135336649db81e8106c6cfd8b623ebf54cb778c7778f481f13cd4a492d9bbc3",
+        "source_id": "6300ba78fd44b4f4ee13c588084392963deef0df"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "55706d51d69befc11b519622d7e12f1ba0a27a9e6f6de498cc00a16aae46b4d4",
+      "case_id": "brighterscript-line-b66c77bf9afe5c3c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BrighterScript demonstration file\nNov 2021\nUsing Roku's SimpleGrid example",
+      "expected_cleaned_sha256": "38095c4729c4c6a33f276044582e200b53e4f0a3609067cf672065ecb0013af4",
+      "language": "brighterscript",
+      "raw_comment": "' *********************************************************\n' **  BrighterScript demonstration file\n' **  Nov 2021\n' **  Using Roku's SimpleGrid example\n' *********************************************************",
+      "raw_sha256": "cf727555820db352ddb7ddcdd1f3aeb13384a18478edb68b3bb300f8b4e3c4e5",
+      "raw_utf8_length": 212,
+      "source_provenance": {
+        "source_excerpt_sha256": "4676ae829d6074514f3ce6e9d67f7678d0a60a4d257c554337b57367db94ae8d",
+        "source_id": "4b021020643b3cff50a6c3089aea831cfd391414"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "3535aaea7195fd548cb2f779cadb828399e53f7395c0d895ff46e3705ae32eb9",
+      "case_id": "brighterscript-line-db56a9771882328b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@member begin\n@memberof module:MainScene\n@instance\n@description This would be called when all initial data is loaded. The app would show a loading spinner and loading background until this point\n@param {paramType} paramDescription\n@returns {returnType} returnDescription",
+      "expected_cleaned_sha256": "8fcf43a7111aa38f18b0b27a5862d767f14edfbe3b45ee3fd287ccf6f1079f76",
+      "language": "brighterscript",
+      "raw_comment": "' /**\n'  * @member begin\n'  * @memberof module:MainScene\n'  * @instance\n'  * @description This would be called when all initial data is loaded. The app would show a loading spinner and loading background until this point\n'  * @param {paramType} paramDescription\n'  * @returns {returnType} returnDescription\n'  */",
+      "raw_sha256": "0c24655abd78839e96ec8438809c0c22db430bdcacca525005d7a360feaf0228",
+      "raw_utf8_length": 312,
+      "source_provenance": {
+        "source_excerpt_sha256": "5947803a5f2966ee869c4f47c5a6f53ce104860663ac2eb9cec3e8b5ab1ae11c",
+        "source_id": "b2df24c7866c7931ffe7b6e68e72885235f0dd8b"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-dd37409aa158b023",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "ed2c0a86bdaa2ed6c90db28795c6c7e9f18d392f1b2e225cba7e147fa97a0913",
+        "source_id": "0eef75ebabd25929a68a2718556445037206ee61"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "dfd1e5b23dd79f22186778e54997b00ea414037acfe0e7685946c78a2dff0544",
+      "case_id": "brighterscript-line-e99e2ccc575a5d8e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "brighterscript",
+      "raw_comment": "'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+      "raw_sha256": "3e1f611662d9a055febc8f06e5867e4ebfd6a1ecf0497e22becbbb467858ff3a",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "8cf3745bd473623d84ae795a8a570befaab262d65c0baeccb83cc4eacc781d68",
+        "source_id": "707067a5384e654c6c410c920a233cd20d96cce9"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "66e21a8d2884a98c39e7f3d3165e816ed3eeec50048af0a9b74e322810d2d924",
+      "case_id": "brighterscript-line-fa9399a15cc701ff",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@member callAAFunc\n@memberof module:Utils\n@instance\n@function\n@description allows for easy calling of a method with variargs, on an aa\n@param {class} target\n@param {funcName} name of func to call\n@param {Any} p1 param 1, can leave blank to skip\n@param {Any} p2 param 2, can leave blank to skip\n@param {Any} p3 param 3, can leave blank to skip\n@returns {any} whatever the func returns, or invald if not found",
+      "expected_cleaned_sha256": "18334f64888875ad65c984e5d1e11cd77b6cd9f2e2955eb2959285c06e5f1bce",
+      "language": "brighterscript",
+      "raw_comment": "' /**\n  '  * @member callAAFunc\n  '  * @memberof module:Utils\n  '  * @instance\n  '  * @function\n  '  * @description allows for easy calling of a method with variargs, on an aa\n  '  * @param {class} target\n  '  * @param {funcName} name of func to call\n  '  * @param {Any} p1 param 1, can leave blank to skip\n  '  * @param {Any} p2 param 2, can leave blank to skip\n  '  * @param {Any} p3 param 3, can leave blank to skip\n  '  * @returns {any} whatever the func returns, or invald if not found\n  '  */",
+      "raw_sha256": "d710e97753bc0e2f78fd99ebc5f33cbd046b37e34a85a5cbf8c2a447d2864799",
+      "raw_utf8_length": 498,
+      "source_provenance": {
+        "source_excerpt_sha256": "8805cae5eb2fa065040717e14a05bd3edcca2ec5964aa3bbbe242bec060af32e",
+        "source_id": "aaf17bd4a7cba9153fd15e4575090dbf32ae26ee"
+      },
+      "syntax_label": "'"
+    }
+  ],
+  "schema_version": 5
+}

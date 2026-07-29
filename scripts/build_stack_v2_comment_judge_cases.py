@@ -13,6 +13,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import threading
 from collections import defaultdict, deque
@@ -36,6 +37,7 @@ DEFAULT_OUTPUT_ROOT = Path("tmp/stack_v2_comment_judge")
 DEFAULT_PER_KIND = 20
 DEFAULT_SCAN_MULTIPLIER = 500
 DEFAULT_MAX_CONTENT_CHARS = 1_000_000
+DEFAULT_MAX_LINE_COMMENT_CHARS = 12_000
 CONTENT_FIELDS = ("content", "text", "code")
 LANGUAGE_FIELDS = ("language", "lang", "programming_language")
 PATH_FIELDS = ("path", "max_stars_repo_path", "file_name")
@@ -194,6 +196,21 @@ REQUESTED_LANGUAGE_ALIASES = {
 }
 _HUGGINGFACE_DATASET_OPEN_LOCK = threading.Lock()
 _HUGGINGFACE_DATASET_ITERATION_LOCK = threading.Lock()
+_GIT_LFS_POINTER = re.compile(
+    r"version https://git-lfs\.github\.com/spec/v1\n"
+    r"oid sha256:[0-9a-fA-F]{64}\n"
+    r"size [0-9]+\n?"
+)
+_LASSO_WELL_LOG_SECTION = re.compile(
+    r"^[ \t]*~(?:version|well|curve)(?=[.\s:]|$)"
+    r"|^[ \t]*~a(?:scii)?(?=[.\s:]|$)",
+    re.IGNORECASE | re.MULTILINE,
+)
+_BINARY_CONTROL_MIN_COUNT = 8
+_BINARY_CONTROL_MIN_RATIO = 0.01
+_TEXT_WHITESPACE_CONTROLS = frozenset("\t\n\r\f")
+_VI_INSERT_MAP_LINE = re.compile(r"^[ \t]*map![ \t]+", re.MULTILINE)
+_VI_INSERT_MAP_MIN_LINES = 2
 
 
 class _CorpusCollectionError(Exception):
@@ -202,7 +219,7 @@ class _CorpusCollectionError(Exception):
 
 @dataclass(frozen=True)
 class StackFailure:
-    """One language/comment-kind bucket that could not be sampled."""
+    """One language sampling quota that could not be completed."""
 
     language: str
     comment_kind: str
@@ -310,6 +327,18 @@ class PrefetchedRecord:
     content: str
 
 
+@dataclass(frozen=True)
+class CommentCandidate:
+    """One classified comment match available from a source record."""
+
+    match_index: int
+    match_start: int
+    match_end: int
+    raw_comment: str
+    kind: str
+    syntax_label: str
+
+
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
 
@@ -323,6 +352,14 @@ def parse_args() -> argparse.Namespace:
         "--dataset",
         default=DEFAULT_DATASET,
         help="Hugging Face dataset name used when --input-jsonl is not supplied.",
+    )
+    parser.add_argument(
+        "--dataset-revision",
+        default=None,
+        help=(
+            "Optional Hugging Face dataset revision (for example, an immutable "
+            "commit SHA). Omit to use the dataset's current default revision."
+        ),
     )
     parser.add_argument("--split", default="train", help="Dataset split to stream.")
     parser.add_argument(
@@ -374,12 +411,22 @@ def parse_args() -> argparse.Namespace:
         help="Number of distinct source files to collect for each supported comment kind.",
     )
     parser.add_argument(
+        "--files-per-language",
+        type=int,
+        default=None,
+        help=(
+            "Collect at most one comment from each of exactly this many distinct "
+            "source files per language. This total-file quota replaces per-kind "
+            "quotas while balancing represented comment kinds where possible."
+        ),
+    )
+    parser.add_argument(
         "--max-records-per-language",
         type=int,
         default=None,
         help=(
             "Stop scanning a language after this many candidate records. Defaults "
-            f"to --per-kind * {DEFAULT_SCAN_MULTIPLIER}."
+            f"to the active sampling quota * {DEFAULT_SCAN_MULTIPLIER}."
         ),
     )
     parser.add_argument(
@@ -434,7 +481,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--failure-name",
         default="failures.jsonl",
-        help="Failure filename under --output-root for incomplete language/kind buckets.",
+        help="Failure filename under --output-root for incomplete sampling quotas.",
     )
     parser.add_argument(
         "--context-chars",
@@ -454,6 +501,16 @@ def parse_args() -> argparse.Namespace:
         help=(
             "Skip source files larger than this many decoded characters. Set to "
             "0 to disable the content-size cap."
+        ),
+    )
+    parser.add_argument(
+        "--max-line-comment-chars",
+        type=int,
+        default=DEFAULT_MAX_LINE_COMMENT_CHARS,
+        help=(
+            "Maximum characters allowed in a line-comment judge candidate. "
+            "Over-limit line matches are skipped as likely source-format collisions; "
+            "use 0 to disable. Properly delimited block and nested comments are uncapped."
         ),
     )
     parser.add_argument(
@@ -494,9 +551,9 @@ def parse_args() -> argparse.Namespace:
         "--fail-on-incomplete",
         action="store_true",
         help=(
-            "Return a non-zero exit code when any language/kind bucket has fewer "
-            "than --per-kind cases. By default, pytest reports these rows as "
-            "test failures from failures.jsonl."
+            "Return a non-zero exit code when a per-kind or total-file quota is "
+            "incomplete. By default, pytest reports these rows as test failures "
+            "from failures.jsonl."
         ),
     )
     return parser.parse_args()
@@ -507,6 +564,8 @@ def main() -> int:
 
     args = parse_args()
     _normalize_sampling_limits(args)
+    if args.dataset_revision is not None and not args.dataset_revision.strip():
+        raise SystemExit("--dataset-revision must not be empty")
     if args.num_workers < 1:
         raise SystemExit("--num-workers must be at least 1")
     if args.content_prefetch_workers < 1:
@@ -527,7 +586,7 @@ def main() -> int:
     _emit_manifest_progress(
         args,
         f"[stack-v2 manifest] start languages={len(languages)} "
-        f"per_kind={args.per_kind} output_root={args.output_root}",
+        f"{_sampling_goal_label(args)} output_root={args.output_root}",
     )
 
     _validate_selected_languages(languages)
@@ -555,7 +614,7 @@ def main() -> int:
             outfile.write(json.dumps(case.to_json(), ensure_ascii=False) + "\n")
 
     _write_failures(failure_path, failures)
-    _print_summary(manifest_path, failure_path, all_cases, failures, args.per_kind)
+    _print_summary(manifest_path, failure_path, all_cases, failures)
     if failures and args.fail_on_incomplete:
         return 1
     return 0
@@ -571,10 +630,23 @@ def _normalize_sampling_limits(args: argparse.Namespace) -> None:
 
     if args.per_kind < 1:
         raise SystemExit("--per-kind must be at least 1")
+    if args.files_per_language is not None and args.files_per_language < 1:
+        raise SystemExit("--files-per-language must be at least 1")
     if args.max_records_per_language is None:
-        args.max_records_per_language = args.per_kind * DEFAULT_SCAN_MULTIPLIER
+        active_quota = args.files_per_language or args.per_kind
+        args.max_records_per_language = active_quota * DEFAULT_SCAN_MULTIPLIER
     if args.max_records_per_language < 1:
         raise SystemExit("--max-records-per-language must be at least 1")
+    if args.max_line_comment_chars < 0:
+        raise SystemExit("--max-line-comment-chars must be non-negative")
+
+
+def _sampling_goal_label(args: argparse.Namespace) -> str:
+    """Return a concise label for the active manifest sampling quota."""
+
+    if args.files_per_language is not None:
+        return f"files_per_language={args.files_per_language}"
+    return f"per_kind={args.per_kind}"
 
 
 def _collect_requested_languages(
@@ -634,16 +706,38 @@ def _collect_requested_language(
     syntax = get_comment_syntax(language)
     target_kinds = _supported_comment_kinds(syntax, language)
     if not target_kinds:
+        outcome = (
+            "incomplete no-supported-comment-kinds"
+            if args.files_per_language is not None
+            else "skipped no-supported-comment-kinds"
+        )
         _emit_manifest_progress(
             args,
-            f"[stack-v2 manifest] language {language_index}/{language_count} "
-            f"{language} skipped no-supported-comment-kinds",
+            f"[stack-v2 manifest] language {language_index}/{language_count} {language} {outcome}",
+        )
+        empty_result = StackCollectionResult(
+            cases=[],
+            scanned_records=0,
+            dataset_config=None,
+            dataset_language=_dataset_language_for(language, language_map),
+        )
+        failures = (
+            _build_failures(
+                args=args,
+                language=language,
+                syntax=syntax,
+                target_kinds=target_kinds,
+                counts={},
+                result=empty_result,
+            )
+            if args.files_per_language is not None
+            else []
         )
         return LanguageCollectionResult(
             language_index=language_index,
             language=language,
             cases=[],
-            failures=[],
+            failures=failures,
         )
 
     _emit_manifest_progress(
@@ -664,7 +758,7 @@ def _collect_requested_language(
         args,
         f"[stack-v2 manifest] language {language_index}/{language_count} "
         f"{language} done scanned={result.scanned_records} "
-        f"{_format_progress_counts(counts, target_kinds, args.per_kind)}",
+        f"{_format_sampling_progress(args, counts, target_kinds, len(result.cases))}",
     )
 
     return LanguageCollectionResult(
@@ -681,9 +775,8 @@ def _collect_requested_language(
         ),
     )
 
-def _selected_languages(
-    raw_languages: str | None, language_count: int | None = None
-) -> list[str]:
+
+def _selected_languages(raw_languages: str | None, language_count: int | None = None) -> list[str]:
     if language_count is not None and language_count < 1:
         raise SystemExit("--language-count must be at least 1")
     if raw_languages is None:
@@ -745,6 +838,20 @@ def _format_progress_counts(
     return " ".join(f"{kind}={counts.get(kind, 0)}/{per_kind}" for kind in target_kinds)
 
 
+def _format_sampling_progress(
+    args: argparse.Namespace,
+    counts: dict[str, int],
+    target_kinds: tuple[str, ...],
+    total_cases: int,
+) -> str:
+    """Format progress for the active per-kind or total-file sampling mode."""
+
+    if args.files_per_language is None:
+        return _format_progress_counts(counts, target_kinds, args.per_kind)
+    kind_counts = " ".join(f"{kind}={counts.get(kind, 0)}" for kind in target_kinds)
+    return f"files={total_cases}/{args.files_per_language} {kind_counts}".rstrip()
+
+
 def _supported_comment_kinds(syntax: CommentSyntax, language: str) -> tuple[str, ...]:
     kinds = []
     examples = [
@@ -767,9 +874,7 @@ def _supported_comment_kinds(syntax: CommentSyntax, language: str) -> tuple[str,
     for example in examples:
         if example.kind not in kinds:
             kinds.append(example.kind)
-    return tuple(
-        kind for kind in kinds if (language, kind) not in STACK_V2_KIND_EXCLUSIONS
-    )
+    return tuple(kind for kind in kinds if (language, kind) not in STACK_V2_KIND_EXCLUSIONS)
 
 
 def _collect_language_cases(
@@ -785,11 +890,15 @@ def _collect_language_cases(
     sanitizer = CommentSanitizer(language)
     classification_rules = _comment_classification_rules(syntax)
     collected: dict[str, list[StackCase]] = {kind: [] for kind in target_kinds}
-    seen_sources: set[tuple[str, str]] = set()
+    seen_kind_sources: set[tuple[str, str]] = set()
+    selected_sources: set[str] = set()
+    kind_order = {kind: index for index, kind in enumerate(target_kinds)}
 
     dataset_language = _dataset_language_for(language, language_map)
     available_configs = (
-        None if args.input_jsonl is not None else _safe_dataset_config_names(args.dataset)
+        None
+        if args.input_jsonl is not None
+        else _safe_dataset_config_names(args.dataset, args.dataset_revision)
     )
     dataset_config = _dataset_config_for(args, language, language_map, available_configs)
     records = _iter_records(args, language, language_map)
@@ -808,8 +917,12 @@ def _collect_language_cases(
                 scanned_records = args.max_records_per_language
                 break
             if _should_emit_record_progress(args, prefetched.record_index):
-                progress_counts = _format_collected_progress(
-                    collected, target_kinds, args.per_kind
+                cases = _flatten_cases(collected)
+                progress_counts = _format_sampling_progress(
+                    args,
+                    _counts_by_kind(cases),
+                    target_kinds,
+                    len(cases),
                 )
                 _emit_manifest_progress(
                     args,
@@ -820,9 +933,14 @@ def _collect_language_cases(
             content = prefetched.content
             if not content:
                 continue
+            if not _record_is_eligible_source(record, language, content):
+                continue
 
             source_identity = _source_identity(record, prefetched.record_index)
+            if args.files_per_language is not None and source_identity in selected_sources:
+                continue
             match_ranges = query.iter_ranges(content)
+            candidates = []
             for match_index, (match_start, match_end) in enumerate(match_ranges):
                 raw_comment = content[match_start:match_end]
                 kind, syntax_label = _classify_comment_with_rules(
@@ -830,35 +948,105 @@ def _collect_language_cases(
                     classification_rules,
                     raw_comment,
                 )
-                if kind not in collected or len(collected[kind]) >= args.per_kind:
+                if kind not in collected:
                     continue
-                if (kind, source_identity) in seen_sources:
+                if _line_comment_exceeds_judge_limit(args, kind, raw_comment):
+                    _emit_manifest_progress(
+                        args,
+                        f"[stack-v2 manifest] language={language} "
+                        f"skipped-line-overcapture record={prefetched.record_index} "
+                        f"match={match_index} chars={len(raw_comment)} "
+                        f"limit={args.max_line_comment_chars}",
+                    )
                     continue
+                candidates.append(
+                    CommentCandidate(
+                        match_index=match_index,
+                        match_start=match_start,
+                        match_end=match_end,
+                        raw_comment=raw_comment,
+                        kind=kind,
+                        syntax_label=syntax_label,
+                    )
+                )
 
+            if args.files_per_language is not None:
+                if not candidates:
+                    continue
+                candidate = min(
+                    candidates,
+                    key=lambda item: (
+                        len(collected[item.kind]),
+                        kind_order[item.kind],
+                        item.match_index,
+                    ),
+                )
                 case = _build_case(
                     language=language,
-                    kind=kind,
-                    syntax_label=syntax_label,
+                    kind=candidate.kind,
+                    syntax_label=candidate.syntax_label,
                     record=record,
                     record_index=prefetched.record_index,
-                    match_index=match_index,
+                    match_index=candidate.match_index,
                     content=content,
-                    match_start=match_start,
-                    match_end=match_end,
-                    raw_comment=raw_comment,
-                    cleaned_comment=sanitizer.sanitize(raw_comment),
+                    match_start=candidate.match_start,
+                    match_end=candidate.match_end,
+                    raw_comment=candidate.raw_comment,
+                    cleaned_comment=sanitizer.sanitize(candidate.raw_comment),
                     source_root=source_root,
                     context_chars=args.context_chars,
                 )
-                collected[kind].append(case)
-                seen_sources.add((kind, source_identity))
-                progress_counts = _format_collected_progress(
-                    collected, target_kinds, args.per_kind
+                collected[candidate.kind].append(case)
+                selected_sources.add(source_identity)
+                cases = _flatten_cases(collected)
+                progress_counts = _format_sampling_progress(
+                    args,
+                    _counts_by_kind(cases),
+                    target_kinds,
+                    len(cases),
                 )
                 _emit_manifest_progress(
                     args,
                     f"[stack-v2 manifest] language={language} collected "
-                    f"kind={kind} case={case.case_id} {progress_counts}",
+                    f"kind={candidate.kind} case={case.case_id} {progress_counts}",
+                )
+                if len(selected_sources) >= args.files_per_language:
+                    break
+                continue
+
+            for candidate in candidates:
+                if len(collected[candidate.kind]) >= args.per_kind:
+                    continue
+                if (candidate.kind, source_identity) in seen_kind_sources:
+                    continue
+                case = _build_case(
+                    language=language,
+                    kind=candidate.kind,
+                    syntax_label=candidate.syntax_label,
+                    record=record,
+                    record_index=prefetched.record_index,
+                    match_index=candidate.match_index,
+                    content=content,
+                    match_start=candidate.match_start,
+                    match_end=candidate.match_end,
+                    raw_comment=candidate.raw_comment,
+                    cleaned_comment=sanitizer.sanitize(candidate.raw_comment),
+                    source_root=source_root,
+                    context_chars=args.context_chars,
+                )
+                collected[candidate.kind].append(case)
+                seen_kind_sources.add((candidate.kind, source_identity))
+                cases = _flatten_cases(collected)
+                progress_counts = _format_sampling_progress(
+                    args,
+                    _counts_by_kind(cases),
+                    target_kinds,
+                    len(cases),
+                )
+                _emit_manifest_progress(
+                    args,
+                    f"[stack-v2 manifest] language={language} collected "
+                    f"kind={candidate.kind} case={case.case_id} {progress_counts}",
                 )
 
             if all(len(cases) >= args.per_kind for cases in collected.values()):
@@ -887,6 +1075,20 @@ def _collect_language_cases(
     )
 
 
+def _line_comment_exceeds_judge_limit(
+    args: argparse.Namespace,
+    comment_kind: str,
+    raw_comment: str,
+) -> bool:
+    """Return whether a line match is too large for cleaner-judge sampling."""
+
+    return (
+        comment_kind == "line"
+        and args.max_line_comment_chars > 0
+        and len(raw_comment) > args.max_line_comment_chars
+    )
+
+
 def _build_failures(
     *,
     args: argparse.Namespace,
@@ -896,6 +1098,16 @@ def _build_failures(
     counts: dict[str, int],
     result: StackCollectionResult,
 ) -> list[StackFailure]:
+    if args.files_per_language is not None:
+        return _build_file_quota_failures(
+            args=args,
+            language=language,
+            syntax=syntax,
+            target_kinds=target_kinds,
+            counts=counts,
+            result=result,
+        )
+
     failures = []
     for kind in target_kinds:
         observed_count = counts.get(kind, 0)
@@ -937,6 +1149,75 @@ def _build_failures(
             )
         )
     return failures
+
+
+def _build_file_quota_failures(
+    *,
+    args: argparse.Namespace,
+    language: str,
+    syntax: CommentSyntax,
+    target_kinds: tuple[str, ...],
+    counts: dict[str, int],
+    result: StackCollectionResult,
+) -> list[StackFailure]:
+    """Return one explicit failure when a language misses its total-file quota."""
+
+    quota = args.files_per_language
+    observed_count = len(result.cases)
+    if quota is None or observed_count >= quota:
+        return []
+
+    if not target_kinds:
+        reason = (
+            f"No eligible Stack v2 comment kinds remain for {language}; collected "
+            f"{observed_count}/{quota} distinct source files."
+        )
+        recommendation = (
+            "Review this language's Stack v2 kind exclusions or corpus mapping. "
+            "The total-file quota intentionally does not mark zero-target registry "
+            "languages as complete."
+        )
+    elif result.collection_error is not None:
+        reason = (
+            f"Could not finish collecting distinct source files for {language}: "
+            f"{result.collection_error}. Found {observed_count}/{quota} before "
+            f"aborting after scanning {result.scanned_records} record(s)."
+        )
+        recommendation = (
+            "Resolve the corpus access or streaming error and rerun the manifest "
+            "builder for this language. Treat observed counts as partial samples."
+        )
+    else:
+        reason = (
+            f"Only found {observed_count}/{quota} distinct source files containing "
+            f"supported comments for {language} after scanning "
+            f"{result.scanned_records} record(s)."
+        )
+        recommendation = (
+            "Increase --max-records-per-language or review the Stack v2 language "
+            "mapping when the corpus should contain more eligible files."
+        )
+
+    syntax_examples = sorted(
+        {example for kind in target_kinds for example in _syntax_examples_for_kind(syntax, kind)}
+    )
+    return [
+        StackFailure(
+            language=language,
+            comment_kind="source_files",
+            expected_count=quota,
+            observed_count=observed_count,
+            scanned_records=result.scanned_records,
+            max_records_per_language=args.max_records_per_language,
+            dataset=args.dataset,
+            dataset_config=result.dataset_config,
+            dataset_language=result.dataset_language,
+            syntax_examples=syntax_examples,
+            observed_kinds=counts,
+            reason=reason,
+            recommendation=recommendation,
+        )
+    ]
 
 
 def _manifest_failure_recommendation(kind: str) -> str:
@@ -994,7 +1275,7 @@ def _iter_records(
             "Install it or pass --input-jsonl with locally exported Stack v2 records."
         ) from exc
 
-    available_configs = _safe_dataset_config_names(args.dataset)
+    available_configs = _safe_dataset_config_names(args.dataset, args.dataset_revision)
     dataset_config = _dataset_config_for(args, language, language_map, available_configs)
     try:
         dataset = _load_streaming_dataset(
@@ -1002,6 +1283,7 @@ def _iter_records(
             dataset=args.dataset,
             dataset_config=dataset_config,
             split=args.split,
+            dataset_revision=args.dataset_revision,
         )
     except ValueError as exc:
         raise SystemExit(
@@ -1052,6 +1334,7 @@ def _load_streaming_dataset(
     dataset: str,
     dataset_config: str | None,
     split: str,
+    dataset_revision: str | None = None,
 ):
     """Open a Hugging Face streaming dataset under a metadata lock.
 
@@ -1060,15 +1343,19 @@ def _load_streaming_dataset(
         dataset: Hugging Face dataset name.
         dataset_config: Optional dataset config.
         split: Dataset split to stream.
+        dataset_revision: Optional dataset repository revision.
 
     Returns:
         The streaming dataset object.
     """
 
     with _HUGGINGFACE_DATASET_OPEN_LOCK:
+        kwargs: dict[str, Any] = {"split": split, "streaming": True}
+        if dataset_revision is not None:
+            kwargs["revision"] = dataset_revision
         if dataset_config:
-            return load_dataset(dataset, dataset_config, split=split, streaming=True)
-        return load_dataset(dataset, split=split, streaming=True)
+            return load_dataset(dataset, dataset_config, **kwargs)
+        return load_dataset(dataset, **kwargs)
 
 
 def _iter_jsonl_records(path: Path) -> Iterator[dict[str, Any]]:
@@ -1116,19 +1403,28 @@ def _dataset_config_for(
     return candidates[0]
 
 
-def _safe_dataset_config_names(dataset: str) -> tuple[str, ...] | None:
+def _safe_dataset_config_names(
+    dataset: str,
+    dataset_revision: str | None = None,
+) -> tuple[str, ...] | None:
     try:
-        return _dataset_config_names(dataset)
+        return _dataset_config_names(dataset, dataset_revision)
     except Exception:
         return None
 
 
 @lru_cache(maxsize=None)
-def _dataset_config_names(dataset: str) -> tuple[str, ...]:
+def _dataset_config_names(
+    dataset: str,
+    dataset_revision: str | None = None,
+) -> tuple[str, ...]:
     from datasets import get_dataset_config_names
 
     with _HUGGINGFACE_DATASET_OPEN_LOCK:
-        return tuple(get_dataset_config_names(dataset))
+        kwargs = {}
+        if dataset_revision is not None:
+            kwargs["revision"] = dataset_revision
+        return tuple(get_dataset_config_names(dataset, **kwargs))
 
 
 def _resolve_dataset_config(config: str, available_configs: tuple[str, ...] | None) -> str:
@@ -1148,11 +1444,7 @@ def _dataset_config_lookup(available_configs: tuple[str, ...]) -> dict[str, str]
     for config in available_configs:
         for key in _dataset_config_lookup_keys(config):
             grouped[key].append(config)
-    return {
-        key: configs[0]
-        for key, configs in grouped.items()
-        if len(set(configs)) == 1
-    }
+    return {key: configs[0] for key, configs in grouped.items() if len(set(configs)) == 1}
 
 
 def _dataset_config_lookup_keys(config: str) -> tuple[str, ...]:
@@ -1285,6 +1577,146 @@ def _record_content(record: dict[str, Any], args: argparse.Namespace) -> str:
     if _has_stack_v2_content_pointer(record):
         raise SystemExit(_stack_v2_content_source_message())
     return ""
+
+
+def _record_is_eligible_source(
+    record: dict[str, Any],
+    language: str,
+    content: str,
+) -> bool:
+    """Return whether fetched text is source for the requested language.
+
+    Stack v2 occasionally assigns a language to a pointer or to a colliding
+    legacy file extension. These gates intentionally require exact corpus
+    signatures so nearby, genuine source remains available to the sampler.
+    """
+
+    normalized_content = content.replace("\r\n", "\n").replace("\r", "\n")
+    if _GIT_LFS_POINTER.fullmatch(normalized_content) is not None:
+        return False
+
+    path = _first_text_field(record, PATH_FIELDS).lower()
+    normalized_language = _normalize_language(language)
+    if (
+        normalized_language == "mirc_script"
+        and path.endswith(".mrc")
+        and _looks_like_iso_2709_record(content)
+    ):
+        return False
+
+    if normalized_language in {"purebasic", "yacc"} and _is_control_heavy_payload(content):
+        return False
+
+    if (
+        normalized_language == "ioke"
+        and path.endswith(".ik")
+        and _looks_like_vi_insert_map_file(content)
+        and _is_control_heavy_payload(content)
+    ):
+        return False
+
+    if normalized_language == "hack" and path.endswith(".php"):
+        prefix = content.removeprefix("\ufeff").lstrip()
+        if prefix.startswith("#!"):
+            shebang = re.match(r"#![^\r\n]*(?:\r\n?|\n)", prefix)
+            if shebang is None:
+                return False
+            prefix = prefix[shebang.end() :].lstrip()
+        if not prefix.startswith("<?hh"):
+            return False
+
+    if normalized_language == "cobol" and path.endswith(".ccp"):
+        prefix = content.removeprefix("\ufeff").lstrip()
+        if prefix.startswith("<?xml"):
+            declaration_end = prefix.find("?>")
+            if declaration_end >= 0:
+                prefix = prefix[declaration_end + 2 :].lstrip()
+        if re.match(r"<Page(?:\s|>)", prefix) is not None:
+            return False
+
+    if (
+        normalized_language == "lasso"
+        and path.endswith(".las")
+        and _LASSO_WELL_LOG_SECTION.search(content) is not None
+    ):
+        return False
+
+    return True
+
+
+def _looks_like_iso_2709_record(content: str) -> bool:
+    """Return whether content begins with a structurally valid MARC record."""
+
+    if len(content) < 26:
+        return False
+
+    record_length_text = content[:5]
+    base_address_text = content[12:17]
+    if not (
+        record_length_text.isascii()
+        and record_length_text.isdigit()
+        and base_address_text.isascii()
+        and base_address_text.isdigit()
+    ):
+        return False
+
+    record_length = int(record_length_text)
+    base_address = int(base_address_text)
+    if (
+        record_length < 26
+        or base_address < 25
+        or base_address > len(content)
+        or content[base_address - 1] != "\x1e"
+    ):
+        return False
+
+    directory = content[24 : base_address - 1]
+    if not directory or len(directory) % 12:
+        return False
+
+    declared_field_end = 0
+    for offset in range(0, len(directory), 12):
+        entry = directory[offset : offset + 12]
+        tag = entry[:3]
+        geometry = entry[3:]
+        if not (tag.isascii() and tag.isalnum() and geometry.isascii() and geometry.isdigit()):
+            return False
+        field_length = int(entry[3:7])
+        field_offset = int(entry[7:12])
+        if field_length < 1:
+            return False
+        declared_field_end = max(
+            declared_field_end,
+            field_offset + field_length,
+        )
+
+    if base_address + declared_field_end + 1 != record_length:
+        return False
+
+    record_terminator = content.find("\x1d", base_address)
+    return record_terminator != -1 and record_terminator < record_length
+
+
+def _is_control_heavy_payload(content: str) -> bool:
+    """Return whether decoded text retains strong binary-control evidence."""
+
+    if not content:
+        return False
+
+    control_count = sum(
+        (ord(char) < 0x20 and char not in _TEXT_WHITESPACE_CONTROLS) or 0x7F <= ord(char) <= 0x9F
+        for char in content
+    )
+    return (
+        control_count >= _BINARY_CONTROL_MIN_COUNT
+        and control_count / len(content) >= _BINARY_CONTROL_MIN_RATIO
+    )
+
+
+def _looks_like_vi_insert_map_file(content: str) -> bool:
+    """Return whether content has repeated vi insert-mode mapping commands."""
+
+    return len(_VI_INSERT_MAP_LINE.findall(content)) >= _VI_INSERT_MAP_MIN_LINES
 
 
 def _content_within_size_limit(content: str, max_content_chars: int) -> str:
@@ -1554,10 +1986,13 @@ def _language_match_keys(value: Any) -> set[str]:
 
 
 def _source_identity(record: dict[str, Any], record_index: int) -> str:
-    for fields in (ID_FIELDS, PATH_FIELDS):
-        value = _first_text_field(record, fields)
-        if value:
-            return value
+    source_id = _first_text_field(record, ID_FIELDS)
+    if source_id:
+        return source_id
+    path = _first_text_field(record, PATH_FIELDS)
+    if path:
+        repo = _first_text_field(record, REPO_FIELDS)
+        return f"{repo}:{path}" if repo else path
     return f"record-{record_index}"
 
 
@@ -1580,9 +2015,7 @@ def _classify_comment_with_rules(
     raw_comment: str,
 ) -> tuple[str, str]:
     stripped = raw_comment.strip()
-    block_wrappers, non_line_openers, line_openers, fallback_kind = (
-        classification_rules
-    )
+    block_wrappers, non_line_openers, line_openers, fallback_kind = classification_rules
 
     matching_nested_delimiters = []
     for open_delim, close_delim in nested_delimiters:
@@ -1643,12 +2076,9 @@ def _comment_classification_rules(
         example for example in examples if example.kind == "line"
     )
     non_line_openers = tuple(
-        (example.kind, _line_opener(example.expected_match))
-        for example in non_line_examples
+        (example.kind, _line_opener(example.expected_match)) for example in non_line_examples
     )
-    line_openers = tuple(
-        _line_opener(example.expected_match) for example in line_examples
-    )
+    line_openers = tuple(_line_opener(example.expected_match) for example in line_examples)
     fallback_kind = "contextual" if syntax.contextual_extractor else ""
     return block_wrappers, non_line_openers, line_openers, fallback_kind
 
@@ -1733,7 +2163,7 @@ def _build_case(
         comment_kind=kind,
         syntax_label=syntax_label,
         source_file=str(source_file),
-        source_id=_first_text_field(record, ID_FIELDS),
+        source_id=_source_identity(record, record_index),
         repo=_first_text_field(record, REPO_FIELDS),
         path=_first_text_field(record, PATH_FIELDS),
         match_start=start,
@@ -1798,13 +2228,6 @@ def _line_column(content: str, offset: int) -> tuple[int, int]:
     return line, column
 
 
-def _format_collected_progress(
-    collected: dict[str, list[StackCase]], target_kinds: tuple[str, ...], per_kind: int
-) -> str:
-    counts = _counts_by_kind(_flatten_cases(collected))
-    return _format_progress_counts(counts, target_kinds, per_kind)
-
-
 def _flatten_cases(collected: dict[str, list[StackCase]]) -> list[StackCase]:
     return [case for cases in collected.values() for case in cases]
 
@@ -1832,7 +2255,6 @@ def _print_summary(
     failure_path: Path,
     cases: list[StackCase],
     failures: list[StackFailure],
-    per_kind: int,
 ) -> None:
     print(f"Wrote {manifest_path}")
     print(f"Collected {len(cases)} judge cases")
@@ -1842,7 +2264,7 @@ def _print_summary(
         for failure in failures:
             print(
                 f"  {failure.language}/{failure.comment_kind}: "
-                f"{failure.observed_count}/{per_kind} "
+                f"{failure.observed_count}/{failure.expected_count} "
                 f"after {failure.scanned_records} scanned records",
                 file=sys.stderr,
             )

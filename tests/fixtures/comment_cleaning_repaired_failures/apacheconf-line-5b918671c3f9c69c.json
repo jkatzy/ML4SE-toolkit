@@ -1,0 +1,38 @@
+{
+  "case_id": "apacheconf-line-5b918671c3f9c69c",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "apacheconf",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "035e4e71a844f3da5225dfc7aff7d9824e5f6709edf8d18003631cee80ce31f1",
+      "utf8_length": 78
+    },
+    "manifest_old_output": {
+      "sha256": "c9f223b7840a1463801cc212fe9e48b9c54900b1b41308df9f8e878cf8b0b097",
+      "utf8_length": 74
+    },
+    "raw_comment": {
+      "sha256": "03b605a210d681f00d981e84118e0f32cf6ece38f2a9e7ebdfd86654705179ec",
+      "utf8_length": 82
+    },
+    "recommended_expected_output": {
+      "sha256": "c9f223b7840a1463801cc212fe9e48b9c54900b1b41308df9f8e878cf8b0b097",
+      "utf8_length": 74
+    }
+  },
+  "regression": {
+    "expected_output": "THESE SETTINGS CANNOT BE SET IN A PHP SCRIPT,\nONLY IN php.ini OR .htaccess",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## THESE SETTINGS CANNOT BE SET IN A PHP SCRIPT,\n  ## ONLY IN php.ini OR .htaccess"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "88fb04fe657881205e0192b3180719a8718313ef77d946f5e4a9879055caa393",
+    "source_id": "23b37b362145d6ab8e1f5a657794b0bc7a2aa1d8"
+  },
+  "source_record_sha256": "3883d905f10dd91b450f34fcdbd08811ae834c86150595e21aa85d0ed6a2d4d0"
+}

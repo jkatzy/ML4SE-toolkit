@@ -1,0 +1,76 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "bluespec_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "f07f0be5faa90070029a2d266757ad981f56bfd2f2ac3185c7465d86beb5a9f1",
+      "case_id": "bluespec-block-406e85b8be149862",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2013 Colin Rothwell\nAll rights reserved.\n\nThis software was developed by Colin Rothwell as part of his final year\nundergraduate project.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright\n   notice, this list of conditions and the following disclaimer in the\n   documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS\nOR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\nHOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY\nOUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF\nSUCH DAMAGE.",
+      "expected_cleaned_sha256": "aba36bd16854bf18a1b7caeb176c559b8aa154aa52b504b78f63a326b0626377",
+      "language": "bluespec",
+      "raw_comment": "/*-\n * Copyright (c) 2013 Colin Rothwell\n * All rights reserved.\n *\n * This software was developed by Colin Rothwell as part of his final year\n * undergraduate project.\n * \n * Redistribution and use in source and binary forms, with or without\n * modification, are permitted provided that the following conditions\n * are met:\n * 1. Redistributions of source code must retain the above copyright\n *    notice, this list of conditions and the following disclaimer.\n * 2. Redistributions in binary form must reproduce the above copyright\n *    notice, this list of conditions and the following disclaimer in the\n *    documentation and/or other materials provided with the distribution.\n *\n * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND\n * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\n * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE\n * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\n * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS\n * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY\n * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF\n * SUCH DAMAGE.\n */",
+      "raw_sha256": "9932c75e8f91cdae80dd43bbf44b1f8edf2a40598624303f0f6f0d50a2fc7d54",
+      "raw_utf8_length": 1460,
+      "source_provenance": {
+        "source_excerpt_sha256": "9acc8351058f259da0722359dc8ddd4862fbe8e7b00f587e02b5a50cc0eb8eb7",
+        "source_id": "78ccaf6517ac62506c73611b0f54fc852a4d0067"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "23325715320bfdc465b75296352e0bf1b74328c7064230193da3ec45e6430d73",
+      "case_id": "bluespec-block-9fd3ac4903e8f2f9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2010 Greg Chadwick\nCopyright (c) 2012 Ben Thorner\nCopyright (c) 2013 Colin Rothwell\nCopyright (c) 2013 David T. Chisnall\nCopyright (c) 2013 Jonathan Woodruff\nCopyright (c) 2013 SRI International\nCopyright (c) 2013 Robert M. Norton\nCopyright (c) 2013 Robert N. M. Watson\nCopyright (c) 2013 Simon W. Moore\nCopyright (c) 2013 Alan A. Mujumdar\nCopyright (c) 2014 Colin Rothwell\nCopyright (c) 2014 Alexandre Joannou\nAll rights reserved.\n\nThis software was developed by SRI International and the University of\nCambridge Computer Laboratory under DARPA/AFRL contract FA8750-10-C-0237\n(\"CTSRD\"), as part of the DARPA CRASH research programme.\n\nThis software was developed by SRI International and the University of\nCambridge Computer Laboratory under DARPA/AFRL contract FA8750-11-C-0249\n(\"MRC2\"), as part of the DARPA MRC research programme.\n\n@BERI_LICENSE_HEADER_START@\n\nLicensed to BERI Open Systems C.I.C. (BERI) under one or more contributor\nlicense agreements.  See the NOTICE file distributed with this work for\nadditional information regarding copyright ownership.  BERI licenses this\nfile to you under the BERI Hardware-Software License, Version 1.0 (the\n\"License\"); you may not use this file except in compliance with the\nLicense.  You may obtain a copy of the License at:\n\n  http://www.beri-open-systems.org/legal/license-1-0.txt\n\nUnless required by applicable law or agreed to in writing, Work distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations under the License.\n\n@BERI_LICENSE_HEADER_END@",
+      "expected_cleaned_sha256": "26ace6a0c813bd3b16ab3dbeba42400ef72d247abc8fe236732da178b9821a50",
+      "language": "bluespec",
+      "raw_comment": "/*-\n * Copyright (c) 2010 Greg Chadwick\n * Copyright (c) 2012 Ben Thorner\n * Copyright (c) 2013 Colin Rothwell\n * Copyright (c) 2013 David T. Chisnall\n * Copyright (c) 2013 Jonathan Woodruff\n * Copyright (c) 2013 SRI International\n * Copyright (c) 2013 Robert M. Norton\n * Copyright (c) 2013 Robert N. M. Watson\n * Copyright (c) 2013 Simon W. Moore\n * Copyright (c) 2013 Alan A. Mujumdar\n * Copyright (c) 2014 Colin Rothwell\n * Copyright (c) 2014 Alexandre Joannou\n * All rights reserved.\n *\n * This software was developed by SRI International and the University of\n * Cambridge Computer Laboratory under DARPA/AFRL contract FA8750-10-C-0237\n * (\"CTSRD\"), as part of the DARPA CRASH research programme.\n *\n * This software was developed by SRI International and the University of\n * Cambridge Computer Laboratory under DARPA/AFRL contract FA8750-11-C-0249\n * (\"MRC2\"), as part of the DARPA MRC research programme.\n *\n * @BERI_LICENSE_HEADER_START@\n *\n * Licensed to BERI Open Systems C.I.C. (BERI) under one or more contributor\n * license agreements.  See the NOTICE file distributed with this work for\n * additional information regarding copyright ownership.  BERI licenses this\n * file to you under the BERI Hardware-Software License, Version 1.0 (the\n * \"License\"); you may not use this file except in compliance with the\n * License.  You may obtain a copy of the License at:\n *\n *   http://www.beri-open-systems.org/legal/license-1-0.txt\n *\n * Unless required by applicable law or agreed to in writing, Work distributed\n * under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n * CONDITIONS OF ANY KIND, either express or implied.  See the License for the\n * specific language governing permissions and limitations under the License.\n *\n * @BERI_LICENSE_HEADER_END@\n */",
+      "raw_sha256": "acadb87a4bc8974fcf410c53609164f427423bd041edaba663a475c7bd6effba",
+      "raw_utf8_length": 1795,
+      "source_provenance": {
+        "source_excerpt_sha256": "594051959d85d601f9a64b749005e53ef61a24ff34cc37f294d065b636a4e096",
+        "source_id": "9cc150b4f5fa45d216f90c0cc748b014332edc44"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "52801b56d404b312aee571f70f879a702f3c4f8d1ac199490a111746de471fb9",
+      "case_id": "bluespec-block-b1f75f68f703356e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2018 Alexandre Joannou\nAll rights reserved.\n\nThis software was developed by SRI International and the University of\nCambridge Computer Laboratory (Department of Computer Science and\nTechnology) under DARPA contract HR0011-18-C-0016 (\"ECATS\"), as part of the\nDARPA SSITH research programme.\n\n@BERI_LICENSE_HEADER_START@\n\nLicensed to BERI Open Systems C.I.C. (BERI) under one or more contributor\nlicense agreements.  See the NOTICE file distributed with this work for\nadditional information regarding copyright ownership.  BERI licenses this\nfile to you under the BERI Hardware-Software License, Version 1.0 (the\n\"License\"); you may not use this file except in compliance with the\nLicense.  You may obtain a copy of the License at:\n\n  http://www.beri-open-systems.org/legal/license-1-0.txt\n\nUnless required by applicable law or agreed to in writing, Work distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations under the License.\n\n@BERI_LICENSE_HEADER_END@",
+      "expected_cleaned_sha256": "d284eeec153c20daa9f780efbe91dd2be7eaad63524eaa0c4ef9b9710fa7f20b",
+      "language": "bluespec",
+      "raw_comment": "/*-\n * Copyright (c) 2018 Alexandre Joannou\n * All rights reserved.\n *\n * This software was developed by SRI International and the University of\n * Cambridge Computer Laboratory (Department of Computer Science and\n * Technology) under DARPA contract HR0011-18-C-0016 (\"ECATS\"), as part of the\n * DARPA SSITH research programme.\n *\n * @BERI_LICENSE_HEADER_START@\n *\n * Licensed to BERI Open Systems C.I.C. (BERI) under one or more contributor\n * license agreements.  See the NOTICE file distributed with this work for\n * additional information regarding copyright ownership.  BERI licenses this\n * file to you under the BERI Hardware-Software License, Version 1.0 (the\n * \"License\"); you may not use this file except in compliance with the\n * License.  You may obtain a copy of the License at:\n *\n *   http://www.beri-open-systems.org/legal/license-1-0.txt\n *\n * Unless required by applicable law or agreed to in writing, Work distributed\n * under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n * CONDITIONS OF ANY KIND, either express or implied.  See the License for the\n * specific language governing permissions and limitations under the License.\n *\n * @BERI_LICENSE_HEADER_END@\n */",
+      "raw_sha256": "eb49ef00a0e5a747f6326455d661dc382235fb4bf38370f9428c3a5d5ddf6a7c",
+      "raw_utf8_length": 1209,
+      "source_provenance": {
+        "source_excerpt_sha256": "c99c93b43df7244caf96dadf8dace09771b6d4bbbcc23c60ad6239bf515f502d",
+        "source_id": "e0a83f4dfaa68a9ddd58a1eb5d92728b41fbdcad"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e22856f4d62d996642c7dc514a055f0d7f3caacaabdccb5e0f644e8217173080",
+      "case_id": "bluespec-block-bae081cfe9ebc61b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2013 Alex Horsman\nAll rights reserved.\n\nThis software was developed by SRI International and the University of\nCambridge Computer Laboratory under DARPA/AFRL contract FA8750-10-C-0237\n(\"CTSRD\"), as part of the DARPA CRASH research programme.\n\n@BERI_LICENSE_HEADER_START@\n\nLicensed to BERI Open Systems C.I.C. (BERI) under one or more contributor\nlicense agreements.  See the NOTICE file distributed with this work for\nadditional information regarding copyright ownership.  BERI licenses this\nfile to you under the BERI Hardware-Software License, Version 1.0 (the\n\"License\"); you may not use this file except in compliance with the\nLicense.  You may obtain a copy of the License at:\n\n  http://www.beri-open-systems.org/legal/license-1-0.txt\n\nUnless required by applicable law or agreed to in writing, Work distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations under the License.\n\n@BERI_LICENSE_HEADER_END@",
+      "expected_cleaned_sha256": "00a7a398d9e7f4fcb970914edd801c9ce84fcdc0e7de81051f1f338c29789a9f",
+      "language": "bluespec",
+      "raw_comment": "/*-\n * Copyright (c) 2013 Alex Horsman\n * All rights reserved.\n *\n * This software was developed by SRI International and the University of\n * Cambridge Computer Laboratory under DARPA/AFRL contract FA8750-10-C-0237\n * (\"CTSRD\"), as part of the DARPA CRASH research programme.\n *\n * @BERI_LICENSE_HEADER_START@\n *\n * Licensed to BERI Open Systems C.I.C. (BERI) under one or more contributor\n * license agreements.  See the NOTICE file distributed with this work for\n * additional information regarding copyright ownership.  BERI licenses this\n * file to you under the BERI Hardware-Software License, Version 1.0 (the\n * \"License\"); you may not use this file except in compliance with the\n * License.  You may obtain a copy of the License at:\n *\n *   http://www.beri-open-systems.org/legal/license-1-0.txt\n *\n * Unless required by applicable law or agreed to in writing, Work distributed\n * under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n * CONDITIONS OF ANY KIND, either express or implied.  See the License for the\n * specific language governing permissions and limitations under the License.\n *\n * @BERI_LICENSE_HEADER_END@\n */",
+      "raw_sha256": "04a42eedd88a7ef9c269354e9e5491fcc82f06b3026560f2b1f65fda45385231",
+      "raw_utf8_length": 1158,
+      "source_provenance": {
+        "source_excerpt_sha256": "25f872f03e65454560054bfe6881635da7097792edf673a869c3ef6320dd4df7",
+        "source_id": "7c13fef13c9e97bf817f5ae80259aabc437ad559"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

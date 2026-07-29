@@ -1,0 +1,38 @@
+{
+  "case_id": "crystal-line-e5ecf7d0c1ddbf13",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "crystal",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b9b199c9f42da6ec9c29a8c7247e7b4ce14f5849a4b92460ce93688f3b0f9ae4",
+      "utf8_length": 28
+    },
+    "manifest_old_output": {
+      "sha256": "08c6bb77ea8f21014f72541ce45cfeb3bb7ebbda515afaa6ee2ae086f3c546cb",
+      "utf8_length": 31
+    },
+    "raw_comment": {
+      "sha256": "9414cce5e334418ae7d41b69ad6feccfa3cef1fc3625be7a108a6c0e50d543f0",
+      "utf8_length": 33
+    },
+    "recommended_expected_output": {
+      "sha256": "08c6bb77ea8f21014f72541ce45cfeb3bb7ebbda515afaa6ee2ae086f3c546cb",
+      "utf8_length": 31
+    }
+  },
+  "regression": {
+    "expected_output": "TODO: Implement more mappers...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# TODO: Implement more mappers..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4db27737f7ff973c4e2cb758098806427e631a0acf3d8483a1cf39d5ea71c0fe",
+    "source_id": "259e06d57866a6c097d3eadf580f67a4a761e936"
+  },
+  "source_record_sha256": "4d5e3429365eb9d3f9be79f734d0debd163b11af08b0cd562576a6a61ffa9650"
+}

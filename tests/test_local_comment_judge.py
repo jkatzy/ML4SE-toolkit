@@ -122,12 +122,8 @@ def test_cleaning_scope_uses_cleaning_only_contract() -> None:
     }
 
     schema = LOCAL_JUDGE._verdict_schema(LOCAL_JUDGE.CLEANING_SCOPE)
-    messages = LOCAL_JUDGE._messages(
-        "prompt", scope=LOCAL_JUDGE.CLEANING_SCOPE
-    )
-    LOCAL_JUDGE._validate_verdict(
-        verdict, scope=LOCAL_JUDGE.CLEANING_SCOPE
-    )
+    messages = LOCAL_JUDGE._messages("prompt", scope=LOCAL_JUDGE.CLEANING_SCOPE)
+    LOCAL_JUDGE._validate_verdict(verdict, scope=LOCAL_JUDGE.CLEANING_SCOPE)
 
     assert schema["required"] == ["verdict", "cleaning_correct", "rationale"]
     assert "extraction_correct" not in schema["properties"]

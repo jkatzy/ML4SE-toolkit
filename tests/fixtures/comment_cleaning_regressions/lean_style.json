@@ -1,0 +1,24 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "lean_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "499ed9d97b085444183575478a12096e3cbfa3784babcd3cab5adc76e27c95fe",
+      "case_id": "lean-nested-1d4152b0d49ca922",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "lean",
+      "oracle_exception_record_sha256": "d5c31cea954e67730b1e030b393647e4692820daa43a7d22cde257dc19776a70",
+      "raw_sha256": "61bbe9ea26b22685f01bb4ae9f544adf117baa836bdcef0174337727a40ae73d",
+      "raw_utf8_length": 66,
+      "source_provenance": {
+        "source_excerpt_sha256": "2a77d48ddaf92537de5beac34059b856ccd37d94d1c1c126f78b49b9bfb6ccc6",
+        "source_id": "f9ee3719742e1a54a5e91232d60f8e1872b9bd3b"
+      },
+      "syntax_label": "/-...-/"
+    }
+  ],
+  "sanitizer_cases": [],
+  "schema_version": 5
+}

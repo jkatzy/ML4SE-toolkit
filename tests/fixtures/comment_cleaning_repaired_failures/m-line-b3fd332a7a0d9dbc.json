@@ -1,0 +1,29 @@
+{
+  "case_id": "m-line-b3fd332a7a0d9dbc",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "m",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7adbf4903756465a9041647ba7ed5674142a3bfe2a99256db5637b7e475f4408",
+      "utf8_length": 74
+    },
+    "manifest_old_output": {
+      "sha256": "7adbf4903756465a9041647ba7ed5674142a3bfe2a99256db5637b7e475f4408",
+      "utf8_length": 74
+    },
+    "raw_comment": {
+      "sha256": "ae6b1fb297994f9396102bb9359b63bd8e731c3b3f0456b8e8edcd6c9e5f6398",
+      "utf8_length": 75
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "042268cdb5eea39f94718f612cd1496719fbe53d497e2a869b7dddd278eed455",
+    "source_id": "f6bdf09437963de289dfec33b032c5154744d62f"
+  },
+  "source_record_sha256": "7c51519cfc4b10ad1fce7141754bf74b118fd2b6163a6bb0d778061edc668fef"
+}

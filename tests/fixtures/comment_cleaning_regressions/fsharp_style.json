@@ -1,0 +1,229 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "fsharp_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "94301076f5caebb8346350282853422b4672681416e23d7e532e803576c98b88",
+      "case_id": "ats-nested-036a663d219113e1",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(* ****** ****** *)",
+      "raw_sha256": "6d6640750d633bf43d87018007c1e7b0000a4a3398b98fb9d5063d93e7608b15",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "8215c2d1feef5d4e591df0df979cbcc0b79a50eda5bbf5bfa88f3fe414e1ea4c",
+        "source_id": "73b2f0f87d76e5e41a61a133643dca3761e673ae"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "94301076f5caebb8346350282853422b4672681416e23d7e532e803576c98b88",
+      "case_id": "ats-nested-0be0121ca0deadd2",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(* ****** ****** *)",
+      "raw_sha256": "6d6640750d633bf43d87018007c1e7b0000a4a3398b98fb9d5063d93e7608b15",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "ceb786c3f8ca9d8687db4b0d9ac798f3b1408e1caa2a5b7063653a2989e4734f",
+        "source_id": "630006e738efde1bd0c0ae1924a3bd25680e443a"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "94301076f5caebb8346350282853422b4672681416e23d7e532e803576c98b88",
+      "case_id": "ats-nested-0e1d53f735cc3708",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(* ****** ****** *)",
+      "raw_sha256": "6d6640750d633bf43d87018007c1e7b0000a4a3398b98fb9d5063d93e7608b15",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "064356e0082377135fb636d1b3e73aac1f139cbd0c67f49b2f1df08d208aedaf",
+        "source_id": "65f60ab1c6301f2e9e5311623bf898c93dcc691f"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "94301076f5caebb8346350282853422b4672681416e23d7e532e803576c98b88",
+      "case_id": "ats-nested-55a40b2f47f5fd24",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(* ****** ****** *)",
+      "raw_sha256": "6d6640750d633bf43d87018007c1e7b0000a4a3398b98fb9d5063d93e7608b15",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "b850613239cf3c61ff6ced5096c878187579c9a7915b07f2f4ca335e0ef82912",
+        "source_id": "8fdc6be28b73881bbe9d6a1c125e1bf6311844be"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "3d1e4755716e6b80886e298bb57b0691d1ffe5e87e57949b3a67ed9bc1928fc1",
+      "case_id": "ats-nested-573af193970bbf46",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(***********************************************************************)",
+      "raw_sha256": "727505104d37d66fb62005567afdfe7a536f78073fa719f8ab3a7ef87f68926b",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "e4ac8172f561e9d73fbead48596e8dacc324b48c22cc3e85a229248b74752c46",
+        "source_id": "b892d871c7b57cd1f4a3bdb9c5dd8b84563f8bb5"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "94301076f5caebb8346350282853422b4672681416e23d7e532e803576c98b88",
+      "case_id": "ats-nested-66144ddcbcf6a80d",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(* ****** ****** *)",
+      "raw_sha256": "6d6640750d633bf43d87018007c1e7b0000a4a3398b98fb9d5063d93e7608b15",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "9de9daef31cbf3f59408937636508cee290bbe76b3dfff3959192c61ea0aab6a",
+        "source_id": "cf48df3f125a73fd3235eebe7aae64395cbcf283"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "7cf231ca65db43d40b1d2c4392700270da486b5bbda66a32a64278cc8b2a39b7",
+      "case_id": "ats-nested-b879d27ddcbd3c16",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2013 Hongwei Xi, ATS Trustful Software, Inc.\n\nPermission is hereby granted, free of charge, to any person\nobtaining a copy of this software and associated documentation\nfiles (the \"Software\"), to deal in the Software without\nrestriction, including without limitation the rights to use,\ncopy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following\nconditions:\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.",
+      "expected_cleaned_sha256": "e105e9561f0266cff8efd10d3fb9c75ca683ab6bf6fddfc472b046563400bcd0",
+      "language": "ats",
+      "raw_comment": "(*\n** Copyright (C) 2013 Hongwei Xi, ATS Trustful Software, Inc.\n**\n** Permission is hereby granted, free of charge, to any person\n** obtaining a copy of this software and associated documentation\n** files (the \"Software\"), to deal in the Software without\n** restriction, including without limitation the rights to use,\n** copy, modify, merge, publish, distribute, sublicense, and/or sell\n** copies of the Software, and to permit persons to whom the\n** Software is furnished to do so, subject to the following\n** conditions:\n**\n** THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n** EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n** OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n** NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n** HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n** WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n** FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n** OTHER DEALINGS IN THE SOFTWARE.\n*)",
+      "raw_sha256": "d0e0531d022967d9bf803cbc24c5ff1a31928d6304e57263596c467e821ee0a8",
+      "raw_utf8_length": 1015,
+      "source_provenance": {
+        "source_excerpt_sha256": "b62633b19887d79d3bfb5d3feee64b9a3507bc109219ca18a52fc8498dc13dd3",
+        "source_id": "23549e5a6c4ff1ea70ae749eab98bcf6553355f1"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "94301076f5caebb8346350282853422b4672681416e23d7e532e803576c98b88",
+      "case_id": "ats-nested-ecfd23c5e4defc76",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(* ****** ****** *)",
+      "raw_sha256": "6d6640750d633bf43d87018007c1e7b0000a4a3398b98fb9d5063d93e7608b15",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "92a1896169b291a42362a451c771def03697a83a50339faad36caf50ab0b91f1",
+        "source_id": "e628db4549c763adcaec9e6acde259e7b661eca5"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "3d1e4755716e6b80886e298bb57b0691d1ffe5e87e57949b3a67ed9bc1928fc1",
+      "case_id": "ats-nested-fea55707c060f7cb",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ats",
+      "raw_comment": "(***********************************************************************)",
+      "raw_sha256": "727505104d37d66fb62005567afdfe7a536f78073fa719f8ab3a7ef87f68926b",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "18ee26472f2b2291ae42301dc747679e51f75c80bf98e7ba71d142ae0b46fdc0",
+        "source_id": "d6322d46ef3d0e6e1c705df558ab9a960b6a7a96"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "d5fc028de6ae33d1ba50cd3c326aaf32509df97396c7d6d4ebdbecea54171db5",
+      "case_id": "f-line-753bf86641597258",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "let rec createState (h : H) : S =\n    match h with\n        | Div a -> SDiv (a |> AList.toList |> List.map createState)\n        | T s -> ST s",
+      "expected_cleaned_sha256": "c16f2aa135e3aa9a4a37eaae10b611fe6d05c9ceedbf7931797070fe83a65844",
+      "language": "f#",
+      "raw_comment": "//let rec createState (h : H) : S =\n//    match h with\n//        | Div a -> SDiv (a |> AList.toList |> List.map createState)\n//        | T s -> ST s",
+      "raw_sha256": "2bec1603cbfa5d167ff00fba7141902b4575cbc376adafcfa6f6e901e0a6da87",
+      "raw_utf8_length": 148,
+      "source_provenance": {
+        "source_excerpt_sha256": "cac4baec65125ac8d4b504905950d40bee5dcf24dc2b7a258d6bb2fc957fa8a5",
+        "source_id": "1fe3e03baf6bee5a6dbe5b1fa16a6dd8583dc2ae"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "a48b86b8736e91c19b21a47ed31db0f3bbc3af5a75aa2aa92bc8835920cef653",
+      "case_id": "f-nested-df7d611e60fab3d6",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module implements the primitives in\nulib/FStar.Tactics.Builtins. It would be named\nthe same, but there needs to be a thin adapter\nlayer since the tac monad representation differs\nbetween compiler and userspace (and a few other\nannoyances too).",
+      "expected_cleaned_sha256": "8bbcf70801d2470b393bf3659bf364c6e442bcc65657ef53f78277bc535a13ca",
+      "language": "f#",
+      "raw_comment": "(* This module implements the primitives in\n * ulib/FStar.Tactics.Builtins. It would be named\n * the same, but there needs to be a thin adapter\n * layer since the tac monad representation differs\n * between compiler and userspace (and a few other\n * annoyances too). *)",
+      "raw_sha256": "ea49c69fb1ec60b655ccc14d348d8d914ec6649677f80c22eabf451ba62c555b",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "d43dc4de62268771b8ffbdedcdec8e387eb9975b94ee1b49603fef1ab07d912f",
+        "source_id": "16dd94158f774acf7972878e16ccd62729d67e23"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "a48b86b8736e91c19b21a47ed31db0f3bbc3af5a75aa2aa92bc8835920cef653",
+      "case_id": "f-nested-df7d611e60fab3d6--requested-f-sharp-f49c7a9929",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module implements the primitives in\nulib/FStar.Tactics.Builtins. It would be named\nthe same, but there needs to be a thin adapter\nlayer since the tac monad representation differs\nbetween compiler and userspace (and a few other\nannoyances too).",
+      "expected_cleaned_sha256": "8bbcf70801d2470b393bf3659bf364c6e442bcc65657ef53f78277bc535a13ca",
+      "language": "f_sharp",
+      "raw_comment": "(* This module implements the primitives in\n * ulib/FStar.Tactics.Builtins. It would be named\n * the same, but there needs to be a thin adapter\n * layer since the tac monad representation differs\n * between compiler and userspace (and a few other\n * annoyances too). *)",
+      "raw_sha256": "ea49c69fb1ec60b655ccc14d348d8d914ec6649677f80c22eabf451ba62c555b",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "d43dc4de62268771b8ffbdedcdec8e387eb9975b94ee1b49603fef1ab07d912f",
+        "source_id": "16dd94158f774acf7972878e16ccd62729d67e23"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "a48b86b8736e91c19b21a47ed31db0f3bbc3af5a75aa2aa92bc8835920cef653",
+      "case_id": "f-nested-df7d611e60fab3d6--requested-fsharp-b522ef7e06",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This module implements the primitives in\nulib/FStar.Tactics.Builtins. It would be named\nthe same, but there needs to be a thin adapter\nlayer since the tac monad representation differs\nbetween compiler and userspace (and a few other\nannoyances too).",
+      "expected_cleaned_sha256": "8bbcf70801d2470b393bf3659bf364c6e442bcc65657ef53f78277bc535a13ca",
+      "language": "fsharp",
+      "raw_comment": "(* This module implements the primitives in\n * ulib/FStar.Tactics.Builtins. It would be named\n * the same, but there needs to be a thin adapter\n * layer since the tac monad representation differs\n * between compiler and userspace (and a few other\n * annoyances too). *)",
+      "raw_sha256": "ea49c69fb1ec60b655ccc14d348d8d914ec6649677f80c22eabf451ba62c555b",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "d43dc4de62268771b8ffbdedcdec8e387eb9975b94ee1b49603fef1ab07d912f",
+        "source_id": "16dd94158f774acf7972878e16ccd62729d67e23"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

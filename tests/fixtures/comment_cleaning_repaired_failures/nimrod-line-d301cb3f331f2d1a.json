@@ -1,0 +1,38 @@
+{
+  "case_id": "nimrod-line-d301cb3f331f2d1a",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "nimrod",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "49f26629cff9e72ea2449bd49ccccd4221746ef374c777df34bb76722167c931",
+      "utf8_length": 26
+    },
+    "manifest_old_output": {
+      "sha256": "0282e607da481e8292fa0a47e401c18a8331c230df7cc086ddac146d9a77c97f",
+      "utf8_length": 24
+    },
+    "raw_comment": {
+      "sha256": "8f0c74e782733b4e6dc972cb8b2ca8c33240722636857b9be3f6c03a14e2771a",
+      "utf8_length": 27
+    },
+    "recommended_expected_output": {
+      "sha256": "0282e607da481e8292fa0a47e401c18a8331c230df7cc086ddac146d9a77c97f",
+      "utf8_length": 24
+    }
+  },
+  "regression": {
+    "expected_output": "base for Dark Sky errors",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## base for Dark Sky errors"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fcb9629e400263b9a59fc7d7e5b086d3434022d31ff21dbfa2d65027d49ef742",
+    "source_id": "07acee207c5ab582c90da534d239456533b2011f"
+  },
+  "source_record_sha256": "a39662c3288396979311d757bc4c9d7c51ad64743d545379cc6bfadc2a672fab"
+}

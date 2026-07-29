@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-bdcb8836254f7e78",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f865368df350844c72b333f6a5748dc2f5efc866214232b32cfce2a7c0df43bd",
+      "utf8_length": 254
+    },
+    "manifest_old_output": {
+      "sha256": "14748b1bf55f5be0d0849e21d0138b83ba2f94f7275b6b9f369b2ae90b1b5a02",
+      "utf8_length": 242
+    },
+    "raw_comment": {
+      "sha256": "24e3dccb154229051c11c4e4c84c8ae79cb7edb7885582d45e566e204014e6bc",
+      "utf8_length": 426
+    },
+    "recommended_expected_output": {
+      "sha256": "14748b1bf55f5be0d0849e21d0138b83ba2f94f7275b6b9f369b2ae90b1b5a02",
+      "utf8_length": 242
+    }
+  },
+  "regression": {
+    "expected_output": "Computation of dependendies between Curry modules.\n\nThis module implements the functions to compute the dependency\ninformation between Curry modules.\n\n@author  Bj\u00f6rn Peem\u00f6ller, Fabian Skrlac, Finn Teegen, Jan Tikovsky\n@version December 2018",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--- --------------------------------------------------------------------------\n--- Computation of dependendies between Curry modules.\n---\n--- This module implements the functions to compute the dependency\n--- information between Curry modules.\n---\n--- @author  Bj\u00f6rn Peem\u00f6ller, Fabian Skrlac, Finn Teegen, Jan Tikovsky\n--- @version December 2018\n--- --------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2e5da7936f91dba3899d81326a87703ad3a92670b5f7bcc1e378eeb90f231625",
+    "source_id": "851c20e4d62ffa9ea5b4c58dba6793a9b5c8e255"
+  },
+  "source_record_sha256": "3010cb5cf51c6438c64202ccdf32e947bb1793fa3fcd58bedcba9cbe2e6f6976"
+}

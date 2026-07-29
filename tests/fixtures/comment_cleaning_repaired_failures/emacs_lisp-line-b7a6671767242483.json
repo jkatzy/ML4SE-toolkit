@@ -1,0 +1,38 @@
+{
+  "case_id": "emacs_lisp-line-b7a6671767242483",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:emacs_lisp",
+  "disposition": "executable_regression",
+  "language": "emacs_lisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "04f35b9d42a4f3fefa7e5c8abd212895dc2824c04682db9a7157b1855d247f97",
+      "utf8_length": 48
+    },
+    "manifest_old_output": {
+      "sha256": "abdaab58e8db646a354c7638e039087a5ae0ec614b33f203ad13d094502eb2c7",
+      "utf8_length": 46
+    },
+    "raw_comment": {
+      "sha256": "0b45981642105881ced6dee109548925dc643da0d7e7304bb4bdee90770ee354",
+      "utf8_length": 51
+    },
+    "recommended_expected_output": {
+      "sha256": "abdaab58e8db646a354c7638e039087a5ae0ec614b33f203ad13d094502eb2c7",
+      "utf8_length": 46
+    }
+  },
+  "regression": {
+    "expected_output": "mvn-region.el --- manipulating regions of text",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; mvn-region.el --- manipulating regions of text"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "935854bc30ce15332772c48fec6b7f06c305fe4ccef6b898092b49a3c8c8c06c",
+    "source_id": "03ebb791687f89a157c4209a27195542392fea5f"
+  },
+  "source_record_sha256": "e8120c3a5fb7461698bd60c4cdf1b63b26cbda92a113b0151db74925765ecfc5"
+}

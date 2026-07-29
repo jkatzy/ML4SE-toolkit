@@ -1,0 +1,38 @@
+{
+  "case_id": "vim_snippet-line-69847787bec263ea",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:repeated_marker",
+  "disposition": "executable_regression",
+  "language": "vim_snippet",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "56dc6d47737d155afddefda1af20c40c901353c222d01e70b7b4e021f2e4f548",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "3a5b62599b8aa6285de12e105efa6499ceca5aad210e9d7d6743063aeff8e450",
+      "utf8_length": 73
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#########################################################################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "21c3e865d13b4cdfd0434e189737cfbaeb9617654b87c10513533e5eb6a72291",
+    "source_id": "d9249e1747752b4e6928189df82da39182354f30"
+  },
+  "source_record_sha256": "aa64fd91659f5cffb545d0d5eb44538b75cef80e191502ca86a01c87bf49eeb5"
+}

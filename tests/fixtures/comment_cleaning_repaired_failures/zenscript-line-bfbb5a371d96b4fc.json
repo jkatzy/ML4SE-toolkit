@@ -1,0 +1,38 @@
+{
+  "case_id": "zenscript-line-bfbb5a371d96b4fc",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "zenscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e31496a5f2ffe54ce31f0094b13d3e99c3efab34e02153eea6ded19c6fd5e040",
+      "utf8_length": 8
+    },
+    "manifest_old_output": {
+      "sha256": "7df60b64e7ef61e31fc47caa6f57b0ddce2fbbd9eb6a49d425ea04f34f5a542c",
+      "utf8_length": 7
+    },
+    "raw_comment": {
+      "sha256": "d3520f0ba96d91c2bcde957da21948edfb6d3a6cadbca14d44c1cad6b4b23ae2",
+      "utf8_length": 11
+    },
+    "recommended_expected_output": {
+      "sha256": "7df60b64e7ef61e31fc47caa6f57b0ddce2fbbd9eb6a49d425ea04f34f5a542c",
+      "utf8_length": 7
+    }
+  },
+  "regression": {
+    "expected_output": "Imports",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "////Imports"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "359d6f77eba36c6ff32933cee95e4ac548f26d4bf1ef010d2458c98adee5b3b3",
+    "source_id": "7edc1325dfdc8fdec9379d3894a0bb7f5d5a7343"
+  },
+  "source_record_sha256": "6bb6e29f1890bfd3d5e8180a29e04cdfda9782692b521502e305a3b90b61539e"
+}

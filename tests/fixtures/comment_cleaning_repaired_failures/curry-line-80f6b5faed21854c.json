@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-80f6b5faed21854c",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b08e18fffcead980ee8000a79b552f26ed5d423da4831e27bd66f6f7ffc03fb6",
+      "utf8_length": 134
+    },
+    "manifest_old_output": {
+      "sha256": "7f7cbc8a07b613ba1c74fef9e9ab8d2afeb0255a30cdac65e399479fec2a7fac",
+      "utf8_length": 127
+    },
+    "raw_comment": {
+      "sha256": "90decbc79d6c01a8a57ad552e5f19011a5d7d2ebd5d1bb47593f906cb244d0c8",
+      "utf8_length": 300
+    },
+    "recommended_expected_output": {
+      "sha256": "7f7cbc8a07b613ba1c74fef9e9ab8d2afeb0255a30cdac65e399479fec2a7fac",
+      "utf8_length": 127
+    }
+  },
+  "regression": {
+    "expected_output": "Some tests for library System\n\nTo run all tests automatically by the currycheck tool, use the command:\n\"curry check TestSystem\"",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Some tests for library System\n---\n--- To run all tests automatically by the currycheck tool, use the command:\n--- \"curry check TestSystem\"\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fa3adb4ede1ba69387421aee1f779a4df570563ddbee8b1172ba79f4dd74719c",
+    "source_id": "eecbe97d2dfc72e55ef6a61d2904da6fe81578eb"
+  },
+  "source_record_sha256": "84b6e1954462af1edcf76de3e38aa2a229475e8254b5e3e6b534117e4e475577"
+}

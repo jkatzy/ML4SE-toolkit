@@ -1,0 +1,38 @@
+{
+  "case_id": "rpgle-line-6fc17417bb1570cb",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "rpgle",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c8353866ebe287eb42b4ff41695a0330e98b7a89720105b3b1106846b28bd48c",
+      "utf8_length": 67
+    },
+    "manifest_old_output": {
+      "sha256": "0505c67bea1e0c7161cd0d30405929d1ef8003582d48838f0bc7e92221756a22",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "fd64f3ace4ee3ddebe7ce1df9719929a793b4a69a82f99ec841fde34cb4bf702",
+      "utf8_length": 224
+    },
+    "recommended_expected_output": {
+      "sha256": "0505c67bea1e0c7161cd0d30405929d1ef8003582d48838f0bc7e92221756a22",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "Create UserSpace",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//------------------------------------------------------------------//\n      // Create UserSpace                                                 //\n      //------------------------------------------------------------------//"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "692cb13e201db9236e05e2e7e8715f1a227487c02fe2bda1f497407516a86349",
+    "source_id": "9ec3373ee23ace1f8fea78b3807c2aa191782c58"
+  },
+  "source_record_sha256": "de524db519748e42381eb0f5b2e2b1a7fcf411aeb91092bf9fc843f8b8394db9"
+}

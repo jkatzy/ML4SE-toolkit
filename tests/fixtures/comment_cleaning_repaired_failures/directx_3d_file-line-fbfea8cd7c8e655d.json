@@ -1,0 +1,38 @@
+{
+  "case_id": "directx_3d_file-line-fbfea8cd7c8e655d",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "directx_3d_file",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "5e154d0145c8a4f27fb9a0c2d298e4137c507a4d2fd9ffe7460b15294d84d35a",
+      "utf8_length": 146
+    },
+    "manifest_old_output": {
+      "sha256": "5e154d0145c8a4f27fb9a0c2d298e4137c507a4d2fd9ffe7460b15294d84d35a",
+      "utf8_length": 146
+    },
+    "raw_comment": {
+      "sha256": "36e73e85523d37590889cb772fb14d3e2e659956db145363b345e50830109449",
+      "utf8_length": 160
+    },
+    "recommended_expected_output": {
+      "sha256": "5e154d0145c8a4f27fb9a0c2d298e4137c507a4d2fd9ffe7460b15294d84d35a",
+      "utf8_length": 146
+    }
+  },
+  "regression": {
+    "expected_output": "Birmingham Cross-City BVE Route Object\nCross-City South\n--------------------------------------\nBy Anthony Bowden 2002-2008\nwww.railsimroutes.co.uk",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//Birmingham Cross-City BVE Route Object\r\n//Cross-City South\r\n//--------------------------------------\r\n//By Anthony Bowden 2002-2008\r\n//www.railsimroutes.co.uk"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a8e0522783472833388f3fdfc813b511ccadb072349017527389b29ce2c71ad5",
+    "source_id": "cdaf7069afdc139eb5e35576db52121102d3a7a6"
+  },
+  "source_record_sha256": "84a5526d5b45e9803fce82a444b914a8458cf98e51668a33c130bb2176eb6aeb"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "sqlpl-line-6fceabf34e2815d3",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "sqlpl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6a75b77b863854a6943e7701df76d51d54b0f077bf4c1110133bf1008cef5302",
+      "utf8_length": 45
+    },
+    "manifest_old_output": {
+      "sha256": "e08d19e2adaa6244312c8a1058ccfb9829f02df4f9e50973589f4b30b0ecf732",
+      "utf8_length": 42
+    },
+    "raw_comment": {
+      "sha256": "d9e7ac7d8edd34e35231f1afbc72a75e6ecfd1defec3e8a9c2698141cce1d5b6",
+      "utf8_length": 48
+    },
+    "recommended_expected_output": {
+      "sha256": "e08d19e2adaa6244312c8a1058ccfb9829f02df4f9e50973589f4b30b0ecf732",
+      "utf8_length": 42
+    }
+  },
+  "regression": {
+    "expected_output": "add ACT_INST_ID_ column to execution table",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "-- add ACT_INST_ID_ column to execution table --"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e48c35b8e83f1f942479ed36b8e1dbc917652c9ffb39dc7b84cf183affa4dc57",
+    "source_id": "2eebea8d5d9e30009682df5e4422fbeb2bb711f6"
+  },
+  "source_record_sha256": "d8ea757bee55888b35bfb9780c0841ece78369916bab8ae1fd28cfebee94e0e5"
+}

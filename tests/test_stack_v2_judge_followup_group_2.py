@@ -100,7 +100,7 @@ def test_motoko_framed_line_comments_remove_trailing_gutters():
     assert CommentSanitizer("motoko").sanitize(raw_comment) == expected
 
 
-def test_ring_hash_comment_removes_registered_opener():
+def test_ring_hash_ruler_sanitizes_to_empty_text():
     raw_comment = "#======================================================\r"
 
-    assert CommentSanitizer("ring").sanitize(raw_comment) == "=" * 54
+    assert CommentSanitizer("ring").sanitize(raw_comment) == ""

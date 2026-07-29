@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "browserslist_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "bd8b99c99637a110ace0c176fb0f23c4bb67fedb6a57f2b8b89dad8642796a3a",
+      "case_id": "browserslist-line-a0e5c259ef4f5f11",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@filename  .browserslistrc\n@author  brikcss  <https://github.com/brikcss>\n@description  https://github.com/ai/browserslist",
+      "expected_cleaned_sha256": "8306df3f176d2baecba08a8ef8bfc906da693ae47d7c8a61fbb1bd19ebee0e1c",
+      "language": "browserslist",
+      "raw_comment": "### ------------------------------------------------------------------------------------------------\n##  @filename  .browserslistrc\n##  @author  brikcss  <https://github.com/brikcss>\n##  @description  https://github.com/ai/browserslist\n### ------------------------------------------------------------------------------------------------",
+      "raw_sha256": "5bfcae8b53ecd05cba6945763ea5b7b6c07556bcfb0ab34d06b9d7b90406188c",
+      "raw_utf8_length": 336,
+      "source_provenance": {
+        "source_excerpt_sha256": "0237dbe1407943b69afdb2af13826d896d4582f8e8db174d326c47f2efd77deb",
+        "source_id": "5b5bb969d1b1ad9a83c66be7c5d572080b5f9933"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

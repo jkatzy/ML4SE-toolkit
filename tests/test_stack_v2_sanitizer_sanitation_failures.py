@@ -41,11 +41,10 @@ def test_stack_v2_cmake_line_removes_hash_ruler():
     _assert_sanitized("cmake", raw_comment, "Find mongocxx")
 
 
-def test_stack_v2_julia_nested_ruler_strips_nested_delimiters():
+def test_stack_v2_julia_nested_ruler_removes_delimiter_only_decoration():
     raw_comment = "#" + ("=" * 90) + "#"
-    expected_cleaned = "=" * 88
 
-    _assert_sanitized("julia", raw_comment, expected_cleaned)
+    _assert_sanitized("julia", raw_comment, "")
 
 
 def test_stack_v2_pascal_block_preserves_directive_and_slash_star_banner():
@@ -62,7 +61,7 @@ def test_stack_v2_pascal_block_preserves_directive_and_slash_star_banner():
     _assert_sanitized("pascal", raw_comment, raw_comment)
 
 
-def test_stack_v2_pascal_line_preserves_framed_hash_title_card():
+def test_stack_v2_pascal_line_removes_framed_hash_title_card_scaffolding():
     raw_comment = (
         "// ##################################\r\n"
         "// ######     IT PAT 2018     #######\r\n"
@@ -70,13 +69,7 @@ def test_stack_v2_pascal_line_preserves_framed_hash_title_card():
         "// ######  Tiaan van der Riel #######\r\n"
         "// ##################################\r"
     )
-    expected_cleaned = (
-        "##################################\n"
-        "######     IT PAT 2018     #######\n"
-        "######      GrowCery       #######\n"
-        "######  Tiaan van der Riel #######\n"
-        "##################################"
-    )
+    expected_cleaned = "IT PAT 2018\nGrowCery\nTiaan van der Riel"
 
     _assert_sanitized("pascal", raw_comment, expected_cleaned)
 
@@ -98,7 +91,7 @@ def test_stack_v2_python_line_removes_hash_ruler_and_residual_hash_gutter():
         "##  number (i.e., a non-negative integer) is a square of\r\n"
         "##  another natural number.\r\n"
         "##\r\n"
-        "##  From this description the function could be \"misused\" in\r\n"
+        '##  From this description the function could be "misused" in\r\n'
         "##  three ways:\r\n"
         "##\r\n"
         "##  1) It could be given a negative number.\r\n"
@@ -106,24 +99,24 @@ def test_stack_v2_python_line_removes_hash_ruler_and_residual_hash_gutter():
         "##  3) It could be given a value which is not a number at\r\n"
         "##     all.\r\n"
         "##\r\n"
-        "##  By adding some \"defensive\" code we can make a naive\r\n"
+        '##  By adding some "defensive" code we can make a naive\r\n'
         "##  implementation more robust by responding appropriately\r\n"
         "##  to each of these cases:\r\n"
         "##\r\n"
         "##  1) A negative number can never be a square of another\r\n"
         "##     number, so we can always return False in this case.\r\n"
-        "##     Here we choose to do so \"silently\", not drawing\r\n"
+        '##     Here we choose to do so "silently", not drawing\r\n'
         "##     attention to the unexpected value at all, since the\r\n"
-        "##     answer returned is still \"correct\" mathematically.\r\n"
+        '##     answer returned is still "correct" mathematically.\r\n'
         "##  2) A positive floating point number could be a square of\r\n"
         "##     a natural number so, even though we're not required\r\n"
         "##     to handle floating point numbers we can still do so,\r\n"
-        "##     but choose to generate a \"warning\" message in this\r\n"
+        '##     but choose to generate a "warning" message in this\r\n'
         "##     case.\r\n"
         "##  3) If the function is given a non-numerical value it\r\n"
         "##     is reasonable to assume that something is seriously\r\n"
         "##     wrong with the calling code, so in this case we\r\n"
-        "##     generate an \"error\" message and return the special\r\n"
+        '##     generate an "error" message and return the special\r\n'
         "##     value None.\r"
     )
     expected_cleaned = (
@@ -133,7 +126,7 @@ def test_stack_v2_python_line_removes_hash_ruler_and_residual_hash_gutter():
         "number (i.e., a non-negative integer) is a square of\n"
         "another natural number.\n"
         "\n"
-        "From this description the function could be \"misused\" in\n"
+        'From this description the function could be "misused" in\n'
         "three ways:\n"
         "\n"
         "1) It could be given a negative number.\n"
@@ -141,24 +134,24 @@ def test_stack_v2_python_line_removes_hash_ruler_and_residual_hash_gutter():
         "3) It could be given a value which is not a number at\n"
         "   all.\n"
         "\n"
-        "By adding some \"defensive\" code we can make a naive\n"
+        'By adding some "defensive" code we can make a naive\n'
         "implementation more robust by responding appropriately\n"
         "to each of these cases:\n"
         "\n"
         "1) A negative number can never be a square of another\n"
         "   number, so we can always return False in this case.\n"
-        "   Here we choose to do so \"silently\", not drawing\n"
+        '   Here we choose to do so "silently", not drawing\n'
         "   attention to the unexpected value at all, since the\n"
-        "   answer returned is still \"correct\" mathematically.\n"
+        '   answer returned is still "correct" mathematically.\n'
         "2) A positive floating point number could be a square of\n"
         "   a natural number so, even though we're not required\n"
         "   to handle floating point numbers we can still do so,\n"
-        "   but choose to generate a \"warning\" message in this\n"
+        '   but choose to generate a "warning" message in this\n'
         "   case.\n"
         "3) If the function is given a non-numerical value it\n"
         "   is reasonable to assume that something is seriously\n"
         "   wrong with the calling code, so in this case we\n"
-        "   generate an \"error\" message and return the special\n"
+        '   generate an "error" message and return the special\n'
         "   value None."
     )
 

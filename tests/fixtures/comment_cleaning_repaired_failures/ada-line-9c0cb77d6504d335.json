@@ -1,0 +1,29 @@
+{
+  "case_id": "ada-line-9c0cb77d6504d335",
+  "category": "needs_manual_review",
+  "cluster": "oracle_exception:ambiguous",
+  "disposition": "accounting_only_no_oracle",
+  "language": "ada",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f5bc62e45a79b1fc5d336002006f9bf22db107f6a607b51036ea5672e02eaf7d",
+      "utf8_length": 3178
+    },
+    "manifest_old_output": {
+      "sha256": "10ca5051baf82a92864715885ca093974845c4df456d82250bcf4c7faf092718",
+      "utf8_length": 2874
+    },
+    "raw_comment": {
+      "sha256": "cb1c7942211645828f7ffbe4707f871c6d8e56402c130c36f89638e9c5e7e46e",
+      "utf8_length": 3462
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ac668dfe9686f9903cce81a18cbc75fae80d884dd55d338e37c8954eea9624d2",
+    "source_id": "f6320fd23bb8ce0e19b6bd464160a51738255d96"
+  },
+  "source_record_sha256": "5bdde9d5c51ba3db2f99a0ce116bdc4a9e3d8f3746c4bbf597aeb6bf78b2233f"
+}

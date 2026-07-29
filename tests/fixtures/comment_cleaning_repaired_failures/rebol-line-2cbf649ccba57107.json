@@ -1,0 +1,29 @@
+{
+  "case_id": "rebol-line-2cbf649ccba57107",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "rebol",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "91c080b659b2e88ace9691a5b773305e374e52eaa9c4655608e55fedeb763b57",
+      "utf8_length": 646
+    },
+    "manifest_old_output": {
+      "sha256": "91c080b659b2e88ace9691a5b773305e374e52eaa9c4655608e55fedeb763b57",
+      "utf8_length": 646
+    },
+    "raw_comment": {
+      "sha256": "11652a08f279a1fcf426f2b629aeb948069d3b5ab70ee769c08bb9d3ec3bac82",
+      "utf8_length": 650
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0616ccf0d6ae3aa3a6233201b737b49f31f59a76f8daacc0ef40098c87b6ad80",
+    "source_id": "ab2666150c36c6c22981b052c0b2d41d6072fbbd"
+  },
+  "source_record_sha256": "316cd5393d0b16838bba74c4207a16d0ae7155976832028e7658a28b68eb93e8"
+}

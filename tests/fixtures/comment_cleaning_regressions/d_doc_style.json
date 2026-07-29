@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "d_doc_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "2844897c0f279b86ac19cc12118532195d2d3326170d258bb3171e036cff0617",
+      "case_id": "d-block-03f57f173e87b1b5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "/overlapping by start/\n         sccccccccccccccceWWWWWWW <- cluster\n                   srrrrrrrrrrrrrre <- read",
+      "expected_cleaned_sha256": "7ee99b752de87cdedaad202b8c06a7ae64c6ef79d3e3e84c2eb9370e3712b193",
+      "language": "d",
+      "raw_comment": "/** /overlapping by start/\n         *          sccccccccccccccceWWWWWWW <- cluster\n         *                    srrrrrrrrrrrrrre <- read\n         */",
+      "raw_sha256": "8b3459179f46450a1873061bd76754954a28d262ebb2a3b7fd41386b9f2d80ec",
+      "raw_utf8_length": 149,
+      "source_provenance": {
+        "source_excerpt_sha256": "af17d275be8889d352042fde1a879692b1cd988067364e63b39c7af876e0b8a3",
+        "source_id": "266abd57c92c65fcd522eff5443b7394da09afee"
+      },
+      "syntax_label": "/**...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "abe31f551a75914b5e663c581e3138f5b84fb884a8e062ebac792aa9dab8852b",
+      "case_id": "d-block-39278cab3db93149",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Returns: true if `s` is null-terminated (ending with `'\\0'`).\n\nPrior to parsing used to verify input to parsers that make use of\nsentinel-based search.\n\nSee_Also: https://en.wikipedia.org/wiki/Sentinel_value",
+      "expected_cleaned_sha256": "b55977c4a4cf5c800afe5a621c5fedbdf0a55542c79957a27feace00a6c10674",
+      "language": "d",
+      "raw_comment": "/** Returns: true if `s` is null-terminated (ending with `'\\0'`).\n *\n * Prior to parsing used to verify input to parsers that make use of\n * sentinel-based search.\n *\n * See_Also: https://en.wikipedia.org/wiki/Sentinel_value\n */",
+      "raw_sha256": "cb15742e55c483abf4f5a49b4fef5ca4c760c33def1d15450e4b6ae63701e92d",
+      "raw_utf8_length": 228,
+      "source_provenance": {
+        "source_excerpt_sha256": "aae8c4afd1245ce3280cbecd5f78cebb95af4a264f20d1322ef86f1aa18b6a3d",
+        "source_id": "9aa8efeb78e574167f5d12537057bbe4224cfa18"
+      },
+      "syntax_label": "/**...*/"
+    }
+  ],
+  "schema_version": 5
+}

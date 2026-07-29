@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "editorconfig_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5b8d6b8bced0d5bd7366f18950cfad2259e308a65b64c36e79aba8956e93129e",
+      "case_id": "editorconfig-line-3a7867a90e5b2814",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ".editorconfig",
+      "expected_cleaned_sha256": "0947e2727d6bad8cd0ac4122f5314bb5b04e337393075bc4b5ef143b17fcbd5b",
+      "language": "editorconfig",
+      "raw_comment": "; .editorconfig",
+      "raw_sha256": "5b8d6b8bced0d5bd7366f18950cfad2259e308a65b64c36e79aba8956e93129e",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "284a909084aa1912b2fa0635b2d8182611479bf27acd5d5cd8916dc22b3ad271",
+        "source_id": "66316376aa2782bfd72301f937088a65b2e8a2f6"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "f028b34ba7eb4d2d6e6800686eb84a74bf543c376e478cdc41f2539ee1d5b971",
+      "case_id": "editorconfig-line-3cf1c098b32c3aa5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "CluedIn EditorConfig",
+      "expected_cleaned_sha256": "1fd6ac5dff8a42e5e09fdb4613515d1c1a4d48f9795071072bab3a9aa46e4c98",
+      "language": "editorconfig",
+      "raw_comment": "; CluedIn EditorConfig",
+      "raw_sha256": "f028b34ba7eb4d2d6e6800686eb84a74bf543c376e478cdc41f2539ee1d5b971",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "7338ac8e1daaef1c25458fc72a33fa06c3f781e773a98a07c8b9e579d495a7cc",
+        "source_id": "50f3f65109be2be2365fcb4692bf1c789607c8c5"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

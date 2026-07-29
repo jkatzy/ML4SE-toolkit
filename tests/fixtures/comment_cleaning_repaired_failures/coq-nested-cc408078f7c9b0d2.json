@@ -1,0 +1,38 @@
+{
+  "case_id": "coq-nested-cc408078f7c9b0d2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "coq",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "135880be37a37f7867a6d52a9205b84b9ff7af08d6dd5820464126cf9095d23d",
+      "utf8_length": 49
+    },
+    "manifest_old_output": {
+      "sha256": "3296e1c5c82f8c3a72eaf3ae01b095de8647832076b4a139b06af5ec39d637f3",
+      "utf8_length": 47
+    },
+    "raw_comment": {
+      "sha256": "e9e45ca5383a01dbd8e5108390dd4f96124c2e0c0cd43f7f108e8a008bb47584",
+      "utf8_length": 155
+    },
+    "recommended_expected_output": {
+      "sha256": "3296e1c5c82f8c3a72eaf3ae01b095de8647832076b4a139b06af5ec39d637f3",
+      "utf8_length": 47
+    }
+  },
+  "regression": {
+    "expected_output": "Author: Ana Nora Evans (ananevans@virginia.edu)",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "(**************************************************\n * Author: Ana Nora Evans (ananevans@virginia.edu)\n **************************************************)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2a3a99b0ce147584c911b01fe02d7e1996c9032cb8ef747cf0b3836df8a4761b",
+    "source_id": "996f36c1ff5b3fb9af45cb7060cb0d703b43f6bc"
+  },
+  "source_record_sha256": "752e2e7eb003e31dfc2c4b4aa3496813598df2a0c648a22c9fab55374ac1722a"
+}

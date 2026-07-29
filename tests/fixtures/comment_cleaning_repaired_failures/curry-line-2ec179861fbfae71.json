@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-2ec179861fbfae71",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fdf63ab1721123abaa99c6ca222d57e67bc08fa95de64ef961774875b0c0eb51",
+      "utf8_length": 182
+    },
+    "manifest_old_output": {
+      "sha256": "e5e6c3192f04b5b4af534d9c9743e3b73a6e61e28e240ad049f5c5d69ad950fd",
+      "utf8_length": 170
+    },
+    "raw_comment": {
+      "sha256": "d58e94bab1bc100d8bf165d3aa452ad2fcca40d0b039dd13a8fd2c3db0dc15ca",
+      "utf8_length": 355
+    },
+    "recommended_expected_output": {
+      "sha256": "e5e6c3192f04b5b4af534d9c9743e3b73a6e61e28e240ad049f5c5d69ad950fd",
+      "utf8_length": 170
+    }
+  },
+  "regression": {
+    "expected_output": "Some tests for library System\n\nTo run all tests automatically by the currytest tool, use the command:\n\"currytest testSystem\"\n\n@author Michael Hanus\n@version December 2006",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Some tests for library System\n---\n--- To run all tests automatically by the currytest tool, use the command:\n--- \"currytest testSystem\"\n--- \n--- @author Michael Hanus\n--- @version December 2006\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b027ad98fe73b31f0d8796c12a0b3b0ce504a6a436e72a80f8a1b96ae25effd5",
+    "source_id": "ef85cb5e1a0816d108a59753c8169d0aee795c06"
+  },
+  "source_record_sha256": "6967073003e10eee5160b0cc4b1c7da3e1d924077bea414547350a7a21181ec9"
+}

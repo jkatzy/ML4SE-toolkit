@@ -1,0 +1,38 @@
+{
+  "case_id": "html_plus_django-line-50c6182d52b4b079",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "html_plus_django",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2c4e1042eb41fa8a0ebd394427ca3f1ebb4c11e6e417bbcd6b414c3711409b81",
+      "utf8_length": 62
+    },
+    "manifest_old_output": {
+      "sha256": "dc24df8a013347177b2547e492e9269db8d04d90ada373e669a916efd24e3a46",
+      "utf8_length": 29
+    },
+    "raw_comment": {
+      "sha256": "9d7243062749963a696190f97b7e1ac86bbd22623daa1a9ec67261cb64b79752",
+      "utf8_length": 197
+    },
+    "recommended_expected_output": {
+      "sha256": "dc24df8a013347177b2547e492e9269db8d04d90ada373e669a916efd24e3a46",
+      "utf8_length": 29
+    }
+  },
+  "regression": {
+    "expected_output": "SECTION: Function Definitions",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "##=============================================================##\n## SECTION: Function Definitions                               ##\n##=============================================================##"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "719ac3cefff10632863a0824b061eb8c5893e97fbf32e15f3c6efeae95549ff7",
+    "source_id": "8b9dfbb8bdec23faf17eab7264013fca388e5065"
+  },
+  "source_record_sha256": "628f5ba45988298662deceaace0b07195e1c93824bde27ca17a3f19b6da5ee2a"
+}

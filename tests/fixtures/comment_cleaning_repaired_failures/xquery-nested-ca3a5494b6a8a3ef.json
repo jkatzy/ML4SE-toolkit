@@ -1,0 +1,38 @@
+{
+  "case_id": "xquery-nested-ca3a5494b6a8a3ef",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "xquery",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b93d18bb3833f2f38eaeec6568e567a4f50530a9b7d3c7a74c1fbb9cf087927e",
+      "utf8_length": 551
+    },
+    "manifest_old_output": {
+      "sha256": "b93d18bb3833f2f38eaeec6568e567a4f50530a9b7d3c7a74c1fbb9cf087927e",
+      "utf8_length": 551
+    },
+    "raw_comment": {
+      "sha256": "042c2b5529152ae45142e95c210707d753f702dc658b7a375f1db60d11f9be8a",
+      "utf8_length": 557
+    },
+    "recommended_expected_output": {
+      "sha256": "b93d18bb3833f2f38eaeec6568e567a4f50530a9b7d3c7a74c1fbb9cf087927e",
+      "utf8_length": 551
+    }
+  },
+  "regression": {
+    "expected_output": "XML Query Use Cases: http://www.w3.org/TR/xquery-use-cases/\nCopyright \u00a92003 World Wide Web Consortium, (Massachusetts Institute of Technology, European Research Consortium for Informatics and Mathematics, Keio University). All Rights Reserved. This work is distributed under the W3C\u00ae Software License [1] in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n[1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231\n Filename: seqQ5a.xq",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "(:\nXML Query Use Cases: http://www.w3.org/TR/xquery-use-cases/\nCopyright \u00a92003 World Wide Web Consortium, (Massachusetts Institute of Technology, European Research Consortium for Informatics and Mathematics, Keio University). All Rights Reserved. This work is distributed under the W3C\u00ae Software License [1] in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n[1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231\n Filename: seqQ5a.xq :)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "65a6fe777ddd82f7a40e54cacbaa7b9271aeffdb23795c6a4154af8df181f37f",
+    "source_id": "b593d62a36b46cc3ed029f0846b4c7df25b5312b"
+  },
+  "source_record_sha256": "c5fa64de3b91897b4891efcc1e48483afc69fe8ffe8143f9c214c2bf4da7ed92"
+}

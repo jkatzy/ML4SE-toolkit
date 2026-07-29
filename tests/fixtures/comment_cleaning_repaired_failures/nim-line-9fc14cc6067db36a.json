@@ -1,0 +1,38 @@
+{
+  "case_id": "nim-line-9fc14cc6067db36a",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "nim",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c9dd3bb4e0d5c4da4c9cac1a4d4653a4103836a39daff2afd893f153cb99b620",
+      "utf8_length": 42
+    },
+    "manifest_old_output": {
+      "sha256": "80776d8aa80eb45d019503667d273313d59e9dbaea11cbd7df8ed9b3bcbb126f",
+      "utf8_length": 40
+    },
+    "raw_comment": {
+      "sha256": "6f904b5a9695481fac79c6af4cd663267800182931f0e697e4809fa7c4cd0cdb",
+      "utf8_length": 43
+    },
+    "recommended_expected_output": {
+      "sha256": "80776d8aa80eb45d019503667d273313d59e9dbaea11cbd7df8ed9b3bcbb126f",
+      "utf8_length": 40
+    }
+  },
+  "regression": {
+    "expected_output": "This is auto-generated. Do not modify it",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## This is auto-generated. Do not modify it"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3c52f8eec72e6fd2679af9499930f5409dd5ccf897f6f459ec60288283dfdec7",
+    "source_id": "2790769608321c0a4b2d215f2e0a223d881c6e61"
+  },
+  "source_record_sha256": "d3274b74d9bb76d3e7fda62c01a65b06c519d6a50d8fdba99c631ae713956a31"
+}

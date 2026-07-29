@@ -1,0 +1,38 @@
+{
+  "case_id": "zil-line-e10feb13a8d41c63",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "zil",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b3f4251a5fd63fc1070f2362e30c08423bca8b4c2d332b057ad7205c08ea6b90",
+      "utf8_length": 459
+    },
+    "manifest_old_output": {
+      "sha256": "b3f4251a5fd63fc1070f2362e30c08423bca8b4c2d332b057ad7205c08ea6b90",
+      "utf8_length": 459
+    },
+    "raw_comment": {
+      "sha256": "c8cbdb23090d2b69160b427893451276c5119665c1db5bf7b28933b418760901",
+      "utf8_length": 478
+    },
+    "recommended_expected_output": {
+      "sha256": "b3f4251a5fd63fc1070f2362e30c08423bca8b4c2d332b057ad7205c08ea6b90",
+      "utf8_length": 459
+    }
+  },
+  "regression": {
+    "expected_output": "\"***************************************************************************\"\n\"game : Abyss\"\n\"file : GLOBAL.ZIL\"\n\"auth :   $Author:   DEB  $\"\n\"date :     $Date:   13 Mar 1989 19:20:32  $\"\n\"rev  : $Revision:   1.6  $\"\n\"vers : 1.0\"\n\"---------------------------------------------------------------------------\"\n\"Global objects\"\n\"Copyright (C) 1988 Infocom, Inc.  All rights reserved.\"\n\"***************************************************************************\"",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";\"***************************************************************************\"\n; \"game : Abyss\"\n; \"file : GLOBAL.ZIL\"\n; \"auth :   $Author:   DEB  $\"\n; \"date :     $Date:   13 Mar 1989 19:20:32  $\"\n; \"rev  : $Revision:   1.6  $\"\n; \"vers : 1.0\"\n;\"---------------------------------------------------------------------------\"\n; \"Global objects\"\n; \"Copyright (C) 1988 Infocom, Inc.  All rights reserved.\"\n;\"***************************************************************************\""
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "584bfa745e2ad0a7dc04a440b9fe4b980fdbb4bc21f0dfa4beb2346c0f52a0df",
+    "source_id": "f8bc3543f79be57ce087bee160fe7494cd0133a4"
+  },
+  "source_record_sha256": "8f68737a4a533ca9c04ab13390a8efb3a84a3eec5b532d5e3295775966e3753f"
+}

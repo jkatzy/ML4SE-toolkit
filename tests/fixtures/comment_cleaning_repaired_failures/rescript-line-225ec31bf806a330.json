@@ -1,0 +1,38 @@
+{
+  "case_id": "rescript-line-225ec31bf806a330",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "rescript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "5089aee7b78d5f0fbf988259ae82661d1cda3e30bf48dfb879fd14763d7fa621",
+      "utf8_length": 29
+    },
+    "manifest_old_output": {
+      "sha256": "904d0fb2eefad9205a3eb6378fcca0e4f1455d01903bd81beebcf3b32f498d1a",
+      "utf8_length": 26
+    },
+    "raw_comment": {
+      "sha256": "cdc1d07c4fc42f110cc7189ccd353c7e820b32cdb7d5afd6a1318a9882e84531",
+      "utf8_length": 32
+    },
+    "recommended_expected_output": {
+      "sha256": "904d0fb2eefad9205a3eb6378fcca0e4f1455d01903bd81beebcf3b32f498d1a",
+      "utf8_length": 26
+    }
+  },
+  "regression": {
+    "expected_output": "Uber Charge Meter - Normal",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// Uber Charge Meter - Normal //"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c7954bb02d71708e13a97ea679d0db19cb5b573a7cd841883bd4de0a4cef511d",
+    "source_id": "62a5102bd9bc414e7f62369649a98f417984fa11"
+  },
+  "source_record_sha256": "04c5a086b1ef8e5b6571734a65dc287c42a9520e6016664996d99a72bd3e6dc6"
+}

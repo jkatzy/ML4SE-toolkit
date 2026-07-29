@@ -1,0 +1,38 @@
+{
+  "case_id": "saltstack-line-741c75ff50b583ea",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "saltstack",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9cc2a8f911b9d5fc1d52d0f1f84e22a9dee97d6c0842dd5d17cdc192e54591d0",
+      "utf8_length": 38
+    },
+    "manifest_old_output": {
+      "sha256": "7736dbf21c0a8abd4ee77526e96a619909fae409e4f120c20f629d81335fa0bb",
+      "utf8_length": 41
+    },
+    "raw_comment": {
+      "sha256": "99e56cdb363b130107d7a9c35830c077c977fd755d7ac5447d64cd3e3b9a0b09",
+      "utf8_length": 43
+    },
+    "recommended_expected_output": {
+      "sha256": "7736dbf21c0a8abd4ee77526e96a619909fae409e4f120c20f629d81335fa0bb",
+      "utf8_length": 41
+    }
+  },
+  "regression": {
+    "expected_output": "this agent monitors CPU, RAM, IO, load...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# this agent monitors CPU, RAM, IO, load..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a2a231cc844a002975dfb17e14394578167d9c5fb05d527c0701353b25c77962",
+    "source_id": "400f8cf4c981a7afd4deb066907b510002bb1ec3"
+  },
+  "source_record_sha256": "113c6f0d9a01301beb9c3724e94287e7d52b6e8e37c3ce98929f6387072818a5"
+}

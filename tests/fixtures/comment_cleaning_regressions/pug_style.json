@@ -1,0 +1,709 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "pug_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "affa7a9f0b363a727b8fb9d754644e26e0e1022b42331c41ea91d28c4c33e292",
+      "case_id": "jade-line-30e851634d4ec352",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "jade",
+      "oracle_exception_record_sha256": "5a215a34544d9e3912f9d94d9aaa263b7edaf2627b5ab0e097963547b685f5e4",
+      "raw_sha256": "4f74b8df824b4084d2cfb24dd6b9c89f9842630b3affeb67bc8c7ca6a8e1ad34",
+      "raw_utf8_length": 74,
+      "source_provenance": {
+        "source_excerpt_sha256": "1238d0a2cdc334a04074932c0c8ef5f5a0c5e32db5db1b6a1637f4b77801026a",
+        "source_id": "f91c35ba83bee692e67cc9ed4f9a7095c4bc5a64"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e77f524ceefd06c905b8c893f529a174cc8776f6524dbf0040c92c9eb2397532",
+      "case_id": "jade-line-320b468f30e697cf",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "jade",
+      "oracle_exception_record_sha256": "7d24908ad7a0ed6edc98dc48bf72dad686f7a06c96a99104901775d9c8085953",
+      "raw_sha256": "10ab20dc17eb4ccd6dd83a061bba2c35e0adea9876b162264590de6a60d16c81",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "a2e36941baef5134a9e4552b486387f098c8377c1c003ab6e7cfa47931d6a382",
+        "source_id": "aa891a2860fd543a79d819e63c1d820d5d4f63bf"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "ba52f87b75589fcf896941b1a0525091b3894ff5398ffe5bc896879ca74f4e67",
+      "case_id": "jade-line-456b124743c427c4",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "jade",
+      "oracle_exception_record_sha256": "0201bb7faa924343c2571593cf6bbfdb59d7e379237faa7f8f9a5a4b277166c1",
+      "raw_sha256": "81e3bef859cc1357270886dbb81d58163dff90aa7d59086b5102e549ca43d169",
+      "raw_utf8_length": 366,
+      "source_provenance": {
+        "source_excerpt_sha256": "6670c8b7d76f80cf2dd9a642f9467a25a015fcf561d9cafcacb6f9c481d8e43f",
+        "source_id": "e502d658388591e8d53f5f13d9689444a78fa60f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "430c96243174b520a9f07714c6cc43148acc36772a8d54d29e1b58eca6097a08",
+      "case_id": "pug-line-583bd5bc417353a5",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "039e38b63f2af1996948f8d1bb4d176fed30aa85dd77bee79d73f95be5127ff2",
+      "raw_sha256": "1014ddcbb1ebb902921a19e0bd93b735b8b4cbfc7280cc3c51acbe1f9e8098c5",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "4ce40b81b47ce38513baca4c7fbab82d90e38e6d43f73f3ef6257c7f375c2e2a",
+        "source_id": "7619764c90bb924fc9867281a40c44753602f08f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "16acd39a17a7a9af12c9bcee0b8af7f7bd9c826e70e5f13fe3cb37d0d7188698",
+      "case_id": "pug-line-60e75fd977397453",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "6370b0875a486ab491c4d7d963f7f00b47c680a275f90e1d358d7b18e250ff17",
+      "raw_sha256": "5df621314fc26583bd67640e990bfaae8261a556ca46e01e18caf543eaa4b19b",
+      "raw_utf8_length": 156,
+      "source_provenance": {
+        "source_excerpt_sha256": "61f1473b1153b73fa1dcefad02f36654f16b4ecc55f75b4542b354c4811b595c",
+        "source_id": "5637add591b8d54f3e1c6ae5d93b144bfaeb5416"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "812ea0db83b33f430db84c2f198f92c3fcef7dbc30d2997817e7a7d0c8bc174f",
+      "case_id": "pug-line-686d5477dafc1601",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "71eca3ac0b4c7c97c1e97a593577cdff206f5eddcac22f3d1680803de7d08950",
+      "raw_sha256": "ffcc138b20ba5560f328a86581d91d97b6e06c4276c9adae8b4464da58c00db3",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "982755079531b00f039bb611223c2e39cd6557dcec14f61cab3dcff97bdbec4d",
+        "source_id": "61025e252048e64019b2d9d5d43e9373d5643c58"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "a2005226ca04bded6b3ba6920d84d47b507684d55d3eff4cb9bee4d4cd634d7c",
+      "case_id": "pug-line-73196f5364c6829c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "a70d81df593ac5e55d9d6a0cdd6b8645bdc37c058b1f95bc192341c3ad6ebc6c",
+      "raw_sha256": "abf1bca93db769d72f070924298113bce9db639b8cf9d610406139b9220f973d",
+      "raw_utf8_length": 87,
+      "source_provenance": {
+        "source_excerpt_sha256": "e788fa17831e10ce3dc6e959d8325bad5bbc42410e4c00c65cd2859b0807fcfe",
+        "source_id": "53790868bde01b5db0b694fb674cec0623168743"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "d43690e3423d79826905f670e2813f5dd00c2acc0362bc1dd17d07f02e323d9b",
+      "case_id": "pug-line-73d148a6b5f1e815",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "95458f28c822243b64a60dd39f5b4cc272377ceb6418fdb5b9bef5df501bfbdb",
+      "raw_sha256": "d0ea6f8ba5908bef31acf5d2463c2f636f8f7f9d26147077476278551f7b94d8",
+      "raw_utf8_length": 67,
+      "source_provenance": {
+        "source_excerpt_sha256": "cffec50a4943a787e1af23786018045b380d1cbc24cea39008d048f75932f09c",
+        "source_id": "36793869ecf5c380c40b6fe1a95d2fe49a2b0dbb"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "52c5645c68df86170bf56b9ad7073f7ae9e85498e4eef10c20c2d46658139125",
+      "case_id": "pug-line-7bbf5cf56fb44b9c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "1f25ce73ce8f67213e734d7d8515752388e0cc5a2a805ca7d51ecc6978028863",
+      "raw_sha256": "ab91d77d09169026e229bae7cd853d4c000f39b24f72cc0e3375aa62a0b87c45",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "24ab9f95b82407b26504c1d15f223205339c1f4fa29265fdd868695696761d86",
+        "source_id": "3b725d34fb09048ac82f3797f82a0f66a64e681a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "affa7a9f0b363a727b8fb9d754644e26e0e1022b42331c41ea91d28c4c33e292",
+      "case_id": "pug-line-7f55c4bf0f1701aa",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "a9ddf26f47e0d8d58722e37274e4b5d2408f7ca433cc7ba576f2e3b0588462c6",
+      "raw_sha256": "4f74b8df824b4084d2cfb24dd6b9c89f9842630b3affeb67bc8c7ca6a8e1ad34",
+      "raw_utf8_length": 74,
+      "source_provenance": {
+        "source_excerpt_sha256": "1238d0a2cdc334a04074932c0c8ef5f5a0c5e32db5db1b6a1637f4b77801026a",
+        "source_id": "f91c35ba83bee692e67cc9ed4f9a7095c4bc5a64"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "21c9d5b3aa3a4fe5bcc7ec3e670032b2d53a149b6b401dc6f4d9baf4388ebe7a",
+      "case_id": "pug-line-86f7ddf14095305c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "bc697bcb39c2b485f168e6fce298216152fee795ae1fc2dc351518e690f92cc8",
+      "raw_sha256": "038292dc13380addfe23eba8368c26cd751ab6b763e5f88ce90b20aeb7b08b1e",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "ee7cad076220dc97e140a10d12910db11c16532c9619511ba76cd7804af2d090",
+        "source_id": "acec87f1812d9dd66e176f25fd0b8949cb7c6d14"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "6b44ae19137b2bd77479af0113d0cbfdc7a26a7e7edb100860e536ef4af6b32b",
+      "case_id": "pug-line-8bf572cea64dbf89",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "8ea20de509fefd4fa44f58444fcb5e40e159ab8a407341e975ac86459b3f3f85",
+      "raw_sha256": "b60dae785bc02fd479e7a6d00b47604ad5712d43f56fd3680bae1629d7b1aedc",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "4ac00c1325e3bb78a6d583c6c49269c22dfccf059633886ade835db52ca16b2b",
+        "source_id": "1e9c5f03e179080a065da936d4bb8c6ca034349e"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e9215f0514b7ecbb14661170af9a8ab131c7241fd348d9c481c400a7cb3532ba",
+      "case_id": "pug-line-b6502181e65eb678",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "344b717c2e6752abb1dad368128243d1b5b2170baf20906e9882a004d45f0d4b",
+      "raw_sha256": "33ac9cf4328fe143febf2494ff65c22bbd85278e55e38253c7b9f263e972d0f1",
+      "raw_utf8_length": 37,
+      "source_provenance": {
+        "source_excerpt_sha256": "127570a2b73787b9a897f638c17a85393621f9b99d148278c4cc4af5d487a496",
+        "source_id": "605cf8bb9a15c8e160df38d3a2d034757c0a0ca3"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "decd00536a08b90e56ccdc9012419b59d96d088d76fded54640fcd07a8783f5a",
+      "case_id": "pug-line-d92e2125c5c1f97d",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "pug",
+      "oracle_exception_record_sha256": "1b200281df48ba076753cb0065b757a07606c84ad6c8595b8c88f6c8eb87e77c",
+      "raw_sha256": "f156ad115b98b7f39122eec4de3ec77d02b682772c9c97cbbffbe4a76a1eb0c5",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "1aac18f3920a927616f3d83a57c2975dfe02bc0bf6119bc138cc9c0dec1ef214",
+        "source_id": "63b984599821fff3f58759903e4d7d05b61c584c"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "52c5645c68df86170bf56b9ad7073f7ae9e85498e4eef10c20c2d46658139125",
+      "case_id": "jade-line-0db32b37bf2742ab",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "layout.pug",
+      "expected_cleaned_sha256": "2d96aef755be4fdb759cd8fb7272169629d661bc5e1971b6e78a618d9b0d2516",
+      "language": "jade",
+      "raw_comment": "//- layout.pug",
+      "raw_sha256": "ab91d77d09169026e229bae7cd853d4c000f39b24f72cc0e3375aa62a0b87c45",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "24ab9f95b82407b26504c1d15f223205339c1f4fa29265fdd868695696761d86",
+        "source_id": "3b725d34fb09048ac82f3797f82a0f66a64e681a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "812ea0db83b33f430db84c2f198f92c3fcef7dbc30d2997817e7a7d0c8bc174f",
+      "case_id": "jade-line-14152b47a6b9c8da",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "link(rel='stylesheet', href='./styles/style.styl')",
+      "expected_cleaned_sha256": "2d51c11dbd003ac0272953dbd0e13dbae6fc5f83e67fe38483ee7da9f09fada8",
+      "language": "jade",
+      "raw_comment": "        //- link(rel='stylesheet', href='./styles/style.styl')",
+      "raw_sha256": "ffcc138b20ba5560f328a86581d91d97b6e06c4276c9adae8b4464da58c00db3",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "982755079531b00f039bb611223c2e39cd6557dcec14f61cab3dcff97bdbec4d",
+        "source_id": "61025e252048e64019b2d9d5d43e9373d5643c58"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e9215f0514b7ecbb14661170af9a8ab131c7241fd348d9c481c400a7cb3532ba",
+      "case_id": "jade-line-1887a9a9ed553d5c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Prefetch major external resources",
+      "expected_cleaned_sha256": "f3fa92369801c91d2d1144d5bab8e2c5beea38f669239b50317387181e1e12ce",
+      "language": "jade",
+      "raw_comment": "//- Prefetch major external resources",
+      "raw_sha256": "33ac9cf4328fe143febf2494ff65c22bbd85278e55e38253c7b9f263e972d0f1",
+      "raw_utf8_length": 37,
+      "source_provenance": {
+        "source_excerpt_sha256": "127570a2b73787b9a897f638c17a85393621f9b99d148278c4cc4af5d487a496",
+        "source_id": "605cf8bb9a15c8e160df38d3a2d034757c0a0ca3"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "d9ace39030b7e6601337f43d6897cb54f7fb1037893dfbdb3b0755912d7de06e",
+      "case_id": "jade-line-45a6d36a04240b4b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by admin on 07/12/17.",
+      "expected_cleaned_sha256": "0585e97637d7308be191cdaba2bc7a2bedfbb21f024f3c9f5138b6db838a0970",
+      "language": "jade",
+      "raw_comment": "//\n   Created by admin on 07/12/17.",
+      "raw_sha256": "d9ace39030b7e6601337f43d6897cb54f7fb1037893dfbdb3b0755912d7de06e",
+      "raw_utf8_length": 35,
+      "source_provenance": {
+        "source_excerpt_sha256": "2681f1db0d02ba0d5a4f814e6fc590c3418f2149437ed710cd74d02bc146a57a",
+        "source_id": "e758a1125e97980b7120c77990838b0a3c363ef8"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "0285ab35371b92ce1b211740a4b8d81acef1f48691ef5ed3f7c325ae61a94bb1",
+      "case_id": "jade-line-5efbc564e4cffce2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by oscar on 9/06/16.",
+      "expected_cleaned_sha256": "23046bdd3199edd71fcc76c0e3fe444ea08ffda4a2c37ae9b24f0a9caea1d9fd",
+      "language": "jade",
+      "raw_comment": "//\n   Created by oscar on 9/06/16.",
+      "raw_sha256": "0285ab35371b92ce1b211740a4b8d81acef1f48691ef5ed3f7c325ae61a94bb1",
+      "raw_utf8_length": 34,
+      "source_provenance": {
+        "source_excerpt_sha256": "d5090ac8d907c30a40049b422993975821b21b2497c961d3afada6998080a65a",
+        "source_id": "f34fbe141b6254ea6b6d4c9ef76f65f875c60020"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "430c96243174b520a9f07714c6cc43148acc36772a8d54d29e1b58eca6097a08",
+      "case_id": "jade-line-6f5f1eff37edf106",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Main Vars",
+      "expected_cleaned_sha256": "0a421da0ebbbecb12c21c88c6d370e01049eaa5284039d5405ba325b6810ad8f",
+      "language": "jade",
+      "raw_comment": "//- Main Vars",
+      "raw_sha256": "1014ddcbb1ebb902921a19e0bd93b735b8b4cbfc7280cc3c51acbe1f9e8098c5",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "4ce40b81b47ce38513baca4c7fbab82d90e38e6d43f73f3ef6257c7f375c2e2a",
+        "source_id": "7619764c90bb924fc9867281a40c44753602f08f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "1a00cd67c81129d68b816889eed5e6bfee19c82658e0396aca51125c74b651bd",
+      "case_id": "jade-line-83b0ed9c11e49863",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "OpenCenter\u2122 is Copyright 2013 by Rackspace US, Inc.\n\nOpenCenter is licensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.  This version\nof OpenCenter includes Rackspace trademarks and logos, and in accordance with\nSection 6 of the License, the provision of commercial support services in\nconjunction with a version of OpenCenter which includes Rackspace trademarks\nand logos is prohibited.  OpenCenter source code and details are available at:\nhttps://github.com/rcbops/opencenter or upon written request.\n\nYou may obtain a copy of the License at\nhttp://www.apache.org/licenses/LICENSE-2.0 and a copy, including this notice,\nis available in the LICENSE file accompanying this software.\n\nUnless required by applicable law or agreed to in writing, software distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied. See the License for the\nspecific language governing permissions and limitations under the License.",
+      "expected_cleaned_sha256": "9694e255bac970537d16de8600b3a5d4926d10493437babed6ee67897f1586cb",
+      "language": "jade",
+      "raw_comment": "//-               OpenCenter\u2122 is Copyright 2013 by Rackspace US, Inc. \n//-###############################################################################\n//-\n//-OpenCenter is licensed under the Apache License, Version 2.0 (the \"License\");\n//-you may not use this file except in compliance with the License.  This version\n//-of OpenCenter includes Rackspace trademarks and logos, and in accordance with\n//-Section 6 of the License, the provision of commercial support services in\n//-conjunction with a version of OpenCenter which includes Rackspace trademarks\n//-and logos is prohibited.  OpenCenter source code and details are available at:\n//-https://github.com/rcbops/opencenter or upon written request.\n//-\n//-You may obtain a copy of the License at\n//-http://www.apache.org/licenses/LICENSE-2.0 and a copy, including this notice,\n//-is available in the LICENSE file accompanying this software.\n//-\n//-Unless required by applicable law or agreed to in writing, software distributed\n//-under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n//-CONDITIONS OF ANY KIND, either express or implied. See the License for the\n//-specific language governing permissions and limitations under the License.\n//-\n//-###############################################################################",
+      "raw_sha256": "56f2a8082243a8fcf9010600feffd370f5439a57ecc9390ede4851564c5851f6",
+      "raw_utf8_length": 1308,
+      "source_provenance": {
+        "source_excerpt_sha256": "a233ed6840f49f8d0944f3a84f9db5240c8d2a3d8e234bfc2f4ab239b4d355af",
+        "source_id": "ca6ee934227681489fcf38e2088c362c77f5fe2f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "decd00536a08b90e56ccdc9012419b59d96d088d76fded54640fcd07a8783f5a",
+      "case_id": "jade-line-91666e385dc032c9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Image",
+      "expected_cleaned_sha256": "1aa4cb0bcca76e92e30677e809bb3d4b5c066715ef4d558184e319496bcc5125",
+      "language": "jade",
+      "raw_comment": "//- Image",
+      "raw_sha256": "f156ad115b98b7f39122eec4de3ec77d02b682772c9c97cbbffbe4a76a1eb0c5",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "1aac18f3920a927616f3d83a57c2975dfe02bc0bf6119bc138cc9c0dec1ef214",
+        "source_id": "63b984599821fff3f58759903e4d7d05b61c584c"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "503945cdd20a717efc6dad2879670a0b758c408906dfa1a6986b64ac0a57f9f5",
+      "case_id": "jade-line-9c36818491b1fdf4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by yaroslav on 8/16/16.",
+      "expected_cleaned_sha256": "b9d62edec97f6d96cc8523355d34ce75f027021e0a01c006f13f481247bfa752",
+      "language": "jade",
+      "raw_comment": "//\n   Created by yaroslav on 8/16/16.",
+      "raw_sha256": "503945cdd20a717efc6dad2879670a0b758c408906dfa1a6986b64ac0a57f9f5",
+      "raw_utf8_length": 37,
+      "source_provenance": {
+        "source_excerpt_sha256": "c89b54e98b260c82e392e577208a521fd4013483d79e757531f2460d3ed594ad",
+        "source_id": "3c5e5d33a463be3f5f2f44bc2796bca2eb24f86a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "94faa28c135b4c31dc89cc3179ff30ed9d04e8b88ba25e865d4748d028fdd1ca",
+      "case_id": "jade-line-9da4798979dd5b36",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Extends template page",
+      "expected_cleaned_sha256": "7efc2b636a2032ef998dc90dfecd4d8e2206933a6153b6b41d155bafed86f949",
+      "language": "jade",
+      "raw_comment": "//- Extends template page",
+      "raw_sha256": "a4daaf89157051013302167cac81f24bef880e0845342afecfec6f209f5030ed",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "4e09d105b68b0df3997ddc3bbe9468c21e33e3a6c6d3ca7a7ba5cba822170193",
+        "source_id": "529cd2336037f6b16755667c3c4d8c43d98d79a4"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "72bf365ccdda5a95a93753ec8308637f306475804afb84053fce6f9d3209d843",
+      "case_id": "jade-line-a822df9f75fdd728",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\uba54\ud0c0 \uc815\ubcf4",
+      "expected_cleaned_sha256": "a72ac8498ec2571a23f23e5028c41f9d63d9634a767b9d7d33ed3f279084f79f",
+      "language": "jade",
+      "raw_comment": "//- \uba54\ud0c0 \uc815\ubcf4",
+      "raw_sha256": "cfb6e0627197a86fc27ac3385329759296f76f53a629f65761d2eda7b5bbff2a",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "e8d5f767ef1371cf99470f5c500d7bcba9e4088b490cc667b64f6ef305d3cb82",
+        "source_id": "f22c9279264fa239e3831b60f7715d34a03a8990"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "a2005226ca04bded6b3ba6920d84d47b507684d55d3eff4cb9bee4d4cd634d7c",
+      "case_id": "jade-line-ac52bb81b6df2a12",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#landing(style=\"background:url(/assets/img/fluid-bk-left.svg) no-repeat -100px 0\")",
+      "expected_cleaned_sha256": "fdcf842e72d95d08e4c37c71a29d39fa463cf9c9a17b9d98f90940980d45355c",
+      "language": "jade",
+      "raw_comment": "  //-#landing(style=\"background:url(/assets/img/fluid-bk-left.svg) no-repeat -100px 0\")",
+      "raw_sha256": "abf1bca93db769d72f070924298113bce9db639b8cf9d610406139b9220f973d",
+      "raw_utf8_length": 87,
+      "source_provenance": {
+        "source_excerpt_sha256": "e788fa17831e10ce3dc6e959d8325bad5bbc42410e4c00c65cd2859b0807fcfe",
+        "source_id": "53790868bde01b5db0b694fb674cec0623168743"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "16acd39a17a7a9af12c9bcee0b8af7f7bd9c826e70e5f13fe3cb37d0d7188698",
+      "case_id": "jade-line-c4d6f2c1e16f61a2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<div class=\"mdl-card__media\">\n<img src=\"photo.jpg\" width=\"220\" height=\"140\" border=\"0\" alt=\"\" style=\"padding:20px;\">\n</div>",
+      "expected_cleaned_sha256": "381dc8cfcbc565223c57f58e3c85b61309d54875a5c0e7e4cdc0ce857a9f7ec6",
+      "language": "jade",
+      "raw_comment": "      //\n        <div class=\"mdl-card__media\">\n        <img src=\"photo.jpg\" width=\"220\" height=\"140\" border=\"0\" alt=\"\" style=\"padding:20px;\">\n        </div>",
+      "raw_sha256": "5df621314fc26583bd67640e990bfaae8261a556ca46e01e18caf543eaa4b19b",
+      "raw_utf8_length": 156,
+      "source_provenance": {
+        "source_excerpt_sha256": "61f1473b1153b73fa1dcefad02f36654f16b4ecc55f75b4542b354c4811b595c",
+        "source_id": "5637add591b8d54f3e1c6ae5d93b144bfaeb5416"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "d43690e3423d79826905f670e2813f5dd00c2acc0362bc1dd17d07f02e323d9b",
+      "case_id": "jade-line-ceedf49ff0ea82cf",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "source(data-srcset=\"./images/1.webp\" type=\"image/webp\")",
+      "expected_cleaned_sha256": "194ccfa20eda571aa83dccb51b0c5cfd13728c11f2b098de72faa364c717adc3",
+      "language": "jade",
+      "raw_comment": "        //- source(data-srcset=\"./images/1.webp\" type=\"image/webp\")",
+      "raw_sha256": "d0ea6f8ba5908bef31acf5d2463c2f636f8f7f9d26147077476278551f7b94d8",
+      "raw_utf8_length": 67,
+      "source_provenance": {
+        "source_excerpt_sha256": "cffec50a4943a787e1af23786018045b380d1cbc24cea39008d048f75932f09c",
+        "source_id": "36793869ecf5c380c40b6fe1a95d2fe49a2b0dbb"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "18122923e192f5f44b05a15fcc56dcf17b30ecb3017cb95dfc1e05fe8f903450",
+      "case_id": "jade-line-d117d9cd047f8347",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ".item.item-icon-left.item-icon-right.bg-white(ui-sref=\"scan({user: $root.project.model.user, project: $root.project.model.project, origin: 'setting'})\")\n  img.item-icon-height-width.icon(src=\"./img/svg/account-add.svg\")\n  span.font-14.white \u65b0\u589e\u8bbe\u5907\n  img.icon.right.img-item(src=\"./img/svg/arrow-right.svg\")",
+      "expected_cleaned_sha256": "31809cf6057641d8d89a2318a8c1b366b5bd2370e3642185bfce12746e16803e",
+      "language": "jade",
+      "raw_comment": "      //.item.item-icon-left.item-icon-right.bg-white(ui-sref=\"scan({user: $root.project.model.user, project: $root.project.model.project, origin: 'setting'})\")\n        img.item-icon-height-width.icon(src=\"./img/svg/account-add.svg\")\n        span.font-14.white \u65b0\u589e\u8bbe\u5907\n        img.icon.right.img-item(src=\"./img/svg/arrow-right.svg\")",
+      "raw_sha256": "b7ce8fb297dff519ec8f15611bc7dd7c8c3c335b642a28d1fec3f98582c92ce8",
+      "raw_utf8_length": 338,
+      "source_provenance": {
+        "source_excerpt_sha256": "db38f9abcc42003d7fba62a9e1bf65f3ff2962365b11a7b5105a61c34425ce0e",
+        "source_id": "50edeabe6f817a12d5c9ecaf28344060ddef2be1"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "1ffb5d9719fe5e0dc287d6cf66f2642df6abc6b432ff14b55870640d39ad6c65",
+      "case_id": "jade-line-d1bb31875a81efb3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by schiappacassed on 04/11/2015.",
+      "expected_cleaned_sha256": "acd98a3a98f1b022a27ec8af61579348ffae1febed86ef7d53d18a928ccd815e",
+      "language": "jade",
+      "raw_comment": "//\n   Created by schiappacassed on 04/11/2015.",
+      "raw_sha256": "1ffb5d9719fe5e0dc287d6cf66f2642df6abc6b432ff14b55870640d39ad6c65",
+      "raw_utf8_length": 46,
+      "source_provenance": {
+        "source_excerpt_sha256": "a31093eb441c1f283560ebd81322a3ec073d3d9d12f3fa04569f0e98dbc758c4",
+        "source_id": "81b3b284e39662956f8a2064c6d590418279a24a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "6b44ae19137b2bd77479af0113d0cbfdc7a26a7e7edb100860e536ef4af6b32b",
+      "case_id": "jade-line-ee7c0ec4da75c3c6",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "See comments in the /javascripts/socket-client.js",
+      "expected_cleaned_sha256": "293175d8cc0701b53017015d7e4824e94bff78c4cba5897f6415a3680f66a7eb",
+      "language": "jade",
+      "raw_comment": "  //- See comments in the /javascripts/socket-client.js",
+      "raw_sha256": "b60dae785bc02fd479e7a6d00b47604ad5712d43f56fd3680bae1629d7b1aedc",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "4ac00c1325e3bb78a6d583c6c49269c22dfccf059633886ade835db52ca16b2b",
+        "source_id": "1e9c5f03e179080a065da936d4bb8c6ca034349e"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "21c9d5b3aa3a4fe5bcc7ec3e670032b2d53a149b6b401dc6f4d9baf4388ebe7a",
+      "case_id": "jade-line-fcb05910ff600247",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pagejs",
+      "expected_cleaned_sha256": "f06bf3035ec759431b144e600de2059e91926707bc10833b04fa0b94641da25c",
+      "language": "jade",
+      "raw_comment": "  //-\n    pagejs",
+      "raw_sha256": "038292dc13380addfe23eba8368c26cd751ab6b763e5f88ce90b20aeb7b08b1e",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "ee7cad076220dc97e140a10d12910db11c16532c9619511ba76cd7804af2d090",
+        "source_id": "acec87f1812d9dd66e176f25fd0b8949cb7c6d14"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "1ffb5d9719fe5e0dc287d6cf66f2642df6abc6b432ff14b55870640d39ad6c65",
+      "case_id": "pug-line-09d93854d1db554f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by schiappacassed on 04/11/2015.",
+      "expected_cleaned_sha256": "acd98a3a98f1b022a27ec8af61579348ffae1febed86ef7d53d18a928ccd815e",
+      "language": "pug",
+      "raw_comment": "//\n   Created by schiappacassed on 04/11/2015.",
+      "raw_sha256": "1ffb5d9719fe5e0dc287d6cf66f2642df6abc6b432ff14b55870640d39ad6c65",
+      "raw_utf8_length": 46,
+      "source_provenance": {
+        "source_excerpt_sha256": "a31093eb441c1f283560ebd81322a3ec073d3d9d12f3fa04569f0e98dbc758c4",
+        "source_id": "81b3b284e39662956f8a2064c6d590418279a24a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "1a00cd67c81129d68b816889eed5e6bfee19c82658e0396aca51125c74b651bd",
+      "case_id": "pug-line-25639bbdefeab821",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "OpenCenter\u2122 is Copyright 2013 by Rackspace US, Inc.\n\nOpenCenter is licensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.  This version\nof OpenCenter includes Rackspace trademarks and logos, and in accordance with\nSection 6 of the License, the provision of commercial support services in\nconjunction with a version of OpenCenter which includes Rackspace trademarks\nand logos is prohibited.  OpenCenter source code and details are available at:\nhttps://github.com/rcbops/opencenter or upon written request.\n\nYou may obtain a copy of the License at\nhttp://www.apache.org/licenses/LICENSE-2.0 and a copy, including this notice,\nis available in the LICENSE file accompanying this software.\n\nUnless required by applicable law or agreed to in writing, software distributed\nunder the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied. See the License for the\nspecific language governing permissions and limitations under the License.",
+      "expected_cleaned_sha256": "9694e255bac970537d16de8600b3a5d4926d10493437babed6ee67897f1586cb",
+      "language": "pug",
+      "raw_comment": "//-               OpenCenter\u2122 is Copyright 2013 by Rackspace US, Inc. \n//-###############################################################################\n//-\n//-OpenCenter is licensed under the Apache License, Version 2.0 (the \"License\");\n//-you may not use this file except in compliance with the License.  This version\n//-of OpenCenter includes Rackspace trademarks and logos, and in accordance with\n//-Section 6 of the License, the provision of commercial support services in\n//-conjunction with a version of OpenCenter which includes Rackspace trademarks\n//-and logos is prohibited.  OpenCenter source code and details are available at:\n//-https://github.com/rcbops/opencenter or upon written request.\n//-\n//-You may obtain a copy of the License at\n//-http://www.apache.org/licenses/LICENSE-2.0 and a copy, including this notice,\n//-is available in the LICENSE file accompanying this software.\n//-\n//-Unless required by applicable law or agreed to in writing, software distributed\n//-under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n//-CONDITIONS OF ANY KIND, either express or implied. See the License for the\n//-specific language governing permissions and limitations under the License.\n//-\n//-###############################################################################",
+      "raw_sha256": "56f2a8082243a8fcf9010600feffd370f5439a57ecc9390ede4851564c5851f6",
+      "raw_utf8_length": 1308,
+      "source_provenance": {
+        "source_excerpt_sha256": "a233ed6840f49f8d0944f3a84f9db5240c8d2a3d8e234bfc2f4ab239b4d355af",
+        "source_id": "ca6ee934227681489fcf38e2088c362c77f5fe2f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "d9ace39030b7e6601337f43d6897cb54f7fb1037893dfbdb3b0755912d7de06e",
+      "case_id": "pug-line-35f9b3e2fa0db6f5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by admin on 07/12/17.",
+      "expected_cleaned_sha256": "0585e97637d7308be191cdaba2bc7a2bedfbb21f024f3c9f5138b6db838a0970",
+      "language": "pug",
+      "raw_comment": "//\n   Created by admin on 07/12/17.",
+      "raw_sha256": "d9ace39030b7e6601337f43d6897cb54f7fb1037893dfbdb3b0755912d7de06e",
+      "raw_utf8_length": 35,
+      "source_provenance": {
+        "source_excerpt_sha256": "2681f1db0d02ba0d5a4f814e6fc590c3418f2149437ed710cd74d02bc146a57a",
+        "source_id": "e758a1125e97980b7120c77990838b0a3c363ef8"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "503945cdd20a717efc6dad2879670a0b758c408906dfa1a6986b64ac0a57f9f5",
+      "case_id": "pug-line-3d37a963d01d3a0f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by yaroslav on 8/16/16.",
+      "expected_cleaned_sha256": "b9d62edec97f6d96cc8523355d34ce75f027021e0a01c006f13f481247bfa752",
+      "language": "pug",
+      "raw_comment": "//\n   Created by yaroslav on 8/16/16.",
+      "raw_sha256": "503945cdd20a717efc6dad2879670a0b758c408906dfa1a6986b64ac0a57f9f5",
+      "raw_utf8_length": 37,
+      "source_provenance": {
+        "source_excerpt_sha256": "c89b54e98b260c82e392e577208a521fd4013483d79e757531f2460d3ed594ad",
+        "source_id": "3c5e5d33a463be3f5f2f44bc2796bca2eb24f86a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "18122923e192f5f44b05a15fcc56dcf17b30ecb3017cb95dfc1e05fe8f903450",
+      "case_id": "pug-line-94cbec3f41e08d16",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ".item.item-icon-left.item-icon-right.bg-white(ui-sref=\"scan({user: $root.project.model.user, project: $root.project.model.project, origin: 'setting'})\")\nimg.item-icon-height-width.icon(src=\"./img/svg/account-add.svg\")\nspan.font-14.white \u65b0\u589e\u8bbe\u5907\nimg.icon.right.img-item(src=\"./img/svg/arrow-right.svg\")",
+      "expected_cleaned_sha256": "9c6c11eaf1b172944549cc0a9731ba9eae7fb5c4ecc2917d1ff844a60c0cfd44",
+      "language": "pug",
+      "raw_comment": "      //.item.item-icon-left.item-icon-right.bg-white(ui-sref=\"scan({user: $root.project.model.user, project: $root.project.model.project, origin: 'setting'})\")\n        img.item-icon-height-width.icon(src=\"./img/svg/account-add.svg\")\n        span.font-14.white \u65b0\u589e\u8bbe\u5907\n        img.icon.right.img-item(src=\"./img/svg/arrow-right.svg\")",
+      "raw_sha256": "b7ce8fb297dff519ec8f15611bc7dd7c8c3c335b642a28d1fec3f98582c92ce8",
+      "raw_utf8_length": 338,
+      "source_provenance": {
+        "source_excerpt_sha256": "db38f9abcc42003d7fba62a9e1bf65f3ff2962365b11a7b5105a61c34425ce0e",
+        "source_id": "50edeabe6f817a12d5c9ecaf28344060ddef2be1"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "0285ab35371b92ce1b211740a4b8d81acef1f48691ef5ed3f7c325ae61a94bb1",
+      "case_id": "pug-line-da79e6059f07cb74",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by oscar on 9/06/16.",
+      "expected_cleaned_sha256": "23046bdd3199edd71fcc76c0e3fe444ea08ffda4a2c37ae9b24f0a9caea1d9fd",
+      "language": "pug",
+      "raw_comment": "//\n   Created by oscar on 9/06/16.",
+      "raw_sha256": "0285ab35371b92ce1b211740a4b8d81acef1f48691ef5ed3f7c325ae61a94bb1",
+      "raw_utf8_length": 34,
+      "source_provenance": {
+        "source_excerpt_sha256": "d5090ac8d907c30a40049b422993975821b21b2497c961d3afada6998080a65a",
+        "source_id": "f34fbe141b6254ea6b6d4c9ef76f65f875c60020"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "72bf365ccdda5a95a93753ec8308637f306475804afb84053fce6f9d3209d843",
+      "case_id": "pug-line-db6e34d515711b81",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\uba54\ud0c0 \uc815\ubcf4",
+      "expected_cleaned_sha256": "a72ac8498ec2571a23f23e5028c41f9d63d9634a767b9d7d33ed3f279084f79f",
+      "language": "pug",
+      "raw_comment": "//- \uba54\ud0c0 \uc815\ubcf4",
+      "raw_sha256": "cfb6e0627197a86fc27ac3385329759296f76f53a629f65761d2eda7b5bbff2a",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "e8d5f767ef1371cf99470f5c500d7bcba9e4088b490cc667b64f6ef305d3cb82",
+        "source_id": "f22c9279264fa239e3831b60f7715d34a03a8990"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "ba52f87b75589fcf896941b1a0525091b3894ff5398ffe5bc896879ca74f4e67",
+      "case_id": "pug-line-e64e29eb9fa9ca3c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Signup Mixin\nCreates a Mailchimp form. Pass a block for a pitch before the form.\nYou should use an h2 and maybe a p for the pitch.\nTo use this mixin just pass the list 'id' and the 'cta' to be used as text on\nthe submit button. The list ID can be found in your list's settings...\nhttp://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id",
+      "expected_cleaned_sha256": "216ca6f3c4ce90cab871effbd39acad095e23842f27fb96621ecfaf9fa207b46",
+      "language": "pug",
+      "raw_comment": "//- \n  Signup Mixin\n  Creates a Mailchimp form. Pass a block for a pitch before the form.\n  You should use an h2 and maybe a p for the pitch.\n  To use this mixin just pass the list 'id' and the 'cta' to be used as text on \n  the submit button. The list ID can be found in your list's settings...\n  http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id",
+      "raw_sha256": "81e3bef859cc1357270886dbb81d58163dff90aa7d59086b5102e549ca43d169",
+      "raw_utf8_length": 366,
+      "source_provenance": {
+        "source_excerpt_sha256": "6670c8b7d76f80cf2dd9a642f9467a25a015fcf561d9cafcacb6f9c481d8e43f",
+        "source_id": "e502d658388591e8d53f5f13d9689444a78fa60f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e77f524ceefd06c905b8c893f529a174cc8776f6524dbf0040c92c9eb2397532",
+      "case_id": "pug-line-e68484a8ea64a194",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "include the nav mixin",
+      "expected_cleaned_sha256": "5d4546e29d97c71b6fce03408d0aa79d797945521e5738fe69dcc9481fd0fe8b",
+      "language": "pug",
+      "raw_comment": "//- include the nav mixin",
+      "raw_sha256": "10ab20dc17eb4ccd6dd83a061bba2c35e0adea9876b162264590de6a60d16c81",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "a2e36941baef5134a9e4552b486387f098c8377c1c003ab6e7cfa47931d6a382",
+        "source_id": "aa891a2860fd543a79d819e63c1d820d5d4f63bf"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "94faa28c135b4c31dc89cc3179ff30ed9d04e8b88ba25e865d4748d028fdd1ca",
+      "case_id": "pug-line-e733c974470dce8b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Extends template page",
+      "expected_cleaned_sha256": "7efc2b636a2032ef998dc90dfecd4d8e2206933a6153b6b41d155bafed86f949",
+      "language": "pug",
+      "raw_comment": "//- Extends template page",
+      "raw_sha256": "a4daaf89157051013302167cac81f24bef880e0845342afecfec6f209f5030ed",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "4e09d105b68b0df3997ddc3bbe9468c21e33e3a6c6d3ca7a7ba5cba822170193",
+        "source_id": "529cd2336037f6b16755667c3c4d8c43d98d79a4"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

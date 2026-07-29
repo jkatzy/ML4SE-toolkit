@@ -1,0 +1,38 @@
+{
+  "case_id": "nextflow-block-4c7a01b7fe9b8e49",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u007e",
+  "disposition": "executable_regression",
+  "language": "nextflow",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "493e19497305ca9705adc54b94882b0564268c8bcd0caabdcd93c6bfe54faea1",
+      "utf8_length": 339
+    },
+    "manifest_old_output": {
+      "sha256": "a71528b634d3f2fcda19e48a0b26cec8822d3f687aea241b0ad8f34bd4448c13",
+      "utf8_length": 250
+    },
+    "raw_comment": {
+      "sha256": "736859d558ad5529230375cad3b0359ed7915d762ee1fcb15a9d238a68496c12",
+      "utf8_length": 434
+    },
+    "recommended_expected_output": {
+      "sha256": "a71528b634d3f2fcda19e48a0b26cec8822d3f687aea241b0ad8f34bd4448c13",
+      "utf8_length": 250
+    }
+  },
+  "regression": {
+    "expected_output": "    nf-core/nascent\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    Github : https://github.com/nf-core/nascent\n\n    Website: https://nf-co.re/nascent\n    Slack  : https://nfcore.slack.com/channels/nascent",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    nf-core/nascent\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    Github : https://github.com/nf-core/nascent\n\n    Website: https://nf-co.re/nascent\n    Slack  : https://nfcore.slack.com/channels/nascent\n----------------------------------------------------------------------------------------\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "975fb176e6457d203de3eda28bcd4c950c8b4c0dc2a919c6cb5190340b78a105",
+    "source_id": "bc89995856868e2a0137cca5df4d6a5d60b7433e"
+  },
+  "source_record_sha256": "fff4d772e688769e6eb724ca3665dfde30b84cc4b6cff1df42aeabf6959834b1"
+}

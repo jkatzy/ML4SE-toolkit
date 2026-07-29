@@ -1,0 +1,38 @@
+{
+  "case_id": "m4sugar-line-3fed09226bba08f3",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:repeated_marker",
+  "disposition": "executable_regression",
+  "language": "m4sugar",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "56dc6d47737d155afddefda1af20c40c901353c222d01e70b7b4e021f2e4f548",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "f04968755538cfa8e27c7dc5f60c87217cbab8f2ab998283bcc5118b636cbdd2",
+      "utf8_length": 70
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "######################################################################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "59532f11d986983cc0384c5b0ff96f5ac2a6fa4cb7fbd5c1500dcef4e31b5708",
+    "source_id": "acaa85458ee614d7ebd9cc72c7f565909e562b75"
+  },
+  "source_record_sha256": "3c1bc5c6a7901b361d318bb1a4bd196595f4370b5f48ee673db9648a74158030"
+}

@@ -1,0 +1,314 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "jinja_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "0a27c38a27998ca74bef2c4ff1e00300c2fc8753f233cbd3cfd82a4bea0c5180",
+      "case_id": "html_plusdjango-block-3049c185391b0896",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "html_plusdjango",
+      "oracle_exception_record_sha256": "3854205f0b9463bcbb1a7b4081575518f9c94a17337cf18bb440b523f0a2f692",
+      "raw_sha256": "3410d1850ce79ac8ec31b8277ce5453d3a77da357a43b825c155bccc18834839",
+      "raw_utf8_length": 115,
+      "source_provenance": {
+        "source_excerpt_sha256": "944a678a3699e8720d5baa93ffc982ed1e93d9a683b713109e457f725b9e7710",
+        "source_id": "af839bc4469ea5d95bbcb6cee1395dec925afe7e"
+      },
+      "syntax_label": "{#...#}"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "0a27c38a27998ca74bef2c4ff1e00300c2fc8753f233cbd3cfd82a4bea0c5180",
+      "case_id": "html_django-block-20b4a4fe1d1f0b21",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Form where users can change their password, only user input is his/her e-mail address\nAuthor: Sebastian Brehm",
+      "expected_cleaned_sha256": "383f0b020b84090147180169fb563ee820d3fa12cdbf2f9b01f999f5e1094799",
+      "language": "html_django",
+      "raw_comment": "{# Form where users can change their password, only user input is his/her e-mail address\nAuthor: Sebastian Brehm\n#}",
+      "raw_sha256": "3410d1850ce79ac8ec31b8277ce5453d3a77da357a43b825c155bccc18834839",
+      "raw_utf8_length": 115,
+      "source_provenance": {
+        "source_excerpt_sha256": "944a678a3699e8720d5baa93ffc982ed1e93d9a683b713109e457f725b9e7710",
+        "source_id": "af839bc4469ea5d95bbcb6cee1395dec925afe7e"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "deb5c590118894c7b0799279610b4a2de38fc1e4b8fdf943d372e8b043314d76",
+      "case_id": "html_django-block-56e833cb92f2852c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usage of this is governed by a license that can be found in doc/license.rst",
+      "expected_cleaned_sha256": "38aa067970da827bbc681868476bd4e8ca8c082199633dab013b8151ae855619",
+      "language": "html_django",
+      "raw_comment": "{#- Usage of this is governed by a license that can be found in doc/license.rst -#}",
+      "raw_sha256": "eb3049ebc61d3404a135f60bcb35f5c96850cba6da19e66c1207410ccc1669f6",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "cdd78452749fd632197e7d3faad7588bfcb128ecac22dff9bec740bcad654b68",
+        "source_id": "b693ad00d422eb6f2d37d9304f97339df214f08a"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "1a1d2dfc61f31d4b5f15836ad63dd6280ea7c4172ae3f3db09330e6e7b9e0064",
+      "case_id": "html_django-block-6c05a50e560dec74",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TOFS:0.0.2",
+      "expected_cleaned_sha256": "2b32bb78fafd375fb018913bee4fb93f1f52e809fc4ea23e58da3ccbebed91c1",
+      "language": "html_django",
+      "raw_comment": "{#- TOFS:0.0.2 #}",
+      "raw_sha256": "a78be981d3fb0309a7ce32bf64a3104b6feacc9fa4cdfa2411f303cc223446e7",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "c6765bfaf149c1f6fa0390aee92f40716220135c2a2555378543e544652b7753",
+        "source_id": "e817ff5b6ae3d4acfe1d27be90c1a2b9de2a8287"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "bfec37964ef42695e84104b099a39e14022c2084c4bab8cef9120d0a60bc6c82",
+      "case_id": "html_django-block-d907a21222e924e6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The macro will be used twice. One time with environments, one time without",
+      "expected_cleaned_sha256": "77740a7d34857a3857f085d55cb0ed6e1e255810ddd477ed5f6e12b2664c0786",
+      "language": "html_django",
+      "raw_comment": "{#- The macro will be used twice. One time with environments, one time without -#}",
+      "raw_sha256": "5bd1da8e87d65d4ccdf0aa903c101a800f53591648e6aec2e6b367d9902a6a63",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "720d4915cdaa50c19ecd15fc28bf8d9288826ed085e93dfc3d2e2c534e29f639",
+        "source_id": "5f266fa92e8e7854e85443fc814a66920c067802"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "0a27c38a27998ca74bef2c4ff1e00300c2fc8753f233cbd3cfd82a4bea0c5180",
+      "case_id": "html_plus_django-block-163dd87c94634262",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Form where users can change their password, only user input is his/her e-mail address\nAuthor: Sebastian Brehm",
+      "expected_cleaned_sha256": "383f0b020b84090147180169fb563ee820d3fa12cdbf2f9b01f999f5e1094799",
+      "language": "html_plus_django",
+      "raw_comment": "{# Form where users can change their password, only user input is his/her e-mail address\nAuthor: Sebastian Brehm\n#}",
+      "raw_sha256": "3410d1850ce79ac8ec31b8277ce5453d3a77da357a43b825c155bccc18834839",
+      "raw_utf8_length": 115,
+      "source_provenance": {
+        "source_excerpt_sha256": "944a678a3699e8720d5baa93ffc982ed1e93d9a683b713109e457f725b9e7710",
+        "source_id": "af839bc4469ea5d95bbcb6cee1395dec925afe7e"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "1a1d2dfc61f31d4b5f15836ad63dd6280ea7c4172ae3f3db09330e6e7b9e0064",
+      "case_id": "html_plus_django-block-377ea7dc5281c7c5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TOFS:0.0.2",
+      "expected_cleaned_sha256": "2b32bb78fafd375fb018913bee4fb93f1f52e809fc4ea23e58da3ccbebed91c1",
+      "language": "html_plus_django",
+      "raw_comment": "{#- TOFS:0.0.2 #}",
+      "raw_sha256": "a78be981d3fb0309a7ce32bf64a3104b6feacc9fa4cdfa2411f303cc223446e7",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "c6765bfaf149c1f6fa0390aee92f40716220135c2a2555378543e544652b7753",
+        "source_id": "e817ff5b6ae3d4acfe1d27be90c1a2b9de2a8287"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "deb5c590118894c7b0799279610b4a2de38fc1e4b8fdf943d372e8b043314d76",
+      "case_id": "html_plus_django-block-908b17a82a2e2209",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usage of this is governed by a license that can be found in doc/license.rst",
+      "expected_cleaned_sha256": "38aa067970da827bbc681868476bd4e8ca8c082199633dab013b8151ae855619",
+      "language": "html_plus_django",
+      "raw_comment": "{#- Usage of this is governed by a license that can be found in doc/license.rst -#}",
+      "raw_sha256": "eb3049ebc61d3404a135f60bcb35f5c96850cba6da19e66c1207410ccc1669f6",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "cdd78452749fd632197e7d3faad7588bfcb128ecac22dff9bec740bcad654b68",
+        "source_id": "b693ad00d422eb6f2d37d9304f97339df214f08a"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "bfec37964ef42695e84104b099a39e14022c2084c4bab8cef9120d0a60bc6c82",
+      "case_id": "html_plus_django-block-e1469ebe4a2831fb",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The macro will be used twice. One time with environments, one time without",
+      "expected_cleaned_sha256": "77740a7d34857a3857f085d55cb0ed6e1e255810ddd477ed5f6e12b2664c0786",
+      "language": "html_plus_django",
+      "raw_comment": "{#- The macro will be used twice. One time with environments, one time without -#}",
+      "raw_sha256": "5bd1da8e87d65d4ccdf0aa903c101a800f53591648e6aec2e6b367d9902a6a63",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "720d4915cdaa50c19ecd15fc28bf8d9288826ed085e93dfc3d2e2c534e29f639",
+        "source_id": "5f266fa92e8e7854e85443fc814a66920c067802"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "bfec37964ef42695e84104b099a39e14022c2084c4bab8cef9120d0a60bc6c82",
+      "case_id": "html_plusdjango-block-254976a78fa1ceba",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The macro will be used twice. One time with environments, one time without",
+      "expected_cleaned_sha256": "77740a7d34857a3857f085d55cb0ed6e1e255810ddd477ed5f6e12b2664c0786",
+      "language": "html_plusdjango",
+      "raw_comment": "{#- The macro will be used twice. One time with environments, one time without -#}",
+      "raw_sha256": "5bd1da8e87d65d4ccdf0aa903c101a800f53591648e6aec2e6b367d9902a6a63",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "720d4915cdaa50c19ecd15fc28bf8d9288826ed085e93dfc3d2e2c534e29f639",
+        "source_id": "5f266fa92e8e7854e85443fc814a66920c067802"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "deb5c590118894c7b0799279610b4a2de38fc1e4b8fdf943d372e8b043314d76",
+      "case_id": "html_plusdjango-block-ba305761f4dc5807",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usage of this is governed by a license that can be found in doc/license.rst",
+      "expected_cleaned_sha256": "38aa067970da827bbc681868476bd4e8ca8c082199633dab013b8151ae855619",
+      "language": "html_plusdjango",
+      "raw_comment": "{#- Usage of this is governed by a license that can be found in doc/license.rst -#}",
+      "raw_sha256": "eb3049ebc61d3404a135f60bcb35f5c96850cba6da19e66c1207410ccc1669f6",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "cdd78452749fd632197e7d3faad7588bfcb128ecac22dff9bec740bcad654b68",
+        "source_id": "b693ad00d422eb6f2d37d9304f97339df214f08a"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "e2bf77077dcf0b965499d7e29ce2a7b4563bab6dd0761b3a88b97aa3aa8fbdcb",
+      "case_id": "html_plusdjango-block-cadca7f36eea2903",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "JR C sn",
+      "expected_cleaned_sha256": "aaf53e35777cb901a7caed11f6849d4527309fa6078d06b86556d0c45ec8f4b9",
+      "language": "html_plusdjango",
+      "raw_comment": "{## JR C sn ##}",
+      "raw_sha256": "11ed6b8ab565955418f7e0133fbc2121b759f600f2c2f8be93e18824d00edd88",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ba67bd324bce858cd92f583d931732da673fdad3408643ce7fb6dfb99e675b9",
+        "source_id": "8e14fb59a680f1508ea939eb6258ee3a203799b0"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "1a1d2dfc61f31d4b5f15836ad63dd6280ea7c4172ae3f3db09330e6e7b9e0064",
+      "case_id": "html_plusdjango-block-dc35006570fbf005",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TOFS:0.0.2",
+      "expected_cleaned_sha256": "2b32bb78fafd375fb018913bee4fb93f1f52e809fc4ea23e58da3ccbebed91c1",
+      "language": "html_plusdjango",
+      "raw_comment": "{#- TOFS:0.0.2 #}",
+      "raw_sha256": "a78be981d3fb0309a7ce32bf64a3104b6feacc9fa4cdfa2411f303cc223446e7",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "c6765bfaf149c1f6fa0390aee92f40716220135c2a2555378543e544652b7753",
+        "source_id": "e817ff5b6ae3d4acfe1d27be90c1a2b9de2a8287"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "1a1d2dfc61f31d4b5f15836ad63dd6280ea7c4172ae3f3db09330e6e7b9e0064",
+      "case_id": "jinja-block-036bca90f0aa2580",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TOFS:0.0.2",
+      "expected_cleaned_sha256": "2b32bb78fafd375fb018913bee4fb93f1f52e809fc4ea23e58da3ccbebed91c1",
+      "language": "jinja",
+      "raw_comment": "{#- TOFS:0.0.2 #}",
+      "raw_sha256": "a78be981d3fb0309a7ce32bf64a3104b6feacc9fa4cdfa2411f303cc223446e7",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "c6765bfaf149c1f6fa0390aee92f40716220135c2a2555378543e544652b7753",
+        "source_id": "e817ff5b6ae3d4acfe1d27be90c1a2b9de2a8287"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "deb5c590118894c7b0799279610b4a2de38fc1e4b8fdf943d372e8b043314d76",
+      "case_id": "jinja-block-119b6e7e5812896b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usage of this is governed by a license that can be found in doc/license.rst",
+      "expected_cleaned_sha256": "38aa067970da827bbc681868476bd4e8ca8c082199633dab013b8151ae855619",
+      "language": "jinja",
+      "raw_comment": "{#- Usage of this is governed by a license that can be found in doc/license.rst -#}",
+      "raw_sha256": "eb3049ebc61d3404a135f60bcb35f5c96850cba6da19e66c1207410ccc1669f6",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "cdd78452749fd632197e7d3faad7588bfcb128ecac22dff9bec740bcad654b68",
+        "source_id": "b693ad00d422eb6f2d37d9304f97339df214f08a"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "0a27c38a27998ca74bef2c4ff1e00300c2fc8753f233cbd3cfd82a4bea0c5180",
+      "case_id": "jinja-block-765260ea90b969d9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Form where users can change their password, only user input is his/her e-mail address\nAuthor: Sebastian Brehm",
+      "expected_cleaned_sha256": "383f0b020b84090147180169fb563ee820d3fa12cdbf2f9b01f999f5e1094799",
+      "language": "jinja",
+      "raw_comment": "{# Form where users can change their password, only user input is his/her e-mail address\nAuthor: Sebastian Brehm\n#}",
+      "raw_sha256": "3410d1850ce79ac8ec31b8277ce5453d3a77da357a43b825c155bccc18834839",
+      "raw_utf8_length": 115,
+      "source_provenance": {
+        "source_excerpt_sha256": "944a678a3699e8720d5baa93ffc982ed1e93d9a683b713109e457f725b9e7710",
+        "source_id": "af839bc4469ea5d95bbcb6cee1395dec925afe7e"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "bfec37964ef42695e84104b099a39e14022c2084c4bab8cef9120d0a60bc6c82",
+      "case_id": "jinja-block-b41bb91a8f31cd47",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The macro will be used twice. One time with environments, one time without",
+      "expected_cleaned_sha256": "77740a7d34857a3857f085d55cb0ed6e1e255810ddd477ed5f6e12b2664c0786",
+      "language": "jinja",
+      "raw_comment": "{#- The macro will be used twice. One time with environments, one time without -#}",
+      "raw_sha256": "5bd1da8e87d65d4ccdf0aa903c101a800f53591648e6aec2e6b367d9902a6a63",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "720d4915cdaa50c19ecd15fc28bf8d9288826ed085e93dfc3d2e2c534e29f639",
+        "source_id": "5f266fa92e8e7854e85443fc814a66920c067802"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "e2bf77077dcf0b965499d7e29ce2a7b4563bab6dd0761b3a88b97aa3aa8fbdcb",
+      "case_id": "jinja-block-d93c869ca1d93dbf",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "JR C sn",
+      "expected_cleaned_sha256": "aaf53e35777cb901a7caed11f6849d4527309fa6078d06b86556d0c45ec8f4b9",
+      "language": "jinja",
+      "raw_comment": "{## JR C sn ##}",
+      "raw_sha256": "11ed6b8ab565955418f7e0133fbc2121b759f600f2c2f8be93e18824d00edd88",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ba67bd324bce858cd92f583d931732da673fdad3408643ce7fb6dfb99e675b9",
+        "source_id": "8e14fb59a680f1508ea939eb6258ee3a203799b0"
+      },
+      "syntax_label": "{#...#}"
+    }
+  ],
+  "schema_version": 5
+}

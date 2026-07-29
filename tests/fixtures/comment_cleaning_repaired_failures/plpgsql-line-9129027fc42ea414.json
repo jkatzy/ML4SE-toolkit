@@ -1,0 +1,38 @@
+{
+  "case_id": "plpgsql-line-9129027fc42ea414",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "plpgsql",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "19cedc56f26c9ce22a8c4251016395d4bc6d815a71c5ade73c60089e0f3ed5ab",
+      "utf8_length": 167
+    },
+    "manifest_old_output": {
+      "sha256": "19cedc56f26c9ce22a8c4251016395d4bc6d815a71c5ade73c60089e0f3ed5ab",
+      "utf8_length": 167
+    },
+    "raw_comment": {
+      "sha256": "198da9afffbe593c10d41ae4632ab4d0a27435951215d1dbabd7b70ac0509a20",
+      "utf8_length": 181
+    },
+    "recommended_expected_output": {
+      "sha256": "19cedc56f26c9ce22a8c4251016395d4bc6d815a71c5ade73c60089e0f3ed5ab",
+      "utf8_length": 167
+    }
+  },
+  "regression": {
+    "expected_output": "MySQL dump 10.13  Distrib 5.6.26, for osx10.8 (x86_64)\n\nHost: localhost    Database: clash\n------------------------------------------------------\nServer version\t5.6.26",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "-- MySQL dump 10.13  Distrib 5.6.26, for osx10.8 (x86_64)\n--\n-- Host: localhost    Database: clash\n-- ------------------------------------------------------\n-- Server version\t5.6.26"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6b1fe1dd9c75a6b3a18bf7ac8f453dbb3b19e4515073cc67c87469dbe2cc0e70",
+    "source_id": "eefd6d54b4a68dd25c0f8e8a34e7a3361bb9f2e9"
+  },
+  "source_record_sha256": "d8c6a537ab3fb3b75e10569ca2c68b5f593a61488341f4418a61c4c1fec9cf35"
+}

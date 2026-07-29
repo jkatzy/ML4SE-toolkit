@@ -1,0 +1,38 @@
+{
+  "case_id": "eclipse-line-330aaf66579e41d4",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "eclipse",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "1e6fc99567b86a6e2b96f61acfe2edbf4c53dc1a5e57234c12af5ada16cdd6db",
+      "utf8_length": 36
+    },
+    "manifest_old_output": {
+      "sha256": "1eac75ee5576937c7049c625a752a1d10f574f77644fda274d4388a8faf147f8",
+      "utf8_length": 33
+    },
+    "raw_comment": {
+      "sha256": "c27edbd8c93613154870107278cab7e60f8def66db0d4130f609e70d00545395",
+      "utf8_length": 38
+    },
+    "recommended_expected_output": {
+      "sha256": "1eac75ee5576937c7049c625a752a1d10f574f77644fda274d4388a8faf147f8",
+      "utf8_length": 33
+    }
+  },
+  "regression": {
+    "expected_output": "N primeiros Fibonacci em um ARRAY",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%% N primeiros Fibonacci em um ARRAY\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ffe460a4d6647183179287380bd59ecc43f03ead167a7f69a6dc74e0e25a8c2c",
+    "source_id": "49b0e2325e65efc92526f5780df6463c1d5df8fc"
+  },
+  "source_record_sha256": "d4c2bed1d2abaafc7bdc1a00fb78e1f1278f9c8ce88be9f355f1a62fdf5b57c3"
+}

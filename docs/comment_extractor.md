@@ -359,7 +359,65 @@ make comment-cleaner-judge-test COMMENT_JUDGE_BACKEND=codex
 ```
 
 These targets write under `tmp/stack_v2_comment_cleaner_judge` by default. The
-cleaning-only judge passes each manifest row's `raw_comment` directly to
+manifest builder also supports a total-file quota, with at most one judged
+comment per distinct source file. It greedily favors underrepresented comment
+kinds among the files encountered before the quota is filled. For example, the
+requested deduplicated-corpus scope is:
+
+```bash
+make comment-cleaner-judge-manifest \
+  COMMENT_JUDGE_LANGUAGES= \
+  COMMENT_JUDGE_FILES_PER_LANGUAGE=50 \
+  COMMENT_JUDGE_MANIFEST_ARGS='--dataset bigcode/the-stack-v2-dedup'
+```
+
+A language with fewer than 50 eligible files gets an explicit
+`source_files` failure row; registry keys with no eligible Stack v2 kinds are
+also reported rather than silently omitted. This all-language command is a
+bulk content transfer; review and satisfy the current Stack v2 and Software
+Heritage access terms before running it.
+
+Cleaner-judge manifests quarantine `line` matches longer than 12,000
+characters by default and keep scanning for a replacement source file. These
+pathological matches are likely language/source-format collisions rather than
+useful cleaner inputs, so admitting them can turn corpus classification noise
+into misleading sanitizer failures. The guard affects sampling only: properly
+delimited `block` and `nested` comments are not capped. Pass
+`--max-line-comment-chars 0` to disable the quarantine for an explicit
+extraction-boundary audit.
+
+Dataset revisions are optional. Exact regeneration requires passing an
+explicit immutable Hugging Face commit through `--dataset-revision`; do not
+describe a run against an unpinned default revision as byte-for-byte
+reproducible. Conversely, The Stack's current opt-out/removal terms may require
+using the latest dataset revision so that removals are honored. In that case,
+omit `--dataset-revision`, record the run date, and treat the corpus snapshot as
+time-dependent.
+
+The manifest pipeline was last verified with `datasets==5.0.1`,
+`boto3==1.43.58`, and `smart_open[s3]==8.0.1`. A controlled invocation can pin
+those client versions together with an explicitly selected immutable dataset
+revision:
+
+```bash
+uv run \
+  --with datasets==5.0.1 \
+  --with boto3==1.43.58 \
+  --with 'smart_open[s3]==8.0.1' \
+  python scripts/run_stack_v2_comment_manifest_pipeline.py \
+  --all-languages \
+  --dataset bigcode/the-stack-v2-dedup \
+  --dataset-revision "$STACK_V2_DATASET_REVISION" \
+  --files-per-language 50 \
+  --output-root tmp/stack_v2_comment_cleaner_all_languages_50
+```
+
+Set `STACK_V2_DATASET_REVISION` to an immutable revision published by the
+dataset repository when historical reproducibility is appropriate. No
+revision is hard-coded here because dataset governance can make a formerly
+valid snapshot unsuitable for a new download.
+
+The cleaning-only judge passes each manifest row's `raw_comment` directly to
 `CommentSanitizer`; it does not rerun extraction and does not treat the
 manifest's sanitizer-produced `cleaned_comment` snapshot as an oracle. The LLM
 instead judges the current candidate against the documented content-preservation

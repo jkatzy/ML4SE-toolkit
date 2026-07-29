@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-3d84aedd1774412f",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "62220204d7d6c3e77cb5000454c98e2aca765f1bbe3a85d3af60e65b7c89bb4a",
+      "utf8_length": 22
+    },
+    "manifest_old_output": {
+      "sha256": "88cac31f64416d881be596748e8ca8a3354a3be784f0e4937a22f02434b35b1f",
+      "utf8_length": 20
+    },
+    "raw_comment": {
+      "sha256": "c2e6990681fdd29b400e2f778cb4959c045ae2ceba7d645ab63fe78edd27f8b5",
+      "utf8_length": 131
+    },
+    "recommended_expected_output": {
+      "sha256": "88cac31f64416d881be596748e8ca8a3354a3be784f0e4937a22f02434b35b1f",
+      "utf8_length": 20
+    }
+  },
+  "regression": {
+    "expected_output": "ARTICULOS COMPUESTOS",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// ARTICULOS COMPUESTOS ///////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6194cd225693bb6232a254c2e48c5bc74a30615e9f3f21b335f42d46f3135db5",
+    "source_id": "804c24284a09e0e74a6b05f32c79f75a4a2ead6f"
+  },
+  "source_record_sha256": "7310a81ee71cd84ffbbef6d3a772d2c00ce72ada2f6700bd088dd2c2e8366368"
+}

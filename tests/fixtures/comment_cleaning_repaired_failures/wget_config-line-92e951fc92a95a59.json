@@ -1,0 +1,38 @@
+{
+  "case_id": "wget_config-line-92e951fc92a95a59",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "wget_config",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "451dccd42818054700a37f7bff978ebf6df44bfa1a93535ea0d300167d24d5c0",
+      "utf8_length": 48
+    },
+    "manifest_old_output": {
+      "sha256": "d534675abdb8614cb60977c45059312f2d096f3194d3bbf8401ada2e5d9812f9",
+      "utf8_length": 39
+    },
+    "raw_comment": {
+      "sha256": "fe6124ae326daaf4f0c07efb15c69d368f7b91fbc577a5225b7af6d09062530d",
+      "utf8_length": 51
+    },
+    "recommended_expected_output": {
+      "sha256": "d534675abdb8614cb60977c45059312f2d096f3194d3bbf8401ada2e5d9812f9",
+      "utf8_length": 39
+    }
+  },
+  "regression": {
+    "expected_output": "Sample Wget initialization file .wgetrc",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "###\n### Sample Wget initialization file .wgetrc\n###"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f16528b10a2268b7e6cb26bc98c264e00f1b5eddebba4da5bef312979696d500",
+    "source_id": "03feeb7daaaf6a3a6f8ae6504c3db11e3f5bc302"
+  },
+  "source_record_sha256": "19d2e678f815fa385fda1f2f663ffaf9aac2f44edaa8a82071f71e26d20b2595"
+}

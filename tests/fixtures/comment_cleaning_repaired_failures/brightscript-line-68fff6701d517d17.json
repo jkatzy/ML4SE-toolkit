@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-68fff6701d517d17",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "787a352a61bafea542784e0e68de69ae53aee7c2f0de5b93b7fb648e88523499",
+      "utf8_length": 424
+    },
+    "manifest_old_output": {
+      "sha256": "9fbacf17c2e0712a67426ebb9f7a390701e8536702811a870fc1c2c544a0893d",
+      "utf8_length": 406
+    },
+    "raw_comment": {
+      "sha256": "b548b084094a44312fb82f490048b7780c6aeea09dc8f9e7f44648171f2c1aeb",
+      "utf8_length": 572
+    },
+    "recommended_expected_output": {
+      "sha256": "9fbacf17c2e0712a67426ebb9f7a390701e8536702811a870fc1c2c544a0893d",
+      "utf8_length": 406
+    }
+  },
+  "regression": {
+    "expected_output": "Example of a custom videoplayer screen with navigable overlay\nFor Charter Communications\nby Joe Testa, August 2015\n\nThis is a basic example that demonstrates how a transparent\noverlay can be used for navigation over a playing video.\n\nOne thing I learned is to separate items that need to\nrefresh into their own layer, this was done with the 'nav'\nitems and I would expand the use of this if i had more time",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'****************************************************************\n'* Example of a custom videoplayer screen with navigable overlay\n'* For Charter Communications\n'* by Joe Testa, August 2015\n'* \n'* This is a basic example that demonstrates how a transparent \n'* overlay can be used for navigation over a playing video.\n'*\n'* One thing I learned is to separate items that need to \n'* refresh into their own layer, this was done with the 'nav'\n'* items and I would expand the use of this if i had more time\n'*\n'****************************************************************"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3fe0bf8532e09189ecf3b78790e5a2c17a6dc988cbb342b5733ffc1be97f511b",
+    "source_id": "a1bae69edf345d666ef777c5338c3b84acc5ebb6"
+  },
+  "source_record_sha256": "cf4051f359eccf84b373067e8d352a04d7c7fecc76e4dbce8c9ee4426789fccf"
+}

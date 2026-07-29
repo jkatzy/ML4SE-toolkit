@@ -1,0 +1,38 @@
+{
+  "case_id": "vim_snippet-line-00a633ea310b7c79",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "vim_snippet",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "56de5c65e802b5e0d5f681336308e3abbb1d065bf4e94e1a013c9da801f03c24",
+      "utf8_length": 71
+    },
+    "manifest_old_output": {
+      "sha256": "efa8b90960ce66de004b9eb186cf3c0fe43782bdf7b27c7b377faff2caa439a3",
+      "utf8_length": 68
+    },
+    "raw_comment": {
+      "sha256": "a462e1e2ab49a3064b1b3f4296ec61ca99ca5794527ef14744e10c6f32071a4f",
+      "utf8_length": 76
+    },
+    "recommended_expected_output": {
+      "sha256": "efa8b90960ce66de004b9eb186cf3c0fe43782bdf7b27c7b377faff2caa439a3",
+      "utf8_length": 68
+    }
+  },
+  "regression": {
+    "expected_output": "name : render :nothing =>  ... , :status =>  ...\ngroup: Rails render",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#name : render :nothing =>  ... , :status =>  ... \n#group: Rails render\n# --"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "100c7e0c3c637eba4ceee33d67c167292b53928a435e65b76c0b686fb8e71d56",
+    "source_id": "12f6d5a878cb9e37b4fd3991ffc91eba658d64cf"
+  },
+  "source_record_sha256": "81a3f76682406e4fb65f97d7fb360390ff9527e46366332ee5008e99a95a2971"
+}

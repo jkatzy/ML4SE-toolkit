@@ -1,0 +1,38 @@
+{
+  "case_id": "uno-line-f5e16cff3888f9aa",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "uno",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "49c78d90277b54abacb2007a00be4b1f538e07bf8896bd2d5c5facfbd4fbfd52",
+      "utf8_length": 57
+    },
+    "manifest_old_output": {
+      "sha256": "9460ec6d541960d9ebfefc93931eb64621751e92a8110ff729100032495ada1c",
+      "utf8_length": 60
+    },
+    "raw_comment": {
+      "sha256": "ecc98b2b96f5954a931fa5012f4f04d8c341aeaaaff0fe39876e3970b21179c4",
+      "utf8_length": 62
+    },
+    "recommended_expected_output": {
+      "sha256": "9460ec6d541960d9ebfefc93931eb64621751e92a8110ff729100032495ada1c",
+      "utf8_length": 60
+    }
+  },
+  "regression": {
+    "expected_output": "TODO: in theory PumpDeferred should have been enough here...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//TODO: in theory PumpDeferred should have been enough here..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "abab9fb9ce5c07520dcc136dee8101dc67eef205b68aea96271fb551f75365ae",
+    "source_id": "c0dc90b10c96b1b2943f322ac66febeb8df7cbd2"
+  },
+  "source_record_sha256": "dedcf2bf666bffdec815ffa4d3dc4308b79ffadf0f1b88fa0a09e13188ab5a71"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "closure_templates-block-1ef1487c8067a947",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "closure_templates",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "924db23be75e99d1a0fd85009f3d4e2b6b56b002ab27e4fc7e3d5f657f161bc9",
+      "utf8_length": 32
+    },
+    "manifest_old_output": {
+      "sha256": "5c48b2f14a614fcf14bb2d9ceb5c712f845a6d242171afe64b639ebc5ea9f5a2",
+      "utf8_length": 30
+    },
+    "raw_comment": {
+      "sha256": "502db836c51dc8473e2c81c3cc11b96540bfe983d543252907f79fa72b0305bc",
+      "utf8_length": 40
+    },
+    "recommended_expected_output": {
+      "sha256": "5c48b2f14a614fcf14bb2d9ceb5c712f845a6d242171afe64b639ebc5ea9f5a2",
+      "utf8_length": 30
+    }
+  },
+  "regression": {
+    "expected_output": "dibuja los detalles de hoteles",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/** \n* dibuja los detalles de hoteles\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0c6cdf15d869827fa83d4ef92cc7b93479d474924dc56f6147705cfc2e7f6c8b",
+    "source_id": "532cf2c6c404d1448e8de1d3c2b7252617d49507"
+  },
+  "source_record_sha256": "971c803b9037906e8f4379c415492513ec20ab9d5697d68fb73bbdbe61f60ea2"
+}

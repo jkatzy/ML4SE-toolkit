@@ -1,0 +1,38 @@
+{
+  "case_id": "zeek-line-9ca8ab84364d8b4a",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "zeek",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "8e83601549e1c4917ef5dc10769ff717ccb721b314c8ee157662dfb459480f6b",
+      "utf8_length": 34
+    },
+    "manifest_old_output": {
+      "sha256": "69571d5d7519983e93c9e6a13a991a8c413d6a7f7024492b85e612651b5c00f9",
+      "utf8_length": 32
+    },
+    "raw_comment": {
+      "sha256": "c818d9dd52bdcc22c3d0d6d83c49f84c8fcdb0aae49b7ed9a895f1ca790b9536",
+      "utf8_length": 35
+    },
+    "recommended_expected_output": {
+      "sha256": "69571d5d7519983e93c9e6a13a991a8c413d6a7f7024492b85e612651b5c00f9",
+      "utf8_length": 32
+    }
+  },
+  "regression": {
+    "expected_output": "Loggin stream for file analysis.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## Loggin stream for file analysis."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "13cd8bd976226e2264df389b72c84eb57ac6804b322c69e094edb5137ec3c34b",
+    "source_id": "bfa6fc540d29dd1ec1e00e011458700e6ece2dec"
+  },
+  "source_record_sha256": "b65db816ca8d198705b8b31643a230cda082fede1e9052b7fc6ca641455dafcd"
+}

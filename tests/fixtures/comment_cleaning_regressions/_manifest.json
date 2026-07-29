@@ -1,0 +1,1289 @@
+{
+  "case_category_counts": {
+    "extractor_boundary": 33,
+    "oracle_exception": 268,
+    "sanitizer": 1685
+  },
+  "case_category_id_set_sha256": {
+    "extractor_boundary": "a85d9a20563ec0a91fd95338a46e0ea390303ef6f648278bd25eaf1313635f81",
+    "oracle_exception": "4701095ef46cf2718557142df4eeccd6aa1b4553971e7d6edae9b22911f37140",
+    "sanitizer": "d20d8d151586634b278bed89c49a9affb4efd165b1b13212486d98d54b427e8b"
+  },
+  "case_count": 1986,
+  "case_id_set_sha256": "8e854fb306bd97bf73cb756bd5b8f8cf8f5c25b29bd97a3541f7140042d01fd5",
+  "comment_kind_counts": {
+    "block": 697,
+    "directive": 175,
+    "line": 905,
+    "nested": 209
+  },
+  "disposition_counts": {
+    "adjudicated_override": 2,
+    "confirmed_bug": 1683
+  },
+  "exception_status_counts": {
+    "ambiguous": 11,
+    "cleaning_policy_dispute": 29,
+    "cross_run_reviewer_conflict": 20,
+    "extraction_invalid": 33,
+    "intra_corpus_oracle_conflict": 33,
+    "oracle_not_deletion_only": 7,
+    "reviewer_disagreement": 168
+  },
+  "schema_version": 5,
+  "shards": [
+    {
+      "case_count": 17,
+      "extractor_boundary_case_count": 0,
+      "family_name": "abap_style",
+      "filename": "abap_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 17,
+      "sha256": "011fdf63d4b2666cc4719b6dc392a3c5e74725b6d6a9c4adbeafa6b9b648aee4"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "alloy_style",
+      "filename": "alloy_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "560b8ad8530451acf2d4ef7279f82485a72aa498257f513e82516180425f43d8"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "antlers_style",
+      "filename": "antlers_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "a113d8061f96dc150cc86c941179a0e9d882307f3ed5dfc73b4783ca4511abe6"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "api_blueprint_style",
+      "filename": "api_blueprint_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "275957274b3d08bc186d38c5d8e3a904ae62e9bb5a9af34c86c1e0df3684d38e"
+    },
+    {
+      "case_count": 20,
+      "extractor_boundary_case_count": 0,
+      "family_name": "apostrophe_style",
+      "filename": "apostrophe_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 19,
+      "sha256": "dc45e2652e20765814fa0e7337b5a7bb3b7e8a483e13721f0a58b9da141e3e4d"
+    },
+    {
+      "case_count": 6,
+      "extractor_boundary_case_count": 2,
+      "family_name": "applescript_style",
+      "filename": "applescript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 4,
+      "sha256": "dc1e626731a359363c8f37acf47b01b66ca3e3f7d586afe039a6f5f7896db0d9"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "arc_style",
+      "filename": "arc_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "81c1d47ff1831ef0607e7dd1bf15141c44cf1743b55150d0ea549b0ce3eedb4f"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "aspnet_style",
+      "filename": "aspnet_style.json",
+      "oracle_exception_case_count": 3,
+      "sanitizer_case_count": 0,
+      "sha256": "7cb1fdf61d74234ae121e375a2fd399e2c6c2e8ac9a90cf3fd523cd973145a2c"
+    },
+    {
+      "case_count": 13,
+      "extractor_boundary_case_count": 0,
+      "family_name": "bang_style",
+      "filename": "bang_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 13,
+      "sha256": "fd7a27227f507f859dc48f0339da5a39b18d8ed2f4375dee8851ed77a19e9b0b"
+    },
+    {
+      "case_count": 20,
+      "extractor_boundary_case_count": 0,
+      "family_name": "batchfile_style",
+      "filename": "batchfile_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 20,
+      "sha256": "21a8c097fe407cb65d0334e7bad475c647b0ed4b707d5060d6b578b624aa50fa"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "beef_style",
+      "filename": "beef_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "5adce7089e0afcde1cab6b5e435e3605fe4c55018ee24001b23815b5d01d7f46"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "berry_style",
+      "filename": "berry_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "391a892d865a71598861ce32329bc0994b7e0a69b991ac1cc844ae6463bace4f"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "bicep_style",
+      "filename": "bicep_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "212f39ed0d1aa850395a68691a4b8cfd0d0e7860d0755bb8de7111bacf9987e6"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "blade_style",
+      "filename": "blade_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "901dda3317d0be686fdd692cb885b16ce30250340bb61c42bac9b98151e3907d"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "blitzbasic_style",
+      "filename": "blitzbasic_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "84221d7f966c2ce17d4fd4c672ab93928804d023503b5748c8e5c3dce8448950"
+    },
+    {
+      "case_count": 13,
+      "extractor_boundary_case_count": 0,
+      "family_name": "blitzmax_style",
+      "filename": "blitzmax_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 13,
+      "sha256": "a5809267dc0f78dc20d33d6a3cd50d8a570621e365288102e290b6b367c7d4cb"
+    },
+    {
+      "case_count": 4,
+      "extractor_boundary_case_count": 0,
+      "family_name": "bluespec_style",
+      "filename": "bluespec_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 4,
+      "sha256": "53dffd23033d15ffc3f10b6c3897ccad378c09aeaf124e5cc1dd9c00e784cd97"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "boo_style",
+      "filename": "boo_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "7202c7149ad6f6ab63393ab61ce0fe269d2cd518bb1d244557a1420a788e4ddf"
+    },
+    {
+      "case_count": 13,
+      "extractor_boundary_case_count": 0,
+      "family_name": "brighterscript_style",
+      "filename": "brighterscript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 13,
+      "sha256": "194ce243622ade40934a75886ca40d1004181776bc6b9259eddb0ee5501bdb92"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "brightscript_style",
+      "filename": "brightscript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "3af2cfd49b284b8a639b0c95dad57fbc6efef530b7e7bfeb366088e2eec76c5c"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "browserslist_style",
+      "filename": "browserslist_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "6b6636dc2e4623627eba18db85706b3be73493deb1d4453402e46c69718dc632"
+    },
+    {
+      "case_count": 21,
+      "extractor_boundary_case_count": 0,
+      "family_name": "c_block_style",
+      "filename": "c_block_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 19,
+      "sha256": "c5d157bacf6dace83439aca11ad649c1d1d9c43f42bdf14cd0a43556c3eaa289"
+    },
+    {
+      "case_count": 495,
+      "extractor_boundary_case_count": 2,
+      "family_name": "c_style",
+      "filename": "c_style.json",
+      "oracle_exception_case_count": 58,
+      "sanitizer_case_count": 435,
+      "sha256": "529d1681f9a90321d868d6807101b2f2d44809ccb4b78d9d2679b93b65b5dd00"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cabal_config_style",
+      "filename": "cabal_config_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "a9870914a0f3265d445bdcdd5e280795a0883098422ffb25c329eaf159639eda"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cadence_style",
+      "filename": "cadence_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "199108c332c93a0f831f2e11accaf1044be560443dafbc697e11760ba1b5a9aa"
+    },
+    {
+      "case_count": 6,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cartocss_style",
+      "filename": "cartocss_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 6,
+      "sha256": "2d356720859c17bb20682e28380c58e98bb139b4e82424d70581fa0f4e0d8567"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "chapel_style",
+      "filename": "chapel_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "5a7f75df2d17d5726b1b72f562e7020fc60fda58e74cd25069a320acea885dd2"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "clarion_style",
+      "filename": "clarion_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "1157bcb4f27893f7723e5d97013751e301e4d3b3f8604d384dbe7353ff4b720d"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "classic_asp_style",
+      "filename": "classic_asp_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 3,
+      "sha256": "8f013f785bf136a5fe978946c2e7bfa1978cbf5b60fbd2f5abf48c5e6267e625"
+    },
+    {
+      "case_count": 11,
+      "extractor_boundary_case_count": 0,
+      "family_name": "clean_style",
+      "filename": "clean_style.json",
+      "oracle_exception_case_count": 3,
+      "sanitizer_case_count": 8,
+      "sha256": "37593d8cbde454c5bd90dbda76a0e11cedbfed953461d20cb91aeb13a99d92da"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "click_style",
+      "filename": "click_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 3,
+      "sha256": "6b21735a534cb514ca12dbe9088e73a286ec063ea1c7487bb6d4dc51cb7636ed"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "clips_style",
+      "filename": "clips_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 5,
+      "sha256": "e4f947a18976fe351225c653e2a911e72ff6d346b8cb530a539070578c222bfe"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "closure_templates_style",
+      "filename": "closure_templates_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "9d632437bc0ec06d6f9609033b869e9b22b5f7d84282554de9e3eeba4d255834"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cmake_style",
+      "filename": "cmake_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "d508460465b1c18e773451d52f7464b436f914bf41009111417fdcdc563bd798"
+    },
+    {
+      "case_count": 10,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cobol_style",
+      "filename": "cobol_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 10,
+      "sha256": "f723bde4aebf0258c6d7dd7b491022d2a7bbfc3600907808b5f3a4e24d42b116"
+    },
+    {
+      "case_count": 15,
+      "extractor_boundary_case_count": 0,
+      "family_name": "coffeescript_style",
+      "filename": "coffeescript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 15,
+      "sha256": "e5a9db49fa64458b020ef7655a0eb0b4d9332ae4db15601dcd34a3f102e24715"
+    },
+    {
+      "case_count": 15,
+      "extractor_boundary_case_count": 0,
+      "family_name": "coldfusion_style",
+      "filename": "coldfusion_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 15,
+      "sha256": "e9c7b9597b4352bd55b475ca9a8599dd8d199ebf5faffe231362faa83f64afc6"
+    },
+    {
+      "case_count": 8,
+      "extractor_boundary_case_count": 2,
+      "family_name": "comment_record_style",
+      "filename": "comment_record_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 6,
+      "sha256": "ea5a2f8d4cf3828dc74ededc6793dcbbd3cc46914795fb16d43f1277f7c3abc9"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cool_style",
+      "filename": "cool_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "dab112764c9fe410a480ed05f919142dd6f3525eaf7a6ae1b5de26de8fbe9885"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "csound_style",
+      "filename": "csound_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "c443160657ed202a2bce37a05a2ce421203e243f078add2c7b659941071767ad"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "cweb_style",
+      "filename": "cweb_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "47a62ea3b2e3ed8c7f8d9962a8c62e4ed92223df8573637b31d2994184ac1408"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "d_doc_style",
+      "filename": "d_doc_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "4486bf55054981782be9905052240f617d608e3cd4aa2e6efdd3c61bd0821d9c"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "dash_c_style",
+      "filename": "dash_c_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "0fa782d0ef51923a5353eb7fbd1563d1d2177751f49c62839e18b0f8965d9c13"
+    },
+    {
+      "case_count": 10,
+      "extractor_boundary_case_count": 0,
+      "family_name": "dash_style",
+      "filename": "dash_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 8,
+      "sha256": "c218e40a37ce0839fe7e7286434bc6b338ac94dab98ec9167bddbe8ab3701f69"
+    },
+    {
+      "case_count": 50,
+      "extractor_boundary_case_count": 0,
+      "family_name": "dogescript_style",
+      "filename": "dogescript_style.json",
+      "oracle_exception_case_count": 42,
+      "sanitizer_case_count": 8,
+      "sha256": "a2d98d9076916837bc8e1770bb1d843289f6db79978552b4847a7deeb466d1d4"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "editorconfig_style",
+      "filename": "editorconfig_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "2f928410ae82995e6277d1418d1e6ca1f262d05a95a73b337379bc07a4a9bd41"
+    },
+    {
+      "case_count": 24,
+      "extractor_boundary_case_count": 0,
+      "family_name": "ejs_style",
+      "filename": "ejs_style.json",
+      "oracle_exception_case_count": 6,
+      "sanitizer_case_count": 18,
+      "sha256": "acefc7190a0b3ef93e2264a74ba1ff81dc41116413c95392479b101c968c0aca"
+    },
+    {
+      "case_count": 6,
+      "extractor_boundary_case_count": 0,
+      "family_name": "emacs_lisp_style",
+      "filename": "emacs_lisp_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 4,
+      "sha256": "23be29d3f54cf82a39b5de4d78b7d6f9e5e302d84fef3bee86711c610602e3f2"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "f_star_style",
+      "filename": "f_star_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "5561caf7bcbeb5d0dd54250869e406a803b75594e313decc3256282c782687ec"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "fennel_style",
+      "filename": "fennel_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "b2ee17c07ce9fa2ac7e65f5498f025988bbe08fb7ee62c2aecd86c5310a2d3db"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "forth_style",
+      "filename": "forth_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 4,
+      "sha256": "332da7ab1abb5aead44bbd2f1e5731a4755cf74a49c077ba9368a7547adc2de3"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "freebasic_style",
+      "filename": "freebasic_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 5,
+      "sha256": "5f1a8bee5094a4c0dc168f05b7f14e79f26f11f600bb628fb1efe6bf5c078178"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "freemarker_style",
+      "filename": "freemarker_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "ae32a9d5aeb2034a6be59c98974a0870a958337444b79ce1fc014629d93989ce"
+    },
+    {
+      "case_count": 13,
+      "extractor_boundary_case_count": 0,
+      "family_name": "fsharp_style",
+      "filename": "fsharp_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 13,
+      "sha256": "fbf11f857efde602203173d11c607a232efe17b99dbbe729ad88101cd44c34df"
+    },
+    {
+      "case_count": 4,
+      "extractor_boundary_case_count": 0,
+      "family_name": "gams_style",
+      "filename": "gams_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 4,
+      "sha256": "91bc8147bdd0ab2e2f5288925f5ceee437d85a68b5a7d0a5e9476337b0c7a4ad"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "genero_style",
+      "filename": "genero_style.json",
+      "oracle_exception_case_count": 3,
+      "sanitizer_case_count": 2,
+      "sha256": "0b96f059482f9eb1c9c2029e03578cb51b2e428508ae97b2daf037cf2cbd4f2c"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "golo_style",
+      "filename": "golo_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "7781fab37283861f7695220b347e928ee2cf53485583def26b5cb1fc03fd4676"
+    },
+    {
+      "case_count": 9,
+      "extractor_boundary_case_count": 0,
+      "family_name": "haml_style",
+      "filename": "haml_style.json",
+      "oracle_exception_case_count": 6,
+      "sanitizer_case_count": 3,
+      "sha256": "9664ebc2b383f5a6f5762fc18bc148b1d310e56f0cc050bf398c8d401b8058fd"
+    },
+    {
+      "case_count": 141,
+      "extractor_boundary_case_count": 0,
+      "family_name": "hash_line_style",
+      "filename": "hash_line_style.json",
+      "oracle_exception_case_count": 8,
+      "sanitizer_case_count": 133,
+      "sha256": "74c1204d1d31002e6ae36241078a139892695d8c8d9b67302e076990bb1c43e0"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "hash_pipe_style",
+      "filename": "hash_pipe_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "5caec9b8fed64c82eeac1c40d28d3b6306ef4ecf83f8ed98eed36ede159ff44d"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "hash_style",
+      "filename": "hash_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 5,
+      "sha256": "253138b6ad0543be956965260dcc0c26e0e8605ff6c6fe8c17f0c1705c0afa39"
+    },
+    {
+      "case_count": 36,
+      "extractor_boundary_case_count": 0,
+      "family_name": "haskell_style",
+      "filename": "haskell_style.json",
+      "oracle_exception_case_count": 5,
+      "sanitizer_case_count": 31,
+      "sha256": "01f30b631b826f0ba59b85be01d436ebce4bdca481eadbfb7d1567f189fc2e91"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "hocon_style",
+      "filename": "hocon_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 5,
+      "sha256": "29f822e6dc1f10a92823fb1e5fddf0dd63aeeffda91831e752a7977dec1642eb"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "hoon_style",
+      "filename": "hoon_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "d938b30f0db8154b830d0242504ce866c91b12c416daa7fc03832cf46f7b2d46"
+    },
+    {
+      "case_count": 7,
+      "extractor_boundary_case_count": 0,
+      "family_name": "html_ecr_style",
+      "filename": "html_ecr_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 7,
+      "sha256": "0f27bca03489c640c2a435f6712a04c2b2dacc47688da6c5595efba5c3167dce"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "ini_style",
+      "filename": "ini_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "9a14c73c781b073e533e8c0cefc6ce4517d6b769d2ac4b866852f6858b6ed94f"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "j_style",
+      "filename": "j_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "0aa2472393e71354f76e881c031d30ce14c61ba729a344f82a4a02a0791628b9"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "java_properties_style",
+      "filename": "java_properties_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "dc1ce09b332c4c4209c006487f9191d4d3f8b0c7aa5451a3f3b733b5023c4d39"
+    },
+    {
+      "case_count": 18,
+      "extractor_boundary_case_count": 0,
+      "family_name": "jinja_style",
+      "filename": "jinja_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 17,
+      "sha256": "674c6d325b36f7eade333eed7a38a2a5cb3ba16075d2cdb495ceca29faa4ab3a"
+    },
+    {
+      "case_count": 23,
+      "extractor_boundary_case_count": 0,
+      "family_name": "jsonnet_style",
+      "filename": "jsonnet_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 21,
+      "sha256": "60142562e13b1b11964e66864dccc144480029423a168ff5e2aae10f4fa222db"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "jsp_style",
+      "filename": "jsp_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "b9c7d0985de3b7388ca75f0b9d691bf5f1ed0f2034d21cdb1d6868e89f539e10"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "latte_style",
+      "filename": "latte_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "02db5fa2e710b386ad4d6f2be5bf33ec4e36de22fba715ca4b52f2ed95aa3563"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "lean_style",
+      "filename": "lean_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 0,
+      "sha256": "9111d246b87f2a8adcb3f8727a0215c36acd8a0d3fa31f22b592eb79ab3852c5"
+    },
+    {
+      "case_count": 6,
+      "extractor_boundary_case_count": 0,
+      "family_name": "lfe_style",
+      "filename": "lfe_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 6,
+      "sha256": "925635a48cf5fcd698655dc542e3f07ed3046e9b721454d98602de6d0109a875"
+    },
+    {
+      "case_count": 9,
+      "extractor_boundary_case_count": 0,
+      "family_name": "liquid_style",
+      "filename": "liquid_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 9,
+      "sha256": "a628fa385a2596893cf5dc7809fd513dcfeb2eb07343dbd9faab6fa918127afd"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "livescript_style",
+      "filename": "livescript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "8e16003eef554cc3cdffa7ad9ed8a4c32613330803831f94031f89080905f95a"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "lolcode_style",
+      "filename": "lolcode_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "ba8545c21d82e50390a0b25d0d6c9eb1564d2a0b9f96cb4ad7a70c01acacc929"
+    },
+    {
+      "case_count": 16,
+      "extractor_boundary_case_count": 0,
+      "family_name": "m4_style",
+      "filename": "m4_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 16,
+      "sha256": "2841ba197263762216200beb5a37f23b275555dcf7d54be1e99a422f0f4025b7"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "macaulay2_style",
+      "filename": "macaulay2_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "dcc70ea75fce999762069cb8c6e798f5e4c61902d84707e8eaa45b6580520253"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "mako_style",
+      "filename": "mako_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "06f12512485094a669b82a154ffa320dde0c81846274184a25f3019086de637b"
+    },
+    {
+      "case_count": 60,
+      "extractor_boundary_case_count": 0,
+      "family_name": "markup_style",
+      "filename": "markup_style.json",
+      "oracle_exception_case_count": 23,
+      "sanitizer_case_count": 37,
+      "sha256": "f080b769916430c8b39f368cf4df0e414d7ed1422679205431ad4952d85c5b28"
+    },
+    {
+      "case_count": 11,
+      "extractor_boundary_case_count": 0,
+      "family_name": "matlab_style",
+      "filename": "matlab_style.json",
+      "oracle_exception_case_count": 3,
+      "sanitizer_case_count": 8,
+      "sha256": "5b3df8a77aba3eae8e75eb0145e462c00b060c61adb5d9abac10184bb39cc2fd"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 2,
+      "family_name": "maxscript_style",
+      "filename": "maxscript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 0,
+      "sha256": "d88d6ffa7ce671785d6a45d9b1fc25881c64bb4b5857720280c4705d3285b142"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "module_management_system_style",
+      "filename": "module_management_system_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "2b782d07c003f5f587924c31c48de63c7d061fdacdddc79a02a52ec01ea42088"
+    },
+    {
+      "case_count": 9,
+      "extractor_boundary_case_count": 0,
+      "family_name": "monkey_style",
+      "filename": "monkey_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 9,
+      "sha256": "8b3c27a656f4b4d68485933f45505f110582618ea55449e9bb8a8711c28bd804"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "motoko_style",
+      "filename": "motoko_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 5,
+      "sha256": "1115493056b759c0b9b5ac19477d15b57b27c59957279820738924fa394383d1"
+    },
+    {
+      "case_count": 50,
+      "extractor_boundary_case_count": 0,
+      "family_name": "muse_style",
+      "filename": "muse_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 49,
+      "sha256": "8edbfa45c359519725f18efebfa6aae561625ea5232b98fdf2676b09dd6686e6"
+    },
+    {
+      "case_count": 4,
+      "extractor_boundary_case_count": 0,
+      "family_name": "mustache_style",
+      "filename": "mustache_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 4,
+      "sha256": "fce7219067a3df59157cd39fdebc9a90f2e4f4f5eff7e7562801c1c2d09767c1"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "ncl_style",
+      "filename": "ncl_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 3,
+      "sha256": "f56c152cd4ff470f46ca8d696aa80b68c096e9da479d9b0cc0e881a243264887"
+    },
+    {
+      "case_count": 18,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nested_c_style",
+      "filename": "nested_c_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 16,
+      "sha256": "43e6cae7219a65b9c46c24772352349f360303ea9629c068fff6b8310ae44745"
+    },
+    {
+      "case_count": 20,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nested_dash_style",
+      "filename": "nested_dash_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 18,
+      "sha256": "c1707612086e51a5689dd4d6be5892ad99ca2d0019b66fe34501fcceda007368"
+    },
+    {
+      "case_count": 49,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nested_star_only_style",
+      "filename": "nested_star_only_style.json",
+      "oracle_exception_case_count": 10,
+      "sanitizer_case_count": 39,
+      "sha256": "147fd80177f03d5562cc88449b80d72f00a762966241bdc2f093253d1ac3c01f"
+    },
+    {
+      "case_count": 33,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nested_star_style",
+      "filename": "nested_star_style.json",
+      "oracle_exception_case_count": 9,
+      "sanitizer_case_count": 24,
+      "sha256": "ca6d6e017a657cffe81bed83867480a2140ab3a8ec8499031c76eb19b8a961be"
+    },
+    {
+      "case_count": 20,
+      "extractor_boundary_case_count": 0,
+      "family_name": "netlinx_style",
+      "filename": "netlinx_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 19,
+      "sha256": "57538403caa756f852ff0c909a6911adecee8e3387305a8e50831b83f5907292"
+    },
+    {
+      "case_count": 16,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nsis_style",
+      "filename": "nsis_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 16,
+      "sha256": "6c1b599d7dc846fed8dbd3ac9306830f437091d8ae3952ffb91b2bd99aae04dd"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nunjucks_style",
+      "filename": "nunjucks_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "2705137f65e385dc44abd6faee89f5c679649f7fc10347aae20eb15d77f2ff04"
+    },
+    {
+      "case_count": 6,
+      "extractor_boundary_case_count": 0,
+      "family_name": "openedge_abl_style",
+      "filename": "openedge_abl_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 6,
+      "sha256": "7348c34310b78b56881316fee372c9052ec066fe5213cc424b8a54c52c1f2861"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "pascal_style",
+      "filename": "pascal_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "e95e2409916945e1b81287f334cd2a4363cbddae18e81257ff79e76c8c372b51"
+    },
+    {
+      "case_count": 10,
+      "extractor_boundary_case_count": 0,
+      "family_name": "percent_style",
+      "filename": "percent_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 9,
+      "sha256": "6f3040f4d43ce0de8050c77ad37920e7939a295eff9d1e57f2f63420deb8a6e2"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "perl_style",
+      "filename": "perl_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "2ead00b671b4017b49891768fe69f966e95415399c828a5d9fadd68d87659d44"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "pod_style",
+      "filename": "pod_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "ddde152ebae12a1d0e1d43b03a2284de4416629ad8df2a27d4d8ea3b6c3a622b"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "pogoscript_style",
+      "filename": "pogoscript_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "de3af3eac9db8661587a6304e24e7c04817529c5f5852100d2dc08ace5202b0e"
+    },
+    {
+      "case_count": 8,
+      "extractor_boundary_case_count": 8,
+      "family_name": "portugol_style",
+      "filename": "portugol_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 0,
+      "sha256": "7c38a9bedb08774171071a8952040d67159b8a34137a6a88c5b723224de96760"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "powershell_style",
+      "filename": "powershell_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "6dc6f5ebc22e42022603d2ac99bb656d35cdf654cd4feeae5008e3e05ed10d2c"
+    },
+    {
+      "case_count": 16,
+      "extractor_boundary_case_count": 0,
+      "family_name": "prolog_style",
+      "filename": "prolog_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 16,
+      "sha256": "9cb35e73c9a33e6a507fb4ea68f374f3dccb4f54f10591c0b00c024ce71cf8ba"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "promela_style",
+      "filename": "promela_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "2a1f7ea346ade5fcf96f98dbb1aa3d6c46f5f4b891e84d515ca4cb27f0601ddd"
+    },
+    {
+      "case_count": 11,
+      "extractor_boundary_case_count": 0,
+      "family_name": "propeller_spin_style",
+      "filename": "propeller_spin_style.json",
+      "oracle_exception_case_count": 5,
+      "sanitizer_case_count": 6,
+      "sha256": "832fc650f21e77b091718afa5bddb70d3a04854cd8ae1f77020c27d7b421e52d"
+    },
+    {
+      "case_count": 42,
+      "extractor_boundary_case_count": 0,
+      "family_name": "pug_style",
+      "filename": "pug_style.json",
+      "oracle_exception_case_count": 14,
+      "sanitizer_case_count": 28,
+      "sha256": "774f58fa091fdf728c28148fe7c9702a4b8903ab0038429ab219e8d83fc71b32"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "q_style",
+      "filename": "q_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 4,
+      "sha256": "a09a93025de108289517ed94657556d601ea0f483df9e86952e31b5bb230ee4b"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "quote_line_style",
+      "filename": "quote_line_style.json",
+      "oracle_exception_case_count": 1,
+      "sanitizer_case_count": 0,
+      "sha256": "e79738c2329ee0598ef5da70ce0e8ce22b3b3d13037b69d6249a173216f2bdb8"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "raku_style",
+      "filename": "raku_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 0,
+      "sha256": "a9295609dbc9a8cb5e173fac83fa7b7aff425536c5199e654eb0bd18b2a6476c"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "razor_style",
+      "filename": "razor_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "580b35e6d62c7f0f294d9dbff48d3ae971bf98dc6a25f4c018c36ff89016fec3"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "rexx_style",
+      "filename": "rexx_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "f558c3c9f95ff03605eacc960954d4c915a69cba3fffa5f6d3ce3452cba0cb05"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "roff_style",
+      "filename": "roff_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "66dabf580d0628176c55552e1cde417f0f3b2271314c318707e962951249e5bf"
+    },
+    {
+      "case_count": 27,
+      "extractor_boundary_case_count": 0,
+      "family_name": "runoff_style",
+      "filename": "runoff_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 25,
+      "sha256": "e8a0baa900afb2e1aaa4b85d9a88d8464e024fad8780058b78fde2995ab15520"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "rust_style",
+      "filename": "rust_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "9a3a136664de551a1cf3f6ab97c1607cc7b41f7df7223cde93c43336fff13e6d"
+    },
+    {
+      "case_count": 8,
+      "extractor_boundary_case_count": 0,
+      "family_name": "sas_style",
+      "filename": "sas_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 8,
+      "sha256": "00768e33c6c9cdb54ff794d27e2ad54520ac6a3d164bb69d60a9e89e75c69caa"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "semicolon_c_style",
+      "filename": "semicolon_c_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "95a9ee743e8b47ea4c3e95f0621fbcc242546d607bcbe3fa7474a2e0c8259f06"
+    },
+    {
+      "case_count": 59,
+      "extractor_boundary_case_count": 9,
+      "family_name": "semicolon_style",
+      "filename": "semicolon_style.json",
+      "oracle_exception_case_count": 5,
+      "sanitizer_case_count": 45,
+      "sha256": "0d1b80a3f565c39b28e4ca340dd9c24b2100fbba8681ec2473d57321d674540e"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "shen_style",
+      "filename": "shen_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "9637bebfe336e00bc363e8f30f605d9454db560625db1c1349b1974e177cd262"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "sieve_style",
+      "filename": "sieve_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "c9b43ffd2f6916542ae09f6799abefcf6337fdeb52e4e2a8bda392e76a442d20"
+    },
+    {
+      "case_count": 11,
+      "extractor_boundary_case_count": 0,
+      "family_name": "slash_line_style",
+      "filename": "slash_line_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 11,
+      "sha256": "6c602173961d3d013b7b5a93789d4c5febd77bcedf6ed868d54c6cadeb6c8c67"
+    },
+    {
+      "case_count": 9,
+      "extractor_boundary_case_count": 0,
+      "family_name": "slim_style",
+      "filename": "slim_style.json",
+      "oracle_exception_case_count": 8,
+      "sanitizer_case_count": 1,
+      "sha256": "9bec698e56bd65260bbfdcdbece65534ca66dab285294e06f9c03f86a2b2d6bf"
+    },
+    {
+      "case_count": 28,
+      "extractor_boundary_case_count": 8,
+      "family_name": "smalltalk_style",
+      "filename": "smalltalk_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 20,
+      "sha256": "1012aaa3e99906a1890ed5a06094f47f6ea0f23812c01c308564f5ca3d7d2ad0"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "smarty_style",
+      "filename": "smarty_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "c18674d1da3bfaf5052a61856c952849c972b098e6abf5e4c2bd1e08aabfc330"
+    },
+    {
+      "case_count": 12,
+      "extractor_boundary_case_count": 0,
+      "family_name": "sql_style",
+      "filename": "sql_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 12,
+      "sha256": "ec38105f7857655856c0fdf3acdbb9982abcfa9b00e40139738c8a763cf0275b"
+    },
+    {
+      "case_count": 5,
+      "extractor_boundary_case_count": 0,
+      "family_name": "stata_style",
+      "filename": "stata_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 5,
+      "sha256": "8f9180fe6896fef7736509c37559c18ad6d902b556717f206821bcb133ec4f7b"
+    },
+    {
+      "case_count": 9,
+      "extractor_boundary_case_count": 0,
+      "family_name": "supercollider_style",
+      "filename": "supercollider_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 9,
+      "sha256": "dc48927bbaa0b101c36b0e260980c5378ed407a7248e626708ad1b8407d1f2e6"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "tea_style",
+      "filename": "tea_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "df54bac88507f612573e3984397a8b3cd0af6e1cce173f4616c8314011510c07"
+    },
+    {
+      "case_count": 50,
+      "extractor_boundary_case_count": 0,
+      "family_name": "texinfo_style",
+      "filename": "texinfo_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 50,
+      "sha256": "59dbf3d78b118b343809b250cdf6cceff3be3fcbb382eeb77d8e689b10af12f1"
+    },
+    {
+      "case_count": 6,
+      "extractor_boundary_case_count": 0,
+      "family_name": "tla_style",
+      "filename": "tla_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 6,
+      "sha256": "b91bf52d1aee8a161d1ab6a335657decd0144752c4d156b4059262974a2257da"
+    },
+    {
+      "case_count": 17,
+      "extractor_boundary_case_count": 0,
+      "family_name": "two_dimensional_array_style",
+      "filename": "two_dimensional_array_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 17,
+      "sha256": "409a6e279636fbba0c19e4feefd2f710eb1b026d1018c3e5ff192fef8972197c"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "velocity_template_style",
+      "filename": "velocity_template_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "580f4a6ae93a23efeb4f5c03f06bb1c2205dfb9e3290163482940f0a62694131"
+    },
+    {
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "webassembly_style",
+      "filename": "webassembly_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "cab0f8ce8107ef1d8c6d0608deec62a1794431bfa61803d7657a6d97def22dfa"
+    },
+    {
+      "case_count": 36,
+      "extractor_boundary_case_count": 0,
+      "family_name": "win32_message_file_style",
+      "filename": "win32_message_file_style.json",
+      "oracle_exception_case_count": 17,
+      "sanitizer_case_count": 19,
+      "sha256": "16c6a599cb7eed9d6862db16060c7db74d6708c39f30c3499f928d5df3877d68"
+    },
+    {
+      "case_count": 50,
+      "extractor_boundary_case_count": 0,
+      "family_name": "world_of_warcraft_addon_data_style",
+      "filename": "world_of_warcraft_addon_data_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 50,
+      "sha256": "e035ef5ec2b0b07d770b665e6821a5e0980e484fa297ca1bc18875ddde7629ec"
+    },
+    {
+      "case_count": 17,
+      "extractor_boundary_case_count": 0,
+      "family_name": "xbase_style",
+      "filename": "xbase_style.json",
+      "oracle_exception_case_count": 2,
+      "sanitizer_case_count": 15,
+      "sha256": "b0134c87b0043a3a40b7269ac33c9736b3e1fe11b03a317d7fbf51e31b193e4c"
+    },
+    {
+      "case_count": 22,
+      "extractor_boundary_case_count": 0,
+      "family_name": "xquery_style",
+      "filename": "xquery_style.json",
+      "oracle_exception_case_count": 7,
+      "sanitizer_case_count": 15,
+      "sha256": "848500aaa0257129677d01fb11739c7b55075bf04994c2a500371829160517b5"
+    }
+  ],
+  "source": {
+    "annotations_sha256": "7fd085a068488b30c5c86a2cefbaa160bb0c75b40052e61b81b3230a731190e1",
+    "candidate_set_sha256": "59a5167b44092c3dac4a9747a791763b8911383a41763a7767af0e162b11f6b6",
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "failures_sha256": "ef06ad5770587e095b01d75c110a0d36da9812fb4a80109c89c75f30a4632cfc",
+    "manifest_sha256": "1e87230b75165ae76583abdb48045e9ce9c5f4287135e8c4e564f400e230dcc0",
+    "oracle_exceptions_sha256": "0d98e5da8570cd913c2729c88b975224e9c969cfb497e2aeb8047e109324f75f",
+    "primary_model": "gpt-5.6-luna",
+    "run_summary_sha256": "d7f9862148c5e555603557043a47c9c751a905003d160e0f9e1c51d8391a8cd0",
+    "secondary_model": "gpt-5.6-sol"
+  }
+}

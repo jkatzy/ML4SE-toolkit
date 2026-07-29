@@ -1,0 +1,38 @@
+{
+  "case_id": "ignore_list-line-d72c9b601efeb0e6",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "ignore_list",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4391a7a74165d45b78ec60026d1613b0f61466b919dfc5488fceffa1865c98b5",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "b76f8c23f466f6197bb932269e7f947f162941461912478c07849eec83016643",
+      "utf8_length": 17
+    },
+    "raw_comment": {
+      "sha256": "b9952d79bcc2b9e9aefe153b04bd1001464a062c2270279c067d0eabd88e2a80",
+      "utf8_length": 22
+    },
+    "recommended_expected_output": {
+      "sha256": "b76f8c23f466f6197bb932269e7f947f162941461912478c07849eec83016643",
+      "utf8_length": 17
+    }
+  },
+  "regression": {
+    "expected_output": "NetBeans specific",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# NetBeans specific #\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f6cc9148881123fac72d9a001dbe6f1f7d60af8b23f87c3cccc6d4193396b0ef",
+    "source_id": "7fbe2f1b219ef2a9a4d9f7548d7b95a4148b6f9b"
+  },
+  "source_record_sha256": "475ca0fecb93bf54d892e0303bceab5b9db50b03c8bdb8e0ea2354c5f9409347"
+}

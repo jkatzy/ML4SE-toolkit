@@ -1,0 +1,29 @@
+{
+  "case_id": "lasso-block-d5458f295dedb9f7",
+  "category": "needs_manual_review",
+  "cluster": "oracle_exception:ambiguous",
+  "disposition": "accounting_only_no_oracle",
+  "language": "lasso",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "119ef8acbbf36ee761765398ad60fe882e09fcb11bb4d0391d1cfb4d0c5e1859",
+      "utf8_length": 987
+    },
+    "manifest_old_output": {
+      "sha256": "bdf03e7a2c086f35a10c52f1dbb0b88a2de2a9027e8a374979cc2bedf9844307",
+      "utf8_length": 1510
+    },
+    "raw_comment": {
+      "sha256": "a12175c37ba1c0a93ebaf0f8664ec691819410d9211ba61f94741efbb9a7748f",
+      "utf8_length": 1548
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a89a93aeafeac5f07f4a93e375691389a29276cccfe9014c110f48b49337445e",
+    "source_id": "db9670dcf5cb7d6a22105dfec14b976c4174d9d5"
+  },
+  "source_record_sha256": "8a724eaaa29b090617e2ee4c914f918983758f71a3e26f8b9e78a11ea6f15bfe"
+}

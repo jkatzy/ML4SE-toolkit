@@ -20,9 +20,7 @@ from ml4setk.Parsing.Comments import (
 pytestmark = pytest.mark.unit
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-FIXTURE_BUILDER_PATH = (
-    PROJECT_ROOT / "scripts" / "build_comment_cleaning_fixtures.py"
-)
+FIXTURE_BUILDER_PATH = PROJECT_ROOT / "scripts" / "build_comment_cleaning_fixtures.py"
 
 
 def _load_fixture_builder():
@@ -85,9 +83,7 @@ def test_comment_cleaning_fixture_file_has_exact_generated_content(fixture):
 
 def test_comment_cleaning_fixtures_cover_every_supported_key_once():
     fixture_languages = [
-        language
-        for fixture in CLEANING_FIXTURES
-        for language in fixture.language_keys
+        language for fixture in CLEANING_FIXTURES for language in fixture.language_keys
     ]
 
     assert len(fixture_languages) == len(set(fixture_languages))
@@ -106,9 +102,7 @@ def test_comment_cleaning_fixture_metadata_matches_registry(fixture):
     assert fixture.canonical_language == syntax.canonical_name
     assert fixture.language_keys == syntax.language_names
     assert fixture.sanitizer_mode == syntax.sanitizer_mode
-    assert all(
-        get_comment_syntax(language) is syntax for language in fixture.language_keys
-    )
+    assert all(get_comment_syntax(language) is syntax for language in fixture.language_keys)
 
 
 @pytest.mark.parametrize(
@@ -131,16 +125,11 @@ def test_comment_cleaning_fixture_covers_every_registry_form(fixture):
             for case in fixture.cases
             if case.source.startswith(f"registry:{attribute_name}[")
         }
-        expected_sources = {
-            f"registry:{attribute_name}[{index}]"
-            for index in range(len(examples))
-        }
+        expected_sources = {f"registry:{attribute_name}[{index}]" for index in range(len(examples))}
         assert set(source_cases) == expected_sources
         for index, example in enumerate(examples):
             case = source_cases[f"registry:{attribute_name}[{index}]"]
-            placeholder = FIXTURE_BUILDER._split_payload_placeholder(
-                example.expected_match
-            )
+            placeholder = FIXTURE_BUILDER._split_payload_placeholder(example.expected_match)
             assert (case.payload_marker is not None) == (placeholder is not None)
 
     nested_cases = {
@@ -149,22 +138,33 @@ def test_comment_cleaning_fixture_covers_every_registry_form(fixture):
         if case.source.startswith("registry:nested_delimiters[")
     }
     assert len(nested_cases) == len(syntax.nested_delimiters)
-    for index, (open_delimiter, close_delimiter) in enumerate(
-        syntax.nested_delimiters
-    ):
+    for index, (open_delimiter, close_delimiter) in enumerate(syntax.nested_delimiters):
         case = nested_cases[f"registry:nested_delimiters[{index}]"]
         assert case.raw_comment.startswith(open_delimiter)
         assert case.raw_comment.endswith(close_delimiter)
-        assert (
-            f"{open_delimiter} {case.payload_marker}_inner {close_delimiter}"
-            in case.raw_comment
-        )
+        assert f"{open_delimiter} {case.payload_marker}_inner {close_delimiter}" in case.raw_comment
         assert open_delimiter in case.expected_cleaned
         assert close_delimiter in case.expected_cleaned
 
-    assert len(
-        _case_sources(fixture, "registry:unclosed_block_openers[")
-    ) == len(syntax.unclosed_block_openers)
+    for wrapper_kind, wrappers in (
+        ("line", syntax.sanitizer_line_wrappers),
+        ("block", syntax.sanitizer_block_wrappers),
+    ):
+        wrapper_cases = {
+            case.source: case
+            for case in fixture.cases
+            if case.source.startswith(f"registry:sanitizer_{wrapper_kind}_wrappers[")
+        }
+        assert len(wrapper_cases) == len(wrappers)
+        for index, (open_delimiter, close_delimiter) in enumerate(wrappers):
+            case = wrapper_cases[f"registry:sanitizer_{wrapper_kind}_wrappers[{index}]"]
+            assert case.raw_comment.startswith(open_delimiter)
+            assert case.raw_comment.endswith(close_delimiter)
+            assert case.expected_cleaned == case.payload_marker
+
+    assert len(_case_sources(fixture, "registry:unclosed_block_openers[")) == len(
+        syntax.unclosed_block_openers
+    )
 
     expected_grouped_sources = set()
     for attribute_name in (
@@ -175,17 +175,10 @@ def test_comment_cleaning_fixture_covers_every_registry_form(fixture):
             if (
                 example.kind == "line"
                 and example.grouped_line_compatible
-                and FIXTURE_BUILDER._split_payload_placeholder(
-                    example.expected_match
-                )
-                is not None
+                and FIXTURE_BUILDER._split_payload_placeholder(example.expected_match) is not None
             ):
-                expected_grouped_sources.add(
-                    f"generated-group:registry:{attribute_name}[{index}]"
-                )
-    assert set(_case_sources(fixture, "generated-group:")) == (
-        expected_grouped_sources
-    )
+                expected_grouped_sources.add(f"generated-group:registry:{attribute_name}[{index}]")
+    assert set(_case_sources(fixture, "generated-group:")) == (expected_grouped_sources)
 
     raw_mode_sources = _case_sources(fixture, "generated:sanitizer_mode=raw")
     assert len(raw_mode_sources) == (1 if syntax.sanitizer_mode == "raw" else 0)

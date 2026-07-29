@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "semicolon_c_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "116ee7dd3b86872238d68d5ca242bcbe5887da268c17a1412d730da9f87af2c0",
+      "case_id": "autohotkey-line-4a8887db25d6e0b9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "autohotkey",
+      "raw_comment": "; =================================================================================\r",
+      "raw_sha256": "3dbe57143b99252c7513f1a793963451167af3617886e4574f3b983263e578db",
+      "raw_utf8_length": 84,
+      "source_provenance": {
+        "source_excerpt_sha256": "75785dcf3b1aa6bb1c15dd0579d618a443dd937b6a0708098686831537f1c460",
+        "source_id": "d32b18ad2b71c2d20053425c5983ff370278e675"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,858 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "world_of_warcraft_addon_data_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-03425798fd6d6c4b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "8c429e7f885c95594b50d5cc213302206236cf7f7615baf3e0f4f25a6572713b",
+        "source_id": "83415d5a74841b805a2b578737bbc49a389d4f6b"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2bcb49069828f7a9d931dee582e44b5ffa073f7e569c0dbd5fa856d1212a0a83",
+      "case_id": "world_of_warcraft_addon_data-directive-050cbe9f6e3b121a",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This must be FIRST",
+      "expected_cleaned_sha256": "ec8c85c43a180ab4d9005844e0d78eb6f5da8cc9f8c281e7dec358fd6c705f07",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# This must be FIRST",
+      "raw_sha256": "2bcb49069828f7a9d931dee582e44b5ffa073f7e569c0dbd5fa856d1212a0a83",
+      "raw_utf8_length": 20,
+      "source_provenance": {
+        "source_excerpt_sha256": "3247087eb72fd9a03116975c44e58828a625fd7e1a1e163ca508682d1ec38b02",
+        "source_id": "2e89b54035c402c31ab454d274a68aceea7cc606"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-0717463fdb280803",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "83da24dc54c26f50743ce3fffb1bf1a863997f8d0747e618fa0d016834b4f925",
+        "source_id": "b5598b39ff8a27ba4f592e6328ec93f159ed6fab"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "de13776600ec0fe5eb61cff4e359b38c2043aeb8d670cf6e01052c75bf791c71",
+      "case_id": "world_of_warcraft_addon_data-directive-081926040ccb9757",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "main",
+      "expected_cleaned_sha256": "0d6e4079e36703ebd37c00722f5891d28b0e2811dc114b129215123adcce3605",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# main",
+      "raw_sha256": "de13776600ec0fe5eb61cff4e359b38c2043aeb8d670cf6e01052c75bf791c71",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "eada3f355fc942de7e63f69b7d5025df527ea697efb852e4f49bce3689c64bc9",
+        "source_id": "fcd9d9b48bf39703cd1e83bf579312a52556c7c0"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "49db817770ca87a7810b16e67fa11e543f946ddfa4b47261fd6426aba799bce1",
+      "case_id": "world_of_warcraft_addon_data-directive-0a10b8bfd3dadba9",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "X-WoWI-ID: 14635",
+      "expected_cleaned_sha256": "e02ad80f719f068a5a0655597a48a3a4f8fd38df9fe5eac4e5aee62d1056c7e6",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# X-WoWI-ID: 14635",
+      "raw_sha256": "49db817770ca87a7810b16e67fa11e543f946ddfa4b47261fd6426aba799bce1",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "ed74c895eafed3a0704bc99a26e3973be75a914ecc2acf17568c907c04eb4a4b",
+        "source_id": "f0522897b41c9b93528e753fa5648a27ad795f3b"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "e534e2da5c828a93104a3b2fc6634becdb9e16eabd620d5eccf94a120222bd31",
+      "case_id": "world_of_warcraft_addon_data-directive-0ce566b57059a2b7",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AntorusTheburningThrone.lua",
+      "expected_cleaned_sha256": "87430fcd40b9061ad177c0f0e9755c9d03322b8aa10c314c32d90ae920d1509a",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# AntorusTheburningThrone.lua",
+      "raw_sha256": "e534e2da5c828a93104a3b2fc6634becdb9e16eabd620d5eccf94a120222bd31",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "410d5532fc52a3487a3b4a291e68467bc0e4c8eb49ad5408dba63c61bfdc6ba0",
+        "source_id": "51488c35fdb323b1c340f2c83a682f3cb24512f0"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2358d970bec670c763a59ccdf1da78bbe3f5a2e11509c15de7aafd5c54da1b75",
+      "case_id": "world_of_warcraft_addon_data-directive-0de8674f95d502ee",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Pre-core modules",
+      "expected_cleaned_sha256": "370bdc797777f8f45c2b6324e4de5bab2a2901c5e5d945228f4cb54f15cc0da8",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Pre-core modules",
+      "raw_sha256": "2358d970bec670c763a59ccdf1da78bbe3f5a2e11509c15de7aafd5c54da1b75",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "047a58634620bb26a7e04fd66288e1086552d10d165b135d38cd14f8179acb14",
+        "source_id": "950dd404ebbed6e7e4eaca98777cc3963c3cb72d"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-10054419f6aa20d9",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "4f16ff37d85ced11771eac2e8e89a0c9e6888dff438cd3c1d0b44e920e941112",
+        "source_id": "5845bf9d33f9b7a760168d5cb75f76a330ae5de9"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "e847fea51cc3a3d7fdd588ebbbec722c767e83a2203c2a80cf4bc2d3cc692284",
+      "case_id": "world_of_warcraft_addon_data-directive-10ec111a40dd5974",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@retail@",
+      "expected_cleaned_sha256": "cf277ae01d077259044708f36efa199fbf2f1dd233ad0eabfc9086c42269889c",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@retail@",
+      "raw_sha256": "e847fea51cc3a3d7fdd588ebbbec722c767e83a2203c2a80cf4bc2d3cc692284",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "9e39b039dd5417ef09ba95084399a562a600ace3b700a95c26f7250b025a554e",
+        "source_id": "9720ee6118a9d0ca40d1471cb7ddfda60f60ae65"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-210fc64942fb32c1",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "d230760813b610420a3aaa9f6fe890daf78f6f5f356faa35593ba09007877175",
+        "source_id": "fc638102567032f9e19b2c59e4572da49f56ffb4"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-22b45109ce6d66e5",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "42a616b83c804d25fd94963b214635af8adf3d14ca381948edd48557cc70e408",
+        "source_id": "1bcc4b9f8ba62565eb2bbb2942cacb7058912fd0"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "e847fea51cc3a3d7fdd588ebbbec722c767e83a2203c2a80cf4bc2d3cc692284",
+      "case_id": "world_of_warcraft_addon_data-directive-2bbfbd201d74aada",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@retail@",
+      "expected_cleaned_sha256": "cf277ae01d077259044708f36efa199fbf2f1dd233ad0eabfc9086c42269889c",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@retail@",
+      "raw_sha256": "e847fea51cc3a3d7fdd588ebbbec722c767e83a2203c2a80cf4bc2d3cc692284",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "eae8a349b42ee1147452d2347cd45e82948b7e50fd1e37ac5955dd2e7213114f",
+        "source_id": "d6f9550d7a3f0110b8cfa49d471c821c1da8e189"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "4b1c0826107aae6bca7a945e397303833413ed900e1d419a14a91c0b4bf7d985",
+      "case_id": "world_of_warcraft_addon_data-directive-35c6e24a693a2723",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Classes\\Warrior.lua",
+      "expected_cleaned_sha256": "c25b3ef2961f7a7f75e4d193465ea7f8ca9397757eeca2f84cb43dbf96241aa1",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Classes\\Warrior.lua",
+      "raw_sha256": "4b1c0826107aae6bca7a945e397303833413ed900e1d419a14a91c0b4bf7d985",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "23bcb0da927c6e3b1a5e2423aed998e5960e9890f24cf8585b16c4f4c0d0361c",
+        "source_id": "31062876b7847f41321fc10687fc7929671fd0b2"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-3754f8b625a6ec0b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "1dee9e75ee12091e508c7d47c0cbc9bbf2f856b6aa9479f769dc0802b14f3f23",
+        "source_id": "6382014c69e09a37b9ec6485e2a8ec7013b08b68"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-3a248b95f54bd151",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "c8cb619be91df1cc42a034a99b7716d96c1fc7bb4117ec52835d415bb115039c",
+        "source_id": "f3893cf4cc5f1f890423c6fd2f57c6f74e3fe157"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "9f094e3231ee82713fd49a92f0d408c1424780d7e3ad0990cabd25f0d1cf8178",
+      "case_id": "world_of_warcraft_addon_data-directive-3e4d9740ad995da3",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Library",
+      "expected_cleaned_sha256": "dc20b3d5d2cddf82fad332821ca5e9a4efdcede4a273aa193d2b495bdcc92825",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Library",
+      "raw_sha256": "9f094e3231ee82713fd49a92f0d408c1424780d7e3ad0990cabd25f0d1cf8178",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "de61cebd5239ba878b9abbf8294fb10d7d635521672216b3a93336df641da037",
+        "source_id": "fb70fc17b2a63cf3c2829b4195f9f1ca439cbca4"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "3960bd125f1a50bdee432d37d6f6ace468d3d85fcd2441a5bd16dfe75968cb2c",
+      "case_id": "world_of_warcraft_addon_data-directive-4015d23db13a9224",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Libraries",
+      "expected_cleaned_sha256": "62ef6fd92ee145d9f000697f85abd4c680d9754e96c988ec7fe2b1072240df92",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Libraries",
+      "raw_sha256": "3960bd125f1a50bdee432d37d6f6ace468d3d85fcd2441a5bd16dfe75968cb2c",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "b0a216a342151ebe7527eecf4d222a824e9efc5541502c857755c35237aa6e1c",
+        "source_id": "e7045a05d22273e0de385de08f0ca2f6cf52108a"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-42b9a84e7fd307c1",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "af46f48d8efdeea0672c3682cf8d14f5c39275e9a7d1fdb65b052855179eb6ff",
+        "source_id": "6eeccac098f03a949f8883213b5bc6afb928bce7"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-455c65612f9f83fc",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "8b82374a9fbf000e83e77eb2eb9cbc98916b519e7aeaa5ed2084a12ae645173c",
+        "source_id": "a363fa2a974961c2168214b5ef5bf260f93240f1"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-4857e02213ae947c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "a97d92d0b75c667056f9e04043fc8b4c2ba99c278c57fea27c994a6bdb9ebaf5",
+        "source_id": "5257dab33233e58db107598033305e76310af6a1"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2358d970bec670c763a59ccdf1da78bbe3f5a2e11509c15de7aafd5c54da1b75",
+      "case_id": "world_of_warcraft_addon_data-directive-486854ca00c93850",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Pre-core modules",
+      "expected_cleaned_sha256": "370bdc797777f8f45c2b6324e4de5bab2a2901c5e5d945228f4cb54f15cc0da8",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Pre-core modules",
+      "raw_sha256": "2358d970bec670c763a59ccdf1da78bbe3f5a2e11509c15de7aafd5c54da1b75",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "9dbd74d4cad1a627525d9432b6e2611e88b4a89c919585b9d6075aee1e1167e0",
+        "source_id": "0474aa8902f9a62a7bcb538477b840a58e8193aa"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "8676e8c5b92c0cfeb4b362e835863fccac2a540f3753c448dba96df1e781f795",
+      "case_id": "world_of_warcraft_addon_data-directive-4dee85d8f0d19cfc",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "localization\\zhTW.lua",
+      "expected_cleaned_sha256": "c6896b6f0b07d9585d0f4832e61384d43a37e07247bf2dae5530fd951311cb93",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#localization\\zhTW.lua",
+      "raw_sha256": "8676e8c5b92c0cfeb4b362e835863fccac2a540f3753c448dba96df1e781f795",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "443d0416463774db5383d808f23f907285af2c52ae07bf7f2994f09b2a5e58c6",
+        "source_id": "16c0049fc93bd016ae06cd7f914a8970852dc261"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "995e148ac81a7009e3d19fde874a07588bc440c4bf3af86ffcedc5d49bd5e06b",
+      "case_id": "world_of_warcraft_addon_data-directive-4edf3c64335efeba",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "embeds",
+      "expected_cleaned_sha256": "804e6a0a978d599015792e2aed8279eefe7a9ca6b81f572c31da48fe2d2c0fa9",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#embeds",
+      "raw_sha256": "995e148ac81a7009e3d19fde874a07588bc440c4bf3af86ffcedc5d49bd5e06b",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "b692adf67d6ac0c2a3d88c05fc00dc42b6bdf5cad5148dbc7eb85ec81df9841b",
+        "source_id": "2ce5cc7611416cee2b9407bb6761fbb0a43f2d56"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "1996f8e716be52055ec65e798ee2690fcc248b776946d1ed5b975455bd02c008",
+      "case_id": "world_of_warcraft_addon_data-directive-5d54cf1a74dae594",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Core files",
+      "expected_cleaned_sha256": "2626348605ca64ce93e274b3fd78907e0a71081ecd7a9cd633940e88c55be8d6",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Core files",
+      "raw_sha256": "1996f8e716be52055ec65e798ee2690fcc248b776946d1ed5b975455bd02c008",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "0a0dd19070fffb9a192c054647d974f237cfcbcb424894bc46a04952f16bebcd",
+        "source_id": "68a83f6aeb2e9d157d9c2e12e13bcb5fff7a9ab2"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-5e03f194e90c9220",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "36d107758605564e1a3d828cf69ef170866a68f85c00e2e2dd6d95e29d052202",
+        "source_id": "cc42f1fdbbf464417114c790d125fcec21ccc43f"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "6b277055fe085dbd02f9d1b0a32d795b3aa3278e1234fadba5605c5bc56357a5",
+      "case_id": "world_of_warcraft_addon_data-directive-64a310bd028265a5",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Libs",
+      "expected_cleaned_sha256": "b925b56ec89c6aa9d32c90a667e90d958ace6fc2c1d67ed99957dbfba32222c0",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Libs",
+      "raw_sha256": "6b277055fe085dbd02f9d1b0a32d795b3aa3278e1234fadba5605c5bc56357a5",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "69658d4a2fec35c1df620a02384c69df188dc63adb5bdb0892c69b01a79d8234",
+        "source_id": "a9695d4d3aa7d854ac7d1eb40a1e2505b54db366"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-68d0008e833d387a",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "f60cfb3339af377c205c590edc07f91ccaf3c2a4696d2345c4fb7f566a1a25ad",
+        "source_id": "2eff84a5b8a215d8f8dd597e1aafdd220c8118ea"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-69bc5323c252940c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "1d09f1e46a44c87c5373b634fa5d5f7e0776c9cf1aaf1fb92bb41507b62fea8e",
+        "source_id": "9380d40c12b28154804ea5688db911e8185a5abc"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "deec2d7149e819a357ea7b721dcac774efc0456854c5e4d33c584bd7638c7efa",
+      "case_id": "world_of_warcraft_addon_data-directive-72314bd2dfb34935",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@\nLibraries",
+      "expected_cleaned_sha256": "e6b64433a26db8657eb4f6601aa4622da4ed433e952b184fb89f80f61d8775f8",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@\n# Libraries",
+      "raw_sha256": "deec2d7149e819a357ea7b721dcac774efc0456854c5e4d33c584bd7638c7efa",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "1d45cb30476c29972c8dd3e6a1744e7ca3e8a161fcc18342af1fb7b1244b1def",
+        "source_id": "df925c99e424e42cd8be5739fc1bac1896d234a7"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-7570babbfb8af13c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "19f00cf60889780bcf77e315289655b797177944280177d69d9f32fa9c89c43c",
+        "source_id": "7aef97ce293ff255d39ee403d72f196572070732"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "73fb58955b8f79d3f6b2d8f0d2a1adeb52d28aa76a3d75de06f53db1209ffce4",
+      "case_id": "world_of_warcraft_addon_data-directive-79da4fd2398a1e21",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "database koKR",
+      "expected_cleaned_sha256": "328723707eaaf346f28187d3d273360f6fbc50595da22cc36036de02401320ae",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# database koKR",
+      "raw_sha256": "73fb58955b8f79d3f6b2d8f0d2a1adeb52d28aa76a3d75de06f53db1209ffce4",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "72604968ae874a11a70481fe89567a00835a7f81b13d9c77bf1aed7123cf184e",
+        "source_id": "7ff822821018ff48f1afc66445ed46076cabd635"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "3960bd125f1a50bdee432d37d6f6ace468d3d85fcd2441a5bd16dfe75968cb2c",
+      "case_id": "world_of_warcraft_addon_data-directive-88ba5400a504d61b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Libraries",
+      "expected_cleaned_sha256": "62ef6fd92ee145d9f000697f85abd4c680d9754e96c988ec7fe2b1072240df92",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Libraries",
+      "raw_sha256": "3960bd125f1a50bdee432d37d6f6ace468d3d85fcd2441a5bd16dfe75968cb2c",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "867fe5848b586b034f8e509b5eb258a694287cd853b36db85392f7484fc845c9",
+        "source_id": "5cdadb332c2054c8062e9fba4e90aa5b253b6b51"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "673be0a55dcfa7f3e2c077976ca71212f40f5b29109b89538c2e1519913c4cfe",
+      "case_id": "world_of_warcraft_addon_data-directive-8cc19072e8c24610",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@non-debug@",
+      "expected_cleaned_sha256": "c4445ee7a38de43f307e74091f6f6019c11660dccd370a04c242d6e6309312d0",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@non-debug@",
+      "raw_sha256": "673be0a55dcfa7f3e2c077976ca71212f40f5b29109b89538c2e1519913c4cfe",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "a52a49bc738d738bc9a95fbefc113024d31708f7aed33b3ec91007486f4b75f0",
+        "source_id": "6a88e243617bef4877870d614ecf4a76bbf6029c"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2358d970bec670c763a59ccdf1da78bbe3f5a2e11509c15de7aafd5c54da1b75",
+      "case_id": "world_of_warcraft_addon_data-directive-8f2afe978e446f77",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Pre-core modules",
+      "expected_cleaned_sha256": "370bdc797777f8f45c2b6324e4de5bab2a2901c5e5d945228f4cb54f15cc0da8",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Pre-core modules",
+      "raw_sha256": "2358d970bec670c763a59ccdf1da78bbe3f5a2e11509c15de7aafd5c54da1b75",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "c2a4709ea7dad3730c2f742de43f8a28e01c106f9e9a6ff37a6a5ad57b0d6b7b",
+        "source_id": "451dfe30f6e3b6c072ac5009e2e9db8c02ac8b96"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-97b5a7400ee8f010",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "3d05e4309659bdcb2f8b05509e13a3aec38524786c839824106cdad266c670c5",
+        "source_id": "fe2990f4614a836cec29c87b91dbf58bf06fc36e"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "4730760b0ed1849b8d44761da3c88cf4aa5ad73f950aa7c3fddf2d2bb978e8e6",
+      "case_id": "world_of_warcraft_addon_data-directive-97b639ddecf3218b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "lib\\Astrolabe\\Load.xml",
+      "expected_cleaned_sha256": "30ac51212d27154831ad69abd8599deb3fdcd5a3abb7fc66a072319dc5917e18",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#lib\\Astrolabe\\Load.xml",
+      "raw_sha256": "4730760b0ed1849b8d44761da3c88cf4aa5ad73f950aa7c3fddf2d2bb978e8e6",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "880af4782e006f12ca78e5ee4d9da4b71c753ca3e672290e925f80d1666334d3",
+        "source_id": "5aac25cda5c30103b7c14b81b25c45c3fbf016d8"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "cd30f4900b60cbd9ee32c809980028fd971102dd0744ff44bd56ffc80991c489",
+      "case_id": "world_of_warcraft_addon_data-directive-9bd9c46621a3017e",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Disabled until error causing things are fixed",
+      "expected_cleaned_sha256": "fe381001f27ba37d042c56c30f20487bfc87e6ca1f96ede3b9f62348991dfb71",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# Disabled until error causing things are fixed",
+      "raw_sha256": "cd30f4900b60cbd9ee32c809980028fd971102dd0744ff44bd56ffc80991c489",
+      "raw_utf8_length": 47,
+      "source_provenance": {
+        "source_excerpt_sha256": "60514748b45c11a456887273826e59bccbbca9ef45abd8d462dffec6057828f4",
+        "source_id": "e13df61118b828dc56612390dc0c3e8a17696989"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "de8523e3fe200e395dc23605fc3a7146c01c21c94b0ee32c5610c487bb9ae727",
+      "case_id": "world_of_warcraft_addon_data-directive-a145ee294d88ab32",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Libraries",
+      "expected_cleaned_sha256": "62ef6fd92ee145d9f000697f85abd4c680d9754e96c988ec7fe2b1072240df92",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#Libraries",
+      "raw_sha256": "de8523e3fe200e395dc23605fc3a7146c01c21c94b0ee32c5610c487bb9ae727",
+      "raw_utf8_length": 10,
+      "source_provenance": {
+        "source_excerpt_sha256": "3f1a20ea2f8d04de9f0f11d7e21319637a26c2b38d9453ddfe25fc1af9ab44a9",
+        "source_id": "aff9258fa53917441436a3fea3c24a7c60ff3b96"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-a3fd048a1d0639af",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "b9d93cefb55259fb5506d89251e4ac7a1b5d50b6dcd148d0140fad9d75fabd67",
+        "source_id": "14a0a82d31f9f2285809006b34e5d635e8c6a92f"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "6c39e435831b827f5ca4d5037341e45974db266c0473f0ec1d9af8aa3d3ce936",
+      "case_id": "world_of_warcraft_addon_data-directive-ab701a77463fc218",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Librarys",
+      "expected_cleaned_sha256": "7bb460de9fff65709e246f4ac9392708cb401fd3ea806c8edab27c201bc1e2a2",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#Librarys",
+      "raw_sha256": "6c39e435831b827f5ca4d5037341e45974db266c0473f0ec1d9af8aa3d3ce936",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "ccf8696a0ac07e381896a8b3c4533cdb7473a713a68cc44fae32c1b889e03ff0",
+        "source_id": "f1f54e839de2cd91fc2cf612e331ad75b5238173"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-b1163f9989b7c2c3",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "5bec143cf15d46e808fcdbe8c538dd32542885640cdfc580effa1b5574c25b07",
+        "source_id": "709908e5f34f0c07b4e6c3f306e2a1252bfa716b"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-b3c27b3d1431919b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "f69c7c5d10a10aa4cceccef9e1da89721042005c29e876bfc7896c78c8824467",
+        "source_id": "7a40375e943fc0adfde136baadfb459a90f06329"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "624beb56bda0b63284763733278fae6fb274b090c0d5b65ede69bbccd7ecf9b1",
+      "case_id": "world_of_warcraft_addon_data-directive-c1a363eca7fd5c65",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "blizzard already colored yClassColors\\guild.lua",
+      "expected_cleaned_sha256": "de7504346180ce923d876d0a9b4bab669da46b99b8adf2f3e2f86254da91a8f3",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#blizzard already colored yClassColors\\guild.lua",
+      "raw_sha256": "624beb56bda0b63284763733278fae6fb274b090c0d5b65ede69bbccd7ecf9b1",
+      "raw_utf8_length": 48,
+      "source_provenance": {
+        "source_excerpt_sha256": "5a51d8f7c54f6f27e82e7bb6397da19c59f51f306b7b482a7522178484604e6e",
+        "source_id": "0ea21ed8ccbb84d01f8cb0febb90b3cfe7c4c108"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-ccf18e474dda72be",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "4a583bce65a26faa8842f16ccf16d6b41731a4d87db735a37ed4e6a1c82f324b",
+        "source_id": "f90268435dc0bb47e968affb225b235c2fd43c1b"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-cdc99b4552e36ad3",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "c042e6a275701b4a1ade8c416c6ce6a73d02976b2aa2cce2c7c484ab0f16bb91",
+        "source_id": "481e55f67344a9bed1488fe62e1adf6ee2d75281"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "248e0753f1792fd9b6a1f0606da0264675350e278b442b63ee08425db45878ca",
+      "case_id": "world_of_warcraft_addon_data-directive-cddcefb9733e6550",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TinyTipBasic module",
+      "expected_cleaned_sha256": "a9973c5ec17cfaf689e59270069e8a6557c52e4ec3157c26b06926504f99d973",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# TinyTipBasic module",
+      "raw_sha256": "248e0753f1792fd9b6a1f0606da0264675350e278b442b63ee08425db45878ca",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "2118911756908bbfbc3c9d6bfa5145aa99d7cb5ecce3933f63f8b4ed6b6af580",
+        "source_id": "c75bc842a56b9dc27a1092cdaa30a9dd5aa3456a"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-df0328c79415d2f6",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "74f533182844a773e5d7abd928258cdf3dcbda37954cc44b19eba3abd0417eb5",
+        "source_id": "58b979ea0155dc46abd682c0a4d6253cbd48d74d"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "case_id": "world_of_warcraft_addon_data-directive-e1fa584eb21f8d3d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@no-lib-strip@",
+      "expected_cleaned_sha256": "0460ee64352b4b9f4b7bfdb63780325f469de1721e2004a96d7004f3f56d9096",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@no-lib-strip@",
+      "raw_sha256": "2821610a0a4fc585d6f5c6a9939a50ca0ba94eb69e3fa5faa6145521289ca87c",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "8db281da3d2cb48cc5c223aca49ed0d1f827250f06762adf67a6d6e60f623d7f",
+        "source_id": "a02e1cf189d17327c16a45df042fec2531e1b303"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "275193870951d0c27dcb50008803065185ea47bd177c8838824bfd96c07de482",
+      "case_id": "world_of_warcraft_addon_data-directive-e453d809c8aff86c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# SavedVariablesPerCharacter: Empowered_LocalDB",
+      "expected_cleaned_sha256": "366323ac7b5d45bc91dda65dbe31c878eb2e9050170f591cf85e1a38c87d4212",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "# # SavedVariablesPerCharacter: Empowered_LocalDB",
+      "raw_sha256": "275193870951d0c27dcb50008803065185ea47bd177c8838824bfd96c07de482",
+      "raw_utf8_length": 49,
+      "source_provenance": {
+        "source_excerpt_sha256": "444ebc47bcd6ce36d45e8a920817b4eb46e0e26628be9a1da9ffde3f50761905",
+        "source_id": "8ae2011ee0d937ec384af7884a01e5315d3a4e61"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "1d65bf75d419447b25862c3c7a6aad57c1a602f3300147f4e2ca36d4d5af3ab0",
+      "case_id": "world_of_warcraft_addon_data-directive-f11cb9bdb1ff5fad",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@non-debug@\n@end-non-debug@",
+      "expected_cleaned_sha256": "a4af92480e3c814327ebcf507dd0db4e85efca7228bf2f7c16fed18b22854111",
+      "language": "world_of_warcraft_addon_data",
+      "raw_comment": "#@non-debug@\n#@end-non-debug@",
+      "raw_sha256": "1d65bf75d419447b25862c3c7a6aad57c1a602f3300147f4e2ca36d4d5af3ab0",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "a0fbb9a8e862287c6d089bca483f96929bc836e6cbaddf1973b1cd0816cf185a",
+        "source_id": "0b5b30b28e465991e10b9a99fb3df54e8f81a9dd"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

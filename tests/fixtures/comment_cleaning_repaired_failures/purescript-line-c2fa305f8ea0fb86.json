@@ -1,0 +1,38 @@
+{
+  "case_id": "purescript-line-c2fa305f8ea0fb86",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "purescript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4452c4a42c86bde7597eab2b6aafa8d8cebf12c719ccbebd9cfa5bc78c204138",
+      "utf8_length": 50
+    },
+    "manifest_old_output": {
+      "sha256": "20b749f97d12b01aaea4f5c1b9e762c275d998909f49605146dc9e70108934f6",
+      "utf8_length": 44
+    },
+    "raw_comment": {
+      "sha256": "8cdbb12c5cb1736b19c41300ef6eac8db7a677541211bef7e26ca3cbf0db44d4",
+      "utf8_length": 52
+    },
+    "recommended_expected_output": {
+      "sha256": "20b749f97d12b01aaea4f5c1b9e762c275d998909f49605146dc9e70108934f6",
+      "utf8_length": 44
+    }
+  },
+  "regression": {
+    "expected_output": "Language.Haskell.Interpreter is missing this",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--- Language.Haskell.Interpreter is missing this ---"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2bcb5d364f6891c1762d317cec1130294ee3de486970f45d481d20852461efb8",
+    "source_id": "3f55bf5fd427f74ca4898e27e0949bf5a2fbb971"
+  },
+  "source_record_sha256": "e211b2e7bf0244a09c97fc0c71d1559e2a662648c35cef1f0747e4236f3e3fbd"
+}

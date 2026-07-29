@@ -1,0 +1,33 @@
+{
+  "case_id": "makefile-line-04aa358fc4ea11c8",
+  "category": "approved_oracle_match",
+  "cluster": "fixture:approved_oracle",
+  "disposition": "accounting_only_superseded",
+  "language": "makefile",
+  "original_expected_output_source": "oracle",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4eb4c78aa9e8f060af31a63f534472db3c8058d156dfdd2e974be8074e996084",
+      "utf8_length": 623
+    },
+    "manifest_old_output": {
+      "sha256": "0349fb6843c12c80b50398094d8c4be04682cf604cf92de945de868aefc7789b",
+      "utf8_length": 840
+    },
+    "raw_comment": {
+      "sha256": "59cf3eaed91fdc6a2c885c7d1da622d2435c8d2f3d687a5563814909613ac0c9",
+      "utf8_length": 874
+    },
+    "recommended_expected_output": {
+      "sha256": "4eb4c78aa9e8f060af31a63f534472db3c8058d156dfdd2e974be8074e996084",
+      "utf8_length": 623
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4cb572dac638c565a1890d083ff681696d1da5635deaaa36c946886b4c774f4b",
+    "source_id": "6209d8dc8c46392a90a5b854667b3cb087f7981c"
+  },
+  "source_record_sha256": "6a26cce610f61a11fafa5869cb363518d8590d57997aff0a6cdb3b953b796032"
+}

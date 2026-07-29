@@ -1,0 +1,38 @@
+{
+  "case_id": "haskell-nested-9787e3f77d521062",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "haskell",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ec285b19f2d815746ff1a42a13b0051fc2996dd3653988eb60365e4a6aaeefb8",
+      "utf8_length": 97
+    },
+    "manifest_old_output": {
+      "sha256": "5ceeefd6d745b3e20e530c61d218325d663aa2207e7bccce6a44c05ab422e295",
+      "utf8_length": 81
+    },
+    "raw_comment": {
+      "sha256": "6f8d6bdf96336a69bdc485fff4e44b4a47084d125e7c0c4ca00c65f3435adc92",
+      "utf8_length": 101
+    },
+    "recommended_expected_output": {
+      "sha256": "5ceeefd6d745b3e20e530c61d218325d663aa2207e7bccce6a44c05ab422e295",
+      "utf8_length": 81
+    }
+  },
+  "regression": {
+    "expected_output": "Funktionale Programmiertechniken\nExercise 6, November 2016\nThomas Jirout, 1525606",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Funktionale Programmiertechniken\n    Exercise 6, November 2016\n    Thomas Jirout, 1525606\n--}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "792a9a012bc942fa3a509aaa207d07bf674044099923d82f38a68e0aaa7c5f0d",
+    "source_id": "02f67d0bd6c8a1eb287aab549b102cb7923fa30e"
+  },
+  "source_record_sha256": "f9e9ab97d4f4072d1ab0e50a340b85d5e3efbc61120aff0f00d2c936f0a0493c"
+}

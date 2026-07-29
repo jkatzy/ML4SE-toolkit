@@ -1,0 +1,38 @@
+{
+  "case_id": "powerbuilder-line-7bfbdb00a92fd970",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "powerbuilder",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f314c156b02636cbfed2bb1552895da7b9d6bbf23c048cf87ab070020fe621a1",
+      "utf8_length": 753
+    },
+    "manifest_old_output": {
+      "sha256": "531f8c98e825eb2684c5c9f0156171cc31e5c8fdbfac56a79deefb8106767bd0",
+      "utf8_length": 741
+    },
+    "raw_comment": {
+      "sha256": "6c9ed3d43aca887cf92b77f1cd72e1b4c4d32b49fb30534ed4610353afb9f4c2",
+      "utf8_length": 839
+    },
+    "recommended_expected_output": {
+      "sha256": "531f8c98e825eb2684c5c9f0156171cc31e5c8fdbfac56a79deefb8106767bd0",
+      "utf8_length": 741
+    }
+  },
+  "regression": {
+    "expected_output": "Long\tll_wsw, ll_wsh\nLong\tll_diffw, ll_diffh\n\nll_wsw = This.workspacewidth()\nll_wsh = This.workspaceheight()\n\nif ll_wsw > p_background.width then\nll_diffw = (ll_wsw - p_background.width) / 2 - p_background.x\nend if\n\nif ll_wsh > p_background.height then\nll_diffh = (ll_wsh - p_background.height) / 2 - p_background.y\nend if\n\n\ubc14\ud0d5\ub85c\uace0\np_background.x += ll_diffw\np_background.y += ll_diffh\n\n\ud074\ub85c\uc988\np_close.x += ll_diffw\np_close.y += ll_diffh\n\n\uc544\uc774\ub514 \uc785\ub825 \ud544\ub4dc\nem_emp_code.x += ll_diffw\nem_emp_code.y += ll_diffh\n\n\ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud544\ub4dc\nsle_password.x += ll_diffw\nsle_password.y += ll_diffh\n\n\uc544\uc774\ub514 \uc800\uc7a5\ud558\uae30 \uccb4\ud06c\ubc15\uc2a4\ncbx_idcheck.x += ll_diffw\ncbx_idcheck.y += ll_diffh\n\nOK \uadf8\ub9bc\np_ok.x += ll_diffw\np_ok.y += ll_diffh",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//Long\tll_wsw, ll_wsh\n//Long\tll_diffw, ll_diffh\n//\n//ll_wsw = This.workspacewidth()\n//ll_wsh = This.workspaceheight()\n//\n//if ll_wsw > p_background.width then\n//\tll_diffw = (ll_wsw - p_background.width) / 2 - p_background.x\n//end if\n//\n//if ll_wsh > p_background.height then\n//\tll_diffh = (ll_wsh - p_background.height) / 2 - p_background.y\n//end if\n//\n//// \ubc14\ud0d5\ub85c\uace0 \n//p_background.x += ll_diffw\n//p_background.y += ll_diffh\n//\n//// \ud074\ub85c\uc988\n//p_close.x += ll_diffw\n//p_close.y += ll_diffh\n//\n//// \uc544\uc774\ub514 \uc785\ub825 \ud544\ub4dc\n//em_emp_code.x += ll_diffw\n//em_emp_code.y += ll_diffh\n//\n//// \ube44\ubc00\ubc88\ud638 \uc785\ub825 \ud544\ub4dc\n//sle_password.x += ll_diffw\n//sle_password.y += ll_diffh\n//\n//// \uc544\uc774\ub514 \uc800\uc7a5\ud558\uae30 \uccb4\ud06c\ubc15\uc2a4\n//cbx_idcheck.x += ll_diffw\n//cbx_idcheck.y += ll_diffh\n//\n//// OK \uadf8\ub9bc\n//p_ok.x += ll_diffw\n//p_ok.y += ll_diffh\n//"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4aa50356a59906177496d37d934281b4b2eadb910197cb94d9dd0ad5acee108a",
+    "source_id": "f3b4d854906714cbc68cd06ab09378ca45ae0d40"
+  },
+  "source_record_sha256": "8536a155119c9aac20eead8e07f96007969c8b2ca522add70bc12e29f557a4e7"
+}

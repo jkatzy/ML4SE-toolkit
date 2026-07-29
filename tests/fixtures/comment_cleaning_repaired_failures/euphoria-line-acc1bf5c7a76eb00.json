@@ -1,0 +1,38 @@
+{
+  "case_id": "euphoria-line-acc1bf5c7a76eb00",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "euphoria",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "cabd31d1ce0222b89e4ac489c8436c23730b2e36ea8c72ef765dc89c094a259a",
+      "utf8_length": 990
+    },
+    "manifest_old_output": {
+      "sha256": "e44a5e0bbd927dbfa403323f61b5a61cb42e41be0d2dfe88d93f0a4f4eb742f5",
+      "utf8_length": 1011
+    },
+    "raw_comment": {
+      "sha256": "04817e6065f8137cf4c23c344a1f3f714205e82b124e2219a08c15871bde647d",
+      "utf8_length": 1089
+    },
+    "recommended_expected_output": {
+      "sha256": "e44a5e0bbd927dbfa403323f61b5a61cb42e41be0d2dfe88d93f0a4f4eb742f5",
+      "utf8_length": 1011
+    }
+  },
+  "regression": {
+    "expected_output": "table header\n\tpublic enum\n\tSR_USER, SR_FILE, SR_MODE,\n\tSR_TIME, SR_STATUS,\n\tSR_COUNT, SR_TOTAL, SR_MAX, SR_AVG, SR_MIN,\n\tSR_TOKENS, SR_FILESIZE\n|=Idx |=Name     |=Description                      |\n|  *1 | user     | Username on openeuphoria.org     |\n|  *2 | file     | Filename of the given submission |\n|  *3 | mode     | INTERP/TRANS                     |\n|   1 | time     | Testing timestamp                |\n|   2 | status   | PASS/FAIL status indicator       |\n|   3 | count    | Count of iterations executed     |\n|   4 | total    | Total time taken for all tests   |\n|   5 | max      | Maximum iteration time           |\n|   6 | avg      | Average iteration time           |\n|   7 | min      | Minimum iteration time           |\n|   8 | tokens   | Number of tokens                 |\n|   9 | filesize | Filesize in bytes                |\n\nadd_submission({ \"mattlewis\", \"cpu-brute.ex\", MODE_INTERP }, {\n\t\tdatetime:now(), STATUS_PASS,\n\t\t10, 10 * 230.203, 230.203, 230.204, 230.203,\n\t\t89_893_150, 1_291_928",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "-- table header\n-- \tpublic enum\n-- \tSR_USER, SR_FILE, SR_MODE,\n-- \tSR_TIME, SR_STATUS,\n-- \tSR_COUNT, SR_TOTAL, SR_MAX, SR_AVG, SR_MIN,\n-- \tSR_TOKENS, SR_FILESIZE\n-- |=Idx |=Name     |=Description                      |\n-- |  *1 | user     | Username on openeuphoria.org     |\n-- |  *2 | file     | Filename of the given submission |\n-- |  *3 | mode     | INTERP/TRANS                     |\n-- |   1 | time     | Testing timestamp                |\n-- |   2 | status   | PASS/FAIL status indicator       |\n-- |   3 | count    | Count of iterations executed     |\n-- |   4 | total    | Total time taken for all tests   |\n-- |   5 | max      | Maximum iteration time           |\n-- |   6 | avg      | Average iteration time           |\n-- |   7 | min      | Minimum iteration time           |\n-- |   8 | tokens   | Number of tokens                 |\n-- |   9 | filesize | Filesize in bytes                |\n--\n-- add_submission({ \"mattlewis\", \"cpu-brute.ex\", MODE_INTERP }, {\n-- \t\tdatetime:now(), STATUS_PASS,\n-- \t\t10, 10 * 230.203, 230.203, 230.204, 230.203,\n-- \t\t89_893_150, 1_291_928\n-- \t})"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e9d76f53b3acf9d35f692d6e7f87635e36976bae33749522d43b5445ae6a84f7",
+    "source_id": "7e92d04f1109cc71f7a15ff427410f757eff7213"
+  },
+  "source_record_sha256": "7bdf74046831c9388869cac16cd14f71699d077bb18355b6f30577f0bf785dd4"
+}

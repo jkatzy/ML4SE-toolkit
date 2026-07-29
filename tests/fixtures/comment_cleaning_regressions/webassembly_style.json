@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "webassembly_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "3b01bcb6a018f7c6c2750c14266a8e6e2c34697106dc1b72329421b6cf222a13",
+      "case_id": "webassembly-nested-086f71e391944596",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "STDERR\nout/test/parse/module/bad-memory-init-size.txt:3:17: error: unexpected token \"foo\", expected a natural number (e.g. 123).\n(module (memory foo))\n                ^^^\nSTDERR",
+      "expected_cleaned_sha256": "d6b773e5f260f1f073ddce907b9be7ff1b667a531c041b6a3445fa1586e7ce67",
+      "language": "webassembly",
+      "raw_comment": "(;; STDERR ;;;\nout/test/parse/module/bad-memory-init-size.txt:3:17: error: unexpected token \"foo\", expected a natural number (e.g. 123).\n(module (memory foo))\n                ^^^\n;;; STDERR ;;)",
+      "raw_sha256": "30d76734f8d366a74eef8875249b105bad71b93e0945cc3e5dbd1f9e2638d819",
+      "raw_utf8_length": 193,
+      "source_provenance": {
+        "source_excerpt_sha256": "245ed96f03d2c990a304b29c036fdc3dde0159d38cfad5e61cf6abe3809f8248",
+        "source_id": "c5d3cad4c052faea9fcb8510c84162167ff73b54"
+      },
+      "syntax_label": "(;...;)"
+    },
+    {
+      "baseline_cleaned_sha256": "70f888488f13a23e7d48f1ed8770ff6ce8214f3c9dfdde2e2554be722785aca7",
+      "case_id": "webassembly-nested-f7bf664946f34ad0",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "STDOUT\nh() => i32:43\nSTDOUT",
+      "expected_cleaned_sha256": "9b23a8b9ddccd7c407378f9cf141d4645c96eee28cf2c0b000e415b7df204ebd",
+      "language": "webassembly",
+      "raw_comment": "(;; STDOUT ;;;\nh() => i32:43\n;;; STDOUT ;;)",
+      "raw_sha256": "613bdf032ad35e42c4839397d0690943073b666f92a3e08b7e2d8ec974698516",
+      "raw_utf8_length": 43,
+      "source_provenance": {
+        "source_excerpt_sha256": "02020bed9e904de8193aca239bc1f091519f43319d32ef3203ea6df825eb8cbf",
+        "source_id": "dfbfe4988313c38b28b579db746bdc297679c9aa"
+      },
+      "syntax_label": "(;...;)"
+    }
+  ],
+  "schema_version": 5
+}

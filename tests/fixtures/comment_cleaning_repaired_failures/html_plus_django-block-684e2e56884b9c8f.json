@@ -1,0 +1,38 @@
+{
+  "case_id": "html_plus_django-block-684e2e56884b9c8f",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "html_plus_django",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e2bf77077dcf0b965499d7e29ce2a7b4563bab6dd0761b3a88b97aa3aa8fbdcb",
+      "utf8_length": 11
+    },
+    "manifest_old_output": {
+      "sha256": "e2bf77077dcf0b965499d7e29ce2a7b4563bab6dd0761b3a88b97aa3aa8fbdcb",
+      "utf8_length": 11
+    },
+    "raw_comment": {
+      "sha256": "11ed6b8ab565955418f7e0133fbc2121b759f600f2c2f8be93e18824d00edd88",
+      "utf8_length": 15
+    },
+    "recommended_expected_output": {
+      "sha256": "e2bf77077dcf0b965499d7e29ce2a7b4563bab6dd0761b3a88b97aa3aa8fbdcb",
+      "utf8_length": 11
+    }
+  },
+  "regression": {
+    "expected_output": "# JR C sn #",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{## JR C sn ##}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "9ba67bd324bce858cd92f583d931732da673fdad3408643ce7fb6dfb99e675b9",
+    "source_id": "8e14fb59a680f1508ea939eb6258ee3a203799b0"
+  },
+  "source_record_sha256": "47558d4244d15ac660ab50fa1c5bb3165b913b08af0a9d3332ba1694dae1271a"
+}

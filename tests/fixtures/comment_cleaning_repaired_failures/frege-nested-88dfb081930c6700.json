@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-88dfb081930c6700",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6b87d38fa39b1c40647c7187198510f38883a57b836603249f0880603314504d",
+      "utf8_length": 548
+    },
+    "manifest_old_output": {
+      "sha256": "6063baed4df760af6afeff058a698a79ebb2db194794189a44e78e0f55374f99",
+      "utf8_length": 506
+    },
+    "raw_comment": {
+      "sha256": "d447e3e12b331ce0b3ef4e1a82f883a166bcdaeea9a5eacbce53d9aac1148b40",
+      "utf8_length": 564
+    },
+    "recommended_expected_output": {
+      "sha256": "6063baed4df760af6afeff058a698a79ebb2db194794189a44e78e0f55374f99",
+      "utf8_length": 506
+    }
+  },
+  "regression": {
+    "expected_output": "Patterns appear in the following places:\n- on the left hand side of function definitions\n- between the backslash and the arrow in a lambda @\\p -> x@\n- in case alternatives\n- generally, on the left hand side of the @<-@ in @do@\n  expressions, list comprehensions and pattern guards.\n- on the left hand side of a @=@ in pattern bindings\n\nThe parser has no rules for patterns, however. It parses\nexpressions, which are later transformed to patterns. However,\nnot all valid expressions are also valid patterns.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Patterns appear in the following places:\n    - on the left hand side of function definitions\n    - between the backslash and the arrow in a lambda @\\p -> x@\n    - in case alternatives\n    - generally, on the left hand side of the @<-@ in @do@ \n      expressions, list comprehensions and pattern guards.\n    - on the left hand side of a @=@ in pattern bindings\n    \n    The parser has no rules for patterns, however. It parses\n    expressions, which are later transformed to patterns. However,\n    not all valid expressions are also valid patterns.\n    \n -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c65032168b6cd5a496c210a1537c791adf474b6f7c8c91f1853c213422c76a3c",
+    "source_id": "d1bd373ea75e5881aeb0e5298e0a0ab332a3bd3b"
+  },
+  "source_record_sha256": "ecf358856f3114e618e4788bc2853f35766ab8318eaa4d67978556753c3ea9c5"
+}

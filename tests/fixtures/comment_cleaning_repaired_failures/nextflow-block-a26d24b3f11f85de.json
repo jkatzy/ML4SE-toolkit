@@ -1,0 +1,38 @@
+{
+  "case_id": "nextflow-block-a26d24b3f11f85de",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:markdown_heading",
+  "disposition": "executable_regression",
+  "language": "nextflow",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c957dde72e3a5251619a9c8f8347bd828f74b9a5360ab96ac7ca6e3d4fff73ee",
+      "utf8_length": 221
+    },
+    "manifest_old_output": {
+      "sha256": "126413b66612d4be4d415ac04a569f6ac78ff27768c8b819fc4d224a7e24a6aa",
+      "utf8_length": 226
+    },
+    "raw_comment": {
+      "sha256": "3678913735f5cf9c2c51e54e182b57856915a4055bb4e95daeef5cc2e183a044",
+      "utf8_length": 410
+    },
+    "recommended_expected_output": {
+      "sha256": "126413b66612d4be4d415ac04a569f6ac78ff27768c8b819fc4d224a7e24a6aa",
+      "utf8_length": 226
+    }
+  },
+  "regression": {
+    "expected_output": "                         nf-core/hicar\n========================================================================================\n nf-core/hicar Analysis Pipeline.\n #### Homepage / Documentation\n https://github.com/nf-core/hicar",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n========================================================================================\n                         nf-core/hicar\n========================================================================================\n nf-core/hicar Analysis Pipeline.\n #### Homepage / Documentation\n https://github.com/nf-core/hicar\n----------------------------------------------------------------------------------------\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1276b912d4e11f43f1b9a0f269de73c7e2e567dd53c5326a1dc73439c6d3145c",
+    "source_id": "137d86964e3f422a2dd6b89c56dc7ad85544a754"
+  },
+  "source_record_sha256": "e465d67429b3fb4d7f3487895801cb180f888d57346dfb6f4e86a412d63e5bd3"
+}

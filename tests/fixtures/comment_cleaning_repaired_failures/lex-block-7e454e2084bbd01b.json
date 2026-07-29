@@ -1,0 +1,29 @@
+{
+  "case_id": "lex-block-7e454e2084bbd01b",
+  "category": "policy_or_judge_conflict",
+  "cluster": "oracle_exception:reviewer_disagreement",
+  "disposition": "accounting_only_no_oracle",
+  "language": "lex",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "d0fa7525011ab94baee04788920e989f503f97284e397fe8dee63c09e6bb2663",
+      "utf8_length": 394
+    },
+    "manifest_old_output": {
+      "sha256": "d0fa7525011ab94baee04788920e989f503f97284e397fe8dee63c09e6bb2663",
+      "utf8_length": 394
+    },
+    "raw_comment": {
+      "sha256": "5a89f1669f8bbbffe20f1955b3358ad24c24f5fb199aa46d80c8ad1d071666ad",
+      "utf8_length": 421
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0e3d261699f1f4aba96038bdc6218da38a967fe49a1206e104f728762f45f0bd",
+    "source_id": "390bb7b736fe3739eefd1078fe811c79b80779e0"
+  },
+  "source_record_sha256": "7e614b1779486aaf1164d67dd4e36ffbdc8da63c75b8fa0ff63cf855cc119d82"
+}

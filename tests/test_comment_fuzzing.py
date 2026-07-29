@@ -27,9 +27,7 @@ _NON_ENGLISH_PAYLOAD = (
 
 
 def _load_fuzzer():
-    script_path = (
-        Path(__file__).resolve().parents[1] / "scripts" / "fuzz_comment_parsers.py"
-    )
+    script_path = Path(__file__).resolve().parents[1] / "scripts" / "fuzz_comment_parsers.py"
     spec = importlib.util.spec_from_file_location("comment_parser_fuzzer", script_path)
     assert spec is not None
     module = importlib.util.module_from_spec(spec)
@@ -84,21 +82,15 @@ def test_non_english_payload_mutations_survive_extraction_and_sanitization():
                     if placeholder is None:
                         continue
 
-                    expected = example.expected_match.replace(
-                        placeholder, _NON_ENGLISH_PAYLOAD, 1
-                    )
-                    sample = example.sample.replace(
-                        example.expected_match, expected, 1
-                    )
+                    expected = example.expected_match.replace(placeholder, _NON_ENGLISH_PAYLOAD, 1)
+                    sample = example.sample.replace(example.expected_match, expected, 1)
                     matches = CommentQuery(language).parse(sample)
-                    exact_matches = [
-                        match for match in matches if match.match == expected
-                    ]
+                    exact_matches = [match for match in matches if match.match == expected]
 
                     assert exact_matches, (language, expected, matches)
-                    assert _NON_ENGLISH_PAYLOAD in CommentSanitizer(
-                        language
-                    ).sanitize(exact_matches[0])
+                    assert _NON_ENGLISH_PAYLOAD in CommentSanitizer(language).sanitize(
+                        exact_matches[0]
+                    )
                     cases += 1
 
     assert cases > 900

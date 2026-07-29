@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-cbefadf84719f708",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "5fff819dfb187e43eb618430229578c219ab55b6af90c6d5f38b74c336593861",
+      "utf8_length": 56
+    },
+    "manifest_old_output": {
+      "sha256": "460a867c30e6659dbedd63bc9c12cbff86da53af867b571d9c2da71b52350ed7",
+      "utf8_length": 49
+    },
+    "raw_comment": {
+      "sha256": "86120abfcc2f54ea02763aa8a261cff75a11d17c69fdc806913415d4774784c4",
+      "utf8_length": 192
+    },
+    "recommended_expected_output": {
+      "sha256": "460a867c30e6659dbedd63bc9c12cbff86da53af867b571d9c2da71b52350ed7",
+      "utf8_length": 49
+    }
+  },
+  "regression": {
+    "expected_output": "Home screen: the entry display of the application",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'*****************************************************************\n'**  Home screen: the entry display of the application\n'**\n'*****************************************************************"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "73fb60be9ca11d72d1e64e05ae99f8dce9d3ffc446adbc4016b17627bcd3bf3b",
+    "source_id": "6e5d1651f40d2b4b83b0fb7eb5c8ee82c8a91128"
+  },
+  "source_record_sha256": "60a88ed3c1ca3ecd859fa9c82a1673d6cb0527d60d2d24faa365be251fdc6d50"
+}

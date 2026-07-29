@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-0cb6b857a2e18f26",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "59c1efde8cc2454450e222da72ab24e5433de92240b1de44989ca07596d6452a",
+      "utf8_length": 85
+    },
+    "manifest_old_output": {
+      "sha256": "112275a08b44ce40003d30eab6a096b82d25952e331c041e26a3a1605e918707",
+      "utf8_length": 71
+    },
+    "raw_comment": {
+      "sha256": "26471e052fd57750cf4759effcbd0bd1280858332eca0bb26cfac4a1aeec9ecf",
+      "utf8_length": 92
+    },
+    "recommended_expected_output": {
+      "sha256": "112275a08b44ce40003d30eab6a096b82d25952e331c041e26a3a1605e918707",
+      "utf8_length": 71
+    }
+  },
+  "regression": {
+    "expected_output": "Send the input to both argument semigroupoids and combine\ntheir output.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n      Send the input to both argument semigroupoids and combine\n      their output.\n  -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "96d7c77f111147a2ca2c3353a2fff21ce50debe7c5bd74308cff0595e884e7af",
+    "source_id": "3408010897e25343b430483f4c1a74dbb9dfd0f5"
+  },
+  "source_record_sha256": "5d0f932a5174916afe0d1aeb56d1063286b2d1fa43f14fc9e4ac1d5505942172"
+}

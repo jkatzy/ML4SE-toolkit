@@ -1,0 +1,38 @@
+{
+  "case_id": "flux-line-74b768b276731ccd",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "flux",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7b24f79d65eff3d6794e813052b7b277b64f8ff74bd807315dc06956debfb8cf",
+      "utf8_length": 120
+    },
+    "manifest_old_output": {
+      "sha256": "7b24f79d65eff3d6794e813052b7b277b64f8ff74bd807315dc06956debfb8cf",
+      "utf8_length": 120
+    },
+    "raw_comment": {
+      "sha256": "1dd43372623781c35792a8780e211cd2523f038fbba22a94c62c0bd1e425d726",
+      "utf8_length": 199
+    },
+    "recommended_expected_output": {
+      "sha256": "7b24f79d65eff3d6794e813052b7b277b64f8ff74bd807315dc06956debfb8cf",
+      "utf8_length": 120
+    }
+  },
+  "regression": {
+    "expected_output": "Include some common stuff\n---------------------------------------------------------------------\n#define GENERATE_NORMALS",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//---------------------------------------------------------------------\n// Include some common stuff\n//---------------------------------------------------------------------\n//#define GENERATE_NORMALS"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "41616fde10791545a72c9df6ec41765ccab1a34222a70095daf40390b76ff017",
+    "source_id": "9858def3e471f5de1e6c9f7cecab95c7f739434f"
+  },
+  "source_record_sha256": "0a938aee10084aa374675c54974864bf5e2b8ecbbae9d94db213bd0cfc1c78d9"
+}

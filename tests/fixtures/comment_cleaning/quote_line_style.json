@@ -4,7 +4,6 @@
   "canonical_language": "vim_script",
   "language_keys": [
     "vim_script",
-    "smalltalk",
     "viml"
   ],
   "sanitizer_mode": "wrapped",

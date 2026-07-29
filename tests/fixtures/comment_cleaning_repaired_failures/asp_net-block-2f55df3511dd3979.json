@@ -1,0 +1,29 @@
+{
+  "case_id": "asp_net-block-2f55df3511dd3979",
+  "category": "needs_manual_review",
+  "cluster": "oracle_exception:intra_corpus_oracle_conflict",
+  "disposition": "accounting_only_no_oracle",
+  "language": "asp_net",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f80043fc7db7552a320dd589ff7b15b590b645357ec65f41746313ac29215ff6",
+      "utf8_length": 74
+    },
+    "manifest_old_output": {
+      "sha256": "f80043fc7db7552a320dd589ff7b15b590b645357ec65f41746313ac29215ff6",
+      "utf8_length": 74
+    },
+    "raw_comment": {
+      "sha256": "dbf119335275acdb40314870b1dafbd2579f5d0b8f66221fa4abd3a894f58eea",
+      "utf8_length": 82
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1c4ee078124af89a8720793f4e778e43688156c3961934f2228dd45f881ab17a",
+    "source_id": "de54694f0f9d139a7b9407332772994fa3cc0c6c"
+  },
+  "source_record_sha256": "92e280a7bff51f8a355961503e6b84d1e14ed614fa7f0e598e296a6081ca4885"
+}

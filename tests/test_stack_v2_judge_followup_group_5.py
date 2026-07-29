@@ -82,10 +82,7 @@ def test_hocon_grouped_lines_strip_each_hash_prefix():
         "# ------------- resume or retrain options ------------------------------\n"
         "# dcp_0.5_our_sq_finetune_checkpoint17"
     )
-    expected = (
-        "------------- resume or retrain options ------------------------------\n"
-        "dcp_0.5_our_sq_finetune_checkpoint17"
-    )
+    expected = "resume or retrain options\ndcp_0.5_our_sq_finetune_checkpoint17"
 
     assert _sanitize("hocon", raw_comment) == expected
 

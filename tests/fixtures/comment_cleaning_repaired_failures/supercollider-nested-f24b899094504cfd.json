@@ -1,0 +1,38 @@
+{
+  "case_id": "supercollider-nested-f24b899094504cfd",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "supercollider",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c89f6df74f622fcea10ca7a963eb8af6eac173e432227df8bfdce336279ab10b",
+      "utf8_length": 119
+    },
+    "manifest_old_output": {
+      "sha256": "c89f6df74f622fcea10ca7a963eb8af6eac173e432227df8bfdce336279ab10b",
+      "utf8_length": 119
+    },
+    "raw_comment": {
+      "sha256": "eefad5485590ddf93e5288a9b47d6e0169e6e729dc3dd01daa19aeeba75c256d",
+      "utf8_length": 125
+    },
+    "recommended_expected_output": {
+      "sha256": "c89f6df74f622fcea10ca7a963eb8af6eac173e432227df8bfdce336279ab10b",
+      "utf8_length": 119
+    }
+  },
+  "regression": {
+    "expected_output": "--|----1----|----2----|----3----|----4----|----5----|----6----|----7----|----8\n\n Server Options and Hardware I/O Setup.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*--|----1----|----2----|----3----|----4----|----5----|----6----|----7----|----8\n\n Server Options and Hardware I/O Setup.\n\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ebffc2c3a18efb6cb0d8e2e5f1c90d7d1185d663eb12083a6ed2b8a1240c55ec",
+    "source_id": "0acfdbc2fdab273a8e67c5ce564af568802b67af"
+  },
+  "source_record_sha256": "6d82f072f17778dbcd9d077587ca91e7d145f39967a15a00a8add80fff2d54bb"
+}

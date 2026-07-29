@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-cc3b4c07230f80e7",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ad0ae789ee5b43d698a6d6d65d6879139e2678ee9c9bbf3f3f54b6ba6adec658",
+      "utf8_length": 459
+    },
+    "manifest_old_output": {
+      "sha256": "11246e6cc07df3a787441c11c092a07d9dbdc7e4ae02002c58c080157305cb42",
+      "utf8_length": 439
+    },
+    "raw_comment": {
+      "sha256": "2b6de7db12d1091b9ffd32ad88221dabac20f3e8c610e717b3c27a087ac10ae7",
+      "utf8_length": 639
+    },
+    "recommended_expected_output": {
+      "sha256": "11246e6cc07df3a787441c11c092a07d9dbdc7e4ae02002c58c080157305cb42",
+      "utf8_length": 439
+    }
+  },
+  "regression": {
+    "expected_output": "Some tests for locally polymorphic sub-expressions, i.e., polymorphic\nsub-expressions where the polymorphism is not visible in the type of the\nenclosing expression.\nThis led to compilation errors with an earlier version of KiCS2, and is\nfixed in commit:931bffe5085e5355cd7659f98d704f7c2932d2e6.\n\nTo run all tests automatically by the currytest tool, use the command:\n\"currytest testPolySubExp\"\n\n@author Bj\u00f6rn Peem\u00f6ller\n@version July 2013",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Some tests for locally polymorphic sub-expressions, i.e., polymorphic\n--- sub-expressions where the polymorphism is not visible in the type of the\n--- enclosing expression.\n--- This led to compilation errors with an earlier version of KiCS2, and is\n--- fixed in commit:931bffe5085e5355cd7659f98d704f7c2932d2e6.\n---\n--- To run all tests automatically by the currytest tool, use the command:\n--- \"currytest testPolySubExp\"\n---\n--- @author Bj\u00f6rn Peem\u00f6ller\n--- @version July 2013\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "907567471a341429bf7998ff779f97a44edf878ba8fbb01bf51021cf15983d2d",
+    "source_id": "923e10175b6114b33d0ff32d9d8068ba3e3e754c"
+  },
+  "source_record_sha256": "2dba10cc3af618616494a0b0967ac187ebf5022b8ef533b5209bef831ea306e8"
+}

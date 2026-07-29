@@ -1,0 +1,38 @@
+{
+  "case_id": "jinja-line-3cad9513f29f6910",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "jinja",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "acce85575a5ee8d7e9bd377e26ca6fd28a2ea5b3d79bf8f14692430aa59f2860",
+      "utf8_length": 27
+    },
+    "manifest_old_output": {
+      "sha256": "c14aa6db6d8f23cbf996dd80991f0b627d0f468e43be960831b22fe9b7c1baba",
+      "utf8_length": 22
+    },
+    "raw_comment": {
+      "sha256": "1ea118905e3c4f70fff1f98869ec3cc4e620a6b0d831cdbddf66a350ea860222",
+      "utf8_length": 29
+    },
+    "recommended_expected_output": {
+      "sha256": "c14aa6db6d8f23cbf996dd80991f0b627d0f468e43be960831b22fe9b7c1baba",
+      "utf8_length": 22
+    }
+  },
+  "regression": {
+    "expected_output": "keep logs in localhost",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "### keep logs in localhost ##"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "baeb32c5de3a7596e9cb8347931c4e251a18343032be5571c2fff75915caa2e5",
+    "source_id": "0b67fdfa1cb8be98334b653efa7e08b81e202152"
+  },
+  "source_record_sha256": "add053f825fbd42e9bf69d900b74ab1af15f575174241d9ee0abb5811a298628"
+}

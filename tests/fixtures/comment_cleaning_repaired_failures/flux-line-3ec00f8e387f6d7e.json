@@ -1,0 +1,38 @@
+{
+  "case_id": "flux-line-3ec00f8e387f6d7e",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "flux",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "38322215ff0aff5f495bc4ac4be64e30abaa55b5cc7f9ee672a1847b570dbffd",
+      "utf8_length": 152
+    },
+    "manifest_old_output": {
+      "sha256": "38322215ff0aff5f495bc4ac4be64e30abaa55b5cc7f9ee672a1847b570dbffd",
+      "utf8_length": 152
+    },
+    "raw_comment": {
+      "sha256": "f0da1c3f03e7357c58eee34e22984af965ddfba5b859e54890a6bbf7e7a943ce",
+      "utf8_length": 368
+    },
+    "recommended_expected_output": {
+      "sha256": "38322215ff0aff5f495bc4ac4be64e30abaa55b5cc7f9ee672a1847b570dbffd",
+      "utf8_length": 152
+    }
+  },
+  "regression": {
+    "expected_output": "\u5185\u5bb9:\tDepth of Field(\u5df2\u5e9f\u5f03,\u65e0\u7528)\n---------------------------------------------------------\n\u4f5c\u8005:\n\u521b\u5efa:\t\t2012-10-09\n\u6700\u540e\u4fee\u6539:\t\t2012-10-26",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//*************************************************************************************************\n// \u5185\u5bb9:\tDepth of Field(\u5df2\u5e9f\u5f03,\u65e0\u7528)\n//---------------------------------------------------------\n// \u4f5c\u8005:\t\t\n// \u521b\u5efa:\t\t2012-10-09\n// \u6700\u540e\u4fee\u6539:\t\t2012-10-26\n//*************************************************************************************************"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "be67aaa83fc51b1fe91320a0cdb57920b1dbf7e3bd54cf0ad4631af2ea372d25",
+    "source_id": "562cf712dd25267b66f4d56012fa20a12709b57e"
+  },
+  "source_record_sha256": "971f287b7bae981c6f296c7d61dd074083a4e8f9d59588ebcf4461fc2390924d"
+}

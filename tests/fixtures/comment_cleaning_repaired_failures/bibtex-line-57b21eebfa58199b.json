@@ -1,0 +1,38 @@
+{
+  "case_id": "bibtex-line-57b21eebfa58199b",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "bibtex",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fd552dd55bab16a2301b8d1747d1351f6a419c42c18fd1ea3287da51db403baa",
+      "utf8_length": 25
+    },
+    "manifest_old_output": {
+      "sha256": "8b30c38d92748f3b307eb924b3f82a30bb98cb9e582c0678c375f4da2a4d44ad",
+      "utf8_length": 28
+    },
+    "raw_comment": {
+      "sha256": "2b3140f5bb207ce3819a2044a0ae0fc5cc07224c29ac2dec82c1fb017f347fdc",
+      "utf8_length": 30
+    },
+    "recommended_expected_output": {
+      "sha256": "8b30c38d92748f3b307eb924b3f82a30bb98cb9e582c0678c375f4da2a4d44ad",
+      "utf8_length": 28
+    }
+  },
+  "regression": {
+    "expected_output": "{Archetecture in mendeley...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "% {Archetecture in mendeley..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4328f1ae58378041cba59a8a00bf2d756c1e855d709b360d1240a61206db1c07",
+    "source_id": "319e58a891c4ac92df275998f881deaf559c78f0"
+  },
+  "source_record_sha256": "307f1c27d6a33f22a9c81bcfbc94db98c2af859f381d545f356fcab20c152a24"
+}

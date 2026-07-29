@@ -1,0 +1,29 @@
+{
+  "case_id": "apex-block-b28a7a85bcb4df72",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:deletion",
+  "disposition": "accounting_only_no_oracle",
+  "language": "apex",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "11509c2f5c8bef691390f1a33da39f16215a9a4fc02b7e2e00efb9ea5d767dc0",
+      "utf8_length": 289
+    },
+    "manifest_old_output": {
+      "sha256": "b27d0a3fbd6be167c448b1b3dcebc791e1b727612983a53bdae750e919cc8f80",
+      "utf8_length": 290
+    },
+    "raw_comment": {
+      "sha256": "c1c8209866718988e90d8a9b62f3738d990920557cf1edb37b997e3266bdf7b4",
+      "utf8_length": 456
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "106d52aac392d0ba66e03dae9c38b60b841cd515826bf44d28282587cc4a842c",
+    "source_id": "2966e657e8519b982b99457e3f4103aa1565c2c2"
+  },
+  "source_record_sha256": "c205d1734f9dbf2df31aab401eb5ed3209231702be639bb3f397a2af4f43a967"
+}

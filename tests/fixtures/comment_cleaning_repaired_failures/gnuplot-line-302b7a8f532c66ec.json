@@ -1,0 +1,38 @@
+{
+  "case_id": "gnuplot-line-302b7a8f532c66ec",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:repeated_marker",
+  "disposition": "executable_regression",
+  "language": "gnuplot",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "56dc6d47737d155afddefda1af20c40c901353c222d01e70b7b4e021f2e4f548",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "443d789a7cff25ea70ad9e4eb299b3fd3bb4dacb6c277eeb405adc44542343aa",
+      "utf8_length": 79
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "##############################################################################\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f3e95739280eceb2b34404cb4c626924634b1ffbd5e44f964210c280aa475dc4",
+    "source_id": "1439c08ed04a4d5511fc67ff4112c3b1c5379a88"
+  },
+  "source_record_sha256": "616557481ac0e36086c3e9b7d2627913e90f0d6c9835a7a64a0635bf263e4f7e"
+}

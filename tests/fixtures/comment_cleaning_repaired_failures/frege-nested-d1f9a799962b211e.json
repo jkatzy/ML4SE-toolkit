@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-d1f9a799962b211e",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ca04f3e0ba5167cde422f8098325010a9dc43c7b4bb2eecadb8efc266ed20677",
+      "utf8_length": 1967
+    },
+    "manifest_old_output": {
+      "sha256": "d690c89069f22fcc123f330a67ae7f0f7c348df21ddfc4e9732a9df16dde6f56",
+      "utf8_length": 1515
+    },
+    "raw_comment": {
+      "sha256": "307fabc3449f233de0a03a0eac01343af1015a10cf13b0ac348003c033be6c97",
+      "utf8_length": 1973
+    },
+    "recommended_expected_output": {
+      "sha256": "d690c89069f22fcc123f330a67ae7f0f7c348df21ddfc4e9732a9df16dde6f56",
+      "utf8_length": 1515
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright \u00a9 2011 - 2021, Ingo Wechsung\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or\nwithout modification, are permitted provided that the following\nconditions are met:\n\n    Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n\n    Redistributions in binary form must reproduce the above\n    copyright notice, this list of conditions and the following\n    disclaimer in the documentation and/or other materials provided\n    with the distribution. Neither the name of the copyright holder\n    nor the names of its contributors may be used to endorse or\n    promote products derived from this software without specific\n    prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE\nCOPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR\nIMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR\nPURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER\nOR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF\nUSE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED\nAND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING\nIN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF\nTHE POSSIBILITY OF SUCH DAMAGE.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{- \u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\n\n    Copyright \u00a9 2011 - 2021, Ingo Wechsung\n    All rights reserved.\n\n    Redistribution and use in source and binary forms, with or\n    without modification, are permitted provided that the following\n    conditions are met:\n\n        Redistributions of source code must retain the above copyright\n        notice, this list of conditions and the following disclaimer.\n\n        Redistributions in binary form must reproduce the above\n        copyright notice, this list of conditions and the following\n        disclaimer in the documentation and/or other materials provided\n        with the distribution. Neither the name of the copyright holder\n        nor the names of its contributors may be used to endorse or\n        promote products derived from this software without specific\n        prior written permission.\n\n    THIS SOFTWARE IS PROVIDED BY THE\n    COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR\n    IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR\n    PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER\n    OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n    SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n    LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF\n    USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED\n    AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING\n    IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF\n    THE POSSIBILITY OF SUCH DAMAGE.\n\n    \u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb\u00ab\u2022\u00bb -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7574823742b953f29c05f5bc2fae83d7f62711a762b11acf71466e49dbea1697",
+    "source_id": "db6ba18471d3f206ab6ff2d1ae5434d40656beee"
+  },
+  "source_record_sha256": "862fbea7471f2a160484e0e57bba7aedd21820622a709801c937ce1b884ba8ed"
+}

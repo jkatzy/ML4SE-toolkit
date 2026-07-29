@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-86ff01b23dce9379",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a05b6fa6f8fb32ec440cf03bb8f3ab9e1e27045cf2b48ff0021ec7744661b020",
+      "utf8_length": 183
+    },
+    "manifest_old_output": {
+      "sha256": "dc580b5976985ac5f7f022f4b09d9bf74375ee29c527fa79c90ad2e10b944bee",
+      "utf8_length": 174
+    },
+    "raw_comment": {
+      "sha256": "ac2600d9797fba76f7d09cf62b8f44043af76740338edf723c1d2f3cde986875",
+      "utf8_length": 339
+    },
+    "recommended_expected_output": {
+      "sha256": "dc580b5976985ac5f7f022f4b09d9bf74375ee29c527fa79c90ad2e10b944bee",
+      "utf8_length": 174
+    }
+  },
+  "regression": {
+    "expected_output": "This library provides some useful operations to write programs\nthat generate AbstractCurry programs in a more compact and readable way.\n\n@version February 2016\n@category meta",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------\n--- This library provides some useful operations to write programs\n--- that generate AbstractCurry programs in a more compact and readable way.\n---\n--- @version February 2016\n--- @category meta\n------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6421d11a65d61078da2f7c5298022dfc10c2d8751597e805cfb7d71aff041f34",
+    "source_id": "52ea69a96f75bf73c9a11d612a47f9cdfbe62daf"
+  },
+  "source_record_sha256": "86a64fafc11bb42e8b8dc6f571cedd1bb7680d498bf0f60173e05ac072d8718a"
+}

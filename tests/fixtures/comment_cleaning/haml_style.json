@@ -39,6 +39,14 @@
       "raw_comment": "/ cleaning_payload_grouped_shared_regex_001_first\n/ cleaning_payload_grouped_shared_regex_001_second",
       "expected_cleaned": "cleaning_payload_grouped_shared_regex_001_first\ncleaning_payload_grouped_shared_regex_001_second",
       "payload_marker": "cleaning_payload_grouped_shared_regex_001"
+    },
+    {
+      "id": "unclosed-block-000",
+      "source": "registry:unclosed_block_openers[0]",
+      "kind": "unclosed_block",
+      "raw_comment": "/cleaning_payload_unclosed_block_000_first\r\ncleaning_payload_unclosed_block_000_second",
+      "expected_cleaned": "cleaning_payload_unclosed_block_000_first\ncleaning_payload_unclosed_block_000_second",
+      "payload_marker": "cleaning_payload_unclosed_block_000"
     }
   ]
 }

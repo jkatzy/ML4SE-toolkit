@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-32157850a52e4783",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c89e72ed7aa8610c4c17b1919dc7205aa30120a16c41213e155efc5b76ae5ccf",
+      "utf8_length": 106
+    },
+    "manifest_old_output": {
+      "sha256": "e0407169752e5205ac4a226d9a4fed9d66203fac6311c1c3faa00ff63aa1625a",
+      "utf8_length": 99
+    },
+    "raw_comment": {
+      "sha256": "8e854ceaa446871007acd4a16a575d741fad874487054ddf3b731c6c6151380d",
+      "utf8_length": 126
+    },
+    "recommended_expected_output": {
+      "sha256": "e0407169752e5205ac4a226d9a4fed9d66203fac6311c1c3faa00ff63aa1625a",
+      "utf8_length": 99
+    }
+  },
+  "regression": {
+    "expected_output": "Compile arvo as a pill noun, without compiler changes.\nusage\n\n  .urbit/pill +solid\n\n/hoon/solid/gen",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::  Compile arvo as a pill noun, without compiler changes.\n::  usage\n::\n::    .urbit/pill +solid\n::\n::::  /hoon/solid/gen\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c359b95116b3573b7689c60e21906c955ebad6fa35290fb154fe6ce987b8c32a",
+    "source_id": "c4b8989f817c47a0e9162ef5bc59e86960c2018e"
+  },
+  "source_record_sha256": "3e18737a3b74bf7a6641cd4eef95334679f4ded7404acba9677917994e577150"
+}

@@ -1,0 +1,92 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "click_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "f2706df14f99cbc215f50ce9aeafbb36bac9dddcbf0597e860b554e915076782",
+      "case_id": "click-block-1d9ab161b43f027d",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "click",
+      "oracle_exception_record_sha256": "0f110958a639e1f2d8ab5e74c2a03e54ddd2148be30169294e69f3f3bb2df508",
+      "raw_sha256": "cb20f83b6d90ac40b98585d2b753d7b4520d65223e4472621b6dd77929cc7bce",
+      "raw_utf8_length": 238,
+      "source_provenance": {
+        "source_excerpt_sha256": "e54f8ce37c880ae4346ec9a116c1dc5f6e6090a64c915ef224e238469899ecf8",
+        "source_id": "f87a516ccbb2fae1fa82fc54171f8089c5592f9b"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "c52f1fc187424d8b3de64557959be7f81d36cfd7f795b4877e4371b70642a691",
+      "case_id": "click-block-c0bedccc86caeb55",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "oracle_not_deletion_only",
+      "language": "click",
+      "oracle_exception_record_sha256": "a95eda296982179fa02ada3c6a52102763152c76ff39e4ab1f779e15ac9cc106",
+      "raw_sha256": "a7b5445df727d6f79b0f62671a6ccff12f2d70d6a032cd1bf3e5f0e65311e935",
+      "raw_utf8_length": 248,
+      "source_provenance": {
+        "source_excerpt_sha256": "cb298b44eba26cf1d4d4318e66202996b2b6e58f3e0dca859ab814b332fd01bf",
+        "source_id": "f4cfc97a17e6d5b71741ae87d5a965a087e7738f"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "4572d8872444522958c653e07abe4cdc3e7ff3d02c73d6fbbb93705b67649ec4",
+      "case_id": "click-block-5ffa5d02e8a67643",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "WIFI EXTRA",
+      "expected_cleaned_sha256": "1c2be9e531108994b0cf3092f63480a67994441d9b27fdf32ed623bfb4c983f0",
+      "language": "click",
+      "raw_comment": "/********************   WIFI EXTRA   ***********************/",
+      "raw_sha256": "0681ed261cd48428d87b97afe98c058cf5b2da3a0370e6e831dad67f14c52518",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "e9ebf746cf9c07a5c5585c1c59e81ed9219e98d2f7baff9d7a5e97c81873e139",
+        "source_id": "306a7501595e431583ee106ee5a84e09ec02c53c"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "6dcd1585fd58c4c959b5c76d3f57dbcf387098ad7a567d4269b9f5823cca6e56",
+      "case_id": "click-line-4c05aca9a22db07b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DO NOT CHANGE THIS FILE: Any changes will be removed prior to the project defense.",
+      "expected_cleaned_sha256": "c5350d9da31c630e8d3bad0d6a07b7ad0cd9ebb088ca5bb56629fc9389407fc5",
+      "language": "click",
+      "raw_comment": "// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n// ! DO NOT CHANGE THIS FILE: Any changes will be removed prior to the project defense. !\n// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "raw_sha256": "5761c05f86eb5d74657eedd8913bcc796ffe0452965f339bbc4742ae3107083c",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "bdb1c01bc3a983d971116d7131b9d020ff2d294b10cfef83051eec1d65be082b",
+        "source_id": "13429d5c6c5cf38ca06181109ef5e88d8921a73a"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "6dcd1585fd58c4c959b5c76d3f57dbcf387098ad7a567d4269b9f5823cca6e56",
+      "case_id": "click-line-51f748575cff8e2a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DO NOT CHANGE THIS FILE: Any changes will be removed prior to the project defense.",
+      "expected_cleaned_sha256": "c5350d9da31c630e8d3bad0d6a07b7ad0cd9ebb088ca5bb56629fc9389407fc5",
+      "language": "click",
+      "raw_comment": "// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n// ! DO NOT CHANGE THIS FILE: Any changes will be removed prior to the project defense. !\n// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "raw_sha256": "5761c05f86eb5d74657eedd8913bcc796ffe0452965f339bbc4742ae3107083c",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "2d63f32914670b5a97c64eef7d91c9f70cf3f9be415d1edcb849930d3d7dfedd",
+        "source_id": "2da02cded0e751ac904015b4a7f918d0e75ac048"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

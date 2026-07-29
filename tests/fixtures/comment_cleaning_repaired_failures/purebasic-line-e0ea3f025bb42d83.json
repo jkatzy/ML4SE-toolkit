@@ -1,0 +1,29 @@
+{
+  "case_id": "purebasic-line-e0ea3f025bb42d83",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "purebasic",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e06ee4c7ceb97e461506e37279371e7681329568e860765a78eacb5201170271",
+      "utf8_length": 1087
+    },
+    "manifest_old_output": {
+      "sha256": "e06ee4c7ceb97e461506e37279371e7681329568e860765a78eacb5201170271",
+      "utf8_length": 1087
+    },
+    "raw_comment": {
+      "sha256": "640e86113b3fc4768d157c71b75f2a169aaedab49e4a2cc0313536031ff3d150",
+      "utf8_length": 1087
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f1053322056d2fe3a4aa5d22818f25b2d541333791e636f46cddf246fbe0ab12",
+    "source_id": "d3ff86fde21a861f1beb1e3ae62897dc82f15a48"
+  },
+  "source_record_sha256": "81b26e197e9ee2c3538a157f892db1f9a72ddea443b41b45ee4ae8d5cd0c5de5"
+}

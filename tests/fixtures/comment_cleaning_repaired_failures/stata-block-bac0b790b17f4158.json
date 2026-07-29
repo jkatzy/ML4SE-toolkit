@@ -1,0 +1,38 @@
+{
+  "case_id": "stata-block-bac0b790b17f4158",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "stata",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fea66be5bfe6ebcb6b38a4d9b2e0f402f2d19a5c475c09da15f02560cd877d64",
+      "utf8_length": 172
+    },
+    "manifest_old_output": {
+      "sha256": "f39eb86dc8bb9a646946cc1ceead2c60068f6c35041ceb79f82fa39d446d8444",
+      "utf8_length": 154
+    },
+    "raw_comment": {
+      "sha256": "0915cbe8b9995c05e639162beccdce9b68b9408de400f9132005b794bb291121",
+      "utf8_length": 559
+    },
+    "recommended_expected_output": {
+      "sha256": "f39eb86dc8bb9a646946cc1ceead2c60068f6c35041ceb79f82fa39d446d8444",
+      "utf8_length": 154
+    }
+  },
+  "regression": {
+    "expected_output": "DATE:       January 2018\nPROGRAM:    Data for inclusion with trend analysis -- combine the 5 country datasets, order variables\nAUTHOR:     Douglas R Brown",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\r\n*******************************************************************************************\r\n*******************************************************************************************\r\n**     DATE:       January 2018\r\n**     PROGRAM:    Data for inclusion with trend analysis -- combine the 5 country datasets, order variables\r\n**     AUTHOR:     Douglas R Brown\r\n********************************************************************************************\r\n********************************************************************************************\r\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c31cc4094f55d8d1e84f70ab838601b99c5795a7876c665be8d724ada2330e07",
+    "source_id": "d7f52d48e9bbcb2ab580e7ab5b2386c03c36a020"
+  },
+  "source_record_sha256": "6e16b18362487f1d46511d2a14546ccf3265883d536a6d065ac26deadbe74285"
+}

@@ -1,0 +1,178 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "percent_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "4f3ea524fdebdb6b409fc5d980ee16af21414797932b0014c055e9a38d668021",
+      "case_id": "erlang-line-d4a10fd65b0b1ba3",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "erlang",
+      "oracle_exception_record_sha256": "25bf5f28d7c42d49ecd90f2b3ed8c835f44a56b624938eb433f13d8b7ecc397a",
+      "raw_sha256": "12e98dc30e1e434840f43c65156cbd948f9d1b453d813eb6adb3d882ba77e74b",
+      "raw_utf8_length": 120,
+      "source_provenance": {
+        "source_excerpt_sha256": "de1453732646a0545be9e535ed462ab9a0e5a13455d3f01b0cac1f0f00b50563",
+        "source_id": "81aa85ce11709285abec3f68ea0be0f5bd49b5bf"
+      },
+      "syntax_label": "%"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5e8d2f9ddb5faca97926a368f79acd3c3f4c402e585391ab167b7812044dddff",
+      "case_id": "bibtex-line-9daacfa445396e26",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[B]       08        Regulatory Landscape",
+      "expected_cleaned_sha256": "935dae11676760daa7ebe6acff087c6112f91168ebff8f84d77384bd3770705b",
+      "language": "bibtex",
+      "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%%        [B]       08        Regulatory Landscape                            %%\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+      "raw_sha256": "cb486a3f23fb060fe9521a891c6eda7c0c983407b9b5ea0701ff874573a94711",
+      "raw_utf8_length": 242,
+      "source_provenance": {
+        "source_excerpt_sha256": "b3efea76957e91af9cc28b3bebd55b17e02559257c5d57bd6f8d6dfb1105888d",
+        "source_id": "ffa90cc821fa82bb13954ef66813a07c4381edf3"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "6952f90d075b5fabf024a22170f8bfcbad4e8b575f1ee3d1c6a453553dbb1e12",
+      "case_id": "erlang-line-1263a3b449e63681",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2012-2015 eMQTT.IO, All Rights Reserved.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\n@doc\nemqttd control commands.\n\n@end",
+      "expected_cleaned_sha256": "fef1eb43ee0f52a098048103b7f1553b4a999b13d74873e7443b5320672053c4",
+      "language": "erlang",
+      "raw_comment": "%%%-----------------------------------------------------------------------------\n%%% Copyright (c) 2012-2015 eMQTT.IO, All Rights Reserved.\n%%%\n%%% Permission is hereby granted, free of charge, to any person obtaining a copy\n%%% of this software and associated documentation files (the \"Software\"), to deal\n%%% in the Software without restriction, including without limitation the rights\n%%% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n%%% copies of the Software, and to permit persons to whom the Software is\n%%% furnished to do so, subject to the following conditions:\n%%%\n%%% The above copyright notice and this permission notice shall be included in all\n%%% copies or substantial portions of the Software.\n%%%\n%%% THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n%%% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n%%% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n%%% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n%%% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n%%% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n%%% SOFTWARE.\n%%%-----------------------------------------------------------------------------\n%%% @doc\n%%% emqttd control commands.\n%%%\n%%% @end\n%%%-----------------------------------------------------------------------------",
+      "raw_sha256": "908234524a57be58152b5627942070e28d25a8d60bb3770749e181bd6518658a",
+      "raw_utf8_length": 1445,
+      "source_provenance": {
+        "source_excerpt_sha256": "e8fc55bf48794af73dfcd4531a36de4a10adbe4883bd5d2954a5d785f2ed5fb1",
+        "source_id": "a546ca530aa187e97e570c4214afc1f624ab4345"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "a12c57540fcf7829a65917ade4bd40a7fed16a33103e15750b81cc037d77530b",
+      "case_id": "erlang-line-59abd22d7e085736",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- erlang -*-\n\nEffi: Erlang foreign function interface\n\nCopyright 2015 J\u00f6rgen Brandt <joergen@cuneiform-lang.org>\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n\n@author J\u00f6rgen Brandt <joergen@cuneiform-lang.org>\n@copyright 2015\n\n@doc The standalone application entry point is {@link main/1}.\nThe create_port callback defined here is an abstract way to execute child\nprocesses in foreign languages.\nThere are two foreign language interfaces, both implementing this callback,\n{@link effi_script} (e.g., Perl, Python) and {@link effi_interact} (e.g.,\nBash, R).\n\n@end",
+      "expected_cleaned_sha256": "30c9cba0e423a878f5eadb2620dd03ccefdc78073c87458eb517e20b3b6c1feb",
+      "language": "erlang",
+      "raw_comment": "%% -*- erlang -*-\n%%\n%% Effi: Erlang foreign function interface\n%%\n%% Copyright 2015 J\u00f6rgen Brandt <joergen@cuneiform-lang.org>\n%%\n%% Licensed under the Apache License, Version 2.0 (the \"License\");\n%% you may not use this file except in compliance with the License.\n%% You may obtain a copy of the License at\n%%\n%%    http://www.apache.org/licenses/LICENSE-2.0\n%%\n%% Unless required by applicable law or agreed to in writing, software\n%% distributed under the License is distributed on an \"AS IS\" BASIS,\n%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n%% See the License for the specific language governing permissions and\n%% limitations under the License.\n%%\n%% -------------------------------------------------------------------\n%% @author J\u00f6rgen Brandt <joergen@cuneiform-lang.org>\n%% @copyright 2015\n%%\n%% @doc The standalone application entry point is {@link main/1}. \n%% The create_port callback defined here is an abstract way to execute child \n%% processes in foreign languages. \n%% There are two foreign language interfaces, both implementing this callback,\n%% {@link effi_script} (e.g., Perl, Python) and {@link effi_interact} (e.g.,\n%% Bash, R).\n%%\n%% @end\n%% -------------------------------------------------------------------",
+      "raw_sha256": "7719d7fffedbe4ad5a2763518e7adf6fa8c519b1c372916e104e825265b7bcac",
+      "raw_utf8_length": 1268,
+      "source_provenance": {
+        "source_excerpt_sha256": "c97111a0ae27994af6a937cb278cc56e6590d95af7350fe5e969feca87b0b215",
+        "source_id": "653d71b89eb40cb7f327145eb44b1b6292e2ac3d"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "a60cebef26b566f2c048143b69669105828e64b0f7bf415f21d339affbed1ce4",
+      "case_id": "erlang-line-643700ebaeafbff4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- erlang -*-\n! -smp enable",
+      "expected_cleaned_sha256": "2f9634188c736e3dc1f9f85181c8f143db7a5a2ce2092e673fb3d222d1c6e9c2",
+      "language": "erlang",
+      "raw_comment": "%% -*- erlang -*-\n%%! -smp enable",
+      "raw_sha256": "7b34bc3a298a5bfdd2e2b8d6aa37317cc9639c7421fb48c7c4478c9f903a2ec0",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "954c179195c7acbd85046218532cdfbedacc72b7ada9e55d136fabab236c9a2a",
+        "source_id": "a6650d2e6646760e7cd6abf48232e6cd01830525"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "1885952bbc586ba8e41df2e899f98cdf12d9c73d4738be699c2f4f660ac2de51",
+      "case_id": "erlang-line-64574d055b3bba7d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2007-2008 Konrad-Zuse-Zentrum f\u00fcr Informationstechnik Berlin\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\nFile    : pubsub_api.erl\nAuthor  : Thorsten Schuett <schuett@zib.de>\nDescription : Publish API function\n\nCreated : 17 Sep 2007 by Thorsten Schuett <schuett@zib.de>\n@author Thorsten Schuett <schuett@zib.de>\n@copyright 2007-2008 Konrad-Zuse-Zentrum f\u00fcr Informationstechnik Berlin\n@version $Id $",
+      "expected_cleaned_sha256": "a10e89501865e074570d4f305af355bbbd78bb354c449769165c186dc7b34339",
+      "language": "erlang",
+      "raw_comment": "%  Copyright 2007-2008 Konrad-Zuse-Zentrum f\u00fcr Informationstechnik Berlin\n%\n%   Licensed under the Apache License, Version 2.0 (the \"License\");\n%   you may not use this file except in compliance with the License.\n%   You may obtain a copy of the License at\n%\n%       http://www.apache.org/licenses/LICENSE-2.0\n%\n%   Unless required by applicable law or agreed to in writing, software\n%   distributed under the License is distributed on an \"AS IS\" BASIS,\n%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n%   See the License for the specific language governing permissions and\n%   limitations under the License.\n%%%-------------------------------------------------------------------\n%%% File    : pubsub_api.erl\n%%% Author  : Thorsten Schuett <schuett@zib.de>\n%%% Description : Publish API function\n%%%\n%%% Created : 17 Sep 2007 by Thorsten Schuett <schuett@zib.de>\n%%%-------------------------------------------------------------------\n%% @author Thorsten Schuett <schuett@zib.de>\n%% @copyright 2007-2008 Konrad-Zuse-Zentrum f\u00fcr Informationstechnik Berlin\n%% @version $Id $",
+      "raw_sha256": "815d54741e42ff241c771574deab51791c350b8e547e0499b580a9db77f8023c",
+      "raw_utf8_length": 1102,
+      "source_provenance": {
+        "source_excerpt_sha256": "94e905c18abfbe0a5045996dfe08eec6b2b368256223cfb420e0cc02253e4271",
+        "source_id": "1091ff5bd52a161b20298fa423b60507ecb47695"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "94c634a6cc6c5513561141f2c934994019cb649b9ca9edbb27d583107de0bbbe",
+      "case_id": "erlang-line-8c775852ac0c4372",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2010 Steve Davis <steve@simulacity.com>\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "c75f3b6a5b045a8c99486ad7a038fe30727ca479d5c3822dc9ce40229d4eabf9",
+      "language": "erlang",
+      "raw_comment": "%% Copyright 2010 Steve Davis <steve@simulacity.com>\n%\n% Licensed under the Apache License, Version 2.0 (the \"License\");\n% you may not use this file except in compliance with the License.\n% You may obtain a copy of the License at\n% \n% http://www.apache.org/licenses/LICENSE-2.0\n% \n% Unless required by applicable law or agreed to in writing, software\n% distributed under the License is distributed on an \"AS IS\" BASIS,\n% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n% See the License for the specific language governing permissions and\n% limitations under the License.",
+      "raw_sha256": "3bc7c668eaa829a29c36a9193b3d1d145c6aa4b04f14eb70b70d6934e352f4af",
+      "raw_utf8_length": 596,
+      "source_provenance": {
+        "source_excerpt_sha256": "466dd6cc07b25f886e458a74b51e1923f1cf50a825e75b2129b163464f323a56",
+        "source_id": "99e5d673ccab7b6e9901b54e1041e374d19ddcad"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "f04ed179c9765057a4a2402c4d2e1b9b0ccab52e30534ce029420c0d930e4daf",
+      "case_id": "erlang-line-c500f21bb497edf6",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@author billcyz\n@doc @todo Add description to knk_srv.",
+      "expected_cleaned_sha256": "ca57bee3cdb6ed744bcc6336c2be7aea44630d985a91711dda351339db884619",
+      "language": "erlang",
+      "raw_comment": "%% @author billcyz\n%% @doc @todo Add description to knk_srv.",
+      "raw_sha256": "5a765caa814703f7c5bb25152d62bc3934764143a672f9c27e39c2e6f70c006e",
+      "raw_utf8_length": 60,
+      "source_provenance": {
+        "source_excerpt_sha256": "e462222944f382204514079a5a051282b49657e09c6446eedfa2eaf125fc5d07",
+        "source_id": "c659e2d00717472443ddf5fde2fce328a88b9f78"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "2a894aac1c5a8c474df52a7757063858f7d408acf2ea68e9ce1354b5e1280652",
+      "case_id": "tex-line-66d0ceea817f14f8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\\setbeameroption{show notes}\n\\setbeameroption{show notes on second screen=right}",
+      "expected_cleaned_sha256": "a9af1223ca5d1b2d4a257bf4df1ad647f89aeef664f76b31b61cb63fe589575d",
+      "language": "tex",
+      "raw_comment": "%\\setbeameroption{show notes}\n%\\setbeameroption{show notes on second screen=right}",
+      "raw_sha256": "9fa01d521e3fe4381a373401dceec6b68820a1ef4bf780903aff9096863cc647",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "a5b91929c3e9fca651eac18dab56234fbf22b6c7ece947f8e146363e663bff95",
+        "source_id": "9674c337aab94bbddfa9ae9c06e9c24102df21b6"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "d15fe3416e2a3d82487eaa25fab11333bfce7640c880a6610144e30f3a9bdaf4",
+      "case_id": "tex-line-8f5af673d9aa975d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\\setupitemgroup[List][1][A,inmargin][after=,before=,left={\\bf Exo },symstyle=bold,inbetween={\\blank[big]}]\n\\setupitemgroup[List][1][R,joineup][after=,before=,inbetween={\\blank[small]}]\n\\setupitemgroup[List][1][n,inmargin][after=,before=,left={\\bf Exo },symstyle=bold,inbetween={\\%blank[big]}]\n\\setupitemgroup[List][2][n,joineup][after=,before=,inbetween={\\blank[small]}]\n\\setupitemgroup[List][3][a,joineup][after=,before=,inbetween={\\blank[small]}]\n\\setupitemgroup[List][4][1,joineup,nowhite]\n\\setupitemgroup[List][4][a,joineup,nowhite]",
+      "expected_cleaned_sha256": "5612fe160f615e3171f31918e65103832de2e807a7318ea20dc037509b9938d3",
+      "language": "tex",
+      "raw_comment": "%\\setupitemgroup[List][1][A,inmargin][after=,before=,left={\\bf Exo },symstyle=bold,inbetween={\\blank[big]}]\n%\\setupitemgroup[List][1][R,joineup][after=,before=,inbetween={\\blank[small]}]\n%\\setupitemgroup[List][1][n,inmargin][after=,before=,left={\\bf Exo },symstyle=bold,inbetween={\\%blank[big]}]\n%\\setupitemgroup[List][2][n,joineup][after=,before=,inbetween={\\blank[small]}]\n%\\setupitemgroup[List][3][a,joineup][after=,before=,inbetween={\\blank[small]}]\n%\\setupitemgroup[List][4][1,joineup,nowhite]\n%\\setupitemgroup[List][4][a,joineup,nowhite]",
+      "raw_sha256": "b09bb62c43242e33f905e4f90ea7b0ed6a188f1c3d00da7faa1bbe9dc24f05ea",
+      "raw_utf8_length": 543,
+      "source_provenance": {
+        "source_excerpt_sha256": "29ff5dcdfea157153ad4848a355204d45df78699cd681269162734581e047993",
+        "source_id": "b2999f60dbad27e026b775c16fc6f6766c504347"
+      },
+      "syntax_label": "%"
+    }
+  ],
+  "schema_version": 5
+}

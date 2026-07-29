@@ -1,0 +1,38 @@
+{
+  "case_id": "html_plus_razor-block-48fad0dc249c7700",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "html_plus_razor",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0db38b9fe9408307409fbb1fcec86ec48e1946629a6c260eab271e2fdf5eec05",
+      "utf8_length": 221
+    },
+    "manifest_old_output": {
+      "sha256": "0db38b9fe9408307409fbb1fcec86ec48e1946629a6c260eab271e2fdf5eec05",
+      "utf8_length": 221
+    },
+    "raw_comment": {
+      "sha256": "d57c37f6ebcdaefc57cd139ef3022fa1a25235fc10d6685b6b5a2eca50e2b982",
+      "utf8_length": 401
+    },
+    "recommended_expected_output": {
+      "sha256": "0db38b9fe9408307409fbb1fcec86ec48e1946629a6c260eab271e2fdf5eec05",
+      "utf8_length": 221
+    }
+  },
+  "regression": {
+    "expected_output": "    // <copyright file=\"Edit.cshtml\" company=\"Ezeelo Consumer Services Pvt. Ltd.\">\n    //     Copyright (c) Ezeelo Consumer Services Pvt. Ltd. All rights reserved.\n    //\n</copyright>\n    // <author>Snehal Shende</author>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "@*//-----------------------------------------------------------------------\n        // <copyright file=\"Edit.cshtml\" company=\"Ezeelo Consumer Services Pvt. Ltd.\">\n        //     Copyright (c) Ezeelo Consumer Services Pvt. Ltd. All rights reserved.\n        //\n    </copyright>\n        // <author>Snehal Shende</author>\n        //-----------------------------------------------------------------------*@"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6a292f1f8f52574f6912fb45689a77edc028ebfbc1dde84bac4c3d39eae6ae8e",
+    "source_id": "bc4d1802190fb8e68418b400391004bc5a81f28e"
+  },
+  "source_record_sha256": "cdd1b5c2c4b847d224479238add0f280be778ca6efe84d697bb3ac9e4aea181c"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-dd062bc3b6183a16",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "12680276b1299add43c7e4a4f1ef2495c2cce7b6e1024dd7b78eb7a94702f728",
+      "utf8_length": 231
+    },
+    "manifest_old_output": {
+      "sha256": "4bfc838490f35e53e3244a2bc9834b56b5d64a965b1dad0afe9fb932cd44b1e0",
+      "utf8_length": 217
+    },
+    "raw_comment": {
+      "sha256": "8a48d173a571e93252a727cdbea23daf0dea71fe73b48f65830297ccd6bf1ac8",
+      "utf8_length": 406
+    },
+    "recommended_expected_output": {
+      "sha256": "4bfc838490f35e53e3244a2bc9834b56b5d64a965b1dad0afe9fb932cd44b1e0",
+      "utf8_length": 217
+    }
+  },
+  "regression": {
+    "expected_output": "Some tests for recursive let/where declarations which are\nsupported in PAKCS.\n\nTo run all tests automatically by the currytest tool, use the command:\n\"currytest testLetRec\"\n\n@author Michael Hanus\n@version January 2005",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Some tests for recursive let/where declarations which are\n--- supported in PAKCS.\n---\n--- To run all tests automatically by the currytest tool, use the command:\n--- \"currytest testLetRec\"\n--- \n--- @author Michael Hanus\n--- @version January 2005\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "cc8814ecba874429f6e1dbaddb5d5752069836f82133894bc9c4681408330fe1",
+    "source_id": "ed9d072e80f271d666389c06b30cea7e3e49ad65"
+  },
+  "source_record_sha256": "857cb01d792d2e73a2e6067ccccd4a6cb2aec12bb7a63724fca4c33b43cd7c7b"
+}

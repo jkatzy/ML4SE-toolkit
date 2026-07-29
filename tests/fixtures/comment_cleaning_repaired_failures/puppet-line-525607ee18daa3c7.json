@@ -1,0 +1,38 @@
+{
+  "case_id": "puppet-line-525607ee18daa3c7",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "puppet",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f6d05f16fc19a2c057b79c6ad9b78caf0320c5c22fe53ad8097d912e2e7a44c8",
+      "utf8_length": 15
+    },
+    "manifest_old_output": {
+      "sha256": "751d9c32cb2e89b93396208eafc5d1817f6cf3f919c9f9d97ff338d085c8f96a",
+      "utf8_length": 13
+    },
+    "raw_comment": {
+      "sha256": "f169f7bdc777bb020c5442183259b28cd6dd54c59307947eb62cd625b4a3106e",
+      "utf8_length": 61
+    },
+    "recommended_expected_output": {
+      "sha256": "751d9c32cb2e89b93396208eafc5d1817f6cf3f919c9f9d97ff338d085c8f96a",
+      "utf8_length": 13
+    }
+  },
+  "regression": {
+    "expected_output": "Dock Settings",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#################\n    # Dock Settings #\n    #################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "cc7bf5ed12cabd6ef91c15f4ee73ad08ac398e5337983a6637ea19da6547736e",
+    "source_id": "1add2d663f376dca94520499abce5e54635a72e1"
+  },
+  "source_record_sha256": "fb997cdb59a8f0bfaba21160ca18223d9393100aa0e67faae00d4e92884d5863"
+}

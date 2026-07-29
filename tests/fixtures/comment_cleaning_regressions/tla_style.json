@@ -1,0 +1,110 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "tla_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "2c1d7c8374918724d2e5001dd3417654b4185179f3a4d7b6fe4cf926111ec65e",
+      "case_id": "tla-nested-0753e4cb0c909d13",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tla",
+      "raw_comment": "(***************************************************************************)",
+      "raw_sha256": "00f407b823a585ce7b5c3f5a63a92c57be3a4ee4e765352d3003b470f2b06bd6",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "39042d50e769cbf5e1c1dab57b5efd9351f4b068a1f12fb03e3a40b4bb44085c",
+        "source_id": "4d40d8dc5f1f23aa4b13d6e218aef2ac704d92c0"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e66c2c8d41cd2b1c6c085db851f8353525895c5972ac21187faa7c520154e23f",
+      "case_id": "tla-nested-236558e50d9ead37",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "--algorithm livelock_algorithm\nvariables flag = [i \\in {0, 1} |-> FALSE];\n process proc \\in {0,1}\nbegin\n    a1: while(TRUE) do\n        skip;\n    a2: flag[self] := TRUE;\n        a3: while flag[1 - self] do\n            a4: flag[self] := FALSE;\n            a5: await (flag[1-self] =  FALSE);\n            a6: flag[self] := TRUE;\n        end while;\n    cs: skip;\n    a7: flag[self] := FALSE;\n    end while\nend process\nend algorithm;",
+      "expected_cleaned_sha256": "00c5f1e830127fb9aac9d7c27c4f2929303e8d01baf3482cb91bf9af26e138ea",
+      "language": "tla",
+      "raw_comment": "(* --algorithm livelock_algorithm\nvariables flag = [i \\in {0, 1} |-> FALSE];\n process proc \\in {0,1} \nbegin\n    a1: while(TRUE) do\n        skip;\n    a2: flag[self] := TRUE;\n        a3: while flag[1 - self] do\n            a4: flag[self] := FALSE;\n            a5: await (flag[1-self] =  FALSE);\n            a6: flag[self] := TRUE;\n        end while;\n    cs: skip;\n    a7: flag[self] := FALSE;\n    end while\nend process\nend algorithm; *)",
+      "raw_sha256": "efa959de5bcb28a8a4edc91056b947c66e09fc5d2047513f6602db96ae9bb76f",
+      "raw_utf8_length": 434,
+      "source_provenance": {
+        "source_excerpt_sha256": "c28c4d1773000d28587ca4027c1c17d261ac0fced236825032e9d3f4c960434d",
+        "source_id": "c2ef194f325c03e57523993582f377412e078841"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "bee0723bf899a339e7d052504cbdc013b1cf2e1d882c0b59857186a1dbdb6be4",
+      "case_id": "tla-nested-3820787656840130",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tla",
+      "raw_comment": "(**************************************************************************************************)",
+      "raw_sha256": "3f16c62e783082915d233752bb42b6c3b06af6ba9e59da4a6735d4ad3807d93b",
+      "raw_utf8_length": 100,
+      "source_provenance": {
+        "source_excerpt_sha256": "e2a2eebf68d06741cb2fcf095ef9563e2ddadf142c941acbb95c67d33e4295f6",
+        "source_id": "0be92ed655bd364e16678495c1b98802edd55f5c"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "f562893b52cc3b6306a7e764447f6e23fe5ac6753a36dc1271b614db64e03fad",
+      "case_id": "tla-nested-4b4cce595c98adc6",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tla",
+      "raw_comment": "(********************************************************************************)",
+      "raw_sha256": "c594b2942baecb416d3966db72019525a1e67e9b3ac7f0a5b26dd711efe9964a",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "c4d85ab434a2ba5856011bd518dc84c37a499822fd7dd26c26895d7043f3971f",
+        "source_id": "d536656e02ab2b6352710a3a93617acabe5cf2d2"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e60244c8d5b6c8f1db757d9572fe7e620b2d4016df21d75e133085ea448ceea8",
+      "case_id": "tla-nested-d53e8aaa5be1874b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tla",
+      "raw_comment": "(*****************************************************************************)",
+      "raw_sha256": "5a209782f0afe1836b3ebdc0f414f98cbea70c2af303ad55eb82d62f9c591ca1",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "936c8a9635e574f5e266c1564dc3dfd3621a04a397061b17647d3dffc56f8462",
+        "source_id": "8289b81becf5c3e9518ef74267c1e0b970e870df"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "42da8d040c6c9c097d964b858420a687d99bc79ddeebe43a47d81b05a09c3734",
+      "case_id": "tla-nested-f0981e23122ee12a",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "--algorithm statemachine\nvariables\n    remoteAuthState = \"NULL\";\n\nfair process webProcess = 1\nvariables\n    webState = \"Start\",\n    run = TRUE;\nbegin P:\n  while run do\n\n      StartWebProcess:\n        if webState = \"Start\" then\n            webState := \"WebLoginScreen\";\n        else\n            skip;\n        end if;\n\n      WebLoginScreen:\n        if webState = \"WebLoginScreen\" then\n            webState := \"RemoteAuthScreen\";\n        else\n            skip;\n        end if;\n\n      RemoteAuthScreen:\n        if webState = \"RemoteAuthScreen\" then\n\n            remoteAuthState := \"Undecided\";\n\n            either\n               webState := \"WebLoggedInScreen\";\n            or\n               webState := \"SmsScreen\";\n            end either;\n        else\n            skip;\n        end if;\n\n      SmsScreen:\n        if webState = \"SmsScreen\" then\n            remoteAuthState := \"Cancelled\";\n            webState := \"WebLoggedInScreen\";\n        else\n            skip;\n        end if;\n\n      WebLoggedInScreen:\n        if webState = \"WebLoggedInScreen\" then\n            webState := \"Stop\";\n        else\n            skip;\n        end if;\n\n      StopWebProcess:\n        if webState = \"Stop\" then\n            run := FALSE;\n        else\n            skip;\n        end if;\n  end while;\nend process;\n\nfair process mobileProcess = 2\nvariables\n    mobileState = \"Start\",\n    run = TRUE;\nbegin P2:\n    while run do\n\n      StartMobileProcess:\n        if mobileState = \"Start\" then\n            mobileState := \"MobileLoginScreen\";\n        else\n            skip;\n        end if;\n\n      MobileLoginScreen:\n        if mobileState = \"MobileLoginScreen\" then\n            mobileState := \"QueryRemoteAuthScreen\";\n        else\n            skip;\n        end if;\n\n      QueryRemoteAuthScreen:\n        if mobileState = \"QueryRemoteAuthScreen\" then\n            if remoteAuthState = \"Undecided\" then\n                mobileState := \"RemoteAuthDecisionScreen\";\n            else\n                mobileState := \"MobileLoggedInScreen\";\n            end if;\n        else\n            skip;\n        end if;\n\n      RemoteAuthDecisionScreen:\n        if mobileState = \"RemoteAuthDecisionScreen\" then\n            either\n                mobileState := \"GrantScreen\";\n            or\n                mobileState := \"RejectScreen\";\n            end either;\n        else\n            skip;\n        end if;\n\n      GrantScreen:\n        if mobileState = \"GrantScreen\" then\n            assert remoteAuthState = \"Undecided\";\n            remoteAuthState := \"Granted\";\n            mobileState := \"MobileLoggedInScreen\";\n        else\n            skip;\n        end if;\n\n      RejectScreen:\n        if mobileState = \"RejectScreen\" then\n            assert remoteAuthState = \"Undecided\";\n            remoteAuthState := \"Rejected\";\n            mobileState := \"MobileLoggedInScreen\";\n        else\n            skip;\n        end if;\n\n      MobileLoggedInScreen:\n        if mobileState = \"MobileLoggedInScreen\" then\n            mobileState := \"Stop\";\n        else\n            skip;\n        end if;\n\n      StopMobileProcess:\n        if mobileState = \"Stop\" then\n            run := FALSE;\n        else\n            skip;\n        end if;\n\n    end while;\nend process;\nend algorithm;",
+      "expected_cleaned_sha256": "f10810b342bb3a1f398474b5f137c7f3fd0eb6e16280b8ff99a0633f2d954398",
+      "language": "tla",
+      "raw_comment": "(* --algorithm statemachine\nvariables\n    remoteAuthState = \"NULL\";\n\nfair process webProcess = 1\nvariables\n    webState = \"Start\",\n    run = TRUE;\nbegin P: \n  while run do\n\n      StartWebProcess: \n        if webState = \"Start\" then\n            webState := \"WebLoginScreen\";\n        else\n            skip;       \n        end if;        \n    \n      WebLoginScreen:\n        if webState = \"WebLoginScreen\" then\n            webState := \"RemoteAuthScreen\";\n        else \n            skip;        \n        end if;\n      \n      RemoteAuthScreen:\n        if webState = \"RemoteAuthScreen\" then\n            \n            remoteAuthState := \"Undecided\";\n            \n            either\n               webState := \"WebLoggedInScreen\";\n            or\n               webState := \"SmsScreen\";\n            end either;\n        else\n            skip;\n        end if;                            \n    \n      SmsScreen:\n        if webState = \"SmsScreen\" then\n            remoteAuthState := \"Cancelled\";\n            webState := \"WebLoggedInScreen\";       \n        else\n            skip;\n        end if;\n    \n      WebLoggedInScreen:\n        if webState = \"WebLoggedInScreen\" then\n            webState := \"Stop\";\n        else\n            skip;\n        end if;                            \n    \n      StopWebProcess:\n        if webState = \"Stop\" then\n            run := FALSE;\n        else\n            skip;        \n        end if;\n  end while;\nend process;  \n\nfair process mobileProcess = 2\nvariables\n    mobileState = \"Start\",\n    run = TRUE;\nbegin P2:\n    while run do\n    \n      StartMobileProcess: \n        if mobileState = \"Start\" then\n            mobileState := \"MobileLoginScreen\";\n        else\n            skip;       \n        end if;\n        \n      MobileLoginScreen:\n        if mobileState = \"MobileLoginScreen\" then\n            mobileState := \"QueryRemoteAuthScreen\";\n        else\n            skip;       \n        end if;\n        \n      QueryRemoteAuthScreen:\n        if mobileState = \"QueryRemoteAuthScreen\" then\n            if remoteAuthState = \"Undecided\" then\n                mobileState := \"RemoteAuthDecisionScreen\";\n            else \n                mobileState := \"MobileLoggedInScreen\";\n            end if;                                    \n        else\n            skip;\n        end if;                            \n    \n      RemoteAuthDecisionScreen:\n        if mobileState = \"RemoteAuthDecisionScreen\" then\n            either\n                mobileState := \"GrantScreen\";\n            or\n                mobileState := \"RejectScreen\";\n            end either;\n        else\n            skip;\n        end if;            \n      \n      GrantScreen:\n        if mobileState = \"GrantScreen\" then\n            assert remoteAuthState = \"Undecided\";\n            remoteAuthState := \"Granted\";\n            mobileState := \"MobileLoggedInScreen\";\n        else\n            skip;\n        end if;                            \n      \n      RejectScreen:\n        if mobileState = \"RejectScreen\" then\n            assert remoteAuthState = \"Undecided\";\n            remoteAuthState := \"Rejected\";\n            mobileState := \"MobileLoggedInScreen\";\n        else\n            skip;\n        end if;                            \n    \n      MobileLoggedInScreen:\n        if mobileState = \"MobileLoggedInScreen\" then\n            mobileState := \"Stop\";\n        else\n            skip;\n        end if;                            \n    \n      StopMobileProcess:\n        if mobileState = \"Stop\" then\n            run := FALSE;\n        else\n            skip;        \n        end if;\n                \n    end while;\nend process;\nend algorithm; *)",
+      "raw_sha256": "de571db3c855a8e16197fb486e2f781fe5e8991423bfc2ef54a3de61d40de90b",
+      "raw_utf8_length": 3601,
+      "source_provenance": {
+        "source_excerpt_sha256": "015f8dd5701c01f1ab235be496d03344575995f996c5a4aa9e9dc18e5eb2291e",
+        "source_id": "f74dbce0fca8c2fbfeca216ee8041dadf9dbadc3"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

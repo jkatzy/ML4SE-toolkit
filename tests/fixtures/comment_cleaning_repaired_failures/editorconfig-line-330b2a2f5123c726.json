@@ -1,0 +1,38 @@
+{
+  "case_id": "editorconfig-line-330b2a2f5123c726",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "editorconfig",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fab8ac2772d674d04538a1e69302479b8c55d3e89f4cf8b84c130850b0e09fd4",
+      "utf8_length": 57
+    },
+    "manifest_old_output": {
+      "sha256": "823f912e5f9f872936e46ca03b72dfa84c599ea34137ce9d9eaa2a2adfccb7b1",
+      "utf8_length": 22
+    },
+    "raw_comment": {
+      "sha256": "453319235b14fc4e4f70257c075cc3dcac17cd2115af24146b9e137dd358d8c0",
+      "utf8_length": 263
+    },
+    "recommended_expected_output": {
+      "sha256": "823f912e5f9f872936e46ca03b72dfa84c599ea34137ce9d9eaa2a2adfccb7b1",
+      "utf8_length": 22
+    }
+  },
+  "regression": {
+    "expected_output": "C# code style settings",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#######################################################################################\n#                             C# code style settings                                  #\n#######################################################################################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "908a7e34fe155b5267c6463b12cd55dfc2ec983600ca13408760c4082217bd84",
+    "source_id": "1a23a1548384b6372ee168abd0be9c1867ff7e2b"
+  },
+  "source_record_sha256": "061d81dce7482c9311b434748c91390b4aacef03ca6d064f039937332b54ff4d"
+}

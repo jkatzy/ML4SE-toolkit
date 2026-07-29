@@ -1,0 +1,38 @@
+{
+  "case_id": "mercury-line-d08fc2912e3b36cc",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:repeated_marker",
+  "disposition": "executable_regression",
+  "language": "mercury",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "918e8c75f83e920feac35df4d25308a1ce91a523423f5291192b466d1662c7a3",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "1002fe0eb15479316dd49e3b57d9978a5013d1f9ffc5b11c57c17c97f2084f5a",
+      "utf8_length": 80
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "9f3aa8a9d38f360ae365f3d2c3040351700db67797c710bbedd4af0eef2419e6",
+    "source_id": "de4dc506b06520adcdae77e4539373ed0ca42498"
+  },
+  "source_record_sha256": "52a2e8532898522af20e240caae7f6fd31b2f946fef7d0488b431d897bf32e28"
+}

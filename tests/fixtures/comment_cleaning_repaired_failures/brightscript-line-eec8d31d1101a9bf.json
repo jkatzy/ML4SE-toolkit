@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-eec8d31d1101a9bf",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4fcb76b653e17fcee1798e4da428297b33f6596083e268fa2d2ffc2130281e77",
+      "utf8_length": 357
+    },
+    "manifest_old_output": {
+      "sha256": "1a94b0784437c3253239003509002ba4a4d1d8631ecf05eea2733e9a4e52e611",
+      "utf8_length": 347
+    },
+    "raw_comment": {
+      "sha256": "78667cf9102325e6a255fc9060f0da4c138b45492f4ddf2bb55c7f759f5e85da",
+      "utf8_length": 368
+    },
+    "recommended_expected_output": {
+      "sha256": "1a94b0784437c3253239003509002ba4a4d1d8631ecf05eea2733e9a4e52e611",
+      "utf8_length": 347
+    }
+  },
+  "regression": {
+    "expected_output": "A controller for managing the stack of screens that have been displayed.\nBy centralizing this we can better support things like destroying and\nrecreating views and breadcrumbs. It also provides a single place that\ncan take an item and figure out which type of screen should be shown\nso that logic doesn't have to be in each individual screen type.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'*\n'* A controller for managing the stack of screens that have been displayed.\n'* By centralizing this we can better support things like destroying and\n'* recreating views and breadcrumbs. It also provides a single place that\n'* can take an item and figure out which type of screen should be shown\n'* so that logic doesn't have to be in each individual screen type.\n'*"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "69d93ddef2633fbfeb137a31352fce1f82be25064c31ebfcb20fe7b911cb8751",
+    "source_id": "659fab7db4a911cb613879779e4a18bbb80b1a08"
+  },
+  "source_record_sha256": "f0beb8cb747325a05a910a3d3a46967f608f26a66a845d0597986c5e5eff3520"
+}

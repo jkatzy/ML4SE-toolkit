@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-d1191d8d292476ef",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "1b6ad0de9ea4898cd8f083003871e33721f165a74d716bebfe38ce5d3122feb8",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "3869785220af2e4a3ca15d9129891350ee82f3ca16f656fa182403ee443f41bf",
+      "utf8_length": 17
+    },
+    "raw_comment": {
+      "sha256": "7fee83e1b8d87fe262d36d28667a4d4b66e3f36ce65b09a3d7cf9c8dc2456668",
+      "utf8_length": 131
+    },
+    "recommended_expected_output": {
+      "sha256": "3869785220af2e4a3ca15d9129891350ee82f3ca16f656fa182403ee443f41bf",
+      "utf8_length": 17
+    }
+  },
+  "regression": {
+    "expected_output": "DUPLICAR DOCS CLI",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// DUPLICAR DOCS CLI //////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2f13f50ce4308bfc4fda30cc43d10ff108a868452cc6c56640fe0de7ca75d52a",
+    "source_id": "7a97ea7401ba0ee856933eeeeb6056e06d60672d"
+  },
+  "source_record_sha256": "36a424f83e029ad4001826d345e87eb7aca32cd1bf8c2b777ef4f2f89d3da6f0"
+}

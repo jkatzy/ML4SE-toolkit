@@ -1,0 +1,398 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "jsonnet_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "534281d12d6ab82d8418d6330ea33cbe0659e11398b45603cbd83c5033a769de",
+      "case_id": "html_php-block-4f9edb385dabed03",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "html_php",
+      "oracle_exception_record_sha256": "0038e4264d129ef2d77a5338daa4884a7bd92a43d79a9da24e6cee9d51a890a4",
+      "raw_sha256": "e58a656aeab4d06b2422db2d5c20e3f43a1ed6dde1b412b9cef7bec06d55a8be",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "1c7f2c00fa62925e00aa62b5f06327b2ec4cb35524298a1aee8f64239e389b38",
+        "source_id": "6ef520ee7949b86a0569401819ebae0d18e46336"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "5f15cecf2990bcfca73b541466bc76d28eb1e8e3fd2150c05f3b5a7249606c27",
+      "case_id": "html_php-block-e3892ac4daf8287b",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "html_php",
+      "oracle_exception_record_sha256": "6579c8fbc1625b73329b07f21f90e5184ac855fe6584a9497625b118bec9b3bd",
+      "raw_sha256": "964a74be52e61a0cca25bea1143639a1bb453fb0f927e00d162764d39420138d",
+      "raw_utf8_length": 41,
+      "source_provenance": {
+        "source_excerpt_sha256": "d833f4e3e6910140c8cbd41a0f78202a9123e6b76c608905b350880decdec7f4",
+        "source_id": "e63024923db1371cc819ecb1d89dc9b2bef33e24"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "851530a8480df4feb36838e87b403ca574cd7258ddec2e48d6bc7f0c985c1e6f",
+      "case_id": "graphviz_dot-block-86d587e59bbeabb7",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Digraph\nlab 4\npreorder_color.dot\ncs014_16sum1",
+      "expected_cleaned_sha256": "e8f0020954586416356208b603ec34ca40f346b6f0349d3066b1a34c79b2ae82",
+      "language": "graphviz_dot",
+      "raw_comment": "/* Digraph \n * lab 4\n * preorder_color.dot\n * cs014_16sum1 \n */",
+      "raw_sha256": "13e7556929b51e5bede467c1be97b6660fdf8d47a1891a624de727abfd279e9b",
+      "raw_utf8_length": 63,
+      "source_provenance": {
+        "source_excerpt_sha256": "d189b7a0559114126f3917d32c7ddab5ff975ef42a24a067f9a410aa8907fd53",
+        "source_id": "fa29c1f19f26a32c2f67f4218dcbb6f5434f4e3f"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "5f15cecf2990bcfca73b541466bc76d28eb1e8e3fd2150c05f3b5a7249606c27",
+      "case_id": "html_plus_php-block-3b37d03c94a75437",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@var \\Helio\\Panel\\Model\\User $user",
+      "expected_cleaned_sha256": "aafe964d1e260492d35ed0a59eac5e9e45cc16fb20ff245b33a270053ac653aa",
+      "language": "html_plus_php",
+      "raw_comment": "/** @var \\Helio\\Panel\\Model\\User $user */",
+      "raw_sha256": "964a74be52e61a0cca25bea1143639a1bb453fb0f927e00d162764d39420138d",
+      "raw_utf8_length": 41,
+      "source_provenance": {
+        "source_excerpt_sha256": "d833f4e3e6910140c8cbd41a0f78202a9123e6b76c608905b350880decdec7f4",
+        "source_id": "e63024923db1371cc819ecb1d89dc9b2bef33e24"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "534281d12d6ab82d8418d6330ea33cbe0659e11398b45603cbd83c5033a769de",
+      "case_id": "html_plus_php-block-a27e25af87bdb5c8",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@var \\Dotdigitalgroup\\Email\\Block\\Adminhtml\\Dashboard\\Information $block",
+      "expected_cleaned_sha256": "49623192a75a80461bbff65c72bff7bf546c990edb9507c4a120bf6b8eb90c3d",
+      "language": "html_plus_php",
+      "raw_comment": "/** @var \\Dotdigitalgroup\\Email\\Block\\Adminhtml\\Dashboard\\Information $block */",
+      "raw_sha256": "e58a656aeab4d06b2422db2d5c20e3f43a1ed6dde1b412b9cef7bec06d55a8be",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "1c7f2c00fa62925e00aa62b5f06327b2ec4cb35524298a1aee8f64239e389b38",
+        "source_id": "6ef520ee7949b86a0569401819ebae0d18e46336"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e1d1ae5df743f5f2e4d63cccea4e32f783b2df8bb35203c6786e9112d1ff2096",
+      "case_id": "html_plus_php-line-d3d4538c06b70fa1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PIE CHART\nGet context with jQuery - using jQuery's .get() method.",
+      "expected_cleaned_sha256": "8c3f6f7dbf066ec6e7617dc947c75fddabf11df535fba6915cfbb3ec20c8d8d0",
+      "language": "html_plus_php",
+      "raw_comment": "//-------------\n  //- PIE CHART -\n  //-------------\n  // Get context with jQuery - using jQuery's .get() method.",
+      "raw_sha256": "d984ecb58e334d6c51f3549b1a5c7b6e21b2f2929f0b5cef0e4aa5dc8553fcc5",
+      "raw_utf8_length": 112,
+      "source_provenance": {
+        "source_excerpt_sha256": "fc9bd6dfd791933fc191a6f3243b71239a9230ab9e61df11940e57eaed9ec17a",
+        "source_id": "dea53f23f65ad251ac19f056f633676f24ecc15c"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "0b174e30a29519cbc861b137ce8eeeec606bdd6a30abd307d8cc4f3e8a747620",
+      "case_id": "jsonnet-block-6f9294f3b1c24d9e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A mixin on top of an HttpService with Debian instances that adds nginx, uwsgi, and flask.",
+      "expected_cleaned_sha256": "bc8cea9b6d930aa27c9301abb48f5850613ecb835f80d2a877cdbc49ba208264",
+      "language": "jsonnet",
+      "raw_comment": "/** A mixin on top of an HttpService with Debian instances that adds nginx, uwsgi, and flask. */",
+      "raw_sha256": "84fb124e7b05fea65b0c90b21b68fc862d892e02b51df55906d71e63d1c25deb",
+      "raw_utf8_length": 96,
+      "source_provenance": {
+        "source_excerpt_sha256": "218ad086ec85062a2fc7dd84e7ec99b5bdfd6a28f3dbcc2563d2a3d368da9036",
+        "source_id": "a67f0cd46bb3c71f8c1eb836d41ba5d50955b4b6"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "969407b254269c057f6c41b381e9cde4c56a5d2bc32bb247caaab68a61bd319a",
+      "case_id": "ring-block-931c875385c78c4a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Application: Ring Package Manager (RingPM)\nAuthor: Zaghdoudi Chokri\nDate: 2019/03/05",
+      "expected_cleaned_sha256": "23d1b971f0651d06907cd7db8559933872bea32823f0780e27c56de80b718a75",
+      "language": "ring",
+      "raw_comment": "/**\r\n\t*Application: Ring Package Manager (RingPM)\r\n\t*Author: Zaghdoudi Chokri\r\n\t*Date: 2019/03/05\r\n*/",
+      "raw_sha256": "679cd50519c4a93c2b5cf746e148647750d2607af66e50abfdeae0002d73828e",
+      "raw_utf8_length": 101,
+      "source_provenance": {
+        "source_excerpt_sha256": "e6a145adeb4d977ca34c32ce56a74295827eaee695a9d36fc0298b65fcb95f74",
+        "source_id": "0b934332e5fb6f8e533b3599b57f9b5b5f859123"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "62a73120dcff65d9b433983dc23c7dccfb66344a33b601293a850883a818b108",
+      "case_id": "ring-block-a1c2f5b40685e518",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Application: Ring Package Manager (RingPM)\nAuthor: Zaghdoudi Chokri\nDate: 2019/03/10",
+      "expected_cleaned_sha256": "307128b7ef01063c996f4f13bf5a47194f7c8d9e91d7d451559f4ae38904efda",
+      "language": "ring",
+      "raw_comment": "/**\n\t*Application: Ring Package Manager (RingPM)\n\t*Author: Zaghdoudi Chokri\n\t*Date: 2019/03/10\n*/",
+      "raw_sha256": "11fb076d63c379302313df8e4c1d2c93af71bade913812edb4cd31edb29fcbba",
+      "raw_utf8_length": 97,
+      "source_provenance": {
+        "source_excerpt_sha256": "afba1db866946ff7e186f3577895b7c4582fe1e6166cdbb253dc62eec08a6631",
+        "source_id": "644aff9a0ac7c66c6bba7b62ed16156f5b31884c"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "bce4c7d4b307be37717b744bdd4253a906ac7fcbf7ccca846987de485d69e7b2",
+      "case_id": "ring-line-cefb441d06896f1a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ring",
+      "raw_comment": "#==========================================================",
+      "raw_sha256": "083dac55e398792bec1a5e5010d1341efa8efb84110cfc9185e3d41be73561f7",
+      "raw_utf8_length": 59,
+      "source_provenance": {
+        "source_excerpt_sha256": "2925c42ef8ce85e1a6caa9fa18f892baff09f61824be1cf5b40287655bbbead7",
+        "source_id": "8c07f3b99ed1679bc7b90f3bd2db1b8585ae5203"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "2391430d29dd6d8d3142530fcb4c4f7cb4ed0b267928a80948f509484b4d2697",
+      "case_id": "ring-line-ebc764824881aa05",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ring",
+      "raw_comment": "#=========================================================\n#                   ",
+      "raw_sha256": "168df3aa9dac0db887fadcaa9a52f100b94316060ddd3f467b09635bde9273ac",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "90870bef1effd5cf6375f65df1852b7512208ca4fb11962d1e239bbf17aab9fb",
+        "source_id": "d6c55eec513a99f5288fcd5f9dbed72b6608d0f0"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "fbf83745e8ee72724150fdae1a38ba9fc7619c12cc6dd41f2b0383c84a9a7ce5",
+      "case_id": "thrift-block-9fdb4aa1bc203366",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2013-2014 Computer Sciences Corporation\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "7dd5692a0e6530b1ffc750fc735751b67e4945cb17b02e9777e7d9407b03d077",
+      "language": "thrift",
+      "raw_comment": "/*   Copyright (C) 2013-2014 Computer Sciences Corporation\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *     http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License. */",
+      "raw_sha256": "5d5dcfd2ef138271a344d2398ea1e0fdd1bdd6a52dd043a3f8d5d96d7d443f5b",
+      "raw_utf8_length": 619,
+      "source_provenance": {
+        "source_excerpt_sha256": "5437cb5eacb764cb7d081bc764c263e9dbb389c1fa9e423bdae6f390ad8b4942",
+        "source_id": "7e477d562826812f6c8fd14a43a8623c12c7c68a"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "fb22eaaa343a8f35bffe1603bd80f134065a66d2d8ba58836924c0cad2dc5d8e",
+      "case_id": "vcl-block-f4c8117913041fe0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Security.vcl breach2vcl config VCL\nCopyright (C) 2009 Kacper Wysocki\n\nthe rules enabled here are auto-generated by ../tools/all2vcl.pl",
+      "expected_cleaned_sha256": "756a99b79646320314412fd1c2714cd8f253bc6eab84be25d18c333289035e33",
+      "language": "vcl",
+      "raw_comment": "/* Security.vcl breach2vcl config VCL\n * Copyright (C) 2009 Kacper Wysocki\n * \n * the rules enabled here are auto-generated by ../tools/all2vcl.pl\n */",
+      "raw_sha256": "9f841dcc8a49956ec2b529c885c01f302dc5546f550c012993d353ee81c61b5c",
+      "raw_utf8_length": 150,
+      "source_provenance": {
+        "source_excerpt_sha256": "8eb22c3be76660aac656c0890a02c0e8282502cd455f02a2cafa32053c67b655",
+        "source_id": "1b568309eb74663091c028fc1e5e63207fbf95ca"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "473d73f5443de6bda9be5d09bc2eb96f76e3be7b8cd4a6e23dd871565168c2ac",
+      "case_id": "vcl-line-4e6f215834e44243",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "restart the request if the backend is unavailable\nor dies during the request",
+      "expected_cleaned_sha256": "88b49f35b74cdd6644f6504163e7d209e107125525c6ec8df8ba55aee8b186c2",
+      "language": "vcl",
+      "raw_comment": "##\n# restart the request if the backend is unavailable\n# or dies during the request\n##",
+      "raw_sha256": "5e40b2f4fa3d2d715873e5f06dbccd144334ea91767e791f383075cd27acbf9b",
+      "raw_utf8_length": 86,
+      "source_provenance": {
+        "source_excerpt_sha256": "b59dfc3baa7744b7d3091b90cc413d24be1c9f637df464fa82fe434c7585a507",
+        "source_id": "cbe4a2fcf593164581ddba3a24cf573aa54a2845"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "ca9b29210da097aa885107ed91e1df1099c2172cb6682192e9dfae211755b21f",
+      "case_id": "vcl-line-570adc6fdce8663b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\nVarnish configuration - backends settings.\n\nCopyright \u00a9 2015, Ahmed Kamal. (https://github.com/ahmedkamals)\n\nThis file is part of Ahmed Kamal's server configurations.\n\u00ae Redistributions of files must retain the above copyright notice.\n\n@copyright     Ahmed Kamal (https://github.com/ahmedkamals)\n@link          https://github.com/ahmedkamals/dev-environment\n@package       AK\n@subpackage\n@version       1.0\n@since         2015-01-25 Happy day :)\n@license\n@author        Ahmed Kamal <me.ahmed.kamal@gmail.com>\n@modified      2015-01-25",
+      "expected_cleaned_sha256": "6efbad45531784211a72763f6c3c7ed0fa316bf15a3970f35bcbe2ffffd5104c",
+      "language": "vcl",
+      "raw_comment": "##\n# @file\n# Varnish configuration - backends settings.\n#\n# Copyright \u00a9 2015, Ahmed Kamal. (https://github.com/ahmedkamals)\n#\n# This file is part of Ahmed Kamal's server configurations.\n# \u00ae Redistributions of files must retain the above copyright notice.\n#\n# @copyright     Ahmed Kamal (https://github.com/ahmedkamals)\n# @link          https://github.com/ahmedkamals/dev-environment\n# @package       AK\n# @subpackage\n# @version       1.0\n# @since         2015-01-25 Happy day :)\n# @license\n# @author        Ahmed Kamal <me.ahmed.kamal@gmail.com>\n# @modified      2015-01-25\n#",
+      "raw_sha256": "c418b9cf870d52590e85c08df2ec25039ac95d7f94e53dfd04313c588d16098f",
+      "raw_utf8_length": 577,
+      "source_provenance": {
+        "source_excerpt_sha256": "5be0b29b415173b974515f9b31b9b9a40e23505f8f28ccc10f48020fed4626eb",
+        "source_id": "acde7b6ef7849e24a9b58be0d9f56ed8ff0e2bfe"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "7364b4e7e367a905e03402e45678fa5e9dab73964381946efd3790e037cfd026",
+      "case_id": "vcl-line-60b1dab790d9a112",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "allow \"HTTPS:\" header from SSL proxies only\n\nrequires ACL httpsproxy",
+      "expected_cleaned_sha256": "6a161a0a6e25eccdc31472ac15656ebec2ef53c6d64ab31b55668e3e2b548a1a",
+      "language": "vcl",
+      "raw_comment": "##\n# allow \"HTTPS:\" header from SSL proxies only\n#\n# requires ACL httpsproxy\n##",
+      "raw_sha256": "c024d495c5e7b9479fbad82ac477c481038ce409a982e358dbfa11cc572cdc2e",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "91c6369beb683181d108179be7282f40894ebe8a160620a712ad4224542cc805",
+        "source_id": "f082ef698a277259540778da01ba3f7a1535db8c"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "1da2e0a9c5b7b63ae20f8635340b74cab8f0087edbb236907b2fd7a4fb7890f9",
+      "case_id": "vcl-line-cba10e01cf89a158",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "###RATE_LIMITED_PATHS####) {",
+      "expected_cleaned_sha256": "5d007740d2b8dd49b9bddd760e90da32df13ca1959f49bd24901a9cdf33978bf",
+      "language": "vcl",
+      "raw_comment": "####RATE_LIMITED_PATHS####) {",
+      "raw_sha256": "3df0fffe7dc361c09562e0933459f9dc9efbebf3fede68a0532371bfdb5161dd",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "2ed607c1c95672b42965cdbad1f3a210ab0498de3f1f60d4a581fa888cc789d7",
+        "source_id": "e7a64f02d05025214e148480a9f9eb728b476bf0"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "9329aa51837547e16f5d00cc6cd29856da3e2e3dca35f8e054cbc053a9b2810e",
+      "case_id": "vcl-line-d46318cbc58aa37e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Sample VCL file\n...",
+      "expected_cleaned_sha256": "f347c123b1291a179321bf3e49f0bbea8a4934dbbb5536590387265afce5064b",
+      "language": "vcl",
+      "raw_comment": "# Sample VCL file\n# ...",
+      "raw_sha256": "e1958034bd8b3cfc5f9ae8fcde4a62c95d32b6371c471cbeece70eb556a60e61",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "3ed5500c034f4682ce6f5531c6828305d5f6a593b08066c319d51068a8f13f6e",
+        "source_id": "0e1e89aa95e2f9754eff7891d2a94b0ebc5474bd"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "97dc8a0dcccacd0d638e7db94e4af66bf03e908bb157131eacacdf9c0b299664",
+      "case_id": "zephir-block-13889fb49222678a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Phalcon Framework\nCopyright (c) 2011-2017 Phalcon Team (https://phalconphp.com)\nThis source file is subject to the New BSD License that is bundled\nwith this package in the file docs/LICENSE.txt.\n\nIf you did not receive a copy of the license and are unable to\nobtain it through the world-wide-web, please send an email\nto license@phalconphp.com so we can send you a copy immediately.\nAuthors: Andres Gutierrez <andres@phalconphp.com>\n         Eduar Carvajal <eduar@phalconphp.com>",
+      "expected_cleaned_sha256": "1a6162e3074d804f296cb2f3c569ae6bc74043f62e37b14054cb5bf2b7be966c",
+      "language": "zephir",
+      "raw_comment": "/*\n +------------------------------------------------------------------------+\n | Phalcon Framework                                                      |\n +------------------------------------------------------------------------+\n | Copyright (c) 2011-2017 Phalcon Team (https://phalconphp.com)          |\n +------------------------------------------------------------------------+\n | This source file is subject to the New BSD License that is bundled     |\n | with this package in the file docs/LICENSE.txt.                        |\n |                                                                        |\n | If you did not receive a copy of the license and are unable to         |\n | obtain it through the world-wide-web, please send an email             |\n | to license@phalconphp.com so we can send you a copy immediately.       |\n +------------------------------------------------------------------------+\n | Authors: Andres Gutierrez <andres@phalconphp.com>                      |\n |          Eduar Carvajal <eduar@phalconphp.com>                         |\n +------------------------------------------------------------------------+\n */",
+      "raw_sha256": "294947241651aacf93152411bb799ffa2dc4890199a1f70b8e30fbce1ea0bef3",
+      "raw_utf8_length": 1146,
+      "source_provenance": {
+        "source_excerpt_sha256": "04a2b7fccb6798f666855e362fbfdc06131ab4505a41b500da7313a505bcbb00",
+        "source_id": "88c06866eb98a205ffb33f96cb632489ebc9cab2"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "015607224c09875ae3651bcf602a6841451eb4be132c6975a34e7a80d7aa544b",
+      "case_id": "zephir-block-27f774454313588a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Phady Framework\nCopyright (c) 2015\nPhady Framework is a complement of Phalcon Framework\n\nAuthors: Alien fernandez Fuentes <alienfernandez85@gmail.com>",
+      "expected_cleaned_sha256": "fcfe32fc35fad9b1c35f2939f6df63391e6c1c1eccede8b17d9b14229d2b2894",
+      "language": "zephir",
+      "raw_comment": "/*\n+------------------------------------------------------------------------+\n| Phady Framework                                                        |\n+------------------------------------------------------------------------+\n| Copyright (c) 2015                                                     |\n+------------------------------------------------------------------------+\n| Phady Framework is a complement of Phalcon Framework                   |\n|                                                                        |\n+------------------------------------------------------------------------+\n| Authors: Alien fernandez Fuentes <alienfernandez85@gmail.com>          |\n+------------------------------------------------------------------------+\n*/",
+      "raw_sha256": "155e0003d2623fdc3569a52ce6b9f11dbedd969aa535fae9ce631ecfeb643212",
+      "raw_utf8_length": 755,
+      "source_provenance": {
+        "source_excerpt_sha256": "6824a844a3ce0ee926fd89200edc55c240043d0566dc3d37a089bd475ad7162d",
+        "source_id": "09ac6b032c549028525650abf1efb2ef679036c9"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "015607224c09875ae3651bcf602a6841451eb4be132c6975a34e7a80d7aa544b",
+      "case_id": "zephir-block-47afd5ea76622313",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Phady Framework\nCopyright (c) 2015\nPhady Framework is a complement of Phalcon Framework\n\nAuthors: Alien fernandez Fuentes <alienfernandez85@gmail.com>",
+      "expected_cleaned_sha256": "fcfe32fc35fad9b1c35f2939f6df63391e6c1c1eccede8b17d9b14229d2b2894",
+      "language": "zephir",
+      "raw_comment": "/*\n+------------------------------------------------------------------------+\n| Phady Framework                                                        |\n+------------------------------------------------------------------------+\n| Copyright (c) 2015                                                     |\n+------------------------------------------------------------------------+\n| Phady Framework is a complement of Phalcon Framework                   |\n|                                                                        |\n+------------------------------------------------------------------------+\n| Authors: Alien fernandez Fuentes <alienfernandez85@gmail.com>          |\n+------------------------------------------------------------------------+\n*/",
+      "raw_sha256": "155e0003d2623fdc3569a52ce6b9f11dbedd969aa535fae9ce631ecfeb643212",
+      "raw_utf8_length": 755,
+      "source_provenance": {
+        "source_excerpt_sha256": "cffad24a70493980d79b90ef01e81db4ded18de51ef9f9b733fb03a1524a1efc",
+        "source_id": "9d21eacd87e47bafaff8b6c33a6f6bef7b2bd52c"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "28c3167f61937d6d09f9147142107718ad6ea568395b946ad6b3a7aada4f6136",
+      "case_id": "zephir-block-bd1086c41f127369",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Phalcon Framework\nCopyright (c) 2011-2012 Phalcon Team (http://www.phalconphp.com)\nThis source file is subject to the New BSD License that is bundled\nwith this package in the file docs/LICENSE.txt.\n\nIf you did not receive a copy of the license and are unable to\nobtain it through the world-wide-web, please send an email\nto license@phalconphp.com so we can send you a copy immediately.\nAuthor: Tu\u011frul Topuz <tugrultopuz@gmail.com>",
+      "expected_cleaned_sha256": "ebb0c5b700e3c51d34eb0507fec532bae77d3d0309463baebc6416f9c8d9310f",
+      "language": "zephir",
+      "raw_comment": "/*\n +------------------------------------------------------------------------+\n | Phalcon Framework                                                      |\n +------------------------------------------------------------------------+\n | Copyright (c) 2011-2012 Phalcon Team (http://www.phalconphp.com)       |\n +------------------------------------------------------------------------+\n | This source file is subject to the New BSD License that is bundled     |\n | with this package in the file docs/LICENSE.txt.                        |\n |                                                                        |\n | If you did not receive a copy of the license and are unable to         |\n | obtain it through the world-wide-web, please send an email             |\n | to license@phalconphp.com so we can send you a copy immediately.       |\n +------------------------------------------------------------------------+\n | Author: Tu\u011frul Topuz <tugrultopuz@gmail.com>                           |\n +------------------------------------------------------------------------+\n */",
+      "raw_sha256": "e8faeeb91cf0bcc1c718eee1c1df900e7331c051c68d9bf14fd00368ee56a132",
+      "raw_utf8_length": 1071,
+      "source_provenance": {
+        "source_excerpt_sha256": "a832f7c1e1361fff23bfa11662cc7cad13807513229dee303aeedc0a314ff516",
+        "source_id": "64ffac83b15757b04fe6db5c78db7f732c1e2fd5"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "zephir-line-e3e0b91e098d9635",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<?",
+      "expected_cleaned_sha256": "a92c78b91f76b2cf66002eb226fc8921b5759d20592b987225b20d462a2ea249",
+      "language": "zephir",
+      "raw_comment": "//<?",
+      "raw_sha256": "2eacbbca67fe8fe5758a7164953b3b2aebb29cc2c9f73be6d8b375748719999b",
+      "raw_utf8_length": 4,
+      "source_provenance": {
+        "source_excerpt_sha256": "1001c4c171efb9bdca1b1e8a31c6638818dd07f806ad5403252478a67168dacf",
+        "source_id": "9ef632d1c7c7a6171ecbc5b4ef7c2918cba9490c"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

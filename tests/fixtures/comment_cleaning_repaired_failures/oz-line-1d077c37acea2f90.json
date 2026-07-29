@@ -1,0 +1,38 @@
+{
+  "case_id": "oz-line-1d077c37acea2f90",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "oz",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "06a5b5d2d80e27c789dfb9c73c20d07c3e17d45a13a83d87bb2e56ed97a075f3",
+      "utf8_length": 439
+    },
+    "manifest_old_output": {
+      "sha256": "5395f66591168f564ccbd554afc70a6cb245cd12381645b0a31a9194cfd463ba",
+      "utf8_length": 383
+    },
+    "raw_comment": {
+      "sha256": "984921978bcd028f2f2db545a1b917ece313c2bfb3b2b6c678d88ffd62a26e39",
+      "utf8_length": 459
+    },
+    "recommended_expected_output": {
+      "sha256": "5395f66591168f564ccbd554afc70a6cb245cd12381645b0a31a9194cfd463ba",
+      "utf8_length": 383
+    }
+  },
+  "regression": {
+    "expected_output": "Authors:\n  Leif Kornstaedt <kornstae@ps.uni-sb.de>\n\nCopyright:\n  Leif Kornstaedt, 1998\n\nLast change:\n  $Date$ by $Author$\n  $Revision$\n\nThis file is part of Mozart, an implementation of Oz 3:\n  http://www.mozart-oz.org\n\nSee the file \"LICENSE\" or\n  http://www.mozart-oz.org/LICENSE.html\nfor information on usage and redistribution\nof this file, and for a DISCLAIMER OF ALL\nWARRANTIES.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%%\n%%% Authors:\n%%%   Leif Kornstaedt <kornstae@ps.uni-sb.de>\n%%%\n%%% Copyright:\n%%%   Leif Kornstaedt, 1998\n%%%\n%%% Last change:\n%%%   $Date$ by $Author$\n%%%   $Revision$\n%%%\n%%% This file is part of Mozart, an implementation of Oz 3:\n%%%   http://www.mozart-oz.org\n%%%\n%%% See the file \"LICENSE\" or\n%%%   http://www.mozart-oz.org/LICENSE.html\n%%% for information on usage and redistribution\n%%% of this file, and for a DISCLAIMER OF ALL\n%%% WARRANTIES.\n%%%"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c4bef7fbcd2e0622bfe9472662494a1063607466c2c1f7c16736ee742f11526e",
+    "source_id": "4c680ccd47de7fe6bea032bd1dabe589d5c732d6"
+  },
+  "source_record_sha256": "472ce88d30371069e0c8f2ff97ec4147a5c41a22876567f659a756baaef44726"
+}

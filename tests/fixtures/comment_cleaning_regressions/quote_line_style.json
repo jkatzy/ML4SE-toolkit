@@ -1,0 +1,24 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "quote_line_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "f494f70d66dc2e35bfcc7c5b891756a157bc39becc184e9da1397a3d56a44a4e",
+      "case_id": "viml-line-8ae7c4adfce35469",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "viml",
+      "oracle_exception_record_sha256": "b1258052f2057d1bcfd5ca1832d8a4937999f34a656311ae1907c06f1c15f89b",
+      "raw_sha256": "8a36b87c129ce0930fe87a36714dddb4e770ab8a4b784213ba1c0c5749f7888c",
+      "raw_utf8_length": 1120,
+      "source_provenance": {
+        "source_excerpt_sha256": "ab3c972771a2d62b9a8adc699b8617d2db662267cb501990994c214184d20a94",
+        "source_id": "aab4763074f4d50011f6bd5748995f707ae1f916"
+      },
+      "syntax_label": "\""
+    }
+  ],
+  "sanitizer_cases": [],
+  "schema_version": 5
+}

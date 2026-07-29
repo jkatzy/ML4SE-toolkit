@@ -1,0 +1,38 @@
+{
+  "case_id": "saltstack-line-7faf58e5849802cc",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "saltstack",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c3abea721c3a4cfe7e3c0ef58af56cdda7732e2eed44910df12189f99b3b8117",
+      "utf8_length": 149
+    },
+    "manifest_old_output": {
+      "sha256": "13e07504cc2d19dcbecd4b111d760857bcb1cbbf71b47296c5c0d4747f44749e",
+      "utf8_length": 143
+    },
+    "raw_comment": {
+      "sha256": "13d5e13792c8a028f5dd285412389c844998c370c3dd992aa046512063b93b7e",
+      "utf8_length": 159
+    },
+    "recommended_expected_output": {
+      "sha256": "13e07504cc2d19dcbecd4b111d760857bcb1cbbf71b47296c5c0d4747f44749e",
+      "utf8_length": 143
+    }
+  },
+  "regression": {
+    "expected_output": "Install the Image Service\nIcehouse\nhttp://docs.openstack.org/icehouse/install-guide/install/yum/content/glance-install.html\nauthor: David Kilcy",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "###\n# Install the Image Service\n# Icehouse\n# http://docs.openstack.org/icehouse/install-guide/install/yum/content/glance-install.html\n# author: David Kilcy\n###"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "29bf735e423895fa955906f879c81bc610809f9e74ee569437fa0b851767bfa6",
+    "source_id": "db0e374b2ed2c4cbd80cc152b2fb916ed19438ee"
+  },
+  "source_record_sha256": "91aedcb4de3bd80fe682fe3d58ff40af8285b9bda571288676ee8ff1db1df993"
+}

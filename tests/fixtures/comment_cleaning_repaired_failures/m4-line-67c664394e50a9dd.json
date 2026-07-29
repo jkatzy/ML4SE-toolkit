@@ -1,0 +1,38 @@
+{
+  "case_id": "m4-line-67c664394e50a9dd",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "m4",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "cfdb66a5f997762d60060896564f7c870738e2352430cfe71f71498c520d1372",
+      "utf8_length": 35
+    },
+    "manifest_old_output": {
+      "sha256": "3635f30e1e14113124f293840ee35d0df920a337d914ce88caa12c7e825779a6",
+      "utf8_length": 31
+    },
+    "raw_comment": {
+      "sha256": "2c33f6d732da9bd258aef833b6f152c280153ff52b369f1acfd22c5831f2898f",
+      "utf8_length": 37
+    },
+    "recommended_expected_output": {
+      "sha256": "3635f30e1e14113124f293840ee35d0df920a337d914ce88caa12c7e825779a6",
+      "utf8_length": 31
+    }
+  },
+  "regression": {
+    "expected_output": "Dockerfile for Uzbl\nMac Radigan",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## Dockerfile for Uzbl\n## Mac Radigan"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "99866ba1e2c2f84602ef260697f8eb26a9cc64eb249e9f82207d0c90a69e0523",
+    "source_id": "6bbeb3e8859b20378d93fb2f7dfb364680c03e41"
+  },
+  "source_record_sha256": "10ac82e1d5886cd89a46e27bca1cfcf2c62b3043364d814b949527c51b517649"
+}

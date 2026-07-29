@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-f6dee587ef35663c",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "83e026068f8188cfaf4e9864f33cfab59d2451e4e2d7b5bb52c34ae09924c6c9",
+      "utf8_length": 18
+    },
+    "manifest_old_output": {
+      "sha256": "feb63611dc278a9bebea96fba86be63293c58bf6c74d0ee20458f34d87e2fbad",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "9cf3f08c3cb2041d489681423476dadbd93a22e0d03d4cd4a814c79d64bad6ed",
+      "utf8_length": 131
+    },
+    "recommended_expected_output": {
+      "sha256": "feb63611dc278a9bebea96fba86be63293c58bf6c74d0ee20458f34d87e2fbad",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "RECIBOSMULTIPROV",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// RECIBOSMULTIPROV ///////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e9d16638107e7020f5e4e30c451b7c647b9d5839f1fd000e4ad62706da569e8b",
+    "source_id": "510d0a127886d06fb5bddf914b9ae15bec3fd00f"
+  },
+  "source_record_sha256": "f1ecd5662277a63627fb2e949b58d62d55769398049c09c299dbe876d20ebe2b"
+}

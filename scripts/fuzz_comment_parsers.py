@@ -284,9 +284,7 @@ def _check_sanitizer_case(
     query_match_cleaned = sanitizer.sanitize(QueryMatch("prefix", "suffix", text))
     helper_cleaned = sanitize_comment(language, text)
     legacy_helper_cleaned = sanitize_comment_text(language, text)
-    if not (
-        cleaned == query_match_cleaned == helper_cleaned == legacy_helper_cleaned
-    ):
+    if not (cleaned == query_match_cleaned == helper_cleaned == legacy_helper_cleaned):
         raise _InvariantFailure(
             "sanitizer_api_parity",
             "str, QueryMatch, sanitize_comment, and sanitize_comment_text disagree",
@@ -301,10 +299,7 @@ def _check_sanitizer_case(
             "sanitizer_non_expansion",
             f"sanitized output grew from {len(text)} to {len(cleaned)} code points",
         )
-    if (
-        sanitizer.syntax.sanitizer_mode == "raw"
-        and cleaned != _normalize_newlines(text)
-    ):
+    if sanitizer.syntax.sanitizer_mode == "raw" and cleaned != _normalize_newlines(text):
         raise _InvariantFailure(
             "sanitizer_raw_mode",
             "raw sanitizer mode changed more than newline representation",
@@ -350,10 +345,7 @@ def _example_placeholder(text: str) -> str | None:
 
 
 def _random_sanitizer_payload(rng: random.Random, payload_index: int) -> str:
-    pieces = [
-        rng.choice(SANITIZER_PAYLOAD_TOKENS)
-        for _ in range(rng.randrange(1, 5))
-    ]
+    pieces = [rng.choice(SANITIZER_PAYLOAD_TOKENS) for _ in range(rng.randrange(1, 5))]
     return f"FZ{payload_index}A{''.join(pieces)}Z{payload_index}END"
 
 
@@ -375,18 +367,14 @@ def _iter_structured_sanitizer_cases(
         baseline = sanitizer.sanitize(example.expected_match)
         for payload_index in range(payloads_per_example):
             payload = _random_sanitizer_payload(rng, payload_index)
-            mutation = (
-                f"placeholder:{group_name}:{example_index}:payload:{payload_index}"
-            )
+            mutation = f"placeholder:{group_name}:{example_index}:payload:{payload_index}"
             yield (
                 mutation,
                 example.expected_match.replace(placeholder, payload, 1),
                 baseline.replace(placeholder, payload, 1),
             )
 
-    for delimiter_index, (open_token, close_token) in enumerate(
-        syntax.nested_delimiters
-    ):
+    for delimiter_index, (open_token, close_token) in enumerate(syntax.nested_delimiters):
         payload = _random_sanitizer_payload(rng, delimiter_index)
         yield (
             f"nested_wrapper:{delimiter_index}",
@@ -454,9 +442,7 @@ def run_fuzz(
     sanitizer_structured_cases = 0
 
     def build_run() -> FuzzRun:
-        random_cases = (
-            parser_cases if campaign in {"all", "parser"} else sanitizer_random_cases
-        )
+        random_cases = parser_cases if campaign in {"all", "parser"} else sanitizer_random_cases
         return FuzzRun(
             seed=seed,
             languages=len(selected),
@@ -478,11 +464,7 @@ def run_fuzz(
         text: str,
         exc: Exception,
     ) -> None:
-        invariant = (
-            exc.invariant
-            if isinstance(exc, _InvariantFailure)
-            else type(exc).__name__
-        )
+        invariant = exc.invariant if isinstance(exc, _InvariantFailure) else type(exc).__name__
         failures.append(
             FuzzFailure(
                 language=language,
@@ -581,9 +563,7 @@ def run_fuzz(
                     return build_run()
                 continue
 
-            for case_index, (mutation, text, expected) in enumerate(
-                structured_cases
-            ):
+            for case_index, (mutation, text, expected) in enumerate(structured_cases):
                 sanitizer_structured_cases += 1
                 try:
                     _check_sanitizer_case(

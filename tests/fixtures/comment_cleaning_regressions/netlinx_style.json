@@ -1,0 +1,348 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "netlinx_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "f6bfda26026291aa5fe6a3401d01c112f0c46a34f93a1ce3cde0ee3299ba7213",
+      "case_id": "netlinx-block-f48c003806bfa4a3",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "netlinx",
+      "oracle_exception_record_sha256": "0bbbaa9b3206d0d4c775d7bff69ceb167b10b4bc96950d1d9969a38611829730",
+      "raw_sha256": "f6bfda26026291aa5fe6a3401d01c112f0c46a34f93a1ce3cde0ee3299ba7213",
+      "raw_utf8_length": 70,
+      "source_provenance": {
+        "source_excerpt_sha256": "e84b1ca02109c22a31968684ed0c64cdd1fdbd81da7863fb9a5c74ec63ff7136",
+        "source_id": "5312eac7d8cd5fc4bcaba3b89b5ad6656ba1ccb5"
+      },
+      "syntax_label": "multiline"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-16e1f2507f31fe7f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "0d3ea7ce88442942c63b05a3cdcb365d02c6ce19d0c61c059c9f2c3f7355bbb2",
+        "source_id": "6a17a47375b4fb1ded1b2e09a94585e81c6ab122"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "544e62cee8033709e389e5b2755343d0d0fa8c4850215cfb6331717e80d1aea3",
+      "case_id": "netlinx-block-2564ea799e80c7ee",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(**********************************)",
+      "raw_sha256": "552318ed03bc4535bf488c25effc25ff5bc705cdf46a1c12a4797e8b7068d381",
+      "raw_utf8_length": 36,
+      "source_provenance": {
+        "source_excerpt_sha256": "99b0ebd84aa05ae1b368a5b06bcd21a3b464e63c3aabb297344271d4f3ef2f8b",
+        "source_id": "955e5fbca3ef6ccf8a13aa7b7b286a5e0ed03efb"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-25e84ddde2e74d26",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "f3aeeafa6ffbd9b33239e72f5aa63e52ab40bd17ecfb35251e296e917076787b",
+        "source_id": "b392e4f10e5af4b8108adc155ed753d8ce5121d2"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1a0c00edb5983c2c8d34e8e086d2fab434c71c7ab80084a1ae6b06a9ede1264b",
+      "case_id": "netlinx-block-2716b4cc4f0233c3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "amx-pdu-control\n\nFor usage, check out the readme for the amx-pdu-library.",
+      "expected_cleaned_sha256": "813deb6562a1234d40e4ec7e91ff7a834977be59f982552bedc0664f3b2ea982",
+      "language": "netlinx",
+      "raw_comment": "/*\n * --------------------\n * amx-pdu-control\n *\n * For usage, check out the readme for the amx-pdu-library.\n * --------------------\n */",
+      "raw_sha256": "1a0c00edb5983c2c8d34e8e086d2fab434c71c7ab80084a1ae6b06a9ede1264b",
+      "raw_utf8_length": 136,
+      "source_provenance": {
+        "source_excerpt_sha256": "98d46f76782650c775ad648f22343153c28e497275106fecd0068a1ce7c05a3d",
+        "source_id": "bb47c109663ecbb8744e1ea97ac10f7b943651bf"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-29550984bb729c4b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "86415599ef186898454a425d38f31a63a94e9d399b78b7f73045937b3ce546e7",
+        "source_id": "2b8e803d183564ba9083e1b47e7c31795b4edc95"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "5c7a1be1e68789e371ada1767d8bbba024c63508b74d00baa66bd110e7ec0e90",
+      "case_id": "netlinx-block-2b787ea7070d385c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Function: sha1\n\nParameters:\n\tchar msg[]\n\nReturns:\n\tchar[20] - 160-bit SHA-1 message digest\n\nDescription:\n\tThis is a NetLinx implemntation of the SHA-1 message digest algorithm as described in RFC3174 (see\n\thttps://tools.ietf.org/html/rfc3174).\n\n\tTakes a message parameter and returns a 160-bit (20-byte) SHA-1 hash of the message.",
+      "expected_cleaned_sha256": "ee2e493d89cfa698993d9e58cfd2cd4dbe679e613a8f81d120543234ffafb650",
+      "language": "netlinx",
+      "raw_comment": "/*\n\tFunction: sha1\n\n\tParameters:\n\t\tchar msg[]\n\n\tReturns:\n\t\tchar[20] - 160-bit SHA-1 message digest\n\n\tDescription:\n\t\tThis is a NetLinx implemntation of the SHA-1 message digest algorithm as described in RFC3174 (see\n\t\thttps://tools.ietf.org/html/rfc3174).\n\n\t\tTakes a message parameter and returns a 160-bit (20-byte) SHA-1 hash of the message.\n*/",
+      "raw_sha256": "5c7a1be1e68789e371ada1767d8bbba024c63508b74d00baa66bd110e7ec0e90",
+      "raw_utf8_length": 345,
+      "source_provenance": {
+        "source_excerpt_sha256": "266190aacce07e2cd3cb4fd345212a59298679bc4561d7011ed58d53ce508ca5",
+        "source_id": "f039743a4430a41c862f5944541070bf63287602"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-518088a441cea80c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "f0226022a34d7fb20286d1ee656703cc87ae4d49d4cd60044d9f74eabae7fc16",
+        "source_id": "7c9ff797ff92d48cc914ac4957b360b9575d4587"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "5f86c42df79f556ea57d03099763f7347a1ac5402635ef49d1a312b8629c62b0",
+      "case_id": "netlinx-block-599521e0cd93eec3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This NetLinx include contains an implementation of JSON Web Tokens (JWT).\n\t- see RFC-7515 JSON Web Signature (JWS)                          [https://tools.ietf.org/html/rfc7515]\n\t- see RFC-7519 JSON Web Tokens (JWT)                             [https://tools.ietf.org/html/rfc7519]\n\t- see RFC-7797 JSON Web Signature (JWS) Unencoded Payload Option [https://tools.ietf.org/html/rfc7797]\n\t- see RFC-7516 JSON Web Encryption (JWE)                         [https://tools.ietf.org/html/rfc7516]\n\nNote that this implementation is far from complete.",
+      "expected_cleaned_sha256": "e46201af5bf0d657fd3a90a5de43829b272755970e4579a097cb3f0fb328e1e5",
+      "language": "netlinx",
+      "raw_comment": "/*\nThis NetLinx include contains an implementation of JSON Web Tokens (JWT).\n\t- see RFC-7515 JSON Web Signature (JWS)                          [https://tools.ietf.org/html/rfc7515]\n\t- see RFC-7519 JSON Web Tokens (JWT)                             [https://tools.ietf.org/html/rfc7519]\n\t- see RFC-7797 JSON Web Signature (JWS) Unencoded Payload Option [https://tools.ietf.org/html/rfc7797]\n\t- see RFC-7516 JSON Web Encryption (JWE)                         [https://tools.ietf.org/html/rfc7516]\n\nNote that this implementation is far from complete.\n*/",
+      "raw_sha256": "5f86c42df79f556ea57d03099763f7347a1ac5402635ef49d1a312b8629c62b0",
+      "raw_utf8_length": 548,
+      "source_provenance": {
+        "source_excerpt_sha256": "df1e418a374909efa862cd30cdee6917b37651d0939c659dee16ecec3d8e1eb4",
+        "source_id": "7b9d81f55189f081615176ce5cce4fd1561ec307"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "f25cc0b448168426405a028fc4601a738b11b44564128cb740f42c019d3c86d0",
+      "case_id": "netlinx-block-5e89920751cb94e9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(*********************************************************************)",
+      "raw_sha256": "1fee8305bb83dc2c70e5bf1e9503ee4cb97eae39344690857f85c7571cd90f07",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "aaa15b1c23a44d3421d1c5620ab952ea1b527048bd602ee61a3f1b4f62ea06ca",
+        "source_id": "10d647144e2dd5cc59aacb62bf9f2d7f2f0b2e1f"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "d73ae82dcb5ce7c321c4e6bc6c05f586812d42ddf261943b0bc43fec9e88ac04",
+      "case_id": "netlinx-block-615d164e672fbffa",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Panasonic TV",
+      "expected_cleaned_sha256": "c9b096bed5bff7e120e024851f9c2f85a3d5bc713c42c395a8c2449efa3a040b",
+      "language": "netlinx",
+      "raw_comment": "(******  Panasonic TV  *****************************)",
+      "raw_sha256": "e514ea061f8824a04752a1aed3839923925ed00d07cce6e49241706fb80bacde",
+      "raw_utf8_length": 53,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad763b4b993fa75c2c2c93abeb1ddadfb456231ff6de8dc9016997dbcc3fe376",
+        "source_id": "65f8197ba14ae728306fb2c8c88cb16e06ef08a0"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-630c69c598a1439e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "714e2e83b1a326868d845ed26f8037bdd9513fee749ef63f0c080aee517897b8",
+        "source_id": "e5e97919feca67937e03a0af3eb69dc3d5a6ad98"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-6378b78bee152135",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "6e18f3605b9adda59d37d4e97785e82dd102722bc6ea7c2b560175c023858571",
+        "source_id": "99cce8e7a0f1c04fef2712eb44bfadb3aad4ea8f"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "24aecf942a984cd0bbfdbdf2c7965b65d31247a2511fc177f4f29c1201579c78",
+      "case_id": "netlinx-block-8dc74083f010d920",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Mainline\n\nThis section of code will run whenever there are no events or waits\nto process.\n\nNote: Updating values of global or local_var variables within mainline\nwill cause mainline to run more often. It is recommended to limit the\nupdating of variables within mainline to stack_var variables only in\norder to reduce CPU usage. Alternatively, wait statements can be used\nwithin mainline to delay execution of code.",
+      "expected_cleaned_sha256": "17d3472292b2ca64a1b06fbe565a2ea0f88e6d646354f101ea09ea7c4dae2dd5",
+      "language": "netlinx",
+      "raw_comment": "/*\n * -------------------------------------------------------------------\n * Mainline\n * \n * This section of code will run whenever there are no events or waits\n * to process.\n *\n * Note: Updating values of global or local_var variables within mainline\n * will cause mainline to run more often. It is recommended to limit the\n * updating of variables within mainline to stack_var variables only in\n * order to reduce CPU usage. Alternatively, wait statements can be used\n * within mainline to delay execution of code.\n * -------------------------------------------------------------------\n */",
+      "raw_sha256": "83f8c59ca7c8f8e371e62dd049b9cf2f5dd3d5ae83435ac118cc3241d35e31eb",
+      "raw_utf8_length": 592,
+      "source_provenance": {
+        "source_excerpt_sha256": "9a8dcd95410a935b9c221b502e605f58c05f1eeb41a1d589bfdef5253a2e4de8",
+        "source_id": "ce177a4d45efdc321cd6cf6678f4b6a8ac823702"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-929d8ffff9328361",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "95085a4568695a96fea94ce3ee0139d81f2f2e321e5254131f9de2e5a2e3ca52",
+        "source_id": "a73d4d0d96531f9a36e108761a847c55b2deeac9"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "28ce39e13e6b0735590cc6b02936fee034e51d78510ac77e2e5dbcb1a8b4868e",
+      "case_id": "netlinx-block-b68839011cf9ed9b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(*****************************************************************************************************)",
+      "raw_sha256": "8d07dfab2b7c9f40495575697dc4234e8415b952574f6fe02b1aa16990b4d332",
+      "raw_utf8_length": 103,
+      "source_provenance": {
+        "source_excerpt_sha256": "8486cb5817d10d509dba9cd3871031821cbc88989c5496836adb13cbde7d4137",
+        "source_id": "ef4f3815bdaaafe93a84a935b53bfb615ce7313e"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-b9e2cf64c21d30c4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "c3acd8aeaf63116215ee1c88b008d4f24285348eb366d7a8d57a7f2838627c81",
+        "source_id": "7e5e0eb802d76b4301f248006d0ada4d8ace2aba"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-e1c8b6aa933c3f9d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "eef639cb858dc8d84a6b4bd44788da92aafb8de774b3c6a15934f38bce5c0628",
+        "source_id": "81fcf47fccb42289c3f394cf0fffc5df36415f01"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-ed33c775017d4a00",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "903f4128710509fb74f4b24061db6403be5a9fac83ced4b72d206e1f1952951a",
+        "source_id": "621751e38fb4157781920a0b1c7dead84af21495"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1be19d060b7a772d3d2397839e462d3c918447a69a3f2cfd912e2f7e584a8f1b",
+      "case_id": "netlinx-block-f26500a1c8c32ff0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "netlinx",
+      "raw_comment": "(***********************************************************)",
+      "raw_sha256": "0d7c5cff5d3480c15a424884e63597be25ae2fec9d7d93c59eeb6108f803226a",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "ce878d2392ef92efef8bb1770184082937578c0083d21489f5685609c820e66f",
+        "source_id": "3a6d14d53eb7fa43fcf751ce797567be0b7076c7"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

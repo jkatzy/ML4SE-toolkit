@@ -1,0 +1,38 @@
+{
+  "case_id": "linker_script-block-a2bf6ecc7d2a2acf",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "linker_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0f40d26eea4069a902f1ff4a20f0fbd8b26ef974fe43552c2037a7195ae96a3d",
+      "utf8_length": 82
+    },
+    "manifest_old_output": {
+      "sha256": "7ccdb30765deffe0e11b81864a7e96f1cf7d6f2a608bcfa12e434b167357eb2b",
+      "utf8_length": 80
+    },
+    "raw_comment": {
+      "sha256": "1102b7b1f5d0803eb201b30f5d9d489c36fa6b67128f8cc2c735e54ab485d870",
+      "utf8_length": 245
+    },
+    "recommended_expected_output": {
+      "sha256": "7ccdb30765deffe0e11b81864a7e96f1cf7d6f2a608bcfa12e434b167357eb2b",
+      "utf8_length": 80
+    }
+  },
+  "regression": {
+    "expected_output": "Source: https://e2e.ti.com/support/microcontrollers/other/f/908/p/479812/2164975",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/******************************************************************************\n\n * Source: https://e2e.ti.com/support/microcontrollers/other/f/908/p/479812/2164975\n\n *****************************************************************************/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "48648b50b31e7bbc9be157e7fbf07f6946049307db56d361f392e8111e0586d2",
+    "source_id": "70a6ebb05553ec2bcbb7fb971cba59016d83c139"
+  },
+  "source_record_sha256": "c75aaa3125e287e21e93df3ce845e0cd0efc654019943cf3c31a0d3e7caa7496"
+}

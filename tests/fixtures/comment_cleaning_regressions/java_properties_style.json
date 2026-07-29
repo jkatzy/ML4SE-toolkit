@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "java_properties_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "b8b6a01065552c1b6501a7da26ca7aa19292ff034c2217b643a75689092b74d7",
+      "case_id": "java_properties-line-99110cc7317eb2ac",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MWI.properties\nCopyright (c) 2010 IBM Corporation and others.\nAll rights reserved. This program and the accompanying materials\nare made available under the terms of the Eclipse Public License v1.0\nwhich accompanies this distribution, and is available at\nhttp://www.eclipse.org/legal/epl-v10.html\n\nContributors:\n    IBM Corporation - initial API and implementation",
+      "expected_cleaned_sha256": "d70ceccc5b89fcc5ddf0dad7181481d29b2eb6ff0047be14cd3eef6e0b6b67b9",
+      "language": "java_properties",
+      "raw_comment": "# MWI.properties\n#/*******************************************************************************\n# * Copyright (c) 2010 IBM Corporation and others.\n# * All rights reserved. This program and the accompanying materials\n# * are made available under the terms of the Eclipse Public License v1.0\n# * which accompanies this distribution, and is available at\n# * http://www.eclipse.org/legal/epl-v10.html\n# *\n# * Contributors:\n# *     IBM Corporation - initial API and implementation\n# *******************************************************************************/",
+      "raw_sha256": "0ced727ef002146a45d4f3eeda6ca740a07f7ae75e6d4401209071cc2c4ef33f",
+      "raw_utf8_length": 561,
+      "source_provenance": {
+        "source_excerpt_sha256": "8c9b8080693aa557138a91a2bcd00af770ba86da7406f51ce576f8a5d77c56ad",
+        "source_id": "52614f744c8711a97b74ecf71c8ac47dc469bc1e"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "b8b6a01065552c1b6501a7da26ca7aa19292ff034c2217b643a75689092b74d7",
+      "case_id": "java_properties-line-e1f61e1717e92eae",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MWI.properties\nCopyright (c) 2010 IBM Corporation and others.\nAll rights reserved. This program and the accompanying materials\nare made available under the terms of the Eclipse Public License v1.0\nwhich accompanies this distribution, and is available at\nhttp://www.eclipse.org/legal/epl-v10.html\n\nContributors:\n    IBM Corporation - initial API and implementation",
+      "expected_cleaned_sha256": "d70ceccc5b89fcc5ddf0dad7181481d29b2eb6ff0047be14cd3eef6e0b6b67b9",
+      "language": "java_properties",
+      "raw_comment": "# MWI.properties\n#/*******************************************************************************\n# * Copyright (c) 2010 IBM Corporation and others.\n# * All rights reserved. This program and the accompanying materials\n# * are made available under the terms of the Eclipse Public License v1.0\n# * which accompanies this distribution, and is available at\n# * http://www.eclipse.org/legal/epl-v10.html\n# *\n# * Contributors:\n# *     IBM Corporation - initial API and implementation\n# *******************************************************************************/",
+      "raw_sha256": "0ced727ef002146a45d4f3eeda6ca740a07f7ae75e6d4401209071cc2c4ef33f",
+      "raw_utf8_length": 561,
+      "source_provenance": {
+        "source_excerpt_sha256": "ca27fc1879117b5fefee07404f66ad763c5d305c313891540a87a7a684ee9704",
+        "source_id": "fcbb15eca4086449a6b78e074529a64c0771b8d3"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

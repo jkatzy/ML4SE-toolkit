@@ -1,0 +1,38 @@
+{
+  "case_id": "nwscript-block-8f55319f25710d85",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:multiline_gutter",
+  "disposition": "executable_regression",
+  "language": "nwscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "60352319079399ce74c78458af07ec4e1d9b7bf8cfe119e7fffaa4782739f56c",
+      "utf8_length": 355
+    },
+    "manifest_old_output": {
+      "sha256": "6f620c1f49970fb3fda4d17016e8e16ed6612751c38f8469b2998252996e3cd9",
+      "utf8_length": 148
+    },
+    "raw_comment": {
+      "sha256": "f7ecff208738630fe5252daa27885cac178382e0d1b12675950c12aa9ef98763",
+      "utf8_length": 360
+    },
+    "recommended_expected_output": {
+      "sha256": "6f620c1f49970fb3fda4d17016e8e16ed6612751c38f8469b2998252996e3cd9",
+      "utf8_length": 148
+    }
+  },
+  "regression": {
+    "expected_output": "Quest Builder Version 2.0\ncreated by: Forsettii\ncreated for: Layonara Online\nwebsite:  www.layonaraonline.com\nAugust 18, 2004\n\nGives Mail for Quests",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n        Quest Builder Version 2.0\n        created by: Forsettii\n        created for: Layonara Online\n        website:  www.layonaraonline.com\n        August 18, 2004\n\n        Gives Mail for Quests\n   -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1efc761f214cc94d1bc5f093e37f17f9052a690e0e3977364bbde463f0b886c2",
+    "source_id": "9f4d0d3e5c91fe4f5628736f637aefe8a1c895b9"
+  },
+  "source_record_sha256": "7c1648e0572714171e2cfa01a8b7a4cd9b0f3995aa3a609d7fac356e3b2fa303"
+}

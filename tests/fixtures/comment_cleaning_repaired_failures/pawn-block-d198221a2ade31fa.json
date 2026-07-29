@@ -1,0 +1,38 @@
+{
+  "case_id": "pawn-block-d198221a2ade31fa",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "pawn",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "59b1f9cee7729d94a35f27e95315e9cd30c5f3c1e151f7fb5bd2826eb9a94b74",
+      "utf8_length": 426
+    },
+    "manifest_old_output": {
+      "sha256": "e377f119a7ff8d2e4deca6738cd2cead20fe5510cbe0d8fd9f321bc143d5536e",
+      "utf8_length": 477
+    },
+    "raw_comment": {
+      "sha256": "f7f467a643a97638c3276d9a97988213caf6261115c8e8f41b75083a01f10d46",
+      "utf8_length": 527
+    },
+    "recommended_expected_output": {
+      "sha256": "e377f119a7ff8d2e4deca6738cd2cead20fe5510cbe0d8fd9f321bc143d5536e",
+      "utf8_length": 477
+    }
+  },
+  "regression": {
+    "expected_output": "\t\t _           _         _____  ____  _  __     __\n\t\t| |         | |       / ____|/ __ \\| | \\ \\   / /\n\t\t| |    _   _| | _____| (___ | |  | | |  \\ \\_/ /\n\t\t| |   | | | | |/ / _ \\\\___ \\| |  | | |   \\   /\n\t\t| |___| |_| |   <  __/____) | |__| | |____| |\n\t\t|______\\__,_|_|\\_\\___|_____/ \\___\\_\\______|_|\n\n//------------- NAPADY SYSTEM BY LukeSQLY -------------//\n//------------------------ VER 1.0 ----------------------//\n\n\nTODO:\n\nDoda\u0107 ograniczenie tworzenia napad\u00f3w co 1 godzin\u0119",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/* \n\t\t\t\t\t _           _         _____  ____  _  __     __\n\t\t\t\t\t| |         | |       / ____|/ __ \\| | \\ \\   / /\n\t\t\t\t\t| |    _   _| | _____| (___ | |  | | |  \\ \\_/ / \n\t\t\t\t\t| |   | | | | |/ / _ \\\\___ \\| |  | | |   \\   /  \n\t\t\t\t\t| |___| |_| |   <  __/____) | |__| | |____| |   \n\t\t\t\t\t|______\\__,_|_|\\_\\___|_____/ \\___\\_\\______|_|   \n\t\t\t\n\t\t\t//------------- NAPADY SYSTEM BY LukeSQLY -------------//\n\t\t\t//------------------------ VER 1.0 ----------------------//\n\n\n\t\t\tTODO:\n\n\t\t\tDoda\u0107 ograniczenie tworzenia napad\u00f3w co 1 godzin\u0119\n\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4ecb67a9a1c94c76e506911bb8d011415e6a19d423843387ae39343a2afda6d2",
+    "source_id": "a2d08878f449439157877c3084e6476d667e07b1"
+  },
+  "source_record_sha256": "a6f2c66f5e0cc686630b09cd297afd083b57ef68002930b6cb6541c81b75cfc3"
+}

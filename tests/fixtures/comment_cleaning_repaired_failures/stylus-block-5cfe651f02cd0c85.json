@@ -1,0 +1,38 @@
+{
+  "case_id": "stylus-block-5cfe651f02cd0c85",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "stylus",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "715d8bb5495adfd36eb90e279d8d13702f55adc05bd5b1fafe7782f8d373a8df",
+      "utf8_length": 57
+    },
+    "manifest_old_output": {
+      "sha256": "86900bc2634ac0b3e94ec976f5836e63a285835c02091ae2c9fb8c5d704e1e66",
+      "utf8_length": 9
+    },
+    "raw_comment": {
+      "sha256": "8b15b7f3843fa91745af1d8cbe6f65d5508cd5955c1aaff8c55b67024440a0fd",
+      "utf8_length": 63
+    },
+    "recommended_expected_output": {
+      "sha256": "86900bc2634ac0b3e94ec976f5836e63a285835c02091ae2c9fb8c5d704e1e66",
+      "utf8_length": 9
+    }
+  },
+  "regression": {
+    "expected_output": "Indicador",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*=================*\\\r\n    * Indicador *\r\n\\*=================*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0a703ffb2992c7a6b7816ae148a563dfe232e2fe9f3baf95e572057d81f863c4",
+    "source_id": "b3c4027db67b4ac19480f82b4a0a1b4e78566a3d"
+  },
+  "source_record_sha256": "e5ba8f0bf639b624ef5d034cb7f1ab8d4a055dad14d53a77999a61ab5419630d"
+}

@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "hocon_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "bb17500f170e0a41108ba9ea02a5c2d1c795fe78b4bce707e156825299e431a9",
+      "case_id": "hocon-line-8a28114a6baa74d1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PostgreSQL Journal\nakka.persistence.journal.plugin = \"akka.persistence.journal.postgresql\"\nakka.persistence.journal.postgresql.class = \"Akka.Persistence.PostgreSql.Journal.PostgreSqlJournal, Akka.Persistence.PostgreSql\"\nakka.persistence.journal.postgresql.plugin-dispatcher = \"akka.actor.default-dispatcher\"\nakka.persistence.journal.postgresql.connection-string = \"Server=127.0.0.1;Port=5432;Database=akka;User Id=akka;Password=Testing123;\"\nakka.persistence.journal.postgresql.connection-timeout = 30s\nakka.persistence.journal.postgresql.schema-name = public\nakka.persistence.journal.postgresql.table-name = event_journal\nakka.persistence.journal.postgresql.auto-initialize = on\nakka.persistence.journal.postgresql.timestamp-provider = \"Akka.Persistence.Sql.Common.Journal.DefaultTimestampProvider, Akka.Persistence.Sql.Common\"\nakka.persistence.journal.postgresql.metadata-table-name = metadata\n# defines column db type used to store payload. Available option: BYTEA (default), JSON, JSONB\nakka.persistence.journal.postgresql.stored-as = BYTEA",
+      "expected_cleaned_sha256": "b4e90075e370ff6379663e998bdd1cf81457601f940797de11a6bc42902cf8e7",
+      "language": "hocon",
+      "raw_comment": "### PostgreSQL Journal ###\n#akka.persistence.journal.plugin = \"akka.persistence.journal.postgresql\"\n#akka.persistence.journal.postgresql.class = \"Akka.Persistence.PostgreSql.Journal.PostgreSqlJournal, Akka.Persistence.PostgreSql\"\n#akka.persistence.journal.postgresql.plugin-dispatcher = \"akka.actor.default-dispatcher\"\n#akka.persistence.journal.postgresql.connection-string = \"Server=127.0.0.1;Port=5432;Database=akka;User Id=akka;Password=Testing123;\"\n#akka.persistence.journal.postgresql.connection-timeout = 30s\n#akka.persistence.journal.postgresql.schema-name = public\n#akka.persistence.journal.postgresql.table-name = event_journal  \n#akka.persistence.journal.postgresql.auto-initialize = on\n#akka.persistence.journal.postgresql.timestamp-provider = \"Akka.Persistence.Sql.Common.Journal.DefaultTimestampProvider, Akka.Persistence.Sql.Common\"\n#akka.persistence.journal.postgresql.metadata-table-name = metadata\n## defines column db type used to store payload. Available option: BYTEA (default), JSON, JSONB\n#akka.persistence.journal.postgresql.stored-as = BYTEA",
+      "raw_sha256": "3a0db7ad94141394fb99aa9cd050e4d3cd62d915276cc89c309e6430b1d7f42d",
+      "raw_utf8_length": 1065,
+      "source_provenance": {
+        "source_excerpt_sha256": "ce8f5b3d008e8bd8ab8fcd695b357662b18544e7df6d417bc9e8bcb013344039",
+        "source_id": "fbbfe62509bcf289ca5bc7471a56e484e209bb2d"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "447fed5b05c214890adf852b8ca848d44911b9ad8b32728e31d33caad7c06e9a",
+      "case_id": "hocon-line-9bc38af8766f2fe5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "general options\nsave_path = \"/home/chris/FoolsGold/deep-fg/save/\" # log path",
+      "expected_cleaned_sha256": "0314a2045253fa748a93d13e2311ffbd51c1f5e1c80de588fd79569335a8ed7a",
+      "language": "hocon",
+      "raw_comment": "# ------------- general options ----------------------------------------\n# save_path = \"/home/chris/FoolsGold/deep-fg/save/\" # log path",
+      "raw_sha256": "78ccaea8dd109af1daf8397f9341e4d9bfbbce7af667ca400867c2a7c827d099",
+      "raw_utf8_length": 135,
+      "source_provenance": {
+        "source_excerpt_sha256": "560fdf1adb6812c7037a1b9bcf5ae3b91f02e3986ed6cfc861db933db4dea769",
+        "source_id": "9ef0eb0172dbfb09a62aec5483f22fcae23385da"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "ce0c7e0c822c2cc39941dce069a628a9f4612e42fc041204d4aeeb9508d8cd30",
+      "case_id": "hocon-line-bc20d26dd2836539",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "adni options\ndata_path = \"~/data/lab_data/img_64_longitudinal/\"  # path for dataset folder",
+      "expected_cleaned_sha256": "73ff9ef465de11b11df299694e03645694d2ae1ff6fac656323f52bdb469d400",
+      "language": "hocon",
+      "raw_comment": "# -------------  adni options -------------------------------------------\n# data_path = \"~/data/lab_data/img_64_longitudinal/\"  # path for dataset folder",
+      "raw_sha256": "9bee3f33301e64628d84cd8bf6131765ada4f376d63a1bdce84ec1de89aec1a7",
+      "raw_utf8_length": 153,
+      "source_provenance": {
+        "source_excerpt_sha256": "f984507968d23e356c4376683f9011ffc8f215affb396c4c63221423df700c6a",
+        "source_id": "713c2c80352c06851b95dda1911d820a960587bb"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "lark-line-8167555d5ab62229",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ".*/",
+      "expected_cleaned_sha256": "995d2ad6f69bf2f6c2553d14343bce2f96ea3b302955938046f4b701256ae644",
+      "language": "lark",
+      "raw_comment": "#.*/",
+      "raw_sha256": "882c15e15f01a7aa52117d13146c72544d0b696c4497140911e87fcebb7ee68f",
+      "raw_utf8_length": 4,
+      "source_provenance": {
+        "source_excerpt_sha256": "1b44884adcd51217f1d7cb1153a02824ac80a4916ac2a6919c5dce65ff0a223a",
+        "source_id": "e7807fac4c7a07121010033497f26a6cfc06f9d1"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "f5ec8bb67223b08990c3d512b078e8a4a816746ef02309311ac9560f6d687408",
+      "case_id": "lark-line-f90ee87fd27198a4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\tUpdateTargetCallback callback = (Object target, String[] properties, Object value) ->{\n\t\tif((boolean)value){\n\t\t\ttarget[properties[0]][properties[1]] = \"cyan\";\n\t\t} else {\n//\t\t\talert(\"\" + target[tagProperty1][tagProperty2]);\n\t\t\t((CSSStyleDeclaration)target[properties[0]]).removeProperty(\"background-color\");\n//\t\t\talert(\"\" + target[tagProperty1][tagProperty2]);\n\t\t}\n\t};",
+      "expected_cleaned_sha256": "ac9b402c683531de2413612ffa73a817f926df2773342de83a1106c47aee9c21",
+      "language": "lark",
+      "raw_comment": "//\tUpdateTargetCallback callback = (Object target, String[] properties, Object value) ->{\r\n//\t\tif((boolean)value){\r\n//\t\t\ttarget[properties[0]][properties[1]] = \"cyan\";\r\n//\t\t} else {\r\n////\t\t\talert(\"\" + target[tagProperty1][tagProperty2]);\r\n//\t\t\t((CSSStyleDeclaration)target[properties[0]]).removeProperty(\"background-color\");\r\n////\t\t\talert(\"\" + target[tagProperty1][tagProperty2]);\r\n//\t\t}\r\n//\t};",
+      "raw_sha256": "892d30f92cfbb1ca5ae8b146493e12efd0964d235e94d64e4a8717e26acdc79e",
+      "raw_utf8_length": 394,
+      "source_provenance": {
+        "source_excerpt_sha256": "a6ce05b3d876022dbc06aa745c1600e03265e12b114dbcddf821c4c62bf22424",
+        "source_id": "c3d5cc71902c2ee9d66e9d584680a0d8917e6b2f"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

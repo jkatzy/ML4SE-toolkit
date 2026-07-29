@@ -1,0 +1,38 @@
+{
+  "case_id": "velocity_template_language-block-369c1b8a64e52d08",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "velocity_template_language",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "93670cba0938b5cc639836d8fb3091314b02575362025d3be2e7d8e81286986e",
+      "utf8_length": 237
+    },
+    "manifest_old_output": {
+      "sha256": "22421397b550e8213c49ec2f391a125e19e29402161595de50edd3f1c93eb76c",
+      "utf8_length": 235
+    },
+    "raw_comment": {
+      "sha256": "5bdfc7bde4048592324c8bd20eafd4747e1456a5920fa99e394dfc59ec99f0a7",
+      "utf8_length": 242
+    },
+    "recommended_expected_output": {
+      "sha256": "22421397b550e8213c49ec2f391a125e19e29402161595de50edd3f1c93eb76c",
+      "utf8_length": 235
+    }
+  },
+  "regression": {
+    "expected_output": "Resolvers with None data sources can locally publish events that fire\nsubscriptions or otherwise transform data without hitting a backend data source.\nThe value of 'payload' is forwarded to $ctx.result in the response mapping template.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#**\nResolvers with None data sources can locally publish events that fire\nsubscriptions or otherwise transform data without hitting a backend data source.\nThe value of 'payload' is forwarded to $ctx.result in the response mapping template.\n*#"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "429cf9c7ff73cc22aca1492939d1fe09902e6fb2b160c138363da1bc22cbac22",
+    "source_id": "c8adda519712358b17855e4289b68169385022f6"
+  },
+  "source_record_sha256": "db41853e67ed9b5525075a56267403e311b559f690a3ef962d31f58465357bbc"
+}

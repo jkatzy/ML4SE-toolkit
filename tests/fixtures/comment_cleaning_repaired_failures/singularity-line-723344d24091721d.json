@@ -1,0 +1,38 @@
+{
+  "case_id": "singularity-line-723344d24091721d",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u007e",
+  "disposition": "executable_regression",
+  "language": "singularity",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "54c773019c43ead4d0a99e73efc2430a53141dc152578a3395840d527d44527e",
+      "utf8_length": 154
+    },
+    "manifest_old_output": {
+      "sha256": "3572ee297a9ce182f68fd0baee1001f38574b809f04fde7607fc961385e94823",
+      "utf8_length": 76
+    },
+    "raw_comment": {
+      "sha256": "14967ce81f6b3e9f989397159f5cfbf6596c53d92e322db3fafc522d193f5e3d",
+      "utf8_length": 158
+    },
+    "recommended_expected_output": {
+      "sha256": "3572ee297a9ce182f68fd0baee1001f38574b809f04fde7607fc961385e94823",
+      "utf8_length": 76
+    }
+  },
+  "regression": {
+    "expected_output": "This sets global environment variables for anything run within the container",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# This sets global environment variables for anything run within the container"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "44b54828572dd0eaa7539f70750b92069936b93bf78c0d01647fa32ac8d4a70d",
+    "source_id": "5386f39e2336de0165b25026627937627acd4944"
+  },
+  "source_record_sha256": "a37f0daff3263beedc92d1e73988a83ef1d5755a7e839ee7d50502047ddc8170"
+}

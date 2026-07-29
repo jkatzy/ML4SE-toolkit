@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "sieve_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "8e73aa4426f1df94818eb61f4d95b445c5163d900e614d2a6b5c0cf0015e33af",
+      "case_id": "sieve-line-33777c4c998868fe",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Internal ML\nSUSEDE: https://mailman.suse.de/mailman/listinfo\nSUSECOM: http://lists.suse.com/mailman/listinfo\n\nML\n\u2514\u2500\u2500 SUSE\n    \u251c\u2500\u2500 security-team\n    \u2502   \u251c\u2500\u2500 xorg\n    \u2502   \u2514\u2500\u2500 samba\n    \u251c\u2500\u2500 security\n    \u2502   \u251c\u2500\u2500 xen\n    \u2502   \u2502   \u2514\u2500\u2500 security-advisory\n    \u2502   \u251c\u2500\u2500 mariadb\n    \u2502   \u251c\u2500\u2500 django\n    \u2502   \u251c\u2500\u2500 ceph\n    \u2502   \u251c\u2500\u2500 kubernetes\n    \u2502   \u251c\u2500\u2500 qemu\n    \u2502   \u251c\u2500\u2500 cloud-foundry\n    \u2502   \u2514\u2500\u2500 mitre\n    \u2502       \u251c\u2500\u2500 suse-cna\n    \u2502       \u2514\u2500\u2500 mitre\n    \u251c\u2500\u2500 maintsecteam\n    \u2502   \u251c\u2500\u2500 maintenance-wr\n    \u2502   \u251c\u2500\u2500 workreport\n    \u2502   \u2514\u2500\u2500 smash-smelt\n    \u251c\u2500\u2500 security-reports\n    \u2502   \u251c\u2500\u2500 embargo-alerts\n    \u2502   \u2514\u2500\u2500 chromium\n    \u251c\u2500\u2500 devel\n    \u251c\u2500\u2500 high-impact-vul\n    \u251c\u2500\u2500 high-impact-vul-info\n    \u251c\u2500\u2500 kernel\n    \u251c\u2500\u2500 linux\n    \u251c\u2500\u2500 maint-coord\n    \u2502   \u2514\u2500\u2500 QA Failed\n    \u251c\u2500\u2500 maintsec-reports\n    \u2502   \u2514\u2500\u2500 channels-changes\n    \u251c\u2500\u2500 research\n    \u251c\u2500\u2500 results\n    \u251c\u2500\u2500 secure-boot\n    \u251c\u2500\u2500 secure-devel\n    \u251c\u2500\u2500 security-intern\n    \u251c\u2500\u2500 security-review\n    \u251c\u2500\u2500 sle-security-updates\n    \u2502   \u251c\u2500\u2500 container\n    \u2502   \u2514\u2500\u2500 image\n    \u2514\u2500\u2500 users",
+      "expected_cleaned_sha256": "4d8d0b1eba91ab20115d8f99af185936c0f7bb62b7a62db433c9028ddcd4633a",
+      "language": "sieve",
+      "raw_comment": "#######################\n##### Internal ML #####\n#######################\n### SUSEDE: https://mailman.suse.de/mailman/listinfo\n### SUSECOM: http://lists.suse.com/mailman/listinfo\n#\n# ML\n# \u2514\u2500\u2500 SUSE\n#     \u251c\u2500\u2500 security-team\n#     \u2502   \u251c\u2500\u2500 xorg\n#     \u2502   \u2514\u2500\u2500 samba\n#     \u251c\u2500\u2500 security\n#     \u2502   \u251c\u2500\u2500 xen\n#     \u2502   \u2502   \u2514\u2500\u2500 security-advisory\n#     \u2502   \u251c\u2500\u2500 mariadb\n#     \u2502   \u251c\u2500\u2500 django\n#     \u2502   \u251c\u2500\u2500 ceph\n#     \u2502   \u251c\u2500\u2500 kubernetes\n#     \u2502   \u251c\u2500\u2500 qemu\n#     \u2502   \u251c\u2500\u2500 cloud-foundry\n#     \u2502   \u2514\u2500\u2500 mitre\n#     \u2502       \u251c\u2500\u2500 suse-cna\n#     \u2502       \u2514\u2500\u2500 mitre\n#     \u251c\u2500\u2500 maintsecteam\n#     \u2502   \u251c\u2500\u2500 maintenance-wr\n#     \u2502   \u251c\u2500\u2500 workreport\n#     \u2502   \u2514\u2500\u2500 smash-smelt\n#     \u251c\u2500\u2500 security-reports\n#     \u2502   \u251c\u2500\u2500 embargo-alerts\n#     \u2502   \u2514\u2500\u2500 chromium\n#     \u251c\u2500\u2500 devel\n#     \u251c\u2500\u2500 high-impact-vul\n#     \u251c\u2500\u2500 high-impact-vul-info\n#     \u251c\u2500\u2500 kernel\n#     \u251c\u2500\u2500 linux\n#     \u251c\u2500\u2500 maint-coord\n#     \u2502   \u2514\u2500\u2500 QA Failed\n#     \u251c\u2500\u2500 maintsec-reports\n#     \u2502   \u2514\u2500\u2500 channels-changes\n#     \u251c\u2500\u2500 research\n#     \u251c\u2500\u2500 results\n#     \u251c\u2500\u2500 secure-boot\n#     \u251c\u2500\u2500 secure-devel\n#     \u251c\u2500\u2500 security-intern\n#     \u251c\u2500\u2500 security-review\n#     \u251c\u2500\u2500 sle-security-updates\n#     \u2502   \u251c\u2500\u2500 container\n#     \u2502   \u2514\u2500\u2500 image\n#     \u2514\u2500\u2500 users",
+      "raw_sha256": "2ec81d07cca45228847de83a1cfe9f814b5fe67343247f0c5a47a97a6626747e",
+      "raw_utf8_length": 1450,
+      "source_provenance": {
+        "source_excerpt_sha256": "2ebd3b026c0c01a0d981dc5e2fabda0aec7442b4b5ee87997fb51184bbdf00ed",
+        "source_id": "42e16676f316a887b7ff02a594f70b258d489e83"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "9b9a1ad0fc5de9674697f4591f0f07b2454c0826e11cc0581c4a24c07bd412d2",
+      "case_id": "sieve-line-a7dfa86c0c5deb1b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "G I T L A B\nTOOLS\n\u2514\u2500\u2500 gitlab\n    \u2514\u2500\u2500 projects",
+      "expected_cleaned_sha256": "e59834edcba67b660847e3e9c1763dc75a84600687086f3c5ba700b74b5bfe8e",
+      "language": "sieve",
+      "raw_comment": "#######################\n##### G I T L A B #####\n#######################\n# TOOLS\n# \u2514\u2500\u2500 gitlab\n#     \u2514\u2500\u2500 projects",
+      "raw_sha256": "ffe413f92986dbefbf694d6d0f91097bc17bc4549577351c7b65a79577447dcd",
+      "raw_utf8_length": 123,
+      "source_provenance": {
+        "source_excerpt_sha256": "f10f53e14fbdf5fdb49ab4c80e62e8ec25226c7a277753b53939af7661f5b980",
+        "source_id": "b3bd1ab5bd6cb0792a74d97d015cca0ee5db8375"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "270e64f474187580237e6bf8e0bffe2d74cdde1c3c0ab05a8a7962ce80e60708",
+      "case_id": "sieve-line-d91222d2a4a8cffd",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "NEWS LETTER\nNL\n\u251c\u2500\u2500 noyb-gdprtoday",
+      "expected_cleaned_sha256": "9e498e450385a0d602d36d1eaf0b2f95075a314fc10ef9030b51972e7036238a",
+      "language": "sieve",
+      "raw_comment": "#######################\n##### NEWS LETTER #####\n#######################\n# NL\n# \u251c\u2500\u2500 noyb-gdprtoday",
+      "raw_sha256": "c428f4892958850d50523dbf3f53fdfdcd0be177b3a6da74967b493c4ed37a30",
+      "raw_utf8_length": 103,
+      "source_provenance": {
+        "source_excerpt_sha256": "974deafe7ae766863951948525782e57adeaaa7bc1687194073007e1cb8c10a4",
+        "source_id": "db286019eff8c26b4ae4f9f548730ca660b7d959"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

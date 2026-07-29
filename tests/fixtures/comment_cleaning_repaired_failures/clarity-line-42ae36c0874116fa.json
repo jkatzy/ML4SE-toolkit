@@ -1,0 +1,38 @@
+{
+  "case_id": "clarity-line-42ae36c0874116fa",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "clarity",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "48821342eb88b90962b9b92134cf129c3e10b651c8cb45dfbc10253fb7284ff7",
+      "utf8_length": 49
+    },
+    "manifest_old_output": {
+      "sha256": "87619189a9ca1c56496e2625bd3b138acd5a2b28431c44a18e8cfd3b090343fa",
+      "utf8_length": 7
+    },
+    "raw_comment": {
+      "sha256": "3960f4ffb5fe18766de743dcddc23b9ef993d74076cc5e3e914c10296fe1f911",
+      "utf8_length": 52
+    },
+    "recommended_expected_output": {
+      "sha256": "87619189a9ca1c56496e2625bd3b138acd5a2b28431c44a18e8cfd3b090343fa",
+      "utf8_length": 7
+    }
+  },
+  "regression": {
+    "expected_output": "SIP 010",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;;;;;;;;;;;;;;;;;;; SIP 010 ;;;;;;;;;;;;;;;;;;;;;;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6af921687d574307c0a81760cb835dfb9297befdcacd669a3cdae61d362cce48",
+    "source_id": "d56735d175ac73e1688cbb8f137b801ea9fc8627"
+  },
+  "source_record_sha256": "33bd5c3771be3cbccfa3338d0c8b345ae9ea77bfc3648d04bbba61a1d50a3824"
+}

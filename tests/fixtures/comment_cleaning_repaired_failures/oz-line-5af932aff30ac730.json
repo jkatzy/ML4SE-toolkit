@@ -1,0 +1,38 @@
+{
+  "case_id": "oz-line-5af932aff30ac730",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "oz",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ac4183ef3129344d795d8247c68f755cee8f9a67becc111e76a4cfcfb10b9f98",
+      "utf8_length": 507
+    },
+    "manifest_old_output": {
+      "sha256": "bba57faa048d52e64816590cfb0f5f709a6f6c1d5e93e297999cdc9931704bbf",
+      "utf8_length": 448
+    },
+    "raw_comment": {
+      "sha256": "0237eba22cbee530736f39c37744874ac26a5d8522ea94abbc18837b088cbd44",
+      "utf8_length": 528
+    },
+    "recommended_expected_output": {
+      "sha256": "bba57faa048d52e64816590cfb0f5f709a6f6c1d5e93e297999cdc9931704bbf",
+      "utf8_length": 448
+    }
+  },
+  "regression": {
+    "expected_output": "Authors:\n  Christian Schulte <schulte@ps.uni-sb.de>\n\nCopyright:\n  Christian Schulte, 1998\n\nLast change:\n  $Date: 2001-08-10 16:51:21 +0200 (Fri, 10 Aug 2001) $ by $Author: schulte $\n  $Revision: 14099 $\n\nThis file is part of Mozart, an implementation\nof Oz 3\n   http://www.mozart-oz.org/\n\nSee the file \"LICENSE\" or\n   http://www.mozart-oz.org/LICENSE\nfor information on usage and redistribution\nof this file, and for a DISCLAIMER OF ALL\nWARRANTIES.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%%\n%%% Authors:\n%%%   Christian Schulte <schulte@ps.uni-sb.de>\n%%%\n%%% Copyright:\n%%%   Christian Schulte, 1998\n%%%\n%%% Last change:\n%%%   $Date: 2001-08-10 16:51:21 +0200 (Fri, 10 Aug 2001) $ by $Author: schulte $\n%%%   $Revision: 14099 $\n%%%\n%%% This file is part of Mozart, an implementation\n%%% of Oz 3\n%%%    http://www.mozart-oz.org/\n%%%\n%%% See the file \"LICENSE\" or\n%%%    http://www.mozart-oz.org/LICENSE\n%%% for information on usage and redistribution\n%%% of this file, and for a DISCLAIMER OF ALL\n%%% WARRANTIES.\n%%%"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2127b19bbb8be744cb2e1eed586ef9c46a751bb2b7765664b8303e8c9333ef9f",
+    "source_id": "457164ffd393c547587b041062945cdcd1430617"
+  },
+  "source_record_sha256": "b35664ff362bb973cfeff9a6dfe758e59ec48d03cb467e7cfcdbfdd446a62da4"
+}

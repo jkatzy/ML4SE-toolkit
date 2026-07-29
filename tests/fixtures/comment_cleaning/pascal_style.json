@@ -4,8 +4,7 @@
   "canonical_language": "pascal",
   "language_keys": [
     "pascal",
-    "oxygene",
-    "portugol"
+    "oxygene"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

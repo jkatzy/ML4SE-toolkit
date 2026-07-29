@@ -1,0 +1,38 @@
+{
+  "case_id": "emberscript-block-ac265b4e42f871e0",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "emberscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "18be4284d97db0cd5b14eccd45f7279a3ab421e74476281129095f90be6a0f93",
+      "utf8_length": 84
+    },
+    "manifest_old_output": {
+      "sha256": "9ba5e536feb44e24f08422b7e82fcb69b4c5cfca19f9b9822ca7cf027443a48b",
+      "utf8_length": 81
+    },
+    "raw_comment": {
+      "sha256": "716ca93ff4b170f90c85eb861f2e432dfa682130bbd5b0790cc8dd31a463e245",
+      "utf8_length": 85
+    },
+    "recommended_expected_output": {
+      "sha256": "9ba5e536feb44e24f08422b7e82fcb69b4c5cfca19f9b9822ca7cf027443a48b",
+      "utf8_length": 81
+    }
+  },
+  "regression": {
+    "expected_output": "Priority rate may have to be modified depending on /CELL/MEMBRANE/ICaL:CICRFactor",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "### Priority rate may have to be modified depending on /CELL/MEMBRANE/ICaL:CICRFactor"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "dd802a07a33baad4a035bbda472d55e4169475617ff7dc0527b7f69963d6b0b6",
+    "source_id": "355bdd4376d5f0fb4dd0599a88a8277b7b9cfc47"
+  },
+  "source_record_sha256": "33854bf154a976f45b6107e7ec058e768675e172cbd12eecb4218c316d3cd243"
+}

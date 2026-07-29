@@ -1,0 +1,38 @@
+{
+  "case_id": "sourcepawn-block-087ce5d878a5202f",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "sourcepawn",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e510c6e57bd88bc32b580eea1241d210de144b7a21dcabf6dea6c309b1e8a275",
+      "utf8_length": 490
+    },
+    "manifest_old_output": {
+      "sha256": "e510c6e57bd88bc32b580eea1241d210de144b7a21dcabf6dea6c309b1e8a275",
+      "utf8_length": 490
+    },
+    "raw_comment": {
+      "sha256": "a5a43e02165edd02f6e35e78570324e07ca16cb9e9d6ad73f9802b172121ced9",
+      "utf8_length": 658
+    },
+    "recommended_expected_output": {
+      "sha256": "e510c6e57bd88bc32b580eea1241d210de144b7a21dcabf6dea6c309b1e8a275",
+      "utf8_length": 490
+    }
+  },
+  "regression": {
+    "expected_output": "\t\t\t\t\t\t\t\tNatives\n----------------------------------------------------------------------------\n\t- Natives will only work on alive survivors, if client isn't\n\tconnected, is not survivor or is dead, native will throw an error.\n\tOnly SU_SetSpeed can be called on dead survivors.\n\n\t- The option to stack the effects to survivors depends of the server\n\tConVar, so if you try to apply an effect to a player who already has\n\tthis effect, that may not stack, see plugin ConVars to see how they\n\twork.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*==========================================================================\n\t\t\t\t\t\t\t\tNatives\t\t\t\t\t\t\t\t\t  \n----------------------------------------------------------------------------\n\t- Natives will only work on alive survivors, if client isn't\n\tconnected, is not survivor or is dead, native will throw an error.\n\tOnly SU_SetSpeed can be called on dead survivors.\n\t\n\t- The option to stack the effects to survivors depends of the server\n\tConVar, so if you try to apply an effect to a player who already has\n\tthis effect, that may not stack, see plugin ConVars to see how they\n\twork.\n============================================================================*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "351611a24d60c7b70466afc3fe0e0f3593b553b205203bcc19aa8d8b43c0ec33",
+    "source_id": "bd70f096c6e22612f771459521605ced6ffe4046"
+  },
+  "source_record_sha256": "aaa958a06340f0f8cc06dd223164d44bb1fa7d8ab83e9e8326832f6a272ff75c"
+}

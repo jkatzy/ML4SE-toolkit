@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-d435914c6613576a",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7299218678aa00404a8cccd2fe2338035ca9b37d9db3072d873338ec0a7ce4a1",
+      "utf8_length": 218
+    },
+    "manifest_old_output": {
+      "sha256": "11d470c51f70a98cfd3f31994f336e8df5ef7c46e8d0f79c47bccd99ca14f451",
+      "utf8_length": 212
+    },
+    "raw_comment": {
+      "sha256": "a93c36d94510bf08292014c345371e766b0a7d4c31f3f7e27d2d7aaa4426cdd6",
+      "utf8_length": 227
+    },
+    "recommended_expected_output": {
+      "sha256": "11d470c51f70a98cfd3f31994f336e8df5ef7c46e8d0f79c47bccd99ca14f451",
+      "utf8_length": 212
+    }
+  },
+  "regression": {
+    "expected_output": "An object representing a container fetched from a PMS. All of the fetching\nand parsing of data is handled here. The XML is only parsed once, so\nsequential calls to things like GetNames and GetKeys should be fast.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'*\n'* An object representing a container fetched from a PMS. All of the fetching\n'* and parsing of data is handled here. The XML is only parsed once, so\n'* sequential calls to things like GetNames and GetKeys should be fast.\n'*"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "263397e9c374b6ecee593a0e340c186cc3b1b831d27029dfdab9a450dc4400c7",
+    "source_id": "38bddd39a056a8537ffaefd5818573f32bd21212"
+  },
+  "source_record_sha256": "7902ed23499efa65454cfb26e4928fd954cfb260e80dcf8984d28e02b834d9ff"
+}

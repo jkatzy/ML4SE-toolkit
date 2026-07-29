@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-59d9749aa50428f6",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "700984b162e2e0e0de180283d432ff8d7051d9f923af13aa6be0ed83ae3ae570",
+      "utf8_length": 79
+    },
+    "manifest_old_output": {
+      "sha256": "d68bb4fbd3f6522e4d44bf8a656955f18b499839c657ea59bddfccfee5e39199",
+      "utf8_length": 73
+    },
+    "raw_comment": {
+      "sha256": "f09808d340c6bfed54f55e9823768b3f0544288ac8b19df9886095a5ce3b050e",
+      "utf8_length": 94
+    },
+    "recommended_expected_output": {
+      "sha256": "d68bb4fbd3f6522e4d44bf8a656955f18b499839c657ea59bddfccfee5e39199",
+      "utf8_length": 73
+    }
+  },
+  "regression": {
+    "expected_output": "  project euler 6\n  https://projecteuler.net/problem=6\n\n/hoon/euler6/try/",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::    project euler 6\n::    https://projecteuler.net/problem=6\n::\n::::  /hoon/euler6/try/\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e970cd1b9a235639fde3d2d845aed5a435f8676e9ce4ad8732347e436aa87bdf",
+    "source_id": "481a12229c640495236a5968e089c6e192270dd7"
+  },
+  "source_record_sha256": "e7de68534f1795b59337a4e479eac0369ca089f4a7840b80f98745667b43a10c"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "plpgsql-line-f6f2f7797ff42087",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "plpgsql",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "be1bdb9e75fd5e3ed8e134302a7579ba7064595492d0a9d6f54a5306ecf48c0d",
+      "utf8_length": 33
+    },
+    "manifest_old_output": {
+      "sha256": "8a5b7c06448cc69d9c0930660a744da3a612b994aa4193f9267a995b025a4e53",
+      "utf8_length": 31
+    },
+    "raw_comment": {
+      "sha256": "83f90dc77f537141342d305a65bd312377778af6d05005fed783caf766d520b5",
+      "utf8_length": 35
+    },
+    "recommended_expected_output": {
+      "sha256": "8a5b7c06448cc69d9c0930660a744da3a612b994aa4193f9267a995b025a4e53",
+      "utf8_length": 31
+    }
+  },
+  "regression": {
+    "expected_output": "pgBouncer Auth Query User Setup",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--- pgBouncer Auth Query User Setup"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "da8d9b5063a7be32bf83af42628e5f2e52e3a031c7b11fc3e94d89f1185c4f61",
+    "source_id": "e2148956dc813e5206b09baa4e14753336cbb2ba"
+  },
+  "source_record_sha256": "12dc79526610314de24289a65355db50cce58a202b9032af217bd3bd668e05d9"
+}

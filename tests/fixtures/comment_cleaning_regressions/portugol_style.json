@@ -1,0 +1,224 @@
+{
+  "extractor_boundary_cases": [
+    {
+      "baseline_cleaned_sha256": "be04dbcd84cd43ac988244f7d71c0b565475d9b199e49e6281048efb55459e6f",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-26dd172c73a84300",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "61fd4bd63209924eda2099c550af334f4805d5ccf45dc6ce98779d4857bcde10",
+      "raw_sha256": "5bf9d6e82ad1b4c4bc06056b20b9a53c5a45e180636d26f77f1266fe951f9d78",
+      "raw_utf8_length": 838,
+      "source_provenance": {
+        "source_excerpt_sha256": "094f023460077aca4f3efe25c29d4b9bfb7f732c94249925590f80e3cb615cf5",
+        "source_id": "2dc6a8ff14a3521f29bceb7719f1e4ef288c5a1b"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "fb2ace36758e0333b6d479d9d5efe113ae28733be0204e71d45e612015cf6531",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-31987067d9211429",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "2b161af497affe9dad44d479b4b6d05ed0f57991a0c4bf8562931352bfaac793",
+      "raw_sha256": "312eababdeadfa478f285dd940a5a24455392a8075936559bb7ea5578e53b8d7",
+      "raw_utf8_length": 582,
+      "source_provenance": {
+        "source_excerpt_sha256": "ceb67466ce2952f03521d65ca380afe1119b1fc1353ece5923ded56279113dd5",
+        "source_id": "58b7326e28d18568d7d172c9975d0a46add86947"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "c37cadf75af97d60e98b35cfe98fe92dd51a6484247b62200191e6a317b863fc",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-3b8a77579665ba96",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "892f48958f4e0337fa209bef4a23e5aac8ddccd07ba5141803d71e30bb6d6aa9",
+      "raw_sha256": "ee3c8f706c8897b1e513ea6aa4f2ebf47e7c00fb8f684693a7cc2de452d1ea91",
+      "raw_utf8_length": 2398,
+      "source_provenance": {
+        "source_excerpt_sha256": "f5b1dc693aff061a31492d077213d9095eb4250b7d103393868afbcd6e8805c6",
+        "source_id": "11f80aa15b2e6d2b37d14c4d8426ded5e1f474bc"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "a6b231cb081a44f5960caee76a306ebb135c11a03310d9af9b1d1ea62446c3fb",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-98ea2916fd59de51",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "ac7f2f1ccddaad7e55588b04ea70dce2e02f60ae838244555bafbb59bbd296d6",
+      "raw_sha256": "2bc4dda802d49dd75bec154640e0b38ba4bd67531d26c06fe23f1876773e63d4",
+      "raw_utf8_length": 1725,
+      "source_provenance": {
+        "source_excerpt_sha256": "4de288e40db75ea3c163092b8ca9a93939232e8ecfbcc6209cf1f6b9a946783c",
+        "source_id": "f445d8ddbce29d14c41831ffb88e9770c3942a0b"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "ad1283645b2a5100fcd7579596336b3874c2e13f11a163cf9fd5806d9c232224",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-c13762cb355f33fe",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "0666f9a234be2ec9db36fcb9f3ca29c2d79319d924fc121d30828d670ace2b8c",
+      "raw_sha256": "a85786c7181d2c1757439327fd3e5bb67308ae12a1cd51a0b22b4352abd932c8",
+      "raw_utf8_length": 825,
+      "source_provenance": {
+        "source_excerpt_sha256": "43132d81a574ff7f3eda3e1612295b84ee1b95b85391c00fe3452f4c2cf03218",
+        "source_id": "b40651eecc3eb3643fa9f8b2d7a90a623d4aaafd"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "c51e5ff2901495cab8b306388a38279ac08c526d16752c76f11221133a4283eb",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-d919ed77adf5953b",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "405c7577e5718b26957df1f3b3e66efdcfc13e7e9aa5a2d52292801c59c411b8",
+      "raw_sha256": "bb49302233977154452a4dda6ca7fde0553bee1df314cbd4a11a9e887b5b15a1",
+      "raw_utf8_length": 999,
+      "source_provenance": {
+        "source_excerpt_sha256": "b7b4264765794438c9f1cc5b180b87597b8808e92fa5efd24a82d3f83be9fe3d",
+        "source_id": "1d1ccc065a730901b14e3b99dfd074e846359e03"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "0e0e87dacb9048716c6371745e0824d8c0e100ffa65bdfb46496796843c439ba",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-e9ed97501301c6ee",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "c48a8c1dcd61479257d54a090d7a62209bb9399ad7972cb3d3c2cf4fb0501256",
+      "raw_sha256": "f4cff05001e81a014e88d3b573bcbe8aa0da7f2edeb62f449544e752679ae075",
+      "raw_utf8_length": 850,
+      "source_provenance": {
+        "source_excerpt_sha256": "594f7c6aa36fb7324247bb17c6b687a9f96f29df7c2a21d09553d5c396cb5a81",
+        "source_id": "ca23418419ce3442c490bdf5ca17a3370cab726c"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "345e86f23c5c94dbb61dfb027a01c67f0533d7d7ae230ee583964a9b28f70f1d",
+      "boundary_assertion": {
+        "expected_match": "/* boundary */",
+        "expected_match_sha256": "0eb9ac5cedc9b6eead8e8fd513a01d94d32fe405217048f67bcb057b8c87e143",
+        "kind": "comment_query_first_embedded_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "{\n/* boundary */\nsource\n}",
+        "raw_sha256": "3deac2b493a0495ef597461af680a65ddf332f2841acacb8a86c80a01a86f895",
+        "raw_utf8_length": 25
+      },
+      "case_id": "portugol-nested-f34a5a575ff0569c",
+      "comment_kind": "nested",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "portugol",
+      "oracle_exception_record_sha256": "3e3dda51298b5fff684a40367fdd2cb4c84609fd8801626ceaee6dcb4a67963a",
+      "raw_sha256": "eae35baab8ff4d97dfb455a7387827c121688d981e09ecb6ede116cffd821089",
+      "raw_utf8_length": 11674,
+      "source_provenance": {
+        "source_excerpt_sha256": "63c57d16d1fddf3b25257bb2e5b7ce9baff538d0026522567bc24a591e133f83",
+        "source_id": "cff9dd0972b28ec4e9b3095a4aed12d1cb2211d0"
+      },
+      "syntax_label": "{...}"
+    }
+  ],
+  "family_name": "portugol_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [],
+  "schema_version": 5
+}

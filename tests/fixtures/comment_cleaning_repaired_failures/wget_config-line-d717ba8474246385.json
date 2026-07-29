@@ -1,0 +1,38 @@
+{
+  "case_id": "wget_config-line-d717ba8474246385",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "wget_config",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9517b7dbd7eb1136a5ab2891bd4307e0bcc93e08bde0b3756580b6b1e14d98bd",
+      "utf8_length": 73
+    },
+    "manifest_old_output": {
+      "sha256": "5ffa805984992445354cc1f6c7fc8dfed4c6b8cec51a64d2597cd20b7bfeb13c",
+      "utf8_length": 71
+    },
+    "raw_comment": {
+      "sha256": "cbaf1d5a368ffccbd0d0cdad32d45e42cf2760033a5edf2ddaf7c9ddc2619101",
+      "utf8_length": 74
+    },
+    "recommended_expected_output": {
+      "sha256": "5ffa805984992445354cc1f6c7fc8dfed4c6b8cec51a64d2597cd20b7bfeb13c",
+      "utf8_length": 71
+    }
+  },
+  "regression": {
+    "expected_output": "https://www.gnu.org/software/wget/manual/html_node/Wgetrc-Commands.html",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## https://www.gnu.org/software/wget/manual/html_node/Wgetrc-Commands.html"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b32cf5a110ea2bfdc09b97fb00b44264935ef65eeaa6d92ea398acae6f191828",
+    "source_id": "eb773a3d5e2e44412325b62a69fa078929cdda89"
+  },
+  "source_record_sha256": "ab8268e22c8d4e00bc121eec450e59a8aa051a6fe6d416fd78b906962a8490ff"
+}

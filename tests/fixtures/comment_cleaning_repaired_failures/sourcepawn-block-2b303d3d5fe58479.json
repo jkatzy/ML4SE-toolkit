@@ -1,0 +1,38 @@
+{
+  "case_id": "sourcepawn-block-2b303d3d5fe58479",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "sourcepawn",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "00a9cb6c4aa59dd44ae8ca5ace59f2977bfc5385a6fb938b6e66e154cdd66302",
+      "utf8_length": 28
+    },
+    "manifest_old_output": {
+      "sha256": "458757f4a4d62be9486fc759f407c00abdf4a9a5dcca5a58981815a2b1506c01",
+      "utf8_length": 26
+    },
+    "raw_comment": {
+      "sha256": "a4d8bdae604e4e2a9390dba9f610a58490a37bb091deeec0b08627988f441912",
+      "utf8_length": 38
+    },
+    "recommended_expected_output": {
+      "sha256": "458757f4a4d62be9486fc759f407c00abdf4a9a5dcca5a58981815a2b1506c01",
+      "utf8_length": 26
+    }
+  },
+  "regression": {
+    "expected_output": "Maintain team client masks",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/** \n * Maintain team client masks\n */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c0b819682710dd62de9ff5015a5f3d75873631382a4917d41ea5dcfa638e3ade",
+    "source_id": "81d2ea4ca85872081277735df9f9a6d00572e565"
+  },
+  "source_record_sha256": "2bff2b2ef2816a9f85041eef1469e0d11afd6142d1f51b640cf1dda59a1ab020"
+}

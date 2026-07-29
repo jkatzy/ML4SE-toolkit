@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-b047507b4807e2e4",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f881fb5fff00a0c8a20fef44421264d5799815b6ca5e42056368a6764d355988",
+      "utf8_length": 363
+    },
+    "manifest_old_output": {
+      "sha256": "bedbbe4e367d8300f7d1d285a454362c96191cb7878ed87bd9370871eb978737",
+      "utf8_length": 341
+    },
+    "raw_comment": {
+      "sha256": "ad8bd50085224d7d2b7edbb850e49ce4fc41b0eb188573abcfc6250bf3d82b69",
+      "utf8_length": 369
+    },
+    "recommended_expected_output": {
+      "sha256": "bedbbe4e367d8300f7d1d285a454362c96191cb7878ed87bd9370871eb978737",
+      "utf8_length": 341
+    }
+  },
+  "regression": {
+    "expected_output": "Java keywords (along with substitutions) as specified in the\n[Java Language Specification, Version 8.0](https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.9)\nand, in addition, \"true\", \"false\", and \"null\"\n\nIt is, for instance, possible to name a frege item _int_, though\nin the generated java code, this will appear as @$int@.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n * Java keywords (along with substitutions) as specified in the\n * [Java Language Specification, Version 8.0](https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.9)\n * and, in addition, \"true\", \"false\", and \"null\"\n *\n * It is, for instance, possible to name a frege item _int_, though\n * in the generated java code, this will appear as @$int@.\n *\n -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "52ff2bfa0a8c982a249b31388010c22f636fcbf2e38e7e8a9e83a06825ae998b",
+    "source_id": "bec95c5bfdd5e04e4dbcf2cf8eea6fcfc7cc94b0"
+  },
+  "source_record_sha256": "3069a0ce7979f12fb722562cda171198b06bc4d70d6f901bc3d11c990dcdf583"
+}

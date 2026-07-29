@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-3078534cd84ca5ba",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "85b78fa129974cdb85910737b936a4787303033e7f9d2c2e214bab21df5e35cc",
+      "utf8_length": 203
+    },
+    "manifest_old_output": {
+      "sha256": "a014e7342430231cf3d4f9c5637be034906dfbcf58d48e61b835bbf2f06cb2c2",
+      "utf8_length": 192
+    },
+    "raw_comment": {
+      "sha256": "ff74f61600782260a14b259076e9ff25b234424c5092802edfa814c90f85020c",
+      "utf8_length": 377
+    },
+    "recommended_expected_output": {
+      "sha256": "a014e7342430231cf3d4f9c5637be034906dfbcf58d48e61b835bbf2f06cb2c2",
+      "utf8_length": 192
+    }
+  },
+  "regression": {
+    "expected_output": "Library for representation and computation of narrowings on first-order\nterms and representation of narrowing strategies.\n\n@author Jan-Hendrik Matthes\n@version October 2020\n@category algorithm",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--------------------------------------------------------------------------------\n--- Library for representation and computation of narrowings on first-order\n--- terms and representation of narrowing strategies.\n---\n--- @author Jan-Hendrik Matthes\n--- @version October 2020\n--- @category algorithm\n--------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "652916341895a4eb2469ca7638283442335e1a805553520a92ffca84225187fb",
+    "source_id": "62f4bc555eebb3efd6ab94f790ab7b2cea2a51aa"
+  },
+  "source_record_sha256": "2dc042a484a149615e39c3e22980924f2a2f3e9fe71dca2dcdb5907068d54c03"
+}

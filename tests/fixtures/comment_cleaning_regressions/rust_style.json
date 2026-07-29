@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "rust_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "b79e0dd45a3b236980fdc3cf9ee6db9f82353480b93eb0e9a4afd815ade8ebb0",
+      "case_id": "rust-block-a1a0df73546c97a9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Ipv4 and Ipv6 layer",
+      "expected_cleaned_sha256": "7403abb80808d56e523e0b3d53077b953dffc25e068c3861fd75409b3dc2b683",
+      "language": "rust",
+      "raw_comment": "/*!\nIpv4 and Ipv6 layer\n*/",
+      "raw_sha256": "620c347665a5ad64ee6361d02f61a9f45d9d0ff7c0f8eff7bbb8d99b602c8213",
+      "raw_utf8_length": 26,
+      "source_provenance": {
+        "source_excerpt_sha256": "06e29b56bab8009e01c10d6e42019656f0a7e48232742afbd1a61ae6355e1370",
+        "source_id": "01c388705a8c48e25950ef0e9c786f4040f87fac"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "873ba5b7d1010bc1a25fcc2023152be0e5375e686c585ea50fe998d8c77b8e66",
+      "case_id": "rust-block-fa26a1cf78bdd6a4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Pin configuration.\n\nSome pins that could be configured here may be missing from actual MCU depending\non the package.",
+      "expected_cleaned_sha256": "83236922cc8da52e1808f5301e13e2fe22b58be9f139a97291966ebd91a5761e",
+      "language": "rust",
+      "raw_comment": "/*!\nPin configuration.\n\nSome pins that could be configured here may be missing from actual MCU depending\non the package.\n*/",
+      "raw_sha256": "263394347830edb32531b50acc171c5877a03c91c1a746e668567c3d5e8808eb",
+      "raw_utf8_length": 123,
+      "source_provenance": {
+        "source_excerpt_sha256": "2085e6dc0de5ee820df1eea7abf345b97ba4a46a5cd77b845183bb4b0e32f655",
+        "source_id": "57857535e9fc70ab2331ca8d8c78568c25200734"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

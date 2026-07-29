@@ -1,0 +1,38 @@
+{
+  "case_id": "coldfusion-block-552667880b287568",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:multiline_gutter",
+  "disposition": "executable_regression",
+  "language": "coldfusion",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ccf19f3880d426afb8572ae2643a42e809f2cc2492970d26470df3da717a6362",
+      "utf8_length": 553
+    },
+    "manifest_old_output": {
+      "sha256": "4b9507282ca7d923f0dcc0fe16937a5d62567c9acac2f105e914dac9c3020d50",
+      "utf8_length": 549
+    },
+    "raw_comment": {
+      "sha256": "be54d382794140aa46d53c5b74ab74e7dbfffe51774a53bc280ab01bce1be197",
+      "utf8_length": 582
+    },
+    "recommended_expected_output": {
+      "sha256": "4b9507282ca7d923f0dcc0fe16937a5d62567c9acac2f105e914dac9c3020d50",
+      "utf8_length": 549
+    }
+  },
+  "regression": {
+    "expected_output": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<fusedoc fuse=\"Marquee_H.cfm\" language=\"ColdFusion\">\n\t<responsibilities>\n\t\tCross browser marquee script. I display a horizontal marquee.\n\t</responsibilities>\n\t<properties>\n\t\t<history email=\"ron@rongallant.com\" type=\"create\" date=\"2002-02-22\" />\n\t</properties>\n\t<io>\n\t\t<in>\n\t\t\t<string name=\"attributes.Width\" format=\"CFML\" />\n\t\t\t<string name=\"attributes.Height\" format=\"CFML\" />\n\t\t\t<string name=\"attributes.Speed\" format=\"CFML\" />\n\t\t\t<string name=\"attributes.Contents\" format=\"CFML\" />\n\t\t</in>\n\t</io>\n</fusedoc>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!--- -->\r\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<fusedoc fuse=\"Marquee_H.cfm\" language=\"ColdFusion\">\r\n\t<responsibilities>\r\n\t\tCross browser marquee script. I display a horizontal marquee.\r\n\t</responsibilities>\r\n\t<properties>\r\n\t\t<history email=\"ron@rongallant.com\" type=\"create\" date=\"2002-02-22\" />\r\n\t</properties>\r\n\t<io>\r\n\t\t<in>\r\n\t\t\t<string name=\"attributes.Width\" format=\"CFML\" />\r\n\t\t\t<string name=\"attributes.Height\" format=\"CFML\" />\r\n\t\t\t<string name=\"attributes.Speed\" format=\"CFML\" />\r\n\t\t\t<string name=\"attributes.Contents\" format=\"CFML\" />\r\n\t\t</in>\r\n\t</io>\r\n</fusedoc>\r\n--->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "76dea7cc986273cc4f51bf48770c332d7a0a81ebd2038f75e0b433bf91dfa976",
+    "source_id": "a75ca65857cf932c89aff87898eec34bf727812e"
+  },
+  "source_record_sha256": "ca93e2a686d4e7e4894f5d99b9c20a7bda719edfe1a6395680c36ca2590ea484"
+}

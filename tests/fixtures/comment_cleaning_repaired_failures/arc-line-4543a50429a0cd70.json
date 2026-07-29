@@ -1,0 +1,38 @@
+{
+  "case_id": "arc-line-4543a50429a0cd70",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "arc",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "89684cdc580cd40d55db89d685b2dad879bd3f29e41c16fd3bc0102d5adda4d0",
+      "utf8_length": 40
+    },
+    "manifest_old_output": {
+      "sha256": "7d14afeaa7db1cad86fa07d4a594f62619ef4cfbfc4b934cb43c247f1ee04a55",
+      "utf8_length": 38
+    },
+    "raw_comment": {
+      "sha256": "df315aa0ef0b18f13510d368139ebcf95318ad3abc84ced1b8272ce0d625dabe",
+      "utf8_length": 43
+    },
+    "recommended_expected_output": {
+      "sha256": "7d14afeaa7db1cad86fa07d4a594f62619ef4cfbfc4b934cb43c247f1ee04a55",
+      "utf8_length": 38
+    }
+  },
+  "regression": {
+    "expected_output": "ui.arc - The user inteface (the pages)",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; ui.arc - The user inteface (the pages)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1ac8f77e166d32c2b85f9ca7ae9f0f70578ce96a6b80b1fd70f0cdc3dcbcb834",
+    "source_id": "adf0e8caefa6a7c552848a000b2afda43a0feccc"
+  },
+  "source_record_sha256": "a2f583902b96c4375e50115a98cdb0298410d11c62d921c58685c61eae29d27e"
+}

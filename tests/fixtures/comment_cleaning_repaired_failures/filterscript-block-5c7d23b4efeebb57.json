@@ -1,0 +1,38 @@
+{
+  "case_id": "filterscript-block-5c7d23b4efeebb57",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "filterscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "1dcf390c4f4ca5e65c4286c3ce507c7ae44d23e97fff2db1948ac3aff60d4cfb",
+      "utf8_length": 168
+    },
+    "manifest_old_output": {
+      "sha256": "7eac5b335a0e22d24f32a2758bab5adfdf95866e9b094b4796c2fa5acc8bfb5f",
+      "utf8_length": 285
+    },
+    "raw_comment": {
+      "sha256": "c126b87b3b3152852c326837a08d1b30e5e181d13782d4886d9df62a9357ff25",
+      "utf8_length": 313
+    },
+    "recommended_expected_output": {
+      "sha256": "7eac5b335a0e22d24f32a2758bab5adfdf95866e9b094b4796c2fa5acc8bfb5f",
+      "utf8_length": 285
+    }
+  },
+  "regression": {
+    "expected_output": "                                             _    __ ____\n _ __  ___ _____   ___   __  __   ___ __     / |  / /  __/\n|  _ \\/ _ |  _  | / _ | / / / /  / __/ /    /  | / / /__\n|  __/ __ |  ___|/ __ |/ /_/ /__/ __/ /__  / / v  / /__\n|_| /_/ |_|_|\\_\\/_/ |_/____/___/___/____/ /_/  /_/____/",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/**                                               _    __ ____\n *   _ __  ___ _____   ___   __  __   ___ __     / |  / /  __/\n *  |  _ \\/ _ |  _  | / _ | / / / /  / __/ /    /  | / / /__\n *  |  __/ __ |  ___|/ __ |/ /_/ /__/ __/ /__  / / v  / /__\n *  |_| /_/ |_|_|\\_\\/_/ |_/____/___/___/____/ /_/  /_/____/\n *\n */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d15111f5260b2b618253aa12a5fc56c40475ca28eea31d69d0d76767f92218e0",
+    "source_id": "4ba6dbbdb6e5f753f79a23f51e3532060d631bb4"
+  },
+  "source_record_sha256": "2dc49d54b32ae2b6723f0868e5356e312ff8920544144f1951db263ae990b72a"
+}

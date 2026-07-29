@@ -1,0 +1,38 @@
+{
+  "case_id": "xtend-line-39b5aee2b833e13c",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "xtend",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6c9732188176df6a8fa3e541823c0c2c03fe44d08528a6ed16aef31698e89117",
+      "utf8_length": 35
+    },
+    "manifest_old_output": {
+      "sha256": "5dd6bbe969351adc72fe6c2f666b425f2ef16a60466a10452eabd91d1d8482d7",
+      "utf8_length": 31
+    },
+    "raw_comment": {
+      "sha256": "b1c26121256f8c028185844835a64f0a2c3b27fba829a65edb958b922e4056bd",
+      "utf8_length": 39
+    },
+    "recommended_expected_output": {
+      "sha256": "5dd6bbe969351adc72fe6c2f666b425f2ef16a60466a10452eabd91d1d8482d7",
+      "utf8_length": 31
+    }
+  },
+  "regression": {
+    "expected_output": "Sculptor code formatter imports",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/// Sculptor code formatter imports ///"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5894635d968cd62bedbfb1a7668eef771cab07e963e780c6daf5890f51580a1d",
+    "source_id": "6a3480ff6669601062b2e643254845067df2cd88"
+  },
+  "source_record_sha256": "2f90ab503d7a7487d43bf9abab3caa9471155ea30ae8dfe1298b0cedd527d0cb"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "witcher_script-line-7cc3a1c6714cfcbb",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "witcher_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0f6df5739bd8777191d5c628fcabe323e9d31de27c50087a2defc207d4d33b93",
+      "utf8_length": 38
+    },
+    "manifest_old_output": {
+      "sha256": "2dbd7e58686723c73a56f0bc561d64647dfdddfc92c63a20c92f01ab51aba874",
+      "utf8_length": 27
+    },
+    "raw_comment": {
+      "sha256": "ff8c1b45a2bdb8dbdadcc4bfd697f368c96b3143f127b8f6fc7213b0b81cf63c",
+      "utf8_length": 127
+    },
+    "recommended_expected_output": {
+      "sha256": "2dbd7e58686723c73a56f0bc561d64647dfdddfc92c63a20c92f01ab51aba874",
+      "utf8_length": 27
+    }
+  },
+  "regression": {
+    "expected_output": "CAMERA EFFECT TRIGGER CLASS",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////\n// CAMERA EFFECT TRIGGER CLASS\t       \t//\n//////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1a670da2fe77bcee1c0cd0b8af410449885b932268399f3ab49c20f52a1c37b4",
+    "source_id": "1281577d3405528b9a838704b60b3bc8082e62a1"
+  },
+  "source_record_sha256": "daf93c01fe30d660174bd6813d66d171ef293fa179c6a4d17ca307eab62e0a27"
+}

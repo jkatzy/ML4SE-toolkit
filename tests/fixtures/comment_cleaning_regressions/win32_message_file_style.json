@@ -1,0 +1,604 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "win32_message_file_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "538dbd2dbe6203a670e3c7f8a5db7bf840807380ff1faa1f24e32bd275ec7c32",
+      "case_id": "win32_message_file-directive-29b9fc01dd8a2fec",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "bdc5386143565b60394e189d9d89f58824e1e0c3bdde05460111ce4ce11458f0",
+      "raw_sha256": "17180b94340a349642c0c0104350abafea9d963b569c64374b294d3e187204e3",
+      "raw_utf8_length": 601,
+      "source_provenance": {
+        "source_excerpt_sha256": "f96d7a06f3fd32809dac6854084b6352acaa6d8f4c7a0c38e016d3bff15e6ffe",
+        "source_id": "d5957bc4fdf81f9ebb37211f1925fa2312530c7b"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "29f2a5b56ddeebdbc9b0ba3afe503c22cfcd82ab58ee6830eaeab516a9503de5",
+      "case_id": "win32_message_file-directive-34d12e114699e434",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "738427985a7a7bbc88db6ba24bcbc6d1b4025f84dc9980f8532bcfafb210da44",
+      "raw_sha256": "ebd6a18cb1118f2df1f6e9173af5fec677fdd6283c1c625fb4ace92a18a8cdd0",
+      "raw_utf8_length": 320,
+      "source_provenance": {
+        "source_excerpt_sha256": "ac2bd11eb59efd9a23c4029bbd7ca5129cfe175cbb34d11e1509ef99f8593ed1",
+        "source_id": "254d3189b27373cf3f09b2cc4c9521938e7b0499"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "568634bc989ea8bf652a7f760c489b03f2cde2a20312dc1dda7007d56af061c4",
+      "case_id": "win32_message_file-directive-3ca20db141b60999",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "752a57b4985ca4d9aa0b396d006fa27f5403121b7789c2b95ff6044336da0475",
+      "raw_sha256": "67d1de7182809c073130d92854d3168954af7637baf9fff5e0ac58328691e39a",
+      "raw_utf8_length": 577,
+      "source_provenance": {
+        "source_excerpt_sha256": "7132607ace8ab1352741916fd4445d57a9b4b4f5122f9146feece545464bc1ab",
+        "source_id": "2fe3a08d8433ac127756f0a0552c5e1aba030a53"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "4ac0bf5cc204a41ed64b056f3c7ebaeda5f25dbd2beb0ffe562879c9f641e997",
+      "case_id": "win32_message_file-directive-41e188c205bac2a4",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "3871d15685082183e7d6e9c9f888b9af1ded3cc4b49f38ee77f6bd697269625e",
+      "raw_sha256": "e6fb042fce493aa08108090250c55562856917843bdc5b4313362d1f2e8064ae",
+      "raw_utf8_length": 382,
+      "source_provenance": {
+        "source_excerpt_sha256": "0972f06687cf8750c10703590b5bbcf8b3dee8a862d6c276341afaa965315c53",
+        "source_id": "3cb038ba1d76b31141780737c1e7ed06423ddf54"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "17f47a1acfce42dffe454c8a564291fb802369c57c5f0a7fecb702f154f14082",
+      "case_id": "win32_message_file-directive-472982d0f08581dc",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "503388b3c818bba2a7b5442f6030a7e8377539fdea3ec1b27bdfc0789071684c",
+      "raw_sha256": "17f47a1acfce42dffe454c8a564291fb802369c57c5f0a7fecb702f154f14082",
+      "raw_utf8_length": 567,
+      "source_provenance": {
+        "source_excerpt_sha256": "e46d3225efc59349e540c57e100469db25ee6ef758427476742686e82f770b02",
+        "source_id": "5a6d5a66377707f87e808314562698501db075b5"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "d70a9842e1f39aaaedb15e720375a6720285a51d6d4406d97b1c10021f9d54bc",
+      "case_id": "win32_message_file-directive-48b4e07259b92b78",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "cc0e593f2d0459de5c02f62c31b7da4ffa1228830f6fba82cb631882a39582fe",
+      "raw_sha256": "d70a9842e1f39aaaedb15e720375a6720285a51d6d4406d97b1c10021f9d54bc",
+      "raw_utf8_length": 803,
+      "source_provenance": {
+        "source_excerpt_sha256": "ebd7633c3c764d220ac14a3080fa795fe6d1bfaa5fc072584e6865b55117fecd",
+        "source_id": "92a50e569300b801ee601bac3e94e63355d8799a"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "c33e87e9cc260a622d5b295e19264c3f4e47125ab4988a079cad2cf33eee06f7",
+      "case_id": "win32_message_file-directive-4979b3181a921780",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "bb6625fd729184e55e84d72727ffa406cd4ecb8b3bb4a7ffdbcbb0f436ab2437",
+      "raw_sha256": "c33e87e9cc260a622d5b295e19264c3f4e47125ab4988a079cad2cf33eee06f7",
+      "raw_utf8_length": 323,
+      "source_provenance": {
+        "source_excerpt_sha256": "d0f8b42a97eeb597322c382703b68051370bf83e067886c4354ab98a101b7eee",
+        "source_id": "e4f00b0d68b15585a2730eef279c72c13212457a"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "01aca75a0532c62a910a03ea192956c3d28890424b43d4e846bc14597f702357",
+      "case_id": "win32_message_file-directive-4fa02c036ebaf3ec",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "f2a302dc6d05d85960117de4a27ffeb4d6efc15be7ea019e62133f7bcad0c47b",
+      "raw_sha256": "01aca75a0532c62a910a03ea192956c3d28890424b43d4e846bc14597f702357",
+      "raw_utf8_length": 313,
+      "source_provenance": {
+        "source_excerpt_sha256": "244dd11b1c2fc8bc2ba60585806d44464dff137c4016dba21c516c0a0c896afc",
+        "source_id": "12b8a4d5b5cb312e7090ee686f768afb942f8568"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "571da8cd54035ccfe3f335423edd843dec4f92ea85353fd4d1447d84d8e09613",
+      "case_id": "win32_message_file-directive-52dacc5b1b50ff39",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "2d6f7afe9b7b9753ba2505ef991687cad4a57adcd55cc7d7b7ad57d1047a8f38",
+      "raw_sha256": "64edf49ec35cd1ee5a1abd74b103cc3f1a574ac8ccd2973ebd087f8bf494f547",
+      "raw_utf8_length": 410,
+      "source_provenance": {
+        "source_excerpt_sha256": "84e3fe645ce689e951740673b19a79ce5f2c31f834aef2df771e3f1154b27229",
+        "source_id": "b31d173c79d0dd385b6c9d85ed4fc8a525662f03"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "bde2f563c723951206fc81a4ff04910f77f6de816d620efb4a00794922bd13b2",
+      "case_id": "win32_message_file-directive-5833ef003c797086",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "8c91965bc5a8e49d031e627b37882ce5964c4a6f84d78c0c01c09cf9886f6af3",
+      "raw_sha256": "bde2f563c723951206fc81a4ff04910f77f6de816d620efb4a00794922bd13b2",
+      "raw_utf8_length": 450,
+      "source_provenance": {
+        "source_excerpt_sha256": "91f1d72ee32f31ba9782ddd2093b296a6a557a31bfd850f7e1193ef1043c318a",
+        "source_id": "822e78dc22e9c994b5d585246f5d0f1273e64915"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "a7313ede344020a6ab0519ff7dfd0cef1b6d59f3673953963c9d73e8b179fa16",
+      "case_id": "win32_message_file-directive-5b91f9c4b962d7a6",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "0f7300cb46aeedede24ad7511bd516155bed757181358e79599e9f4706ba23d8",
+      "raw_sha256": "a7313ede344020a6ab0519ff7dfd0cef1b6d59f3673953963c9d73e8b179fa16",
+      "raw_utf8_length": 1017,
+      "source_provenance": {
+        "source_excerpt_sha256": "d74b4900082c5a13023debd85fcc61d50ebc397b03b2b27ab8f5c2b9d4ae64b9",
+        "source_id": "5b7572dd66348fa11a7437fd4a4e4335b3495eb5"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "ca4482d6c93d1b61ca4eb38abd2705ebe83b4b7ec64c84f9f9715922ac683584",
+      "case_id": "win32_message_file-directive-745134bc5dfcb6a1",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "be2a10f1ee16918a6cb01f3812b3cb1c48cb9b2ca645b91c3d50aed7bc450e42",
+      "raw_sha256": "2b45f6efbca51f6c7e8edc5c1af3851d2bfd4e87f43f9886888e47356800897f",
+      "raw_utf8_length": 1060,
+      "source_provenance": {
+        "source_excerpt_sha256": "7e2337d5994a43218b669592769f8d1918ff5440e8f2b5cf1f38db91805e6fa2",
+        "source_id": "7d11b63c50b4427800d185e933f11ef9df99d49e"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "558de602b5540ff94170aaf21fe9c6b2521bfd5d91347ea704fda69b473ff388",
+      "case_id": "win32_message_file-directive-a2adfa284a1c6595",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "a1882253b083761409083b0f5e3b551406d722af46eca4fc9213dc36448a6053",
+      "raw_sha256": "2859add13421db171edc5c12f8b2af5687ad3f6a6dac72c8f71dc1257596f36a",
+      "raw_utf8_length": 1027,
+      "source_provenance": {
+        "source_excerpt_sha256": "b70315430dfb7d41b35fd7a72d08ee046a5215b33944b06ff8c39abc240e056d",
+        "source_id": "6e9fccee0f81f811f60b04ad94fd98fd23fd602c"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "d7f268044ab28e0e3d22f84c0f17824e26a0f47634e5536dd3b7052a1cda0892",
+      "case_id": "win32_message_file-directive-ac6c29e0ea184679",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "ea2ec11d5f83a6959ff90fbb8305257e91c171518a058741ddae44944b43c0ca",
+      "raw_sha256": "d7f268044ab28e0e3d22f84c0f17824e26a0f47634e5536dd3b7052a1cda0892",
+      "raw_utf8_length": 292,
+      "source_provenance": {
+        "source_excerpt_sha256": "953c50a5a35f4b06af4d7dea6186f0df809ec2458ffecd0795d4d3c2e33be9ed",
+        "source_id": "99111df623ae401d3cf3a95eba3a3c5db3763011"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "c18cd019e3f5fdf0b791fc1ae908ee7d979d98054f8a8d65d3ca9d43a5e39a4a",
+      "case_id": "win32_message_file-directive-b3cc78d98d8ff041",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "2bc78b0ee7d227be7abaff1cad38e7b984c2cf2effdc38ace0b9478a74da5fd7",
+      "raw_sha256": "c18cd019e3f5fdf0b791fc1ae908ee7d979d98054f8a8d65d3ca9d43a5e39a4a",
+      "raw_utf8_length": 910,
+      "source_provenance": {
+        "source_excerpt_sha256": "bb7c0ed2cf99dce1793681ca2b47adcb525763aa1114a7a01999640be1a61cfd",
+        "source_id": "a16b3c83e189f4bb1e1a78fa949842abf51da1e5"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "ed92119222204e06d241def71ecc03cb252dbbebca1bb4427362b8186bdb8548",
+      "case_id": "win32_message_file-directive-c51c344493dcf2e8",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "3481a3063f896d000ae03840922e8675aa573eee186d279d7dd52edec26949e3",
+      "raw_sha256": "ed92119222204e06d241def71ecc03cb252dbbebca1bb4427362b8186bdb8548",
+      "raw_utf8_length": 894,
+      "source_provenance": {
+        "source_excerpt_sha256": "a485d4650cf6a7d0c77ed0e0b1e8e60067cd083b10dc95cf6e2de422adc1097d",
+        "source_id": "fb13b911d09c85edd829e69c8ec3e36d080d40e6"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "1d46ed1d3c0b9db997ce43b394d1bf57380f322042acae5d7f06ff7e25bcbf50",
+      "case_id": "win32_message_file-directive-d924d32d0b7c5058",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "win32_message_file",
+      "oracle_exception_record_sha256": "643a55f9d805bf24fa588421ca589a007a014dd87e57bda7a4e7995e32ad022d",
+      "raw_sha256": "1d46ed1d3c0b9db997ce43b394d1bf57380f322042acae5d7f06ff7e25bcbf50",
+      "raw_utf8_length": 762,
+      "source_provenance": {
+        "source_excerpt_sha256": "a0974b0d6106c72407e16d7128d01bd81eb2486048262979ac0913b3675dca17",
+        "source_id": "a777edf1c90b6c32cf557de5636cd71e1ba69e0c"
+      },
+      "syntax_label": ";/*"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "fe7fe4bc747f09df3731b5687a2928de5191b686ef3267d3285cbb80cf821938",
+      "case_id": "win32_message_file-directive-258cd90460a78ba1",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Error codes common for VTD counters modem",
+      "expected_cleaned_sha256": "71b15e07abac0b935f076c88217af51f153e15412336edbf472da1b61046835d",
+      "language": "win32_message_file",
+      "raw_comment": ";/*\n;\n; Error codes common for VTD counters modem\n;\n;*/",
+      "raw_sha256": "fe7fe4bc747f09df3731b5687a2928de5191b686ef3267d3285cbb80cf821938",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "3c0749d468dc496d6ac779563ea4c61eff6d2329604f76cd1b526062e30dac0f",
+        "source_id": "f1bd95965256a4de35cbb6587fd528035aea970f"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "6888c94e9e32db10a03137ee399d38ccc4684143979a25026b42d23aa0ebb903",
+      "case_id": "win32_message_file-directive-46f63afab2408eb8",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2001 Microsoft Corporation.\nAll rights reserved.\n\nMODULE NAME:\n\n     repmsg.mc & repmsg.h\n\nABSTRACT:\n\n     Message file containing messages for the WMI Replication provider.\n     repmsg.h is generated from msg.mc.\n\nCREATED:\n\n   01/14/01 AjayR.\n\nREVISION HISTORY:",
+      "expected_cleaned_sha256": "2055f3ee964cedb30842bcadd85ae82153bf89d2822f2be5aae3544fa5859496",
+      "language": "win32_message_file",
+      "raw_comment": ";/*++\n;\n; Copyright (c) 2001 Microsoft Corporation.\n; All rights reserved.\n;\n; MODULE NAME:\n;\n;      repmsg.mc & repmsg.h\n;\n; ABSTRACT:\n;\n;      Message file containing messages for the WMI Replication provider.\n;      repmsg.h is generated from msg.mc.\n;\n; CREATED:\n;\n;    01/14/01 AjayR.\n;\n; REVISION HISTORY:\n;\n;--*/",
+      "raw_sha256": "6888c94e9e32db10a03137ee399d38ccc4684143979a25026b42d23aa0ebb903",
+      "raw_utf8_length": 319,
+      "source_provenance": {
+        "source_excerpt_sha256": "171ef757a0ac1b38395dcd5aa546e6c076b70219db11890e91bc2db358ff8648",
+        "source_id": "4228b5a75babc75c096935fc26fa4a4686d40c68"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "926bbbb95716f07e28d7bd7d8bd62b42d551e698871822304e67d0af950ba0da",
+      "case_id": "win32_message_file-directive-6c7f1bc77e707cc6",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2001 Microsoft Corporation;\n\nModule Name:    DSREvents.mc\nAbstract:       Message definitions for the DSRestore log messages.\n\n#pragma once",
+      "expected_cleaned_sha256": "85bae46f5df437c12f9317a6beafba6c8ab1d00d16f83bdc8c5cd1cb64520ca6",
+      "language": "win32_message_file",
+      "raw_comment": ";/************************************************************************************************\n;Copyright (c) 2001 Microsoft Corporation;\n;\n;Module Name:    DSREvents.mc\n;Abstract:       Message definitions for the DSRestore log messages.\n;************************************************************************************************/\n;\n;#pragma once",
+      "raw_sha256": "926bbbb95716f07e28d7bd7d8bd62b42d551e698871822304e67d0af950ba0da",
+      "raw_utf8_length": 357,
+      "source_provenance": {
+        "source_excerpt_sha256": "105df8cba6e92ac089b2c8f7ca86b3cfa3da6ff27c7eaba14707f0613b72ba3b",
+        "source_id": "df0c3a65185900a92e2e150101d4e5005b7af46d"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "e2f24af6d8b02ef6c39263ab48d2bea1067ecb4f85b2c8a56835bcdf82240eaf",
+      "case_id": "win32_message_file-directive-788589bffafad54c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) Microsoft Corporation 1998\nAll rights reserved\n\n\nDefinitions for file deployment events.\n\n\n#ifndef _FDEVENTS_\n#define _FDEVENTS_",
+      "expected_cleaned_sha256": "6afafcdc220fb435453cbb49e7f5433565a74f396f88b82698cda8e3bd971668",
+      "language": "win32_message_file",
+      "raw_comment": ";/*++\r\n;\r\n; Copyright (c) Microsoft Corporation 1998\r\n; All rights reserved\r\n;\r\n;\r\n; Definitions for file deployment events.\r\n;\r\n;--*/\r\n;\r\n;#ifndef _FDEVENTS_\r\n;#define _FDEVENTS_\r\n;",
+      "raw_sha256": "00147da469f2584934df7c0913d8512ab2c7bc0077c6eb5c6f440507586adeb9",
+      "raw_utf8_length": 182,
+      "source_provenance": {
+        "source_excerpt_sha256": "eee8a8bd7bbc0e76b6fc1e317a2dc98f84110bd43744eba0d866230db43f7b03",
+        "source_id": "8ca74b1dc508ad6824f3478254c8a8c82ba04968"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "69635d50a7d6b2f84b1846f28ffdc6234dbbb0b04bb4a85db7d90f24b4649ff4",
+      "case_id": "win32_message_file-directive-79289e6926df4ccd",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BUILD Version: 0001    // Increment this if a change has global effects\n\nCopyright (c) 1994-7  Microsoft Corporation\n\nModule Name:\n\n   cpuhold.h\n\nAbstract:\n\n   Definitions for RCmdSrv messages.\n\nAuthor:\n\n   Sean Selitrennikoff (v-seans) Feb-10-1999\n\nRevision History:\n\nNotes:\n\n   This file is generated by the MC tool from the rcmdsrv.mc file.\n\n   Inserts are defined as:\n   %1 = USERNAME\n   %2 = USERDOMAIN\n   %3 = MACHINENAME\n   %4 = SUBERROR\n\n\n#ifndef _CPUHOLDMESSAGE_\n#define _CPUHOLDMESSAGE_",
+      "expected_cleaned_sha256": "c4500a2c401640ae7c747310a9c4a166b30ceda2d16a3a78cd5e9581839dbd02",
+      "language": "win32_message_file",
+      "raw_comment": ";/*++ BUILD Version: 0001    // Increment this if a change has global effects\n;\n;Copyright (c) 1994-7  Microsoft Corporation\n;\n;Module Name:\n;\n;    cpuhold.h\n;\n;Abstract:\n;\n;    Definitions for RCmdSrv messages.\n;\n;Author:\n;\n;    Sean Selitrennikoff (v-seans) Feb-10-1999\n;\n;Revision History:\n;\n;Notes:\n;\n;    This file is generated by the MC tool from the rcmdsrv.mc file.\n;\n;    Inserts are defined as:\n;    %1 = USERNAME\n;    %2 = USERDOMAIN\n;    %3 = MACHINENAME\n;    %4 = SUBERROR\n;\n;--*/\n;\n;#ifndef _CPUHOLDMESSAGE_\n;#define _CPUHOLDMESSAGE_\n;",
+      "raw_sha256": "69635d50a7d6b2f84b1846f28ffdc6234dbbb0b04bb4a85db7d90f24b4649ff4",
+      "raw_utf8_length": 549,
+      "source_provenance": {
+        "source_excerpt_sha256": "f886a0a1ccfca05070fc0c783b17fec94842a2075a4501cd2f0ea99ed0e913ba",
+        "source_id": "f508328cfb740ad9b169997461d1f7c0d8c0a392"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "7ba7a8925b14e19995e5ebb354890ed95da018e736edaa0fa4bdb1a15121e765",
+      "case_id": "win32_message_file-directive-7a8dffcc46b17cc8",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 1994 Microsoft Corporation\n\nModule Name:\n\n   RnrMsg.h\n\nAbstract:\n\n   This file is generated by the MC tool from the RNRMSG.MC message\n   file.\n\nAuthor:\n\n   Charles K. Moore (keithmo)   24-July-1994\n\nRevision History:\n\n\n#ifndef _RNRMSG_H_\n#define _RNRMSG_H_",
+      "expected_cleaned_sha256": "1e6bc95d9cca2d806a478a1e6701288d9c985e6560ee65f608be331a49e609f1",
+      "language": "win32_message_file",
+      "raw_comment": ";/*++\r\n;\r\n;Copyright (c) 1994 Microsoft Corporation\r\n;\r\n;Module Name:\r\n;\r\n;    RnrMsg.h\r\n;\r\n;Abstract:\r\n;\r\n;    This file is generated by the MC tool from the RNRMSG.MC message\r\n;    file.\r\n;\r\n;Author:\r\n;\r\n;    Charles K. Moore (keithmo)   24-July-1994\r\n;\r\n;Revision History:\r\n;\r\n;--*/\r\n;\r\n;#ifndef _RNRMSG_H_\r\n;#define _RNRMSG_H_\r\n;",
+      "raw_sha256": "151e96069e02a4f43ece0f29f3d8e1fd69143bf04e7b12a89467b5229c4887fb",
+      "raw_utf8_length": 333,
+      "source_provenance": {
+        "source_excerpt_sha256": "6793ef4c53607518e058dcf6d3468f4a28ee2a10f07d588c6b12eb7b1daf9e44",
+        "source_id": "15032c990a78e8f524d981303233d94f6be5769a"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "e151e15e6b54553c75d3ebd30f2e144933ebca182cd306ff88876d1368901f1d",
+      "case_id": "win32_message_file-directive-9d0d4c8ae3f99318",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 1994  Microsoft Corporation\n\nModule Name:\n\n   caclsmsg.mc (will create caclsmsg.h when compiled)\n\nAbstract:\n\n   This file contains the CACLS messages.\n\nAuthor:\n\n   davemont 7/94\n\nRevision History:\n\n   brunosc 10/96    extended for all possibilities of file manager/explorer",
+      "expected_cleaned_sha256": "aaee02a9fa324d6275d2d99be2ee04af71c23393470cf536eeb89001cc41d96d",
+      "language": "win32_message_file",
+      "raw_comment": ";/*++\n;\n;Copyright (c) 1994  Microsoft Corporation\n;\n;Module Name:\n;\n;    caclsmsg.mc (will create caclsmsg.h when compiled)\n;\n;Abstract:\n;\n;    This file contains the CACLS messages.\n;\n;Author:\n;\n;    davemont 7/94\n;\n;Revision History:\n;\t   \n;    brunosc 10/96    extended for all possibilities of file manager/explorer\n;\n;--*/",
+      "raw_sha256": "7327726d41070bf609481c891632a15b0089d74de736f0be6cdeb96aac1e5198",
+      "raw_utf8_length": 328,
+      "source_provenance": {
+        "source_excerpt_sha256": "3c3c939e2db4bfcece8d6cf0065bae4e229e99370405eeb9cc5c2ca9becf6a2e",
+        "source_id": "46faf33e7ea1fad6db00c771527ea91fccf5da90"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "076c4b2c616801712319f63a37241ef0a41ceeb74008e855231272afdabb955f",
+      "case_id": "win32_message_file-directive-dd5d8816bded9039",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "wpscoserr.mc\n\n  Error message codes from the WPSC OS DLL\n\n  03-Sep-99 - EricPerl Created.",
+      "expected_cleaned_sha256": "163cee4dcc917c7ae172f4384e598703168ee6c17513531c0800159c3335bd17",
+      "language": "win32_message_file",
+      "raw_comment": ";/*\n; wpscoserr.mc\n;\n;   Error message codes from the WPSC OS DLL\n;\n;   03-Sep-99 - EricPerl Created.  */",
+      "raw_sha256": "076c4b2c616801712319f63a37241ef0a41ceeb74008e855231272afdabb955f",
+      "raw_utf8_length": 105,
+      "source_provenance": {
+        "source_excerpt_sha256": "c112a6558dc291e781016fd259ac3ef40b2587b375d67b415fcd9516be065db8",
+        "source_id": "626ff46708abec7e3f9ed7fc88a7a35bdf20356b"
+      },
+      "syntax_label": ";/*"
+    },
+    {
+      "baseline_cleaned_sha256": "e1927365eb7ed245e3a04f01c023fe6ecfc06042b78687ef3306c0229043874e",
+      "case_id": "win32_message_file-line-1b8deb390e087057",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Local Messages for PING6\nMessage range: 10000+",
+      "expected_cleaned_sha256": "c2339b30cf463a5df92f7ee8e5873d564440db5a5c388c1581acd7d1263687f8",
+      "language": "win32_message_file",
+      "raw_comment": ";//\r\n;// Local Messages for PING6\r\n;// Message range: 10000+\r\n;//\r\n;",
+      "raw_sha256": "41bfeee26212a905c3a5eaceb432c7a6cb25a09ff5a6ddce002df10bb340e987",
+      "raw_utf8_length": 68,
+      "source_provenance": {
+        "source_excerpt_sha256": "81b8ad2499f49f2b86bfa0e4e6815a0f21a019da223370e3d7077f8151496fb3",
+        "source_id": "c2f76003b060c409c0c119f91869d6090b39ccb4"
+      },
+      "syntax_label": ";//"
+    },
+    {
+      "baseline_cleaned_sha256": "becbdfdafd54712d15b47727604ce2d06719b7499ec6c7b353b361d500d6eb9a",
+      "case_id": "win32_message_file-line-74597e55465cff4d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#endif",
+      "expected_cleaned_sha256": "1e258076b154c8a5a3303fe08eb08c3253d26728e5b64f90a29cc1752f787781",
+      "language": "win32_message_file",
+      "raw_comment": ";#endif",
+      "raw_sha256": "becbdfdafd54712d15b47727604ce2d06719b7499ec6c7b353b361d500d6eb9a",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "75f07be816cc39dadb98ccdef0201cab4935584bcba8ff7b50206eab293c9ab7",
+        "source_id": "942b0d674d996171cdfc4acdcc09e7b883654d32"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "41b805ea7ac014e23556e98bb374702a08344268f92489a02f0880849394a1e4",
+      "case_id": "win32_message_file-line-8d1a78445f2aea17",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "win32_message_file",
+      "raw_comment": ";",
+      "raw_sha256": "41b805ea7ac014e23556e98bb374702a08344268f92489a02f0880849394a1e4",
+      "raw_utf8_length": 1,
+      "source_provenance": {
+        "source_excerpt_sha256": "f119587514350976d77a5f4249aeecd6e9a5f95cbee7fa3cae997c01d16355b4",
+        "source_id": "d1ef9689a5979ee2a6ea0f8a3a5707e34fd1cea8"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "24ec0105e9a4eb5bf4185f8e0ac8f8611165756ffd66b8ad8442ae2a6d76c47d",
+      "case_id": "win32_message_file-line-92b09bec54e4940e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\ub2e4\uc74c\uc740 \uba54\uc2dc\uc9c0 \uc815\uc758\uc785\ub2c8\ub2e4.",
+      "expected_cleaned_sha256": "b2c1b9bcee2e66d31242637a1d0c3d463f6174d583308909786522317ae8db6f",
+      "language": "win32_message_file",
+      "raw_comment": "; \ub2e4\uc74c\uc740 \uba54\uc2dc\uc9c0 \uc815\uc758\uc785\ub2c8\ub2e4.",
+      "raw_sha256": "24ec0105e9a4eb5bf4185f8e0ac8f8611165756ffd66b8ad8442ae2a6d76c47d",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "789c1cdfde60d06de35a6751f3cbd9441f2ac831f673370b826c25530c458901",
+        "source_id": "3ee2e7c7aece493df09f2091fe6e18893c6a63d1"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "becbdfdafd54712d15b47727604ce2d06719b7499ec6c7b353b361d500d6eb9a",
+      "case_id": "win32_message_file-line-a411d5d7c3153aa7",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#endif",
+      "expected_cleaned_sha256": "1e258076b154c8a5a3303fe08eb08c3253d26728e5b64f90a29cc1752f787781",
+      "language": "win32_message_file",
+      "raw_comment": ";#endif",
+      "raw_sha256": "becbdfdafd54712d15b47727604ce2d06719b7499ec6c7b353b361d500d6eb9a",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "debc43f17074b48cbbcf7d21f47ea5eb22b4ca756c3b608c38dea97c515cd2c1",
+        "source_id": "fa833531864557b1601033a2d3c13341303b9bbd"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "c6f73f607826e70f804e313e9ca0fd83186a958283868106432465f8a2db1284",
+      "case_id": "win32_message_file-line-ce54ca4a43403d06",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "category definitions",
+      "expected_cleaned_sha256": "25cfc52c8ee08dd6e389d9ba15ad5b45849c4493140c11e118d2056e7255694f",
+      "language": "win32_message_file",
+      "raw_comment": "; // category definitions",
+      "raw_sha256": "c6f73f607826e70f804e313e9ca0fd83186a958283868106432465f8a2db1284",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "0000db220819625eb189573170ef5ffa248f5bfb39ed31fe108ee6b1b268a11f",
+        "source_id": "c91fa31ffc23f3b5238dd7f768cb8e22a5689b2b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fb24e1bcd64b644339446690d83afb22307673e8a3c5f019cd4aec070db5e664",
+      "case_id": "win32_message_file-line-d76472ab3e05363f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Messages for TRiASUI\nSourceFile: UIMSG.MC\n\n#if !defined(_UIMSG_HMC)\n#define _UIMSG_HMC\n\n#if _MSC_VER >= 1000\n#pragma once\n#endif // _MSC_VER >= 1000",
+      "expected_cleaned_sha256": "3c16d2118d5ebd9f8198e473cb602d41cfd6ca766e8bb24c3eb2d9aed5941aa2",
+      "language": "win32_message_file",
+      "raw_comment": ";///////////////////////////////////////////////////////////////////////////////\r\n;// Messages for TRiASUI\r\n;// SourceFile: UIMSG.MC\r\n;\r\n;#if !defined(_UIMSG_HMC)\r\n;#define _UIMSG_HMC\r\n;\r\n;#if _MSC_VER >= 1000\r\n;#pragma once\r\n;#endif // _MSC_VER >= 1000\r\n;",
+      "raw_sha256": "92bd6def3bd1547df3538597f9b2cbcdcda3ce86c3deb851a01880d3b162ab51",
+      "raw_utf8_length": 256,
+      "source_provenance": {
+        "source_excerpt_sha256": "5bf4b0f90ee5e46e618df4a7d712c88c341ea43cf3e9668eccd4f22006a8a63f",
+        "source_id": "cc616c57ca0054777ce5ca002522a56387f4f41d"
+      },
+      "syntax_label": ";//"
+    },
+    {
+      "baseline_cleaned_sha256": "9ca53a78c60da7548655f1e29a4c818d1d08706767f457d36ff46a5aa5cf731a",
+      "case_id": "win32_message_file-line-da6ff8dfe6d101bf",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Local Messages for IPSEC\nMessage range: 10000+",
+      "expected_cleaned_sha256": "4f8012bf7034627ca8148718470da71eac4d2c696a060250fb002150047e22cb",
+      "language": "win32_message_file",
+      "raw_comment": ";//\r\n;// Local Messages for IPSEC\r\n;// Message range: 10000+\r\n;//\r\n;",
+      "raw_sha256": "b543ee98008bc612d6a8c00be57a0289cff0da194b7d51656431ae655f474aa4",
+      "raw_utf8_length": 68,
+      "source_provenance": {
+        "source_excerpt_sha256": "89657ec4f3ed2292706f4ecdedd9941f3f55c02175ce9fac31855aad620cc870",
+        "source_id": "6aff0f9c37229d31935de96ab1ba72846648efc8"
+      },
+      "syntax_label": ";//"
+    },
+    {
+      "baseline_cleaned_sha256": "0d53a7b056fedbd971fc3375d4ee1669124b79726b8a9927823091138505c089",
+      "case_id": "win32_message_file-line-e0a07c49d7f17207",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Common messages for all TCP/IP utilities\nMessage range: 1-18",
+      "expected_cleaned_sha256": "123d2bb3efccc7aaa576d17d59bfb6131b4d81b17d407fd9986dd9e552596cea",
+      "language": "win32_message_file",
+      "raw_comment": ";//\n;// Common messages for all TCP/IP utilities\n;// Message range: 1-18\n;//\n;",
+      "raw_sha256": "0d53a7b056fedbd971fc3375d4ee1669124b79726b8a9927823091138505c089",
+      "raw_utf8_length": 78,
+      "source_provenance": {
+        "source_excerpt_sha256": "c7efb0c01af639d2910d88d70e17c8b440f37f091296b804823064839786348b",
+        "source_id": "d46d9e193991f069360e4a06527864e7b79d460f"
+      },
+      "syntax_label": ";//"
+    },
+    {
+      "baseline_cleaned_sha256": "e354905e1b32632c0132450af01514f2a462673d6c84db278271ee0005f29f47",
+      "case_id": "win32_message_file-line-f1482daa37f5514b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#pragma once",
+      "expected_cleaned_sha256": "6a221112d7fd41cf3950158643c579b4548c047d28be1bb8086a245b2607f49c",
+      "language": "win32_message_file",
+      "raw_comment": ";#pragma once",
+      "raw_sha256": "e354905e1b32632c0132450af01514f2a462673d6c84db278271ee0005f29f47",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "3bb48b475e25ccf4df1a2db48167b216080b73aa44a0f00ebacde9537f4de2b3",
+        "source_id": "7f2c9a3b906daae7d497164115708cc1358054e2"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "cc2ae157d780c837020f80d769d46dc8b651efcdabcec649a578fe5a2e38e4a9",
+      "case_id": "win32_message_file-line-f46b51e8db883a02",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Message File",
+      "expected_cleaned_sha256": "a03553d12dadabbce8d10bc7f58828c589119ca7eee3c9e83d4908ee041f4700",
+      "language": "win32_message_file",
+      "raw_comment": ";//\r\n;// ####################################################################################\r\n;// #\r\n;// #  Message File\r\n;// #\r\n;// ####################################################################################\r\n;//",
+      "raw_sha256": "980e2f89133ae4223937c96e4594bc7e9a187a2eec0e7986c4dc216fdadf2315",
+      "raw_utf8_length": 223,
+      "source_provenance": {
+        "source_excerpt_sha256": "3e9812bf50a3212475fff46766f41769e5f5ac94843a4300ab4e98ab04b63248",
+        "source_id": "4656113932ffb0d3b2f24539f901b596cbac6b22"
+      },
+      "syntax_label": ";//"
+    }
+  ],
+  "schema_version": 5
+}

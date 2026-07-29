@@ -1,0 +1,38 @@
+{
+  "case_id": "lisp-line-5127549407e8e731",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "lisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7eba804727d4dd9bb8f9ecb413ba4ef310ed4175b99cef7f607d373bedcaf31a",
+      "utf8_length": 17
+    },
+    "manifest_old_output": {
+      "sha256": "d0d323b7597c3ca8241a07f3aaa5e48c3f714943d6d1d4c6dde37b73a2f70160",
+      "utf8_length": 15
+    },
+    "raw_comment": {
+      "sha256": "78c9790f11429328eaadfd2c759f94665ac72ca2dca4abc4873e2446097ab187",
+      "utf8_length": 20
+    },
+    "recommended_expected_output": {
+      "sha256": "d0d323b7597c3ca8241a07f3aaa5e48c3f714943d6d1d4c6dde37b73a2f70160",
+      "utf8_length": 15
+    }
+  },
+  "regression": {
+    "expected_output": "cl-influxdb.asd",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; cl-influxdb.asd"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ee2493d0638f1d3ea5ba0f6d1020ce11672c8cf125269434419536f88a88b3a2",
+    "source_id": "7103e684816933cc741cb67f276f799dcf7e2f93"
+  },
+  "source_record_sha256": "d023638f29d1e412c783c4be98da23584d406f576cee2387b9bedc01874545b3"
+}

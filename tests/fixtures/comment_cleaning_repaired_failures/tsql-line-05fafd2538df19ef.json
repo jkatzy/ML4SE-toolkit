@@ -1,0 +1,38 @@
+{
+  "case_id": "tsql-line-05fafd2538df19ef",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "tsql",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0ddc872cca401dafde791db2f42dd0e4753426a66e2737dcaa210d822ff34cfe",
+      "utf8_length": 154
+    },
+    "manifest_old_output": {
+      "sha256": "0ddc872cca401dafde791db2f42dd0e4753426a66e2737dcaa210d822ff34cfe",
+      "utf8_length": 154
+    },
+    "raw_comment": {
+      "sha256": "cd7381895ebf49e9432085db8b67c5997c66b9f649bc4a4ce63f5b2a2d45e218",
+      "utf8_length": 217
+    },
+    "recommended_expected_output": {
+      "sha256": "0ddc872cca401dafde791db2f42dd0e4753426a66e2737dcaa210d822ff34cfe",
+      "utf8_length": 154
+    }
+  },
+  "regression": {
+    "expected_output": "Author:\t\tLeonardo Tanoue\nCreate date: 7/16/2015\nDescription:\tLoad All Categories\n=============================================\n[KeyStats_Category_LoadALl]",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "-- =============================================\n-- Author:\t\tLeonardo Tanoue\n-- Create date: 7/16/2015\n-- Description:\tLoad All Categories\n-- =============================================\n--[KeyStats_Category_LoadALl]"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b9f9026afac1dc6d0e147beaa617e74e419f868b4af23b03f3b98ec787922c2a",
+    "source_id": "b11c7d0ab275f59639588d386b5db5895312833f"
+  },
+  "source_record_sha256": "5274c58ad15c7a3a72bd8b078dd363a922b565b2dd4dc4e8dc9f3181d3a9bcbd"
+}

@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "powershell_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "a5e6c49da9a0f628e3254d9c020c1421a10c91e6dc53bff3f5b9913dba44a449",
+      "case_id": "powershell-line-5dff6fa1541372f4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Generates a line based report of the files contained within an MSI and their sizes.\n\nTODO: Make this a module",
+      "expected_cleaned_sha256": "cc08973471730b8d7846b3ed87001c7bc8e2e37d62b7ee4ba6383f9f7117ff9d",
+      "language": "powershell",
+      "raw_comment": "###\n# Generates a line based report of the files contained within an MSI and their sizes. \n# \n# TODO: Make this a module\n##",
+      "raw_sha256": "17c7ae935123171a2d44b614ba51044d8e67078ab605b72228b197da8e7df05b",
+      "raw_utf8_length": 123,
+      "source_provenance": {
+        "source_excerpt_sha256": "f0f47eeefa8551e9b1b94c4ef77c03fdca79530dd88aa20d63eda2dc88ed5a07",
+        "source_id": "8dd563d800d2cb53f064367e32ea9c2c1d057020"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "08d1b9a56ce577f780b183e4d65b5582ae45588d163e7abcda4e58b717e675d2",
+      "case_id": "powershell-line-6c8cb2a8b60ce1a3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "File:  Install-Docker.ps1\nDesc:  Install Docker.\n       Must be an independent step becuase it requires a restart before we\n       can continue.\n\nhttps://lippertmarkus.com/2021/09/04/containers-without-docker-desktop/",
+      "expected_cleaned_sha256": "cf28a65e5120608db2297f1749cd60102d89ed4a02f2480fac59db4ad8f27eb1",
+      "language": "powershell",
+      "raw_comment": "################################################################################\n##  File:  Install-Docker.ps1\n##  Desc:  Install Docker.\n##         Must be an independent step becuase it requires a restart before we\n##         can continue.\n################################################################################\n#\n#https://lippertmarkus.com/2021/09/04/containers-without-docker-desktop/",
+      "raw_sha256": "8935901d60be78c2a4a768267600aa69af383eb140168f1e63634445dcf1643d",
+      "raw_utf8_length": 397,
+      "source_provenance": {
+        "source_excerpt_sha256": "efaed82630e3e8a9320129e21641e21030536cf49de380d5c13862b4d6d76696",
+        "source_id": "779255183b706f0c489a2c524c319c98117b8015"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "fennel_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "8910601981a218919aa8edb9b822ea67059ee65b04380694958dc78681d05376",
+      "case_id": "fennel-line-a7e4d7a1a023aaa9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(run [1 0 0 0 99])          ;; [2 0 0 0 99]\n(run [2 3 0 3 99])          ;; [2 3 0 3 99]\n(run [2 4 4 5 99 0])        ;; [2 4 4 5 99 0]\n(run [1 1 1 4 99 5 6 0 99]) ;; [30 1 1 4 2 5 6 0 99]",
+      "expected_cleaned_sha256": "d3de498c57b16143e35f7b152418aadd28c703a048a0f84e19f2a7dc6c11e819",
+      "language": "fennel",
+      "raw_comment": ";; (run [1 0 0 0 99])          ;; [2 0 0 0 99]\n;; (run [2 3 0 3 99])          ;; [2 3 0 3 99]\n;; (run [2 4 4 5 99 0])        ;; [2 4 4 5 99 0]\n;; (run [1 1 1 4 99 5 6 0 99]) ;; [30 1 1 4 2 5 6 0 99]",
+      "raw_sha256": "74e2da7918e290987f410177027c799e53d86e70db66476c4a173db7ce247eeb",
+      "raw_utf8_length": 198,
+      "source_provenance": {
+        "source_excerpt_sha256": "60bbdcea56a5318dc60c1374d4200ad90ae9fd8a29f6b3cc8c9128c10548b5f9",
+        "source_id": "17cb52a3f491c23cce78b753923c5070e3f9fc73"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "44fb0bf61bfe4769544322bab1ea7e322c2f8d9301da31ea77ebc4868521a657",
+      "case_id": "fennel-line-c5a67cc524e1ec38",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2017-2020 Ag Ibragimov & Contributors\n\nAuthor: Jay Zawrotny <jayzawrotny@gmail.com>\n\nURL: https://github.com/agzam/spacehammer\n\nLicense: MIT",
+      "expected_cleaned_sha256": "9679826ceb51d3c0a039a1c39d11572dbaaebe1f0ff45bc15364a2d50bf9d7c2",
+      "language": "fennel",
+      "raw_comment": ";; Copyright (c) 2017-2020 Ag Ibragimov & Contributors\n;;\n;;; Author: Jay Zawrotny <jayzawrotny@gmail.com>\n;;\n;;; URL: https://github.com/agzam/spacehammer\n;;\n;;; License: MIT\n;;",
+      "raw_sha256": "70438b3baad4178691d160c55855762ec747bce5bd2b74fc252d95892f7dfabb",
+      "raw_utf8_length": 178,
+      "source_provenance": {
+        "source_excerpt_sha256": "6ed4bef6638b3bbea70ad9996c55dd4d6703fb1e2de1cc1320c7df197eebe200",
+        "source_id": "72d84174a14aca8e0f9f5db25127220825f61dcd"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

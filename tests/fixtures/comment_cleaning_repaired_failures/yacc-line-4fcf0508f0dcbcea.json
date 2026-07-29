@@ -1,0 +1,29 @@
+{
+  "case_id": "yacc-line-4fcf0508f0dcbcea",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "yacc",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a8678a75907188db7344af5aed9dda4a4aca4f085531968f6d57c15adbe0fbd5",
+      "utf8_length": 109072
+    },
+    "manifest_old_output": {
+      "sha256": "a8678a75907188db7344af5aed9dda4a4aca4f085531968f6d57c15adbe0fbd5",
+      "utf8_length": 109072
+    },
+    "raw_comment": {
+      "sha256": "c56a8963cc0b41486b335f058de68c803cd5fea61fd6a09f1422426f7093f46f",
+      "utf8_length": 109089
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4654f3a485a9b350201fb4cf35d73eb94ab23a6b08f82854c30033d53e7be6ab",
+    "source_id": "08eb1b3eeb4bbf51ac988804c4312b5c7df90185"
+  },
+  "source_record_sha256": "a13e5580a45cdc4043fa639bc6c5545c33c9e9085fee36c587ebde686c0924a9"
+}

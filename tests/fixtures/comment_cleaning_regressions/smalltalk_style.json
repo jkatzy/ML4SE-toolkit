@@ -1,0 +1,565 @@
+{
+  "extractor_boundary_cases": [
+    {
+      "baseline_cleaned_sha256": "e15ef67ebde039d34ade1beeb8200ccff621e35f0a9785c6a12efef2664611ad",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-2e6632a531961deb",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "55a0413caf42c28597965248ccbaed6244b338a894496eba7a68bfa3909ba855",
+      "raw_sha256": "fb0a76e74cb84a46f95a6057b96d52d0c32de05772e7da7b31706aeeebb3b813",
+      "raw_utf8_length": 3965,
+      "source_provenance": {
+        "source_excerpt_sha256": "bb2b26cf2389f2220e076e772b23b2bfe7c6ff70711fb5fa79fbda98c5d40969",
+        "source_id": "6db8a908e40f161d14a6e75df9828eb4d4a2b873"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "8e8630dc63cfbb35b0946cdf90abda3f89c221b5408be96488fe7ade373e626f",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-3d38075168c16eed",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "8c3a0452cfe0b0a7883b4cb214de981b23ccd056d835fe2cf1928163423505b9",
+      "raw_sha256": "2a37fc1739766a0256dadeb0e6741fe0ba4cce28d6572de9828a91257fa01523",
+      "raw_utf8_length": 1052,
+      "source_provenance": {
+        "source_excerpt_sha256": "14f96323cf68c213fe5ab5b7ae7ff4e3116ae4faf1b7ee3d526e1b69b154b052",
+        "source_id": "7bf0e0fd85d6b2c5d7805ecf89abbfbeee0085dd"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "20c2b16beb354b8b5d9746b81a5cad734dab4cbc057bf4d378266133c24cbdf8",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-5789174dcc00f651",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "af57c7f241dba9225a5f559c58302fda0329a1da6f002ba35db6e47140052e03",
+      "raw_sha256": "f96cbfe1ad0122447b904bf8358cecff6524d8acd6947a5be762f74e68010d8d",
+      "raw_utf8_length": 370,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad0a54ca1887623db9da803d1cd35532e0d3a03e2d8a74e1000ea39aa0774df0",
+        "source_id": "80cbc2d8182da511492d9157aebecea3af7a925b"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "dbc686ff7d4a6302ba810f869ef2c375df72769ea3f64f6199553216ef83e7e2",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-7edd7c6c125d30e9",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "e091b62cecc9a7e63eb9aa068ac90c3f575a029c4a2585af58d8f8e7d9334e47",
+      "raw_sha256": "6be5c74fad368138c8f0f7e1a2109f058ebe0171c9b0f0bab1af9d7dbebab72c",
+      "raw_utf8_length": 98870,
+      "source_provenance": {
+        "source_excerpt_sha256": "e60da8e459a26f1604b1d9fad860f098e06997a017115f727bf0b5b6ee78b169",
+        "source_id": "ad0ccce4dbd5dfdc8fcfdc061c23eebbc072a894"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "41ea2e9d4cfbcd56a9a5a4e0d7958f953aa357ff166d700d69c5fe525a23341b",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-8d5cceb396799450",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "6fbce42545f064fdf9c8f9bd9a3923d2bdc2e6abff7a5b35ac63cbd56d5435e9",
+      "raw_sha256": "4118cb4bc234166df85297f8702696a9af7f97e0574e442d1215eed3420e947b",
+      "raw_utf8_length": 688,
+      "source_provenance": {
+        "source_excerpt_sha256": "b54df133c828748905333abbcc6ba37301c9fc977b61525c14598e08bf0ebf15",
+        "source_id": "a80eff2d5aec49e6dd6b35903bf7d37db456b8fa"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "27869ca460b33e08a74b516d8672bac9fa29895a4de46784c4a025333e76da78",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-b2a2da20a949ab9a",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "19e3206ded193bcd1fe5a425c736b1a0a911c57c5e25c48e48878c6d5b77cb39",
+      "raw_sha256": "0cc504d09140dd5f1ecaf70a648cdb5f78586736bfad5d7b42a700d8634ea1e0",
+      "raw_utf8_length": 2378,
+      "source_provenance": {
+        "source_excerpt_sha256": "413ba035956989b06ccb660674be915698d5e192950ad594de36a21dbb0d2157",
+        "source_id": "93457ed9ab356f4fd9f1e79f40b11a58587bf4d2"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "afca695123310b75d51a1c41303d0f3c4de2e18c089e9a6ed99c2c2f2160de84",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-d79ebcfe84b46841",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "3599a57ce21350dc0d1f84fbecb5631a6587be3520ea92c12a579ffeba464ade",
+      "raw_sha256": "1af11133077b67008664e2f9ab18ae02da4ebdd1a43cc4ca2527f1a175a5e096",
+      "raw_utf8_length": 3473,
+      "source_provenance": {
+        "source_excerpt_sha256": "a69071ebac0c9f3f13752fc5f3ab762b877eb94ef14b7c20483d613cb6ce79bc",
+        "source_id": "d87e39605c720f6dfa662b8b7748a33a6c4c844a"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "30aba8e0a8a944cb68d36ed07d5a43a4052c95a8cd46d99e7cc965a02da66282",
+      "boundary_assertion": {
+        "expected_match": "\"boundary\"",
+        "expected_match_sha256": "7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c",
+        "kind": "comment_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "\"boundary\"\rsource",
+        "raw_sha256": "5d6b29e90a8ff28df5c2722b93306c06f68731e31afa8c6838352dc04f733465",
+        "raw_utf8_length": 17
+      },
+      "case_id": "smalltalk-line-efc3bb48ec86d76e",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "smalltalk",
+      "oracle_exception_record_sha256": "c6612cf1f53719c4bee7610d11dfcd101cf8ab94afdd3c3c7a57a777b535f4ea",
+      "raw_sha256": "37697757cd04dd27ffe64e73ab0860c0b6cdad15dffef48e4de80c52c5bab091",
+      "raw_utf8_length": 2740,
+      "source_provenance": {
+        "source_excerpt_sha256": "6b01fb64b0f761721c0d405167421db874e4ecb1327ff648aec3fd8fe8b4bec7",
+        "source_id": "583c59ee270126d6a768cfb0aaf077f01d511dbc"
+      },
+      "syntax_label": "\""
+    }
+  ],
+  "family_name": "smalltalk_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "e24b4e0ebc96c93235df0b754fd5ab9b93aac36c2cceee2d035a297fcb2f71ae",
+      "case_id": "smalltalk-line-011d722e71013479",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "instance creation",
+      "expected_cleaned_sha256": "c56a7f0bce40aa59d3edc845b222a561e002ae989401faa6076ffbe741e391e9",
+      "language": "smalltalk",
+      "raw_comment": "\"instance creation\"",
+      "raw_sha256": "207e59e5d8c98035da0e00c8f45b50a078641aa30078b0eb3c60eda4de3a53f0",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "6dfd40e4cc26cac88db39d2f6d1737a647b8a348d15e7c24c2d79c9d04ab68bc",
+        "source_id": "0cb6283bb23b63f3f0c317943e14e545cc7f170d"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "e7d2b08fcdd14fe240fef347a87dceaaaa39585f750d97b0e5ce572b69a75c6c",
+      "case_id": "smalltalk-line-2247eef810572f8f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Class class update.  Create a visible MetaXXX class.",
+      "expected_cleaned_sha256": "604051b223a72f44fc21feed5191e535878e2ae3a6027ef563c041b5c97299e8",
+      "language": "smalltalk",
+      "raw_comment": "\"*********************************************************\"\n\"*  Class class update.  Create a visible MetaXXX class. *\"\n\"*********************************************************\"",
+      "raw_sha256": "a2f43ba15754869b88e1806ffe74bbf405f75e2cb49748da5685bc3f26591ef3",
+      "raw_utf8_length": 179,
+      "source_provenance": {
+        "source_excerpt_sha256": "1dc217ace87f26de37bba662ab799e9ee95edaf7829f8de7cf1e956af26f3d8d",
+        "source_id": "83dcd3b6389fffd6554c1c41e0175ab161e8f2ab"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "663068a24741fa0dd893c81e7be7b6652f684745b0d871de5b4acf0c202af697",
+      "case_id": "smalltalk-line-447f2168576ab256",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Lorem ipsum dolor sit amet.",
+      "expected_cleaned_sha256": "dd14cbbf0e74909aac7f248a85d190afd8da98265cef95fc90dfddabea7c2e66",
+      "language": "smalltalk",
+      "raw_comment": "\"Lorem ipsum dolor sit amet.\"",
+      "raw_sha256": "45b782947cb3ee2e6a75a95519602de419aa9eedf528e581956093f1b0f21e5f",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "24c9ea41d0c0a1c935f0e3fa904e026ebdd1def7b822bcfbf573490a28e5c2b3",
+        "source_id": "71b94c47b7e93aae179892189f92f17fa4261610"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "c8e574dc00f14512890ba248a0ad02c37f1a8b1466b75362f8d7fa3f365166d9",
+      "case_id": "smalltalk-line-4b77af85106c7223",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Returns an instance of the receiver.",
+      "expected_cleaned_sha256": "179e0a57f1001b1a3514d07910a4bfe58d4dae939fcaceb45407a527cd2862dc",
+      "language": "smalltalk",
+      "raw_comment": "\"Returns an instance of the receiver.\"",
+      "raw_sha256": "bd3af11458fb9afeb4bf4a8f3061daa4aea1f90599ea39e6a7f19a5f99b2a4d3",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "72fee6b31ff99f97355e0a5530a6678bead4255972518947e48a2b5a38ef88da",
+        "source_id": "4bf59a2edbf572dd07e54e5f76dedef635e8fbad"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "8d5b05d1eb63917c17ef09582b08b390743a5b2202cf10e7774507927b22cfa7",
+      "case_id": "smalltalk-line-597e28dc99be7030",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Send a UDP packet containing the given data to the specified host/port.",
+      "expected_cleaned_sha256": "a8981e8ba78fc15b3a5a30692514f9aa605f062d59a061865544472a0edaf925",
+      "language": "smalltalk",
+      "raw_comment": "\"Send a UDP packet containing the given data to the specified host/port.\"",
+      "raw_sha256": "bcddc0fbef3278ffcc6ea5dcf96d7c89309a4332a89954f7f8556895e5f77216",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "94e74ec52e184ca43b4750f0d7ebc3e9efcf76995458baa7c2dd9bf3246b20ed",
+        "source_id": "5253d83b5f4502d9439e4873fd1293067fdaa153"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "53d90aaac092da9039a0485feafb83956ee6bf235d8ad6daf840722805aefbf9",
+      "case_id": "smalltalk-line-72d82a1d2d779eee",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Insert the reciever aFloat rows above aTABlock",
+      "expected_cleaned_sha256": "d927690e738ec3fe48a7b9ca9bdd510078d48f77d87b59db0c4af778dc164399",
+      "language": "smalltalk",
+      "raw_comment": "\"Insert the reciever aFloat rows above aTABlock\"",
+      "raw_sha256": "3f141b02de0e2bc0d9aa34f6ae21b73ba367ca852192152d5e6cd04ad9bed7e8",
+      "raw_utf8_length": 48,
+      "source_provenance": {
+        "source_excerpt_sha256": "efcf2057bb8b796cf0c1e2596f4274a2125c3594d14d56bfdaf66babfaac4686",
+        "source_id": "5e07831d867d335eed3ce538f65c90088763d7e4"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "a68105a208d1ce7af3aa6b96ca694c8d95815f2dcdc5e5be85afc0b2bc979448",
+      "case_id": "smalltalk-line-8ccd948876d76e1f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Based on Nonrecursive DFS(Depth First Search) algorithm",
+      "expected_cleaned_sha256": "68f2cc6e2a4c6e20dcb5d886c7e2ee3b7032af57d9c51a50ca879541148a121c",
+      "language": "smalltalk",
+      "raw_comment": "\"Based on Nonrecursive DFS(Depth First Search) algorithm\"",
+      "raw_sha256": "e75d14b97f758583425413d351629e4f597b6a91f3f44686ec48870412c95aaf",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "7a5a25d85400e424fe2ab2906ad1e386b1c10586d81392f90b45ef9fec5f8a40",
+        "source_id": "21f5c0c57b5e92ea787b50c9f297e376742f0f02"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "ceeb16781d58d3ce27d2cd2766581f23fb9d76dd9cb366b225f36aa59725721d",
+      "case_id": "smalltalk-line-97a5df5414ec61e9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Set the label font",
+      "expected_cleaned_sha256": "9f394b61a5dc8afc3f0f013a5a6b79d46abad72be02421b099abd158f6ba1b5f",
+      "language": "smalltalk",
+      "raw_comment": "\"Set the label font\"",
+      "raw_sha256": "f563243f216915bc1ad95107ef56a416332af5ed50bb7aa949631918814cc6e9",
+      "raw_utf8_length": 20,
+      "source_provenance": {
+        "source_excerpt_sha256": "dc7b70bba27df77f02dc424e4540b2c313ca1b94e934ee050f5d67d5508b57cf",
+        "source_id": "290b1cec0021ae8ff22980d2d28484786d34f7a5"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "0b183d9a37a3f65f9ec7f9c1dd3a321ef923e66784a29dc0fa2cf1743a5c3e26",
+      "case_id": "smalltalk-line-9cf34d5bd342c561",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Query the system for registering tools\nwe cannot afford to show warnings because not all tools e.g Debugger, Inspector are registered yet",
+      "expected_cleaned_sha256": "4022fedfd6d632e464690415d764a5e066da86c100f13d7fbfafd4cb92958be5",
+      "language": "smalltalk",
+      "raw_comment": "\"Query the system for registering tools\"\n\t\"we cannot afford to show warnings because not all tools e.g Debugger, Inspector are registered yet\"",
+      "raw_sha256": "0234c7398b88c07c7756d3ce0fa84452514c50023536882e0f431d49624dcccf",
+      "raw_utf8_length": 142,
+      "source_provenance": {
+        "source_excerpt_sha256": "f8c3f8cc42846c5b7f17388367fc73df97e9f386644c4ad4105523c5cfab8615",
+        "source_id": "880d39f3ebf5c897a2945eedc1554bc285da0e5c"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "d11ec2b163723d726b1798ed5090a11d7db2970d880aa7c262449e746ec4bd48",
+      "case_id": "smalltalk-line-a2ca45b241937f1d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A query field was used for the look up but there is also a cookie with the same value -> delete it",
+      "expected_cleaned_sha256": "f6748662faf89a6dd68e5dc9c88e91345bab15a53ab42a43da73508451051f10",
+      "language": "smalltalk",
+      "raw_comment": "\"A query field was used for the look up but there is also a cookie with the same value -> delete it\"",
+      "raw_sha256": "978d0ed324b0a60176f5ca8cc66fce4251f015c491cde929925fe170eb9e4363",
+      "raw_utf8_length": 100,
+      "source_provenance": {
+        "source_excerpt_sha256": "28485c763b3625f6a94f110aa0c9c09a28acd3a6ef63be2f89e4600ab1e8db9c",
+        "source_id": "875caa92a32d280bc22f6a300477fa432c106a00"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "46587939de26e6a83561aaca59e7c671a6cc39f4ddcc63fbbd5472eaaeb41ea4",
+      "case_id": "smalltalk-line-abd6585766373bc7",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Return the server with the given name",
+      "expected_cleaned_sha256": "bc54800af44b39027eadf6fea175163cd2d02514cd28f9bf6f8fb30b9229c39a",
+      "language": "smalltalk",
+      "raw_comment": "\"Return the server with the given name\"",
+      "raw_sha256": "f3316f8c094a7d56524061d76976f68b0aed92065eb0b15a95d962e15f23c146",
+      "raw_utf8_length": 39,
+      "source_provenance": {
+        "source_excerpt_sha256": "20fa26613822b1ea1e0bab1ae7953a89f9f019a430303210c51b9174c6baf012",
+        "source_id": "a6dc99107cc4094361062025bef625a5328436ba"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "63421d6a43f820d3e3bc0defa49ffc67a3f37570f3574e179793c0df0bed5e87",
+      "case_id": "smalltalk-line-c313e573dc86906e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Set a block to perform when the selected index is changed",
+      "expected_cleaned_sha256": "3f946acfe4b6d8ae1981b8c1f53bd133b64efef85f779ef43c8af9a04f6490cb",
+      "language": "smalltalk",
+      "raw_comment": "\"Set a block to perform when the selected index is changed\"",
+      "raw_sha256": "b7e7e4f212df11a2237d54bf5f8ac33fe59fabe844abab3ad2e1534ba869834f",
+      "raw_utf8_length": 59,
+      "source_provenance": {
+        "source_excerpt_sha256": "d39570f5fdd9375160d9e4d3e2fd45dba154c96dd220785a7a726452cdc93ff4",
+        "source_id": "23e6d795d8709fe9dbdb1a6997123686cd8fd360"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "b218f2fdcf53c16e4c39a71a15e1f77b7e90c7244a75623a500ac0af061eb86f",
+      "case_id": "smalltalk-line-c883c9d0f67c400a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "answers if anotherArc is a component of its network (without taking into account the orientation of the network)",
+      "expected_cleaned_sha256": "77f2a2f32cb97b1593769e6b8d7d04d29ee83562ea903648fe111c633b714919",
+      "language": "smalltalk",
+      "raw_comment": "\"answers if anotherArc is a component of its network (without taking into account the orientation of the network)\"",
+      "raw_sha256": "1463cb912bbcd241d279be0656bc29f71ddb837f53e85bc41a36cabbfe477543",
+      "raw_utf8_length": 114,
+      "source_provenance": {
+        "source_excerpt_sha256": "556ff3d52f7484c81a5f927c4c7bb376b567630804e1c94b6f8f097acbc35011",
+        "source_id": "81bd493ca2e9ee25e947d9f4334e1f57ace88995"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "31ea5e2520a7bf6d307444664de6513955db94f7ad830fb6effb97120600fe3d",
+      "case_id": "smalltalk-line-d03f71bde6767777",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A class in yuml.me DSL",
+      "expected_cleaned_sha256": "983f336eea4cb04efb4a3a0f61dc1ad4983dcc352f1805d871e46cf361d88b03",
+      "language": "smalltalk",
+      "raw_comment": "\"A class in yuml.me DSL\"",
+      "raw_sha256": "dcfa9505383b97fdfd713ee84cd73c93fe46d32b9d755ece56853aaf202f1833",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "d0a7d800e7eacad81783fd1edcddc3d6dbbc34229cc686a12ae4b4eeffd25373",
+        "source_id": "9f709616e4e981bd93bcf63995813b3ffdf089f5"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "610ca29bf0cdabeec7fb9c008d6c113cfc4fc860a7308d7f7cdcff536913518d",
+      "case_id": "smalltalk-line-d3a723dbc516c946",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Set the last character of the receiver as indicated",
+      "expected_cleaned_sha256": "cb3a4df2283a6d93a00254a7334f8b2358f41320b0244f7da6cb3b4050b37e7d",
+      "language": "smalltalk",
+      "raw_comment": "\"Set the last character of the receiver as indicated\"",
+      "raw_sha256": "01bd71e6b29da5b749012e16e678e15dcc6c5084880433d82130d5dc56b75396",
+      "raw_utf8_length": 53,
+      "source_provenance": {
+        "source_excerpt_sha256": "c66fe57809a20827308646179ff8402a67b64143534f1f8136272e4d17dfe72a",
+        "source_id": "2e568362239ba4ec78979974c02ce00f781d35a2"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "3cb9c09d58bcf66b28b8adb319efc2ab43d72f6da5f339c09e01311736389cb2",
+      "case_id": "smalltalk-line-e8f300b95a9aac88",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Reconstitute the palette based on what is found in the sorter",
+      "expected_cleaned_sha256": "821316e2bb9158c7a85c31664c2b0645f00d9c774db84abef8dbc79673ac1cca",
+      "language": "smalltalk",
+      "raw_comment": "\"Reconstitute the palette based on what is found in the sorter\"",
+      "raw_sha256": "59b60e64d940d378c10d0180ca6bcd1b0c040290b19da4635967de5aba2a9be1",
+      "raw_utf8_length": 63,
+      "source_provenance": {
+        "source_excerpt_sha256": "e440c8429d33ed64b81b34b7501a972ee0f12c6c8e6d1761f9469f519a69ce93",
+        "source_id": "4b659c2816ffd178e5dad80980524fdf3c7d48ae"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "d5f86670be05e44bc83d6c00d9d7aa02e3192be76ea5d182cecf923aad5f1949",
+      "case_id": "smalltalk-line-ed3b2353f77eaf25",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Scroll my text into view. Due to line composition mechanism, we must never use the right of a character block because the lines last character block right value always comes from a global container and is *not* line specific.",
+      "expected_cleaned_sha256": "2c5aaf5b29922df74b53e3cf52d9aeed21cacf523276bf1dbaa014d510bfbd91",
+      "language": "smalltalk",
+      "raw_comment": "\"Scroll my text into view. Due to line composition mechanism, we must never use the right of a character block because the lines last character block right value always comes from a global container and is *not* line specific.\"",
+      "raw_sha256": "fc0091a580ad86573838aba39db909d907bac449876544b8dc642697c514452b",
+      "raw_utf8_length": 227,
+      "source_provenance": {
+        "source_excerpt_sha256": "2ad200b98762fda14a23fd61cb1bfb0e9836dcfb2e07e949a9738aef304646c0",
+        "source_id": "3f6abc8897ca1527dce07150ebb2dfd90c3734b2"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "97ad4ebc68e263ed685a78c6cfd83c44d4c218bd8bf71f2482424813dc12e059",
+      "case_id": "smalltalk-line-f113986c41d7ce6f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "remove the point if the angle between the two adjacent lines is near Pi",
+      "expected_cleaned_sha256": "5e17df66ff144bf98582a0822acfa40aaa81787a7dc450a93d1d1924f57669f5",
+      "language": "smalltalk",
+      "raw_comment": "\"remove the point if the angle between the two adjacent lines is near Pi\"",
+      "raw_sha256": "40b29b9dfc4888e04dd329a69ac51c02a3ba35a8716ac245bb1b8f5c316b4f90",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "df24f3717a87c51bc97ec188fad7e72b6744512090f509269f4440537ced25b2",
+        "source_id": "e9289e88d28f7f0072d512644ab7f9783bf60e7f"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "e158b75797aa761e5ec75bb342c11c2a76cf7c35874b5cc0b658545bab46b5d6",
+      "case_id": "smalltalk-line-fa7edc1a84f383df",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "For transformations etc, not used in compilation",
+      "expected_cleaned_sha256": "1ae2fb60ffa7f99f0f9706beac97292ba858d3b04ece4d024d0f99edaf10c9f6",
+      "language": "smalltalk",
+      "raw_comment": "\"For transformations etc, not used in compilation\"",
+      "raw_sha256": "7260458aeaaf8cf7c1e33ac990cb168c950562cab56dfff5ba51353303ca7fb5",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "80045d222559e841d17a7b728fd565640318618edebf12f7df5fcda56d386e7d",
+        "source_id": "32409d3b3f148e16f795eb1cfdb36bcc3be20ec5"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "a077feac36eba4304b615168ece4c33486c843bf9ff4ee4ade3cec328b17e656",
+      "case_id": "smalltalk-line-fda9636718bd34d4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "not detected",
+      "expected_cleaned_sha256": "e82ab623705a4a51b2e246c8481cf64946cd1b84baa8251bc7a14c5ce4055f71",
+      "language": "smalltalk",
+      "raw_comment": "\"not detected\"",
+      "raw_sha256": "01d9826fe001a4014515a0f6ee9f1e9fc95d28ecfd3babe227b16b3999678f74",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "9eda33dbe925d772d5b8781b24ac7580db17e152b9e3b7903906a01ab37adcfa",
+        "source_id": "5a4bab6a11d915fa90f6a4dedd7809ba5e69a7dc"
+      },
+      "syntax_label": "\""
+    }
+  ],
+  "schema_version": 5
+}

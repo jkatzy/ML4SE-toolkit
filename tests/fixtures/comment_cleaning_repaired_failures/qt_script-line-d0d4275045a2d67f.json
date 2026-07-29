@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-d0d4275045a2d67f",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a5edbca4f7d3b702895f6600c0cc2a03b157d6702d8ecb7d9d3d099c74b908ff",
+      "utf8_length": 16
+    },
+    "manifest_old_output": {
+      "sha256": "91ba82af774c07a1ab50b5b9a2a4fe22f94eec3279d136a118faac6fe22b343a",
+      "utf8_length": 14
+    },
+    "raw_comment": {
+      "sha256": "7b845bd8fc33fa0e9b64ef02cd1ee3498be4c9e4fd5be246853ff618da14a294",
+      "utf8_length": 140
+    },
+    "recommended_expected_output": {
+      "sha256": "91ba82af774c07a1ab50b5b9a2a4fe22f94eec3279d136a118faac6fe22b343a",
+      "utf8_length": 14
+    }
+  },
+  "regression": {
+    "expected_output": "FLUX ECOMMERCE",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// FLUX ECOMMERCE //////////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7117a2180cc5b46ebd66c5fcd48532223507319fc8fc9b013ab42ee88d5a0e36",
+    "source_id": "16950f48a2dbf51de4fe938b9fcfba7bb6f7bc5d"
+  },
+  "source_record_sha256": "604ac44a539c50c8a341661e71776446a4da0c599d572a27842cda530146e6dc"
+}

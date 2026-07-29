@@ -150,9 +150,7 @@ def _call_vllm(args: argparse.Namespace, prompt: str) -> str:
     return message["content"]
 
 
-def _messages(
-    prompt: str, *, scope: str = COMBINED_SCOPE
-) -> list[dict[str, str]]:
+def _messages(prompt: str, *, scope: str = COMBINED_SCOPE) -> list[dict[str, str]]:
     if scope == CLEANING_SCOPE:
         contract = (
             "Return only a JSON object with verdict, cleaning_correct, and rationale. "
@@ -221,15 +219,11 @@ def _verdict_schema(scope: str) -> dict[str, Any]:
     raise ValueError(f"unsupported comment judge scope: {scope}")
 
 
-def _validate_verdict(
-    verdict: dict[str, Any], *, scope: str = COMBINED_SCOPE
-) -> None:
+def _validate_verdict(verdict: dict[str, Any], *, scope: str = COMBINED_SCOPE) -> None:
     if scope == CLEANING_SCOPE:
         unexpected = sorted(set(verdict) - set(CLEANING_VERDICT_SCHEMA["required"]))
         if unexpected:
-            raise ValueError(
-                f"cleaning verdict has unexpected field(s): {', '.join(unexpected)}"
-            )
+            raise ValueError(f"cleaning verdict has unexpected field(s): {', '.join(unexpected)}")
     if verdict.get("verdict") not in {"pass", "fail"}:
         raise ValueError("verdict must be 'pass' or 'fail'")
     boolean_fields = ("cleaning_correct",)

@@ -1,0 +1,38 @@
+{
+  "case_id": "metal-block-07fed47ca4200a29",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "metal",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "59b38843ba3f7d894b9a6cdc9d05c72d6bc744a2b35faf1dc1873545569c2a75",
+      "utf8_length": 1008
+    },
+    "manifest_old_output": {
+      "sha256": "59b38843ba3f7d894b9a6cdc9d05c72d6bc744a2b35faf1dc1873545569c2a75",
+      "utf8_length": 1008
+    },
+    "raw_comment": {
+      "sha256": "d4fd5282991f35d264298bf227d58c8b663c7666adb7673adf365d7b2332af9c",
+      "utf8_length": 1074
+    },
+    "recommended_expected_output": {
+      "sha256": "59b38843ba3f7d894b9a6cdc9d05c72d6bc744a2b35faf1dc1873545569c2a75",
+      "utf8_length": 1008
+    }
+  },
+  "regression": {
+    "expected_output": " Matrix values for Color Defects in RGB Space \"Color-Matrix\" by www.colorjack.com (the \"one-night hack\") https://web.archive.org/web/20081014161121/http://www.colorjack.com/labs/colormatrix/\n\n'Normal':[1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Protanopia':[0.567,0.433,0,0,0, 0.558,0.442,0,0,0, 0,0.242,0.758,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Protanomaly':[0.817,0.183,0,0,0, 0.333,0.667,0,0,0, 0,0.125,0.875,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Deuteranopia':[0.625,0.375,0,0,0, 0.7,0.3,0,0,0, 0,0.3,0.7,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Deuteranomaly':[0.8,0.2,0,0,0, 0.258,0.742,0,0,0, 0,0.142,0.858,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Tritanopia':[0.95,0.05,0,0,0, 0,0.433,0.567,0,0, 0,0.475,0.525,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Tritanomaly':[0.967,0.033,0,0,0, 0,0.733,0.267,0,0, 0,0.183,0.817,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Achromatopsia':[0.299,0.587,0.114,0,0, 0.299,0.587,0.114,0,0, 0.299,0.587,0.114,0,0, 0,0,0,1,0, 0,0,0,0,1],\n'Achromatomaly':[0.618,0.320,0.062,0,0, 0.163,0.775,0.062,0,0, 0.163,0.320,0.516,0,0",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n      Matrix values for Color Defects in RGB Space \"Color-Matrix\" by www.colorjack.com (the \"one-night hack\") https://web.archive.org/web/20081014161121/http://www.colorjack.com/labs/colormatrix/\n     \n     'Normal':[1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Protanopia':[0.567,0.433,0,0,0, 0.558,0.442,0,0,0, 0,0.242,0.758,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Protanomaly':[0.817,0.183,0,0,0, 0.333,0.667,0,0,0, 0,0.125,0.875,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Deuteranopia':[0.625,0.375,0,0,0, 0.7,0.3,0,0,0, 0,0.3,0.7,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Deuteranomaly':[0.8,0.2,0,0,0, 0.258,0.742,0,0,0, 0,0.142,0.858,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Tritanopia':[0.95,0.05,0,0,0, 0,0.433,0.567,0,0, 0,0.475,0.525,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Tritanomaly':[0.967,0.033,0,0,0, 0,0.733,0.267,0,0, 0,0.183,0.817,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Achromatopsia':[0.299,0.587,0.114,0,0, 0.299,0.587,0.114,0,0, 0.299,0.587,0.114,0,0, 0,0,0,1,0, 0,0,0,0,1],\n     'Achromatomaly':[0.618,0.320,0.062,0,0, 0.163,0.775,0.062,0,0, 0.163,0.320,0.516,0,0\n     */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "65ed10809c3c78b764fd6b73a4ecc212ce299e1de9c27a0989192e9e9b07ad7e",
+    "source_id": "6c6b8b25f5c05832d83a56f4bb3f21d7a5564edc"
+  },
+  "source_record_sha256": "79641a4f02b4a02fb4e631e912d27cad4a890acfe18c78e1285a3d735a8b68cb"
+}

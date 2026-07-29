@@ -1,0 +1,297 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "abap_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "a1c5d06d063c07d86fcb3d298f6e4fa57ea7b628442c99cf2f9795b8c2bd51c6",
+      "case_id": "abap-line-13738369cb51f431",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Global interface:\n  IMPORTING\n     VALUE(I_DATUM) LIKE  SY-DATUM\n     VALUE(I_ARBPL) LIKE  CRHD-ARBPL DEFAULT 'T'\n  TABLES\n      T_NSTL_WORKTIME STRUCTURE  ZSMM_NSTL_WORKTIME OPTIONAL",
+      "expected_cleaned_sha256": "69a42fcc939935f38fdda576ba4946b821027894ea63a209bd5653ac5cab6aa1",
+      "language": "abap",
+      "raw_comment": "*\"----------------------------------------------------------------------\n*\"*\"Global interface:\n*\"  IMPORTING\n*\"     VALUE(I_DATUM) LIKE  SY-DATUM\n*\"     VALUE(I_ARBPL) LIKE  CRHD-ARBPL DEFAULT 'T'\n*\"  TABLES\n*\"      T_NSTL_WORKTIME STRUCTURE  ZSMM_NSTL_WORKTIME OPTIONAL\n*\"----------------------------------------------------------------------",
+      "raw_sha256": "a2086e0abfc1a095635b4df88b84edff5213eb0b354e64cb1a59b176ae6a4d22",
+      "raw_utf8_length": 343,
+      "source_provenance": {
+        "source_excerpt_sha256": "bf719dd68e390766f79befb700844b192d53aaa6e31f9ef1fe930cf34fac4b97",
+        "source_id": "a7f76eeb3921431f0b0cd48d43af5deaef87a337"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "4c5e3a674f5470fe2b61ce872182d822dda18ca414c8d9e18d2912cb5d852451",
+      "case_id": "abap-line-356951b43c4f6734",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Module  RM03E-ZEANS  OUTPUT\nSetzen Kennzeichen 'referentielle EANs vorhanden' auf dem Popup\n'Europ\u00e4ische Artikelnummer'",
+      "expected_cleaned_sha256": "c2466f7959db8d4d7727b7dab75db99cf81eff0c3e551821964345e1c5d0107a",
+      "language": "abap",
+      "raw_comment": "*&---------------------------------------------------------------------*\n*&      Module  RM03E-ZEANS  OUTPUT\n*&---------------------------------------------------------------------*\n*   Setzen Kennzeichen 'referentielle EANs vorhanden' auf dem Popup    *\n*   'Europ\u00e4ische Artikelnummer'                                        *\n*----------------------------------------------------------------------*",
+      "raw_sha256": "fd019842e4579a5f77c4808e3d3e5e68093094820d95efdfa6f29d200fc28af3",
+      "raw_utf8_length": 401,
+      "source_provenance": {
+        "source_excerpt_sha256": "6cf2631adc5e1ccce29d7c80cd5a519284cd03e4e7922108d707831068813aad",
+        "source_id": "fc2291eb203d1a35eeb5307be63baddf5f95cd02"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "4dff8a211966cd440e3e53d09f139666eb84ba80938cccc456cfb5ae0cf33082",
+      "case_id": "abap-line-36d44e775fee1c6d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "           _\n  __ _  __| | ___  ___ ___  ___\n / _` |/ _` |/ _ \\/ __/ __|/ _ \\\n| (_| | (_| |  __/\\__ \\__ \\ (_) |\n \\__,_|\\__,_|\\___||___/___/\\___/\n\n\n        $USER  $DATE",
+      "expected_cleaned_sha256": "2c709529bb4ff7633ad32848dd530a659bd2b684ce9b09cdd2418a0feac8638e",
+      "language": "abap",
+      "raw_comment": "************************************************************************\n****\n*            _\n*   __ _  __| | ___  ___ ___  ___\n*  / _` |/ _` |/ _ \\/ __/ __|/ _ \\\n* | (_| | (_| |  __/\\__ \\__ \\ (_) |\n*  \\__,_|\\__,_|\\___||___/___/\\___/\n************************************************************************\n*******\n*\n*\n*&         $USER  $DATE\n************************************************************************\n*******",
+      "raw_sha256": "5dfbed7b67bb0e1f21fdd8474bc11fb2b786baef223cfa954caafff1f304e2e0",
+      "raw_utf8_length": 422,
+      "source_provenance": {
+        "source_excerpt_sha256": "a4a5887235c2b78ec66204c8ed5cda06a3a15c22761e6a656e35188cdf0c0198",
+        "source_id": "d31f1482f444b13c99ec1c31045a5375fb34cb4c"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "4e8e48274a41a6959e2ca7cffcabeb9031c8d41968edd1f4151b8665561d42d2",
+      "case_id": "abap-line-6a101fac5190b4da",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Method: SET_OUTPUT_OPTIONS\nDescription:\nSet document output options",
+      "expected_cleaned_sha256": "7ea9ea7d9d147a197790f88a8a36c1e9844ecf46e2454f341bb48946584756fa",
+      "language": "abap",
+      "raw_comment": "*----------------------------------------------------------------------*\n* Method: SET_OUTPUT_OPTIONS\n*----------------------------------------------------------------------*\n* Description:\n* Set document output options\n*----------------------------------------------------------------------*",
+      "raw_sha256": "49b75d8f8fa7993165c1a4d076cd514337412806c309c592261bea6ccfb2da41",
+      "raw_utf8_length": 292,
+      "source_provenance": {
+        "source_excerpt_sha256": "2163020efb2a9b7008068f35bd6bd256b1e9051d3b68b2340aa53addfa304fc6",
+        "source_id": "582064ac76376dc837ce824e930419874b43f255"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "3bea778a9e0fb3137cfa134c9e4fc36ffabd53c08f7db31615177270170864cf",
+      "case_id": "abap-line-78fcc009ea3d5722",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Include           Z_TH0701_ALV_2_GRIDALV_I01\n    Module  USER_COMMAND_0100  INPUT\n     text",
+      "expected_cleaned_sha256": "fc1a38173c79e9a1d3a063b41472fc827ce0c82d782686d106107de8a84e0fae",
+      "language": "abap",
+      "raw_comment": "*&---------------------------------------------------------------------*\n*&  Include           Z_TH0701_ALV_2_GRIDALV_I01\n*&---------------------------------------------------------------------*\n*&---------------------------------------------------------------------*\n*&      Module  USER_COMMAND_0100  INPUT\n*&---------------------------------------------------------------------*\n*       text\n*----------------------------------------------------------------------*",
+      "raw_sha256": "99cbfce35f4840f4adabbe9586050cd4b7893339bae5b26ad613f9f93f7cad05",
+      "raw_utf8_length": 467,
+      "source_provenance": {
+        "source_excerpt_sha256": "4369dd433a9bb591b4d7f52465031e3777df87005932e7ef349857b450cd3875",
+        "source_id": "2d873beba8ec0b0025f97d9407922ef04352e61e"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "1f9fb5be0ae2c76bc3ff15abee56eec8300643aa4e0521d12c9b50a19e0b7c02",
+      "case_id": "abap-line-7f907b9d867d247f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "INCLUDE MZRQM25R_NOTI_SUMMARY_PI01 .",
+      "expected_cleaned_sha256": "6457ab63461f0cbe280a5a6643d4a03d4431d56525aa53ef850ee73b567c9284",
+      "language": "abap",
+      "raw_comment": "*----------------------------------------------------------------------*\n***INCLUDE MZRQM25R_NOTI_SUMMARY_PI01 .\n*----------------------------------------------------------------------*",
+      "raw_sha256": "6b974d0a0f92729763340c89da0a11dcb13a4636a97df5e249deee0d03f306c0",
+      "raw_utf8_length": 185,
+      "source_provenance": {
+        "source_excerpt_sha256": "88318cd64436f190d2d23417ecf9cdf023d22204f84c301f216b5067acbca556",
+        "source_id": "4764c6853dbc22427c0c13215103fcf0e8445ee3"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "afeb12d07bfa669385f93b476ce2ddc45cf321dad2418b5ee76dffb0a7eeede1",
+      "case_id": "abap-line-8098fe59eed8e50b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Include          ZJVAN_JV_AUDIT_REPORT_SEL_01\nAuthor          : Ajitesh Kumar\nCreation Date   : 28-02-2019\nTransaction     : N/A\nTechnical design: TSD_ETP_I_R02_11.2.6_JV Audit Report_V1.0\nDescription     : JV Audit Report\nModification Information (Most Recent on Top)\nDate            : 28-02-2019\nAuthor          : Ajitesh Kumar\nChange request  : N/A\nTransport number: S4DK900556\nDescription     : Initial Development",
+      "expected_cleaned_sha256": "5635284d1f49e96b0acf81e82b0e97eb1ff7037e9d535e2456e73f39098469b3",
+      "language": "abap",
+      "raw_comment": "*&---------------------------------------------------------------------*\n*& Include          ZJVAN_JV_AUDIT_REPORT_SEL_01\n*&---------------------------------------------------------------------*\n*----------------------------------------------------------------------*\n* Author          : Ajitesh Kumar\n* Creation Date   : 28-02-2019\n* Transaction     : N/A\n* Technical design: TSD_ETP_I_R02_11.2.6_JV Audit Report_V1.0\n* Description     : JV Audit Report\n*----------------------------------------------------------------------*\n* Modification Information (Most Recent on Top)\n*----------------------------------------------------------------------*\n* Date            : 28-02-2019\n* Author          : Ajitesh Kumar\n* Change request  : N/A\n* Transport number: S4DK900556\n* Description     : Initial Development\n*----------------------------------------------------------------------*",
+      "raw_sha256": "7f413f6f6f9080249ff5289ee991f8fcf1c516829f52f5e1bb3755edef5befd1",
+      "raw_utf8_length": 881,
+      "source_provenance": {
+        "source_excerpt_sha256": "47ea4b49413a0561fb9d8fa66e08b9e23a1539ef326ca607141470913ad3b1fd",
+        "source_id": "be8373fda1a737bbbc4824a0f17480594eec581e"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "c706e31ee76fc7a3bdc90a660c163bb36f74b8a1b56784171a65f118eefc3a7d",
+      "case_id": "abap-line-94691cf12f1ade98",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u672c\u5730\u63a5\u53e3:\n  IMPORTING\n     REFERENCE(I_WERKS) TYPE  CHAR4\n     REFERENCE(I_FWERK) TYPE  CHAR4 OPTIONAL\n     REFERENCE(I_TYPE) TYPE  CHAR1 OPTIONAL\n  TABLES\n      OT_PATH STRUCTURE  ZTRADE_PATH_T\n  EXCEPTIONS\n      NO_PATH",
+      "expected_cleaned_sha256": "50824ea3d50e5ae08305b0dc8a14e9092266e39c3cf05688630a3f571a29b7cd",
+      "language": "abap",
+      "raw_comment": "*\"--------------------------------------------------------------------\n*\"*\"\u672c\u5730\u63a5\u53e3:\n*\"  IMPORTING\n*\"     REFERENCE(I_WERKS) TYPE  CHAR4\n*\"     REFERENCE(I_FWERK) TYPE  CHAR4 OPTIONAL\n*\"     REFERENCE(I_TYPE) TYPE  CHAR1 OPTIONAL\n*\"  TABLES\n*\"      OT_PATH STRUCTURE  ZTRADE_PATH_T\n*\"  EXCEPTIONS\n*\"      NO_PATH\n*\"--------------------------------------------------------------------",
+      "raw_sha256": "7b0613266b55667efa8ddc2c1fcfd6d6c0756695f5001e99e4b3065cd34653ce",
+      "raw_utf8_length": 387,
+      "source_provenance": {
+        "source_excerpt_sha256": "c2ea17f5addec4e6f1c993e464c57f01a561bb081bbf9c0c8bffb98c66aff2b8",
+        "source_id": "c8353b2401cb6d986cbc0ebf66a01fb5f2fffa8a"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "53530694d2dbc261598afc6d8ca745086ff512d42dea7fc31e2722c6ce3075c0",
+      "case_id": "abap-line-bdc1045033f1b9a9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Include          ZR17_0020F01\nForm SET_ALV_0100\ntext\n-->  p1        text\n<--  p2        text",
+      "expected_cleaned_sha256": "ce5d159c9c73d44748f68673e22490fa53377b906b98565249c6d2d11f7b6b9a",
+      "language": "abap",
+      "raw_comment": "*&---------------------------------------------------------------------*\n*& Include          ZR17_0020F01\n*&---------------------------------------------------------------------*\n*&---------------------------------------------------------------------*\n*& Form SET_ALV_0100\n*&---------------------------------------------------------------------*\n*& text\n*&---------------------------------------------------------------------*\n*& -->  p1        text\n*& <--  p2        text\n*&---------------------------------------------------------------------*",
+      "raw_sha256": "f16bb03add8da516523011b2c738841c181be27c0a0b7f7c93719dae07631884",
+      "raw_utf8_length": 545,
+      "source_provenance": {
+        "source_excerpt_sha256": "0385bae72ff0216eb02bad6d2b803ff93c7fa811c01a0cd38012e397209a6dd2",
+        "source_id": "a652fa90ed2b457a3df4b7ddf5255dbd3e2b6aff"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "73176621cc7e48948acc8a054778e4376ba3edd0c22c1a0254172671fb39a8d7",
+      "case_id": "abap-line-c52a68d391d25843",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Interface local:\n  CHANGING\n     REFERENCE(CT_ACHDR) TYPE  ZT_FMACHDR\n     REFERENCE(CT_ACITM) TYPE  ZT_FMACITM",
+      "expected_cleaned_sha256": "05630a96f3d16e4039a2b7460572c3f9e67eb8f5c8080d6b7b7252c00cfaea0e",
+      "language": "abap",
+      "raw_comment": "*\"----------------------------------------------------------------------\n*\"*\"Interface local:\n*\"  CHANGING\n*\"     REFERENCE(CT_ACHDR) TYPE  ZT_FMACHDR\n*\"     REFERENCE(CT_ACITM) TYPE  ZT_FMACITM\n*\"----------------------------------------------------------------------",
+      "raw_sha256": "1e2829827da0f7d2276251d9a21e30598550af2e58b9a9875e9cf76bc5c28611",
+      "raw_utf8_length": 267,
+      "source_provenance": {
+        "source_excerpt_sha256": "90b45c9bed757d6ee9845b4eecab44360a0f00daf7b7e9359fd8dcfdd46bdb89",
+        "source_id": "516bd5d8fe3e182c2bb15ba6081b4278cb793bb0"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "ecd83f9eefd279abd15d971f5da0c9aca0650f58c99343e0442f5ba5ce783929",
+      "case_id": "abap-line-c6eddc936210375f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "           _\n  __ _  __| | ___  ___ ___  ___\n / _` |/ _` |/ _ \\/ __/ __|/ _ \\\n| (_| | (_| |  __/\\__ \\__ \\ (_) |\n \\__,_|\\__,_|\\___||___/___/\\___/",
+      "expected_cleaned_sha256": "05763cb6d0ff53e8311af6beca5876615ded09daeb35685d53b9b22f2052c19a",
+      "language": "abap",
+      "raw_comment": "************************************************************************\n****\n*            _\n*   __ _  __| | ___  ___ ___  ___\n*  / _` |/ _` |/ _ \\/ __/ __|/ _ \\\n* | (_| | (_| |  __/\\__ \\__ \\ (_) |\n*  \\__,_|\\__,_|\\___||___/___/\\___/\n************************************************************************\n*******\n*\n*\n*&\n************************************************************************\n*******",
+      "raw_sha256": "baba5ee8f8753f3127d4356e8e6d3019edc23991f9e11bc0bc490532b9701490",
+      "raw_utf8_length": 401,
+      "source_provenance": {
+        "source_excerpt_sha256": "93550db846ba37c6abf9f1d0b22d47f6996672d875dc6030d0df0c896b365281",
+        "source_id": "e18bd65509e9e3c4a6b0dca09567b02353fa86ff"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "b140a7cea4ebb91eb121abd6baf5f1a8498e327ed0646d3a9eb2ba7ee2d05c56",
+      "case_id": "abap-line-c96d22b8e0999892",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "INIT",
+      "expected_cleaned_sha256": "8426fe6df433aa66a723428b5c6776572f7e7ff4af42b69831a99898225cfd1f",
+      "language": "abap",
+      "raw_comment": "\" INIT --------------------------------------------------------------------------\"",
+      "raw_sha256": "0cc052025d7eee3d205f8e40e912248bce1c1cb7f237be74aa12917a1b220d8d",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "008e4154b953b9a9fd68839e69580ca54d5ff8f16963a58243c2dfc7b7fe92c5",
+        "source_id": "c9a38b3793cee4afda00f394aec447596bdbbc81"
+      },
+      "syntax_label": "\""
+    },
+    {
+      "baseline_cleaned_sha256": "5f2f2e681e46b5a7d2b6ec3a779912c2aa8668ef6d42d1dc90f86f75d8cb7862",
+      "case_id": "abap-line-cb9c94c294f1ef32",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file is part of SAPlink.\n\nSAPlink is free software; you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published\nby the Free Software Foundation; either version 2 of the License,\nor (at your option) any later version.\n\nSAPlink is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with SAPlink; if not, write to the\nFree Software Foundation, Inc.,\n51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA",
+      "expected_cleaned_sha256": "e22a1543562ab56a658901a42a53ac1d18119cb9c41f41fb80c06fb4f6ec10b1",
+      "language": "abap",
+      "raw_comment": "*/---------------------------------------------------------------------\\\n*|   This file is part of SAPlink.                                     |\n*|                                                                     |\n*|   SAPlink is free software; you can redistribute it and/or modify   |\n*|   it under the terms of the GNU General Public License as published |\n*|   by the Free Software Foundation; either version 2 of the License, |\n*|   or (at your option) any later version.                            |\n*|                                                                     |\n*|   SAPlink is distributed in the hope that it will be useful,        |\n*|   but WITHOUT ANY WARRANTY; without even the implied warranty of    |\n*|   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the     |\n*|   GNU General Public License for more details.                      |\n*|                                                                     |\n*|   You should have received a copy of the GNU General Public License |\n*|   along with SAPlink; if not, write to the                          |\n*|   Free Software Foundation, Inc.,                                   |\n*|   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA          |\n*\\---------------------------------------------------------------------/",
+      "raw_sha256": "673544d10eaa0115dd848e21e16b1b033543bfaf26d9c75770c0efa4a62c87f3",
+      "raw_utf8_length": 1313,
+      "source_provenance": {
+        "source_excerpt_sha256": "423b78b4863886ab19ad7da0dbd449dcf17132cb36f88fab24ae4a98b8521243",
+        "source_id": "e5c49d240646d2a3d52c752e5822babd9c9638a6"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "589cbf137ea608f71369d28e61cc1ed42f112180bfbd66a674aeba7db134671d",
+      "case_id": "abap-line-d1c3964aa46786e0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Local interface:\n  IMPORTING\n     VALUE(I_PERNR) LIKE  ZTRF_ID_PASS-PERNR OPTIONAL\n     VALUE(I_PASSW) LIKE  ZTRF_ID_PASS-PASSW OPTIONAL\n     VALUE(N_PASSW) LIKE  ZTRF_ID_PASS-PASSW OPTIONAL\n  EXPORTING\n     VALUE(ZRESULT) TYPE  ZRESULT\n     VALUE(E_MESS) TYPE  BAPI_MSG\n     VALUE(E_MODULE) TYPE  ZRF_MODU\n     VALUE(E_GROUP) TYPE  LVS_REFNR\n     VALUE(E_DATUM) TYPE  CHAR8\n     VALUE(E_UZEIT) TYPE  CHAR6",
+      "expected_cleaned_sha256": "8901d8894dc1779b9e67837ddf11bec55b8bd92dcf3a3fafc7aa77b7257ba5f9",
+      "language": "abap",
+      "raw_comment": "*\"----------------------------------------------------------------------\n*\"*\"Local interface:\n*\"  IMPORTING\n*\"     VALUE(I_PERNR) LIKE  ZTRF_ID_PASS-PERNR OPTIONAL\n*\"     VALUE(I_PASSW) LIKE  ZTRF_ID_PASS-PASSW OPTIONAL\n*\"     VALUE(N_PASSW) LIKE  ZTRF_ID_PASS-PASSW OPTIONAL\n*\"  EXPORTING\n*\"     VALUE(ZRESULT) TYPE  ZRESULT\n*\"     VALUE(E_MESS) TYPE  BAPI_MSG\n*\"     VALUE(E_MODULE) TYPE  ZRF_MODU\n*\"     VALUE(E_GROUP) TYPE  LVS_REFNR\n*\"     VALUE(E_DATUM) TYPE  CHAR8\n*\"     VALUE(E_UZEIT) TYPE  CHAR6\n*\"----------------------------------------------------------------------",
+      "raw_sha256": "98d8ce310ef18b500bc4ab3c5dbc1eabb8d3ba419f607ddc42eef0878c722c6a",
+      "raw_utf8_length": 578,
+      "source_provenance": {
+        "source_excerpt_sha256": "f265bde61ed468dd582036fbbea077d6831d4b4de5ff36499d64c84de2e7daf1",
+        "source_id": "5617ef9ce9976b472c2682cfe44ae4e7e7a5f354"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "dc86f112ea76f48e71b532131b2aa3da26d5a2346a2e56c0ab6aa98799b9e643",
+      "case_id": "abap-line-db603a79d7c056af",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "INCLUDE ZXMPKZZZ .",
+      "expected_cleaned_sha256": "066f19ae5ccf11a1776191f6b160be2bd7c043cbbcf0f139f79320fea9737da7",
+      "language": "abap",
+      "raw_comment": "*----------------------------------------------------------------------*\n***INCLUDE ZXMPKZZZ .\n*----------------------------------------------------------------------*",
+      "raw_sha256": "ecb7249ea2c54840139a55d393138ed96307a07b154b94607bd78214ac4b40c7",
+      "raw_utf8_length": 167,
+      "source_provenance": {
+        "source_excerpt_sha256": "3b6589c31a6e4be62810d97e357725e329c0410d6d61968896e8f373c420242f",
+        "source_id": "10a1a73e825407bb7846c288e3d315b716f309da"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "6e4961d9a72b8e07ef095bc742e3f25a6926ef30ced69900e1c139887fabcfd6",
+      "case_id": "abap-line-efd723bc17b4a796",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Include          ZACCOUNTANT_DIARY_F01\nForm GET_DATA\ntext\n-->  p1        text\n<--  p2        text",
+      "expected_cleaned_sha256": "627f7571bbc7baafdaad6c4064e633b7c4edf086958df578d02018793688acba",
+      "language": "abap",
+      "raw_comment": "*&---------------------------------------------------------------------*\n*& Include          ZACCOUNTANT_DIARY_F01\n*&---------------------------------------------------------------------*\n*&---------------------------------------------------------------------*\n*& Form GET_DATA\n*&---------------------------------------------------------------------*\n*& text\n*&---------------------------------------------------------------------*\n*& -->  p1        text\n*& <--  p2        text\n*&---------------------------------------------------------------------*",
+      "raw_sha256": "14efa036676c3a86cd9a28f564da6fdd7b90df87ea5af0fffa35783ad806f461",
+      "raw_utf8_length": 550,
+      "source_provenance": {
+        "source_excerpt_sha256": "0e6e0e97fed58068035ead3676bf544db632feede457e7f088fb17341e699c6f",
+        "source_id": "b83fea630ee9e2535ea8c6874004ca4410b3e2d6"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "7be8965549cbedbfc762779e9c30b369ddf993a1b9409b8eae47f39847bc8202",
+      "case_id": "abap-line-ff809291ca2c9a0d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Report ZABAP_IMPORT_XML_CTE",
+      "expected_cleaned_sha256": "eb58df645968950450350425195b4d7cac2ef37d45bfbb6bb02b73c511a3851a",
+      "language": "abap",
+      "raw_comment": "*& Report ZABAP_IMPORT_XML_CTE\r",
+      "raw_sha256": "9ddbe4a8632f1be55f07932efedfad43aef9dae677df88443c60eb5c57a71782",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "3cc64d042ab495ae7de8dd2918605accd9dc792e7c3e6842f8b3e0c0941171fa",
+        "source_id": "3cea2607d3b0465a92b32b0a3c13e398de7383e0"
+      },
+      "syntax_label": "*"
+    }
+  ],
+  "schema_version": 5
+}

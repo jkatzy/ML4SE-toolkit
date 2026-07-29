@@ -1,0 +1,38 @@
+{
+  "case_id": "tex-line-ab8f11a782a24a62",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "tex",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0d158420492c5543b44d651996b049962f6021155f5004ed1e640e1e2a89082f",
+      "utf8_length": 128
+    },
+    "manifest_old_output": {
+      "sha256": "0d158420492c5543b44d651996b049962f6021155f5004ed1e640e1e2a89082f",
+      "utf8_length": 128
+    },
+    "raw_comment": {
+      "sha256": "7bb9ae3b0e5dc3dc53541d4d16a6a68b2693533b71bada1f5c3c692ac9c66031",
+      "utf8_length": 223
+    },
+    "recommended_expected_output": {
+      "sha256": "0d158420492c5543b44d651996b049962f6021155f5004ed1e640e1e2a89082f",
+      "utf8_length": 128
+    }
+  },
+  "regression": {
+    "expected_output": "-->    Lab: Two Difference Amplifiers <--%\n--> Author: Charles Edward Pax        <--%\n-->   Date: Date 2006.03.08           <--%",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%=========================================%\n%-->    Lab: Two Difference Amplifiers <--%\n%--> Author: Charles Edward Pax        <--%\n%-->   Date: Date 2006.03.08           <--%\n%=========================================%\n%\n%"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "129954da3ed46394ac9a106a272c63c73888564282dea892f8fa7f2fb7f5673c",
+    "source_id": "235a94e967fab3bf3525f9fcc1d3bf4c5049d5e3"
+  },
+  "source_record_sha256": "eed5168ffc474f4fdc7bbba494fbf7e3f3dc953f5fd8511b824f50974270224e"
+}

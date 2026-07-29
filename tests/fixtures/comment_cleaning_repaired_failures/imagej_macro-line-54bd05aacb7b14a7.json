@@ -1,0 +1,38 @@
+{
+  "case_id": "imagej_macro-line-54bd05aacb7b14a7",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "imagej_macro",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "faf2e63eceb12f0ba7e37ed2f9ba98aafa1cdd4139765c68e6fff63a4680ada8",
+      "utf8_length": 488
+    },
+    "manifest_old_output": {
+      "sha256": "faf2e63eceb12f0ba7e37ed2f9ba98aafa1cdd4139765c68e6fff63a4680ada8",
+      "utf8_length": 488
+    },
+    "raw_comment": {
+      "sha256": "36ee40ff2d729a0767214ef61a274bac5488132166127ad46ba6caf489a04c6b",
+      "utf8_length": 592
+    },
+    "recommended_expected_output": {
+      "sha256": "faf2e63eceb12f0ba7e37ed2f9ba98aafa1cdd4139765c68e6fff63a4680ada8",
+      "utf8_length": 488
+    }
+  },
+  "regression": {
+    "expected_output": "Date: September-2020\nCredits: ZeroCostDL4Mic, DeepImageJ\nURL:\n\t\thttps://github.com/HenriquesLab/ZeroCostDL4Mic/wiki\n\t\thttps://deepimagej.github.io/deepimagej\n*******************************************************************\n Macro to run a DeepSTORM trained model recursively\n to each of the slices of one SMLM stack.\n DeepImageJ and ThunderSTORM plugin need to be installed\n*******************************************************************\nChoose a directory to store all the results",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//*******************************************************************\n// Date: September-2020\n// Credits: ZeroCostDL4Mic, DeepImageJ\n// URL: \n// \t\thttps://github.com/HenriquesLab/ZeroCostDL4Mic/wiki\n// \t\thttps://deepimagej.github.io/deepimagej\n//*******************************************************************\n//  Macro to run a DeepSTORM trained model recursively \n//  to each of the slices of one SMLM stack. \n//  DeepImageJ and ThunderSTORM plugin need to be installed\n//*******************************************************************\n// Choose a directory to store all the results"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5b94d93e684f9404abe457c4116fd088ba8bff2086fd707b10184e354c529110",
+    "source_id": "f6bd9c592baebc69b2eab9fa39dc3b5717bc54b8"
+  },
+  "source_record_sha256": "f0d04f43f2e186f00e0f17dad0527b500b33c3b59a3e69f3f58918064248bc21"
+}

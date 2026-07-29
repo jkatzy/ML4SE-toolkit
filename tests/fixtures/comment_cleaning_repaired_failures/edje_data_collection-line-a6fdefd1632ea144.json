@@ -1,0 +1,38 @@
+{
+  "case_id": "edje_data_collection-line-a6fdefd1632ea144",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "edje_data_collection",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "45759075eb55c0ca6b6f77e0df2f19a16216dc28fb3795b6555db4495801828c",
+      "utf8_length": 55
+    },
+    "manifest_old_output": {
+      "sha256": "4967c93d229873fdc157deb5e0705da1cc9cd2f337dd5cd4b01a17c6e83fc175",
+      "utf8_length": 53
+    },
+    "raw_comment": {
+      "sha256": "951f6780eb26e9eec30511aabdb774e062fc9ded107ee23298c42c0afeae8fc7",
+      "utf8_length": 134
+    },
+    "recommended_expected_output": {
+      "sha256": "4967c93d229873fdc157deb5e0705da1cc9cd2f337dd5cd4b01a17c6e83fc175",
+      "utf8_length": 53
+    }
+  },
+  "regression": {
+    "expected_output": "the background and general container for the terminal",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "///////////////////////////////////////////////////////////////////////////\n//// the background and general container for the terminal"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "61ef1697d52d579086d8ba6990bea38332477136fdd6871226b2962ca1475fb5",
+    "source_id": "65251d7ad9db13d3c22b4a5154e66bfb67e3f620"
+  },
+  "source_record_sha256": "0c1b785451c1a2fb6c577eff121716513f1abc1974db7a85d168ffe41576cd8f"
+}

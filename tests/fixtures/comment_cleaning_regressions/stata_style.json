@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "stata_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "9b292001922dbe7d06ba79b8462e0f636cfd4ad8606c8c40a385b34965d2405e",
+      "case_id": "stata-block-271eda937bd2adff",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "playback request",
+      "expected_cleaned_sha256": "e70899a828a22ddc4b334ff0dfdb1635048f9c48932a978a86b714fd7d42591c",
+      "language": "stata",
+      "raw_comment": "/*------------------------------------------------ playback request */",
+      "raw_sha256": "2e1649a03aaddc34cf03b7a1b8c34d58ecd39ffd084fdd3414eb3d1414d4e685",
+      "raw_utf8_length": 70,
+      "source_provenance": {
+        "source_excerpt_sha256": "ccfce641a4a7298d7aacbfc099862c3ef247bb052545d7f170e32eb2d27e2cb9",
+        "source_id": "07eb8857590e1c3135069a03deb8602207322049"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "bce1ec35396fb780183e47cd2628f8fab7ada4c1ad26d9eb9be5d0ad4d4c0782",
+      "case_id": "stata-block-641d4a44d3c30212",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Results with 5mm obs and 10 regressors:\n\n(in thousand K bytes)\n- baseline dataset\t\t 645\n- compact pool(2)\t\t1320\t\t74s\n- default\t\t\t\t3100\t\t50s\n\nSo an aggressive memory option (compact+pool) uses at most 2x memory\nwhile the default option uses up to 4.8x memory, running at 2/3ds of the time",
+      "expected_cleaned_sha256": "555b1dc50f216c6f452da58ebe29ed3a1a7ff239235210813e71d39c39d9581e",
+      "language": "stata",
+      "raw_comment": "/* Results with 5mm obs and 10 regressors:\n\n(in thousand K bytes)\n- baseline dataset\t\t 645\n- compact pool(2)\t\t1320\t\t74s\n- default\t\t\t\t3100\t\t50s\n\nSo an aggressive memory option (compact+pool) uses at most 2x memory\nwhile the default option uses up to 4.8x memory, running at 2/3ds of the time\n\n*/",
+      "raw_sha256": "a4a331d36fb0b0b7ea93f2c52f3b3a211c8bd55be8b5a98fc77202f194fa6644",
+      "raw_utf8_length": 294,
+      "source_provenance": {
+        "source_excerpt_sha256": "6dc4ee773673bfb054fdcc5ddd0e5d3e95f1fef85a7edfbf40e0b7f31c43c637",
+        "source_id": "cbea640717ccd42c260ecead3ee43e5315af703d"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "523fa466cf66826c14e01e2b2f2ca99fd6660c44221a5c1f5d2c80df7e550481",
+      "case_id": "stata-line-47926b22aa3d08b9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Multidimensional aspirations\n\nMain analysis do-file",
+      "expected_cleaned_sha256": "ef2eaa5ad6009c67e86ce15e360dbf6a6fe67d450b1bf9f1564a71206f515ee1",
+      "language": "stata",
+      "raw_comment": "********************************************************************************\n************** \t\t\tMultidimensional aspirations\t\t\t****************\n*\n*\t\t\t\t            Main analysis do-file\n*\t\t\n********************************************************************************",
+      "raw_sha256": "c80c1fe1c75e691493611659da73ca340fedd20e7f17ff09c651c06f5f2613b6",
+      "raw_utf8_length": 272,
+      "source_provenance": {
+        "source_excerpt_sha256": "d187d2cb274ac508e9e29158c98903d0c280f2f62b773355bb5468ea8ab4aa28",
+        "source_id": "5a94945e4875d444eb8b36ba7208712b3bfa270e"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "c94c7352b370ecf42b0f4e44ad392b8d3db4b4e8441436bbee50fd953791f804",
+      "case_id": "stata-line-5dc242fa804887ec",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Please set path\nlocal folderpath /Users/username/Desktop/ReplicationFiles/Codes/Paper/Tables\ncd `folderpath'",
+      "expected_cleaned_sha256": "949e0176453e253b6addf777b5c0045a29f162e36c50adaac79f7031e1b84cbc",
+      "language": "stata",
+      "raw_comment": "*** Please set path ***\n*local folderpath /Users/username/Desktop/ReplicationFiles/Codes/Paper/Tables\n*cd `folderpath'",
+      "raw_sha256": "b48c6e38fe38d64629b1f9327cf0c6262d84949269adc109ce19ad53574f04d2",
+      "raw_utf8_length": 118,
+      "source_provenance": {
+        "source_excerpt_sha256": "faeb9d4506a982b5350761eb3ce18f4779fe75c2fd972527446c82e163cfe022",
+        "source_id": "934621dd949d24a03972397dc538ed9dc0ce74d0"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "d7b4a3c1dd8332af0d4413f54da14afa36daabf28924aaf7b87813e0834af597",
+      "case_id": "stata-line-6c02d31b3da46a5b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "EMPIRICAL ANALYSIS\n2007 all",
+      "expected_cleaned_sha256": "f900208c000777b7b1feb7c423c88667c51fbf523068ddb364c1bff5e985d7a1",
+      "language": "stata",
+      "raw_comment": "***********************************************************************************************************************************************************************************************************************************************************************************************************\n********************************************************************************************************************EMPIRICAL ANALYSIS*********************************************************************************************************************************************************************\n***********************************************************************************************************************************************************************************************************************************************************************************************************\n*2007 all*\n***********************************************************************************************************************************************************************************************************************************************************************************************************",
+      "raw_sha256": "320b163b514443a84b603e5c339ad2f4e8154d596d8ab09fc0207f2be2efad64",
+      "raw_utf8_length": 1210,
+      "source_provenance": {
+        "source_excerpt_sha256": "0c84ba1c56625c128af403a4bb13d3eceda5520ca8783aef820a4aae076e0dd1",
+        "source_id": "bc9adb50f5d6bb92229caf6e09323a4cceed3a12"
+      },
+      "syntax_label": "*"
+    }
+  ],
+  "schema_version": 5
+}

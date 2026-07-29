@@ -1,0 +1,38 @@
+{
+  "case_id": "lua-block-c3f175e113842beb",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "lua",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "5d4b8d65382bcfe01326375eee3ee8af744de48c47f37ee6437578a9062d30c6",
+      "utf8_length": 1703
+    },
+    "manifest_old_output": {
+      "sha256": "268931410c78113a1820ed2f1b9a96a87317dd46ed955e2a4ff048dec17a280c",
+      "utf8_length": 1750
+    },
+    "raw_comment": {
+      "sha256": "805cf96e5b13f8f5cde2d6c3d328f38db57344dc3184b797c28c208a36bea0d9",
+      "utf8_length": 1820
+    },
+    "recommended_expected_output": {
+      "sha256": "268931410c78113a1820ed2f1b9a96a87317dd46ed955e2a4ff048dec17a280c",
+      "utf8_length": 1750
+    }
+  },
+  "regression": {
+    "expected_output": " ____  _            _          ____ ______ ___\n|  _ \\| |          | |        |___ \\____  |__ \\\n| |_) | | __ _  ___| | ___   _  __) |  / /   ) |\n|  _ <| |/ _` |/ __| |/ / | | ||__ <  / /   / /\n| |_) | | (_| | (__|   <| |_| |___) |/ /   / /_\n|____/|_|\\__,_|\\___|_|\\_\\\\__, |____//_/   |____|\n                          __/ |\n                         |___/\n\t\tAuto Mana Boots v0.4c\n\n\tFeatures:\n\t- Automatically activate Arcane Boots when its on cooldown and you need the mana\n\t- Wait for allies that need mana\n\t- Show AOE of mana boots when allies need to come closer\n\n\tVersion History:\n\tv0.4c\n\t- Adjusted minor things to fit the Blacky Script Standard\n\tv0.4b\n\t- Minor bugfix\n\tv0.4a\n\t- The script will now not try to create an effect even out of game\n\tv0.4\n\t- Range display can now be deactivated when a teamfight is happening to avoid confusion\n\t- Optimized outer range to 2000\n\t- Status text will now show much more information\n\tv0.3\n\t- Upgraded to the new Ensage version\n\t- Migrated from HotkeyConfig to ScriptConfig\n\t- Optimized inner range\n\t- Added a range_display around the hero when there are allies that need to get in range\n\tv0.2b\n\t- Fixed a problem resulting in an error\n\tv0.2a\n\t- The number displaying the playes, who still need to get close to you, is now displayed in white instead of black\n\tv0.2\n\t- The script now will not activate when you are near your fountain ( Would be a waste )\n\t- Now using SafeCastItem() instead of CastItem()\n\tv0.1c\n\t- Fixed trying to cast mana boots while being dead\n\tv0.1b\n\t- Fixed Problems with HotkeyConfig\n\t- Cleaned some code\n\t- Added channeling and invisibility protection\n\tv0.1a\n\t- Removed unused lib requires\n\t- Added numcycles for the required mana numbers\n\t- Simplified some code\n\tv0.1\n\t- Initial Release",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--[[  \n  ____  _            _          ____ ______ ___  \n |  _ \\| |          | |        |___ \\____  |__ \\ \n | |_) | | __ _  ___| | ___   _  __) |  / /   ) |\n |  _ <| |/ _` |/ __| |/ / | | ||__ <  / /   / / \n | |_) | | (_| | (__|   <| |_| |___) |/ /   / /_ \n |____/|_|\\__,_|\\___|_|\\_\\\\__, |____//_/   |____|\n                           __/ |                 \n                          |___/                  \n\t\tAuto Mana Boots v0.4c\n\t\n\tFeatures:\n\t- Automatically activate Arcane Boots when its on cooldown and you need the mana\n\t- Wait for allies that need mana\n\t- Show AOE of mana boots when allies need to come closer\n\t\n\tVersion History:\n\tv0.4c\n\t- Adjusted minor things to fit the Blacky Script Standard\n\tv0.4b\n\t- Minor bugfix\n\tv0.4a\n\t- The script will now not try to create an effect even out of game\n\tv0.4\n\t- Range display can now be deactivated when a teamfight is happening to avoid confusion\n\t- Optimized outer range to 2000\n\t- Status text will now show much more information\n\tv0.3\n\t- Upgraded to the new Ensage version\n\t- Migrated from HotkeyConfig to ScriptConfig\n\t- Optimized inner range\n\t- Added a range_display around the hero when there are allies that need to get in range\n\tv0.2b\n\t- Fixed a problem resulting in an error\n\tv0.2a\n\t- The number displaying the playes, who still need to get close to you, is now displayed in white instead of black\t\n\tv0.2\n\t- The script now will not activate when you are near your fountain ( Would be a waste ) \n\t- Now using SafeCastItem() instead of CastItem()\n\tv0.1c\n\t- Fixed trying to cast mana boots while being dead\n\tv0.1b\n\t- Fixed Problems with HotkeyConfig\n\t- Cleaned some code\n\t- Added channeling and invisibility protection\n\tv0.1a\n\t- Removed unused lib requires\n\t- Added numcycles for the required mana numbers\n\t- Simplified some code\n\tv0.1\n\t- Initial Release\n\t\t\t\t\t  \n]]"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f9d193a9513fb8f512e510d756771ffcfdba402d0e61aa4172d938ca40c365ae",
+    "source_id": "957d91be4e3cbf8d5041e36a5d272232476bb620"
+  },
+  "source_record_sha256": "bc66c329f45d9eb8b8534caf7fb38f028e9023ee46be20ef6704afd1a871d123"
+}

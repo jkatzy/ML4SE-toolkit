@@ -1,0 +1,29 @@
+{
+  "case_id": "modula_2-nested-cba03f6fe75eb932",
+  "category": "needs_manual_review",
+  "cluster": "oracle_exception:ambiguous",
+  "disposition": "accounting_only_no_oracle",
+  "language": "modula_2",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "875a77bb1c50bdcc4dd1d32aa1eea065205b77fb858181c6d79c5303e451a8a4",
+      "utf8_length": 2777
+    },
+    "manifest_old_output": {
+      "sha256": "875a77bb1c50bdcc4dd1d32aa1eea065205b77fb858181c6d79c5303e451a8a4",
+      "utf8_length": 2777
+    },
+    "raw_comment": {
+      "sha256": "c4a983f961c2b73840614e62e717833e6d12f9d521e33ede30624262091874a4",
+      "utf8_length": 2827
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "43f80b9d3e8faffc88b750b672c3ecdfd1f342d5be48dec87de4c4e78a5b7648",
+    "source_id": "0dfdb1b9cf4cdc2fb963c864a246f0133b34a1b7"
+  },
+  "source_record_sha256": "3845faacd063979f60492ba6a85044717d5095b867555ef7fc3b2a769be85173"
+}

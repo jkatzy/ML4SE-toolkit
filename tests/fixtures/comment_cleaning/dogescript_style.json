@@ -12,7 +12,7 @@
       "source": "registry:shared_regex_examples[0]",
       "kind": "line",
       "raw_comment": "shh much cleaning_payload_shared_regex_000",
-      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "expected_cleaned": "much cleaning_payload_shared_regex_000",
       "payload_marker": "cleaning_payload_shared_regex_000"
     },
     {
@@ -20,8 +20,24 @@
       "source": "registry:shared_regex_examples[1]",
       "kind": "block",
       "raw_comment": "quiet\n  much cleaning_payload_shared_regex_001\nloud",
-      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "expected_cleaned": "much cleaning_payload_shared_regex_001",
       "payload_marker": "cleaning_payload_shared_regex_001"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "shh cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    },
+    {
+      "id": "sanitizer-block-wrapper-000",
+      "source": "registry:sanitizer_block_wrappers[0]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "quiet\ncleaning_payload_sanitizer_block_wrapper_000\nloud",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_000"
     }
   ]
 }

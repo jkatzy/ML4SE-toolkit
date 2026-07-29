@@ -1,0 +1,161 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "liquid_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "4ae750a906f4fe93a73a86c5ab0b60e99190a51a203b3b1aea5684ff00706dde",
+      "case_id": "liquid-block-13f35c9fbf185412",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "      <div>\n        <div class=\"home-ps__slider\">\n          <div class=\"home-ps__slider--img\">\n            <img data-src={{ \"nano_product-slider.jpg\" | asset_url }} alt=\"glo nano\" class=\"lazyload lazypreload\">\n          </div>\n          <div class=\"home-ps__slider--descr\">\n            <h3 class=\"fff\">glo<span class=\"TM\">TM</span> NANO</h3>\n\n            <div class=\"info-product\">\n              <div class=\"info-product__item\">\n                <img src={{ \"complete-keyline.svg\" | asset_url }} alt=\"\u041d\u043e\u0432\u0438\u0439 \u0414\u0415\u041c\u0406 \u0444\u043e\u0440\u043c\u0430\u0442\">\n                <p class=\"fff\">\u0424\u043e\u0440\u043c\u0430\u0442 \u0441\u0442\u0456\u043a\u0456\u0432 \u041d\u0430\u043d\u043e</p>\n              </div>\n              <div class=\"info-product__item\">\n                <img src={{ \"complete-keyline.svg\" | asset_url }} alt=\"\u041d\u043e\u0432\u0438\u0439 \u0414\u0415\u041c\u0406 \u0444\u043e\u0440\u043c\u0430\u0442\">\n                <p class=\"fff\">\u041b\u0435\u0433\u043a\u0438\u0439, \u043a\u043e\u043c\u043f\u0430\u043a\u0442\u043d\u0438\u0439, \u0437\u0440\u0443\u0447\u043d\u0438\u0439</p>\n              </div>\n              <div class=\"info-product__item\">\n                <img src={{ \"complete-keyline.svg\" | asset_url }} alt=\"\u041d\u043e\u0432\u0438\u0439 \u0414\u0415\u041c\u0406 \u0444\u043e\u0440\u043c\u0430\u0442\">\n                <p class=\"fff\">\u0421\u0442\u0438\u043b\u044c\u043d\u0438\u0439 \u0434\u0438\u0437\u0430\u0439\u043d, \u044f\u0441\u043a\u0440\u0430\u0432\u0456 \u043a\u043e\u043b\u044c\u043e\u0440\u0438</p>\n              </div>\n            </div>\n\n            <div class=\"home-ps__slider--btns\">\n            \t<a href=\"/pages/glo-nano\" class=\"btn btn-primary btn--secondary-light\">\n                  \u0414\u0456\u0437\u043d\u0430\u0442\u0438\u0441\u044f \u0431\u0456\u043b\u044c\u0448\u0435\n                </a>\n\n              \t<!--<a href=\"/collections/starter-kit/products/glo-pro-kit\" class=\"btn btn--link\">\n                  \u041f\u043e\u0440\u0456\u0432\u043d\u044f\u0442\u0438 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457\n                </a>-->\n            </div>\n\n\n          </div>\n        </div>\n      </div>",
+      "expected_cleaned_sha256": "6716c9dbbf33a7609cc84b05215f39c245b4f9d966a9f12843c3c67495d4bb8d",
+      "language": "liquid",
+      "raw_comment": "{%comment%}\n      <div>\n        <div class=\"home-ps__slider\">\n          <div class=\"home-ps__slider--img\">\n            <img data-src={{ \"nano_product-slider.jpg\" | asset_url }} alt=\"glo nano\" class=\"lazyload lazypreload\">            \n          </div>\n          <div class=\"home-ps__slider--descr\">\n            <h3 class=\"fff\">glo<span class=\"TM\">TM</span> NANO</h3>\n\n            <div class=\"info-product\">\n              <div class=\"info-product__item\">\n                <img src={{ \"complete-keyline.svg\" | asset_url }} alt=\"\u041d\u043e\u0432\u0438\u0439 \u0414\u0415\u041c\u0406 \u0444\u043e\u0440\u043c\u0430\u0442\">\n                <p class=\"fff\">\u0424\u043e\u0440\u043c\u0430\u0442 \u0441\u0442\u0456\u043a\u0456\u0432 \u041d\u0430\u043d\u043e</p>\n              </div>\n              <div class=\"info-product__item\">\n                <img src={{ \"complete-keyline.svg\" | asset_url }} alt=\"\u041d\u043e\u0432\u0438\u0439 \u0414\u0415\u041c\u0406 \u0444\u043e\u0440\u043c\u0430\u0442\">\n                <p class=\"fff\">\u041b\u0435\u0433\u043a\u0438\u0439, \u043a\u043e\u043c\u043f\u0430\u043a\u0442\u043d\u0438\u0439, \u0437\u0440\u0443\u0447\u043d\u0438\u0439</p>\n              </div>\n              <div class=\"info-product__item\">\n                <img src={{ \"complete-keyline.svg\" | asset_url }} alt=\"\u041d\u043e\u0432\u0438\u0439 \u0414\u0415\u041c\u0406 \u0444\u043e\u0440\u043c\u0430\u0442\">\n                <p class=\"fff\">\u0421\u0442\u0438\u043b\u044c\u043d\u0438\u0439 \u0434\u0438\u0437\u0430\u0439\u043d, \u044f\u0441\u043a\u0440\u0430\u0432\u0456 \u043a\u043e\u043b\u044c\u043e\u0440\u0438</p>\n              </div>\n            </div>\n\n            <div class=\"home-ps__slider--btns\">\n            \t<a href=\"/pages/glo-nano\" class=\"btn btn-primary btn--secondary-light\">\n                  \u0414\u0456\u0437\u043d\u0430\u0442\u0438\u0441\u044f \u0431\u0456\u043b\u044c\u0448\u0435\n                </a>\n              \n              \t<!--<a href=\"/collections/starter-kit/products/glo-pro-kit\" class=\"btn btn--link\">\n                  \u041f\u043e\u0440\u0456\u0432\u043d\u044f\u0442\u0438 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457\n                </a>-->\n            </div>\n            \n\n          </div>\n        </div>\n      </div>\n{%endcomment%}",
+      "raw_sha256": "1a2072a5bf8800f7646692583512580eda37a4e08b33f2b7c81a8f4346cf00bd",
+      "raw_utf8_length": 1687,
+      "source_provenance": {
+        "source_excerpt_sha256": "06695a9eb33d5b91f43158b3485f6588bc032ff4b36695dd5935f24f29d5a729",
+        "source_id": "e72dc0f08255bc6050af614388369d27d51cfa25"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "2da52b1b05bbe87afb147e29d0638e3dbed9e6a407510db6794f7f1d94e1da07",
+      "case_id": "liquid-block-1c19f9da1576bc4b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<p>{{ article.published_at  | date: format: 'abbreviated_date' }}</p>",
+      "expected_cleaned_sha256": "4b1c20f7da0469b9b3d682a52647f1e892b971a9cc446e37933411aae4928034",
+      "language": "liquid",
+      "raw_comment": "{%- comment -%} <p>{{ article.published_at  | date: format: 'abbreviated_date' }}</p>{%- endcomment -%}",
+      "raw_sha256": "2da52b1b05bbe87afb147e29d0638e3dbed9e6a407510db6794f7f1d94e1da07",
+      "raw_utf8_length": 103,
+      "source_provenance": {
+        "source_excerpt_sha256": "57e7880f07e8194d88de3559cde01101f867364f97a08234efae62a40a758f02",
+        "source_id": "717f36c8dd23b65915e0371024914aad2a730e1d"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "18bd23eccde281fdcfd20e45cc99ae15c7e6a35afbf93a19e3275a3d2315e3e6",
+      "case_id": "liquid-block-666ffbb53d7da98f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<span class=\"product-category\">\n  {{ product.metafields.custom_fields[\"category\"] }}\n</span>",
+      "expected_cleaned_sha256": "7cbe44a1d4554b7598ad95f0c59184b49600e7dcc0037c681d0d7c140870ae71",
+      "language": "liquid",
+      "raw_comment": "{%- comment -%}\n  <span class=\"product-category\">\n    {{ product.metafields.custom_fields[\"category\"] }}\n  </span>\n  {%- endcomment -%}",
+      "raw_sha256": "18bd23eccde281fdcfd20e45cc99ae15c7e6a35afbf93a19e3275a3d2315e3e6",
+      "raw_utf8_length": 135,
+      "source_provenance": {
+        "source_excerpt_sha256": "25918a0972151a4c32e747294e279b34d025d7abd81a29a00e20c2aaaf1aa1ce",
+        "source_id": "92ff16ec26f80e981a039f4da94ae398756baa00"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "c509f2fa1686e42aa61b1e5cb5cbfcecc0c1712f88f3559d7855ecde77a46df5",
+      "case_id": "liquid-block-743da65c59cce873",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "In building these pages we found that using an app would be too heavy and cost month to month.\nSo to avoid that we've used page templates and sections. When the merchant wants to add more a developer can copy-paste this info into another section.",
+      "expected_cleaned_sha256": "3e8e72b8680b01190b5e879af657f243b01dbcb79bd3455b3c7cd1e0d73978ca",
+      "language": "liquid",
+      "raw_comment": "{%comment %}\n\nIn building these pages we found that using an app would be too heavy and cost month to month.\nSo to avoid that we've used page templates and sections. When the merchant wants to add more a developer can copy-paste this info into another section.\n\n\n{%endcomment%}",
+      "raw_sha256": "c509f2fa1686e42aa61b1e5cb5cbfcecc0c1712f88f3559d7855ecde77a46df5",
+      "raw_utf8_length": 277,
+      "source_provenance": {
+        "source_excerpt_sha256": "87f9a15f19fb628dd91c194249757f01a8d4b919990b5c8d6bc905e3d065ac7d",
+        "source_id": "7dedd13a00c9e9ff116027c3d4d25f84359bdcd9"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "01329fbf9904819a61cd390171af1ecbdf5d9f64293880c407883a5e64fe9618",
+      "case_id": "liquid-block-77cc0f66e820e4da",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This is a required section for the Shopify Theme Store.\n\nTheme Store required settings\n- Heading: title of the about us short section\n- Subheading: description of the about us short section",
+      "expected_cleaned_sha256": "24975b41c37b6645411b2e8eaa7fe3d01193ef8cec7dd9e78dc9049848ee851d",
+      "language": "liquid",
+      "raw_comment": "{%- comment -%}\n  This is a required section for the Shopify Theme Store.\n\n  Theme Store required settings\n  - Heading: title of the about us short section\n  - Subheading: description of the about us short section\n{%- endcomment -%}",
+      "raw_sha256": "01329fbf9904819a61cd390171af1ecbdf5d9f64293880c407883a5e64fe9618",
+      "raw_utf8_length": 232,
+      "source_provenance": {
+        "source_excerpt_sha256": "600ea3be9862699c4d5d80d87918d0756b62ec9db94be6b8fc03e1e2db4002ba",
+        "source_id": "e3ab1b182d0babd56d13ecfb919417349ccaf494"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "5ebe65c29fe1a359fbe95067a7b1b0627b013a688e9e58e6843cbdc7e3300f37",
+      "case_id": "liquid-block-968791df9cb9eed2",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Plug in SEO Plus for Shopify\n\nCopyright (c) 2019 Pemberton Rank Ltd, a company registered in England 7341337\n\nThis file is subject to the license at https://www.pluginseo.com/eula",
+      "expected_cleaned_sha256": "1a1ab777b6f8b135b971bebbd31b587a49bd17f823b9feff0a26add1c4a05f7d",
+      "language": "liquid",
+      "raw_comment": "{%- comment -%}\n  ----------------------------------------------------------------------------------\n   Plug in SEO Plus for Shopify\n\n   Copyright (c) 2019 Pemberton Rank Ltd, a company registered in England 7341337\n\n   This file is subject to the license at https://www.pluginseo.com/eula\n  ----------------------------------------------------------------------------------\n{%- endcomment -%}",
+      "raw_sha256": "5ebe65c29fe1a359fbe95067a7b1b0627b013a688e9e58e6843cbdc7e3300f37",
+      "raw_utf8_length": 393,
+      "source_provenance": {
+        "source_excerpt_sha256": "79189a5926fb94df4a3d7afb55396717738eec71dcd8c7d0cf56825359ad5356",
+        "source_id": "7b03b2b8ebf2bdae73ff258f4fee49d5cbb914d7"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "c8d25788b40b93eeb6adae1eeb43cb301dbe09b45c9d3d3a4c227fc1a18a6698",
+      "case_id": "liquid-block-992d49c45faf899d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This is a required section for the Shopify Theme Store.\nIt is available in the \"Header\" section in the theme editor.\n\nTheme Store required settings\n- Show announcement\n- Text: message to announce\n- Link: link of the announcement bar\n\nTheme Store optional settings\n- Home page only: only shows on the home page",
+      "expected_cleaned_sha256": "f79171806b5f9b88abc28fcc8d345b287e51e8f8c53b6c99ab884affb2f5a078",
+      "language": "liquid",
+      "raw_comment": "{%- comment -%}\n  This is a required section for the Shopify Theme Store.\n  It is available in the \"Header\" section in the theme editor.\n\n  Theme Store required settings\n  - Show announcement\n  - Text: message to announce\n  - Link: link of the announcement bar\n\n  Theme Store optional settings\n  - Home page only: only shows on the home page\n{%- endcomment -%}",
+      "raw_sha256": "c8d25788b40b93eeb6adae1eeb43cb301dbe09b45c9d3d3a4c227fc1a18a6698",
+      "raw_utf8_length": 360,
+      "source_provenance": {
+        "source_excerpt_sha256": "47d758b9b58d1f7bc379c480f4fd13d614ce70b5c32daf2227a87c3e3ce32e52",
+        "source_id": "6fadb8d8627f38bce42bd56f343573f8f7017238"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "c5aca4bdaa7a60485f01d2205a353e564c61a4f243398f0f30c08c3bb1f8cacd",
+      "case_id": "liquid-block-cb66814489083466",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "vi:ft=liquid:",
+      "expected_cleaned_sha256": "1717ce571979601902d7dcb2d0ef397499454551916f9490170a590f7b33b6f0",
+      "language": "liquid",
+      "raw_comment": "{%- comment -%} vi:ft=liquid: {%- endcomment -%}",
+      "raw_sha256": "c5aca4bdaa7a60485f01d2205a353e564c61a4f243398f0f30c08c3bb1f8cacd",
+      "raw_utf8_length": 48,
+      "source_provenance": {
+        "source_excerpt_sha256": "04299895f12df5a57c26bea83e89dcfe1d9cd12dc81f0d79845f030e00bd89ae",
+        "source_id": "538d65578fb7c39b70d818e25335392965e0cf9e"
+      },
+      "syntax_label": "{%"
+    },
+    {
+      "baseline_cleaned_sha256": "d3b07cf085cda5b1c488b288f4f1739d0789705357f434fd26ae7790428a925e",
+      "case_id": "liquid-block-ce38f91af0817462",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Placeholder provided for customization by users. If left empty, it will be removed in post-processing.",
+      "expected_cleaned_sha256": "ac5be014185219544d8eb5731ec483211f55f00c3da913681739d35c8781892f",
+      "language": "liquid",
+      "raw_comment": "{% comment -%} Placeholder provided for customization by users. If left empty, it will be removed in post-processing. {% endcomment -%}",
+      "raw_sha256": "d3b07cf085cda5b1c488b288f4f1739d0789705357f434fd26ae7790428a925e",
+      "raw_utf8_length": 135,
+      "source_provenance": {
+        "source_excerpt_sha256": "dd3724c27dd8a9571479cb45b8fe15206e0165748d0b01246f75c8e02a3ac5c5",
+        "source_id": "268acbce2b9d5cdfe693fad39a508ff5069a26ab"
+      },
+      "syntax_label": "{%"
+    }
+  ],
+  "schema_version": 5
+}

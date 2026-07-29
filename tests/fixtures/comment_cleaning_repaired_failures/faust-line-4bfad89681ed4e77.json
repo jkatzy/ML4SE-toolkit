@@ -1,0 +1,38 @@
+{
+  "case_id": "faust-line-4bfad89681ed4e77",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:known_gutter",
+  "disposition": "executable_regression",
+  "language": "faust",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "41e4c643b05b0c0fb2615a1854120b62b3c822c7d3d1505a6853f1d05af35a63",
+      "utf8_length": 18
+    },
+    "manifest_old_output": {
+      "sha256": "021a4e473c1228ee11bef5145a7ab388b095d9f2c12dd088a7a0b4a2fc7f7f26",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "a1194cb70ee22518cb4d878d4f8cd4b9ff9d323e2ff6c3b8b61845e050d753fc",
+      "utf8_length": 123
+    },
+    "recommended_expected_output": {
+      "sha256": "021a4e473c1228ee11bef5145a7ab388b095d9f2c12dd088a7a0b4a2fc7f7f26",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "Simple 8x2 mixer",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//-------------------------------------------------\n// Simple 8x2 mixer\n//-------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6e9925f89c29a3227b4aa6a2fa29eeb2ddd6b91dbd5f75b3ff66a25a1bbbb556",
+    "source_id": "108b63ae6c36afd0a5107b629bf1898fe66d2eb2"
+  },
+  "source_record_sha256": "ba9ef2f713f07f8eed700c5a58e566a7cbf238fe99c3be6b578d392318733af0"
+}

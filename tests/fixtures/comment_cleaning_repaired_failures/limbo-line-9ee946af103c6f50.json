@@ -1,0 +1,38 @@
+{
+  "case_id": "limbo-line-9ee946af103c6f50",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "limbo",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4904eb19469b242c3ac5055839863776f38b60d51652e1920d8833dcee6181ff",
+      "utf8_length": 436
+    },
+    "manifest_old_output": {
+      "sha256": "4904eb19469b242c3ac5055839863776f38b60d51652e1920d8833dcee6181ff",
+      "utf8_length": 436
+    },
+    "raw_comment": {
+      "sha256": "ff54d752c7f4da09c1b6bd8a8d11390827dc0afec2dc22d4cdc59df7f61cfd24",
+      "utf8_length": 456
+    },
+    "recommended_expected_output": {
+      "sha256": "4904eb19469b242c3ac5055839863776f38b60d51652e1920d8833dcee6181ff",
+      "utf8_length": 436
+    }
+  },
+  "regression": {
+    "expected_output": "|Created on 2020/09/11 17:07:10 using:\n| filtermesh genus3.m -removekey sharp\n|(Timing on cpu=Intel64 Family 6 Model 158 Stepping 9, GenuineIntel host=?)\n| (_readmesh:               0.00)\n| (Filtermesh:              0.00)\nCreated on 2020/09/11 17:08:04 using:\n filtermesh genus3.m -removekey rgb\n(Timing on cpu=Intel64 Family 6 Model 158 Stepping 9, GenuineIntel host=?)\n (_readmesh:               0.00)\n (Filtermesh:              0.00)",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# |Created on 2020/09/11 17:07:10 using:\n# | filtermesh genus3.m -removekey sharp\n# |(Timing on cpu=Intel64 Family 6 Model 158 Stepping 9, GenuineIntel host=?)\n# | (_readmesh:               0.00)\n# | (Filtermesh:              0.00)\n# Created on 2020/09/11 17:08:04 using:\n#  filtermesh genus3.m -removekey rgb\n# (Timing on cpu=Intel64 Family 6 Model 158 Stepping 9, GenuineIntel host=?)\n#  (_readmesh:               0.00)\n#  (Filtermesh:              0.00)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "497607da24680b75e5463f6301985667bddb88f441ecf6d8fda841f5da18c9c7",
+    "source_id": "61ff7b0821e770b6db34c68107086691badcb4ff"
+  },
+  "source_record_sha256": "cc44651af42b363d900c8fda85aa6d199e1f0c7b10513359ab7c881801f874d7"
+}

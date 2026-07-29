@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "forth_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "10030bbb1b08f2418fdc3731a348000d3bc4f76ff33c51f17dae1cb8ae28cc6c",
+      "case_id": "forth-block-49bafd5bda439dc7",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "forth",
+      "oracle_exception_record_sha256": "84357082428d7757ed109b39a32b6f2f68cc68397b4f742d157381ea61de1658",
+      "raw_sha256": "60c34c1ba3301cae404a88af6e48997ac9c86512fdcc7b0d5e7b06619fe95bd2",
+      "raw_utf8_length": 981,
+      "source_provenance": {
+        "source_excerpt_sha256": "8c1adf74ccf73f0c8ed7cbc3faf640fde216336299ff022dda810a367da53e38",
+        "source_id": "a79d38d48afc8db079dcd31b91824887cc595d7e"
+      },
+      "syntax_label": "(...)"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "95eec455b112a1e605a0772061f04817a2491060df22618c70432557d00051a1",
+      "case_id": "forth-line-13bee8db1e2d7ade",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "forth",
+      "raw_comment": "\\ ==================================================================\r",
+      "raw_sha256": "7488d66d6b7af03f14a9ff0825712eb2bd051fb50d543bb052f0fd2c1722852d",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "b5b884ff4978301f4727a0cfcebdc40d938d66cb6e0189be3895ffd6bccbad26",
+        "source_id": "c30af720523bd474d41b0434b818aa4fefb7afe9"
+      },
+      "syntax_label": "\\"
+    },
+    {
+      "baseline_cleaned_sha256": "1d4d070a8e82ab1f98d1ec1f22faf1eb839cb44f9dc95d2f2e3cc9ea046448d3",
+      "case_id": "forth-line-85fdbe23778b8131",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "forth",
+      "raw_comment": "\\ =========================================================================== \r",
+      "raw_sha256": "7f6421815558dd37c30d2cbcacd42142f04f2491c390e53295df7b7def405211",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "423cccfbb1ecb9d5f34981f9f815711a4b72c2dae1a261c97c6d1ba8e3892edd",
+        "source_id": "b3cd6d17533be4d7d7470209a82264bc20933f71"
+      },
+      "syntax_label": "\\"
+    },
+    {
+      "baseline_cleaned_sha256": "4eedae21a148e1d51d6f564e8a83f72b8046aca826fc38b1e6f6ee868d53ae51",
+      "case_id": "forth-line-c51e8c12329b12aa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2004, 2008 IBM Corporation\nAll rights reserved.\nThis program and the accompanying materials\nare made available under the terms of the BSD License\nwhich accompanies this distribution, and is available at\nhttp://www.opensource.org/licenses/bsd-license.php\n\nContributors:\n    IBM Corporation - initial implementation",
+      "expected_cleaned_sha256": "74c9e3c1e1f10f2a7847ee1f72f4dc37740cdbce496162014a1f3bee4213d894",
+      "language": "forth",
+      "raw_comment": "\\ *****************************************************************************\n\\ * Copyright (c) 2004, 2008 IBM Corporation\n\\ * All rights reserved.\n\\ * This program and the accompanying materials\n\\ * are made available under the terms of the BSD License\n\\ * which accompanies this distribution, and is available at\n\\ * http://www.opensource.org/licenses/bsd-license.php\n\\ *\n\\ * Contributors:\n\\ *     IBM Corporation - initial implementation\n\\ ****************************************************************************/",
+      "raw_sha256": "4d1d4e1061b04a5a96a7cd39cc54c42f3fea35fc03e438629efe20524dba5954",
+      "raw_utf8_length": 522,
+      "source_provenance": {
+        "source_excerpt_sha256": "553eaa2b2614945c88fd133e6a0f25ca6d12cb099655d39b1e080dd5311615cb",
+        "source_id": "6414c7a371e928eb275b6ff18be245002c7ffbc1"
+      },
+      "syntax_label": "\\"
+    },
+    {
+      "baseline_cleaned_sha256": "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
+      "case_id": "muf-line-53a630846bf3c5ab",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "/ \\",
+      "expected_cleaned_sha256": "0114533bf50bb7c27765fa72f9bc08fb3f23bddc1b5017ab72cb7a71592ce444",
+      "language": "muf",
+      "raw_comment": "\\            / \\",
+      "raw_sha256": "f75be505e6200e3d287fbb448c9a34447b019e39a5c6fb74f9fc1862180f60dc",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "d1792737a8951bbfe6fa363d1c5b908ea384df1873108938c5315b8260b14997",
+        "source_id": "e84c40fc10fb69e8bc36a9bb02c71a8afab9f981"
+      },
+      "syntax_label": "\\"
+    }
+  ],
+  "schema_version": 5
+}

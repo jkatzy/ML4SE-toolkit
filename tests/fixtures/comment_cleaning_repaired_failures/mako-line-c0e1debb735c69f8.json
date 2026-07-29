@@ -1,0 +1,38 @@
+{
+  "case_id": "mako-line-c0e1debb735c69f8",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "mako",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "bc7acf870df9d2b3afe4644488b8f0e9a2f088e7a874f9ab9d60798de2db5b4d",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "11be2566d92b306dad50ce2fe94ebb192dd36965d2b5aa9a719c5f2be350bb10",
+      "utf8_length": 15
+    },
+    "raw_comment": {
+      "sha256": "89fb1eff11789d3879145668ba391acc8f04756db50244d1cde7c1f8fe3c61a8",
+      "utf8_length": 42
+    },
+    "recommended_expected_output": {
+      "sha256": "11be2566d92b306dad50ce2fe94ebb192dd36965d2b5aa9a719c5f2be350bb10",
+      "utf8_length": 15
+    }
+  },
+  "regression": {
+    "expected_output": "After Login URL",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "####\n      #### After Login URL\n      ####"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "942a625424951191b679191dbc12cad45c40d7c3b9532c5bebaffff49af82bf2",
+    "source_id": "733246ce5bd23606f5e36faeeb96be9324067130"
+  },
+  "source_record_sha256": "ffdcfa842934aac6269c67e09c46b461679caccf1f2fea1e196ecb5459dcef15"
+}

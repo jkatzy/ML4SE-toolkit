@@ -1,0 +1,38 @@
+{
+  "case_id": "fortran-line-9e8b3545987d92e4",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "fortran",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a5abf0e61abbc174438a047d8c8d9838c1955b62d8be8b38023c512888dcaae1",
+      "utf8_length": 37
+    },
+    "manifest_old_output": {
+      "sha256": "7cbfda2adaadaee0f3d5e446a453c18750eacc79fb5224a0db8d0bab7e70a38e",
+      "utf8_length": 30
+    },
+    "raw_comment": {
+      "sha256": "08c6be29667317bbea95658d4a1149f3adea74f73349d1a0920d2561bd9aab8d",
+      "utf8_length": 39
+    },
+    "recommended_expected_output": {
+      "sha256": "7cbfda2adaadaee0f3d5e446a453c18750eacc79fb5224a0db8d0bab7e70a38e",
+      "utf8_length": 30
+    }
+  },
+  "regression": {
+    "expected_output": "<--- this is important for MPI",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "!!!! <--- this is important for MPI !!!"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3aef9cecf396f24b8a444c75d95a4998139dfae75a2a51e89861ca58f489f354",
+    "source_id": "f5d8236fba8a2d9a5f2af6a19ba73c214bda5a10"
+  },
+  "source_record_sha256": "96c56505699fe54a6ab876b380437097c40e86ec6df010e656838fd8b676d58f"
+}

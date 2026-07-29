@@ -1,0 +1,38 @@
+{
+  "case_id": "lfe-line-abe4c6463c15ece7",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "lfe",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "77c19543d7f65a8c2db126c2e21ff85a4e0d9ee767c5a70309fe26e0f8c24eaf",
+      "utf8_length": 148
+    },
+    "manifest_old_output": {
+      "sha256": "636245ef0503c6da05d3b31f4a769549bcb57b71b684e9be994ce3ca69f13393",
+      "utf8_length": 137
+    },
+    "raw_comment": {
+      "sha256": "86d28e50b97df4664d4750cea790c59b29e9b50960f997c06ca98551599a27bc",
+      "utf8_length": 166
+    },
+    "recommended_expected_output": {
+      "sha256": "636245ef0503c6da05d3b31f4a769549bcb57b71b684e9be994ce3ca69f13393",
+      "utf8_length": 137
+    }
+  },
+  "regression": {
+    "expected_output": "The Clojure Cookbook provides the following examples for polymorphic\nfunctions:\n\n* map-based dispatch\n* multi-methods\n* Clojure protocols",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; The Clojure Cookbook provides the following examples for polymorphic\n;;;; functions:\n;;;;\n;;;; * map-based dispatch\n;;;; * multi-methods\n;;;; * Clojure protocols"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "51ee2b356fefb41bb3b896dc38cdb24368572f267067f93580f83da94ca3fe6a",
+    "source_id": "41c301dcea04721fc939755293e5395770c15530"
+  },
+  "source_record_sha256": "78b448b488213035e86e51635f4b2235663f6633a31d56fd2b5faf225c0b311d"
+}

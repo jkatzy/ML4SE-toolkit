@@ -1,0 +1,38 @@
+{
+  "case_id": "xquery-nested-4a7df50d2d8bf8b4",
+  "category": "policy_or_judge_conflict",
+  "cluster": "layout:whitespace_restoration",
+  "disposition": "executable_regression",
+  "language": "xquery",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6bf9edbf3fdae1363f5b5286c10d31c457c3bb4ab389630333eaec497062c801",
+      "utf8_length": 60
+    },
+    "manifest_old_output": {
+      "sha256": "f2917a73b8eb2f12f117affab9dd2e7ebe05392924df7cec5c11354f1a8e0a0a",
+      "utf8_length": 59
+    },
+    "raw_comment": {
+      "sha256": "a55af166dedc9128ec2719093433375767d5265a4c80c4ab0b954fbac41c098a",
+      "utf8_length": 67
+    },
+    "recommended_expected_output": {
+      "sha256": "6bf9edbf3fdae1363f5b5286c10d31c457c3bb4ab389630333eaec497062c801",
+      "utf8_length": 60
+    }
+  },
+  "regression": {
+    "expected_output": "Handling the standard editing requests\n   @author margaretha",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "(: Handling the standard editing requests \n   @author margaretha\n:)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b7ac75dac7bd55b8fd21ead419ca464ec4ea2304f5920d50c1b7a415d1adc7c2",
+    "source_id": "2f3a8861b5fc0479de92aadc88c9e577479ad92c"
+  },
+  "source_record_sha256": "de44f1b7d5e770f40c7fa6e4f4f2030cbc4ea8e3eee3f04cd78f8a9671d2b561"
+}

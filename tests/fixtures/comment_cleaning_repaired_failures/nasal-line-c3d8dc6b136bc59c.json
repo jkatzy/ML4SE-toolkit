@@ -1,0 +1,38 @@
+{
+  "case_id": "nasal-line-c3d8dc6b136bc59c",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "nasal",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "eccf8544eed1a145ebe59cc102830d14dbcad64f17f9e65c8e761c4d8d1bf219",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "102e0b9ade6d2803c183f48dd7a06ad17817ea630e9137f5ace23491c4780028",
+      "utf8_length": 12
+    },
+    "raw_comment": {
+      "sha256": "89d9eecb9677b90eb8cac51814c79939f2c6aa588b5f8be71860f10592d1da13",
+      "utf8_length": 29
+    },
+    "recommended_expected_output": {
+      "sha256": "102e0b9ade6d2803c183f48dd7a06ad17817ea630e9137f5ace23491c4780028",
+      "utf8_length": 12
+    }
+  },
+  "regression": {
+    "expected_output": "DHC6 systems",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "####    DHC6 systems    ####\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2a16b7f3c75d28beca2668e622fe4bb5e4ab09efd0a5826f65d1b97c6a289019",
+    "source_id": "62d0d82d026015c46adb2aed65db54a9bb14dd21"
+  },
+  "source_record_sha256": "702815c958204a9eca41d2751442a7a783bb222498ed1ab6a3a4019e0e2a3410"
+}

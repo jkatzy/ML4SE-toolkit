@@ -1,0 +1,29 @@
+{
+  "case_id": "lasso-block-46e3254c5bcb316c",
+  "category": "policy_or_judge_conflict",
+  "cluster": "oracle_exception:reviewer_disagreement",
+  "disposition": "accounting_only_no_oracle",
+  "language": "lasso",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "119ef8acbbf36ee761765398ad60fe882e09fcb11bb4d0391d1cfb4d0c5e1859",
+      "utf8_length": 987
+    },
+    "manifest_old_output": {
+      "sha256": "bdf03e7a2c086f35a10c52f1dbb0b88a2de2a9027e8a374979cc2bedf9844307",
+      "utf8_length": 1510
+    },
+    "raw_comment": {
+      "sha256": "a12175c37ba1c0a93ebaf0f8664ec691819410d9211ba61f94741efbb9a7748f",
+      "utf8_length": 1548
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fd2486beefeec9f87292dca0fa5171f40b5566654dadc44e33340da85a974af4",
+    "source_id": "c561fa3acdd9786948de33321ce9c0ea3234657a"
+  },
+  "source_record_sha256": "b9181fe85e47f16491cb595b0239f1aab03df77d985e27a7f2b1cc0d9daa994c"
+}
