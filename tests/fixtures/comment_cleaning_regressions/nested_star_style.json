@@ -1,0 +1,561 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "nested_star_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "7d320764bb39c62c3d629e566d8457a8c69ac570f1381eb5a03abf4e65e5ef9c",
+      "case_id": "coq-nested-6d58b8eb0c3d62c9",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "coq",
+      "oracle_exception_record_sha256": "4a45aa534acd9d49fb3e1c4f9bf38d87e1597769b43035449da66d8e903a02c0",
+      "raw_sha256": "1c298678650a7866cb3e2f6f0de5e22c357c5cb98094e580ac84a88d30ceda11",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "17c85b571aad6aa598045403b120c4823a402e742d9e536e0f22dc6f2a4a5daf",
+        "source_id": "0e6073727ed47b331d7c42fe9bfcdcb4f40a0f85"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "b7cbcda582d48ca21432fd32e1b398a55b6fa90636def08155deea677dbd6568",
+      "case_id": "ocaml-nested-210fe403339dbfd6",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "12023c186a317bd131b9bc90f4bbd260d472ca8144f71cb7e19416145382a180",
+      "raw_sha256": "a0d837f9277ec351b87c8528d98d3e7455f21119fb0e32817b24340725ca712b",
+      "raw_utf8_length": 65,
+      "source_provenance": {
+        "source_excerpt_sha256": "670a78f2dd673ca068c8fde0d5c8b2a64cafe60f3af1ec565b2bee204fa26cf5",
+        "source_id": "78ec216f499226571b1eebbdc3042d62a7c11c79"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "75d105b1d3e29264dca4129b97a2560636807859247016f482c85982bc527491",
+      "case_id": "ocaml-nested-313fd946cdab4f1e",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "812821c86eaefbeb2a7f91a6d65f26f0ebdaa7982a5841a1c652c9b3c0b557cb",
+      "raw_sha256": "168778e9e6fb6f217d13aecae4398d1bfd950e2916247b70c3815d5c324bc7e9",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "2834a94325ed5fcfad22d4c2c2583bb99aec11acb15e2796ca7064827e492845",
+        "source_id": "595d7e906df6ec7a314660bf3ee0566654e36f78"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "15b8149b6b3fc155d886208decd6ae0e468a9568ed61bfbd9b50c1653730b6f0",
+      "case_id": "ocaml-nested-60cdd1dc6d0a6fd2",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "1d13f31741bf86f251527be7c9d2d07b1ad3d7c77592e2bb417f91181c486085",
+      "raw_sha256": "28e0628a9bff0b987bc3ab5bb06af4fbbe878b731e1b5481b1b07793a201c865",
+      "raw_utf8_length": 288,
+      "source_provenance": {
+        "source_excerpt_sha256": "3d08bb3f508856e35ade80bfb57e92926d9759a6d757d41044ec670c14a2e914",
+        "source_id": "322186a9c95a2bcc3c5ab6f2db603c9bcdfb468f"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "79089342e64865788818435a0fd2effb0a4f7dda69a5aff53ddb4e6d0a8877b0",
+      "case_id": "ocaml-nested-62e3e6398fd6bfd6",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "1f5234e2d98538fb4f5615b94623c761c69c1e8e48f746d21202b2e98f735538",
+      "raw_sha256": "583fcf89bee5bd72999fbba98b0bb04552a834fe8a5aa677caf579497ac291b7",
+      "raw_utf8_length": 816,
+      "source_provenance": {
+        "source_excerpt_sha256": "97f2c7319b5990397a88b85ad88d2eac1fe3d05a3f0b37ff735d65c46601f738",
+        "source_id": "27471811a45957e1629376f8f6ac6ac6f6b6b042"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "5c92a1f5fd2d1fb4b1dd1e7041627d6ad2e4c78edb2fdd68e6980dd3d5173948",
+      "case_id": "ocaml-nested-90f853f514da66bb",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "ecc335bad74410abce426106d63d6bcd82aff89bd27da892ed4976bc88c6d933",
+      "raw_sha256": "28ee3200d8548a09c6e011764299204fd7a87458bc88880cd1b7a0c6fed6d9b8",
+      "raw_utf8_length": 32,
+      "source_provenance": {
+        "source_excerpt_sha256": "043b5d8b948e8f9b7a49919768e6a3416c892658a2f3d4a05a77dbad5cc5fdea",
+        "source_id": "86b5fd0ef0250c6ca709806f54f00fc1635aa582"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "79ba14d44d746e66bc5193e97484631ac3c22f621dc3fb5fb4521751bf1842f2",
+      "case_id": "ocaml-nested-a0efb75e4157c700",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "146007660b7fc0760675cf4963d9dc648536edb76a84106ff439597dfb592256",
+      "raw_sha256": "e0c8a6424b28cc871cd952fcbb7eb038bc42f7b5966d1abdbfafd1d4096bcd07",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "de17a2be9eeccef01f2d9006e428ce0327732938473a4979f0bedeeec2c08698",
+        "source_id": "61d200b860e13ec7fa8f293ea3582ec347e018d1"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "dd10c7e9282954b254d0024a5f2788bbfd5ae6f84a3986ac83e8d36f4196f682",
+      "case_id": "ocaml-nested-e4acb13bd35213a1",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "177f44eb23b56ea31431668c1b42ba748eeda9643e9abc562927ffd8c75df5c2",
+      "raw_sha256": "c81f020e2bc1810c35b70df24515dcba943a46cc2f89ec914648a5808fe6e2fc",
+      "raw_utf8_length": 703,
+      "source_provenance": {
+        "source_excerpt_sha256": "a0ac88c86d9a45da05813a740152ebc19d252f7c2e9d33f66749a40782dfffc3",
+        "source_id": "b4f552cbffeeda3f0821ae0c980795240d1b28e5"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "b50ccbc1d7b6be905b988f38f16e699ce1b79c6f265f77d322236ba6db205992",
+      "case_id": "ocaml-nested-e6ce3e31691cc09f",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ocaml",
+      "oracle_exception_record_sha256": "f46b00fae7ecfde75570ff9aed1c7493a88cd22710b82dfd258dbcaef3a99cbd",
+      "raw_sha256": "688d52693318c79f80dc00f82284287e1008a22fa02d60d4316b557aab340410",
+      "raw_utf8_length": 296,
+      "source_provenance": {
+        "source_excerpt_sha256": "388f0da9f7efffb2ff1299ee3efca4231e87ec1d945959d06f857cd425a227d7",
+        "source_id": "e89aacd0d5890ca53e42b03134c0abf097bb3782"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5d7fd21e44317ecc511e76346449b8d02e8e9177e7a7d6c0a882e075d130de7c",
+      "case_id": "coq-nested-46631b2c49f1743c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "* RegisterBound",
+      "expected_cleaned_sha256": "54819cf08a1403cb7308b6d76d76b7fdebe570f604c11de0a9797295569e8a8f",
+      "language": "coq",
+      "raw_comment": "(** * RegisterBound *)",
+      "raw_sha256": "35ae35f70a42d93ef239de6edad7aa26c9485814754629b68137827493f84a3a",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "0394292e7a2f8bf40ff704aa9a7428e2ba20d37c379a62cd44b2883605da51f2",
+        "source_id": "dedf3a948bfd13a903c2a4381fdd0863c34a83ff"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "da2157c1f24d86183c43aa9f891324a549c283ec4577b325eeadefcd2e1bdb31",
+      "case_id": "coq-nested-4eabe218a8ce548c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "* Standard event types",
+      "expected_cleaned_sha256": "82f592344275e5a6c57aaa9161535ad527641fd9d5c116522d685fd817f06b2e",
+      "language": "coq",
+      "raw_comment": "(** * Standard event types *)",
+      "raw_sha256": "e5f61d947187fbad18b4a29fc3fee369f415ccb988b09e36703a01d1285bf649",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "92af3e212ced41ea03706de04e1896ca0214f1aa4a69dd7ad4389877a971cbf3",
+        "source_id": "ab2dcf2027d45baf1f1208886baa27394508fbb1"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1aa316f984a10a084b8e3faf0e73d30e79188ddfa03add816f6b2846e9e80848",
+      "case_id": "coq-nested-5a0e22af861aed0c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "States in the NFA",
+      "expected_cleaned_sha256": "3a1360c858ea29f41702f609be501f8e725dc7a7e958ce2f8f6d87ed687ca037",
+      "language": "coq",
+      "raw_comment": "(** States in the NFA **)",
+      "raw_sha256": "55956eec382ab090d00510ed96415894e809be49b7f8ce0b8d40ffd62d57395a",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "dfacab4a0b5db6137c017fc8779439cadaae2be04808503bef8bb02c50e5dbe5",
+        "source_id": "eaf07301b6538028fc1b8ecf933cc25ea10f6fb7"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e04cdd71dcac2fd2cdff3d25f2c89af19f47a40cc542e48ff44412bf17f59571",
+      "case_id": "coq-nested-89be78ee559538ab",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "coq",
+      "raw_comment": "(****************************************************************************)",
+      "raw_sha256": "e5a1cb9f9485a5f48a4fcc394059dfbffcafe7ae6c4b57693b562de8d8a0d007",
+      "raw_utf8_length": 78,
+      "source_provenance": {
+        "source_excerpt_sha256": "8dca5c97f3e2bee9530eb170f2f89a4b0a4da5eefb3c3ff7f3d84c9ea45c977c",
+        "source_id": "03a36c6e5f4bdc6479f4e1f99388cd995016f6b2"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "5613bb16557053508617fcbf3a0a262905404eda1db1ac86bedb0a9c6db1336b",
+      "case_id": "coq-nested-af718ec1e5da8baf",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "* Category of monoids",
+      "expected_cleaned_sha256": "6ef980973de3e35140eff62ebad8aea399090e51c9b321e7a12e806af5751d9f",
+      "language": "coq",
+      "raw_comment": "(** * Category of monoids *)",
+      "raw_sha256": "4036b22b678a1bf6cd5a107208ad592e484433cd168590cb3905e2321ff13516",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "6d74fa8c93b3e9e155a2699a440f6e87caefa71f21aab54cbdce26e5d6335d46",
+        "source_id": "46234d8fcdfe2dde8d61af09c89f4ff911f2a058"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1a38a84b0043a5dc9b1bff389c47c150c8cc599fb322ae8df7b876bab4a45235",
+      "case_id": "coq-nested-b5b97c51b60aed27",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Some derived lemmas for ectx-based languages",
+      "expected_cleaned_sha256": "894b7ad041be81d00da16ecf86d7ab28608e5a1e3512b6d4da20c45aef762892",
+      "language": "coq",
+      "raw_comment": "(** Some derived lemmas for ectx-based languages *)",
+      "raw_sha256": "099cd6b014534cc6703e2816bfd69360a70bbb438896ad5fb1d20d82cc250f0e",
+      "raw_utf8_length": 51,
+      "source_provenance": {
+        "source_excerpt_sha256": "71073686ca6c3ac7a90400d4dab46c47c3d28fb8df0f0223eb14604300686ec1",
+        "source_id": "eb7161dc2fd26f003bb0c97b2e97914e74f28afc"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "8206e02e0f8712dd6f4cf5e952c5325823527fe049cc417ed0fde72c40cf3258",
+      "case_id": "coq-nested-b84e12b9f290f1f5",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Type of a constructor.",
+      "expected_cleaned_sha256": "e55d8371a064dc7eb8ef70afad4bf0ee604d64c2c9e634a6ea9b33542bbc269b",
+      "language": "coq",
+      "raw_comment": "(** Type of a constructor. *)",
+      "raw_sha256": "340f6559389c289ebecd80cc96cec04b317c65f0cd3627426a32a713e5b6d550",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "44b77e44745747f3bb8628ba02cbf73856d18431b841ba9c8f60cd3c76f60d66",
+        "source_id": "a6ed317f886cd4843d8c6df69b5db09f94fe76ce"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "8387bac315ed599f460f7c8a24c5cb9f68c9423d447b5aa1726c81ef5c350b75",
+      "case_id": "coq-nested-bdb4d6c3e0e26dde",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A custom induction principle for\nthe expession big-step relation.",
+      "expected_cleaned_sha256": "f6c6656238ff7fb0678854b4ff8dd31799b7f8b2428b18374025fcb68c39c19a",
+      "language": "coq",
+      "raw_comment": "(** A custom induction principle for\n    the expession big-step relation. *)",
+      "raw_sha256": "72963788445544bcb31d4c3703c08f8072157ee089f42caa458f53689b8b5783",
+      "raw_utf8_length": 76,
+      "source_provenance": {
+        "source_excerpt_sha256": "ff58cb78ae6b2b2997c4cc298dabdb32407aecf26bcd7921123cd0bf9782ee27",
+        "source_id": "b40786a4f5ffe91b6c15f4a64446ce5ef2873430"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "f9b6c081e2fbe027847f339096e6cb61cc265db1d3e0eccd9bba92b3c4afc365",
+      "case_id": "coq-nested-c44e0c9f95961699",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "* Data types for the crowdfunding contract",
+      "expected_cleaned_sha256": "632ed97e5fcf2f554164bb61104ca98112d59450378263cff54f1367e42f697b",
+      "language": "coq",
+      "raw_comment": "(** * Data types for the crowdfunding contract *)",
+      "raw_sha256": "5fc9e156da611a98ff8c6d1936df5385df747121f294b817d99bb677b94535d6",
+      "raw_utf8_length": 49,
+      "source_provenance": {
+        "source_excerpt_sha256": "35000cb58133a0062f69ce2c2d5ec5fe5cc2f6296adcd9b5d1ac5fd00c9560d5",
+        "source_id": "cfab92c10d14789c395b1837ff8b378d7d87f817"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "9b3e8945a9b0b3e09eb3230785a3082851f2e284380985d6abdf5fc7c7521489",
+      "case_id": "coq-nested-cc113ca2e280aaf4",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "**** Exercise: 2 stars (WHILE_true)",
+      "expected_cleaned_sha256": "e24ca80842ef196a92089d45894bb5bde06a01df5f1148a6f08ffdcbe6b43d3e",
+      "language": "coq",
+      "raw_comment": "(** **** Exercise: 2 stars (WHILE_true)  *)",
+      "raw_sha256": "ed4bc7cccb53a2ec8d02eea2f4f099f0cc2462a55b7c6679655ec4891dbd29e4",
+      "raw_utf8_length": 43,
+      "source_provenance": {
+        "source_excerpt_sha256": "30c20c6ede0d535cc5b8c0d7f27789c3d58f07e5201b3d09d9f3117eddd194be",
+        "source_id": "3a40a6fda051b475c996247419e456a6b0edf6a0"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "4154b9d2cb4959e88aaaf1d29d154a9d52402770ed2303efdeb1f60148531488",
+      "case_id": "coq-nested-df8d45809b44eaf0",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "coq",
+      "raw_comment": "(****************************************************************)",
+      "raw_sha256": "99192a49fa1282b2a3f612627cefde4f9051074b877f2e48db8297c1b5e04c6f",
+      "raw_utf8_length": 66,
+      "source_provenance": {
+        "source_excerpt_sha256": "dd4a4cb7944b4fa1ecf0c24bd15552c88d6059c1ea4b156b29126c5d884c5522",
+        "source_id": "4cba5bb6b4655d336816fca4d8f56c44cff5389d"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "9818b61d85ff4e9bd3760d7bc2c0cc9e64e7bd942684bd9b28f0b8a9562d32b5",
+      "case_id": "coq-nested-e9e6af9f3b277d9e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Factorial is mandatory, isn't it?",
+      "expected_cleaned_sha256": "69910cf51f1e8321f1c5fbfa50471d1cddd97bea04a279500ee50838dd43adbb",
+      "language": "coq",
+      "raw_comment": "(** Factorial is mandatory, isn't it? *)",
+      "raw_sha256": "6efb877eb001e826d90cd09e18c2cde2b7a629ae39a137a815d2887bcaf989a4",
+      "raw_utf8_length": 40,
+      "source_provenance": {
+        "source_excerpt_sha256": "8d4ac4163b481a894acc32d922193048df538738af8171f46a63811749eb716a",
+        "source_id": "ee846974ae05ff682ad301c732c2b00e889f253b"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "aec8c16eb2bbce2269e901f663f71b7103f7dde38b59cd50faaadc8430229039",
+      "case_id": "coq-nested-f57b2d5e65c6e703",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "* Complexes of groups",
+      "expected_cleaned_sha256": "0b09b90b3d51a46e891f107f2fcd3b376d2215f185943f8c82171fc4ee41fd5c",
+      "language": "coq",
+      "raw_comment": "(** * Complexes of groups *)",
+      "raw_sha256": "b1613c3277ef2a7ac2db7d69037fe0bac4847501cec832eb24eb155dc0a83796",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "2fb87fc265be8d1c9893c5c35a2c8f03074d89f64c4a5affb4d6cfe9d9b3af69",
+        "source_id": "4a51c6e2994fcda0e8dced34d7acf063938d63ae"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "cfe73d9c60cde2cce135905fa4058f81595655330194a3de590cfe6be85f5bc0",
+      "case_id": "coq-nested-f9351617e97ba5dd",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "** The [transport] tactic",
+      "expected_cleaned_sha256": "697298116d1d8f11b7b73b9095ff18c9c59abcd3499b16d71c996accd3462cb4",
+      "language": "coq",
+      "raw_comment": "(** ** The [transport] tactic *)",
+      "raw_sha256": "1088dac7808a051e549d4375fc924afc1da3eac60e7b402317c2336e9c4689cf",
+      "raw_utf8_length": 32,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad81f916583731de0ceca68021c09c2cac6c4e06c7be43e8e877f220723a8144",
+        "source_id": "649550e823242cbafeacb1884c8ad829a913d8c4"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "544ccb4be9ef73ce40f398011aa52fc758cb4c5693ebf77c44978a69ce54e104",
+      "case_id": "coq-nested-fea4f2dc088ca025",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "* ADT: Abstract Data Types",
+      "expected_cleaned_sha256": "29cb727d9d1f3c27b99411e987bf5a8777835eb77ecb48af19f60f5271d38c3c",
+      "language": "coq",
+      "raw_comment": "(** * ADT: Abstract Data Types *)",
+      "raw_sha256": "d28b5755279b39ab078befbcae6bd873fe27b30fe38398ec9c01788518d2b383",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "34efc26de3a0fcb7a735ba7922d7919c5268d22bdfd743474ad2a79d15aa14d9",
+        "source_id": "203466a56870d2bf3bc06426d8678d12e28ee5ea"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "11ba769bc89e6c3c9ca441ab3b01d86879f73bb150e5ec2197450439bb7ff92f",
+      "case_id": "coq-nested-ff576d6aaeee0f37",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "**** Exercise: 3 stars, optional (step_deterministic)",
+      "expected_cleaned_sha256": "fa88854f92b205580dba0a55ae3608bb179548ed0b1c69ba379e68f28db95d97",
+      "language": "coq",
+      "raw_comment": "(** **** Exercise: 3 stars, optional (step_deterministic)  *)",
+      "raw_sha256": "e9e00259d111603967592d753595a7336c064d4a362b60361644a9959413ad64",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "88f6f86c29540f5349b59b07bbcf215d0cf3e11dd056f1be23649fd5cdbe2a3e",
+        "source_id": "c66d31be176d499cb206607ce81ecaf821459de7"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "cd50d65fd57ad32543d5f81ff8255a89545cc12632dc3025bcbeef27b8de90be",
+      "case_id": "ocaml-nested-01d3b4a64cead716",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Ocsigen\nhttp://www.ocsigen.org\nocsigen_http_com.ml Copyright (C) 2005\nDenis Berthod, Vincent Balat, J\u00e9r\u00f4me Vouillon\n\nThis program is free software; you can redistribute it and/or modify\nit under the terms of the GNU Lesser General Public License as published by\nthe Free Software Foundation, with linking exception;\neither version 2.1 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU Lesser General Public License for more details.\n\nYou should have received a copy of the GNU Lesser General Public License\nalong with this program; if not, write to the Free Software\nFoundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.",
+      "expected_cleaned_sha256": "2db55c2520b91f21544f079b3e9ed521282c2d34376a00ec78caf2a71a7eceed",
+      "language": "ocaml",
+      "raw_comment": "(* Ocsigen\n * http://www.ocsigen.org\n * ocsigen_http_com.ml Copyright (C) 2005\n * Denis Berthod, Vincent Balat, J\u00e9r\u00f4me Vouillon\n *\n * This program is free software; you can redistribute it and/or modify\n * it under the terms of the GNU Lesser General Public License as published by\n * the Free Software Foundation, with linking exception;\n * either version 2.1 of the License, or (at your option) any later version.\n *\n * This program is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU Lesser General Public License for more details.\n *\n * You should have received a copy of the GNU Lesser General Public License\n * along with this program; if not, write to the Free Software\n * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n*)",
+      "raw_sha256": "4acb0cd1760aff8aaaa1ac4e55d6e3edc4ba15ec11f97fde96508042e2d3733f",
+      "raw_utf8_length": 896,
+      "source_provenance": {
+        "source_excerpt_sha256": "3dfa70b80f258993a1c49b593afd166aead414b5847253506c9ac4aa7fa4a8cd",
+        "source_id": "2fbd01e7fe792b7f551091679af1f4a7fb2a38c4"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "4d2311f7e09e26abcc93f4b210bd5d83add3f62e92f1a837479d8b125b804a31",
+      "case_id": "ocaml-nested-1726237c60742115",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Lexing error.",
+      "expected_cleaned_sha256": "cc0390c9bb39e00a8ec7f097d4a02510898e2d683f7b663aad6f6ab1f900e822",
+      "language": "ocaml",
+      "raw_comment": "(** Lexing error. *)",
+      "raw_sha256": "4d63e9f94f9884fe8bc29ff69ed94b6767f19251489491c029d281eae3629f95",
+      "raw_utf8_length": 20,
+      "source_provenance": {
+        "source_excerpt_sha256": "22b36916d5f984654a498690e32c90f825eae0fd7b243beaab47d3f6a0ee9710",
+        "source_id": "4b7995e1b55d4129f6e5598773a2213f368b5137"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "a393b74d36957e8f84cd7390959cdb33bddaf02fbb95995768451ff4a9988556",
+      "case_id": "ocaml-nested-1c3d9938329bdd9a",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "{3 Nwchemdata_lexer_basic_character_mark_singled_symbol_t}",
+      "expected_cleaned_sha256": "76a13f1b2ddfd4d00debed57ef75aad61d4a9e807e6516c9d1cbc7ce6592bc6c",
+      "language": "ocaml",
+      "raw_comment": "(** {3 Nwchemdata_lexer_basic_character_mark_singled_symbol_t} *)",
+      "raw_sha256": "47c244d809d12931ce5c9cadf5795dbb81323363a744f32bcb24cf24153778f9",
+      "raw_utf8_length": 65,
+      "source_provenance": {
+        "source_excerpt_sha256": "8d005fda148ba403ce1f6843b1eedc7c8a9fc3adba83dc0f8fabfd395ebdcda4",
+        "source_id": "5e0771b2cbe7b034820794ce6ded485eb8c6bf27"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "fbc607fbbacf0ef9e0f6152a81e2e8c98568018ffd927becc265c39b0048b4db",
+      "case_id": "ocaml-nested-3d499eef30bd526f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ocaml",
+      "raw_comment": "(**************************************************************************)",
+      "raw_sha256": "4d13efb18075a7710179401ab3258bf5780d09d78395b2feb5af057b36198801",
+      "raw_utf8_length": 76,
+      "source_provenance": {
+        "source_excerpt_sha256": "c80dd5fd28fc5c22845bba77592ddd13b623937ed3cbc9f7beca3cf3d7789179",
+        "source_id": "6c9f8216f0f49efda37210ea2f4cc74b82e84f70"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "3d1e4755716e6b80886e298bb57b0691d1ffe5e87e57949b3a67ed9bc1928fc1",
+      "case_id": "ocaml-nested-668d220dd64ca2a7",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ocaml",
+      "raw_comment": "(***********************************************************************)",
+      "raw_sha256": "727505104d37d66fb62005567afdfe7a536f78073fa719f8ab3a7ef87f68926b",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "e4a669f7efb0d8a3194e6b5ad6942febf4493228ddb1c1875569d500c43ae041",
+        "source_id": "804872779bd1702466728b35e4cdab0cdc80c8f6"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e04cdd71dcac2fd2cdff3d25f2c89af19f47a40cc542e48ff44412bf17f59571",
+      "case_id": "ocaml-nested-7e0e20acc0e3930b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ocaml",
+      "raw_comment": "(* ************************************************************************** *)",
+      "raw_sha256": "0d7d3e1cb323063f91c0e7a83b1eaf8b774d0aab4f7144db95c4c718c03f905d",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "22be48b02fb25ba2d3964d5897cf7df9e3a6a54c4575497f7001ccb1e3b80ea8",
+        "source_id": "76aa87fa8d34710bea1c2b9864a1d3932c5efabc"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e04cdd71dcac2fd2cdff3d25f2c89af19f47a40cc542e48ff44412bf17f59571",
+      "case_id": "ocaml-nested-ade82fac7fefa33b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ocaml",
+      "raw_comment": "(* ************************************************************************** *)",
+      "raw_sha256": "0d7d3e1cb323063f91c0e7a83b1eaf8b774d0aab4f7144db95c4c718c03f905d",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "b6467f36a9c3bcefdf7b5f0b42b1f9b7dd4313ed0ba2c752905836134c81c079",
+        "source_id": "7032e41b303cc250ed65d51290bf497703e09dd0"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "49aae594e93a8671ecffe1fe6ae8d4b966aca7860173df254fbf40175a808508",
+      "case_id": "ocaml-nested-f1d5b87ea78713fb",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Js_of_ocaml examples\nhttp://www.ocsigen.org/js_of_ocaml/\nCopyright (C) 2008 Benjamin Canou\n\n          DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\n TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION",
+      "expected_cleaned_sha256": "163383f7ec8d6f97f22bd37b3a7080ed2d576f1b594aef66e5cbca29b7261ff3",
+      "language": "ocaml",
+      "raw_comment": "(* Js_of_ocaml examples\n * http://www.ocsigen.org/js_of_ocaml/\n * Copyright (C) 2008 Benjamin Canou\n *\n *           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE\n *  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n *\n *)",
+      "raw_sha256": "e77c71979ba5afdec05ae40b8292f7557ac275a4b2090e4b19b78614f3cfbf1e",
+      "raw_utf8_length": 234,
+      "source_provenance": {
+        "source_excerpt_sha256": "bbe52a2a4567dcd1fec8365264f8ef180fe11a6b8e01f0645ceaadbc83c3a4c6",
+        "source_id": "4a37d11d8961d49f044096f065deeedddf86a7a9"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

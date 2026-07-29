@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cabal_config_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "445fb931ba8842d02207d08cc45a40fd27139929b2ca1e490910297807f01b02",
+      "case_id": "cabal_config-line-724fda9440bf54d8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "- habs.orig/cabal-install.cabal",
+      "expected_cleaned_sha256": "718e7a885af341c9be63d791556b81af946eb0bdf535a0b6c6a55183e90f634d",
+      "language": "cabal_config",
+      "raw_comment": "--- habs.orig/cabal-install.cabal",
+      "raw_sha256": "b2d9e49a351f3f1f72ec72f42ddbc00ebbbdaec4298695f0c11d1d4e1d8ca97c",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "73dca875b6a62cff3f9774c2a90f6e1ece8417cbd03a7c972521a55d5e84878a",
+        "source_id": "7973be7fd4eee6c9616fdc01caa0e5703fe7bab2"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "schema_version": 5
+}

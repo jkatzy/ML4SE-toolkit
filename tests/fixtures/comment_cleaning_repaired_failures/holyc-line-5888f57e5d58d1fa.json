@@ -1,0 +1,38 @@
+{
+  "case_id": "holyc-line-5888f57e5d58d1fa",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "holyc",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "bbb65da604b70d5ec5e98a6d998e4b325fd31c34fde588d1abfeb5b6af81cc1e",
+      "utf8_length": 68
+    },
+    "manifest_old_output": {
+      "sha256": "9e1c3fc07554ab9d6b9f2c1ad7fd1ce01adc2ec2a6b463ba107ad63422fe6ba5",
+      "utf8_length": 59
+    },
+    "raw_comment": {
+      "sha256": "65360960b5c4f6f29ba9c4ccc167f73a3eb7c2a60139909dd1ebac58a596a94a",
+      "utf8_length": 77
+    },
+    "recommended_expected_output": {
+      "sha256": "9e1c3fc07554ab9d6b9f2c1ad7fd1ce01adc2ec2a6b463ba107ad63422fe6ba5",
+      "utf8_length": 59
+    }
+  },
+  "regression": {
+    "expected_output": "AUTO-GENERATED FILE FROM smith_waterman.cnc, DO NOT MODIFY!",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// ***** AUTO-GENERATED FILE FROM smith_waterman.cnc, DO NOT MODIFY!  *****//"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e54b839ed39251694a00a6a3702b289ce0ca167f1527d4924b4d5afe3997ff4a",
+    "source_id": "c490c1066460b4314fbcb1ccd0e18020d8660556"
+  },
+  "source_record_sha256": "659795c4503df3cf24a75edb7ca7a8bde2ef929fc0c05262a531d817fea0ef01"
+}

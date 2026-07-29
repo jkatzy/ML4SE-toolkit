@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-03e45c0979c8c498",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fede05534d7559c35acdcd65e3b699f5762583fb20a9174a892b7fbe238cf430",
+      "utf8_length": 804
+    },
+    "manifest_old_output": {
+      "sha256": "33d12dc62919dec96326096fa1a9998df589beb9660ee496c1826a94837a316c",
+      "utf8_length": 766
+    },
+    "raw_comment": {
+      "sha256": "d60c31409ce4c71ea4dcba48923fe73656f1266bc77fc41c993d8aaf283a4656",
+      "utf8_length": 1007
+    },
+    "recommended_expected_output": {
+      "sha256": "33d12dc62919dec96326096fa1a9998df589beb9660ee496c1826a94837a316c",
+      "utf8_length": 766
+    }
+  },
+  "regression": {
+    "expected_output": "Library for handling global entities.\nA global entity has a name declared in the program.\nIts value can be accessed and modified by IO actions.\nFurthermore, global entities can be declared as persistent so that\ntheir values are stored across different program executions.\n\nCurrently, it is still experimental so that its interface might\nbe slightly changed in the future.\n\nA global entity <code>g</code> with an initial value <code>v</code>\nof type <code>t</code> must be declared by:\n\n<code>g :: Global t</code><br/>\n<code>g = global v spec</code>\n\nHere, the type <code>t</code> must not contain type variables and\n<code>spec</code> specifies the storage mechanism for the\nglobal entity (see type <code>GlobalSpec</code>).\n\n\n@author Michael Hanus\n@version June 2007",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Library for handling global entities.\n--- A global entity has a name declared in the program.\n--- Its value can be accessed and modified by IO actions.\n--- Furthermore, global entities can be declared as persistent so that\n--- their values are stored across different program executions.\n---\n--- Currently, it is still experimental so that its interface might\n--- be slightly changed in the future.\n---\n--- A global entity <code>g</code> with an initial value <code>v</code>\n--- of type <code>t</code> must be declared by:\n--- \n--- <code>g :: Global t</code><br/>\n--- <code>g = global v spec</code>\n---\n--- Here, the type <code>t</code> must not contain type variables and\n--- <code>spec</code> specifies the storage mechanism for the\n--- global entity (see type <code>GlobalSpec</code>).\n---\n---\n--- @author Michael Hanus\n--- @version June 2007\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "46435f2d909d57eb849ca50f1c84b89ef010b81e42d47497420513d49e14ccd5",
+    "source_id": "d6646060db41e1a93213669cfea7890cf8ba06fd"
+  },
+  "source_record_sha256": "38fd76620c983d22b69810d75a32d96812915fe4405acd7e1d032690693f6ac9"
+}

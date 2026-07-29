@@ -1,0 +1,38 @@
+{
+  "case_id": "zeek-line-ada4149fdd81fa87",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "zeek",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "17943fbdd369a69b0881f9b34282b7095d18d065766db439b53c0c6eddcfcfbd",
+      "utf8_length": 168
+    },
+    "manifest_old_output": {
+      "sha256": "17e090368f955225a648c58334747b09333e24409249dfe68fa3195909457f1f",
+      "utf8_length": 162
+    },
+    "raw_comment": {
+      "sha256": "cab29f69acca00e3dc5420a366fa60ead5a72a683759e3e7dfa4af0c4cc4e2ba",
+      "utf8_length": 174
+    },
+    "recommended_expected_output": {
+      "sha256": "17e090368f955225a648c58334747b09333e24409249dfe68fa3195909457f1f",
+      "utf8_length": 162
+    }
+  },
+  "regression": {
+    "expected_output": "Places where it's suspicious for mail to originate from represented as\nall-capital, two character country codes (e.x. US).  It requires\nlibGeoIP support built in.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## Places where it's suspicious for mail to originate from represented as\n\t## all-capital, two character country codes (e.x. US).  It requires \n\t## libGeoIP support built in."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7b32140f4b90ece83437f52c2cdec720d516a402f0b69ce96885dcf93108cbbd",
+    "source_id": "33eb906a1099453b105a522f66ae5cfe018a1ced"
+  },
+  "source_record_sha256": "a94db781b686574e46b171bb2568f0a3ce7e9fd12162ad6d749158966b880348"
+}

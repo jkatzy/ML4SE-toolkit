@@ -1,0 +1,38 @@
+{
+  "case_id": "fortran-line-ac11434cf7cb69b4",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "fortran",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "d06fd88399b520c91e323bc5ab9d02e43e993301b0a4cb1657d7170b9e1800a5",
+      "utf8_length": 1242
+    },
+    "manifest_old_output": {
+      "sha256": "e7069bc4da247da9fcdf8c4533b0ae8fd04fb2e3afbebf38eb5c62be8bce4f0a",
+      "utf8_length": 975
+    },
+    "raw_comment": {
+      "sha256": "bd73d79e52c0ee2a24d801dec9b15cc59a8924713337cd1bae07a10196acf481",
+      "utf8_length": 1274
+    },
+    "recommended_expected_output": {
+      "sha256": "e7069bc4da247da9fcdf8c4533b0ae8fd04fb2e3afbebf38eb5c62be8bce4f0a",
+      "utf8_length": 975
+    }
+  },
+  "regression": {
+    "expected_output": "The Community Multiscale Air Quality (CMAQ) system software is in\ncontinuous development by various groups and is based on information\nfrom these groups: Federal Government employees, contractors working\nwithin a United States Government contract, and non-Federal sources\nincluding research institutions.  These groups give the Government\npermission to use, prepare derivative works of, and distribute copies\nof their work in the CMAQ system to the public and to permit others\nto do so.  The United States Environmental Protection Agency\ntherefore grants similar permission to use the CMAQ system software,\nbut users are requested to provide copies of derivative works or\nproducts designed to operate in the CMAQ system to the United States\nGovernment without restrictions as to use by others.  Software\nthat is used with the CMAQ system but distributed under the GNU\nGeneral Public License or the GNU Lesser General Public License is\nsubject to their copyright restrictions.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "!------------------------------------------------------------------------!\n!  The Community Multiscale Air Quality (CMAQ) system software is in     !\n!  continuous development by various groups and is based on information  !\n!  from these groups: Federal Government employees, contractors working  !\n!  within a United States Government contract, and non-Federal sources   !\n!  including research institutions.  These groups give the Government    !\n!  permission to use, prepare derivative works of, and distribute copies !\n!  of their work in the CMAQ system to the public and to permit others   !\n!  to do so.  The United States Environmental Protection Agency          !\n!  therefore grants similar permission to use the CMAQ system software,  !\n!  but users are requested to provide copies of derivative works or      !\n!  products designed to operate in the CMAQ system to the United States  !\n!  Government without restrictions as to use by others.  Software        !\n!  that is used with the CMAQ system but distributed under the GNU       !\n!  General Public License or the GNU Lesser General Public License is    !\n!  subject to their copyright restrictions.                              !\n!------------------------------------------------------------------------!"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e9ee2edb988d1f42577932120e33cc6d1171ac07c9435b74d0c14cc59cc01a62",
+    "source_id": "6315339bca474f8c73f2d1bd9148010a3794e3da"
+  },
+  "source_record_sha256": "ac707e05ff1254bba11d3fd7419a6a4350e670e0c835667dffbf314ba0a3b22a"
+}

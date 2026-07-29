@@ -1,0 +1,193 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "matlab_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "a7ddb4b5d8215db59efd8fc5588deade00967167bf914e468ee443fc1efdddc4",
+      "case_id": "turing-line-4c68918577f5c78b",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "turing",
+      "oracle_exception_record_sha256": "0b4a7ae75f6d1264f696a49b3ecfbea5c84e5632cc19dbead4e0ac54fd20776a",
+      "raw_sha256": "4d636bbb01391250713ac063dec0bbe135b9d3300a0bacc202c774710fa69ee7",
+      "raw_utf8_length": 203,
+      "source_provenance": {
+        "source_excerpt_sha256": "cbbcc8edbf85ed7cf37882909655ce5c5113a6591ad9d92a18632574c55ace4a",
+        "source_id": "8bb60c765bf03bba6f6e363df9302e83b5cbb608"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "85062e1570016fed22a5a82c6fd9450f098224cb4aa1322b5f21167e51c22db5",
+      "case_id": "turing-line-4f81a53b15c6ffca",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "turing",
+      "oracle_exception_record_sha256": "a521c3a5eab69db63ba82aef02a47021bdf318ba86ce63fd4f68df76f3b69045",
+      "raw_sha256": "00ccab967f287b6ea3c94ed7b5c31eb21d8f189ff9f5ce84910d11d39a1a929b",
+      "raw_utf8_length": 339,
+      "source_provenance": {
+        "source_excerpt_sha256": "863d28c4c536e72eb4e73b4c95270c2bbfd24e913cfa89a32c169ccceeba7542",
+        "source_id": "76af1f80e29d5041f47891e45575afec1406b0bd"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "aa03a8dcec3f6dcfcfb43f0214c731f8b7c731607aefca8ea91f982fb0416db0",
+      "case_id": "turing-line-de6e473a40a2c915",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "turing",
+      "oracle_exception_record_sha256": "b98825d67578be3dc3664e0de6a0dbfd6abc7fbcf29b2df94e6d72d96531cc63",
+      "raw_sha256": "7d6aa4c7269af367097af460dfe64c2b8c05adc12bf058730680bcb69ed6e34b",
+      "raw_utf8_length": 302,
+      "source_provenance": {
+        "source_excerpt_sha256": "f97eae22828994b3a31e0dc85dd8474e2be0dfa1669a471e6bbd4ff3bdc78423",
+        "source_id": "5b1e7281f2f53fd37c3cc28a91cad0121dfe6613"
+      },
+      "syntax_label": "%"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "af616e146c049ad6ab0bc3d2fe6513cfac895f3241834f410b28477e3dc74f6f",
+      "case_id": "lilypond-line-3bfdd70e18158750",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "bar 1 :",
+      "expected_cleaned_sha256": "6b89b1670f3728bcfa9dd2b457227d52dfd995f52ad81041dc3d1d4774e9b82c",
+      "language": "lilypond",
+      "raw_comment": "% ________________________________________bar 1 :",
+      "raw_sha256": "e8e2ddde9f5de3a49c24a51c3dbb266e932711400d80b4db828e74dd58087188",
+      "raw_utf8_length": 49,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad458ea4b02bf3f4db0dc1001039e291abd9422d4b5d6f7f77a6407a195628a3",
+        "source_id": "f505f503bb6ffadcc9fb93d99124124427ad4568"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "a2f0c37ad2c289cd12f54f7ef950b3118f90112b941024f3c80d9a977d9e629f",
+      "case_id": "lilypond-line-729a01818d4990f8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Antiphon",
+      "expected_cleaned_sha256": "7804561d4a4d0f3b2c196e2213644d2f83622a86d3caab8ac5f837f0bb438dcc",
+      "language": "lilypond",
+      "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%%%%%%%%%% Antiphon %%%%%%%%%%\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+      "raw_sha256": "2fbdd9958de2d59bc67205524d3b08a39f35681ae5307db01001e45414745d0e",
+      "raw_utf8_length": 92,
+      "source_provenance": {
+        "source_excerpt_sha256": "5a3d9a18a222334251123cf7f5acc139c60c7680820e8e073e990ebea2d77f53",
+        "source_id": "b5ba0e11abaebb9a6f324ab352c538c1b4d5df6d"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "4001c059cd1c1bd2dd04a68d394b90a71a74ff3c662bbe28ec611c65e62b297d",
+      "case_id": "lilypond-line-7ac812dae97108f8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(basic-distance . 0)\n(minimum-distance . 0)\n(padding . 5)\n(stretchability . 20)",
+      "expected_cleaned_sha256": "894861cb98687be653146e93aba4ce1a8eb75449337daaaf0d3adad821f564c9",
+      "language": "lilypond",
+      "raw_comment": "%(basic-distance . 0)\n      %(minimum-distance . 0)\n      %(padding . 5)\n      %(stretchability . 20)",
+      "raw_sha256": "689cddfd61f708de3ae48276ad08e5e72a67fe65121afdd8f16bc4d8bb785ae6",
+      "raw_utf8_length": 101,
+      "source_provenance": {
+        "source_excerpt_sha256": "16048f529fc77b9681845569aea6524ee509f5f9254c57213ef526a3b40f4cce",
+        "source_id": "7463979d72f70f30af91aa1c1e2ddb02059d02de"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "cde648e71e612b4e03dc31e0c64113f4dc8b46852ab1ae7999b052b46eee09db",
+      "case_id": "matlab-line-224ed460eaecc4aa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "CORRELATIONS provisions temporal correlations of BOLD suitable for deep learning epilepsy representations.\nTruncates early time-frames of each BOLD series to remove aural disturbances.\nSee also mlepilepsy.BOLD.",
+      "expected_cleaned_sha256": "ec3d578db264bcdb8f821782e84875256b587c9fc00c6d6edfdc6ad94014c222",
+      "language": "matlab",
+      "raw_comment": "%% CORRELATIONS provisions temporal correlations of BOLD suitable for deep learning epilepsy representations.\n    %  Truncates early time-frames of each BOLD series to remove aural disturbances.  \n    %  See also mlepilepsy.BOLD.",
+      "raw_sha256": "d6dbd5a846c2e4f3f9613ebf6d695d2019e8388beb9bd060194a9622ea7b2224",
+      "raw_utf8_length": 229,
+      "source_provenance": {
+        "source_excerpt_sha256": "748388007b32faa28689ba77fb1b557c02dbb2a5985f7f8edcfd5d12d9d3af7c",
+        "source_id": "3c756ee0f43306572cae1531744ad329e819205c"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "84f458e77fe9342d753643e8bfdda57468df3c31063e245d8a3c1b7ec0ab15cd",
+      "case_id": "matlab-line-717e6ba97eec3b23",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Update NetworkGraph Interface\n\nOutput:\nka:    Attraction constant\nkr:    Repulsion constant\nkg:    Gravitation constant\nw:     Edge Weight Influence\nimax:  max. Iterations\nstate: state (Start/Stop)\n\nInput:\nh:   object handle\nfig: figure handle\ni:   Iteration",
+      "expected_cleaned_sha256": "bcab4fb11ec377de99a79038ded8df272d8740e8096360284f2bd42272ad39de",
+      "language": "matlab",
+      "raw_comment": "%% Update NetworkGraph Interface\n%\n% Output:\n% ka:    Attraction constant\n% kr:    Repulsion constant\n% kg:    Gravitation constant\n% w:     Edge Weight Influence\n% imax:  max. Iterations\n% state: state (Start/Stop)\n%\n% Input:\n% h:   object handle\n% fig: figure handle\n% i:   Iteration",
+      "raw_sha256": "fa36c1bb3f292c9f481c6d828f8f59403c217ce0bf60856ebc0a620d95d53452",
+      "raw_utf8_length": 285,
+      "source_provenance": {
+        "source_excerpt_sha256": "dac9f034f289f721bb69280dd9edde7c6f4e133dcf675793d7ff6551ef721f9d",
+        "source_id": "55c5ce8394784b4ba35440f91e1d1c0847574c42"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "da44056c107b1bc8d943461793ab4fd2a815db21c3bfc10081bffd09765ab6c2",
+      "case_id": "matlab-line-852d486137e589d3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DynaEst 3.032 10/22/2000\nCopyright (c) 2000 Yaakov Bar-Shalom\n\nTrackerType , Select type of Tracker",
+      "expected_cleaned_sha256": "cebec089c272cf5087ea2a10ea99c9c2d30a55574b55d0bdf525310b19fad9e5",
+      "language": "matlab",
+      "raw_comment": "%%% DynaEst 3.032 10/22/2000\n% Copyright (c) 2000 Yaakov Bar-Shalom\n%\n% TrackerType , Select type of Tracker",
+      "raw_sha256": "33f16b050e33f01eb35b0c749e30dc7eef005e1739d4b003f274a1b799ab230c",
+      "raw_utf8_length": 108,
+      "source_provenance": {
+        "source_excerpt_sha256": "efaf8bb53fd77790bf4e526d0780cb82c74286215df7b908966b19d91916733f",
+        "source_id": "224f294300479f46543120c23a21e1059c44b387"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "f9788a534c54fdd2cff3579c30f2bd0eafdaa2bc6631d9b3cc5180dca8b6ee63",
+      "case_id": "turing-line-3a9200c552753d18",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This program belongs to Patricia\nStarted september 20, 2016\nversion 3.0",
+      "expected_cleaned_sha256": "f03de3b35c6584b05f79033f025772ffae55bece6574672baa860e0d1dceaba1",
+      "language": "turing",
+      "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%This program belongs to Patricia%\n%Started september 20, 2016      %\n%version 3.0                     %\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+      "raw_sha256": "d03f2189cfdc2969f168b6611c87e4eb3ebe3d997e374771291aad5f1b64a22b",
+      "raw_utf8_length": 174,
+      "source_provenance": {
+        "source_excerpt_sha256": "bdba6511072fb494ae71482770b1b2b2894636f57b1a075f2e3e4acfbac1156d",
+        "source_id": "fb710902558ca19af2792f6383ca27aa05aa3290"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "4baadbef6aab672df56a4f0c9c46525f84c2fe0618232fdf7191121078cc0cb0",
+      "case_id": "txl-line-1a16b199be4c8615",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Something to call the rules\nclass",
+      "expected_cleaned_sha256": "27f19942b2fa511975d0b366ebe4afe0a9c376c999d3f356818281673a429b26",
+      "language": "txl",
+      "raw_comment": "%% Something to call the rules\n%%class",
+      "raw_sha256": "6474be3af95e35db22f2d008fada694baf5f051ad1578626f111e5cf074a1980",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "78dcfa192fea1fa8149c00ff082d81a4d030688f4beb3ed53eea58ecff90bd4a",
+        "source_id": "c25c87ff3c28e1ac2cef84f94446ac92bd26853f"
+      },
+      "syntax_label": "%"
+    }
+  ],
+  "schema_version": 5
+}

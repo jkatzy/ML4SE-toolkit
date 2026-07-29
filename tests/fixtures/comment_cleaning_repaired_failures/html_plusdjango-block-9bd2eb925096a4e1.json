@@ -1,0 +1,38 @@
+{
+  "case_id": "html_plusdjango-block-9bd2eb925096a4e1",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "html_plusdjango",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "22078e63292412d6de4163a7beb97a2b447d263e3a6eadffa61c3bb4114c19d2",
+      "utf8_length": 21
+    },
+    "manifest_old_output": {
+      "sha256": "dd321f1d6e7576bf4c8e430a6a419c257c880602989d31206f0ee50621f10fd7",
+      "utf8_length": 19
+    },
+    "raw_comment": {
+      "sha256": "ed8f7b8da77c8bde10173a6f93e37ce70873ce4b23e27194ff5efe23dbcd27d9",
+      "utf8_length": 159
+    },
+    "recommended_expected_output": {
+      "sha256": "dd321f1d6e7576bf4c8e430a6a419c257c880602989d31206f0ee50621f10fd7",
+      "utf8_length": 19
+    }
+  },
+  "regression": {
+    "expected_output": "Plant list: entries",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{# ##############################################################\n   # Plant list: entries\n   ############################################################## #}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5185a2dc027f7cf9ccb19aa47f8d5d796ca4f0a85b4266dd8d0b98c39432ebb4",
+    "source_id": "6d8afcb46155111a81790ff79f2533d9e54c3956"
+  },
+  "source_record_sha256": "f5d39e8306cdb0669f2497d83df7b881fcb71dade8a6c60cfebb89284482e887"
+}

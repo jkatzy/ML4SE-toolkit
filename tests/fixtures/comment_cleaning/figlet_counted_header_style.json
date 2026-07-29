@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family_name": "figlet_counted_header_style",
+  "canonical_language": "figlet_font",
+  "language_keys": [
+    "figlet_font"
+  ],
+  "sanitizer_mode": "raw",
+  "cases": [
+    {
+      "id": "canonical_contextual-000-contextual",
+      "source": "registry:canonical_contextual_examples[0]",
+      "kind": "contextual",
+      "raw_comment": "FIGlet font attribution\n  leading space is content",
+      "expected_cleaned": "FIGlet font attribution\n  leading space is content",
+      "payload_marker": null
+    },
+    {
+      "id": "raw-mode-newline-normalization",
+      "source": "generated:sanitizer_mode=raw",
+      "kind": "raw",
+      "raw_comment": "  cleaning_payload_raw_mode_000_first\r\n\tcleaning_payload_raw_mode_000_second\rcleaning_payload_raw_mode_000_third",
+      "expected_cleaned": "  cleaning_payload_raw_mode_000_first\n\tcleaning_payload_raw_mode_000_second\ncleaning_payload_raw_mode_000_third",
+      "payload_marker": "cleaning_payload_raw_mode_000"
+    }
+  ]
+}

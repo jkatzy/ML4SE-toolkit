@@ -1,0 +1,38 @@
+{
+  "case_id": "sugarss-line-50afe595b2678831",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "sugarss",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "050a4a58e32d7b20d61defd8cd7e6df0471de1a8b2fec646f81bcc2d107aa9a2",
+      "utf8_length": 66
+    },
+    "manifest_old_output": {
+      "sha256": "af6edefc25ad83f96407a47c3ae1ee5fc47a41671f549b16912f77822fd13da4",
+      "utf8_length": 40
+    },
+    "raw_comment": {
+      "sha256": "2f6fa46211f60b33a720e0341aa3647691cb91ec46dcd29d7939cf58f0d45603",
+      "utf8_length": 70
+    },
+    "recommended_expected_output": {
+      "sha256": "af6edefc25ad83f96407a47c3ae1ee5fc47a41671f549b16912f77822fd13da4",
+      "utf8_length": 40
+    }
+  },
+  "regression": {
+    "expected_output": "CONFIDENTIAL AND PROPRIETARY INFORMATION",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// CONFIDENTIAL AND PROPRIETARY INFORMATION                        //\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e5aa064a1b6c90b60ef56bb9edc6c1f35fd63b467bd297544486aa973fb0d8e0",
+    "source_id": "bdeedd3749208c4dc84ad6f947ae27d955e1e827"
+  },
+  "source_record_sha256": "95446b7bcea02c3011dbe37696da09980b3c13ecee888b6c0686583ba32749d4"
+}

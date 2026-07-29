@@ -1,0 +1,38 @@
+{
+  "case_id": "x_bit_map-block-579e799ea101e618",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "x_bit_map",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "68b27b99fb16ead9611254c072eaab3a44cb1aaae3ab5197f380187243cc1e6e",
+      "utf8_length": 672
+    },
+    "manifest_old_output": {
+      "sha256": "bd47eb846f79b9b4ced1a571ad3e3bff8f1f19b28736cdd4d2eac4aeec5f8ff3",
+      "utf8_length": 538
+    },
+    "raw_comment": {
+      "sha256": "a8c42596426bb32f7d7ce15a8af1763017ad783c7ba0c45bc706d7525d9a4537",
+      "utf8_length": 755
+    },
+    "recommended_expected_output": {
+      "sha256": "bd47eb846f79b9b4ced1a571ad3e3bff8f1f19b28736cdd4d2eac4aeec5f8ff3",
+      "utf8_length": 538
+    }
+  },
+  "regression": {
+    "expected_output": "     Copyright (C) 1990, 1991 Sun Microsystems, Inc\n                All rights reserved.\n      Notice of copyright on this source code\n      product does not indicate publication.\nRESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by\nthe U.S. Government is subject to restrictions as set forth\nin subparagraph (c)(1)(ii) of the Rights in Technical Data\nand Computer Software Clause at DFARS 252.227-7013 (Oct. 1988)\nand FAR 52.227-19 (c) (June 1987).\n  Sun Microsystems, Inc., 2550 Garcia Avenue,\n  Mountain View, California 94043.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n**   ----------------------------------------------------------------- \n**        Copyright (C) 1990, 1991 Sun Microsystems, Inc\n**                   All rights reserved.\n**         Notice of copyright on this source code\n**         product does not indicate publication.\n**   \n**   RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by\n**   the U.S. Government is subject to restrictions as set forth\n**   in subparagraph (c)(1)(ii) of the Rights in Technical Data\n**   and Computer Software Clause at DFARS 252.227-7013 (Oct. 1988)\n**   and FAR 52.227-19 (c) (June 1987).\n**   \n**     Sun Microsystems, Inc., 2550 Garcia Avenue,\n**     Mountain View, California 94043.\n**   ----------------------------------------------------------------- \n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "bcd2712606f120df731e27dd1ce65f9ec2e2c24425c38af67ffc0ef9c6bdd45a",
+    "source_id": "a75d1bcbd8916d259dc63f895ba3ee0794498238"
+  },
+  "source_record_sha256": "d5d7bf6c922ca8f05d5a2ad47b94d1ce0404ed800a5daf05efaacfe8a010f517"
+}

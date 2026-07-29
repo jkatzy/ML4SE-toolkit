@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "antlers_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "baef2876157b85ba642615a1c04ca9fce8609a6f93fd0fbc2030563b4c0663fe",
+      "case_id": "antlers-block-4dceba8d41226d06",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@name Teaser\n@desc Teaser with up to three teaser elements\n@set page.page_builder.teaser",
+      "expected_cleaned_sha256": "4f433e7785fec8975feed85076519c10379137b2c8dd5f29e5687cc7e1e41b5c",
+      "language": "antlers",
+      "raw_comment": "{{#\n\t@name Teaser\n\t@desc Teaser with up to three teaser elements\n    @set page.page_builder.teaser\n#}}",
+      "raw_sha256": "a2f5ad391994e36c28320788f4515ab0a83e8fd9d6f18abf44b4f0ece74c8384",
+      "raw_utf8_length": 102,
+      "source_provenance": {
+        "source_excerpt_sha256": "3670d2fe887b2d60a42053807a24968ed0fb8ab08b21e8c5381e5af89f5d33ac",
+        "source_id": "6ca840b55345f864089cf4b8df6c8e0a9e85d3bf"
+      },
+      "syntax_label": "{{#...#}}"
+    },
+    {
+      "baseline_cleaned_sha256": "45b8b1a2082a750f99e7bc908b51e5d29da87477162d774083f00482805cd6dd",
+      "case_id": "antlers-block-66f4c855daf023b3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@name Introduction\n@desc The introduction page builder block.\n@set page.page_builder.introduction",
+      "expected_cleaned_sha256": "6e73290922933a776da8bc4b69bee7396bd3a0271efc16a8491361559f2e14eb",
+      "language": "antlers",
+      "raw_comment": "{{#\n\t@name Introduction\n\t@desc The introduction page builder block.\n    @set page.page_builder.introduction\n#}}",
+      "raw_sha256": "6d73a08391c8675027039bc664aae84397a2fa9115dab230a3cd1908f7aa376a",
+      "raw_utf8_length": 111,
+      "source_provenance": {
+        "source_excerpt_sha256": "1d6c27ba2658fe7fb9f6a1141167e7a74975b85525d7e97f10ee75ab0dcf37da",
+        "source_id": "b7aa4340271c504f015895787839d787ffbb1098"
+      },
+      "syntax_label": "{{#...#}}"
+    },
+    {
+      "baseline_cleaned_sha256": "84bdf7ad0e9990f23dbdab03d1e194c9201fc57f5574e963c1b953d6f4207929",
+      "case_id": "antlers-block-86e3297fa6df3934",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@name Headline\n@desc The Headline block\n@set page.blocks.headline",
+      "expected_cleaned_sha256": "925b2f8d57c532f412a4da24af4fb61b591cb91847853d296d6ca81aa4565b30",
+      "language": "antlers",
+      "raw_comment": "{{#\n\t@name Headline\n\t@desc The Headline block\n    @set page.blocks.headline\n#}}",
+      "raw_sha256": "5dec51263e25df59ea6df7dadb32680a4f0ceddbcc6b07f4a851bf26b9c10152",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "aa906632ea5f27e4247a7291b69e38ed110b3adcfa49aff771134e21c52cd48f",
+        "source_id": "415e5b38feff253505f6786899102617ed2eb9ed"
+      },
+      "syntax_label": "{{#...#}}"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "html_plus_ecr-block-02bb78db87660d2a",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u2013",
+  "disposition": "executable_regression",
+  "language": "html_plus_ecr",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "74cd89634876119f747f8cf79d3a4aec43ce60e9c4687b1d1bcfcf43ab29a538",
+      "utf8_length": 169
+    },
+    "manifest_old_output": {
+      "sha256": "9bf6094e589de35783e12bc43905733363cb5d4c18667de2006c530f5a0641b3",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "29acb3fb57b09800091ec01a758ec1e063a7df5b88d89f9aac4b8be7feb3fdc5",
+      "utf8_length": 178
+    },
+    "recommended_expected_output": {
+      "sha256": "9bf6094e589de35783e12bc43905733363cb5d4c18667de2006c530f5a0641b3",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "Basic Page Needs",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!-- Basic Page Needs\n  \u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013 -->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7fc74089e723b168a24fca00c70543b13636d51089d5b0ccff99cd89deade942",
+    "source_id": "d4c62e59d69abfe390b7c766e61c5e204f69cd5b"
+  },
+  "source_record_sha256": "7a9dd2dc919cae049d981afd1420280d3a9c2a66edf9b0f80888c8a889402b28"
+}

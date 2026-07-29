@@ -1,0 +1,38 @@
+{
+  "case_id": "d-block-7568a664f213641e",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "d",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "81ea94376fe960175dabd4f61ca995d5390181786c6e40942d4213cbc6ac05aa",
+      "utf8_length": 35
+    },
+    "manifest_old_output": {
+      "sha256": "a7bce24c9bbea75b05b9c04ed9fff24a9d5f1c624020ba7648fa31be6fc0ba88",
+      "utf8_length": 27
+    },
+    "raw_comment": {
+      "sha256": "978ded589b0b6843275ff01ae0ea7736909eedb0241949e697d556faea95989b",
+      "utf8_length": 40
+    },
+    "recommended_expected_output": {
+      "sha256": "a7bce24c9bbea75b05b9c04ed9fff24a9d5f1c624020ba7648fa31be6fc0ba88",
+      "utf8_length": 27
+    }
+  },
+  "regression": {
+    "expected_output": "Sdk to work with datapoints",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/***\n  Sdk to work with datapoints\n ***/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "91ea5ac4bcfd83b6937ca93a32dc2c3c0910c0bee3d7044319775307fd6dd082",
+    "source_id": "6aec0bb7cfc24b6076a0819f7e0e3d624b552c6a"
+  },
+  "source_record_sha256": "af9d866c4a73241d3a0a5524e624ab53139db0a98128dd901113941912d2891a"
+}

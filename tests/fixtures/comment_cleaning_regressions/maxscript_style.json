@@ -1,0 +1,62 @@
+{
+  "extractor_boundary_cases": [
+    {
+      "baseline_cleaned_sha256": "e72d5bf88663973d7445f814999337850eafc3716fdc47f6a7fac3977c3939d2",
+      "boundary_assertion": {
+        "expected_match": "-- boundary",
+        "expected_match_sha256": "97edcf521fec0db2721baa7853a8a60c4bac8b8f2e7d230e1f6259717ef964b1",
+        "kind": "line_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "-- boundary\rsource",
+        "raw_sha256": "8d3753b6eb538eef095ca7b64e8bd7e8ef70664ff3bf5d16b8a78c2181242dcd",
+        "raw_utf8_length": 18
+      },
+      "case_id": "maxscript-line-75608d52788844f6",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "maxscript",
+      "oracle_exception_record_sha256": "aae09675d0e84fef26cffd89d86702e91079d1a9b56bd9ba69c9c8672f252087",
+      "raw_sha256": "7617edbb469aea24ee1020cb978869eaf9a54b1ea7e43cb3b2b18b811bb2508a",
+      "raw_utf8_length": 4793,
+      "source_provenance": {
+        "source_excerpt_sha256": "daaf9d5a6a85f4c49654ed9e3bfb5789969f0181a7fbda9ec507361863f9eea2",
+        "source_id": "396b0816c8178c71c14facb9b1ed6840e7a24623"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "eaace0e2ea0e7e384ffaf474985f35a34c6d47877fb854d26b211ebe8d19d319",
+      "boundary_assertion": {
+        "expected_match": "-- boundary",
+        "expected_match_sha256": "97edcf521fec0db2721baa7853a8a60c4bac8b8f2e7d230e1f6259717ef964b1",
+        "kind": "line_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "-- boundary\rsource",
+        "raw_sha256": "8d3753b6eb538eef095ca7b64e8bd7e8ef70664ff3bf5d16b8a78c2181242dcd",
+        "raw_utf8_length": 18
+      },
+      "case_id": "maxscript-line-fc05250a2d33c7e8",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "maxscript",
+      "oracle_exception_record_sha256": "42e5121d67522ceb3cfdc0805239717d1ad8af17d7f8fed080764b6c509d60c4",
+      "raw_sha256": "13653492c304da614da09739708034d08d2d20e5ff8c623535d7a21d16213616",
+      "raw_utf8_length": 1679,
+      "source_provenance": {
+        "source_excerpt_sha256": "d56c94f8b24cfd7e096283eac74610cf756a501b44b0b2be9dd327c6886106ed",
+        "source_id": "9def14983ed84c05b879bba101ef657d27bd953b"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "family_name": "maxscript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [],
+  "schema_version": 5
+}

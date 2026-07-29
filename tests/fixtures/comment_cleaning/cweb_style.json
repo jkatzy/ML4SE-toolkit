@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "family_name": "cweb_style",
+  "canonical_language": "cweb",
+  "language_keys": [
+    "cweb"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "@q reader cleaning_payload_shared_regex_000 @>",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-block",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "block",
+      "raw_comment": "/* cleaning_payload_shared_regex_001 */",
+      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    },
+    {
+      "id": "shared_regex-002-line",
+      "source": "registry:shared_regex_examples[2]",
+      "kind": "line",
+      "raw_comment": "// cleaning_payload_shared_regex_002",
+      "expected_cleaned": "cleaning_payload_shared_regex_002",
+      "payload_marker": "cleaning_payload_shared_regex_002"
+    },
+    {
+      "id": "grouped-shared_regex-002-line",
+      "source": "generated-group:registry:shared_regex_examples[2]",
+      "kind": "grouped_line",
+      "raw_comment": "// cleaning_payload_grouped_shared_regex_002_first\n// cleaning_payload_grouped_shared_regex_002_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_002_first\ncleaning_payload_grouped_shared_regex_002_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_002"
+    }
+  ]
+}

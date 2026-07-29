@@ -1,0 +1,280 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "nsis_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "2163c8bf8f9388ba2a71315c4ad534b3d042eaf36a408121e500cb78c55e7640",
+      "case_id": "nsis-block-12b52031cf9aeeb3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u5b98\u7f51: https://nsis.sourceforge.io/  \u75283.08\u7248\u672c\uff0c\u811a\u672c\u6587\u4ef6\u683c\u5f0f\u5fc5\u987b\u4e3a utf-8 with BOM\n\u4f7f\u7528 Modern \u98ce\u683c\u754c\u9762 \u90a3\u79cd\u4e0b\u4e00",
+      "expected_cleaned_sha256": "a7879b420b051ab985f88b398b7cfc0fd9a4fe60e9fb493eac969cba353e730d",
+      "language": "nsis",
+      "raw_comment": "# \u5b98\u7f51: https://nsis.sourceforge.io/  \u75283.08\u7248\u672c\uff0c\u811a\u672c\u6587\u4ef6\u683c\u5f0f\u5fc5\u987b\u4e3a utf-8 with BOM\n# \u4f7f\u7528 Modern \u98ce\u683c\u754c\u9762 \u90a3\u79cd\u4e0b\u4e00",
+      "raw_sha256": "2163c8bf8f9388ba2a71315c4ad534b3d042eaf36a408121e500cb78c55e7640",
+      "raw_utf8_length": 140,
+      "source_provenance": {
+        "source_excerpt_sha256": "777156a47b950d95ae97d6d90961403390f6f535239042bae88bf3964336113f",
+        "source_id": "5963ac5191bad3925bae9fd1a3a5e73e79e472fb"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "699a2c43adeb81ed0b87b5f851557ddb2181bda14db9d7115e40f6e99efdb061",
+      "case_id": "nsis-block-1e84a7e646ac99a5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Creamos una seccion para definir el comportamiento del desinstalador\nsiempre se va a llamar uninstall",
+      "expected_cleaned_sha256": "ff2c6a9eeac5859ce02a637cbbe6ebb9e4f4b81703d4b33251995460377de7da",
+      "language": "nsis",
+      "raw_comment": "# Creamos una seccion para definir el comportamiento del desinstalador\n# siempre se va a llamar uninstall",
+      "raw_sha256": "699a2c43adeb81ed0b87b5f851557ddb2181bda14db9d7115e40f6e99efdb061",
+      "raw_utf8_length": 105,
+      "source_provenance": {
+        "source_excerpt_sha256": "a6bb0e51b899a7d420e1c6565e2d050aa7cf63cc6c282f3513bfcc543ef8dd0e",
+        "source_id": "3cf8c18f41555e9b7d34e5de11b4c326c4c0cb3f"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "102d72dc6cae8cabd3cb674d5a5718df9ef484e31742d876ef9bc46cc9d171ec",
+      "case_id": "nsis-block-3fd08e4b2fe63fff",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "SetOutPath $INSTDIR\nCreateShortCut \"$SMPROGRAMS\\${PRODUCT_COMPANY}\\Uninstall.lnk\" \"$INSTDIR\\UnInstall.exe\"",
+      "expected_cleaned_sha256": "1f676b296dce977b79bca0bfe28533debce25e8475713fda0163ce8a814c8042",
+      "language": "nsis",
+      "raw_comment": "# SetOutPath $INSTDIR\n\t# CreateShortCut \"$SMPROGRAMS\\${PRODUCT_COMPANY}\\Uninstall.lnk\" \"$INSTDIR\\UnInstall.exe\"",
+      "raw_sha256": "102d72dc6cae8cabd3cb674d5a5718df9ef484e31742d876ef9bc46cc9d171ec",
+      "raw_utf8_length": 111,
+      "source_provenance": {
+        "source_excerpt_sha256": "381651cf5eceb425c23d2e99b01ca16c0070bf07dd76af2365f39639b7d8b9a7",
+        "source_id": "1fcd3b281da8071e498d55827d3e485df4b13d8d"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "bb8b5e51819496784f32253c52cf0efb17e6196929d45580b60d691fea9949b7",
+      "case_id": "nsis-block-6c3f327aa8209cef",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "gputils.nsi - NSIS installer script for gputils\n\nCopyright (c) 2004-2013 Borut Razem\n\nThis file is part of gputils.\n\n This software is provided 'as-is', without any express or implied\n warranty.  In no event will the authors be held liable for any damages\n arising from the use of this software.\n\n Permission is granted to anyone to use this software for any purpose,\n including commercial applications, and to alter it and redistribute it\n freely, subject to the following restrictions:\n\n 1. The origin of this software must not be misrepresented; you must not\n    claim that you wrote the original software. If you use this software\n    in a product, an acknowledgment in the product documentation would be\n    appreciated but is not required.\n 2. Altered source versions must be plainly marked as such, and must not be\n    misrepresented as being the original software.\n 3. This notice may not be removed or altered from any source distribution.\n\n Borut Razem\n borut.razem@siol.net\n\nHow to run NSIS installer:\n\n  \"c:/Program Files/NSIS/makensis\" -DVER_MAJOR=<VER_MAJOR> -DVER_MINOR=<VER_MINOR> -DVER_REVISION=<VER_REVISION> -DVER_BUILD=0 -DDASH_RELEASE=\"\" gputils.nsi\n  replace <VER_XXX> with the appropriate values, for example for gputils 0.13.6:\n  <VER_MAJOR> = 0\n  <VER_MINOR> = 13\n  <VER_REVISION> = 6\n\nHow to create WIN32 release setup.exe package on Windows+cygwin or Windows+mingw32 machine\n\n- download the release src package gputils-x.xx.x.tar.gz to a clean directory\n  (referenced as PKGDIR in continuation).\n- copy GPUTILS_SVN_SNAPSHOT/scripts/build/mingw/make-mingw to the PKGDIR\n  directory (GPUTILS_SVN_SNAPSHOT is the gputils Subversion snapshot directory).\n- copy GPUTILS_SVN_SNAPSHOT/scripts/build/mingw/gputils.nsi to the PKGDIR\n  directory\n- execute make-mingw from the PKGDIR directory using cygwin bash console\n  CC=\"gcc -mno-cygwin\" ./make-mingw --email=<BUILDER_EMAIL> --name=\"<BUILDER_NAME>\" --source=<SOURCE_PACKAGE_NAME> --save-temps\n- or execute make-mingw from the PKGDIR directory using MYSYS bash console\n  CC=gcc ./make-mingw --email=<BUILDER_EMAIL> --name=\"<BUILDER_NAME>\" --source=<SOURCE_PACKAGE_NAME> --save-temps\n  where:\n  <BUILDER_EMAIL>       - builder'e e-mail address\n  <BUILDER_NAME>        - builder's name and surname\n  <SOURCE_PACKAGE_NAME> - gputils source package name, for example gputils-x.xx.x.tar.gz\n- The setup file gputils-x.xx.x.exe is created in PKGDIR/dist/gputils directory.\n  Upload it to gputils download repository at sourceforge.net\n\nFor debugging define -DGPUTILS.DEBUG command line option",
+      "expected_cleaned_sha256": "0113d32349f17ebd46bf4d6b646420e1c0f7efb91fc7c5ce88df5a213596cda5",
+      "language": "nsis",
+      "raw_comment": "# gputils.nsi - NSIS installer script for gputils\n#\n# Copyright (c) 2004-2013 Borut Razem\n#\n# This file is part of gputils.\n#\n#  This software is provided 'as-is', without any express or implied\n#  warranty.  In no event will the authors be held liable for any damages\n#  arising from the use of this software.\n#\n#  Permission is granted to anyone to use this software for any purpose,\n#  including commercial applications, and to alter it and redistribute it\n#  freely, subject to the following restrictions:\n#\n#  1. The origin of this software must not be misrepresented; you must not\n#     claim that you wrote the original software. If you use this software\n#     in a product, an acknowledgment in the product documentation would be\n#     appreciated but is not required.\n#  2. Altered source versions must be plainly marked as such, and must not be\n#     misrepresented as being the original software.\n#  3. This notice may not be removed or altered from any source distribution.\n#\n#  Borut Razem\n#  borut.razem@siol.net\n#\n# How to run NSIS installer:\n#\n#   \"c:/Program Files/NSIS/makensis\" -DVER_MAJOR=<VER_MAJOR> -DVER_MINOR=<VER_MINOR> -DVER_REVISION=<VER_REVISION> -DVER_BUILD=0 -DDASH_RELEASE=\"\" gputils.nsi\n#   replace <VER_XXX> with the appropriate values, for example for gputils 0.13.6:\n#   <VER_MAJOR> = 0\n#   <VER_MINOR> = 13\n#   <VER_REVISION> = 6\n#\n# How to create WIN32 release setup.exe package on Windows+cygwin or Windows+mingw32 machine\n#\n# - download the release src package gputils-x.xx.x.tar.gz to a clean directory\n#   (referenced as PKGDIR in continuation).\n# - copy GPUTILS_SVN_SNAPSHOT/scripts/build/mingw/make-mingw to the PKGDIR\n#   directory (GPUTILS_SVN_SNAPSHOT is the gputils Subversion snapshot directory).\n# - copy GPUTILS_SVN_SNAPSHOT/scripts/build/mingw/gputils.nsi to the PKGDIR\n#   directory\n# - execute make-mingw from the PKGDIR directory using cygwin bash console\n#   CC=\"gcc -mno-cygwin\" ./make-mingw --email=<BUILDER_EMAIL> --name=\"<BUILDER_NAME>\" --source=<SOURCE_PACKAGE_NAME> --save-temps\n# - or execute make-mingw from the PKGDIR directory using MYSYS bash console\n#   CC=gcc ./make-mingw --email=<BUILDER_EMAIL> --name=\"<BUILDER_NAME>\" --source=<SOURCE_PACKAGE_NAME> --save-temps\n#   where:\n#   <BUILDER_EMAIL>       - builder'e e-mail address\n#   <BUILDER_NAME>        - builder's name and surname\n#   <SOURCE_PACKAGE_NAME> - gputils source package name, for example gputils-x.xx.x.tar.gz\n# - The setup file gputils-x.xx.x.exe is created in PKGDIR/dist/gputils directory.\n#   Upload it to gputils download repository at sourceforge.net\n#\n# For debugging define -DGPUTILS.DEBUG command line option",
+      "raw_sha256": "bb8b5e51819496784f32253c52cf0efb17e6196929d45580b60d691fea9949b7",
+      "raw_utf8_length": 2650,
+      "source_provenance": {
+        "source_excerpt_sha256": "3b9e7b02cf9d43458919151d5ce70d86f8fe365a5ed79baee84f91bf5a9e0385",
+        "source_id": "be58d8911292b8c11abd775a1814bec2ed74f80c"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "37d21a2f5a0f17076e434487462ca3c27c2e833b304a7865890d959716ab6cb3",
+      "case_id": "nsis-block-6fc58b3ddce2f34f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Let's see if the user has the .NET Framework 4.5 installed on their system or not\nRemember: you need Vista SP2 or 7 SP1.  It is built in to Windows 8, and not needed\nIn case you're wondering, running this code on Windows 8 will correctly return is_equal\nor is_greater (maybe Microsoft releases .NET 4.5 SP1 for example)",
+      "expected_cleaned_sha256": "b63025d3b53b57c1d7974690817d77a4507906ac25b6988f25693e2333c4a518",
+      "language": "nsis",
+      "raw_comment": "# Let's see if the user has the .NET Framework 4.5 installed on their system or not\n\t# Remember: you need Vista SP2 or 7 SP1.  It is built in to Windows 8, and not needed\n\t# In case you're wondering, running this code on Windows 8 will correctly return is_equal\n\t# or is_greater (maybe Microsoft releases .NET 4.5 SP1 for example)",
+      "raw_sha256": "37d21a2f5a0f17076e434487462ca3c27c2e833b304a7865890d959716ab6cb3",
+      "raw_utf8_length": 330,
+      "source_provenance": {
+        "source_excerpt_sha256": "2285892d0049271b6d116956d66e91eb0bc7ed62f791ab92f02aecfbb003338a",
+        "source_id": "dc0354ba8721409a785278bf2013de56af646262"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "fd2ee56e535154e4f0d05dbc7a59b98dd5e4583ff5cf73a72cab01b9ca7e4f05",
+      "case_id": "nsis-block-7c296856bed50503",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BEGIN LICENSE BLOCK\nVersion: MPL 1.1/GPL 2.0/LGPL 2.1\n\nThe contents of this file are subject to the Mozilla Public License Version\n1.1 (the \"License\"); you may not use this file except in compliance with\nthe License. You may obtain a copy of the License at\nhttp://www.mozilla.org/MPL/\n\nSoftware distributed under the License is distributed on an \"AS IS\" basis,\nWITHOUT WARRANTY OF ANY KIND, either express or implied. See the License\nfor the specific language governing rights and limitations under the\nLicense.\n\nThe Original Code is the Mozilla Installer code.\n\nThe Initial Developer of the Original Code is Mozilla Foundation\nPortions created by the Initial Developer are Copyright (C) 2006\nthe Initial Developer. All Rights Reserved.\n\nContributor(s):\n Robert Strong <robert.bugzilla@gmail.com>\n\nAlternatively, the contents of this file may be used under the terms of\neither the GNU General Public License Version 2 or later (the \"GPL\"), or\nthe GNU Lesser General Public License Version 2.1 or later (the \"LGPL\"),\nin which case the provisions of the GPL or the LGPL are applicable instead\nof those above. If you wish to allow use of your version of this file only\nunder the terms of either the GPL or the LGPL, and not to allow others to\nuse your version of this file under the terms of the MPL, indicate your\ndecision by deleting the provisions above and replace them with the notice\nand other provisions required by the GPL or the LGPL. If you do not delete\nthe provisions above, a recipient may use your version of this file under\nthe terms of any one of the MPL, the GPL or the LGPL.\n\nEND LICENSE BLOCK",
+      "expected_cleaned_sha256": "9cb84872abf77b3d74a6d30b3422c97ef9796f7aff2568715debdd758a0aae90",
+      "language": "nsis",
+      "raw_comment": "# ***** BEGIN LICENSE BLOCK *****\n# Version: MPL 1.1/GPL 2.0/LGPL 2.1\n#\n# The contents of this file are subject to the Mozilla Public License Version\n# 1.1 (the \"License\"); you may not use this file except in compliance with\n# the License. You may obtain a copy of the License at\n# http://www.mozilla.org/MPL/\n#\n# Software distributed under the License is distributed on an \"AS IS\" basis,\n# WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License\n# for the specific language governing rights and limitations under the\n# License.\n#\n# The Original Code is the Mozilla Installer code.\n#\n# The Initial Developer of the Original Code is Mozilla Foundation\n# Portions created by the Initial Developer are Copyright (C) 2006\n# the Initial Developer. All Rights Reserved.\n#\n# Contributor(s):\n#  Robert Strong <robert.bugzilla@gmail.com>\n#\n# Alternatively, the contents of this file may be used under the terms of\n# either the GNU General Public License Version 2 or later (the \"GPL\"), or\n# the GNU Lesser General Public License Version 2.1 or later (the \"LGPL\"),\n# in which case the provisions of the GPL or the LGPL are applicable instead\n# of those above. If you wish to allow use of your version of this file only\n# under the terms of either the GPL or the LGPL, and not to allow others to\n# use your version of this file under the terms of the MPL, indicate your\n# decision by deleting the provisions above and replace them with the notice\n# and other provisions required by the GPL or the LGPL. If you do not delete\n# the provisions above, a recipient may use your version of this file under\n# the terms of any one of the MPL, the GPL or the LGPL.\n#\n# ***** END LICENSE BLOCK *****",
+      "raw_sha256": "fd2ee56e535154e4f0d05dbc7a59b98dd5e4583ff5cf73a72cab01b9ca7e4f05",
+      "raw_utf8_length": 1695,
+      "source_provenance": {
+        "source_excerpt_sha256": "d2aeffeef59737316bbaee0238c203527fff347e7de5aa1eab8a0c1f451e614a",
+        "source_id": "2a3208382dbd750d98b88c8693e086cd2dad4f59"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "a98915eb2a3cf649d31eacc2a32b383b586e096da3002c41f1ccfc650330e6ef",
+      "case_id": "nsis-block-a04100c6a26e33e8",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "JetBrains MPS Installer Script\nGenerated by MPS",
+      "expected_cleaned_sha256": "dfdbb446897be1ad22904e57ea11c72bc5bb9123af6533a919530f2e94257ef4",
+      "language": "nsis",
+      "raw_comment": "#**********************************************************************************************************#\n#************************************ JetBrains MPS Installer Script **************************************#\n#************************************ Generated by MPS ****************************************************#",
+      "raw_sha256": "a98915eb2a3cf649d31eacc2a32b383b586e096da3002c41f1ccfc650330e6ef",
+      "raw_utf8_length": 326,
+      "source_provenance": {
+        "source_excerpt_sha256": "50dc65d7a91b8575b3fd2ff2e1cc3cb97742bd253374a368a1b0551e7c967f8a",
+        "source_id": "bd562f81ebc22217244662201e2cd5ac4c33b596"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "e944411b25a761723676ba4c8ac0f3e366374ec1092fa7594265c0f11e60dc6e",
+      "case_id": "nsis-block-b1fa2a4c821fcf5f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "vi:set ts=8 sts=4 sw=4 et fdm=marker:\n\nitalian.nsi : Italian language strings for gvim NSIS installer.\n\nLocale ID    : 1040\nfileencoding : UTF-8\nAuthor       : Antonio Colombo, bovirus - revision: 12.05.2023",
+      "expected_cleaned_sha256": "009791d19223b74cf494b562543f2b30649b1ef6c0e3799568fe9171f7e27e51",
+      "language": "nsis",
+      "raw_comment": "# vi:set ts=8 sts=4 sw=4 et fdm=marker:\n#\n# italian.nsi : Italian language strings for gvim NSIS installer.\n#\n# Locale ID    : 1040\n# fileencoding : UTF-8\n# Author       : Antonio Colombo, bovirus - revision: 12.05.2023",
+      "raw_sha256": "e944411b25a761723676ba4c8ac0f3e366374ec1092fa7594265c0f11e60dc6e",
+      "raw_utf8_length": 219,
+      "source_provenance": {
+        "source_excerpt_sha256": "9d107530346000683fcb2c8a96ffe1e9cbdba266a3d864be7e770723b7f74b2b",
+        "source_id": "100fe6ddc3ed188b0d1773cfa4c8856f8a4e5359"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "0d7af6e08bd32d62c452bedb850387e05abe7b4be8db75d4ae249b92f5ebe0b6",
+      "case_id": "nsis-block-b781afedf3da0cef",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: Avoid to uninstall the database\nTODO: We can update the server or the clients without to uninstall the all-in-one\nTODO: Add startmenu handling (link to localhost + uninstall)",
+      "expected_cleaned_sha256": "f8c2a6752055fed9fe537973c200c5f882584a4099c5f6a7ac273fb3db3ef89f",
+      "language": "nsis",
+      "raw_comment": "# TODO: Avoid to uninstall the database\n# TODO: We can update the server or the clients without to uninstall the all-in-one\n# TODO: Add startmenu handling (link to localhost + uninstall)",
+      "raw_sha256": "0d7af6e08bd32d62c452bedb850387e05abe7b4be8db75d4ae249b92f5ebe0b6",
+      "raw_utf8_length": 186,
+      "source_provenance": {
+        "source_excerpt_sha256": "9667c52333dd677a2741b732e352bbd32443c3740502eeaa4a848a9a84eb8b37",
+        "source_id": "abceea861d3f4c668aec8c88866877de2d1986f7"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "25bed73d40e6fd3815a7553ae87a529ee6cfabb62c10051c462eebf3752e9ef7",
+      "case_id": "nsis-block-ca9d2c834fea4f9c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Author: LiXizhi, Spring\nCompany: ParaEngine\nDate: 2010.4.15, Modified on 2010.7.27",
+      "expected_cleaned_sha256": "c0155ec59a13709dc6b91885db15fef0d35c1fe395681f05c201dc093760a858",
+      "language": "nsis",
+      "raw_comment": "# Author: LiXizhi, Spring\n# Company: ParaEngine\n# Date: 2010.4.15, Modified on 2010.7.27",
+      "raw_sha256": "25bed73d40e6fd3815a7553ae87a529ee6cfabb62c10051c462eebf3752e9ef7",
+      "raw_utf8_length": 88,
+      "source_provenance": {
+        "source_excerpt_sha256": "d078770bf78139c7aeea66e09d14cddab63f3d84ac13d52850dc3d8751f31e57",
+        "source_id": "e81d44cded54840e52cc2635090b0ede4914efea"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "db613c623b40823d910451dd417982cdce5008535223eb7370239efa18c5bee3",
+      "case_id": "nsis-block-d40db9ea85da62d7",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "French-pfi.nsh\n\nThis file contains the \"French\" text strings used by the Windows installer\nand other NSIS-based Windows utilities for POPFile (includes customised versions\nof strings provided by NSIS and strings which are unique to POPFile).\n\nThese strings are grouped according to the page/window and script where they are used\n\nCopyright (c) 2003-2005 John Graham-Cumming\n\n  This file is part of POPFile\n\n  POPFile is free software; you can redistribute it and/or modify it\n  under the terms of version 2 of the GNU General Public License as\n  published by the Free Software Foundation.\n\n  POPFile is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License\n  along with POPFile; if not, write to the Free Software\n  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA",
+      "expected_cleaned_sha256": "c2a59a4faf244497a0967352f201c7e1766267e5d980f53660c9ac3b9dd92ec8",
+      "language": "nsis",
+      "raw_comment": "# French-pfi.nsh\n#\n# This file contains the \"French\" text strings used by the Windows installer\n# and other NSIS-based Windows utilities for POPFile (includes customised versions\n# of strings provided by NSIS and strings which are unique to POPFile).\n#\n# These strings are grouped according to the page/window and script where they are used\n#\n# Copyright (c) 2003-2005 John Graham-Cumming\n#\n#   This file is part of POPFile\n#\n#   POPFile is free software; you can redistribute it and/or modify it\n#   under the terms of version 2 of the GNU General Public License as\n#   published by the Free Software Foundation.\n#\n#   POPFile is distributed in the hope that it will be useful,\n#   but WITHOUT ANY WARRANTY; without even the implied warranty of\n#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n#   GNU General Public License for more details.\n#\n#   You should have received a copy of the GNU General Public License\n#   along with POPFile; if not, write to the Free Software\n#   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA\n#",
+      "raw_sha256": "db613c623b40823d910451dd417982cdce5008535223eb7370239efa18c5bee3",
+      "raw_utf8_length": 1069,
+      "source_provenance": {
+        "source_excerpt_sha256": "e576009f256fab0f9d08ebdb2df548983812fab9696738088520acd58367d638",
+        "source_id": "7cf16671217fc382ad7b2b1d25180cf0430758d3"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "96c6f0f5ce7a2a084112393d52b2ae069f374c196673c4810bf007522f7ee5af",
+      "case_id": "nsis-block-e9ee1aac47f7878d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file is part of the Soletta (TM) Project\n\nCopyright (C) 2015 Intel Corporation. All rights reserved.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "00927573a6545f84571be3696cf5194a669aa91dc3069ca90469864d19244c75",
+      "language": "nsis",
+      "raw_comment": "# This file is part of the Soletta (TM) Project\n#\n# Copyright (C) 2015 Intel Corporation. All rights reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.",
+      "raw_sha256": "96c6f0f5ce7a2a084112393d52b2ae069f374c196673c4810bf007522f7ee5af",
+      "raw_utf8_length": 656,
+      "source_provenance": {
+        "source_excerpt_sha256": "4fed1827da64374bec8f8406d7bfa2ad845e9a3a29aa50b3812cf99fb07b9aa1",
+        "source_id": "52cb76fa5f33b77cbb43a3788a7535e1bcb26c41"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "56dec91c8018b6294bfe4d7222a416ef424e2e2510ee29d316564e1696883016",
+      "case_id": "nsis-line-82177f3371d4d8ff",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Name:",
+      "expected_cleaned_sha256": "2683cad48a14dc3f79c167e4e98cc01ed6cf0e364cdb399fc187a8fc39902571",
+      "language": "nsis",
+      "raw_comment": "# Name:\r",
+      "raw_sha256": "651255ed407c617d6a09148ec10f2decb15dd53a05aa56e778f9ed0ea66fd153",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "83889a08e79674421b91ff55d61fa6ba555d64d9ea9655619f5824316327fce6",
+        "source_id": "c3f71bd7073ae2febc78d024ca256425243c511d"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "b77c5b97c46e916c3a03e63161f8f4a9a949460ae37a4ac8f14b4d6738eb59f6",
+      "case_id": "nsis-line-83860730e3cd3799",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Auto-generated by EclipseNSIS Script Wizard",
+      "expected_cleaned_sha256": "7262b12dba00a26aa5bfa12d86b4f9f4df17c83b4ac046880bed6b36f1dce85c",
+      "language": "nsis",
+      "raw_comment": "# Auto-generated by EclipseNSIS Script Wizard\r",
+      "raw_sha256": "eaf297141c101a41fb1c55dc8e882bfb75d79bcb85f7b8b9d167b2361bfdaa7c",
+      "raw_utf8_length": 46,
+      "source_provenance": {
+        "source_excerpt_sha256": "36468897b5c136754ad7017a763f390a95f3da21c36f651b11afd3d1402c32d1",
+        "source_id": "a532bd6b031cc17a51b09dee3b7f0a43f4e353b9"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "447037e74b74888a7bc0d7933796a7860ab8bb4d26347132175fd970360954de",
+      "case_id": "nsis-line-94db2ee6372babd8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2005-2015 Ross Smith II (http://smithii.com). MIT Licensed.",
+      "expected_cleaned_sha256": "c4a5166544fc73c02e1c8991c8778caadf637890193727a8fdae49b16d6af1dd",
+      "language": "nsis",
+      "raw_comment": "# Copyright (c) 2005-2015 Ross Smith II (http://smithii.com). MIT Licensed.\r",
+      "raw_sha256": "48b4fa0429b46f8177aa6c19dcaf9265c1f624fb24e65dc8e2d496d2436d633c",
+      "raw_utf8_length": 76,
+      "source_provenance": {
+        "source_excerpt_sha256": "b5195577f2db4530bf960044e835d49662006ecf6b32b606d1a33c9cc65c0a72",
+        "source_id": "aecef5eb42579a12185d6e711f606adf5883095f"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "dacce66ee28e4a645f1e6fc823e6ee4c9703f322bd132577b9a87325b88e8d6c",
+      "case_id": "nsis-line-b1e904feb567d750",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Flash Player ActiveX",
+      "expected_cleaned_sha256": "6b480d2070a0a9beed19831592a03e7739245750626b4af35da55d25534dd38a",
+      "language": "nsis",
+      "raw_comment": "# Flash Player ActiveX",
+      "raw_sha256": "dacce66ee28e4a645f1e6fc823e6ee4c9703f322bd132577b9a87325b88e8d6c",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "d6b41b820c62f70ba26e0dc66400f420dc61f88f38525abd2beb2ae2bebca8b3",
+        "source_id": "782c72a9ebcb3a8650842f16665fd389a7bb4935"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

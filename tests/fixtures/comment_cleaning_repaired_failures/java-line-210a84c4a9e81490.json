@@ -1,0 +1,29 @@
+{
+  "case_id": "java-line-210a84c4a9e81490",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:deletion",
+  "disposition": "accounting_only_no_oracle",
+  "language": "java",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ed4b72052473a2bb4e2859137c04610381a44fbf10531523191913c62a8932aa",
+      "utf8_length": 66
+    },
+    "manifest_old_output": {
+      "sha256": "eb26f567cdc103c693564eab6d93281085bee20fb176a861df81ddf14cbd7644",
+      "utf8_length": 82
+    },
+    "raw_comment": {
+      "sha256": "9792cce9681759d760ffdd2d70fc17124f31700f869f9894ee127f0c635f9fae",
+      "utf8_length": 91
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "83d6146662dc0be8ca3ee4b54a1d00b4dfde6d561158e9b6bb97bc3f43be2f01",
+    "source_id": "9480a25ff6e2f8a970a909e8360ee2a4e18ccb04"
+  },
+  "source_record_sha256": "a99452c650c898a0363e0cc92f25c2960111fed9e5fc64a07ad888189bf8be56"
+}

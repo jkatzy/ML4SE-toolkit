@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-f68b268d5ba609ba",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ae1537b2b429a7a22aa49a6c2adc9618320b3db536b67e53f0a4a803deab4d18",
+      "utf8_length": 367
+    },
+    "manifest_old_output": {
+      "sha256": "362f980740e326594f7388b28b041f6b2b42ced6491df83b0bd2febc6fd617d1",
+      "utf8_length": 301
+    },
+    "raw_comment": {
+      "sha256": "4b82476dcfba8c06bd1bffe5b5fe2d3f1a4e560a852fa6533ba250d782b442d9",
+      "utf8_length": 386
+    },
+    "recommended_expected_output": {
+      "sha256": "362f980740e326594f7388b28b041f6b2b42ced6491df83b0bd2febc6fd617d1",
+      "utf8_length": 301
+    }
+  },
+  "regression": {
+    "expected_output": "Make a type better readable (like in error messages)\nby replacing the UIDs of unbound 'MetaTv's with small numbers.\n\nThis should cause types like\n> t12345 -> t54231 -> t54312\nto become\n> t1 -> t2 -> t3\n\nNote: The result of 'betterReadable' is a fake type\nand must not be used in actual type inference!",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{-- \n        Make a type better readable (like in error messages)\n        by replacing the UIDs of unbound 'MetaTv's with small numbers.\n        \n        This should cause types like\n        > t12345 -> t54231 -> t54312\n        to become\n        > t1 -> t2 -> t3\n\n        Note: The result of 'betterReadable' is a fake type\n        and must not be used in actual type inference! \n    -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7b4b731f87a8c74a43af4950807d38f5330fb7c54c5e5bbef20610b38b3e6c88",
+    "source_id": "f19d2deb3b6bda5e20ae2eded9a9ea527820a38a"
+  },
+  "source_record_sha256": "e9bd6eae0f0392902b56da0da8040a9517c68e40203dad1ed70e1e48e17291f1"
+}

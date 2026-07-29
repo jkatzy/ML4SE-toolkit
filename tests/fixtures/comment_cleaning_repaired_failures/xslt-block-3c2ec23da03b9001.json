@@ -1,0 +1,38 @@
+{
+  "case_id": "xslt-block-3c2ec23da03b9001",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "xslt",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a032968fb1b69e1efbe64353665b29aae77e1a792fc88ec0a78fc9144334aa93",
+      "utf8_length": 36
+    },
+    "manifest_old_output": {
+      "sha256": "3623dcc7578842650920c88f497c281a21f3dc32ff368781d7ea7660d57c9ea6",
+      "utf8_length": 39
+    },
+    "raw_comment": {
+      "sha256": "c8769dad0bc7cb5e789bb848f10d15cf801d4ac228ee23e600c6faefa338a5ed",
+      "utf8_length": 48
+    },
+    "recommended_expected_output": {
+      "sha256": "3623dcc7578842650920c88f497c281a21f3dc32ff368781d7ea7660d57c9ea6",
+      "utf8_length": 39
+    }
+  },
+  "regression": {
+    "expected_output": "This is what gets the text out there...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!-- This is what gets the text out there... -->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "454c731bd9fdc7516657a5b148c99e91b961afc796a806bef1df50009989c033",
+    "source_id": "5c6f9423a766163f42a34ac6d86fbbef16f1da4b"
+  },
+  "source_record_sha256": "e39027b2e6b8503f329d07da006d1adb8b839fea00ddf8d1a274e1348719971b"
+}

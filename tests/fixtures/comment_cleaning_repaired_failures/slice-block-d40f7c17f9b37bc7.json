@@ -1,0 +1,38 @@
+{
+  "case_id": "slice-block-d40f7c17f9b37bc7",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "slice",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "39721e01f250d01a5173e4de0e2474854cb5a37998e847af7daf74cf6f75af31",
+      "utf8_length": 34
+    },
+    "manifest_old_output": {
+      "sha256": "1041a4c65a8e2916b1cb6468d7b479f7badc3f9cf36b33733f6682b647cc6aaf",
+      "utf8_length": 32
+    },
+    "raw_comment": {
+      "sha256": "4b1d13dfd1b68c6d5c2a5aa0e0d87e394b0cb1ae704be2fa3418649b93fd5b0b",
+      "utf8_length": 46
+    },
+    "recommended_expected_output": {
+      "sha256": "1041a4c65a8e2916b1cb6468d7b479f7badc3f9cf36b33733f6682b647cc6aaf",
+      "utf8_length": 32
+    }
+  },
+  "regression": {
+    "expected_output": "Interface to the image provider.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/** \n  * Interface to the image provider.\n  */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1c6c2b36fcdfdd8f2532cfeb621a57904870a4190bab6065ef648770e33fd16a",
+    "source_id": "85668ae5e263ba443522b9a70cf6414bbc1f4085"
+  },
+  "source_record_sha256": "2cc4fca51da3fb32b353a9976e2c014fc28deb6c67e2f3c76e51f274306a023d"
+}

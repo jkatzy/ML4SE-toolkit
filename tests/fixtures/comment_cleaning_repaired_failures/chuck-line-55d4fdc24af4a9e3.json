@@ -1,0 +1,38 @@
+{
+  "case_id": "chuck-line-55d4fdc24af4a9e3",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "chuck",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6fc8510df56db9abcf10dfd9e475f2aa492ccbfb6f1004888996089365b1899a",
+      "utf8_length": 43
+    },
+    "manifest_old_output": {
+      "sha256": "0b7ab43c7fcf050b4a242296e6eec9c6a3f0ffbe959dc6c3d6cf485f5db1169f",
+      "utf8_length": 46
+    },
+    "raw_comment": {
+      "sha256": "a2ba82023f5598f44982bf25912791bf251efceca9d6e48fbc5a41e73bb06111",
+      "utf8_length": 48
+    },
+    "recommended_expected_output": {
+      "sha256": "0b7ab43c7fcf050b4a242296e6eec9c6a3f0ffbe959dc6c3d6cf485f5db1169f",
+      "utf8_length": 46
+    }
+  },
+  "regression": {
+    "expected_output": "<<<\"tilt x \", m_msg.x, \" tilt y \", m_msg.y>>>;",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//<<<\"tilt x \", m_msg.x, \" tilt y \", m_msg.y>>>;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b86f993ae89fd08beb991098efd8039fac5efc00cfde2801e64b64de0171aa69",
+    "source_id": "1373954ba6429f37732edb390716bbe61068dc88"
+  },
+  "source_record_sha256": "054935e22a3dbd7c29105fde83ca4a654a3ad26882277971e9a5122fcc1674fc"
+}

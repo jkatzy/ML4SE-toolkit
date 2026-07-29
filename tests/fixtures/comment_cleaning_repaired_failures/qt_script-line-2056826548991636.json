@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-2056826548991636",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ff7d9355fdb5f1af1383b0483c48920e764cf35a05a4a972618f292af7a59405",
+      "utf8_length": 23
+    },
+    "manifest_old_output": {
+      "sha256": "ee00168003373ff007f31ab608a4ee4c0ffea87bace76ec53847c94cccffccf9",
+      "utf8_length": 21
+    },
+    "raw_comment": {
+      "sha256": "15cc5cab28d161c82a01432671922f014dab80c156ed73eaa1b7ad375a808f35",
+      "utf8_length": 133
+    },
+    "recommended_expected_output": {
+      "sha256": "ee00168003373ff007f31ab608a4ee4c0ffea87bace76ec53847c94cccffccf9",
+      "utf8_length": 21
+    }
+  },
+  "regression": {
+    "expected_output": "IVAINCLUIDO + BARCODE",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////////////////////////////\n//// IVAINCLUIDO + BARCODE ///////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0453461a1b943824f6fd983ff31ee8dd0c2cfec5559702e2c187c68ea6cc1bdc",
+    "source_id": "20a79584736dedc3e62432825464be58769b4147"
+  },
+  "source_record_sha256": "b1bc2e0b1c4a7ba293b045c19de4013057109a6dc8e77609876cb1ede05f91a5"
+}

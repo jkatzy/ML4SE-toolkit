@@ -1,0 +1,38 @@
+{
+  "case_id": "x10-block-90ea4742c72dded7",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "x10",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6631a9fccfdf41059aabb8a28944e57995d629824aa710ba60cd9c357ebe74e2",
+      "utf8_length": 67
+    },
+    "manifest_old_output": {
+      "sha256": "6631a9fccfdf41059aabb8a28944e57995d629824aa710ba60cd9c357ebe74e2",
+      "utf8_length": 67
+    },
+    "raw_comment": {
+      "sha256": "8b1d75e72de34df3cb73c60815d7b1fdbf68efcf2c476df6d129d1f913bc0090",
+      "utf8_length": 88
+    },
+    "recommended_expected_output": {
+      "sha256": "6631a9fccfdf41059aabb8a28944e57995d629824aa710ba60cd9c357ebe74e2",
+      "utf8_length": 67
+    }
+  },
+  "regression": {
+    "expected_output": "(C) Copyright IBM Corporation 2006\n\n This file is part of X10 Test.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n *\n * (C) Copyright IBM Corporation 2006\n *\n *  This file is part of X10 Test.\n *\n */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "329105bcbc798368385fe5c56a9a681095a9f93e51236f462d67d520a97d4c04",
+    "source_id": "f04518d9b7ab6083b85b87a8e6f5cf8b73e6083a"
+  },
+  "source_record_sha256": "dfb747d2b254458da6aba6b00b974e68a6c998a19a8f3ce746b3a00eee0abbf9"
+}

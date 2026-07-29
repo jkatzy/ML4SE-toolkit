@@ -1,0 +1,33 @@
+{
+  "case_id": "cuda-line-9be1a4d25d76a815",
+  "category": "approved_oracle_match",
+  "cluster": "fixture:approved_oracle",
+  "disposition": "accounting_only_superseded",
+  "language": "cuda",
+  "original_expected_output_source": "oracle",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "acc25887c6ffcea92c249ddc3e3a571c0f5d9dda3980c2e7a6407760f3e6b054",
+      "utf8_length": 486
+    },
+    "manifest_old_output": {
+      "sha256": "3d5d0dfcee5db49566b566ec5f44b14ca387dea5be555c5b1d2b305f3b0256ef",
+      "utf8_length": 412
+    },
+    "raw_comment": {
+      "sha256": "22caff50931e203589724a066e1390de993b5061180fdee1fa7f4ef15b0ae08b",
+      "utf8_length": 518
+    },
+    "recommended_expected_output": {
+      "sha256": "acc25887c6ffcea92c249ddc3e3a571c0f5d9dda3980c2e7a6407760f3e6b054",
+      "utf8_length": 486
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4f56c5adc7460ae3dcd10076e887fd68b2d08753972c5605b02c63535b004e72",
+    "source_id": "0b791da96be849e5657285b8404066d0969fd56d"
+  },
+  "source_record_sha256": "fddda5dd70b69ad36c05e65c1ddf747fd3e5052ff4c045c2ec35068824552283"
+}

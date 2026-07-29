@@ -1,0 +1,38 @@
+{
+  "case_id": "nwscript-line-22b613c09d5d8437",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "nwscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a7bbc1cf5b7d8abad9145fd97c8c3eaedd02935a933f2d30e5e6eb30a9150a41",
+      "utf8_length": 81
+    },
+    "manifest_old_output": {
+      "sha256": "126111dffc0d6f6adbf2f8ee8544bfec5ada7504e068e5129b95e75c0026379d",
+      "utf8_length": 28
+    },
+    "raw_comment": {
+      "sha256": "e38959fa21572b76239f67221212da2f50e2861ed0e3957d222da9828abfc82a",
+      "utf8_length": 85
+    },
+    "recommended_expected_output": {
+      "sha256": "126111dffc0d6f6adbf2f8ee8544bfec5ada7504e068e5129b95e75c0026379d",
+      "utf8_length": 28
+    }
+  },
+  "regression": {
+    "expected_output": "Death script for poltergeist",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//:://////////////////////////////////////////////////\n//Death script for poltergeist"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5bf21afd05f8fa9e731fa9964299abe4952b8d9b2c7427daa561e3f60e72d62c",
+    "source_id": "1b2ec4dedde37df14ce687ef3521315b17c65ef2"
+  },
+  "source_record_sha256": "8ca35a7edf9df93a00121110b52f2bc60a62568b338052cdccfda8548bd24564"
+}

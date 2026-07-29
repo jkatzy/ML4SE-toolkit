@@ -1,0 +1,29 @@
+{
+  "case_id": "mirc_script-line-f1d67ed1511082e4",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:mislabeled_marc_data",
+  "disposition": "accounting_only_no_oracle",
+  "language": "mirc_script",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "acaeeb0f3494a3e004ce2c01d638afea0edccd32de7f5c268682111ced5c170c",
+      "utf8_length": 793
+    },
+    "manifest_old_output": {
+      "sha256": "acaeeb0f3494a3e004ce2c01d638afea0edccd32de7f5c268682111ced5c170c",
+      "utf8_length": 793
+    },
+    "raw_comment": {
+      "sha256": "f7389df7f5c6379407505eadfebb1911c4b239a91ffa2f30e2fdf202a26f7561",
+      "utf8_length": 797
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "06dbef42b991e2f717ff82597618e3df0b301f5d13b3b1db1a750bde7e317f56",
+    "source_id": "d7f377de10f6fb94a04401d8f2534493e890d62a"
+  },
+  "source_record_sha256": "950848b5ea474591228743d442fa03e2cf017eef73c3eb99f0ccc05750f9a385"
+}

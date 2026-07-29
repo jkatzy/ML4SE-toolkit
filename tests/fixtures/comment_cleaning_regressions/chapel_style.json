@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "chapel_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "8854cfca3c451f38c33ab1537e078922f00f7217186ec706332c17b7d1faec48",
+      "case_id": "chapel-nested-a6aba54e88ce6a2f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Program solving linear equation system\nusing Gauss elimination algorithm\n\nauthor: perciax\ncreated: 2017-11-27\n\nSolves equation set definied as Ax=b, where:\n\tA - NxN matrix,\n\tb - N-size vector,\n\tx - unkown N-size vector\n\nReads problem definition from file with structure:\n\tN\n\ta11 a12 ... a1N b1\n\ta21 a22 ... a2N b2\n\t.   .   ... .   .\n\taN1 aN2 ... aNN bN\n\nCompiling: chpl -o ge ge.chpl\nRunning: ./ge --fname=\"path-to-file\"\nOptional flags:\n\t\t--debug (bool, default: true)\n\t\t\tset false to avoid lot of printing\n\t\t--quiet (bool, default: false)\n\t\t\tset true to avoid any printing(only computation timing)",
+      "expected_cleaned_sha256": "785d6092e052c33385c96dbd56c1e659284fcafeef3ba8595919056c443b1d03",
+      "language": "chapel",
+      "raw_comment": "/* Program solving linear equation system\n * using Gauss elimination algorithm\n * \n * author: perciax\n * created: 2017-11-27\n * \n * Solves equation set definied as Ax=b, where:\n * \tA - NxN matrix,\n *\tb - N-size vector,\n * \tx - unkown N-size vector\n *\n * Reads problem definition from file with structure:\n * \tN\n *\ta11 a12 ... a1N b1\n *\ta21 a22 ... a2N b2\n *\t.   .   ... .   .\n *\taN1 aN2 ... aNN bN\n *\n * Compiling: chpl -o ge ge.chpl\n * Running: ./ge --fname=\"path-to-file\"\n * Optional flags:\n * \t\t--debug (bool, default: true) \n *\t\t\tset false to avoid lot of printing\n * \t\t--quiet (bool, default: false)\n * \t\t\tset true to avoid any printing(only computation timing) \n */",
+      "raw_sha256": "9fa44d2b492ce1cc1e55137c0d0b0f49587fa47468878e5bffc9b63e8914d517",
+      "raw_utf8_length": 671,
+      "source_provenance": {
+        "source_excerpt_sha256": "b6ff6e0873496e393c1b61a6c2de76bcdbabd3976773bb63cbfee39be931aabb",
+        "source_id": "8931285a1a319e843b8ccc50fb1cb2d93c16f45c"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "231517743dde798fd3f4ffa344bd4287c740fdd6572048c8250d872f9eb1cb77",
+      "case_id": "chapel-nested-ac6b71a9b8d1899d",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2009 Steven Brandt\n\nDistributed under the Boost Software License, Version 1.0. (See accompanying\nfile LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)",
+      "expected_cleaned_sha256": "2c0d721c89790ac8e681fdf499606f9a49432a3fa31f4c10112b76d5c0eb6872",
+      "language": "chapel",
+      "raw_comment": "/*  Copyright (c) 2009 Steven Brandt\n *\n *  Distributed under the Boost Software License, Version 1.0. (See accompanying \n *  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)\n */",
+      "raw_sha256": "b5f5e2c79bc53c784df6b9ad507180e0a4d952e12f191edf4edc6165521f6d5e",
+      "raw_utf8_length": 199,
+      "source_provenance": {
+        "source_excerpt_sha256": "349bbb73f0f801e21c4e97f1f97beae296a0ce8202dd29f23904ee6464467ae9",
+        "source_id": "c7a8eb740fc57e6c0b2eb38404aab0b27b8a405d"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "377540183ac3e2b577b3781fb263e38b78aafe12099b4ddd1ee5ead3d4726e14",
+      "case_id": "chapel-nested-e8fab64bd1815882",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Program solving Powell 20 problem decomposed into local and dual tasks (separable)\nLocal optimization solved using COBYLA2 (nonlinear optimization solver)\nOuter (dual) task solved with gradient method\n\nauthor: perciax\ncreated: 2017-12-03\n\nCompiling: chpl -o powell20sep.o powell20sep.chpl\nRunning: ./powell20.sep [options]\nOptions:\n\t\t--n \t    (int, default: 4, max 1000)\n\t\t\t        number of variables for Powell 20 problem\n\t\t--p \t    (int, default: 2, max 500)\n\t\t\t        number of subvectors in Powell 20 problem\n     --parallel  (bool, default: false)\n                 set if task local task should be performed in parallel\n     --maxIter   (int, default: 10)\n                 numb of iteration for gradient descent algorithm",
+      "expected_cleaned_sha256": "c79bf548fa5b6899dd79643512f6f6b47d27ff5da0e72ea7970d0f6675dd9a0e",
+      "language": "chapel",
+      "raw_comment": "/* Program solving Powell 20 problem decomposed into local and dual tasks (separable)\n * Local optimization solved using COBYLA2 (nonlinear optimization solver)\n * Outer (dual) task solved with gradient method\n *\n * author: perciax\n * created: 2017-12-03\n *\n * Compiling: chpl -o powell20sep.o powell20sep.chpl\n * Running: ./powell20.sep [options]\n * Options:\n * \t\t--n \t    (int, default: 4, max 1000) \n *\t\t\t        number of variables for Powell 20 problem\n * \t\t--p \t    (int, default: 2, max 500) \n *\t\t\t        number of subvectors in Powell 20 problem\n *      --parallel  (bool, default: false)\n *                  set if task local task should be performed in parallel\n *      --maxIter   (int, default: 10)\n *                  numb of iteration for gradient descent algorithm\n */",
+      "raw_sha256": "268754f808ae4a018b216dc6235ba31388224634b1d0b579bed9e9eac032fdfd",
+      "raw_utf8_length": 784,
+      "source_provenance": {
+        "source_excerpt_sha256": "b9e185fe5477853b38efece28f808ac9e4e1d20c3c967e5646c2539a7801c0bd",
+        "source_id": "f4ee111a43adb73e43ee619af30d62a28e3ae15b"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

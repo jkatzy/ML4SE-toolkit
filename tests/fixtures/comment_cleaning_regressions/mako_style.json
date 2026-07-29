@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "mako_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "f53a9684605d0891cc82a08580703c27fe9d75996334dba9d0751897dd9cd69b",
+      "case_id": "mako-line-1db1d9b7289a76e8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<p>Code:    ${c.error_code}</p>\n<p>Prefix:  ${c.error_prefix}</p>\n<p>Message: ${c.error_message}</p>",
+      "expected_cleaned_sha256": "6b1d43b59ef5f6e59a1f7f6e8b0b621674de60f2d93a855eba2a98b39ec6de97",
+      "language": "mako",
+      "raw_comment": "##<p>Code:    ${c.error_code}</p>\n##<p>Prefix:  ${c.error_prefix}</p>\n##<p>Message: ${c.error_message}</p>",
+      "raw_sha256": "f8553170cc2852d5fa739982944395285631ea3e6568f093c307cb2c5bc30aa3",
+      "raw_utf8_length": 106,
+      "source_provenance": {
+        "source_excerpt_sha256": "4de852e86754d39937a97179f5165d7438ddc69b7a3656e77f0151101b2bc304",
+        "source_id": "a85dcf4ef596dab1396d11130df0c2b57148b980"
+      },
+      "syntax_label": "##"
+    },
+    {
+      "baseline_cleaned_sha256": "0b1036b22249618ee45c470173e271f2a0cb8b2ccc94bdf8f7fc7007ead2fb08",
+      "case_id": "mako-line-9bcc9b66ab39c6a1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js\"></script>\n<script type=\"text/javascript\" src=\"/js/flot/jquery.js\"></script>",
+      "expected_cleaned_sha256": "08a379a0dac3972630448c5ef14fc974ce8465f0779eb68561425151aa6575e2",
+      "language": "mako",
+      "raw_comment": "##<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n\t\t##<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js\"></script>\n\t\t##<script type=\"text/javascript\" src=\"/js/flot/jquery.js\"></script>",
+      "raw_sha256": "ab6855f46559720a8a613045d762e7b10a93c431d310c401fe26067f624abe86",
+      "raw_utf8_length": 297,
+      "source_provenance": {
+        "source_excerpt_sha256": "3e598532121b4666cf82333578bb4faf64443f6e2ee166d5cd2f7ae21586cb30",
+        "source_id": "9cbdc87d6e0ad381388573b59ac1469e2dc3b4e3"
+      },
+      "syntax_label": "##"
+    },
+    {
+      "baseline_cleaned_sha256": "2d2ee28a5784ab491d17ac7dc606d2223a27d5497b899f7a76c18dfbf3d2a2cb",
+      "case_id": "mako-line-cbca99a6078504ab",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2007 The Apache Software Foundation\n\nLicensed to the Apache Software Foundation (ASF) under one\nor more contributor license agreements.  See the NOTICE file\ndistributed with this work for additional information\nregarding copyright ownership.  The ASF licenses this file\nto you under the Apache License, Version 2.0 (the\n\"License\"); you may not use this file except in compliance\nwith the License.  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "88b59f5f0a46599cb8e6ad1c0690b5f653551e4be706dc6a13c8b932fddd74d8",
+      "language": "mako",
+      "raw_comment": "##/**\n## * Copyright 2007 The Apache Software Foundation\n## *\n## * Licensed to the Apache Software Foundation (ASF) under one\n## * or more contributor license agreements.  See the NOTICE file\n## * distributed with this work for additional information\n## * regarding copyright ownership.  The ASF licenses this file\n## * to you under the Apache License, Version 2.0 (the\n## * \"License\"); you may not use this file except in compliance\n## * with the License.  You may obtain a copy of the License at\n## *\n## *     http://www.apache.org/licenses/LICENSE-2.0\n## *\n## * Unless required by applicable law or agreed to in writing, software\n## * distributed under the License is distributed on an \"AS IS\" BASIS,\n## * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n## * See the License for the specific language governing permissions and\n## * limitations under the License.\n## */",
+      "raw_sha256": "fee6010c082f27360bdb15c1c21014f30f138f7e5beb270b3e4abaeb4b302315",
+      "raw_utf8_length": 896,
+      "source_provenance": {
+        "source_excerpt_sha256": "0ee7eb0cd118793badb636c59cd5086906f0ac2272aa365853be3055a4da36df",
+        "source_id": "8fce29b65d064d1093318397eeafb1fcab2187ee"
+      },
+      "syntax_label": "##"
+    }
+  ],
+  "schema_version": 5
+}

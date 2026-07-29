@@ -1,0 +1,38 @@
+{
+  "case_id": "objective_j-line-622d9be6571b9205",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "objective_j",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ca3d7e1be6792d500e76b5977658000d4f4170bdc9bedc2099b01b6c0651b2c0",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "234a43f55e86ae10bd4795b8ae461309e20e16e3b43b7c30d19a4d1ae07519b4",
+      "utf8_length": 22
+    },
+    "raw_comment": {
+      "sha256": "04e9d9f60a795d4ffd3c1396b282f627877108a9525e5a5d42384ae8841f44f9",
+      "utf8_length": 25
+    },
+    "recommended_expected_output": {
+      "sha256": "234a43f55e86ae10bd4795b8ae461309e20e16e3b43b7c30d19a4d1ae07519b4",
+      "utf8_length": 22
+    }
+  },
+  "regression": {
+    "expected_output": "Convienience method...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// Convienience method..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "17212414c485e6d269d515081c1c3d3e4315ba7b4e1f5bf44e9f6644687f6cf1",
+    "source_id": "379203be7767d642a60d7d45b88dd16726decc19"
+  },
+  "source_record_sha256": "8fd6eab2a3d8618e9d6d40ef6a889f28addda5d8d9db78494f7ed73a2a9f9650"
+}

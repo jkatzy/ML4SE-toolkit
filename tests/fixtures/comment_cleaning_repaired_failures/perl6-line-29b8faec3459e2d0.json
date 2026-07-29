@@ -1,0 +1,38 @@
+{
+  "case_id": "perl6-line-29b8faec3459e2d0",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "perl6",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "06c5fd9c965e36daa42eb4db1b3582afeafea8ac053040bf32e573b37ca80ffc",
+      "utf8_length": 83
+    },
+    "manifest_old_output": {
+      "sha256": "9d0babf976f8f78d6b1bd4571907df966b6bf7ab3b197e76b45f839b51ca7dc6",
+      "utf8_length": 81
+    },
+    "raw_comment": {
+      "sha256": "99ffba8c8ed6a65f44992b65a75838d9d82115eee2988dc79112492bf5ec88ef",
+      "utf8_length": 85
+    },
+    "recommended_expected_output": {
+      "sha256": "9d0babf976f8f78d6b1bd4571907df966b6bf7ab3b197e76b45f839b51ca7dc6",
+      "utf8_length": 81
+    }
+  },
+  "regression": {
+    "expected_output": "Find the difference between the two dates. Add a given number of days to the date",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Find the difference between the two dates. Add a given number of days to the date #"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1cbadf82e8d63d0cd1c22222f185ebf86a6798a04e4a88084d2886b8a5ec97fd",
+    "source_id": "cb3d040cb998997f9bd3db963300511d96c81031"
+  },
+  "source_record_sha256": "9996284d6207718677e22ffb5d576494727d94b788756179396a271377134781"
+}

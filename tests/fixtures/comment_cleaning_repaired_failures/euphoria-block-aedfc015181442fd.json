@@ -1,0 +1,38 @@
+{
+  "case_id": "euphoria-block-aedfc015181442fd",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "euphoria",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
+      "utf8_length": 1
+    },
+    "manifest_old_output": {
+      "sha256": "f6c62bb77f825d523a54a799b25d71cf79f9f672b1f61e309452ac30393ebe25",
+      "utf8_length": 4
+    },
+    "raw_comment": {
+      "sha256": "dc5d8892390b01c8d5a60aba4d15cc06ce0eb1b8b0e3cf42a3cb530f04261b06",
+      "utf8_length": 8
+    },
+    "recommended_expected_output": {
+      "sha256": "f6c62bb77f825d523a54a799b25d71cf79f9f672b1f61e309452ac30393ebe25",
+      "utf8_length": 4
+    }
+  },
+  "regression": {
+    "expected_output": "* /*",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/** /**/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a7a1a7e956868050a6428a9d3529e949a102f3f1d942d5dc6a98335979aba1e2",
+    "source_id": "0deb71c3e570c1737d8674cc2c507c82ef217f27"
+  },
+  "source_record_sha256": "fe78bff76b4830457c5c7b8722dfd4c2c6b52c23c1422bfa0e8dd10683b94834"
+}

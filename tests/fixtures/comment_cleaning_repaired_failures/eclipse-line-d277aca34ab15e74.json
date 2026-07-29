@@ -1,0 +1,38 @@
+{
+  "case_id": "eclipse-line-d277aca34ab15e74",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "eclipse",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3d87a0a433c2e2ae60a105389e9a92adb21f82582ea673e6766dcaf4a10dfbc7",
+      "utf8_length": 53
+    },
+    "manifest_old_output": {
+      "sha256": "ad0de6b5aca9c5a5b75d4eddd2b92e7a227aec9b49949946f682172591710a37",
+      "utf8_length": 52
+    },
+    "raw_comment": {
+      "sha256": "77007d56b76c8879641968b87595c952d62a57864b45da56a2fb9257f7e17606",
+      "utf8_length": 55
+    },
+    "recommended_expected_output": {
+      "sha256": "ad0de6b5aca9c5a5b75d4eddd2b92e7a227aec9b49949946f682172591710a37",
+      "utf8_length": 52
+    }
+  },
+  "regression": {
+    "expected_output": "Array de casas para verificacao na restricao de pulo",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%Array de casas para verificacao na restricao de pulo\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d54fac3e35ae74933884d00e7e02ca7e50fb128f7dfe01c54cb96baf580e2dc6",
+    "source_id": "f9102d939a525f3e3a5fd1c42a6c8cf62ad5c584"
+  },
+  "source_record_sha256": "1be9dcafedca120ae1d09869a835573b71486248438306c6d8e3d62e36d8ac49"
+}

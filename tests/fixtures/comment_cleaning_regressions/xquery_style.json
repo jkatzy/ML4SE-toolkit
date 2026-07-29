@@ -1,0 +1,376 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "xquery_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "c9948df0f4a279572c78b9990fd51a61d2c5474a5cc6a442d8552d6ceafa9e07",
+      "case_id": "xquery-nested-208b4f9b062d74e4",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "5b797f392f0027830326f6dfbaee4c7e2061ac97c668885d1dd041fb2e895c9a",
+      "raw_sha256": "2f3d63c47c86ca48279b260cee6b1f1cb35ea8d83c18c41470892af52ca1d4dd",
+      "raw_utf8_length": 125,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ea9e11912893094a8ed819a57b3ab3f71d85ecc50c1adb4b833c30f199567e7",
+        "source_id": "12a227adf26f6f94cc867aa2701404163db39a81"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "3b9792339adab062790bedfe68a638fb58e202035fdcbac15cc4e49d413eb51c",
+      "case_id": "xquery-nested-27bf7ddc82ad79e1",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "4980e3b74573ebea33917fc5190174b8f22c2083dcf7cfce01ede734365c5e2d",
+      "raw_sha256": "b4ba4fa72d9ee82b27431049d5cb1fff65958538c4ec80582a9c00c57b81ba05",
+      "raw_utf8_length": 164,
+      "source_provenance": {
+        "source_excerpt_sha256": "41a47623075b24488d28fafbccc4eb41af9ba313fe4b9e93d088a248fbbadcee",
+        "source_id": "d5036c8559cc14804fac9ed7168140772c3e281c"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "9b4d4e8f696b6c00e5eac35256b61c815ee10e6e7edbcad472ca4405d80a3b2e",
+      "case_id": "xquery-nested-48955d00ac16f008",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "155c8190c754872fdaea40118c7ece8037e7c3013d679a74a1d490b728bf204f",
+      "raw_sha256": "b227018f9ff2657ce3c0a80aec2812faa5c3393a2349395985831613374cd5e3",
+      "raw_utf8_length": 118,
+      "source_provenance": {
+        "source_excerpt_sha256": "52403d91378df03479761e72d82991970e73a4c28ddc0706a868322329d3500f",
+        "source_id": "fa11e5e790368c94a17bbfbcefd6a376bae3c93d"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "cb15c369072385acba4c4df2e2e7efe2598ec90059f4cd0ca001e257f3c4b1af",
+      "case_id": "xquery-nested-cd11f2da9c5dfc34",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "c47cde0aa0a7621a67e6f2dcc57da4ba6418402871e41d26a279b433a95df1b2",
+      "raw_sha256": "6473e19a66f2e88f0a8ddad64135134d84c689bfbdf5f0b43c94dbd3a274842c",
+      "raw_utf8_length": 161,
+      "source_provenance": {
+        "source_excerpt_sha256": "e1dd46ac24f2c7f51ac3bda48c48ed1d6eea52e3aab6501677669cf24a93b48d",
+        "source_id": "077a074a3d7bd2fae4b8b61448eea4596a9ad6ab"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "3476713a0f1dc58c581864cb1709baaabf5f49e48179dda481a6334d06dc9d92",
+      "case_id": "xquery-nested-d5713eec0ca0087c",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "18125f414a4f09b51dd864ac10e10e3f34bbe79821a2d4466ecef1ac2daadd5a",
+      "raw_sha256": "0a9b40ee01158d09e509d8e782a06dee2d6e47ad6a197377b7d129fc96ee4509",
+      "raw_utf8_length": 119,
+      "source_provenance": {
+        "source_excerpt_sha256": "dd4f8f4c28c75d19d6bd765382fda8e7da186f4835782cc23f9b5babf6bf5d7f",
+        "source_id": "1b40b4abc36b0095f684fac12d723a4365c224cf"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "8d2ab3d2c48d8b1b4da9c091b0c8b8629c2478117e6d540f502c865bf2349157",
+      "case_id": "xquery-nested-f55b79f2938cff2e",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "e47baef3b074e622e909a959527625520f5fb319fedbd0448730d75f3b525936",
+      "raw_sha256": "782dc6734efaf34e7d8248a8c74db4e86c526dcb5cbb08a1822624d32e90c7e7",
+      "raw_utf8_length": 247,
+      "source_provenance": {
+        "source_excerpt_sha256": "bf61f281c449a2ef17cd9429740aaa73b83f272ce9f566375cc63ef20cab338f",
+        "source_id": "371db017d114b1d1a771fe2b33a7c2ba597042ed"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "6eb74e0b1a86408e9aa9a8c7d9b40f6c1ea5cb060f96dba8e1ceee41e5a95ba3",
+      "case_id": "xquery-nested-f917b38a8098bf69",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "xquery",
+      "oracle_exception_record_sha256": "9486ce63f29d7cb03620cc10ef9faf5a2c4eba0228f0f180298d66915994b3d1",
+      "raw_sha256": "b4ebf04725e52677045333d51aaafe74713c0e7e68f0d50dcbdd5ceee90360af",
+      "raw_utf8_length": 188,
+      "source_provenance": {
+        "source_excerpt_sha256": "387d3ce4a3f930debcc3681378a2a982f366b2ba522e1cdc5e6ca39d9b4c40eb",
+        "source_id": "788d02cfd978388e2f1576b2381cb734f3395a30"
+      },
+      "syntax_label": "(:...:)"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "9d44e2bb4d8f0665650981eee9e163bbfc162aa7d0d2958a2bd149e4e76b5af3",
+      "case_id": "jsoniq-nested-1a16af14b696eb4f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Retrieve metadata about the entities that submit filings.\nThese entities are also referred to by facts with the xbrl:Entity aspect, of which the values are called Entity IDs (EIDs).\nOne entity might have several EIDs.",
+      "expected_cleaned_sha256": "507b7c0eed983e75daa9837a6a3512689c9b3a0d5fe56e083f73c736be91dbe4",
+      "language": "jsoniq",
+      "raw_comment": "(:~\n : Retrieve metadata about the entities that submit filings.\n : These entities are also referred to by facts with the xbrl:Entity aspect, of which the values are called Entity IDs (EIDs).\n : One entity might have several EIDs.\n :)",
+      "raw_sha256": "87feb7ccd471fe1b2d966a2879180081ecff30256df30f884d891add8c90ef2f",
+      "raw_utf8_length": 234,
+      "source_provenance": {
+        "source_excerpt_sha256": "b05f314aab3ff817fd18d8d2967449c1056af8df0ab76474f7305b5f04c5ab0d",
+        "source_id": "373a60ee792d5d4b47a906c290f719ecd1805872"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "dc4397deb4e89324cc5c213676ef0cec97324d960f98ddb8897d9839fab86de5",
+      "case_id": "jsoniq-nested-f8a07fbb7aa14713",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<p>Retrieves the components with the given CID, or belonging to the given archives and corresponding to one of report\nelements, concepts, disclosures, roles or label search.</p>\n\n@param $archives-or-aids a sequence of archives or AIDs.\n@param $components-or-ids a sequence of components or their CIDs.\n@param $report-elements a sequence of report element names.\n@param $concepts a sequence of concept names.\n@param $disclosures a sequence of disclosures.\n@param $roles a sequence of role URIs.\n@param $search a sequence of label search strings.\n\n@return a sequence of components.",
+      "expected_cleaned_sha256": "55c1a6a79164b49e020cc34561b41421524031ab116095e2c2d2aa67917c0e07",
+      "language": "jsoniq",
+      "raw_comment": "(:~\n : <p>Retrieves the components with the given CID, or belonging to the given archives and corresponding to one of report\n : elements, concepts, disclosures, roles or label search.</p>\n :\n : @param $archives-or-aids a sequence of archives or AIDs.\n : @param $components-or-ids a sequence of components or their CIDs.\n : @param $report-elements a sequence of report element names.\n : @param $concepts a sequence of concept names.\n : @param $disclosures a sequence of disclosures.\n : @param $roles a sequence of role URIs.\n : @param $search a sequence of label search strings.\n : \n : @return a sequence of components.\n :)",
+      "raw_sha256": "32676c196c7e80761f152466286f1c4ae6aac50e6a38fdcd25edaec3c9544efa",
+      "raw_utf8_length": 622,
+      "source_provenance": {
+        "source_excerpt_sha256": "0afadabffb6278132f068238b3adf3cd1711851d928d6d57d00a8575419c1d60",
+        "source_id": "1bcc1da581d868ddd8b000c04f04fe65a8ed2637"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "6bae28a11ed51466116b105dd84619aa6087cb0d823aa44595c63c4bfd086c56",
+      "case_id": "xquery-nested-1071016189ec2fab",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "media-type of application/xhtml+xml is necessary for Firefox plugin to render\nxforms, as per ibm.com/developerwords/xml/library/x-xformsfirefox/",
+      "expected_cleaned_sha256": "9afba64421dbc5fde9421f2f9d6fcd3117b402868d4e3c79c1e7183b72d0d7ef",
+      "language": "xquery",
+      "raw_comment": "(: media-type of application/xhtml+xml is necessary for Firefox plugin to render\r\n : xforms, as per ibm.com/developerwords/xml/library/x-xformsfirefox/ :)",
+      "raw_sha256": "8ac9b66755951ea29b5230c6b0be6d056c32e4cb4bbba9cde600de8313f9e5de",
+      "raw_utf8_length": 154,
+      "source_provenance": {
+        "source_excerpt_sha256": "c05d41be4fffc22ad432267a6a857d5a29de4397321460d6bdbc4e9fdcbe2277",
+        "source_id": "ee69bcc9eeef9b886ecf9b88a05c433fe082a127"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "809ea4173429c6d91cfe42dbc23ba6ff01f9dae26e202980f2853ed2df626973",
+      "case_id": "xquery-nested-118453af0060526c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pragma bea:global-element-parameter parameter=\"$requestHeader\" element=\"ns0:RequestHeader\" location=\"../XSD/RequestHeaderV3.xsd\"",
+      "expected_cleaned_sha256": "57d0377544db00704bc454f994e70f26f8474b077efebb910b561969a997d772",
+      "language": "xquery",
+      "raw_comment": "(:: pragma bea:global-element-parameter parameter=\"$requestHeader\" element=\"ns0:RequestHeader\" location=\"../XSD/RequestHeaderV3.xsd\" ::)",
+      "raw_sha256": "4e9ef53d1c2d4555b871189e33cd1e3624b31054328c08e3101bca226485152b",
+      "raw_utf8_length": 136,
+      "source_provenance": {
+        "source_excerpt_sha256": "cc429bf9c38a731b0f3f312a3f93ceeee157fd81b5e9e1325accc6b90ba83a77",
+        "source_id": "ab23562e4caad78391755115fcd582ba4c148d30"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "b942761dff22726618a92b7b444bf12a249be16d1f3dcb15b3c643845a455542",
+      "case_id": "xquery-nested-1d6e44d93c1aba36",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "o/p  utils\n@Copyright (c) 2019-2022 Quodatum Ltd\n@author Andy Bunce, Quodatum, License: Apache-2.0",
+      "expected_cleaned_sha256": "3577ba04e9bac693b06873532d92cc7dda3e5e2a5dc1faeb157c3f889ff8e462",
+      "language": "xquery",
+      "raw_comment": "(:~\n : o/p  utils\n : @Copyright (c) 2019-2022 Quodatum Ltd\n : @author Andy Bunce, Quodatum, License: Apache-2.0\n :)",
+      "raw_sha256": "4027c8ec8e07f861e808034dd8d74ee67cbe6f5b2d56a3083332f039664df113",
+      "raw_utf8_length": 115,
+      "source_provenance": {
+        "source_excerpt_sha256": "9778ffb37730a0e07ca11d27321c0a6d9949affe5152bacc4fa296b85cf8c3fd",
+        "source_id": "e3e82435a25b58c2004faf4aebf6fd07617ce6ad"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "f4e74936f0da31367a5d6bc937ff065145c1808433bb2941d6d3b7004614e6ac",
+      "case_id": "xquery-nested-3228e7110c0ad0b6",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Ergebnis\n<Ergebnis xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n  <Posten P_Nr=\"544\" R_Nr=\"113\" P_Summe=\"1.42\" T_Nr=\"2\"/>\n</Ergebnis>",
+      "expected_cleaned_sha256": "98023ec2f98d9b773c431bfd42c68288205b0b90c2c134fa2f61133444e5ee47",
+      "language": "xquery",
+      "raw_comment": "(: Ergebnis\r\n<Ergebnis xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <Posten P_Nr=\"544\" R_Nr=\"113\" P_Summe=\"1.42\" T_Nr=\"2\"/>\r\n</Ergebnis>\r\n:)",
+      "raw_sha256": "073781f902b29e0b0590a6462f0e766a8eed92858cbe9e0794e3e7a7445c6fac",
+      "raw_utf8_length": 197,
+      "source_provenance": {
+        "source_excerpt_sha256": "1b5e74ac04ee57a9006836c6721d64ad06f7ca454516079e111e45fdc12159e0",
+        "source_id": "2acfe0e285a7d1c56b64721737ae31811230d50d"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "cd9bb3934fa971fb044dd15e21112db6b0a0364352ec949e4cd2dc4441d49c3e",
+      "case_id": "xquery-nested-64cb467534096900",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Action's variables and parameters.\n@author\tPhilip A. R. Fennell",
+      "expected_cleaned_sha256": "96fce95e8d7600dd92fdcbb9c1382d9789a0e1f63d5699c4fd275ba2552db001",
+      "language": "xquery",
+      "raw_comment": "(:~\n : Action's variables and parameters.\n : @author\tPhilip A. R. Fennell\n :)",
+      "raw_sha256": "c0c9c3dc63fd16e60cd80ebc02b6355a38ab418b647d359bb21e9a89ef6bdf63",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "a011f178668ee616b5ba29725128df0b8bc34ec85ec3267eaa54d742059cd7a0",
+        "source_id": "6e94b9b433aa43361645a11a1d0688d6db637adb"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "ad865656d36e68d811aa1efeaae763ceb8c0816c6e88ae4351ca9b508daac7d4",
+      "case_id": "xquery-nested-997b883900159c40",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pragma bea:global-element-parameter parameter=\"$getAllInformationResponse1\" element=\"ns0:getAllInformationResponse\" location=\"../../../Alcatel-HighLevelApiWS/SubscriberLineManager/Resources/WSDL/subscriberLineManager.xsd\"",
+      "expected_cleaned_sha256": "0e99595cd4c09fa56cb7eb5d9b900ba64cfa905fcc869d8afe7f325d02ddac7c",
+      "language": "xquery",
+      "raw_comment": "(:: pragma bea:global-element-parameter parameter=\"$getAllInformationResponse1\" element=\"ns0:getAllInformationResponse\" location=\"../../../Alcatel-HighLevelApiWS/SubscriberLineManager/Resources/WSDL/subscriberLineManager.xsd\" ::)",
+      "raw_sha256": "9bfd6d67ca7757e152d09989dad97ebbf37f029559c8431fd2b480c1bee3b3f2",
+      "raw_utf8_length": 229,
+      "source_provenance": {
+        "source_excerpt_sha256": "6cdbc1bf5fb4f29ce9d1b42ac574ca03afa5025eb851f40b02de304a49fad442",
+        "source_id": "e02d1577fb798fd2b0806444ca9ead3caae8f7a8"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "add49604ccd17a8480c90d1dbdd31d4fa816864bc88f4a8ce53b92d0cc645293",
+      "case_id": "xquery-nested-9f02e1e0eadf0705",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Responsible for URL rewriting\nThe rewriter intercepts URLs and rewrites the URL.\nThe rewriter is used to invoke the controller, run tests, and simulate the REST web service.\nIn most cases it delegates to the front-controller (/dispatcher.xqy).\nor to a resource uri located in the filesystem\n\n@see http://developer.marklogic.com\nSetting Up URL Rewriting for an HTTP App Server\n@see app/controller.xqy",
+      "expected_cleaned_sha256": "9ff39e0ce8bb5a1e5c187d9c84891b9c541040736cdd0888cb1b53be551da594",
+      "language": "xquery",
+      "raw_comment": "(:~\n : Responsible for URL rewriting\n : The rewriter intercepts URLs and rewrites the URL.\n : The rewriter is used to invoke the controller, run tests, and simulate the REST web service.\n : In most cases it delegates to the front-controller (/dispatcher.xqy).\n : or to a resource uri located in the filesystem\n :\n : @see http://developer.marklogic.com\n : Setting Up URL Rewriting for an HTTP App Server\n : @see app/controller.xqy\n :\n :)",
+      "raw_sha256": "74fc533d85b61bc92caae88f4e319531c16645447b95ef18dd15a44004f1a0ee",
+      "raw_utf8_length": 436,
+      "source_provenance": {
+        "source_excerpt_sha256": "d20f02867eb3b2c2024d1539eecd8738565408a67b26ac406875c017e253246d",
+        "source_id": "85d71769ef2c9011f92ad66bd9212dfd207a3b96"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "93ae46e5ec935492705461ced95b894cf48a13feeb674da7a7b6d6c08a67a36a",
+      "case_id": "xquery-nested-a0985ae41f8fd3b1",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pragma bea:global-element-parameter parameter=\"$callFunctionStatelessDecision1\" element=\"ns2:callFunctionStatelessDecision\" location=\"../Schemas/BR_UPGRADEGENERALVALIDATIONS_MESSAGETYPES.xsd\"",
+      "expected_cleaned_sha256": "45d62aff2ed14b0ac1870be677cc2f9437948e6530b84c3578d0ec813b7339fd",
+      "language": "xquery",
+      "raw_comment": "(:: pragma bea:global-element-parameter parameter=\"$callFunctionStatelessDecision1\" element=\"ns2:callFunctionStatelessDecision\" location=\"../Schemas/BR_UPGRADEGENERALVALIDATIONS_MESSAGETYPES.xsd\" ::)",
+      "raw_sha256": "f378e6a0573afb306022dac6215a1c120dade5a70d83e8052b5947c519030948",
+      "raw_utf8_length": 199,
+      "source_provenance": {
+        "source_excerpt_sha256": "88bdcee5d7548bf4aa986ead33db490d308bd0a29b2f21a37c0b4269d6980b46",
+        "source_id": "c20ea1640b3857744c49cfd0ba3ac0f9e343b1e9"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "b4e165680484f8f52a6f950e5ad48ddd5604aeddead743d525c4d3a444302aee",
+      "case_id": "xquery-nested-a2f18965cce78d34",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "New database name.",
+      "expected_cleaned_sha256": "464cd02eaf238d88d8594556a52b2e7310ca1b2dd3aa4c8aa2b3c1806e57b890",
+      "language": "xquery",
+      "raw_comment": "(:~ New database name. :)",
+      "raw_sha256": "b71d2d3fbefaf5e9a17b5b316688db544786b23745f515389a5f7f487d49bde3",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "0ce44f42e0e7d1d03a3d4e84da95d5ce70ce724e3c6f25ab90f38a40e7863955",
+        "source_id": "9eb10ae093341685e75816b8ef998ac27bd39818"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "cfec2891695c5b2021ae2b67ec69fa4d7d5e2c47e27b2354c7866907fcbdf277",
+      "case_id": "xquery-nested-a8f88f4ef2b23c3b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pragma bea:global-element-parameter parameter=\"$cRM_SEARCH_USERResponse1\" element=\"ns4:CRM_SEARCH_USERResponse\" location=\"../Schema/IDM_Phase2.xsd\"",
+      "expected_cleaned_sha256": "71a5c95229a38d4e7adac857f32c05e1f628d59adf3fdb4a7386dbfb6099d75f",
+      "language": "xquery",
+      "raw_comment": "(:: pragma bea:global-element-parameter parameter=\"$cRM_SEARCH_USERResponse1\" element=\"ns4:CRM_SEARCH_USERResponse\" location=\"../Schema/IDM_Phase2.xsd\" ::)",
+      "raw_sha256": "107f852e969c06c11ecb122db813ca9e0af225e8eb4632294f86f569150f9a8e",
+      "raw_utf8_length": 155,
+      "source_provenance": {
+        "source_excerpt_sha256": "b2a357059e4e785729f923cf9b116a60365c3d5f938c692cdd49b976c0f7b06d",
+        "source_id": "36885a514e761b14e42ff7caf35e52b1cd2ebca7"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "04a3ec5b16c9f64084bb82fbdc4bfa71b424f45ec0f47783240552beb8f0e361",
+      "case_id": "xquery-nested-b8e14ef6a4d0467e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Script de mise \u00e0 jour des @xml:id, utitid, item, des expertises\n@author sardinecan\n@rev emchateau\n@since 2019-06-25\n@howto just run the script\u00a0!",
+      "expected_cleaned_sha256": "9a13c80f63ab0680600551ccd1f58375afa423a67af79164ea6a3d6922187cfa",
+      "language": "xquery",
+      "raw_comment": "(:~\n : Script de mise \u00e0 jour des @xml:id, utitid, item, des expertises\n : @author sardinecan\n : @rev emchateau\n : @since 2019-06-25\n : @howto just run the script\u00a0!\n :)",
+      "raw_sha256": "2dfdf3536435dca82429f25723ccac67650c25bd7155ea6cabd6b17c4394b4ef",
+      "raw_utf8_length": 169,
+      "source_provenance": {
+        "source_excerpt_sha256": "cc878746c1d5839ddc87d6aa8332b6a98d6813405167bd629198c45e5a62b0ec",
+        "source_id": "202793d08ece730f5629d0ed4bbb8f614a4075f4"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "87e9d5a5f30d8fd9701d976824f6977736fbdb6ba4828d5c1467d66c90b50ac0",
+      "case_id": "xquery-nested-badf78a9322f7c6c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<Building id=\"16\" name=\"b_w_butchery\" ui=\"workyard\" filename=\"b_w_butchery\" type=\"Workyard\" production=\"MeatProduction\" blocking=\"3x3\" unlock=\"Noblemen1\">\n\t\t\t\t<Upkeep amount=\"30\"/>\n\t\t\t\t<Costs>\n\t\t\t\t\t<Cost type=\"Coins\" amount=\"625000\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Wood\" amount=\"105\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Stone\" amount=\"185\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Tools\" amount=\"115\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Glass\" amount=\"160\"/>\n\t\t\t\t</Costs>\n\t\t\t\t<Area name=\"GoodCollectionArea\" radius=\"15\"/>\n\t\t\t</Building>",
+      "expected_cleaned_sha256": "830f0c56bb96b7c36227344826eca20f9983da08100baf8670eb91ddda3bc45c",
+      "language": "xquery",
+      "raw_comment": "(:~\n<Building id=\"16\" name=\"b_w_butchery\" ui=\"workyard\" filename=\"b_w_butchery\" type=\"Workyard\" production=\"MeatProduction\" blocking=\"3x3\" unlock=\"Noblemen1\">\n\t\t\t\t<Upkeep amount=\"30\"/>\n\t\t\t\t<Costs>\n\t\t\t\t\t<Cost type=\"Coins\" amount=\"625000\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Wood\" amount=\"105\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Stone\" amount=\"185\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Tools\" amount=\"115\"/>\n\t\t\t\t\t<Cost type=\"Goods\" name=\"Glass\" amount=\"160\"/>\n\t\t\t\t</Costs>\n\t\t\t\t<Area name=\"GoodCollectionArea\" radius=\"15\"/>\n\t\t\t</Building>\n:)",
+      "raw_sha256": "4bb27c86605b3b28dcc26948fabe6edd674cde9f0fc934514e5c86df37d12dbd",
+      "raw_utf8_length": 526,
+      "source_provenance": {
+        "source_excerpt_sha256": "a14d3a4a968ae92bc3daf5ffcfd900963ff8321917671672c6e11f12d61ea530",
+        "source_id": "fb63e83fdc4734df4edfab4a5d333323186cff81"
+      },
+      "syntax_label": "(:...:)"
+    },
+    {
+      "baseline_cleaned_sha256": "a6c68b10115b3f4ce2805067019c79cf0920f4ca8d27bef4d33e5af0aa36be07",
+      "case_id": "xquery-nested-f95691949a08b378",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pragma bea:global-element-parameter parameter=\"$resultadoCreditLegacy\" element=\"ns0:ResultadoCreditLegacy\" location=\"../Interfaces/Schemas/CreditLegacy.xsd\"",
+      "expected_cleaned_sha256": "2c4ca10f76d465768fb8d2248d309e712c03f8a2611cc0287753dc99f955fbc6",
+      "language": "xquery",
+      "raw_comment": "(:: pragma bea:global-element-parameter parameter=\"$resultadoCreditLegacy\" element=\"ns0:ResultadoCreditLegacy\" location=\"../Interfaces/Schemas/CreditLegacy.xsd\" ::)",
+      "raw_sha256": "cb4f876df7835d7fccd74834363dad6a2a234f6bb5aa634a93b63de19e933aef",
+      "raw_utf8_length": 164,
+      "source_provenance": {
+        "source_excerpt_sha256": "6de098174d1f1f1c5e46a34912987579994ecf012035b79e88bba4b925d0f067",
+        "source_id": "f64bdd8c20d55e44b31c12f7ec16e8255fcaf235"
+      },
+      "syntax_label": "(:...:)"
+    }
+  ],
+  "schema_version": 5
+}

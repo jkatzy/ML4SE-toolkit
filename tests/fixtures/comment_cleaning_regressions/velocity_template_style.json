@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "velocity_template_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "0152ebc0247ad32ff13dc3be959293a054dcf869b28020053b8c8be4a7a5ed57",
+      "case_id": "velocity_template_language-line-dd501de131481844",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<!-- Custom Fonts -->\n<link href=\"sb-admin-2-1.0.7/bower_components/font-awesome/css/font-awesome.min.css\" rel=\"stylesheet\" type=\"text/css\">",
+      "expected_cleaned_sha256": "c2c8d77f807a7609f6a38add326f1f83905028eff6e42920d7bd56770f91caaf",
+      "language": "velocity_template_language",
+      "raw_comment": "##<!-- Custom Fonts -->\n##<link href=\"sb-admin-2-1.0.7/bower_components/font-awesome/css/font-awesome.min.css\" rel=\"stylesheet\" type=\"text/css\">",
+      "raw_sha256": "dd1331f819a4525436b47507e822fa43129da8c33950d03e1fa47ae812cd0230",
+      "raw_utf8_length": 144,
+      "source_provenance": {
+        "source_excerpt_sha256": "819fdbe69b01fcae954aa41d299ae75dad9e06ef90b15ac9e7bdd770d59cbe80",
+        "source_id": "0be54dc70fbb0e19b1154e48f4a988c1287d91f7"
+      },
+      "syntax_label": "##"
+    }
+  ],
+  "schema_version": 5
+}

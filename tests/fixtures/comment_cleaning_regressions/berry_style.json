@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "berry_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "64b0b80a94bbdbc3690c53559321286fd26cb7e7ec5a6b80bae2536df310b49d",
+      "case_id": "berry-line-2fc2adfbce5ad041",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "You should look at the following URL's in order to grasp a solid understanding\nof Nginx configuration files in order to fully unleash the power of Nginx.\nhttp://wiki.nginx.org/Pitfalls\nhttp://wiki.nginx.org/QuickStart\nhttp://wiki.nginx.org/Configuration\n\nGenerally, you will want to move this file somewhere, and start with a clean\nfile but keep this around for reference. Or just disable in sites-enabled.\n\nPlease see /usr/share/doc/nginx-doc/examples/ for more detailed examples.",
+      "expected_cleaned_sha256": "50b029f2b944640e5ccffca3676e73b59eec025089b83508abb9a642c2296155",
+      "language": "berry",
+      "raw_comment": "##\r\n# You should look at the following URL's in order to grasp a solid understanding\r\n# of Nginx configuration files in order to fully unleash the power of Nginx.\r\n# http://wiki.nginx.org/Pitfalls\r\n# http://wiki.nginx.org/QuickStart\r\n# http://wiki.nginx.org/Configuration\r\n#\r\n# Generally, you will want to move this file somewhere, and start with a clean\r\n# file but keep this around for reference. Or just disable in sites-enabled.\r\n#\r\n# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.\r\n##",
+      "raw_sha256": "c6279216af2d8574dcd1f04e1f7998ce082b88ff53cf247ef68ff9207e29acdc",
+      "raw_utf8_length": 516,
+      "source_provenance": {
+        "source_excerpt_sha256": "bc6b949c03600efbdc9fa64ac310b27b626e5d2023886ea82ee51f1b182a75cf",
+        "source_id": "fcdea75d0571d87dfb735a175da18949aad3dc81"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "berry-line-780deef5782e9ac3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ",_@",
+      "expected_cleaned_sha256": "b7e368d1cb68cf5c453f9c062da4539a76d34b2c1013a8d122a5a56ec6d67fd0",
+      "language": "berry",
+      "raw_comment": "#,_@",
+      "raw_sha256": "0f57438b81659763ffc2984afa617dd44dbfa6643be1b7def5fcfc1df48c0c80",
+      "raw_utf8_length": 4,
+      "source_provenance": {
+        "source_excerpt_sha256": "72bccdb7316119247efa1434aba7e6f1e5713237ffefb4094251c3ef5835ff8a",
+        "source_id": "81758f1f97d53de0fa3fe79025cdcdbdb3b09d09"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "7b220090e6ea65276057abe5122cd2d070ed1cf00e77f86a3a732ecc3d7ea1eb",
+      "case_id": "berry-line-bf61f4fb41c4bccb",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Description: Anvil environment\nSetup project environment.\nUsage: project <projectName>\nVariables set: PRJ, PRJ_HOME, ANT_HOME, PATH, JAVA_HOME",
+      "expected_cleaned_sha256": "0d6e25deb0fa8d2e527391ed80285dfadd4db90362cf5c6b9396b61496ea36b2",
+      "language": "berry",
+      "raw_comment": "# Description: Anvil environment\n########################################################\n# Setup project environment.\n# Usage: project <projectName>\n# Variables set: PRJ, PRJ_HOME, ANT_HOME, PATH, JAVA_HOME\n#",
+      "raw_sha256": "79599260c69d9ad211c4ce5547cc9f94139d8d11a316863b2ff324df54e8c461",
+      "raw_utf8_length": 209,
+      "source_provenance": {
+        "source_excerpt_sha256": "d351170419b43a50c93ce29f318b161f707614114ed4304a28e3a4ea91faa51c",
+        "source_id": "3f99d446d36dbf42fd2a3070b95f762a187d8ada"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "flux-line-21d597d29ad2db46",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "flux",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "42fa763be969cc1ba178ce1354b01ac6ac63247626d8b34c6bec0883ea0d5dec",
+      "utf8_length": 231
+    },
+    "manifest_old_output": {
+      "sha256": "42fa763be969cc1ba178ce1354b01ac6ac63247626d8b34c6bec0883ea0d5dec",
+      "utf8_length": 231
+    },
+    "raw_comment": {
+      "sha256": "9514426d9490eb6be209cf4344cea055b96e522a6257ae82b21148be425da156",
+      "utf8_length": 408
+    },
+    "recommended_expected_output": {
+      "sha256": "42fa763be969cc1ba178ce1354b01ac6ac63247626d8b34c6bec0883ea0d5dec",
+      "utf8_length": 231
+    }
+  },
+  "regression": {
+    "expected_output": "File: Mosaic.fx\n\nThe effect file for the Mosaic HLSL sample.\n----------------------------------------------------------------------------\n----------------------------------------------------------------------------\nGlobal variables",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//----------------------------------------------------------------------------\n// File: Mosaic.fx \n// \n// The effect file for the Mosaic HLSL sample. \n//----------------------------------------------------------------------------\n//----------------------------------------------------------------------------\n// Global variables \n//----------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0853e9e8d039dc08d4e0faae48ea2de680c5d47c03d1cb5e55bdfe3a69b0b5f8",
+    "source_id": "252692e870fb27783410fca9f45bc20f095b6510"
+  },
+  "source_record_sha256": "63573b0adc1ce4687d7d0b1619ef93e0f9aa42f2a4d35cb070c261fae261f62f"
+}

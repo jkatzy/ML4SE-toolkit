@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-b76c10139ff5f60e",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ebde89053669520ca109e5fa16b2a581db93b9f0121b0e7aa070ecc8cd858158",
+      "utf8_length": 18
+    },
+    "manifest_old_output": {
+      "sha256": "9487cf90fe3799a32cd8a68b45a16648e60df69b5cc4aadef1e12f2232a29aaf",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "63de23869a3761f810d26ac1c543ad84c34196096c81dfccf0c7dc7f0ec6e3be",
+      "utf8_length": 132
+    },
+    "recommended_expected_output": {
+      "sha256": "9487cf90fe3799a32cd8a68b45a16648e60df69b5cc4aadef1e12f2232a29aaf",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "SINCRO CAT\u00c1LOGO",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// SINCRO CAT\u00c1LOGO ////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "80a98e88d01885d27e46ece50635741fbbfeac2fad391e37589066ffe96ef335",
+    "source_id": "b213f8bd5841cabf2a58fc1b7e74b02f01f3becf"
+  },
+  "source_record_sha256": "919956ef8e3507d55bcb3bd67e5273d5c53b4c8c5abe386bffaac53ee5e7626d"
+}

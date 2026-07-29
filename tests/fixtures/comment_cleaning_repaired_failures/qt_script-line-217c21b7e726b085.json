@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-217c21b7e726b085",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0717c623022652d84bb35664525666db74b1c49cb5c9eb88ddbd5dad4a77e19b",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "9a5e9933f764f7e2a2aa9303f7f0bcd539e6351593c33b20e7842645d599ff90",
+      "utf8_length": 17
+    },
+    "raw_comment": {
+      "sha256": "fa593eaf8b4f26b6b5911e15e62a0c223746794020a3cbeec024e427126652e5",
+      "utf8_length": 133
+    },
+    "recommended_expected_output": {
+      "sha256": "9a5e9933f764f7e2a2aa9303f7f0bcd539e6351593c33b20e7842645d599ff90",
+      "utf8_length": 17
+    }
+  },
+  "regression": {
+    "expected_output": "INFO VENCIMIENTOS",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////////////////////////////\n//// INFO VENCIMIENTOS ///////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "8c2b046a4a7c846f3122d8b32bef0fc562487bf269ccaff726abac6e50f6f59f",
+    "source_id": "06b3695fbbc99b1ec99e3c23164dfe5305ff8a4b"
+  },
+  "source_record_sha256": "3e1ce14512221b96212cafa3fdc2e9fcf43db61326990252492d6c93d26470f3"
+}

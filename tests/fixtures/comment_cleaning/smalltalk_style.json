@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family_name": "smalltalk_style",
+  "canonical_language": "smalltalk",
+  "language_keys": [
+    "smalltalk"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "\"cleaning_payload_shared_regex_000\"",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "sanitizer-block-wrapper-000",
+      "source": "registry:sanitizer_block_wrappers[0]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "\" cleaning_payload_sanitizer_block_wrapper_000 \"",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_000"
+    }
+  ]
+}

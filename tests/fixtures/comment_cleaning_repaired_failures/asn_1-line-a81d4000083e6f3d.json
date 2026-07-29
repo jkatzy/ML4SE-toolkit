@@ -1,0 +1,29 @@
+{
+  "case_id": "asn_1-line-a81d4000083e6f3d",
+  "category": "needs_manual_review",
+  "cluster": "oracle_exception:ambiguous",
+  "disposition": "accounting_only_no_oracle",
+  "language": "asn_1",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "46e039eda73ea9467d258a65c92431586c9e971b11fda9361d2ea2baa2cf4a56",
+      "utf8_length": 3102
+    },
+    "manifest_old_output": {
+      "sha256": "46396bf37826f16e6ec516ca8ff2b41a09b5f77c9838eb676a197bd45ff8ba5e",
+      "utf8_length": 3107
+    },
+    "raw_comment": {
+      "sha256": "63b0ffb3154031d7d946caac1a68a0c0ba8bc905490cde9400775985a161ceaa",
+      "utf8_length": 3347
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e38892820e67a07fdad022a3c050ac573091cf67d864fbb03c2690dc947c1c2f",
+    "source_id": "8e624fe77c9df4a63e27dce3f21191368d4af3f7"
+  },
+  "source_record_sha256": "07d76dbaadef20a427df0db5077b16f7818ba7fe6a6eb3ebb422beb6a4a9f170"
+}

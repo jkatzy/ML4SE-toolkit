@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-4216652a4adaa9f1",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a6e0b49ddb7e4b19dd4d79940fc9a8c2cf54941b62995e249a634a95ee5b1002",
+      "utf8_length": 80
+    },
+    "manifest_old_output": {
+      "sha256": "9641e9c6f9a4a7985a9b42c1a06febb846f397914efb14150c22b12c131c49a0",
+      "utf8_length": 75
+    },
+    "raw_comment": {
+      "sha256": "015b2917b8d0794e2136433d57ca674b87c1b481d098f47fd2a1f2b110b3e04a",
+      "utf8_length": 92
+    },
+    "recommended_expected_output": {
+      "sha256": "9641e9c6f9a4a7985a9b42c1a06febb846f397914efb14150c22b12c131c49a0",
+      "utf8_length": 75
+    }
+  },
+  "regression": {
+    "expected_output": "story: List unordered commit messages for the given desk, including orphans",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::  story: List unordered commit messages for the given desk, including orphans\n::\n::::\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "be1f1948ff21a56ccd3cd95acf71f04490be4fe68c7440184860b2119eba4677",
+    "source_id": "97532a77a35f11f45234e35e82f026a711e3e699"
+  },
+  "source_record_sha256": "55eee2aaf98da16708cb52bdb5c7c1696d45f4129c6d99ac59dee5a370212f7c"
+}

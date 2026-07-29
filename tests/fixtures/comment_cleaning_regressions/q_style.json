@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "q_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "81cb1b2d02f2b1a1d0b59692322994299ef2984f581d6166f8ff73940b6daf1e",
+      "case_id": "q-line-147cdea89387670d",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "q",
+      "oracle_exception_record_sha256": "a7f52a154f7d5c602eff7d7abd24608bae97c40b801910c2c139bbe4e2c313b8",
+      "raw_sha256": "c0ebfa56172ea710d165f686de5654b3164dcbb2aedd353d0b6ef3d4d9a7c66b",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "c0a66ad26e1edbb0ac6be30d1b780fcf3ed2be70fa4a9be9555e3480248970bb",
+        "source_id": "ca00863dd1da15bded3ae8a9ddf6a5bc1dda4c5f"
+      },
+      "syntax_label": "/"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "61a1bcfb08db34f3ff0f19a2d674e0bfbec132fb162da7bca2bf8359e57bf226",
+      "case_id": "q-line-931135c9a5a9082d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2011-2014 Exxeleron GmbH\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n  http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "df86dbe5486be213c7ef1024993212924828f7bfc1a0ab4ea4ff14a20ee10ac3",
+      "language": "q",
+      "raw_comment": "/L/ Copyright (c) 2011-2014 Exxeleron GmbH\n/L/\n/L/ Licensed under the Apache License, Version 2.0 (the \"License\");\n/L/ you may not use this file except in compliance with the License.\n/L/ You may obtain a copy of the License at\n/L/\n/L/   http://www.apache.org/licenses/LICENSE-2.0\n/L/\n/L/ Unless required by applicable law or agreed to in writing, software\n/L/ distributed under the License is distributed on an \"AS IS\" BASIS,\n/L/ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n/L/ See the License for the specific language governing permissions and\n/L/ limitations under the License.",
+      "raw_sha256": "7b121a0733a5c5ec403c452300a92237e282eef803e03638a9912612bfd7cd77",
+      "raw_utf8_length": 610,
+      "source_provenance": {
+        "source_excerpt_sha256": "35fce23614d39ac6dca65d704a1e85aeeb83214f0a730c3c70291fbb9ee87b0d",
+        "source_id": "8ddc3330e0f22340371df87427083958187fe814"
+      },
+      "syntax_label": "/"
+    },
+    {
+      "baseline_cleaned_sha256": "61a1bcfb08db34f3ff0f19a2d674e0bfbec132fb162da7bca2bf8359e57bf226",
+      "case_id": "q-line-aa67aa4945187b43",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2011-2014 Exxeleron GmbH\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n  http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "df86dbe5486be213c7ef1024993212924828f7bfc1a0ab4ea4ff14a20ee10ac3",
+      "language": "q",
+      "raw_comment": "/L/ Copyright (c) 2011-2014 Exxeleron GmbH\n/L/\n/L/ Licensed under the Apache License, Version 2.0 (the \"License\");\n/L/ you may not use this file except in compliance with the License.\n/L/ You may obtain a copy of the License at\n/L/\n/L/   http://www.apache.org/licenses/LICENSE-2.0\n/L/\n/L/ Unless required by applicable law or agreed to in writing, software\n/L/ distributed under the License is distributed on an \"AS IS\" BASIS,\n/L/ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n/L/ See the License for the specific language governing permissions and\n/L/ limitations under the License.",
+      "raw_sha256": "7b121a0733a5c5ec403c452300a92237e282eef803e03638a9912612bfd7cd77",
+      "raw_utf8_length": 610,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ea54dbe6e4d9b41aacf621b789e997a80099ef8ad29e68eda53f4bae6f8a679",
+        "source_id": "385b0d9d0d70566ace7dddc10cd141d1e07d53da"
+      },
+      "syntax_label": "/"
+    },
+    {
+      "baseline_cleaned_sha256": "0e4bd042d61f7bbb6a7d5f1b613bcd0f5191803f8ada7baac44e598c44727e16",
+      "case_id": "q-line-c5fba6ebb317b121",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "data structures used:- lists/vectors (and nested lists), tables\nconcepts used:- file i/o and file handles, ipc: sync and async message passing, socket handles\ninternal callbacks (.z.pc and .z.ts in particular), .Q.dpft function\ndate-partitioned historical databases and their structure, advantages, etc.\nand in general sub/pub architectures",
+      "expected_cleaned_sha256": "0ca4114bc6282ce6895c6128a135f847a58baba699cd9f2b2cea794cb8d2597d",
+      "language": "q",
+      "raw_comment": "/\n data structures used:- lists/vectors (and nested lists), tables\n concepts used:- file i/o and file handles, ipc: sync and async message passing, socket handles\n internal callbacks (.z.pc and .z.ts in particular), .Q.dpft function\n date-partitioned historical databases and their structure, advantages, etc.\n and in general sub/pub architectures\n\\",
+      "raw_sha256": "0e4bd042d61f7bbb6a7d5f1b613bcd0f5191803f8ada7baac44e598c44727e16",
+      "raw_utf8_length": 349,
+      "source_provenance": {
+        "source_excerpt_sha256": "2f81042d0c0d4fac85e0f819ed94bddb4f09140ca27cfb2f9ec0dae5d3ba836d",
+        "source_id": "9529fdb5ab32f63d9c9e65efc7d1c81085cabb86"
+      },
+      "syntax_label": "/"
+    },
+    {
+      "baseline_cleaned_sha256": "61a1bcfb08db34f3ff0f19a2d674e0bfbec132fb162da7bca2bf8359e57bf226",
+      "case_id": "q-line-f6534e5354b0ecac",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2011-2014 Exxeleron GmbH\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n  http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "df86dbe5486be213c7ef1024993212924828f7bfc1a0ab4ea4ff14a20ee10ac3",
+      "language": "q",
+      "raw_comment": "/L/ Copyright (c) 2011-2014 Exxeleron GmbH\n/L/\n/L/ Licensed under the Apache License, Version 2.0 (the \"License\");\n/L/ you may not use this file except in compliance with the License.\n/L/ You may obtain a copy of the License at\n/L/\n/L/   http://www.apache.org/licenses/LICENSE-2.0\n/L/\n/L/ Unless required by applicable law or agreed to in writing, software\n/L/ distributed under the License is distributed on an \"AS IS\" BASIS,\n/L/ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n/L/ See the License for the specific language governing permissions and\n/L/ limitations under the License.",
+      "raw_sha256": "7b121a0733a5c5ec403c452300a92237e282eef803e03638a9912612bfd7cd77",
+      "raw_utf8_length": 610,
+      "source_provenance": {
+        "source_excerpt_sha256": "23de6d060321456865a1184f6ac76bcaa4fbee324dcdf09706ae0cd2edec26bd",
+        "source_id": "efebd1b0820279e57d2eb5e2363f2bb7ce43c939"
+      },
+      "syntax_label": "/"
+    }
+  ],
+  "schema_version": 5
+}

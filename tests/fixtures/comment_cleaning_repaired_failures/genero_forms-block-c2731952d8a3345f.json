@@ -1,0 +1,29 @@
+{
+  "case_id": "genero_forms-block-c2731952d8a3345f",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:genero_form_code",
+  "disposition": "accounting_only_no_oracle",
+  "language": "genero_forms",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "57575a3388d7ea476cbe24e014f5df0269720bcb27e2e3343968a61ef3c04acd",
+      "utf8_length": 73
+    },
+    "manifest_old_output": {
+      "sha256": "bec81ccfb2020efbe6186877d9aef6e1cd27235b276f2316790ba165825dffd3",
+      "utf8_length": 78
+    },
+    "raw_comment": {
+      "sha256": "7bbdca4993769d54208b5e79b6faa50aa5df87d80d6d58ac26145d851537e359",
+      "utf8_length": 165
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "00e15671fc4ce32f2b6979e92cb255c46affbfb41b7e808f4fb5aeafa1634dd8",
+    "source_id": "ede2bda1a2db224c445e80f7f2da3cf2a1cff605"
+  },
+  "source_record_sha256": "2ddf448324afef0f788dc2b7bf9b3125bb8469ccb4891086a017c25774b7e795"
+}

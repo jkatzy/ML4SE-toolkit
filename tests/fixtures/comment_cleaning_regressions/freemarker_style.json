@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "freemarker_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "3c9ea2ef690fe08a6e2c65bb7476bd6b2e46d4e86de48a176fd8f38ef6bb1aa4",
+      "case_id": "freemarker-block-79a158c40ab99823",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Description: \u6536\u85cf\u7684\u8f93\u5165\u9875\u9762\uff0c\u5305\u62ec\u6dfb\u52a0\u548c\u4fee\u6539\nCopyright:   Copyright (c) 2018\nCompany:     xjj\n@author      zhanghejie\n@version     1.0\n@see\n\tHISTORY\n2018-07-11 zhanghejie Create File",
+      "expected_cleaned_sha256": "d1599cfbe297df49ad9b99c7087d89f98e3381c0357eff9e66905e5f0133b391",
+      "language": "freemarker",
+      "raw_comment": "<#--\n/****************************************************\n * Description: \u6536\u85cf\u7684\u8f93\u5165\u9875\u9762\uff0c\u5305\u62ec\u6dfb\u52a0\u548c\u4fee\u6539\n * Copyright:   Copyright (c) 2018\n * Company:     xjj\n * @author      zhanghejie\n * @version     1.0\n * @see\n\tHISTORY\n    *  2018-07-11 zhanghejie Create File\n**************************************************/\n-->",
+      "raw_sha256": "363d2828ac6be49edaeb4cc04fcc6a668fdb2caf9f5b4d5072e54b2adbf44633",
+      "raw_utf8_length": 336,
+      "source_provenance": {
+        "source_excerpt_sha256": "bd9c6c73f336d19ba30dd98a5230d098d0648686b4d287a943d223d9e4f86689",
+        "source_id": "9f6dec134273f9bbad64a58a4be8c67e782300f3"
+      },
+      "syntax_label": "<#--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "95cb047c0e3bfc810511e15a4dfb639816830ee7e8cf1ef5ad53c4cb49906afd",
+      "case_id": "freemarker-block-cbd449c5353adab4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Set current municipality\n\n<#if currentMunicipality.present>\n    <#assign pageTitle><@u.message \"iframe.initiatives\" /> ${currentMunicipality.value.getName(locale)}</#assign>\n<#else>\n\n</#if>",
+      "expected_cleaned_sha256": "2cfa3b39468a7bf2f92d2ef17008ea339d0ba00094c100b8ab85ce5a6818739b",
+      "language": "freemarker",
+      "raw_comment": "<#--\n     * Set current municipality\n\n    <#if currentMunicipality.present>\n        <#assign pageTitle><@u.message \"iframe.initiatives\" /> ${currentMunicipality.value.getName(locale)}</#assign>\n    <#else>\n\n    </#if>\n    -->",
+      "raw_sha256": "e855800ae7037a97359ac9fe6a5f7d4db214e5fbd027aa314e2a8cca5bd3b946",
+      "raw_utf8_length": 225,
+      "source_provenance": {
+        "source_excerpt_sha256": "1d514b4f0f0f970c97454ef5f705cf6a52cbe161a2e7ab2974dd92409b0d39c7",
+        "source_id": "abe1d2e2f4e444e892a42d34e2a9d79b34295448"
+      },
+      "syntax_label": "<#--...-->"
+    }
+  ],
+  "schema_version": 5
+}

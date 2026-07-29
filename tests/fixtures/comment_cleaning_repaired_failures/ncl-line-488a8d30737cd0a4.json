@@ -1,0 +1,38 @@
+{
+  "case_id": "ncl-line-488a8d30737cd0a4",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "ncl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3801dad2009f3cb6bdfc60d84c067950a5c78e490d8960686f14dced7938d863",
+      "utf8_length": 277
+    },
+    "manifest_old_output": {
+      "sha256": "d0b24dcd7494e985fb8ed6adb35373b5f706af080d68f7673e4159f7bb7856ca",
+      "utf8_length": 220
+    },
+    "raw_comment": {
+      "sha256": "68931a35d91f6166ac3ee2278ac530e7ea383f02f6ff4e94569e78e18ef589f3",
+      "utf8_length": 350
+    },
+    "recommended_expected_output": {
+      "sha256": "d0b24dcd7494e985fb8ed6adb35373b5f706af080d68f7673e4159f7bb7856ca",
+      "utf8_length": 220
+    }
+  },
+  "regression": {
+    "expected_output": "Relationship between the spread(s.d.^2) of the ensemble and\nthe ensemble mean square error (MSE) to assess the DART performance\n\nPrabhakar Shrestha\nE-mail: pshrestha@uni-bonn.de\nFlag\nopt = 0 sprea/Error ratio\nopt = 1 MAE",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";======================================================\n; Relationship between the spread(s.d.^2) of the ensemble and\n; the ensemble mean square error (MSE) to assess the DART performance\n; \n; Prabhakar Shrestha\n; E-mail: pshrestha@uni-bonn.de\n; Flag\n; opt = 0 sprea/Error ratio\n; opt = 1 MAE\n;=======================================================;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a37507c057d84b877a40299f7bd112661d62e7188127b7b07cead57e948611c0",
+    "source_id": "ca5e458f306ccb4db471393ce35ae8c454bd0cc4"
+  },
+  "source_record_sha256": "08c12b712c260bde3f70035ae4de669db37c39ec524cefe90acf5bf6223c8bd4"
+}

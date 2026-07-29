@@ -1,0 +1,38 @@
+{
+  "case_id": "nearley-line-1f7264163e59e4b4",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:repeated_marker",
+  "disposition": "executable_regression",
+  "language": "nearley",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "56dc6d47737d155afddefda1af20c40c901353c222d01e70b7b4e021f2e4f548",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "09486d5682e5659ae33a730d4ba34e5dc1397524b6162e51e68902d0b779914b",
+      "utf8_length": 108
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "############################################################################################################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ce6f41f0a91fde716836a4c59068e26b29cb0c2403f1c8eb91dfeb80afb802c9",
+    "source_id": "1cf05f38bb0011bfcf015ef60cbc7e1124a6b344"
+  },
+  "source_record_sha256": "3b8265b404639bd74dc1a1cfe84f4a68b6ae6c7d78b0237c660fe8b061a531ef"
+}

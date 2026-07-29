@@ -1,0 +1,38 @@
+{
+  "case_id": "openscad-line-f557bc15a146e742",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "openscad",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3703184c4f1febe518ceac462b9cfcc4274d8317a67d53479782f9affae0e845",
+      "utf8_length": 293
+    },
+    "manifest_old_output": {
+      "sha256": "be0672d4355f57fda2722870e8f428d5af82f08019bf34a420d8c4ddc00847a4",
+      "utf8_length": 217
+    },
+    "raw_comment": {
+      "sha256": "0a0149781594ef512c655099212c5921d2796c999402e43ca8ea7d65cf3aacd5",
+      "utf8_length": 489
+    },
+    "recommended_expected_output": {
+      "sha256": "be0672d4355f57fda2722870e8f428d5af82f08019bf34a420d8c4ddc00847a4",
+      "utf8_length": 217
+    }
+  },
+  "regression": {
+    "expected_output": "Filename \t  \t: SimpleWings.scad\nMain Module \t: Plane\nSub-module \t: Wings\nVersion  \t\t: v1.0\nCategory \t\t: Transportation\nModified \t\t: 18 Sept 2016\nAuthor   \t\t: Jason Yeo\n\nRefer to drawing for Plane.pptx.\n\nA SIMPLE PLANE",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "///////////////////////////////////////////////////////////////////////////////\n// Filename \t  \t: SimpleWings.scad\n// Main Module \t: Plane\n// Sub-module \t: Wings\n// Version  \t\t: v1.0\n// Category \t\t: Transportation\n// Modified \t\t: 18 Sept 2016\n// Author   \t\t: Jason Yeo\n///////////////////////////////////////////////////////////////////////////////\n// Refer to drawing for Plane.pptx.\n//\n// A SIMPLE PLANE\n// \n///////////////////////////////////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "05791cb8f817a2bbe388528d2d69d7e8b7495d8ca60e238c7f1b87e836eb7ea7",
+    "source_id": "713a7ffda4d4121094590121bf8823924bd8b09c"
+  },
+  "source_record_sha256": "f02150c2f31e5da86c98ec7c9706be7a870105a02f0a17d463efd9aac596644a"
+}

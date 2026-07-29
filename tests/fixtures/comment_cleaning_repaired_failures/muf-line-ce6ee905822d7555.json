@@ -1,0 +1,38 @@
+{
+  "case_id": "muf-line-ce6ee905822d7555",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "muf",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "1fca737d71dc3693510919d55a376467f9c3d43b73a6891cd816430159c16412",
+      "utf8_length": 122
+    },
+    "manifest_old_output": {
+      "sha256": "1fca737d71dc3693510919d55a376467f9c3d43b73a6891cd816430159c16412",
+      "utf8_length": 122
+    },
+    "raw_comment": {
+      "sha256": "67aa2778633fbed54fc975458c9e4b03d9f6cee0d3db7febd60fac81b916564e",
+      "utf8_length": 134
+    },
+    "recommended_expected_output": {
+      "sha256": "1fca737d71dc3693510919d55a376467f9c3d43b73a6891cd816430159c16412",
+      "utf8_length": 122
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright \u00a9 2021 atikasp all rights reserved.\n\n@author: atikasp\n@date: 11 Aug 2021\n\nA brief description of this program.\\",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "\\\n\\ Copyright \u00a9 2021 atikasp all rights reserved.\n\\\n\\ @author: atikasp\n\\ @date: 11 Aug 2021\n\\\n\\ A brief description of this program.\\"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b0d573c9af57318e11fef04d5795ab8be5c0364e8e1c5795741942e0c584e83d",
+    "source_id": "dc2dde94eb17b240af55271776c374180f33d89a"
+  },
+  "source_record_sha256": "0592a8a8c3ef341ac85a82f65292fdd0c67d8f2eb31024a7516ec3bc7f5e5856"
+}

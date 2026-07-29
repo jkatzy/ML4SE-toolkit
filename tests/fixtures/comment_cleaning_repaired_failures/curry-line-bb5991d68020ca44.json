@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-bb5991d68020ca44",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "85c73fa881f07bc16619cfd7528c420419d4c6893c7dbf840e0a94222facda7e",
+      "utf8_length": 132
+    },
+    "manifest_old_output": {
+      "sha256": "ef9c5cf0b5a4bed2fadeecd35c591636a9766faa5af1db9e3a343c3a892bd9b3",
+      "utf8_length": 123
+    },
+    "raw_comment": {
+      "sha256": "dfa9bfd237506a9aa014448352edf131f098fe6b517b9e886b92227f30a05fa5",
+      "utf8_length": 282
+    },
+    "recommended_expected_output": {
+      "sha256": "ef9c5cf0b5a4bed2fadeecd35c591636a9766faa5af1db9e3a343c3a892bd9b3",
+      "utf8_length": 123
+    }
+  },
+  "regression": {
+    "expected_output": "GUI for CurryBrowser, a generic analysis environment for declarative\nprograms.\n\n@author Michael Hanus\n@version January 2015",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "---------------------------------------------------------------------\n--- GUI for CurryBrowser, a generic analysis environment for declarative\n--- programs.\n---\n--- @author Michael Hanus\n--- @version January 2015\n---------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5d07ed25912e13beea373eafa5bd876934c061a679b4b50c24d149838690cc88",
+    "source_id": "7ba8ef36fa2c9366a1cb11a1ad91b6d67f73f93b"
+  },
+  "source_record_sha256": "2c0162c428ae218ba526f65b5802511ca0b5f785c019fbd9666379cdbe5fb96c"
+}

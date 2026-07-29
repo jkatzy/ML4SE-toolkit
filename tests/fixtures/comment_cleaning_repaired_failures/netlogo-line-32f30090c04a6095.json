@@ -1,0 +1,38 @@
+{
+  "case_id": "netlogo-line-32f30090c04a6095",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:mixed_edge",
+  "disposition": "executable_regression",
+  "language": "netlogo",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9a1304123afcff7003c927076ba0d71382dafb2af9b51d70653ef28d6e24284d",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "9b76fd9677fbe5d0a0c96c92bc18d0b972b7d98f2ccafd705724c39419bd2b55",
+      "utf8_length": 26
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;--;;--;;--;;--;;--;;--;;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a6e5b408bc1a2ee7955125e0b7da8cfe3556ac405ab3ff660086a377ef0705e4",
+    "source_id": "a70f8f689358893569e30bd27d505d21cb771863"
+  },
+  "source_record_sha256": "6e1308d51ec94a29f271e33029615a1c0bf6cd10c2cafc82375776f88bb152e0"
+}

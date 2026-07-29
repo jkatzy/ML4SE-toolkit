@@ -1,0 +1,297 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "two_dimensional_array_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "9775f09a9cf95aa59a75b1ee24ead4e4b6c96973bd3a530181afb58c0a89ee57",
+      "case_id": "two_dimensional_array-line-0f1ea69d57f75878",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "recurve bow (short bow)",
+      "expected_cleaned_sha256": "05703823aec467e302b61648a1741219172a6d1152cabec3fd885301dc1acdd1",
+      "language": "two_dimensional_array",
+      "raw_comment": "//recurve bow (short bow)",
+      "raw_sha256": "9775f09a9cf95aa59a75b1ee24ead4e4b6c96973bd3a530181afb58c0a89ee57",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "a7ea8381a08870b9a8982ba2720cc44875dca65e6221a67e91c18e98f4167378",
+        "source_id": "90dca92c011a7e1ab19235011ddc8e0cf8995158"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "d537ea81becc59f77a6e3e0795ce4262f9778e0ffb3018d879d09ef3c3e1a3df",
+      "case_id": "two_dimensional_array-line-265560221f377d41",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "SUNRUND   sunrund                        x",
+      "expected_cleaned_sha256": "a71f51f1ce7f04e48139c49c1fa87cc39ee12cf8e580297921e0bbc55ace1c22",
+      "language": "two_dimensional_array",
+      "raw_comment": "#SUNRUND   sunrund                        x",
+      "raw_sha256": "d537ea81becc59f77a6e3e0795ce4262f9778e0ffb3018d879d09ef3c3e1a3df",
+      "raw_utf8_length": 43,
+      "source_provenance": {
+        "source_excerpt_sha256": "58e0d5d51cd304e3947056fce8594e384c62b8a619cfc416371f909281920376",
+        "source_id": "2801c0398be0e0d4bb9d6d7e85079ad87e948378"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "26d035cec45da6cc4b0c06c80d277a9f29ff03518a34fb6ab804135610889d7f",
+      "case_id": "two_dimensional_array-line-26872b37c4226d61",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BELTYN    beltyn_eff         x",
+      "expected_cleaned_sha256": "4f05611aa3a53cd6f73f072e247236a54b2c9742256d66c1e65176de27d761f5",
+      "language": "two_dimensional_array",
+      "raw_comment": "#BELTYN    beltyn_eff         x",
+      "raw_sha256": "26d035cec45da6cc4b0c06c80d277a9f29ff03518a34fb6ab804135610889d7f",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "37171b710bfcb9386b2efd6a333ca09dc9308fc73419f11f1c4f221c9ef1c723",
+        "source_id": "e8755320931cc5c26cdc7cfb2386880d2d5fb9d2"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fca54d34b58417645c5d04d67b55dd921d33b14cfc41bc39cf67360cc392264e",
+      "case_id": "two_dimensional_array-line-4f8960481a997df1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "damage type: missile - 4; blunt missile - 9",
+      "expected_cleaned_sha256": "a6cabfad545b90b229e8d63790c297acbd1f80aaa9c01838364cb5c9b2ba0aeb",
+      "language": "two_dimensional_array",
+      "raw_comment": "//damage type: missile - 4; blunt missile - 9",
+      "raw_sha256": "fca54d34b58417645c5d04d67b55dd921d33b14cfc41bc39cf67360cc392264e",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "6367feb1967eba9a696d9a83c47477ae06de78b1080610f01190e02a338cdaaa",
+        "source_id": "d2da8a5708c9b08519efa8a7166866dd6c3a7033"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "6c15f199c7b55d894f5f0594d478bd1c086979a9b15e5ca846a2e7f9628d99d5",
+      "case_id": "two_dimensional_array-line-523a3e68049b1b8c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "rectify_BG1_Imoen's_stats_to_comply_wth_the_17-15-15-13-13-11_stat_pool",
+      "expected_cleaned_sha256": "cdfc1f68c2c4bb7143be395da34da0bb4882e679122a07a772c778a0d1e6ab1c",
+      "language": "two_dimensional_array",
+      "raw_comment": "// rectify_BG1_Imoen's_stats_to_comply_wth_the_17-15-15-13-13-11_stat_pool",
+      "raw_sha256": "6c15f199c7b55d894f5f0594d478bd1c086979a9b15e5ca846a2e7f9628d99d5",
+      "raw_utf8_length": 74,
+      "source_provenance": {
+        "source_excerpt_sha256": "c544d5dc5728027cf4f8e1be6f2b0c2a903c174d16f6b30cef9e4aafb0ce5375",
+        "source_id": "2bc30dc287a642872d2b92cd76e3cca6489ff730"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "32593308944c6200b97867f317e7ea8353f725640aa95866a16962d635d07bc7",
+      "case_id": "two_dimensional_array-line-62b18b532a706e1a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BG: EE old areas",
+      "expected_cleaned_sha256": "833dd7414b39baf954319eb8302288b5545592efdbefbe1c6e26213ae722f0da",
+      "language": "two_dimensional_array",
+      "raw_comment": "// BG: EE old areas",
+      "raw_sha256": "32593308944c6200b97867f317e7ea8353f725640aa95866a16962d635d07bc7",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "f9c6dba30a0ec5b91376c19f7f88e078bd4fd644bc26b0d861874e6bb9dfc4c3",
+        "source_id": "9d257b4e85cf50bc2348c23a826d837a60af7dd2"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fa3be18e3b35685e4039551a3abc5ae6ad4d7dae18c4ed5423a10c26c1eeb326",
+      "case_id": "two_dimensional_array-line-811ea91a657de467",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Single-Weapon style => Fencing",
+      "expected_cleaned_sha256": "49a858d085312a2983b37d4a8f440f8292fb1989c728af5e82c225d69749e606",
+      "language": "two_dimensional_array",
+      "raw_comment": "//Single-Weapon style => Fencing",
+      "raw_sha256": "fa3be18e3b35685e4039551a3abc5ae6ad4d7dae18c4ed5423a10c26c1eeb326",
+      "raw_utf8_length": 32,
+      "source_provenance": {
+        "source_excerpt_sha256": "366af8b80d429565fa5fb53e5e548f610695f66d8d4aff66faef1c04dc7bf68c",
+        "source_id": "08f6ed3089e00575937ea8b6cfbe9b47ae632c4c"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4ba454892064842fb02d8caabc3c4cb7bccd0a08de694f9711581c14547ab5fc",
+      "case_id": "two_dimensional_array-line-8dd29cd9adc35128",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AC\t\tSTR\t\tDEX \tStlth\tType",
+      "expected_cleaned_sha256": "35276b3edc144fa6df0016637023f3a339f1f3d43aef19aa5b1a1afed7b33b97",
+      "language": "two_dimensional_array",
+      "raw_comment": "//\t\t\tAC\t\tSTR\t\tDEX \tStlth\tType\t",
+      "raw_sha256": "e91bf081a80099a17747d212c931e81d2ebdd0870b9896c6d7a4eac9d512a282",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "93aa5beade627c561262ee2b5ecae8fd325d081be864bea36e621b6c535758ea",
+        "source_id": "53e083af2a77a7f298a10624c40d5110dc1d45de"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "187be246e568392bc5e73affe80e803d00c2ca4c95734902c9dfa9daf8be134c",
+      "case_id": "two_dimensional_array-line-abaca614e9f30908",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "small sword (short sword)",
+      "expected_cleaned_sha256": "9742f1ebada8a61da6fd665ee2b839408865c6ef3a5a8960c7b3f5ab79df61fe",
+      "language": "two_dimensional_array",
+      "raw_comment": "//small sword (short sword)",
+      "raw_sha256": "187be246e568392bc5e73affe80e803d00c2ca4c95734902c9dfa9daf8be134c",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "38491783a661ca99da7b35709dcb13d52f6d1290abe9a67537f965635f17f99e",
+        "source_id": "41fd0348f3be2ca57b9953506ca2bc3e7b78053f"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "d19cce645a7e5e420d5d46a5bfda7b642f5e7f70ba1fc257ba66884cca3b45dd",
+      "case_id": "two_dimensional_array-line-c9f7e5b57c857049",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "short sword",
+      "expected_cleaned_sha256": "45954a3ab3cb4be6a600a37319978c03c54db8bcfd6d3bca05eeab11544dd8c6",
+      "language": "two_dimensional_array",
+      "raw_comment": "//short sword",
+      "raw_sha256": "d19cce645a7e5e420d5d46a5bfda7b642f5e7f70ba1fc257ba66884cca3b45dd",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "adaae2b0c1473514620e182ca545cbce1858a69177ae147e315259d8ef1a6839",
+        "source_id": "f56faf13a97c00ac7696b9c2deaff5a65cc3467f"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "7256da0a10c5eda108d3e3baa55b1d1d5d26f9fdedce9b0e199eff824c94a2bf",
+      "case_id": "two_dimensional_array-line-ca8532ea5b512863",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AC: missile/piercing/slashing/crushing",
+      "expected_cleaned_sha256": "40820d3c631cb7bec663cb8ce45efcaf5aebb0ac8878e53a7900ffa6b162b6c3",
+      "language": "two_dimensional_array",
+      "raw_comment": "//AC: missile/piercing/slashing/crushing",
+      "raw_sha256": "7256da0a10c5eda108d3e3baa55b1d1d5d26f9fdedce9b0e199eff824c94a2bf",
+      "raw_utf8_length": 40,
+      "source_provenance": {
+        "source_excerpt_sha256": "9973b803ea418d08fe422ea0d9468ec73ed247f9ffff2a1047273d1dc6296f1a",
+        "source_id": "ec9c44926268716c600f70cebcc7bb980e415843"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74f7b0a496affc93e591047adee769cfe24580a9ca575c07b977b47c79394458",
+      "case_id": "two_dimensional_array-line-cfd682ecd4ace892",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "dart",
+      "expected_cleaned_sha256": "b775a2a2139069969e0cc3ed738cfc464b386fba2fc68d8c1a7e8fddf07b34b7",
+      "language": "two_dimensional_array",
+      "raw_comment": "//dart",
+      "raw_sha256": "74f7b0a496affc93e591047adee769cfe24580a9ca575c07b977b47c79394458",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "f96e0f2404a38fd031870ce883f9e24d3ae058beebcd58bfc9e8102d9c4e4442",
+        "source_id": "15967ac3da00664335d5bdd773a60fed9034c019"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4d86d977e836119f169e6061da2e22f5acaea8c10ff34a32113635e806ab357c",
+      "case_id": "two_dimensional_array-line-e1aef861e0ca2bc0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BG2:EE SoA old areas",
+      "expected_cleaned_sha256": "f39a7b677598b21fcddef1e6810a5b8a0ff6aae0324e22c8bba0c70a60be185d",
+      "language": "two_dimensional_array",
+      "raw_comment": "// BG2:EE SoA old areas",
+      "raw_sha256": "4d86d977e836119f169e6061da2e22f5acaea8c10ff34a32113635e806ab357c",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "c1940788d55232f8237b55aa11b70158f57ff26ea64b2d2e75092105c4f3cac7",
+        "source_id": "58a7559a12a8ec5f854aa6addafecb91a49d2340"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "18072d51bdd9e692b73f9a0f84c851afe44b5434e8364302f29027adf7cbf8b7",
+      "case_id": "two_dimensional_array-line-e3c8c82ce24d9611",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BG1:EE old areas",
+      "expected_cleaned_sha256": "42d67db7ca953675d4a07248cb6e19ec3fa5c121e85c698d972d944651070e79",
+      "language": "two_dimensional_array",
+      "raw_comment": "// BG1:EE old areas",
+      "raw_sha256": "18072d51bdd9e692b73f9a0f84c851afe44b5434e8364302f29027adf7cbf8b7",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "a1f68fb0f12dc5015c2c15bb699640e62865e465674d998bc082c2335606c6b1",
+        "source_id": "1b49b9919e1b7c51d7d54a93c102952013dbc946"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "8dce753c019fc4f97dd53d702721f691f350572c44a6ee5eb8d9fb0d4088bb17",
+      "case_id": "two_dimensional_array-line-e4e8684a26c4eafa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "leather 10/10/8/8",
+      "expected_cleaned_sha256": "3908bfa3b3da0fa9c01ff32751e1e396c53ddc1ee3502365db96487789d44495",
+      "language": "two_dimensional_array",
+      "raw_comment": "//leather 10/10/8/8",
+      "raw_sha256": "8dce753c019fc4f97dd53d702721f691f350572c44a6ee5eb8d9fb0d4088bb17",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "25fc0ff6d6734be9e1580b602404f6ec382911d9254e9ca0d6a7f79d1eaea677",
+        "source_id": "c396ec1e7bb30376c00445e5eb76282e38d93d21"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "62ddc2442de2ce278e7585988b2d855172deb49fe4990168d3d82ea9a6f782e8",
+      "case_id": "two_dimensional_array-line-e616cb893a504515",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MWD2 dragon_white_young",
+      "expected_cleaned_sha256": "a275e5831aa21bb0b32ff154592cbfe8ca859e319c19416ee7305e8752ae925a",
+      "language": "two_dimensional_array",
+      "raw_comment": "// MWD2 dragon_white_young",
+      "raw_sha256": "62ddc2442de2ce278e7585988b2d855172deb49fe4990168d3d82ea9a6f782e8",
+      "raw_utf8_length": 26,
+      "source_provenance": {
+        "source_excerpt_sha256": "c783d5eb8e1cb89f20ab8bcfa7b8b3e66c967d4516e25d41caed0a58f3035d1b",
+        "source_id": "10f3c9ad05168d7196397632d52071eb6ecb2689"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "334359b90efed75da5f0ada1d5e6b256f4a6bd0aee7eb39c0f90182a021ffc8b",
+      "case_id": "two_dimensional_array-line-edd3747528f176b2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "two_dimensional_array",
+      "raw_comment": "#",
+      "raw_sha256": "334359b90efed75da5f0ada1d5e6b256f4a6bd0aee7eb39c0f90182a021ffc8b",
+      "raw_utf8_length": 1,
+      "source_provenance": {
+        "source_excerpt_sha256": "b61053b7cab28397cfc922b67871cdf84f1e002ebb1d6ad6e39ed5a443149d82",
+        "source_id": "81d3cf7c06af35d8297fabb5a5f8595fb3d86d18"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

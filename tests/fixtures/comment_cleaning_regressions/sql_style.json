@@ -1,0 +1,212 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "sql_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "3bc822c3d0b5fee875aa9a9e9f01b2f99b1c2c4019b905fdcb7561634e8adc12",
+      "case_id": "hiveql-line-49aa7922b8a3e2ef",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@author ZhanRui\n@date 2018\u5e7411\u670829\u65e5\n@desc  gb\u9ed1\u7070\u6807\u6253\u6807",
+      "expected_cleaned_sha256": "a76f777e97319d682f588a53fc811fab3b5c46b1076836cb7a869b4e9840cd90",
+      "language": "hiveql",
+      "raw_comment": "--@author ZhanRui\n--@date 2018\u5e7411\u670829\u65e5 \n--@desc  gb\u9ed1\u7070\u6807\u6253\u6807",
+      "raw_sha256": "b16f7466ac3678949577c09484205767c55336c81f8295a2c32af9f2003d1afd",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "a3f81a578b3557b48bd75b349799a99a2c3b748a0ed878583af9f809b25a2c22",
+        "source_id": "f329afbe9c5f44818cf9337ba8309bafb0593834"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "5d30ee3a43cc77c3c0a60c99a1994f77e8f4b7928c5cb12a5b456f8633bcf4c3",
+      "case_id": "hiveql-line-4cf593fe526f7f23",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "! qt:dataset:srcpart\n! qt:dataset:src1\n! qt:dataset:src",
+      "expected_cleaned_sha256": "0f2a053753a14907887c2c75db672717a142025e242c2e0ceb2ba1a461577d3c",
+      "language": "hiveql",
+      "raw_comment": "--! qt:dataset:srcpart\n--! qt:dataset:src1\n--! qt:dataset:src",
+      "raw_sha256": "d14f6adca13f1d390f10d05e17e6689445f157d618de784017da22bb865f6052",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "5974b77f1bd9cf40142a6fb7eab74d19ba002e732a2fb2b6ac2286909314744d",
+        "source_id": "45dd206ccb532b1ebad15cbaf45d3b753fb7459d"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "5a229a2f639667774f42180e110364ab2e218ac2d548027d2644bb0038cc9901",
+      "case_id": "hiveql-line-52e1203d6691047d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "! qt:dataset:src1\n! qt:dataset:src",
+      "expected_cleaned_sha256": "469c34b32613a89f391625d7fc92c74bd7fc2b1eb003d4918bf30aea50982d3e",
+      "language": "hiveql",
+      "raw_comment": "--! qt:dataset:src1\n--! qt:dataset:src",
+      "raw_sha256": "229f0d8ddbddc92368fd5968038b3ae700d631afae09a65a79bd9198e94be5bb",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "5b840ff66cbbf3cd0c679e15eee3bf798822faf46d2d1150a30f54fb9a00bdf1",
+        "source_id": "5a473a9336e83403e06aa8e0fe6988edb297607f"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "c6e18d08eeb9ba14f82bd939013f7a1cca1f753e93b573594c428bb1a1c38367",
+      "case_id": "hiveql-line-d147cec177d85f70",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "! qt:disabled:HIVE-24816\n! qt:dataset:alltypesorc",
+      "expected_cleaned_sha256": "41b7a9c0e5707d67905a66c1a5f0cd096daeb06bf7c7499a984a4adeea4f6477",
+      "language": "hiveql",
+      "raw_comment": "--! qt:disabled:HIVE-24816\n--! qt:dataset:alltypesorc",
+      "raw_sha256": "89cb8656d75f58d0f868705cf2781a82a5fe25909b63e912a1820bd72de1a981",
+      "raw_utf8_length": 53,
+      "source_provenance": {
+        "source_excerpt_sha256": "5937b49ab7d00fdd2006bb1111618dcc7f24c858404c956308f0391bb72b954e",
+        "source_id": "5db3943459e60eb19c91aaa8f995974f0269fc55"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "5a229a2f639667774f42180e110364ab2e218ac2d548027d2644bb0038cc9901",
+      "case_id": "hiveql-line-e5a8f3115ecbd7b6",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "! qt:dataset:src1\n! qt:dataset:src",
+      "expected_cleaned_sha256": "469c34b32613a89f391625d7fc92c74bd7fc2b1eb003d4918bf30aea50982d3e",
+      "language": "hiveql",
+      "raw_comment": "--! qt:dataset:src1\n--! qt:dataset:src",
+      "raw_sha256": "229f0d8ddbddc92368fd5968038b3ae700d631afae09a65a79bd9198e94be5bb",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "0b2ee5fa8a8f31a093c678c43f9b0152f554797d258f555d9c79fc1422fff4ca",
+        "source_id": "53f18c4f4ac2d4b15a13ab4f2c3ac868bdb9ef5b"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "5796c8b1bf72399575e4dde1c530e18085587fb334496d9196c9ecc5e5458f78",
+      "case_id": "plsql-line-000c92df37f3c6b5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u0422\u0440\u0438\u0433\u0435\u0440\u044b \u0434\u043b\u044f ARR views\nby Nikolay Krasilnikov\nThis file is distributed under Apache License 2.0 (01.2004).\n  http://www.apache.org/licenses/\ncreate 18.01.2018\nupdate\n\n\u041c\u0430\u0441\u0441\u0438\u0432\u044b.\nINSTEAD_OF_INSERT",
+      "expected_cleaned_sha256": "b0bc5ef78684b637aa796ceadf866f8e0170c9559d19a5bd233ac1aa87a29788",
+      "language": "plsql",
+      "raw_comment": "-- \u0422\u0440\u0438\u0433\u0435\u0440\u044b \u0434\u043b\u044f ARR views\n-- by Nikolay Krasilnikov\n-- This file is distributed under Apache License 2.0 (01.2004).\n--   http://www.apache.org/licenses/\n-- create 18.01.2018\n-- update \n--\n-- \u041c\u0430\u0441\u0441\u0438\u0432\u044b.\n-- INSTEAD_OF_INSERT-----------------------------------------------------------",
+      "raw_sha256": "f38ef8ed88f014825403f2d547026f8858303971f9bb591a3f7e4fdb586a9d47",
+      "raw_utf8_length": 295,
+      "source_provenance": {
+        "source_excerpt_sha256": "050d1f785fd1655ab66d29fc41f1980271cad60dc1dc888ee432aeafbf14fc65",
+        "source_id": "7e6ee9636e2bee777a0e419539453eb7ee6fa9f4"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "9611fcbc04e188e5549bb3ee962a6d4911c78544943ec4f1fa3c5181d991e047",
+      "case_id": "plsql-line-56776b38d183e132",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%suite\n%rollback(manual)",
+      "expected_cleaned_sha256": "deaa3017b58ef69ef7f490c88c8377a795ae63bc25ec9bf4a86817e69ab4b2f9",
+      "language": "plsql",
+      "raw_comment": "--%suite\n    --%rollback(manual)",
+      "raw_sha256": "0c103e0d9c8f6d5d6f364d7542ea3f7d7cabfd9c8124d17e352ac8af691651f4",
+      "raw_utf8_length": 32,
+      "source_provenance": {
+        "source_excerpt_sha256": "5c4db52a19bbe5ecbdbe89110dacaa9de191a0030d6cfce32cefb13ae82c8bb6",
+        "source_id": "d4e9b9dce528214acc17ac94c56d34513d7653b5"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "6d3fbb0d612e3160c0e651d93d8234e548d416de867bd2118d9edc9ecb6b418e",
+      "case_id": "sql-block-c4d7717ea4e0dfaf",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Object:  Stored Procedure dbo.pr_vendedor_repnet    Script Date: 13/12/2002 15:08:44",
+      "expected_cleaned_sha256": "a258396baf589fa50a48c213c22436e78f2398751decb969817996ea94bcdbcd",
+      "language": "sql",
+      "raw_comment": "/****** Object:  Stored Procedure dbo.pr_vendedor_repnet    Script Date: 13/12/2002 15:08:44 ******/",
+      "raw_sha256": "8e5d7cbb939b26e7e0328cbe4010fbec01a723f0264ff43df513b7528e508665",
+      "raw_utf8_length": 100,
+      "source_provenance": {
+        "source_excerpt_sha256": "2ecabc83816417b9cc8cfc2cb8ab9123d1c9a6ff216c489b38d77c20fc26e64b",
+        "source_id": "f0be2a7eb5cade5280a9452a43fab43cbd7b9ca9"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "2f50cd35e050649b2661ee4a256ad19bebb85bc4dff2dc4c8f19e274a8d26e5c",
+      "case_id": "sql-line-23c886e7f7bbd538",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PRQ PROYECT\nMade by: Luis Fernando Vasquez Quiros\n- Github: luisf96v\n- Email  : luis96v@gmail.com",
+      "expected_cleaned_sha256": "f0c8ba1700c54783ccc911b74b3d79353f9246081e4a68672c211379b574d29f",
+      "language": "sql",
+      "raw_comment": "-- ----------------------------------------------------------------\n-- *  PRQ PROYECT \n-- *   Made by: Luis Fernando Vasquez Quiros \n-- *      - Github: luisf96v\n-- *      - Email  : luis96v@gmail.com \n-- ----------------------------------------------------------------",
+      "raw_sha256": "308d2af5245e3aa42f6aa22bb5aab9420ee0aee6e01a6d04d1a24e3e6352042e",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "13c399a59a6b56967a079b1a31d3fb9c3fc245a237dea50139b24a4ea6fe103d",
+        "source_id": "baca1cbe019cd0a5abd9792f232d578ac251a743"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "d8c7f0b8e749f623848edc0c349c25eeb95fc0722d41fbd246c701300575b919",
+      "case_id": "sql-line-650f21879b8de3b8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "QUESTION 2\npull all revenue by chanel for the year 2017 sum bu month to get revenue in each month",
+      "expected_cleaned_sha256": "4aabe42d31151ffcd4775a50f06f5692741c48d2d7b0325b86f3807f4474c92c",
+      "language": "sql",
+      "raw_comment": "---------------------------------------------------------------QUESTION 2--------------------------------------------------\n--pull all revenue by chanel for the year 2017 sum bu month to get revenue in each month",
+      "raw_sha256": "210e18dfcfde97615dae82ccdcac05afc65a542581aa61ac36a2ee9ca76f830d",
+      "raw_utf8_length": 212,
+      "source_provenance": {
+        "source_excerpt_sha256": "6eba0ce5040083f0bfa3ede40c4fcf7e5999f80dbd87fd56d29295dbdce3fbe9",
+        "source_id": "c8295e073aba3c3182e1bb5f16aff303961cf46b"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "6892f4365e9545c89e17ddd1050cfb1b3d1669ab75f6fffa2015ed03c388a668",
+      "case_id": "tsql-line-0087cbf234f4eaea",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tsql",
+      "raw_comment": "-- =============================================\r",
+      "raw_sha256": "4bad71801c11ce32c08edde6ba707d3ee3803108bbf562d0bcb197dd09dae137",
+      "raw_utf8_length": 49,
+      "source_provenance": {
+        "source_excerpt_sha256": "dc85af3bb39a644fcfb0a899b4476fb25745dea43679ee1dc232a72fa1c98705",
+        "source_id": "f4f13fd5b4323e2bdfa886ecaab47b1abc58c5d9"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "76619405d102d485d68c0d54ecc053e7b49c07bbba3952435bad22e0dfbfbfb6",
+      "case_id": "tsql-line-0506a81d1ef84e5b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tsql",
+      "raw_comment": "-- ================================================\r",
+      "raw_sha256": "699c438d3a8165d9fd63eb3423cb614209d1e1537096c5e8e66d640c8332cad3",
+      "raw_utf8_length": 52,
+      "source_provenance": {
+        "source_excerpt_sha256": "b623d18be2653e4d1cd495e4d6060c579214d8f97d4864de57b5868a26c25baa",
+        "source_id": "9bb9a2cf321dcb97529ff9cd02ace50932cbdecd"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "schema_version": 5
+}

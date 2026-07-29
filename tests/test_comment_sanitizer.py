@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass
 
 import pytest
@@ -62,7 +63,10 @@ def _line_case_sample(example, expected_match):
 
 def _first_line_example(syntax, language):
     for example in _iter_regex_examples_for_language(syntax, language):
-        if example.kind == "line":
+        if (
+            example.kind == "line"
+            or (example.kind == "directive" and syntax.sanitizer_line_wrappers)
+        ) and "\n" not in example.expected_match:
             return example
     return None
 
@@ -89,6 +93,23 @@ def _safe_block_preserved_symbol(text):
     return _safe_preserved_symbol(text)
 
 
+def _line_example_parts(syntax, example):
+    expected_match = example.expected_match
+    for open_token, close_token in syntax.sanitizer_line_wrappers:
+        flags = re.IGNORECASE if any(char.isalpha() for char in open_token + close_token) else 0
+        pattern = re.compile(
+            rf"^{re.escape(open_token)}(.*){re.escape(close_token)}$",
+            flags,
+        )
+        match = pattern.match(expected_match)
+        if match is None:
+            continue
+        padding = " " if match.group(1).startswith((" ", "\t")) else ""
+        return open_token + padding, close_token
+
+    return _split_example_placeholder(expected_match)
+
+
 def _build_line_cases():
     removal_cases = []
     preservation_cases = []
@@ -99,7 +120,7 @@ def _build_line_cases():
             if example is None:
                 continue
 
-            prefix, suffix = _split_example_placeholder(example.expected_match)
+            prefix, suffix = _line_example_parts(syntax, example)
             token = prefix.strip()
 
             removal_line_one = f"{prefix}adversarial *** ### $$$ %%%{suffix}"
@@ -231,17 +252,22 @@ def _build_registry_sample_cases():
 
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
-            for index, example in enumerate(
-                _iter_registry_examples_for_language(syntax, language)
-            ):
+            for index, example in enumerate(_iter_registry_examples_for_language(syntax, language)):
                 if example.kind in generic_kinds:
                     continue
+                expected_sanitized = example.expected_match
+                if example.kind == "directive":
+                    expected_sanitized = next(
+                        placeholder
+                        for placeholder in _EXAMPLE_BODY_PLACEHOLDERS
+                        if placeholder in example.expected_match
+                    )
                 cases.append(
                     SanitizerCase(
                         language=language,
                         sample=example.sample,
                         expected_match=example.expected_match,
-                        expected_sanitized=example.expected_match,
+                        expected_sanitized=expected_sanitized,
                         case_id=f"{language}-registry-sample-{index}",
                     )
                 )
@@ -258,21 +284,17 @@ def _build_c_style_block_gutter_cases():
         if ("/*", "*/") in syntax.nested_delimiters:
             wrapper = ("/*", "*/")
         else:
-            examples = list(syntax.shared_regex_examples) + list(
-                syntax.canonical_regex_examples
-            )
+            examples = list(syntax.shared_regex_examples) + list(syntax.canonical_regex_examples)
             for example in examples:
                 if example.kind != "block":
                     continue
-                if (
-                    example.expected_match.startswith("/**")
-                    and example.expected_match.endswith("*/")
+                if example.expected_match.startswith("/**") and example.expected_match.endswith(
+                    "*/"
                 ):
                     wrapper = ("/**", "*/")
                     break
-                if (
-                    example.expected_match.startswith("/*")
-                    and example.expected_match.endswith("*/")
+                if example.expected_match.startswith("/*") and example.expected_match.endswith(
+                    "*/"
                 ):
                     wrapper = ("/*", "*/")
                     break
@@ -310,8 +332,7 @@ def _build_c_style_block_gutter_cases():
                     sample=f"before\n{preservation_match}\nafter",
                     expected_match=preservation_match,
                     expected_sanitized=(
-                        "keep * exactly and *** ### $$$ %%%\n"
-                        "second line keeps * again"
+                        "keep * exactly and *** ### $$$ %%%\nsecond line keeps * again"
                     ),
                     case_id=f"{language}-c-block-gutter-preservation",
                 )
@@ -393,9 +414,11 @@ def test_comment_sanitizer_preserves_semantic_symbols_inside_c_style_blocks(case
 
 
 def test_sanitizer_generated_cases_cover_every_supported_language():
-    covered = _case_languages(SANITIZER_REMOVAL_CASES) | _case_languages(
-        SANITIZER_PRESERVATION_CASES
-    ) | _case_languages(REGISTRY_SAMPLE_CASES)
+    covered = (
+        _case_languages(SANITIZER_REMOVAL_CASES)
+        | _case_languages(SANITIZER_PRESERVATION_CASES)
+        | _case_languages(REGISTRY_SAMPLE_CASES)
+    )
 
     assert covered == set(SUPPORTED_LANGUAGES)
 
@@ -463,18 +486,14 @@ def test_stack_v2_csharp_crlf_perlin_block_sanitizes_reference_text():
         "*/"
     )
     expected_cleaned = (
-        " Perlin noise class.  ( by Tom Nuydens (tom@delphi3d.net) )\n"
+        "Perlin noise class.  ( by Tom Nuydens (tom@delphi3d.net) )\n"
         "* Converted to C# by Mattias Fagerlund, Mattias.Fagerlund@cortego.se\n"
-        "\n"
-        "******************************************************************************\n"
         "\n"
         "I used the following references for my implementation:\n"
         " http://students.vassar.edu/mazucker/code/perlin-noise-math-faq.html\n"
         ' Darwin Peachey\'s chapter in "Texturing & Modeling: A Procedural Approach"\n'
         "Another good resource is\n"
         " http://freespace.virgin.net/hugo.elias/models/m_perlin.htm\n"
-        "\n"
-        "******************************************************************************\n"
         "\n"
         "This class generates 3D Perlin noise. The demo that comes with this is 2D, but\n"
         "uses the 3rd dimension to create animated noise. The noise does not tile,\n"
@@ -536,16 +555,8 @@ def test_stack_v2_csharp_xml_doc_line_comment_sanitizes_delimiters():
 
 
 def test_stack_v2_csharp_chinese_xml_doc_line_comment_sanitizes_delimiters():
-    raw_comment = (
-        "/// <summary>\n"
-        "    /// 单点采集器GPRS通讯对象\n"
-        "    /// </summary>"
-    )
-    expected_cleaned = (
-        "<summary>\n"
-        "单点采集器GPRS通讯对象\n"
-        "</summary>"
-    )
+    raw_comment = "/// <summary>\n    /// 单点采集器GPRS通讯对象\n    /// </summary>"
+    expected_cleaned = "<summary>\n单点采集器GPRS通讯对象\n</summary>"
     target = QueryMatch("", "", raw_comment)
 
     assert CommentSanitizer("c#").sanitize(target) == expected_cleaned

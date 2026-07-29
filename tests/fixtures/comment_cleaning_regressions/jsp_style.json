@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "jsp_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "587fffa3e5c820dac27006b9c27d3db770f013d3b98c059d6c8e3ac6d68a1735",
+      "case_id": "groovy_server_pages-line-6fd4d43f3bd7f2b5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2010-2013 Paul Fernley.\n\nThis file is part of the Three Ledger Core (TLC) software\nfrom Paul Fernley.\n\nTLC is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\nTLC is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with TLC. If not, see <http://www.gnu.org/licenses/>.",
+      "expected_cleaned_sha256": "ab4249b2006fa83f695cebd904f579675b2445aa4e4eafd0936c88cede159951",
+      "language": "groovy_server_pages",
+      "raw_comment": "<%--\n ~  Copyright 2010-2013 Paul Fernley.\n ~\n ~  This file is part of the Three Ledger Core (TLC) software\n ~  from Paul Fernley.\n ~\n ~  TLC is free software: you can redistribute it and/or modify\n ~  it under the terms of the GNU General Public License as published by\n ~  the Free Software Foundation, either version 3 of the License, or\n ~  (at your option) any later version.\n ~\n ~  TLC is distributed in the hope that it will be useful,\n ~  but WITHOUT ANY WARRANTY; without even the implied warranty of\n ~  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n ~  GNU General Public License for more details.\n ~\n ~  You should have received a copy of the GNU General Public License\n ~  along with TLC. If not, see <http://www.gnu.org/licenses/>.\n --%>",
+      "raw_sha256": "2cf167ede2fa114c6dca9f0502a695a9267ed6aab73d3d57bd91374a9eb7f4ba",
+      "raw_utf8_length": 767,
+      "source_provenance": {
+        "source_excerpt_sha256": "ae6a3df380c9df32d25eb9c4743718cf041ee6b8374806fdee5eefde055ace54",
+        "source_id": "a7f84dfc94e095c504e90f9fd6ee4485775c3ce6"
+      },
+      "syntax_label": "<%--"
+    },
+    {
+      "baseline_cleaned_sha256": "ab19970df076600548442e01129f43b26aa73b8d63342b7b68b6cdd602a0d3cd",
+      "case_id": "java_server_pages-block-85deede45f8ba141",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\uc608\uc2dc\ubd80\ubd84",
+      "expected_cleaned_sha256": "9890570a572bdbb4e100932848b415eb95accd7404882f0988e6c2d6303d2a70",
+      "language": "java_server_pages",
+      "raw_comment": "<!--==================== \uc608\uc2dc\ubd80\ubd84 ====================-->",
+      "raw_sha256": "af5ac149edd5836829e138d99031de65f155d6cf98aa3bc000b8af6bdb475f27",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "334330b927193cf4927eda40b6224eebb5ccdecae8db48497519363467dbe0e0",
+        "source_id": "02c0ba439bc8878016a007c8e4d205e1ea0ed3cf"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "ab19970df076600548442e01129f43b26aa73b8d63342b7b68b6cdd602a0d3cd",
+      "case_id": "jsp-block-bfb0810ef65221b8",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\uc608\uc2dc\ubd80\ubd84",
+      "expected_cleaned_sha256": "9890570a572bdbb4e100932848b415eb95accd7404882f0988e6c2d6303d2a70",
+      "language": "jsp",
+      "raw_comment": "<!--==================== \uc608\uc2dc\ubd80\ubd84 ====================-->",
+      "raw_sha256": "af5ac149edd5836829e138d99031de65f155d6cf98aa3bc000b8af6bdb475f27",
+      "raw_utf8_length": 61,
+      "source_provenance": {
+        "source_excerpt_sha256": "334330b927193cf4927eda40b6224eebb5ccdecae8db48497519363467dbe0e0",
+        "source_id": "02c0ba439bc8878016a007c8e4d205e1ea0ed3cf"
+      },
+      "syntax_label": "<!--...-->"
+    }
+  ],
+  "schema_version": 5
+}

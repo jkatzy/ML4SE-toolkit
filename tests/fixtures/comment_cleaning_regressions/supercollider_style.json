@@ -1,0 +1,161 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "supercollider_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "0ad586b237188389d2528fcc984795216413af52b5a680f4863f64d459b176e7",
+      "case_id": "reason-nested-26a3a82d9a4fe18c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Flat map",
+      "expected_cleaned_sha256": "dfcde689c5f2e805666279a413f8c6cc901efda29742bca11b7384cdfef1ae62",
+      "language": "reason",
+      "raw_comment": "/** Flat map */",
+      "raw_sha256": "567cde85669141103117d83ae9c2f75b8df5dc4c1c8ee2807cfff1b8d91149ef",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "a9adcddbc5671c2c0bc2b869313bddc77a114ef96b3f9a2339cc6fee1377ac7c",
+        "source_id": "49803f57561d9aa4962ed5f597bde601294cb5bb"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e39b8e343d32bc589ca3a3a6455e78bf8f415fc8dd44959b9964ecd1264ef763",
+      "case_id": "reason-nested-8eb3cad9abee2ace",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[UPDATE] query builder.",
+      "expected_cleaned_sha256": "cad35df194155b0ccf60a238b9d659ed6a19aa2f7baaaaf3c5191f66acf57990",
+      "language": "reason",
+      "raw_comment": "/** [UPDATE] query builder. */",
+      "raw_sha256": "1976f607918957edb777811039d55d37099b711eaa7b5f421a40eea9aa8bd4db",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "880e7e5e8e3b0c484c6a3117261dfce759218a67add62a243a048ebf3bcfdd14",
+        "source_id": "d8b146dda284192ef850d2a9bd28b371780572d0"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "0ad586b237188389d2528fcc984795216413af52b5a680f4863f64d459b176e7",
+      "case_id": "reasonml-nested-a65d1389a054debe",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Flat map",
+      "expected_cleaned_sha256": "dfcde689c5f2e805666279a413f8c6cc901efda29742bca11b7384cdfef1ae62",
+      "language": "reasonml",
+      "raw_comment": "/** Flat map */",
+      "raw_sha256": "567cde85669141103117d83ae9c2f75b8df5dc4c1c8ee2807cfff1b8d91149ef",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "a9adcddbc5671c2c0bc2b869313bddc77a114ef96b3f9a2339cc6fee1377ac7c",
+        "source_id": "49803f57561d9aa4962ed5f597bde601294cb5bb"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e39b8e343d32bc589ca3a3a6455e78bf8f415fc8dd44959b9964ecd1264ef763",
+      "case_id": "reasonml-nested-c207b98971b419b5",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[UPDATE] query builder.",
+      "expected_cleaned_sha256": "cad35df194155b0ccf60a238b9d659ed6a19aa2f7baaaaf3c5191f66acf57990",
+      "language": "reasonml",
+      "raw_comment": "/** [UPDATE] query builder. */",
+      "raw_sha256": "1976f607918957edb777811039d55d37099b711eaa7b5f421a40eea9aa8bd4db",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "880e7e5e8e3b0c484c6a3117261dfce759218a67add62a243a048ebf3bcfdd14",
+        "source_id": "d8b146dda284192ef850d2a9bd28b371780572d0"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "d6600440b41a7cd810431b768189d1f2cb89b87cc5f89be3653adc5245555e61",
+      "case_id": "supercollider-line-352de76175f46449",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "s.waitForBoot({\n\tOSCFunc.trace;\n\tNetAddr(argv[0], argv[1].asInt).sendMsg(\"hello world | %\".format(NetAddr.langPort));\n})",
+      "expected_cleaned_sha256": "0c02ac513b19ee7a42a870da29f2a6f1e8f4a487793441704d278ea8301e9ef1",
+      "language": "supercollider",
+      "raw_comment": "// s.waitForBoot({\n// \tOSCFunc.trace;\n// \tNetAddr(argv[0], argv[1].asInt).sendMsg(\"hello world | %\".format(NetAddr.langPort));\n// })",
+      "raw_sha256": "82c19e9dffc9abea0af9f39fafa21a29606a614cbfde6b3086973bd55e688519",
+      "raw_utf8_length": 132,
+      "source_provenance": {
+        "source_excerpt_sha256": "e3f622e3716628eabda2da61b18f55e868848c5859b0ed72ce03d4a5d0cb29b6",
+        "source_id": "204296ef6bb18e0b05f8129ff1113fb7b22e2d97"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "845e93c0e3338e5b340e8643eb0e861913e5f8d29ac2031ff92861609b1bc9e4",
+      "case_id": "supercollider-line-d29df265742636e9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MACROPHAGES:\narg out, amp, filter_freq, texture_speed=5, attack=0.1, texture_dur=0.4, trig=0, dur=15, rq=0.001, pos=0;\nEXAMPLE:\n~macrophages = Group.new;\nArray.fill(5, {arg i;\n     Synth(\\macrophages, [\n           \\out, 0,\n           \\amp, 0.2,\n           \\filter_freq, i*100+40,\n           \\trig, 1,\n           \\texture_dur, 0.5,\n           \\attack, 0.01,\n           \\rq, 0.1,\n           \\pos, i/5],\n     ~macrophages, \\addToHead)\n});",
+      "expected_cleaned_sha256": "093bac9e498c3f76e949a520dc8a8caaae199350418e06257017e241cc998fc7",
+      "language": "supercollider",
+      "raw_comment": "// MACROPHAGES:\n// arg out, amp, filter_freq, texture_speed=5, attack=0.1, texture_dur=0.4, trig=0, dur=15, rq=0.001, pos=0;\n// EXAMPLE:\n// ~macrophages = Group.new;\n// Array.fill(5, {arg i;\n//      Synth(\\macrophages, [\n//            \\out, 0,\n//            \\amp, 0.2,\n//            \\filter_freq, i*100+40,\n//            \\trig, 1,\n//            \\texture_dur, 0.5,\n//            \\attack, 0.01,\n//            \\rq, 0.1,\n//            \\pos, i/5],\n//      ~macrophages, \\addToHead)\n// });",
+      "raw_sha256": "07cf594466de422df616885f42fe5857fd4043aa080fd4dcb80411c40f31acbb",
+      "raw_utf8_length": 483,
+      "source_provenance": {
+        "source_excerpt_sha256": "f0b7b682e4857b6330113b0b4b61a44aa28d63ad4c50bf564a4e1fdb7686b8c4",
+        "source_id": "d1b690083cc4e9f0ca43b8c7c3183738ff4fd53f"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "eba223bc461c5f67356f0e6cd813ab7b03bc5f9df1484f4a6209ec2be48568c6",
+      "case_id": "supercollider-nested-3107c131f73a569f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "w.view.mouseUpAction = {\n\targ view, x, y, mod, but, clicks;\n\tpostln(\"mouse up: \" ++ x ++ \" , \" ++ y );\n};",
+      "expected_cleaned_sha256": "162931b0536cbcdcb8346a61770e0c1f18a60e5e23c35e95aee81c64d6612895",
+      "language": "supercollider",
+      "raw_comment": "/*\nw.view.mouseUpAction = {\n\targ view, x, y, mod, but, clicks;\n\tpostln(\"mouse up: \" ++ x ++ \" , \" ++ y );\n};\n*/",
+      "raw_sha256": "61d2e83bb6db91eac566e985d08f806239dc2b7a2d65652451681a36eb8bb503",
+      "raw_utf8_length": 111,
+      "source_provenance": {
+        "source_excerpt_sha256": "6818eae79c45ea6d844d1216ec60d33c9bd5ab91aa288026c6d986c4aa0e949c",
+        "source_id": "4f5fedb963c6a20b95b0929dedbf77d5ec5dfb7d"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "9558fd2aada2bcd1dd217e589029ec6cadbf58ff129c46fcc7b7672285da125b",
+      "case_id": "supercollider-nested-ad9446f40a31e7d9",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "var env, s;\ns=Server.default;\n//\nenv = Env.sine(1,1);\nGrainEnv.hanningEnv = Buffer.sendCollection(s, env.discretize, 1, action: {\n\t|buf|\n\tGrainEnv.hanningEnv=buf;\n\t\"hanningEnv created\".postln;\n});",
+      "expected_cleaned_sha256": "37de89df9e39f33ec73b7bcee342eab56cb22869d20562fd7e4e147aad5a2ec7",
+      "language": "supercollider",
+      "raw_comment": "/*var env, s;\n\t\ts=Server.default;\n\t\t//\n\t\tenv = Env.sine(1,1);\n\t\tGrainEnv.hanningEnv = Buffer.sendCollection(s, env.discretize, 1, action: {\n\t\t\t|buf|\n\t\t\tGrainEnv.hanningEnv=buf;\n\t\t\t\"hanningEnv created\".postln;\n\t\t});\n\t\t*/",
+      "raw_sha256": "36c6568bba7fcdf4b19b2c8c47f852c96e61a6ca2b87a1f9af8644fc06985e97",
+      "raw_utf8_length": 219,
+      "source_provenance": {
+        "source_excerpt_sha256": "06f0894c32b25b5321bf0179405b6241d2bd0ce6365c5ddd771c715544890831",
+        "source_id": "79b688baeaa93ff16af3a2aad3b18ed733209979"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "3e26f19b69bfc7267fd71f4b7cc90e7ffc5f3e6b430c14f7d3e40f82b0d1ddef",
+      "case_id": "supercollider-nested-c792677afeb50802",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(\n  ratio: 2,\n  rq: 0.01\n),",
+      "expected_cleaned_sha256": "73d91decbd8f5e841ed33b4a67a8eacd0719de837199798acbfb62de5251fa8e",
+      "language": "supercollider",
+      "raw_comment": "/*(\n          ratio: 2,\n          rq: 0.01\n        ),*/",
+      "raw_sha256": "cc01db2a8254a14c3e3cbe3ee806e1c38578da60c5424cb48e93188c5f8b9cb6",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "3fcb4974560c51ab0baf8e8780681f4b7f399b9c4998855cde57427d4484ab46",
+        "source_id": "b03ea5961d5aa0f7258f0ee69c61d13f3ebaaf3f"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

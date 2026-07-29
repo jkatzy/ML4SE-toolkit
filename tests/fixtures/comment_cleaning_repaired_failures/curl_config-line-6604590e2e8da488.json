@@ -1,0 +1,38 @@
+{
+  "case_id": "curl_config-line-6604590e2e8da488",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "curl_config",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "858491bfb9822b8788e9f10fb3af116a155fb8e98448374b0e6143922680f549",
+      "utf8_length": 13
+    },
+    "manifest_old_output": {
+      "sha256": "2cf7c6a785660435ca08e8b8351e6e3b755fa912d7c0c32404674812bf804053",
+      "utf8_length": 11
+    },
+    "raw_comment": {
+      "sha256": "7ba17dacafc5c2c2d66ab3c99dda57179f2e5402ddcf4d357f6e90e4a4770c7e",
+      "utf8_length": 47
+    },
+    "recommended_expected_output": {
+      "sha256": "2cf7c6a785660435ca08e8b8351e6e3b755fa912d7c0c32404674812bf804053",
+      "utf8_length": 11
+    }
+  },
+  "regression": {
+    "expected_output": "cURL config",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "###############\n# cURL config #\n###############"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "758f0a95088369c3cb44c4b208696381cb5cc8248dc08499796adcd7fb545aff",
+    "source_id": "593f376e9b43cbf6075904dab142154decf21531"
+  },
+  "source_record_sha256": "36d645fc52d2ff5cf884a8128173f2d7e1f7a0e8c93ab0d1af2f9e77caa0cdf5"
+}

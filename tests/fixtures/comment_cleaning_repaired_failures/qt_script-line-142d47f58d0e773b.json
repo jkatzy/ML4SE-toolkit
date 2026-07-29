@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-142d47f58d0e773b",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c2be29bbd4f65b98d751db231c2e7b0a1da3d848094b97a1759972f2ee2f5795",
+      "utf8_length": 16
+    },
+    "manifest_old_output": {
+      "sha256": "fc992a0cb0b8151f1922d3d387e5f259654acd10d521967c71557b93255bcfc1",
+      "utf8_length": 14
+    },
+    "raw_comment": {
+      "sha256": "dba34ac5f95da62bdc34b331f449052c33578d3adaf9412be0f11789395efe2f",
+      "utf8_length": 133
+    },
+    "recommended_expected_output": {
+      "sha256": "fc992a0cb0b8151f1922d3d387e5f259654acd10d521967c71557b93255bcfc1",
+      "utf8_length": 14
+    }
+  },
+  "regression": {
+    "expected_output": "BATCH_SERVIRED",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////////////////////////////\n//// BATCH_SERVIRED //////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3e96e39b7dce19e794736066a95653c4483814a8c287f8d9551b895d3dddceb9",
+    "source_id": "53dd00a84f081ca0b983d179dd7f54a0a3c4faea"
+  },
+  "source_record_sha256": "7aa7f5c590decdbc7bfeb0cb6ce7736800c4724aaec62cb684b85b90f8b55dfd"
+}

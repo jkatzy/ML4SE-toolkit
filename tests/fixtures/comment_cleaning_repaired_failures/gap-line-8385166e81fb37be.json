@@ -1,0 +1,38 @@
+{
+  "case_id": "gap-line-8385166e81fb37be",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "gap",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "76a324e71694875e560a1b069e0cff7af2b62de7286a93ff1c78a397a7a67e8a",
+      "utf8_length": 176
+    },
+    "manifest_old_output": {
+      "sha256": "76a324e71694875e560a1b069e0cff7af2b62de7286a93ff1c78a397a7a67e8a",
+      "utf8_length": 176
+    },
+    "raw_comment": {
+      "sha256": "983b3055c8c021b48394f7475438bee96a16d81a2363d08704feb0e2bd612a8a",
+      "utf8_length": 352
+    },
+    "recommended_expected_output": {
+      "sha256": "76a324e71694875e560a1b069e0cff7af2b62de7286a93ff1c78a397a7a67e8a",
+      "utf8_length": 176
+    }
+  },
+  "regression": {
+    "expected_output": "                                             ToricSheaves package\n\nCopyright 2016, Sebastian Gutsche, Universit\u00e4t Siegen\n                Sebastian Posur,   Universit\u00e4t Siegen",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#############################################################################\n##\n##                                               ToricSheaves package\n##\n##  Copyright 2016, Sebastian Gutsche, Universit\u00e4t Siegen\n##                  Sebastian Posur,   Universit\u00e4t Siegen\n##\n#############################################################################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "726ff35258bde21f6c8977fbba51feee7253123d503ec58d05949b0d262b664e",
+    "source_id": "f2838bc3057121675d4e0fb04be54ffd3f14f13c"
+  },
+  "source_record_sha256": "cc9b18b52c83f2fab31af32c6a648c52843b0acd16f6c69cf2b597e266a2ced3"
+}

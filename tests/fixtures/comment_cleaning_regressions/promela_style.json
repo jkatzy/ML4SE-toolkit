@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "promela_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "7495fdf0573f416328233661393e9b02c1269e50213295e8797caefb32b6e0bc",
+      "case_id": "promela-block-0107db9716b95b6e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Propriet\u00e0 : se una richiesta di servizio fallisce allora la localit\u00e0 del damage non \u00e8 servita dal servizio\nrichiesto (garage oppure truck).",
+      "expected_cleaned_sha256": "78fb50f5a148b100b2df0ba7747df80bb60ae9fff50a699c61cdbd0e14576e93",
+      "language": "promela",
+      "raw_comment": "/** Propriet\u00e0 : se una richiesta di servizio fallisce allora la localit\u00e0 del damage non \u00e8 servita dal servizio\n        richiesto (garage oppure truck). */",
+      "raw_sha256": "eb0f80009ca179fa8a0f8807caa55a721c7034f26b09b12140f73d05bbffce8b",
+      "raw_utf8_length": 157,
+      "source_provenance": {
+        "source_excerpt_sha256": "75ea6a6c012e5c5aac46dcf52e10f96bac50c9de9be540f92414184476d43fae",
+        "source_id": "992339889d07cc196f7f9c051dd98c2ecbd55c58"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "96c48835ebd6150b785e6cb78efd5cded3e2ad7e4175d0c6543cc1b0a26605e1",
+      "case_id": "promela-block-0f7e52c3be110625",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Dolev, Klawe & Rodeh for leader election in unidirectional ring\n`An O(n log n) unidirectional distributed algorithm for extrema\nfinding in a circle,'  J. of Algs, Vol 3. (1982), pp. 245-260\n\nRandomized initialization added -- Feb 17, 1997",
+      "expected_cleaned_sha256": "10366bf7d2fff9de04800af619409e80f897bd080f960687be19160b215987dc",
+      "language": "promela",
+      "raw_comment": "/* Dolev, Klawe & Rodeh for leader election in unidirectional ring\n * `An O(n log n) unidirectional distributed algorithm for extrema\n * finding in a circle,'  J. of Algs, Vol 3. (1982), pp. 245-260\n\n * Randomized initialization added -- Feb 17, 1997\n */",
+      "raw_sha256": "689a69c463913be7006b0dc0bd2ff2a588e40d0dc514bf45a191fdb904a048c3",
+      "raw_utf8_length": 254,
+      "source_provenance": {
+        "source_excerpt_sha256": "3a2c884b2472682e85c9829e9e923b4f24550e734fd107b179b3e469c3197c16",
+        "source_id": "8dbc9fc2b72b0857addc3593ca82347510c341bc"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "16098355f5eb90766305777c96f2a71c4c4cac1e6bedeb00e420ba73e6123ed5",
+      "case_id": "promela-block-65d207d401ceb302",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<copyright>\nCopyright (c) 2014 Carnegie Mellon University. All Rights Reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions\nare met:\n\n1. Redistributions of source code must retain the above copyright\nnotice, this list of conditions and the following acknowledgments\nand disclaimers.\n\n2. Redistributions in binary form must reproduce the above\ncopyright notice, this list of conditions and the following\ndisclaimer in the documentation and/or other materials provided\nwith the distribution.\n\n3. The names \"Carnegie Mellon University,\" \"SEI\" and/or \"Software\nEngineering Institute\" shall not be used to endorse or promote\nproducts derived from this software without prior written\npermission. For written permission, please contact\npermission@sei.cmu.edu.\n\n4. Products derived from this software may not be called \"SEI\" nor\nmay \"SEI\" appear in their names without prior written permission of\npermission@sei.cmu.edu.\n\n5. Redistributions of any form whatsoever must retain the following\nacknowledgment:\n\nThis material is based upon work funded and supported by the\nDepartment of Defense under Contract No. FA8721-05-C-0003 with\nCarnegie Mellon University for the operation of the Software\nEngineering Institute, a federally funded research and development\ncenter.\n\nAny opinions, findings and conclusions or recommendations expressed\nin this material are those of the author(s) and do not necessarily\nreflect the views of the United States Department of Defense.\n\nNO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE\nENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN \"AS-IS\"\nBASIS. CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,\nEITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT NOT\nLIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR MERCHANTABILITY,\nEXCLUSIVITY, OR RESULTS OBTAINED FROM USE OF THE MATERIAL. CARNEGIE\nMELLON UNIVERSITY DOES NOT MAKE ANY WARRANTY OF ANY KIND WITH\nRESPECT TO FREEDOM FROM PATENT, TRADEMARK, OR COPYRIGHT\nINFRINGEMENT.\n\nThis material has been approved for public release and unlimited\ndistribution.\n\nDM-0001534\n\n</copyright>",
+      "expected_cleaned_sha256": "0a8c30c4dc64a9fabbdeeba6bfe84cd5b4779a615a9f7f2f6ef1b02508ef24ae",
+      "language": "promela",
+      "raw_comment": "/** <copyright>\n * Copyright (c) 2014 Carnegie Mellon University. All Rights Reserved.\n\n * Redistribution and use in source and binary forms, with or without\n * modification, are permitted provided that the following conditions\n * are met:\n\n * 1. Redistributions of source code must retain the above copyright\n * notice, this list of conditions and the following acknowledgments\n * and disclaimers.\n\n * 2. Redistributions in binary form must reproduce the above\n * copyright notice, this list of conditions and the following\n * disclaimer in the documentation and/or other materials provided\n * with the distribution.\n\n * 3. The names \"Carnegie Mellon University,\" \"SEI\" and/or \"Software\n * Engineering Institute\" shall not be used to endorse or promote\n * products derived from this software without prior written\n * permission. For written permission, please contact\n * permission@sei.cmu.edu.\n\n * 4. Products derived from this software may not be called \"SEI\" nor\n * may \"SEI\" appear in their names without prior written permission of\n * permission@sei.cmu.edu.\n\n * 5. Redistributions of any form whatsoever must retain the following\n * acknowledgment:\n\n * This material is based upon work funded and supported by the\n * Department of Defense under Contract No. FA8721-05-C-0003 with\n * Carnegie Mellon University for the operation of the Software\n * Engineering Institute, a federally funded research and development\n * center.\n\n * Any opinions, findings and conclusions or recommendations expressed\n * in this material are those of the author(s) and do not necessarily\n * reflect the views of the United States Department of Defense.\n\n * NO WARRANTY. THIS CARNEGIE MELLON UNIVERSITY AND SOFTWARE\n * ENGINEERING INSTITUTE MATERIAL IS FURNISHED ON AN \"AS-IS\"\n * BASIS. CARNEGIE MELLON UNIVERSITY MAKES NO WARRANTIES OF ANY KIND,\n * EITHER EXPRESSED OR IMPLIED, AS TO ANY MATTER INCLUDING, BUT NOT\n * LIMITED TO, WARRANTY OF FITNESS FOR PURPOSE OR MERCHANTABILITY,\n * EXCLUSIVITY, OR RESULTS OBTAINED FROM USE OF THE MATERIAL. CARNEGIE\n * MELLON UNIVERSITY DOES NOT MAKE ANY WARRANTY OF ANY KIND WITH\n * RESPECT TO FREEDOM FROM PATENT, TRADEMARK, OR COPYRIGHT\n * INFRINGEMENT.\n\n * This material has been approved for public release and unlimited\n * distribution.\n\n * DM-0001534\n\n </copyright> **/",
+      "raw_sha256": "f8d02f26cd70404a10b24d6c7e2be0bb7ddc18bd1827f86bddc207234f23ef19",
+      "raw_utf8_length": 2298,
+      "source_provenance": {
+        "source_excerpt_sha256": "97ea5ab8ce59844fdd931b5d61efe8d017a793af9d34d83d94759f77ba617598",
+        "source_id": "d57cba39fe022207600571c735b5b94eb8507ab9"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

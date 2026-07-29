@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-75f1073d85856630",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "23547b585f1e01aa65092d1d47eff92ba436ef84634abaa00d4c12b1bcc557cf",
+      "utf8_length": 147
+    },
+    "manifest_old_output": {
+      "sha256": "e5adad7bd2ff384bf025faf26277e8733e9ea0e42c7e43173fba4489cfaf1621",
+      "utf8_length": 143
+    },
+    "raw_comment": {
+      "sha256": "4415a10da449531cc07b5160be8f5686b44c13b03b50e2bedb91e9b5514b1574",
+      "utf8_length": 155
+    },
+    "recommended_expected_output": {
+      "sha256": "e5adad7bd2ff384bf025faf26277e8733e9ea0e42c7e43173fba4489cfaf1621",
+      "utf8_length": 143
+    }
+  },
+  "regression": {
+    "expected_output": "Manage state about what is currently playing, who is currently subscribed\nto that information, and sending timeline information to subscribers.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'*\n'* Manage state about what is currently playing, who is currently subscribed\n'* to that information, and sending timeline information to subscribers.\n'*"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "cf029e09698c4ff040b78a41a8e7f0981d94b472c9317ad7a7987a11c9d756ce",
+    "source_id": "fbd7f4e90bafec362f42011aa0c048919f4c59f0"
+  },
+  "source_record_sha256": "a8bf8c67cba1184b9a7cfb9d06066aa39b0737aa768d911fab38d221c85758a5"
+}

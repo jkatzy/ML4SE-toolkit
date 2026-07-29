@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "shen_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "bc2815de691ba2c2b644faf5f0af3af07862365a223115cb293d79b9820d7082",
+      "case_id": "shen-block-2ffc0cc8e6ccf849",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "I attach the code for a mathlib file,containing the following functions\n\nabs       absolute value\nfmod      x mod y or more explicitly, if y is non-zero, the value x - i*y\n          is returned, where i is an integer such that the result is 0, or\n          has the same sign as x and magnitude less than the magnitude of y.\n          If y is 0, an error occurs.\nexp                   e to the power x\nsinh, cosh, tanh      hyperbolic sine, cosine and tangent functions\nsqrt_                 (there already is' sqrt' in Qi) square root of\n                      x for non-negative x\nlog, log10            natural logarithm and base 10 logarithm\nsin, cos, tan         the trigonometric functions sine, cosine and tangent\nasin, acos, atan      the inverse trigonometric functions arcsin, arccos and arctan.               The angles returned are in radians.\n\nthere is also expt which computes x to the power y (where meaningful).",
+      "expected_cleaned_sha256": "24ccd9764eecdb4bdc85a72bc169d16cd9c6a062161ed4ae725a522b4240bc43",
+      "language": "shen",
+      "raw_comment": "\\* I attach the code for a mathlib file,containing the following functions\r\n \r\nabs       absolute value\r\nfmod      x mod y or more explicitly, if y is non-zero, the value x - i*y \r\n          is returned, where i is an integer such that the result is 0, or \r\n          has the same sign as x and magnitude less than the magnitude of y.\r\n          If y is 0, an error occurs.\r\nexp                   e to the power x \r\nsinh, cosh, tanh      hyperbolic sine, cosine and tangent functions\r\nsqrt_                 (there already is' sqrt' in Qi) square root of \r\n                      x for non-negative x\r\nlog, log10            natural logarithm and base 10 logarithm\r\nsin, cos, tan         the trigonometric functions sine, cosine and tangent\r\nasin, acos, atan      the inverse trigonometric functions arcsin, arccos and arctan.               The angles returned are in radians.\r\n \r\nthere is also expt which computes x to the power y (where meaningful).*\\",
+      "raw_sha256": "1414b885a5100ffb680edbd4d8498febb8484bb6431d7f47ce49cdcfbd2120c3",
+      "raw_utf8_length": 950,
+      "source_provenance": {
+        "source_excerpt_sha256": "7e02b2ff661bb08c64766f0e41a59ce0bd08259f2e76ea2bc3fba85fc3c4da4b",
+        "source_id": "ce9f1ec23c5beed77828fde6793c0f435228a34d"
+      },
+      "syntax_label": "\\*...*\\"
+    },
+    {
+      "baseline_cleaned_sha256": "ad4b53f819b957bf1e3b14d3f0024405c6f7ae27db90e5818fba8e3c6a4cfd62",
+      "case_id": "shen-block-4c23214f6dd17393",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2010-2011 Ramil Farkhshatov\n\ndefstruct is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\ndefstruct is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with defstruct.  If not, see <http://www.gnu.org/licenses/>.\n\nDescription\n===========\ndefstruct allows defining typed records stored for efficiency as vectors.\n\nThe following example\n\n  (defstruct person\n    (name string)\n    (last-name string)\n    (gender symbol)\n    (age number))\n\ndefines a constructor:\n\n  mk-person : (string --> string --> symbol --> number --> person)\n\nsetters:\n\n  person-name-> : (person --> string --> person)\n  person-last-name-> : (person --> string --> person)\n  person-gender-> : (person --> symbol --> person)\n  person-age-> : (person --> number --> person)\n\naccessors:\n\n  person-name : (person --> string)\n  person-last-name : (person --> string)\n  person-gender : (person --> symbol)\n  person-age: (person --> number)",
+      "expected_cleaned_sha256": "8b7e0ceea0302b20bc6c3ebda0d51e87ef61ae7cfcbcdcc044fcf426a7f9e828",
+      "language": "shen",
+      "raw_comment": "\\* Copyright 2010-2011 Ramil Farkhshatov\n\ndefstruct is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.\n\ndefstruct is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with defstruct.  If not, see <http://www.gnu.org/licenses/>.\n\nDescription\n===========\ndefstruct allows defining typed records stored for efficiency as vectors.\n\nThe following example\n\n  (defstruct person\n    (name string)\n    (last-name string)\n    (gender symbol)\n    (age number))\n\ndefines a constructor:\n\n  mk-person : (string --> string --> symbol --> number --> person)\n\nsetters:\n\n  person-name-> : (person --> string --> person)\n  person-last-name-> : (person --> string --> person)\n  person-gender-> : (person --> symbol --> person)\n  person-age-> : (person --> number --> person)\n\naccessors:\n\n  person-name : (person --> string)\n  person-last-name : (person --> string)\n  person-gender : (person --> symbol)\n  person-age: (person --> number)\n\n*\\",
+      "raw_sha256": "045c7321cbd1f8bc500bdd9b26cb906076cfd5340af50a8a19a33454bfd07ecf",
+      "raw_utf8_length": 1337,
+      "source_provenance": {
+        "source_excerpt_sha256": "0a6cfe7f2017a5f05b73f626437e70875cef3a872dd629962ae0b69983e2684c",
+        "source_id": "b6a3d87c5797566c9037bfe5e605e6b1a4f134ce"
+      },
+      "syntax_label": "\\*...*\\"
+    }
+  ],
+  "schema_version": 5
+}

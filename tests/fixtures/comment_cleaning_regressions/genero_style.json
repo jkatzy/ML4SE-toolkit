@@ -1,0 +1,91 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "genero_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "80bbfd4f44d8d9c94717caaf4084cc84eda2a5ddf98d6f1c7257b2c58eb84ebd",
+      "case_id": "genero-line-914abaeaf18fce7b",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "genero",
+      "oracle_exception_record_sha256": "ae78bfcd27a5b3d0ab2bd9a457b7099b2ecb2f4a5fe559c115d7f7c288fded85",
+      "raw_sha256": "ae0c0366742c08d542a674548d3c09612fb0a4b5200523ef46974ca66b1f8843",
+      "raw_utf8_length": 8147,
+      "source_provenance": {
+        "source_excerpt_sha256": "a167ddbed0e5bf1e4ee55af35a9f56518916d9806e505549e6a349055fa6a024",
+        "source_id": "a41cd9e0122f704f8c7c8a054042967d6ce6c08c"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "6b5f32f1679ea9314a9485f5fe4e30c45068bc67345af9f03161644496d3f33f",
+      "case_id": "genero-line-b75081a55b79022e",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "genero",
+      "oracle_exception_record_sha256": "fbc821080f303ac6f7481245140baae7d73cfb0f87b70990baf55dac0d33bcf2",
+      "raw_sha256": "cce75a356d1dcbb71a9c86d0768d95c71b4b7651f124eea96b12b643db0cd422",
+      "raw_utf8_length": 170,
+      "source_provenance": {
+        "source_excerpt_sha256": "22a68d79935b27dc9f5e81847dac2252f9a03ded89c185fb8a21994d4f591aea",
+        "source_id": "c28d0c4cc575139df78a41929665c1076241be22"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "8ecf5a3f69df3b5b7abe37fd72d8a89b6209f3fba32f90023bc678150ec986e6",
+      "case_id": "genero-line-bcd57451d2ebc8f6",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "genero",
+      "oracle_exception_record_sha256": "5455d2f7156ea4014f8255ceaf2e94a62c28c14164045f46a623fbfa5dde7ba6",
+      "raw_sha256": "1a174beb36d86176ce619bf5e712a209df15df881cfed8dfa57b7144e38f63b4",
+      "raw_utf8_length": 4489,
+      "source_provenance": {
+        "source_excerpt_sha256": "590c00327fd134d1a395f1ef236d0ce2c4a0ecbe78b5c62ad2fd40d39c8987ff",
+        "source_id": "815c3e432d3148b7f7eebca52b0e582139a0ecbb"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "363a881bf7123017c6fc4c390284ecf55bac16e8cc052ce198c74fd70c9fad33",
+      "case_id": "genero-line-104e774995e1ecc5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Aubit SQL Access Program ASQL\nCopyright (c) 2003-5 Aubit Computing Ltd\nProduction of this software was sponsored by\n                Cassens Transport Company\nThis program is free software; you can redistribute it and/or modify\nit under the terms of one of the following licenses:\n\n A) the GNU General Public License as published by the Free Software\n    Foundation; either version 2 of the License, or (at your option)\n    any later version.\n\n B) the Aubit License as published by the Aubit Development Team and\n    included in the distribution in the file: LICENSE\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of both licenses referred to here.\nIf you did not, or have any questions about Aubit licensing, please\ncontact afalout@ihug.co.nz",
+      "expected_cleaned_sha256": "a6aa9264f996129b688ec2258c9e38ba9cc2e46ce3634dd275c52d03a5e4c4c7",
+      "language": "genero",
+      "raw_comment": "# +----------------------------------------------------------------------+\n# | Aubit SQL Access Program ASQL                                        |\n# +----------------------------------------------------------------------+\n# | Copyright (c) 2003-5 Aubit Computing Ltd                             |\n# +----------------------------------------------------------------------+\n# | Production of this software was sponsored by                         |\n# |                 Cassens Transport Company                            |\n# +----------------------------------------------------------------------+\n# | This program is free software; you can redistribute it and/or modify |\n# | it under the terms of one of the following licenses:                 |\n# |                                                                      |\n# |  A) the GNU General Public License as published by the Free Software |\n# |     Foundation; either version 2 of the License, or (at your option) |\n# |     any later version.                                               |\n# |                                                                      |\n# |  B) the Aubit License as published by the Aubit Development Team and |\n# |     included in the distribution in the file: LICENSE                |\n# |                                                                      |\n# | This program is distributed in the hope that it will be useful,      |\n# | but WITHOUT ANY WARRANTY; without even the implied warranty of       |\n# | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |\n# | GNU General Public License for more details.                         |\n# |                                                                      |\n# | You should have received a copy of both licenses referred to here.   |\n# | If you did not, or have any questions about Aubit licensing, please  |\n# | contact afalout@ihug.co.nz                                           |\n# +----------------------------------------------------------------------+",
+      "raw_sha256": "42968276a7bb71087908685b68aa80c695d6da7adcbde7e9dd06b409c560e676",
+      "raw_utf8_length": 2024,
+      "source_provenance": {
+        "source_excerpt_sha256": "80566575a98f33209795771f7fd38a5aff5224e33c2f97029763f7057c516a16",
+        "source_id": "9feea285c7b1ebbfa9986d0ce359f3738377b180"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "0ffede8fc4f8dd8c86272fd4ed531f84932fe9c6d005aec0277dc77c8e944da1",
+      "case_id": "genero-line-d9436cb8c45dd87a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Prog. Version..: '5.25.02-11.03.23(00000)'\n\nPattern name...: axmt620.4gl\nDescriptions...: \u51fa\u8ca8\u55ae\u7dad\u8b77\u4f5c\u696d\nDate & Author..: 95/01/05 By Roger\nModify.........: No.FUN-4A0081 05/08/09 By saki \u6307\u5b9a\u55ae\u64da\u7de8\u865f\u3001\u57f7\u884c\u529f\u80fd\nModify.........: No.TQC-640011 06/03/01 By echo \u5c07\u55ae\u865fcahr(10)\u653e\u5927\u81f3char(16)\nModify.........: No.FUN-680137 06/09/04 By flowld \u6b04\u4f4d\u578b\u614b\u5b9a\u7fa9,\u6539\u70baLIKE\nModify.........: No.FUN-6A0094 06/10/25 By yjkhero l_time\u8f49g_time\nModify.........: No.FUN-710016 07/01/19 By kim GP3.6 \u884c\u696d\u5225\u67b6\u69cb\nModify.........: No.FUN-730018 07/03/28 By kim \u884c\u696d\u5225\u67b6\u69cb\nModify.........: No.FUN-7C0017 08/02/20 By bnlent axmt620.4gl-> axmt620.src.4gl\nModify.........: No.FUN-840012 08/10/08 By kim mBarcode \u529f\u80fd\u4fee\u6539\nModify.........: No.FUN-960007 09/06/03 By chenmoyan global\u6a94\u5167\u6c92\u6709\u5b9a\u7fa9rowid\u8b8a\u91cf\nModify.........: No.FUN-980030 09/08/31 By Hiko \u52a0\u4e0aGP5.2\u7684\u76f8\u95dc\u8a2d\u5b9a\nModify.........: No.TQC-A10080 10/01/10 By destiny \u53d6\u8d27\u673a\u6784\u8c03\u6574\u4e3anoentry\nModify.........: No:CHI-A40068 10/05/26 By Summer \u8b8a\u66f4\"\u4e32\u67e5button\u771f\u6b63\u5c0d\u61c9\u7684\u7a0b\u5f0f\nModify.........: No.FUN-A60035 10/07/09 By hongmei \u884c\u4e1a\u522b\u67b6\u6784",
+      "expected_cleaned_sha256": "cfb172df48a0d29c0660dc7bdf4b8acbf3ab09b2fdf205304eff3be9e0c6c626",
+      "language": "genero",
+      "raw_comment": "# Prog. Version..: '5.25.02-11.03.23(00000)'     #\n#\n# Pattern name...: axmt620.4gl\n# Descriptions...: \u51fa\u8ca8\u55ae\u7dad\u8b77\u4f5c\u696d\n# Date & Author..: 95/01/05 By Roger\n# Modify.........: No.FUN-4A0081 05/08/09 By saki \u6307\u5b9a\u55ae\u64da\u7de8\u865f\u3001\u57f7\u884c\u529f\u80fd\n# Modify.........: No.TQC-640011 06/03/01 By echo \u5c07\u55ae\u865fcahr(10)\u653e\u5927\u81f3char(16)\n# Modify.........: No.FUN-680137 06/09/04 By flowld \u6b04\u4f4d\u578b\u614b\u5b9a\u7fa9,\u6539\u70baLIKE\n# Modify.........: No.FUN-6A0094 06/10/25 By yjkhero l_time\u8f49g_time\n# Modify.........: No.FUN-710016 07/01/19 By kim GP3.6 \u884c\u696d\u5225\u67b6\u69cb\n# Modify.........: No.FUN-730018 07/03/28 By kim \u884c\u696d\u5225\u67b6\u69cb\n# Modify.........: No.FUN-7C0017 08/02/20 By bnlent axmt620.4gl-> axmt620.src.4gl \n# Modify.........: No.FUN-840012 08/10/08 By kim mBarcode \u529f\u80fd\u4fee\u6539\n# Modify.........: No.FUN-960007 09/06/03 By chenmoyan global\u6a94\u5167\u6c92\u6709\u5b9a\u7fa9rowid\u8b8a\u91cf\n# Modify.........: No.FUN-980030 09/08/31 By Hiko \u52a0\u4e0aGP5.2\u7684\u76f8\u95dc\u8a2d\u5b9a\n# Modify.........: No.TQC-A10080 10/01/10 By destiny \u53d6\u8d27\u673a\u6784\u8c03\u6574\u4e3anoentry\n# Modify.........: No:CHI-A40068 10/05/26 By Summer \u8b8a\u66f4\"\u4e32\u67e5button\u771f\u6b63\u5c0d\u61c9\u7684\u7a0b\u5f0f\n# Modify.........: No.FUN-A60035 10/07/09 By hongmei \u884c\u4e1a\u522b\u67b6\u6784",
+      "raw_sha256": "7fd2110798b58fad55c6514150fcf55f22551e24b7d75a8740aac6362d12dd9a",
+      "raw_utf8_length": 1183,
+      "source_provenance": {
+        "source_excerpt_sha256": "fe932726b4eeca56879fab9b3d484f1e0ef5943fb101741782050b04c56fd87d",
+        "source_id": "0b49b6a5e656a7162b89f5567802a8c31201e9cc"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

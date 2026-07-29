@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-1cc3c23b2b83e2d2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "02269b0d7fab138b1117a7224d0640f4bf12b5df936756c4d1d80d16c2646d26",
+      "utf8_length": 12
+    },
+    "manifest_old_output": {
+      "sha256": "b6ad42bfa16fb17ff966773d36dbb740d6821c3060adbbc4c9ab4d25375f8c31",
+      "utf8_length": 10
+    },
+    "raw_comment": {
+      "sha256": "1855275c5c1b2a012a47ea751751fbdf51639cbae4c60724fd853a947a244fff",
+      "utf8_length": 129
+    },
+    "recommended_expected_output": {
+      "sha256": "b6ad42bfa16fb17ff966773d36dbb740d6821c3060adbbc4c9ab4d25375f8c31",
+      "utf8_length": 10
+    }
+  },
+  "regression": {
+    "expected_output": "ENVIO MAIL",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// ENVIO MAIL ///////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6a33b4687f9e8693bbc304430cf3cf426a2c761bd1c390a0c3e17f9f87d1e2bb",
+    "source_id": "a5ac6c8ffd9c3d6e4c402d9cd8193c9045305abb"
+  },
+  "source_record_sha256": "f9212f4b8e241ffae0ca4e02e3f76da880120284e782e63df43e6d13e706581c"
+}

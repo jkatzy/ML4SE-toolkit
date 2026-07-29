@@ -1,0 +1,38 @@
+{
+  "case_id": "nextflow-block-df75740a07a6b407",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u007e",
+  "disposition": "executable_regression",
+  "language": "nextflow",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b2ff74fb5d30b8fbc5d2d9fbd46ae04b9473bb1181706c822e84257bd7bdc766",
+      "utf8_length": 273
+    },
+    "manifest_old_output": {
+      "sha256": "3ab5275d4abc779d8f308e59270fd7bfc17dc89831aed233a6a3d1b29a81c846",
+      "utf8_length": 184
+    },
+    "raw_comment": {
+      "sha256": "4f2541966f7a7444aa3cb984247b989ec92a59cf4508099c82e7c8bd2430dede",
+      "utf8_length": 368
+    },
+    "recommended_expected_output": {
+      "sha256": "3ab5275d4abc779d8f308e59270fd7bfc17dc89831aed233a6a3d1b29a81c846",
+      "utf8_length": 184
+    }
+  },
+  "regression": {
+    "expected_output": "    nf-core/rnavar Nextflow config file\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    Default config options for all compute environments",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    nf-core/rnavar Nextflow config file\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    Default config options for all compute environments\n----------------------------------------------------------------------------------------\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2bd1fb325efc5187a9875c6ec76cc167bc1d991c37cdbdd7b3c1f5b06063c3d1",
+    "source_id": "47f697758d880f498d36a0a3e69b9c8019ae6feb"
+  },
+  "source_record_sha256": "ec4dbe99dabc87c385a692449dc50180a7928e019b030da30124a61681a0a4b6"
+}

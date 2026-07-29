@@ -1,0 +1,832 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "nested_star_only_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "bbb42e76b15da073b5a3ae4b3ef8c6c2a0f651550ef9636e96a7a3512d88f19d",
+      "case_id": "isabelle-nested-694c385ec0b465a1",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "isabelle",
+      "oracle_exception_record_sha256": "9595e6543b254166b6ed88dc1e56ed703d60aa1e746de6531c146af802ee1500",
+      "raw_sha256": "a730bee50ac249fda40a475acf5ab4f11f075e356a4fd44c28f2a2f51a67f1ca",
+      "raw_utf8_length": 144,
+      "source_provenance": {
+        "source_excerpt_sha256": "7246d9d1f03bf459ad248b4450442397a8d5677b241158c91b14fd9b9a4c5e96",
+        "source_id": "7a8256e766d7a4338a6792da32b5a65f501d9baf"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e31bc81e34ccba1111254c761f8b70e104d4a3dcca8d07954144055a9aada74b",
+      "case_id": "isabelle-nested-709245fdd19ad2a3",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "isabelle",
+      "oracle_exception_record_sha256": "7404d829c8024738d71a6d73884fb88b34637c3706116b49b696d6dad4d7e868",
+      "raw_sha256": "a21a82d931648335214d92fc60535bf7606ced862ed4c94700aabcc226e817b6",
+      "raw_utf8_length": 199,
+      "source_provenance": {
+        "source_excerpt_sha256": "c1c0ab9fb84886a9a734ecbf16ae88fadd607b2c67c6b4ddd84175b56f0fa21f",
+        "source_id": "6de6e405927158254723b3bed7544baa1570fa27"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "fa339a9d53bce0f23019342c72b98494460f7c93211bb355c9fd1be1a90fb100",
+      "case_id": "isabelle-nested-a03873058b42dd69",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "isabelle",
+      "oracle_exception_record_sha256": "460787265e617998092bc02a7be4028ee124ceb59282d157c852887ae578ed24",
+      "raw_sha256": "59bdac07827d09139ea344a6bd6fa11a59d515c56c28a2e84ac243ae83e6c2fa",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "ba6d7e71e700d66f4e799a7121bcebe2c998d7149007f1241a6b98444d517ea2",
+        "source_id": "a7883d45d0f9ff742bec5cf6d1ed7489d4acbed7"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "00eba042e3ee563de158978e143043b6093e58affeaef399ec29ae32f2ebac2a",
+      "case_id": "isabelle-nested-a13f5e33ecbdd201",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "isabelle",
+      "oracle_exception_record_sha256": "f03720f1cb3f70028320cade5542fdfc54068ef015e9734a7f5850ede673d9ad",
+      "raw_sha256": "ec3e0eafcdbffe0606b6c2dfba69aa872e23332a9202330ebd46124e56375eff",
+      "raw_utf8_length": 547,
+      "source_provenance": {
+        "source_excerpt_sha256": "6407d1556d0d611069d0c743d58f5fe9f4bd505fecc5e4e7cf30083197f5d1b1",
+        "source_id": "cad8d251232c1afe9859ac461ad08b58ef985c7d"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "03a4fb992b5ec66f1a054ef76df9ff7dd4159c477b459dc25917bfbce2d65e67",
+      "case_id": "modula_2-nested-345ec821e22858f7",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "modula_2",
+      "oracle_exception_record_sha256": "9c2880dd4bfe9fb02ef599ae020d4f33815a5b4ca701a4613f02d885bce3c8bf",
+      "raw_sha256": "815e7a0f4dcd8f7bb22fda713804d28878ca40ce71454da039a1febe6351960a",
+      "raw_utf8_length": 200,
+      "source_provenance": {
+        "source_excerpt_sha256": "60dd0ee10a44a7d666c1262a23a7230ff720325d5446a93d1fb2a2ec4a77301f",
+        "source_id": "07a88a511bdc10c638bd6e9f83fa2fb24de278ed"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "9b78ea0ab32f7f1bb17ae3c4b82821571f5fefcf2c8d3afff385d243eb2c245f",
+      "case_id": "modula_2-nested-4f5f83c623379bea",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "modula_2",
+      "oracle_exception_record_sha256": "c94446d93a825469648cf21d7ab8b1b85b751310a84dbf8eed8654d600af623c",
+      "raw_sha256": "a64a22889c49a675c80b055c332b517e6049c2752d691b0dca9a464d915db660",
+      "raw_utf8_length": 47,
+      "source_provenance": {
+        "source_excerpt_sha256": "83d7530272046bc2c5fb3eca5d7c953dee6362f4189cbbd3069466113cda2c91",
+        "source_id": "3d02c011696c35290529dce2e95c10ecc1ea624c"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "a06b6d8e5613c26b31f164102c392e719cd87bffef1fd9ac94a730b8557a9ca0",
+      "case_id": "modula_2-nested-538247e9e154b989",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "modula_2",
+      "oracle_exception_record_sha256": "2113b9ac485c6bd0cd84b10d559fd9c2f8d0e9d87b1af8e9f5e9015d0e3a26d3",
+      "raw_sha256": "3f63f111a2bb8dfd944759810d67ab84eaa3435c87f4b79e562d7d1263273294",
+      "raw_utf8_length": 66,
+      "source_provenance": {
+        "source_excerpt_sha256": "24c86f9364d306e7e57c6a17103f8763e9b0ce75d1ed0cd0bac4bdfc88c14070",
+        "source_id": "473a19b50d8e14954a4138e422fe4d8cfee06799"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "2121537d52bb2eebedf852885749144030adb9278b0cf042e91dbad1174d9285",
+      "case_id": "modula_2-nested-bef354805db9165a",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "modula_2",
+      "oracle_exception_record_sha256": "534f587b40df777f570efcf26d0b37d005433c21f807562f56ed863f7e2da149",
+      "raw_sha256": "d1a149f43e7a2506b33fb1e9b377a145676702f95f8fcc29d6c0d0446d6058f2",
+      "raw_utf8_length": 156,
+      "source_provenance": {
+        "source_excerpt_sha256": "17a94ea90640b3c490d9db98153044d6fdb66f5dae66562cbb38afe8ddfcbdd0",
+        "source_id": "a4aed6a83ac887dfada1d38e4bb57eb484b8de14"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "2121537d52bb2eebedf852885749144030adb9278b0cf042e91dbad1174d9285",
+      "case_id": "modula_2-nested-c7bd9c6cb8b3a319",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "modula_2",
+      "oracle_exception_record_sha256": "264c19ae189a6432e763422ea1b4909d27a77c627ce023f8e9992c177862e143",
+      "raw_sha256": "d1a149f43e7a2506b33fb1e9b377a145676702f95f8fcc29d6c0d0446d6058f2",
+      "raw_utf8_length": 156,
+      "source_provenance": {
+        "source_excerpt_sha256": "05aebdd428ea7877dc5db09434eb19044ec602ce12226f4fa29bab4eb4ebc904",
+        "source_id": "a4a1af030b7911518365e7e59ec927284e6a5c39"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "875a77bb1c50bdcc4dd1d32aa1eea065205b77fb858181c6d79c5303e451a8a4",
+      "case_id": "modula_2-nested-cba03f6fe75eb932",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "modula_2",
+      "oracle_exception_record_sha256": "dd957449e4617bbcef3706b79f425a3bafa2056c86b5c31f23f4ae5a0fdc5fd4",
+      "raw_sha256": "c4a983f961c2b73840614e62e717833e6d12f9d521e33ede30624262091874a4",
+      "raw_utf8_length": 2827,
+      "source_provenance": {
+        "source_excerpt_sha256": "43f80b9d3e8faffc88b750b672c3ecdfd1f342d5be48dec87de4c4e78a5b7648",
+        "source_id": "0dfdb1b9cf4cdc2fb963c864a246f0133b34a1b7"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "bad729ddae7c0c01a972026f55ed349d38550cf7cdc0f2e1d72ff5b893f4b60b",
+      "case_id": "augeas-nested-2cd696d9208f5b0e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Other tests that aren't supported yet\noverflow.description=\\\n  just wanted to indent it",
+      "expected_cleaned_sha256": "06c1db84385e0be0fb3eae3873b9caf9fbe2cfc136d03ff6c11b99cedf3a16f3",
+      "language": "augeas",
+      "raw_comment": "(* Other tests that aren't supported yet\noverflow.description=\\\n  just wanted to indent it\n*)",
+      "raw_sha256": "52065f111e4e75c027e0f3bdfc2bd84e86f69cdc2740ba3649727792a9098eeb",
+      "raw_utf8_length": 93,
+      "source_provenance": {
+        "source_excerpt_sha256": "81c7e4c2f1d6efa5fa9af7ba20bd80ee1c6a685a5a4a5c82637c3831793c21d9",
+        "source_id": "5adeba1a901a428826c0d88262cb9c574da317cc"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "aa4057b74a8755390f763caa9e95c77f97544aec294f1513db964c625cee9496",
+      "case_id": "augeas-nested-3a3e78a88b7f769e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Apache HTTPD lens for Augeas\n\nAuthors:\n  David Lutterkort <lutter@redhat.com>\n  Francis Giraldeau <francis.giraldeau@usherbrooke.ca>\n  Raphael Pinson <raphink@gmail.com>\n\nAbout: Reference\n  Online Apache configuration manual: https://httpd.apache.org/docs/trunk/\n\nAbout: License\n    This file is licensed under the LGPL v2+.\n\nAbout: Lens Usage\n  Sample usage of this lens in augtool\n\n  Apache configuration is represented by two main structures, nested sections\n  and directives. Sections are used as labels, while directives are kept as a\n  value. Sections and directives can have positional arguments inside values\n  of \"arg\" nodes. Arguments of sections must be the firsts child of the\n  section node.\n\n  This lens doesn't support automatic string quoting. Hence, the string must\n  be quoted when containing a space.\n\n  Create a new VirtualHost section with one directive:\n  > clear /files/etc/apache2/sites-available/foo/VirtualHost\n  > set /files/etc/apache2/sites-available/foo/VirtualHost/arg \"172.16.0.1:80\"\n  > set /files/etc/apache2/sites-available/foo/VirtualHost/directive \"ServerAdmin\"\n  > set /files/etc/apache2/sites-available/foo/VirtualHost/*[self::directive=\"ServerAdmin\"]/arg \"admin@example.com\"\n\nAbout: Configuration files\n  This lens applies to files in /etc/httpd and /etc/apache2. See <filter>.",
+      "expected_cleaned_sha256": "5998147dda21b7a26d9218362f1cb9c22da0bc16ab9cdd697ab316e31f6a79f1",
+      "language": "augeas",
+      "raw_comment": "(* Apache HTTPD lens for Augeas\n\nAuthors:\n  David Lutterkort <lutter@redhat.com>\n  Francis Giraldeau <francis.giraldeau@usherbrooke.ca>\n  Raphael Pinson <raphink@gmail.com>\n\nAbout: Reference\n  Online Apache configuration manual: https://httpd.apache.org/docs/trunk/\n\nAbout: License\n    This file is licensed under the LGPL v2+.\n\nAbout: Lens Usage\n  Sample usage of this lens in augtool\n\n  Apache configuration is represented by two main structures, nested sections\n  and directives. Sections are used as labels, while directives are kept as a\n  value. Sections and directives can have positional arguments inside values\n  of \"arg\" nodes. Arguments of sections must be the firsts child of the\n  section node.\n\n  This lens doesn't support automatic string quoting. Hence, the string must\n  be quoted when containing a space.\n\n  Create a new VirtualHost section with one directive:\n  > clear /files/etc/apache2/sites-available/foo/VirtualHost\n  > set /files/etc/apache2/sites-available/foo/VirtualHost/arg \"172.16.0.1:80\"\n  > set /files/etc/apache2/sites-available/foo/VirtualHost/directive \"ServerAdmin\"\n  > set /files/etc/apache2/sites-available/foo/VirtualHost/*[self::directive=\"ServerAdmin\"]/arg \"admin@example.com\"\n\nAbout: Configuration files\n  This lens applies to files in /etc/httpd and /etc/apache2. See <filter>.\n\n*)",
+      "raw_sha256": "65e3bbc152593339436d691e67b0eb3698de7fe15094399a61c787077d929f10",
+      "raw_utf8_length": 1324,
+      "source_provenance": {
+        "source_excerpt_sha256": "462a44150baf00089dae9a855f211a11f2312f6f7955b5e86a356f0be22c4d34",
+        "source_id": "d8dbc6957d2457d014ff96876a37e215e8be6146"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "6b6504b753b686c1de8d49f5fc03c671abaaf88211bea672a0dcefffd8ff0c4e",
+      "case_id": "component_pascal-nested-0a1ab32e9eeebd66",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Windows",
+      "expected_cleaned_sha256": "d598026a9cbc60505f138ce53ac78088d582100c196d0f70c7e2538d4a8d7e10",
+      "language": "component_pascal",
+      "raw_comment": "(** Windows *)",
+      "raw_sha256": "381ab8fa23cc235b1a2cde4bc0c1ed9c4ad09c7271262516aa7b4e418945cd92",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "b251628d50fd410a0384b6c0e7ebaf821b1ec085a4d19ac34786267822ccdc1e",
+        "source_id": "1f10527f9b15725d5572d2cbd06d49e471156429"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "c142de0015bf3bb961666d27fd28b3716aa445238ee7c6e87bdf0652cd9fe8ce",
+      "case_id": "component_pascal-nested-a8e90fca36f642c2",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Find file with given name in current directory",
+      "expected_cleaned_sha256": "92ab15981b48544b18f05f30b459328ba9c1a6aaabf37d9005aadf4c6b338683",
+      "language": "component_pascal",
+      "raw_comment": "(** Find file with given name in current directory *)",
+      "raw_sha256": "21474fb94bed6382cd8d37a16d16ffb7e39dfb8a2ae706fc6c1cbd8310b66228",
+      "raw_utf8_length": 53,
+      "source_provenance": {
+        "source_excerpt_sha256": "23178bca0a85cfbd6aa562eb5d0c94da3d0961edd10a0df352e068abe4428419",
+        "source_id": "5493643e79ac51aa89746d081f2f4dacae3dee83"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "ee508e833175037df532456ccb0fbb6adcc5b674e4f24d0fc3b5717b225c61df",
+      "case_id": "ebnf-nested-5f6c70a467c12bcf",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "RTScriptC\n\nA version of the C language adapted for realtime scripting purpose\n\n\"Name\"    = 'RTDynamicC'\n\"Version\" = '2011'\n\"Author\"  = 'Objectis SA'\n\"About\"   = 'A version of the C language adapted for realtime scripting purpose.'\n\n\"Case Sensitive\" = true\n\"Start Symbol\"   = <Decls>",
+      "expected_cleaned_sha256": "fdd7a8965aaf6959e9f89732eba70972eed64ec1cf8e3fcbb777188d03eaeadc",
+      "language": "ebnf",
+      "raw_comment": "(*\n! -----------------------------------------------------------------------\n! RTScriptC\n!\n! A version of the C language adapted for realtime scripting purpose\n! -----------------------------------------------------------------------\n\n\"Name\"    = 'RTDynamicC'\n\"Version\" = '2011'\n\"Author\"  = 'Objectis SA'\n\"About\"   = 'A version of the C language adapted for realtime scripting purpose.'\n\n\"Case Sensitive\" = true\n\"Start Symbol\"   = <Decls>\n*)",
+      "raw_sha256": "7c6bc2f4aa45f8a415427f5a2658a476aa893b3299cc013a47ed421607005cc8",
+      "raw_utf8_length": 441,
+      "source_provenance": {
+        "source_excerpt_sha256": "78adf6653e60f81171a432265cff2c3831ba7f2e126ce69501d2afe45be15c80",
+        "source_id": "e1c972e5fc1175f6301bff4fb9cdd1e302623414"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e27b09560d34330d62c78fdaf3708c5b65a92463ceac6e0308df672abd01ff25",
+      "case_id": "ebnf-nested-985948e153e6c146",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Level 0 (ISO 8601 Profile)",
+      "expected_cleaned_sha256": "1f32f30600c89708296c8801f5a121da0b574c8d62d86945d36c63630e15bc02",
+      "language": "ebnf",
+      "raw_comment": "(* ******************** Level 0 (ISO 8601 Profile) ******************** *)",
+      "raw_sha256": "d1e9446191abcc022f06999eb2fee361d5b08c9f9b9ea418829d48c85aec702e",
+      "raw_utf8_length": 74,
+      "source_provenance": {
+        "source_excerpt_sha256": "13c4af74faf016bdd522c9b8c2b41010dacabadece80be91f95f8d70f39a073d",
+        "source_id": "8cbf182d6e918b6cd645f69ebb1d77e5c558f405"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "bbb42e76b15da073b5a3ae4b3ef8c6c2a0f651550ef9636e96a7a3512d88f19d",
+      "case_id": "isabelle-nested-2470e41b5e88862f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Title:      HOL/Proofs/ex/XML_Data.thy\n    Author:     Makarius\n    Author:     Stefan Berghofer\n\nXML data representation of proof terms.",
+      "expected_cleaned_sha256": "e3c2028390a1c9ed4faac2e09773d1aad80b18f343e734f75a912488e632f044",
+      "language": "isabelle",
+      "raw_comment": "(*  Title:      HOL/Proofs/ex/XML_Data.thy\n    Author:     Makarius\n    Author:     Stefan Berghofer\n\nXML data representation of proof terms.\n*)",
+      "raw_sha256": "a730bee50ac249fda40a475acf5ab4f11f075e356a4fd44c28f2a2f51a67f1ca",
+      "raw_utf8_length": 144,
+      "source_provenance": {
+        "source_excerpt_sha256": "7915ad884ad6a22329df76c76b42f0c1ea2c8a826ca9626366b14d8facf521ee",
+        "source_id": "a91b00ac4fbcab1592fb52f29c72b95f4826a759"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "bfc39f2681a618124446651626fd644d9f6f92b562a7f9417efc513eca717852",
+      "case_id": "isabelle-nested-54fe98762dd4bd13",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Title:      ZF/Univ.thy\n    Author:     Lawrence C Paulson, Cambridge University Computer Laboratory\n    Copyright   1992  University of Cambridge\n\nStandard notation for Vset(i) is V(i), but users might want V for a\nvariable.\n\nNOTE: univ(A) could be a translation; would simplify many proofs!\n  But Ind_Syntax.univ refers to the constant \"Univ.univ\"",
+      "expected_cleaned_sha256": "8138225576a15bb520ef3da5c209df19a894a9ba688b310c4c583cc36ff46af2",
+      "language": "isabelle",
+      "raw_comment": "(*  Title:      ZF/Univ.thy\n    Author:     Lawrence C Paulson, Cambridge University Computer Laboratory\n    Copyright   1992  University of Cambridge\n\nStandard notation for Vset(i) is V(i), but users might want V for a\nvariable.\n\nNOTE: univ(A) could be a translation; would simplify many proofs!\n  But Ind_Syntax.univ refers to the constant \"Univ.univ\"\n*)",
+      "raw_sha256": "f92d4ecac6527b0bbd486809144df19653156cab91ea275f07b1944b10680f1e",
+      "raw_utf8_length": 356,
+      "source_provenance": {
+        "source_excerpt_sha256": "c46a315177c54e23ca4dbaa64b4e02941fb7bd191b2472b807e83032470716ab",
+        "source_id": "0d7d3f6d224b0453240d037eb17fdfbbd2ee3597"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "91b94eb9ceda837d61c2061734143053e8b0435c44adcda5889ec5365c0af10e",
+      "case_id": "isabelle-nested-ad835c3ebc797f0b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Exercise 2.1. Use the value command to evaluate the following expressions:\n\"1 + (2::nat )\", \"1 + (2::int )\", \"1 \u2212 (2::nat )\" and \"1 \u2212 (2::int )\".",
+      "expected_cleaned_sha256": "3e1639c06d8ec84216390f309755a1e9b78c656cdafc5555a7052517782747b3",
+      "language": "isabelle",
+      "raw_comment": "(* Exercise 2.1. Use the value command to evaluate the following expressions:\n\"1 + (2::nat )\", \"1 + (2::int )\", \"1 \u2212 (2::nat )\" and \"1 \u2212 (2::int )\". *)",
+      "raw_sha256": "67a0b3b51e90afeab2cce2ec72597d2af7b796eb18b69a182b978cb2b45817da",
+      "raw_utf8_length": 155,
+      "source_provenance": {
+        "source_excerpt_sha256": "49a430c4f7cf83b066f25cf5a9e53fb1d95bffe79baf6fe68f010d24f228431b",
+        "source_id": "a534215058849ca97654d26dea83b97ddc8aca8a"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "7dbce246253d98c047281bac5f645dab0934daa2c48a6365a2aa0d2a7f1e834b",
+      "case_id": "isabelle-nested-f4d64694e00102d0",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "isabelle",
+      "raw_comment": "(******************************************************************************)",
+      "raw_sha256": "cfe476a2b289d67b3f2bae5949f1b5035e00dc9dd9eca142e6d036f0f6ed86d3",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "5935026944fb1fa3f93c8e69d357bcbceb9dd160c37bec4f7968f6e3cd0fcc86",
+        "source_id": "b6f5dda85cd2f2a7eee2795643762a2cfe4b32c0"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "60452dbaf97e05ad9e94e47b255cc24e35b94370d211fb6ce9cb00bbb2cbc64e",
+      "case_id": "isabelle_root-nested-42ab95114bf276dd",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Datatypes",
+      "expected_cleaned_sha256": "cbe4ffe620982478bd99d2d7615b427b5a46617967d6f463a7a4c24c1c29cc84",
+      "language": "isabelle_root",
+      "raw_comment": "(** Datatypes **)",
+      "raw_sha256": "46edd49a8cfe74f56d79c000562e5dbd45e0a52b9dd6ebee3ce695b904c89bda",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "8b45729d51a3efd9699b2806493f9ffa6a985aabe231e51d34306727455f7b5f",
+        "source_id": "14b315afede71c83bdc085827b816e637728c0af"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "7dbce246253d98c047281bac5f645dab0934daa2c48a6365a2aa0d2a7f1e834b",
+      "case_id": "isabelle_root-nested-5077fd1d51a6d17a",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "isabelle_root",
+      "raw_comment": "(******************************************************************************)",
+      "raw_sha256": "cfe476a2b289d67b3f2bae5949f1b5035e00dc9dd9eca142e6d036f0f6ed86d3",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "1477a0301327e910e29cb8f379b8ebc06c3ba0d82681c71092273172b479aec3",
+        "source_id": "2f0983d8a3c2a72d39f555372d3c589b1ccafe41"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "7dbce246253d98c047281bac5f645dab0934daa2c48a6365a2aa0d2a7f1e834b",
+      "case_id": "isabelle_root-nested-5507b3907ffbec9f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "isabelle_root",
+      "raw_comment": "(******************************************************************************)",
+      "raw_sha256": "cfe476a2b289d67b3f2bae5949f1b5035e00dc9dd9eca142e6d036f0f6ed86d3",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "480d4a0183c136232c0a5740168e10a1bbe1bb74138cfe7c8942e368d8baf538",
+        "source_id": "63b5a1adc7418efefb138e53b903cabc656016f6"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "60452dbaf97e05ad9e94e47b255cc24e35b94370d211fb6ce9cb00bbb2cbc64e",
+      "case_id": "isabelle_root-nested-b0e297cd8834be9d",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Datatypes",
+      "expected_cleaned_sha256": "cbe4ffe620982478bd99d2d7615b427b5a46617967d6f463a7a4c24c1c29cc84",
+      "language": "isabelle_root",
+      "raw_comment": "(** Datatypes **)",
+      "raw_sha256": "46edd49a8cfe74f56d79c000562e5dbd45e0a52b9dd6ebee3ce695b904c89bda",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "d68bf7fe785f312261fb562273e57b5526c82938b5f3a94139b2047863e33845",
+        "source_id": "b3a85bfd923aa46c1528137331db9541af106203"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "7dbce246253d98c047281bac5f645dab0934daa2c48a6365a2aa0d2a7f1e834b",
+      "case_id": "isabelle_root-nested-f7512d19511bd02a",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "isabelle_root",
+      "raw_comment": "(******************************************************************************)",
+      "raw_sha256": "cfe476a2b289d67b3f2bae5949f1b5035e00dc9dd9eca142e6d036f0f6ed86d3",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "52fd103887737fd7c0815a4c72366f051cf7dd3c776dd05d9b183e67f1f00227",
+        "source_id": "3a3c2a1d0d779d894bde55dbbcbb746410765fb5"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e4acb09b4d103b4b9ca8010bb2128fbbd1fc21e9854212d13f897614a8887145",
+      "case_id": "modula_2-nested-02ade4849426ecaa",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AUTHOR \"\"; PURPOSE \"\";",
+      "expected_cleaned_sha256": "bb80846173f9e6da59c9e87fdd72b314145e9fc2e21d8d9854b7e4a8f9e7dcc6",
+      "language": "modula_2",
+      "raw_comment": "(** AUTHOR \"\"; PURPOSE \"\"; *)",
+      "raw_sha256": "5e7f88c9369a3e382edb1845bfbe427bc3a78bb44999030ebe34afd80ee537af",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "e0c2eb7746f6da528a9d2e33ff6eac1127ff99964a5a63d2d9387602ece1d368",
+        "source_id": "cc95d702cc8ba94968d2614800e9825c8bff4a00"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e04cdd71dcac2fd2cdff3d25f2c89af19f47a40cc542e48ff44412bf17f59571",
+      "case_id": "modula_2-nested-1f86e783a970268b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "modula_2",
+      "raw_comment": "(****************************************************************************)",
+      "raw_sha256": "e5a1cb9f9485a5f48a4fcc394059dfbffcafe7ae6c4b57693b562de8d8a0d007",
+      "raw_utf8_length": 78,
+      "source_provenance": {
+        "source_excerpt_sha256": "f4fd00b0f646125b542fbfdcb2d2eea6ffb329c86f460e9cdf07cefa32df9e88",
+        "source_id": "e808605415dfb5a3c8475837b812d0eacae7dbae"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "4154b9d2cb4959e88aaaf1d29d154a9d52402770ed2303efdeb1f60148531488",
+      "case_id": "modula_2-nested-474dd2d0e6bb4540",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "modula_2",
+      "raw_comment": "(****************************************************************)",
+      "raw_sha256": "99192a49fa1282b2a3f612627cefde4f9051074b877f2e48db8297c1b5e04c6f",
+      "raw_utf8_length": 66,
+      "source_provenance": {
+        "source_excerpt_sha256": "a1878c2e1eff0cffbe7283a956e6db8a98efbef01522d42918c27e5f03889716",
+        "source_id": "9a891092b5cf476623dd06a796b708af61e89d2f"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "2121537d52bb2eebedf852885749144030adb9278b0cf042e91dbad1174d9285",
+      "case_id": "modula_2-nested-6e0063a18710410d",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "ETH Oberon, Copyright 1990-2003 Computer Systems Institute, ETH Zurich, CH-8092 Zurich.\nRefer to the license.txt file provided with this distribution.",
+      "expected_cleaned_sha256": "6ae61cdb4704398728645f9b6fd331cc38df4c09a2d046d3f4ea9b609b5eda75",
+      "language": "modula_2",
+      "raw_comment": "(* ETH Oberon, Copyright 1990-2003 Computer Systems Institute, ETH Zurich, CH-8092 Zurich.\nRefer to the license.txt file provided with this distribution. *)",
+      "raw_sha256": "d1a149f43e7a2506b33fb1e9b377a145676702f95f8fcc29d6c0d0446d6058f2",
+      "raw_utf8_length": 156,
+      "source_provenance": {
+        "source_excerpt_sha256": "8ac51d9301f6981dcb9f92b23d8e99043506c9c02c4cc3d130b167cb96b7c035",
+        "source_id": "36c8893690f9fb94a667960a72493b46d829c520"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "4f91d511a8729b64e5ef36595cb66e3c932a9e4487bd908b1b97bdafa9432f3e",
+      "case_id": "modula_2-nested-7378d030881033ac",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Maximum path length",
+      "expected_cleaned_sha256": "a1f5e79122bbb7603b9df02f979714ca7bf84eb8a88b0786be78c931f5237736",
+      "language": "modula_2",
+      "raw_comment": "(** Maximum path length *)",
+      "raw_sha256": "d536561eee9e3af33d9304ceea8fce739ddb6a2f1dc19619a577714a7915d74b",
+      "raw_utf8_length": 26,
+      "source_provenance": {
+        "source_excerpt_sha256": "24c0c91d317a99039d2458ad938a8614e6fcf63f29ad6d36f9327246e8427fc3",
+        "source_id": "b8a6c0f6ffa13dbd247b7fcbe554fc8a77da5f00"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "541d210e7d9c838f90eb1bc566ac963d8df02b11faf1f713bec82925a7df5133",
+      "case_id": "modula_2-nested-8330778dd348ab18",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AUTHOR \"fnecati\"; PURPOSE \"OpenAL effects library \";",
+      "expected_cleaned_sha256": "aff162ef1ed4b07982f000ce723765c7dcd9c99a80e19c793534ebe7e2ff2c31",
+      "language": "modula_2",
+      "raw_comment": "(** AUTHOR \"fnecati\"; PURPOSE \"OpenAL effects library \"; *)",
+      "raw_sha256": "1fcae6b0d72c3cd87589a77a4ca7d01996dfe31865b45e61930920462bdff69b",
+      "raw_utf8_length": 59,
+      "source_provenance": {
+        "source_excerpt_sha256": "999d93308afcd34a156b0bb34bd90ab70b050e19cbacd643d8758ba4d3cbb185",
+        "source_id": "896cdba07e3a26da1a3bb2ea7d852c4c290a2984"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e04cdd71dcac2fd2cdff3d25f2c89af19f47a40cc542e48ff44412bf17f59571",
+      "case_id": "modula_2-nested-a79c376b995808d7",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "modula_2",
+      "raw_comment": "(****************************************************************************)",
+      "raw_sha256": "e5a1cb9f9485a5f48a4fcc394059dfbffcafe7ae6c4b57693b562de8d8a0d007",
+      "raw_utf8_length": 78,
+      "source_provenance": {
+        "source_excerpt_sha256": "9732831cdc53db877f2d878bae84496247d5c611dfeabf8978a757365d3c0ea4",
+        "source_id": "6d0bb04d24026bf5806fca32de1d1b29b98ff319"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "4154b9d2cb4959e88aaaf1d29d154a9d52402770ed2303efdeb1f60148531488",
+      "case_id": "modula_2-nested-bb915a237a4f1084",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "modula_2",
+      "raw_comment": "(****************************************************************)",
+      "raw_sha256": "99192a49fa1282b2a3f612627cefde4f9051074b877f2e48db8297c1b5e04c6f",
+      "raw_utf8_length": 66,
+      "source_provenance": {
+        "source_excerpt_sha256": "0a566e727e4acfbc8cf109b8e37cd1616f73bc6b929dfe00d455fb57949b9212",
+        "source_id": "46b5dc7dd32335d3fdd142a30f331857c56a8645"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "9d019c067b706cffd51009f787d10fef454e76ea69bfbab8d3e74f4c335f1037",
+      "case_id": "modula_2-nested-d049c26ad8c9e064",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AUTHOR \"cplattner/staubesv\"; PURPOSE \"USB Universal Host Controller Driver\"",
+      "expected_cleaned_sha256": "bba734ce8974cf863ed55bf645886309c0f8369d8fa2a7bb78a5a0dfdfb74fb7",
+      "language": "modula_2",
+      "raw_comment": "(** AUTHOR \"cplattner/staubesv\"; PURPOSE \"USB Universal Host Controller Driver\" *)",
+      "raw_sha256": "a7214313f859ea4c3457382aad2e9e0ac0d42ed70d936ea1b4a9fe0255a75204",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "c6abf410b951252fca6bedabd57ba1c03b2e57a3e065be2681de599250f87912",
+        "source_id": "09b5f80a8c6b1b7b61a8c5114491c5d3253ea21e"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1b76f6023942bb0dc0dee2cf0b9381543e0b2eb6c7133ca2025723e9ab4cae8d",
+      "case_id": "modula_2-nested-e58811e93e0ced70",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AUTHOR \"fnecati\"; PURPOSE \"OpenCL1.2 utilities\";",
+      "expected_cleaned_sha256": "53a6fe0c72c5c578be51ad89f50cf83a34aae7c8f8c45dcdbb4e56ce96b7c00f",
+      "language": "modula_2",
+      "raw_comment": "(** AUTHOR \"fnecati\"; PURPOSE \"OpenCL1.2 utilities\"; *)",
+      "raw_sha256": "a18ea0626789a749ed1fc55e3629ca022528983211afe92c55a98959bf047ae3",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "995a438ef3a95b621f203cb0a5c36024da326c4771870c74ceeb1655f6052365",
+        "source_id": "1c99c10f8f04ef1697862f4960ea44e17fea7048"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "8a96ab9430711751ccdc7c088e130a6f461fbbc13a2b59c55b850718e31c7da7",
+      "case_id": "standard_ml-nested-021fce689bad6393",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2008, Adam Chlipala\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n- Redistributions of source code must retain the above copyright notice,\n  this list of conditions and the following disclaimer.\n- Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n- The names of contributors may not be used to endorse or promote products\n  derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE\nLIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\nSUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\nINTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\nCONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE.",
+      "expected_cleaned_sha256": "4081bbbdbd76628b8043ba37100a3ca337876a559d74682cf29af1e075f3f23c",
+      "language": "standard_ml",
+      "raw_comment": "(* Copyright (c) 2008, Adam Chlipala\n * All rights reserved.\n *\n * Redistribution and use in source and binary forms, with or without\n * modification, are permitted provided that the following conditions are met:\n *\n * - Redistributions of source code must retain the above copyright notice,\n *   this list of conditions and the following disclaimer.\n * - Redistributions in binary form must reproduce the above copyright notice,\n *   this list of conditions and the following disclaimer in the documentation\n *   and/or other materials provided with the distribution.\n * - The names of contributors may not be used to endorse or promote products\n *   derived from this software without specific prior written permission.\n *\n * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\n * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\n * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE\n * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR \n * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\n * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\n * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n * POSSIBILITY OF SUCH DAMAGE.\n *)",
+      "raw_sha256": "f57749626631782bda8e141fbfa07cecca5f212aa5f04eca650e0a45524ca70e",
+      "raw_utf8_length": 1517,
+      "source_provenance": {
+        "source_excerpt_sha256": "bda972b2f546393d8f2a825789a84826f2a646563983bccf15001dd88c76d2f2",
+        "source_id": "9b4af755862747ff5a8f4a1bcaa1040ac5dcce54"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "0a7fc6e26f26fc3b820fc0b93f74b179f8ae8c995e80a06b387f93d0b6078c1d",
+      "case_id": "standard_ml-nested-209c1ae5e719e7b4",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Taken from Andrew Appel's public domain source code of the Tiger\nCompiler listed in _Modern Compiler Implementation in ML_",
+      "expected_cleaned_sha256": "a01e241e0f6961aeff1d6b178489ba32b9a22ff904adaac291d5428a5d4866e6",
+      "language": "standard_ml",
+      "raw_comment": "(* Taken from Andrew Appel's public domain source code of the Tiger\n * Compiler listed in _Modern Compiler Implementation in ML_ *)",
+      "raw_sha256": "f759bc9183f2677b027e03907e77cd19e8b61852ad8bf63927f575daa9d26fae",
+      "raw_utf8_length": 131,
+      "source_provenance": {
+        "source_excerpt_sha256": "03f72abd82d01ffef7cf729230e4db7fc863bcd89ac4aa998a61c18e1afc123f",
+        "source_id": "6fa4b511be95c3a19d9a8eafca41f31a8fa24f91"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "006098ee1cabf4658de5002c6395395ec01faa61af617e3f1134fba21d4eed8b",
+      "case_id": "standard_ml-nested-610b929e7e345e89",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2007-2008 SSH Communications Security, Helsinki, Finland\n\nThis code is released under the MLton license, a BSD-style license.\nSee the LICENSE file or http://mlton.org/License for details.",
+      "expected_cleaned_sha256": "6b3675a23977de39c511cd5fac8784726383286cac6104a21d3e933d6c1e7730",
+      "language": "standard_ml",
+      "raw_comment": "(* Copyright (C) 2007-2008 SSH Communications Security, Helsinki, Finland\n *\n * This code is released under the MLton license, a BSD-style license.\n * See the LICENSE file or http://mlton.org/License for details.\n *)",
+      "raw_sha256": "0cc1c696281449236df4261677dbdd82ed398c2fc3bb8ba9355bf67cb51e3601",
+      "raw_utf8_length": 216,
+      "source_provenance": {
+        "source_excerpt_sha256": "615e4b6f6d9e269673f44a597a5bf78a3775b43c841099ab45906d516cef542e",
+        "source_id": "6c8a64ee1cecde52d7299f00dd5886bb3c7f3ad9"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "e2cb65db90d876fafc1c415c496fa2c4f55ed04deb83c3ed93a801fbf0d9b2ec",
+      "case_id": "standard_ml-nested-7831fd6fbcc236a8",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pgraph.sml\n\n(C) 2001 Lucent Technologies, Bell Labs\n\nA list-of-edges representation of the dependency graph.\n\nauthor: Matthias Blume (blume@research.bell-labs.com)",
+      "expected_cleaned_sha256": "4ccdf817c8d2fab5bc25ea9a3f615a78fc9d7286712f99ed4ae0e3daf9dd9581",
+      "language": "standard_ml",
+      "raw_comment": "(* pgraph.sml\n *\n * (C) 2001 Lucent Technologies, Bell Labs\n *\n * A list-of-edges representation of the dependency graph.\n *\n * author: Matthias Blume (blume@research.bell-labs.com)\n *)",
+      "raw_sha256": "ed9ee53254cee855aa0579dac5dd2b6719f5e7c5fedb1c70ead35b11a6bdb57d",
+      "raw_utf8_length": 185,
+      "source_provenance": {
+        "source_excerpt_sha256": "2b815025e1c214e85f6adc664e067e8c4e73d25dbaa71971b03f602c7b9d5806",
+        "source_id": "af6cc482ee6958ac77f6e919a7d5f04ff6c078e1"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "7dbce246253d98c047281bac5f645dab0934daa2c48a6365a2aa0d2a7f1e834b",
+      "case_id": "standard_ml-nested-7f2f41573f0e7df9",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "standard_ml",
+      "raw_comment": "(******************************************************************************)",
+      "raw_sha256": "cfe476a2b289d67b3f2bae5949f1b5035e00dc9dd9eca142e6d036f0f6ed86d3",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "7dd19014ed2ad64633184a6e387fedb978345a2066aaca7853dad43fa72e39dc",
+        "source_id": "dac5bcb6b1be7e3655ed7178af0f001906162b25"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "8d6fdd0893b7b312c0d465d4b9503292d042c2ac783aa2fc6930cf45dbb4366a",
+      "case_id": "standard_ml-nested-9d74fe985d1cabca",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "mipsebvis.sml\n\nCOPYRIGHT (c) 1996 Bell Laboratories.",
+      "expected_cleaned_sha256": "5d72e7133f21b1200ebbe3754af69aa4cb6cc156bc4a844c0c7cb7edc4964295",
+      "language": "standard_ml",
+      "raw_comment": "(* mipsebvis.sml\n *\n * COPYRIGHT (c) 1996 Bell Laboratories.\n *\n *)",
+      "raw_sha256": "21db9dc9c121bafbaae57ef1f9026bdaa03f3de9a07624c71d0c5edd1213b59a",
+      "raw_utf8_length": 67,
+      "source_provenance": {
+        "source_excerpt_sha256": "4b5bdc5d295b0a2b2478dd67904252f987e339512a41aaf34bee00fb3cc18321",
+        "source_id": "dfebb15ba42be69b762e94f9a737e1c0a8b401fa"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "3a3d302aa20b52a8e30ff675530ffc141018061f7345d0990d40cf8a73532198",
+      "case_id": "standard_ml-nested-ae37810ebf13f956",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 1999-2006 Henry Cejtin, Matthew Fluet, Suresh\n   Jagannathan, and Stephen Weeks.\nCopyright (C) 1997-2000 NEC Research Institute.\n\nMLton is released under a BSD-style license.\nSee the file MLton-LICENSE for details.",
+      "expected_cleaned_sha256": "320d5dfb48e142a6078964ab977c8256f5a79a614a4a8c98b0ed9253b2b5eb0c",
+      "language": "standard_ml",
+      "raw_comment": "(* Copyright (C) 1999-2006 Henry Cejtin, Matthew Fluet, Suresh\n *    Jagannathan, and Stephen Weeks.\n * Copyright (C) 1997-2000 NEC Research Institute.\n *\n * MLton is released under a BSD-style license.\n * See the file MLton-LICENSE for details.\n *)",
+      "raw_sha256": "ee3b9cec6a91aaf18cca7d0f3df89a2049aec570d7dfde9b603ce89237d8f371",
+      "raw_utf8_length": 249,
+      "source_provenance": {
+        "source_excerpt_sha256": "17aaf190d3db7b08d6770ca88c04b6ac43076bab52267734ec6dc5434c53dcfd",
+        "source_id": "0f0d885c77eaac42053b097021bcb8899ae8eeef"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "9a297d79ba7ae40f59b95324def73aa7ba45ffcc575d2e6860cdc895c1f29791",
+      "case_id": "standard_ml-nested-c139fec50b0fac62",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Interview question, write a function of type:\nstring list -> string list list, which receives a list of strings and\nreturns these strings grouped into separate lists of those strings which\nare anagrams/permutations of each other.",
+      "expected_cleaned_sha256": "046a0b29eac1f0fdfddde0942a35a6c90c802aae2f91155e555be1c73dd5bd14",
+      "language": "standard_ml",
+      "raw_comment": "(* Interview question, write a function of type:\n * string list -> string list list, which receives a list of strings and\n * returns these strings grouped into separate lists of those strings which\n * are anagrams/permutations of each other. *)",
+      "raw_sha256": "2001e52f051e258f39d75a1d51f1ca042f2530cc3c0c02a5d2f9587bcacbbbf5",
+      "raw_utf8_length": 244,
+      "source_provenance": {
+        "source_excerpt_sha256": "e80a6d64c581d5bb46b5e3b224bb11b550822a96df3113a1013fbd1fb5da44cf",
+        "source_id": "0da274a383791aa326152e2da45a46eb872acd72"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "454d2b6e632aa568c16521016ea52c4012c740204d2acb94fcd073959cb131e7",
+      "case_id": "standard_ml-nested-c93e16c9e1a8fd05",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "An arity is the \"type\" that the underlying framework of ABTs assigns\nto operators. It contains two parts\n\n - The actual sort that the operator belongs to when it's fully applied.\n - The valence (sorts of bound symbols + sorts of bound variables + sort of term)\n   of each subterm of the operator\n\nAn operator is fully determined by its name + arity",
+      "expected_cleaned_sha256": "89f5ebd6b1da5b506fa4426d4d7212dbb5313171d843dd2392486f6355738121",
+      "language": "standard_ml",
+      "raw_comment": "(* An arity is the \"type\" that the underlying framework of ABTs assigns\n * to operators. It contains two parts\n *\n *  - The actual sort that the operator belongs to when it's fully applied.\n *  - The valence (sorts of bound symbols + sorts of bound variables + sort of term)\n *    of each subterm of the operator\n *\n * An operator is fully determined by its name + arity\n *)",
+      "raw_sha256": "0ff3ca8bff104316d502761a2b61e0a1254d57078fb786879a981745585c6a24",
+      "raw_utf8_length": 374,
+      "source_provenance": {
+        "source_excerpt_sha256": "fdce4b5b26fba0a3b0c3d7a9b4619b9c7214a1defa1a869372752b8712e42319",
+        "source_id": "21ae550e1a545b137f03761c7e204f0d72774e7e"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "1cb1308f75a8676e350fd1786d78476e2abafd686ffb149bdc49d26ab5098d65",
+      "case_id": "standard_ml-nested-f2306f2d6c5e360b",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "instruction.sml\n\nCOPYRIGHT (c) 1997 Bell Labs, Lucent Technologies.\n\nAn AST representation of reactive scripts.",
+      "expected_cleaned_sha256": "67636a2669720791509db0365abbbba1ffe14d116a9259d4eea963a5ab2ebf05",
+      "language": "standard_ml",
+      "raw_comment": "(* instruction.sml\n *\n * COPYRIGHT (c) 1997 Bell Labs, Lucent Technologies.\n *\n * An AST representation of reactive scripts.\n *)",
+      "raw_sha256": "27a58f45b11f10a577df3f1c9e257aadd7e08aae213b16626adaa30fb5a66180",
+      "raw_utf8_length": 128,
+      "source_provenance": {
+        "source_excerpt_sha256": "3989a5826c561d3b6da55ea9d409419ee316099d1964135b3974e55eeeba29ca",
+        "source_id": "5d137e638c4fec3b3c1f28e9dc131643bf3fd110"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "8aa6c1f4aafe701b93f3760cb7d1e93969cb812fd04c209e0d2755928343758e",
+      "case_id": "urweb-nested-255c1d45449c1546",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2008, Adam Chlipala\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n- Redistributions of source code must retain the above copyright notice,\n  this list of conditions and the following disclaimer.\n- Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n- The names of contributors may not be used to endorse or promote products\n  derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE\nLIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\nSUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\nINTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\nCONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE.\n\nModified September 2009 by Gian Perrone for use with Urblog from\nUr/Web 'Crud' example at:\nhttp://www.impredicative.com/ur/demo/",
+      "expected_cleaned_sha256": "6d9727c3e9a3c3dfe55b4ef740fbf5c1affae8673c527cf69ce1dc012ef91731",
+      "language": "urweb",
+      "raw_comment": "(* Copyright (c) 2008, Adam Chlipala\n * All rights reserved.\n *\n * Redistribution and use in source and binary forms, with or without\n * modification, are permitted provided that the following conditions are met:\n *\n * - Redistributions of source code must retain the above copyright notice,\n *   this list of conditions and the following disclaimer.\n * - Redistributions in binary form must reproduce the above copyright notice,\n *   this list of conditions and the following disclaimer in the documentation\n *   and/or other materials provided with the distribution.\n * - The names of contributors may not be used to endorse or promote products\n *   derived from this software without specific prior written permission.\n *\n * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\n * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\n * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE\n * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR \n * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\n * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\n * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n * POSSIBILITY OF SUCH DAMAGE.\n *\n * Modified September 2009 by Gian Perrone for use with Urblog from\n * Ur/Web 'Crud' example at:\n * http://www.impredicative.com/ur/demo/\n *)",
+      "raw_sha256": "45015d3af3a1b0504a8ccb0e32eabe322072ccb646b164317800d30b62e2b219",
+      "raw_utf8_length": 1658,
+      "source_provenance": {
+        "source_excerpt_sha256": "a7054e4d9f295db4bdea2e52cda31bd180d1a50992f47f3402399b338ed577f4",
+        "source_id": "11b14b0a0b247c337b48da0ab5786be5d041067d"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "6e4b65be76615157e50fa090609d9130decd330a6d87c91f2e8113e23b077b75",
+      "case_id": "urweb-nested-60137342905dea8c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "For some reason, supplying the sketches of constructor functions helps with\ntype inference.",
+      "expected_cleaned_sha256": "2c37cd35b48d822057ab717da6b1b0ec9fbe405ba12f4488d84646f35a77104f",
+      "language": "urweb",
+      "raw_comment": "(* For some reason, supplying the sketches of constructor functions helps with\ntype inference. *)",
+      "raw_sha256": "3bffaf4adf92e77f4530641adc758b6e700774d4db702c044b8b2a5b6bb12cfe",
+      "raw_utf8_length": 97,
+      "source_provenance": {
+        "source_excerpt_sha256": "df352983d6be7aa3bc1804a1f6a8de26efbdf0b6cf3fe1420254caf4985932a1",
+        "source_id": "a62b733f301d703863a2cf486d602e72541390b5"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "185b1c55f85e32d91c6fcc28b40782c31abd82072b5ce1048ae0fe56b246df01",
+      "case_id": "urweb-nested-d6eaadcefb136509",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Find a subject number amidst a line like this one:\n\"  6.887            Adv Topics in Computer Systems    (entire class list)\"",
+      "expected_cleaned_sha256": "adbe8af2e0ed89a2ad5ee72b51e438d6099a97cb25770755d00b89f2b28c4398",
+      "language": "urweb",
+      "raw_comment": "(* Find a subject number amidst a line like this one:\n     * \"  6.887            Adv Topics in Computer Systems    (entire class list)\" *)",
+      "raw_sha256": "a4c97bc6c9b68c172abb726b8117d534c0a5eb61ddd0403f128482fda93dfb2d",
+      "raw_utf8_length": 138,
+      "source_provenance": {
+        "source_excerpt_sha256": "6990c7409af927636d4827c8867b5ad9117f1ef6ab372020d0745a4703dedce5",
+        "source_id": "a15ca19a28b182c6986ba743dade259abe2de5c8"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "45aafe28f14788701defea9b638eda94cb8aa4508137cc1d075f25d27c620f06",
+      "case_id": "urweb-nested-de76a09f4d4cd03e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Requires the List and Monad modules\nso please add:\n$/list\n$/monad\nto your .urp file",
+      "expected_cleaned_sha256": "2bca0e366daeed45c24d85b136a90509d73196edc165b303aed985bec9318521",
+      "language": "urweb",
+      "raw_comment": "(* Requires the List and Monad modules\n * so please add:\n * $/list\n * $/monad\n * to your .urp file\n *)",
+      "raw_sha256": "ac46cc9790ed841b99d9fdceec80080b3de64be8d2adc839f41d072b55f1aefa",
+      "raw_utf8_length": 102,
+      "source_provenance": {
+        "source_excerpt_sha256": "51b4f8b862ddd81236209fd2ee336ce747225d271bba200f935f4c0da5874aa9",
+        "source_id": "815b4072dd69d5098f4ab8945ec0b1bb9c67c8ca"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "asciidoc-block-9594ec6e6b2c4340",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "asciidoc",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c045c2cd07e696fc965f2ecc2fa42ed0a698aed1808c175939a8044c430ea64c",
+      "utf8_length": 576
+    },
+    "manifest_old_output": {
+      "sha256": "91a4ce77970fdda375d6a8ca033019896ee155b138cfc6344806287b05203cf8",
+      "utf8_length": 558
+    },
+    "raw_comment": {
+      "sha256": "6a7373c6799d47e70c19bf8520b24c33087211b67e7196720e050de1496546f1",
+      "utf8_length": 753
+    },
+    "recommended_expected_output": {
+      "sha256": "91a4ce77970fdda375d6a8ca033019896ee155b138cfc6344806287b05203cf8",
+      "utf8_length": 558
+    }
+  },
+  "regression": {
+    "expected_output": "This content is shared by all Elastic Beats. Make sure you keep the\ndescriptions here generic enough to work for all Beats that include\nthis file. When using cross references, make sure that the cross\nreferences resolve correctly for any files that include this one.\nUse the appropriate variables defined in the index.asciidoc file to\nresolve Beat names: beatname_uc and beatname_lc.\nUse the following include to pull this content into a doc file:\ninclude::../../libbeat/docs/filteringconfig.asciidoc[]\nMake sure this content appears below a level 2 heading.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////////////////////////////////////\n//// This content is shared by all Elastic Beats. Make sure you keep the\n//// descriptions here generic enough to work for all Beats that include\n//// this file. When using cross references, make sure that the cross\n//// references resolve correctly for any files that include this one.\n//// Use the appropriate variables defined in the index.asciidoc file to\n//// resolve Beat names: beatname_uc and beatname_lc.\n//// Use the following include to pull this content into a doc file:\n//// include::../../libbeat/docs/filteringconfig.asciidoc[]\n//// Make sure this content appears below a level 2 heading.\n//////////////////////////////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6fdbe8286e57af43e450bbdd754d3858a3103733dd92eb37c3181ee5778e89e8",
+    "source_id": "efbb7b95744d2ffe7a097e798735ef6391709216"
+  },
+  "source_record_sha256": "9364fcb5dc1465aa1bb18b49d92cd3dbff7d264aa40d266e6b6d169325c95434"
+}

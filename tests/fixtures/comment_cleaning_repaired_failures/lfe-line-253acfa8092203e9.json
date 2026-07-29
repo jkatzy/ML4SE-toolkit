@@ -1,0 +1,38 @@
+{
+  "case_id": "lfe-line-253acfa8092203e9",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "lfe",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9b031b0b33204ecc1e185112e78a160cbfd69d36f22a3e358ad2c91647a11d57",
+      "utf8_length": 108
+    },
+    "manifest_old_output": {
+      "sha256": "d86d8f7df4a67e01327fb4a19944035fe14ad2e3666b3b11755886c87d735df7",
+      "utf8_length": 104
+    },
+    "raw_comment": {
+      "sha256": "375731030ac9884067ac98d643ced066956bc58b879cfbc75766f8d6c68125b8",
+      "utf8_length": 114
+    },
+    "recommended_expected_output": {
+      "sha256": "d86d8f7df4a67e01327fb4a19944035fe14ad2e3666b3b11755886c87d735df7",
+      "utf8_length": 104
+    }
+  },
+  "regression": {
+    "expected_output": "The gen_server responsible for managing the OS processes that support the\n\"Bevin\" backend for undertone.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; The gen_server responsible for managing the OS processes that support the\n;;;; \"Bevin\" backend for undertone."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "92149c8f216ab2a9e58fce701d65e88651c7ccfe2626fabe81e92babf9cc1c07",
+    "source_id": "66732a194b594f2532753b56d2d466b8567f258b"
+  },
+  "source_record_sha256": "a34a10c37c1569b7e42ad524a5ae0c7bebc089387d9ad279c1be81023469a901"
+}

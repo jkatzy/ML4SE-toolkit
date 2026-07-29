@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "hoon_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "90007011a6f7f6daac921282baf31fc449643b131b76735d87fb9d3b016841c8",
+      "case_id": "hoon-line-0d7bc921429bf8f8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "/hoon/ames/arvo vane prelude",
+      "expected_cleaned_sha256": "b6034bb5bc98674c642d017cb58e4f45a034985970fe9d5db0c6a4cfd6f5426d",
+      "language": "hoon",
+      "raw_comment": "::                                                      ::  ::\n::::  /hoon/ames/arvo                                   ::::::  vane prelude",
+      "raw_sha256": "be111bf6b63b1975ce303a2fd6eff6bf990a081a74e15b2f6d56f02d24263093",
+      "raw_utf8_length": 139,
+      "source_provenance": {
+        "source_excerpt_sha256": "970864c0634be638a4a354663911542a7041e494adb3e00a125068ab64420349",
+        "source_id": "0704d50c8e4de4f10993fd8ec67bf7a85f3f0055"
+      },
+      "syntax_label": "::"
+    },
+    {
+      "baseline_cleaned_sha256": "6b2c6f1f2e8b41c7ef766a51e6e6c912e5c81945f16f5b86b0a1a85bece986e6",
+      "case_id": "hoon-line-3efe19978cd95ad8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "roller: Azimuth L2 roll aggregator\n\n general flow is as described below, to ensure transactions actually go\n through once we start sending it out, in the dumbest reasonable way.\n\n periodic timer fires:\n if there are no pending l2 txs, do nothing.\n else kick off tx submission flow:\n \"freeze\" pending txs, store alongside nonce, then increment nonce,\n kick off thread for sending the corresponding l1 tx:\n   if nonce doesn't match on-chain expected nonce, bail.\n   if we can't afford the tx fee, bail.\n   construct, sign, submit the l1 tx.\n if thread bailed, retry in five minutes.\n if thread succeeded, retry in five minutes with higher gas price.\n when retrying, only do so if l2 txs remain in the \"frozen\" txs group.\n on %tx diff from naive, remove the matching tx from the frozen group.\n\nTODO  questions:\n- it's a bit weird how we just assume the raw and tx in raw-tx to match...",
+      "expected_cleaned_sha256": "8fca54ef8786a3ccfce3a9bf2b8136d810a6f9bb1f965b65ece0a48b0f8031b7",
+      "language": "hoon",
+      "raw_comment": "::  roller: Azimuth L2 roll aggregator\n::\n::    general flow is as described below, to ensure transactions actually go\n::    through once we start sending it out, in the dumbest reasonable way.\n::\n::    periodic timer fires:\n::    if there are no pending l2 txs, do nothing.\n::    else kick off tx submission flow:\n::    \"freeze\" pending txs, store alongside nonce, then increment nonce,\n::    kick off thread for sending the corresponding l1 tx:\n::      if nonce doesn't match on-chain expected nonce, bail.\n::      if we can't afford the tx fee, bail.\n::      construct, sign, submit the l1 tx.\n::    if thread bailed, retry in five minutes.\n::    if thread succeeded, retry in five minutes with higher gas price.\n::    when retrying, only do so if l2 txs remain in the \"frozen\" txs group.\n::    on %tx diff from naive, remove the matching tx from the frozen group.\n::\n::TODO  questions:\n::  - it's a bit weird how we just assume the raw and tx in raw-tx to match...\n::",
+      "raw_sha256": "3ca7db2441d18edb217754615eb1d39fae692ba530cf088e0b5f780bc352e5c8",
+      "raw_utf8_length": 971,
+      "source_provenance": {
+        "source_excerpt_sha256": "c689833bf2de738959283f9639268f2495015e0ec98800c862adcc9da1710b73",
+        "source_id": "3b47aa988b3bc97a1a0d57422ecc95907bfc8855"
+      },
+      "syntax_label": "::"
+    }
+  ],
+  "schema_version": 5
+}

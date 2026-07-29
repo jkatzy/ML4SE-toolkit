@@ -1,0 +1,38 @@
+{
+  "case_id": "kakoune_script-line-e1025afd175797f2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "kakoune_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "41f1e3502f9eda39b8bed0643d2f5a759f70f26c44f22b9e2ee8d019956f337a",
+      "utf8_length": 21
+    },
+    "manifest_old_output": {
+      "sha256": "a1aa075cf5d37152bcda8d96161b715a254d3588f4f5bb6e9c2df18595b44b36",
+      "utf8_length": 19
+    },
+    "raw_comment": {
+      "sha256": "c865d5624d0fd888d75c5a8c892514ff8d7ec4c6c164af1594186529be91c371",
+      "utf8_length": 71
+    },
+    "recommended_expected_output": {
+      "sha256": "a1aa075cf5d37152bcda8d96161b715a254d3588f4f5bb6e9c2df18595b44b36",
+      "utf8_length": 19
+    }
+  },
+  "regression": {
+    "expected_output": "Syntax highlighting",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#######################\n# Syntax highlighting #\n#######################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1ad7e9e0cd684984684cb1eb107ad1f456faf9c6583197ca0c88c9a9744c64f0",
+    "source_id": "e570c8df9a8c9ac8ae3f587bd4b263bfd1f86e30"
+  },
+  "source_record_sha256": "3f3a7d2eadbdbbca19a0bd07bc1738a6917f0baa316483f11ecf8bacb03123b7"
+}

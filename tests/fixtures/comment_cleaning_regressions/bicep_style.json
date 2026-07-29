@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "bicep_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5a5766d218e8882749e6cf40283ad359bf3b9958a948435ff57429c8f50041cf",
+      "case_id": "bicep-line-b8afbdd8c0790857",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@[000:11469) ProgramSyntax\n@[000:00017) \u251c\u2500ParameterDeclarationSyntax\n@[000:00005) | \u251c\u2500Token(Identifier) |param|\n@[006:00010) | \u251c\u2500IdentifierSyntax\n@[006:00010) | | \u2514\u2500Token(Identifier) |name|\n@[011:00017) | \u2514\u2500VariableAccessSyntax\n@[011:00017) |   \u2514\u2500IdentifierSyntax\n@[011:00017) |     \u2514\u2500Token(Identifier) |string|\n@[017:00018) \u251c\u2500Token(NewLine) |\\n|",
+      "expected_cleaned_sha256": "bfe822f9cda86147dfc97e7d7e49a755b0373fe8a8007b64be4529e79c2d08f3",
+      "language": "bicep",
+      "raw_comment": "//@[000:11469) ProgramSyntax\n//@[000:00017) \u251c\u2500ParameterDeclarationSyntax\n//@[000:00005) | \u251c\u2500Token(Identifier) |param|\n//@[006:00010) | \u251c\u2500IdentifierSyntax\n//@[006:00010) | | \u2514\u2500Token(Identifier) |name|\n//@[011:00017) | \u2514\u2500VariableAccessSyntax\n//@[011:00017) |   \u2514\u2500IdentifierSyntax\n//@[011:00017) |     \u2514\u2500Token(Identifier) |string|\n//@[017:00018) \u251c\u2500Token(NewLine) |\\n|",
+      "raw_sha256": "96eb0c1dddbbffd79cfa27a778390014f12e80fb1ad61ac8e722b589eb8ff1af",
+      "raw_utf8_length": 396,
+      "source_provenance": {
+        "source_excerpt_sha256": "fdfa203068d538e15d7aa088649d223a3c67e1b581f070162a30c732ccb0ed55",
+        "source_id": "ad214c03fab1c5ef2eafd0dfc58fd9249fc72ec0"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

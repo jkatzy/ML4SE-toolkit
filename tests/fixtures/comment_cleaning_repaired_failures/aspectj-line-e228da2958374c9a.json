@@ -1,0 +1,38 @@
+{
+  "case_id": "aspectj-line-e228da2958374c9a",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "aspectj",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a49b19670594df0e914d8456077163711dcd3814682683c67697bb2c7b51e937",
+      "utf8_length": 17341
+    },
+    "manifest_old_output": {
+      "sha256": "d93d4c7ce03434d3d92010e6ef4e4be13949f21dbb765b8bf7f3f75a96c5300d",
+      "utf8_length": 17216
+    },
+    "raw_comment": {
+      "sha256": "f9b2cb1bd3e7de0ba85640ced8f013a1f2e2dad6856953f84788ffda6f503add",
+      "utf8_length": 19352
+    },
+    "recommended_expected_output": {
+      "sha256": "d93d4c7ce03434d3d92010e6ef4e4be13949f21dbb765b8bf7f3f75a96c5300d",
+      "utf8_length": 17216
+    }
+  },
+  "regression": {
+    "expected_output": "package rollback;\nimport java.util.Set;",
+    "provenance": "reviewed_minimized_reproduction",
+    "raw_comment": "////package rollback;\n////import java.util.Set;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0e289df24a30e928696d04cf9a13d5d2a90107126193a37782bd7989fabaeec0",
+    "source_id": "1278a174fb442b27bb6e293334a30ed6f2708c7d"
+  },
+  "source_record_sha256": "539c4990c22e7d120ac481600bcccfb18570ea7f7b838061fc9ea0f7d8df7d4f"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "windows_registry_entries-line-5b1fbb08e48fd5b6",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "windows_registry_entries",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a774b66784a958850fcd2f71b235ee5aadbe4d2d8fe5b3e8a052811157b7bc37",
+      "utf8_length": 53
+    },
+    "manifest_old_output": {
+      "sha256": "d54aa10f172765609c54bdd31e920fdc2f2d45e46fc92e60e04deaf7c66e8a7b",
+      "utf8_length": 49
+    },
+    "raw_comment": {
+      "sha256": "d995810711238c9f4587fe621a95fdd348c0d55b8a90127033b6c5f891d69a0c",
+      "utf8_length": 64
+    },
+    "recommended_expected_output": {
+      "sha256": "d54aa10f172765609c54bdd31e920fdc2f2d45e46fc92e60e04deaf7c66e8a7b",
+      "utf8_length": 49
+    }
+  },
+  "regression": {
+    "expected_output": "CEContentWiz\n(c)2010-13 David Jones\n\nSQLiteADONET",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";#\n;#CEContentWiz\n;#(c)2010-13 David Jones \n;#\n;#SQLiteADONET\n;#"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "03af5975fee20a4cfb78b36df507687d52491c1308debfe60cec6ba7af519a0b",
+    "source_id": "cf953dea1f99d14d62d0d7e2927522f78fce19c5"
+  },
+  "source_record_sha256": "181e4354012316e3a6d714c87f4bc91630f31de67bf6671f4539ef5843b2c7c5"
+}

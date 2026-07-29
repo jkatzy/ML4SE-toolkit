@@ -1,0 +1,92 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "classic_asp_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "d7eba15c58006b5564fe3f9fd81305be6528af9aabc6b222d09a78c3dec20106",
+      "case_id": "classic_asp-block-e90b7699e6e455f2",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "oracle_not_deletion_only",
+      "language": "classic_asp",
+      "oracle_exception_record_sha256": "99e3370222ead31b0ae7deeb3fd10a5d0d2152ceaeeaa52601109d26a152c36d",
+      "raw_sha256": "89acf37e849d33149e67230cc0fe807e3699a7a13cde0fdcc2ddbe488d95e586",
+      "raw_utf8_length": 1028,
+      "source_provenance": {
+        "source_excerpt_sha256": "a05f94a5a53d805f47cfe47226af9a3e45efb75ee85b2ba1cd9bc0c753dbc8ab",
+        "source_id": "e151a8e1f63f183c5435a382b293729eebdbfe76"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "4c7a32ff1e9f32f2f6349115a4048a312862612a622c988c63c7c2fa2c62ccbd",
+      "case_id": "classic_asp-line-a6ea6b9ab009d6ca",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "oracle_not_deletion_only",
+      "language": "classic_asp",
+      "oracle_exception_record_sha256": "2fbc2e7c5c0db01e27312e03c4aca2d6d56996b36461bf1668f9dc14c59af94e",
+      "raw_sha256": "4c7a32ff1e9f32f2f6349115a4048a312862612a622c988c63c7c2fa2c62ccbd",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "9570f5d6ded91277527a2b39620aeca0892e1be122dbb45b271ffc454d41b872",
+        "source_id": "1de3125bc1e84a8561558e070fa3b1b79f575fb1"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "16dfd1b2962bab44ce2bdd8ab2b9b96341cbe6a49758c28f5496bef997a71340",
+      "case_id": "classic_asp-block-a7be8a078293d7ae",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "S C R I P T S :",
+      "expected_cleaned_sha256": "180f0962760e72d1879941fbabcb3c41aa20eead14efd8758f29fb9583e34426",
+      "language": "classic_asp",
+      "raw_comment": "<!-- ----------------- S C R I P T S : ------------------- -->",
+      "raw_sha256": "6cb7a3672fe5ab195e2d792b13043c1ddf577d5d376f477e212310cf8655e581",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "e6be4c6ee09a27437d9f2b0e4995cab867440cc756e79544efcc946b05b5e0a4",
+        "source_id": "66eb98102428f839e941dcf5f600fccf9be44214"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "fe98570586c76798395f3c6179eb4d9028fba443ff3ae9f6160d1b44a933d1e9",
+      "case_id": "classic_asp-line-beb36e91aefcb757",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\ucd94\uac00\ud30c\uc77c",
+      "expected_cleaned_sha256": "109b1e1344016faf651331000959c5944913b0f36b0d1a7d758270869f226565",
+      "language": "classic_asp",
+      "raw_comment": "<%'\ucd94\uac00\ud30c\uc77c %>",
+      "raw_sha256": "fe98570586c76798395f3c6179eb4d9028fba443ff3ae9f6160d1b44a933d1e9",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "57703228f91081737b92d3ee69e7e504d28205685bbe95e89cae7d8b20e88645",
+        "source_id": "54972d99438b6b9e05ed335bbf1a8294cf087377"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c574b4d6bbb3049dd446584e98658726970b0b90f97a3138197289c389ce035",
+      "case_id": "classic_asp-line-f139fc44e5df16cf",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u5c55\u4f1a\u9996\u9875\u5730\u5740",
+      "expected_cleaned_sha256": "e5483cf92868d709ab340e66fe7815d4cbd93ef29c2ec6a178a13adcc48c54f1",
+      "language": "classic_asp",
+      "raw_comment": "<%'\u5c55\u4f1a\u9996\u9875\u5730\u5740",
+      "raw_sha256": "4c574b4d6bbb3049dd446584e98658726970b0b90f97a3138197289c389ce035",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "0cf7fbb52412083d0232d4551877ae76624b9520a3379de92807764be821e6b9",
+        "source_id": "e8db7bcdb52ddcc06be6bc30a109c558debe7dde"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "macaulay2_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "239f417afe9ffaa430657345e1597246708e8f25cb0608dee898018d01611f26",
+      "case_id": "macaulay2-block-4ee50900cb614f7d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Generate binned files of random ideals.\n\nCall this script as\n\n    M2 --script make_bins.m2 n d s consts degs homog pure samples\n\nwhere n, d, s, and samples are integers, consts, homog, and pure are 0 or 1\nrepresenting false or true, and degs is one of {uniform, weighted, maximum}.\n\nOutput is stored in files data/bins/<parameters>/bin<bin>.txt. If files already\nexist they will be appended to rather than replaced. These files are in the\nformat that FromFileIdealGenerator reads.\n\nIdeals are binned by the log size of their reduced Groebner basis, which is a\nrough measure of how difficult the Groebner basis is to compute.",
+      "expected_cleaned_sha256": "492e82614a4d4d1df909a97d502e0a31995f9991e0bfafd8cc720ab857143d17",
+      "language": "macaulay2",
+      "raw_comment": "-* Generate binned files of random ideals.\n\nCall this script as\n\n    M2 --script make_bins.m2 n d s consts degs homog pure samples\n\nwhere n, d, s, and samples are integers, consts, homog, and pure are 0 or 1\nrepresenting false or true, and degs is one of {uniform, weighted, maximum}.\n\nOutput is stored in files data/bins/<parameters>/bin<bin>.txt. If files already\nexist they will be appended to rather than replaced. These files are in the\nformat that FromFileIdealGenerator reads.\n\nIdeals are binned by the log size of their reduced Groebner basis, which is a\nrough measure of how difficult the Groebner basis is to compute.\n*-",
+      "raw_sha256": "1c6c63043988b9888bb9eb2ce14c2ba33c85f869f878143725126e4e870784d8",
+      "raw_utf8_length": 630,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad392613472ce2d627d873d8dc7775ab8953c1dedc38efa119c8aa31050dd84e",
+        "source_id": "992d1ef5ce4cc8e0fad0b1af7ed52a7127fee0e1"
+      },
+      "syntax_label": "-*...*-"
+    },
+    {
+      "baseline_cleaned_sha256": "614de8ad6f41e6259af5572dbb06649ba59da261aecbc8c9cca5397bc99048d3",
+      "case_id": "macaulay2-block-ae80841dc337b93a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "M2",
+      "expected_cleaned_sha256": "0892a10ece1f933ee98f5d554601b28f8437801d1aa1b77799e4035ddcb6950c",
+      "language": "macaulay2",
+      "raw_comment": "-*- M2 -*-",
+      "raw_sha256": "f2c4eb2c73a3e03193d7542a9b07d3294edcb62169541611c95dd2926a55efaa",
+      "raw_utf8_length": 10,
+      "source_provenance": {
+        "source_excerpt_sha256": "eb14e96d42cf0f36bf076beeca18c7c65c93744a0bc7f9610fd142d18831c6ed",
+        "source_id": "b4b96c2271f8ffcf1fe3b7f23fea97fa6e9c0053"
+      },
+      "syntax_label": "-*...*-"
+    },
+    {
+      "baseline_cleaned_sha256": "614de8ad6f41e6259af5572dbb06649ba59da261aecbc8c9cca5397bc99048d3",
+      "case_id": "macaulay2-block-fc7042fe4a4c38ea",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "M2",
+      "expected_cleaned_sha256": "0892a10ece1f933ee98f5d554601b28f8437801d1aa1b77799e4035ddcb6950c",
+      "language": "macaulay2",
+      "raw_comment": "-*- M2 -*-",
+      "raw_sha256": "f2c4eb2c73a3e03193d7542a9b07d3294edcb62169541611c95dd2926a55efaa",
+      "raw_utf8_length": 10,
+      "source_provenance": {
+        "source_excerpt_sha256": "6bf4228a1cdf531b219b796597db21dfe758ba224b1181a44e2d96a93c59b94b",
+        "source_id": "fadf2cf78971b4d4c7357188e25616b21770ab24"
+      },
+      "syntax_label": "-*...*-"
+    }
+  ],
+  "schema_version": 5
+}

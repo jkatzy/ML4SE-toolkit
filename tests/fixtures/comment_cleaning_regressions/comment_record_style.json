@@ -1,0 +1,165 @@
+{
+  "extractor_boundary_cases": [
+    {
+      "baseline_cleaned_sha256": "21fc7beb1dfb24b734574da2c284072bca05ed2768067c1f55a13d5d9b7c4e0a",
+      "boundary_assertion": {
+        "expected_match": "Comment boundary",
+        "expected_match_sha256": "99c49b57820efa13b0e2e0cf3866c5ae7d739a402bce23fcee43009d0e40f1d7",
+        "kind": "line_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "Comment boundary\rsource",
+        "raw_sha256": "d8f59d48d27ca3cf82ed1474fc6b79ca17c6ce7ee7b3da31688b116671695db5",
+        "raw_utf8_length": 23
+      },
+      "case_id": "adobe_font_metrics-line-129c556ead30b337",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "adobe_font_metrics",
+      "oracle_exception_record_sha256": "fc0831d9da18ac4b28b60ad4840b0b2f0c8f003ae729a95e3c94aae86a660f7a",
+      "raw_sha256": "2c280a90b740665c7fe979f45171b51f14baa69791a3f8d33d71dcbd3234ae4e",
+      "raw_utf8_length": 15224,
+      "source_provenance": {
+        "source_excerpt_sha256": "016562907c125c090f17df39966242098c0607b1f8a7d10f11fa9a0fe538d5f1",
+        "source_id": "4a009935023097051fafb02b1cf86cced15e474a"
+      },
+      "syntax_label": "Comment"
+    },
+    {
+      "baseline_cleaned_sha256": "5a5c0daf5f26e702bb692abbe5459503a5424e1f78a056f614142e353e86017a",
+      "boundary_assertion": {
+        "expected_match": "Comment boundary",
+        "expected_match_sha256": "99c49b57820efa13b0e2e0cf3866c5ae7d739a402bce23fcee43009d0e40f1d7",
+        "kind": "line_query_first_match"
+      },
+      "boundary_probe": {
+        "kind": "synthetic_structural_probe",
+        "raw_comment": "Comment boundary\rsource",
+        "raw_sha256": "d8f59d48d27ca3cf82ed1474fc6b79ca17c6ce7ee7b3da31688b116671695db5",
+        "raw_utf8_length": 23
+      },
+      "case_id": "adobe_font_metrics-line-c18e56abf59ba425",
+      "comment_kind": "line",
+      "disposition": "executable_regression",
+      "exception_status": "extraction_invalid",
+      "language": "adobe_font_metrics",
+      "oracle_exception_record_sha256": "42e53109a2afbecdfc79de49ecd624a6a2eb5c68e53e2efb13668a57e66e763a",
+      "raw_sha256": "2f4c91710e5cd63b6b198772ecce999b4bd717cb62cd60bc92729cca698db171",
+      "raw_utf8_length": 26550,
+      "source_provenance": {
+        "source_excerpt_sha256": "15060da844ef68b31d5f0e674287c5872bce8e401b36c50d6099a3c65f2d2f4e",
+        "source_id": "2d66fe025c9c746504fdef2c1f377032072ead3f"
+      },
+      "syntax_label": "Comment"
+    }
+  ],
+  "family_name": "comment_record_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b",
+      "case_id": "glyph_bitmap_distribution_format-line-55792b4cae6836eb",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "glyph_bitmap_distribution_format",
+      "raw_comment": "COMMENT +",
+      "raw_sha256": "8c21095fe554d18bbec63e2d51237fd2a46a98322929b41f6ff4e21ab324df85",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "4f1a3cd3bf7c65ee4fce8333c2d7accc7f39110562a35985c1de097d3688caa8",
+        "source_id": "67fdc9b33d6c818d86f3c700c28cff5694063de1"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b",
+      "case_id": "glyph_bitmap_distribution_format-line-75a3a938c1f5fb8f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "glyph_bitmap_distribution_format",
+      "raw_comment": "COMMENT +",
+      "raw_sha256": "8c21095fe554d18bbec63e2d51237fd2a46a98322929b41f6ff4e21ab324df85",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "7349447c8428307fff318eb164cb37db5f58ffbbf6da6c1b96c8b938b9bee9e2",
+        "source_id": "38753f6e455c5a41fcec0d63755dfffcab107982"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b",
+      "case_id": "glyph_bitmap_distribution_format-line-8186b4129d158761",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "glyph_bitmap_distribution_format",
+      "raw_comment": "COMMENT +",
+      "raw_sha256": "8c21095fe554d18bbec63e2d51237fd2a46a98322929b41f6ff4e21ab324df85",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "e5cf1af826e7797e1c2757bda7371d52f15fc3647f7407591b9fc6fcd6db2d0a",
+        "source_id": "b40fa6080215f62f80ddd42fec2d5349e52ee114"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b",
+      "case_id": "glyph_bitmap_distribution_format-line-92d2b2a6542f277a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "glyph_bitmap_distribution_format",
+      "raw_comment": "COMMENT +",
+      "raw_sha256": "8c21095fe554d18bbec63e2d51237fd2a46a98322929b41f6ff4e21ab324df85",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "afdbc8f99325e173bc7319540ff71160643081ee56a163c0f4cf14513e53de92",
+        "source_id": "795d234865ebfe167a3cc658c8fd9dcfbadbc4fd"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "eedd14c2f1550e60d84c66f332d49e65d0f1470d203592d952052f7030924136",
+      "case_id": "glyph_bitmap_distribution_format-line-beb4dcbf51679b5a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "glyph_bitmap_distribution_format",
+      "raw_comment": "COMMENT ======================================================================",
+      "raw_sha256": "83f1b88b7299aeb48ce8f86176efdf54174922858a4509b7a528b885a50dd858",
+      "raw_utf8_length": 78,
+      "source_provenance": {
+        "source_excerpt_sha256": "6a6a387b7c2a900f01892f3901877c31e39436841448dd2332ed6cd47184aeec",
+        "source_id": "4982cd2c4e133242ca2c706ccee563497dfd3615"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b",
+      "case_id": "glyph_bitmap_distribution_format-line-fe52c9321d48f29e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "glyph_bitmap_distribution_format",
+      "raw_comment": "COMMENT +",
+      "raw_sha256": "8c21095fe554d18bbec63e2d51237fd2a46a98322929b41f6ff4e21ab324df85",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "e74b31e9f8f3dae8d4922647e3ca5fd94681c8522b9cba6e114b2c54a49a98d1",
+        "source_id": "09f2b7dc92299f0eab518bc4e6cabf72086ecba8"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

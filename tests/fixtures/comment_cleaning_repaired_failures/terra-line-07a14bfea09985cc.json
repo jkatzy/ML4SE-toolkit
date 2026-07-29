@@ -1,0 +1,38 @@
+{
+  "case_id": "terra-line-07a14bfea09985cc",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "terra",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4c9fe5f483703cb95599626dbb5a352ece6e7ea591232f04350613984b38a1b7",
+      "utf8_length": 72
+    },
+    "manifest_old_output": {
+      "sha256": "5250d4e0d00f9f06ff41b7daecd7f9cf0870a47ced00f4cedda9665e5753fde7",
+      "utf8_length": 75
+    },
+    "raw_comment": {
+      "sha256": "19099201ff8edf286e3659768d706051934ad3a63820017deaaeecea22a08ec8",
+      "utf8_length": 77
+    },
+    "recommended_expected_output": {
+      "sha256": "5250d4e0d00f9f06ff41b7daecd7f9cf0870a47ced00f4cedda9665e5753fde7",
+      "utf8_length": 75
+    }
+  },
+  "regression": {
+    "expected_output": "local makeloop --bug local function doesn't add to set of live variables...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--local makeloop --bug local function doesn't add to set of live variables..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "780958428927f3d2fe7495c18f391e676132bd8a721e28f99fbf8254547d64c3",
+    "source_id": "dd8d7159cc17952246db25451d2714baa6305151"
+  },
+  "source_record_sha256": "c17487c723c1c15f691b832d4e6f30f59a92656489700ca90fafc08268481b9b"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "mtml-block-7f70e4fe7c8952c5",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "mtml",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a92d01d72b061eac03d62db13fdecd271b1dc6bb21b5a4ba926f3c923136d001",
+      "utf8_length": 82
+    },
+    "manifest_old_output": {
+      "sha256": "51c1c8dde95e2171a7e48f1872d69681535213e1ee260a9d8c2324ebf037c040",
+      "utf8_length": 79
+    },
+    "raw_comment": {
+      "sha256": "3b089613ac979f6161fceaa1e7f5d7f009a179eea85692357d1046ebae8367a5",
+      "utf8_length": 90
+    },
+    "recommended_expected_output": {
+      "sha256": "51c1c8dde95e2171a7e48f1872d69681535213e1ee260a9d8c2324ebf037c040",
+      "utf8_length": 79
+    }
+  },
+  "regression": {
+    "expected_output": "mtAttachEvent(\"load\", mtEntryOnLoad);\nmtAttachEvent(\"unload\", mtEntryOnUnload);",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!--\nmtAttachEvent(\"load\", mtEntryOnLoad);\nmtAttachEvent(\"unload\", mtEntryOnUnload);\n//-->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "213eb3fcf3ab3fd7329127097fb026a55af9811d05a0e6c8036c0c098e1dd2d6",
+    "source_id": "5ad788c525e0596a0a8b9ac3b8834a37aa44bad5"
+  },
+  "source_record_sha256": "f3db5f92733e895cadde154eb104d634fd32bbeed2d4c1758ca9bdb189c9b8f5"
+}

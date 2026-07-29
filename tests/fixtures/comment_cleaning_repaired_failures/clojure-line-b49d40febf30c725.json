@@ -1,0 +1,38 @@
+{
+  "case_id": "clojure-line-b49d40febf30c725",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:clojure",
+  "disposition": "executable_regression",
+  "language": "clojure",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "8df7a31d1e281184ae4f37eb20d5375ede4b0d8c45e4fcc561348f83b5709cd7",
+      "utf8_length": 77
+    },
+    "manifest_old_output": {
+      "sha256": "a6e600a10fede40f648be37a700467776215ed2da3c271e9d02fa2987190a0a0",
+      "utf8_length": 7
+    },
+    "raw_comment": {
+      "sha256": "78f2d6e2698afbcdfe6b734faca10f819e079306fd71c597210c882ff31c91e4",
+      "utf8_length": 80
+    },
+    "recommended_expected_output": {
+      "sha256": "a6e600a10fede40f648be37a700467776215ed2da3c271e9d02fa2987190a0a0",
+      "utf8_length": 7
+    }
+  },
+  "regression": {
+    "expected_output": "Context",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";; Context ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1469d5b13e07351fcaa7a27d907724567600dc22901154a5dad286c7f4ad7520",
+    "source_id": "104f64661e9b7c03055ab63f41be1c4565a78562"
+  },
+  "source_record_sha256": "d4d183f4bcbd733ce50317236e503c8d79b97a1ac68b3dc0d51be293d35e4f3c"
+}

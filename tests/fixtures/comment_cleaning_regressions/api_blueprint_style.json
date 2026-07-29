@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "api_blueprint_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "52f64913f721157524b7ca664ed7732031eebb86d54604aa841716161821dd9d",
+      "case_id": "api_blueprint-block-083dd36d8e877d2b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "SONUS",
+      "expected_cleaned_sha256": "07d1c52bc29d4251f268e8a3afe0043e6e873bea5f56d88de5af7d1dabfee5b0",
+      "language": "api_blueprint",
+      "raw_comment": "<!-- ============================ SONUS ============================ -->",
+      "raw_sha256": "dff3362f87a8a076142798d13143176d858e4efad1d1ffed0bd85e56995c72c8",
+      "raw_utf8_length": 72,
+      "source_provenance": {
+        "source_excerpt_sha256": "82ad6eb6af48f2b4daf49a355a4f0f5adafc2349bded9ee565bc852e00a322e5",
+        "source_id": "190497915a62420042f11f50e9067886e4a82c22"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "bbca123dc1d71e50422447e1394145f9bf044cb3dac7216c0109f15ea16bd031",
+      "case_id": "api_blueprint-block-7a68d75ca20ebc70",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "ERROR DEFINITION",
+      "expected_cleaned_sha256": "b4bd86e9b5d77a0cb9da1a34c9b41c770c5de41ac1da39b461d3a75c20c771df",
+      "language": "api_blueprint",
+      "raw_comment": "<!-- === ERROR DEFINITION === -->",
+      "raw_sha256": "a8de825379bcf3c5f6f686921a276d22bd539ffb4e80cc484d1642a1200a0298",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "ab6f14cef48228cd17daf4050df9a1eb086549280e8c7f83a13f965260b4f790",
+        "source_id": "cb96286c79a06c39606f6964fd5ecb4d16c5b817"
+      },
+      "syntax_label": "<!--...-->"
+    }
+  ],
+  "schema_version": 5
+}

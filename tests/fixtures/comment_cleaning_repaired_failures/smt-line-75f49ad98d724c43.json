@@ -1,0 +1,38 @@
+{
+  "case_id": "smt-line-75f49ad98d724c43",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "smt",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "69491e2480e43cacd34e6dc5af07418ef541168c809c8a21939630756c14f0a5",
+      "utf8_length": 75
+    },
+    "manifest_old_output": {
+      "sha256": "105151c4b93aed7ffa08699566978c84fd9ada3f561fff0b3132961ecd49a315",
+      "utf8_length": 78
+    },
+    "raw_comment": {
+      "sha256": "14edc8d2785f273145ce8da515273eff9a5d3577f632b2a7a4a80647401f649c",
+      "utf8_length": 80
+    },
+    "recommended_expected_output": {
+      "sha256": "105151c4b93aed7ffa08699566978c84fd9ada3f561fff0b3132961ecd49a315",
+      "utf8_length": 78
+    }
+  },
+  "regression": {
+    "expected_output": "Should force A to occur in the list that starts in X. But currently doesn't...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "; Should force A to occur in the list that starts in X. But currently doesn't..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "20ca019f079493e9c6e88c76ba2becfba9d2c9b4c40900a6a1c5de759ed2df01",
+    "source_id": "6352142af9d0b12ea618e62a1bd88e0268dc665d"
+  },
+  "source_record_sha256": "d4beed6cd4d946a522269ebbced9334a5d82d31b3f39d1008da45877845f12c5"
+}

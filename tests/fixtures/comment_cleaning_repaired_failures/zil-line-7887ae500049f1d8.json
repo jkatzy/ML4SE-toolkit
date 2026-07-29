@@ -1,0 +1,38 @@
+{
+  "case_id": "zil-line-7887ae500049f1d8",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "zil",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "04cf867aa4afd0d8bec4cd17034f2921fe4c6efe9e93c7b34733166b789c27fd",
+      "utf8_length": 457
+    },
+    "manifest_old_output": {
+      "sha256": "04cf867aa4afd0d8bec4cd17034f2921fe4c6efe9e93c7b34733166b789c27fd",
+      "utf8_length": 457
+    },
+    "raw_comment": {
+      "sha256": "cd2cd26473a4374cdce15073ef4feb068401367de08df4bb2bd1e3464d111aa6",
+      "utf8_length": 476
+    },
+    "recommended_expected_output": {
+      "sha256": "04cf867aa4afd0d8bec4cd17034f2921fe4c6efe9e93c7b34733166b789c27fd",
+      "utf8_length": 457
+    }
+  },
+  "regression": {
+    "expected_output": "\"***************************************************************************\"\n\"game : Abyss\"\n\"file : ENDGAME.ZIL\"\n\"auth :   $Author:   DEB  $\"\n\"date :     $Date:   20 Mar 1989  8:45:00  $\"\n\"rev  : $Revision:   1.3  $\"\n\"vers : 1.0\"\n\"---------------------------------------------------------------------------\"\n\"Crane crash\"\n\"Copyright (C) 1988 Infocom, Inc.  All rights reserved.\"\n\"***************************************************************************\"",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";\"***************************************************************************\"\n; \"game : Abyss\"\n; \"file : ENDGAME.ZIL\"\n; \"auth :   $Author:   DEB  $\"\n; \"date :     $Date:   20 Mar 1989  8:45:00  $\"\n; \"rev  : $Revision:   1.3  $\"\n; \"vers : 1.0\"\n;\"---------------------------------------------------------------------------\"\n; \"Crane crash\"\n; \"Copyright (C) 1988 Infocom, Inc.  All rights reserved.\"\n;\"***************************************************************************\""
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b5b412250d057e119e814ad90be2e8d67ef72528d6ad2d5efd5f632e5b6c42f1",
+    "source_id": "3b1c7db17c9cb537bef693e92d4d58221dd10182"
+  },
+  "source_record_sha256": "d8af7132b2185b4bc08abbe96df30da69b0771fe665d739488eb069c9fd6ceea"
+}

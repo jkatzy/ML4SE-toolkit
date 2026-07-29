@@ -1,0 +1,38 @@
+{
+  "case_id": "terra-line-3094f1c47a16a3c2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "terra",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "98ec92ddb9eb55cfa49d8f1cfefc693a1c47107c9d56f5713be1b4d92a53fa86",
+      "utf8_length": 25
+    },
+    "manifest_old_output": {
+      "sha256": "644d0f5f3713817bfd6a046660ddfffd237fe0137ee9885f9f7733973142ea30",
+      "utf8_length": 22
+    },
+    "raw_comment": {
+      "sha256": "93ba69e33b0c5715b771b5221ff6bcbab5b3317a64a3dd446f2a869d151d1be4",
+      "utf8_length": 57
+    },
+    "recommended_expected_output": {
+      "sha256": "644d0f5f3713817bfd6a046660ddfffd237fe0137ee9885f9f7733973142ea30",
+      "utf8_length": 22
+    }
+  },
+  "regression": {
+    "expected_output": "Begin of configuration",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "----------------------------\n-- Begin of configuration --"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "9ed6bd59fffd56ef627519756e7d934a44f41ab540d31ce7ca60f8b8ac463919",
+    "source_id": "d9e25a42e483279f58f8cc4bdf740fa907197f01"
+  },
+  "source_record_sha256": "f11a0142de0b7937cfc3a0995cd9ce0f0e1800b004a82edba67b7c41eb9399cb"
+}

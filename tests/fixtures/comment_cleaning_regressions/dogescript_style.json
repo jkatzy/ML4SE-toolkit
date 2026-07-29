@@ -1,0 +1,817 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "dogescript_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "0608669144f890d08a54392575e8bd443b5562a833c8c30e1abc269ef9a8404e",
+      "case_id": "dogescript-block-af7432b5a5ca7d34",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "d2b445199a864190f88fedb9a8ab0248768d1fac5436b8867e2f5faaec19caf4",
+      "raw_sha256": "0608669144f890d08a54392575e8bd443b5562a833c8c30e1abc269ef9a8404e",
+      "raw_utf8_length": 1021,
+      "source_provenance": {
+        "source_excerpt_sha256": "83c81271b9045a85fe8b52aed85b99c2a3177338629bb411400df2346298d7ab",
+        "source_id": "c94636f1f2c721c7ab7df2f0b089deb36060ac2d"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-0b429fadcd36778c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "de52597df0656531c19cb1e7e4b59ba42e3055ca66c975aae854ebe1b6d56a4a",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "31626c9ecfbb93b7d110c7f5a1ae4c54ce9ed0a0df7c0c72451b7000967bf90d",
+        "source_id": "316918100fe2b01e264422c4d85872a4c35a57e8"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-1265074d394660ee",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "1c5c7066023421026c67ff6686a03daffdfea9a993c1d1a3ce4de9470117b5ff",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "443db8f2701eee79709cb79a8ecb1e5452c1ecf2137d901d50b701a7724c2854",
+        "source_id": "c5389ddaa7f52584663dfef9d5d03e6352bcba50"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-17607b501e0f61b6",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "03c42465bf8bb5b1fd5bd7c2366e01794f190d1627f3ee29d1756b61bfbe5f97",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "95eb893051beb19ece5c9e75f107b3df3cf1bbb9511d97a0cb32c6e1bef89c50",
+        "source_id": "c232f958063fddf0e061ff69868d19ec15d74d2b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-23f94455faa573af",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "0bd50f935c67d983498b320bb964e42b3107082b6470245507bf5598d9ced236",
+      "raw_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "raw_utf8_length": 5,
+      "source_provenance": {
+        "source_excerpt_sha256": "49969f3df952d584db686680a245d38c9dc3666a00b932db08ae413c57498cc3",
+        "source_id": "e3be5c9518590958d67dc283eccb513b5b16ffb8"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "e0dae51e440c51eb3b67cac39cbc3b60cac39a43ff84df798c799f569bd0c720",
+      "case_id": "dogescript-line-2820d1eff3676aaa",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "31d8824878ab3a7a578415fa7ff9249dbbc44e114acddb9bd10bcd3b225e900c",
+      "raw_sha256": "e0dae51e440c51eb3b67cac39cbc3b60cac39a43ff84df798c799f569bd0c720",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "396bc160b39239233e2ca5ca06b8396656c48b7c197c421c5ec721d922ff82d4",
+        "source_id": "cc05fcad74aa7541737ae1fe6b8cc87fbff47d98"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-447e7b30a8437a16",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "b29b078afe512a698dea4579c8ecb87af63b19d96c2b797149e076df129fbc92",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "7e29c094070e45571e0c55f5a9d4e48a8509fbcdc4487578f0e3d77576ba0369",
+        "source_id": "999338a0636f908a5cbb4a6758bd612ad0530dff"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-4beaf46fa680d003",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "1a285367ecd2c6a90152da62560777cef3f53681e7fbd912cd5519005de8012b",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "0033ece346fcb964f94d157d426b493b65eda3c88606526ba495deda3af8e022",
+        "source_id": "c905c412cc03f93d1c988a1663d0befdd156dac1"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-4dc707d986a3f119",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "463ee47b1c3bff461d14f64ce944946d3c1e2bd552a3b40d8a8ec0c62f69a4b6",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "0fd78bccb9122aa530a29786eaa16527843ac30c8a4816d907685259a0bd12cc",
+        "source_id": "05a98f0ffeb4081ea44c0c6851a4b2371b0e833e"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-4f335ad0d865ac68",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "525d001b001a6b56ca07eed2d8bea297659c7fa303a10ea9099c4031044010c4",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "b9339cc9e9d5bd825037c45f784f73d3b91ee64e276e0821add706b604a6bdda",
+        "source_id": "40f517cbce02bb7b4c10a87cda149a33a2c53dd0"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-54c80660a23c75f6",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "791c9d457b6f77449416242a2abdb0aaf4c62e4d6d3bb3ec76c5702c683d63a0",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "b1ea69e4b885af4f739ff5c67779b5b1ca8cd6ae09753f5d871417910322e3c8",
+        "source_id": "fe7fa77afb3bd482fa27c018dd8d8acf03962e21"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "c376fc50aa4db6c908b0b440924bb2202da9220233195cac2a8dfc9af83261f7",
+      "case_id": "dogescript-line-5d52d296156dbd78",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "05150a6585f59f63f7b43125190d4e0ba4bdd905d2f51cf923c8eb63f57f5422",
+      "raw_sha256": "c376fc50aa4db6c908b0b440924bb2202da9220233195cac2a8dfc9af83261f7",
+      "raw_utf8_length": 73,
+      "source_provenance": {
+        "source_excerpt_sha256": "526ed53222fb0a7ddd1b67cd0c55ee27ea0a6a1629730a9ac717b9e9c2819b08",
+        "source_id": "ed0acbb48c7a78a73a113cfe06f245e9e5db2822"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-604fcf1934da7ef5",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "63d13dbcd009926dbad16971cc930348783c85b64909668ff967c07fbbf3adcd",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "62e5c7a5076be5cf82c50e7d58ccb3fb3af154e69a9360578fcb548173cfd32a",
+        "source_id": "488d3e856d38025e59170f020875035f2ee844d7"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-60662a68475741c9",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "716e7f14cc56bddc79f1d30bde6bdb2159db6b10d9c5f3f7141a711b7feb6bc2",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "6ac424c81883418f1d7342f77b6bdebc5d43d7e05e4b973f09457479646b794f",
+        "source_id": "1a53e9b4745d6b67b62e6db6785df5606dce1c78"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-7773acd3ba76cec7",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "f54330402c387c3518748fc01e7dd704b342395b602f3ba4994e0a20cd7a2e02",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "9b1d36c1c09f8c24b8f6a98cf6a8c85227153ef75bc6f4caf832108b7f2f77ef",
+        "source_id": "ea42407f2c1fc8a8af094e2727c68de02a4008a6"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-7b3a501cffc8e3fc",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "e0af8708247b5624af0dd7b9a880cd6d3d3aefaa07dbbfbd98286c9bb6bf4ab7",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "4151a2b5ba86ff4681730866a44ef1e8e558a0b9b9ea7c57c9292ff7b901d439",
+        "source_id": "74ee951e6cb132549929760538e32f7f772f1b1c"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-822c6c1af21105b4",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "c9ebcc3cca47bd1e7c072113e1710980ec2f872b910fb37608db92ac54a1e1ec",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "dbf3f09db2dd53d1af6b214771f8ee729e0bc4da20445225396057c1b91e9e7e",
+        "source_id": "f6acc0e65525a486b83a3174a2ef0d0f307656dd"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-8d02fffad20c463c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "ec945bcec6ed8ec43f293f2cabc841bb8dbcd7dcd742181062b28b54becebe2f",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "09554f343438499aeb199cbecb1f7e5e6b813ea143eea3b621b354471323a4b7",
+        "source_id": "488b55c1070d38e3a4a132cc1676887c8e701a33"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-9f392ab04b90c176",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "9dcddc804d765b898e018b083227cb8cf87aeb9dc05ca8574f138fc7e1eac0c2",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "5bb1d1a918295d83a8af16d76c34c17fa5757a486ad17c206c13f6132f7cee27",
+        "source_id": "1283d23ec72e2e2f9308b351cd41290d15224271"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-9ff52488a6898046",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "ff50adaafb875afddd36422bc54270a3bc7c8067f9ad470f02c9a230b24e1c5e",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "a24d712dae7d1cb958413617f1877e7358f44abced1cf60680cb9e816d2bc9c0",
+        "source_id": "4d880ba03c85a5b9b196034cea0772f6d12f4a36"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-a211474bd00ba76d",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "19a1d312562f82c29629dd473d7f3c7d1e64ff2c973347ed288d6a5a62ea0fc6",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "b953c04dae51c1a3d10c18fa6cf3de5d6a659dd61d6f3e6ba1e290234c77c374",
+        "source_id": "ba994844aa957dcf7c093eab4834a158c50ff343"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-aa8310a5e475770b",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "9bf845f37c58fcf359dc6ff39dd888d037060130841d6e7df52e95128527b1aa",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "d282c7ebcf92eb6da92ca7bde0004de8d35894f8e52fc46d040064fe1fed30f2",
+        "source_id": "68c2d907996b794e664442926c8881454e9e388e"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "6b03df1419950fe0200785e9c09dfd143e71a4d7efd89c612f948deb712d5f0e",
+      "case_id": "dogescript-line-b4707201ec3e89a0",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "82b797f41a361e4a31dce838eda719e71c2912eeb6752f19cfa6577bc106fdf6",
+      "raw_sha256": "286b5d88d4c5f0c21a9b6a52675a7070916792567cecc48d4a68efec99aeaa04",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "d09f1197d8e36853a61549f04f7520628c0e8eff36647d0cafd8532072f81b5d",
+        "source_id": "18ed339a35ff2cf02024dfa34608a30f0d448bc0"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "a98e1fd9be2c4fd0fe99f362c2e37a8659506683ec6c6f486018d4c3f093a33f",
+      "case_id": "dogescript-line-bdbff6e9fb4f3539",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "855b49bdcabe4ab7000c4d0e16f401f04e14ea5b86514b2c41839db94fd0dc78",
+      "raw_sha256": "a98e1fd9be2c4fd0fe99f362c2e37a8659506683ec6c6f486018d4c3f093a33f",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "187b27bc8e81cae0d1a712756ce06aaf9ff572c9c6f69c41c3c75d93216debf5",
+        "source_id": "113eabbca61b6c5a0fa7d03e1dfd930889b00ee5"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-c050d30b336c5602",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "b13fcf0534160ad49bd234996d8d322c094d0dee43cb7bfdc4791819fd470028",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "4b23795dca40e1fb7935f066fd6f28751f5c06b10e09520cd761a15f6a75b388",
+        "source_id": "6b99d705fb7f44dfd1aed66f6f578216ae7e7d4a"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-c0d6c2a28c882e6a",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "641cda3cfe33798eafa1ec63add22f3ad43bbad60bcebdbacc73ae7832178c11",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "e5f730006353762596eeb2ab6a6247a48408e5c9bfda2bdd03b6638fa3870c93",
+        "source_id": "546b9a9ad15618a28e5fb173271f723ec57c0e0b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-c2ed24acc80bffc7",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "5f6c3ea88ccac87900611dc861b2a117743358bcb24cb0f17258781342296f64",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "e678efe4a94e6cc7a3f80a51ddc369520108caae256259f81b585696e0d0ca8b",
+        "source_id": "19f1e7f3ff88bb14069145b9a11af547560a2474"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-c8241d83b4e08399",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "24922701da98f9e8815f3949406f4d445fc3ef8b79b093da62fe3c3b1ebefc1d",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "18cdb7af9a2cb1a04f06d0671d9ad26a43e87ead695fc3aed883147b0fbf86b9",
+        "source_id": "ff032c4efbe40fa7a1a7c94183374d37825dc43b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-cb29898f3e5e16ab",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "0dd5bf872faac6a1ce765d41b4032d8f94136cbfbb44806acdef00f337eb73cd",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "77d85abf220e1e8d8fc1c23e2261c99c4004fab9c0751c427b63a57882ffb8f9",
+        "source_id": "12bf23780f5210ffa2aca537a6e252ea28c605ef"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-d00c0b2c27bf5b6b",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "5a1ff51956d19639e1e06a7b31f3da0f9d29dd44f57d26a8a912968670b55e8c",
+      "raw_sha256": "59aff392b5d8301559b2c3f7a09488d3ef8784e1d862e91ea1ba956e0bd52c84",
+      "raw_utf8_length": 9,
+      "source_provenance": {
+        "source_excerpt_sha256": "34b7e5691c3ddeb9e13fe86edfba420a4b5a67b999a32eb34843b16715663d0e",
+        "source_id": "c430d1d94ac3ee2c4875de30a8c8dcedc1c4da1a"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-d21572fa914a9f48",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "9858ed15c5129b36fc402dcc9be08ce40cb001f20abf5ea2a9598563f07785ef",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "80fda0ac79b0fe1dee80eec504913ed09cd459733ada668dcd850fc1b8430d97",
+        "source_id": "432e75167f53fabacb60963474963368e807d9bb"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-d47c40a599093b83",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "461aa036bb41f4eb592f183d579d88491896078e89ddb55269fb03118b3c7ca8",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "d21849a8a643a14386e8f60778c34a61c73ed910c8f565a9f98a911fc7663eab",
+        "source_id": "425523d80287522f7e293c8c1e2f06d213fefa76"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-e42d9929c6881d0e",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "82258aa3db81d0b149abd9cabca0573cafd0b2c3bed2f00593ddd0d4710c71be",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "f515663ecc19f5b8b8e313da1eb17178e8181b23221c56d63e0938da9a0a353b",
+        "source_id": "775d61d4dbed331ba14c1ab0ef49e56519967514"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "b12447659ba94d5eff54a0a5de75ffd334c90cae3bbeaff1948c114d9ebb9d44",
+      "case_id": "dogescript-line-e5401ff1016e1e2a",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "5b72f3006fe0f99921dd6cd7e6ccbc7c807043c12f792746da1145ba2bc02bab",
+      "raw_sha256": "b12447659ba94d5eff54a0a5de75ffd334c90cae3bbeaff1948c114d9ebb9d44",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "1a07e7df75cf8a9fe9dd4634619283e782f8b5592b83e4575fd79a4d3ce828ee",
+        "source_id": "268721dbb3b46e3928a1e706a64d9a821e47f4f4"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "d58d442d510c0f64a4e4074b807c328241434052baf912d46fd8dfdbad8bf09e",
+      "case_id": "dogescript-line-e5c196e2d4c0f58e",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "66af4c4781d33eb6764da1522133458b73562beed1ccacf08aadf4916f4a964b",
+      "raw_sha256": "d58d442d510c0f64a4e4074b807c328241434052baf912d46fd8dfdbad8bf09e",
+      "raw_utf8_length": 54,
+      "source_provenance": {
+        "source_excerpt_sha256": "d42d4d93e0cc798d7921cbb6b518a8fcad8e537f572a0733afb7238a58f4f26c",
+        "source_id": "c4bd61e8f837886d5c0d4a5429726d29d2325efa"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "03b8ff3c9c3fbfdd80052e1b7670475393776b6ce46923b64b8a9f476cb6eb58",
+      "case_id": "dogescript-line-e7176aa6bfb8eae5",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "55c17469e61dae50a7ddba8223da0593c3e31983d780ba57c0006513e2b90453",
+      "raw_sha256": "03b8ff3c9c3fbfdd80052e1b7670475393776b6ce46923b64b8a9f476cb6eb58",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "5f45bf8993fb6f0fe52e9b1ae3bac3aae7910b7242c94fb36df70ee1e0cffb92",
+        "source_id": "dc8a5db4287bcc4b51358c3ff003dc7da9868d8a"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "484e33e0b5317d74f0d0827963013da6e7287f8d7d34d405e3480b6fbf983c8f",
+      "case_id": "dogescript-line-ea1eb84c1232fc0c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "cff8b4c8162f4a8a6a192f68b5b3e2b706f6ffbfdfe571f9e03c2d26c4df180d",
+      "raw_sha256": "484e33e0b5317d74f0d0827963013da6e7287f8d7d34d405e3480b6fbf983c8f",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "c0117a78dd564a477f9ca15556b1010e74a1d441e2f65069305ffd013a366eae",
+        "source_id": "3ce2c03f7f2751c7ecce298cdbcf0dc0e7a832ae"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-f0f0909060925cf8",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "dd22928d450bd1477db3d51d12cde26d9311f3c64198917d333088e74ee1272e",
+      "raw_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "raw_utf8_length": 5,
+      "source_provenance": {
+        "source_excerpt_sha256": "e3fb6d04ea62c2d437b8daf9fa7049aaa3c2dea544adf19336eec1cb0841f00c",
+        "source_id": "f22923182151fd0f9e4330c1ef2cf9d4a6f46c6f"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "85478b71f7dfa99d6059a2d6e6982e40fb6b57568a7a00229a7b866aafcbe0ab",
+      "case_id": "dogescript-line-f136c73282e43e3f",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "ba9c96f3c8cdaa97ec5d7cbeecdb0daf98b1b1d1c0e18355caf210564d604815",
+      "raw_sha256": "050bdd086484d53ed377214943c027f5d27eb681099269409b4883801e2e6d67",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "33318a190ee3bc047b141770004aac3585bdd5437a38046e7603a90a9ab7956d",
+        "source_id": "3408c50d9c47d3134b2654c72de5c63c98318cb7"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-f534d546824098ee",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "de2628a0db2ca93c64d4176b0a4ce78381a5fa37bc46d876ca9a4c54efdd4251",
+      "raw_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "raw_utf8_length": 5,
+      "source_provenance": {
+        "source_excerpt_sha256": "1928cff5257dc4177669ad414d31a3f7f7943648f812708ac36bd1b7cc71c6bc",
+        "source_id": "69e9b0160b572c85422feb232e7f81c197a66d6f"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "case_id": "dogescript-line-fa8817da41bcec9a",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "9db2b7be2a084d24b59da3917381da421cc4bbd8126e3a8320584e6a74289160",
+      "raw_sha256": "74a78850a9a33f220cf756a017af6e25e980acaf717713dec7ffb41a1c4049d9",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "acbc8b72a58af8abd4ee9f3e3746f92b5385589321cc8ba18ce56ecd2aea3a6e",
+        "source_id": "acabc34a05bd04da1cdf6922f89b8b1a437459c1"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4c861dc2e7b483552050127c083e980fa2bf0ff735a5a58fffdf7ef87ec0246b",
+      "case_id": "dogescript-line-ffb1a8641ac20916",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "dogescript",
+      "oracle_exception_record_sha256": "b53d497d9e0613fb52625af187d18074e7e16bad16cbcd05d130075d0ef9dbd4",
+      "raw_sha256": "e826419635a466746b9b012913eb0c91ec71592e6223d9b51ce71e4dc99b88a3",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "53846b8339392b3644424f50cb72954ffe86e1f88d3eba813f720fa702de231b",
+        "source_id": "01e3b273ff021620999e95cda90044c7d063b19c"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "63ccf7d3bf0dac07ef941835e18c2bec79be2376c9691218b3357d665055ecfb",
+      "case_id": "dogescript-block-4e6eb836413a7190",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "this is my first dogescript!\nSuch wow, very scripty!",
+      "expected_cleaned_sha256": "ae99febfd619b9e99a3ffa19fdfdf68ee3e9f315c233c4c6da1b7bc9b922b315",
+      "language": "dogescript",
+      "raw_comment": "quiet\n  this is my first dogescript!\n  Such wow, very scripty!\nloud",
+      "raw_sha256": "63ccf7d3bf0dac07ef941835e18c2bec79be2376c9691218b3357d665055ecfb",
+      "raw_utf8_length": 67,
+      "source_provenance": {
+        "source_excerpt_sha256": "43d86056c6e6fbf7df255376e49ec288b9c551a3d25185f79cc4484ab6ddc529",
+        "source_id": "234cd666190959f6cfe7e13e949d5f8ed4569ef4"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "4b4a292de4ec245f8459214255e3e2f766f5711a9ab22318d2ac99e7c5f5ab47",
+      "case_id": "dogescript-block-4fdc4d8f70016f52",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "grunt-dogescript\nhttps://github.com/Bartvds/grunt-dogescript\n\nCopyright (c) 2013 Bart van der Schoor\nLicensed under the MIT license.",
+      "expected_cleaned_sha256": "d729fbbd53b53fcd683ed71dcbe253e3a2b6533a8713d06bd1003290f10d1e15",
+      "language": "dogescript",
+      "raw_comment": "quiet\n    grunt-dogescript\n    https://github.com/Bartvds/grunt-dogescript\n\n    Copyright (c) 2013 Bart van der Schoor\n    Licensed under the MIT license.\nloud",
+      "raw_sha256": "4b4a292de4ec245f8459214255e3e2f766f5711a9ab22318d2ac99e7c5f5ab47",
+      "raw_utf8_length": 159,
+      "source_provenance": {
+        "source_excerpt_sha256": "4acff263277443e02a3bbe2dd1257054cb44ad521342ffafee9f097d2daccded",
+        "source_id": "b82577b477c4f5740169f1c995eb5214e76b96c7"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "c265fbf64c454a3ec0d91f3019e4aea9e34125ce09296f076622b64a782b6715",
+      "case_id": "dogescript-block-92b847f7d30c6bfe",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "cerner_2^5_2020",
+      "expected_cleaned_sha256": "1afbeacaa1f57b412d47c38be2e1ffc438475dcfd430b9ca25155f8d3a5bd3ba",
+      "language": "dogescript",
+      "raw_comment": "quiet\n  cerner_2^5_2020\nloud",
+      "raw_sha256": "c265fbf64c454a3ec0d91f3019e4aea9e34125ce09296f076622b64a782b6715",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "f63cca01fdcb7ce22f153e0328e01469e2a99bb3c8fb71bcec32be668c8201b4",
+        "source_id": "575a546a7568be0976ca3d3d593b74e666017a93"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "59f3fb3a5d7154b61675327f5295c1de2a29dd367d222e511ca03bc88293e282",
+      "case_id": "dogescript-block-aa6ded8ea67dd177",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[nth number of Recam\u00e1n's Sequence] -\nRecam\u00e1n's Sequence is defined as \"a(0) = 0; for n > 0, a(n) = a(n-1) - n if\npositive and not already in the sequence, otherwise a(n) = a(n-1) + n.\" (Note:\nSee this article for clarification if you are confused).\nGiven: a positive integer n.\nOutput: the nth digit of the sequence.\nSpecial: To make this problem more interesting, either golf your code, or use an\nesoteric programming language (or double bonus points for doing both).\nChallenge input: [5, 15, 25, 100, 1005]",
+      "expected_cleaned_sha256": "4f54031373e2d5ee5900ce529326ef7d00653945baaa641f4097b986fcd4397e",
+      "language": "dogescript",
+      "raw_comment": "quiet\n    [nth number of Recam\u00e1n's Sequence] - \n    Recam\u00e1n's Sequence is defined as \"a(0) = 0; for n > 0, a(n) = a(n-1) - n if\n    positive and not already in the sequence, otherwise a(n) = a(n-1) + n.\" (Note:\n    See this article for clarification if you are confused).\n    Given: a positive integer n.\n    Output: the nth digit of the sequence.\n    Special: To make this problem more interesting, either golf your code, or use an\n    esoteric programming language (or double bonus points for doing both).\n    Challenge input: [5, 15, 25, 100, 1005]\nloud",
+      "raw_sha256": "d72e6e99ef01b0eabfd1b6113ca4618ae0a3b0d66e1e6723eb79824911f6db4c",
+      "raw_utf8_length": 558,
+      "source_provenance": {
+        "source_excerpt_sha256": "3111429ad92af30ee5b910fb0acc96bc10db6a569fa11897792311237fdf28ef",
+        "source_id": "9305958aa02fa6e2d02ed740e3dcf0985ae2da5a"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "689a0b3d45873a274c9bae2920d08cc36097a2d7a512af8e5df0248cbfa35898",
+      "case_id": "dogescript-block-aec613b45bb05d31",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "silent\nninja",
+      "expected_cleaned_sha256": "984bf1f119902c88e7bdc0f019f7388c3d12119e179bf63240d3695ffef84d9d",
+      "language": "dogescript",
+      "raw_comment": "quiet\n    silent\n    ninja\nloud",
+      "raw_sha256": "689a0b3d45873a274c9bae2920d08cc36097a2d7a512af8e5df0248cbfa35898",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "dbdba22641a8ac9b812f883a7ba8ac8ddf5427a81b311007ed9286ce1a8e6cfc",
+        "source_id": "427a3712a135e26064aeb0441cb1e9b414477d9c"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "6dd80d297404dfb9e52ca70669fbb376ebd98e987ac27d25fe9fa7b0d8b58b46",
+      "case_id": "dogescript-block-caf750254655e237",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A program to convert text to doge-latin\nWritten by Michael Guida",
+      "expected_cleaned_sha256": "dd9724d65f8388638100db16155e77721f569e817491ad7e9b1876ce151ca181",
+      "language": "dogescript",
+      "raw_comment": "quiet\n    A program to convert text to doge-latin\n    Written by Michael Guida\nloud",
+      "raw_sha256": "6dd80d297404dfb9e52ca70669fbb376ebd98e987ac27d25fe9fa7b0d8b58b46",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "1c9709c5d8614062bb4026f419c84bed07bab2e7a70252eb8a00bf7e5b9492e6",
+        "source_id": "4bc00ae91829e6ed118832ed2fef51f24393d228"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "cd21f6402ac9decaeb6782c65f66b15417a7a0d041e25a31f188af74913402de",
+      "case_id": "dogescript-block-f9abd8d62498dd77",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "dogescript was created by Zach Bruggeman\nand has been improved by many contributors\nsuch appreciate, much thanks, wow",
+      "expected_cleaned_sha256": "4d37ff97e75f4bbfcc11a9efd34dfd4aab6c1157ca22cddc21af9ecf1b9ee3d5",
+      "language": "dogescript",
+      "raw_comment": "quiet\n    dogescript was created by Zach Bruggeman\n    and has been improved by many contributors\n    such appreciate, much thanks, wow\nloud",
+      "raw_sha256": "cd21f6402ac9decaeb6782c65f66b15417a7a0d041e25a31f188af74913402de",
+      "raw_utf8_length": 140,
+      "source_provenance": {
+        "source_excerpt_sha256": "77f0cf48db4a04606a678bf23e2c2a042e8aac61f27b70c36eb5aef8679b76ab",
+        "source_id": "ccd8d932fa1688dcfbbc1eec71fcfe12aef64359"
+      },
+      "syntax_label": "quiet"
+    },
+    {
+      "baseline_cleaned_sha256": "95f806e748023e2cf08241254a116f232ac19097f47779ee6f305a11e460503b",
+      "case_id": "dogescript-line-9dd2e394fe04af05",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "naive fizzbuzz",
+      "expected_cleaned_sha256": "612e6f9dd84a2d868858b7e7142d3a198b435f3de5d96254dd94db09a2b79205",
+      "language": "dogescript",
+      "raw_comment": "shh naive fizzbuzz",
+      "raw_sha256": "95f806e748023e2cf08241254a116f232ac19097f47779ee6f305a11e460503b",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "87190ece358d514945345c7d6e5feb5e5090ecd123952e3d802bbd7655b6797e",
+        "source_id": "1db89d0734e339d3abab82ae5aea1fe0e1eceb27"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

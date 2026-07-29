@@ -14,6 +14,8 @@ import urllib.error
 import urllib.request
 from typing import Any
 
+COMBINED_SCOPE = "combined"
+CLEANING_SCOPE = "cleaning"
 VERDICT_SCHEMA: dict[str, Any] = {
     "type": "object",
     "additionalProperties": False,
@@ -26,6 +28,16 @@ VERDICT_SCHEMA: dict[str, Any] = {
     "properties": {
         "verdict": {"type": "string", "enum": ["pass", "fail"]},
         "extraction_correct": {"type": "boolean"},
+        "cleaning_correct": {"type": "boolean"},
+        "rationale": {"type": "string"},
+    },
+}
+CLEANING_VERDICT_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["verdict", "cleaning_correct", "rationale"],
+    "properties": {
+        "verdict": {"type": "string", "enum": ["pass", "fail"]},
         "cleaning_correct": {"type": "boolean"},
         "rationale": {"type": "string"},
     },
@@ -64,6 +76,12 @@ def parse_args() -> argparse.Namespace:
         default=float(os.environ.get("COMMENT_JUDGE_LOCAL_TEMPERATURE", "0")),
         help="Sampling temperature for the judge request.",
     )
+    parser.add_argument(
+        "--scope",
+        choices=(COMBINED_SCOPE, CLEANING_SCOPE),
+        default=os.environ.get("COMMENT_JUDGE_SCOPE", COMBINED_SCOPE),
+        help="Judge contract to enforce. Defaults to COMMENT_JUDGE_SCOPE or combined.",
+    )
     return parser.parse_args()
 
 
@@ -82,7 +100,7 @@ def main() -> int:
         else:
             text = _call_vllm(args, prompt)
         verdict = _parse_json_object(text)
-        _validate_verdict(verdict)
+        _validate_verdict(verdict, scope=args.scope)
     except (OSError, urllib.error.URLError, ValueError, json.JSONDecodeError) as exc:
         print(f"local judge failed: {exc}", file=sys.stderr)
         return 1
@@ -95,7 +113,7 @@ def _call_ollama(args: argparse.Namespace, prompt: str) -> str:
     base_url = (args.base_url or "http://localhost:11434").rstrip("/")
     payload = {
         "model": args.model,
-        "messages": _messages(prompt),
+        "messages": _messages(prompt, scope=args.scope),
         "stream": False,
         "format": "json",
         "options": {"temperature": args.temperature},
@@ -111,13 +129,13 @@ def _call_vllm(args: argparse.Namespace, prompt: str) -> str:
     base_url = (args.base_url or "http://localhost:8000/v1").rstrip("/")
     payload = {
         "model": args.model,
-        "messages": _messages(prompt),
+        "messages": _messages(prompt, scope=args.scope),
         "temperature": args.temperature,
         "response_format": {
             "type": "json_schema",
             "json_schema": {
                 "name": "comment_judge_verdict",
-                "schema": VERDICT_SCHEMA,
+                "schema": _verdict_schema(args.scope),
                 "strict": True,
             },
         },
@@ -132,14 +150,23 @@ def _call_vllm(args: argparse.Namespace, prompt: str) -> str:
     return message["content"]
 
 
-def _messages(prompt: str) -> list[dict[str, str]]:
+def _messages(prompt: str, *, scope: str = COMBINED_SCOPE) -> list[dict[str, str]]:
+    if scope == CLEANING_SCOPE:
+        contract = (
+            "Return only a JSON object with verdict, cleaning_correct, and rationale. "
+            "Do not include markdown."
+        )
+    elif scope == COMBINED_SCOPE:
+        contract = (
+            "Return only a JSON object with verdict, extraction_correct, "
+            "cleaning_correct, and rationale. Do not include markdown."
+        )
+    else:
+        raise ValueError(f"unsupported comment judge scope: {scope}")
     return [
         {
             "role": "system",
-            "content": (
-                "Return only a JSON object with verdict, extraction_correct, "
-                "cleaning_correct, and rationale. Do not include markdown."
-            ),
+            "content": contract,
         },
         {"role": "user", "content": prompt},
     ]
@@ -182,10 +209,29 @@ def _parse_json_object(text: str) -> dict[str, Any]:
     return value
 
 
-def _validate_verdict(verdict: dict[str, Any]) -> None:
+def _verdict_schema(scope: str) -> dict[str, Any]:
+    """Return the structured-output schema for the configured judge scope."""
+
+    if scope == CLEANING_SCOPE:
+        return CLEANING_VERDICT_SCHEMA
+    if scope == COMBINED_SCOPE:
+        return VERDICT_SCHEMA
+    raise ValueError(f"unsupported comment judge scope: {scope}")
+
+
+def _validate_verdict(verdict: dict[str, Any], *, scope: str = COMBINED_SCOPE) -> None:
+    if scope == CLEANING_SCOPE:
+        unexpected = sorted(set(verdict) - set(CLEANING_VERDICT_SCHEMA["required"]))
+        if unexpected:
+            raise ValueError(f"cleaning verdict has unexpected field(s): {', '.join(unexpected)}")
     if verdict.get("verdict") not in {"pass", "fail"}:
         raise ValueError("verdict must be 'pass' or 'fail'")
-    for field in ("extraction_correct", "cleaning_correct"):
+    boolean_fields = ("cleaning_correct",)
+    if scope == COMBINED_SCOPE:
+        boolean_fields = ("extraction_correct", *boolean_fields)
+    elif scope != CLEANING_SCOPE:
+        raise ValueError(f"unsupported comment judge scope: {scope}")
+    for field in boolean_fields:
         if not isinstance(verdict.get(field), bool):
             raise ValueError(f"{field} must be a boolean")
     if not isinstance(verdict.get("rationale"), str):

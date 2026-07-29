@@ -1,0 +1,38 @@
+{
+  "case_id": "stylus-block-b83b9f039323dca7",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "stylus",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "51984e276db3b6776ddb0849668d5f02e80cf17050f633d5e1c14d39b42e9632",
+      "utf8_length": 91
+    },
+    "manifest_old_output": {
+      "sha256": "87775a48710b0e94b6bff6dcc8d7d500bcef8ccad48f2314be53fcc3567f7554",
+      "utf8_length": 13
+    },
+    "raw_comment": {
+      "sha256": "e5272f4f3f7c610512eef6557c92433696606b1ac1f0e278f7519679349d0e2b",
+      "utf8_length": 99
+    },
+    "recommended_expected_output": {
+      "sha256": "87775a48710b0e94b6bff6dcc8d7d500bcef8ccad48f2314be53fcc3567f7554",
+      "utf8_length": 13
+    }
+  },
+  "regression": {
+    "expected_output": "BLOQUE MOBILE",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*------------------------------------*\\\n    BLOQUE MOBILE\n\\*------------------------------------*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "eed98a488776cc26f86db31be01bfc32fd78a46e18877220119768bbb37d6fe9",
+    "source_id": "8b35628ed31972954f22cb994b9c2386f374d990"
+  },
+  "source_record_sha256": "5c4801c5133a2f068e38b684ca8652a09fc3d79de7732d4d5967891a533c3fe2"
+}

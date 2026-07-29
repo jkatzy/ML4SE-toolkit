@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-8615daa382186e72",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "55ed8a2a47f253feb46e429467a1c15aa5f364a1193da127e0667804db1ac171",
+      "utf8_length": 960
+    },
+    "manifest_old_output": {
+      "sha256": "5b0aee7e18971ada80c7b14f0c0ec0cde65695f54da952ec3f72eef686d38b71",
+      "utf8_length": 781
+    },
+    "raw_comment": {
+      "sha256": "f5b9c4fa084339b1a4ec44207630afef433eedd946e0b39435deb7580f5b5b91",
+      "utf8_length": 994
+    },
+    "recommended_expected_output": {
+      "sha256": "5b0aee7e18971ada80c7b14f0c0ec0cde65695f54da952ec3f72eef686d38b71",
+      "utf8_length": 781
+    }
+  },
+  "regression": {
+    "expected_output": "This library provides selector functions, test and update operations\nas well as some useful auxiliary functions for FlatCurry data terms.\nMost of the provided functions are based on general transformation\nfunctions that replace constructors with user-defined\nfunctions. For recursive datatypes the transformations are defined\ninductively over the term structure. This is quite usual for\ntransformations on FlatCurry terms,\nso the provided functions can be used to implement specific transformations\nwithout having to explicitly state the recursion. Essentially, the tedious\npart of such transformations - descend in fairly complex term structures -\nis abstracted away, which hopefully makes the code more clear and brief.\n\n@author Sebastian Fischer\n@version May 2017\n@category meta",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "----------------------------------------------------------------------------\n--- This library provides selector functions, test and update operations\n--- as well as some useful auxiliary functions for FlatCurry data terms.\n--- Most of the provided functions are based on general transformation\n--- functions that replace constructors with user-defined\n--- functions. For recursive datatypes the transformations are defined\n--- inductively over the term structure. This is quite usual for\n--- transformations on FlatCurry terms,\n--- so the provided functions can be used to implement specific transformations\n--- without having to explicitly state the recursion. Essentially, the tedious\n--- part of such transformations - descend in fairly complex term structures -\n--- is abstracted away, which hopefully makes the code more clear and brief.\n---\n--- @author Sebastian Fischer\n--- @version May 2017\n--- @category meta\n----------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "78b56193030cf7b8def6bbef9b92d85fa45314bee81553d2ed1215d06e333dda",
+    "source_id": "5d17f41a9a221671caebd5ce3484b35b374a8473"
+  },
+  "source_record_sha256": "125a05a7fe3a3e770827d9f9f1b4fe9d2d3c40240757f4bc07755c3d08423119"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "c-block-5e38000c171e7920--requested-c-sharp-2d899f6fc9",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "c_sharp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "dac9c4e24cefa84061127e8ef4ce25039a45a2dcd86659dd8153e32378a446cc",
+      "utf8_length": 37
+    },
+    "manifest_old_output": {
+      "sha256": "2a6e9acec034d6521783b7ccd3cb55995980826ec4b1b463b406b921bc59794b",
+      "utf8_length": 35
+    },
+    "raw_comment": {
+      "sha256": "0f112d24b8ff97c98ee505bf5bce571b93d4834997c0969c1ff8b51bd8fcc1ba",
+      "utf8_length": 195
+    },
+    "recommended_expected_output": {
+      "sha256": "2a6e9acec034d6521783b7ccd3cb55995980826ec4b1b463b406b921bc59794b",
+      "utf8_length": 35
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright (c) 2019 ptgame@putao.com",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/****************************************************************************\n * Copyright (c) 2019 ptgame@putao.com\n ****************************************************************************/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "11b6b92c01d49e7282d6549034292ffdf4f67b6d75fb88b2ef4c8ff8c53bfac2",
+    "source_id": "cad0fe6d33bb764a2d987cd89bda9a9a59201c4c"
+  },
+  "source_record_sha256": "70d303f32bef63355a609f3ba9a23e84d93b1cf672bfa4cc60ad903b912745c3"
+}

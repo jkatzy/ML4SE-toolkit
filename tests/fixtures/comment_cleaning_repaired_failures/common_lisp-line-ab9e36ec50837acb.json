@@ -1,0 +1,38 @@
+{
+  "case_id": "common_lisp-line-ab9e36ec50837acb",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:common_lisp",
+  "disposition": "executable_regression",
+  "language": "common_lisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fa84bde3c55d7a28c448bd56ff5096108bc41db1e19e9ae19a56344e4b81621b",
+      "utf8_length": 261
+    },
+    "manifest_old_output": {
+      "sha256": "5108e8b5f59fe5bd7adfe9267bd68ad87a2907ee208b93bdb84553cea17de7c1",
+      "utf8_length": 245
+    },
+    "raw_comment": {
+      "sha256": "cdcc17d4697b265233291a493819f4c4ff1348cc587624954623019e257dbe91",
+      "utf8_length": 296
+    },
+    "recommended_expected_output": {
+      "sha256": "5108e8b5f59fe5bd7adfe9267bd68ad87a2907ee208b93bdb84553cea17de7c1",
+      "utf8_length": 245
+    }
+  },
+  "regression": {
+    "expected_output": "-*- mode: lisp; package: hatena-haiku.ui -*-\n\nFile: hatena-haiku-mode/ui/base.l\n\nLicense:\n\n  Copyright (c) 2008 MIYAMUKO Katsuyuki.\n\n  hatena-haiku-mode is released under an MIT license.\n  See hatena-haiku-mode/docs/MIT-LICENSE for full license.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; -*- mode: lisp; package: hatena-haiku.ui -*-\n;;;;\n;;;; File: hatena-haiku-mode/ui/base.l\n;;;;\n;;;; License:\n;;;;\n;;;;   Copyright (c) 2008 MIYAMUKO Katsuyuki.\n;;;;\n;;;;   hatena-haiku-mode is released under an MIT license.\n;;;;   See hatena-haiku-mode/docs/MIT-LICENSE for full license.\n;;;;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5fc69329d2ec01cc382890d6644cd840705013d4f858718429688bb86ef9729b",
+    "source_id": "451ba93ca2b9f3bdf1d754f542bb914bf5df6b8c"
+  },
+  "source_record_sha256": "87fae1b90f804a57b906247f5f3dfa22c7f24872b2c0667a4dd5f76462db76f1"
+}

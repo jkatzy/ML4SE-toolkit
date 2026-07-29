@@ -1,0 +1,109 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "emacs_lisp_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "e46ad2162e27864634a27a348fe65366a79ad44eceaecee9568b842d74c971ba",
+      "case_id": "emacs_lisp-line-caa4bbfc0b1e741f",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "emacs_lisp",
+      "oracle_exception_record_sha256": "3ee6e6bee46088ce799b57bd9bb5f7d01985863a9902a9b5084f8b14c86b6aea",
+      "raw_sha256": "174789fab453362b8a972bff9520a12e2cfe84d17748e10607ef7c05016e061f",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "795c17b98a812752200c66de0105ccc24a823fa1664085a4444a6219e37ad48b",
+        "source_id": "d39c12462c5acfa997aa770cc233e36ddaa0f81f"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1c6496f257718ed27a81b194f02f611bcd04f510301e4d9b71a51326fecf5177",
+      "case_id": "emacs_lisp-line-feb434f0a53dd334",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "emacs_lisp",
+      "oracle_exception_record_sha256": "1f6dcd0c7f18e27c04b078adf792e860702b68ed1d55276751108432787c5bac",
+      "raw_sha256": "eb892bf951c9f7429417098e0bb40cf5709ac827f18f6335aff0eed98b4eebd2",
+      "raw_utf8_length": 99,
+      "source_provenance": {
+        "source_excerpt_sha256": "f978b6cea89f31b6319d2d27b1bad6753a5e7bbbd0bb904824d52bb2d115f176",
+        "source_id": "61814adad792e6920890b81598d1161083534521"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5218dbc543f802f0a57009dcddb36eca80edd741a1249d7932704eaf366fca40",
+      "case_id": "emacs_lisp-line-0ec9ac4344671b6a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Customization of LaTeX Mode",
+      "expected_cleaned_sha256": "48b4329222d8378f7f8136a26c7d20ebe6e1f0a9241eec319ac8376c2753d399",
+      "language": "emacs_lisp",
+      "raw_comment": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;;\t\t    Customization of LaTeX Mode\t\t\t    ;;\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+      "raw_sha256": "edb0f395446d02556fff26b74190f4a06c852aad86303c03ae8d3f6fff92b38e",
+      "raw_utf8_length": 186,
+      "source_provenance": {
+        "source_excerpt_sha256": "20158ae2aebed85349378f8ddf62759d9162bac70a326dbf6cb82059d34e6877",
+        "source_id": "4101c1ffd6194e5aeb04295ec5bb4217f7489d49"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "7cd2ca67a94906c1413ffa92d93834061099824676cfe89331a9a5bd25adc83d",
+      "case_id": "emacs_lisp-line-2fdafa2cd41eb692",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- no-byte-compile: t; -*-\n~/.doom.d/packages.el",
+      "expected_cleaned_sha256": "bd72332f2ae4b6707503e7276c46e65dd99990cf951207bf66e7a5700dcb8644",
+      "language": "emacs_lisp",
+      "raw_comment": ";; -*- no-byte-compile: t; -*-\n;;; ~/.doom.d/packages.el",
+      "raw_sha256": "36db0c887e35d2d273dc6223f607c0b87c86b4e8f48dab45903a3d5664a8caa7",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "ae692938145a3ab834fe2c702308804a9e27363d33cfdae5134820447206848c",
+        "source_id": "3a8376dcfbe532f9d98729f1f0f7b6a9ff01bb65"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "99cabd7f23712f8322707be6012fb738ef41b58ec6f9ed54d26901038bd2a68b",
+      "case_id": "emacs_lisp-line-556bd4f36bac333c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "visible-comment-lines.el --- minor mode, show/hide comment lines\n\n$Id: visible-comment-lines.el,v 1.6 2003/10/18 09:52:57 gnrr Exp gnrr $\n\nFilename: visible-comment-lines.el\nLast modified: Sat Oct 18 2003 18:52:57 JST\n\n\nvisible-comment-lines.el comes with ABSOLUTELY NO WARRANTY.\nThis software is distributed under the GNU General Public License.\n\nWhat is this:\nVisible-comment-lines-mode is minor-mode. This elisp provides show/hide\ncontrol about comment lines. All comment line is hidden when\nentered visible-comment-lines-mode. And to exit from this minor-mode,\nIt's show them all.\n\nInstall:\n 1. move \"visible-comment-lines.el\" into the directory as your load-path.\n 2. add the following line to your dot.emacs.\n    (require 'visible-comment-lines)\n\nUsage:\n 1. invoke visible-comment-lines-mode minor-mode by C-x n ;\n 2. exit from this minor-mode, punch again C-x n ;\n    If you don't like this keybind, you can change it by additonal\n    line into your dot.emacs as you like such below.\n    (global-set-key \"\\C-x\\C-i\" 'visible-comment-lines-mode)\n\nTodo:\n 1. define local-keymap for moving cursor",
+      "expected_cleaned_sha256": "121f6c100ddee525fa2f58884e0e1bd097e359881e0201fe16c19fdf3bd706de",
+      "language": "emacs_lisp",
+      "raw_comment": ";; visible-comment-lines.el --- minor mode, show/hide comment lines\r\n;;\r\n;;\t$Id: visible-comment-lines.el,v 1.6 2003/10/18 09:52:57 gnrr Exp gnrr $\r\n;;\r\n;; Filename: visible-comment-lines.el\r\n;; Last modified: Sat Oct 18 2003 18:52:57 JST\r\n;;\r\n;;\r\n;; visible-comment-lines.el comes with ABSOLUTELY NO WARRANTY.\r\n;; This software is distributed under the GNU General Public License.\r\n;;\r\n;; What is this:\r\n;; Visible-comment-lines-mode is minor-mode. This elisp provides show/hide\r\n;; control about comment lines. All comment line is hidden when\r\n;; entered visible-comment-lines-mode. And to exit from this minor-mode,\r\n;; It's show them all.\r\n;;\r\n;; Install:\r\n;;  1. move \"visible-comment-lines.el\" into the directory as your load-path.\r\n;;  2. add the following line to your dot.emacs.\r\n;;     (require 'visible-comment-lines)\r\n;;\r\n;; Usage:\r\n;;  1. invoke visible-comment-lines-mode minor-mode by C-x n ;\r\n;;  2. exit from this minor-mode, punch again C-x n ;\r\n;;     If you don't like this keybind, you can change it by additonal\r\n;;     line into your dot.emacs as you like such below.\r\n;;     (global-set-key \"\\C-x\\C-i\" 'visible-comment-lines-mode)\r\n;;\r\n;; Todo:\r\n;;  1. define local-keymap for moving cursor",
+      "raw_sha256": "acb9e68c2274eb693653279983fbac168d022b4c383ce3d6d471acf78fc2e44d",
+      "raw_utf8_length": 1214,
+      "source_provenance": {
+        "source_excerpt_sha256": "ba5c52c1646248328ac1cd16ab7af660f69491ee48f8ffe1f8c6e889e2fe846c",
+        "source_id": "3cd5b66c897f64d554b69a8a747e3b21e6dd9600"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "e86e5fb8ed7da074345456f8ad9b952d1e813a8900e14a2fdd961da36182b34b",
+      "case_id": "emacs_lisp-line-94e2f17c09832950",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "setup-lsp.el --- Setup emacs-lsp\n\nCommentary:\n\nhttps://emacs-lsp.github.io/lsp-mode/\n\nRequires calling M-x lsp-install-server\n\nCode:",
+      "expected_cleaned_sha256": "9155fbddec24c12c4fe85d7406063938656af2b8b9dd02661cca5623c9981435",
+      "language": "emacs_lisp",
+      "raw_comment": ";;; setup-lsp.el --- Setup emacs-lsp\n;;\n;;; Commentary:\n;;\n;; https://emacs-lsp.github.io/lsp-mode/\n;;\n;; Requires calling M-x lsp-install-server\n;;\n;;; Code:",
+      "raw_sha256": "51dc34ec82a889a97041f9de07eecbc5eca82d7a07eac3a7faedfb910a06c105",
+      "raw_utf8_length": 158,
+      "source_provenance": {
+        "source_excerpt_sha256": "7c8c8737bde547612d1e59286b4a7bf849210edf068bb6505f2e4bcb3bbc7fb4",
+        "source_id": "8fce1d6ef99c90aca1a9168e2db6d07f788112c8"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

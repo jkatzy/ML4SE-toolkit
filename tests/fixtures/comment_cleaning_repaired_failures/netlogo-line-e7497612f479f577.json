@@ -1,0 +1,38 @@
+{
+  "case_id": "netlogo-line-e7497612f479f577",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:equals",
+  "disposition": "executable_regression",
+  "language": "netlogo",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "83d099bd6b593cf7c8b31f9f1e4eae19df43c5d81edf2364ce29e97231faf0ae",
+      "utf8_length": 104
+    },
+    "manifest_old_output": {
+      "sha256": "c99009ae557477006c8356eaa1d2dff77453a4b81b072c5da791bc57fcfea27f",
+      "utf8_length": 96
+    },
+    "raw_comment": {
+      "sha256": "9d2ff9122b15570ced995f416154eb8d2e840cd9766e0e3009c519938728fe87",
+      "utf8_length": 106
+    },
+    "recommended_expected_output": {
+      "sha256": "c99009ae557477006c8356eaa1d2dff77453a4b81b072c5da791bc57fcfea27f",
+      "utf8_length": 96
+    }
+  },
+  "regression": {
+    "expected_output": "Reinforcement learning to solve the \"Hunt the Wumpus\" game\npar LARROQUE Stephen and GILBERT Hugo",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";=== Reinforcement learning to solve the \"Hunt the Wumpus\" game\n;=== par LARROQUE Stephen and GILBERT Hugo"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c672dd05249bd78e9de8400cf72c8029e6b8966c3416030c8b7606b0db835af2",
+    "source_id": "037217e161b96f37dd51c4aa3cb05419973e6818"
+  },
+  "source_record_sha256": "3b8b49af1f083db398e2e0410f7d2d3c309e1674003950ef057f527a6c79a4b6"
+}

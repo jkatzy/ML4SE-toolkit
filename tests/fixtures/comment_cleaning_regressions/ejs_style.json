@@ -1,0 +1,411 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "ejs_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "5132af6601c453c95fe3167a6ca875eb110c5a040f48cd40643c5281bb1a3fe0",
+      "case_id": "ejs-block-160d0f590bce4392",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ejs",
+      "oracle_exception_record_sha256": "569da6954af6b09223fd0f44a56caff6be75d597ce0fb03af704669aee96e6e5",
+      "raw_sha256": "f61776d949c31961b9819f593b97e96a80b82ef11640b7344edf6dec4c27ede0",
+      "raw_utf8_length": 720,
+      "source_provenance": {
+        "source_excerpt_sha256": "a68952879a437276330d53442309e65c6faea8cd0d547f6b67edeb70bf256f6b",
+        "source_id": "7bf189b429c07154c3a7848198c6943edeb557c2"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "707705edf699dc45c1b8740306dead4d6266db2250e5d7efac86d7a30836f64d",
+      "case_id": "ejs-block-2122b47c6e7eefa9",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ejs",
+      "oracle_exception_record_sha256": "096aca3b97ee6eef2edf59a7e60a02df0cf86f1bba488510ac833b8c5884d979",
+      "raw_sha256": "76b2d01975fb0d8bb3faea1058eee61cd0683b437bed2371539e397de6f0938b",
+      "raw_utf8_length": 39,
+      "source_provenance": {
+        "source_excerpt_sha256": "ee794a7eef2e2d8e3f389770b50e2447c77e2622801ba6c325935088a85c05b7",
+        "source_id": "269a275481e436bbfe74987ee1205b6c3a7dbe7e"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "d1268be89fca3170a218b7eeddbf377ce12bfbf43187096103f47534f8e9f361",
+      "case_id": "ejs-block-2850967bedd06227",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ejs",
+      "oracle_exception_record_sha256": "b9844fdd596433a7eea74d8829138154a0bbceb33bb6803112e8be47802e3a2b",
+      "raw_sha256": "dc27f8deb4564572aac95f144fa593dbab7729691622a1e417a1a1f634954a0d",
+      "raw_utf8_length": 721,
+      "source_provenance": {
+        "source_excerpt_sha256": "6f0210e25fcc7d84013d89a98ea0375537a1a6a2943236939026c6339c60bf03",
+        "source_id": "042ee76ae6b131a7a266d962d73315b8f2a011f1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "0eaf9d304ed1833d4a577f1466d41437efa4a3a98323b95948a6abe6186bfd0e",
+      "case_id": "ejs-block-5729115e6d32ba69",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "ejs",
+      "oracle_exception_record_sha256": "de1a85496d47a2e0128d97585df90496c32e70945b2d8e42fc50ea128cee7118",
+      "raw_sha256": "9d3d3f0589495d25806aa0dc0ba4f402c7ed9ccb79ef04e46871630f68a932ce",
+      "raw_utf8_length": 720,
+      "source_provenance": {
+        "source_excerpt_sha256": "5df07cf17e6b38fbd549c4ff7dc2337e03861de0ea87ba618cf9eee9f6e4dee8",
+        "source_id": "8c73d82fa5a31fed3d6eb70c5e48d61e9671d85b"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "c11709a721f263723ea6d1eb44ff3dd4b1859a43214039ac52133371fcac3e5b",
+      "case_id": "html_erb-block-8ee27ef30883057e",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "html_erb",
+      "oracle_exception_record_sha256": "28f525a1105d87604f7579d1c9731cc41b9330da5391c07f58d307374e5d7ff1",
+      "raw_sha256": "60734986a13d37a82f8db804920855021244051651d2e053c2bf9b61f974d6f3",
+      "raw_utf8_length": 109,
+      "source_provenance": {
+        "source_excerpt_sha256": "ac4f968ce944d6c0e3375c950629e902cf100d8077fd19d898f7394f6355adb5",
+        "source_id": "3c87e2435e67e13d572d97d906c9895271cb82f1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "8fc49a17aee58badf41ca308034720c21d873408c7edd78b79ce52241a650150",
+      "case_id": "html_erb-block-d2bb56ab70f278f4",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "html_erb",
+      "oracle_exception_record_sha256": "ed7b0f682c4a8e6a0a4d5d00c3f4395a2b24a4355c5d7ce8d1167fc23e7b1db3",
+      "raw_sha256": "4d553640d6563ee579879d625cbf2680e3c23a3495f7b9d37fcbf60bf5b0eaa4",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "fe65aba79be78faa4fb975ca297cf6bb8c801bf5acb8b50dfda3b90ffb7df70b",
+        "source_id": "f9bc877de219f8aa2edd965b9e2b388a1e8172f1"
+      },
+      "syntax_label": "<%#...%>"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "cfcad50d4b9712a14dfc852fade586c287c06e825fb3fec5eb48ca78af1b76bb",
+      "case_id": "ejs-block-045091cbff186b89",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u56fe\u7247\u61d2\u52a0\u8f7d",
+      "expected_cleaned_sha256": "d75f27cf96054615bce2ced21489e492d58c22a2b493acc25adcd4609bfc6fad",
+      "language": "ejs",
+      "raw_comment": "<%# \u56fe\u7247\u61d2\u52a0\u8f7d _%>",
+      "raw_sha256": "618dce0f885298390963c1ff33c0d7bb776bab01213c024480aab88d76c7de44",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "c2801e44faf7cc062439f156c55f4f99edaad9d7604b15c0d47fc19f00e19e3c",
+        "source_id": "ec6a3b310d6b1be6431dcf8c4df02ec3e1fe488e"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "af88481e97384712c418a65b08ff24748ac772cbb51acc8fe99daa91405440bb",
+      "case_id": "ejs-block-0ab42bf8e2ab8665",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "include('logoutForm')",
+      "expected_cleaned_sha256": "6869424cb1fbd992b02f9a076d5408dbcfce36c98e32a1c166ebef96a06d805e",
+      "language": "ejs",
+      "raw_comment": "<%#-include('logoutForm')-%>",
+      "raw_sha256": "39754d6ada03fabee738c15ef45b33862b6122d65a5b265a2cc7afc3fd63436f",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "60ca42216aedbfe1dc17a364e63edd8a611825d34280c4e161ec29499e65b893",
+        "source_id": "5b010d3856085fe2e21d42b447607ba478f7161f"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "0eaf9d304ed1833d4a577f1466d41437efa4a3a98323b95948a6abe6186bfd0e",
+      "case_id": "ejs-block-5c10096133964417",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2013-2019 the original author or authors from the JHipster project.\n\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "140f49b4ecddf39648ae6ac3713f779026b7e7d34ba2bd2dc4fe207e12888ea9",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2013-2019 the original author or authors from the JHipster project.\n\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n      http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "9d3d3f0589495d25806aa0dc0ba4f402c7ed9ccb79ef04e46871630f68a932ce",
+      "raw_utf8_length": 720,
+      "source_provenance": {
+        "source_excerpt_sha256": "d12bf03a6ce1f08b6d560c6a7ed73984e03363bf726047714753bb22391ce631",
+        "source_id": "a682212830ce33df16cfcd97bd33798b67ffc15f"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "a29a84a978cd7941e9d6546e26f5039f58e46d0ae398aeeb21e588106c629b00",
+      "case_id": "ejs-block-6bc83b3e5bcf0608",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2019-2023 the original author or authors from the JHipster project.\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n     http://www.apache.org/licenses/LICENSE-2.0\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "8ab5675dd9deb0255c866eca7d2fad374398e55cb808740faaeae13f4e2e9196",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2019-2023 the original author or authors from the JHipster project.\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n      http://www.apache.org/licenses/LICENSE-2.0\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "44aa9cc83e2c545533450258140b54269c398469fe2ca67af69d4fd69fa2d161",
+      "raw_utf8_length": 716,
+      "source_provenance": {
+        "source_excerpt_sha256": "48946e98232a5a0aae7f2ab882e4a37d0ade2c77b5f2cbb25645ad8af796a461",
+        "source_id": "b955f50a52df7c706f46219d819190ca1fa12707"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "5132af6601c453c95fe3167a6ca875eb110c5a040f48cd40643c5281bb1a3fe0",
+      "case_id": "ejs-block-6e2479c9e8d219c9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2019-2023 the original author or authors from the JHipster project.\n\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "223ebcfe8807542ea337aeaddc694597a432983929e5bedc62af4638fc68aa80",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2019-2023 the original author or authors from the JHipster project.\n\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n      http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "f61776d949c31961b9819f593b97e96a80b82ef11640b7344edf6dec4c27ede0",
+      "raw_utf8_length": 720,
+      "source_provenance": {
+        "source_excerpt_sha256": "402c9d9e3ab76a73444ba7aec74256926333e0cf83be4268d03c628133e49d4c",
+        "source_id": "5d0ae8def7ad259536c2f041d426cc8a3a6f2918"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "e7b3739ae2030bb67c4e166804ec78e581ef6d8b051ecb74299095c22cfb726a",
+      "case_id": "ejs-block-99bf99dc311915b2",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2013-2018 the original author or authors from the JHipster project.\n\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "fb8ac9d188129d58a2c5a08a61f6e0bf8329124c29e3203cb637ba293ec659f1",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2013-2018 the original author or authors from the JHipster project.\n\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n      http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "dcb7b16a0ddff412458af322a06cad6de4c5696b3a000a08a8aa42f43833e63f",
+      "raw_utf8_length": 720,
+      "source_provenance": {
+        "source_excerpt_sha256": "060512c765b15e783de30bc39e03a1c5200c9ebd0947321d8e60ff47fdaa8837",
+        "source_id": "7d0f01fe4a6058d446d50e903052f4a06f8084d4"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "d1268be89fca3170a218b7eeddbf377ce12bfbf43187096103f47534f8e9f361",
+      "case_id": "ejs-block-a90b9bc822bdf165",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2013-2023 the original author or authors from the JHipster project.\n\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     https://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "de8bc0c0cb86a9e003ab447cd30359e893d753844a8ab3947eb83c2e2dd6ec15",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2013-2023 the original author or authors from the JHipster project.\n\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "dc27f8deb4564572aac95f144fa593dbab7729691622a1e417a1a1f634954a0d",
+      "raw_utf8_length": 721,
+      "source_provenance": {
+        "source_excerpt_sha256": "71a5dfa1e56c4a2ff4f79f53078b1ae1cd8dddbb94ac78622104d92a0ba96bde",
+        "source_id": "af52afbdcfd76648a20f32c3fa945d85c51f3438"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "c48c4b4598d9512e3059cd2c55c496033889d51f7a0b1442358a02a44955fc46",
+      "case_id": "ejs-block-e07ee581260d098e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2019-2021 the original author or authors from the JHipster project.\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n     http://www.apache.org/licenses/LICENSE-2.0\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "e5e9d3caca43a40d88e54ea851a5367ac632e43684faa20e9a83ed6b7b669293",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2019-2021 the original author or authors from the JHipster project.\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n      http://www.apache.org/licenses/LICENSE-2.0\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "3fa3856ac38293eb0f3858c2d58499af158e15a8aeee57f78ac70cd14243cd83",
+      "raw_utf8_length": 716,
+      "source_provenance": {
+        "source_excerpt_sha256": "06012eb6a03ab38eb31738a04534540fef6baddb46d388b1712a1eb6c9425414",
+        "source_id": "321f6f815c9ebb8d313914c55a661f146acdc399"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "d56f75741c0ca5e89af9006daf4cc491b22f8db3e0b50ad111f30086b3355aea",
+      "case_id": "ejs-block-eebdeb47245a207f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2013-2020 the original author or authors from the JHipster project.\n\nThis file is part of the JHipster project, see https://www.jhipster.tech/\nfor more information.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "4166c501793f9280281ca1e33e446e713849110c91ef2e4696499b2ff967a7f5",
+      "language": "ejs",
+      "raw_comment": "<%#\n Copyright 2013-2020 the original author or authors from the JHipster project.\n\n This file is part of the JHipster project, see https://www.jhipster.tech/\n for more information.\n\n Licensed under the Apache License, Version 2.0 (the \"License\");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n      http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an \"AS IS\" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.\n-%>",
+      "raw_sha256": "ce81731a1c6f7a61e27d11857527541f243019b03b2d029568a89a7ebb9c8b09",
+      "raw_utf8_length": 720,
+      "source_provenance": {
+        "source_excerpt_sha256": "f45bbc24618683e0962a8bf04e54a0e73204d850d907d4bbfe50be197862de40",
+        "source_id": "9016f53aabe4af25c5ce5885ae55a0e021aba683"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "1d951867c3832da890f8acecc79eae307c2ba664cda177d1b2861d5920230492",
+      "case_id": "ejs-block-f2d27a25e0fb4fd7",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DOM",
+      "expected_cleaned_sha256": "5033d54b23b3762958f2a1b8b71c74bb7844722a9ec8d9eb933145c9ec47da2d",
+      "language": "ejs",
+      "raw_comment": "<%# DOM -%>",
+      "raw_sha256": "7cc8f52cff585dd9139f97aec63253ed065c4b00c193dffd515cbadd9ee9434f",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "a07b9cbe58b4cd1f281a84623b75b8fc76890fa2ec30e7ebe65cdad2dcf329f3",
+        "source_id": "04862a6a643627db67b92e7954906bff3feced5e"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "4ccbc17fce3818600696cb53686791836270244a7f818b8b2ff62eb6bfd3a6e4",
+      "case_id": "html_eex-block-1a79abf1ade0a403",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DOCS",
+      "expected_cleaned_sha256": "03ef6c29c30e16c8d0d8cdfac7800ba635c157b96aeea79c15e6d9d8d8cd5013",
+      "language": "html_eex",
+      "raw_comment": "<%# ----- DOCS ----- %>",
+      "raw_sha256": "e0d900cd4db0739d14769414f2d8115e587e8b5f1f919a7931ef2cd1ec8e9873",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "9bc7956bdcd227d9a0ee009478fdcc0034b0cf0e30f2ebea02a3947f4e78910a",
+        "source_id": "eef2022eb7a309b31fda7c4902393509ee7b17d2"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "4ccbc17fce3818600696cb53686791836270244a7f818b8b2ff62eb6bfd3a6e4",
+      "case_id": "html_eex-block-a425695e6a231a91",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DOCS",
+      "expected_cleaned_sha256": "03ef6c29c30e16c8d0d8cdfac7800ba635c157b96aeea79c15e6d9d8d8cd5013",
+      "language": "html_eex",
+      "raw_comment": "<%# ----- DOCS ----- %>",
+      "raw_sha256": "e0d900cd4db0739d14769414f2d8115e587e8b5f1f919a7931ef2cd1ec8e9873",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "e4428778162e613115820a770bb4a06d4fbeb2bd0ca2f20222a179b02cc16899",
+        "source_id": "650e879075492f7d33dfb7ba95c8768114edc481"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "6327a00f8dc38e1241bcd43bf17414fb04d40e7b18e7b07f863e49660b58f4d7",
+      "case_id": "html_erb-block-1c21f146beffdae5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The license inside this block applies to this file.\nCopyright 2017 Google Inc.\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "f2b4e969b793e2c1603cc3db466ec40b7c13c026d12b73b25f70f57d8ae0a1dd",
+      "language": "html_erb",
+      "raw_comment": "<%# The license inside this block applies to this file.\n# Copyright 2017 Google Inc.\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n-%>",
+      "raw_sha256": "2095337a86e7530ac1e7ba1d26765893c83ae8d5b6d2ff8f625dc19c465a0747",
+      "raw_utf8_length": 632,
+      "source_provenance": {
+        "source_excerpt_sha256": "a99380e1683011895abed331881dc6cf0d82bca96f9446f784a9aa75baf958b5",
+        "source_id": "fc73a9bfa646daa7b65c5491c4028bc26794ffa1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "8fc49a17aee58badf41ca308034720c21d873408c7edd78b79ce52241a650150",
+      "case_id": "html_plus_erb-block-5241516eb91ee020",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "THUMBNAIL",
+      "expected_cleaned_sha256": "45a86722dc94e12c63188bcfcf88d019579e21d8919b649c9fb7ef4df632e2c5",
+      "language": "html_plus_erb",
+      "raw_comment": "<%# THUMBNAIL -%>",
+      "raw_sha256": "4d553640d6563ee579879d625cbf2680e3c23a3495f7b9d37fcbf60bf5b0eaa4",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "fe65aba79be78faa4fb975ca297cf6bb8c801bf5acb8b50dfda3b90ffb7df70b",
+        "source_id": "f9bc877de219f8aa2edd965b9e2b388a1e8172f1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "6327a00f8dc38e1241bcd43bf17414fb04d40e7b18e7b07f863e49660b58f4d7",
+      "case_id": "html_plus_erb-block-d8a590c4f0c95097",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The license inside this block applies to this file.\nCopyright 2017 Google Inc.\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+      "expected_cleaned_sha256": "f2b4e969b793e2c1603cc3db466ec40b7c13c026d12b73b25f70f57d8ae0a1dd",
+      "language": "html_plus_erb",
+      "raw_comment": "<%# The license inside this block applies to this file.\n# Copyright 2017 Google Inc.\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n-%>",
+      "raw_sha256": "2095337a86e7530ac1e7ba1d26765893c83ae8d5b6d2ff8f625dc19c465a0747",
+      "raw_utf8_length": 632,
+      "source_provenance": {
+        "source_excerpt_sha256": "a99380e1683011895abed331881dc6cf0d82bca96f9446f784a9aa75baf958b5",
+        "source_id": "fc73a9bfa646daa7b65c5491c4028bc26794ffa1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "c11709a721f263723ea6d1eb44ff3dd4b1859a43214039ac52133371fcac3e5b",
+      "case_id": "html_plus_erb-block-f6e37d85271fe865",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Extension of the default Blacklight show to demonstrate how to integrate the vivo profile information",
+      "expected_cleaned_sha256": "f5d9e74a78adf229cfa1cc04944ead1b829a1bf004d859b46ef3b0726ed6cafa",
+      "language": "html_plus_erb",
+      "raw_comment": "<%# Extension of the default Blacklight show to demonstrate how to integrate the vivo profile information -%>",
+      "raw_sha256": "60734986a13d37a82f8db804920855021244051651d2e053c2bf9b61f974d6f3",
+      "raw_utf8_length": 109,
+      "source_provenance": {
+        "source_excerpt_sha256": "ac4f968ce944d6c0e3375c950629e902cf100d8077fd19d898f7394f6355adb5",
+        "source_id": "3c87e2435e67e13d572d97d906c9895271cb82f1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "013316dc60e9c8cb0aad94f0e6b01a0ac2b89f80d61d2f6109f87c7e9f076035",
+      "case_id": "javascript_erb-block-50295da94c8dafae",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$(document).on('turbolinks:load', function(){\n    console.log(\"askjdflkajsldfjiq0whoefino2eijfoiwenoficnwe\");\n\n    $(\"#submit_search_papers\").on(\"click\", function() {\n      $(\"#papers_search\").submit();\n      return false;\n    });\n};",
+      "expected_cleaned_sha256": "ad76ce1ebd7ab1c3bb7a8003adf6f8dff9faa9bcc7f10cd1a174c8a7bd9e4bc4",
+      "language": "javascript_erb",
+      "raw_comment": "<%#$(document).on('turbolinks:load', function(){\n    console.log(\"askjdflkajsldfjiq0whoefino2eijfoiwenoficnwe\");\n\n    $(\"#submit_search_papers\").on(\"click\", function() {\n      $(\"#papers_search\").submit();\n      return false;\n    });\n};%>",
+      "raw_sha256": "d16b8860d3e8443ccea60f3f980ef873ca38be69df276847610f2bde1f5800cb",
+      "raw_utf8_length": 238,
+      "source_provenance": {
+        "source_excerpt_sha256": "a212115cca40b3451c845a236d8a7bbc3fa4915c233a18a81499c014061b5350",
+        "source_id": "0a43c5682544e81461b2c02bc42a44914a31ffc5"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "013316dc60e9c8cb0aad94f0e6b01a0ac2b89f80d61d2f6109f87c7e9f076035",
+      "case_id": "javascript_plus_erb-block-2b5aed6ebeb6626f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$(document).on('turbolinks:load', function(){\n    console.log(\"askjdflkajsldfjiq0whoefino2eijfoiwenoficnwe\");\n\n    $(\"#submit_search_papers\").on(\"click\", function() {\n      $(\"#papers_search\").submit();\n      return false;\n    });\n};",
+      "expected_cleaned_sha256": "ad76ce1ebd7ab1c3bb7a8003adf6f8dff9faa9bcc7f10cd1a174c8a7bd9e4bc4",
+      "language": "javascript_plus_erb",
+      "raw_comment": "<%#$(document).on('turbolinks:load', function(){\n    console.log(\"askjdflkajsldfjiq0whoefino2eijfoiwenoficnwe\");\n\n    $(\"#submit_search_papers\").on(\"click\", function() {\n      $(\"#papers_search\").submit();\n      return false;\n    });\n};%>",
+      "raw_sha256": "d16b8860d3e8443ccea60f3f980ef873ca38be69df276847610f2bde1f5800cb",
+      "raw_utf8_length": 238,
+      "source_provenance": {
+        "source_excerpt_sha256": "a212115cca40b3451c845a236d8a7bbc3fa4915c233a18a81499c014061b5350",
+        "source_id": "0a43c5682544e81461b2c02bc42a44914a31ffc5"
+      },
+      "syntax_label": "<%#...%>"
+    }
+  ],
+  "schema_version": 5
+}

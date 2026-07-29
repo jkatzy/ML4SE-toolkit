@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cmake_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "ff5adb40628ec26a188c164df2504cecb02256592216648b03945c38b4f136ea",
+      "case_id": "cmake-line-db5fca5df6556847",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "OPTIONS",
+      "expected_cleaned_sha256": "d0b1a869600d21076a3fa8b5f52546e55920588ce73dfb7e56ca9dc08bdcaf3e",
+      "language": "cmake",
+      "raw_comment": "#---- OPTIONS -----------------------------------------------------------------#",
+      "raw_sha256": "e121b6547889104da48b7a6a9ac87425e1b723cb94b49fc9e82a9df2728e5172",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "f418837af3142ad938f557d73c7588f04524dbc546c6300e5a8b8cdbb98e122d",
+        "source_id": "62254297c60f137b9421c4ce5e1612c0ac2a8ea8"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

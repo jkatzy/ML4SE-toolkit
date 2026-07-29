@@ -1,0 +1,38 @@
+{
+  "case_id": "wdl-line-289c97bc90a81c64",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "wdl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "251c05bda3b3e432339cdbc6ae0d5fde7fdf581fa9854ebcd9066fabe9808d94",
+      "utf8_length": 17
+    },
+    "manifest_old_output": {
+      "sha256": "6fccbb08180080309a11a8b5d0584b10aaa035e15bedf5cb0e402624efdc9482",
+      "utf8_length": 12
+    },
+    "raw_comment": {
+      "sha256": "99b1614c0f19845260a0b3685a0f32f1c4ee1f8c88c84ccf13b639619deaa6f3",
+      "utf8_length": 68
+    },
+    "recommended_expected_output": {
+      "sha256": "6fccbb08180080309a11a8b5d0584b10aaa035e15bedf5cb0e402624efdc9482",
+      "utf8_length": 12
+    }
+  },
+  "regression": {
+    "expected_output": "rCNV Project",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "######################\n#    rCNV Project    #\n######################"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "18dae577e7e54b409e3435e4a6ded16fa86665edf5a985f1cca78836b770d415",
+    "source_id": "70e9db43f256154ab61cb31cf431741b99fc489d"
+  },
+  "source_record_sha256": "9b627513ea2def106cbcbed0b0fdfcddb09ea494ffdf07fc4fa0b653d5f7681a"
+}

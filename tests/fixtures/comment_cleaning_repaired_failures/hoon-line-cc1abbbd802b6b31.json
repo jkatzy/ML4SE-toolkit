@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-cc1abbbd802b6b31",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b81de962a799a4fee121bc48b30700e79e77e980f12464fd94f35e6ce0e39b3f",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "60e37680447a9022492716aceb3faa96a359f1d948f74fdf81f2b4706ff4348c",
+      "utf8_length": 20
+    },
+    "raw_comment": {
+      "sha256": "f03cfb58199cb5d4d1dd48161b8d2eb0060e722707fc4f41fe1dfd4bd295dc69",
+      "utf8_length": 34
+    },
+    "recommended_expected_output": {
+      "sha256": "60e37680447a9022492716aceb3faa96a359f1d948f74fdf81f2b4706ff4348c",
+      "utf8_length": 20
+    }
+  },
+  "regression": {
+    "expected_output": "/mar/hall/rumor/hoon",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::\n::::  /mar/hall/rumor/hoon\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1668823664779a3022374e0010e5189385a937150c8271ad7dc11304beb15e0d",
+    "source_id": "fc4867e8a2bb119bc9667f51cf339db4019d0dcb"
+  },
+  "source_record_sha256": "c56f12f00e53c026d036a2839c2f87fb3ef0409dc05862f4c1dee6359f8c002c"
+}

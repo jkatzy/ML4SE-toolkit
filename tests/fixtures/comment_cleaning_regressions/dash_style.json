@@ -1,0 +1,177 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "dash_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "10ca5051baf82a92864715885ca093974845c4df456d82250bcf4c7faf092718",
+      "case_id": "ada-line-9c0cb77d6504d335",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "ada",
+      "oracle_exception_record_sha256": "7793c18874347986643e557f9d8fd04a791fd0007bcdc3b883071435db3cf91b",
+      "raw_sha256": "cb1c7942211645828f7ffbe4707f871c6d8e56402c130c36f89638e9c5e7e46e",
+      "raw_utf8_length": 3462,
+      "source_provenance": {
+        "source_excerpt_sha256": "ac668dfe9686f9903cce81a18cbc75fae80d884dd55d338e37c8954eea9624d2",
+        "source_id": "f6320fd23bb8ce0e19b6bd464160a51738255d96"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "46396bf37826f16e6ec516ca8ff2b41a09b5f77c9838eb676a197bd45ff8ba5e",
+      "case_id": "asn_1-line-a81d4000083e6f3d",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "asn_1",
+      "oracle_exception_record_sha256": "4a477e7bebda1ea5a82d74080ae239283dd353cd9cb80d3ba65ff8d13adec862",
+      "raw_sha256": "63b0ffb3154031d7d946caac1a68a0c0ba8bc905490cde9400775985a161ceaa",
+      "raw_utf8_length": 3347,
+      "source_provenance": {
+        "source_excerpt_sha256": "e38892820e67a07fdad022a3c050ac573091cf67d864fbb03c2690dc947c1c2f",
+        "source_id": "8e624fe77c9df4a63e27dce3f21191368d4af3f7"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "856c9863852d011d119a7bb79b96ec4007e42374e9836e84c962f09443d85c00",
+      "case_id": "ada-line-85fa68f3aa4d6334",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "- src/ghdldrv/ghdldrv.adb.orig\t2021-02-02 19:52:50 UTC",
+      "expected_cleaned_sha256": "0f5135076eddee97e91a8a49fd6222d7aee1265344ee9e5b08af4203f30e3bfa",
+      "language": "ada",
+      "raw_comment": "--- src/ghdldrv/ghdldrv.adb.orig\t2021-02-02 19:52:50 UTC",
+      "raw_sha256": "5b9d916599e8469ff970c0a235c596474184331c5b53edb46913c5598a257112",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "45d042a669d19e00ed13e822806570ffda28260eded45811f1b41aa755bef844",
+        "source_id": "715def879c6e05efd18a6e1f104c741b06ece67b"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "253eef2f4a09c8d0c02f501412a1aeb35621ba1d133bdc31936c337a686ca7e8",
+      "case_id": "asn1-line-4371f62af8b45bf4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 1999 IntelliNet Technologies, Inc. All Rights Reserved.\nManufactured in the United States of America.\n1990 W. New Haven Ste. 312, Melbourne, Florida, 32904 U.S.A.\n\nThis product and related documentation is protected by copyright and\ndistributed under licenses restricting its use, copying, distribution\nand decompilation.  No part of this product or related documentation\nmay be reproduced in any form by any means without prior written\nauthorization of IntelliNet Technologies and its licensors, if any.\n\nRESTRICTED RIGHTS LEGEND:  Use, duplication, or disclosure by the\ngovernment is subject to restrictions as set forth in subparagraph\n(c)(1)(ii) of the Rights in Technical Data and Computer Software\nclause at DFARS 252.227-7013 and FAR 52.227-19.\n\nCONTRACT: INTERNAL\n\nID: $Id: map_v4_lrf.asn,v 1.1.1.1 2007-10-08 11:12:09 bsccs2 Exp $",
+      "expected_cleaned_sha256": "fd87f318d8b907cec952f99ad969f73c9f7219b7fb479a3f1e2e2597fd02a145",
+      "language": "asn1",
+      "raw_comment": "--------------------------------------------------------------------------------\n--                                                                            --\n--      Copyright 1999 IntelliNet Technologies, Inc. All Rights Reserved.     --\n--              Manufactured in the United States of America.                 --\n--        1990 W. New Haven Ste. 312, Melbourne, Florida, 32904 U.S.A.        --\n--                                                                            --\n--    This product and related documentation is protected by copyright and    --\n--    distributed under licenses restricting its use, copying, distribution   --\n--    and decompilation.  No part of this product or related documentation    --\n--    may be reproduced in any form by any means without prior written        --\n--    authorization of IntelliNet Technologies and its licensors, if any.     --\n--                                                                            --\n--    RESTRICTED RIGHTS LEGEND:  Use, duplication, or disclosure by the       --\n--    government is subject to restrictions as set forth in subparagraph      --\n--    (c)(1)(ii) of the Rights in Technical Data and Computer Software        --\n--    clause at DFARS 252.227-7013 and FAR 52.227-19.                         --\n--                                                                            --\n--------------------------------------------------------------------------------\n--                                                                            --\n--  CONTRACT: INTERNAL                                                        --\n--                                                                            --\n--------------------------------------------------------------------------------\n--\n--  ID: $Id: map_v4_lrf.asn,v 1.1.1.1 2007-10-08 11:12:09 bsccs2 Exp $\n--\n--------------------------------------------------------------------------------",
+      "raw_sha256": "7eadca6a65e454a1632675e6f3eb30d7a8ba49b6cfd81365d118b6a59b550ab4",
+      "raw_utf8_length": 1939,
+      "source_provenance": {
+        "source_excerpt_sha256": "e9144e22013c169e162267cdfa06159f399e41b63181d8ad547926f4d16aeab3",
+        "source_id": "6b7e62bddacebb841ed57d843454ecafba05ea3a"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "46396bf37826f16e6ec516ca8ff2b41a09b5f77c9838eb676a197bd45ff8ba5e",
+      "case_id": "asn1-line-a12921c51cd41e04",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "ETSI Interchange Format (EIF) ASN.1 Syntax\n\nVersion History\nVersion 1.1.0\n AD/TICL3 Initial release version 17 March 2013\n\n\nVersion 1.1.1  (AD/TICL3 130916)\n Modified National-Parameters definition to include baseStationName and state fields.\n These fields were created as non-standard tags under the Location definition in the CS ASN.1 schema, as follows\n\tantennaBearing\t\t[11]\tINTEGER OPTIONAL\n\tbaseStationName\t\t[12]\tOCTET STRING (SIZE (1..50)) OPTIONAL\n\tstate\t\t\t[13]\tOCTET STRING (SIZE (1..50)) OPTIONAL\n\n The antennaBearing field from the CS AGF specification is now deprecated by the use of the\n       locationOfTheTarget.gsmLocation.geoCoordinates.azimuth parameter.\n\n\nVersion 1.2.0  (AD/TICL3 140317)\n Reverted National-Parameters back to the fully ETSI-compliant definition\n as an untagged SET SIZE (1..40) OF OCTET STRING (SIZE (1..256))\n Definitions of the National-Parameters remain the same as per CS ASN.1 schema\n\n\nVersion 1.2.2  (AD/TICL3 140331)\n Updated the national-Parameters section to include YAML-like definitions of national-Parameter elements.\n National-Parameters are to be encoded as <key>:<value> pairs.\n As the national-Parameters are defined as a SET, the artificial (and non-ETSI compliant) requirement\n that the national-Parameters be presented in a specific order (to facilitate element identification),\n which was present in all previous versions of the national-Parameters definition, has now been removed.\n\n\nVersion 2.0.2  (D/TICL-ENG 160119)\n Updated to incorporate latest versions of ETSI 102 232-x specifications and associated ASN.1 schema files\n   TS 102 232-1 v3.10.1 (2015-11) with LI-PS-PDU,ver22.txt\n   TS 102 232-2 v3.8.1 (2014-10) with EmailPDU,ver14.txt\n   TS 102 232-3 v3.3.1 (2013-10) with IPAccessPDU,ver10.txt\n   TS 102 232-4 v3.2.2 (2014-07) with L2AccessPDU,ver7.txt\n   TS 102 232-5 v3.5.1 (2015-10) with IPMultimediaPDU,ver6.txt\n   TS 102 232-6 v3.3.1 (2014-03) with PstnIsdnPDU,ver5.txt\n\n   TS 133 108 v12.11.0 (2016-01) with UmtsHI2Operations,rel12.txt\n   TS 133 108 v12.11.0 (2016-01) with UmtsCS-HI2Operations,rel12.txt\n   TS 133 108 v12.11.0 (2016-01) with EpsHI2Operations,rel12.txt\n   TS 133 108 v12.11.0 (2016-01) with Umts-HI3-PS,rel12.txt\n   TS 133 108 v12.11.0 (2016-01) with Eps-HI3-PS,rel12.txt\n   TS 133 108 v12.11.0 (2016-01) with ThreeGPP-HI1NotificationOperations,rel12.txt\n\n   TS 101 671 v3.13.1 (2015-11) with HI2Operations,ver18.txt\n   TS 101 671 v3.13.1 (2015-11) with HI1NotificationOperations,ver7.txt\n\n Changed definition of agencyId within National-HI1-ASN1parameters from VisibleString to IA5String\n Changed definition of warrantId within National-HI1-ASN1parameters from VisibleString to IA5String\n Incorporates proposed changes to EmailPDU structure to be submitted to TC LI #41 to accommodate CalDav and CardDav\n\n\n\t\tHEADER SECTION\nSource: LI-PS-PDU,ver22.txt\nETSI TS 102 232-1 V3.10.1 (2015-11)\nAnnex A.2 ASN.1 specification",
+      "expected_cleaned_sha256": "327a8c2318ee4bcd5865d05e670afe8077992f5f99161e306ae0861ef745b579",
+      "language": "asn1",
+      "raw_comment": "-- ================================================\n-- ETSI Interchange Format (EIF) ASN.1 Syntax\n-- ================================================\n--\n--==== Version History====--\n-- Version 1.1.0\n--  AD/TICL3 Initial release version 17 March 2013\n--     \n--\n-- Version 1.1.1  (AD/TICL3 130916)\n--  Modified National-Parameters definition to include baseStationName and state fields.\n--  These fields were created as non-standard tags under the Location definition in the CS ASN.1 schema, as follows\n--\tantennaBearing\t\t[11]\tINTEGER OPTIONAL\n--\tbaseStationName\t\t[12]\tOCTET STRING (SIZE (1..50)) OPTIONAL\n--\tstate\t\t\t[13]\tOCTET STRING (SIZE (1..50)) OPTIONAL\n--\n--  The antennaBearing field from the CS AGF specification is now deprecated by the use of the\n--        locationOfTheTarget.gsmLocation.geoCoordinates.azimuth parameter.\n--\n--\n-- Version 1.2.0  (AD/TICL3 140317)\n--  Reverted National-Parameters back to the fully ETSI-compliant definition \n--  as an untagged SET SIZE (1..40) OF OCTET STRING (SIZE (1..256))\n--  Definitions of the National-Parameters remain the same as per CS ASN.1 schema\n--  \n--  \n-- Version 1.2.2  (AD/TICL3 140331)\n--  Updated the national-Parameters section to include YAML-like definitions of national-Parameter elements. \n--  National-Parameters are to be encoded as <key>:<value> pairs.\n--  As the national-Parameters are defined as a SET, the artificial (and non-ETSI compliant) requirement\n--  that the national-Parameters be presented in a specific order (to facilitate element identification), \n--  which was present in all previous versions of the national-Parameters definition, has now been removed. \n--  \n--\n-- Version 2.0.2  (D/TICL-ENG 160119)\n--  Updated to incorporate latest versions of ETSI 102 232-x specifications and associated ASN.1 schema files\n--    TS 102 232-1 v3.10.1 (2015-11) with LI-PS-PDU,ver22.txt\n--    TS 102 232-2 v3.8.1 (2014-10) with EmailPDU,ver14.txt\n--    TS 102 232-3 v3.3.1 (2013-10) with IPAccessPDU,ver10.txt\n--    TS 102 232-4 v3.2.2 (2014-07) with L2AccessPDU,ver7.txt\n--    TS 102 232-5 v3.5.1 (2015-10) with IPMultimediaPDU,ver6.txt\n--    TS 102 232-6 v3.3.1 (2014-03) with PstnIsdnPDU,ver5.txt\n--  \n--    TS 133 108 v12.11.0 (2016-01) with UmtsHI2Operations,rel12.txt\n--    TS 133 108 v12.11.0 (2016-01) with UmtsCS-HI2Operations,rel12.txt\n--    TS 133 108 v12.11.0 (2016-01) with EpsHI2Operations,rel12.txt\n--    TS 133 108 v12.11.0 (2016-01) with Umts-HI3-PS,rel12.txt\n--    TS 133 108 v12.11.0 (2016-01) with Eps-HI3-PS,rel12.txt\n--    TS 133 108 v12.11.0 (2016-01) with ThreeGPP-HI1NotificationOperations,rel12.txt\n--\n--    TS 101 671 v3.13.1 (2015-11) with HI2Operations,ver18.txt\n--    TS 101 671 v3.13.1 (2015-11) with HI1NotificationOperations,ver7.txt\n--\n--  Changed definition of agencyId within National-HI1-ASN1parameters from VisibleString to IA5String\n--  Changed definition of warrantId within National-HI1-ASN1parameters from VisibleString to IA5String\n--  Incorporates proposed changes to EmailPDU structure to be submitted to TC LI #41 to accommodate CalDav and CardDav\n--\n--\n--========================================================================\n--\t\tHEADER SECTION\n--========================================================================\n-- Source: LI-PS-PDU,ver22.txt\n-- ETSI TS 102 232-1 V3.10.1 (2015-11)\n-- Annex A.2 ASN.1 specification",
+      "raw_sha256": "63b0ffb3154031d7d946caac1a68a0c0ba8bc905490cde9400775985a161ceaa",
+      "raw_utf8_length": 3347,
+      "source_provenance": {
+        "source_excerpt_sha256": "e38892820e67a07fdad022a3c050ac573091cf67d864fbb03c2690dc947c1c2f",
+        "source_id": "8e624fe77c9df4a63e27dce3f21191368d4af3f7"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "697dec3d95cb71b18c144ea447f907365d18c51e446d5b011810d1ba80508d15",
+      "case_id": "asn1-line-f200d2573a500515",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Attributes\nid-at-objectClass OBJECT IDENTIFIER ::= {id-at 0}\nid-at-aliasedEntryName OBJECT IDENTIFIER ::= {id-at 1}\nid-at-encryptedAliasedEntryName OBJECT IDENTIFIER ::= {id-at 1 2}",
+      "expected_cleaned_sha256": "6875ba28a1f0aa002116aa51d2fc1e293b4cfad96d2fb9e55e8e6646efb716eb",
+      "language": "asn1",
+      "raw_comment": "-- Attributes --\n-- id-at-objectClass OBJECT IDENTIFIER ::= {id-at 0}\n-- id-at-aliasedEntryName OBJECT IDENTIFIER ::= {id-at 1}\n-- id-at-encryptedAliasedEntryName OBJECT IDENTIFIER ::= {id-at 1 2}",
+      "raw_sha256": "6149c1bbbca0df5bfc05a65bc75583e2fb0a692ef35625426f768a822bdac3a2",
+      "raw_utf8_length": 196,
+      "source_provenance": {
+        "source_excerpt_sha256": "bb8758a863305c92ab7098bf70fc30a48195c262912e893d28a2d10a4ca04a77",
+        "source_id": "d9b57445157b8e01f622870a6b611d8e6f47420d"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "697dec3d95cb71b18c144ea447f907365d18c51e446d5b011810d1ba80508d15",
+      "case_id": "asn_1-line-074b2553e4e0f57f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Attributes\nid-at-objectClass OBJECT IDENTIFIER ::= {id-at 0}\nid-at-aliasedEntryName OBJECT IDENTIFIER ::= {id-at 1}\nid-at-encryptedAliasedEntryName OBJECT IDENTIFIER ::= {id-at 1 2}",
+      "expected_cleaned_sha256": "6875ba28a1f0aa002116aa51d2fc1e293b4cfad96d2fb9e55e8e6646efb716eb",
+      "language": "asn_1",
+      "raw_comment": "-- Attributes --\n-- id-at-objectClass OBJECT IDENTIFIER ::= {id-at 0}\n-- id-at-aliasedEntryName OBJECT IDENTIFIER ::= {id-at 1}\n-- id-at-encryptedAliasedEntryName OBJECT IDENTIFIER ::= {id-at 1 2}",
+      "raw_sha256": "6149c1bbbca0df5bfc05a65bc75583e2fb0a692ef35625426f768a822bdac3a2",
+      "raw_utf8_length": 196,
+      "source_provenance": {
+        "source_excerpt_sha256": "bb8758a863305c92ab7098bf70fc30a48195c262912e893d28a2d10a4ca04a77",
+        "source_id": "d9b57445157b8e01f622870a6b611d8e6f47420d"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "253eef2f4a09c8d0c02f501412a1aeb35621ba1d133bdc31936c337a686ca7e8",
+      "case_id": "asn_1-line-23914fbdd8924b44",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 1999 IntelliNet Technologies, Inc. All Rights Reserved.\nManufactured in the United States of America.\n1990 W. New Haven Ste. 312, Melbourne, Florida, 32904 U.S.A.\n\nThis product and related documentation is protected by copyright and\ndistributed under licenses restricting its use, copying, distribution\nand decompilation.  No part of this product or related documentation\nmay be reproduced in any form by any means without prior written\nauthorization of IntelliNet Technologies and its licensors, if any.\n\nRESTRICTED RIGHTS LEGEND:  Use, duplication, or disclosure by the\ngovernment is subject to restrictions as set forth in subparagraph\n(c)(1)(ii) of the Rights in Technical Data and Computer Software\nclause at DFARS 252.227-7013 and FAR 52.227-19.\n\nCONTRACT: INTERNAL\n\nID: $Id: map_v4_lrf.asn,v 1.1.1.1 2007-10-08 11:12:09 bsccs2 Exp $",
+      "expected_cleaned_sha256": "fd87f318d8b907cec952f99ad969f73c9f7219b7fb479a3f1e2e2597fd02a145",
+      "language": "asn_1",
+      "raw_comment": "--------------------------------------------------------------------------------\n--                                                                            --\n--      Copyright 1999 IntelliNet Technologies, Inc. All Rights Reserved.     --\n--              Manufactured in the United States of America.                 --\n--        1990 W. New Haven Ste. 312, Melbourne, Florida, 32904 U.S.A.        --\n--                                                                            --\n--    This product and related documentation is protected by copyright and    --\n--    distributed under licenses restricting its use, copying, distribution   --\n--    and decompilation.  No part of this product or related documentation    --\n--    may be reproduced in any form by any means without prior written        --\n--    authorization of IntelliNet Technologies and its licensors, if any.     --\n--                                                                            --\n--    RESTRICTED RIGHTS LEGEND:  Use, duplication, or disclosure by the       --\n--    government is subject to restrictions as set forth in subparagraph      --\n--    (c)(1)(ii) of the Rights in Technical Data and Computer Software        --\n--    clause at DFARS 252.227-7013 and FAR 52.227-19.                         --\n--                                                                            --\n--------------------------------------------------------------------------------\n--                                                                            --\n--  CONTRACT: INTERNAL                                                        --\n--                                                                            --\n--------------------------------------------------------------------------------\n--\n--  ID: $Id: map_v4_lrf.asn,v 1.1.1.1 2007-10-08 11:12:09 bsccs2 Exp $\n--\n--------------------------------------------------------------------------------",
+      "raw_sha256": "7eadca6a65e454a1632675e6f3eb30d7a8ba49b6cfd81365d118b6a59b550ab4",
+      "raw_utf8_length": 1939,
+      "source_provenance": {
+        "source_excerpt_sha256": "e9144e22013c169e162267cdfa06159f399e41b63181d8ad547926f4d16aeab3",
+        "source_id": "6b7e62bddacebb841ed57d843454ecafba05ea3a"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "78673b032a5a1d11ecbb30ae007ae42c0be0ee062534bd3d9c6dda6028992394",
+      "case_id": "asn_1-line-450a0c9c1c2664fd",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: pcsubstance.asn 353239 2012-02-14 12:28:28Z bolton $\n\nPUBLIC DOMAIN NOTICE\nNational Center for Biotechnology Information\n\nThis software/database is a \"United States Government Work\" under the\nterms of the United States Copyright Act.  It was written as part of\nthe author's official duties as a United States Government employee and\nthus cannot be copyrighted.  This software/database is freely available\nto the public for use. The National Library of Medicine and the U.S.\nGovernment have not placed any restriction on its use or reproduction.\n\nAlthough all reasonable efforts have been taken to ensure the accuracy\nand reliability of the software and data, the NLM and the U.S.\nGovernment do not and cannot warrant the performance or results that\nmay be obtained by using this software or data. The NLM and the U.S.\nGovernment disclaim all warranties, express or implied, including\nwarranties of performance, merchantability or fitness for any particular\npurpose.\n\nPlease cite the author in any work or product based on this material.\n\n\nAuthors:  NCBI Structure Group\n\nFile Description:\nASN.1 definitions for PubChem small molecule database",
+      "expected_cleaned_sha256": "6830788ac96ae8c4b17dcc14690250be9befb44db8fa38bdc3bb1ad92dd1b96d",
+      "language": "asn_1",
+      "raw_comment": "-- $Id: pcsubstance.asn 353239 2012-02-14 12:28:28Z bolton $\n-- ===========================================================================\n--\n--                            PUBLIC DOMAIN NOTICE\n--               National Center for Biotechnology Information\n--\n--  This software/database is a \"United States Government Work\" under the\n--  terms of the United States Copyright Act.  It was written as part of\n--  the author's official duties as a United States Government employee and\n--  thus cannot be copyrighted.  This software/database is freely available\n--  to the public for use. The National Library of Medicine and the U.S.\n--  Government have not placed any restriction on its use or reproduction.\n--\n--  Although all reasonable efforts have been taken to ensure the accuracy\n--  and reliability of the software and data, the NLM and the U.S.\n--  Government do not and cannot warrant the performance or results that\n--  may be obtained by using this software or data. The NLM and the U.S.\n--  Government disclaim all warranties, express or implied, including\n--  warranties of performance, merchantability or fitness for any particular\n--  purpose.\n--\n--  Please cite the author in any work or product based on this material.\n--\n-- ===========================================================================\n--\n-- Authors:  NCBI Structure Group\n--\n-- File Description:\n--      ASN.1 definitions for PubChem small molecule database\n--\n-- ===========================================================================",
+      "raw_sha256": "26c28e94ff274654f2608f11009d35a16defce0435b54e0157f2e3041833f7a8",
+      "raw_utf8_length": 1521,
+      "source_provenance": {
+        "source_excerpt_sha256": "6effce59cb05aefbf668cfb59f8948dd429e89875e2f043f66eaa0db44cf4fb2",
+        "source_id": "d6ca9add41e53f2623b54fe869e220083ee4223d"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "e0d4adac5fb7be837f12ad0f977eacb49e42fd16d79a26648df37c0bc278fb73",
+      "case_id": "vhdl-line-eded944db3842c29",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "frequency: 50MHz pin23- cyclone IV\nBaud rate: 115200 bps;",
+      "expected_cleaned_sha256": "232b40cfa060258bf1abc51ebd7e00de6daeb5cf8a3dccb84238a300ca8704ed",
+      "language": "vhdl",
+      "raw_comment": "---------------------------------------frequency: 50MHz pin23- cyclone IV---------------------------------------\n-----Baud rate: 115200 bps;",
+      "raw_sha256": "1c2376a6e40633d2c16c3a2f7e28ba038ed1936b6bdb25e2420ddb81bc4afe64",
+      "raw_utf8_length": 140,
+      "source_provenance": {
+        "source_excerpt_sha256": "e9b3f0aee10b557af83529e9ddd881d8f5dbd32557b51caaaca0eb53a8c2319d",
+        "source_id": "8957e4bede7b3d6f85cf03cc7f2ebdcc85ee554e"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "schema_version": 5
+}

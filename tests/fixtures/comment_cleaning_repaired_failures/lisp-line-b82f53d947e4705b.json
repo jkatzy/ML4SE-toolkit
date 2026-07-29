@@ -1,0 +1,38 @@
+{
+  "case_id": "lisp-line-b82f53d947e4705b",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "lisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "21987cf09a7fa4ee52fc1f407a0dbb01a93b2b75f7efd8e92bceb6c14a8929c3",
+      "utf8_length": 14
+    },
+    "manifest_old_output": {
+      "sha256": "7cdba65ef555e934c30be3c1d8a0285cb0490baaa46d838559ac87f0eb2d6783",
+      "utf8_length": 12
+    },
+    "raw_comment": {
+      "sha256": "67a27da6c17d56459b4c25218bf47f17e77702e1fae45a9d3d34802cda03f53a",
+      "utf8_length": 17
+    },
+    "recommended_expected_output": {
+      "sha256": "7cdba65ef555e934c30be3c1d8a0285cb0490baaa46d838559ac87f0eb2d6783",
+      "utf8_length": 12
+    }
+  },
+  "regression": {
+    "expected_output": "package.lisp",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; package.lisp"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "51c4346743c8d15d49c1e6cfdf00707f9a63154cb6fc15be16eecb3e317be53e",
+    "source_id": "16ad26ce8dc3d66fbdc1424b0b10bec1e45e993c"
+  },
+  "source_record_sha256": "a50ef2e07e6c8eb47e94b024c0baab35905e804c858b3fd8ee8f1970aa1e19ce"
+}

@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "blitzbasic_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "0738e91a27dbbe715d424dab9c0d1f0d37cbbec7ba9a37ba291413eddf13d328",
+      "case_id": "blitzbasic-line-26365f83e97f0f75",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "geo\nWATER",
+      "expected_cleaned_sha256": "df8e55b3a8f5160baea89c916115bcbda7e0bc74f9cdba3bdb1d03f6a168f547",
+      "language": "blitzbasic",
+      "raw_comment": ";________________________________________________________geo \r\n;WATER",
+      "raw_sha256": "6ce6823a1e8ff1f63c7b6364fa82b142fa5abc80f3a2623723a13926e9434239",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "b38519915e77203521b4f79ce4ccf40910e29f6220f5b332294bfa414bfec494",
+        "source_id": "49feb195f186ed905109900fc7f6d1c2806b599a"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "926d57380cbd2a32e63b9d79970713c74395f198d89105914765894b65da1381",
+      "case_id": "blitzbasic-line-be7c15fc35761b73",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "HOLE IN ONE DEMO V 0.98A\nWRITTEN BY DAVE KIRK (GFK)",
+      "expected_cleaned_sha256": "563256ba7ef51448d42ab413a65e510bc542f214755bafa659acf8c6b82acb38",
+      "language": "blitzbasic",
+      "raw_comment": ";**************************************\n;*      HOLE IN ONE DEMO V 0.98A      *\n;*     WRITTEN BY DAVE KIRK (GFK)     *\n;**************************************",
+      "raw_sha256": "2bf3061a4ea445852692a36fc9c1e7d44854fbeaf077554a36918be30feaf2bc",
+      "raw_utf8_length": 159,
+      "source_provenance": {
+        "source_excerpt_sha256": "320bb679f69e80aab6269a42f7fd1b191b6bc79bad2fd0a17eddb91a5d4382f6",
+        "source_id": "dc8109899bdcaa95c409b80f3eb5fb26ea4603ad"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "32b7714a736e97c70f10f86d8b0e648e56f1c84c82e3a9747d29bfd6fbd1f5ab",
+      "case_id": "blitzbasic-line-dbe6540d3504846f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "CONTROLS\nArrows - Move\nEnter - Birds eye view\n1 - No gravity\nR - Reset\nHidePointer()",
+      "expected_cleaned_sha256": "8b9cfe7df6578eadad56157a07b345a92f2e562f2d3862226d2bd50f90eded15",
+      "language": "blitzbasic",
+      "raw_comment": "; * CONTROLS\n; Arrows - Move\n; Enter - Birds eye view\n; 1 - No gravity\n; R - Reset\n;HidePointer()",
+      "raw_sha256": "ff41e129e9799e111e2f6725b11c5f9aa55138e12cb949049209c5a363a100c2",
+      "raw_utf8_length": 97,
+      "source_provenance": {
+        "source_excerpt_sha256": "e908305cabcad167f04c05997b51bc87908ca97fd610c7f98db06022934dc336",
+        "source_id": "1571a76de1e3fc296cce2919ed95ed4cba47c795"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

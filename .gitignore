@@ -36,6 +36,10 @@ MANIFEST
 # Repository backup artifacts
 *.bundle
 
+# Local research and judge run artifacts
+/tmp/
+/scratch/
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

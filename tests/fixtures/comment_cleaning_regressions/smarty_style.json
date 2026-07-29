@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "smarty_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "bdf8be323fd9f282d96cedeee3272c898e72a22591236b8223944fc2ddeba605",
+      "case_id": "smarty-block-8f3822a4b41dd03f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "smarty",
+      "raw_comment": "{******************}",
+      "raw_sha256": "9ae9ef5d490859b87ed8954e1891b38b5b58186afcd8cfb3bac46d018a9be7f8",
+      "raw_utf8_length": 20,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ae4efbfd3625c02ce9e9cab5339b22b32e340e521f1fbdc57221f73a0580439",
+        "source_id": "d23ca2b97d70994778b3105dd5664ef2bc5d9c64"
+      },
+      "syntax_label": "{*...*}"
+    },
+    {
+      "baseline_cleaned_sha256": "32ccef32df686b65681944cd8b2ebfbb60b337f1a03a6977d3b07a3e2106ed55",
+      "case_id": "smarty-block-dfae83687e6b1bd7",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "CiviCRM version 4.6\nCopyright CiviCRM LLC (c) 2004-2015\nThis file is a part of CiviCRM.\n\nCiviCRM is free software; you can copy, modify, and distribute it\nunder the terms of the GNU Affero General Public License\nVersion 3, 19 November 2007 and the CiviCRM Licensing Exception.\n\nCiviCRM is distributed in the hope that it will be useful, but\nWITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\nSee the GNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public\nLicense and the CiviCRM Licensing Exception along\nwith this program; if not, contact CiviCRM LLC\nat info[AT]civicrm[DOT]org. If you have questions about the\nGNU Affero General Public License or the licensing of CiviCRM,\nsee the CiviCRM license FAQ at http://civicrm.org/licensing",
+      "expected_cleaned_sha256": "02c176681d3b95cfd1ed6f380189feff8939307629c40b56b858ef339281e2a3",
+      "language": "smarty",
+      "raw_comment": "{*\n +--------------------------------------------------------------------+\n | CiviCRM version 4.6                                                |\n +--------------------------------------------------------------------+\n | Copyright CiviCRM LLC (c) 2004-2015                                |\n +--------------------------------------------------------------------+\n | This file is a part of CiviCRM.                                    |\n |                                                                    |\n | CiviCRM is free software; you can copy, modify, and distribute it  |\n | under the terms of the GNU Affero General Public License           |\n | Version 3, 19 November 2007 and the CiviCRM Licensing Exception.   |\n |                                                                    |\n | CiviCRM is distributed in the hope that it will be useful, but     |\n | WITHOUT ANY WARRANTY; without even the implied warranty of         |\n | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.               |\n | See the GNU Affero General Public License for more details.        |\n |                                                                    |\n | You should have received a copy of the GNU Affero General Public   |\n | License and the CiviCRM Licensing Exception along                  |\n | with this program; if not, contact CiviCRM LLC                     |\n | at info[AT]civicrm[DOT]org. If you have questions about the        |\n | GNU Affero General Public License or the licensing of CiviCRM,     |\n | see the CiviCRM license FAQ at http://civicrm.org/licensing        |\n +--------------------------------------------------------------------+\n*}",
+      "raw_sha256": "7256e7caf9d7566ed33571559499957ac8d004eb9dbf8afeef731481223be584",
+      "raw_utf8_length": 1661,
+      "source_provenance": {
+        "source_excerpt_sha256": "7dc951bfc8b564cb606bef7f92ebc0a9e12f88390f6f981fd6f370e4371feb31",
+        "source_id": "0736b63665b359fd42c9e1ff80ad35a944f1b5dd"
+      },
+      "syntax_label": "{*...*}"
+    }
+  ],
+  "schema_version": 5
+}

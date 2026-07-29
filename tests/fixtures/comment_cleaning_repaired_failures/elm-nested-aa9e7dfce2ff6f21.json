@@ -1,0 +1,38 @@
+{
+  "case_id": "elm-nested-aa9e7dfce2ff6f21",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "elm",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "021b7e97d990a724d6c3e860eeaa8def10ab28c90194f220b129d0a9481b6c2c",
+      "utf8_length": 79
+    },
+    "manifest_old_output": {
+      "sha256": "ff342ef81e64e20acc3bd1717807f6b11299d9319fe87cda0099c31274973bd2",
+      "utf8_length": 71
+    },
+    "raw_comment": {
+      "sha256": "1880ce079231c91eecf1d35568b10d358cb025480c5b2f259e971e73310513e2",
+      "utf8_length": 83
+    },
+    "recommended_expected_output": {
+      "sha256": "ff342ef81e64e20acc3bd1717807f6b11299d9319fe87cda0099c31274973bd2",
+      "utf8_length": 71
+    }
+  },
+  "regression": {
+    "expected_output": "Helps instantiate a GameState by minimizing amount of parameters needed",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Helps instantiate a GameState by minimizing amount of parameters needed\n--}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a5ac9ce4426b52fab3655edff515e3dcb7d9881d1e3c4a26d011c2fb89a0a4f9",
+    "source_id": "58d630deae6b819cc9bf86a8af686d325a83e225"
+  },
+  "source_record_sha256": "7213efd48a86d38d20961e3570713c710256ed7e77486285f5124f1acb51f458"
+}

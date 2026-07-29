@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cweb_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "a197ce20ce8f8f64fcae130fc62acda8bce4d3c0247af5519c08d083753016e8",
+      "case_id": "cweb-block-067dba871d887926",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BUILD Version: 0001 // Increment this if a change has global effects",
+      "expected_cleaned_sha256": "92ab5b1fc09494df227be6f1f1275e47feca4412a729b393cd5154ed4666cfc0",
+      "language": "cweb",
+      "raw_comment": "/*++ BUILD Version: 0001 // Increment this if a change has global effects --*/",
+      "raw_sha256": "63eb8082e07aac71c971378235814216fd7fbf3f0ee84c59e7bb3bfede959056",
+      "raw_utf8_length": 78,
+      "source_provenance": {
+        "source_excerpt_sha256": "6c1c2af76e34239d59daea1998abf53c9a897a8793267e7333e6a191fd73c007",
+        "source_id": "03cb5e65f3e6fb690c4ae323189a35e4dfcf1121"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "62f44f37eda2eac71a82d7de35538a5695eb54d1bad38d5ea37c58d4558ca58d",
+      "case_id": "cweb-block-3ef4dae78a08e9d3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BUILD Version: 0001    // Increment this if a change has global effects\n\nCopyright (c) Microsoft Corporation. All rights reserved.\n\nModule Name:\n\n    ntddmodm.h\n\nAbstract:\n\n    This is the include file that defines all constants and types for\n    accessing the modem device.\n\nAuthor:\n\n    Tony Ercolano (tonye) 14-Jul-1995\n\nRevision History:",
+      "expected_cleaned_sha256": "944b3d6dc4001a15e5716f9c9d6d26147d0fd1da6a536de38301e4dc48f1aa30",
+      "language": "cweb",
+      "raw_comment": "/*++ BUILD Version: 0001    // Increment this if a change has global effects\n\nCopyright (c) Microsoft Corporation. All rights reserved.\n\nModule Name:\n\n    ntddmodm.h\n\nAbstract:\n\n    This is the include file that defines all constants and types for\n    accessing the modem device.\n\nAuthor:\n\n    Tony Ercolano (tonye) 14-Jul-1995\n\nRevision History:\n\n--*/",
+      "raw_sha256": "0a28233c990604c58af1eedf5e73b88af04a3d912fb18c1d984ff856c69b2357",
+      "raw_utf8_length": 352,
+      "source_provenance": {
+        "source_excerpt_sha256": "d9b31c8efc9839dccd7a1284bdaf49cfd7d5d0edcb77bc63f2b24e677ea5f735",
+        "source_id": "cce800c87ecec695665f3b676f7c49fe24538fb9"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "b2b9c3c6f14b2c7fdabc1bc38981aa54105698bb49f3934fab9605f72cd48edf",
+      "case_id": "cweb-block-d7af8cdf3491a001",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BUILD Version: 0001    // Increment this if a change has global effects\n\nCopyright (c) Microsoft Corporation.  All rights reserved.\n\nModule Name:\n\n    machinep.h\n\nAbstract:\n\n    This is the include file that defines detect of machine type.\n\n     This file is only included from following files\n\n     + \\machine\\*.c\n     + \\utils\\ulib\\machine.cxx\n\n     And same definition is in\n\n     + \\public\\sdk\\inc\\machine.h\n     + \\ntos\\config\\i386.h\n     + \\ntos\\fastfat\\fatinit.c\n     + \\ntos\\dd\\scsidisk\\disk.c\n\n     And this library will be linked with following module.\n\n     + winsrv.dll ( usersrvl.lib )\n     + main.cpl\n     + display.cpl\n     + winfile.exe\n     + winlogon.exe\n     + msgina.dll\n\nAuthor:\n\nRevision History:",
+      "expected_cleaned_sha256": "c7f2aa93907805c8d406929e28fe7376255c90aab42e7ce48cf42c7a16fafe7a",
+      "language": "cweb",
+      "raw_comment": "/*++ BUILD Version: 0001    // Increment this if a change has global effects\n\nCopyright (c) Microsoft Corporation.  All rights reserved.\n\nModule Name:\n\n    machinep.h\n\nAbstract:\n\n    This is the include file that defines detect of machine type.\n\n     This file is only included from following files\n\n     + \\machine\\*.c\n     + \\utils\\ulib\\machine.cxx\n\n     And same definition is in\n\n     + \\public\\sdk\\inc\\machine.h\n     + \\ntos\\config\\i386.h\n     + \\ntos\\fastfat\\fatinit.c\n     + \\ntos\\dd\\scsidisk\\disk.c\n\n     And this library will be linked with following module.\n\n     + winsrv.dll ( usersrvl.lib )\n     + main.cpl\n     + display.cpl\n     + winfile.exe\n     + winlogon.exe\n     + msgina.dll\n\nAuthor:\n\nRevision History:\n\n--*/",
+      "raw_sha256": "314912bee920497cdca2caf47b7277a79aa271921ae1a2993b27d4e34ea3b03e",
+      "raw_utf8_length": 729,
+      "source_provenance": {
+        "source_excerpt_sha256": "17ceccd7332c0a8f9c5d6b8906ce07f11a62d0c24f783dac78e946479219412e",
+        "source_id": "a293a349611d2bf6d2ab5711ade57d272c274a7d"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

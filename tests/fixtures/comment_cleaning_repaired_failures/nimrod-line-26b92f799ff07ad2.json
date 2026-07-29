@@ -1,0 +1,38 @@
+{
+  "case_id": "nimrod-line-26b92f799ff07ad2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "nimrod",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a14d6b94ff0349aec3f45c7a9e71524ffe49f184179ae9d6da4ac2390b887a60",
+      "utf8_length": 339
+    },
+    "manifest_old_output": {
+      "sha256": "03cea3de588bfdca2b7b4b63244b96f46fd61592665e38744ea876035746ba5d",
+      "utf8_length": 325
+    },
+    "raw_comment": {
+      "sha256": "83f8ca6d088f1f25aa7a27fbc911556f3081df813997c60aa3e84bc565b00f59",
+      "utf8_length": 358
+    },
+    "recommended_expected_output": {
+      "sha256": "03cea3de588bfdca2b7b4b63244b96f46fd61592665e38744ea876035746ba5d",
+      "utf8_length": 325
+    }
+  },
+  "regression": {
+    "expected_output": "read only template to open database as `hf5`, work with it\nand close it properly\nNOTE: The database is only opened, if no other variable\nof the name `h5f` is declared in the calling scope.\nThis allows to have nested calls of `withDebug` without\nany issues (otherwise we get will end up trying to close\nalready closed objects)",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## read only template to open database as `hf5`, work with it\n  ## and close it properly\n  ## NOTE: The database is only opened, if no other variable\n  ## of the name `h5f` is declared in the calling scope.\n  ## This allows to have nested calls of `withDebug` without\n  ## any issues (otherwise we get will end up trying to close\n  ## already closed objects)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "126f40919cf2d87a552c82660756afc14d6da0f8f6f7a93ed5e6a232d72ed253",
+    "source_id": "69b118377df70a8e49deb935b828303aaa4b65ed"
+  },
+  "source_record_sha256": "23806bbdba6bf0af9f3c8c56e390ddef3ff42d5ee349fbf06ca938a9f37d8808"
+}

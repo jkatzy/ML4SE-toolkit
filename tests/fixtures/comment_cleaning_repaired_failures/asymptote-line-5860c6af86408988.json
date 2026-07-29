@@ -1,0 +1,38 @@
+{
+  "case_id": "asymptote-line-5860c6af86408988",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:mixed_edge",
+  "disposition": "executable_regression",
+  "language": "asymptote",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f8e73c0ca7fb30678d3995397c420b8c16a186e46507efed9cbeff9a3c37612a",
+      "utf8_length": 24
+    },
+    "manifest_old_output": {
+      "sha256": "c88d979c8a19f64866ce552b29da3a865118fe500de4b47dbbc8aed76ea974e1",
+      "utf8_length": 18
+    },
+    "raw_comment": {
+      "sha256": "338a49679193742f28a63739ef3e6dc289fffd142de7c4c95ae2fbb03b2706ff",
+      "utf8_length": 31
+    },
+    "recommended_expected_output": {
+      "sha256": "c88d979c8a19f64866ce552b29da3a865118fe500de4b47dbbc8aed76ea974e1",
+      "utf8_length": 18
+    }
+  },
+  "regression": {
+    "expected_output": "Define paper sizes",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// --- Define paper sizes --- /"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3d0cb67c175ec5cbe36e48192217b5fadf5d29e7690fa6ecaf970adc9be29034",
+    "source_id": "0e32da0b0eaba3084fc8e4be4d1118f206b2ea56"
+  },
+  "source_record_sha256": "d91e63971edb0b74822e8f34ba7dfe4b5a56f4b4a300d0365f1c083b9fe8385a"
+}

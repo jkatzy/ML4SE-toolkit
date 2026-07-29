@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "brightscript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "3051308d1737f3a0a2eb0b457a4d6664fdb38b74d57d174dedd2296d43fc572f",
+      "case_id": "brightscript-line-d921fc982b397a5d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Main\nThis contains the launch parameters stuff that enables the Roku to accept\nREST calls that make it play videos via web commands.",
+      "expected_cleaned_sha256": "ccaf850949177f0db768471454cfbe20276fea0e94d4be1c6f0e0055e2bdeb41",
+      "language": "brightscript",
+      "raw_comment": "'********************************************************************\n'**  Main\n'** This contains the launch parameters stuff that enables the Roku to accept\n'** REST calls that make it play videos via web commands.\n'********************************************************************",
+      "raw_sha256": "977a12403f766c2b3ecbc8b71847ae604ee62b0981decd4bbea3d6962aff62a7",
+      "raw_utf8_length": 285,
+      "source_provenance": {
+        "source_excerpt_sha256": "52cfa4b440a9abf7a2b5d1fe35ff30106b13590aeca1ed2b5f8fb8aba8e68cc3",
+        "source_id": "6106ea52a27fb3ba732224ea1ac236de3c7bc00b"
+      },
+      "syntax_label": "'"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,144 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "sas_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "db9e1f39fd73e3c2c7f39c1c28af978d8ff4358093bafaedd459863b07b05afd",
+      "case_id": "sas-block-00eab9fae20b09d1",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Program      : Universal_KYC.SAS\nOwner        : Analytics, LSRPL\n\nAuthor       : LSRL/324\n\n\nDescription  : Extracts the KYC &Other data for Universal enrolled customers\n\nUsage        :\n\n\nHistory      :\n(Analyst)     \t(Date)    \t(Changes)\n\nLSRL/324\t\t\t\t\tCreated",
+      "expected_cleaned_sha256": "58631c4d3d2f2b93bf5576bfe67491536d8da8c31f780dc0315ae6a0bdcb25c3",
+      "language": "sas",
+      "raw_comment": "/************************************************************************************\n*       Program      : Universal_KYC.SAS\t\t\t\t\t\t\t\t\t\t\t*\n*\t\tOwner        : Analytics, LSRPL                                 \t\t\t*\n*                                                                       \t\t\t*\n*       Author       : LSRL/324                                            \t\t\t*\n*                                                                       \t\t\t*\n*                                                                      \t\t\t\t*\n*       Description  : Extracts the KYC &Other data for Universal enrolled customers*\n*\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n*       Usage        :          \t\t\t\t\t\t\t\t\t\t\t\t\t*\n*                         \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n*                                                                       \t\t\t*\n*       History      :                                                  \t\t\t*\n*       (Analyst)     \t(Date)    \t(Changes)                               \t\t*\n*                                                                       \t\t\t*\n*        LSRL/324\t\t\t\t\tCreated                                         \n************************************************************************************/",
+      "raw_sha256": "0380eeab817882e259bdf3a915ca24dbe4cb95b8e1d4132fc69c467cd138c735",
+      "raw_utf8_length": 1187,
+      "source_provenance": {
+        "source_excerpt_sha256": "90b24efb5a028198c4058b6107f81a4ed054636392f6c00c8bbd5f85e1009b69",
+        "source_id": "8fd878ba82514ec6c50bff015ae9e5dce90c1d7b"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "474ef8b9f3b2c8262d95356f75f097d1ab0a4c763a536d768d2c7aaf1b605bd8",
+      "case_id": "sas-block-1c9b92ca6a10e523",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Comparative Scatter Plot",
+      "expected_cleaned_sha256": "d191571b790ce72d496474dc15745e2903ef363f5b7ea19a3c9c76e69a11fae6",
+      "language": "sas",
+      "raw_comment": "/*--Comparative Scatter Plot--*/",
+      "raw_sha256": "293738a30951a61dced01e234eb4c8e178ff1c35400fc1f2d9a9c1a7190ab8bc",
+      "raw_utf8_length": 32,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ddf2480b2e4277ecc93bc53ff044501a2b38edfeaf962a6ffd3c9f5e0f3e582",
+        "source_id": "5fbf7efad3a00a25b0bcca85c0ffa7cdc19b6d8e"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "5f6b69afca945599a1c06357b5ac07a99d1b4bc08c7c1ba235175abf16e4f6ad",
+      "case_id": "sas-block-55f40dfa76de6491",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Iterates through observations from a dataset and creates macro vars from each field\nto be used by a named sub-routine\n    <p>Can be called inside a datastep\n<p>Abends SAS session when called with bad parameters\n\n@author  Chris Amendola\n@created 0-2015",
+      "expected_cleaned_sha256": "c05b8a87d005af38c162bf6e002662b4186aaccfb0fe6b12491d2718fb1d1108",
+      "language": "sas",
+      "raw_comment": "/*!\n*\n*       Iterates through observations from a dataset and creates macro vars from each field \n*       to be used by a named sub-routine\n*           <p>Can be called inside a datastep\n*    \t\t<p>Abends SAS session when called with bad parameters \n*\n*      @author  Chris Amendola\n*      @created 0-2015\n*\n*/",
+      "raw_sha256": "df9d8aaff3ef17c7f11cf4a7f4f6726a136552415eec92ba5c8219a321b2afcc",
+      "raw_utf8_length": 310,
+      "source_provenance": {
+        "source_excerpt_sha256": "c8968b44de48111774c4522f5ab5402abaf2a73c10bce9216c18ca504140ecf7",
+        "source_id": "d0bc310e95a3bf6d3e1b8482821aa37fe72263d9"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "ebbed66e290135b1cdd38f26c53c23ff46cefb5409d17eee7ca4041bfc98fa4f",
+      "case_id": "sas-block-608a2118ce7a9c52",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Author: Edwin Hu\nDate: 2013-05-24\n\n# IC_LINK #\n\n## Summary ##\nCreates a linking table between CRSP and COMPUSTAT\n\n## Variables ##\n- lib: default library to use\n- inames: IBES names dataset (ibes.idsum)\n- cnames: CRSP names file (crsp.stocknames)\n- debug: debug mode (n)\n\n## Usage ##\n```\n%IMPORT \"~/git/sas/IC_LINK.sas\";\n\n%IC_LINK(\n         lib = USER,\n         inames = ibes.idsum,\n         cnames = crsp.stocknames,\n         debug = n\n         );\n```",
+      "expected_cleaned_sha256": "3e0ca7ce47a6cf5a1813eb4dd1379135a184fb5ff1e9cee96a4403ed645b948c",
+      "language": "sas",
+      "raw_comment": "/*\r\nAuthor: Edwin Hu\r\nDate: 2013-05-24\r\n\r\n# IC_LINK #\r\n\r\n## Summary ##\r\nCreates a linking table between CRSP and COMPUSTAT\r\n\r\n## Variables ##\r\n- lib: default library to use\r\n- inames: IBES names dataset (ibes.idsum)\r\n- cnames: CRSP names file (crsp.stocknames)\r\n- debug: debug mode (n)\r\n\r\n## Usage ##\r\n```\r\n%IMPORT \"~/git/sas/IC_LINK.sas\";\r\n\r\n%IC_LINK(\r\n         lib = USER,\r\n         inames = ibes.idsum,\r\n         cnames = crsp.stocknames,\r\n         debug = n\r\n         );\r\n```\r\n */",
+      "raw_sha256": "26b6e0bb2db7e70cac4cfd20d4b5ef9b8ddfab62a54cfff64d5e93c0adf9e589",
+      "raw_utf8_length": 484,
+      "source_provenance": {
+        "source_excerpt_sha256": "15cb9039c3b74ea07ba9800b52a11c39045a7b260e4ed1f18b1ef9e6e5eea1c4",
+        "source_id": "4254fbb5a536a7323f636c4d8344b190b3e8c4e1"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "d97fe7b9a77b4776677df1b9e359d04c9af90fc917667596ecd78f0efd928e62",
+      "case_id": "sas-block-7799980c4382aa23",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "       Program      : Generate_email.sas\n\t\tOwner        : Analytics, LSRPL\n\n       Author       : LSRL/324\n\n       Input        : TO= AND SUBJECT= are mandatory\n                      CC=, ATTACH=, BODY1= upto BODY7= \tare optional\n\t\t\t\t\t   Can give multiple email ids in to= cc= separated by space\n\t\t\t\t\t   Include in %str() if there are commas in the body1=, body2=,...\n\n\t\tEg:\n\n-1)%generate_email(TO=abc@payback.net, SUBJECT= Bonus Points );\n\n-2)%generate_email(TO=abc@payback.net bcd@payback.net, SUBJECT= Bonus Points );\n\n-3)%generate_email(TO=abc@payback.net bcd@payback.net, SUBJECT= Bonus Points,\n\t\t\t\t   CC=cde@payback.net def@payback.net );\n\n-4)%generate_email(TO=abc@payback.net bcd@payback.net, SUBJECT= Bonus Points,\n\t\t\t\t   CC=cde@payback.net def@payback.net, ATTACH=G:\\sas\\bonus.xls,\n\t\t\t\t   BODY1 = %str(Hi,), BODY2= Bonus points data has uploaded );\n\n       Output       : Sends mail with given details\n\n\n       Dependencies : G:\\sas\\common\\sasautos\\Notifications_email_creds.sas\n\n       Description  : Sends mail with the given details\n\n       Usage        :\n\n\n       History      :\n       (Analyst)     \t(Date)    \t(Changes)\n\n        LSRL/324\t\t01oct2012\tCreated\n\t\t LSRL/324\t\t31oct2012\tAdded 5 more statements in the body of the mail\n\t\t\t\t\t\t\t\t\tand can attach multiple files",
+      "expected_cleaned_sha256": "6f52ba848b2e6b5b8b5eb1452138bfff6876a02518e6cdf245e688e395e957ed",
+      "language": "sas",
+      "raw_comment": "/************************************************************************************\n*       Program      : Generate_email.sas\t\t\t\t\t\t\t\t\t\t\t*\n*\t\tOwner        : Analytics, LSRPL                                 \t\t\t*\n*                                                                       \t\t\t*\n*       Author       : LSRL/324                                            \t\t\t*\n*                                                                       \t\t\t*\n*       Input        : TO= AND SUBJECT= are mandatory\t\t\t        \t\t\t*\n*                      CC=, ATTACH=, BODY1= upto BODY7= \tare optional\t\t\t*\n*\t\t\t\t\t   Can give multiple email ids in to= cc= separated by space\t*\n*\t\t\t\t\t   Include in %str() if there are commas in the body1=, body2=,... *\n*\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n*\t\tEg:\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n*\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n-1)%generate_email(TO=abc@payback.net, SUBJECT= Bonus Points );   \t\t\t\t\t*\n\n-2)%generate_email(TO=abc@payback.net bcd@payback.net, SUBJECT= Bonus Points );   \t*\n\n-3)%generate_email(TO=abc@payback.net bcd@payback.net, SUBJECT= Bonus Points, \t\t\n\t\t\t\t   CC=cde@payback.net def@payback.net );   \t\t\t\t\t\t\t*\n\n-4)%generate_email(TO=abc@payback.net bcd@payback.net, SUBJECT= Bonus Points,\t\t \n\t\t\t\t   CC=cde@payback.net def@payback.net, ATTACH=G:\\sas\\bonus.xls,\t\t\n\t\t\t\t   BODY1 = %str(Hi,), BODY2= Bonus points data has uploaded );\t\t*\n*\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n*       Output       : Sends mail with given details                    \t\t\t*\n*                                                                       \t\t\t*\n*                                                                       \t\t\t*\n*       Dependencies : G:\\sas\\common\\sasautos\\Notifications_email_creds.sas\t\t\t*\n*                                                                       \t\t\t*\n*       Description  : Sends mail with the given details                \t\t\t*\n*\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*\n*       Usage        :                                                  \t\t\t*\n*                                                                       \t\t\t*\n*                                                                       \t\t\t*\n*       History      :                                                  \t\t\t*\n*       (Analyst)     \t(Date)    \t(Changes)                               \t\t*\n*                                                                       \t\t\t*\n*        LSRL/324\t\t01oct2012\tCreated                                         \n*\t\t LSRL/324\t\t31oct2012\tAdded 5 more statements in the body of the mail *\n*\t\t\t\t\t\t\t\t\tand can attach multiple files\t\t\t\t\t*\n************************************************************************************/",
+      "raw_sha256": "17cd89327bb3523fcc8c321054a220bbf50ea431d812ea230c54b2e0034d01ca",
+      "raw_utf8_length": 2586,
+      "source_provenance": {
+        "source_excerpt_sha256": "c4a16789bc9c6d10ad05c98d69e90f58055c890b4185a09ca158f17a91d51c7d",
+        "source_id": "ef501b6e447afc340c0c9a259b3a830c751a4c94"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "41b805ea7ac014e23556e98bb374702a08344268f92489a02f0880849394a1e4",
+      "case_id": "sas-line-83caf6ba23bfb2eb",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "sas",
+      "raw_comment": "*******************************************************************************;\r",
+      "raw_sha256": "4465b331c72e135d2141b1e5b97a4e437c4465b52558998aa044e0dea2acdca2",
+      "raw_utf8_length": 81,
+      "source_provenance": {
+        "source_excerpt_sha256": "703569d7a80e39f387d08e4fa4b972ef765d36c18c4f5573795f18cc816ab7d1",
+        "source_id": "8154de8d941ed4903e101f947dc7d465fb6e379a"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "4aa2011313e8bb758a8d57e171be1cddf96c4030ec504f2d88f85a7dee20ad37",
+      "case_id": "sas-line-95b5778937c98342",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Usual Descriptive Work",
+      "expected_cleaned_sha256": "cedb2e68011fe5b1e8c0c108161251b216e2cd2cd19584464b693f4fbff8b0f0",
+      "language": "sas",
+      "raw_comment": "*****Usual Descriptive Work*****;\r",
+      "raw_sha256": "075dcf6029568386074a7694b4a02fcf8d16a812bdf254fa9ff4ad208777822c",
+      "raw_utf8_length": 34,
+      "source_provenance": {
+        "source_excerpt_sha256": "a62725c67fe86389cc8c2895604b076a10d71bb26cd58f8907af94dc8a0d7616",
+        "source_id": "29c8d64ba869c486233acbe6bffa5c225bdd17b0"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "41b805ea7ac014e23556e98bb374702a08344268f92489a02f0880849394a1e4",
+      "case_id": "sas-line-daaf8709e9fce2a8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "sas",
+      "raw_comment": "*;",
+      "raw_sha256": "8d87d280d49df13fb2962adb5b0b3eca02c215a76c2239fb8e99b44dded34854",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "423831922080c2767143fe153de15f1adfb8aec4a5c74c82851f8f43b347ada9",
+        "source_id": "a8d8d86f2c1202ca5b429fda9c1d462719d96916"
+      },
+      "syntax_label": "*"
+    }
+  ],
+  "schema_version": 5
+}

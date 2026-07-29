@@ -1,0 +1,38 @@
+{
+  "case_id": "vbscript-line-4450223db33dccf5",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "vbscript",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ca4efd35bb38383ef614bd4a4f75b13652ec5057a28eeda0a65879913d026a8e",
+      "utf8_length": 609
+    },
+    "manifest_old_output": {
+      "sha256": "ca4efd35bb38383ef614bd4a4f75b13652ec5057a28eeda0a65879913d026a8e",
+      "utf8_length": 609
+    },
+    "raw_comment": {
+      "sha256": "018002db856fbc766fb670157270348289dd4d5db1a50539cec2639dc0a1ddcb",
+      "utf8_length": 771
+    },
+    "recommended_expected_output": {
+      "sha256": "ca4efd35bb38383ef614bd4a4f75b13652ec5057a28eeda0a65879913d026a8e",
+      "utf8_length": 609
+    }
+  },
+  "regression": {
+    "expected_output": "\u8ffd\u52a0\u3055\u308c\u305f\u6dfb\u5b57\u306e\u78ba\u8a8d\u3082\u542b\u3081\u3066\u914d\u5217\u306e\u5171\u901a\u9805\u3092\u78ba\u8a8d\u3059\u308b\n=======================================================================\n\u3010\u5f15\u6570\u3011\n mAry1    = array  \u5024\u3092\u8abf\u3079\u308b\u3082\u3068\u3068\u306a\u308b\u914d\u5217\u3002\n mAry2    = array  \u5024\u3092\u6bd4\u8f03\u3059\u308b\u5bfe\u8c61\u3068\u306a\u308b\u914d\u5217\u3002\n\u3010\u623b\u308a\u5024\u3011\n mAry1 \u306e\u5024\u306e\u3046\u3061\u3001\u3059\u3079\u3066\u306e\u5f15\u6570\u306b\u5b58\u5728\u3059\u308b\u3082\u306e\u3092\u542b\u3080\u9023\u60f3\u914d\u5217\u3092\u8fd4\u3057\u307e\u3059\u3002\n\u3010\u51e6\u7406\u3011\n \u30fb\u5168\u3066\u306e\u5f15\u6570\u306b\u73fe\u308c\u308b mAry1 \u306e\u5168\u3066\u306e\u5024\u3092\u542b\u3080\u914d\u5217\u3092\u8fd4\u3057\u307e\u3059\u3002\n \u30fbarray_intersect() \u3068\u7570\u306a\u308a\u3001 \u30ad\u30fc\u304c\u6bd4\u8f03\u306b\u4f7f\u7528\u3055\u308c\u308b\u3053\u3068\u306b\u6ce8\u610f\u3057\u3066\u304f\u3060\u3055\u3044\u3002",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'=======================================================================\n'\u8ffd\u52a0\u3055\u308c\u305f\u6dfb\u5b57\u306e\u78ba\u8a8d\u3082\u542b\u3081\u3066\u914d\u5217\u306e\u5171\u901a\u9805\u3092\u78ba\u8a8d\u3059\u308b\n'=======================================================================\n'\u3010\u5f15\u6570\u3011\n'  mAry1    = array  \u5024\u3092\u8abf\u3079\u308b\u3082\u3068\u3068\u306a\u308b\u914d\u5217\u3002\n'  mAry2    = array  \u5024\u3092\u6bd4\u8f03\u3059\u308b\u5bfe\u8c61\u3068\u306a\u308b\u914d\u5217\u3002\n'\u3010\u623b\u308a\u5024\u3011\n'  mAry1 \u306e\u5024\u306e\u3046\u3061\u3001\u3059\u3079\u3066\u306e\u5f15\u6570\u306b\u5b58\u5728\u3059\u308b\u3082\u306e\u3092\u542b\u3080\u9023\u60f3\u914d\u5217\u3092\u8fd4\u3057\u307e\u3059\u3002\n'\u3010\u51e6\u7406\u3011\n'  \u30fb\u5168\u3066\u306e\u5f15\u6570\u306b\u73fe\u308c\u308b mAry1 \u306e\u5168\u3066\u306e\u5024\u3092\u542b\u3080\u914d\u5217\u3092\u8fd4\u3057\u307e\u3059\u3002 \n'  \u30fbarray_intersect() \u3068\u7570\u306a\u308a\u3001 \u30ad\u30fc\u304c\u6bd4\u8f03\u306b\u4f7f\u7528\u3055\u308c\u308b\u3053\u3068\u306b\u6ce8\u610f\u3057\u3066\u304f\u3060\u3055\u3044\u3002\n'======================================================================="
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f05cf270d0656b9de24df79537ff5506ba7fbe11c3df89b4b93b38a6ff2c126b",
+    "source_id": "825f85d5b43d8679fb31313d29674b0713ee7f03"
+  },
+  "source_record_sha256": "c23759bc7f787576ad546455e4ae68900a7c89ccf7687447459a33803c0826a3"
+}

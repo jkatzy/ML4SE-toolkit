@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "freebasic_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "6a5514b29861c85a48144e129b8dc043860ff0ab9ca83321f1cc4d50a231afc0",
+      "case_id": "freebasic-block-fbca66e0756dfbf7",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "CKNJ8.BAS ver 0.4\nClass CKNJ8 for MachiKania Type Z/M/P\nusing Misaki 8x8 font",
+      "expected_cleaned_sha256": "d29580b06599d35993b292ede80d5684774066ec493ee6a8adf7c081d317efa6",
+      "language": "freebasic",
+      "raw_comment": "REM CKNJ8.BAS ver 0.4\nREM Class CKNJ8 for MachiKania Type Z/M/P\nREM using Misaki 8x8 font",
+      "raw_sha256": "6a5514b29861c85a48144e129b8dc043860ff0ab9ca83321f1cc4d50a231afc0",
+      "raw_utf8_length": 89,
+      "source_provenance": {
+        "source_excerpt_sha256": "bfb868cc0b01e4629528d6e9c44293ba4e738385f5ac7ce6c88fd0148bdeda33",
+        "source_id": "c1997282c74b51645bdaa002c923aed0735725cc"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "76c06b8f710a9ae01b7b740eb6e05aa7b31f948ecf6611332f382754bd0aef1f",
+      "case_id": "freebasic-line-0ca06eca74c9d35d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BASIC8",
+      "expected_cleaned_sha256": "6fa96f1fbf6dba9b8b0ec2fcb0f2f51bf41074cf520e27d1507b90e2527a06be",
+      "language": "freebasic",
+      "raw_comment": "REM BASIC8\r",
+      "raw_sha256": "20d27d852d29b9312d80cde2feea51a414c421f77093b79e978c0d4fdd41a63b",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "2e77731fd55b4f463ca05db0f88c99286432ae047e79564fc28169201201ba8d",
+        "source_id": "b49863d5fdd09cbabb59e131836e28e5de45e875"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "a8ac5dcfb5fedf8ac625adeca8655b35fd70965d14b35dff899fa69084b3d20d",
+      "case_id": "freebasic-line-16bbbd2867553a4c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "constant visibility test",
+      "expected_cleaned_sha256": "05f0e00278de26dc9dcd914cf97f364f755a48b01e3b26179b8b64d0e3d6498a",
+      "language": "freebasic",
+      "raw_comment": "REM constant visibility test",
+      "raw_sha256": "a8ac5dcfb5fedf8ac625adeca8655b35fd70965d14b35dff899fa69084b3d20d",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "aaa863a7c4759997ec109855573c6df16cd6929c857f967e3a3cd0f7a48acd89",
+        "source_id": "812232d3161e44bc3b631eac8d3987f8388e51e2"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "97a83bb39d64343cdcf586866a9d6f69c3d1e9b2d1cf6b1f5e1851b748b23bb9",
+      "case_id": "freebasic-line-9731eb584cb3da82",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Author - Keoeeit",
+      "expected_cleaned_sha256": "e5244403d860f015f15ea2dd6291910c71fba1987e137705a7c3d30af2fc17c9",
+      "language": "freebasic",
+      "raw_comment": "rem Author - Keoeeit                     ",
+      "raw_sha256": "5353b029c8523a773cbe7738a5f5301d3245ae8f4b473f069fa3f3ab8cce6372",
+      "raw_utf8_length": 41,
+      "source_provenance": {
+        "source_excerpt_sha256": "7dd9c514277241876b5e37a07d62f13b2457e6dc5c8fc65584e86928cbd3b94e",
+        "source_id": "94896d31101151a85f1954d5bffae0a87ce569e4"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "2ea82b27fafc5d92dea9cc4d598c23225b000fac66edd721bd9f2c981a1054e9",
+      "case_id": "freebasic-line-fde3d7f371931d5e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Description here\n\n@remarks\n@see\n\n@/",
+      "expected_cleaned_sha256": "01a25b3a65d1919a8b7bf9ea4534fab871777fd0e8f3643c6efd1aba84056c93",
+      "language": "freebasic",
+      "raw_comment": "''\n' Description here\n'\n' @remarks\n' @see\n'\n'@/",
+      "raw_sha256": "701f4d94724758d8f9a06351105f3dfacac059395ae19153d046b7a3bdf1d7d3",
+      "raw_utf8_length": 47,
+      "source_provenance": {
+        "source_excerpt_sha256": "24ee64320fe4fc0a8f8e131c4ac5bfe44173b7655f12cf03c740395e82c449f8",
+        "source_id": "c62a453ac4de28a24b89dab803673e786a240791"
+      },
+      "syntax_label": "'"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,858 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "muse_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "62cc9da69b7ecf34594863eaf1adf535456766cb8af2b0fd7ab17ba5e1dbbeae",
+      "case_id": "muse-directive-fdde7bb664e51bce",
+      "comment_kind": "directive",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "muse",
+      "oracle_exception_record_sha256": "7668cf4b4bd144c10f77abab0919466e4dbdad6cce6272e5d487f94acb3b5e89",
+      "raw_sha256": "62cc9da69b7ecf34594863eaf1adf535456766cb8af2b0fd7ab17ba5e1dbbeae",
+      "raw_utf8_length": 456,
+      "source_provenance": {
+        "source_excerpt_sha256": "17df6a849ea5915a6f77d4f91ad9b5e201ec302b153685c6077ee2d79a020ccb",
+        "source_id": "6abd2ef6cb4d625310c0eb1b6dec754a3bb70f1c"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "e422fa630158fcc41c2acbb447a22c6f3e743f52ab38ecf2a081aac7f8e0d5d8",
+      "case_id": "muse-directive-0547a2ca0f0e497d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: \u041c\u043e\u0436\u043d\u043e \u0431\u044b\u043b\u043e \u0431\u044b \u0438 \u043d\u0430\u043f\u0438\u0441\u0430\u0440\u043e\u0432\u0430\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0438 \u0434\u043b\u044f \u0434\u0438\u043f\u043e\u043b\u044c\u043d\u043e\u0433\u043e \u043f\u043e\u043b\u044f, \u043d\u043e\n\u0443\u0436\u0435 \u043b\u0435\u043d\u044c",
+      "expected_cleaned_sha256": "c9b837d6d45d250fef2f4245b610a56f817dc3911cc08afee338a53cd0a9be32",
+      "language": "muse",
+      "raw_comment": "; TODO: \u041c\u043e\u0436\u043d\u043e \u0431\u044b\u043b\u043e \u0431\u044b \u0438 \u043d\u0430\u043f\u0438\u0441\u0430\u0440\u043e\u0432\u0430\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0438 \u0434\u043b\u044f \u0434\u0438\u043f\u043e\u043b\u044c\u043d\u043e\u0433\u043e \u043f\u043e\u043b\u044f, \u043d\u043e\n; \u0443\u0436\u0435 \u043b\u0435\u043d\u044c",
+      "raw_sha256": "e422fa630158fcc41c2acbb447a22c6f3e743f52ab38ecf2a081aac7f8e0d5d8",
+      "raw_utf8_length": 138,
+      "source_provenance": {
+        "source_excerpt_sha256": "875d270f77f003767a51d1bd5e060b1781fb66214df099b662fea683cab704ea",
+        "source_id": "7f2e8ee5762cf5a37f26a6f84cdfade21c3d197e"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "a68145bc732862aba2c653fab34e38a22110cc905ac2c973c06e1a42b876b718",
+      "case_id": "muse-directive-0ecbaf016b9dca6d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Source:\nhttps://github.com/github/linguist/blob/11bfea53b/samples/Texinfo/protocol-spec.texi",
+      "expected_cleaned_sha256": "5ed82c7f3d272daf270c7c60a04e690e4556d63408aaf2d1125e4a1e19b54767",
+      "language": "muse",
+      "raw_comment": "; Source:\n; https://github.com/github/linguist/blob/11bfea53b/samples/Texinfo/protocol-spec.texi",
+      "raw_sha256": "a68145bc732862aba2c653fab34e38a22110cc905ac2c973c06e1a42b876b718",
+      "raw_utf8_length": 96,
+      "source_provenance": {
+        "source_excerpt_sha256": "76808f19b6117515d5ec8d24aacfcac57a33c29efa765aa4bf7fa5272b0ea5c9",
+        "source_id": "7e26e28d9048fd24d4f708a38c3a830f41fef3e2"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1f314d4dc392e569ca07c85da3ea06caf175a3b77c34a0d493e387f9b2c1318b",
+      "case_id": "muse-directive-14927a295a2286ef",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:",
+      "expected_cleaned_sha256": "0af9a4ce2e8276c3133ad59e94bd771a5767100f3793d83333aef676f6fcc886",
+      "language": "muse",
+      "raw_comment": "; TODO: ",
+      "raw_sha256": "942282807352baace3415d311fe9d318fb6f48eaed184b7d82207ec343694ca4",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "74c08fa909a16f34b35d81df70a5e40e40f03b6592068904078633b0579743e1",
+        "source_id": "8ffa866cdba1200960ffa66433bdbba91a1dc328"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "7a074f8e32636c67a3bac50879c97f4a86657131fb7c8c7e1ef60c7f1363cd33",
+      "case_id": "muse-directive-20e1940aa7715834",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: \u0425\u043e\u0440\u043e\u0448\u043e \u0431\u044b \u0435\u0449\u0451 \u0441\u0434\u0435\u043b\u0430\u0442\u044c \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u043e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u0438\u044f \u043f\u043e\u043b\u044f IGRF \u043e\u0442 DIP \u0438\n\u0432\u0435\u043b\u0438\u0447\u0438\u043d\u0443 \u0432\u043d\u0435\u0448\u043d\u0435\u0433\u043e \u043f\u043e\u043b\u044f (t89) \u0447\u0442\u043e\u0431\u044b \u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0433\u0434\u0435 \u0435\u0441\u0442\u044c 10% \u043e\u0442 \u0432\u043d\u0435\u0448\u043d\u0435\u0433\u043e\n\u043f\u043e\u043b\u044f",
+      "expected_cleaned_sha256": "40c6d1c42fa122c99b10a1187829167122dfba7753d7bc2b24a2dc90c10af96f",
+      "language": "muse",
+      "raw_comment": "; TODO: \u0425\u043e\u0440\u043e\u0448\u043e \u0431\u044b \u0435\u0449\u0451 \u0441\u0434\u0435\u043b\u0430\u0442\u044c \u0441\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u043e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u0438\u044f \u043f\u043e\u043b\u044f IGRF \u043e\u0442 DIP \u0438\n; \u0432\u0435\u043b\u0438\u0447\u0438\u043d\u0443 \u0432\u043d\u0435\u0448\u043d\u0435\u0433\u043e \u043f\u043e\u043b\u044f (t89) \u0447\u0442\u043e\u0431\u044b \u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0433\u0434\u0435 \u0435\u0441\u0442\u044c 10% \u043e\u0442 \u0432\u043d\u0435\u0448\u043d\u0435\u0433\u043e\n; \u043f\u043e\u043b\u044f",
+      "raw_sha256": "7a074f8e32636c67a3bac50879c97f4a86657131fb7c8c7e1ef60c7f1363cd33",
+      "raw_utf8_length": 245,
+      "source_provenance": {
+        "source_excerpt_sha256": "7a279ffe2e0d2613b92219dbf204367178f66c694f81757674ee4bc9955348d9",
+        "source_id": "ea44cc8f6c4be421ac84fbaada09baf152a9c7b6"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "5508dd8da5795af6e047c93c583c354ca76160b14b36f9d196e39942a7ef135d",
+      "case_id": "muse-directive-21704e28c46f7d3d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "post-id 8831186664503574049",
+      "expected_cleaned_sha256": "3f6fcaf9819557491ac34aa956f2379544fe63347f764770e606cf0fac58da95",
+      "language": "muse",
+      "raw_comment": "; post-id 8831186664503574049",
+      "raw_sha256": "5508dd8da5795af6e047c93c583c354ca76160b14b36f9d196e39942a7ef135d",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "92dea728979cf7ea5a4c042777c29deffa82a181de6e313e38bd4d5ec3eb88bd",
+        "source_id": "a9dee712cfd94b94120ca0edc46d02f8568ab59d"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "5d10de1896591781c3802b5e65afadfe9fd280113f1491972a5a69155d3c33e0",
+      "case_id": "muse-directive-2be6cea9fe55c89f",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "removed since we have a solver section\n** Using additional solvers\nThe following solvers are available in the 0.93 release of simEngine:",
+      "expected_cleaned_sha256": "2a42eff0107ac5def2203121de05a47db38ba1211dca91c43eb16055ebab0b62",
+      "language": "muse",
+      "raw_comment": "; removed since we have a solver section\n; ** Using additional solvers\n; The following solvers are available in the 0.93 release of simEngine:",
+      "raw_sha256": "5d10de1896591781c3802b5e65afadfe9fd280113f1491972a5a69155d3c33e0",
+      "raw_utf8_length": 142,
+      "source_provenance": {
+        "source_excerpt_sha256": "f67922b5b6ebe4eba704f33a2a9ebaf0a1e5576a5a8f22c9388f74d11d84e5fa",
+        "source_id": "4a15df5249d519838cff5cb8875b486b1b894e50"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "2c5c81da4ed9edd9ce2c59ed27234b5e71d97c53fe0e83f93af3d8a7c512317d",
+      "case_id": "muse-directive-376b9183d38db99b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u30a4\u30d9\u30f3\u30c8\u306e\u958b\u50ac\u65e5",
+      "expected_cleaned_sha256": "6fc2d1ea6b26e40fc693d211b4087d450372787e489bf2a6c2afb133df16659f",
+      "language": "muse",
+      "raw_comment": "; \u30a4\u30d9\u30f3\u30c8\u306e\u958b\u50ac\u65e5",
+      "raw_sha256": "2c5c81da4ed9edd9ce2c59ed27234b5e71d97c53fe0e83f93af3d8a7c512317d",
+      "raw_utf8_length": 26,
+      "source_provenance": {
+        "source_excerpt_sha256": "90bc06312a3ebe86bb0c7830c06980a9a429748b71f53ed575e41105770caa86",
+        "source_id": "59c2e829ec16c5fb6b02a930f9176afd2dff0fc5"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "cd750e088433221977762f51eee18b5124cfd5beff6fd027a1e7061e41eef20f",
+      "case_id": "muse-directive-3de529d55e2dc0a4",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<algorithm  name=\"\u5f00\u5e73\u65b9\">",
+      "expected_cleaned_sha256": "b00e8ccafa187bb2f46ac0f9e2ecbd37ff139ebcb15540c55282b6ffc813bde6",
+      "language": "muse",
+      "raw_comment": "; <algorithm  name=\"\u5f00\u5e73\u65b9\">",
+      "raw_sha256": "cd750e088433221977762f51eee18b5124cfd5beff6fd027a1e7061e41eef20f",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "0a4f9c21fd760048f1adad218c9103b26873cd3484d4aa74f3339969d192cb38",
+        "source_id": "657f3771ea83191fc3e8d761f0dadf74c4eb2ff6"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "bb832a581953ec05d77b46e01282a468882364fa85cdb685575c4c5011abe391",
+      "case_id": "muse-directive-4113f2472dfe9855",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#author Simatra Modeling Technologies",
+      "expected_cleaned_sha256": "94d6720bdc3a72693c0e44f16aac559bd40df7ef5a23a11977c46d1287ad5ec8",
+      "language": "muse",
+      "raw_comment": "; #author Simatra Modeling Technologies",
+      "raw_sha256": "bb832a581953ec05d77b46e01282a468882364fa85cdb685575c4c5011abe391",
+      "raw_utf8_length": 39,
+      "source_provenance": {
+        "source_excerpt_sha256": "4f653e8eb1d246a7300b7fdd7acddae1d3679383eed6ac9bab1a142bb0059c91",
+        "source_id": "90c5e08c6e1812387da76cda4765db374b417219"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "bf651e2bab7c7d440466a60979d0c00fb38228a4e52bc29119dae8d7074f8827",
+      "case_id": "muse-directive-41fa88cb2fcf5653",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "- First identify the type of query + database scenarios where we asssign incorectly with\n  high confidence. This should be done using fixed trees for simulation to avoid\n  unwarranted stocasticity. d3 should be large so assignment is always at least to\n  genus1. Generate results for a matrix of d1 and d2 values and evaluate assignment\n  performance and outgroup stats. Because we do outgroup assignment too we are not\n  sensitivity is not sensitive to Ne1 and Ne2. Specificity is though (covered next)\n- Identify a worst case scenario of d1w and d2w (w for worst) that makes us falsely assign to sp1.\n\n- If we assume no ILS the relative contributions of split times and ancestral population\n  sizes is irelevant ( though not if migration is allowed).\n\n- Calculate sets of combinations t1, t2, NeA that give expected divergences of d1 and d2.",
+      "expected_cleaned_sha256": "aff7a6d091dbd3fbafc533d2a41651b4746b80f34a79c360af4e6cf3970b186e",
+      "language": "muse",
+      "raw_comment": ";  - First identify the type of query + database scenarios where we asssign incorectly with\n;    high confidence. This should be done using fixed trees for simulation to avoid\n;    unwarranted stocasticity. d3 should be large so assignment is always at least to\n;    genus1. Generate results for a matrix of d1 and d2 values and evaluate assignment\n;    performance and outgroup stats. Because we do outgroup assignment too we are not\n;    sensitivity is not sensitive to Ne1 and Ne2. Specificity is though (covered next)\n;  - Identify a worst case scenario of d1w and d2w (w for worst) that makes us falsely assign to sp1.\n; \n;  - If we assume no ILS the relative contributions of split times and ancestral population\n;    sizes is irelevant ( though not if migration is allowed).\n; \n;  - Calculate sets of combinations t1, t2, NeA that give expected divergences of d1 and d2.",
+      "raw_sha256": "fd295789711747cb69882938b8619ff48d9d384cad3911afa4e9c14a29f679fd",
+      "raw_utf8_length": 877,
+      "source_provenance": {
+        "source_excerpt_sha256": "f8e10f2ca779db2062edccca21ee1826381a3492d5b1990a49aa8d7e8dbb7207",
+        "source_id": "d57becf053c0e3ea11cc2c1aa06c4401ff3b38b0"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "3268534759af4e8c4225ebddc63703edcfe47d0a81b633da1cffdea0170c443d",
+      "case_id": "muse-directive-45f023573e10da5c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO",
+      "expected_cleaned_sha256": "337e547a950fc8a98592f10d964c1e79a304961790a8da0ce449a1f000cefabb",
+      "language": "muse",
+      "raw_comment": "; TODO",
+      "raw_sha256": "3268534759af4e8c4225ebddc63703edcfe47d0a81b633da1cffdea0170c443d",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "6f5a807c299c8fe4b889dd88f4baa82c6873b82a2d6cdab1553dec78902f2828",
+        "source_id": "392b05aba59368de184ce97f6e523dee370cf696"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "355adcde8f286f83d2ad33bd570c0a8d5728053b53b6b0db66b5980aa5fd0525",
+      "case_id": "muse-directive-4ac097a1da4df331",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Other (assumed) variants",
+      "expected_cleaned_sha256": "c2b2cc6b667d29cfe1c942ffda19b85fdbbdbdbb23ae624a32ee8f0c4d416b79",
+      "language": "muse",
+      "raw_comment": "; Other (assumed) variants",
+      "raw_sha256": "355adcde8f286f83d2ad33bd570c0a8d5728053b53b6b0db66b5980aa5fd0525",
+      "raw_utf8_length": 26,
+      "source_provenance": {
+        "source_excerpt_sha256": "cbd491b444a7c638971f08622243d98eb38d80ac9b5868da5721395383b8f100",
+        "source_id": "8772eaaa3ba1003a79003c54375f8e5940ca4386"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "985302610acae05f911e08391cd348f5305caaa2d1373239f89dc326de2f89be",
+      "case_id": "muse-directive-4ec24396dc382bcf",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u6c42\u5e42\u7b97\u6cd5",
+      "expected_cleaned_sha256": "74cb7f4e774348013a0e916447e9248faaa4390c122ee197811619bc2a122f2d",
+      "language": "muse",
+      "raw_comment": "; * \u6c42\u5e42\u7b97\u6cd5",
+      "raw_sha256": "985302610acae05f911e08391cd348f5305caaa2d1373239f89dc326de2f89be",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "0b557c6f9395c785732074cd3bcd3cabd7be655b01e6d40ce40c462c0d5e24fc",
+        "source_id": "e813ac23945c3e7b34df56bcab22310437b0b5b3"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "5ad0682375f8c61ff8576fd6ea74a89fa3fe69b3a30655a90e33a0be2d00bcb7",
+      "case_id": "muse-directive-577510cf33e41248",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%% \\subsection{Algebraic State Equations and Intermediate Equations}",
+      "expected_cleaned_sha256": "a3680afead095b5396cc234b8601db76e5ddcbbab1670a44975b94f04cce9319",
+      "language": "muse",
+      "raw_comment": "; %% \\subsection{Algebraic State Equations and Intermediate Equations}",
+      "raw_sha256": "5ad0682375f8c61ff8576fd6ea74a89fa3fe69b3a30655a90e33a0be2d00bcb7",
+      "raw_utf8_length": 70,
+      "source_provenance": {
+        "source_excerpt_sha256": "827febba9995b09787b1a61ac272f3de631fa1199eb02d799558ad6065883154",
+        "source_id": "50bb08ad8a2e7f70f984a3fc184fded72fadb630"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1f314d4dc392e569ca07c85da3ea06caf175a3b77c34a0d493e387f9b2c1318b",
+      "case_id": "muse-directive-62f912d944cf52c6",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:",
+      "expected_cleaned_sha256": "0af9a4ce2e8276c3133ad59e94bd771a5767100f3793d83333aef676f6fcc886",
+      "language": "muse",
+      "raw_comment": "; TODO: ",
+      "raw_sha256": "942282807352baace3415d311fe9d318fb6f48eaed184b7d82207ec343694ca4",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "ef03bcffe8fea8072f20e4aba50a97073ce9156b8b46d428a0ca08fb396b6d79",
+        "source_id": "d9427e2efa648b9afd5e26246a44ab96b38455e8"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "e0fd1a3dbd0251aba191de11b81e2c31c8580898cc1c036ff2e016c5895b453c",
+      "case_id": "muse-directive-639cf3dea69c5991",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<literal><span style=\"color: #AA0077\"></literal>Relationship<literal></span></literal>",
+      "expected_cleaned_sha256": "58e1891ae70ce3414835767c1bbbc558b99736f31d2d55c5c3527f9d66b9d9d5",
+      "language": "muse",
+      "raw_comment": "; * <literal><span style=\"color: #AA0077\"></literal>Relationship<literal></span></literal>",
+      "raw_sha256": "e0fd1a3dbd0251aba191de11b81e2c31c8580898cc1c036ff2e016c5895b453c",
+      "raw_utf8_length": 90,
+      "source_provenance": {
+        "source_excerpt_sha256": "2b5810a170dae9876a6038976a24f581aaaa3ed9f743e9feb2a95c379b7d7e0b",
+        "source_id": "d12eb7371ac357947390feedc7ec6c0be46d0ba6"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "9aaafc011b020852133712ba8ebd8d5195b2016c64e81b24086c3b91c008f5aa",
+      "case_id": "muse-directive-6c7d34517d282df0",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "% Solver Documentation - Appendix A",
+      "expected_cleaned_sha256": "4b5147ca4a39134250df1b327776ed8bb6c0eeea602ec8d2cf3af6fd9c4f9f00",
+      "language": "muse",
+      "raw_comment": "; % Solver Documentation - Appendix A",
+      "raw_sha256": "9aaafc011b020852133712ba8ebd8d5195b2016c64e81b24086c3b91c008f5aa",
+      "raw_utf8_length": 37,
+      "source_provenance": {
+        "source_excerpt_sha256": "532f9acddcf02bea78861cbc0219c1f31c4d1709c4d25a5729817608324ac349",
+        "source_id": "3479d5e19eb4dbb1dfe1eba25eb9e97796b64fc9"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "000b65a1b01afb7fedd5238a70f37887dfd4352790e31cac66ac45b1c3c510fc",
+      "case_id": "muse-directive-6e33a10a8f0efd9d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "LocalWords: emacs ede cedet localwords lang autoloads Makefile xargs ECB src\nLocalWords:  Speedbar JDEE LocalWords CVS \u0442\u0430\u0433\u0430\u0445 Senator Semantic Srecode SPC",
+      "expected_cleaned_sha256": "18bf2c989248b025f7b64d45c4c45f41e48aa4bc9998c0c9dfd000b12451d24d",
+      "language": "muse",
+      "raw_comment": ";  LocalWords: emacs ede cedet localwords lang autoloads Makefile xargs ECB src\n;  LocalWords:  Speedbar JDEE LocalWords CVS \u0442\u0430\u0433\u0430\u0445 Senator Semantic Srecode SPC",
+      "raw_sha256": "000b65a1b01afb7fedd5238a70f37887dfd4352790e31cac66ac45b1c3c510fc",
+      "raw_utf8_length": 164,
+      "source_provenance": {
+        "source_excerpt_sha256": "6da48a58ca25ff7461089c9764c22487d84fbcd0e51c1aaaa94bad6d77a7072f",
+        "source_id": "97aaf1dca733fcad964928e9e1687ad2c6c752b4"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "4c9d9e6b921588433a55ffa09f903c095820961bb7e55cc3b2f07615539d3cae",
+      "case_id": "muse-directive-79ddcb6a46ab6f02",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(\u548c\u654f\u6377\u7684\u5b9a\u4e49\u3001\u8303\u56f4\u76f8\u8054\u7cfb\uff0c\u9700\u8981\u66f4\u51c6\u786e\u5730\u5206\u6790\u654f\u6377\u7684\u7ec4\u6210\u90e8\u5206\u3001\u597d\u5904\u3001\u8981\u6c42)",
+      "expected_cleaned_sha256": "a5cd6709c736541a71700a6a31e607341b8d164600baeb1c0ee87baac5083249",
+      "language": "muse",
+      "raw_comment": "; (\u548c\u654f\u6377\u7684\u5b9a\u4e49\u3001\u8303\u56f4\u76f8\u8054\u7cfb\uff0c\u9700\u8981\u66f4\u51c6\u786e\u5730\u5206\u6790\u654f\u6377\u7684\u7ec4\u6210\u90e8\u5206\u3001\u597d\u5904\u3001\u8981\u6c42)",
+      "raw_sha256": "4c9d9e6b921588433a55ffa09f903c095820961bb7e55cc3b2f07615539d3cae",
+      "raw_utf8_length": 106,
+      "source_provenance": {
+        "source_excerpt_sha256": "4446412384cd5cfb7e5082953061b814863394fb341e0f29264b25540b553557",
+        "source_id": "06aa3cc1fdc14535aec191bd3993b833194860c3"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "9bb4b0b1c389f6df2d595f62650d7f09ebcf57cd7f83db0c1c993a006c9bc009",
+      "case_id": "muse-directive-80203e65a93527e2",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<literal>\\setupexternalfigures[width=0.9\\textwidth]\\externalfigure[/media/data/jlarky/edu/python/out_1k.png]</literal>",
+      "expected_cleaned_sha256": "e667cb74522e82e378a901f365c360ca0e18756db93ed5015144355827576f53",
+      "language": "muse",
+      "raw_comment": "; <literal>\\setupexternalfigures[width=0.9\\textwidth]\\externalfigure[/media/data/jlarky/edu/python/out_1k.png]</literal>",
+      "raw_sha256": "9bb4b0b1c389f6df2d595f62650d7f09ebcf57cd7f83db0c1c993a006c9bc009",
+      "raw_utf8_length": 120,
+      "source_provenance": {
+        "source_excerpt_sha256": "04941edd36a4702facc8c69dfd0aa3225412ce630374da173eacc77ea260b14a",
+        "source_id": "2baad5c748c718321a581dd6fe741c0ff9f335f8"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "0272c388afa463a1857c88bd5c7e38e5485a77c95c0131ce6bd2b1d1f35ac313",
+      "case_id": "muse-directive-8551a59673c64cee",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "labels: Common Lisp\npost-id 4787914155880739230",
+      "expected_cleaned_sha256": "5e09680a56890074e4ca0478ae7b58284d263139ea6d7bb7b788038dc7fc18ec",
+      "language": "muse",
+      "raw_comment": "; labels: Common Lisp\n; post-id 4787914155880739230",
+      "raw_sha256": "0272c388afa463a1857c88bd5c7e38e5485a77c95c0131ce6bd2b1d1f35ac313",
+      "raw_utf8_length": 51,
+      "source_provenance": {
+        "source_excerpt_sha256": "b6e46fe76e80b8931fa53655349c90c872dbfa63b1076a79b49010224d4442f3",
+        "source_id": "2bd088c05de80e39c3dd307310389cc5bb29e95b"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "61980e9d584d889a2f25c0cda2c6a05aecca67f5d405f9fdc23f69e2f9fc3e39",
+      "case_id": "muse-directive-8596e26e2cc3816d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "U\u662f\u4ec0\u4e48\uff1f\uff1f",
+      "expected_cleaned_sha256": "9fa592bf2342c5c0b6983b254cbb157868d203ec97b9aede46c1f4985f1313df",
+      "language": "muse",
+      "raw_comment": "; U\u662f\u4ec0\u4e48\uff1f\uff1f",
+      "raw_sha256": "61980e9d584d889a2f25c0cda2c6a05aecca67f5d405f9fdc23f69e2f9fc3e39",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "5f17fa36ec7be0ac03e643b6079eff467751f1ed74ff6ea6eb2d903c266bc913",
+        "source_id": "377f62f9ce55b34802cca5a75442b73381f0f7fd"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "d996531d659a88b56227e0dd9579005f8a14bf0232ae6e0f918cb9370e54af33",
+      "case_id": "muse-directive-8a21125acb7ed97d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "+-+--+----+--------+----------------+--------------------------------+\n| |  |    |        |                |                                |\n| |  |    |        |                |                                |\n| |  |    |        |                |                                |\n| |  |    |        |                |                                |\n+-+--+----+--------+----------------+--------------------------------+",
+      "expected_cleaned_sha256": "8a65d17ec09ed4b1705fc6f844a59f6b5d8949a4013277deaefd36173aaa4e1d",
+      "language": "muse",
+      "raw_comment": "; +-+--+----+--------+----------------+--------------------------------+\n; | |  |    |        |                |                                |\n; | |  |    |        |                |                                |\n; | |  |    |        |                |                                |\n; | |  |    |        |                |                                |\n; +-+--+----+--------+----------------+--------------------------------+",
+      "raw_sha256": "d996531d659a88b56227e0dd9579005f8a14bf0232ae6e0f918cb9370e54af33",
+      "raw_utf8_length": 437,
+      "source_provenance": {
+        "source_excerpt_sha256": "1bdd5f9791df1e1c285ae2641284adb043ccc278ef4186a3180dfc77441855ee",
+        "source_id": "1ad3521df99ed5ca8a76073d88ddf48f14cd6f33"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "eb5becca9acb6ffe10b845192603033940899c3fcc6dae60b2c5654791e23c81",
+      "case_id": "muse-directive-8b8e2cc43b429e01",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "|| $x_2$ || $x_1$ ||\n|| $x_3$ || $x_2$ ||\n|| $x_4$ || $x_3$ ||\n|| $x_5$ || $x_4$ ||\n|| $x_6$ || $x_4$ ||\n|| $x_7$ || $x_4$ ||\n|| $x_8$ || $x_4$ ||\n|| $x_{13}$ || $x_8$ ||",
+      "expected_cleaned_sha256": "c890f684174216cc313873639789aba2c97454e91aea15df2b4443ed65c261e6",
+      "language": "muse",
+      "raw_comment": "; || $x_2$ || $x_1$ ||\n; || $x_3$ || $x_2$ ||\n; || $x_4$ || $x_3$ ||\n; || $x_5$ || $x_4$ ||\n; || $x_6$ || $x_4$ ||\n; || $x_7$ || $x_4$ ||\n; || $x_8$ || $x_4$ ||\n; || $x_{13}$ || $x_8$ ||",
+      "raw_sha256": "eb5becca9acb6ffe10b845192603033940899c3fcc6dae60b2c5654791e23c81",
+      "raw_utf8_length": 186,
+      "source_provenance": {
+        "source_excerpt_sha256": "143362c805abf0a4dc4ca6de866096bfea8d9047129a602c045774f85d7dec21",
+        "source_id": "9c1c36e8024cefe18037c4e3a969a2782c94f846"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "ec1a35e631e5241229caddce2adfb476a5c3ca5bdc8871fba73309fc48cf5b9b",
+      "case_id": "muse-directive-8eb9fad186eae770",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "You might also be interested in some of my freely available [[http://github.com/ronw/][code]],\nincluding assorted Python [[http://github.com/ronw/frontend][audio]] [[http://github.com/ronw/gm][processing]] [[http://github.com/ronw/daap-player][modules]], and useful Matlab\ntools for [[http://github.com/ronw/celltools][functional programming]], [[http://ronw.github.com/plottools/][easier plotting]], [[http://github.com/ronw/matlab_hmm][training GMMs/HMMs]],\nand [[http://github.com/ronw/matlab_htk/][interfacing]] with [[http://htk.eng.cam.ac.uk][HTK]].  I've also spent some time hacking on the\n[[http://bitbucket.org/ronw/gordon][Gordon music database]] and [[https://scikit-learn.org/][scikit-learn]].",
+      "expected_cleaned_sha256": "0ac80ab08e94db11ba604ddb7b6ac596830fd42903b99fbc9e0a2ed5d947e03a",
+      "language": "muse",
+      "raw_comment": "; You might also be interested in some of my freely available [[http://github.com/ronw/][code]],\n; including assorted Python [[http://github.com/ronw/frontend][audio]] [[http://github.com/ronw/gm][processing]] [[http://github.com/ronw/daap-player][modules]], and useful Matlab\n; tools for [[http://github.com/ronw/celltools][functional programming]], [[http://ronw.github.com/plottools/][easier plotting]], [[http://github.com/ronw/matlab_hmm][training GMMs/HMMs]],\n; and [[http://github.com/ronw/matlab_htk/][interfacing]] with [[http://htk.eng.cam.ac.uk][HTK]].  I've also spent some time hacking on the\n; [[http://bitbucket.org/ronw/gordon][Gordon music database]] and [[https://scikit-learn.org/][scikit-learn]].",
+      "raw_sha256": "ec1a35e631e5241229caddce2adfb476a5c3ca5bdc8871fba73309fc48cf5b9b",
+      "raw_utf8_length": 716,
+      "source_provenance": {
+        "source_excerpt_sha256": "63efbf7c996efb8e4755767fa28b68e7122a2cea280aaa20194db3d095a3ab38",
+        "source_id": "24db75ffd73a997de154d21ab97dc0a29c7a2c64"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "63b00329b421aaf9027c3760493ccaf9f56ea6abf9109d605f9f7a57f59066fd",
+      "case_id": "muse-directive-9163417a3d0cec06",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Collins\u600e\u4e48\u6ca1\u51fa\u73b0\u5728\u6587\u7ae0\u4f5c\u8005\u91cc\uff1f",
+      "expected_cleaned_sha256": "db05c0696f673941be3f9dcc6fcceb23d4849204df8374536f6ad135872a5cc0",
+      "language": "muse",
+      "raw_comment": "; Collins\u600e\u4e48\u6ca1\u51fa\u73b0\u5728\u6587\u7ae0\u4f5c\u8005\u91cc\uff1f",
+      "raw_sha256": "63b00329b421aaf9027c3760493ccaf9f56ea6abf9109d605f9f7a57f59066fd",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "038332a18a7fb96996d053ad2819e1f3a7a1691c4374efa21ba5777b76b702e2",
+        "source_id": "a3b6e33ad3b0b0b709586d7d71a0738182dc2ded"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "ea6707a2129ad9b1484fae158f41d808c19e28a965aed95e83e041c269288b15",
+      "case_id": "muse-directive-917a16fd038cd338",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: net topology for Monikop, for Pokinom",
+      "expected_cleaned_sha256": "42d127a7b1d623860fdca5c06be335c327ea8a83de6416baf1b536ee0d44f69d",
+      "language": "muse",
+      "raw_comment": "; TODO: net topology for Monikop, for Pokinom",
+      "raw_sha256": "ea6707a2129ad9b1484fae158f41d808c19e28a965aed95e83e041c269288b15",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "5c5ca0a22b36733531193735fdd26aa270e6306794b9bfd36bbd67f86fd1a1a5",
+        "source_id": "3cf5a4edbe81b9c1fdfadd805b71af06fcf759b9"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "d9a60102901631b0fd8c5457c3f5ef666ab69613dd13253143220485fdde0798",
+      "case_id": "muse-directive-927fd17b46a3ee4c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\\begin{tabular}{l|p{5.25in}}\n\\verb/-cpu/ & Creates a simulation utilizing a single CPU core. Multiple\nsimulations may be executed in sequence. \\\\\n\\verb/-parallel-cpu/ & Creates a simulation capable of executing a small number of\nconcurrent simulation on all available CPU cores. \\\\\n\\verb/-gpu/ & Creates a simulation which can execute a large number of\nconcurrent simulations on a GPGPU device. \\\\\n\\end{tabular}",
+      "expected_cleaned_sha256": "f3ebc8a126927b74d5677e944ec8bb403d22f1060d49bc1dc7b8a7da5538f43b",
+      "language": "muse",
+      "raw_comment": "; \\begin{tabular}{l|p{5.25in}}\n; \\verb/-cpu/ & Creates a simulation utilizing a single CPU core. Multiple\n; simulations may be executed in sequence. \\\\\n; \\verb/-parallel-cpu/ & Creates a simulation capable of executing a small number of\n; concurrent simulation on all available CPU cores. \\\\\n; \\verb/-gpu/ & Creates a simulation which can execute a large number of\n; concurrent simulations on a GPGPU device. \\\\\n; \\end{tabular}",
+      "raw_sha256": "d9a60102901631b0fd8c5457c3f5ef666ab69613dd13253143220485fdde0798",
+      "raw_utf8_length": 427,
+      "source_provenance": {
+        "source_excerpt_sha256": "520efdf18e2e386c9a35e7b5dcb86bfbc10789a42239eb267a514cd3fca78539",
+        "source_id": "5a57a447690a06603e2b60fee9f3ec365599bf8d"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "4d7cacd8b6d1c9ffbbe74766cb1a992ed2e15f6d904cc8ec0f0d1fbd93476e2d",
+      "case_id": "muse-directive-930e97debc989cd6",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: \u0442\u0443\u0442 \u043b\u0443\u0447\u0448\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c setf!",
+      "expected_cleaned_sha256": "192ba34c5762c5d6d1d3a49a6e293eeccc1cb6ec37ea176f5d7e46ddd6d55992",
+      "language": "muse",
+      "raw_comment": "; TODO: \u0442\u0443\u0442 \u043b\u0443\u0447\u0448\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c setf!",
+      "raw_sha256": "4d7cacd8b6d1c9ffbbe74766cb1a992ed2e15f6d904cc8ec0f0d1fbd93476e2d",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "30f8ec7161403279b77eed1b3f7cf12bcd68fb482a65c7f0c4d877b5368bdc6c",
+        "source_id": "72719e16edd57fd305f0dfe0d04a5ed8bfa193a4"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "22fc44f31d5af6836d626ed206152cbaaf9a2235a82d618789fddc6b7ac2f9b3",
+      "case_id": "muse-directive-95e4629f94f6c5fe",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Customize fonts and geometry etc.",
+      "expected_cleaned_sha256": "b28fe16530af56ffa38848d0a455e6bf6b020e581359df2e1891c0a6b420b675",
+      "language": "muse",
+      "raw_comment": "; Customize fonts and geometry etc.",
+      "raw_sha256": "22fc44f31d5af6836d626ed206152cbaaf9a2235a82d618789fddc6b7ac2f9b3",
+      "raw_utf8_length": 35,
+      "source_provenance": {
+        "source_excerpt_sha256": "c4fe93dd7e54cd5385700bf7da4a673787ae2df73fbc30ecaaa3fda0bde1d64e",
+        "source_id": "615f0ac3183042ff23e898474e8195233f9283a8"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1f314d4dc392e569ca07c85da3ea06caf175a3b77c34a0d493e387f9b2c1318b",
+      "case_id": "muse-directive-a4b3e3f4e215024f",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:",
+      "expected_cleaned_sha256": "0af9a4ce2e8276c3133ad59e94bd771a5767100f3793d83333aef676f6fcc886",
+      "language": "muse",
+      "raw_comment": "; TODO: ",
+      "raw_sha256": "942282807352baace3415d311fe9d318fb6f48eaed184b7d82207ec343694ca4",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "213cdf1a9788730abc2ffdb2669446555f62b00ff694987ed929af1711c3cc4f",
+        "source_id": "5014398b8cc1510fa086b4eda3bae70fe369ccbd"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1f314d4dc392e569ca07c85da3ea06caf175a3b77c34a0d493e387f9b2c1318b",
+      "case_id": "muse-directive-a66dd44c5307a413",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:",
+      "expected_cleaned_sha256": "0af9a4ce2e8276c3133ad59e94bd771a5767100f3793d83333aef676f6fcc886",
+      "language": "muse",
+      "raw_comment": "; TODO: ",
+      "raw_sha256": "942282807352baace3415d311fe9d318fb6f48eaed184b7d82207ec343694ca4",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "7123b67a23b6492bc3905a1906fe8329a5e5e6742531cf5217834e58c4c6e75a",
+        "source_id": "eeb3dbf9bc633d1143e7914dd8579cb367a99fe9"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "2d943bff9c056bf41c69c70057d53905e462743ae977217d92cfc7f06a9f86bc",
+      "case_id": "muse-directive-a6d25cbfadbe4c40",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: data transferred, but to ignore (probably none)",
+      "expected_cleaned_sha256": "8138784fc86fd2e43d7508685655ba2a345f3d69157f82da4113c3ab0db90e13",
+      "language": "muse",
+      "raw_comment": ";   TODO: data transferred, but to ignore (probably none)",
+      "raw_sha256": "2d943bff9c056bf41c69c70057d53905e462743ae977217d92cfc7f06a9f86bc",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "e188b481ac89f8e86065c4a67b9f2ea993ade6194d2fa51f296d57f8153645a9",
+        "source_id": "092a05e48f000db415b8a17dac2e51a22819fa42"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "37588c83fbf8f64dc04677fcb18458124a238127218d2898d183ef928769e1f6",
+      "case_id": "muse-directive-a8e6e703e7b6c438",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO screen shots\nTODO news",
+      "expected_cleaned_sha256": "13b391db8548b19b110747c043fab76164fa59d36652f6be209f7b03c3db297e",
+      "language": "muse",
+      "raw_comment": "; TODO screen shots\n; TODO news",
+      "raw_sha256": "37588c83fbf8f64dc04677fcb18458124a238127218d2898d183ef928769e1f6",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "6cb281ceb798dd9b57185b76287ad9460acb3a4c4acf343879b69407733feb5e",
+        "source_id": "90c7e4fbc6b07a97768ec8ebdc2b8ebcfab9d6f9"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "533813d255d80ee501d16d6978cd4782e1a8ae241a727af497d8418f88b15a38",
+      "case_id": "muse-directive-a9416ecf42ca9c18",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MATLAB code",
+      "expected_cleaned_sha256": "7071731b1695db2cc36b37922c2e897904e8241494e6fb7405884e646278a353",
+      "language": "muse",
+      "raw_comment": "; MATLAB code",
+      "raw_sha256": "533813d255d80ee501d16d6978cd4782e1a8ae241a727af497d8418f88b15a38",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "3bade1a373ea622da55c811af522b61805e7feb6df49a399e2780596ceeeedb7",
+        "source_id": "69d8b9981f73ae650d84299c0ca15b490001cb10"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "c03fe790f1684b1fc5864700ae22ef104db6783b995ed8bd3da3279ed5247aa7",
+      "case_id": "muse-directive-b055a4191261a665",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "No value",
+      "expected_cleaned_sha256": "4fd0272a5628ce4f09730ecebb720da9009d13fa5582dbce46a96b2b9b9a2a8d",
+      "language": "muse",
+      "raw_comment": "; No value",
+      "raw_sha256": "c03fe790f1684b1fc5864700ae22ef104db6783b995ed8bd3da3279ed5247aa7",
+      "raw_utf8_length": 10,
+      "source_provenance": {
+        "source_excerpt_sha256": "d25b43872a823e7cdf01511d8b5c29add9dfbdf1a9ba9150db556469bb457c37",
+        "source_id": "c08dc39bcc1daa3ffba411509094e7cc734f21d9"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "ff3a52cf76b9c502911e57bbe7a01f06bbf2bfd23a3d6781abd336df930a77f8",
+      "case_id": "muse-directive-b6a3f24860fd096b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "a comment",
+      "expected_cleaned_sha256": "ff23dac3f565ddda0edb67d98c52c0be335dcee26d9c1f85ff8e2c65bd2de96c",
+      "language": "muse",
+      "raw_comment": "; a comment",
+      "raw_sha256": "ff3a52cf76b9c502911e57bbe7a01f06bbf2bfd23a3d6781abd336df930a77f8",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "1917de098d2e702caba2ed2e1608757c456a271ea0e0b27f384c55fdeef0d476",
+        "source_id": "a7488a8541027176d1c470ea787cb07f6445cfef"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "5e84f04d8839a4c865ad6ddee976eddae4faccc4939f12c03ff0798426e6143d",
+      "case_id": "muse-directive-c768847fc67c7264",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This setting has no effect other than allowing to check option precedence",
+      "expected_cleaned_sha256": "2da330ddce9ecac0ec46ae6b641b447911406dbc0d0ab2b9c159f62ce2bc9afe",
+      "language": "muse",
+      "raw_comment": "; This setting has no effect other than allowing to check option precedence",
+      "raw_sha256": "5e84f04d8839a4c865ad6ddee976eddae4faccc4939f12c03ff0798426e6143d",
+      "raw_utf8_length": 75,
+      "source_provenance": {
+        "source_excerpt_sha256": "c9ec9af99276f68ba0d3fed50e56099ba824fdd04ae26b9a1c48eb7f45ff1e5c",
+        "source_id": "35c30b267b81d99352551c6289fe8cc2f965d5d3"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "6e45f8d4f5f4f05d2f3160d6424d878eb6e2ad5e2ba19d3e953001feec927744",
+      "case_id": "muse-directive-c8fea3685e48c74c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u4f8b\u5b50",
+      "expected_cleaned_sha256": "283ba9f1bcbcf21ed82bc245fefa604d1601787a5a40e92df2b0d89645a8753b",
+      "language": "muse",
+      "raw_comment": "; \u4f8b\u5b50",
+      "raw_sha256": "6e45f8d4f5f4f05d2f3160d6424d878eb6e2ad5e2ba19d3e953001feec927744",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "ecdd4328a8b4c1d392c42dfb636b86e522c5145809ade95176d37801916cfbfb",
+        "source_id": "558d918371eabe4848a0a07caf4ac929c5697c7d"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1f314d4dc392e569ca07c85da3ea06caf175a3b77c34a0d493e387f9b2c1318b",
+      "case_id": "muse-directive-c98c1e34d02eb359",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:",
+      "expected_cleaned_sha256": "0af9a4ce2e8276c3133ad59e94bd771a5767100f3793d83333aef676f6fcc886",
+      "language": "muse",
+      "raw_comment": "; TODO: ",
+      "raw_sha256": "942282807352baace3415d311fe9d318fb6f48eaed184b7d82207ec343694ca4",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "f4cc85e36c0a979615d990cb8705e315965eb3c2d759f8eeaf8aaba22cfab581",
+        "source_id": "ec2b0dd7c87e1ede77e1da8031316c5635a55547"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "beebbb0388fd7bbe08cba4cc4cb0bf670b48a47188afe33f73dca1a3ef57331e",
+      "case_id": "muse-directive-cce8837ccd746635",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u5982\u679c$N-1$\u4e5f\u662f\u5f88\u96be\u5206\u89e3\u7684,\u8fd9\u91cc\u7684\u65b9\u6cd5\u5c31\u5c06\u5206\u89e3\u7684\u56f0\u96be\u8f6c\u79fb\u5230$N+1$\u4e0a\u53bb.\u60f3\u6cd5\u662f\u4e0e$N-1$\u578b\u68c0\u6d4b\u662f\u7c7b\u4f3c\u7684,\u66ff\u4ee3\u90a3\u91cc\u7684$a^{N-1}-1$\u7684\u662f\u6240\u8c13Lucas\u5e8f\u5217\u7684$U_{N+1}$.\u6211\u4eec\u9700\u8981\u4e00\u4e9bLucas\u5e8f\u5217\u7684\u51c6\u5907\u5de5\u4f5c.",
+      "expected_cleaned_sha256": "7da5d8f466e8562b51ddc92a2449e22e18af0f116933a7f592a1a316c8b8f77a",
+      "language": "muse",
+      "raw_comment": "; \u5982\u679c$N-1$\u4e5f\u662f\u5f88\u96be\u5206\u89e3\u7684,\u8fd9\u91cc\u7684\u65b9\u6cd5\u5c31\u5c06\u5206\u89e3\u7684\u56f0\u96be\u8f6c\u79fb\u5230$N+1$\u4e0a\u53bb.\u60f3\u6cd5\u662f\u4e0e$N-1$\u578b\u68c0\u6d4b\u662f\u7c7b\u4f3c\u7684,\u66ff\u4ee3\u90a3\u91cc\u7684$a^{N-1}-1$\u7684\u662f\u6240\u8c13Lucas\u5e8f\u5217\u7684$U_{N+1}$.\u6211\u4eec\u9700\u8981\u4e00\u4e9bLucas\u5e8f\u5217\u7684\u51c6\u5907\u5de5\u4f5c.",
+      "raw_sha256": "beebbb0388fd7bbe08cba4cc4cb0bf670b48a47188afe33f73dca1a3ef57331e",
+      "raw_utf8_length": 238,
+      "source_provenance": {
+        "source_excerpt_sha256": "5a3c1c4cfee2c7df40450678a9c1a2e487b6c9ff620f42d0e47210faca9bb4bb",
+        "source_id": "1cf3cab38a48901231938bc1b3c2946ff2bd73fc"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "2a585c49af91e6e84a88a66a43ef949a63d911aa2776e2eb9dde84cce77adab0",
+      "case_id": "muse-directive-d27417bfb79947f7",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "SA (5 iterations) ||  [[sounds/ssc/ev/iter5/6dB_t22_bwbr8a_m9_lraj9s.wav][target]]  [[sounds/ssc/ev/iter5/6dB_t22_bwbr8a_m9_lraj9s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/3dB_t31_lwai5a_m31_pgin4p.wav][target]]  [[sounds/ssc/ev/iter5/3dB_t31_lwai5a_m31_pgin4p_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/0dB_t25_bwik1s_m25_bgwf4n.wav][target]]  [[sounds/ssc/ev/iter5/0dB_t25_bwik1s_m25_bgwf4n_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/m3dB_t21_swwt7s_m32_lgwx4s.wav][target]]  [[sounds/ssc/ev/iter5/m3dB_t21_swwt7s_m32_lgwx4s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/m6dB_t29_lwbp3s_m15_pbbbzn.wav][target]]  [[sounds/ssc/ev/iter5/m6dB_t29_lwbp3s_m15_pbbbzn_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/m9dB_t4_swab3n_m4_sbig1n.wav][target]]  [[sounds/ssc/ev/iter5/m9dB_t4_swab3n_m4_sbig1n_masker.wav][masker]]   |\nSA (15 iterations) ||  [[sounds/ssc/ev/iter15/6dB_t22_bwbr8a_m9_lraj9s.wav][target]]  [[sounds/ssc/ev/iter15/6dB_t22_bwbr8a_m9_lraj9s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/3dB_t31_lwai5a_m31_pgin4p.wav][target]]  [[sounds/ssc/ev/iter15/3dB_t31_lwai5a_m31_pgin4p_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/0dB_t25_bwik1s_m25_bgwf4n.wav][target]]  [[sounds/ssc/ev/iter15/0dB_t25_bwik1s_m25_bgwf4n_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/m3dB_t21_swwt7s_m32_lgwx4s.wav][target]]  [[sounds/ssc/ev/iter15/m3dB_t21_swwt7s_m32_lgwx4s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/m6dB_t29_lwbp3s_m15_pbbbzn.wav][target]]  [[sounds/ssc/ev/iter15/m6dB_t29_lwbp3s_m15_pbbbzn_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/m9dB_t4_swab3n_m4_sbig1n.wav][target]]  [[sounds/ssc/ev/iter15/m9dB_t4_swab3n_m4_sbig1n_masker.wav][masker]]   |",
+      "expected_cleaned_sha256": "5426ffef4dec105b50f2f8f309b00a9169953cd7c4abdc6fa59138535b0abc6d",
+      "language": "muse",
+      "raw_comment": "; SA (5 iterations) ||  [[sounds/ssc/ev/iter5/6dB_t22_bwbr8a_m9_lraj9s.wav][target]]  [[sounds/ssc/ev/iter5/6dB_t22_bwbr8a_m9_lraj9s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/3dB_t31_lwai5a_m31_pgin4p.wav][target]]  [[sounds/ssc/ev/iter5/3dB_t31_lwai5a_m31_pgin4p_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/0dB_t25_bwik1s_m25_bgwf4n.wav][target]]  [[sounds/ssc/ev/iter5/0dB_t25_bwik1s_m25_bgwf4n_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/m3dB_t21_swwt7s_m32_lgwx4s.wav][target]]  [[sounds/ssc/ev/iter5/m3dB_t21_swwt7s_m32_lgwx4s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/m6dB_t29_lwbp3s_m15_pbbbzn.wav][target]]  [[sounds/ssc/ev/iter5/m6dB_t29_lwbp3s_m15_pbbbzn_masker.wav][masker]]   |  [[sounds/ssc/ev/iter5/m9dB_t4_swab3n_m4_sbig1n.wav][target]]  [[sounds/ssc/ev/iter5/m9dB_t4_swab3n_m4_sbig1n_masker.wav][masker]]   |  \n; SA (15 iterations) ||  [[sounds/ssc/ev/iter15/6dB_t22_bwbr8a_m9_lraj9s.wav][target]]  [[sounds/ssc/ev/iter15/6dB_t22_bwbr8a_m9_lraj9s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/3dB_t31_lwai5a_m31_pgin4p.wav][target]]  [[sounds/ssc/ev/iter15/3dB_t31_lwai5a_m31_pgin4p_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/0dB_t25_bwik1s_m25_bgwf4n.wav][target]]  [[sounds/ssc/ev/iter15/0dB_t25_bwik1s_m25_bgwf4n_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/m3dB_t21_swwt7s_m32_lgwx4s.wav][target]]  [[sounds/ssc/ev/iter15/m3dB_t21_swwt7s_m32_lgwx4s_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/m6dB_t29_lwbp3s_m15_pbbbzn.wav][target]]  [[sounds/ssc/ev/iter15/m6dB_t29_lwbp3s_m15_pbbbzn_masker.wav][masker]]   |  [[sounds/ssc/ev/iter15/m9dB_t4_swab3n_m4_sbig1n.wav][target]]  [[sounds/ssc/ev/iter15/m9dB_t4_swab3n_m4_sbig1n_masker.wav][masker]]   |  ",
+      "raw_sha256": "8789cfd0ab7c2b665b5a69dcd250df48a860d9e8342de04e53a6663aa3b9d26d",
+      "raw_utf8_length": 1706,
+      "source_provenance": {
+        "source_excerpt_sha256": "87576f41e907363938d68bbe80f3175998c95a34278ed91b389af1cd9dca2e42",
+        "source_id": "33f08b8de729bcea4f9ce97a312f826e1a3efa7a"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "d85f595df2affab6f8c46b1019e9603884d8e02696335393cec45f1182cec048",
+      "case_id": "muse-directive-d2aca3966bd3f1de",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u6b64\u5904\u5f15\u6587\u5728factoring multivariate polynomials over the integers [10]\u4e2d",
+      "expected_cleaned_sha256": "c1c0185546ea17fbb7abd6eeaff364edc313f3d160cc637337d9c30fb5253b2a",
+      "language": "muse",
+      "raw_comment": "; \u6b64\u5904\u5f15\u6587\u5728factoring multivariate polynomials over the integers [10]\u4e2d",
+      "raw_sha256": "d85f595df2affab6f8c46b1019e9603884d8e02696335393cec45f1182cec048",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "6b6091ff5ff2976d1e20e5c2f9d5be08b7f6e412bc1301b920dafd100ad29bd1",
+        "source_id": "b00a1cfd0b19adeb48089c48e2f0a8819e7c2322"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1f314d4dc392e569ca07c85da3ea06caf175a3b77c34a0d493e387f9b2c1318b",
+      "case_id": "muse-directive-d8e7924f295c6cfe",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO:",
+      "expected_cleaned_sha256": "0af9a4ce2e8276c3133ad59e94bd771a5767100f3793d83333aef676f6fcc886",
+      "language": "muse",
+      "raw_comment": "; TODO: ",
+      "raw_sha256": "942282807352baace3415d311fe9d318fb6f48eaed184b7d82207ec343694ca4",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "70d1e03d185734566ef1c9323d97cdaea5f0aae3e9908497df010bace4c28086",
+        "source_id": "44edcffb66b28074e5ac71b52605e22b1c351200"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "3c3ad8262b623199864636fb2fa47b15e32149fb50b0a6c4c0589d66c27adfc3",
+      "case_id": "muse-directive-ddd4e2775a54c087",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u52a0\u8f7d\u6a21\u5757",
+      "expected_cleaned_sha256": "11832c5282e3985898dab744c5fcf62fa81c1439f2aa49ca77863299a8bcd7cd",
+      "language": "muse",
+      "raw_comment": "; \u52a0\u8f7d\u6a21\u5757",
+      "raw_sha256": "3c3ad8262b623199864636fb2fa47b15e32149fb50b0a6c4c0589d66c27adfc3",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "224ea1f965291714d63a8b17aa52e58196aac04b8fc19dc00ddc9d2fd1a26f0f",
+        "source_id": "73c7163916bc56efd319b2fd7b8a75de53673b0f"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "30f1ce435281ae6193423ad6c04e71679755d79c597206fa3f13875b34fae50e",
+      "case_id": "muse-directive-e28ca1eacf615c7a",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This uses a third-party package that's not installable via NPM, so\nto keep the tests simple, we'll avoid testing the embedded content.",
+      "expected_cleaned_sha256": "404f9ff56c70d6c6469e91bf41f7c69a335f97ada9171e52467a95598e3caaf2",
+      "language": "muse",
+      "raw_comment": "; This uses a third-party package that's not installable via NPM, so\n; to keep the tests simple, we'll avoid testing the embedded content.",
+      "raw_sha256": "30f1ce435281ae6193423ad6c04e71679755d79c597206fa3f13875b34fae50e",
+      "raw_utf8_length": 138,
+      "source_provenance": {
+        "source_excerpt_sha256": "c0fb88e584b1830e1754cb6ff0a92d39d376b6360ceefc663d4a9ae933a10bf2",
+        "source_id": "3eb99e2704102b031a2907d9201aaad92338fae7"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "d31662d434d61da6d312d7d50d409309b57fb81b5c67781b6961b4577a081d2f",
+      "case_id": "muse-directive-e9f2d1f7f59ff1e3",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u7cbe\u786e\u7ebf\u6027\u4ee3\u6570\u4e3b\u8981\u5305\u542b\u4e24\u4e2a\u4e92\u76f8\u5173\u8054\u7684\u65b9\u9762:\u4e00\u662f\u4e00\u822cPID\u548c\u57df (\u7279\u522b\u5730\u5982\u6709\u9650\u57df$F_p$)\u4e0a\u7684\u7ebf\u6027\u4ee3\u6570\u95ee\u9898,\u4e8c\u662f\u4f5c\u4e3a\u7279\u4f8b,\u6574\u6570\u73af$\\mathbb{Z}$\u548c\u6709\u7406\u6570\u57df$\\mathbb{Q}$\u4e0a\u7684\u7ebf\u6027\u4ee3\u6570\u95ee\u9898.\u7cbe\u786e\u7ebf\u6027\u4ee3\u6570\u7684\u5f88\u591a\u95ee\u9898\u540c\u6570\u503c\u7ebf\u6027\u4ee3\u6570\u662f\u76f8\u5bf9\u5e94\u7684,\u5982\u7ebf\u6027\u65b9\u7a0b\u7ec4\u6c42\u89e3,\u77e9\u9635\u7684\u7279\u5f81\u503c\u4e0e\u7279\u5f81\u5411\u91cf\u4ee5\u53ca\u77e9\u9635\u7684\u5404\u79cd\u6807\u51c6\u5f62\u7b49.\u4f46\u7531\u4e8e\u7cbe\u786e\u8ba1\u7b97\u4e0e\u6570\u503c\u8ba1\u7b97\u7684\u672c\u8d28\u4e0d\u540c,\u4e8c\u8005\u5728\u7b97\u6cd5\u8bbe\u8ba1\u601d\u60f3\u7b49\u65b9\u9762\u5219\u6709\u6839\u672c\u7684\u4e0d\u540c.\u7b80\u5355\u4e3e\u4f8b\u6765\u8bf4,\u5982\u679c\u5bf9$\\mathbb{Z}$\u4e0a\u7684\u77e9\u9635\u8fdb\u884c\u76f4\u63a5\u8fd0\u7b97,\u4e3a\u4e86\u4fdd\u6301\u8ba1\u7b97\u7684\u7cbe\u786e\u6027,\u5c06\u4e0d\u5f97\u4e0d\u91c7\u7528\u6709\u7406\u6570\u7684\u4ee3\u6570\u8fd0\u7b97\u6216\u5f15\u5165Bezout\u7b49\u5f0f\u8fdb\u884c\u6d88\u5143.\u4f46\u4e24\u79cd\u65b9\u6cd5\u968f\u7740\u8ba1\u7b97\u89c4\u6a21\u7684\u589e\u957f\uff0c\u90fd\u4f1a\u51fa\u73b0\u77e9\u9635\u5143\u7d20\u7684\u5927\u5c0f\u5feb\u901f\u589e\u52a0\u7684\u73b0\u8c61\uff0c\u8fd9\u5c06\u4f7f\u5f97\u591a\u6570\u76f4\u63a5\u7b97\u6cd5 (\u5982\u901a\u5e38\u7684Gauss\u6d88\u5143\u6cd5)\u590d\u6742\u5ea6\u5f88\u9ad8.\u5c3d\u7ba1\u53ef\u4ee5\u8bc1\u660e,\u5728\u8003\u8651\u4e86\u77e9\u9635\u5143\u7d20\u89c4\u6a21\u589e\u957f\u9020\u6210\u7684\u8ba1\u7b97\u590d\u6742\u5ea6\u589e\u957f\u4e4b\u540e,\u591a\u6570\u77e9\u9635\u7cbe\u786e\u8ba1\u7b97(\u5305\u62ec\u6c42\u89e3\u7ebf\u6027\u65b9\u7a0b\u7ec4,\u8ba1\u7b97\u884c\u5217\u5f0f\u7b49)\u590d\u6742\u5ea6\u4ecd\u662f\u591a\u9879\u5f0f\u578b\u7684<cite>mca</cite>,\u4f46\u7531\u4e8e\u591a\u9879\u5f0f\u6307\u6570\u76f8\u5f53\u5927,\u5bf9\u4e8e\u5b9e\u7528\u8ba1\u7b97\u9020\u6210\u5f88\u5927\u7684\u56f0\u96be,\u96be\u4ee5\u76f4\u63a5\u5e94\u7528.\u56e0\u6b64,\u5728\u6d89\u53ca\u6574\u6570\u4e0e\u6709\u7406\u7cfb\u6570\u77e9\u9635\u7684\u8ba1\u7b97\u4e2d,\u4e00\u79cd\u5178\u578b\u7684\u601d\u8def\u662f\u501f\u52a9\u6574\u6570\u7684\u6a21\u8fd0\u7b97,\u5c06\u4e3b\u8981\u7684\u8ba1\u7b97\u5316\u5f52\u5230\u6709\u9650\u57df($\\mathbb{Z}/p\\mathbb{Z}$,\u5f80\u5f80\u4e5f\u4e0d\u9650\u4e8e$p$\u4e3a\u7d20\u6570)\u4e0a\u8fdb\u884c,\u518d\u5c06\u7ed3\u679c\u6062\u590d\u4e3a\u6574\u6570\u6216\u6709\u7406\u6570\u7684\u5f62\u5f0f;\u53e6\u4e00\u79cd\u5178\u578b\u7684\u601d\u8def\u662f\u901a\u8fc7\u67d0\u79cd\u8fd1\u4f3c,\u5c06\u4e3b\u8981\u7684\u8ba1\u7b97\u89c6\u4e3a\u6570\u503c\u578b\u8ba1\u7b97,\u901a\u8fc7\u6570\u503c\u8fd0\u7b97\u5f97\u5230\u4e3b\u8981\u7ed3\u679c\u540e\u518d\u6062\u590d\u4e3a\u7cbe\u786e\u7ed3\u679c.\u5bf9\u4e8e\u540e\u8005,\u7531\u4e8e\u6570\u503c\u578b\u7b97\u6cd5\u5148\u4e8e\u7cbe\u786e\u7b97\u6cd5\u5f97\u5230\u4e86\u6bd4\u8f83\u5145\u5206\u7684\u53d1\u5c55,\u6545\u5728\u7cbe\u786e\u7ebf\u6027\u4ee3\u6570\u4e2d\u5e38\u5e38\u8981\u501f\u7528\u6570\u503c\u7ebf\u6027\u4ee3\u6570\u7684\u601d\u60f3\u4e0e\u65b9\u6cd5,\u6211\u4eec\u5728\u672c\u7ae0\u4e2d\u5c06\u591a\u6b21\u9047\u5230.",
+      "expected_cleaned_sha256": "b138cbfb5eaf1de4419cb61ab6e78ef81b497db889a980873059a832635d3c5d",
+      "language": "muse",
+      "raw_comment": "; \u7cbe\u786e\u7ebf\u6027\u4ee3\u6570\u4e3b\u8981\u5305\u542b\u4e24\u4e2a\u4e92\u76f8\u5173\u8054\u7684\u65b9\u9762:\u4e00\u662f\u4e00\u822cPID\u548c\u57df (\u7279\u522b\u5730\u5982\u6709\u9650\u57df$F_p$)\u4e0a\u7684\u7ebf\u6027\u4ee3\u6570\u95ee\u9898,\u4e8c\u662f\u4f5c\u4e3a\u7279\u4f8b,\u6574\u6570\u73af$\\mathbb{Z}$\u548c\u6709\u7406\u6570\u57df$\\mathbb{Q}$\u4e0a\u7684\u7ebf\u6027\u4ee3\u6570\u95ee\u9898.\u7cbe\u786e\u7ebf\u6027\u4ee3\u6570\u7684\u5f88\u591a\u95ee\u9898\u540c\u6570\u503c\u7ebf\u6027\u4ee3\u6570\u662f\u76f8\u5bf9\u5e94\u7684,\u5982\u7ebf\u6027\u65b9\u7a0b\u7ec4\u6c42\u89e3,\u77e9\u9635\u7684\u7279\u5f81\u503c\u4e0e\u7279\u5f81\u5411\u91cf\u4ee5\u53ca\u77e9\u9635\u7684\u5404\u79cd\u6807\u51c6\u5f62\u7b49.\u4f46\u7531\u4e8e\u7cbe\u786e\u8ba1\u7b97\u4e0e\u6570\u503c\u8ba1\u7b97\u7684\u672c\u8d28\u4e0d\u540c,\u4e8c\u8005\u5728\u7b97\u6cd5\u8bbe\u8ba1\u601d\u60f3\u7b49\u65b9\u9762\u5219\u6709\u6839\u672c\u7684\u4e0d\u540c.\u7b80\u5355\u4e3e\u4f8b\u6765\u8bf4,\u5982\u679c\u5bf9$\\mathbb{Z}$\u4e0a\u7684\u77e9\u9635\u8fdb\u884c\u76f4\u63a5\u8fd0\u7b97,\u4e3a\u4e86\u4fdd\u6301\u8ba1\u7b97\u7684\u7cbe\u786e\u6027,\u5c06\u4e0d\u5f97\u4e0d\u91c7\u7528\u6709\u7406\u6570\u7684\u4ee3\u6570\u8fd0\u7b97\u6216\u5f15\u5165Bezout\u7b49\u5f0f\u8fdb\u884c\u6d88\u5143.\u4f46\u4e24\u79cd\u65b9\u6cd5\u968f\u7740\u8ba1\u7b97\u89c4\u6a21\u7684\u589e\u957f\uff0c\u90fd\u4f1a\u51fa\u73b0\u77e9\u9635\u5143\u7d20\u7684\u5927\u5c0f\u5feb\u901f\u589e\u52a0\u7684\u73b0\u8c61\uff0c\u8fd9\u5c06\u4f7f\u5f97\u591a\u6570\u76f4\u63a5\u7b97\u6cd5 (\u5982\u901a\u5e38\u7684Gauss\u6d88\u5143\u6cd5)\u590d\u6742\u5ea6\u5f88\u9ad8.\u5c3d\u7ba1\u53ef\u4ee5\u8bc1\u660e,\u5728\u8003\u8651\u4e86\u77e9\u9635\u5143\u7d20\u89c4\u6a21\u589e\u957f\u9020\u6210\u7684\u8ba1\u7b97\u590d\u6742\u5ea6\u589e\u957f\u4e4b\u540e,\u591a\u6570\u77e9\u9635\u7cbe\u786e\u8ba1\u7b97(\u5305\u62ec\u6c42\u89e3\u7ebf\u6027\u65b9\u7a0b\u7ec4,\u8ba1\u7b97\u884c\u5217\u5f0f\u7b49)\u590d\u6742\u5ea6\u4ecd\u662f\u591a\u9879\u5f0f\u578b\u7684<cite>mca</cite>,\u4f46\u7531\u4e8e\u591a\u9879\u5f0f\u6307\u6570\u76f8\u5f53\u5927,\u5bf9\u4e8e\u5b9e\u7528\u8ba1\u7b97\u9020\u6210\u5f88\u5927\u7684\u56f0\u96be,\u96be\u4ee5\u76f4\u63a5\u5e94\u7528.\u56e0\u6b64,\u5728\u6d89\u53ca\u6574\u6570\u4e0e\u6709\u7406\u7cfb\u6570\u77e9\u9635\u7684\u8ba1\u7b97\u4e2d,\u4e00\u79cd\u5178\u578b\u7684\u601d\u8def\u662f\u501f\u52a9\u6574\u6570\u7684\u6a21\u8fd0\u7b97,\u5c06\u4e3b\u8981\u7684\u8ba1\u7b97\u5316\u5f52\u5230\u6709\u9650\u57df($\\mathbb{Z}/p\\mathbb{Z}$,\u5f80\u5f80\u4e5f\u4e0d\u9650\u4e8e$p$\u4e3a\u7d20\u6570)\u4e0a\u8fdb\u884c,\u518d\u5c06\u7ed3\u679c\u6062\u590d\u4e3a\u6574\u6570\u6216\u6709\u7406\u6570\u7684\u5f62\u5f0f;\u53e6\u4e00\u79cd\u5178\u578b\u7684\u601d\u8def\u662f\u901a\u8fc7\u67d0\u79cd\u8fd1\u4f3c,\u5c06\u4e3b\u8981\u7684\u8ba1\u7b97\u89c6\u4e3a\u6570\u503c\u578b\u8ba1\u7b97,\u901a\u8fc7\u6570\u503c\u8fd0\u7b97\u5f97\u5230\u4e3b\u8981\u7ed3\u679c\u540e\u518d\u6062\u590d\u4e3a\u7cbe\u786e\u7ed3\u679c.\u5bf9\u4e8e\u540e\u8005,\u7531\u4e8e\u6570\u503c\u578b\u7b97\u6cd5\u5148\u4e8e\u7cbe\u786e\u7b97\u6cd5\u5f97\u5230\u4e86\u6bd4\u8f83\u5145\u5206\u7684\u53d1\u5c55,\u6545\u5728\u7cbe\u786e\u7ebf\u6027\u4ee3\u6570\u4e2d\u5e38\u5e38\u8981\u501f\u7528\u6570\u503c\u7ebf\u6027\u4ee3\u6570\u7684\u601d\u60f3\u4e0e\u65b9\u6cd5,\u6211\u4eec\u5728\u672c\u7ae0\u4e2d\u5c06\u591a\u6b21\u9047\u5230.",
+      "raw_sha256": "d31662d434d61da6d312d7d50d409309b57fb81b5c67781b6961b4577a081d2f",
+      "raw_utf8_length": 1761,
+      "source_provenance": {
+        "source_excerpt_sha256": "832164c868b2d5744494cf5b91616851a1b6d88591ce61e5ae06ad58cac2d8e2",
+        "source_id": "01715320d88b93f906c08489866ba9b96876f39a"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "1ac47c6d579bd7d0e429e49cac2fd5e7ae222431718a0cbd2ab5f7e698ecd922",
+      "case_id": "muse-directive-ea20fcabcd193978",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u4ee5\u4e0b\u6211\u4eec\u5168\u5728\u6574\u6570\u73af\u8fd9\u4e2a\u7279\u6b8a\u7684UFD\u4e2d\u8ba8\u8bbaHensel\u63d0\u5347\u7b97\u6cd5,\u6709\u4e9b\u7b97\u6cd5\u548c\u547d\u9898\u5728\u5c06$\\mathbb{Z}$\u6362\u4e3a\u5176\u5b83\u7684UFD,\u5982$\\mathbb{Z}[x]$\u4e5f\u662f\u6b63\u786e\u7684\u3002",
+      "expected_cleaned_sha256": "7740a375dc54ffa0e983e008a7dead3d69b2f5d3b856b7737438740ba18ba57b",
+      "language": "muse",
+      "raw_comment": "; \u4ee5\u4e0b\u6211\u4eec\u5168\u5728\u6574\u6570\u73af\u8fd9\u4e2a\u7279\u6b8a\u7684UFD\u4e2d\u8ba8\u8bbaHensel\u63d0\u5347\u7b97\u6cd5,\u6709\u4e9b\u7b97\u6cd5\u548c\u547d\u9898\u5728\u5c06$\\mathbb{Z}$\u6362\u4e3a\u5176\u5b83\u7684UFD,\u5982$\\mathbb{Z}[x]$\u4e5f\u662f\u6b63\u786e\u7684\u3002",
+      "raw_sha256": "1ac47c6d579bd7d0e429e49cac2fd5e7ae222431718a0cbd2ab5f7e698ecd922",
+      "raw_utf8_length": 169,
+      "source_provenance": {
+        "source_excerpt_sha256": "d2f87dda53b21498b6ab4c2c161c5a51eb33740a058d508b3a50871d776cab78",
+        "source_id": "24353cc38d6bc37ddc6f370acffc90acd19d8952"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "e1321e882eed4f33c1507c0013f0c6eda60bf7468ef9a291943945f1ed9ffc42",
+      "case_id": "muse-directive-efd0cd1d15f3dbde",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "You can find details in my [[index#pubs][publications]].",
+      "expected_cleaned_sha256": "9bd9edb6083d6509d9779e25240a1db3dac006be4bd708d03a8f92d74dee84dd",
+      "language": "muse",
+      "raw_comment": "; You can find details in my [[index#pubs][publications]].",
+      "raw_sha256": "e1321e882eed4f33c1507c0013f0c6eda60bf7468ef9a291943945f1ed9ffc42",
+      "raw_utf8_length": 58,
+      "source_provenance": {
+        "source_excerpt_sha256": "4b2b27e8a8ef42ea936797ac884d7d2a032c6901a76f179a15c279044e3fcdb9",
+        "source_id": "cf45ed686b0fa9618155406ea4e33c71dbb4e70e"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

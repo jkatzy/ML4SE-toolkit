@@ -1,0 +1,38 @@
+{
+  "case_id": "faust-line-99408c3c9e0123c6",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:known_gutter",
+  "disposition": "executable_regression",
+  "language": "faust",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6bd9f323a93fb662df0e92747af63d6eedfe59a695f2c88d6f95d6e4acf8f65b",
+      "utf8_length": 29
+    },
+    "manifest_old_output": {
+      "sha256": "ed0d041f8c77a65b35f6fc59adaa95e9ab7ec5e9bb20c115507884d8a8dd4cec",
+      "utf8_length": 14
+    },
+    "raw_comment": {
+      "sha256": "1c4e366aa15bcce0c8c93bfaa893e10b66317c51ffc766099d4106b565255d41",
+      "utf8_length": 130
+    },
+    "recommended_expected_output": {
+      "sha256": "ed0d041f8c77a65b35f6fc59adaa95e9ab7ec5e9bb20c115507884d8a8dd4cec",
+      "utf8_length": 14
+    }
+  },
+  "regression": {
+    "expected_output": "karplus-strong",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//-----------------------------------------------\n//              karplus-strong\n//-----------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a3f671f86befa08560e6c6b8658e1707b765e428c708547e2b57da276aab298f",
+    "source_id": "64f43dfe6653a58a66bca23ce04bc4460e971a84"
+  },
+  "source_record_sha256": "9abc92eae0e3bdca890cf33658026ad9d5489e5983f0fc1ecf4f5db47f96c00f"
+}

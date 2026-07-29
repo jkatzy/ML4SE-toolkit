@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "alloy_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "7e534f1759e6e1b54ea4c3721b1afc6ec8814a38354e0f33bb5a382caa9eb090",
+      "case_id": "alloy-block-71bda9b32e821737",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Facts",
+      "expected_cleaned_sha256": "3683709dabc0ad051f0e54cfcde20cd9165d29486dac3c166dfbb19c98cf965d",
+      "language": "alloy",
+      "raw_comment": "/** Facts **/",
+      "raw_sha256": "07a1aa7cb67dde47b34d0c516b0eac929dd36be7e50470ae8e6304cbce3e11ec",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "caba1404f8842ce823b4109b32de2214fd96e561e4e13000dcf6609b1e2979ce",
+        "source_id": "9eb04e3fcfd6018cf85b92aac110757ffdd67e49"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "1035ab3246a5fb595b5dcfe3031e45b35df6e1dff70975e6ccae54ec4f142f83",
+      "case_id": "alloy-line-7aabcf5c8920be22",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Basic type signature declarations, facts and predicates\nThe following signatures do not correspond to an entity in the class diagram.\nThey have been defined because they occur in the body of one or more signatures\nand are therefore essential for Alloy to interpret the model.",
+      "expected_cleaned_sha256": "d40f5b4b36d6a8c809d01bf18a88ba0aac728da951e5189da92308d33df6027e",
+      "language": "alloy",
+      "raw_comment": "//--- Basic type signature declarations, facts and predicates ---\n//The following signatures do not correspond to an entity in the class diagram.\n//They have been defined because they occur in the body of one or more signatures\n//and are therefore essential for Alloy to interpret the model.",
+      "raw_sha256": "0a63bc0b16e0e72fe862e0da0b1901a942c89e17552fa65a60195acf9465e932",
+      "raw_utf8_length": 291,
+      "source_provenance": {
+        "source_excerpt_sha256": "cea404a00cbbefe19e203d7d94b494843e7f4497f48e1933b807472aeb1bd984",
+        "source_id": "8180aa0fe61d0ad83534062ef24fb0b78d4b2d8f"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

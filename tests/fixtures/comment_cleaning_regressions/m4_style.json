@@ -1,0 +1,280 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "m4_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "faa91bb7d7763a42e07e0db4af8fc4c7cd641979715cbb316304cc40732e9831",
+      "case_id": "m4-line-78bb89b95174f89b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Macros for VHDL modules\nMIT-NIST-ARDA Pulse Sequencer\nhttp://qubit.media.mit.edu/sequencer\nPaul Pham\nMIT Center for Bits and Atoms",
+      "expected_cleaned_sha256": "3b9b84a6d8cd6a6961f124fad7e90e28c1bd75c90d65568ec2e6636408722a18",
+      "language": "m4",
+      "raw_comment": "###############################################################################\n# Macros for VHDL modules\n###############################################################################\n# MIT-NIST-ARDA Pulse Sequencer\n# http://qubit.media.mit.edu/sequencer\n# Paul Pham\n# MIT Center for Bits and Atoms\n###############################################################################",
+      "raw_sha256": "dc23a8da9e72dff15f4f6d367c8322ff0f872f6449ad087ce6729afa781f2089",
+      "raw_utf8_length": 380,
+      "source_provenance": {
+        "source_excerpt_sha256": "36df6374cbfe8671ca4189cad626668734b6e1088bb20d5d857a3b8427620ce8",
+        "source_id": "f507ada0148e073bbe06df956d30ccf228bf6445"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "780591f6a72c8af9dc577132513b2eb3188fd974911d806ec0cbf8be4a558d53",
+      "case_id": "m4-line-8079900631003d7a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Macros containing testing ports\nMIT-NIST-ARDA Pulse Sequencer\nhttp://qubit.media.mit.edu/sequencer\nPaul Pham\nMIT Center for Bits and Atoms",
+      "expected_cleaned_sha256": "5cfa4d6cb756a81cc6a4e4c2466278555bb577a186aab8b267e52fa404ae9dfb",
+      "language": "m4",
+      "raw_comment": "# Macros containing testing ports\n# -----------------------------------------------------------------------------\n# MIT-NIST-ARDA Pulse Sequencer\n# http://qubit.media.mit.edu/sequencer\n# Paul Pham\n# MIT Center for Bits and Atoms\n# -----------------------------------------------------------------------------",
+      "raw_sha256": "2af4d42cdd80f3214a648e8e555ee9d496433682c1d6f99d93e78fe2a0fadc27",
+      "raw_utf8_length": 308,
+      "source_provenance": {
+        "source_excerpt_sha256": "e31a425278ac4f4011d68e04028755ec77be63e273a3c7be13c4d84b78943369",
+        "source_id": "f333fb17e4fe6a47a3874be6ce75aaf6efa4ba50"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-07390593274a6507",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "b6b6ae46371e1946c0f22ba951e064f1daf54ab43e778ea9e327170f5a170052",
+        "source_id": "4f551d03c3c238aa3e64bbe58a2397d2b4d0aa63"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-1655cf22085dbcee",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "0087f68af61404bf1070fe39f203b2a95b0ba81999be015e8c4ee0550d144b73",
+        "source_id": "507a161c844f00ee5f5a73f5f76bba3cc6274134"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-193fdb2ce66a99cc",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "75f645f0e90137cff1eb01d2cbffec7b3c504486de8baff19852b6ef80da43f4",
+        "source_id": "5a15b97fe1d717ac51820d4504de234c52cac287"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-2a4754a26ba2f690",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "e0c1831289720ec6735d4201a08914a52df77cebdf9d093f4ba18d4bcc0d529b",
+        "source_id": "ee52a89854fa4ee1bf746231cf8d7e1240b8db76"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-2a6681237fb4690f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "8a235342a6763b0081c4bdfcbb2322a2039641c24f551cf78aa269682a4c2556",
+        "source_id": "10a1a0ecc9eff5b19b9bd84923892564c29e813b"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-3efe5baac5098f22",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "b2d7385ead77bf0ad0b2d247d11f96cc080a41de309253a255ab921b91d92682",
+        "source_id": "2283e45d06c716c443b269fc76e643457b15b1d2"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "ca28b99122f112e2a73200e97370f03881762dbb9c47546afe8af55216e2b67e",
+      "case_id": "m4sugar-line-41fbe03eb5612275",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nThis file is part of Autoconf.\nforeach-based replacements for recursive functions.\nSpeeds up GNU M4 1.4.x by avoiding quadratic $@ recursion, but penalizes\nGNU M4 1.6 by requiring more memory and macro expansions.\n\nCopyright (C) 2008-2017 Free Software Foundation, Inc.",
+      "expected_cleaned_sha256": "c5adb61e66711ff607b967f08e448a9bf43c0de3de4d7ba2099cbfc669448912",
+      "language": "m4sugar",
+      "raw_comment": "#                                                  -*- Autoconf -*-\n# This file is part of Autoconf.\n# foreach-based replacements for recursive functions.\n# Speeds up GNU M4 1.4.x by avoiding quadratic $@ recursion, but penalizes\n# GNU M4 1.6 by requiring more memory and macro expansions.\n#\n# Copyright (C) 2008-2017 Free Software Foundation, Inc.",
+      "raw_sha256": "48a765a1d5828d2d7bbacdf5a895da75c3f1c426f2adf636fffdfad10beaa4b3",
+      "raw_utf8_length": 348,
+      "source_provenance": {
+        "source_excerpt_sha256": "2804e69d153084b02b678dc1b4e1c212e4eda4439612188ad955d0d8c7333379",
+        "source_id": "2a95543c0e97c625946b0cba12cd66d88f1c3af5"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-85ca36bf81875970",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "55ba9f962cde553dc14e08fca16d72676ee9490c49ea8f58f45237110c8ab03b",
+        "source_id": "d41a39247061e73578fa9350032e4dda781e9b49"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-92f3530cacfaa92a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "6ffe45c698705247c5b2746a095f36363c08c99a64accbde60a26b72d121bd09",
+        "source_id": "be6e0b91bc0df0903e301d241ce954f743ceecbf"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-93712878c386a6ee",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "20314800cdd44552356377c1b0b88555e94bfe7256b3d928893949ff239a4bee",
+        "source_id": "a22b8d8a462d8783477bb6d261d24ce2d5e3611c"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-96cb1c93baa806aa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "e8936ca0688ed66f9577d9e5a7065318318187eb25914b0ffa3ecc584ed6b9d3",
+        "source_id": "a94f0790b9985f0a45de348258c485458c7c5caa"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-c9a6acfbc83223d7",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "795465db24646eeb09f0f1ff9cd95c5ebc7fb0e7c88d06475d031d9355e810ff",
+        "source_id": "d86d99c00d978b7ced5f016aa92104ddba4d9a7d"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-dcd670eff7f60625",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "f505a261bbb21b81adc4be07df73d1821223a12487851f7f75807a2a01fee9d0",
+        "source_id": "68c1dd09953485493ab24cbc783b7f3c915821d9"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "452b2c09494e15f6df977ca16f7ae4b7ef94bb1dcafe13396f32d8eae1dd525b",
+      "case_id": "m4sugar-line-eb27bb29ce4c1343",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- Autoconf -*-\nProcess this file with autoconf to produce a configure script.",
+      "expected_cleaned_sha256": "a5aea1722be6003b438344bae83cc773dc958a44338e1bcb6a3985a2512c53c8",
+      "language": "m4sugar",
+      "raw_comment": "#                                               -*- Autoconf -*-\n# Process this file with autoconf to produce a configure script.",
+      "raw_sha256": "41ef44eb26ba111dcff0e8fe9c5b1d99e7a20c1bb1076116ebcc8b922c63a0d3",
+      "raw_utf8_length": 129,
+      "source_provenance": {
+        "source_excerpt_sha256": "1d38655c634243df65574b8744adb80ddcd398702674db93401554e1c5bf087f",
+        "source_id": "445c8232e714229d1ef50e18524629a9c17237f8"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

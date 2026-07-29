@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "family_name": "freebasic_style",
+  "canonical_language": "freebasic",
+  "language_keys": [
+    "freebasic"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "' cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "grouped-shared_regex-000-line",
+      "source": "generated-group:registry:shared_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "' cleaning_payload_grouped_shared_regex_000_first\n' cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-block",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "block",
+      "raw_comment": "/' cleaning_payload_shared_regex_001 '/",
+      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "REM cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    },
+    {
+      "id": "sanitizer-line-wrapper-001",
+      "source": "registry:sanitizer_line_wrappers[1]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "'cleaning_payload_sanitizer_line_wrapper_001",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_001",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_001"
+    }
+  ]
+}

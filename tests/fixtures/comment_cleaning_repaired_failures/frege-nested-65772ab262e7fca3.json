@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-65772ab262e7fca3",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "31c0e860cf8fc86c8a8051f44767bc202b9363ea24051667dfdd6c416c91a170",
+      "utf8_length": 137
+    },
+    "manifest_old_output": {
+      "sha256": "e2f4164b6769724a109e88ba12a356b3733805b5c99ff069815ab74d1c9b36f7",
+      "utf8_length": 127
+    },
+    "raw_comment": {
+      "sha256": "d11bc49b657f8eba024bbc342cccffa038091a89340fa991286c16120732ccf1",
+      "utf8_length": 146
+    },
+    "recommended_expected_output": {
+      "sha256": "e2f4164b6769724a109e88ba12a356b3733805b5c99ff069815ab74d1c9b36f7",
+      "utf8_length": 127
+    }
+  },
+  "regression": {
+    "expected_output": "Examples for using record syntax copied from\nhttp://mmhelloworld.github.io/blog/2014/03/15/frege-record-accessors-and-mutators/",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Examples for using record syntax copied from\n    http://mmhelloworld.github.io/blog/2014/03/15/frege-record-accessors-and-mutators/\n    -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e0f34e905563e60a1323fb85a3c2595c8d366095fc0b8f453a94f33e2f1f7243",
+    "source_id": "470edbe8936f9592d76eb95ed102b03c2587fbf8"
+  },
+  "source_record_sha256": "fa2b6524fb2c0307d8a625de9f00261c62916ba68a65fdaf9945ed8b09669d13"
+}

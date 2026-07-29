@@ -1,0 +1,38 @@
+{
+  "case_id": "ags_script-block-f3bf01ecad49a007",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "ags_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "a45698315231a56eeb4dbf24ac5ce0d39b5088f28b3e927d6b7da9f0ec2a07a5",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "ad35e0ff092a7775495c9b3c4612cc5cf006c23a9853a2af885d3d5454e8ea85",
+      "utf8_length": 15
+    },
+    "raw_comment": {
+      "sha256": "440fa50277dd73fb80ae6bcc115ea0f20d0d79f1ab89144c0647b4185952bfec",
+      "utf8_length": 81
+    },
+    "recommended_expected_output": {
+      "sha256": "ad35e0ff092a7775495c9b3c4612cc5cf006c23a9853a2af885d3d5454e8ea85",
+      "utf8_length": 15
+    }
+  },
+  "regression": {
+    "expected_output": "Raum-Funktionen",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/****************************\r\n*   Raum-Funktionen\r\n****************************/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "eaa3d0c1418350b0178c485d12f25d6d4de5270d604a41cef7aa446dd06fe0de",
+    "source_id": "c2bcbc5ffefd1ede85184973062b941931548167"
+  },
+  "source_record_sha256": "7564d66d37a2deab4d2cd58aefff904d66645649fc09a7893a228883d5e08439"
+}

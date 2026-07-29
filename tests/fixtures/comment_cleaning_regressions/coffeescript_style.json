@@ -1,0 +1,263 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "coffeescript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "97a68e1bccd918b9410a269f7b5806f2896f8c92cec57901e18144c515b4d233",
+      "case_id": "coffeescript-block-50ec55d1943eed8f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "coffeescript",
+      "raw_comment": "############################################################################################################",
+      "raw_sha256": "09486d5682e5659ae33a730d4ba34e5dc1397524b6162e51e68902d0b779914b",
+      "raw_utf8_length": 108,
+      "source_provenance": {
+        "source_excerpt_sha256": "a7a1e55d1563ac036a983b272294f8c1e168aee2225706cbbbff33fb64b5a028",
+        "source_id": "4f441bcdbe9dfb2100a6e878e1150864f421549c"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "9a195bb1fe07081b30e4ee33968e9a913015b851f37539b3a8cc18bde5f8e790",
+      "case_id": "cson-block-9f1e1ba2ad41e339",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Default Export (export default)\n\nYou can have one default export per file. When you import you have to specify a name and import like so:\n```js\nimport MyDefaultExport from \"./MyFileWithADefaultExport\";\n```",
+      "expected_cleaned_sha256": "3a0feb072a37a826143ca5b19118c1cb6e73e2fe33569830d9e9abf50d0f3ed4",
+      "language": "cson",
+      "raw_comment": "### Default Export (export default)\n  \n  You can have one default export per file. When you import you have to specify a name and import like so:\n  ```js\n  import MyDefaultExport from \"./MyFileWithADefaultExport\";\n  ```\n  \n  ###",
+      "raw_sha256": "5ba30fddb6e0c117c28e3b846c7d92ef993cbc2c7a5e9fe1d94b62bb8810d253",
+      "raw_utf8_length": 228,
+      "source_provenance": {
+        "source_excerpt_sha256": "937d335e15158f13b592060c8cc388ee90fc7f6148458d22a47f38a7660e41a3",
+        "source_id": "028c54bf75f4cb8d1fef53696e164d5b4853eec6"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "f16258bcdca481fe55273b34a8302ffd12b648f60a3a52ebaf4e75fdd63f44ec",
+      "case_id": "cson-line-8d96f0e3097b9eaa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#Sketch 1 2/]",
+      "expected_cleaned_sha256": "d654aa477a71c2beb093247a2680f4d6be1658f60498e730a3183042fca4be7d",
+      "language": "cson",
+      "raw_comment": "##Sketch 1 2/]",
+      "raw_sha256": "07dd289ea4dea291e7612ee528f955f30e71b5b11053219063b53df168751b37",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "5ec237c50bb2da95c934ab8ff034186a380d3e72182b766cda76e3c777c7bdbe",
+        "source_id": "76866a8ed10280614a93a46798ae2049df66a027"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "84ff99bc24e8a93fe334cf603bfc4816dab37efffb914e16fb2e61abcb6386e7",
+      "case_id": "cson-line-cf8a3be97d05b7f0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# \u30e2\u30b8\u30e5\u30fc\u30eb\u5316\u8a2d\u8a08",
+      "expected_cleaned_sha256": "be272e912e859c39192e72ec8a33a05b06728c19f1c4d2b42950385753702644",
+      "language": "cson",
+      "raw_comment": "## \u30e2\u30b8\u30e5\u30fc\u30eb\u5316\u8a2d\u8a08",
+      "raw_sha256": "539ceb9d7d4948c1c66264f852822909dde52864c3645ed685ead6ed67138a23",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "8bf370204db5c9bc62e0a27052ff97dbc23fbb3b4a32c0509a7638b7dbe9cd5f",
+        "source_id": "75187cd9711460925ba44e8851baae57cd2aa390"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "6040d4e09912f4a6cd162a279c9ccb27cf856cd2d48da6c1a421e2609bb9f7ae",
+      "case_id": "emberscript-block-b2f270f44758cbf2",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "emberscript",
+      "raw_comment": "#######################################################################",
+      "raw_sha256": "050a88167eb623cb8a7d3bacb2f903ecb5c57c626d6c689cb915ca79f50b103f",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "546a52a60e056144a9aa7c81dd7c35a86b7b5904a47f9fc92e9608188f8c8cec",
+        "source_id": "6e79969910c03e25f01d168a6431adbef05d456a"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "6040d4e09912f4a6cd162a279c9ccb27cf856cd2d48da6c1a421e2609bb9f7ae",
+      "case_id": "emberscript-block-daefee822fb5e6cd",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "emberscript",
+      "raw_comment": "#######################################################################",
+      "raw_sha256": "050a88167eb623cb8a7d3bacb2f903ecb5c57c626d6c689cb915ca79f50b103f",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "03c029805e3dc604adf51e9bc626e7dfb0664457e7ff85211b3486ea35880c5c",
+        "source_id": "913aea30584531cdb2ff776d25dcd07a623ce291"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "6040d4e09912f4a6cd162a279c9ccb27cf856cd2d48da6c1a421e2609bb9f7ae",
+      "case_id": "emberscript-block-f1dbcc04aeb313e5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "emberscript",
+      "raw_comment": "#######################################################################",
+      "raw_sha256": "050a88167eb623cb8a7d3bacb2f903ecb5c57c626d6c689cb915ca79f50b103f",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "12f13e8502a4da0ec047a1dd923ac4433be59f6ed16751d7b46ccd932507b6e6",
+        "source_id": "3bfec17b4c260ecdc476b5bee8753430fbfa34e2"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "4306b52217b7c5fa018dd3e24460455d6e096b65cc4f537ac368ef3e248804ec",
+      "case_id": "emberscript-line-1378ee7bd2a4ba5e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "ROS1 Repo Setup\nsetup environment",
+      "expected_cleaned_sha256": "21d1ed44b7cb364dce1cc357ee98b8661c5fff095096a77d270f20ed9521bc61",
+      "language": "emberscript",
+      "raw_comment": "# ROS1 Repo Setup ##############################################################\n# setup environment",
+      "raw_sha256": "ddb6de3ccd0659b0995a8f6acee7d59115738c1fed7c526155360c54a3c76ba8",
+      "raw_utf8_length": 100,
+      "source_provenance": {
+        "source_excerpt_sha256": "47aa3246e9062eed636be8717924cca1f815ae10293245192d1a8d38b80938e4",
+        "source_id": "be65efece38396a1b292c6bf92fffb9be5f60b33"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "fd7e36d10dc2d5bac9e068530a1706deb692935a94a734d010d077627aebe268",
+      "case_id": "literate_coffeescript-block-058d438f0ab80de6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "From DOM Nodes to objects\n\nThese methods are for serializing and unserializing DOM nodes to objects\nthat are amenable to JSON processing.\n\nFirst, the function for converting a DOM Node to an object that can be\nserialized with `JSON.stringify`.  After this function is defined, one can\ntake any node `N` and call `N.toJSON()`.\n\n        window.Node::toJSON = ( verbose = yes ) ->\n\nThe `verbose` parameter uses human-readable object keys, and is the default.\nA more compact version can be obtained by setting that value to false.  The\ninverse function below can handle either format.  The shrinking of keys\nfollows the following convention.\n * tagName becomes t\n * attributes becomes a\n * children becomes c\n * comment becomes m\n * content becomes n\n\nText nodes are simply returned as strings.\n\n            if this instanceof window.Text then return @textContent\n\nComment nodes are returned as objects with a comment flag and a text content\nattribute.\n\n            if this instanceof window.Comment\n                return if verbose\n                    comment : yes, content : @textContent\n                else\n                    m : yes, n : @textContent\n\nAll other types of nodes must be elements in order to be serialized by this\nroutine.\n\n            if this not instanceof window.Element\n                throw Error \"Cannot serialize this node: #{this}\"\n\nA serialized Element is an object with up to three properties, tag name,\nattribute dictionary, and child nodes array.  We create that object, then\nadd the attributes dictionary and children array if and only if they are\nnonempty.\n\n            result = tagName : @tagName\n            if @attributes.length\n                result.attributes = { }\n                for attribute in @attributes\n                    result.attributes[attribute.name] = attribute.value\n            if @childNodes.length\n                result.children =\n                    ( chi.toJSON verbose for chi in @childNodes )\n\nIf verbosity is disabled, change all the object keys to one-letter\nabbreviations.\n\n            if not verbose\n                result.t = result.tagName ; delete result.tagName\n                result.a = result.attributes ; delete result.attributes\n                result.c = result.children ; delete result.children\n            result",
+      "expected_cleaned_sha256": "1bd1fc69825c83085aae2ea83e3a896aee797223536d152683f1e2f77da4e174",
+      "language": "literate_coffeescript",
+      "raw_comment": "### From DOM Nodes to objects\n\nThese methods are for serializing and unserializing DOM nodes to objects\nthat are amenable to JSON processing.\n\nFirst, the function for converting a DOM Node to an object that can be\nserialized with `JSON.stringify`.  After this function is defined, one can\ntake any node `N` and call `N.toJSON()`.\n\n        window.Node::toJSON = ( verbose = yes ) ->\n\nThe `verbose` parameter uses human-readable object keys, and is the default.\nA more compact version can be obtained by setting that value to false.  The\ninverse function below can handle either format.  The shrinking of keys\nfollows the following convention.\n * tagName becomes t\n * attributes becomes a\n * children becomes c\n * comment becomes m\n * content becomes n\n\nText nodes are simply returned as strings.\n\n            if this instanceof window.Text then return @textContent\n\nComment nodes are returned as objects with a comment flag and a text content\nattribute.\n\n            if this instanceof window.Comment\n                return if verbose\n                    comment : yes, content : @textContent\n                else\n                    m : yes, n : @textContent\n\nAll other types of nodes must be elements in order to be serialized by this\nroutine.\n\n            if this not instanceof window.Element\n                throw Error \"Cannot serialize this node: #{this}\"\n\nA serialized Element is an object with up to three properties, tag name,\nattribute dictionary, and child nodes array.  We create that object, then\nadd the attributes dictionary and children array if and only if they are\nnonempty.\n\n            result = tagName : @tagName\n            if @attributes.length\n                result.attributes = { }\n                for attribute in @attributes\n                    result.attributes[attribute.name] = attribute.value\n            if @childNodes.length\n                result.children =\n                    ( chi.toJSON verbose for chi in @childNodes )\n\nIf verbosity is disabled, change all the object keys to one-letter\nabbreviations.\n\n            if not verbose\n                result.t = result.tagName ; delete result.tagName\n                result.a = result.attributes ; delete result.attributes\n                result.c = result.children ; delete result.children\n            result\n\n###",
+      "raw_sha256": "0875ab7e11cdc1bd4f9de6e6a640b5b7f10a1ecb4ce5fe7504ba67cba0dd9fdd",
+      "raw_utf8_length": 2299,
+      "source_provenance": {
+        "source_excerpt_sha256": "6d3f3d951b2769907bef5f4544f6fb938051ad3e177b70889c7891f30c3b4fcd",
+        "source_id": "b7f7b38fd78b33d776f128acf9de62cb7b02762e"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "d35737ba92f722d8a8c45b7de7aaabd1188a62e3f0e4dcc9c9c1b5ccf1e0dc38",
+      "case_id": "literate_coffeescript-block-1b3d89eb4edf4a39",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "### TODO: `key` should be called errorType or something similar.",
+      "expected_cleaned_sha256": "3f3a11412049ec12709aa025c2132c849791eccf733768cf225ae5ad2e3be244",
+      "language": "literate_coffeescript",
+      "raw_comment": "###### TODO: `key` should be called errorType or something similar.",
+      "raw_sha256": "6fc0b567c4f42c58f8485155c88192cbb8c64d0ad2343bff48137c88cb6aadec",
+      "raw_utf8_length": 67,
+      "source_provenance": {
+        "source_excerpt_sha256": "b136aea426bf44751d048ee0c8feba582a32f68045a03024a73ddc7a5651c509",
+        "source_id": "3b8409635f9e0f95f239b08f11ef28abcfba0026"
+      },
+      "syntax_label": "###"
+    },
+    {
+      "baseline_cleaned_sha256": "de2aa476a54e84fa9b88b92e80815d1d0deb2e4094c4e17d2c36515cf0806d19",
+      "case_id": "literate_coffeescript-block-dfbc59f9273b8d37",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Installation\n\nInstallation uses the [npm](http://npmjs.org/) package manager. Just type the\nfollowing command after installing npm.\n\n    npm install pdfkit",
+      "expected_cleaned_sha256": "1de1feb11cdbf544470a8b0c1fd7f18bbba82cbaa9703ca333ba2d522a09bab1",
+      "language": "literate_coffeescript",
+      "raw_comment": "### Installation\n\nInstallation uses the [npm](http://npmjs.org/) package manager. Just type the\nfollowing command after installing npm.\n    \n    npm install pdfkit\n\n###",
+      "raw_sha256": "2966ae5f5855d0d1279db8e0d440495efecdadffd38d033f044db0898c689d7d",
+      "raw_utf8_length": 168,
+      "source_provenance": {
+        "source_excerpt_sha256": "8e79f96af0b334a18817d982b4a03692d8829ffbe30372920aea1d6223d42d1f",
+        "source_id": "ddc86e859c2f7d738890e1c76504556c0d836fe5"
+      },
+      "syntax_label": "###...###"
+    },
+    {
+      "baseline_cleaned_sha256": "d3a187a25595078b4ba4c2998bc77780650aad97a891f635a5d9bb0c1009c798",
+      "case_id": "literate_coffeescript-line-3f952517d3951068",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# Constructing a point on a perpendicular",
+      "expected_cleaned_sha256": "b81282de65e6f37aaa963ffd8533dc6f0a55d0a3837b9c63a70cae2412141e4a",
+      "language": "literate_coffeescript",
+      "raw_comment": "## Constructing a point on a perpendicular",
+      "raw_sha256": "516bb1c241f33654770c32cad05d2800579eb28c2563feaa1d7c6e7f4460c8ee",
+      "raw_utf8_length": 42,
+      "source_provenance": {
+        "source_excerpt_sha256": "f42beb3e072f0d1a40c0a49475aa6115dcbf07123c550285bf61e1c2e0b2dfb8",
+        "source_id": "ed84b1a96c424d66d295339f9b7556da0c693853"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "55c64d0fcd6f9d5f7c828093857e3fdfda68478bb4e9bd24d481ef391c7804e8",
+      "case_id": "literate_coffeescript-line-54e57160cd4eadfe",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# photo",
+      "expected_cleaned_sha256": "d3609d9a07e5cf7a3001c5a49a29b29d9bc39af290cb02a634291621a7893b35",
+      "language": "literate_coffeescript",
+      "raw_comment": "## photo",
+      "raw_sha256": "e33abd90ee7a45b7ea064ee62adf13a58ceb1b734d53fab4f36f42bb99829665",
+      "raw_utf8_length": 8,
+      "source_provenance": {
+        "source_excerpt_sha256": "6edd571c719210316a4c308bc455852e1b94d660084ffb6ba1ccd7aa4db62ee9",
+        "source_id": "65ec18ce691a74b3c44811ec55ad569aec4abb15"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "a1555ded8cb9779dbdd01bed0c62be9c2d78a07da35af93881bceb4a9a34e079",
+      "case_id": "literate_coffeescript-line-d678f9220bf96974",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# Basic Trig",
+      "expected_cleaned_sha256": "9180d390eacc8ababf127d457a59530876e7cd114df60c76cbdf1996496beff6",
+      "language": "literate_coffeescript",
+      "raw_comment": "## Basic Trig",
+      "raw_sha256": "bba93639e3d6a49838cb6f1881711f8c492a4f54cd0874a4389719a02febe872",
+      "raw_utf8_length": 13,
+      "source_provenance": {
+        "source_excerpt_sha256": "77b258d46598c163558cf7565c98fb84c06e3797bc61fa1bf38307b43d536761",
+        "source_id": "ddbf023a02957c79cc0f334dc72f7cb91f11ac28"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "6bf0c859040cc9e01ee5def6e3903ce90e8069b8bdc04fe6aeaa540edc9e6b69",
+      "case_id": "literate_coffeescript-line-e6344c1d4bfdf534",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# xmlChecker tests",
+      "expected_cleaned_sha256": "ac80d1c5279c1074115ebe2ca032c4c8ae3787a6efb21364c2962d4a4b649177",
+      "language": "literate_coffeescript",
+      "raw_comment": "## xmlChecker tests",
+      "raw_sha256": "7ea414cde15088719ce19bc2e75942042f80bc3990d8f00dea60ae93fb3c4df3",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "d5f6fbdb1e0ea80894f44b814f121a547501e979fa8708317a7a2fa4d1918f38",
+        "source_id": "8038ba21d4b966420ad6f3201b64497d2a8d9831"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

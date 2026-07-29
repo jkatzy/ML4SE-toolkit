@@ -1,0 +1,38 @@
+{
+  "case_id": "assembly-line-d4187d2f24844740",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "assembly",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9b3eba8815d3d09ac36270a1afdaebf6dae35cbb26fe0793fa04412501a3e807",
+      "utf8_length": 79
+    },
+    "manifest_old_output": {
+      "sha256": "ada75e4dbd2db9dddca25cde1d980ef5bf4e45085eda0498147eaac97ce4293a",
+      "utf8_length": 65
+    },
+    "raw_comment": {
+      "sha256": "583245d86e1eb74387671e107d9a5750862d548839efb070ed3e5d129edeb0be",
+      "utf8_length": 82
+    },
+    "recommended_expected_output": {
+      "sha256": "ada75e4dbd2db9dddca25cde1d980ef5bf4e45085eda0498147eaac97ce4293a",
+      "utf8_length": 65
+    }
+  },
+  "regression": {
+    "expected_output": "Show the numbers x0,x1,...,xE,xF on Hex10 and the repeats forever",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;;;;;;Show the numbers x0,x1,...,xE,xF on Hex10 and the repeats forever ;;;;;;;;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "558bdcbfeafb89e9cb6c05e340f313dc196fb3ec6bb0b6cee2b79c3c1c612c95",
+    "source_id": "76e336554a6d965ada545159974232918c77207f"
+  },
+  "source_record_sha256": "73275f1719933f4a7782b7dd60f8d7f145d5c3d8c132fec43cbcd77d1a0ffb49"
+}

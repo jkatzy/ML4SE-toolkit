@@ -1,0 +1,38 @@
+{
+  "case_id": "chuck-line-82d4c01669be5f4f",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "chuck",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2da0faa86f41d2f81ade5adfcfa7d45e6b7fab6b6ee11e783c2b01091a2e4ae5",
+      "utf8_length": 11
+    },
+    "manifest_old_output": {
+      "sha256": "e3e28dbb662aa559cbb4a7fa571e07adf6fcdcd41200c99dfc24efe4b939f2fe",
+      "utf8_length": 15
+    },
+    "raw_comment": {
+      "sha256": "36d271cc2a0fff444d5d5662a295e2b2bc8db41f1a2a8952e302cc913935e3d5",
+      "utf8_length": 17
+    },
+    "recommended_expected_output": {
+      "sha256": "e3e28dbb662aa559cbb4a7fa571e07adf6fcdcd41200c99dfc24efe4b939f2fe",
+      "utf8_length": 15
+    }
+  },
+  "regression": {
+    "expected_output": "<<< \"read\" >>>;",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//<<< \"read\" >>>;"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "4fe27877718ec4f1c2ea0261b245e2251044824d9ee4414338664430361e8e83",
+    "source_id": "c95349230e6eb3f90f258197307d4a1987b54234"
+  },
+  "source_record_sha256": "14688a23d2f593ee9084085c836551703a819487bbcdccdb70ebad0d609dd5e9"
+}

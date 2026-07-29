@@ -1,0 +1,191 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "propeller_spin_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "29dd735ccbf2ea5105cf6964659a28f8e6986ee434b705300fb904ed33b24a69",
+      "case_id": "propeller_spin-block-116aad97c558bab2",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "propeller_spin",
+      "oracle_exception_record_sha256": "c6719099dbd6368e54f1ee07f704092c5a3a7157d4fadced497f6d27008f6914",
+      "raw_sha256": "34511c90f525386cf9b8bb33940bf567818cbdae845dbd4f5ab6c0764cad44ce",
+      "raw_utf8_length": 481,
+      "source_provenance": {
+        "source_excerpt_sha256": "917fa7a3aca9c93aa0810e41adc90a504bf6c066f7d445e0c349d2c5812f61c7",
+        "source_id": "48b1aa26f2955461db9bc8deaa7587e5d3f99b42"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "cb09797f90188c4c8595089f53560f6957f796e0abc48e03e33091d321a41126",
+      "case_id": "propeller_spin-block-12414baadcb0b721",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "propeller_spin",
+      "oracle_exception_record_sha256": "2921d407139f0cac72c5d982e452144238cd4bc3bacd34600e50336da524c445",
+      "raw_sha256": "2b47bda0dc0a28b3181c396d2c4e4c4b46e25c01ee0363f54d8f1d1753450e37",
+      "raw_utf8_length": 2872,
+      "source_provenance": {
+        "source_excerpt_sha256": "257ab03827bfdc363f0f4583907d817ee77964d0dd22c0936e1ebcfb1f4bfd43",
+        "source_id": "73668d94c7a660fab84b4a7c85e0a2df632fb942"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "021de6afdb46745cb4673cdd5b660a05e53bb85a0a88261638a82a741bc0609c",
+      "case_id": "propeller_spin-block-189589f644925d3d",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "propeller_spin",
+      "oracle_exception_record_sha256": "dfd99866e163b8d29109bf8a4fc5bc8c0bab4a3a1fe29e2c8b85090f9674b975",
+      "raw_sha256": "af0b2afce5ffcb1ceae7cf67c290b73ea235f046de72f88132d5ea1cd85d34f4",
+      "raw_utf8_length": 1629,
+      "source_provenance": {
+        "source_excerpt_sha256": "a5ee903b150a8932d2a44c199ee0fcfb1655f8d215b9787460a6b8bcb9a46614",
+        "source_id": "3fcd961999296747f5849b9fb94fc494ce1df821"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "f14070244119caafa691b9104e38b06a0b22e011ff50489f1907530b165f6965",
+      "case_id": "propeller_spin-block-a747bc65f9151295",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "oracle_not_deletion_only",
+      "language": "propeller_spin",
+      "oracle_exception_record_sha256": "4d69575ad989d2e10ce1be87ec9c54cdc3a92e527b19946ca8466aaa8b02b5dd",
+      "raw_sha256": "ba43ae3da19df68a79313417d419253aa671553c4aa218fa803933e04e92139a",
+      "raw_utf8_length": 216,
+      "source_provenance": {
+        "source_excerpt_sha256": "328330690db357a09dd5c13ac5eccd899fca8fe6b73a8d92c67b63b8e5ad45e4",
+        "source_id": "df6917182565dd8bb200fdce45b923bdcde7e377"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "3df5c978bad5a007ed66d752993661795234d8176dcd44c8bb4d0914f84a29ac",
+      "case_id": "propeller_spin-block-fc9db1aa15168c9e",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "cross_run_reviewer_conflict",
+      "language": "propeller_spin",
+      "oracle_exception_record_sha256": "24680f10385072692fe60e54950c5274243b0e6f43720804606e51f53a97fc6b",
+      "raw_sha256": "80d6a9cbf0c90b2383830d975332e02c5c34c395a0d1a1a63b6be89a6f2cb4a8",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "88011a5fb2c3c18485240d6993b1edd866a0a93827b55ea019795d10e86fbbf4",
+        "source_id": "a23284348c9999940dca10d992d9e0604dc314a7"
+      },
+      "syntax_label": "{...}"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "40dbefdf0aebb7bbfd013feb6a66c4e7487d76f242e08c15f0f2223661984eb8",
+      "case_id": "propeller_spin-block-354b6228177ccf06",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Hive-Computer-Projekt\n\nName            : ZShell\nChip            : Regnatix-Code\nVersion         : 1.0\nAutor           : R.Zielinski (Zille9)\n\nBeschreibung    : Alternative Shell (Regime)\n\nEigenschaften   : -Komandozeilen-Prozessor mit mathematischen F\u00e4higkeiten\n                  -Laden von Bin, Bel und ADM-Dateien in die jeweiligen Propeller-Chips\n                  -Grundger\u00fcst vom Basic \u00fcbernommen, unn\u00f6tige Funktionen entfernt\n\n\n'############################################################ Version 1.0 ######################################################################################################\n31-01-2021      -Grundfunktionen vorhanden (Dateifunktionen, Commandoprozessor)\n                -grafische Cog-Anzeige (F2 oder Befehl Cogs)\n                -Befehl Ping zur Abfrage auf I2C Teilnehmer eingef\u00fcgt\n                -4402 Longs frei\n\n06-02-2021      -Grafiktreiber ge\u00e4ndert ->Tiletreiber von Trios-Basic\n                -Shellfenster ge\u00e4ndert\n                -Farbschema ge\u00e4ndert\n                -Pfadanzeige in Statusleiste\n                -Ram/Rom-Typ-Anzeige in Titelleiste bei DUMP\n                -Ren-Befehl war fehlerhaft (String wurde intern falsch verarbeitet) ->korrigiert\n                -\u00fcberfl\u00fcssige Funktionen entfernt\n                -4188 Longs frei\n\n07-02-2021      -Unterst\u00fctzung von Flash-Rom an Administra hinzugef\u00fcgt\n                -schreiben, l\u00f6schen und starten von Programmen aus dem Flash\n                -Regflash wurde f\u00fcr Flash ge\u00e4ndert und ist zur Verwendung des Flash-Roms zwingend in Regnatix zu flashen\n                -einige optische Anpassungen\n                -Dump-Anzeige angepasst, damit die Darstellung auf den Bildschirm passt\n                -OPEN, CLOSE,WRITE,FILE,XBUS deaktiviert - keine Ahnung, ob ich die wieder rein nehme\n                -Zeilenl\u00e4nge auf 35 gek\u00fcrzt - das sollte locker reichen\n                -es fehlt noch die Aktualisierung der Flashliste im Ram und Rom\n                -4043 Longs frei\n\n08-02-2021      -Systemfont fest in Bellatrix-Treiber integriert, dadurch entf\u00e4llt das Laden des Fonst nach Bellatrix beim Start\n                -Trios-Logo in Titelzeile eingebaut\n                -EEPROM-Routine eingef\u00fcgt, um Farbwerte im EEPROM zu speichern und beim Start zu laden\n                -Flashroutinen angepasst\n                -3923 Longs frei",
+      "expected_cleaned_sha256": "302dd9d539c5b70c9dce63570a894163c22ab2bc3196a947b47bb2220402986d",
+      "language": "propeller_spin",
+      "raw_comment": "{{ ---------------------------------------------------------------------------------------------------------\n\nHive-Computer-Projekt\n\nName            : ZShell\nChip            : Regnatix-Code \nVersion         : 1.0\nAutor           : R.Zielinski (Zille9)\n\nBeschreibung    : Alternative Shell (Regime)\n\nEigenschaften   : -Komandozeilen-Prozessor mit mathematischen F\u00e4higkeiten\n                  -Laden von Bin, Bel und ADM-Dateien in die jeweiligen Propeller-Chips\n                  -Grundger\u00fcst vom Basic \u00fcbernommen, unn\u00f6tige Funktionen entfernt\n\n\n'############################################################ Version 1.0 ######################################################################################################\n31-01-2021      -Grundfunktionen vorhanden (Dateifunktionen, Commandoprozessor)\n                -grafische Cog-Anzeige (F2 oder Befehl Cogs)\n                -Befehl Ping zur Abfrage auf I2C Teilnehmer eingef\u00fcgt\n                -4402 Longs frei\n\n06-02-2021      -Grafiktreiber ge\u00e4ndert ->Tiletreiber von Trios-Basic\n                -Shellfenster ge\u00e4ndert\n                -Farbschema ge\u00e4ndert\n                -Pfadanzeige in Statusleiste\n                -Ram/Rom-Typ-Anzeige in Titelleiste bei DUMP\n                -Ren-Befehl war fehlerhaft (String wurde intern falsch verarbeitet) ->korrigiert\n                -\u00fcberfl\u00fcssige Funktionen entfernt\n                -4188 Longs frei\n\n07-02-2021      -Unterst\u00fctzung von Flash-Rom an Administra hinzugef\u00fcgt\n                -schreiben, l\u00f6schen und starten von Programmen aus dem Flash\n                -Regflash wurde f\u00fcr Flash ge\u00e4ndert und ist zur Verwendung des Flash-Roms zwingend in Regnatix zu flashen\n                -einige optische Anpassungen\n                -Dump-Anzeige angepasst, damit die Darstellung auf den Bildschirm passt\n                -OPEN, CLOSE,WRITE,FILE,XBUS deaktiviert - keine Ahnung, ob ich die wieder rein nehme\n                -Zeilenl\u00e4nge auf 35 gek\u00fcrzt - das sollte locker reichen\n                -es fehlt noch die Aktualisierung der Flashliste im Ram und Rom\n                -4043 Longs frei\n\n08-02-2021      -Systemfont fest in Bellatrix-Treiber integriert, dadurch entf\u00e4llt das Laden des Fonst nach Bellatrix beim Start\n                -Trios-Logo in Titelzeile eingebaut\n                -EEPROM-Routine eingef\u00fcgt, um Farbwerte im EEPROM zu speichern und beim Start zu laden\n                -Flashroutinen angepasst\n                -3923 Longs frei\n\n --------------------------------------------------------------------------------------------------------- }}",
+      "raw_sha256": "9fb3566954f04e3c45f9455552e426c4820b31ba50d03c428f4d249aa12e4fe6",
+      "raw_utf8_length": 2577,
+      "source_provenance": {
+        "source_excerpt_sha256": "2a2bc5e951d72c88ed513e0121640485a43f138e2087e3dbb339a08377b35b90",
+        "source_id": "1c075444b473e3adcdc809df20e0fe6b2da3bd67"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "700ec21ae436fe6dc6ea62083ae714d6f99b885f253e4b7db0cc1bda0bcea49a",
+      "case_id": "propeller_spin-block-3c55e0b1085a0aa4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DS1302 SD Card Profiler\n\nAuthor: Kwabena W. Agyeman\nUpdated: 3/23/2011\nDesigned For: P8X32A\nVersion: 1.0 - Special\n\nCopyright (c) 2011 Kwabena W. Agyeman\nSee end of file for terms of use.\n\nUpdate History:\n\nv1.0 - Special - Original release - 3/23/2011.\n\nOn startup the program blinks the status LED at 4 Hz signaling that it is writing basic file system data. After the program\nfinishes writing basic file system data it then begins to speed test the file system and blink the status LED at 8 Hz. Once\nfinished speed testing the file system the program then waits for reset or power down and keeps the status LED lit solid.\nIf an error occurs that the program is unable to handle it will blink the status LED at 1 Hz and wait for reset or power\ndown. Remove the SD card from the propeller chip once the program finishes as indicated by the status LED and insert the SD\ncard into a computer to see the results of the profiler. Do not remove the SD card until the propeller chip is finished\nrunning the profiler program or the SD card partition may become corrupted.\n\nNyamekye,",
+      "expected_cleaned_sha256": "d2f27f356d34af62a60ca58b3eb3a66d3c0af8c776ff9f45f1853e2825e63201",
+      "language": "propeller_spin",
+      "raw_comment": "{{\r\n///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\r\n// DS1302 SD Card Profiler\r\n//\r\n// Author: Kwabena W. Agyeman\r\n// Updated: 3/23/2011\r\n// Designed For: P8X32A\r\n// Version: 1.0 - Special\r\n//\r\n// Copyright (c) 2011 Kwabena W. Agyeman\r\n// See end of file for terms of use.\r\n//\r\n// Update History:\r\n//\r\n// v1.0 - Special - Original release - 3/23/2011.\r\n//\r\n// On startup the program blinks the status LED at 4 Hz signaling that it is writing basic file system data. After the program\r\n// finishes writing basic file system data it then begins to speed test the file system and blink the status LED at 8 Hz. Once\r\n// finished speed testing the file system the program then waits for reset or power down and keeps the status LED lit solid.\r\n// If an error occurs that the program is unable to handle it will blink the status LED at 1 Hz and wait for reset or power\r\n// down. Remove the SD card from the propeller chip once the program finishes as indicated by the status LED and insert the SD\r\n// card into a computer to see the results of the profiler. Do not remove the SD card until the propeller chip is finished\r\n// running the profiler program or the SD card partition may become corrupted.\r\n//\r\n// Nyamekye,\r\n///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\r\n}}",
+      "raw_sha256": "0d10b378d67dfd95e3a1626ae6d02b228ac45aacda44d729cec0cf54bc70a444",
+      "raw_utf8_length": 1426,
+      "source_provenance": {
+        "source_excerpt_sha256": "9880f87c0dea8b4bb268afc516fdd591ef109ab6639f897109d91c651f16938f",
+        "source_id": "804fe6233a99bd8287acf32a0930b1560e2472b9"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "d1d81f5713692057c230ee07b5815c97ef890cd168bbf578c46669ca970f6b1f",
+      "case_id": "propeller_spin-block-3ebacbfc83aefcfb",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Quadrature Decoder\nAuthor: Luke Haywas\n\n\nCopyright (c) <2010> <Luke Haywas>\nSee end of file for terms of use.\n\nDescription:\nUses one cog to continuously monitor a rotary quadrature encoder.\nAs the encoder is turned, each change of position is accumulated\nto a variable in hub RAM. This variable then reflects how far\nthe encoder has been turned to the left or the right.\n\nWiring: Connect the encoder to two adjacent pins. Pass the number\nof the first pin as the first parameter of the Start method.\nPass the ADDRESS of the variable to accumulate to as the second\nparameter of the Start method.",
+      "expected_cleaned_sha256": "7734b8799e88faf190768da76e35105cda8d19502730bd1adfd6c9028fecd12c",
+      "language": "propeller_spin",
+      "raw_comment": "{{\n\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Quadrature Decoder                       \u2502\n\u2502 Author: Luke Haywas                      \u2502\n\u2502                                          \u2502\n\u2502                                          \u2502\n\u2502 Copyright (c) <2010> <Luke Haywas>       \u2502               \n\u2502 See end of file for terms of use.        \u2502                \n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\nDescription:\nUses one cog to continuously monitor a rotary quadrature encoder.\nAs the encoder is turned, each change of position is accumulated\nto a variable in hub RAM. This variable then reflects how far\nthe encoder has been turned to the left or the right.\n\nWiring: Connect the encoder to two adjacent pins. Pass the number\nof the first pin as the first parameter of the Start method.\nPass the ADDRESS of the variable to accumulate to as the second\nparameter of the Start method.\n\n}}",
+      "raw_sha256": "06091eb54e74140365a16330722d7abed5905fab6e79f43026ac91523b008e6b",
+      "raw_utf8_length": 1082,
+      "source_provenance": {
+        "source_excerpt_sha256": "ca18d7dfc50d7707cd3708f3456013860275af1104de4c20067962800680769b",
+        "source_id": "2a16c020bb57a7af2b101f98369089337f44f95b"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "7c0a541fdf51ce6b2f24620dfe5e2f3bdf124951b712135c63d9e21b4a99f016",
+      "case_id": "propeller_spin-block-852910b508fd06af",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "FDS_sgf.spin\n\nFrom FullDuplexSerial.spin\n\nBob Belleville\n\n2007/03/13 - begin modifications\n2007/03/14 - functional\n2007/11/13 - attempt to get CTS to control transmit\n             seems to work\n\nFullDuplexSerial is essentially byte oriented.  When\ncommunicating with high speed devices the buffers\nwill fill and data will be lost.  At high baud rates\nspin programs are not fast enough to fill or clear the\nbuffers.\n\nThis modification is built to support communication\nwith the Parallax #27937 memory stick datalogger.\n\nPerhaps other devices will also find this design useful.\n\n'sg' indicates scatter-gather. The serial transmitter\nhere is designed to take a string of n bytes and send\nthem as quickly as possible.  Strings from\nthe calling program don't have to be moved before\ntransmission --- gather.  The receiver is designed\nto place bytes into the calling program's buffer\ndirectly also eliminating a move --- scatter.",
+      "expected_cleaned_sha256": "706237d26c10655c6b96a6ea1741074de48f615736ae6a1d54b12eadc768ae63",
+      "language": "propeller_spin",
+      "raw_comment": "{{ FDS_sgf.spin\r\n\r\n  From FullDuplexSerial.spin\r\n\r\n  Bob Belleville\r\n\r\n  2007/03/13 - begin modifications\r\n  2007/03/14 - functional\r\n  2007/11/13 - attempt to get CTS to control transmit\r\n               seems to work\r\n\r\n  FullDuplexSerial is essentially byte oriented.  When\r\n  communicating with high speed devices the buffers\r\n  will fill and data will be lost.  At high baud rates\r\n  spin programs are not fast enough to fill or clear the\r\n  buffers.\r\n\r\n  This modification is built to support communication\r\n  with the Parallax #27937 memory stick datalogger.\r\n  \r\n  Perhaps other devices will also find this design useful.\r\n\r\n  'sg' indicates scatter-gather. The serial transmitter\r\n  here is designed to take a string of n bytes and send\r\n  them as quickly as possible.  Strings from\r\n  the calling program don't have to be moved before\r\n  transmission --- gather.  The receiver is designed\r\n  to place bytes into the calling program's buffer\r\n  directly also eliminating a move --- scatter.\r\n\r\n}}",
+      "raw_sha256": "f7837a4290021b855f83ea0cf39dc095129321ddb19f0a20c39b007c0f973e1e",
+      "raw_utf8_length": 1004,
+      "source_provenance": {
+        "source_excerpt_sha256": "974f922b5d3f3d86f576a78bfd27011cf535df2ec26f1ce99ff16cef8286f0a2",
+        "source_id": "2b554743fffc04862290b92f52f83342c013b974"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "4ba306f8221f1eb24b4f97bd443e3f949d2177ac8b9736f1deb14984b8bb4469",
+      "case_id": "propeller_spin-block-ac38044dea4a0fd0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TERMS OF USE: MIT License\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to\ndeal in the Software without restriction, including without limitation the\nrights to use, copy, modify, merge, publish, distribute, sublicense, and/or\nsell copies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\nIN THE SOFTWARE.",
+      "expected_cleaned_sha256": "f7ff661f2468062923aa31d8ed685c9915c57878f82f34a6893874a0d52d57eb",
+      "language": "propeller_spin",
+      "raw_comment": "{{\r\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\r\n\u2502                     TERMS OF USE: MIT License                              \u2502                                                            \r\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\r\n\u2502Permission is hereby granted, free of charge, to any person obtaining a copy\u2502\r\n\u2502of this software and associated documentation files (the \"Software\"), to    \u2502\r\n\u2502deal in the Software without restriction, including without limitation the  \u2502\r\n\u2502rights to use, copy, modify, merge, publish, distribute, sublicense, and/or \u2502\r\n\u2502sell copies of the Software, and to permit persons to whom the Software is  \u2502\r\n\u2502furnished to do so, subject to the following conditions:                    \u2502\r\n\u2502                                                                            \u2502\r\n\u2502The above copyright notice and this permission notice shall be included in  \u2502\r\n\u2502all copies or substantial portions of the Software.                         \u2502\r\n\u2502                                                                            \u2502\r\n\u2502THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  \u2502\r\n\u2502IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,    \u2502\r\n\u2502FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE \u2502\r\n\u2502AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      \u2502\r\n\u2502LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     \u2502\r\n\u2502FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\u2502\r\n\u2502IN THE SOFTWARE.                                                            \u2502\r\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\r\n}}",
+      "raw_sha256": "a094ad7bada58dd85f0e9d36cb5216fcb2e476eb766304fbb48a9fdbbe74f104",
+      "raw_utf8_length": 2286,
+      "source_provenance": {
+        "source_excerpt_sha256": "86a749f89f355c5963fd15f2719112a5d483d2aa53a04a178ad65adb2c7b9220",
+        "source_id": "effdc7c2ebdc9210b7053588e60ed6070980640b"
+      },
+      "syntax_label": "{...}"
+    },
+    {
+      "baseline_cleaned_sha256": "776f26ae71b84d20fade022a861471b2a8bdfd2dc9c5a10d40d5df76a277a2c3",
+      "case_id": "propeller_spin-block-d0d444f39770fa7c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Autor: Ingo Kripahle\nCopyright (c) 2010 Ingo Kripahle\nSee end of file for terms of use.\nDie Nutzungsbedingungen befinden sich am Ende der Datei\n\nInformationen   : hive-project.de\nKontakt         : drohne235@googlemail.com\nSystem          : TriOS\nName            : VGA-Text-Treiber 1024x768 Pixel, 128x64 Zeichen\nChip            : Bellatrix\nTyp             : Treiber\nVersion         : 00\nSubversion      : 01\nFunktion        : VGA-Text- und Tastatur-Treiber\nKomponenten     : VGA 1024x768 Tile Driver v0.9   Chip Gracey        MIT\n                  PS/2 Keyboard Driver v1.0.1     Chip Gracey, ogg   MIT\n\nCOG's           : MANAGMENT     1 COG\n                  VGA           2 COG's\n                  KEYB          1 COG\n                  -------------------\n                                4 COG's\n\nLogbuch         :\n\n23-10-2008-dr235  - erste funktionsf\u00e4hige version erstellt\n                  - cursor eingebaut\n06-11-2008-dr235  - keyb auf deutsche zeichenbelegung angepasst (ohne umlaute)\n24-11-2008-dr235  - tab, setcur, pos1, setx, sety, getx, gety, setcol, sline, screeninit\n                    curon, curoff\n                  - beltest\n13-03-2009-dr235  - LF als Zeichencode ausgeblendet\n22-03-2009-dr235  - abfrage f\u00fcr statustasten eingef\u00fcgt\n05-09-2009-dr235  - abfrage der laufenden cogs eingef\u00fcgt\n                  - deutschen tastaturtreiber mit vollst\u00e4ndiger belegung! von ogg eingebunden\n22-03-2010-dr235  - anpassung trios\n01-05-2010-dr235  - scrollup/scrolldown eingebunden & getestet\n03-05-2010-dr235  - settab/getcols/getrows/getresx/getresy eingef\u00fcgt & getestet\n                  - hive-logo eingef\u00fcgt\n\nKommandoliste:\n\n0       1                       Tastaturstatus abfragen\n0       2                       Tastaturzeichen holen\n0       3       n               Screensteuerzeichen\n0       3       0               CLS\n0       3       1               Home\n0       3       2               Backspace\n0       3       3               TAB\n0       3       4   n           SETCUR Cursorzeichen auf n setzen\n0       3       5               POS1\n0       3       6   x           SETX\n0       3       7   y           SETY\n0       3       8  (x)          GETX\n0       3       9  (y)          GETY\n0       3       10  c           SETCOL\n0       3       11  n           SLINE\n0       3       13              SCREENINIT\n0       3       14              CURON\n0       3       15              CUROFF\n0       3       16              SCROLLUP\n0       3       17              SCROLLDOWN\n0       3       18 n0..n7       SETTABS\n0       4       (status)        Status der Sondertasten abfragen\n0       5       x y             Hive-Logo ausgeben\n0       90      cnr (c0) (c1)   Farbregister auslesen\n0       91      cnr c0 c1       Farbregister setzen\n0       92      (res-x)\n0       93      (res-y)\n0       94      (cols)\n0       95      (rows)\n0       96      (cogs)          Status der belegten COG's abfragen\n0       97      (spez)          Spezifikation abfragen\n0       98      (ver)           Version abfragen\n0       99                      Reboot und neuen Treiber laden\n\n\n1..255                          Zeichenausgabe\n\n\nNotizen:\n- setheader\n\nACHTUNG: row ist nicht die Zeilenposition, da zwei tiles untereinander ein zeichen\nbilden. vielmehr ist die reale zeilenposition row/2.",
+      "expected_cleaned_sha256": "9d6283a001d17905f75ab8666bd241b0de32c680ac5635b94fd4ddd0059380cb",
+      "language": "propeller_spin",
+      "raw_comment": "{{\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Autor: Ingo Kripahle                                                                                 \u2502\n\u2502 Copyright (c) 2010 Ingo Kripahle                                                                     \u2502\n\u2502 See end of file for terms of use.                                                                    \u2502\n\u2502 Die Nutzungsbedingungen befinden sich am Ende der Datei                                              \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\nInformationen   : hive-project.de\nKontakt         : drohne235@googlemail.com\nSystem          : TriOS\nName            : VGA-Text-Treiber 1024x768 Pixel, 128x64 Zeichen\nChip            : Bellatrix\nTyp             : Treiber\nVersion         : 00\nSubversion      : 01\nFunktion        : VGA-Text- und Tastatur-Treiber\nKomponenten     : VGA 1024x768 Tile Driver v0.9   Chip Gracey        MIT\n                  PS/2 Keyboard Driver v1.0.1     Chip Gracey, ogg   MIT\n\nCOG's           : MANAGMENT     1 COG\n                  VGA           2 COG's\n                  KEYB          1 COG\n                  -------------------\n                                4 COG's\n\nLogbuch         :\n\n23-10-2008-dr235  - erste funktionsf\u00e4hige version erstellt\n                  - cursor eingebaut\n06-11-2008-dr235  - keyb auf deutsche zeichenbelegung angepasst (ohne umlaute)\n24-11-2008-dr235  - tab, setcur, pos1, setx, sety, getx, gety, setcol, sline, screeninit\n                    curon, curoff\n                  - beltest\n13-03-2009-dr235  - LF als Zeichencode ausgeblendet\n22-03-2009-dr235  - abfrage f\u00fcr statustasten eingef\u00fcgt\n05-09-2009-dr235  - abfrage der laufenden cogs eingef\u00fcgt\n                  - deutschen tastaturtreiber mit vollst\u00e4ndiger belegung! von ogg eingebunden\n22-03-2010-dr235  - anpassung trios\n01-05-2010-dr235  - scrollup/scrolldown eingebunden & getestet\n03-05-2010-dr235  - settab/getcols/getrows/getresx/getresy eingef\u00fcgt & getestet\n                  - hive-logo eingef\u00fcgt\n\nKommandoliste:\n\n0       1                       Tastaturstatus abfragen\n0       2                       Tastaturzeichen holen\n0       3       n               Screensteuerzeichen\n0       3       0               CLS\n0       3       1               Home\n0       3       2               Backspace\n0       3       3               TAB\n0       3       4   n           SETCUR Cursorzeichen auf n setzen\n0       3       5               POS1\n0       3       6   x           SETX\n0       3       7   y           SETY\n0       3       8  (x)          GETX\n0       3       9  (y)          GETY\n0       3       10  c           SETCOL\n0       3       11  n           SLINE\n0       3       13              SCREENINIT\n0       3       14              CURON\n0       3       15              CUROFF\n0       3       16              SCROLLUP\n0       3       17              SCROLLDOWN\n0       3       18 n0..n7       SETTABS\n0       4       (status)        Status der Sondertasten abfragen\n0       5       x y             Hive-Logo ausgeben\n0       90      cnr (c0) (c1)   Farbregister auslesen\n0       91      cnr c0 c1       Farbregister setzen\n0       92      (res-x)\n0       93      (res-y)         \n0       94      (cols)\n0       95      (rows)\n0       96      (cogs)          Status der belegten COG's abfragen\n0       97      (spez)          Spezifikation abfragen\n0       98      (ver)           Version abfragen\n0       99                      Reboot und neuen Treiber laden\n\n\n1..255                          Zeichenausgabe\n\n\nNotizen:\n- setheader\n\nACHTUNG: row ist nicht die Zeilenposition, da zwei tiles untereinander ein zeichen\nbilden. vielmehr ist die reale zeilenposition row/2.\n\n\n}}",
+      "raw_sha256": "582a48cb42bed3b11289ca33a8c757a396d3b48eb99a6c9b439c0889b014de33",
+      "raw_utf8_length": 4223,
+      "source_provenance": {
+        "source_excerpt_sha256": "82fdeefb45d4964309456739d84bacb10c3e2456e4858a5082f22018dc4b7f26",
+        "source_id": "4dab17b3d77056e5785a4f0ba42bea0e289f3da9"
+      },
+      "syntax_label": "{...}"
+    }
+  ],
+  "schema_version": 5
+}

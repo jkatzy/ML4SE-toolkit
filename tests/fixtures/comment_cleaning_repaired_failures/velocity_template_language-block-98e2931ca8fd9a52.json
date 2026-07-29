@@ -1,0 +1,38 @@
+{
+  "case_id": "velocity_template_language-block-98e2931ca8fd9a52",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "velocity_template_language",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7a2a411b76beef41bacb13506d0cac96a106e159dfcca70ec948205f11b0d7e1",
+      "utf8_length": 182
+    },
+    "manifest_old_output": {
+      "sha256": "2079f15689c13707d5ebeb2bb6f237dcade3d497214c5565e17c1a327bb5a2a9",
+      "utf8_length": 180
+    },
+    "raw_comment": {
+      "sha256": "16a07823cb26f4922c54120991799624cb13bd4c089aae697e0675ac5ac3287f",
+      "utf8_length": 187
+    },
+    "recommended_expected_output": {
+      "sha256": "2079f15689c13707d5ebeb2bb6f237dcade3d497214c5565e17c1a327bb5a2a9",
+      "utf8_length": 180
+    }
+  },
+  "regression": {
+    "expected_output": "$context.result contains the full response of the Elasticsearch query.\nSelect a subset of information or iterate through hits to return the\nsame shape as is expected by this field.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#**\n$context.result contains the full response of the Elasticsearch query.\nSelect a subset of information or iterate through hits to return the\nsame shape as is expected by this field.\n*#"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "36e5c46e1030a91ab43fa25e96a18a978c7b6ec070ce5d70250fbbf9930e21ed",
+    "source_id": "9031e7cde7f4ae6154f6ec5b461d67206c398bfe"
+  },
+  "source_record_sha256": "3e84d46fbf9bff1185775fbf505f908ffcb765d26ec38c4049f6bdfce66cb7ef"
+}

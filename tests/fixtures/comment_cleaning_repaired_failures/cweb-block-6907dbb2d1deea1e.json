@@ -1,0 +1,38 @@
+{
+  "case_id": "cweb-block-6907dbb2d1deea1e",
+  "category": "policy_or_judge_conflict",
+  "cluster": "layout:whitespace_restoration",
+  "disposition": "executable_regression",
+  "language": "cweb",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4ab4cdd3db26e52b960ba49840acee0d35f540869033155f7b5f27875dc4fda0",
+      "utf8_length": 268
+    },
+    "manifest_old_output": {
+      "sha256": "fe3884450ef1065db2757c863b8d8930296f5fc6958bd99aee8e3bf6111b2ed0",
+      "utf8_length": 261
+    },
+    "raw_comment": {
+      "sha256": "3146a9d69a825d67de6cba5a7df3611750de74adc14a7bdf3537de13335b4f67",
+      "utf8_length": 309
+    },
+    "recommended_expected_output": {
+      "sha256": "4ab4cdd3db26e52b960ba49840acee0d35f540869033155f7b5f27875dc4fda0",
+      "utf8_length": 268
+    }
+  },
+  "regression": {
+    "expected_output": " BdaCreateFilterFactory()\n\n Creates a Filter Factory according to pFilterDescriptor.  Keeps a\n reference to pBdaFilterTemplate so that Pin Factories can be dynamically\n created on a Filter created from this Filter Factory.\n\nArguments:\n\n\nReturns:\n\n\n\nSide Effects:  none",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n**  BdaCreateFilterFactory()\n**\n**  Creates a Filter Factory according to pFilterDescriptor.  Keeps a\n**  reference to pBdaFilterTemplate so that Pin Factories can be dynamically\n**  created on a Filter created from this Filter Factory.\n**\n** Arguments:\n**\n**\n** Returns:\n**\n**\n**\n** Side Effects:  none\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fe41148f365c321832b1cb25db15e6dad1c6efa8d0a4b295c64fee5b77820af9",
+    "source_id": "725294833c8d7d436f4196d659b119259a3685dc"
+  },
+  "source_record_sha256": "7eafc89b041eac26eba4d95083970edf9019799b47cb60b9a5f93d80a7a61dc5"
+}

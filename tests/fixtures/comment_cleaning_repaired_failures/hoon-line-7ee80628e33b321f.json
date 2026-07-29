@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-7ee80628e33b321f",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f62e1fd96fccc3d9463f7ff77d821c3e61441ad62dec9b197e572005c6ab92d5",
+      "utf8_length": 19
+    },
+    "manifest_old_output": {
+      "sha256": "ee911cffb128369bfefe4f559111e3b162086cf555ef60a68eb54e6956471a4b",
+      "utf8_length": 15
+    },
+    "raw_comment": {
+      "sha256": "f5255df88573bf36fb204c9f16687f3fb2e0083b262f43c4b956611221038493",
+      "utf8_length": 29
+    },
+    "recommended_expected_output": {
+      "sha256": "ee911cffb128369bfefe4f559111e3b162086cf555ef60a68eb54e6956471a4b",
+      "utf8_length": 15
+    }
+  },
+  "regression": {
+    "expected_output": "/hoon/metal/gen",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::\n::::  /hoon/metal/gen\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "406f8bdbac5fdd54d6b85a86aefe40a453c821f255996759108df00084846f3e",
+    "source_id": "876fa82ff467d72128ccb7b7410f56265503879b"
+  },
+  "source_record_sha256": "ba9a70f4159560aafdc8a8920105b4340cf86d20c87433a1eb7f2807a46bf827"
+}

@@ -1,0 +1,348 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "apostrophe_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "46bbbc625a79dfc593924a5c809a7c6324ef9a2308081a495d41cfe1b49a11d4",
+      "case_id": "vbscript-line-ff502e72c650533d",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "vbscript",
+      "oracle_exception_record_sha256": "e4c68184adc5fff435a626ec7d7b19d2709b01d89f4824a0f70b504b89251d4d",
+      "raw_sha256": "0f1f0d97650c9329038af1fbb78ed9f9e7b59109e7fd130fa0cd2956bfe06bab",
+      "raw_utf8_length": 406,
+      "source_provenance": {
+        "source_excerpt_sha256": "811c3adb171285255a63c561e0465de418105277ff020c4694c1a26184c39369",
+        "source_id": "05f33d3ebb69ca98845a676e0b47f35bcaad9991"
+      },
+      "syntax_label": "'"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "670cde044156610189ab492d3e3b9d7b6bb31f6c5e20aa8074d07f06d6548e56",
+      "case_id": "basic-line-0df996c3ab85cf84",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "teste jogo 1",
+      "expected_cleaned_sha256": "8ed2d97bf8f555e37b91737a9001dc4945645e9074e2883aa93af01912457cdd",
+      "language": "basic",
+      "raw_comment": "  rem teste jogo 1",
+      "raw_sha256": "b84f31cd287b78c9e15cbfd23e8c621a05a6bedbdedd8c7341cb7bd53d6b0216",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "469ca41e7f09c7512b197427c7ba17b5be084cd4de9838f3aea52d0cf61cc077",
+        "source_id": "7a31a3f675bfd1ccf096fe5165b7984d85572a41"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "54cd5c5480d5e7b195d3e8de6872855d2a26144e2572ef0068557e8b74147306",
+      "case_id": "basic-line-0e5b1daa2c7fb38d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$INCLUDE: 'qcumber.fat'",
+      "expected_cleaned_sha256": "5bcaeb72752749645ff85e2d72cdf23b87a5ce0ca90888e4cf3173be355d5b16",
+      "language": "basic",
+      "raw_comment": "REM $INCLUDE: 'qcumber.fat'",
+      "raw_sha256": "54cd5c5480d5e7b195d3e8de6872855d2a26144e2572ef0068557e8b74147306",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "09b12cb2ed93e64a64f2ff466d7d355f9ef5de367a4d36d2a60229969664b724",
+        "source_id": "096dbcb5f295692ecd353eb67b8a52c946b58a77"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "e319673595c1c3af5ede6324fd807beefa1afe016fcd6d8da552f495534610e7",
+      "case_id": "basic-line-188fd8d57e00e900",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$INCLUDE: 'Baswiz.Bi'",
+      "expected_cleaned_sha256": "6e137d9de02ecca2c89ad1c1d19a512a51746ea883216d3c223bf287c4bb49c7",
+      "language": "basic",
+      "raw_comment": "REM $INCLUDE: 'Baswiz.Bi'",
+      "raw_sha256": "e319673595c1c3af5ede6324fd807beefa1afe016fcd6d8da552f495534610e7",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "22fb1e95e1095519e3931560c5b0b45ef7c869ea38c953ffe1b90ddabdd55bcd",
+        "source_id": "3b85857a8e002ec07f09c9af04c04e41660df50b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "bc1c87ac20481bfd073653035cf55836b4b2c9257f8ca3aaf4ac9b39917409ce",
+      "case_id": "basic-line-1a5de3cd99f832c5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "NOBEEP.BAS - TSR that disables the PC speaker from beeping",
+      "expected_cleaned_sha256": "d3b9a506ec7a3498785ba1f643264d3e6d336b16ff367add7c3e209394cfc78e",
+      "language": "basic",
+      "raw_comment": "'********** NOBEEP.BAS - TSR that disables the PC speaker from beeping",
+      "raw_sha256": "ab6a4ca5c6040d24cebba00be971546bc54fe2156f5c833b531e57e6bb0b3653",
+      "raw_utf8_length": 70,
+      "source_provenance": {
+        "source_excerpt_sha256": "c652c0a7a16e9d85d047d3ae1581b5205987d0eb79907a36549525feaece3f57",
+        "source_id": "e148fb677e87b9eec1b8da5fe99775194fd4b0e2"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "9f7c33f2a88a88f90e08ebf0e895507653fb8f55b6b82c61bc71523abcc1b3af",
+      "case_id": "basic-line-76cc08cca1522574",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "STAT2_EX.BAS - Programma esempio per l'istruzione STATIC",
+      "expected_cleaned_sha256": "7c9b8ff6603d1d1bf7db4f67e8be328167d0dc40dc875090250d171ed4127d07",
+      "language": "basic",
+      "raw_comment": "' *** STAT2_EX.BAS - Programma esempio per l'istruzione STATIC\r\n'",
+      "raw_sha256": "35cb1e9c281d44e0c31552b8bbeadcf28b48536a40c4af1856d9f6edc1b698ea",
+      "raw_utf8_length": 65,
+      "source_provenance": {
+        "source_excerpt_sha256": "ce175bb1419a378861fd575b0a4f4e588c018346026d093492cc8bd432379c1f",
+        "source_id": "8af0bd70fb9dc5d73f3c95a43eefb5c98080eead"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "d1bb88ca8d7132b6f384bba93403eb0c10e304eeec6d10eb52b5b8a53beebdd1",
+      "case_id": "basic-line-7ca91a335ca2d4ba",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "GetEquip.Bas - use GetEquip to report one the installed equipment",
+      "expected_cleaned_sha256": "78febddee642bbfeec47f6361374494c5791e0a4178e1f348beb9e679d5992c1",
+      "language": "basic",
+      "raw_comment": "'********** GetEquip.Bas - use GetEquip to report one the installed equipment",
+      "raw_sha256": "3a3d9f4fc437dbcb80ea12f0494af67b476a100ca2a8d6a739e4dda0fd46cdc8",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "3153091220070b4dc9d0cb426063e05ba78331ae6abb0ddabf6b4931d63b3af1",
+        "source_id": "bc4954814a80d0766fd30b3ba65050b4f519be0a"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "cac1cce9cb211db9907991c82475ec6a68f9f45b279a4e689e1dc42e6dca370a",
+      "case_id": "basic-line-8fbc72886036ce50",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PROGRAM  AXISYM2\nAXISYMMETRIC STRESS ANALYSIS\nWITH TEMPERATURE\nT.R.Chandrupatla and A.D.Belegundu",
+      "expected_cleaned_sha256": "15186ac2dda5c4fb29ecacc2b6883f71685c1b07c46b497ae0236764605af850",
+      "language": "basic",
+      "raw_comment": "'****************************************\n     '*          PROGRAM  AXISYM2            *\n     '*    AXISYMMETRIC STRESS ANALYSIS      *\n     '*          WITH TEMPERATURE            *\n     '*  T.R.Chandrupatla and A.D.Belegundu  *\n     '****************************************",
+      "raw_sha256": "1dddd353ce0cf3590fa7f9f7ca51dc3eaf465681f3fe5429d8a9a042896c6cee",
+      "raw_utf8_length": 276,
+      "source_provenance": {
+        "source_excerpt_sha256": "5cb2714bafcf8857f4ca67781041da5c2a9e26197f91e231d11d9226d26cfad2",
+        "source_id": "46ffa137e39673852c71a698dd9a94e1d3cf5173"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "e495c1200d4776e3bf0e3d088a10b9033b3e4a00d601fd8036c80b9d230e91f9",
+      "case_id": "basic-line-b6038018e4d44aae",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PCXLOAD.BAS - This file demostrates loading a file that uses the .PCX\nfile format used in PC Paintbrush",
+      "expected_cleaned_sha256": "68583ce3920c61351ec6f643b48e21d601fe645f20a088caaf038b25457ad188",
+      "language": "basic",
+      "raw_comment": "'***** PCXLOAD.BAS - This file demostrates loading a file that uses the .PCX\n'                    file format used in PC Paintbrush",
+      "raw_sha256": "2b5aaa0c1f63b54f3d29cef63ecaeb378b3b4118ea30152db4e4bb5ad938514b",
+      "raw_utf8_length": 131,
+      "source_provenance": {
+        "source_excerpt_sha256": "7e38c7ad6573933d26e809b2ddecd43bbf6db91fd81e1a3e4f77fa643aeb1fab",
+        "source_id": "d3ccbb64f26029bb03942c15d7d7297e190274c7"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "7d6b5e11fd987ef561f9dcc5c75b90ffecf12f22f18e8a56aa513b9f062d632c",
+      "case_id": "vbscript-line-41092638676dca51",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[path=\\Projects\\Project Ar\\Project Browser Package Group]\n[group=Project Browser Package Group]",
+      "expected_cleaned_sha256": "b59b13cf635c82b02cacea932b936b20f9c3a075882cd561375cdeee32bef24f",
+      "language": "vbscript",
+      "raw_comment": "'[path=\\Projects\\Project Ar\\Project Browser Package Group]\n'[group=Project Browser Package Group]",
+      "raw_sha256": "d2c148bb1f4da5aae0f08431a6457a9b49f7c72dcebc2f18b984917582f62618",
+      "raw_utf8_length": 97,
+      "source_provenance": {
+        "source_excerpt_sha256": "fae3cbf149d2067f3cd48b6fc752f2ae8de534457babc0b20106f3d139939902",
+        "source_id": "412d34c340bf0086231f73f19dbe6bf5e32e6a24"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "0f6696a6e6d6b2a40614d8f6d9696d9243966b2471e656dc19ce46bbecaf4481",
+      "case_id": "vbscript-line-9af5cf13ccec40b2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[path=\\Projects\\Project A\\Reports and exports]\n[group=Reports and exports]",
+      "expected_cleaned_sha256": "c7ff9db205542599c81acfcf7c1b2c395dd9eba526bc3cd512d4ecc65723bd06",
+      "language": "vbscript",
+      "raw_comment": "'[path=\\Projects\\Project A\\Reports and exports]\n'[group=Reports and exports]",
+      "raw_sha256": "d95950835777d3c877ce9fde936742d51a365293405bdf0deaa2c40d1e8672ee",
+      "raw_utf8_length": 76,
+      "source_provenance": {
+        "source_excerpt_sha256": "dd05aa1fff8a55d8054446cf570811239c6d80e61a6396eb700c83a0faa6b6f8",
+        "source_id": "1f73743ea2e5a817f30d51bc1c11fecaac24d1dd"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "068d53487e9e63c22a104d6011a4d9f0e2666f82bb46e8716cb93fd2f9d273a0",
+      "case_id": "vbscript-line-a91892f9aea5c4fb",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "1.2 Global \ubcc0\uc218/\uc0c1\uc218 \uc120\uc5b8\n1. Constant\ub294 \ubc18\ub4dc\uc2dc \ub300\ubb38\uc790 \ud45c\uae30.",
+      "expected_cleaned_sha256": "cfa030b8cdca137789f6f599ea5885cdf340c7ffbddaa758f112478bd392dcd0",
+      "language": "vbscript",
+      "raw_comment": "'******************************************  1.2 Global \ubcc0\uc218/\uc0c1\uc218 \uc120\uc5b8  ***********************************\n'\t1. Constant\ub294 \ubc18\ub4dc\uc2dc \ub300\ubb38\uc790 \ud45c\uae30.\n'**********************************************************************************************************",
+      "raw_sha256": "ce63850a015024cb28be24d56a7d77ac54594dc4ef6d47af1e1abad8a6052fe1",
+      "raw_utf8_length": 266,
+      "source_provenance": {
+        "source_excerpt_sha256": "17908558f02a7fe87a16ea3e989db4262f94f9652047a2820345af6b7b86bc65",
+        "source_id": "8e414ae2a55aada5235cce10616e24cc3036d015"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "b353028da4238cec3aee874be73f316d5e15c6e8f7daab50ce34ce4e2996461e",
+      "case_id": "vbscript-line-c5f83a344a32aeb0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "[path=\\Projects\\Project K\\KING Scripts]\n[group=KING Scripts]",
+      "expected_cleaned_sha256": "2919f36c6c69b906cad62293f1914dfce2b12898858060aba47dcf604a301e30",
+      "language": "vbscript",
+      "raw_comment": "'[path=\\Projects\\Project K\\KING Scripts]\n'[group=KING Scripts]",
+      "raw_sha256": "7f5bb1e36e71d09e169609aa869b4cd55dc96ee4d57b24ee3596b0ad8b9f1ff4",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "15e8c279e23587bdf741e24dd2d7142c10b0d9e8a18261cb6750aaeb7b5541df",
+        "source_id": "346b9853ce0fadf2697b4367a0cfaf05b6cf149f"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "0654b4148eba6d0fc65f50a1f7334087dc29dc256940f81f9d44d88724d2bc22",
+      "case_id": "vbscript-line-e314cb4ed92caeac",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Engineering",
+      "expected_cleaned_sha256": "729bb48d0f86a9e240a9839bf8c50f62f7ed973338514432666cf53c5d30c9ca",
+      "language": "vbscript",
+      "raw_comment": "REM Engineering",
+      "raw_sha256": "0654b4148eba6d0fc65f50a1f7334087dc29dc256940f81f9d44d88724d2bc22",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "11bc92502e65b747bd699a0b652550afb904841ffa4286b4d76221ed0ce0ada6",
+        "source_id": "157a4b353d521a923e864cdc9817469e402670e1"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "7c543c62c26f5a38c529b2f5a1dbd0b9966f87a182ba3def78f3788c174b8c22",
+      "case_id": "visual_basic-line-2e93337631719015",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This program and the accompanying materials are made available under the\nterms of the Apache License, Version 2.0 which is available at\nhttps://www.apache.org/licenses/LICENSE-2.0.\n\nSee the NOTICE file distributed with this work for additional\ninformation regarding copyright ownership.\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\nWARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\nLicense for the specific language governing permissions and limitations\nunder the License.\n\nSPDX-License-Identifier: Apache-2.0",
+      "expected_cleaned_sha256": "2b6ae65a4e3c7bb08b839c57e2da6b09e9638928a8b82950a711bf715ec7974a",
+      "language": "visual_basic",
+      "raw_comment": "'\n' *  ******************************************************************************\n' *  *\n' *  *\n' *  * This program and the accompanying materials are made available under the\n' *  * terms of the Apache License, Version 2.0 which is available at\n' *  * https://www.apache.org/licenses/LICENSE-2.0.\n' *  *\n' *  *  See the NOTICE file distributed with this work for additional\n' *  *  information regarding copyright ownership.\n' *  * Unless required by applicable law or agreed to in writing, software\n' *  * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n' *  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n' *  * License for the specific language governing permissions and limitations\n' *  * under the License.\n' *  *\n' *  * SPDX-License-Identifier: Apache-2.0\n' *  *****************************************************************************\n' ",
+      "raw_sha256": "ac9bfe4af6e471146aa91865586d767958615fbaf7337f4afbe662a1bdac8891",
+      "raw_utf8_length": 906,
+      "source_provenance": {
+        "source_excerpt_sha256": "7b970ec39429e2b8cd4bedb94bb16272a616492ff6d7b37c8062f02320ea1f27",
+        "source_id": "4f5eec17fc7a1c87a288280cfdc12d34874e4c96"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "6faef8c6b7924f9570e42962f9afe8604ab1900382c819bf074a2e4ef791a63c",
+      "case_id": "visual_basic-line-43bd0fd14d458bd6",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Aptify e-Business 5.5.1, July 2013\nDeveloper              Date Created/Modified               Summary\nRajesh Kardile           04/09/2014                checking if Product Category is Training Ticket or not\nGovind Mande             05/22/2015                Payment as per Order Line\nGovind  Mande            06/25/2015                Added code for staged payment",
+      "expected_cleaned_sha256": "d9b020fe7d52dbe4b923ca14868841f6068bdc3cfd4c167bf2bbaf4afbfe1aca",
+      "language": "visual_basic",
+      "raw_comment": "'Aptify e-Business 5.5.1, July 2013\n''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''\n'Developer              Date Created/Modified               Summary\n'Rajesh Kardile           04/09/2014                checking if Product Category is Training Ticket or not\n'Govind Mande             05/22/2015                Payment as per Order Line\n'Govind  Mande            06/25/2015                Added code for staged payment \n''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
+      "raw_sha256": "0a675b524487a3be71a13252f96f695f334707e24f0c9d28e711ab223e8120ba",
+      "raw_utf8_length": 721,
+      "source_provenance": {
+        "source_excerpt_sha256": "817cca4478c0b4220482bdd95be71be88656faa4ece80ae7b2bd9b3db2933e45",
+        "source_id": "7b0b940c9a6d2be1e690ef3310ec02744f250395"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "7c543c62c26f5a38c529b2f5a1dbd0b9966f87a182ba3def78f3788c174b8c22",
+      "case_id": "visual_basic-line-57789caa34832e63",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This program and the accompanying materials are made available under the\nterms of the Apache License, Version 2.0 which is available at\nhttps://www.apache.org/licenses/LICENSE-2.0.\n\nSee the NOTICE file distributed with this work for additional\ninformation regarding copyright ownership.\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\nWARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\nLicense for the specific language governing permissions and limitations\nunder the License.\n\nSPDX-License-Identifier: Apache-2.0",
+      "expected_cleaned_sha256": "2b6ae65a4e3c7bb08b839c57e2da6b09e9638928a8b82950a711bf715ec7974a",
+      "language": "visual_basic",
+      "raw_comment": "'\n' *  ******************************************************************************\n' *  *\n' *  *\n' *  * This program and the accompanying materials are made available under the\n' *  * terms of the Apache License, Version 2.0 which is available at\n' *  * https://www.apache.org/licenses/LICENSE-2.0.\n' *  *\n' *  *  See the NOTICE file distributed with this work for additional\n' *  *  information regarding copyright ownership.\n' *  * Unless required by applicable law or agreed to in writing, software\n' *  * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n' *  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n' *  * License for the specific language governing permissions and limitations\n' *  * under the License.\n' *  *\n' *  * SPDX-License-Identifier: Apache-2.0\n' *  *****************************************************************************\n' ",
+      "raw_sha256": "ac9bfe4af6e471146aa91865586d767958615fbaf7337f4afbe662a1bdac8891",
+      "raw_utf8_length": 906,
+      "source_provenance": {
+        "source_excerpt_sha256": "4f592e445e24c6d428f7b54c0cf0cf403a1901f284b6d99291e4de05380fd679",
+        "source_id": "84477da9996ab40358ba1bd2798b4462f0fcd25b"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "7c543c62c26f5a38c529b2f5a1dbd0b9966f87a182ba3def78f3788c174b8c22",
+      "case_id": "visual_basic_net-line-0af40e0a6f69bdb4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This program and the accompanying materials are made available under the\nterms of the Apache License, Version 2.0 which is available at\nhttps://www.apache.org/licenses/LICENSE-2.0.\n\nSee the NOTICE file distributed with this work for additional\ninformation regarding copyright ownership.\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\nWARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\nLicense for the specific language governing permissions and limitations\nunder the License.\n\nSPDX-License-Identifier: Apache-2.0",
+      "expected_cleaned_sha256": "2b6ae65a4e3c7bb08b839c57e2da6b09e9638928a8b82950a711bf715ec7974a",
+      "language": "visual_basic_net",
+      "raw_comment": "'\n' *  ******************************************************************************\n' *  *\n' *  *\n' *  * This program and the accompanying materials are made available under the\n' *  * terms of the Apache License, Version 2.0 which is available at\n' *  * https://www.apache.org/licenses/LICENSE-2.0.\n' *  *\n' *  *  See the NOTICE file distributed with this work for additional\n' *  *  information regarding copyright ownership.\n' *  * Unless required by applicable law or agreed to in writing, software\n' *  * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n' *  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n' *  * License for the specific language governing permissions and limitations\n' *  * under the License.\n' *  *\n' *  * SPDX-License-Identifier: Apache-2.0\n' *  *****************************************************************************\n' ",
+      "raw_sha256": "ac9bfe4af6e471146aa91865586d767958615fbaf7337f4afbe662a1bdac8891",
+      "raw_utf8_length": 906,
+      "source_provenance": {
+        "source_excerpt_sha256": "4f592e445e24c6d428f7b54c0cf0cf403a1901f284b6d99291e4de05380fd679",
+        "source_id": "84477da9996ab40358ba1bd2798b4462f0fcd25b"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "7c543c62c26f5a38c529b2f5a1dbd0b9966f87a182ba3def78f3788c174b8c22",
+      "case_id": "visual_basic_net-line-54043eb692eb46ed",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This program and the accompanying materials are made available under the\nterms of the Apache License, Version 2.0 which is available at\nhttps://www.apache.org/licenses/LICENSE-2.0.\n\nSee the NOTICE file distributed with this work for additional\ninformation regarding copyright ownership.\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\nWARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\nLicense for the specific language governing permissions and limitations\nunder the License.\n\nSPDX-License-Identifier: Apache-2.0",
+      "expected_cleaned_sha256": "2b6ae65a4e3c7bb08b839c57e2da6b09e9638928a8b82950a711bf715ec7974a",
+      "language": "visual_basic_net",
+      "raw_comment": "'\n' *  ******************************************************************************\n' *  *\n' *  *\n' *  * This program and the accompanying materials are made available under the\n' *  * terms of the Apache License, Version 2.0 which is available at\n' *  * https://www.apache.org/licenses/LICENSE-2.0.\n' *  *\n' *  *  See the NOTICE file distributed with this work for additional\n' *  *  information regarding copyright ownership.\n' *  * Unless required by applicable law or agreed to in writing, software\n' *  * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n' *  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n' *  * License for the specific language governing permissions and limitations\n' *  * under the License.\n' *  *\n' *  * SPDX-License-Identifier: Apache-2.0\n' *  *****************************************************************************\n' ",
+      "raw_sha256": "ac9bfe4af6e471146aa91865586d767958615fbaf7337f4afbe662a1bdac8891",
+      "raw_utf8_length": 906,
+      "source_provenance": {
+        "source_excerpt_sha256": "7b970ec39429e2b8cd4bedb94bb16272a616492ff6d7b37c8062f02320ea1f27",
+        "source_id": "4f5eec17fc7a1c87a288280cfdc12d34874e4c96"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "6faef8c6b7924f9570e42962f9afe8604ab1900382c819bf074a2e4ef791a63c",
+      "case_id": "visual_basic_net-line-fc32bfb6a6adfd86",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Aptify e-Business 5.5.1, July 2013\nDeveloper              Date Created/Modified               Summary\nRajesh Kardile           04/09/2014                checking if Product Category is Training Ticket or not\nGovind Mande             05/22/2015                Payment as per Order Line\nGovind  Mande            06/25/2015                Added code for staged payment",
+      "expected_cleaned_sha256": "d9b020fe7d52dbe4b923ca14868841f6068bdc3cfd4c167bf2bbaf4afbfe1aca",
+      "language": "visual_basic_net",
+      "raw_comment": "'Aptify e-Business 5.5.1, July 2013\n''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''\n'Developer              Date Created/Modified               Summary\n'Rajesh Kardile           04/09/2014                checking if Product Category is Training Ticket or not\n'Govind Mande             05/22/2015                Payment as per Order Line\n'Govind  Mande            06/25/2015                Added code for staged payment \n''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''",
+      "raw_sha256": "0a675b524487a3be71a13252f96f695f334707e24f0c9d28e711ab223e8120ba",
+      "raw_utf8_length": 721,
+      "source_provenance": {
+        "source_excerpt_sha256": "817cca4478c0b4220482bdd95be71be88656faa4ece80ae7b2bd9b3db2933e45",
+        "source_id": "7b0b940c9a6d2be1e690ef3310ec02744f250395"
+      },
+      "syntax_label": "'"
+    }
+  ],
+  "schema_version": 5
+}

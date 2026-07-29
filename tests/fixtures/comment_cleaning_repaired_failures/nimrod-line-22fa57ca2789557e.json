@@ -1,0 +1,38 @@
+{
+  "case_id": "nimrod-line-22fa57ca2789557e",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "nimrod",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "64ab8dcea3fb810e2448a4d7bf3c3281a3aaeee96e8641457d4ba8e8a070b218",
+      "utf8_length": 41
+    },
+    "manifest_old_output": {
+      "sha256": "2fd3e417fb79c87849e380ba9482d73bbfbcd857069b439a7d1b9096b6f33288",
+      "utf8_length": 37
+    },
+    "raw_comment": {
+      "sha256": "7a998c7eddd5fa04fe6464b0d7260b200d87c6bd5e27a968e716e8ce7b68cce4",
+      "utf8_length": 44
+    },
+    "recommended_expected_output": {
+      "sha256": "2fd3e417fb79c87849e380ba9482d73bbfbcd857069b439a7d1b9096b6f33288",
+      "utf8_length": 37
+    }
+  },
+  "regression": {
+    "expected_output": "Has to be compiled with\n'-d:ssl' flag",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "## Has to be compiled with \n## '-d:ssl' flag"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7354a430e0d040e076c4719b2f864080b49cc50e6fd6dfaf012f5e24f94e209a",
+    "source_id": "822e5d3a145ba8b7468038cf9e155280b3ea5b83"
+  },
+  "source_record_sha256": "dd09847555a8a53b372e19e514b50fcc9258a0a4d3af311a59a9d9684d764e8e"
+}

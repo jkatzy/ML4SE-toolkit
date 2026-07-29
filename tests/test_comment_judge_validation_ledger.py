@@ -10,9 +10,7 @@ import pytest
 
 def load_module():
     script_path = (
-        Path(__file__).resolve().parents[1]
-        / "scripts"
-        / "comment_judge_validation_ledger.py"
+        Path(__file__).resolve().parents[1] / "scripts" / "comment_judge_validation_ledger.py"
     )
     spec = importlib.util.spec_from_file_location("comment_judge_validation_ledger", script_path)
     assert spec is not None
@@ -51,6 +49,7 @@ def test_ledger_round_trips_markdown_json_payload(tmp_path: Path) -> None:
     assert ledger.LEDGER_START in text
     assert "## Passed Coverage" in text
     assert "python" in text
+    assert entry.scope == ledger.COMBINED_SCOPE
     assert loaded == [entry]
 
 
@@ -85,6 +84,57 @@ def test_upsert_replaces_same_language_kind_and_fingerprint(tmp_path: Path) -> N
     assert entries[0].status == ledger.FAILED
     assert entries[0].report == "tmp/reports/failure.md"
     assert "[failure.md](tmp/reports/failure.md)" in path.read_text(encoding="utf-8")
+
+
+def test_ledger_keeps_combined_and_cleaning_scopes_separate(tmp_path: Path) -> None:
+    path = tmp_path / "ledger.md"
+    version = ledger.CodeVersion("abc", "f" * 64, ("src/example.py",))
+    combined = ledger.build_entry(
+        language="python",
+        comment_kind="line",
+        status=ledger.PASSED,
+        cases=2,
+        version=version,
+        judge_model="codex-default",
+        scope=ledger.COMBINED_SCOPE,
+        case_ids=("case-1", "case-2"),
+    )
+    cleaning = ledger.build_entry(
+        language="python",
+        comment_kind="line",
+        status=ledger.FAILED,
+        cases=2,
+        version=version,
+        judge_model="codex-default",
+        scope=ledger.CLEANING_SCOPE,
+        case_ids=("case-1",),
+    )
+
+    ledger.upsert_entry(path, combined)
+    ledger.upsert_entry(path, cleaning)
+
+    entries = ledger.load_entries(path)
+    assert len(entries) == 2
+    assert (
+        ledger.find_entry(
+            entries,
+            language="python",
+            comment_kind="line",
+            code_fingerprint=version.fingerprint,
+            scope=ledger.COMBINED_SCOPE,
+        )
+        == combined
+    )
+    assert (
+        ledger.find_entry(
+            entries,
+            language="python",
+            comment_kind="line",
+            code_fingerprint=version.fingerprint,
+            scope=ledger.CLEANING_SCOPE,
+        )
+        == cleaning
+    )
 
 
 def test_clear_entries_resets_ledger_payload(tmp_path: Path) -> None:

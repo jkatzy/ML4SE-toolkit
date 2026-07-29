@@ -1,0 +1,38 @@
+{
+  "case_id": "kakounescript-line-eaf551023282ef87",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u2500",
+  "disposition": "executable_regression",
+  "language": "kakounescript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "050eaf133bf2f9180e48b45b1aa4e2e9cc923ce6f5218f0ffbc232f86acae192",
+      "utf8_length": 37
+    },
+    "manifest_old_output": {
+      "sha256": "907dec94e761f5ce9f2b58d83b19ce820d73306a20a38ae566d2ddbe129c6774",
+      "utf8_length": 9
+    },
+    "raw_comment": {
+      "sha256": "020e9da0405bb1db17b284ad10a3d230c45af4321c645127ecfdb9ea194a2172",
+      "utf8_length": 41
+    },
+    "recommended_expected_output": {
+      "sha256": "907dec94e761f5ce9f2b58d83b19ce820d73306a20a38ae566d2ddbe129c6774",
+      "utf8_length": 9
+    }
+  },
+  "regression": {
+    "expected_output": "Move mode",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Move mode\n# \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "95664b2e841d021a1e0657ca1e3276c13bc4fcce024c6909bb6d91932fe1cf37",
+    "source_id": "f33b39bb6a2124f159ff9c2601632bd480d4e54a"
+  },
+  "source_record_sha256": "ad9c964bb1e32df95ae9c7c3f51e4ae858352a9a6202508aae6ba3ebb391ef86"
+}

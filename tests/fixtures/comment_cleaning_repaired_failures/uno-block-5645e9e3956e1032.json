@@ -1,0 +1,38 @@
+{
+  "case_id": "uno-block-5645e9e3956e1032",
+  "category": "policy_or_judge_conflict",
+  "cluster": "layout:whitespace_restoration",
+  "disposition": "executable_regression",
+  "language": "uno",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "1711dab7de58c81e44bd30004257052719acb0df5bfb1636cacd982ccf26ef76",
+      "utf8_length": 158
+    },
+    "manifest_old_output": {
+      "sha256": "b6a58303e4bd7c171c22ffb50785b8a571bcae56f39ff82a8d09e1e6b69b1d2c",
+      "utf8_length": 155
+    },
+    "raw_comment": {
+      "sha256": "d0b0e7d9167e6f4604ca5b63392c4a7f905ff9a92465dce1810af4327be7854c",
+      "utf8_length": 164
+    },
+    "recommended_expected_output": {
+      "sha256": "1711dab7de58c81e44bd30004257052719acb0df5bfb1636cacd982ccf26ef76",
+      "utf8_length": 158
+    }
+  },
+  "regression": {
+    "expected_output": "The Computer Language Benchmarks Game\n   http://benchmarksgame.alioth.debian.org/\n\n   contributed by Isaac Gouy\n   optimizations by Alp Toker <alp@atoker.com>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/* The Computer Language Benchmarks Game\n   http://benchmarksgame.alioth.debian.org/\n\n   contributed by Isaac Gouy\n   optimizations by Alp Toker <alp@atoker.com>\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "fb6dbfb8d5d01e8575aa6bf444257a74f422de3da24434d1d2be1417907f55bf",
+    "source_id": "cff13633a416ab0a978c0a57fd2c47921e518244"
+  },
+  "source_record_sha256": "4b4c4e1cee25a96814718637eb9c4a14b09b223be1d5149020b877c44ec9e8f4"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "glsl-line-80d1dac49fa61175",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "glsl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "53bfa7fc6840763e80695d4e92327ed049f9d4fe5cea22e7bde0801fc0ac20e1",
+      "utf8_length": 25
+    },
+    "manifest_old_output": {
+      "sha256": "bce7655a50c51faf37f2c2cfb0e670b8adcb3d8455f95770e0813d7bd37eedf0",
+      "utf8_length": 24
+    },
+    "raw_comment": {
+      "sha256": "46f7a1882238af9fcc38313d3bb51e91e7f96850b4c9183ec0454c3bf968f442",
+      "utf8_length": 28
+    },
+    "recommended_expected_output": {
+      "sha256": "bce7655a50c51faf37f2c2cfb0e670b8adcb3d8455f95770e0813d7bd37eedf0",
+      "utf8_length": 24
+    }
+  },
+  "regression": {
+    "expected_output": "Water Shader // Fragment",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "////Water Shader // Fragment"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "9bddf50d9cd52dc969a157d1629969befa823a67bc1342f771546bac1735057e",
+    "source_id": "4e578858f72f3c23aa8de507d43b24a868bf3585"
+  },
+  "source_record_sha256": "aa458df4c42604170a8f3d3a06bdba419e431a677a5098c877db3d23dca5ea9e"
+}

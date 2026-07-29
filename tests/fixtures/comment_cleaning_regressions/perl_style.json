@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "perl_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "545ae65bc15bc0f45d974b2e401033eab7a6edb566e7aec9fcba514f154196da",
+      "case_id": "perl-block-82516e530dbf5ef9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%DB:\n\n$jobid = {\n          'params' => {\n                        'SRCFILE' => 'test_file.fasta',\n                        'DESTINATIONDB' => 'fake_db',\n                        'CONFIG' => {\n                                      'numSeqsPerJob' => '300'\n                                    },\n                        'PATHS' => {\n                                     'base' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect',\n                                     'source' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect'\n                                   }\n                      },\n          'split_source_files' => {\n                                    'C:\\\\ <path & filename> .fa' => {\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'pipe_job_id' => '1',\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'path' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect',\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'jobStatus' => 'incomplete',\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'machine' => 'machine1'\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t       },\n                                  },\n          'machine' => 'machine1',\n          'overall_status' => 'incomplete',\n          'working_dir' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect\\\\20060727_test_file.fasta_fake_db',\n          'job_id' => '1'\n        };",
+      "expected_cleaned_sha256": "63253e4d16134b290e47029b6bd6d9e85a3773855f2deab0d03680c1814539be",
+      "language": "perl",
+      "raw_comment": "=pod\n\n%DB:\n\n$jobid = {\n          'params' => {\n                        'SRCFILE' => 'test_file.fasta',\n                        'DESTINATIONDB' => 'fake_db',\n                        'CONFIG' => {\n                                      'numSeqsPerJob' => '300'\n                                    },\n                        'PATHS' => {\n                                     'base' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect',\n                                     'source' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect'\n                                   }\n                      },\n          'split_source_files' => {\n                                    'C:\\\\ <path & filename> .fa' => {\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'pipe_job_id' => '1',\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'path' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect',\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'jobStatus' => 'incomplete',\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t         'machine' => 'machine1'\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t       },\n                                  },\n          'machine' => 'machine1',\n          'overall_status' => 'incomplete',\n          'working_dir' => 'C:\\\\Bob\\\\perlcode\\\\modules\\\\GeneConnect\\\\20060727_test_file.fasta_fake_db',\n          'job_id' => '1'\n        };\n\n=cut",
+      "raw_sha256": "d53e560eccaab86b114143620fe4672ce09ae8e8dd18c2674507866b1e99f7f3",
+      "raw_utf8_length": 1199,
+      "source_provenance": {
+        "source_excerpt_sha256": "3de325760be51a124110ed76c76c949b07c62f6b5f722b5650dc152bd45c9281",
+        "source_id": "33b60f3517748d0ff95c0fc122157f2bb4fe9740"
+      },
+      "syntax_label": "=pod...=cut"
+    }
+  ],
+  "schema_version": 5
+}

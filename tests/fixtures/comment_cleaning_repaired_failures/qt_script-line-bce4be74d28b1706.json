@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-bce4be74d28b1706",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "235190a20217bfe1daf11b2e6a59d8c84e1fa25835c370546c5175b2ab6ccf9a",
+      "utf8_length": 18
+    },
+    "manifest_old_output": {
+      "sha256": "a7b8552328456323a7cdc9eee0ca911bc63c358bd081807f4190084074dd457e",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "a253dd3583cc4e6d335bf23ffd04b93768aa8eba896c1f2985fa843e13201346",
+      "utf8_length": 131
+    },
+    "recommended_expected_output": {
+      "sha256": "a7b8552328456323a7cdc9eee0ca911bc63c358bd081807f4190084074dd457e",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "JASPERPLUGIN_TPV",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// JASPERPLUGIN_TPV ///////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b23b4a3e29f6e71219f9db36e92ebc893bc2b8ba48bc38101c1dd5ee5a896d73",
+    "source_id": "f57b88e84b4bee7561eed09f12dfc0f91f867085"
+  },
+  "source_record_sha256": "57732c3199c6d5c2c8bfee6a204392ffdd2250018ab3898113c19de5fe9f5f4a"
+}

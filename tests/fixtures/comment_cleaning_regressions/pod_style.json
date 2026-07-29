@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "pod_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "82c63810fa389cbdf784f8db0a8a938cbed111b69632b308ed2e8bf0d6369a76",
+      "case_id": "pod-block-32c21d6889d7adcc",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "RETURN VALUES doesn't make sense for a manual that only\ndescribes a type, but document checkers still want that section, and\nto have more than just the section title.\n\n=head1 RETURN VALUES\n\ntxt",
+      "expected_cleaned_sha256": "1d2336d3bedc3ef4b71c05cfdf470c178dc7ba214102f2249dd074d5ffa7b7d5",
+      "language": "pod",
+      "raw_comment": "=begin comment RETURN VALUES doesn't make sense for a manual that only\ndescribes a type, but document checkers still want that section, and\nto have more than just the section title.\n\n=head1 RETURN VALUES\n\ntxt\n\n=end comment",
+      "raw_sha256": "2ddb9e5bc02c88d381f7240e57e71e06f1c0a8f2f55e7943d3785d959c547d12",
+      "raw_utf8_length": 222,
+      "source_provenance": {
+        "source_excerpt_sha256": "2049ee73c3bd7f902b8c8ab7f5431ce27733310962284f57bab448bff58a5852",
+        "source_id": "7e55aec957f63bad0ea0c6229c867986396ec005"
+      },
+      "syntax_label": "=begin comment...=end comment"
+    }
+  ],
+  "schema_version": 5
+}

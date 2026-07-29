@@ -1,0 +1,858 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "texinfo_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "017be466038afb55db423b8aa6765721291ef781a8afd87c6f4cdda8e487a383",
+      "case_id": "texinfo-directive-069c2e286c012de4",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@subsection Hooks for debug messages",
+      "expected_cleaned_sha256": "43ab17aa72f28f91c184e5100cd6a4293ef2bb9f72420fc4cd20c3f259ce6df3",
+      "language": "texinfo",
+      "raw_comment": "@c @subsection Hooks for debug messages",
+      "raw_sha256": "017be466038afb55db423b8aa6765721291ef781a8afd87c6f4cdda8e487a383",
+      "raw_utf8_length": 39,
+      "source_provenance": {
+        "source_excerpt_sha256": "d4406deace8f4dd73021204995a1752fdeaa92ad26542c8611c4675c4c9fbee6",
+        "source_id": "ab8261590317b9941d5e7a4fc5efc94f9014bacb"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-092bc56a4ca1b537",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "d3ee9b04d97baa57deafe7b4dcfa55d2c19f806ffcfde2690e1040c267dca831",
+        "source_id": "60502d6190ae9279f9876923be007c2f6fc0a27c"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "case_id": "texinfo-directive-1a0f3364852a30e9",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "eof",
+      "expected_cleaned_sha256": "22988607ff895660da293b4da1b2028cae8605fb65b3906c00ddec54b5c9c3ab",
+      "language": "texinfo",
+      "raw_comment": "@c eof",
+      "raw_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "5b0321fd7bd0112131da56f3b706417551ea983c727de3fbde23b3576c57e55f",
+        "source_id": "98eef43bb52a8dd37ca491f91e45b054418764c1"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "7dc47cdcc0cc11583bab1536a2c4f61a93f4df851d190fbc6b80109d0cb4de0e",
+      "case_id": "texinfo-directive-1a5ea82b0e9e0cde",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "man begin DESCRIPTION",
+      "expected_cleaned_sha256": "a4026295529b7c87289b4ab71c6f872528c8cc21b7a801d929750ccb65f4f1c8",
+      "language": "texinfo",
+      "raw_comment": "@c man begin DESCRIPTION",
+      "raw_sha256": "7dc47cdcc0cc11583bab1536a2c4f61a93f4df851d190fbc6b80109d0cb4de0e",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "7afc1f5a49ad6ab5b4aaaf3d507e23e9e6f00341e357a0cb27eff8203a5ff2bd",
+        "source_id": "fccb97dabc128ef8558cffbc9436783c647b25a0"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-27604ecf98848a78",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "39c5b24663b28ebb73c2c096f95b42c8cdcd4f3b66ebf87f37342399cfe0d97b",
+        "source_id": "cea01a5045150aa8d5753a7e319ab359c07ed7ec"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "56fdaaa5e454d15da99d10adef9762096369dd59b84d2d522f5f1758800e44b4",
+      "case_id": "texinfo-directive-2e3ecbf05617cc65",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 1999-2022 Free Software Foundation, Inc.",
+      "expected_cleaned_sha256": "11572906d815d17671c8c3b66b94b2890e5b2c755428813acd792973d76d280e",
+      "language": "texinfo",
+      "raw_comment": "@c Copyright (C) 1999-2022 Free Software Foundation, Inc.",
+      "raw_sha256": "56fdaaa5e454d15da99d10adef9762096369dd59b84d2d522f5f1758800e44b4",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "31dae99690b55c9b33b29ddfa05666d6f7c73db6584119179176bc3da585a8a3",
+        "source_id": "bce66ba92421e2d031cd2ad1df7a3c74236beb75"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "case_id": "texinfo-directive-2eefd649b6aa6e3e",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*-texinfo-*-",
+      "expected_cleaned_sha256": "1ae1f69af192ab49750dda004efd89741699df68682586eb0cd975b6947bd5e7",
+      "language": "texinfo",
+      "raw_comment": "@c -*-texinfo-*-",
+      "raw_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "12a94d050267975b9181da9aa00641f9eea815a1b6d714d63f88183d81ae5c07",
+        "source_id": "645173aa487e096a52072684ff407d1ebfc9a000"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "3040425f8758c7b6bb452a9f90da6b8b493c3ebc78cae220d309cabde2f975fa",
+      "case_id": "texinfo-directive-3074e820c1e6ff9d",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file is meant to be included other texinfo file",
+      "expected_cleaned_sha256": "4d5831d14bd6195de0583106000f783614340d456ec7e90d58468eaa7c082a55",
+      "language": "texinfo",
+      "raw_comment": "@c This file is meant to be included other texinfo file",
+      "raw_sha256": "3040425f8758c7b6bb452a9f90da6b8b493c3ebc78cae220d309cabde2f975fa",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "acaa8bf674cd984d94e2ba532b92fa3abecdb9051c4d1631737a5a81df270aaa",
+        "source_id": "c60fa5b28c8ef18b1c4b613b56e9a3017c3f1afe"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a7893af53058b16be54827092f7a6189f991ba194e111262abfe5bab4850b8bb",
+      "case_id": "texinfo-directive-3e9856f06c748064",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: whatis.texi,v 1.2 2008/03/22 08:37:00 mlelstv Exp $",
+      "expected_cleaned_sha256": "aa245d2d2e90c168f0ca57dfe51c58ec2b5f7fe6ab4ef5ba5fe2d70db40dc828",
+      "language": "texinfo",
+      "raw_comment": "@c $Id: whatis.texi,v 1.2 2008/03/22 08:37:00 mlelstv Exp $",
+      "raw_sha256": "a7893af53058b16be54827092f7a6189f991ba194e111262abfe5bab4850b8bb",
+      "raw_utf8_length": 59,
+      "source_provenance": {
+        "source_excerpt_sha256": "31d0c75289c48e1746bf492cf26072836a490749785ae1c0c9f8cdc953455a37",
+        "source_id": "22564a910d44399825b3d1ce54ae7c88db81a63c"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-413606fc19a3383c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "c1a15690bc874b0f10d43bbbc15496253093421f3a0e713d04e8dbb4cbb39d22",
+        "source_id": "0095c3aa12130fd369d6d30826b8b12758160db3"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "case_id": "texinfo-directive-414d2f6ca7db92be",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "eof",
+      "expected_cleaned_sha256": "22988607ff895660da293b4da1b2028cae8605fb65b3906c00ddec54b5c9c3ab",
+      "language": "texinfo",
+      "raw_comment": "@c eof",
+      "raw_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "e7c423d3aa6137800ae4c8c85af089f873e67bb56c3e8243b29128a2ec4f95e3",
+        "source_id": "61452bc2879787444f28c1dd3a51712f03178ab9"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "3f0e472641ed039d01af5c8e7a7cb9e6133892fb3e37f833cdca7dcb78b59976",
+      "case_id": "texinfo-directive-52db9df4f54bc54a",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This is part of the Emacs manual.",
+      "expected_cleaned_sha256": "24c6f6ab6b9a8a4f7d1c01387943eccf37580d3a3ee22e33e01e672789a4780d",
+      "language": "texinfo",
+      "raw_comment": "@c This is part of the Emacs manual.",
+      "raw_sha256": "3f0e472641ed039d01af5c8e7a7cb9e6133892fb3e37f833cdca7dcb78b59976",
+      "raw_utf8_length": 36,
+      "source_provenance": {
+        "source_excerpt_sha256": "8a2c29fcd4e8d41e69d2e1bf9502d7de0572b464fcd364e295154dd42473c932",
+        "source_id": "176650e15bb01a72cfbf564071f8e242f7f7abe3"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "case_id": "texinfo-directive-5345ad6b4af6aa84",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "eof",
+      "expected_cleaned_sha256": "22988607ff895660da293b4da1b2028cae8605fb65b3906c00ddec54b5c9c3ab",
+      "language": "texinfo",
+      "raw_comment": "@c eof",
+      "raw_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "3832a9d0eb52cd8d4fad40b015741e5b50da64e36aeaef8753cea72a4e00192b",
+        "source_id": "17d0d3a35c74831a00416a131e8bd6078d86e64d"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "case_id": "texinfo-directive-5ec8ac96ecb94ce6",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "eof",
+      "expected_cleaned_sha256": "22988607ff895660da293b4da1b2028cae8605fb65b3906c00ddec54b5c9c3ab",
+      "language": "texinfo",
+      "raw_comment": "@c eof",
+      "raw_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "6b6c034ee4d965320168dc54e587751c975af47ca71653ed2a946a6dc231bcff",
+        "source_id": "e7c40c54eecf5758c5565828bd2f4a544622d7a6"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "case_id": "texinfo-directive-5f952e4c7a240735",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*-texinfo-*-",
+      "expected_cleaned_sha256": "1ae1f69af192ab49750dda004efd89741699df68682586eb0cd975b6947bd5e7",
+      "language": "texinfo",
+      "raw_comment": "@c -*-texinfo-*-",
+      "raw_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "f66497d3b878935df0cc57b38b9a710b0180d53163499794f1f3438f3873421d",
+        "source_id": "19a13a23c76ac5c49321c5a1bd80a5f511003912"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "case_id": "texinfo-directive-76c99c17a88f9936",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "texinfo",
+      "raw_comment": "@c",
+      "raw_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "6f23e69ae3083037cccfd5d0d2e32ca39c280061ebc78cb103e6eea02c3657b9",
+        "source_id": "32792ffce9e17dab093f89aa1e0a93d349a6d055"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "case_id": "texinfo-directive-82276d55f798b70c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*-texinfo-*-",
+      "expected_cleaned_sha256": "1ae1f69af192ab49750dda004efd89741699df68682586eb0cd975b6947bd5e7",
+      "language": "texinfo",
+      "raw_comment": "@c -*-texinfo-*-",
+      "raw_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "3b07beda45f173d02fd6af3bceea0aa21fb565ad10e2339bba3ad7a40f63556b",
+        "source_id": "e0bce34fbed2dea8b8b7ada00d1bd02a5a054887"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "2af9f165992097a45a1dc7f5d98e353b068d045db49ec81bd720210608bf3949",
+      "case_id": "texinfo-directive-8381d871b3ee0f39",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "node-name,  next,  previous,  up",
+      "expected_cleaned_sha256": "99b787051996b9aa9c50e7fc3a1414926c10445ad907e80e611d81b2a6733197",
+      "language": "texinfo",
+      "raw_comment": "@comment  node-name,  next,  previous,  up",
+      "raw_sha256": "2af9f165992097a45a1dc7f5d98e353b068d045db49ec81bd720210608bf3949",
+      "raw_utf8_length": 42,
+      "source_provenance": {
+        "source_excerpt_sha256": "de807d117f0836c238ee80c882f7c98aea15f54782fd09d9dce689f6a3cb6d5e",
+        "source_id": "fd939cf4fe3b477d9e5d3d9a7cf4d44e72fde37d"
+      },
+      "syntax_label": "@comment"
+    },
+    {
+      "baseline_cleaned_sha256": "a2c0cb050ad38369d6b27b16858067a0695cd11bde57893f7bc6f40c396f85bd",
+      "case_id": "texinfo-directive-88d5e81a3eb89bda",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@comment %**start of header",
+      "raw_sha256": "a2c0cb050ad38369d6b27b16858067a0695cd11bde57893f7bc6f40c396f85bd",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "c725613a1568b23ef39b6a9bc3d9c3306ec5aa1f97e09944e2e9acb38ef133b9",
+        "source_id": "097f9ffa7da8a5e6d77fc4a89f582a9c20c0d4f6"
+      },
+      "syntax_label": "@comment"
+    },
+    {
+      "baseline_cleaned_sha256": "b1b8f2302938e127c851b53fa1e97746559b03e67882ee9ed90d03fe10178b0b",
+      "case_id": "texinfo-directive-8b274313e75eeaba",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file is part of the SUIF reference manual",
+      "expected_cleaned_sha256": "f7515217fb87403ad747e73641a264d88a02085f4e0a6633bac88f21bb51170c",
+      "language": "texinfo",
+      "raw_comment": "@c This file is part of the SUIF reference manual",
+      "raw_sha256": "b1b8f2302938e127c851b53fa1e97746559b03e67882ee9ed90d03fe10178b0b",
+      "raw_utf8_length": 49,
+      "source_provenance": {
+        "source_excerpt_sha256": "3f7e2bdfda1088122b4f67db9f3e4e4de45b0102495ef121081dea04f8111dfc",
+        "source_id": "41e025ad83ec797b759a282d4459e53806fefb4b"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "case_id": "texinfo-directive-8e5bc69f19599708",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "texinfo",
+      "raw_comment": "@c",
+      "raw_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "b90305a2518216e48657c86ea5f5f5fdfc1a3845fe79d058602e51e45a71d601",
+        "source_id": "2868ea5715e5275c1aadbff6767e73099775664e"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-9264240612afac84",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "eb225b68e9d30bd66ddabc0a6b5888e57aa5d28ea329585425b8e8ee0b2e79bc",
+        "source_id": "e24c12e0ebff7fd8a56990af60b01e56273c8946"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "case_id": "texinfo-directive-9361e4656ede7c2b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "texinfo",
+      "raw_comment": "@c",
+      "raw_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "165eb67798eb756e1165d0c6b2705638713884a4afa5e659365521a4654f3feb",
+        "source_id": "459045063c682b0761d67445f2f00f686c446164"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-988ebdee9fd75a86",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "d87f0fbdf55f048560257b849e6ed798fae3c618487333201ea00c408ee04d54",
+        "source_id": "a95e40d5905978463edb81a33264d077d2c0dc59"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "case_id": "texinfo-directive-a5f43daa396cdf10",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "texinfo",
+      "raw_comment": "@c",
+      "raw_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "a2543ac03af52a161f3bbf07049c02fc3d5bb03d12e61e04b83bde029c71ed38",
+        "source_id": "19c9e77c5f69b7c310b12521b0d217ffe7d61396"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "case_id": "texinfo-directive-a67c2f23375b7038",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "eof",
+      "expected_cleaned_sha256": "22988607ff895660da293b4da1b2028cae8605fb65b3906c00ddec54b5c9c3ab",
+      "language": "texinfo",
+      "raw_comment": "@c eof",
+      "raw_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "0ca5d28c2f1589cbfdf2f134ec6cd55f82df2e1979b03cacff6f71f6451bcb1e",
+        "source_id": "d0e5405da847848be81e5baf27ea66f0426e804d"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a20020c7ecea58fb2dc915458b63f42bec7826d6127cbacf1293ba2931aa5fc1",
+      "case_id": "texinfo-directive-a6819f356f9fb511",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "End:",
+      "expected_cleaned_sha256": "d63ddac28e122a50919d3067fd9d1732702fc85fc8257f4f52f4858cb01f3aa7",
+      "language": "texinfo",
+      "raw_comment": "@c End:",
+      "raw_sha256": "a20020c7ecea58fb2dc915458b63f42bec7826d6127cbacf1293ba2931aa5fc1",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "255205636443674687a5a51c288cc4fac5202488840ab2fe5a8e625cadd13dec",
+        "source_id": "0a1037109bfd41a006e2d7ae05c6950edc8e0571"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "10a099e2554e24db55c9cd69225f52db70fdb206bd6937d6c78263fe98027b23",
+      "case_id": "texinfo-directive-a745e6ef7810d7cd",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "texinfo",
+      "raw_comment": "@c --------------------------------------------------------------------------",
+      "raw_sha256": "10a099e2554e24db55c9cd69225f52db70fdb206bd6937d6c78263fe98027b23",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "bc25d3e554909511969e804b64977f68c37997b9504a314983aba3e578b7e859",
+        "source_id": "19307bead9486b9e67046da50389e52810395aee"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-ace83211f6976463",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "4bbeb5aa75e19e9866c8701d1b83fcced633345bba5d865ba07bd898f793c0ac",
+        "source_id": "ba86c16e5b1d7f3668d051d5def50e2df35211b2"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "520fbaf19ab8079f332047e459183467d15c0d3906657d433d8f57ad2f8bcea3",
+      "case_id": "texinfo-directive-b44a4512a4df871f",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Texinfo macros to format the common functions for the exceptional-condition objects public API as",
+      "expected_cleaned_sha256": "b2a5b643357b3c68de7d32589b0dcb9bdb92af90eb4cf886ded59f68e3ba39da",
+      "language": "texinfo",
+      "raw_comment": "@c Texinfo macros to format the common functions for the exceptional-condition objects public API as",
+      "raw_sha256": "520fbaf19ab8079f332047e459183467d15c0d3906657d433d8f57ad2f8bcea3",
+      "raw_utf8_length": 100,
+      "source_provenance": {
+        "source_excerpt_sha256": "c77cd31b122f03597bea979abffe74825544aee90f860e26ea830414f852b474",
+        "source_id": "1465158b00c487c20f378df5166da4a1bb3b86a2"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a2c0cb050ad38369d6b27b16858067a0695cd11bde57893f7bc6f40c396f85bd",
+      "case_id": "texinfo-directive-b7a87a26c7263597",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@comment %**start of header",
+      "raw_sha256": "a2c0cb050ad38369d6b27b16858067a0695cd11bde57893f7bc6f40c396f85bd",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "bcc2ecb61ae25e71a6b676abe01487062054f60f4395a79f09b2d64b4f8b76cd",
+        "source_id": "db3f6add8dab36f73daf8a54c46c4b49a68c12c7"
+      },
+      "syntax_label": "@comment"
+    },
+    {
+      "baseline_cleaned_sha256": "2b3bf5157833be11e6d8b7d4c1887e7a8f613655c9718ff0a4e46d9629ce815f",
+      "case_id": "texinfo-directive-b9c355792fa3b0ba",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "vim: filetype=texinfo",
+      "expected_cleaned_sha256": "0fd7531b95f067af37d957b92b3639cb93cc3697e2a6c74903b78899506d1cb2",
+      "language": "texinfo",
+      "raw_comment": "@c vim: filetype=texinfo",
+      "raw_sha256": "2b3bf5157833be11e6d8b7d4c1887e7a8f613655c9718ff0a4e46d9629ce815f",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "0d307dc5975a016c984974b667b340b1b869c34f59ffc7cbd27968aed564961a",
+        "source_id": "2e0bce81a66550c151121e504e105670c7a8c814"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "case_id": "texinfo-directive-c55e419e2fc46054",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*-texinfo-*-",
+      "expected_cleaned_sha256": "1ae1f69af192ab49750dda004efd89741699df68682586eb0cd975b6947bd5e7",
+      "language": "texinfo",
+      "raw_comment": "@c -*-texinfo-*-",
+      "raw_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "8f0495f36ba801a76afb9eb40c99ec04b684ff9a209073ed6e1f157a3d2857f2",
+        "source_id": "36003ae42cc282943b67fe2fb0f6a4e26ab89df2"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-ceb5703e18d6c224",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "ece7701515101e5780bd47974d886f41327e52669538568d95b7dfeae1a12b16",
+        "source_id": "3494d9ade4086c5ecce02ba7a68f0b054b8dc7f3"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "case_id": "texinfo-directive-d1a8ef02b53731f4",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "texinfo",
+      "raw_comment": "@c",
+      "raw_sha256": "a2b6a1e6591b99a40c1cd0e00bf039be6f686e23dadd656708c4f59c795286ea",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "54f606effe52b0c68beef293bd8a19351b60ff0abf68079f65eabef388dc398a",
+        "source_id": "88e110d79b23262efc0235ac1c504f388c78c60a"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "8f1a78d58958cdae0c1b34f5523112b66071d8f188a13de74d62e9c34fa0fe8e",
+      "case_id": "texinfo-directive-d3433f264f550d8b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*- texinfo -*-",
+      "expected_cleaned_sha256": "1639a1bfe8d49e17c5422ab5e43b151c556df09e881960337e6e13e135cf8ae9",
+      "language": "texinfo",
+      "raw_comment": "@c -*- texinfo -*-",
+      "raw_sha256": "8f1a78d58958cdae0c1b34f5523112b66071d8f188a13de74d62e9c34fa0fe8e",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "9a34951556c25d64a49a3f27c23510af37df8d6f850b6e38855a93b60636227a",
+        "source_id": "6e6d509d30929da982e71141e98b1ce8c282cd8b"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "12a3081545fe2d64a27422aac35238281afb98a9e799c9a720e6e720d9d21e74",
+      "case_id": "texinfo-directive-d415d9d72977012e",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$NetBSD: am-utils.texi,v 1.1.1.6 1999/09/04 22:25:37 christos Exp $",
+      "expected_cleaned_sha256": "e56a85f0d4d9d42d5ad065c2ba54203854e5579f611c39e731720a22d65137b7",
+      "language": "texinfo",
+      "raw_comment": "@c\t$NetBSD: am-utils.texi,v 1.1.1.6 1999/09/04 22:25:37 christos Exp $",
+      "raw_sha256": "12a3081545fe2d64a27422aac35238281afb98a9e799c9a720e6e720d9d21e74",
+      "raw_utf8_length": 70,
+      "source_provenance": {
+        "source_excerpt_sha256": "c10a30ac3be826e84bfd1515f2b665f03143f37be3528ba97958b18deaf68ec0",
+        "source_id": "73fdfdc54e119dffd3c60915aa6e08ffc4012881"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "ff3a66c135af8d8b2ad6d05faf19afb1e251b83df467181a8c44c34629bf9657",
+      "case_id": "texinfo-directive-d7c45c0435ba5819",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Lambda list keywords.",
+      "expected_cleaned_sha256": "fa180f5e330fe69152ae8ca9248be39123a68a2d11a3894feafc5c16ffe3b8f2",
+      "language": "texinfo",
+      "raw_comment": "@c Lambda list keywords.",
+      "raw_sha256": "ff3a66c135af8d8b2ad6d05faf19afb1e251b83df467181a8c44c34629bf9657",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "a30d928b988453e959cf338f1efa1ff01a0b0c332c511f739699df58653f4f74",
+        "source_id": "b93480c653ee5f7387cb5ba64db4e6b41e6a7a99"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-da35aae27caf9b9c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "b1ac50f5bb158b19ae76ce5f07da36796b425e83220500a717b5083ebb2d6f1f",
+        "source_id": "c341d837387a7dc506dfaeb535db6271af34caa6"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a1f7979ad99305f7e5074926a88c82d60b064e73397f74647888e2dbb903df63",
+      "case_id": "texinfo-directive-da5f72d0c2495aab",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2001-2022 Free Software Foundation, Inc.",
+      "expected_cleaned_sha256": "6fd32b35f876370e1f43c357042ca1e1740351a83d935f2f3f7c23ecff9e657d",
+      "language": "texinfo",
+      "raw_comment": "@c Copyright (C) 2001-2022 Free Software Foundation, Inc.",
+      "raw_sha256": "a1f7979ad99305f7e5074926a88c82d60b064e73397f74647888e2dbb903df63",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "18e3a6c052c15acf7e8f004a6e8555ab88891a72058f1002d1245591dc9cacb2",
+        "source_id": "917b3499b94979a7e0df782817ad9c1497b5a0fb"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "case_id": "texinfo-directive-e13d7c279d9dfcf7",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "eof",
+      "expected_cleaned_sha256": "22988607ff895660da293b4da1b2028cae8605fb65b3906c00ddec54b5c9c3ab",
+      "language": "texinfo",
+      "raw_comment": "@c eof",
+      "raw_sha256": "22c0c86c015e3d27d13d7c5fc0df0e5a7ea11385a6124d7c78bcbee0e7ea4903",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "8cd672d78429e763ae1f08c86d5a0884945c72bab3410095141571c08a61e850",
+        "source_id": "97697e505240ae441a424d1f508b537651e88d42"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "876b801221883ea14f8dd3b6133b68185faba2f82b99df9298dc354b154ac5c5",
+      "case_id": "texinfo-directive-e19412787814bbf3",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**end of header",
+      "expected_cleaned_sha256": "45725f659400d107c060cf3a3221eb43614abcccdad47b0c6df29f5c1b1e1e6c",
+      "language": "texinfo",
+      "raw_comment": "@comment %**end of header",
+      "raw_sha256": "876b801221883ea14f8dd3b6133b68185faba2f82b99df9298dc354b154ac5c5",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "2726e367f1842bbe0167aae7af9ef33a3e482e28d00f2b6fd1f983f6533b0dc2",
+        "source_id": "dbd423372562eee98d72609101413cc24f2ad41c"
+      },
+      "syntax_label": "@comment"
+    },
+    {
+      "baseline_cleaned_sha256": "47042ce4effa3276008b04767b310e141b43019f37bae182c1402ce16cc51386",
+      "case_id": "texinfo-directive-e1a05a77574f6521",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: gdbint.texinfo,v 1.2 1999/02/10 22:18:13 tv Exp $",
+      "expected_cleaned_sha256": "17645f8f9d1ed2ec3f9bdcd0124de99e2f7ceaf4333d8def3001b4060e4977a4",
+      "language": "texinfo",
+      "raw_comment": "@c $Id: gdbint.texinfo,v 1.2 1999/02/10 22:18:13 tv Exp $",
+      "raw_sha256": "47042ce4effa3276008b04767b310e141b43019f37bae182c1402ce16cc51386",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "0c46c5a460dff242bece31d2945a4c40cec18d690e85fcedef41195dc61869ae",
+        "source_id": "ee9f96d7fb1d9bf387bfdc6c8c04a1320c18a293"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-e8e93d66de3ef777",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "33dc539462abd1d5bab96c74a3d8a1868743c0db2348c0091b98320cabebcfce",
+        "source_id": "ee18ade15065b2355745cdfa7b822cfcb488216b"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "a1f7979ad99305f7e5074926a88c82d60b064e73397f74647888e2dbb903df63",
+      "case_id": "texinfo-directive-ed2ae683dbf6306b",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2001-2022 Free Software Foundation, Inc.",
+      "expected_cleaned_sha256": "6fd32b35f876370e1f43c357042ca1e1740351a83d935f2f3f7c23ecff9e657d",
+      "language": "texinfo",
+      "raw_comment": "@c Copyright (C) 2001-2022 Free Software Foundation, Inc.",
+      "raw_sha256": "a1f7979ad99305f7e5074926a88c82d60b064e73397f74647888e2dbb903df63",
+      "raw_utf8_length": 57,
+      "source_provenance": {
+        "source_excerpt_sha256": "29e942f5a3c4c1b6aaec0bb6e711ebecea738b0cefe8500f30fe9f96b5e07501",
+        "source_id": "19507864324312eee1cd17353d41c2747027f681"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "9cbc6a6553b493c7064ada245185cf9acee31aa4a0388388257ab3dc02e18e64",
+      "case_id": "texinfo-directive-ef0bc06fa84f7531",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Local Variables:",
+      "expected_cleaned_sha256": "9daca3c6f0b6bc11e5a142af47f956183ab0f2931c87fb5326ebd9361d3adac1",
+      "language": "texinfo",
+      "raw_comment": "@c Local Variables:",
+      "raw_sha256": "9cbc6a6553b493c7064ada245185cf9acee31aa4a0388388257ab3dc02e18e64",
+      "raw_utf8_length": 19,
+      "source_provenance": {
+        "source_excerpt_sha256": "3a616501c9a2367c91ac7080a05ccc297b4f4574caf0ef9df20cb37c89b6c3dd",
+        "source_id": "43a52a30acf3565bcd7fd105a1aa99de04c6ed7a"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "4131da89f233df076b212834b0484535c1e189ac7d73d7c72c3a79d264c15e42",
+      "case_id": "texinfo-directive-f7cdade6cc910a39",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "MANSECTION=4",
+      "expected_cleaned_sha256": "19b90edc43dad563654a0bb450df4753e8bea18a6c692f305853c5c1e8d2ad57",
+      "language": "texinfo",
+      "raw_comment": "@c MANSECTION=4",
+      "raw_sha256": "4131da89f233df076b212834b0484535c1e189ac7d73d7c72c3a79d264c15e42",
+      "raw_utf8_length": 15,
+      "source_provenance": {
+        "source_excerpt_sha256": "05d8b010f667213ccfcfb3d3e28d7dde9808294064f1170cf6e7ffb7d1e8d7e7",
+        "source_id": "e6c2875dbcc9838d29f51789c5dda79a0736a4a7"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "case_id": "texinfo-directive-f800e59dee9cb895",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "%**start of header",
+      "expected_cleaned_sha256": "39150b2b7160996143e2d1638b60ad151181177f17d57468efcdb19892a94622",
+      "language": "texinfo",
+      "raw_comment": "@c %**start of header",
+      "raw_sha256": "cc1a0cd7b01282fae47b7f44a7de677784e14118c7a219e8bc3201b411ef3a7c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "88189c252983401d40b7c5f01d9c89e4c14255513a528c1c220a655e4645c56d",
+        "source_id": "7f1924a3c979057ae25d8a322bfbc4d6813783ed"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "case_id": "texinfo-directive-f8e7d4bb41bf6c6c",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "-*-texinfo-*-",
+      "expected_cleaned_sha256": "1ae1f69af192ab49750dda004efd89741699df68682586eb0cd975b6947bd5e7",
+      "language": "texinfo",
+      "raw_comment": "@c -*-texinfo-*-",
+      "raw_sha256": "9b8ec6a4224aab8134b4548b8c8246b7c1a86ac4014c6dec508b8a36c8bbc01a",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "dffc1378278630ca74f78de24faaa1760f52a3bf3fc104613eba17fde08a933c",
+        "source_id": "29b8c6c1e8b72a8b08c4d755f5458c913c9fb733"
+      },
+      "syntax_label": "@c"
+    },
+    {
+      "baseline_cleaned_sha256": "7adaa35eb7fa35e5adb86066efdf606edde54b487b30751467363d2f2ef43ee2",
+      "case_id": "texinfo-directive-fff1a7cbcb091cd5",
+      "comment_kind": "directive",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "===beg===",
+      "expected_cleaned_sha256": "31c0a4d8a08703128009d6172fba710923186e8a451570b715b8514bc16725ea",
+      "language": "texinfo",
+      "raw_comment": "@c ===beg===",
+      "raw_sha256": "7adaa35eb7fa35e5adb86066efdf606edde54b487b30751467363d2f2ef43ee2",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "8a993e176f234e1842a13589ba29c20e6b2c8b9d761c5a5e642dec9952a0c09b",
+        "source_id": "e3bba365aad495402427586ad4b2c1f51504d6b5"
+      },
+      "syntax_label": "@c"
+    }
+  ],
+  "schema_version": 5
+}

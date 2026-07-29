@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-c143cf02ec9ae14b",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "d8ad94c74c05bb7bd8ff01a2d23c8ada989260ad8b107a2f5d6e8bf06773cbdc",
+      "utf8_length": 185
+    },
+    "manifest_old_output": {
+      "sha256": "19d46f8d6269cb625325c64735dd227a79501cd7978038eb233f7d4db422c982",
+      "utf8_length": 165
+    },
+    "raw_comment": {
+      "sha256": "71f147b42a7561ef823ec34c20320ad4c3f547aa746e5d1fdd1539c36b65d628",
+      "utf8_length": 189
+    },
+    "recommended_expected_output": {
+      "sha256": "19d46f8d6269cb625325c64735dd227a79501cd7978038eb233f7d4db422c982",
+      "utf8_length": 165
+    }
+  },
+  "regression": {
+    "expected_output": "Reads first line of a given file\n\n[param:] filePath the path of the file we want to read\n[throws:] IOException if an IO Exception occurs\n[returns:] a IO String value",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Reads first line of a given file\n\n    [param:] filePath the path of the file we want to read\n    [throws:] IOException if an IO Exception occurs\n    [returns:] a IO String value\n--}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e8216db83fbc20333c9800d4d6897f0b79cb506792b962e2b3d10233daf77a52",
+    "source_id": "9d6e395362b1fb53d01e93e36733f498defba337"
+  },
+  "source_record_sha256": "0faec34374b9e480bc8c3b047f1f39436b40e8988f28ac0203ad9ced27de898e"
+}

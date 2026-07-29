@@ -1,0 +1,38 @@
+{
+  "case_id": "antlr-line-e791fc3768253a0f",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "antlr",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e0a561e4e40df46c3d4908cf42239a5cc034bc10159e1bd78ef7bbed2c4939a9",
+      "utf8_length": 245
+    },
+    "manifest_old_output": {
+      "sha256": "b7319b8b09e3ff39b64c15e0b642320128615b9a1ede26a0719871208dfa9a45",
+      "utf8_length": 241
+    },
+    "raw_comment": {
+      "sha256": "13c22156750e6e60846d5112bbfbe22dc1750c43a23f4e8727602f1b58287860",
+      "utf8_length": 306
+    },
+    "recommended_expected_output": {
+      "sha256": "b7319b8b09e3ff39b64c15e0b642320128615b9a1ede26a0719871208dfa9a45",
+      "utf8_length": 241
+    }
+  },
+  "regression": {
+    "expected_output": "DEAD\nconditionValue:\n   Not?\n   ( INT\n   | boolValue\n   | Name)\n;\n\nnumericalCondition:\n   numericalCondition numericalBoolOperators numericalCondition\n   | numericalBoolValue\n;\n\n\n\nnumericalBoolValue:\n     floatValue\n   | INT\n   | Name\n;\nDEAD",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "///////DEAD\n//conditionValue:\n//    Not?\n//    ( INT\n//    | boolValue\n//    | Name)\n//;\n//\n//numericalCondition:\n//    numericalCondition numericalBoolOperators numericalCondition\n//    | numericalBoolValue\n//;\n//\n//\n//\n//numericalBoolValue:\n//      floatValue\n//    | INT\n//    | Name\n//;\n////////// DEAD"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3c5e1878e075a5e9d7b6f052a9ace99b0b99c93e3a5f50f3e2326f9f44d38b56",
+    "source_id": "a771e5440c5a27fe4df02a06db0d68973805b512"
+  },
+  "source_record_sha256": "13f432543b704eabdfed14f171e2ccda43fed9fba1ca56eff37ef1951b115173"
+}

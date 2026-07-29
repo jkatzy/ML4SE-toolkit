@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-89559cb3ee93587e",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "54d54d882cc60c9b246e9f35ab438f9330d42f19f52f2c7e65d69b7c292e9826",
+      "utf8_length": 200
+    },
+    "manifest_old_output": {
+      "sha256": "ece154aad2e4cdb8934a84458540db3eeaa642e3dd26add1312d626bf54e4d00",
+      "utf8_length": 188
+    },
+    "raw_comment": {
+      "sha256": "b4df4ce864ebec89a35715a69242e0fc816d201f6f1b7e611c454d98b5b96ad7",
+      "utf8_length": 373
+    },
+    "recommended_expected_output": {
+      "sha256": "ece154aad2e4cdb8934a84458540db3eeaa642e3dd26add1312d626bf54e4d00",
+      "utf8_length": 188
+    }
+  },
+  "regression": {
+    "expected_output": "Some tests for AbstractCurry libraries.\n\nTo run all tests automatically by the currytest tool, use the command:\n\"currytest testAbstractCurry\"\n\n@author Michael Hanus\n@version September 2015",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Some tests for AbstractCurry libraries.\n---\n--- To run all tests automatically by the currytest tool, use the command:\n--- \"currytest testAbstractCurry\"\n--- \n--- @author Michael Hanus\n--- @version September 2015\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "23282549e95d0d29382403f56e4a36332698796dc6e3e5104954d92d148a02f5",
+    "source_id": "1b07fc462153922d7210d5fb59cb4e1ab91e28e4"
+  },
+  "source_record_sha256": "d1c45c8b11dbd721a1a94db969b7c526f9f3d0ec982a29d13732add0adaf3fb8"
+}

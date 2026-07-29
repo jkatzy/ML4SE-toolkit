@@ -1,0 +1,38 @@
+{
+  "case_id": "metal-block-393dd58ff3650408",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "metal",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "c89a8dea3d8187095b41109e343d6744b658286c1f8246c61fe40c8706d9cc50",
+      "utf8_length": 922
+    },
+    "manifest_old_output": {
+      "sha256": "0d53b027d731fbb416b1d22cca6f6ddcc5d3db1559ba855e3a23ce5d723b7b8e",
+      "utf8_length": 884
+    },
+    "raw_comment": {
+      "sha256": "d16a6758d15207e0db1fd41c4bfd8ac7f82fa1dced92ae86a707a4fa2efd87aa",
+      "utf8_length": 949
+    },
+    "recommended_expected_output": {
+      "sha256": "0d53b027d731fbb416b1d22cca6f6ddcc5d3db1559ba855e3a23ce5d723b7b8e",
+      "utf8_length": 884
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright (c) 2018-2019 Confetti Interactive Inc.\n\nThis file is part of The-Forge\n(see https://github.com/ConfettiFX/The-Forge).\n\nLicensed to the Apache Software Foundation (ASF) under one\nor more contributor license agreements.  See the NOTICE file\ndistributed with this work for additional information\nregarding copyright ownership.  The ASF licenses this file\nto you under the Apache License, Version 2.0 (the\n\"License\"); you may not use this file except in compliance\nwith the License.  You may obtain a copy of the License at\n\n  http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing,\nsoftware distributed under the License is distributed on an\n\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\nKIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations\nunder the License.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n * Copyright (c) 2018-2019 Confetti Interactive Inc.\n *\n * This file is part of The-Forge\n * (see https://github.com/ConfettiFX/The-Forge).\n *\n * Licensed to the Apache Software Foundation (ASF) under one\n * or more contributor license agreements.  See the NOTICE file\n * distributed with this work for additional information\n * regarding copyright ownership.  The ASF licenses this file\n * to you under the Apache License, Version 2.0 (the\n * \"License\"); you may not use this file except in compliance\n * with the License.  You may obtain a copy of the License at\n *\n *   http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing,\n * software distributed under the License is distributed on an\n * \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n * KIND, either express or implied.  See the License for the\n * specific language governing permissions and limitations\n * under the License.\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a606cc27ba49b6d3f0cb618cd94a0040cfdbf188c4aae975bb204644d01a81f1",
+    "source_id": "d43ab43119d7306e5caa272587178a7821322e5e"
+  },
+  "source_record_sha256": "147a631ac2441103a5d8999857b609110b19c087e7bdb320433b422c54965dae"
+}

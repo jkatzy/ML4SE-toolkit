@@ -1,0 +1,38 @@
+{
+  "case_id": "closure_templates-line-a26ff7006a671186",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "closure_templates",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "47d75f777ad381f80227122c5b39b946140691d7266d8930708241c35610d189",
+      "utf8_length": 86
+    },
+    "manifest_old_output": {
+      "sha256": "88e369b50446c7a94975de0c27d89ab4ceafb0bddd1527c2e1c69ecf3e28748a",
+      "utf8_length": 89
+    },
+    "raw_comment": {
+      "sha256": "a45b1410ae46a8aac62f923814573e73875833aeb3430f64b5f36f85b68f0e71",
+      "utf8_length": 92
+    },
+    "recommended_expected_output": {
+      "sha256": "88e369b50446c7a94975de0c27d89ab4ceafb0bddd1527c2e1c69ecf3e28748a",
+      "utf8_length": 89
+    }
+  },
+  "regression": {
+    "expected_output": "Unfortunately this isn't detected. We should add a live-selector to make this obsolete...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// Unfortunately this isn't detected. We should add a live-selector to make this obsolete..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ff83b94888c4cfdedc1669848320d6e9a536d02703e937333aebfecf69bc1403",
+    "source_id": "0e7ccecbcbc480728ff8b41e4b8312b905aed34d"
+  },
+  "source_record_sha256": "69c3bd33a502909b2f3e3240e6659879c1ec17871c8c1e629080193d75a4fe18"
+}

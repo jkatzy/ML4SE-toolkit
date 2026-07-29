@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-e84ec8ee47d4b267",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "bbd42216343d62501b6b9c6f52fff032d5555258b997f358c066cb5ea5ce7a30",
+      "utf8_length": 256
+    },
+    "manifest_old_output": {
+      "sha256": "e3ab4c431dcd230fde82c5a55882c40a2fd94343d4cebf8beb8460b8a32532b7",
+      "utf8_length": 234
+    },
+    "raw_comment": {
+      "sha256": "44ccb7546794d384cc7e54fd38300ac3973261a08b94e953da312de91d3020b5",
+      "utf8_length": 261
+    },
+    "recommended_expected_output": {
+      "sha256": "e3ab4c431dcd230fde82c5a55882c40a2fd94343d4cebf8beb8460b8a32532b7",
+      "utf8_length": 234
+    }
+  },
+  "regression": {
+    "expected_output": "Higher rank functions as record fields.\n\nCompiler aborts with\n\n> frege.runtime.Undefined: bound Meta not allowed in substTau\n\nThis is due to a wrong assumption on my side, it used to work earlier.\nShould run once compiler is purified.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n    Higher rank functions as record fields.\n\n    Compiler aborts with\n\n    > frege.runtime.Undefined: bound Meta not allowed in substTau\n\n    This is due to a wrong assumption on my side, it used to work earlier.\n    Should run once compiler is purified.\n-}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e308e2767cd5c69470fd2851259b73ef74f497d678c1b9fc67fb2e9bccdb10a9",
+    "source_id": "6bea36df2a87c75b93af6d8077fbb0c32db051b2"
+  },
+  "source_record_sha256": "0008a08550b3959a31a4324d89c35aa7184e5f8f513d3481aaf3af7150225fa0"
+}

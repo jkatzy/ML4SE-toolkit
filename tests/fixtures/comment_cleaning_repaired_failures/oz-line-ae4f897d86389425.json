@@ -1,0 +1,38 @@
+{
+  "case_id": "oz-line-ae4f897d86389425",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "oz",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9be4727c4506e4c57947b1f4977a2761c8e091a0cd047b2a567f2d71d978273d",
+      "utf8_length": 163
+    },
+    "manifest_old_output": {
+      "sha256": "69f5cb728deb7fb8deff4973800d11c88ba195444c419da304b4106c9120303b",
+      "utf8_length": 159
+    },
+    "raw_comment": {
+      "sha256": "a8ce8d66476e623c2be5821f4b3aca84b7282d137e9d51fad35b1e52255d8dee",
+      "utf8_length": 165
+    },
+    "recommended_expected_output": {
+      "sha256": "69f5cb728deb7fb8deff4973800d11c88ba195444c419da304b4106c9120303b",
+      "utf8_length": 159
+    }
+  },
+  "regression": {
+    "expected_output": "\u547c\u3073\u51fa\u3057\u6642\u306e\u74b0\u5883\u306b {A->10, B->x1} \u304c\u542b\u307e\u308c\u3066\u3044\u308b\u3068\u3059\u308b.\n\u624b\u7d9a\u304d\u672c\u4f53\u304c\u5b9f\u884c\u3055\u308c\u308b\u3068, \u5199\u50cf N->3 \u304c\u305d\u306e\u74b0\u5883\u306b\u8ffd\u52a0\u3055\u308c\u308b.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%% \u547c\u3073\u51fa\u3057\u6642\u306e\u74b0\u5883\u306b {A->10, B->x1} \u304c\u542b\u307e\u308c\u3066\u3044\u308b\u3068\u3059\u308b.\n%% \u624b\u7d9a\u304d\u672c\u4f53\u304c\u5b9f\u884c\u3055\u308c\u308b\u3068, \u5199\u50cf N->3 \u304c\u305d\u306e\u74b0\u5883\u306b\u8ffd\u52a0\u3055\u308c\u308b."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "aa5a39aaac320d6831aaa95a6f16af4742b93c08797be31c6141ee0243958e89",
+    "source_id": "a565c1f2a4011536ba058b4c76251e0f4aeea3a6"
+  },
+  "source_record_sha256": "11fbee8cd2eb290e50fe353389e3fb032a658dbb173683bf2ae9dfd3dfa5150e"
+}

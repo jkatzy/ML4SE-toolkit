@@ -1,0 +1,38 @@
+{
+  "case_id": "abap-line-82c0f8248b02bdcf",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:abap",
+  "disposition": "executable_regression",
+  "language": "abap",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b8752caaf91cb288a59a20a8c9cae81520f2afe73cff57411e66558efe79aa79",
+      "utf8_length": 68
+    },
+    "manifest_old_output": {
+      "sha256": "c5fe1f6d5b6c18fb5b69ab48643192ec88743c3c48038fb96f2b53b159f09835",
+      "utf8_length": 16
+    },
+    "raw_comment": {
+      "sha256": "b85cec44d9e6ee1becbdce623a187f74e2689b0293fe78a41a506ebdd6e3774f",
+      "utf8_length": 218
+    },
+    "recommended_expected_output": {
+      "sha256": "c5fe1f6d5b6c18fb5b69ab48643192ec88743c3c48038fb96f2b53b159f09835",
+      "utf8_length": 16
+    }
+  },
+  "regression": {
+    "expected_output": "INCLUDE LACC9F50",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "*----------------------------------------------------------------------*\n*   INCLUDE LACC9F50                                                   *\n*----------------------------------------------------------------------*"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1f4a1c0655863475efa3f64b491f31306413b8acb052c37b550d482606691892",
+    "source_id": "d8eafe7a5255e13e6a5aff29c5729439a1b6c5af"
+  },
+  "source_record_sha256": "2c465150ca9a43b3cf98b4aa243b49432335a0b7930a5445897c82180729a4f9"
+}

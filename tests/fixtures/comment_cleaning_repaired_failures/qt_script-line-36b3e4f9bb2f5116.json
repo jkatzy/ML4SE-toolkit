@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-36b3e4f9bb2f5116",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "51ed66433d34fbce649e81f495884450b1a1ec3ce64a148bf0dacde1c5bc8774",
+      "utf8_length": 15
+    },
+    "manifest_old_output": {
+      "sha256": "e9fefdd3fe7155f9394c1240d007c1702abe8ae881777a35b706c35590ad6198",
+      "utf8_length": 13
+    },
+    "raw_comment": {
+      "sha256": "f58cf47f0113c62338290540c6e92d6e5625f8e775eacb85ba55dec79e65778d",
+      "utf8_length": 135
+    },
+    "recommended_expected_output": {
+      "sha256": "e9fefdd3fe7155f9394c1240d007c1702abe8ae881777a35b706c35590ad6198",
+      "utf8_length": 13
+    }
+  },
+  "regression": {
+    "expected_output": "CENTROS COSTE",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////////////////////////////\n//// CENTROS COSTE /////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "643a9f9863e4f984def52be9eb7fc1e0d786d19bef688218a8fc5bbcd77ca63f",
+    "source_id": "4e992b3b5c664a8df281bc2b6d9f666d6991c74e"
+  },
+  "source_record_sha256": "50ef916b72b5bf1eb409132c1252909b743216a26413c2d9db6e83ca17a4e441"
+}

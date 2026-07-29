@@ -1,0 +1,38 @@
+{
+  "case_id": "kakounescript-line-da67c0cac938c27d",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u203e",
+  "disposition": "executable_regression",
+  "language": "kakounescript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7f439b0f423ffd30195fb72f7b4ba7b755b953d7944a2c84a1b56e8c3668c044",
+      "utf8_length": 97
+    },
+    "manifest_old_output": {
+      "sha256": "bc1770e573d3bf29ae34102035821f0a2087a38b4df2a3d6df2d161b3073e774",
+      "utf8_length": 24
+    },
+    "raw_comment": {
+      "sha256": "4b6799c6ea945337007c32bef604fdb8bb67f6c9cdc420d8260d859c590e718c",
+      "utf8_length": 101
+    },
+    "recommended_expected_output": {
+      "sha256": "bc1770e573d3bf29ae34102035821f0a2087a38b4df2a3d6df2d161b3073e774",
+      "utf8_length": 24
+    }
+  },
+  "regression": {
+    "expected_output": "http://ranger.nongnu.org",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# http://ranger.nongnu.org\n# \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "45cf73f96ecddfc5f739821291849d5d6407d0aee6e0cc879ff2219fa6e51433",
+    "source_id": "36f0a4388fd458929e28bd5e5c65356a0b490097"
+  },
+  "source_record_sha256": "a119cd07ba285e6603ba4732735bd11aeed6fae0600566dc2061fe7a399808a5"
+}

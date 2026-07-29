@@ -1,0 +1,29 @@
+{
+  "case_id": "ioke-line-858dc617545e99f2",
+  "category": "needs_manual_review",
+  "cluster": "oracle_exception:binary_source_ambiguity",
+  "disposition": "accounting_only_no_oracle",
+  "language": "ioke",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "1f524b7265e42866138b1663d1886f05de68a7deb2bf0229d842e68e4383abcb",
+      "utf8_length": 20
+    },
+    "manifest_old_output": {
+      "sha256": "1f524b7265e42866138b1663d1886f05de68a7deb2bf0229d842e68e4383abcb",
+      "utf8_length": 20
+    },
+    "raw_comment": {
+      "sha256": "6ad05271bc9df0075428a6872f27e5b696d3162dd1274d92b66e9888ab928712",
+      "utf8_length": 20
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "23fbbcc2bc0d06e8577bcf77cb1b84258ac0157609513754006f7406e7bb6f03",
+    "source_id": "371cb580a91dd9c1a1ff56c7f2b1b863edbaf123"
+  },
+  "source_record_sha256": "4d3b080958248ba5f6b4b08786605588703fe32741843b6b194b33037840f9cc"
+}

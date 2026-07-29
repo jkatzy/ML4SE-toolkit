@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "f_star_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "d84d59e35f383b7e5dbd8f68445f97f67d61bcec3620c8bc371f60845d702a32",
+      "case_id": "f_star-nested-64e500b6288439bc",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Selectively imported from Hacl*'s FStar.Endianness.fst library, with several\nname changes",
+      "expected_cleaned_sha256": "4298404c90c0be11588002b4eb332c87732a6e89cfcf5336d9e5044e8d2a7e6a",
+      "language": "f_star",
+      "raw_comment": "(* Selectively imported from Hacl*'s FStar.Endianness.fst library, with several\nname changes *)",
+      "raw_sha256": "989d09427c770817857c80a6a1df1070b2393e12f78e6dabd31ba2bbdded5fc2",
+      "raw_utf8_length": 95,
+      "source_provenance": {
+        "source_excerpt_sha256": "81eaa00541f9dafca8b08a8c29ed84ce337a36cf1ab4e52b3459f986fdbec55a",
+        "source_id": "8ed85df001c58754f1809ff714f97ec46bd9d4dd"
+      },
+      "syntax_label": "(*...*)"
+    },
+    {
+      "baseline_cleaned_sha256": "843d4a5ef589025e9484f24f1664d38fff730edd00c0d9e50ce379fcf41ed16f",
+      "case_id": "f_star-nested-76ea310df0ec44e5",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "TODO: This fails to extract:\n./SimplePrintf.fst(45,2-45,64): Ill-typed application: application is (SimplePrintf.string_of_dirs (Prims.Cons (SimplePrintf.Arg SimplePrintf.Int) (Prims.Cons (SimplePrintf.Arg SimplePrintf.String) (Prims.Nil ))) (fun s -> s@0) 42 \" answer\")\n remaining args are 42 \" answer\"\nml type of head is Prims.unit dir_type",
+      "expected_cleaned_sha256": "033aa9d80f4ae330228ef05700b7f77bede01f4e3a76f95d52848c17f543a897",
+      "language": "f_star",
+      "raw_comment": "(* TODO: This fails to extract:\n./SimplePrintf.fst(45,2-45,64): Ill-typed application: application is (SimplePrintf.string_of_dirs (Prims.Cons (SimplePrintf.Arg SimplePrintf.Int) (Prims.Cons (SimplePrintf.Arg SimplePrintf.String) (Prims.Nil ))) (fun s -> s@0) 42 \" answer\")\n remaining args are 42 \" answer\"\nml type of head is Prims.unit dir_type\n*)",
+      "raw_sha256": "99c7db035243c90a6ba2a182845e7d8d6c9a725f3ac25b6534998b692871f691",
+      "raw_utf8_length": 348,
+      "source_provenance": {
+        "source_excerpt_sha256": "58116c85803c8851376053bc6fed9fad79f1ed51ebd08357522641384e8c49b5",
+        "source_id": "6c5418882546fa148b4667dadfc1fca0c2f8e8d2"
+      },
+      "syntax_label": "(*...*)"
+    }
+  ],
+  "schema_version": 5
+}

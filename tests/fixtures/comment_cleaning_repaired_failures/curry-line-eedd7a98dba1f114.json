@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-eedd7a98dba1f114",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3e0f39356e711a818f7b9bc9345e8f735a5ee86aeeaa646be86b4c882b08fcd6",
+      "utf8_length": 142
+    },
+    "manifest_old_output": {
+      "sha256": "020b1387945e3858c2d137796a8b3fccd55432817f8b612c504a6748745ae874",
+      "utf8_length": 133
+    },
+    "raw_comment": {
+      "sha256": "0ff87653ca87c697eccc5873ce9662c6e887a02361cbf5952fc2856a05078bdf",
+      "utf8_length": 314
+    },
+    "recommended_expected_output": {
+      "sha256": "020b1387945e3858c2d137796a8b3fccd55432817f8b612c504a6748745ae874",
+      "utf8_length": 133
+    }
+  },
+  "regression": {
+    "expected_output": "Library for representation of positions in first-order terms.\n\n@author Jan-Hendrik Matthes\n@version February 2020\n@category algorithm",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "--------------------------------------------------------------------------------\n--- Library for representation of positions in first-order terms.\n---\n--- @author Jan-Hendrik Matthes\n--- @version February 2020\n--- @category algorithm\n--------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a036704be58d3a48c207cf8c1941c5ea78424b0b841eceae15e9b1b0801d4b18",
+    "source_id": "ed355b1f5a13d8604449c759f458e0392f2e77e4"
+  },
+  "source_record_sha256": "7f6e5211d9b1a3d7ce594bb5edf58620d6b3559fe8e1a8bff39f72cc577e55a9"
+}

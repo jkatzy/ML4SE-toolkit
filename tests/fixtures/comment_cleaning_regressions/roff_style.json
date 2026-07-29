@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "roff_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "78b1ae0ac1a4a5af931c37f139bbd5e7919137ef0c3b484ba95b5a38170c3914",
+      "case_id": "roff_manpage-line-df57021bc4ec2d80",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "{{{roff}}}\\\"{{{",
+      "expected_cleaned_sha256": "4c9176c8a7f8b164a4ab43675824ed8f074bf21edaba3fa889d7ed878eb42d75",
+      "language": "roff_manpage",
+      "raw_comment": "\\\"{{{roff}}}\\\"{{{\r",
+      "raw_sha256": "50a70f6958e14bef76cb3a4e441ac7a02a72ec270b4d2529b0c99fbe0e22c510",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "bc30d14be1b9b95b8731aedf9765d8acd9111838a89a8602963c5c538d885eb6",
+        "source_id": "432c4c5e30f5e44782b86c4cab92af3d2016485b"
+      },
+      "syntax_label": "\\\""
+    }
+  ],
+  "schema_version": 5
+}

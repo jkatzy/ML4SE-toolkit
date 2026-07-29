@@ -1,0 +1,38 @@
+{
+  "case_id": "motorola_68k_assembly-line-3edcad45f6e92a15",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "motorola_68k_assembly",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "139603ee775c2de5c838ad62e3a387095fee9105188f82e06bdc0e4f9bb0f323",
+      "utf8_length": 74
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "6dbb0151d37ab364ebfffdcca302f7f21ed43d1d4926a2f2bcd1fc8063f6301b",
+      "utf8_length": 76
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";=========================================================================;\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f0a66b64f847623d6e067d57600184f33c7f28e7a9b49582222a44af403275a2",
+    "source_id": "a478ad4680bb5e94d3ee403a3df56f207b65b6c0"
+  },
+  "source_record_sha256": "2ae333c046b1cfd684f4fec3b697ded08c9419bf48700765886f70bd04340684"
+}

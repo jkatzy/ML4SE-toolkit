@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "livescript_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "c7c10fc141439abb84193b42fe5291381084263f6bea4a151e0de1a379fc01dc",
+      "case_id": "livescript-block-fe3e3ade7fdd61d4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@module app.lists",
+      "expected_cleaned_sha256": "fe5705187612a463ad8a1525e0fd9d61f06c7ccf6b1edd781e9ed6070a2360c7",
+      "language": "livescript",
+      "raw_comment": "/** @module app.lists */",
+      "raw_sha256": "441db53e9da5c424fc07f548ebf0518a6d1b53df172b77d2384a688abbddaa17",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "374607e780d9b9da45fc05eaf873580fed7871a1708d31309b01dd6de1bd05a2",
+        "source_id": "455e18e152e2d740a18b38eee570e2df91f5be7e"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

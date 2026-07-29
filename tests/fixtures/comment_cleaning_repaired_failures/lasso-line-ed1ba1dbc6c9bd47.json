@@ -1,0 +1,29 @@
+{
+  "case_id": "lasso-line-ed1ba1dbc6c9bd47",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:mislabeled_las_data",
+  "disposition": "accounting_only_no_oracle",
+  "language": "lasso",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9715063c883eaa0385d4763fac533cde987a22837784b7bc0e5d3c213f47ec81",
+      "utf8_length": 20
+    },
+    "manifest_old_output": {
+      "sha256": "61b4601bc1d1dcd2eeb239581f6c39aedf6923068b1055d00775225baa81a36e",
+      "utf8_length": 19
+    },
+    "raw_comment": {
+      "sha256": "a39e808a583b36f976a8cfd7b57cd733832cfe89bfc67edc78dfa09ffcfcddd2",
+      "utf8_length": 24
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e13fa36515d0cf70e066a37cc8a439806c86e0c88b9834b34efe6e618afdd08c",
+    "source_id": "58f1bcde165c75672eb091639e73302225edfebb"
+  },
+  "source_record_sha256": "6a9581bb35ead3b8862c39ff54ab0249b630e74850bbfe0391e7b8e21af48b91"
+}

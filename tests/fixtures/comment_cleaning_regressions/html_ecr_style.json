@@ -1,0 +1,127 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "html_ecr_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "cac3b3a1da529962e353644993d50863d9e97a4ba9a1a20e28a9a9f40e2541b0",
+      "case_id": "html_plus_ecr-block-76a3eb1173336447",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "templates can include logic and code",
+      "expected_cleaned_sha256": "de774fe09e654c8ab62518d0d0b6d917edf24811cfd72bb993315c597a127b70",
+      "language": "html_plus_ecr",
+      "raw_comment": "<%# templates can include logic and code -%>",
+      "raw_sha256": "12af5c024fd64d2e577294bbbd88e1cf9ccdf7a64ddf9e93125e996a2b120b03",
+      "raw_utf8_length": 44,
+      "source_provenance": {
+        "source_excerpt_sha256": "23f62fe1d92a59bc57378c6ac08412a6c001fe89620ae14710440ce8f14dcabf",
+        "source_id": "899447c057a6e483e131d3f8c792dc5bd9fcddcb"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "c55e604b9c37581c0ff67fc88489fca186fa319d154e01141c7b2c2638829428",
+      "case_id": "html_plus_ecr-block-ad46e8b7c4544bcd",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "name == \"\u5982\u679c\u6709\u4e00\u5929,\u6709\u4eba\u5bf9\u6211\u544a\u767d\" %>\n<audio id=\"audio\" autoplay=\"autoplay\" loop=\"loop\"><source src=\"/mp3/\u5f20\u656c\u8f69 - \u65ad\u70b9.mp3\"></audio>\n<audio id=\"audio\" autoplay=\"autoplay\" loop=\"loop\"><source src=\"/mp3/\u9648\u5955\u8fc5 - \u7a33\u7a33\u7684\u5e78\u798f.mp3\"></audio>",
+      "expected_cleaned_sha256": "a063bbc5232c6500e85173296c4e4cc5b8c5ba13cdb7f989e6f4d373df18ddbb",
+      "language": "html_plus_ecr",
+      "raw_comment": "<!--  name == \"\u5982\u679c\u6709\u4e00\u5929,\u6709\u4eba\u5bf9\u6211\u544a\u767d\" %>\n<audio id=\"audio\" autoplay=\"autoplay\" loop=\"loop\"><source src=\"/mp3/\u5f20\u656c\u8f69 - \u65ad\u70b9.mp3\"></audio>\n<audio id=\"audio\" autoplay=\"autoplay\" loop=\"loop\"><source src=\"/mp3/\u9648\u5955\u8fc5 - \u7a33\u7a33\u7684\u5e78\u798f.mp3\"></audio> -->",
+      "raw_sha256": "6d1a154cfc5f166c4a3aed11c2753a7c339c60a2eaeed9919eadf83c240528a7",
+      "raw_utf8_length": 268,
+      "source_provenance": {
+        "source_excerpt_sha256": "94fa18fc5a42ca73381244fc883eb0ff15715df278eb7f8d82b19e6ba9a7716b",
+        "source_id": "f3e8f860c50228055998a0a2dbecd4a276de6e3a"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "c65ba270c5ecac824bb39e5903f1347d8bcdb1e867c9e0d9d55cfbb2df1417f0",
+      "case_id": "html_plus_ecr-block-cb7f349e53af432e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "__url : Url to point to\n__method : RESTFUL HTTP Verbs such as : GET PUT POST DELETE\n__label : Label of this link",
+      "expected_cleaned_sha256": "54032daa7b736d4bd94e38e876e6b6a812e5fc4b3179acd8ffa28d339c4cef2e",
+      "language": "html_plus_ecr",
+      "raw_comment": "<% \n    # __url : Url to point to\n    # __method : RESTFUL HTTP Verbs such as : GET PUT POST DELETE\n    # __label : Label of this link\n%>",
+      "raw_sha256": "7bff2981b4718a35aa20cfce16a7b8ee103fe7e477fcc95a2651faba9926365c",
+      "raw_utf8_length": 137,
+      "source_provenance": {
+        "source_excerpt_sha256": "7c5be1f1e7326c8e240c334f0beadb97613da09088951f8747d7996814a5c4b8",
+        "source_id": "a9daec65380c4eef8e64535327370eaef39c8c3c"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "278d552990830533d662c2186a346df55541c025c9efd543158d883a6a1ec248",
+      "case_id": "html_plus_ecr-block-f41ec62eb04af7a0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Demonstrate use of ECR tag",
+      "expected_cleaned_sha256": "ded93ba990b1b30be4187aec5807087912912af5486ea6f1f3bc7d6ff108a4d3",
+      "language": "html_plus_ecr",
+      "raw_comment": "<%# Demonstrate use of ECR tag -%>",
+      "raw_sha256": "7a579dcfa91a28890ca912b0517d6ca57d6d15542149a11fe29992fbfa921714",
+      "raw_utf8_length": 34,
+      "source_provenance": {
+        "source_excerpt_sha256": "f516873de77b613b15ed5efc6948005b455ea921880015a23da1217c8ff6d214",
+        "source_id": "40776a2543d4d3944a049730ad795c1c6d14c76d"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "8fc49a17aee58badf41ca308034720c21d873408c7edd78b79ce52241a650150",
+      "case_id": "rhtml-block-89b2483b0ad6d448",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "THUMBNAIL",
+      "expected_cleaned_sha256": "45a86722dc94e12c63188bcfcf88d019579e21d8919b649c9fb7ef4df632e2c5",
+      "language": "rhtml",
+      "raw_comment": "<%# THUMBNAIL -%>",
+      "raw_sha256": "4d553640d6563ee579879d625cbf2680e3c23a3495f7b9d37fcbf60bf5b0eaa4",
+      "raw_utf8_length": 17,
+      "source_provenance": {
+        "source_excerpt_sha256": "fe65aba79be78faa4fb975ca297cf6bb8c801bf5acb8b50dfda3b90ffb7df70b",
+        "source_id": "f9bc877de219f8aa2edd965b9e2b388a1e8172f1"
+      },
+      "syntax_label": "<%#...%>"
+    },
+    {
+      "baseline_cleaned_sha256": "962b0999ec08a02e5b6ea1d2822f0541e243415ffb89841d38dffc662deee860",
+      "case_id": "rhtml-block-9e5054364f29056a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Header",
+      "expected_cleaned_sha256": "ba5caa4285a84d88129280d2c3f6d796b4e2da069981e845bdaa55d9e6cfe7b5",
+      "language": "rhtml",
+      "raw_comment": "<!--=== Header ===-->",
+      "raw_sha256": "709d2ba742d29c3cb42a70f49674b7199cc3f0e0bd4592f7718edd91fef1e64c",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "5e7061df2e43d88c15f05b13c1476ea68c1e92555a9b82c672188144a8e47238",
+        "source_id": "06438ae463b6da163142c767fca8ee31975d21cf"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "840e5cfd0ac9616f68de9b253c30e0f77b3250a45b14b21151f9f1a217f559a2",
+      "case_id": "rhtml-block-b9ef144f53447d44",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Nav - LOGGED IN USER",
+      "expected_cleaned_sha256": "19ac575975e1cbd887e859253b74e5d456c43de0644cca2e64c169e825309454",
+      "language": "rhtml",
+      "raw_comment": "<!-- Nav - LOGGED IN USER \u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013-->",
+      "raw_sha256": "29a7204236d6811450b2b7edc529f5ae01c16c8cc183ee085377ea1ab5d5f697",
+      "raw_utf8_length": 128,
+      "source_provenance": {
+        "source_excerpt_sha256": "790faa06ddd2baa84efee01ef5d191f8fd12e8c10c0e321df6f4bee783d8d26d",
+        "source_id": "eb0e71b5c3440efe5da157049cf2bde41ee8f9f5"
+      },
+      "syntax_label": "<!--...-->"
+    }
+  ],
+  "schema_version": 5
+}

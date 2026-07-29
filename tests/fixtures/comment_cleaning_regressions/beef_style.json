@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "beef_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "b856ef849af14adcc7476cdd2d05b6c368638f6df44db30b262bf5c3716b2e9d",
+      "case_id": "beef-nested-a524e5363127bcbb",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@module models.protein.REV",
+      "expected_cleaned_sha256": "9469a77ee79bda2e0644eede01047a3676994553e993416bb3e1f382c5409f8c",
+      "language": "beef",
+      "raw_comment": "/** @module models.protein.REV */",
+      "raw_sha256": "865a4a9df4636a81fe87d87e6a53d621785ad97eedf52164601e7f436226cb13",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "8d027c9c2526354a1691c1f880d54a3f5a3187b52b92ffd00ebfb24c1293b21e",
+        "source_id": "28d7d69c330357cf50b382aa8d34ee322df5aafd"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

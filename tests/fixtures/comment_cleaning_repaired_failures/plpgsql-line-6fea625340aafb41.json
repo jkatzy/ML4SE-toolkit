@@ -1,0 +1,38 @@
+{
+  "case_id": "plpgsql-line-6fea625340aafb41",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "plpgsql",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "885b7ee947539787d1168a38f74d72f1caa718b2459c2baf9ceec1f46d9d17be",
+      "utf8_length": 23
+    },
+    "manifest_old_output": {
+      "sha256": "340e3b8804237a9a82e60ea8f7d08db6e4a0fdb302850a667f1a24c9dc39ba20",
+      "utf8_length": 20
+    },
+    "raw_comment": {
+      "sha256": "5984a9f27a6a7345be0bd5db46436736ce975f7afe1f13207a07862e3f8f187a",
+      "utf8_length": 31
+    },
+    "recommended_expected_output": {
+      "sha256": "340e3b8804237a9a82e60ea8f7d08db6e4a0fdb302850a667f1a24c9dc39ba20",
+      "utf8_length": 20
+    }
+  },
+  "regression": {
+    "expected_output": "\u041f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "---- \u041f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435 -----"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "05f1b57631e0aced387d86a5b64e19ef3237a5cc6ae6b103ced32051ea5e2485",
+    "source_id": "6dfa0b90d40edc15d699e43cd0ff5406a5a6c1ca"
+  },
+  "source_record_sha256": "92c23a7fdad7ef1f9012d5a7ec5eacad25ea32517b060a25e553872ae670d6f2"
+}

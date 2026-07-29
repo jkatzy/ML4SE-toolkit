@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-a9baa635a87beec8",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e4a3fe37e423e73cd3fc6b2991be1dcdb0c9fa68aca782ad881a6d63337a3b02",
+      "utf8_length": 14
+    },
+    "manifest_old_output": {
+      "sha256": "6a0ac510423d0cbdeec10ea0a4eb0e077a27cbe6ab33c41dafe09eba2a12f7dd",
+      "utf8_length": 12
+    },
+    "raw_comment": {
+      "sha256": "857d230348a5fa5e5b65fb0c065039eb2734a11b1931e3ba14c916b6c8a4a5d8",
+      "utf8_length": 133
+    },
+    "recommended_expected_output": {
+      "sha256": "6a0ac510423d0cbdeec10ea0a4eb0e077a27cbe6ab33c41dafe09eba2a12f7dd",
+      "utf8_length": 12
+    }
+  },
+  "regression": {
+    "expected_output": "MULTIEMPRESA",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//////////////////////////////////////////////////////////////////\n//// MULTIEMPRESA ////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6964768448f0384b44560a5aaebc1fe6676882ea5f2d33fdaefb1871a99cd66d",
+    "source_id": "335204b4c5bf46b702c43da00f5c5ffa3ededb1f"
+  },
+  "source_record_sha256": "96063a276d99ac73f6c989df53cbafeffd80bdcf27b0dfa18a74bcc49031371d"
+}

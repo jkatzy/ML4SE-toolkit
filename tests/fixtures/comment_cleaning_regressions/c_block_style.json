@@ -1,0 +1,364 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "c_block_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "a83a97e2a24fe7b4cd1670654be6388b40ae5d594fb297c347eadecc7f24145a",
+      "case_id": "moocode-block-0d312c0deb49121a",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "moocode",
+      "oracle_exception_record_sha256": "6dbaaf57e6383567afc6d9b543ced24299c6a7151f8f58a03339da455a0f1074",
+      "raw_sha256": "9ae80400f399e703c3b8f62e16e1b141bb890150073ddd9a394f44db80ffb02f",
+      "raw_utf8_length": 75,
+      "source_provenance": {
+        "source_excerpt_sha256": "f4212c50470fb8519a390aafe4def67da0c9c9ca64a1d5008ef9486c785be52d",
+        "source_id": "8862aeb6ea1ff426e760f37995a062731c434dba"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "89c6682880c20933ea5565b4fadd952852a77b06b8d3526810cc480341e9fc58",
+      "case_id": "moocode-block-2a9397d581c78266",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "moocode",
+      "oracle_exception_record_sha256": "38b65e82e2beb0f8d77fedea4dca0e8e6b8c2b41311be1e316b8f215281848d2",
+      "raw_sha256": "3f5a9df84984aac17f633059ecb9a87a3405d5c7c747487dac5c96e709d5a8c0",
+      "raw_utf8_length": 9468,
+      "source_provenance": {
+        "source_excerpt_sha256": "6e72472c2d94ea265c1ceea10a625790e6326a8f693b715576bccd7fbf697819",
+        "source_id": "0c81f8f64a36cc8649c402b8dd1c9604284f35f1"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "42688e8f1f66490c042c3d176afd1948224f71081964dab6cb33ed91042474fc",
+      "case_id": "asl-block-0a79ea47097f6d56",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\nThis file contains the system BIOS switchable graphics code for\nPCH DGPU.\n\n@copyright\nINTEL CONFIDENTIAL\nCopyright 2010 - 2017 Intel Corporation.\n\nThe source code contained or described herein and all documents related to the\nsource code (\"Material\") are owned by Intel Corporation or its suppliers or\nlicensors. Title to the Material remains with Intel Corporation or its suppliers\nand licensors. The Material may contain trade secrets and proprietary and\nconfidential information of Intel Corporation and its suppliers and licensors,\nand is protected by worldwide copyright and trade secret laws and treaty\nprovisions. No part of the Material may be used, copied, reproduced, modified,\npublished, uploaded, posted, transmitted, distributed, or disclosed in any way\nwithout Intel's prior express written permission.\n\nNo license under any patent, copyright, trade secret or other intellectual\nproperty right is granted to or conferred upon you by disclosure or delivery\nof the Materials, either expressly, by implication, inducement, estoppel or\notherwise. Any license under such intellectual property rights must be\nexpress and approved by Intel in writing.\n\nUnless otherwise agreed by Intel in writing, you may not remove or alter\nthis notice or any other notice embedded in Materials by Intel or\nIntel's suppliers or licensors in any way.\n\nThis file contains an 'Intel Peripheral Driver' and is uniquely identified as\n\"Intel Reference Module\" and is licensed for Intel CPUs and chipsets under\nthe terms of your license agreement with Intel or your vendor. This file may\nbe modified by the user, subject to additional terms of the license agreement.\n\n@par Specification Reference:",
+      "expected_cleaned_sha256": "3faa78ff79a3174e973ca60d24962c9b58b28c409f4bd59105814f88fdcc5643",
+      "language": "asl",
+      "raw_comment": "/** @file\n  This file contains the system BIOS switchable graphics code for\n  PCH DGPU.\n\n @copyright\n  INTEL CONFIDENTIAL\n  Copyright 2010 - 2017 Intel Corporation.\n\n  The source code contained or described herein and all documents related to the\n  source code (\"Material\") are owned by Intel Corporation or its suppliers or\n  licensors. Title to the Material remains with Intel Corporation or its suppliers\n  and licensors. The Material may contain trade secrets and proprietary and\n  confidential information of Intel Corporation and its suppliers and licensors,\n  and is protected by worldwide copyright and trade secret laws and treaty\n  provisions. No part of the Material may be used, copied, reproduced, modified,\n  published, uploaded, posted, transmitted, distributed, or disclosed in any way\n  without Intel's prior express written permission.\n\n  No license under any patent, copyright, trade secret or other intellectual\n  property right is granted to or conferred upon you by disclosure or delivery\n  of the Materials, either expressly, by implication, inducement, estoppel or\n  otherwise. Any license under such intellectual property rights must be\n  express and approved by Intel in writing.\n\n  Unless otherwise agreed by Intel in writing, you may not remove or alter\n  this notice or any other notice embedded in Materials by Intel or\n  Intel's suppliers or licensors in any way.\n\n  This file contains an 'Intel Peripheral Driver' and is uniquely identified as\n  \"Intel Reference Module\" and is licensed for Intel CPUs and chipsets under\n  the terms of your license agreement with Intel or your vendor. This file may\n  be modified by the user, subject to additional terms of the license agreement.\n\n@par Specification Reference:\n**/",
+      "raw_sha256": "4b22fbf32a863bcb2bf27217d0950925b168b74657bf6f2559b71a932df53046",
+      "raw_utf8_length": 1747,
+      "source_provenance": {
+        "source_excerpt_sha256": "b2bd3f3cfd683cce6e816332cc97ebdecdeb5c93947dffab3e6360e8e4c7e2a0",
+        "source_id": "463c15ffbe8d9c56e4ad5deb2b584407b785a8b1"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "2605e80da8bda4b0d432bd1ab6855e3049e8561857a198e0a5fdf0b7ca87e24a",
+      "case_id": "asl-block-10313cd4de515e82",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(C)Copyright 1985-2019, American Megatrends, Inc.\n\nAll Rights Reserved.\n\n5555 Oakbrook Pkwy, Norcross, GA 30093\n\nPhone: (770)-246-8600\n\n@file PCIEACCESS.ASL",
+      "expected_cleaned_sha256": "e3c48828a31534d66c259a53d15d52bcab0b56dcde923bd16d8a91a1d4d6484f",
+      "language": "asl",
+      "raw_comment": "/**********************************************************************\n//**********************************************************************\n//**                                                                  **\n//**        (C)Copyright 1985-2019, American Megatrends, Inc.         **\n//**                                                                  **\n//**                       All Rights Reserved.                       **\n//**                                                                  **\n//**             5555 Oakbrook Pkwy, Norcross, GA 30093               **\n//**                                                                  **\n//**                       Phone: (770)-246-8600                      **\n//**                                                                  **\n//**********************************************************************\n//**********************************************************************\n\n/**\n   @file PCIEACCESS.ASL\n**/",
+      "raw_sha256": "95c63e0d217cb64c0761c20718b2215e1bab9d339989c6bdb46f007551ac767c",
+      "raw_utf8_length": 980,
+      "source_provenance": {
+        "source_excerpt_sha256": "6727ad2b5d1e41fc2a1bbb4b243e4d8eb18637b6ded577b3f443ee6a09005a9e",
+        "source_id": "3887d53e574472c26261d9a73e0a330b3ac01d68"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "60df9b3946518804a95fcb953efb6cef8a83c442a97183f3cd4e68e411d0d256",
+      "case_id": "asl-block-4c1a7ffb148b511e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\nCopyright (c) 2019, Linaro Ltd. All rights reserved.<BR>\n\nSPDX-License-Identifier: BSD-2-Clause-Patent",
+      "expected_cleaned_sha256": "e0de6853b6e23ea7ae390e088fe21d00cd1035a2c666d708fb08a10b6041cfec",
+      "language": "asl",
+      "raw_comment": "/** @file\r\n  Copyright (c) 2019, Linaro Ltd. All rights reserved.<BR>\r\n\r\n  SPDX-License-Identifier: BSD-2-Clause-Patent\r\n\r\n**/",
+      "raw_sha256": "df0a433d772fb85b041cc5bea31b56993e6da3acc0afefae44ad203d50f94047",
+      "raw_utf8_length": 126,
+      "source_provenance": {
+        "source_excerpt_sha256": "8a60e63525defa330c75dd580843b0f788da1b2e8a371306eaa1e8b4679887ea",
+        "source_id": "ab07c8e6ca84d643eed9012bc4777449d74d9bca"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "24e162b983233ed654439e70a621cf2eba0b8a0b416d17f2760cc794a8cb4778",
+      "case_id": "asl-block-6401ed7ae88a233b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\nIntel Corporation - ACPI Reference Code for the Cherryview\nFamily of Customer Reference Boards.\n\nCopyright (c) 1999 - 2015, Intel Corporation. All rights reserved.<BR>\n\nThis program and the accompanying materials\nare licensed and made available under the terms and conditions of the BSD License\nwhich accompanies this distribution.  The full text of the license may be found at\nhttp://opensource.org/licenses/bsd-license.php.\n\nTHE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.",
+      "expected_cleaned_sha256": "8f071470eec5da43fc84923945b283f26b67baa91d26eade9d1a875e61f77ffe",
+      "language": "asl",
+      "raw_comment": "/** @file\r\n  Intel Corporation - ACPI Reference Code for the Cherryview\r\n  Family of Customer Reference Boards.\r\n\r\n  Copyright (c) 1999 - 2015, Intel Corporation. All rights reserved.<BR>\r\n\r\n  This program and the accompanying materials\r\n  are licensed and made available under the terms and conditions of the BSD License\r\n  which accompanies this distribution.  The full text of the license may be found at\r\n  http://opensource.org/licenses/bsd-license.php.\r\n\r\n  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN \"AS IS\" BASIS,\r\n  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.\r\n\r\n**/",
+      "raw_sha256": "410b3e965a3403f7ef8ecd7e2c15a04453f6409ed88570549fbc66bf313f1e02",
+      "raw_utf8_length": 621,
+      "source_provenance": {
+        "source_excerpt_sha256": "4a107ae162065ab0222d23a9c260cec334ec803da93a79520f29a62c142655ee",
+        "source_id": "cb1badbbf807658890f4d219b4cf120a72a4ef75"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "7209a11f60529e23d96a509427fef5cad2d71d7db2d54bd5085bb60533f8520e",
+      "case_id": "asl-block-71d2bae7130bf783",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\nCopyright (c) 2015 - 2016, Intel Corporation. All rights reserved.<BR>\n\nThis program and the accompanying materials\nare licensed and made available under the terms and conditions of the BSD License\nwhich accompanies this distribution.  The full text of the license may be found at\nhttp://opensource.org/licenses/bsd-license.php.\n\nTHE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.",
+      "expected_cleaned_sha256": "229ba7c7e1949446acda4d76802beb2bd98b32c36d4f8e5fd331dafa6b5ee605",
+      "language": "asl",
+      "raw_comment": "/** @file\r\n  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.<BR>\r\n\r\n  This program and the accompanying materials\r\n  are licensed and made available under the terms and conditions of the BSD License\r\n  which accompanies this distribution.  The full text of the license may be found at\r\n  http://opensource.org/licenses/bsd-license.php.\r\n\r\n  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN \"AS IS\" BASIS,\r\n  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.\r\n\r\n**/",
+      "raw_sha256": "0fe1f320ea8afc6861ff6f62d139ca2885708a27c25857612c58fc948b12032a",
+      "raw_utf8_length": 517,
+      "source_provenance": {
+        "source_excerpt_sha256": "b61672999965b17368e5783a0b752d3ff92e06581b2a3e4e86918db07532d825",
+        "source_id": "7a7176ded4e22efe9c9319ecfba292f97b9b10ba"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "c32d566816da9ce6b734dddaab1cee575512fe5293ad813df5bf81bf93c7c13a",
+      "case_id": "asl-block-a3d5313de251cb1d",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\nThunderbolt ACPI methods\n\nCopyright (c) 2018 - 2019, Intel Corporation. All rights reserved.<BR>\nSPDX-License-Identifier: BSD-2-Clause-Patent",
+      "expected_cleaned_sha256": "04fa6e3ad961c2aa86b23bea8d78fd57b30dc7763e2d94a7806c70d19d8f1b2a",
+      "language": "asl",
+      "raw_comment": "/** @file\r\n Thunderbolt ACPI methods\r\n\r\nCopyright (c) 2018 - 2019, Intel Corporation. All rights reserved.<BR>\r\nSPDX-License-Identifier: BSD-2-Clause-Patent\r\n\r\n**/",
+      "raw_sha256": "1a20541f2bef5b8a6cde3fc7ad62a4d5ada5d6a3cf7a7f79bca7024a76fee2f6",
+      "raw_utf8_length": 163,
+      "source_provenance": {
+        "source_excerpt_sha256": "5d16061e7762455ac21dce314504a9a91cea293797bb64ed20d17dcf68bf7139",
+        "source_id": "d04b4cd2192eb5eb85dedf7fe55a9c5f6cc76aed"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e32f796ef9902dea7a54a5024d2f91da52dfe9127b544ca68ebf2c3d66c19a99",
+      "case_id": "asl-block-c2fa77ab9217e016",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Intel Confidential\n\nIntel Corporation - ACPI Reference Code for the Haswell\nFamily of Customer Reference Boards.\n\n\nCopyright (c)  1999 - 2013 Intel Corporation. All rights reserved\nThis software and associated documentation (if any) is furnished\nunder a license and may only be used or copied in accordance\nwith the terms of the license. Except as permitted by such\nlicense, no part of this software or documentation may be\nreproduced, stored in a retrieval system, or transmitted in any\nform or by any means without the express written consent of\nIntel Corporation.",
+      "expected_cleaned_sha256": "fbb7d2a800193fbb6b38c7b0cb271b5ce177a5ebc71f5335ace25ba5ce9b1e7e",
+      "language": "asl",
+      "raw_comment": "/**************************************************************************;\n;*                                                                        *;\n;*    Intel Confidential                                                  *;\n;*                                                                        *;\n;*    Intel Corporation - ACPI Reference Code for the Haswell             *;\n;*    Family of Customer Reference Boards.                                *;\n;*                                                                        *;\n;*                                                                        *;\n;*    Copyright (c)  1999 - 2013 Intel Corporation. All rights reserved   *;\n;*    This software and associated documentation (if any) is furnished    *;\n;*    under a license and may only be used or copied in accordance        *;\n;*    with the terms of the license. Except as permitted by such          *;\n;*    license, no part of this software or documentation may be           *;\n;*    reproduced, stored in a retrieval system, or transmitted in any     *;\n;*    form or by any means without the express written consent of         *;\n;*    Intel Corporation.                                                  *;\n;*                                                                        *;\n;*                                                                        *;\n;**************************************************************************/",
+      "raw_sha256": "2ad3224a97b114ab512b106e226a2de30893069ef653036e0d64665c7841452e",
+      "raw_utf8_length": 1462,
+      "source_provenance": {
+        "source_excerpt_sha256": "8e45b911683746ce867f6e05031658d402744f1ab68a1d81121177aee514d90b",
+        "source_id": "013582086da5d32ba03df4f75c279f8ddedfb703"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "7ad39f60753a516b53e7d90ad37232a4e1aae6614e1b7530d369c0d30ac23bb4",
+      "case_id": "asl-block-f877c393412b1893",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file\n\nCopyright (c) 2021, Intel Corporation. All rights reserved.<BR>\nSPDX-License-Identifier: BSD-2-Clause-Patent",
+      "expected_cleaned_sha256": "40c8e0776d16094a806d8f341db54ec5ffac747ed7b4a270140a283234f031de",
+      "language": "asl",
+      "raw_comment": "/** @file\n\n  Copyright (c) 2021, Intel Corporation. All rights reserved.<BR>\n  SPDX-License-Identifier: BSD-2-Clause-Patent\n\n**/",
+      "raw_sha256": "4bc04089da6b746257ce387b76b23b17e7baaeb52b67b5b33e848a213ce1f459",
+      "raw_utf8_length": 128,
+      "source_provenance": {
+        "source_excerpt_sha256": "1eb8bc6270234e3cb06e8e121fe74d8935ecd729e5b62b27bce1eba53c06614f",
+        "source_id": "36dfda114712960b13faf83b4015f7f4a30b81f2"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "b7cd83ca880d11944cf7d09224613f0b2619fe3a855e8088851eb4e869dcfe3c",
+      "case_id": "css-block-24070e494d6c5c2b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "iPads (landscape)",
+      "expected_cleaned_sha256": "289edf00d079d5fa2c2abf93c4f367df431926bfa382a241c34bcc00a273ea9e",
+      "language": "css",
+      "raw_comment": "/* iPads (landscape) ----------- */",
+      "raw_sha256": "e436b4ebc911181d381da9fff06169f7c1c64e039ef448c35f5e5e8b6d62839c",
+      "raw_utf8_length": 35,
+      "source_provenance": {
+        "source_excerpt_sha256": "9a30911e841e70000263b05ba3b58269912d8471a618093d177002efcc8b947e",
+        "source_id": "dee4e8066d423130fe5a35ec5f65b56cb5204ae8"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "d83216553bafcec7534cb7404f1abebfab7d2f1c4af047df8ccb3d6af5a0b915",
+      "case_id": "css-block-4ffe4db311a0abe4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This is a manifest file that'll be compiled into application.css, which will include all the files\nlisted below.\n\nAny CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,\nor vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.\n\nYou're free to add application-wide styles to this file and they'll appear at the top of the\ncompiled file, but it's generally better to create a new file per style scope.\n\n= require_self\n= require_tree .",
+      "expected_cleaned_sha256": "b6a1bde98dad87ad3f55719698964131485540463dbcb01e7ddc5d6d6da71118",
+      "language": "css",
+      "raw_comment": "/*\n * This is a manifest file that'll be compiled into application.css, which will include all the files\n * listed below.\n *\n * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,\n * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.\n *\n * You're free to add application-wide styles to this file and they'll appear at the top of the\n * compiled file, but it's generally better to create a new file per style scope.\n *\n *= require_self\n *= require_tree .\n*/",
+      "raw_sha256": "981919218a69e64e2e2abb3f22fe48d78700e1737240e452ee8e63b3608dd05f",
+      "raw_utf8_length": 544,
+      "source_provenance": {
+        "source_excerpt_sha256": "9d0027678b17ae9a00ef84b7d922fa0ac3c76511e7842f26c911aaf86bb4f7f9",
+        "source_id": "47bacc0f724cd199087ce83d966eb8c10ab6dcf8"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "867c5111f6648fcdf48bbd1338facc37101d3b362921080447fee2622138cd24",
+      "case_id": "css-block-743247561e12d9a3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "HEADINGS",
+      "expected_cleaned_sha256": "f3c9cd3c7c668b0ec0c01731e808af732b27f645420aa66e10396939b29b21b1",
+      "language": "css",
+      "raw_comment": "/**************HEADINGS****************/",
+      "raw_sha256": "2a89e48758b66f74e826b37449a1601416faae9623c667b7640285154d23fe6a",
+      "raw_utf8_length": 40,
+      "source_provenance": {
+        "source_excerpt_sha256": "951c8dfb2b87cd76e3e8c03d4a50d4065972a5a245c18cc9767b4c073a84cae1",
+        "source_id": "cc860719c595478311dfb53db14026f5a643a1df"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "cd8aa74e5b24eb5c5642b6b93f6c3adc129ce04fd0832b69a01a26ba9d30e650",
+      "case_id": "css-block-a903b2754d2851f1",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Timepicker Component for Twitter Bootstrap\n\nCopyright 2013 Joris de Wit\n\nContributors https://github.com/jdewit/bootstrap-timepicker/graphs/contributors\n\nFor the full copyright and license information, please view the LICENSE\nfile that was distributed with this source code.",
+      "expected_cleaned_sha256": "d68b8306acd31bda8a7e6ec860af3cb05dce3e20c1fd77d749c8a91f895ed120",
+      "language": "css",
+      "raw_comment": "/*!\n * Timepicker Component for Twitter Bootstrap\n *\n * Copyright 2013 Joris de Wit\n *\n * Contributors https://github.com/jdewit/bootstrap-timepicker/graphs/contributors\n *\n * For the full copyright and license information, please view the LICENSE\n * file that was distributed with this source code.\n */",
+      "raw_sha256": "ae0ff36ce16872615a0f98fc4c210d2677fe75ad3160e835ddd76072752cdca6",
+      "raw_utf8_length": 303,
+      "source_provenance": {
+        "source_excerpt_sha256": "14d839f97b2b224fa0453363654c4bdccc4546947bc764e52a08395c38e4c972",
+        "source_id": "bf3b9f0bc9ae87c3ffae91905c45b9c9344e7de1"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "d53076e19e495d3442c7b8e48480076176f4a349d19533bc4d2094469001b6cb",
+      "case_id": "css-block-ad0cc95f20382771",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "INTRO PIC",
+      "expected_cleaned_sha256": "50664cf1f8f66b9f463b88063d8005a270ee59a2825a4ee85ad4ac41ee131929",
+      "language": "css",
+      "raw_comment": "/******************* INTRO PIC ****************/",
+      "raw_sha256": "3ebc97c1fc9278e92c31c040e1e74316523b32501e2a719bcc01979e54429b1b",
+      "raw_utf8_length": 48,
+      "source_provenance": {
+        "source_excerpt_sha256": "f3aad96810038753c224173e20cd2c53bbb84f2d9be07f86bececac6560e7bfe",
+        "source_id": "d7f748642fe3c4746eb406bd289cf7520ba324d9"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "57151f40b2f025bb76df252246fa738ba983f8d1eaa54b7abb7aca39a9f97825",
+      "case_id": "css-block-dff309614676772b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Background image comes from http://subtlepatterns.com/\nand is CC BY-SA 3.0 - Subtle Patterns \u00a9 Atle Mo.\n\nhttp://subtlepatterns.com/skulls/",
+      "expected_cleaned_sha256": "cc3a61150b6b06377e45e513dd4ddfc4940f19617a7e696c18dd3cace2a19d7b",
+      "language": "css",
+      "raw_comment": "/* Background image comes from http://subtlepatterns.com/\n     * and is CC BY-SA 3.0 - Subtle Patterns \u00a9 Atle Mo.\n     *\n     * http://subtlepatterns.com/skulls/\n     */",
+      "raw_sha256": "e42c74714b010e7a11fc98b7b01401c8bc5e49b6e9781970c744208cdbf7830b",
+      "raw_utf8_length": 170,
+      "source_provenance": {
+        "source_excerpt_sha256": "bbd71e09c75cb013c948795f78b21c4baeb6e90bac75f18dc1955132a01d7eab",
+        "source_id": "4b659fe707fa9923e4e65d93992de0d5a3dc5a8c"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "edfded10ccbc57f07eb99e94b0a23276a8b6290e50ea29732fdcaa05cf8421db",
+      "case_id": "moocode-block-10c021520bca655e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "while (true)\n{\n\treq := self readRequest.\n\n}.",
+      "expected_cleaned_sha256": "1ab245aebda631e97fe7f6245197454a0b1584bc67aa2693e5003a8cf728a519",
+      "language": "moocode",
+      "raw_comment": "/*while (true)\n\t\t{\n\t\t\treq := self readRequest.\n\n\t\t}. */",
+      "raw_sha256": "731bf742bee38772ea626552899339d2f5549246df0f2a517b7e032d79351962",
+      "raw_utf8_length": 55,
+      "source_provenance": {
+        "source_excerpt_sha256": "3479317d9e7baa058ef1f3b2cef760169dc7bd54dd3e4b759979ff14fbd1695c",
+        "source_id": "3d19e199d429a5968a9d892b45bd0748abe0eaee"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "3268dbdba6e2ce20bf70d8c49112ea2793a877affae84226b0744f0085388a75",
+      "case_id": "moocode-block-10de0978e0e97ffa",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "most of the following methods can actually become class methods of Apex.\nif the instance varibles can be made accessible from the Apex class.",
+      "expected_cleaned_sha256": "8e6d2caff4ad84e7bb88337986c273742ab4e8c260eca968ba911ac7bbe25659",
+      "language": "moocode",
+      "raw_comment": "/* most of the following methods can actually become class methods of Apex.\n\t * if the instance varibles can be made accessible from the Apex class. */",
+      "raw_sha256": "75809535f322eb28cad1404052be3fc045526ff5af2a19f805ff67e051cfd3ca",
+      "raw_utf8_length": 151,
+      "source_provenance": {
+        "source_excerpt_sha256": "d14a629871faeface35fc8208902046a3627bbe924b84829eec54be7b43d46c8",
+        "source_id": "8eeb42cb96fd1ff59407ef9a18af7310859cd7eb"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "f601a3c0ad680d7ff782ee025c15a24e172652fbf90c4e2f21f9d5e8d8f9b0ec",
+      "case_id": "moocode-block-16fc01491a0b6197",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Each subclass must override this method because\nit interates over the all elements for counting",
+      "expected_cleaned_sha256": "37c08cc935958d00dae8c512ff519e21414a5ca4875bc90d8f2b3a3fd44e6a6c",
+      "language": "moocode",
+      "raw_comment": "/* Each subclass must override this method because\n\t\t * it interates over the all elements for counting */",
+      "raw_sha256": "19a493d7e086edafe062b4fbebd4e6d0d4704f042be9321723daa95cdeb8f994",
+      "raw_utf8_length": 106,
+      "source_provenance": {
+        "source_excerpt_sha256": "b1885b954c08eb0993a4d25bc7793b366731ec03aa551c79dd2387c877430884",
+        "source_id": "9941a7575045a9a6db3cb1dbe06bd94d422db6fd"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "32df6b7bf5c57db4231759e9237fd69e5556633ee261b265884071752e0f2c14",
+      "case_id": "moocode-block-7cf2a785e8735ba5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "v1 format(10, 20) isNil ifFalse: [\n\t\t\t\t \t'Beautiful life' dump.\n\t\t\t\t].",
+      "expected_cleaned_sha256": "2610da8892ccb3541cff9cb412d95f4ad030bcab10c9b042693492d70f238768",
+      "language": "moocode",
+      "raw_comment": "/*v1 format(10, 20) isNil ifFalse: [\n\t\t\t\t \t'Beautiful life' dump.\n\t\t\t\t].*/",
+      "raw_sha256": "680edc8676626b58a5f3940953fe728b0669ca0922e1457ff4e3ffd7e808f151",
+      "raw_utf8_length": 74,
+      "source_provenance": {
+        "source_excerpt_sha256": "d32e33b36ed0de82241617b67d357d5daff782e2bc922ecaf99a9b0a4f585028",
+        "source_id": "88d02629d5de6d7e05a6ac824466a999bc7eacb6"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "afc502b5995c1022d1ee12009c959a6523cb172454e6f634095ff1863dde76e9",
+      "case_id": "moocode-block-c099c555f5b96b36",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "v1 := [\n\t| k |\n\tk := 99.\n\t[\n\t\t[\n\t\t\t//[ Exception signal: 'simulated error' ] ensure: [('ensure 1 ' & (k asString)) dump ].\n\t\t\t[ ^20 ] ensure: [('ensure 1 ' & (k asString)) dump ].\n\t\t] ensure: ['ensure 2' dump ].\n\t] ensure: ['ensure 3' dump ].\n] on: Exception do: [:ex |\n\t('EXCETION - ' & ex messageText) dump.\n\t// Exception signal: 'qqq'.\n].",
+      "expected_cleaned_sha256": "cbf36e739ea03cee1bbd2f4a58f9028d144fc3904c17274cf7bb2ceea068a450",
+      "language": "moocode",
+      "raw_comment": "/*\n\t\tv1 := [\n\t\t\t| k |\n\t\t\tk := 99.\n\t\t\t[\n\t\t\t\t[\n\t\t\t\t\t//[ Exception signal: 'simulated error' ] ensure: [('ensure 1 ' & (k asString)) dump ].\n\t\t\t\t\t[ ^20 ] ensure: [('ensure 1 ' & (k asString)) dump ].\n\t\t\t\t] ensure: ['ensure 2' dump ].\n\t\t\t] ensure: ['ensure 3' dump ].\n\t\t] on: Exception do: [:ex | \n\t\t\t('EXCETION - ' & ex messageText) dump.\n\t\t\t// Exception signal: 'qqq'.\n\t\t].\n\t\t*/",
+      "raw_sha256": "d57be8f714559b586a88fa29ff0605ccd13282baf23ebb759b85532ff784ccfb",
+      "raw_utf8_length": 376,
+      "source_provenance": {
+        "source_excerpt_sha256": "991104877bc382e45b50852e337c095c6ba2868874f679870126598e7f262d05",
+        "source_id": "256c0d4b6bc6831989c4c6795c415343130c1bdf"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

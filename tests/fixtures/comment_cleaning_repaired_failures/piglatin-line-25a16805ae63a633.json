@@ -1,0 +1,38 @@
+{
+  "case_id": "piglatin-line-25a16805ae63a633",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "piglatin",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "d077d996e60f957eec66967064a9cd76e5686defaf11ac2a59563eb89876f762",
+      "utf8_length": 86
+    },
+    "manifest_old_output": {
+      "sha256": "7c4518eb0a4c2c80aa4a56e88871a2024a42a925211971a79523eb71a248f25c",
+      "utf8_length": 83
+    },
+    "raw_comment": {
+      "sha256": "d9bcb1e0048ff1150816e56226624827079b7d14ee2eecf4637a40b62c8b85bd",
+      "utf8_length": 88
+    },
+    "recommended_expected_output": {
+      "sha256": "7c4518eb0a4c2c80aa4a56e88871a2024a42a925211971a79523eb71a248f25c",
+      "utf8_length": 83
+    }
+  },
+  "regression": {
+    "expected_output": "NB: UNUSED, since it's too slow. Use a bare-bones MapReduce implementation instead.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "---- NB: UNUSED, since it's too slow. Use a bare-bones MapReduce implementation instead."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6ab8a53c46a2a72b49df2f8e84d54968c7a9fcbd342b6312b48595fc51a27729",
+    "source_id": "6a60c5424a9834ef20296e3c149ee2ee61ef4a56"
+  },
+  "source_record_sha256": "8b49ec9a39e8c8ef0cf41a33af775c8f2d2e62ead184b7a1dbe5ae17c3f3b133"
+}

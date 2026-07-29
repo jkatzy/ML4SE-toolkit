@@ -1,0 +1,38 @@
+{
+  "case_id": "newlisp-line-2474b1389158253b",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "newlisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fb3daf369387f3d3ce3661fb475a607775800719f2916563ec386a3ad4582627",
+      "utf8_length": 76
+    },
+    "manifest_old_output": {
+      "sha256": "6bf3b129989a13959f9537c93d32590a16582eb418c0bcbca6708df44fc9e78f",
+      "utf8_length": 70
+    },
+    "raw_comment": {
+      "sha256": "f0542a378eb25b632b3d5aaaf01c5d75f835c9c5c1405a0d6b365a6f0bbe3202",
+      "utf8_length": 85
+    },
+    "recommended_expected_output": {
+      "sha256": "6bf3b129989a13959f9537c93d32590a16582eb418c0bcbca6708df44fc9e78f",
+      "utf8_length": 70
+    }
+  },
+  "regression": {
+    "expected_output": "author: lu4nx <lx@shellcodes.org>\ndate: 2014-05-28\n17MonIP for newLisp",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; author: lu4nx <lx@shellcodes.org>\n;;;; date: 2014-05-28\n;;;; 17MonIP for newLisp"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1a77ad7a034a4de63e534d782267f78f9a987456dfb9ec4a8be654718c9f7139",
+    "source_id": "c2b57304d06ed7349344c225080c5f27dea2d205"
+  },
+  "source_record_sha256": "9562e9845d99689b3b079372ef0abb21886912e747631e74a50288295e8c9685"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "genero-line-b652ca1de3d750bd",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u002b",
+  "disposition": "executable_regression",
+  "language": "genero",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "497aaf8dc6907ae1258df9c0d25bfaf2f065bba575b76598aeeb3ca23ef6c968",
+      "utf8_length": 359
+    },
+    "manifest_old_output": {
+      "sha256": "18570f60887393b162d459ef7de76f58cffd58528a5c823bcd1ebdceda1aec50",
+      "utf8_length": 344
+    },
+    "raw_comment": {
+      "sha256": "d69d780c8deec76654653b45b67bb3aa3548af1c9ba5dbe23696499866d5e623",
+      "utf8_length": 372
+    },
+    "recommended_expected_output": {
+      "sha256": "18570f60887393b162d459ef7de76f58cffd58528a5c823bcd1ebdceda1aec50",
+      "utf8_length": 344
+    }
+  },
+  "regression": {
+    "expected_output": "Provide function to:\n* Handle an encrypted XML config file\n* Encrypt / Decrypt a password & salt pair for storing in a databaase\n\n\nFor Genero 3.10 and above\n\tpassword encrypted using bcrypt ( Blowfish )\n\tyou only need to store the Password hash ( bcrypt included salt in hash )\n\nThis module initially written by: Neil J.Martin ( neilm@4js.com )",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#+ Provide function to:\n#+ * Handle an encrypted XML config file\n#+ * Encrypt / Decrypt a password & salt pair for storing in a databaase\n#+\n#+\n#+ For Genero 3.10 and above\n#+\tpassword encrypted using bcrypt ( Blowfish )\n#+\tyou only need to store the Password hash ( bcrypt included salt in hash )\n#+\n#+ This module initially written by: Neil J.Martin ( neilm@4js.com )\n#+"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5187e55542d8f83b617847f352e82f4ba3ce3eb512b1a18fb0f2f0d6bd8488f6",
+    "source_id": "74ce1e660220fdd4b7c83a89fe160bfa7d39cfa0"
+  },
+  "source_record_sha256": "97f787f2994b5d61ab51a114b2780a7103a8543b774b907e75c785d1373e9e62"
+}

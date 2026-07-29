@@ -1,0 +1,38 @@
+{
+  "case_id": "visual_basic_net-line-3aa36621bee3a9b3",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u0027",
+  "disposition": "executable_regression",
+  "language": "visual_basic_net",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "bde9b6d2342b84cf1d6206ff0303941880a68ba170072cf7edff28362276469c",
+      "utf8_length": 79
+    },
+    "manifest_old_output": {
+      "sha256": "365ec050619a4f37c09082d25109f97c95b3415389255275584feb5017e2414b",
+      "utf8_length": 67
+    },
+    "raw_comment": {
+      "sha256": "c4e1837185e82670d171d6784524fa0dad5d9df0ee69f183d30b10a584ed0c12",
+      "utf8_length": 95
+    },
+    "recommended_expected_output": {
+      "sha256": "365ec050619a4f37c09082d25109f97c95b3415389255275584feb5017e2414b",
+      "utf8_length": 67
+    }
+  },
+  "regression": {
+    "expected_output": "<summary>\nCreatea a new empty object\n</summary>\n<remarks></remarks>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "''' <summary>\n    ''' Createa a new empty object\n    ''' </summary>\n    ''' <remarks></remarks>"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e4cabe068a6718d048e242504345ed20db6c036e5ef7dea35864e57c2d59ed7d",
+    "source_id": "023ec751fc6a59f2f9eea087f15a7cf83402428e"
+  },
+  "source_record_sha256": "282819fbc2bcaace97b77580088cb411d1dd961bca6c2f311381542a59312a32"
+}

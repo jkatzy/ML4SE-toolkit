@@ -1,0 +1,38 @@
+{
+  "case_id": "talon-line-766aca7c04024b50",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "talon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "8276bdd53ec623cd3fa216fce5b34282a09b78a2514c26a9cc941c4b6b7b28f0",
+      "utf8_length": 5
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# ---"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "565ba94acd8e5be77beb448da9bd18162246e9f883c527a0058a6159c26b23d6",
+    "source_id": "f6270aa06af3bbc9811a022157562ae857a13b35"
+  },
+  "source_record_sha256": "5c5c2a1eb2af282b61cef2c221a36b30f0b1acc581c3663b8d242329e7b6f58f"
+}

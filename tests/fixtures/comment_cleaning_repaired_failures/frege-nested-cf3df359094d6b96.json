@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-cf3df359094d6b96",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "dfeb32fd6deb9fc1fc5322dcdddd2bc9413645990cdcbc352b7c6fbae2a73970",
+      "utf8_length": 108
+    },
+    "manifest_old_output": {
+      "sha256": "14aa28e0391dcc51dbe1c8fd6ecc8eba2864b3bf290c4e3609a9879f9c90343b",
+      "utf8_length": 100
+    },
+    "raw_comment": {
+      "sha256": "3964e076d46153d93323942c9239df6952797411930b86855214bb3f0b16c09b",
+      "utf8_length": 114
+    },
+    "recommended_expected_output": {
+      "sha256": "14aa28e0391dcc51dbe1c8fd6ecc8eba2864b3bf290c4e3609a9879f9c90343b",
+      "utf8_length": 100
+    }
+  },
+  "regression": {
+    "expected_output": "Copies the content of the @ByteString@ to the native @byte[]@ so that\nit can be used as mutable one.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{--\n   Copies the content of the @ByteString@ to the native @byte[]@ so that\n   it can be used as mutable one.\n -}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2c4252d25a8b46808c6952989a5256dc5670d50df83188e9002425889fa88ab9",
+    "source_id": "53fda671da9b33ee1046602a447901efc9088134"
+  },
+  "source_record_sha256": "e10b303d3a0b4f345a30285c453140f11a45d447d547b9992d24cc011325eb4f"
+}

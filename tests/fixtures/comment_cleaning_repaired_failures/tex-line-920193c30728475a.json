@@ -1,0 +1,38 @@
+{
+  "case_id": "tex-line-920193c30728475a",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "tex",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f046f49c6acb8e2b5adf0a692d5d64b5def3814b60824f5fe8466b2b1e4e60fb",
+      "utf8_length": 9
+    },
+    "manifest_old_output": {
+      "sha256": "5c8932afc49861c53f5f4fe603b9d8d52ef3d8e72efd4e5a6cbb4f7be35e0766",
+      "utf8_length": 7
+    },
+    "raw_comment": {
+      "sha256": "acd95edb64980d5701759ebce59360c5436bb771ac726f78ae9d3e3e3354634a",
+      "utf8_length": 10
+    },
+    "recommended_expected_output": {
+      "sha256": "5c8932afc49861c53f5f4fe603b9d8d52ef3d8e72efd4e5a6cbb4f7be35e0766",
+      "utf8_length": 7
+    }
+  },
+  "regression": {
+    "expected_output": "Ps. 111",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%% Ps. 111"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "557e91f46ea4cdd2d2e34de77feedfc69426c93260df0068bf88817c012474da",
+    "source_id": "dcc28c5c4e579f8277da5d76d1eb33337d72307c"
+  },
+  "source_record_sha256": "26a0cc1b53f0c9669b5a024a347416a1597e84de2e231d12a3e456f96a3954da"
+}

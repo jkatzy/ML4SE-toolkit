@@ -1,0 +1,38 @@
+{
+  "case_id": "openedge_abl-block-fb96c9dd52c557f9",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "openedge_abl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ae0f269993cc1a8dfcde816da2af4f8aa6fa0f1f72a5bc580d947a5f8770ad7a",
+      "utf8_length": 678
+    },
+    "manifest_old_output": {
+      "sha256": "0ffc697f488c14ba35c0c5b2dfea1c1b7a01814ceb41df8375abcb4102820ff6",
+      "utf8_length": 723
+    },
+    "raw_comment": {
+      "sha256": "5e56631a1952014fa5e5efcd689e0e4e2e218caebe6cf39df806825f58f95233",
+      "utf8_length": 789
+    },
+    "recommended_expected_output": {
+      "sha256": "0ffc697f488c14ba35c0c5b2dfea1c1b7a01814ceb41df8375abcb4102820ff6",
+      "utf8_length": 723
+    }
+  },
+  "regression": {
+    "expected_output": "                 _     _  __  __ ___  __  __\n                (_)   | ||  \\/  |__ \\|  \\/  |\n _ __ __ _ _ __  _  __| || \\  / |  ) | \\  / |\n| '__/ _` | '_ \\| |/ _` || |\\/| | / /| |\\/| |\n| | | (_| | |_) | | (_| || |  | |/ /_| |  | |\n|_|  \\__,_| .__/|_|\\__,_||_|  |_|____|_|  |_|\n          | |\n          |_|\n\nSimple \"SPI, g-forces (LIS3DSH)\" example\n\nUses the SPI interface to communicate with a LIS3DSH accelerometer.\nThe LIS3DSH is first configured to periodically perform a measurement with an output data rate (ODR) of 6.25 Hz.\nA 1sec. timer is then used to read out the measurement values and issue the g-forces [mg] for all 3 axes (X, Y, Z)\nvia the console.\n\n\nOnly compatible with rapidM2M Base Starter\n\n\n@version 20190730",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*\n *                  _     _  __  __ ___  __  __\n *                 (_)   | ||  \\/  |__ \\|  \\/  |\n *  _ __ __ _ _ __  _  __| || \\  / |  ) | \\  / |\n * | '__/ _` | '_ \\| |/ _` || |\\/| | / /| |\\/| |\n * | | | (_| | |_) | | (_| || |  | |/ /_| |  | |\n * |_|  \\__,_| .__/|_|\\__,_||_|  |_|____|_|  |_|\n *           | |\n *           |_|\n *\n * Simple \"SPI, g-forces (LIS3DSH)\" example\n *\n * Uses the SPI interface to communicate with a LIS3DSH accelerometer.\n * The LIS3DSH is first configured to periodically perform a measurement with an output data rate (ODR) of 6.25 Hz.\n * A 1sec. timer is then used to read out the measurement values and issue the g-forces [mg] for all 3 axes (X, Y, Z)\n * via the console.\n *\n \n * Only compatible with rapidM2M Base Starter\n * \n *\n * @version 20190730  \n */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "503ef2bee369dca8061cb8ff9e8b266ca45065e820707c3743bbafe553ba5b3a",
+    "source_id": "27b7e00668b9b520531aa5305ed7e3176f128d36"
+  },
+  "source_record_sha256": "961a726c30edb5a492fc16332bf0a78b51ecd3980ef3bc9343d2dc32f974971f"
+}

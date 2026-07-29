@@ -1,0 +1,29 @@
+{
+  "case_id": "cuda-block-1eea7d8df9f1fccd",
+  "category": "policy_or_judge_conflict",
+  "cluster": "oracle_exception:reviewer_disagreement",
+  "disposition": "accounting_only_no_oracle",
+  "language": "cuda",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2af883f8191aacdcd100bb478cbd8726d10326efa4d1ead677900feb23d16bbf",
+      "utf8_length": 142
+    },
+    "manifest_old_output": {
+      "sha256": "eb202803af221f62e63ccf43abcebfc5455bdb8ab64595a3e37e2405814f94c7",
+      "utf8_length": 144
+    },
+    "raw_comment": {
+      "sha256": "2d9845dac694ec73d01b849d31d482d3a6b40b855da1ecf74fea3151dbb1650f",
+      "utf8_length": 149
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d9dff58b0826070d52063fb3e442b323664797682975d615dcfaf81ad81f1c92",
+    "source_id": "fa47d859fcf05b4793b870b61719dfd421dcedde"
+  },
+  "source_record_sha256": "9920f8d3baa0c2ce2d6eeb91551b745931e9d74672b45ccf2d965773ea672eb4"
+}

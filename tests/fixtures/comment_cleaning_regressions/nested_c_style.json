@@ -1,0 +1,313 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "nested_c_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "e9f6c8ab50b6c8c76c58d9b22b5e71f0a331b48b6dde18cecc242fe208934efc",
+      "case_id": "powerbuilder-nested-2fee93e4074c3191",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "powerbuilder",
+      "oracle_exception_record_sha256": "6d718391afffe0cf8eaab7b9de5fff34a35164a25d0b0d00f5916a6d15a0a048",
+      "raw_sha256": "b90b6a5f6ad948c9a979b3fcb1e33c233b5eb93cc327000b524eb388ccb358b2",
+      "raw_utf8_length": 705,
+      "source_provenance": {
+        "source_excerpt_sha256": "f3944dcb59d4c7593bdcdb46d5b3391346b92242d566d1be8d7af6f0634ce5fc",
+        "source_id": "591325b0db89fa2cca439ef45c7da5a9a2c1bf08"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e9f6c8ab50b6c8c76c58d9b22b5e71f0a331b48b6dde18cecc242fe208934efc",
+      "case_id": "powerbuilder-nested-df42c6b65e91a169",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "cleaning_policy_dispute",
+      "language": "powerbuilder",
+      "oracle_exception_record_sha256": "df664355f96d9e4a2254ffa080f8aa9947df8d858cd1c535b3b04555ddf63ec9",
+      "raw_sha256": "b90b6a5f6ad948c9a979b3fcb1e33c233b5eb93cc327000b524eb388ccb358b2",
+      "raw_utf8_length": 705,
+      "source_provenance": {
+        "source_excerpt_sha256": "207c3cc8b124810a0b901417cf4e6968a5f76e064614112ce2e2be4d75cd8ed6",
+        "source_id": "bbcaad389e046c6745666d87409638cd6da2f3c0"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "b5ccf3a6cdcf8299b15b9ffebcb0c29c37851ab6b02b49aeb8906d324a089a41",
+      "case_id": "dafny-line-e48f8cb595ead4d0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#title Binary Tree Is Sorted\n#desc Prove an implementation meets its spec.\n#desc Practice with proof diagnosis.",
+      "expected_cleaned_sha256": "262e252c36c187cc448b844313ad686af411aa07508e543e95adf7cdf4de37b5",
+      "language": "dafny",
+      "raw_comment": "//#title Binary Tree Is Sorted\n//#desc Prove an implementation meets its spec.\n//#desc Practice with proof diagnosis.",
+      "raw_sha256": "d06547a7f9c8ea2f229c9a88b44ca22901a652307b029d480af8e4a02ac1efe0",
+      "raw_utf8_length": 117,
+      "source_provenance": {
+        "source_excerpt_sha256": "593b488c28b18709a02a50b9883049bfa43a67af5f06bdf99d2c7a829a23712a",
+        "source_id": "af1c8bb067f2e2d6f9bd4383972fb9377b40bc02"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "f3481e21971ef8218da293a7a4c219b248d2da6a60a4fc6f10f1aeb8f2ab6afe",
+      "case_id": "dm-nested-37560f6933005679",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Surgery Tools\nContains:\n\t\tRetractor\n\t\tHemostat\n\t\tCautery\n\t\tSurgical Drill - MIA!\n\t\tScalpel\n\t\tCircular Saw",
+      "expected_cleaned_sha256": "4cfa73bc3fc5c582d76611a57d9fc5d8b96badee44ea6888c750eb944634e79d",
+      "language": "dm",
+      "raw_comment": "/* Surgery Tools\n * Contains:\n *\t\tRetractor\n *\t\tHemostat\n *\t\tCautery\n *\t\tSurgical Drill - MIA!\n *\t\tScalpel\n *\t\tCircular Saw\n */",
+      "raw_sha256": "0b593fb8790ca53e5af9847a4d863f47f043f683f04d45f60e94743764349571",
+      "raw_utf8_length": 127,
+      "source_provenance": {
+        "source_excerpt_sha256": "fdef99a639326b90eaa7b04c0a21c264c121f7ae93e21e34f86c36e92a172ed5",
+        "source_id": "4747baab4e341822b8604fb7037a99b97541d5cd"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "dc2ac9dc6367cd53c4ddaf580b570144c4ba33efadd1cb0c3f72ace2c3259714",
+      "case_id": "dm-nested-e83321b0331aae0c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "pif_Arithmetic\n  Version: b1.2.2.20171227\n  Release Date: December 27, 2017\n\n\n\n\n +--------------------+\n |                    |\n |  Contents          |\n |  1. License        |\n |  2. Release Notes  |\n |  3. To Do/Plans    |\n |                    |\n +--------------------+\n\n  1. License\n  ----------------------------------------------------\n\n  The code for pif_Arithmetic is released under the MIT License. Refer to \"+License.dm\" for the full\n  text of the license.\n\n  2. Release Notes\n  ----------------------------------------------------\n\n  Version b1.2.2.20171227\n\n    - Updated the specification on the FindFirstSet() and FindLastSet() methods.\n    - Added CountLeadingZeros() and CountTrailingZeros() methods.\n\n  Version b1.1.20160502.\n\n    - Added Release Notes and To Do sections to pif_Arithmetic.\n    - Added FirstFirstSet() and FindLastSet() methods.\n    - Changed Highest() and Lowest() to Maximum() and Minumum(), respectively.\n    - Clarified the behavior of the PrintBinary(), PrintDecimal(), and PrintHexadecimal() methods.\n    - Added notes about the relationship between Quotient() and Remainder().\n    - Added note about the legal output values of Remainder().\n    - Added a note about restrictions on the output of Divide().\n    - Added notes on how the comparison methods should handle incoming data when it is \"distinct\"\n      from the source object. Refer to those methods for details.\n    - Added a note on the behavior of Negate() for signed integer objects, and more specifically for\n      the largest negative number representable for a fixed-width signed integer.\n    - Added the Zero() \"static\" method.\n    - Added a /pif_Arithmetic/ProtocolNonConformingObjectException exception as well as a note on\n      where to use it in the GAAF format.\n    - Added a /pif_Arithmetic/NonNumericInvalidPositionException exception as well as a note on\n      where to use it in the GAAF format.\n    - Updated the GAAF format to provide more details on how a list of integers should be\n      interpreted, and especially a list of one integer.\n\n  Version b1.0.20160409.\n\n    - Initial beta release.\n\n  3. To Do/Plans\n  ----------------------------------------------------\n\n    - Add /pif_Arithmetic/DivisionByZeroException exception and documentation.\n    - Add /pif_Arithmetic/ZeroToZerothPowerException exception and documentation.\n    - Give this a separate hub entry upon a full release on pif_LongInt or a full release of\n      pif_BigInt, whichever seems most appropriate.",
+      "expected_cleaned_sha256": "9dcc524def66835ec36cb5302a42584cb718de3f988300dec34abbeb850a188f",
+      "language": "dm",
+      "raw_comment": "/**\n ** pif_Arithmetic\n **   Version: b1.2.2.20171227\n **   Release Date: December 27, 2017\n **\n ***************************************************************************************************\n ***************************************************************************************************\n\n +--------------------+\n |                    |\n |  Contents          |\n |  1. License        |\n |  2. Release Notes  |\n |  3. To Do/Plans    |\n |                    |\n +--------------------+\n\n  1. License\n  ----------------------------------------------------\n\n  The code for pif_Arithmetic is released under the MIT License. Refer to \"+License.dm\" for the full\n  text of the license.\n\n  2. Release Notes\n  ----------------------------------------------------\n\n  Version b1.2.2.20171227\n\n    - Updated the specification on the FindFirstSet() and FindLastSet() methods.\n    - Added CountLeadingZeros() and CountTrailingZeros() methods.\n\n  Version b1.1.20160502.\n\n    - Added Release Notes and To Do sections to pif_Arithmetic.\n    - Added FirstFirstSet() and FindLastSet() methods.\n    - Changed Highest() and Lowest() to Maximum() and Minumum(), respectively.\n    - Clarified the behavior of the PrintBinary(), PrintDecimal(), and PrintHexadecimal() methods.\n    - Added notes about the relationship between Quotient() and Remainder().\n    - Added note about the legal output values of Remainder().\n    - Added a note about restrictions on the output of Divide().\n    - Added notes on how the comparison methods should handle incoming data when it is \"distinct\"\n      from the source object. Refer to those methods for details.\n    - Added a note on the behavior of Negate() for signed integer objects, and more specifically for\n      the largest negative number representable for a fixed-width signed integer.\n    - Added the Zero() \"static\" method.\n    - Added a /pif_Arithmetic/ProtocolNonConformingObjectException exception as well as a note on\n      where to use it in the GAAF format.\n    - Added a /pif_Arithmetic/NonNumericInvalidPositionException exception as well as a note on\n      where to use it in the GAAF format.\n    - Updated the GAAF format to provide more details on how a list of integers should be\n      interpreted, and especially a list of one integer.\n\n  Version b1.0.20160409.\n\n    - Initial beta release.\n\n  3. To Do/Plans\n  ----------------------------------------------------\n\n    - Add /pif_Arithmetic/DivisionByZeroException exception and documentation.\n    - Add /pif_Arithmetic/ZeroToZerothPowerException exception and documentation.\n    - Give this a separate hub entry upon a full release on pif_LongInt or a full release of\n      pif_BigInt, whichever seems most appropriate.\n\n****************************************************************************************************\n****************************************************************************************************/",
+      "raw_sha256": "01f97207bb32706d340456d99c271f626bba13460ce81947a06a5c4304138e47",
+      "raw_utf8_length": 2914,
+      "source_provenance": {
+        "source_excerpt_sha256": "078c903fc0191c61320700abf87bb942721c00e99341f31649f2bbdbe5017f58",
+        "source_id": "2e97bcd2b521b90011b138c9b5024c662f6e0280"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "8e2faa6b9b20ff4c4b9ee6359c8deff07ed9b6c145531c40eacea90024ea8687",
+      "case_id": "dm-nested-e855b5dad973eb48",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Tables  and  Racks\nContains:\n\t\tTables\n\t\tGlass  Tables\n\t\tWooden  Tables\n\t\tReinforced  Tables\n\t\tRacks\n\t\tRack  Parts",
+      "expected_cleaned_sha256": "d611c2445b3263836b7a9bf5fb054117b56d9b444daf06a410bf71952cbc9ea6",
+      "language": "dm",
+      "raw_comment": "/*  Tables  and  Racks\n  *  Contains:\n  *\t\tTables\n  *\t\tGlass  Tables\n  *\t\tWooden  Tables\n  *\t\tReinforced  Tables\n  *\t\tRacks\n  *\t\tRack  Parts\n  */",
+      "raw_sha256": "3952e006916c2deeeb2c02968b9cec606f762ca9b99079d91568b6221b2f245c",
+      "raw_utf8_length": 145,
+      "source_provenance": {
+        "source_excerpt_sha256": "18ce8e8fb453aa4178a208dc35dc0e4894cb84f11dc62dd57b5439a02a6c8153",
+        "source_id": "4b62d71fd0eccad95e91ad50c2e359176f477224"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "303dc8509557b793a50ac8aadc9045a97200da3ebb2c46634fbba6b5eaabc650",
+      "case_id": "dylan-line-31513e8271d34445",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 1989, Lawrence Erlbaum Assoc. All rights reserved.\n\nUse and copying of this software and preparation of derivative works\nbased upon this software are permitted.  Any distribution of this\nsoftware or derivative works must comply with all applicable United\nStates export control laws.\n\nThis software is made available AS IS. The author makes no warranty\nabout the software, its performance or its conformity to any\nspecification.\nLTD: No macros.",
+      "expected_cleaned_sha256": "6ff43e0489a9584e8e742885a36b9ebc65b0a5f332f1d4a1296a7690845e6f78",
+      "language": "dylan",
+      "raw_comment": "//  *********************************************************************\n//  Copyright (c) 1989, Lawrence Erlbaum Assoc. All rights reserved.\n//  \n//  Use and copying of this software and preparation of derivative works\n//  based upon this software are permitted.  Any distribution of this\n//  software or derivative works must comply with all applicable United\n//  States export control laws.\n//  \n//  This software is made available AS IS. The author makes no warranty\n//  about the software, its performance or its conformity to any\n//  specification.\n//  *********************************************************************\n// LTD: No macros.",
+      "raw_sha256": "054439a3d94206fbed6aa7c1dc356b24030d1019c1873d3583baa6e3458593ac",
+      "raw_utf8_length": 648,
+      "source_provenance": {
+        "source_excerpt_sha256": "e451b3ae2c6646e3054a49929c1b25844c2ecf0d5e0d1b6b48ef8f0ee15576c9",
+        "source_id": "746d1373a61345951e26c9df4bb300db1c74ff56"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "dcdbeafb4ea5bc32aab9fa52e3b80227cdc1af273933f6f1638e5502904fea21",
+      "case_id": "dylan-nested-50b56a4a4d31362c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Line editor for TTYs\n\nThis currently handles just a prompt and some simple editing and motion.\n\nCompletion and execution can be implemented by inheritors.",
+      "expected_cleaned_sha256": "b47a3d47df7bed8b3b31a96a410144d6f539184172b413ce1872bca5b8bd4a35",
+      "language": "dylan",
+      "raw_comment": "/* Line editor for TTYs\n *\n * This currently handles just a prompt and some simple editing and motion.\n *\n * Completion and execution can be implemented by inheritors.\n *\n */",
+      "raw_sha256": "785ff666e1c3c29542a6c64b4fb2f1b6d9903a8ad66baa48cd4b5d02a2e4dd9d",
+      "raw_utf8_length": 174,
+      "source_provenance": {
+        "source_excerpt_sha256": "363c96f762f90d512dc0f2eab49f444606cb2afd72e6c72a004cdff984020f6e",
+        "source_id": "5b02413b50a3deda81c23224fe3e15b4eb7b6aa2"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e9b3e4413d2638474d5c95e7cb25d6715c1fbbf34d8231daad1e8aa5763e6725",
+      "case_id": "jflex-nested-0a08847aed2ae822",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Ryan Smick\nscanner.flex\nFlex file defining scanner for fraternal language",
+      "expected_cleaned_sha256": "0e704180ec412f3f6553d99fa8db28a95fe16c3758983c4a1688522bfd0dfe78",
+      "language": "jflex",
+      "raw_comment": "/* Ryan Smick\n * scanner.flex\n * Flex file defining scanner for fraternal language\n */",
+      "raw_sha256": "a3abd25f55dc99df6bbbc3d2a34a8491afce7c3a461104dd34907e17af920bec",
+      "raw_utf8_length": 86,
+      "source_provenance": {
+        "source_excerpt_sha256": "11c6947cab80b3b280821383e8bac1e26b775a33fd040297c2de09e6a8f0ee57",
+        "source_id": "ef8019087eccd966f333f73bf4e558ca3fdabf17"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "b955357ebf355d9c5baf43eca20c7fe925b5a4e2d6e0fd850ab59a05b1d7b377",
+      "case_id": "jflex-nested-5c557147f5f8499a",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Keywords.",
+      "expected_cleaned_sha256": "b7fd2d5b90f5f69bd99fdbb1168aed3f719fea0894f4bd96bba93c7a40837ea0",
+      "language": "jflex",
+      "raw_comment": "/** Keywords. */",
+      "raw_sha256": "80ebe6cf6eb1c248ae71ea4f3737a596a63835285a26e3c068b667bf39be3ba6",
+      "raw_utf8_length": 16,
+      "source_provenance": {
+        "source_excerpt_sha256": "60a287b4067360b1cebcee76ebbe194731b03b3c20e4a9d31f269b9ccdde08fc",
+        "source_id": "1fbbaaf471fce2d355f8f29422c80b4bafce2ee0"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "6a090f214a79996e62b1c3b27421c2a1085c9a425908a53ce9d1d843979b16c3",
+      "case_id": "jflex-nested-e472f4f857151f47",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Declarations\nThe contents of this block is copied verbatim into the Lexer class, this\nprovides the ability to create member variable and methods to use in the\naction blocks for rules.",
+      "expected_cleaned_sha256": "d890e4b4c195d57fe0d88d4f47f65e416923a5fb2775768a46635267e1b820dd",
+      "language": "jflex",
+      "raw_comment": "/* Declarations\n * The contents of this block is copied verbatim into the Lexer class, this\n * provides the ability to create member variable and methods to use in the\n * action blocks for rules.\n*/",
+      "raw_sha256": "c2429bd72eed599fa3c00cd49e71ae57bdeded76c5017bb50fe086a97a04032e",
+      "raw_utf8_length": 198,
+      "source_provenance": {
+        "source_excerpt_sha256": "5055f9a9c52e422f45b5ba416bb732bc36f031877957584be520090b72c4dbdc",
+        "source_id": "425f6165cf06e1a9f282cf48d364476cd49ae73f"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "b950cacfa231f73a73f3c0f0c79031fc3fad54a33948807c6d207e13c96cdece",
+      "case_id": "powerbuilder-line-0a5443c26f6d5ca4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Declare: Instance Variables()\nDescription:\nArguments: (none)\nReturns: (none)\nAuthor: \tlaihaichun\t\tDate: 2003/12/31\nModify History:\nCopyRight 2003----???? Appeon Inc.",
+      "expected_cleaned_sha256": "43442bf994333a73d301d7166bd060a0c12cfa41844129cf3325ee160c16d629",
+      "language": "powerbuilder",
+      "raw_comment": "//====================================================================\n// Declare: Instance Variables()\n//--------------------------------------------------------------------\n// Description: \n//--------------------------------------------------------------------\n// Arguments: (none)\n//--------------------------------------------------------------------\n// Returns: (none)\n//--------------------------------------------------------------------\n// Author: \tlaihaichun\t\tDate: 2003/12/31\n//--------------------------------------------------------------------\n// Modify History: \n//\t\n//--------------------------------------------------------------------\n// CopyRight 2003----???? Appeon Inc.\n//====================================================================",
+      "raw_sha256": "514830f49b67dc1cf217d1c6dcd04b276b41eaf7e5e633c94445b294f3bf8b31",
+      "raw_utf8_length": 760,
+      "source_provenance": {
+        "source_excerpt_sha256": "d095ac9f2701e69d304f00bd8458c0ed58679847a8b38f90848ee1a62416fd95",
+        "source_id": "7c7784f890e6dc0a61641a292d419841e5f1f7e9"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "b950cacfa231f73a73f3c0f0c79031fc3fad54a33948807c6d207e13c96cdece",
+      "case_id": "powerbuilder-line-4472e6cc98861812",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Declare: Instance Variables()\nDescription:\nArguments: (none)\nReturns: (none)\nAuthor: \tlaihaichun\t\tDate: 2003/12/31\nModify History:\nCopyRight 2003----???? Appeon Inc.",
+      "expected_cleaned_sha256": "43442bf994333a73d301d7166bd060a0c12cfa41844129cf3325ee160c16d629",
+      "language": "powerbuilder",
+      "raw_comment": "//====================================================================\n// Declare: Instance Variables()\n//--------------------------------------------------------------------\n// Description: \n//--------------------------------------------------------------------\n// Arguments: (none)\n//--------------------------------------------------------------------\n// Returns: (none)\n//--------------------------------------------------------------------\n// Author: \tlaihaichun\t\tDate: 2003/12/31\n//--------------------------------------------------------------------\n// Modify History: \n//\t\n//--------------------------------------------------------------------\n// CopyRight 2003----???? Appeon Inc.\n//====================================================================",
+      "raw_sha256": "514830f49b67dc1cf217d1c6dcd04b276b41eaf7e5e633c94445b294f3bf8b31",
+      "raw_utf8_length": 760,
+      "source_provenance": {
+        "source_excerpt_sha256": "aa7f91cf69e12646c48d39a1df75b385fe588a744e98192fe1960029caba42f6",
+        "source_id": "e9e01abb4d589ef1d70ed100fe2e3199e1a8f2a5"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "8f0ce34f0ea9259243b54a3a56d3cb1eca97604f658e6d4919c27868aed5da34",
+      "case_id": "powerbuilder-line-682a801ecb551822",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Function: u_js_zd_cmbzgylxzd::uf_del()\nDescription:\nArguments:(None)\nReturns:  integer\nAuthor:\tyukk\t\tDate: 2017.xx.xx\nModify History:",
+      "expected_cleaned_sha256": "99203c94ea09c0d3514976a40cb089ff6ec677109165a40f91d855e3c5374847",
+      "language": "powerbuilder",
+      "raw_comment": "//==============================================================================\n// Function: u_js_zd_cmbzgylxzd::uf_del()\n//------------------------------------------------------------------------------\n// Description: \n//------------------------------------------------------------------------------\n// Arguments:(None)\n//------------------------------------------------------------------------------\n// Returns:  integer\n//------------------------------------------------------------------------------\n// Author:\tyukk\t\tDate: 2017.xx.xx\n//------------------------------------------------------------------------------\n// Modify History: \n//\t\n//==============================================================================",
+      "raw_sha256": "7c730593a65e0938136a4042660aab0a5dbbf44610f738d0c8cc41ef0453a32d",
+      "raw_utf8_length": 724,
+      "source_provenance": {
+        "source_excerpt_sha256": "1167e43f2b26e30b560ff2b9c2549b3a48758176da84d043fddbdb9f30b29b89",
+        "source_id": "1cc8f10e26e2a90b532199443f575a1921390f20"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "c58f355493a08cac7d2bc1262c7d7339e59d5b901900d6b8f1ab6aa12cff062d",
+      "case_id": "powerbuilder-line-74505cc511a801d9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "powerbuilder",
+      "raw_comment": "//==============================================================================\r",
+      "raw_sha256": "049ca7c6d6906037b6b8b5f61d7052eb8b813bbb4cec047aa503c52a95873bd1",
+      "raw_utf8_length": 81,
+      "source_provenance": {
+        "source_excerpt_sha256": "20de4188d50fe7ba1a43ee04cd9081de9d4691a6189a1257f8514240e7047ef9",
+        "source_id": "cae6444149f4d5ae1218a9c5036db8ae3971d5ca"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "51806f3f88b9bd48ecd1ec9c8fb657d41218a24724e3eec901f6c52c9a72c567",
+      "case_id": "powerbuilder-line-7f2443cdfcbaff2c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "powerbuilder",
+      "raw_comment": "// =========================================================================================================",
+      "raw_sha256": "396ee520c20c5cae9222780b7d30009efe44d7135d8a79828fc8e97c55515ff3",
+      "raw_utf8_length": 108,
+      "source_provenance": {
+        "source_excerpt_sha256": "46e3429b05c4fc0936828816ad4058a3bd6457433f768c4148de17d087e2c747",
+        "source_id": "e35df69c204c6481a3035a2a74054e9d0911d04e"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e50ffe1f7ce682a9dbb678de58b7e73ab70e1fc2a82a78b41e48bcbd9ed34797",
+      "case_id": "powerbuilder-line-eb487a347d04ce45",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "powerbuilder",
+      "raw_comment": "//====================================================================\r",
+      "raw_sha256": "52731a8a188bf1a660b08d1fd7a10b15b3953d6479a60f4438460c4df379da9e",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "4649bc1f348ed560e5c22626f877558d7b0efbbb8887b78f99f3329ec729daeb",
+        "source_id": "db409c33b80497a11b04c88aa38843b596ec9e23"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "4a14c62cba8f43de68cce048325196315352f9205caec659c5ed52d46409e92e",
+      "case_id": "v-nested-755e4194a50f458d",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Output:\n[67, -3, 108, 42, 7]\n[-3, 7, 42, 67, 108]\n[108, 67, 42, 7, -3]\n[2, 4, 6]\n[\"is\", \"awesome\"]\n[\"HELLO\", \"WORLD\"]\n[10, 20, 30, 40]\n[true, false, false]\n0 line 1 line 2 line 3 line 4 line 5 line 6 line 7 line 8 line 9 line 10 line 11 line 12 line 13 line 14 line 15 line 16 line 17 line 18 line 19 line 20 line 21 line 22 line 23 line 24 line 25 line 26 line 27 line 28 line 29 line 30 line 31 line 32 line 33 line 34 line 35 line 36 line 37 line 38 line 39 line 40 line 41 line 42 line 43 line 44 line 45 line 46 line 47 line 48 line 49 line 50 line 51 line 52 line 53 line 54 line 55 line 56 line 57 line 58 line 59 line 60 line 61 line 62 line 63 line 64 line 65 line 66 line 67 line 68 line 69 line 70 line 71 line 72 line 73 line 74 line 75 line 76 line 77 line 78 line 79 line 80 line 81 line 82 line 83 line 84 line 85 line 86 line 87 line 88 line 89 line 90 line 91 line 92 line 93 line 94 line 95 line 96 line 97 line 98 line\n[1, 2, 4, 5, 4, 6]",
+      "expected_cleaned_sha256": "7510c507f6c586004ba7287964b885d951b021b51a49b2edd43eb890dcd4b3a6",
+      "language": "v",
+      "raw_comment": "/* Output:\n[67, -3, 108, 42, 7]\n[-3, 7, 42, 67, 108]\n[108, 67, 42, 7, -3]\n[2, 4, 6]\n[\"is\", \"awesome\"]\n[\"HELLO\", \"WORLD\"]\n[10, 20, 30, 40]\n[true, false, false]\n0 line 1 line 2 line 3 line 4 line 5 line 6 line 7 line 8 line 9 line 10 line 11 line 12 line 13 line 14 line 15 line 16 line 17 line 18 line 19 line 20 line 21 line 22 line 23 line 24 line 25 line 26 line 27 line 28 line 29 line 30 line 31 line 32 line 33 line 34 line 35 line 36 line 37 line 38 line 39 line 40 line 41 line 42 line 43 line 44 line 45 line 46 line 47 line 48 line 49 line 50 line 51 line 52 line 53 line 54 line 55 line 56 line 57 line 58 line 59 line 60 line 61 line 62 line 63 line 64 line 65 line 66 line 67 line 68 line 69 line 70 line 71 line 72 line 73 line 74 line 75 line 76 line 77 line 78 line 79 line 80 line 81 line 82 line 83 line 84 line 85 line 86 line 87 line 88 line 89 line 90 line 91 line 92 line 93 line 94 line 95 line 96 line 97 line 98 line \n[1, 2, 4, 5, 4, 6]\n*/",
+      "raw_sha256": "a0a2e0b26b31752077d3af354c91f4ba586504566be6fd90d7a0b30d28546eb5",
+      "raw_utf8_length": 963,
+      "source_provenance": {
+        "source_excerpt_sha256": "b41a216df47df2ab532ecc0aaf3860d4192ff67b332b56716802e40b4a75c7d4",
+        "source_id": "b0cd90ce7ae993ac9c7442fa5da40312905f3c77"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "dm-line-efc0deb3548a1e1a",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "dm",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ffc46d47d6829f3144e267d29ea985e4ce96c505600601a6ba50a5d8966d28cc",
+      "utf8_length": 57
+    },
+    "manifest_old_output": {
+      "sha256": "6bedcfc40e924c1e948f3bd0de268784c151ee1909e45273d4544b663e9084f1",
+      "utf8_length": 60
+    },
+    "raw_comment": {
+      "sha256": "0cc72072e00cd7e1fe9cf1e2447ac3b73a3857cb45e72aa06caf281ade853b35",
+      "utf8_length": 62
+    },
+    "recommended_expected_output": {
+      "sha256": "6bedcfc40e924c1e948f3bd0de268784c151ee1909e45273d4544b663e9084f1",
+      "utf8_length": 60
+    }
+  },
+  "regression": {
+    "expected_output": "f-ed up color code named after natives, why internet? Why...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//f-ed up color code named after natives, why internet? Why..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "87ceb7509bc73d30e9135b06d4c24db66766787cf9fe2bddfe6969e73c32224e",
+    "source_id": "82719020b1440c95ed0eaf839034420ded9fb5ee"
+  },
+  "source_record_sha256": "86713e0e042d5e1a9fd0fb3b1b2f93c72c68fb25a33de0543db26a95b791005c"
+}

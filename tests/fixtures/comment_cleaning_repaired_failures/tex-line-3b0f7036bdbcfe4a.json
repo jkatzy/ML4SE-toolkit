@@ -1,0 +1,38 @@
+{
+  "case_id": "tex-line-3b0f7036bdbcfe4a",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "tex",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "b648652d936f69732654e7e02370655478c20d8824c3d7d8be5033550d34e512",
+      "utf8_length": 135
+    },
+    "manifest_old_output": {
+      "sha256": "88e38488f6c93eefd397e8953c5b818bf493f75127ebcf6a415ab0824888a842",
+      "utf8_length": 131
+    },
+    "raw_comment": {
+      "sha256": "f73c2ed1bcd5aa248b35d233ea3615bc99c4c88fb2c16159a49ff56634778039",
+      "utf8_length": 137
+    },
+    "recommended_expected_output": {
+      "sha256": "88e38488f6c93eefd397e8953c5b818bf493f75127ebcf6a415ab0824888a842",
+      "utf8_length": 131
+    }
+  },
+  "regression": {
+    "expected_output": "asymetrique mais sans utilisation de cl\u00e9 publique\npreuve signature : contre adaptive chosen-message attack (car c'est le plus dur)",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%% asymetrique mais sans utilisation de cl\u00e9 publique\n%% preuve signature : contre adaptive chosen-message attack (car c'est le plus dur)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "972f020040357695ce92828219c711f37d6a68d8ffbde03d9a60480c9f45a5cc",
+    "source_id": "b30f627446046658e607d26014e7e5b5c1b7f496"
+  },
+  "source_record_sha256": "81ce76ecfe1124b577d9024bc8a92179bc96b1ca1e5fcae137fb3037cdb477ec"
+}

@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "tea_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "009671bf038b235cb10933676f0635441e4c4108a782e85b7c3f79235a02d402",
+      "case_id": "tea-block-18408efb2ed74bec",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tea",
+      "raw_comment": "/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */",
+      "raw_sha256": "3cf7d5b4fa081697d6bbc0bf4a5a71bc9d4e8a9d39eee29a5d094e494e233026",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "2040e9b3d90295bc576cda5cf986af90e8b5d727055cfb8a3b1a29b6843c2120",
+        "source_id": "5a5bd43373cb50359edfa2fb2dc51b93463ff47c"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "009671bf038b235cb10933676f0635441e4c4108a782e85b7c3f79235a02d402",
+      "case_id": "tea-block-ea1e87879d9f9b1c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tea",
+      "raw_comment": "/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */",
+      "raw_sha256": "3cf7d5b4fa081697d6bbc0bf4a5a71bc9d4e8a9d39eee29a5d094e494e233026",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "b2d82f15df116526ca32621837a13ce74bfbcd6f0652c4d8f59f59bc425b1852",
+        "source_id": "3a216fde9398da46a5f55fb7f8efe95056ad5ad6"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "009671bf038b235cb10933676f0635441e4c4108a782e85b7c3f79235a02d402",
+      "case_id": "tea-block-ed317ac8040ec03f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tea",
+      "raw_comment": "/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */",
+      "raw_sha256": "3cf7d5b4fa081697d6bbc0bf4a5a71bc9d4e8a9d39eee29a5d094e494e233026",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "696ed958a76c3852f2d4302c30ef842ccf93b5e3bee3c2053e694fa03c298d4e",
+        "source_id": "c360382c14885f662fe85e4b05b8b99fac51c1a9"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

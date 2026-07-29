@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "arc_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5647bbc4707759fcf5d5163f00ba41c4669a84de4f56f51522ace5044c398b38",
+      "case_id": "arc-line-37f8977def84ef9f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(def delete-name (pagename)\n  (must-be-logged-in\n    (wipe (pagenames* (list user!id pagename)))\n    (todisk pagenames*)\n    (redirect \"/pagelist\")))",
+      "expected_cleaned_sha256": "39f7fa5ffeaa0d1b8d1ac6f41760e42d833d6394196b9547b6dd81407da1f6d8",
+      "language": "arc",
+      "raw_comment": ";; (def delete-name (pagename)\n;;   (must-be-logged-in\n;;     (wipe (pagenames* (list user!id pagename)))\n;;     (todisk pagenames*)\n;;     (redirect \"/pagelist\")))",
+      "raw_sha256": "82f74dba4f90a0ff76f079ac8d182235e40b5c27b6d20ba5445cc892b538a218",
+      "raw_utf8_length": 164,
+      "source_provenance": {
+        "source_excerpt_sha256": "c198f2daab8e1626f59e64a440c72bda48542f46b784ded640c100581c837da7",
+        "source_id": "6c2764d99622a572aa95f5cb4498c81690849b56"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

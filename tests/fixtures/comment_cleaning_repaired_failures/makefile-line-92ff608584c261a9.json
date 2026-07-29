@@ -1,0 +1,38 @@
+{
+  "case_id": "makefile-line-92ff608584c261a9",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "makefile",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "02d6f2e233e16ec5e8463de7edefdb6caf8a0f59cccc4d3ed97b5d3c29aedf93",
+      "utf8_length": 85
+    },
+    "manifest_old_output": {
+      "sha256": "6031d173b46fbe704d1ae50a325e8fe5784988f7616542e86a32817b6ead28e8",
+      "utf8_length": 81
+    },
+    "raw_comment": {
+      "sha256": "516f3a7ab24fa19da1fb1a7a954abe3e78c0f32817885e568485ee3f36d3dbe5",
+      "utf8_length": 91
+    },
+    "recommended_expected_output": {
+      "sha256": "6031d173b46fbe704d1ae50a325e8fe5784988f7616542e86a32817b6ead28e8",
+      "utf8_length": 81
+    }
+  },
+  "regression": {
+    "expected_output": "Generate header dependency rules\n  see http://stackoverflow.com/questions/204823/",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Generate header dependency rules\n#   see http://stackoverflow.com/questions/204823/\n# ---"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ef94b77905b7a21577ae96881b127c49040fb871f03921c1c66baeba1a796d1f",
+    "source_id": "61992484e5f9d80d77cebf835c627da288f7abc7"
+  },
+  "source_record_sha256": "89611ff6bccf1fb20c6b851bbfc4e1dc192cb5511e4664956c3ef7e49f52e600"
+}

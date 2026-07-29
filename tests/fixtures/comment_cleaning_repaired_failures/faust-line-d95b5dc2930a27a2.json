@@ -1,0 +1,29 @@
+{
+  "case_id": "faust-line-d95b5dc2930a27a2",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:rewrite",
+  "disposition": "accounting_only_no_oracle",
+  "language": "faust",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2cf36a2b944405d4749318a52d1f1974ee06c25f788940e6cfd52f2f3f3e13ca",
+      "utf8_length": 655
+    },
+    "manifest_old_output": {
+      "sha256": "56e8f463de6e8ac3f274949256f5cbe3d0180fc2e969170d62ed29c7bfded38e",
+      "utf8_length": 612
+    },
+    "raw_comment": {
+      "sha256": "cb58bb122be5983cf819ce58df7c69d270ddd75985321517698441d39b09c4c7",
+      "utf8_length": 982
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "72617d3c64eb93fc250b61605c5b9aee6961153a534e1760bdd207a80908a5d0",
+    "source_id": "f2c1ea8583e2d7e8de4c0ab649c0f3b16a72448d"
+  },
+  "source_record_sha256": "57487e17bc841118b2afae1967097901e9176e64a1c0affade4e8717151dda36"
+}

@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "lolcode_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "5d07b1d945ce92d2a37ea482189292e38ed1ba44a1b15c9fbd978a1374afe4d2",
+      "case_id": "lolcode-line-43d9c0fe6e991c6d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "File:\n\n  fibonacci.lol\n\nAuthors:\n\n  J. Caleb Wherry\n  Daniel Wherry",
+      "expected_cleaned_sha256": "a4d886d567f30b0846a5724abd32a90cf0884e10f229d1d2f2e5eb36e42d3183",
+      "language": "lolcode",
+      "raw_comment": "BTW ####################################\nBTW ####################################\nBTW ##\nBTW ##  File:\nBTW ##\nBTW ##    fibonacci.lol\nBTW ##\nBTW ##  Authors:\nBTW ##\nBTW ##    J. Caleb Wherry\nBTW ##    Daniel Wherry \nBTW ##\nBTW ####################################\nBTW ####################################",
+      "raw_sha256": "d97979fad866710623dfb4fd13d43dbbb059eca4202b83c5dbd1a52cda9db043",
+      "raw_utf8_length": 304,
+      "source_provenance": {
+        "source_excerpt_sha256": "d6d70ee644d8a9417110eed22bfebb4eb199558f3308ae1e4fbdf85aa85e7efa",
+        "source_id": "767ff4cd6acecc6def956a91d19f134529a20a67"
+      },
+      "syntax_label": "BTW"
+    }
+  ],
+  "schema_version": 5
+}

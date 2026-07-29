@@ -1,0 +1,263 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "coldfusion_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "717bdab502d5300dcdd1cfcc0f0ffeb932aedc25d00d1d14f4096cb1972110aa",
+      "case_id": "coldfusion-block-10cddcb25a644854",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Get the name of the person that is",
+      "expected_cleaned_sha256": "f60478feb63c13bd8526a038a3d881af3f1839d683384c9593ee3c21ce83f3fe",
+      "language": "coldfusion",
+      "raw_comment": "<!--- ===/ Get the name of the person that is  \\=== --->",
+      "raw_sha256": "daf4a44e3015ad21aae62e3f4a1ecdbba4bad2f15b1765cec77aebd0f7764989",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "243265d9632b9c92b15dc7446375fc2ae7630a09a27cbfde930c85537f9be58a",
+        "source_id": "fc441c9571a04251d2db380c53207e0350f3ba88"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "731d413aa4201b4b2d345a09349a988b22e1886cb7aee13df1c68d7548e12b16",
+      "case_id": "coldfusion-block-1865ea03e50e466e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Init Default Value",
+      "expected_cleaned_sha256": "e535a93fd8bcb34ccbe67e369436665ba4af35d806c1deee33e863823b7375fd",
+      "language": "coldfusion",
+      "raw_comment": "<!---Init Default Value------->",
+      "raw_sha256": "324bbb278727e68da22aadc8c917cb3ad310eca3f249cd81ffe636119afa33d4",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "077e786389e27e2e364993903d97b538c4b9911889c98f0e22f0d24e9e7bfca0",
+        "source_id": "195ab471aaaf55a45cd434600a80548f507471cc"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "c7626b6f8180d16fb589dbb762c541054f490176eecebb2d6794b19a2580bbdf",
+      "case_id": "coldfusion-block-44a267466fd7151f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Header for author information, css and rss",
+      "expected_cleaned_sha256": "128ae970fd8e848a772d6c1ad09e715086bae390a316c06a456d41214006b203",
+      "language": "coldfusion",
+      "raw_comment": "<!--- //----------------- Header for author information, css and rss -----------------// --->",
+      "raw_sha256": "f4499e2aa37470a29edfc0fc26c03770bbfdb173b0a564aecec8e85469c69bad",
+      "raw_utf8_length": 93,
+      "source_provenance": {
+        "source_excerpt_sha256": "829d25efb04c5cee8b561f3a72d4de328873b8d9a89253d0bb86ae85be45ae90",
+        "source_id": "82decaeb060a842e10afc69f0f518e6f839c026f"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "b8d40ee1f39aa4c66f1a03d0ad1959e32cda06a80aa106106bccab25d1b6e3ef",
+      "case_id": "coldfusion-block-531344e7a9df4d3a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<cfpdf action=\"read\" name=\"myDoc\" source=\"#thisFile#\" />\n<cfdump var=\"#myDoc#\" />",
+      "expected_cleaned_sha256": "6aedcab252f277b7308a87be612330a2e3db124170b4440bce7144588faa1bc5",
+      "language": "coldfusion",
+      "raw_comment": "<!--- <cfpdf action=\"read\" name=\"myDoc\" source=\"#thisFile#\" />\n<cfdump var=\"#myDoc#\" /> --->",
+      "raw_sha256": "caec7b5cf37ca411ec72251efb74cb31b5ab1b6fe1479cc29b2cc937b067885c",
+      "raw_utf8_length": 92,
+      "source_provenance": {
+        "source_excerpt_sha256": "5d85c9047e867079e6b42f130cca680ec44ee901beb9292bef814ec31f41a38d",
+        "source_id": "d2c4cb334c3478f21d83d9e9f3a422aee8c50d23"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "30d20eae835ec8a44c30e1bd236605582024a9ccf45a83b5e4ebc2b406d33a49",
+      "case_id": "coldfusion-block-86619d27d287dd0b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "see what we're getting a condition of",
+      "expected_cleaned_sha256": "031f6a05446e947cc7e03e1854cb64a0aa12c8803691afe722d3e26c64c45862",
+      "language": "coldfusion",
+      "raw_comment": "<!---- see what we're getting a condition of ---->",
+      "raw_sha256": "f88faa21815d74576768f883e4a9063e5f2782396ce5bdef225f1c566149d200",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "0d767df45be307e1250248256e87864d4110d0ab63d200cfc302e772ce3f8299",
+        "source_id": "4284a460e69fa575aae4d86486d9612f20c1f985"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "556c5a75f0fc5fa8209a54224f7cf288697de8d168ee22ddc1e34f621d3e1160",
+      "case_id": "coldfusion-block-b837df22b2b7c18b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Example Endpoints from Xero\n1) Hit some Xero endpoints and show the response",
+      "expected_cleaned_sha256": "848cf93547d083f8a414572e70469b504d8acc5905bf4146d9ddcc06ec915b61",
+      "language": "coldfusion",
+      "raw_comment": "<!--- Example Endpoints from Xero\r\n----------------------------------------------------------------------------\r\n1) Hit some Xero endpoints and show the response\r\n--->",
+      "raw_sha256": "779623f5d6335f482c4a9c7938b2ab4ffdfacd87fd2fd0ab9218c992ffdf32ac",
+      "raw_utf8_length": 167,
+      "source_provenance": {
+        "source_excerpt_sha256": "259c047014ca10cb7caf6e7b25be359115182b3060676cad124c9578e422dc1c",
+        "source_id": "cd1e8eadd6e865745ec642087f377ae6a5aaec86"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "d9691ac820a18534f4a4cbd4361a25bc44f330f579d17345d425fccf7bc8a18e",
+      "case_id": "coldfusion-block-cc9b67299996f4af",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "attributes:\nProductName\nProductID",
+      "expected_cleaned_sha256": "d6a17955a1e3ff2d9232a5b0d7e1ab4f58db80f70a10ad32726414b09b2992c7",
+      "language": "coldfusion",
+      "raw_comment": "<!--- attributes:\r\nProductName\r\nProductID\r\n--->",
+      "raw_sha256": "73481d828f96bdcf057d88f4cba816d71b06fca18a8279bce3842129e1588b65",
+      "raw_utf8_length": 47,
+      "source_provenance": {
+        "source_excerpt_sha256": "be0138411b8ce4351efd7cbd9b1dd0dd2fcff056240ccb1bf0d36f67bfbf95ba",
+        "source_id": "5fb67a9ef90788d07b143f80f0a8e7dc5018a0b2"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "229440bfa77a2d40d2dcff18032f638cc147211e1b2ce378382aa914e8439c53",
+      "case_id": "coldfusion-block-dea5499977342aa6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "BALLS TO FUSEBOX",
+      "expected_cleaned_sha256": "71f36abf174f7f15908f64eda6b5a5c803c5625c8abbdd2aec870a04a9dbcce3",
+      "language": "coldfusion",
+      "raw_comment": "<!--- BALLS TO FUSEBOX ---->",
+      "raw_sha256": "86deed37c21e77b8fb18ecda05ea0e49314bd0fb10ab0974182e9bc98a433251",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "41a7db7439925abeb310bf6bb3d74472e70a3f3ce89d5ee4b11bf1a893485133",
+        "source_id": "9f3d2d63041d9f0ce73c33f7f924ecb1078d9e8e"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "66cf87445d39753a024f7d160d6d260d5a27c29d94e85e686d842452b3e16f0f",
+      "case_id": "coldfusion-block-fc3043d4df102c77",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "this shows how nested application code for branded sites\nis inclusive of default application code for the same sites\nuse cfset to overwrite core variables or cfparam to allow\ncore variables to be kept when they exist",
+      "expected_cleaned_sha256": "365668b1b5a53f291661989b533956fabc20386e6dfadb846944d58e3d25f023",
+      "language": "coldfusion",
+      "raw_comment": "<!--- this shows how nested application code for branded sites \nis inclusive of default application code for the same sites \nuse cfset to overwrite core variables or cfparam to allow \ncore variables to be kept when they exist --->",
+      "raw_sha256": "dda094cd1a2100ef1a3f56c26fc398eedadd77898ac283552f491bb2e539d6b0",
+      "raw_utf8_length": 230,
+      "source_provenance": {
+        "source_excerpt_sha256": "7b9c0eded57eaaf0b529ba296da035180c95b3a74caeee71e0cadff5bf4f7e18",
+        "source_id": "ac8806876a7e93884c2318618559473b7daa86d2"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "098ee3c1db984fdb915231348dfd43a5610bd66498c74ff412a3108f41169b57",
+      "case_id": "coldfusion_cfc-block-18a196bb1e3627fd",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "coldfusion_cfc",
+      "raw_comment": "<!------------------------------------------------------------------------------->",
+      "raw_sha256": "7a21b2f513c2d35ece4902e72f2984c865f35a16a8ef5788b0bf331a4962bf33",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "2d9e31ff6dd6202ed0152dab140952b0b5a5b12ef3091319b8502a60801e6461",
+        "source_id": "029c04e94629aca7c8ffdc734a05ebad4f609d4f"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "12d5ea1067f5350923a93a9aebcd7485805fa4b6cb688348384f31c95cd3b7ad",
+      "case_id": "coldfusion_cfc-block-29ffa402a77bdf73",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Document Information\nBuild:      \t\t\t@@@revision-number@@@\nTitle:      \t\t\tBeanShell.cfc\nAuthor:     \t\t\tJohn Allen\nEmail:      \t\t\tjallen@figleaf.com\nCompany:    \t\t@@@company-name@@@\nWebsite:    \t\t@@@web-site@@@\nPurpose:    \t\tI am an Empty Bean Shell\nModification Log:\nName \t\t\tDate \t\t\t\t\t\t\t\tDescription\n================================================================================\nJohn Allen \t\t16/03/2009\t\t\tCreated",
+      "expected_cleaned_sha256": "eafb6fcb5d5744e9fa5aacdb403d65b2b59b58bd952876e7c220209943cd5cbe",
+      "language": "coldfusion_cfc",
+      "raw_comment": "<!--- Document Information -----------------------------------------------------\nBuild:      \t\t\t@@@revision-number@@@\nTitle:      \t\t\tBeanShell.cfc \nAuthor:     \t\t\tJohn Allen\nEmail:      \t\t\tjallen@figleaf.com\nCompany:    \t\t@@@company-name@@@\nWebsite:    \t\t@@@web-site@@@\nPurpose:    \t\tI am an Empty Bean Shell\nModification Log:\nName \t\t\tDate \t\t\t\t\t\t\t\tDescription\n================================================================================\nJohn Allen \t\t16/03/2009\t\t\tCreated\n------------------------------------------------------------------------------->",
+      "raw_sha256": "4ca967a87b41e711653f3af923dfc6cda85172e2f24bee6e37e8fb35e0aa4410",
+      "raw_utf8_length": 555,
+      "source_provenance": {
+        "source_excerpt_sha256": "85ac23ca483348b64aa8fda5aade28f8950a445684cc9003dc474dbf051f3834",
+        "source_id": "f6d1a97b01c09e7b32ad96a14038480a96607b44"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "899907e57e8e2b9178631c59b9ac0518ef11bb70c89e418b24936951bcbdf968",
+      "case_id": "coldfusion_cfc-block-6c66d69bdba09107",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Add user",
+      "expected_cleaned_sha256": "eec5c73a1d6c8ae79cb946a988d07bfc5e8e3f375c2b1f9d43f58e14c42fc5ca",
+      "language": "coldfusion_cfc",
+      "raw_comment": "<!---- Add user ---->",
+      "raw_sha256": "dfd9f15b44534c1276f73aa67573f6560f8d5163fa853cf7547f9eff2e527f79",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "530c1f3ed6aefe07d18b6dca13ffd8e04573413bba01d7457ad2082e84b47c87",
+        "source_id": "b2872a5b2105dcd154f5bb331c2a6f63a6cc117a"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "4a08488794e1b55eefc1f6b04284fdf69197f9b45ffd06786fd2756dd514cc84",
+      "case_id": "coldfusion_cfc-block-7d2bf0f9dbb3828a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "coldfusion_cfc",
+      "raw_comment": "<!------------------------------------------------->",
+      "raw_sha256": "3a42fac068b2bbb291506bcac2016d48e1b1c157c7a3080a0026c4925c8f3aaf",
+      "raw_utf8_length": 52,
+      "source_provenance": {
+        "source_excerpt_sha256": "3a167c13a63dfebf594e28fd943244dfdf060894d7c45c44dba006a9cd59785a",
+        "source_id": "82cf226ace71796cbda494ce7a0e53bcf0515dc9"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "41c461d860f2adce96007c83f0eea22c99436fb69f1b94cd74342811d71dd7e1",
+      "case_id": "coldfusion_cfc-block-bffeb63d1742fac7",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Document Information\n\nTitle:      ObjectDAO.cfc\n\nAuthor:     Mark Mandel\nEmail:      mark@compoundtheory.com\n\nWebsite:    http://www.compoundtheory.com\n\nPurpose:    DAO for object defintions\n\nUsage:\n\nModification Log:\n\nName\t\t\tDate\t\t\tDescription\n================================================================================\nMark Mandel\t\t11/07/2005\t\tCreated",
+      "expected_cleaned_sha256": "f018442afe863eea2000cd3f04693d16dadd56ea0ca105ca4306d13954296f78",
+      "language": "coldfusion_cfc",
+      "raw_comment": "<!--- Document Information -----------------------------------------------------\r\n\r\nTitle:      ObjectDAO.cfc\r\n\r\nAuthor:     Mark Mandel\r\nEmail:      mark@compoundtheory.com\r\n\r\nWebsite:    http://www.compoundtheory.com\r\n\r\nPurpose:    DAO for object defintions\r\n\r\nUsage:\r\n\r\nModification Log:\r\n\r\nName\t\t\tDate\t\t\tDescription\r\n================================================================================\r\nMark Mandel\t\t11/07/2005\t\tCreated\r\n\r\n------------------------------------------------------------------------------->",
+      "raw_sha256": "c388d8e6e900241ac77d9339f25efc3f5bf00269923cde58965be6d28206260f",
+      "raw_utf8_length": 519,
+      "source_provenance": {
+        "source_excerpt_sha256": "1b16675d07944471f85aeeef85cfc7b1c00daaacf1e8e3635af257ef363cbbe6",
+        "source_id": "8c044c7b18592b3b44ebb6de7b880cbaa6513c59"
+      },
+      "syntax_label": "<!---...--->"
+    },
+    {
+      "baseline_cleaned_sha256": "add095d0f529acc97993ee28b786e7731d4aca40efe238da288b069a91840620",
+      "case_id": "coldfusion_cfc-block-e46bef9ffc5efd5f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "coldfusion_cfc",
+      "raw_comment": "<!-------------------------------------------------------------------------------------->",
+      "raw_sha256": "b5dae7f709bf3c8d1104b9565010c75eadd46ea4a25eec04d74d9eebcb629c3e",
+      "raw_utf8_length": 89,
+      "source_provenance": {
+        "source_excerpt_sha256": "895c0e1e2f60eb6a01960a4a918c0f6a0fa9de7a5e1ff2ff5fc3c6eb6d62f942",
+        "source_id": "44d0f3bf6082232dee1c0ff2b4f7665d77cf581b"
+      },
+      "syntax_label": "<!---...--->"
+    }
+  ],
+  "schema_version": 5
+}

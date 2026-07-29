@@ -1,0 +1,38 @@
+{
+  "case_id": "powerbuilder-nested-733fcd41900991d8",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "powerbuilder",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "aa38b080307bf22bf6868442b66771582d441bd55a8a639c54a93c9ef197e480",
+      "utf8_length": 20
+    },
+    "manifest_old_output": {
+      "sha256": "a95bc6a1859a1f0dbc44c462725502f1ccfb1994c1a5e3f67b403ccd07a9410e",
+      "utf8_length": 18
+    },
+    "raw_comment": {
+      "sha256": "e48ef232804fc50bbdc50a8ed3f0900185df730dd9fc657e7dcf389e14e32a7a",
+      "utf8_length": 103
+    },
+    "recommended_expected_output": {
+      "sha256": "a95bc6a1859a1f0dbc44c462725502f1ccfb1994c1a5e3f67b403ccd07a9410e",
+      "utf8_length": 18
+    }
+  },
+  "regression": {
+    "expected_output": "\uc9c0\ub85c + \ubbf8\ub0a9\uc561",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*************************************\n\t * \uc9c0\ub85c + \ubbf8\ub0a9\uc561 \n\t *************************************/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a08312c64e6973613a966ca668c91aa47c789f4262c2ee8c5136bae487950341",
+    "source_id": "97b60043b06d4230dff9d864b97aeeb817d7da8d"
+  },
+  "source_record_sha256": "ed981854f960be095e0b73c9714279248c751257540add11b1e4c75a8f7ed0b5"
+}

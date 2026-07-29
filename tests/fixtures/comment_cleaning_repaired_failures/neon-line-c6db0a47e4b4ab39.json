@@ -1,0 +1,38 @@
+{
+  "case_id": "neon-line-c6db0a47e4b4ab39",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "neon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9631971f5e01812a87e2bc209ed8d98f0aeec83deaae387a0ce0d799bf9bc3fd",
+      "utf8_length": 81
+    },
+    "manifest_old_output": {
+      "sha256": "ba4f9b076e163555363d6e67f5aeebff754973030bff4215da3ed5892c788d5c",
+      "utf8_length": 87
+    },
+    "raw_comment": {
+      "sha256": "329ca5d5c64b98a5a23710c9c3e5bf2a6bb06c0185b0b5d2bc1805e58eecd372",
+      "utf8_length": 102
+    },
+    "recommended_expected_output": {
+      "sha256": "ba4f9b076e163555363d6e67f5aeebff754973030bff4215da3ed5892c788d5c",
+      "utf8_length": 87
+    }
+  },
+  "regression": {
+    "expected_output": "-\n  message: '#Parameter \\#1 \\$messages of static method.*#'\n  path: *GetArrayOfInt.php",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#    -\n#      message: '#Parameter \\#1 \\$messages of static method.*#'\n#      path: *GetArrayOfInt.php"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "9f069efdab32ee862ee7eb433f09bce850137b04a41185f580a3b9dd69242f62",
+    "source_id": "09a0db8960957a0d52787ff3822465d018df5d0f"
+  },
+  "source_record_sha256": "34ae28642a2759587e15cbd163da08cbf76d28cd33bbec85dc918964ad18fe6e"
+}

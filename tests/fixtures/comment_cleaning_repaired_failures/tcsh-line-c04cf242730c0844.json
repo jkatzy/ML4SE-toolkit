@@ -1,0 +1,29 @@
+{
+  "case_id": "tcsh-line-c04cf242730c0844",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:shebang_mixed_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "tcsh",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0c299c957264a065b4659d97e5c24c97577e9089f4edef3be7fb6fb92846aac5",
+      "utf8_length": 1024
+    },
+    "manifest_old_output": {
+      "sha256": "f02d57e19a2c6dd0ef8e8de415ec1c4c1132fe65e81fb5bc091360eeb1dc42c3",
+      "utf8_length": 1016
+    },
+    "raw_comment": {
+      "sha256": "7ed501e7517e3e91f6b13611ba1050faa550c8931374409f840f1d09d4e1b544",
+      "utf8_length": 1115
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e0ed77f3e24484fea91eef40ac48fddc1eaa5213dfa05356b68c74de83698358",
+    "source_id": "e9431879f01dfcc520041279102c46fcd92617b9"
+  },
+  "source_record_sha256": "4284bf0f4013f09190658e0b4871696ea6d1026c15299322f1dbf5249e9c9a73"
+}

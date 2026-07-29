@@ -1,0 +1,92 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "ncl_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "e450c16a31243104aaa3017b1fbda5811e6675d7494e374f65e911c5485db587",
+      "case_id": "ncl-line-3db4cc2d1678473d",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "ncl",
+      "oracle_exception_record_sha256": "b1d8ff4c37adbb73a5b12f640eb70f2af39563dc7082913afae43bf826f5e675",
+      "raw_sha256": "51189a1120c310294a727f8f3dadb0fc0dd7b29d1053961520cc98660e49b6e5",
+      "raw_utf8_length": 681,
+      "source_provenance": {
+        "source_excerpt_sha256": "50eed31e32f1da2074ae1bb2733c2a2b1b4efa33e5124c5e8d337d2929ecd65d",
+        "source_id": "78b2ae3a512ff9832a93fa086f51eb9ac02d3396"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "9a5851589fbff1f040a02c7b6d7fb1927debf819880924926ee8c3dcfb36b7a8",
+      "case_id": "ncl-line-4c4d3083d6696c2c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "ambiguous",
+      "language": "ncl",
+      "oracle_exception_record_sha256": "f6affe592bf295e3d8deb0c6f12dc1620b329d7f4f72aa20d2506dd698f69d7c",
+      "raw_sha256": "c4c4a3e4dde2d9a4c22dcffa7a8c5e51de201090e438a96161dcfaa2258f2ade",
+      "raw_utf8_length": 669,
+      "source_provenance": {
+        "source_excerpt_sha256": "ce89248e4e9f7fcbf42c10b051446274ab0c90ca50801c7c8c6ba21e80c8a091",
+        "source_id": "a15b0a7dae1054aa34a0e16e294c76371aa39f4d"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "a901c1d6f652425b7cbe389ef620ca9d6773ec0fbea406db1c009e1358b1582f",
+      "case_id": "ncl-line-0ee29505cd5f93ae",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ncl",
+      "raw_comment": ";================================================================",
+      "raw_sha256": "3378b2241974e168aba58ad8e955e21d7a7b5fa095e870eb9c3f7164cccdc478",
+      "raw_utf8_length": 65,
+      "source_provenance": {
+        "source_excerpt_sha256": "9d22d1120d0780a0307bf83882549cd5e4d6e5086a1b0e8a0ee2f3d9f184b287",
+        "source_id": "1695bf3857159f2f1861b075e6527b0368de55dd"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "eedd14c2f1550e60d84c66f332d49e65d0f1470d203592d952052f7030924136",
+      "case_id": "ncl-line-9b02b92fb2e33fc7",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "ncl",
+      "raw_comment": ";======================================================================",
+      "raw_sha256": "3b5628e865949482ed3e680212993574a465fac55615e53b2ac54698b76cc0b1",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "ca22fc42a5f1a959d53a343957b53cdaaaa6074dce454d7017bc1fece49f68ba",
+        "source_id": "91884f9cc34afc0c3d57ce5dd35713d0bbd95e94"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "318401d34f223f90d5a3b7e54792a5704744cc6fb814bae3217eaf087a94381c",
+      "case_id": "ncl-line-b1896ff5b2411d2e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "gpp_plot_map.ncl\n\n\nCreated by Jinyun Tang on 11/24/15.\nCopyright 2015 __MyCompanyName__. All rights reserved.",
+      "expected_cleaned_sha256": "0131114274926b0ead7457ea540b0a4fba1bda147c011aa98103751238ff2724",
+      "language": "ncl",
+      "raw_comment": "; *\n; * gpp_plot_map.ncl\n; * \n; *\n; * Created by Jinyun Tang on 11/24/15.\n; * Copyright 2015 __MyCompanyName__. All rights reserved.\n; *",
+      "raw_sha256": "ed7037ac7c5de4bbbee089d7ed8923bf18e3066e27753fb58f5978d96f19f1d4",
+      "raw_utf8_length": 136,
+      "source_provenance": {
+        "source_excerpt_sha256": "5d28452dc8c5b90cad9afd0146d8845166c8d3b2302f78da3f946ff5512170bf",
+        "source_id": "55ed7d292e5e2783d3748977cceafaa3af34a6f3"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

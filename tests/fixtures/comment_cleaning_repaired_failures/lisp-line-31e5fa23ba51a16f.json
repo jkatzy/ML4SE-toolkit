@@ -1,0 +1,38 @@
+{
+  "case_id": "lisp-line-31e5fa23ba51a16f",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003b",
+  "disposition": "executable_regression",
+  "language": "lisp",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "af30aef70be404f616fbed12eba39962526ad135066cb0cec28ad52ce2fb6167",
+      "utf8_length": 84
+    },
+    "manifest_old_output": {
+      "sha256": "3fec9a2420dfde8102e5e6cc8846145c361f96b3999e6d0044c6b844f68a3ecc",
+      "utf8_length": 80
+    },
+    "raw_comment": {
+      "sha256": "339c34dcf74f09b01b419f575e96042741ad99bd5a9444b1fcf5f4888c2a1716",
+      "utf8_length": 90
+    },
+    "recommended_expected_output": {
+      "sha256": "3fec9a2420dfde8102e5e6cc8846145c361f96b3999e6d0044c6b844f68a3ecc",
+      "utf8_length": 80
+    }
+  },
+  "regression": {
+    "expected_output": "SPDX-FileCopyrightText: Atlas Engineer LLC\nSPDX-License-Identifier: BSD-3-Clause",
+    "provenance": "exact_classification_literal",
+    "raw_comment": ";;;; SPDX-FileCopyrightText: Atlas Engineer LLC\n;;;; SPDX-License-Identifier: BSD-3-Clause"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "8ae3a7789ff107c62617a9b66f568a4d065d59509c058c4876c29c73d1b62851",
+    "source_id": "1406b8bbcc51860f243e17170e6f4cf54335d56c"
+  },
+  "source_record_sha256": "c489475bd332a2e23a20933fc6d74920f8742edbbd95d1680c6cf9c996458fb8"
+}

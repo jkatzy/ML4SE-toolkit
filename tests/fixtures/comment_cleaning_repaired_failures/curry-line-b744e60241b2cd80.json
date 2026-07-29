@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-b744e60241b2cd80",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e85c6cc2117589d841ca539135c682cb0aa99dc2196703268e97862c603ac7a4",
+      "utf8_length": 237
+    },
+    "manifest_old_output": {
+      "sha256": "7a0a1c87f9aef544fe96e75dc62531b12bbb00bfa82f1ca7e66a6b55908df9a8",
+      "utf8_length": 225
+    },
+    "raw_comment": {
+      "sha256": "fcbd1e5051cc686910797232c89b3055d00917bdb26d3dc598569f7e4bddd889",
+      "utf8_length": 409
+    },
+    "recommended_expected_output": {
+      "sha256": "7a0a1c87f9aef544fe96e75dc62531b12bbb00bfa82f1ca7e66a6b55908df9a8",
+      "utf8_length": 225
+    }
+  },
+  "regression": {
+    "expected_output": "Library for unification on first-order terms.\n\nThis library implements a unification algorithm using reference tables.\n\n@author  Michael Hanus, Jonas Oberschweiber, Bjoern Peemoeller\n@version November 2015\n@category algorithm",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "------------------------------------------------------------------------------\n--- Library for unification on first-order terms.\n---\n--- This library implements a unification algorithm using reference tables.\n---\n--- @author  Michael Hanus, Jonas Oberschweiber, Bjoern Peemoeller\n--- @version November 2015\n--- @category algorithm\n------------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "902239e544c4973aff8e2ad9a21e4d37142d58ea59366583f782c24488c96b47",
+    "source_id": "eb225993d802b21b8357cb15381902e3e3790062"
+  },
+  "source_record_sha256": "e81059ab62e457f440df4789dce6d7d99394a24500b8b54a5e52dac5d853028b"
+}

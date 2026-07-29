@@ -1,0 +1,38 @@
+{
+  "case_id": "xc-block-24e7f91517b1af92",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "xc",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f1a88d289d17e9e26619f012d52b91d80adc7a685f8f8475d8c82e23778ba598",
+      "utf8_length": 775
+    },
+    "manifest_old_output": {
+      "sha256": "bd98484d64bf8db548d6852c37e391eb8ef96bb56158420c857d8f437eff44d1",
+      "utf8_length": 569
+    },
+    "raw_comment": {
+      "sha256": "a4a35824645e102010e2d9ba4d906f6d1d2950b56f883a38594d4b12c45e09ed",
+      "utf8_length": 783
+    },
+    "recommended_expected_output": {
+      "sha256": "bd98484d64bf8db548d6852c37e391eb8ef96bb56158420c857d8f437eff44d1",
+      "utf8_length": 569
+    }
+  },
+  "regression": {
+    "expected_output": "File:\tdsp_biquad.xc\n\nDescription: Coar that applies BiQuad filter to stream of audio samples\n\nVersion: 0v1\nBuild:\n\nThe copyrights, all other intellectual and industrial\nproperty rights are retained by XMOS and/or its licensors.\nTerms and conditions covering the use of this code can\nbe found in the Xmos End User License Agreement.\n\nCopyright XMOS Ltd 2012\n\nIn the case where this code is a modification of existing code\nunder a separate license, the separate license terms are shown\nbelow. The modifications to the code are still covered by the\ncopyright notice above.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/******************************************************************************\\\n * File:\tdsp_biquad.xc\n *\n * Description: Coar that applies BiQuad filter to stream of audio samples\n *\n * Version: 0v1\n * Build:\n *\n * The copyrights, all other intellectual and industrial\n * property rights are retained by XMOS and/or its licensors.\n * Terms and conditions covering the use of this code can\n * be found in the Xmos End User License Agreement.\n *\n * Copyright XMOS Ltd 2012\n *\n * In the case where this code is a modification of existing code\n * under a separate license, the separate license terms are shown\n * below. The modifications to the code are still covered by the\n * copyright notice above.\n *\n\\******************************************************************************/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "e6a083e18ee47cb04082137d02aa8dec01cd37f055244ea2ffd6098b54205ff4",
+    "source_id": "c29c67fba902a82da97f31eb544f942b37d12d93"
+  },
+  "source_record_sha256": "41c0252894a07a99bc0de61d7c92a31bc62f6f239af03c887f29aa8e51002fef"
+}

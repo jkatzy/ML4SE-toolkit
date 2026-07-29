@@ -1,0 +1,38 @@
+{
+  "case_id": "mql4-line-383149b8aaf05f5d",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "mql4",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "07c93dceba14ef038bff1f10deb5dbcf7cfa2bb0f48282022a08d83c39932a15",
+      "utf8_length": 106
+    },
+    "manifest_old_output": {
+      "sha256": "07c93dceba14ef038bff1f10deb5dbcf7cfa2bb0f48282022a08d83c39932a15",
+      "utf8_length": 106
+    },
+    "raw_comment": {
+      "sha256": "498b70330f8de696fb2d27a70f1d3a43144d8b5324dc500dadf02d490cb41537",
+      "utf8_length": 185
+    },
+    "recommended_expected_output": {
+      "sha256": "07c93dceba14ef038bff1f10deb5dbcf7cfa2bb0f48282022a08d83c39932a15",
+      "utf8_length": 106
+    }
+  },
+  "regression": {
+    "expected_output": "  GannHiLo-Histo\n+------------------------------------------------------------------+\nIndicator properties",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//+------------------------------------------------------------------+\n//   GannHiLo-Histo\n//+------------------------------------------------------------------+\n// Indicator properties"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f012b4c9a1d554c151b247b24166807b9f8b97aadf15e11e4462240e31d0353a",
+    "source_id": "33924b9b9bc8bf007921668d08ed6ebbdee84bbe"
+  },
+  "source_record_sha256": "55efe992cb701e5ae32e787dd5ea7bd98c319fd99e5eaa37723b0a7a5d91a383"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "visual_basic-line-2b1a82469ee559fc",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u0027",
+  "disposition": "executable_regression",
+  "language": "visual_basic",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e8ec836e69b7a03b653a5e94229d13826dddd8e0df1435206c4739a8c27857f5",
+      "utf8_length": 160
+    },
+    "manifest_old_output": {
+      "sha256": "56ea9262edfe4fa2abd0a74d5679d9d0a4a2fdd78661c4241694f8b2bbfbaef7",
+      "utf8_length": 142
+    },
+    "raw_comment": {
+      "sha256": "5663c4c5de23b5c89cd6afe8138eed81ad92be6ede5c8aef866f99fee6dc9e49",
+      "utf8_length": 186
+    },
+    "recommended_expected_output": {
+      "sha256": "56ea9262edfe4fa2abd0a74d5679d9d0a4a2fdd78661c4241694f8b2bbfbaef7",
+      "utf8_length": 142
+    }
+  },
+  "regression": {
+    "expected_output": "<summary>\nSaves files to the specified file path.\n</summary>\n<param name=\"FileName\"></param>\n<param name=\"Folder\"></param>\n<remarks></remarks>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "''' <summary>\n    ''' Saves files to the specified file path.\n    ''' </summary>\n    ''' <param name=\"FileName\"></param>\n    ''' <param name=\"Folder\"></param>\n    ''' <remarks></remarks>"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "53738341719a15aecb0aca25923a0b1ea5389c43d153e9008b472664f15b167e",
+    "source_id": "c8f7f166a87080467c8e15d6b924c1c081c9f7ab"
+  },
+  "source_record_sha256": "269991a9a5934f1b03a942c82e49352eddd5d8bd7d0609a17f16aec8eddcd0ec"
+}

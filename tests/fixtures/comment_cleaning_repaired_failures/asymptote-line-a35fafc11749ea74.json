@@ -1,0 +1,38 @@
+{
+  "case_id": "asymptote-line-a35fafc11749ea74",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "asymptote",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f2bbe15a69add5b9ae62bcb159deadd2eb821a436807ea2493cd0e74631b02a4",
+      "utf8_length": 60
+    },
+    "manifest_old_output": {
+      "sha256": "42d913454c4848b65ab91deaef42eb3e5a275e0f51bd74cd2aa12b04c76319ea",
+      "utf8_length": 58
+    },
+    "raw_comment": {
+      "sha256": "7081f21dfb58106d6aaaeecf249403d901e3799fd545a0e588391afcd35d02c7",
+      "utf8_length": 63
+    },
+    "recommended_expected_output": {
+      "sha256": "42d913454c4848b65ab91deaef42eb3e5a275e0f51bd74cd2aa12b04c76319ea",
+      "utf8_length": 58
+    }
+  },
+  "regression": {
+    "expected_output": "wAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////wAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "62a7acb6faa6f9b7b012246da03bdc72d5653d5c7c0351a07205168e96a5bcdb",
+    "source_id": "3930f694062743254ec36621fb929f99dea8fc09"
+  },
+  "source_record_sha256": "7e9a893b8cc61ae27c877434f22ec31585cf3f7728d4c7d250801f244c96f995"
+}

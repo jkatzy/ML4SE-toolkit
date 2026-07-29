@@ -1,0 +1,29 @@
+{
+  "case_id": "applescript-line-bb4da6b6e83a9273",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "applescript",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "581effb5bc31a0ad92fdac92515b74797d2f9044406f7050bbf7dc9974f8f819",
+      "utf8_length": 1706
+    },
+    "manifest_old_output": {
+      "sha256": "581effb5bc31a0ad92fdac92515b74797d2f9044406f7050bbf7dc9974f8f819",
+      "utf8_length": 1706
+    },
+    "raw_comment": {
+      "sha256": "220a493598816482f50d709ce5717b5ebb14daccff2d9348f70b771ba5a4b28c",
+      "utf8_length": 1726
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "301ba6008927c11b697ff9782c14bdefdc06432bb66e527c5222423cdd737765",
+    "source_id": "17877142784837039c02d431cac1a36459edc4b2"
+  },
+  "source_record_sha256": "cd4f13f2c963b12a9d29bcf736a644e1bc066f50949f2c727825c25ca3e85c33"
+}

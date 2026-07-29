@@ -1,0 +1,38 @@
+{
+  "case_id": "c-line-7508c8404db22a49",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:multiline_gutter",
+  "disposition": "executable_regression",
+  "language": "c++",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "cd6e2c3767b645cd882de9d7dd8a7eb0ea79775f9dbc059e807c9305b5f13802",
+      "utf8_length": 426
+    },
+    "manifest_old_output": {
+      "sha256": "0159b55c1d87ae16621dd7cd2f8b1774ecfd7e04ba33f90e7e4f1b240c8ff33d",
+      "utf8_length": 190
+    },
+    "raw_comment": {
+      "sha256": "eebd50933439e8740af9c38ab27af75ba1108d5cdf193e4ca25a902a5b8ac65a",
+      "utf8_length": 445
+    },
+    "recommended_expected_output": {
+      "sha256": "0159b55c1d87ae16621dd7cd2f8b1774ecfd7e04ba33f90e7e4f1b240c8ff33d",
+      "utf8_length": 190
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright (C) 2016-2020 by Agustin Alvarez. All rights reserved.\n\nThis work is licensed under the terms of the Apache License, Version 2.0.\n\nSee <https://opensource.org/licenses/Apache-2.0>.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n// Copyright (C) 2016-2020 by Agustin Alvarez. All rights reserved.\n//\n// This work is licensed under the terms of the Apache License, Version 2.0.\n//\n// See <https://opensource.org/licenses/Apache-2.0>.\n// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7c759e326967e3970fdfd9c20010843eced03f20f4e781a46d10188b8c3eb39d",
+    "source_id": "5f3e9357dda9428e788c286370b0da2aedeecb5c"
+  },
+  "source_record_sha256": "f939f189c9d605899f18f366665d50e117b4f77601002838a0059faa75411ecb"
+}

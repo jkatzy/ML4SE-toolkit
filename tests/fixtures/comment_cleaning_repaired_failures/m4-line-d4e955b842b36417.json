@@ -1,0 +1,38 @@
+{
+  "case_id": "m4-line-d4e955b842b36417",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "m4",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "550e6a3a84eda85209fdcadb5ed79a2d18e5fd4cb2b3f9bd5d53dd0a42a27b94",
+      "utf8_length": 35
+    },
+    "manifest_old_output": {
+      "sha256": "9ebb133d42e118c726cde498d954582582bcfb4274ff0d97a0274b4bb67d7c28",
+      "utf8_length": 38
+    },
+    "raw_comment": {
+      "sha256": "04b840111bd1dba3827105abb648487a43e89f982fae9a0916c535cadc13dbd6",
+      "utf8_length": 40
+    },
+    "recommended_expected_output": {
+      "sha256": "9ebb133d42e118c726cde498d954582582bcfb4274ff0d97a0274b4bb67d7c28",
+      "utf8_length": 38
+    }
+  },
+  "regression": {
+    "expected_output": "Set the necessary libraries for PAM...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Set the necessary libraries for PAM..."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "65bf02678ca62dfb947c4c54462b3d2e23cf34e18dde9fb38d7dfa0c883688eb",
+    "source_id": "e3f82e4ee6535ca63e308171fbebfd33e93d2ca3"
+  },
+  "source_record_sha256": "9ac0390cd97a3764f61342cdd224e3cd70d639edcc2c936ffd0c460633882bf9"
+}

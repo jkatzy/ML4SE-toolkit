@@ -1,0 +1,29 @@
+{
+  "case_id": "debian_package_control_file-line-c20841d96d377616",
+  "category": "policy_or_judge_conflict",
+  "cluster": "oracle_exception:reviewer_disagreement",
+  "disposition": "accounting_only_no_oracle",
+  "language": "debian_package_control_file",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "0fdb1e11a37b80707998cfd337307b0a7c9dd2e045815c2e40fdc6a0487847bc",
+      "utf8_length": 1494
+    },
+    "manifest_old_output": {
+      "sha256": "7cad083d6bb7a9b860b03a4552d2acd375be6ad08b7269c4dcf89d8c575d30d4",
+      "utf8_length": 1574
+    },
+    "raw_comment": {
+      "sha256": "b5d406d3091a5d5a0a0a4d80e20bdeae6a1ddc7eccf1b0e84c790177223dbaf1",
+      "utf8_length": 1695
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2b04a8992d816e6a67a1a130e7e5f2333b969c981cb0f783853d42ab6bb069d5",
+    "source_id": "5c25b4b5fbb2bd8a7b28b8e070705fc42aae87d8"
+  },
+  "source_record_sha256": "0483504abac9dd060590fe64db71125c409d766e034e7ce7e964fef34fa3d769"
+}

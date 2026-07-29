@@ -1,0 +1,38 @@
+{
+  "case_id": "brightscript-line-b802815c995bb610",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:brightscript",
+  "disposition": "executable_regression",
+  "language": "brightscript",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "232c09ba32eb408ad768bf9f6ac1b93d7e7ed44fce0fc290c54a3ed1b4c84375",
+      "utf8_length": 260
+    },
+    "manifest_old_output": {
+      "sha256": "6a7f7ccfc05377ed21f9a85e2661726dd8e49f2ef59814eae674df70598eedae",
+      "utf8_length": 234
+    },
+    "raw_comment": {
+      "sha256": "288b89527aeb04d35f76fee7ffa3bd4c1ff696f4755bf58c4f584dd9abaad129",
+      "utf8_length": 379
+    },
+    "recommended_expected_output": {
+      "sha256": "6a7f7ccfc05377ed21f9a85e2661726dd8e49f2ef59814eae674df70598eedae",
+      "utf8_length": 234
+    }
+  },
+  "regression": {
+    "expected_output": "Application initialisation\n\nResponsible for initialising all core dependency\n    components for other elements of the app.\nThis includes setting-up application constants.\n    application version, configuration and other\n    utilities.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'/////////////////////////////////////////////////////\n'//\n'// Application initialisation\n'//\n'// Responsible for initialising all core dependency\n'//     components for other elements of the app.\n'// This includes setting-up application constants.\n'//     application version, configuration and other\n'//     utilities.\n'//\n'/////////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "8b01a9125c8b45a10cb49f7e31032819d8587455b655270f1d73dee3ffcbca13",
+    "source_id": "f0a16fc8b0a65711380290276fafcb6cf0eef7ec"
+  },
+  "source_record_sha256": "2bf80bf959e2c6073c2dc73286539a3545b32b1466fe114a91bd37376df5e740"
+}

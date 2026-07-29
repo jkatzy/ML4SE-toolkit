@@ -1,0 +1,29 @@
+{
+  "case_id": "smalltalk-line-89bdcfd3042777ef",
+  "category": "extractor_or_source_invalid",
+  "cluster": "source_invalid:smalltalk_quote_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "smalltalk",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2b18e849c92cfb837a0d466bd050f7babc7e788ccaeec6a318c80c69d7788861",
+      "utf8_length": 41
+    },
+    "manifest_old_output": {
+      "sha256": "94706d060130517a19b6a5dcbff4b55129eca86e02d7407ee50f86835c67811c",
+      "utf8_length": 40
+    },
+    "raw_comment": {
+      "sha256": "2b18e849c92cfb837a0d466bd050f7babc7e788ccaeec6a318c80c69d7788861",
+      "utf8_length": 41
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f13e0390e82535870bd6a1b8f87940a676ebf93bd5d5995c4115e15b6daa3063",
+    "source_id": "f9dde2b6e0295c8fd8dc510803ad8cfb1ba043aa"
+  },
+  "source_record_sha256": "b4854e4223867a071f25a38f6fe1ea850d75e932c8e56138dbfc9abd3cdcf6e0"
+}

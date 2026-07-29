@@ -1,0 +1,38 @@
+{
+  "case_id": "velocity_template_language-block-e9e498c3bd21f7ba",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "velocity_template_language",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2025a52c4fef9d4de06322fe7b7badc9de4cac2a585e0210d2d6b4cbc5ddd3e6",
+      "utf8_length": 58
+    },
+    "manifest_old_output": {
+      "sha256": "92fad7a965940e3da2fe1e2c437b6f1de84aa3455b76573fb711442dede78f98",
+      "utf8_length": 54
+    },
+    "raw_comment": {
+      "sha256": "c19bbee7e6cba4c7360b14a9bf37c9f3b009b333fa3d3f9fb8ebb88e26f89a72",
+      "utf8_length": 63
+    },
+    "recommended_expected_output": {
+      "sha256": "92fad7a965940e3da2fe1e2c437b6f1de84aa3455b76573fb711442dede78f98",
+      "utf8_length": 54
+    }
+  },
+  "regression": {
+    "expected_output": "Select statement for a relational database data source",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#**\n  Select statement for a relational database data source\n*#"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "27578151ff42ce1f93a3e3f7543dfb249a96b44a96abd3f3b6cec1992795d521",
+    "source_id": "a686ec2aff38cb706b6d527deb73bd58e65638f0"
+  },
+  "source_record_sha256": "e81fa3f741a0f57f4f351ab77137d2592b0206b5efb40d9a4bf4d7437a65487a"
+}

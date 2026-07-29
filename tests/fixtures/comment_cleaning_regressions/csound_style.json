@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "csound_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "966f6ead790e79772913c3e24c987a32ee12055cc1fff3dd84bd073130cdcd15",
+      "case_id": "csound-line-dc590ec3caf9ea29",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "csound",
+      "raw_comment": "; ====================",
+      "raw_sha256": "6063d41a910dcf7b811442d4d18deeef334fe956fd1d3976f534a06f594acc23",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "4a35ff4ce39e6dab62ade3e3ce26a6a008a789ef8b8c93cde41c70fb530ce4cc",
+        "source_id": "67092bdc38c05dc715e5b317051bd610083617ad"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "377b06a3dfc09cae8535d2ac73f8d7a8770f3a5086fca1111e4534bbf63cd20c",
+      "case_id": "csound_score-block-03423e278626d616",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "gravy -- a time and pitch-shifting instrument\n(modified 11/89 by D.S. to use parabolic interpolation)\n\np0 = output skip\np1 = input skip\np2 = duration (on input)\np3 = window size (in seconds)\np4 = amplitude multiplier\np5 = length multiplier (of original)\np6 = transposition interval (oct.pc)\np7 = input channel [optional]\np8 = stereo spread (0-1) [optional]\nassumes function table 1 contains the window envelope",
+      "expected_cleaned_sha256": "15b3323708012dd6e60a77e8672c2a95e23293edbb0eb3706042658af1dad096",
+      "language": "csound_score",
+      "raw_comment": "/* gravy -- a time and pitch-shifting instrument\n*  \t(modified 11/89 by D.S. to use parabolic interpolation)\n*\n*  p0 = output skip\n*  p1 = input skip\n*  p2 = duration (on input)\n*  p3 = window size (in seconds)\n*  p4 = amplitude multiplier\n*  p5 = length multiplier (of original)\n*  p6 = transposition interval (oct.pc)\n*  p7 = input channel [optional]\n*  p8 = stereo spread (0-1) [optional]\n*  assumes function table 1 contains the window envelope\n*\n*/",
+      "raw_sha256": "84ea62c4f505aa358a5f0d6e1ad95c84ffa8d5f22bf963fbe76079cc2500c814",
+      "raw_utf8_length": 453,
+      "source_provenance": {
+        "source_excerpt_sha256": "cd4620b63d5bcbff61f3f8e698cbdfa96ba5ef57e789edb91f66728288fe5032",
+        "source_id": "183101fa24c8a5ad97663e2b9037091e1bd84a9b"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "411cbb7d07a499c50ad44d6c7445de8485b79d830e7e2302a36cb923c23017fd",
+      "case_id": "csound_score-line-debe309ad0a40f75",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "New Age Bull\nCopyright 1998 Hans Mikelson\nSta   Dur\na0 0     40      ; advance\na0 86.8  140    ; advance\na0 106.0  140    ; advance",
+      "expected_cleaned_sha256": "bc1de356a7deb9f215314409fda705ad99e43763b1a8455f178bf9daa7bc4bbc",
+      "language": "csound_score",
+      "raw_comment": ";---------------------------------------------------------------------------\n; New Age Bull\n; Copyright 1998 Hans Mikelson\n;---------------------------------------------------------------------------\n;  Sta   Dur\n;a0 0     40      ; advance\n;a0 86.8  140    ; advance\n;a0 106.0  140    ; advance",
+      "raw_sha256": "dc20914907bd5fc0cc98548667fea43fd0fbcccbb446fdc749031f8eb1b7a153",
+      "raw_utf8_length": 295,
+      "source_provenance": {
+        "source_excerpt_sha256": "a24c3019a7647bb332d1592d885d3a296045fec8ecfbe0b60cfa73388d69287d",
+        "source_id": "37f97a2fa90686ad773ebfe54e95c5cc40f51406"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,76 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "mustache_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "b14524e0e408308f4dcee58c3e919de4e66223d42334dd303aa661e6b094ae3f",
+      "case_id": "mustache-line-15bfe5b45ad9b193",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "M\u00e5 velge \u00e9n",
+      "expected_cleaned_sha256": "b05e7a06d67e559a196e24c77f26ec0474083093d77511422e3dcc23dd902eec",
+      "language": "mustache",
+      "raw_comment": "{{!-- M\u00e5 velge \u00e9n --}}",
+      "raw_sha256": "302c54d3333ba84fb9ea0f42ea13a32701eb403cca2ba26a37876660823521c7",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "9ff268178f919143bc4beec5ceca9077ab133a8d2971ade25a37d357fba1e262",
+        "source_id": "3569bff1e0755d07cfa992c224e6b4a91f3beaac"
+      },
+      "syntax_label": "{{!"
+    },
+    {
+      "baseline_cleaned_sha256": "ccdf85548eefda4c54a543a5fd3ca3724ee9d0fb462447be0964294169e91f71",
+      "case_id": "mustache-line-4765fe2955becbf4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Nested value",
+      "expected_cleaned_sha256": "99f0c41a866a1a358da7c6616f1f6f20e50aaa4a3b67475d77dbc59bb587c25c",
+      "language": "mustache",
+      "raw_comment": "{{!---- Nested value ----}}",
+      "raw_sha256": "939784a2491536ffb76f38f90fe4b0fd7595d97c8694e081210be43d86063216",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "c36f0d4621fc065570d6715fa71879d8cafa367d263b65288cfb828ec6dd5006",
+        "source_id": "07b74bff81443158688aaafe7f285e81b1d6efe4"
+      },
+      "syntax_label": "{{!"
+    },
+    {
+      "baseline_cleaned_sha256": "5be6b91952ad4e8b4b18df1711850933f10c13bf83ca6fbce5cdc0efceb2c622",
+      "case_id": "mustache-line-96370a63e50af327",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "If there is not a create method available for that operation\nwe do not create the command",
+      "expected_cleaned_sha256": "5a4d4b9996add54fc3966fffd7a637d655a685b2675e1d09bf73c201e45c1bbe",
+      "language": "mustache",
+      "raw_comment": "{{! If there is not a create method available for that operation\nwe do not create the command }}",
+      "raw_sha256": "3fe817a716b3ee130eb9437c72937e83546a7561f33c867d8ed92df54c7060c1",
+      "raw_utf8_length": 96,
+      "source_provenance": {
+        "source_excerpt_sha256": "c2e4da58f6435f12a248bbd1da1edc40833b9053bbd1ff6a1ad318c9dcdb7db3",
+        "source_id": "0f32065d9a576e9422f765efd5b9d506a8d19bcb"
+      },
+      "syntax_label": "{{!"
+    },
+    {
+      "baseline_cleaned_sha256": "2c82867ee82c846027f7833ec48f1b4e0364646299854fd063162759d2d978d1",
+      "case_id": "mustache-line-aa07375783524a42",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2013, Kenton Varda <temporal@gmail.com>\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\nON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\nTemplate for generated C++ header files.",
+      "expected_cleaned_sha256": "7373886adc836eaf4e0538e66ac69881c47b793e5e8405d606bdae066a56a727",
+      "language": "mustache",
+      "raw_comment": "{{!\n| Copyright (c) 2013, Kenton Varda <temporal@gmail.com>\n| All rights reserved.\n|\n| Redistribution and use in source and binary forms, with or without\n| modification, are permitted provided that the following conditions are met:\n|\n| 1. Redistributions of source code must retain the above copyright notice, this\n|    list of conditions and the following disclaimer.\n| 2. Redistributions in binary form must reproduce the above copyright notice,\n|    this list of conditions and the following disclaimer in the documentation\n|    and/or other materials provided with the distribution.\n|\n| THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\n| ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n| WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n| DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR\n| ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n| (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n| LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n| ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n| (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n| SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\nTemplate for generated C++ header files.\n}}",
+      "raw_sha256": "06648969985c1e73c842eaad52690f0ca5ee14540d18b86fb3706f3a0892f22c",
+      "raw_utf8_length": 1408,
+      "source_provenance": {
+        "source_excerpt_sha256": "ec25b0d8734c4cf7876aa462e422a103d7641ca5f8c58e0021b882b1dcc12d54",
+        "source_id": "5f0699e5e0f10a55d4b0051978030851aa0760a8"
+      },
+      "syntax_label": "{{!"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "m4sugar-line-5e38d98ab84987b6",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "m4sugar",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "107a9705a2a258e6539b462b1e8ecc40770ba1f243fec03f2ce9d312d9363196",
+      "utf8_length": 796
+    },
+    "manifest_old_output": {
+      "sha256": "561f9785139ae1e194a3c842c8cf7e59910ae48aabf0763f00db571fceb68b1a",
+      "utf8_length": 843
+    },
+    "raw_comment": {
+      "sha256": "ed68ed76911d8753154c7b5d70ee171f420b3017bba57424d2e32efcab551a3c",
+      "utf8_length": 1034
+    },
+    "recommended_expected_output": {
+      "sha256": "561f9785139ae1e194a3c842c8cf7e59910ae48aabf0763f00db571fceb68b1a",
+      "utf8_length": 843
+    }
+  },
+  "regression": {
+    "expected_output": "                                 _   _ ____  _\n Project                     ___| | | |  _ \\| |\n                            / __| | | | |_) | |\n                           | (__| |_| |  _ <| |___\n                            \\___|\\___/|_| \\_\\_____|\n\nCopyright (C) 1998 - 2022, Daniel Stenberg, <daniel@haxx.se>, et al.\n\nThis software is licensed as described in the file COPYING, which\nyou should have received as part of this distribution. The terms\nare also available at https://curl.se/docs/copyright.html.\n\nYou may opt to use, copy, modify, merge, publish, distribute and/or sell\ncopies of the Software, and permit persons to whom the Software is\nfurnished to do so, under the terms of the COPYING file.\n\nThis software is distributed on an \"AS IS\" basis, WITHOUT WARRANTY OF ANY\nKIND, either express or implied.\n\nSPDX-License-Identifier: curl",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#***************************************************************************\n#                                  _   _ ____  _\n#  Project                     ___| | | |  _ \\| |\n#                             / __| | | | |_) | |\n#                            | (__| |_| |  _ <| |___\n#                             \\___|\\___/|_| \\_\\_____|\n#\n# Copyright (C) 1998 - 2022, Daniel Stenberg, <daniel@haxx.se>, et al.\n#\n# This software is licensed as described in the file COPYING, which\n# you should have received as part of this distribution. The terms\n# are also available at https://curl.se/docs/copyright.html.\n#\n# You may opt to use, copy, modify, merge, publish, distribute and/or sell\n# copies of the Software, and permit persons to whom the Software is\n# furnished to do so, under the terms of the COPYING file.\n#\n# This software is distributed on an \"AS IS\" basis, WITHOUT WARRANTY OF ANY\n# KIND, either express or implied.\n#\n# SPDX-License-Identifier: curl\n#\n#***************************************************************************"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1f1a617f475d26cc94f520ee28d13087b6e22797077784e199c111ae8b7d55c4",
+    "source_id": "06fc358eec5d730c864de884a0a645ae082430b9"
+  },
+  "source_record_sha256": "1386f9d1e1cece39fb1a7d796c23a2e5332e201b7ed2b7e6ce869e16cf14ab35"
+}

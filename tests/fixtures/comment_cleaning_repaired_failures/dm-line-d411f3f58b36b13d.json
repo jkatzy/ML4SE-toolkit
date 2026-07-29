@@ -1,0 +1,33 @@
+{
+  "case_id": "dm-line-d411f3f58b36b13d",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "accounting_only_superseded",
+  "language": "dm",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "92755baa55d221b76155e0fc4535ee7470c11aaa5cf7fa4c54ad1a74cdeff10c",
+      "utf8_length": 103
+    },
+    "manifest_old_output": {
+      "sha256": "92755baa55d221b76155e0fc4535ee7470c11aaa5cf7fa4c54ad1a74cdeff10c",
+      "utf8_length": 103
+    },
+    "raw_comment": {
+      "sha256": "7dedd7c0f340053e7169cb9cdda39900f96a1fcc57cadea9a04f71562c8940f0",
+      "utf8_length": 116
+    },
+    "recommended_expected_output": {
+      "sha256": "92755baa55d221b76155e0fc4535ee7470c11aaa5cf7fa4c54ad1a74cdeff10c",
+      "utf8_length": 103
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "72732c7054954f3e1354c335b479f4424ceec420367a6606aaba247dfc478f55",
+    "source_id": "75b042e2bebf66ed5210215a6f746fa82682a245"
+  },
+  "source_record_sha256": "b24482a7558072764ce288fe14946bc94bdfd0f0e933886b85d555a87195e095"
+}

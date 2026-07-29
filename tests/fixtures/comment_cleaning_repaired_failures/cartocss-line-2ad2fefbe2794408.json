@@ -1,0 +1,38 @@
+{
+  "case_id": "cartocss-line-2ad2fefbe2794408",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "cartocss",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "4a4def007706309d05b3aa77cdd61851734aed7b043fba70582d1c4c0ecde27a",
+      "utf8_length": 17
+    },
+    "manifest_old_output": {
+      "sha256": "205daf32dccb4646b36a1c0c926da644421f8bada50e6612f5bc0b93f0d5b0b5",
+      "utf8_length": 14
+    },
+    "raw_comment": {
+      "sha256": "78b8f347d99e738b3195975be5e0b27e2fb42da9b9a0764ea33fee1adb558b90",
+      "utf8_length": 20
+    },
+    "recommended_expected_output": {
+      "sha256": "205daf32dccb4646b36a1c0c926da644421f8bada50e6612f5bc0b93f0d5b0b5",
+      "utf8_length": 14
+    }
+  },
+  "regression": {
+    "expected_output": "Country labels",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "// Country labels //"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3d997d6b8b593f69b4d4626c1b92ab2f0b814692dea43ee467c85fc445d9cdb3",
+    "source_id": "8213ed4d6727d57a3032b3ea4adc806162132d3d"
+  },
+  "source_record_sha256": "f38660981bba536100f88c408a91553bbeae4b28bbd632de1ee318c3aff2e9d0"
+}

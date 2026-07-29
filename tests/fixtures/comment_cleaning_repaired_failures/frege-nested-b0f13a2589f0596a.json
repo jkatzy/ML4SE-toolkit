@@ -1,0 +1,38 @@
+{
+  "case_id": "frege-nested-b0f13a2589f0596a",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:frege",
+  "disposition": "executable_regression",
+  "language": "frege",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ac0bb0bebd33fed45c24dad4104da3c8e8a89599c93b9b86bf01685e2f5acb9b",
+      "utf8_length": 116
+    },
+    "manifest_old_output": {
+      "sha256": "656f7118e54e56e688beb30c8c46c672cef70b9dbebde4eeff9aff5dae632b62",
+      "utf8_length": 106
+    },
+    "raw_comment": {
+      "sha256": "fabe4f70913626a8eb7d8bb94d9e54aaead0cbbaa18cc6602ffa23a98d2e09f8",
+      "utf8_length": 122
+    },
+    "recommended_expected_output": {
+      "sha256": "656f7118e54e56e688beb30c8c46c672cef70b9dbebde4eeff9aff5dae632b62",
+      "utf8_length": 106
+    }
+  },
+  "regression": {
+    "expected_output": "Parse the files found on the command line,\nas well as the ones identified as dependencies through parsing.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "{-- \n    Parse the files found on the command line,\n    as well as the ones identified as dependencies through parsing.\n-}"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "2903ddcf22b2072227e2c4bf06201b0d137c8e0e8435986b2339712eed7484ea",
+    "source_id": "8ac8b44449f2f908f16896af7cda2bab6ffd4d34"
+  },
+  "source_record_sha256": "ba3e14407e2ac8e403f36d89a42444d3f80910016fa6ee1859de458cc062f0b8"
+}

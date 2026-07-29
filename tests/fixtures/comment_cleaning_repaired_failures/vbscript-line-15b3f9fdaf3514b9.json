@@ -1,0 +1,38 @@
+{
+  "case_id": "vbscript-line-15b3f9fdaf3514b9",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "vbscript",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "11f663b03c9d1f6df9b56ba286e3b500eab871d2917845055a2c2848de3877e2",
+      "utf8_length": 198
+    },
+    "manifest_old_output": {
+      "sha256": "11f663b03c9d1f6df9b56ba286e3b500eab871d2917845055a2c2848de3877e2",
+      "utf8_length": 198
+    },
+    "raw_comment": {
+      "sha256": "b83448cffc417e084e13496b7ea9640bbf4802fc207884e82f67c72950843539",
+      "utf8_length": 327
+    },
+    "recommended_expected_output": {
+      "sha256": "11f663b03c9d1f6df9b56ba286e3b500eab871d2917845055a2c2848de3877e2",
+      "utf8_length": 198
+    }
+  },
+  "regression": {
+    "expected_output": "TCP/IP\u3067\u901a\u4fe1\u3059\u308b\u30b5\u30f3\u30d7\u30eb(VBS/VBA)\n\u901a\u4fe1\u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u751f\u6210\n===========================================================\n\u3010\u8d77\u52d5\u65b9\u6cd5\u3011\ncscript.exe pptCntrl.vbs [ppt\u30d5\u30a1\u30a4\u30eb\u540d]",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "'===========================================================\n'TCP/IP\u3067\u901a\u4fe1\u3059\u308b\u30b5\u30f3\u30d7\u30eb(VBS/VBA)\n'\u901a\u4fe1\u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u751f\u6210\n'===========================================================\n'\u3010\u8d77\u52d5\u65b9\u6cd5\u3011\n' cscript.exe pptCntrl.vbs [ppt\u30d5\u30a1\u30a4\u30eb\u540d] \n'==========================================================="
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "0229d1c8a067fd49d8192bc6f46e5a8e8e9bceb11182300db31f9ae87322d5d3",
+    "source_id": "c343be0d5a0ba6cf0c55f9040f977a1b2c1eaf43"
+  },
+  "source_record_sha256": "4302df79257e75c04f4cb7e73f13ccb74137db52397bac883229d52b12ef07a2"
+}

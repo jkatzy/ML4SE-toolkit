@@ -57,9 +57,7 @@ C_SHARP_STACK_V2_SOURCE_SUFFIX = (
     "}"
 )
 
-C_SHARP_STACK_V2_SOURCE = (
-    C_SHARP_STACK_V2_BLOCK_COMMENT + C_SHARP_STACK_V2_SOURCE_SUFFIX
-)
+C_SHARP_STACK_V2_SOURCE = C_SHARP_STACK_V2_BLOCK_COMMENT + C_SHARP_STACK_V2_SOURCE_SUFFIX
 
 C_SHARP_STACK_V2_CLEANED_COMMENT = (
     "Copyright 2018 JDCLOUD.COM\n"
@@ -121,8 +119,7 @@ C_SHARP_STACK_V2_AWS_LICENSE_SOURCE_SUFFIX = (
     "using System.Xml.Serialization;\n"
 )
 C_SHARP_STACK_V2_AWS_LICENSE_SOURCE = (
-    C_SHARP_STACK_V2_AWS_LICENSE_BLOCK_COMMENT
-    + C_SHARP_STACK_V2_AWS_LICENSE_SOURCE_SUFFIX
+    C_SHARP_STACK_V2_AWS_LICENSE_BLOCK_COMMENT + C_SHARP_STACK_V2_AWS_LICENSE_SOURCE_SUFFIX
 )
 C_SHARP_STACK_V2_AWS_LICENSE_CLEANED_COMMENT = (
     "Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.\n"
@@ -186,8 +183,7 @@ STACK_V2_CSHARP_COOKIE_LINE_PREFIX = (
     "                    FormsService.SignIn(model.UserName, false "
 )
 STACK_V2_CSHARP_COOKIE_SOURCE_SUFFIX = (
-    ");\r\n"
-    '                    return RedirectToAction("Index", "Home");\r\n'
+    ');\r\n                    return RedirectToAction("Index", "Home");\r\n'
 )
 
 STACK_V2_CSHARP_ORNAMENT_BLOCK_COMMENT = "/* Script Made By Daniel */"
@@ -263,14 +259,7 @@ C_SHARP_STACK_V2_DECORATED_METADATA_SOURCE_SUFFIX = (
     "    }\n"
     "}\n"
 )
-C_SHARP_STACK_V2_DECORATED_METADATA_CLEANED_COMMENT = (
-    "=================================\n"
-    "作    者:\n"
-    "创建日期：2015/9/6\n"
-    "描    述：\n"
-    "\n"
-    "================================="
-)
+C_SHARP_STACK_V2_DECORATED_METADATA_CLEANED_COMMENT = "作    者:\n创建日期：2015/9/6\n描    述："
 
 C_SHARP_STACK_V2_RECTANGLE_BLOCK_COMMENT = (
     "/*Написать программу, которая определяет площадь прямоугольника \n"
@@ -395,18 +384,14 @@ C_SHARP_STACK_V2_PERLIN_SOURCE = (
     + C_SHARP_STACK_V2_PERLIN_SOURCE_SUFFIX
 )
 C_SHARP_STACK_V2_PERLIN_CLEANED_COMMENT = (
-    " Perlin noise class.  ( by Tom Nuydens (tom@delphi3d.net) )\n"
+    "Perlin noise class.  ( by Tom Nuydens (tom@delphi3d.net) )\n"
     "* Converted to C# by Mattias Fagerlund, Mattias.Fagerlund@cortego.se\n"
-    "\n"
-    "******************************************************************************\n"
     "\n"
     "I used the following references for my implementation:\n"
     " http://students.vassar.edu/mazucker/code/perlin-noise-math-faq.html\n"
     ' Darwin Peachey\'s chapter in "Texturing & Modeling: A Procedural Approach"\n'
     "Another good resource is\n"
     " http://freespace.virgin.net/hugo.elias/models/m_perlin.htm\n"
-    "\n"
-    "******************************************************************************\n"
     "\n"
     "This class generates 3D Perlin noise. The demo that comes with this is 2D, but\n"
     "uses the 3rd dimension to create animated noise. The noise does not tile,\n"
@@ -455,8 +440,7 @@ C_SHARP_STACK_V2_CGSOSO_SOURCE_SUFFIX = (
     "}\r\n"
 )
 C_SHARP_STACK_V2_CGSOSO_SOURCE = (
-    C_SHARP_STACK_V2_CGSOSO_BLOCK_COMMENT
-    + C_SHARP_STACK_V2_CGSOSO_SOURCE_SUFFIX
+    C_SHARP_STACK_V2_CGSOSO_BLOCK_COMMENT + C_SHARP_STACK_V2_CGSOSO_SOURCE_SUFFIX
 )
 C_SHARP_STACK_V2_CGSOSO_CLEANED_COMMENT = (
     "http://www.cgsoso.com/forum-211-1.html\n"
@@ -492,11 +476,7 @@ C_SHARP_STACK_V2_INTERACTION_TODO_SOURCE_PREFIX = (
     "\n"
 )
 C_SHARP_STACK_V2_INTERACTION_TODO_SOURCE_SUFFIX = (
-    "\n"
-    "public enum Interaction {\n"
-    "    Unscrew,\n"
-    "    Screw,\n"
-    "}\n"
+    "\npublic enum Interaction {\n    Unscrew,\n    Screw,\n}\n"
 )
 C_SHARP_STACK_V2_INTERACTION_TODO_SOURCE = (
     C_SHARP_STACK_V2_INTERACTION_TODO_SOURCE_PREFIX
@@ -597,9 +577,7 @@ C_SHARP_STACK_V2_NOVARTIS_MATCH_START = 38
 C_SHARP_STACK_V2_NOVARTIS_MATCH_END = 628
 C_SHARP_STACK_V2_NOVARTIS_MATCH_LINE = 2
 C_SHARP_STACK_V2_NOVARTIS_MATCH_COLUMN = 1
-C_SHARP_STACK_V2_NOVARTIS_SOURCE_PREFIX = (
-    "\ufeff#region Copyright © 2010 Novartis AG\n"
-)
+C_SHARP_STACK_V2_NOVARTIS_SOURCE_PREFIX = "\ufeff#region Copyright © 2010 Novartis AG\n"
 C_SHARP_STACK_V2_NOVARTIS_SOURCE_SUFFIX = (
     "\n"
     "#endregion Copyright © 2010 Novartis AG\n"
@@ -617,15 +595,9 @@ C_SHARP_STACK_V2_NOVARTIS_SOURCE = (
 )
 
 C_SHARP_STACK_V2_SOCKET_XML_DOC_LINE_COMMENT = (
-    "/// <summary>\n"
-    "    /// 单点采集器GPRS通讯对象\n"
-    "    /// </summary>"
+    "/// <summary>\n    /// 单点采集器GPRS通讯对象\n    /// </summary>"
 )
-C_SHARP_STACK_V2_SOCKET_XML_DOC_CLEANED_COMMENT = (
-    "<summary>\n"
-    "单点采集器GPRS通讯对象\n"
-    "</summary>"
-)
+C_SHARP_STACK_V2_SOCKET_XML_DOC_CLEANED_COMMENT = "<summary>\n单点采集器GPRS通讯对象\n</summary>"
 C_SHARP_STACK_V2_SOCKET_XML_DOC_MATCH_START = 347
 C_SHARP_STACK_V2_SOCKET_XML_DOC_MATCH_END = 401
 C_SHARP_STACK_V2_SOCKET_XML_DOC_MATCH_LINE = 15
@@ -648,11 +620,7 @@ C_SHARP_STACK_V2_SOCKET_XML_DOC_SOURCE_PREFIX = (
     "    "
 )
 C_SHARP_STACK_V2_SOCKET_XML_DOC_SOURCE_SUFFIX = (
-    "\n"
-    "    public sealed class SCMGPRSCommunicate : IBaseCommunicate<string>\n"
-    "    {\n"
-    "    }\n"
-    "}\n"
+    "\n    public sealed class SCMGPRSCommunicate : IBaseCommunicate<string>\n    {\n    }\n}\n"
 )
 C_SHARP_STACK_V2_SOCKET_XML_DOC_SOURCE = (
     C_SHARP_STACK_V2_SOCKET_XML_DOC_SOURCE_PREFIX
@@ -678,9 +646,7 @@ def _stack_v2_positioned_prefix(match_start, match_line, match_column, line_pref
     previous_line_count = match_line - 1
     prefix_before_target_line_length = match_start - len(line_prefix)
     filler_body_length = prefix_before_target_line_length - previous_line_count
-    base_line_length, longer_line_count = divmod(
-        filler_body_length, previous_line_count
-    )
+    base_line_length, longer_line_count = divmod(filler_body_length, previous_line_count)
     filler_lines = [
         "x" * (base_line_length + (1 if index < longer_line_count else 0))
         for index in range(previous_line_count)
@@ -785,12 +751,9 @@ def test_stack_v2_csharp_block_header_sanitizes_gutters_and_preserves_content():
         C_SHARP_STACK_V2_BLOCK_COMMENT,
     )
 
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_CLEANED_COMMENT
     assert (
-        CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_CLEANED_COMMENT
-    )
-    assert (
-        sanitize_comment("c#", C_SHARP_STACK_V2_BLOCK_COMMENT)
-        == C_SHARP_STACK_V2_CLEANED_COMMENT
+        sanitize_comment("c#", C_SHARP_STACK_V2_BLOCK_COMMENT) == C_SHARP_STACK_V2_CLEANED_COMMENT
     )
 
 
@@ -816,10 +779,7 @@ def test_stack_v2_csharp_aws_license_header_extracts_full_comment_with_offsets()
 def test_stack_v2_csharp_aws_license_header_sanitizes_gutters_and_blank_lines():
     target = QueryMatch("", "", C_SHARP_STACK_V2_AWS_LICENSE_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_AWS_LICENSE_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_AWS_LICENSE_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_AWS_LICENSE_BLOCK_COMMENT)
         == C_SHARP_STACK_V2_AWS_LICENSE_CLEANED_COMMENT
@@ -833,11 +793,7 @@ def test_stack_v2_csharp_inline_condition_block_extracts_full_comment_with_offse
         STACK_V2_INLINE_CSHARP_MATCH_COLUMN,
         STACK_V2_INLINE_CSHARP_LINE_PREFIX,
     )
-    source = (
-        prefix
-        + STACK_V2_INLINE_CSHARP_BLOCK_COMMENT
-        + STACK_V2_INLINE_CSHARP_SOURCE_SUFFIX
-    )
+    source = prefix + STACK_V2_INLINE_CSHARP_BLOCK_COMMENT + STACK_V2_INLINE_CSHARP_SOURCE_SUFFIX
 
     matches = CommentQuery("c#").parse(source)
 
@@ -865,10 +821,7 @@ def test_stack_v2_csharp_inline_condition_block_extracts_full_comment_with_offse
 def test_stack_v2_csharp_inline_condition_block_sanitizes_code_like_content():
     target = QueryMatch("", "", STACK_V2_INLINE_CSHARP_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == STACK_V2_INLINE_CSHARP_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == STACK_V2_INLINE_CSHARP_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", STACK_V2_INLINE_CSHARP_BLOCK_COMMENT)
         == STACK_V2_INLINE_CSHARP_CLEANED_COMMENT
@@ -928,11 +881,7 @@ def test_stack_v2_csharp_duplicate_cookie_block_extracts_target_with_offsets():
         STACK_V2_CSHARP_COOKIE_DUPLICATE_START,
         STACK_V2_CSHARP_COOKIE_BLOCK_COMMENT,
     )
-    source = (
-        prefix
-        + STACK_V2_CSHARP_COOKIE_BLOCK_COMMENT
-        + STACK_V2_CSHARP_COOKIE_SOURCE_SUFFIX
-    )
+    source = prefix + STACK_V2_CSHARP_COOKIE_BLOCK_COMMENT + STACK_V2_CSHARP_COOKIE_SOURCE_SUFFIX
 
     matches = CommentQuery("c#").parse(source)
 
@@ -969,10 +918,7 @@ def test_stack_v2_csharp_duplicate_cookie_block_extracts_target_with_offsets():
 def test_stack_v2_csharp_duplicate_cookie_block_sanitizes_identifier_content():
     target = QueryMatch("", "", STACK_V2_CSHARP_COOKIE_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == STACK_V2_CSHARP_COOKIE_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == STACK_V2_CSHARP_COOKIE_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", STACK_V2_CSHARP_COOKIE_BLOCK_COMMENT)
         == STACK_V2_CSHARP_COOKIE_CLEANED_COMMENT
@@ -1006,10 +952,7 @@ def test_stack_v2_csharp_ornament_block_extracts_full_comment_with_offsets():
 def test_stack_v2_csharp_ornament_block_sanitizes_author_credit():
     target = QueryMatch("", "", STACK_V2_CSHARP_ORNAMENT_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == STACK_V2_CSHARP_ORNAMENT_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == STACK_V2_CSHARP_ORNAMENT_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", STACK_V2_CSHARP_ORNAMENT_BLOCK_COMMENT)
         == STACK_V2_CSHARP_ORNAMENT_CLEANED_COMMENT
@@ -1092,10 +1035,7 @@ def test_stack_v2_csharp_bom_russian_header_extracts_full_comment_with_offsets()
 def test_stack_v2_csharp_bom_russian_header_sanitizes_multiline_text():
     target = QueryMatch("", "", C_SHARP_STACK_V2_RECTANGLE_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_RECTANGLE_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_RECTANGLE_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_RECTANGLE_BLOCK_COMMENT)
         == C_SHARP_STACK_V2_RECTANGLE_CLEANED_COMMENT
@@ -1124,10 +1064,7 @@ def test_stack_v2_csharp_crlf_perlin_header_extracts_full_comment_with_offsets()
 def test_stack_v2_csharp_crlf_perlin_header_sanitizes_reference_text():
     target = QueryMatch("", "", C_SHARP_STACK_V2_PERLIN_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_PERLIN_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_PERLIN_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_PERLIN_BLOCK_COMMENT)
         == C_SHARP_STACK_V2_PERLIN_CLEANED_COMMENT
@@ -1156,10 +1093,7 @@ def test_stack_v2_csharp_crlf_cgsoso_header_extracts_full_comment_with_offsets()
 def test_stack_v2_csharp_crlf_cgsoso_header_sanitizes_multilingual_text():
     target = QueryMatch("", "", C_SHARP_STACK_V2_CGSOSO_BLOCK_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_CGSOSO_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_CGSOSO_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_CGSOSO_BLOCK_COMMENT)
         == C_SHARP_STACK_V2_CGSOSO_CLEANED_COMMENT
@@ -1189,8 +1123,7 @@ def test_stack_v2_csharp_adjacent_todo_lines_sanitizer_strips_delimiters():
     target = QueryMatch("", "", C_SHARP_STACK_V2_INTERACTION_TODO_LINE_COMMENT)
 
     assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_INTERACTION_TODO_CLEANED_COMMENT
+        CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_INTERACTION_TODO_CLEANED_COMMENT
     )
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_INTERACTION_TODO_LINE_COMMENT)
@@ -1219,10 +1152,7 @@ def test_stack_v2_csharp_startup_line_group_extracts_full_comment_with_offsets()
 def test_stack_v2_csharp_startup_line_group_sanitizes_delimiters_and_preserves_url():
     target = QueryMatch("", "", C_SHARP_STACK_V2_STARTUP_LINE_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_STARTUP_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_STARTUP_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_STARTUP_LINE_COMMENT)
         == C_SHARP_STACK_V2_STARTUP_CLEANED_COMMENT
@@ -1250,10 +1180,7 @@ def test_stack_v2_csharp_novartis_line_header_extracts_full_comment_with_offsets
 def test_stack_v2_csharp_novartis_line_header_sanitizes_scaffolding_and_rulers():
     target = QueryMatch("", "", C_SHARP_STACK_V2_NOVARTIS_LINE_COMMENT)
 
-    assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_NOVARTIS_CLEANED_COMMENT
-    )
+    assert CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_NOVARTIS_CLEANED_COMMENT
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_NOVARTIS_LINE_COMMENT)
         == C_SHARP_STACK_V2_NOVARTIS_CLEANED_COMMENT
@@ -1282,8 +1209,7 @@ def test_stack_v2_csharp_socket_xml_doc_sanitizes_delimiters():
     target = QueryMatch("", "", C_SHARP_STACK_V2_SOCKET_XML_DOC_LINE_COMMENT)
 
     assert (
-        CommentSanitizer("c#").sanitize(target)
-        == C_SHARP_STACK_V2_SOCKET_XML_DOC_CLEANED_COMMENT
+        CommentSanitizer("c#").sanitize(target) == C_SHARP_STACK_V2_SOCKET_XML_DOC_CLEANED_COMMENT
     )
     assert (
         sanitize_comment("c#", C_SHARP_STACK_V2_SOCKET_XML_DOC_LINE_COMMENT)
@@ -1324,11 +1250,7 @@ RAKU_STACK_V2_EMBEDDED_BLOCK_SOURCE = (
     + "\n\nskip 'declaration comments are NYI on variables', 7;\n"
 )
 RAKU_STACK_V2_EMBEDDED_BLOCK_CLEANED = (
-    "#| A cool\n"
-    "constant $pi = 3.14159;\n"
-    "#= constant\n"
-    "\n"
-    "test-both($pi.VAR, 'A cool', 'constant');"
+    "#| A cool\nconstant $pi = 3.14159;\n#= constant\n\ntest-both($pi.VAR, 'A cool', 'constant');"
 )
 RAKU_RAKUDOC_COMMENT_BLOCK = "=begin comment\nThis is hidden.\n=end comment"
 RAKU_RAKUDOC_SOURCE = "unit module Example;\n" + RAKU_RAKUDOC_COMMENT_BLOCK + "\nsub x {}\n"
@@ -1405,14 +1327,11 @@ def test_stack_v2_raku_mixed_declarator_lines_strip_each_prefix():
         CommentSanitizer("raku").sanitize(QueryMatch("", "", raw_comment))
         == "leading declarator\ntrailing declarator"
     )
-    assert (
-        sanitize_comment("raku", raw_comment)
-        == "leading declarator\ntrailing declarator"
-    )
+    assert sanitize_comment("raku", raw_comment) == "leading declarator\ntrailing declarator"
 
 
 AUTOHOTKEY_STACK_V2_CR_ONLY_SOURCE = (
-    '; Stay Current Window Always on Top\r'
+    "; Stay Current Window Always on Top\r"
     'CapsLock & `:: Do({func: "TopCurrentWindow"}, '
     '{func: "ShowOrHideFiles", csa: "001"})\r'
     "\r"

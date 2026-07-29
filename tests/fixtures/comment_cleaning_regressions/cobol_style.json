@@ -1,0 +1,178 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "cobol_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "6607caa78f0b022e099fa0f6f4ad1006d84a496a6c5a0d7ad7367a3c16e1b7ba",
+      "case_id": "cobol-line-220fdfc2a09c1742",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCC",
+      "expected_cleaned_sha256": "cada0722986c00b78dfdebf3412a45ca2c8ae5f3c03d652ac723fe31f479372b",
+      "language": "cobol",
+      "raw_comment": "000100*AAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCC",
+      "raw_sha256": "6607caa78f0b022e099fa0f6f4ad1006d84a496a6c5a0d7ad7367a3c16e1b7ba",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "166727579c70d946b5bc96b3a4a4d265891576fce29aa911072c10dcb6ecf9d1",
+        "source_id": "4bfa184bfc11e5dbfe9c6793ab9fa7313029c6b3"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "108598f41993fc26d6bfe8ef06ed7ab0f3afdfe9983ff5e2e0bdbde69e15a11a",
+      "case_id": "cobol-line-392e83bc78f0a234",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "THE PROGRAM READS IN THE SALESIDAMT.DAT FILE AND NEEDS TO",
+      "expected_cleaned_sha256": "9d392a92e62654a523d42c6ee9557b6070bc6be673ff8a622f20b0ce66e4c657",
+      "language": "cobol",
+      "raw_comment": "000300* THE PROGRAM READS IN THE SALESIDAMT.DAT FILE AND NEEDS TO ",
+      "raw_sha256": "53704ebcfe05371512626ee20157780470c3dbf2fe9735eabd2bc8d3cbb308e0",
+      "raw_utf8_length": 66,
+      "source_provenance": {
+        "source_excerpt_sha256": "eba2da071ed83e1c6a994edc0edf2406f9430e5020dcdb592ce017e4d40dd852",
+        "source_id": "989c89098e9b7178bc700a3ec77fca32a2a9bb2d"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "2102e8b7ef617ef6e10d154deaf1f2ebc25e656e3c9f121e3a3d445553049b63",
+      "case_id": "cobol-line-3d70846d0ac2ea15",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "AUTHOR.         PDMA.",
+      "expected_cleaned_sha256": "375b419868d503d9fb7838ccfbe0aeebb911b16eb7d4de0f576e870b6abd9f3c",
+      "language": "cobol",
+      "raw_comment": "022703*AUTHOR.         PDMA.",
+      "raw_sha256": "2102e8b7ef617ef6e10d154deaf1f2ebc25e656e3c9f121e3a3d445553049b63",
+      "raw_utf8_length": 28,
+      "source_provenance": {
+        "source_excerpt_sha256": "b963f67b7eb2b23fcd48b175d2f2a4f61c0493c0cb30b1fd312482f5c1636481",
+        "source_id": "dbde76a01b25ca426cd98181028921042ee3afc3"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "57cee408432287af8784e9cb0647639570efb35a3823b76e0efa4af83dfc08ab",
+      "case_id": "cobol-line-9552e5d8f13890de",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "cobol",
+      "raw_comment": "000010**************************************\r",
+      "raw_sha256": "0bb13a089cceb12d8d8cc3d9ed710846f14617e152bc88eade8ed039ed16fcde",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "5a3a7b8ea4621e57e60f03a1dcc6fec12c88a9c980f784001311777528d71e85",
+        "source_id": "11da7f7782449d18159eb4a09b70f5c53476632a"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "7c3e1ee6ac371650f532321ce7777fc6967691bdd18cfe630daf42406dab9e62",
+      "case_id": "cobol-line-9b0f246af81200f2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "cobol",
+      "raw_comment": "000010************************************************",
+      "raw_sha256": "7c3e1ee6ac371650f532321ce7777fc6967691bdd18cfe630daf42406dab9e62",
+      "raw_utf8_length": 54,
+      "source_provenance": {
+        "source_excerpt_sha256": "4800dabf3e590e92b0c2ba9247fafc73feb9d08fde3a77402ca390191c33e4b4",
+        "source_id": "4c4f8672e072573551737a83ddd5424514cc6107"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "c564dd5cd519a37198fd2a59b4c736dfe0cea2096f275d9f8c138ef5ce70f958",
+      "case_id": "cobol-line-b4f556bf9e9ea63d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "cobol",
+      "raw_comment": "000600******************************************************************",
+      "raw_sha256": "c564dd5cd519a37198fd2a59b4c736dfe0cea2096f275d9f8c138ef5ce70f958",
+      "raw_utf8_length": 72,
+      "source_provenance": {
+        "source_excerpt_sha256": "9427f14c3b550f456432053e15f73a0c885c93362e330c89228369f0d9b7e9d0",
+        "source_id": "201463687c23b0de7ce8a98cfeeaf1991c528d89"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "19f001bd582cc54909b3c3fd96da9e1a6e27df90e1a507f2341431c7f100928c",
+      "case_id": "cobol-line-c5b42a0a980b4490",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PROGRAM         :  \u0097\u009a\u0095\u00a8\u0097\u00dd\u0090\u00cf\u0083t\u0083@\u0083C\u0083\u008b\u0081@\u008d\u00ec\u0090\u00ac\u0081@\nPRINTER TYPE    :  JIPS\nSCREEN          :  ******\n    \u0095\u00cf\u008dX\u0081@\u0081@\u0081@  :  62/04/17\nCOMPILE TYPE    :  COBOL",
+      "expected_cleaned_sha256": "6a082ce6e5c66fd90706112e74081a795e31983925ffdc9f360966251113e2e2",
+      "language": "cobol",
+      "raw_comment": "      *********************************************************\n      *    PROGRAM         :  \u0097\u009a\u0095\u00a8\u0097\u00dd\u0090\u00cf\u0083t\u0083@\u0083C\u0083\u008b\u0081@\u008d\u00ec\u0090\u00ac\u0081@\u0081@\u0081@\u0081@\u0081@*\n      *    PRINTER TYPE    :  JIPS                            *\n      *    SCREEN          :  ******                          *\n      *        \u0095\u00cf\u008dX\u0081@\u0081@\u0081@  :  62/04/17                        *\n      *    COMPILE TYPE    :  COBOL                           *\n      *********************************************************",
+      "raw_sha256": "1a0ccde4ba947b31ab73d389e5a8058edaf5992011380a8d0b6034fb075d8285",
+      "raw_utf8_length": 476,
+      "source_provenance": {
+        "source_excerpt_sha256": "b580b7e960b536c010badce15d1704638a96b8a537c1de372aa2dde0cc3fef8a",
+        "source_id": "e1199ca7763687340f7b4219232510f4fe45403f"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "7c3e1ee6ac371650f532321ce7777fc6967691bdd18cfe630daf42406dab9e62",
+      "case_id": "cobol-line-d2b6c383c7984a0b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "cobol",
+      "raw_comment": "000010************************************************",
+      "raw_sha256": "7c3e1ee6ac371650f532321ce7777fc6967691bdd18cfe630daf42406dab9e62",
+      "raw_utf8_length": 54,
+      "source_provenance": {
+        "source_excerpt_sha256": "441d48823a5b97577f72ddbf6c1643372c21c328eb0754b10082e756f77bf030",
+        "source_id": "93ed41abe12cabb80a1e0cff55996f618628f857"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "7c3e1ee6ac371650f532321ce7777fc6967691bdd18cfe630daf42406dab9e62",
+      "case_id": "cobol-line-e0d3bf8ac4b232e2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "cobol",
+      "raw_comment": "000010************************************************",
+      "raw_sha256": "7c3e1ee6ac371650f532321ce7777fc6967691bdd18cfe630daf42406dab9e62",
+      "raw_utf8_length": 54,
+      "source_provenance": {
+        "source_excerpt_sha256": "269031c88d014b363fbb9e8e7196ec02123986f3a88974abceba7102c1c9682a",
+        "source_id": "ee76b6fd8894a12dd1b307753d055dc4256f1879"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "21f7ebe25ac40519a173cd1332d6da5c69e124feb4a3bedcae62e1fb82ef98cd",
+      "case_id": "cobol-line-f55573105cb39c3f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u0082n\u0081^\u0082k\u008e\u00f3\u0090M\u0083t\u0083@\u0083C\u0083\u008b\n( JOLJF   )  256/1",
+      "expected_cleaned_sha256": "c5d88a047603c3dfdf5814276b3700989a90aaa8e8bd760dddf464a24652f597",
+      "language": "cobol",
+      "raw_comment": "      ***********************************************\n      *****                                     *****\n      **             \u0082n\u0081^\u0082k\u008e\u00f3\u0090M\u0083t\u0083@\u0083C\u0083\u008b\u0081@\u0081@\u0081@\u0081@\u0081@\u0081@**\n      *****         ( JOLJF   )  256/1          *****\n      ***********************************************",
+      "raw_sha256": "c8961228ad8d10bb29bbe96a872c2767db122d6d660dcc99eddb68c981a63c88",
+      "raw_utf8_length": 286,
+      "source_provenance": {
+        "source_excerpt_sha256": "1fa17062e20cc5b96661b92b0e490b50ec2ca4ce74d666b7e98caad71b9b1f7f",
+        "source_id": "f56bde21509a13a780691844f3192d619e7083cb"
+      },
+      "syntax_label": "*"
+    }
+  ],
+  "schema_version": 5
+}

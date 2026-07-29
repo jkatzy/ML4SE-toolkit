@@ -1,0 +1,38 @@
+{
+  "case_id": "urweb-nested-c488cd226555a90c",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:punctuation_or_ascii_art",
+  "disposition": "executable_regression",
+  "language": "urweb",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "26ab6e9ff7b899fc88c6b6ffbef740fab079ff7596ab895bb99fc8842cef2c20",
+      "utf8_length": 90
+    },
+    "manifest_old_output": {
+      "sha256": "eae2f2b74efabdb52e3069a4be434c071b24f5a403bda316b5cf0ad989650a95",
+      "utf8_length": 105
+    },
+    "raw_comment": {
+      "sha256": "3be7575e1666dd320b2cd1264c072f66c665034d4a634f868bce0cbd50aee588",
+      "utf8_length": 112
+    },
+    "recommended_expected_output": {
+      "sha256": "eae2f2b74efabdb52e3069a4be434c071b24f5a403bda316b5cf0ad989650a95",
+      "utf8_length": 105
+    }
+  },
+  "regression": {
+    "expected_output": " ____        _\n|  _ \\  __ _| |_ __ _\n| | | |/ _` | __/ _` |\n| |_| | (_| | || (_| |\n|____/ \\__,_|\\__\\__,_|",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "(*\n ____        _\n|  _ \\  __ _| |_ __ _\n| | | |/ _` | __/ _` |\n| |_| | (_| | || (_| |\n|____/ \\__,_|\\__\\__,_|\n\n*)"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "3d55d88b2fc17261ee531dd4b55672900852d6e226a48157fc27f30120b58f13",
+    "source_id": "7bd69e8aeae0569537c351f7c3a6a104768b7e8a"
+  },
+  "source_record_sha256": "4da5c2f2a617645cb5cd05f2afd37c4cad04d8e2e379d96fe166ab72624c5e8c"
+}

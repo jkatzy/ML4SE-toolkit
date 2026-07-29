@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-7fb4441ddb1b84a7",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2a202c8b12ec7c4464af60a6feb99ed45f7a34a2aef395c48c81e545eff094d5",
+      "utf8_length": 11
+    },
+    "manifest_old_output": {
+      "sha256": "587f5fb51589695c560f75d92cf8b07eb73df8b4f281aca8203b8cbd30b1e2ad",
+      "utf8_length": 9
+    },
+    "raw_comment": {
+      "sha256": "86f5dcfb4a21baa303a54f2a62fe011dea1261345f61840148b5806765b812aa",
+      "utf8_length": 131
+    },
+    "recommended_expected_output": {
+      "sha256": "587f5fb51589695c560f75d92cf8b07eb73df8b4f281aca8203b8cbd30b1e2ad",
+      "utf8_length": 9
+    }
+  },
+  "regression": {
+    "expected_output": "ANTICIPOS",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////////\n//// ANTICIPOS //////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1b76162b7c5824af65c34a1677fd2c99756d70248bc3c4ef3ca7ccc55eabc81a",
+    "source_id": "053da73f0ef226eab540b19bc76ab8c8f75d19f2"
+  },
+  "source_record_sha256": "052e3375d7727ad2c33e1817d3d6b87aa86c90d7dbbd3364b1dda8bfc748e3d1"
+}

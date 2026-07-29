@@ -1,0 +1,38 @@
+{
+  "case_id": "openstep_property_list-line-63f4c6020d2b8342",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "openstep_property_list",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "00a061e5924efd415f9617d4830d541bf77964a83ace6a3835bcdba1e0db96a6",
+      "utf8_length": 7141
+    },
+    "manifest_old_output": {
+      "sha256": "40e512cb59d3df5da27878bfb13653d7b0f0691426bfa6d5a74d856a6760ddd0",
+      "utf8_length": 7140
+    },
+    "raw_comment": {
+      "sha256": "0d0a0fb34c7512df3474f6ea4ca4a41177b631c6e5096f55cb939232855fdf3f",
+      "utf8_length": 7144
+    },
+    "recommended_expected_output": {
+      "sha256": "40e512cb59d3df5da27878bfb13653d7b0f0691426bfa6d5a74d856a6760ddd0",
+      "utf8_length": 7140
+    }
+  },
+  "regression": {
+    "expected_output": "encoded-payload",
+    "provenance": "reviewed_minimized_reproduction",
+    "raw_comment": "////encoded-payload"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "a2df107b2444b9e9a9a9c9616dfc5a4626309db94bbd5c672825c09da3ccfc09",
+    "source_id": "a8208a5e6ca61b33dc66f49ae8233b60ede6e050"
+  },
+  "source_record_sha256": "ffef696ba7daf52fd6891c20353742c562ff1918b28ddd18066d124cb731599e"
+}

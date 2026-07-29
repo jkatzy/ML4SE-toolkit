@@ -1,0 +1,466 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "runoff_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "62331e3fce0dd721e8bb7f000579e3fb7a4856e17f04dfefa2bf243bab46cb81",
+      "case_id": "runoff-line-339998bf4316b7db",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "runoff",
+      "oracle_exception_record_sha256": "1b2bfef4489017352f3b58a030ab8f8e48d3deb9401ce6ba7fc2e0187b7d0d2b",
+      "raw_sha256": "62331e3fce0dd721e8bb7f000579e3fb7a4856e17f04dfefa2bf243bab46cb81",
+      "raw_utf8_length": 4,
+      "source_provenance": {
+        "source_excerpt_sha256": "1e216a1098f33f419cb219ae90a4f6a084b21fbb5c6a56ef3d48ce105e6a65a6",
+        "source_id": "2a0795a1dca9d465740086ca524e850cad017155"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "62331e3fce0dd721e8bb7f000579e3fb7a4856e17f04dfefa2bf243bab46cb81",
+      "case_id": "runoff-line-7da83f236cf3b4cd",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "runoff",
+      "oracle_exception_record_sha256": "42ad5ae899562f556108fa93e280dfb351baf53b448725884ab33981d614a0df",
+      "raw_sha256": "62331e3fce0dd721e8bb7f000579e3fb7a4856e17f04dfefa2bf243bab46cb81",
+      "raw_utf8_length": 4,
+      "source_provenance": {
+        "source_excerpt_sha256": "7c93a939cd9ce35eb2814108483aa2b06475b90dee00746822b38aa1249ec6f6",
+        "source_id": "8f9e7ca282791ec441cca0473fc786f79b1a2e94"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "db4f7895ad68295a36d7a696156535f6a60a0116594c878e4a0452b5a5b40028",
+      "case_id": "runoff-line-099258c7283eb92a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "To produce the help file for SYS$HELP:DUMPER.HLB",
+      "expected_cleaned_sha256": "3a161cdc7edbc6fd807d432402424c91bc395e7237dc4c7ee4ff2d3559c35bb1",
+      "language": "runoff",
+      "raw_comment": ".! To produce the help file for SYS$HELP:DUMPER.HLB",
+      "raw_sha256": "db4f7895ad68295a36d7a696156535f6a60a0116594c878e4a0452b5a5b40028",
+      "raw_utf8_length": 51,
+      "source_provenance": {
+        "source_excerpt_sha256": "c69d0143f7106e733cd993e9e8d905ef32795f57cd2e0958148c93397dac38fb",
+        "source_id": "97610da2206448411474cec208eea3cda914386b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "case_id": "runoff-line-0b6328640f725b35",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "runoff",
+      "raw_comment": ".!",
+      "raw_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "6620f38ece3b7febc980508ac25e338c24e20304d3d669ec85be9c6a460eb6e8",
+        "source_id": "32e0fa7c058d5f339fa76877e55d6010d578cf96"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "ea87606e2cef662938ac2bb1a6d114de38a300770a8f4191a217d1d0ef76e21e",
+      "case_id": "runoff-line-14e9641b0e01101e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: d4.rno,v 1.2 1995/10/23 20:37:04 tom Exp $",
+      "expected_cleaned_sha256": "f5b1ec794888def324fa77b11a008481d804c462e0dcb12e82bf7a09cb436fbb",
+      "language": "runoff",
+      "raw_comment": ".; $Id: d4.rno,v 1.2 1995/10/23 20:37:04 tom Exp $",
+      "raw_sha256": "ea87606e2cef662938ac2bb1a6d114de38a300770a8f4191a217d1d0ef76e21e",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "e278631931ab9de5b40f21660e032b3e2ed478a290ae5d54ea89e2aad8937c39",
+        "source_id": "961929af85917e539822b0e214479cfcd98289e6"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "882889e89a55e81a7cfb9830d13299db1a94c0224eaffc2efb0f64da52938e73",
+      "case_id": "runoff-line-2b4f84f671bfa591",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1982,1988. ALL RIGHTS RESERVED.",
+      "expected_cleaned_sha256": "d31c038bb493b8ce2a74dc8cb4ecee6b726d2df0da30584b5f7a36c13dd4bf14",
+      "language": "runoff",
+      "raw_comment": ".;COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1982,1988. ALL RIGHTS RESERVED.",
+      "raw_sha256": "882889e89a55e81a7cfb9830d13299db1a94c0224eaffc2efb0f64da52938e73",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "b4de06c6347208d438de88a22b738cb0034c17fc37579ca85928f6636c2ad807",
+        "source_id": "3aeac7bee2e5fa0b1cd18b8d1a2a6ebd5c3b91b9"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "6f42217d526bdf55f774578585bf32758575448eebc8a3fa960cd8c9a2ea97b6",
+      "case_id": "runoff-line-35b89cc8d8a4fd75",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by A.M.Jonckheere on 20-MAR-1989",
+      "expected_cleaned_sha256": "a5b776400c6621ba7a18fdef934fd9dfdfe113c6595cffd63e846cd0fc2bfe45",
+      "language": "runoff",
+      "raw_comment": ".!   Created by A.M.Jonckheere on 20-MAR-1989",
+      "raw_sha256": "6f42217d526bdf55f774578585bf32758575448eebc8a3fa960cd8c9a2ea97b6",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "30d8daa1a771edd1b6423dbc8363ffbfc71fcd51f887bef707caa00854c5d4cc",
+        "source_id": "f8d6436d8074114e93a91b742a3105ac1242f805"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "bf1f18ad427781a51b9876f949bcb1ea4a40394b23791253a4d46c2e1372d2fa",
+      "case_id": "runoff-line-4070ef11b74eeed9",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: m0.rno,v 1.2 1985/01/12 01:09:46 tom Exp $",
+      "expected_cleaned_sha256": "8d705db60908dde0d482acc4c1607c4b498dd0b62cb44cfe411c61a60c013f12",
+      "language": "runoff",
+      "raw_comment": ".; $Id: m0.rno,v 1.2 1985/01/12 01:09:46 tom Exp $",
+      "raw_sha256": "bf1f18ad427781a51b9876f949bcb1ea4a40394b23791253a4d46c2e1372d2fa",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "e18afaf615deda42b1c5b05efb3ac3108940eb63908a1743b1a44f0872a71d1a",
+        "source_id": "4af2f49635faa64dcb53c22afd45f659612fb541"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "678096ef6da6282a4bb6a045b4a2d019f6cf3f4b950fe11eab22ec1d9a6a3ee1",
+      "case_id": "runoff-line-42bc167870a3ec2b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "23-JAN-78",
+      "expected_cleaned_sha256": "81e12296d619fa8e3b9ed3816c59986ef692477e219c4a8fd6e3d0475a499dc6",
+      "language": "runoff",
+      "raw_comment": ".;23-JAN-78",
+      "raw_sha256": "678096ef6da6282a4bb6a045b4a2d019f6cf3f4b950fe11eab22ec1d9a6a3ee1",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "73baaa9f0f2a17cc9c5d0c4d6ec13a258306703dd4020c899e3f1ba329ea085d",
+        "source_id": "98af76bb5341cb6bcad311d09ddbe83a0191c9be"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "b39e29fb4a35b15b47c4e8db92a5d1328d243f5170dc47f1672ac95b78c14492",
+      "case_id": "runoff-line-57f8135fa8562b98",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: ma.rno,v 1.2 1985/04/16 10:17:12 tom Exp $",
+      "expected_cleaned_sha256": "ae13bbd35e8a6f77807014dc248fef04af072ad5a6e2d641761c63f29bc4b00c",
+      "language": "runoff",
+      "raw_comment": ".; $Id: ma.rno,v 1.2 1985/04/16 10:17:12 tom Exp $",
+      "raw_sha256": "b39e29fb4a35b15b47c4e8db92a5d1328d243f5170dc47f1672ac95b78c14492",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "ab4bd8a9e7f225a3073024781974e2f430289b17cbd3c191eadecbb1e186bb71",
+        "source_id": "605a503b752dc975839f5a3fac12904d7816baab"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "4b98bc0a371d0e8a3d2befa44fc76cffe5aa8095167e86fe2f8f906309dcbac2",
+      "case_id": "runoff-line-5f54943d7fe44934",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "28-MAR-77-GR",
+      "expected_cleaned_sha256": "60a0ecce023c7c3fff510e41f1b3c2f788a2c2f4b8a09f6548599182edfd318f",
+      "language": "runoff",
+      "raw_comment": ".;28-MAR-77-GR",
+      "raw_sha256": "4b98bc0a371d0e8a3d2befa44fc76cffe5aa8095167e86fe2f8f906309dcbac2",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "9bb1052213ae2f39851756cb98fab10ab762c209b2a300e614d36bd502da30bd",
+        "source_id": "d3b156346a33ccd954dd8a6bac23fbe874b4cca0"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "375fec01c7a7005096fd76695fab5d44dd572654caf2d0f4732ead5541c98789",
+      "case_id": "runoff-line-796e8258b1a8fa68",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<SST.WORK1>SYSBUL.RND.5, 30-Apr-81 15:05:16, Edit by SST.D-BIGELOW",
+      "expected_cleaned_sha256": "2297e7ca6b23b2dc87645864febc846348171052b09decaaf366698008811a24",
+      "language": "runoff",
+      "raw_comment": ".!<SST.WORK1>SYSBUL.RND.5, 30-Apr-81 15:05:16, Edit by SST.D-BIGELOW",
+      "raw_sha256": "375fec01c7a7005096fd76695fab5d44dd572654caf2d0f4732ead5541c98789",
+      "raw_utf8_length": 68,
+      "source_provenance": {
+        "source_excerpt_sha256": "73e4bbd52c2bcfa1e3328ae0f71e481a53b81e1f44601e6f46d51ec60451b904",
+        "source_id": "2304552d6f5204848a032c9e6df884e8cbb3b716"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "d519888ea0b9846d8243709a0d71c2805407e4459efc81ae06924326a4bc5095",
+      "case_id": "runoff-line-7a376fa2a438fa11",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1985,1988. ALL RIGHTS RESERVED.",
+      "expected_cleaned_sha256": "a8f8560b62740a1ce33f065d03e6581650a180d150b1b6dc3a78fab036d6db1f",
+      "language": "runoff",
+      "raw_comment": ".;COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1985,1988. ALL RIGHTS RESERVED.",
+      "raw_sha256": "d519888ea0b9846d8243709a0d71c2805407e4459efc81ae06924326a4bc5095",
+      "raw_utf8_length": 77,
+      "source_provenance": {
+        "source_excerpt_sha256": "cceaedff8b43a8f2b64b12035e2af97c4ca13a53560f215185b6e93de7a9e228",
+        "source_id": "4bc17ead4d116ef3219260dea6bf24e4bff7fdd5"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "1028419cdf00b3f9b45e692d5fe804457a6a9bfe8e7afaf86307124e9faf3e48",
+      "case_id": "runoff-line-7ef731a83c1eb4fd",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "THIS IS THE LINK HELP FILE FOR LINK ON BOTH TOPS-10 AND TOPS-20.",
+      "expected_cleaned_sha256": "78525b7290b01e87db57d0e8688f6350ee5338f7aca1d5876d85beb5dc90e304",
+      "language": "runoff",
+      "raw_comment": ".!\tTHIS IS THE LINK HELP FILE FOR LINK ON BOTH TOPS-10 AND TOPS-20.",
+      "raw_sha256": "1028419cdf00b3f9b45e692d5fe804457a6a9bfe8e7afaf86307124e9faf3e48",
+      "raw_utf8_length": 67,
+      "source_provenance": {
+        "source_excerpt_sha256": "c50506c4f24cbb5640549245302739e8aa5c2b3a971817c68276418a11710c8d",
+        "source_id": "d02ac1542a8548376946753c0e3aa57f8c75239b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "case_id": "runoff-line-8925f92de23cb5aa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "runoff",
+      "raw_comment": ".!",
+      "raw_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "12d4c9214566008085cfc428fc9f486bcf1866b651a6658fc544cb68fc933ede",
+        "source_id": "ebc650cadbc450a0cc19ddbc1e3421ac18ad17d3"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "c280c2a18c0997f8f3b7dd596c35144a92692e0165fe0ab2b8ac4b09a641029d",
+      "case_id": "runoff-line-89d191d940fd8934",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Template RUNOFF file for an ADAM Environment Description",
+      "expected_cleaned_sha256": "a720ba10ef2ec1a6c94ba26cba98d57bf2bc438737da664c735ae102abe947ce",
+      "language": "runoff",
+      "raw_comment": ".!           Template RUNOFF file for an ADAM Environment Description",
+      "raw_sha256": "c280c2a18c0997f8f3b7dd596c35144a92692e0165fe0ab2b8ac4b09a641029d",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "2bc4d35f7d587cd3e08e427a308033497a09d7b7b1269df57463cd8791aa4234",
+        "source_id": "820c0b1395efacd1d566a7eaa052a5531bdd4908"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "9fca3dbf2b500b2ebdad1c5f4cf47a28bedca7a92cd215b7afde4181e026a8d0",
+      "case_id": "runoff-line-89f32d171cb5f613",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Help file for Data Interchange Library Version 2.1",
+      "expected_cleaned_sha256": "9abea5f8cf310fe307bba9f823ef651a54845f5c6e954ec163897b3c25ad737c",
+      "language": "runoff",
+      "raw_comment": ".! Help file for Data Interchange Library Version 2.1",
+      "raw_sha256": "9fca3dbf2b500b2ebdad1c5f4cf47a28bedca7a92cd215b7afde4181e026a8d0",
+      "raw_utf8_length": 53,
+      "source_provenance": {
+        "source_excerpt_sha256": "fe90a2182e876a0c08126e54260fa35fe8e2c7a0d62fe7590543793750d65500",
+        "source_id": "236a6f90834992559544e06a9c26b4f474b681d9"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "2e8f1dc4129655017b0644abc95f034aff73bee12bbfd4bf132637755cce15c7",
+      "case_id": "runoff-line-90017e032316e75d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by Michael Diesburg on 21-JUL-1993",
+      "expected_cleaned_sha256": "fdaaa49aeb728a423f1c5f6619ab5a15567dbccecdfdd2f3dacc65232a84f2dd",
+      "language": "runoff",
+      "raw_comment": ".!   Created by Michael Diesburg on 21-JUL-1993",
+      "raw_sha256": "2e8f1dc4129655017b0644abc95f034aff73bee12bbfd4bf132637755cce15c7",
+      "raw_utf8_length": 47,
+      "source_provenance": {
+        "source_excerpt_sha256": "2dcb4c8b3bc10cd145d41f34e559abbad30392e782d70b6a22d70e3cfea114f4",
+        "source_id": "f3b9b9bc292b97ed2bf8c973a8bdd524bc292969"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "ab288119486a77e397f0a5a5ecad95674a7acd30aa4d211150f54d0d33abf567",
+      "case_id": "runoff-line-908b26a1934e28ef",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Created by Jeffrey Bantly on 19-JUL-1990",
+      "expected_cleaned_sha256": "9d34da726d4ef574773daa8adc1d7c0cba94acbfce6b96e815dcd32485315f7e",
+      "language": "runoff",
+      "raw_comment": ".!   Created by Jeffrey Bantly on 19-JUL-1990",
+      "raw_sha256": "ab288119486a77e397f0a5a5ecad95674a7acd30aa4d211150f54d0d33abf567",
+      "raw_utf8_length": 45,
+      "source_provenance": {
+        "source_excerpt_sha256": "eddddaf1edea3adc80879c6cc4e8306c79a80449c5058de23b206ae0d9a83b87",
+        "source_id": "67b06190fbc72fa8a5a5e61b2ca63f72f35c9ca2"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "c280c2a18c0997f8f3b7dd596c35144a92692e0165fe0ab2b8ac4b09a641029d",
+      "case_id": "runoff-line-a57a5f098800451e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Template RUNOFF file for an ADAM Environment Description",
+      "expected_cleaned_sha256": "a720ba10ef2ec1a6c94ba26cba98d57bf2bc438737da664c735ae102abe947ce",
+      "language": "runoff",
+      "raw_comment": ".!           Template RUNOFF file for an ADAM Environment Description",
+      "raw_sha256": "c280c2a18c0997f8f3b7dd596c35144a92692e0165fe0ab2b8ac4b09a641029d",
+      "raw_utf8_length": 69,
+      "source_provenance": {
+        "source_excerpt_sha256": "479ebaebde6972249542718ac6d2bdf7d67c4ee9f0fcfb4755a4cac43d5d0b07",
+        "source_id": "fd596be03fab4c93daefc9da460c744aeb3e6d7e"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "case_id": "runoff-line-a752f3b4e95cefb0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "runoff",
+      "raw_comment": ".!",
+      "raw_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "271240028be3ca4e8e8be37afaf2563375842a2ca4c500b8f4901c5d5f1127a9",
+        "source_id": "cf7238dd8f235ac4e33624e30d1de45937b2740e"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "1782d711971e24bfeda3f24770ab5cb0f9929ba7926715c6b58c4e2e8b1a7433",
+      "case_id": "runoff-line-c2460af4d0eb0073",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1988. ALL RIGHTS RESERVED.",
+      "expected_cleaned_sha256": "2a7f916e799337c7fb25e5521adeec25b8c4655f2d6bf67ad63b5fbaa381c495",
+      "language": "runoff",
+      "raw_comment": ".;COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1988. ALL RIGHTS RESERVED.",
+      "raw_sha256": "1782d711971e24bfeda3f24770ab5cb0f9929ba7926715c6b58c4e2e8b1a7433",
+      "raw_utf8_length": 72,
+      "source_provenance": {
+        "source_excerpt_sha256": "d74d2edfd4b1991fd8dd841b77a6e520fc08a40eb73a8fea49ad5092b83d980e",
+        "source_id": "ca0e36cf24ca391f497707dac22d044a5a8e73ac"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "30ba1d8b82dd46e3114d6de0ac35baa1fc79f44983d3ea9717d8aa1c86f06207",
+      "case_id": "runoff-line-c34fae26e1202ea3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DIL version 2.1 beware file source.",
+      "expected_cleaned_sha256": "89a62ab4fa9900dfc78f6b0e7eb9dcee9e181c9674a26abf6a579d0be9a11ce1",
+      "language": "runoff",
+      "raw_comment": ".!  DIL version 2.1 beware file source.",
+      "raw_sha256": "30ba1d8b82dd46e3114d6de0ac35baa1fc79f44983d3ea9717d8aa1c86f06207",
+      "raw_utf8_length": 39,
+      "source_provenance": {
+        "source_excerpt_sha256": "04b1883063b73ed283e16093da3cef9e8578fc5adb2c6aacba644f48ceebc05e",
+        "source_id": "646cc5e4fdf2924c8f7c1e4804ffb2b832be2fe3"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "case_id": "runoff-line-cd9afa8f4c2f3bae",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "runoff",
+      "raw_comment": ".!",
+      "raw_sha256": "fd40e7fad7c96a55807abc55ff5edbcc8419e183d9a744a6a27051fe8ce264ff",
+      "raw_utf8_length": 2,
+      "source_provenance": {
+        "source_excerpt_sha256": "5ac7d5b2faf8b67397733747f6dc0c8ad70a5aff1eac64f83101415490080950",
+        "source_id": "163de47183f874737a82bf9e4d02e7ca3e4f6ed0"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "1782d711971e24bfeda3f24770ab5cb0f9929ba7926715c6b58c4e2e8b1a7433",
+      "case_id": "runoff-line-dd32ca1303b1aa0b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1988. ALL RIGHTS RESERVED.",
+      "expected_cleaned_sha256": "2a7f916e799337c7fb25e5521adeec25b8c4655f2d6bf67ad63b5fbaa381c495",
+      "language": "runoff",
+      "raw_comment": ".;COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1988. ALL RIGHTS RESERVED.",
+      "raw_sha256": "1782d711971e24bfeda3f24770ab5cb0f9929ba7926715c6b58c4e2e8b1a7433",
+      "raw_utf8_length": 72,
+      "source_provenance": {
+        "source_excerpt_sha256": "e44b56fb41739821b22fbf5a4b861bf7147d6330fbfba3924cb7847d6cf49026",
+        "source_id": "1b54ef5f3c8b0f4ac9f9cf4eb0c319c826917dcd"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "1782d711971e24bfeda3f24770ab5cb0f9929ba7926715c6b58c4e2e8b1a7433",
+      "case_id": "runoff-line-e0056b95344c1d29",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1988. ALL RIGHTS RESERVED.",
+      "expected_cleaned_sha256": "2a7f916e799337c7fb25e5521adeec25b8c4655f2d6bf67ad63b5fbaa381c495",
+      "language": "runoff",
+      "raw_comment": ".;COPYRIGHT (c) DIGITAL EQUIPMENT CORPORATION 1988. ALL RIGHTS RESERVED.",
+      "raw_sha256": "1782d711971e24bfeda3f24770ab5cb0f9929ba7926715c6b58c4e2e8b1a7433",
+      "raw_utf8_length": 72,
+      "source_provenance": {
+        "source_excerpt_sha256": "3c584b6743b3b4a06fd2db9ad9f00c135361ccb373333e0ef3e257de6a0cd47b",
+        "source_id": "eb8539509ca22dcf991be98dfef6a8b525629d7f"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "c8bab71d50c92e52ad5bf27a7752560d14dfc30076e8d150da9f5c8b4e77c713",
+      "case_id": "runoff-line-e504e7dc9d9d923c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$Id: d1.rno,v 1.2 1985/01/09 10:27:16 tom Exp $",
+      "expected_cleaned_sha256": "2a04c62888e94ee77d5c57498346baf19a06f33133c5af024d94168b7bf7f337",
+      "language": "runoff",
+      "raw_comment": ".; $Id: d1.rno,v 1.2 1985/01/09 10:27:16 tom Exp $",
+      "raw_sha256": "c8bab71d50c92e52ad5bf27a7752560d14dfc30076e8d150da9f5c8b4e77c713",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "435cbdc71554cbae3fa639e940215e25be30ffe6bb0471fb100107a27460ce32",
+        "source_id": "c2d6525bf57d47a84e06cdb5a31fd6c5924ebd7c"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

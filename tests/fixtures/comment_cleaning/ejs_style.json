@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "family_name": "ejs_style",
+  "canonical_language": "ejs",
+  "language_keys": [
+    "ejs",
+    "html_eex",
+    "html_erb",
+    "html_plus_eex",
+    "html_plus_erb",
+    "javascript_erb",
+    "javascript_plus_erb"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-block",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "block",
+      "raw_comment": "<%# cleaning_payload_shared_regex_000 %>",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

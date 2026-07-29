@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "boo_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "0d7db1f44f21500f6b3d96be9c3ade8c5057bfcda1133992d8a2eabf28544810",
+      "case_id": "boo-nested-5b64909278c673ae",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This function takes as input the confidence of each item\nand puts it, along with all relevant position data\nStarting x,y,z and ending x,y,z into a comma seperated string\nWhich is output to a file in the Data folder, which must be\ncreated by hand",
+      "expected_cleaned_sha256": "f1218a07edb9ae67665ceaeee6a0d4a4fc972dce1dd50522a93292bea8228bcd",
+      "language": "boo",
+      "raw_comment": "/*This function takes as input the confidence of each item\n\t * and puts it, along with all relevant position data\n\t * Starting x,y,z and ending x,y,z into a comma seperated string\n\t * Which is output to a file in the Data folder, which must be\n\t * created by hand */",
+      "raw_sha256": "dbdeef694e13bd8dbdc3a7dc15ac45022208705cf182ebfaa833400242e69810",
+      "raw_utf8_length": 266,
+      "source_provenance": {
+        "source_excerpt_sha256": "d79ae1eaaf99850a1a9771ad966fec4d41464ea8387c3fddd827d1e197bace2a",
+        "source_id": "6d294ede2a66d2ac867a0c9934fd67a164668209"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e0bad36fda6ad6f6b1a24aedf2562142e80daa45aa491e4fcfc61d20bb780325",
+      "case_id": "boo-nested-cf754dff81684adc",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file is a part of Flickroff\n\nCopyright (C) 2008:\n\nAuthors:\nMichael Dominic K. <mdk@mdk.am>\n\nThis program is free software; you can redistribute it and/or\nmodify it under the terms of the GNU General Public License\nas published by the Free Software Foundation; either version 2\nof the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License\nalong with this program; if not, write to the Free Software\nFoundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.",
+      "expected_cleaned_sha256": "889f4087b08a664b730558deb48b50923faf071cfa8b6ed8ff634caed8fc0ec4",
+      "language": "boo",
+      "raw_comment": "/* This file is a part of Flickroff\n *\n * Copyright (C) 2008:\n *\n * Authors:\n *\tMichael Dominic K. <mdk@mdk.am>\n *\n * This program is free software; you can redistribute it and/or\n * modify it under the terms of the GNU General Public License\n * as published by the Free Software Foundation; either version 2\n * of the License, or (at your option) any later version.\n *  \n * This program is distributed in the hope that it will be useful,\n * but WITHOUT ANY WARRANTY; without even the implied warranty of\n * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n * GNU General Public License for more details. \n *\n * You should have received a copy of the GNU General Public License \n * along with this program; if not, write to the Free Software\n * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.\n */",
+      "raw_sha256": "75788382e3d0e804cca9b9b8f3f9fbe063412663a03f97425ffc34ae492c0220",
+      "raw_utf8_length": 841,
+      "source_provenance": {
+        "source_excerpt_sha256": "3465e90aa3eeb370c260ba4d8f76d3705709124da5ebc27b91afc8c8bac1249d",
+        "source_id": "c766d0606e9bb95fea4607cb47f881aeabdff7ef"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

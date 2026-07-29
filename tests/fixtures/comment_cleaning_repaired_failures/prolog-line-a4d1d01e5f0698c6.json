@@ -1,0 +1,38 @@
+{
+  "case_id": "prolog-line-a4d1d01e5f0698c6",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:repeated_marker",
+  "disposition": "executable_regression",
+  "language": "prolog",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "918e8c75f83e920feac35df4d25308a1ce91a523423f5291192b466d1662c7a3",
+      "utf8_length": 3
+    },
+    "manifest_old_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "raw_comment": {
+      "sha256": "b1fad92ff4b7f863c3485f292697df5d8ad673a40a1276e07be7fb8cfe23fe6b",
+      "utf8_length": 79
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\r"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ec8e9e802bf24205077959afc15cbb258c346e38b1fdcaed878cc390eb6d26cf",
+    "source_id": "52093cf7287d962047e2cc1ad8e76436381d0017"
+  },
+  "source_record_sha256": "94675663515d3fee8cc066f65fe3243733d4bff34e758cc0535b315d9a7b884f"
+}

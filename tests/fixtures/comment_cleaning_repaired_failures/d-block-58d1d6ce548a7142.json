@@ -1,0 +1,38 @@
+{
+  "case_id": "d-block-58d1d6ce548a7142",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:exact_context",
+  "disposition": "executable_regression",
+  "language": "d",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "9f43d11f0454a25b972fb57ba01f29176f81b77c4bfa1384fecfda7c55687e05",
+      "utf8_length": 230
+    },
+    "manifest_old_output": {
+      "sha256": "6428914b01fe6dfaab7248cd9d6d9115f1f65a8b6733180858257e157fd33838",
+      "utf8_length": 220
+    },
+    "raw_comment": {
+      "sha256": "7c0d396295c2c4149678580c20e9ea4a3998107f595c1fac44f440dd63425285",
+      "utf8_length": 236
+    },
+    "recommended_expected_output": {
+      "sha256": "6428914b01fe6dfaab7248cd9d6d9115f1f65a8b6733180858257e157fd33838",
+      "utf8_length": 220
+    }
+  },
+  "regression": {
+    "expected_output": "Start `writers` amount of threads to write into a queue.\nStart `readers` amount of threads to read from the queue.\nEach writer counts from 0 to `count` and sends each number into the queue.\nThe sum is checked at the end.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/***\n  Start `writers` amount of threads to write into a queue.\n  Start `readers` amount of threads to read from the queue.\n  Each writer counts from 0 to `count` and sends each number into the queue.\n  The sum is checked at the end.\n*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "b86710fe1403f455a97d9382c46eb8d5a8816bf8175af8dae1fb0afe7854b956",
+    "source_id": "f6168e74b14c092afe194c3a158ea63df3522320"
+  },
+  "source_record_sha256": "ce2a5173e496dae917de21d2bc877863374ab36c0045bc55c1d1ee53d0edde9c"
+}

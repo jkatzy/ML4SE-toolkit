@@ -1,0 +1,38 @@
+{
+  "case_id": "gettext_catalog-line-60c2ed46b244fa0e",
+  "category": "approved_oracle_match",
+  "cluster": "fixture:approved_oracle",
+  "disposition": "executable_regression",
+  "language": "gettext_catalog",
+  "original_expected_output_source": "oracle",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f9139d195d7fb12481dfb8110a42574d76cea4ec2cf38be867cb5cf9f305bf90",
+      "utf8_length": 145
+    },
+    "manifest_old_output": {
+      "sha256": "2ff9b61e14a814c2733851a5019d1b485fcd42c0feb69a27682fd94912d5e1f3",
+      "utf8_length": 142
+    },
+    "raw_comment": {
+      "sha256": "9731f4caeb6070b6005113c4c1e4243242efd4ac9e104710a78e348e08c9113b",
+      "utf8_length": 154
+    },
+    "recommended_expected_output": {
+      "sha256": "f9139d195d7fb12481dfb8110a42574d76cea4ec2cf38be867cb5cf9f305bf90",
+      "utf8_length": 145
+    }
+  },
+  "regression": {
+    "expected_output": "/Users/bas/Sites/viennacms/adm/admin_config.php:19\n/Users/bas/Sites/viennacms/adm/admin_node.php:16\n/Users/bas/Sites/viennacms/adm/header.php:112",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#: /Users/bas/Sites/viennacms/adm/admin_config.php:19\n#: /Users/bas/Sites/viennacms/adm/admin_node.php:16\n#: /Users/bas/Sites/viennacms/adm/header.php:112"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "eaad904de52e063e7a0acccf61fb458637f99cd5d35c0ee40646803eecbb762a",
+    "source_id": "b2e1f63de60944462cb9fae8ce5e19231ee49843"
+  },
+  "source_record_sha256": "e252f7e984f836d0996e64a2ac0ebc9903dcfdd55758adb8c495d0b4997699a4"
+}

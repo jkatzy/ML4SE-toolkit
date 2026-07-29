@@ -1,0 +1,38 @@
+{
+  "case_id": "qt_script-line-7635f37f00dd59a1",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "qt_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "830e084249afd81ca253571f0f81e8a86c3a61ed300434d8427de8e8579e7f48",
+      "utf8_length": 62
+    },
+    "manifest_old_output": {
+      "sha256": "6454279be89a6cf453454cbe8277af3634ee2b02f975961444fc299b891f0aa1",
+      "utf8_length": 59
+    },
+    "raw_comment": {
+      "sha256": "49b0a8f06307a6c2c71c23eb8d4daf984d05935b1ed69bebd5b5d4053f3c5a28",
+      "utf8_length": 197
+    },
+    "recommended_expected_output": {
+      "sha256": "6454279be89a6cf453454cbe8277af3634ee2b02f975961444fc299b891f0aa1",
+      "utf8_length": 59
+    }
+  },
+  "regression": {
+    "expected_output": "Patch Functions wrapping over PacketEncryptionKeys function",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//=============================================================//\n// Patch Functions wrapping over PacketEncryptionKeys function //\n//=============================================================//"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "78ae828a9cb64019d70037372978f66ab7d7cc457617599f3f1e25f472cdcc76",
+    "source_id": "2da195cd0a0f5418a65b54e1546b2b0135db96c1"
+  },
+  "source_record_sha256": "5f793fde3c10f400849e93bfc5438b59d874cc822ffeea308eccc9d6717655d9"
+}

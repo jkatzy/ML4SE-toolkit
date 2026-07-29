@@ -1,0 +1,38 @@
+{
+  "case_id": "grace-line-97fce8647f5f9724",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "grace",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3a05cfa04604ecf3991984f0cac1239c3c6442f2e68c1aedb726919e9c7bf179",
+      "utf8_length": 13
+    },
+    "manifest_old_output": {
+      "sha256": "888b38413938e292a54f4dd0e497805802a127c9a342974261c43c7233d468db",
+      "utf8_length": 11
+    },
+    "raw_comment": {
+      "sha256": "8e1d7c384b4416e4faccca6ff2dd037174644b4268a52e3bad729cf06eee6d7f",
+      "utf8_length": 158
+    },
+    "recommended_expected_output": {
+      "sha256": "888b38413938e292a54f4dd0e497805802a127c9a342974261c43c7233d468db",
+      "utf8_length": 11
+    }
+  },
+  "regression": {
+    "expected_output": "primitivies",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/////////////////////////////////////////////////////////////\n  ////\n  //// primitivies\n  ////\n  /////////////////////////////////////////////////////////////"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5040ab57e8ce07c78fab9e776a99f23629f3f65cbc36d1db8a8695f89af7b73e",
+    "source_id": "1d545cda3eacc4f6a32ccda6bfa0b1cf121211e0"
+  },
+  "source_record_sha256": "a1ca3c7eb21f1ecc1abe651141d053ccc40dcc8ee7d16a2108ad7d662c9f24c0"
+}

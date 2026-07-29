@@ -1,0 +1,348 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "batchfile_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "05cb0e147abe05860bb632006d803e8e371ea162db172085eb207f757763485f",
+      "case_id": "batchfile-line-02814c52d2e027cd",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "echo %APP_ID%..%VER_LABEL%...%DESC_FINE%...%MARKET%...%PLATFORM%...%PERMISSION_FINE%",
+      "expected_cleaned_sha256": "bdbcfb9116ddce33c962e0224c246fafbb0260e4e0f4cd3ca44a91ef6b8324cc",
+      "language": "batchfile",
+      "raw_comment": ":: echo %APP_ID%..%VER_LABEL%...%DESC_FINE%...%MARKET%...%PLATFORM%...%PERMISSION_FINE%",
+      "raw_sha256": "05cb0e147abe05860bb632006d803e8e371ea162db172085eb207f757763485f",
+      "raw_utf8_length": 87,
+      "source_provenance": {
+        "source_excerpt_sha256": "b2f2fe84ab4ef9a024e4de5d97dcdb643957bad9dc440e91ed611acf78d69993",
+        "source_id": "7cd547de60647bb3f4280565cd48c304d5908d54"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "190d100da06f9271f9396bb9c7c4ad189142e41c8bc071b4aabb6b3829f13429",
+      "case_id": "batchfile-line-0ce90929601aa231",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u53d1\u4ef6\u4eba",
+      "expected_cleaned_sha256": "bae32961a3b5d8b385faf145a60a6806d12bede7320c8f5ded54cf6e4461be2f",
+      "language": "batchfile",
+      "raw_comment": "::\u53d1\u4ef6\u4eba",
+      "raw_sha256": "190d100da06f9271f9396bb9c7c4ad189142e41c8bc071b4aabb6b3829f13429",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "b3a1b353357658423465942f94a989fd8f35656d00a58953c88c7cc4bfa7d51a",
+        "source_id": "a9545df75863f9d298800aad0605c7a8cfd12c9a"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "69de9a628433f7ac0fb2ffe63ab053b43a2c0c51b8addd05681ced78f24a6ce9",
+      "case_id": "batchfile-line-2c27426c82fe2b37",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Enable_Structured_Exception_Handling_Overwrite_Protection_(SEHOP).bat",
+      "expected_cleaned_sha256": "f1edd9adb32149fde6e612e69eac2c59a8bc0d5741bfbc7115b2d5fdde3a5459",
+      "language": "batchfile",
+      "raw_comment": "::Enable_Structured_Exception_Handling_Overwrite_Protection_(SEHOP).bat",
+      "raw_sha256": "69de9a628433f7ac0fb2ffe63ab053b43a2c0c51b8addd05681ced78f24a6ce9",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "18670ca77af8a14f3d879317e5aa3b3d35d8909d32a9342c9b5e6eab1269a9bd",
+        "source_id": "0402df8e92c189afc99c0cfeac8c9c6e7d8018ba"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "3c525a7d73c81b84ddb496459645d2e808b21dae521e5f413873851952fa12d3",
+      "case_id": "batchfile-line-2cd62b804f1b854d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "batchfile",
+      "raw_comment": "::/*********************************************",
+      "raw_sha256": "3c525a7d73c81b84ddb496459645d2e808b21dae521e5f413873851952fa12d3",
+      "raw_utf8_length": 48,
+      "source_provenance": {
+        "source_excerpt_sha256": "0ccd9c724ef74d16b3b56f2a37db8a3b6319f70f37ea4d6c5661c9b951a22a9e",
+        "source_id": "be287e6c93954f1fff3353d7a259a1da22113eb9"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "e8aabdda5308f604b0862e5a58f168511da8b7696c78670306d8ef2f25362d68",
+      "case_id": "batchfile-line-4f09691e4d4d611d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Markus Scholtes, 2019",
+      "expected_cleaned_sha256": "b6797da6add812a769ce1aa22f6f1b93b5149ab124d54a9318d4b5e625fb94e1",
+      "language": "batchfile",
+      "raw_comment": ":: Markus Scholtes, 2019\r",
+      "raw_sha256": "456450ca9d599b119d8a95e7e77f0bbadfb1b68e33958d957c02c5b5a5368346",
+      "raw_utf8_length": 25,
+      "source_provenance": {
+        "source_excerpt_sha256": "ee7e9ca96fd13efff991381e72d0f3bf86ea8af06d8da6a5f103b8d27762183a",
+        "source_id": "bc4f45b477b6cf054d5a314e35cada81d97b529b"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "503a11f480110e22432e75cf238e30a1e05036b9134981301c99282349c36aca",
+      "case_id": "batchfile-line-51c360c0306f96d0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "REMOVE this when you edit this file.",
+      "expected_cleaned_sha256": "8e8d0415d6c1c0755c2a32b2511a1a69f4c8287ed81d62e6b8d7ad42fac31aee",
+      "language": "batchfile",
+      "raw_comment": ":: REMOVE this when you edit this file.",
+      "raw_sha256": "503a11f480110e22432e75cf238e30a1e05036b9134981301c99282349c36aca",
+      "raw_utf8_length": 39,
+      "source_provenance": {
+        "source_excerpt_sha256": "5d34e402990a03c24ef2d14784b74a956d82dbeb111a77c24a7517599b575eed",
+        "source_id": "8deea19f041dd3f2461083a0efb6a6ac059a5b55"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "830101bae8fc14c26a7af0f8240c1de7de026d89b509884b2337327f6ee1ea7f",
+      "case_id": "batchfile-line-5229c20ec3a39810",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "GASI CYGWIN AKO JE VEC UPALJEN I PALI GA OPET",
+      "expected_cleaned_sha256": "43b2142865addb9154b81e7d7eaf74280a7892a3b8c532cc9b0b7b84f1a4accc",
+      "language": "batchfile",
+      "raw_comment": "::GASI CYGWIN AKO JE VEC UPALJEN I PALI GA OPET\r",
+      "raw_sha256": "faa5125aca89a1bca207d69c7612375b45f38a7c25b716cfdb06b83076762f9a",
+      "raw_utf8_length": 48,
+      "source_provenance": {
+        "source_excerpt_sha256": "51ef7937c9eb1e03e06245c291999f4ec67225602d5a52bf05d47c8c09241679",
+        "source_id": "a7b1a46a678dab9eead7f378aff1e4e653c6f007"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "121294da518bdfc5df72cb7b6a247883b9ae39fa18f54dd788af7c8559e8d8fe",
+      "case_id": "batchfile-line-60845b9685c34b5d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "set RAPLA_ENVIRONMENT=org.rapla.context=/mycontext",
+      "expected_cleaned_sha256": "ed4b418f9d4219e937d01bdf138e1e166e445430893d5873d722efd808ec2719",
+      "language": "batchfile",
+      "raw_comment": "::set RAPLA_ENVIRONMENT=org.rapla.context=/mycontext\r",
+      "raw_sha256": "226065d744c705f8be10bdede28c99b371a934dd0c9c72eb0b2f05215b5a155d",
+      "raw_utf8_length": 53,
+      "source_provenance": {
+        "source_excerpt_sha256": "1f1afa5709d61a25365eef3e4042553811015d49b377a60f067331cb9c00f01a",
+        "source_id": "35b693c57192fd8fce0c1b13eac81c675023b508"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "7731eae5ad4cb8ea8bff977ed8c14a01970d76da5482ec893a4b49958216b188",
+      "case_id": "batchfile-line-66004aa85c1f5d53",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "create a new folder named \"leaks\"",
+      "expected_cleaned_sha256": "f2c8f129350c1ffe7893dcaf3b54c29f50a6b86095545e35d25a2b9964267c57",
+      "language": "batchfile",
+      "raw_comment": ":: create a new folder named \"leaks\"",
+      "raw_sha256": "7731eae5ad4cb8ea8bff977ed8c14a01970d76da5482ec893a4b49958216b188",
+      "raw_utf8_length": 36,
+      "source_provenance": {
+        "source_excerpt_sha256": "d23d511c3d22ec594dec174838d825a92562cb40f0f93ae723a31039566f46c4",
+        "source_id": "904774f776313b41b29ae72229456aa3ccc6139c"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "02a786aaf5c853ff71c9e033f502d11f4b653ed76673183474ef8508e2e8bdbf",
+      "case_id": "batchfile-line-7bc7a6be47e09127",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "check if user is administrator",
+      "expected_cleaned_sha256": "e54169d45a9cfef0bc530a059a69cec592c40bc0287fcc375f1176b2ca9530e7",
+      "language": "batchfile",
+      "raw_comment": ":: check if user is administrator\r",
+      "raw_sha256": "36b6ad4098a16a0860f8c567421e5fefe24a1a538fa8d533f9ae98f94d0805c0",
+      "raw_utf8_length": 34,
+      "source_provenance": {
+        "source_excerpt_sha256": "7931a78609bd9ce30615c529cdca5ed5b16031301aa4641ab20b94c91dd087cc",
+        "source_id": "f4e21bcbe6c8f12a92e0224a96020152a9fa1fab"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "2b6fdbb99c803a7a2e2e4b87b5b866222528fac1ffa3442f4cebaf394de5aedd",
+      "case_id": "batchfile-line-7f098ab131653a34",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@echo off",
+      "expected_cleaned_sha256": "abb30b0a70e39de39ce0790c6c157fd04bcfb998705ec1672fe8070ff2d34573",
+      "language": "batchfile",
+      "raw_comment": "::@echo off",
+      "raw_sha256": "2b6fdbb99c803a7a2e2e4b87b5b866222528fac1ffa3442f4cebaf394de5aedd",
+      "raw_utf8_length": 11,
+      "source_provenance": {
+        "source_excerpt_sha256": "f979db648faafd5cf432c396a54069a7300b20436c42c43760794fa75bff03b5",
+        "source_id": "99bb1a9e0129d5d9452b6a360202cb4aea61d9e4"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "607f30479ca3c9b136f99285a9680e6b077e0c30e57dcd16e1f5986a3a0203ae",
+      "case_id": "batchfile-line-8abc82c4b7c9fc24",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "download 7zip into current directory",
+      "expected_cleaned_sha256": "b9bfa805af5d7f913ae693702ebeba39d3001d210fe0b6caeeda7ef963b646bb",
+      "language": "batchfile",
+      "raw_comment": ":: download 7zip into current directory\r",
+      "raw_sha256": "fcf198b0a3b9dc97152d715d5cf56e120ef68d6b8fe684c72a7e366001510381",
+      "raw_utf8_length": 40,
+      "source_provenance": {
+        "source_excerpt_sha256": "c9342693b1748c7db5b25e63af4300fc58902dce77159c8b53fa763ed55b9781",
+        "source_id": "1a4ecc5f28ee406b0193c43467afcf5f97f42bed"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "3db15ed29a97e5c1ce3affcbd90f06ff122c888fe161ea40f171204bca3f7248",
+      "case_id": "batchfile-line-a9cb098ec59d6d97",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Some useful variables",
+      "expected_cleaned_sha256": "a89c0412f4a68ac8dda60c22b8f918b73f8b91080c0364836923e7bdc3f27324",
+      "language": "batchfile",
+      "raw_comment": ":: Some useful variables",
+      "raw_sha256": "3db15ed29a97e5c1ce3affcbd90f06ff122c888fe161ea40f171204bca3f7248",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "54c16675d99a7f1b26eb0e720b6ece18edc9db8e42285e9ec638efe4e9ae13a3",
+        "source_id": "3fa2082b92bcdacf1e4b37c8cd02d0ccf42a13ff"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "7777319f136e401f35b6f879f43b83381e98666549f26ea70dc016c8141e9bcb",
+      "case_id": "batchfile-line-d9112045b1832f8d",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copy header files, except cfile.h to the WS include dir",
+      "expected_cleaned_sha256": "5440a47c95b3e1ad7ddf32a7860256c0cae52e3e3c225648594d0f5e002e8d06",
+      "language": "batchfile",
+      "raw_comment": "::Copy header files, except cfile.h to the WS include dir\r",
+      "raw_sha256": "f62a096c76191f9d168efaaadd37803bafbbe854c9009318fac640cdf5cd64be",
+      "raw_utf8_length": 58,
+      "source_provenance": {
+        "source_excerpt_sha256": "e48502b59c1f1a693c45725001badfda53f03ed0a81b12c92f42f1396bfcea5b",
+        "source_id": "3a082e624ea17bc90182e080d0366ffd71adff13"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "e38db46cc6d8574cece8988f7ef2a95b2e0ccf1a746d36bc5f56b64955f6e997",
+      "case_id": "batchfile-line-dc73dc1c8f71fb24",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Prompt Program Info",
+      "expected_cleaned_sha256": "83af1dcc650e3c7a9f2e3d765f1978fea65b02aee41164500d46cf0078365685",
+      "language": "batchfile",
+      "raw_comment": ":: Prompt Program Info",
+      "raw_sha256": "e38db46cc6d8574cece8988f7ef2a95b2e0ccf1a746d36bc5f56b64955f6e997",
+      "raw_utf8_length": 22,
+      "source_provenance": {
+        "source_excerpt_sha256": "1999ab48c25af1dda2be309ec7c55322f495a8de21a3b562b4ac1dcba61c7577",
+        "source_id": "738574cebf387ab41ebb631f5d84756d3691d293"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "b4e70e3eae6500d2d1b6cc08349189c90c08a5853a10e69cec37c4ecde48a546",
+      "case_id": "batchfile-line-de702b3a9b17fd5a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "off by 33hao.com",
+      "expected_cleaned_sha256": "ecc54a297e3cdac7f76781a7c3c680833d758735d90ff7463c7a50f4e7bac0bc",
+      "language": "batchfile",
+      "raw_comment": "::off by 33hao.com",
+      "raw_sha256": "b4e70e3eae6500d2d1b6cc08349189c90c08a5853a10e69cec37c4ecde48a546",
+      "raw_utf8_length": 18,
+      "source_provenance": {
+        "source_excerpt_sha256": "e0410b0266d2bb2179a989a81a1935960650d64f57c020216106ee159d628d9e",
+        "source_id": "ed9512a84ac8bb20e113872c8590cb72909254e1"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "fbda158ca2f3746ecb0035efcef2941444c65fa27692d4a7cd70435e6ab79d33",
+      "case_id": "batchfile-line-e0264f71c7675f12",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Create & run temporary docker container with injected configuration and extend environment by invalid slack credentials",
+      "expected_cleaned_sha256": "0cb897633b836a28702ec03de4022b5c1da90d8d547db78294c5fa9e1b602fdd",
+      "language": "batchfile",
+      "raw_comment": ":: Create & run temporary docker container with injected configuration and extend environment by invalid slack credentials",
+      "raw_sha256": "fbda158ca2f3746ecb0035efcef2941444c65fa27692d4a7cd70435e6ab79d33",
+      "raw_utf8_length": 122,
+      "source_provenance": {
+        "source_excerpt_sha256": "bb6822ca863d275d6ae22c70eba74c74b6ca357c0d8f2292f087c4aed59e54ad",
+        "source_id": "8e221a51cc57381d961f4e77d28cf15a40bff217"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "3a0bb382221905a02293411e2e96d31ef5869fd5ce247cca70a1e63501d0a12b",
+      "case_id": "batchfile-line-f488b29503fb7d33",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "batchfile",
+      "raw_comment": "REM ****************************************************** REM",
+      "raw_sha256": "99c250b73e3d9c00a8d5f3de605e348d5e4b10fbde80a201d5391eff9afdbc41",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "f180fc21deef124a7b08dbcbd256d9c3927bf36edfa14b0dcc1b90fa70a8844b",
+        "source_id": "f0de2fed888bb95a17ae9b8ec136c97332ad7ca6"
+      },
+      "syntax_label": "REM"
+    },
+    {
+      "baseline_cleaned_sha256": "5b5bde107bafffcd740bb1837e151ae349829f816445fd4a9c30adcd196b9051",
+      "case_id": "batchfile-line-fdc39a39158004a1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Start log",
+      "expected_cleaned_sha256": "6b7a761784e1efb2baa0820a42f89718e394d63eb4120f71a05d40842512c73a",
+      "language": "batchfile",
+      "raw_comment": ":: Start log",
+      "raw_sha256": "5b5bde107bafffcd740bb1837e151ae349829f816445fd4a9c30adcd196b9051",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "627d22aac4a5ee6f012982073c23cc6b71032c91c4deb77ba33e1f83b72d282e",
+        "source_id": "c3ce716fb634f6279393d272d4df0631c60c1bf5"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "3e14a865ab133eccc951fb127023f2d7beecccb95fa7d16159ef9a6e5e41f1b0",
+      "case_id": "batchfile-line-fe400ca3d7d5a1bc",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@file    _CreateProject.bat\n@version $Rev:: 5229         $\n@date    $Date:: 2021-02-01 #$\n@brief   Create Project Script user API.\n@attention\n\nFirmware Disclaimer Information\n\n1. The customer hereby acknowledges and agrees that the program technical documentation, including the\n   code, which is supplied by Holtek Semiconductor Inc., (hereinafter referred to as \"HOLTEK\") is the\n   proprietary and confidential intellectual property of HOLTEK, and is protected by copyright law and\n   other intellectual property laws.\n\n2. The customer hereby acknowledges and agrees that the program technical documentation, including the\n   code, is confidential information belonging to HOLTEK, and must not be disclosed to any third parties\n   other than HOLTEK and the customer.\n\n3. The program technical documentation, including the code, is provided \"as is\" and for customer reference\n   only. After delivery by HOLTEK, the customer shall use the program technical documentation, including\n   the code, at their own risk. HOLTEK disclaims any expressed, implied or statutory warranties, including\n   the warranties of merchantability, satisfactory quality and fitness for a particular purpose.\n\n<h2><center>Copyright (C) Holtek Semiconductor Inc. All rights reserved</center></h2>",
+      "expected_cleaned_sha256": "b68f119aa6a20751830790ec8b59977cfd9cce2b78a591a406c6fb2e787d093b",
+      "language": "batchfile",
+      "raw_comment": "REM /*********************************************************************************************************//**\nREM * @file    _CreateProject.bat\nREM * @version $Rev:: 5229         $\nREM * @date    $Date:: 2021-02-01 #$\nREM * @brief   Create Project Script user API.\nREM *************************************************************************************************************\nREM * @attention\nREM *\nREM * Firmware Disclaimer Information\nREM *\nREM * 1. The customer hereby acknowledges and agrees that the program technical documentation, including the\nREM *    code, which is supplied by Holtek Semiconductor Inc., (hereinafter referred to as \"HOLTEK\") is the\nREM *    proprietary and confidential intellectual property of HOLTEK, and is protected by copyright law and\nREM *    other intellectual property laws.\nREM *\nREM * 2. The customer hereby acknowledges and agrees that the program technical documentation, including the\nREM *    code, is confidential information belonging to HOLTEK, and must not be disclosed to any third parties\nREM *    other than HOLTEK and the customer.\nREM *\nREM * 3. The program technical documentation, including the code, is provided \"as is\" and for customer reference\nREM *    only. After delivery by HOLTEK, the customer shall use the program technical documentation, including\nREM *    the code, at their own risk. HOLTEK disclaims any expressed, implied or statutory warranties, including\nREM *    the warranties of merchantability, satisfactory quality and fitness for a particular purpose.\nREM *\nREM * <h2><center>Copyright (C) Holtek Semiconductor Inc. All rights reserved</center></h2>\nREM ************************************************************************************************************/",
+      "raw_sha256": "53e4f9fcc60705f44d3e232e6a7203c4b150ed8c6eda2d50c06c71fe4bda355e",
+      "raw_utf8_length": 1748,
+      "source_provenance": {
+        "source_excerpt_sha256": "ccdf9645554056719f1a1c201b62fea0fb4bf3cfe4efdab0dd5209ff8b45de5b",
+        "source_id": "346a34426f98811615d2be85f669fdef42c1cc8b"
+      },
+      "syntax_label": "REM"
+    }
+  ],
+  "schema_version": 5
+}

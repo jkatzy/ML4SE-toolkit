@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "rexx_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "247252be2a529c49c3723e454700fa84e2d9754b59479c224a9b6cb5247be23f",
+      "case_id": "rexx-nested-7bad719c48d67485",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "REXX\nInspired by some other solutions tested with version 1 (above)\n20.04.2013 Walter Pachl\n03.11.2013 -\"- move r. computation (once is enough)",
+      "expected_cleaned_sha256": "3235253bd23726d9659882e62d1efe8ffc44366a1730136552c4859d206179be",
+      "language": "rexx",
+      "raw_comment": "/* REXX ***************************************************************\n* Inspired by some other solutions tested with version 1 (above)\n* 20.04.2013 Walter Pachl\n* 03.11.2013 -\"- move r. computation (once is enough)\n**********************************************************************/",
+      "raw_sha256": "6df5ce2463673f2564614e720cb5deb50788fdd774cf02ba05c363f82f3a3b05",
+      "raw_utf8_length": 288,
+      "source_provenance": {
+        "source_excerpt_sha256": "8352e7593fd09a10a3829dc5a71ab8aa9daf0c3576dd513d18cf9ba75ac2d1a2",
+        "source_id": "6972d34681ab8f20b1f4e9ce14771c0c99b5943e"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "c3a48e013e1e11e64db70183279a0c32af5e869f51cf40120a8340ffa7a8ea68",
+      "case_id": "rexx-nested-ec947befa1256af0",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "REXX",
+      "expected_cleaned_sha256": "8a3f84aed8fc2effc31888741d875a1a47025cbb71111df273e9106e3b52e963",
+      "language": "rexx",
+      "raw_comment": "/* REXX *****/",
+      "raw_sha256": "9b97f5a4c3171847dbf2c8fc63cc942e4ccd1a4aa6350369e663d5930356daab",
+      "raw_utf8_length": 14,
+      "source_provenance": {
+        "source_excerpt_sha256": "f60c96dedebe803e9727570a0a4a1149c0b6098a779ce66bf5f52278c8451a2b",
+        "source_id": "5bec4fe8e71b9b0d89d96e3503b8b73e7dc9a35b"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

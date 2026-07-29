@@ -1,0 +1,38 @@
+{
+  "case_id": "curry-line-3edaaaa1ee2a2d38",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:language:curry",
+  "disposition": "executable_regression",
+  "language": "curry",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "7a230c09bae27a6dc417997f2e25d7b34c1f94be4e9db3d65af5cd8706d0e1db",
+      "utf8_length": 338
+    },
+    "manifest_old_output": {
+      "sha256": "6e39865d095d16c9c8403b1800434f02b3466b2e0f3310e9f065ac39f910fc67",
+      "utf8_length": 324
+    },
+    "raw_comment": {
+      "sha256": "c4db79d3c200e21c19a082fa13f368c0d8e78577195c8dcbcb8be2aff5a7ca47",
+      "utf8_length": 508
+    },
+    "recommended_expected_output": {
+      "sha256": "6e39865d095d16c9c8403b1800434f02b3466b2e0f3310e9f065ac39f910fc67",
+      "utf8_length": 324
+    }
+  },
+  "regression": {
+    "expected_output": "This module defines the data that is associated to a user session\nand passed to a view so that views can be adapted to user sessions.\n\nCurrently, the session data contains information about the login\nstatus of a user. Typically, this information will be extended\naccording to the concrete application.\n\n@author Michael Hanus",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "----------------------------------------------------------------------------\n--- This module defines the data that is associated to a user session\n--- and passed to a view so that views can be adapted to user sessions.\n---\n--- Currently, the session data contains information about the login\n--- status of a user. Typically, this information will be extended\n--- according to the concrete application.\n---\n--- @author Michael Hanus\n----------------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "8514a22c692b68b7d7da48fd0a8ea1a5b06c8ffe940745fd860579ef946ccd87",
+    "source_id": "e01399bc50107a776e93f87c0eab1cb086d97804"
+  },
+  "source_record_sha256": "d7974fdd4947a29cda3fb141c5e7320483abe85770b2f19c458e2ada0feeee4c"
+}

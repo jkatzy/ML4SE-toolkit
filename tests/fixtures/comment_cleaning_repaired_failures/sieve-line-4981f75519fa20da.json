@@ -1,0 +1,38 @@
+{
+  "case_id": "sieve-line-4981f75519fa20da",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "sieve",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "56a33c9ee3dbe0e420118c2f5f738ae1a159dda906a5da7d341b2b100184f51e",
+      "utf8_length": 439
+    },
+    "manifest_old_output": {
+      "sha256": "56a33c9ee3dbe0e420118c2f5f738ae1a159dda906a5da7d341b2b100184f51e",
+      "utf8_length": 439
+    },
+    "raw_comment": {
+      "sha256": "936784b39ac56cd96439d080a526cb4520ac957b0d8cdbaaad1c48cd45b17f5a",
+      "utf8_length": 477
+    },
+    "recommended_expected_output": {
+      "sha256": "56a33c9ee3dbe0e420118c2f5f738ae1a159dda906a5da7d341b2b100184f51e",
+      "utf8_length": 439
+    }
+  },
+  "regression": {
+    "expected_output": "Purpose:- sieves out the mortalities for semicommercial data\n----------------------------------------------------------------------\nModified from:-\n----------------------------------------------------------------------\nArguments:-\n----------------------------------------------------------------------\nAuthor:-   Patrick Connolly, Date:- 29 Sep 2015, 14:35\n----------------------------------------------------------------------\nRevisions:-",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "### Purpose:- sieves out the mortalities for semicommercial data\n### ----------------------------------------------------------------------\n### Modified from:- \n### ----------------------------------------------------------------------\n### Arguments:- \n### ----------------------------------------------------------------------\n### Author:-   Patrick Connolly, Date:- 29 Sep 2015, 14:35\n### ----------------------------------------------------------------------\n### Revisions:-"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "7e365b051d9017f8d22c0b3c2c1c730a1508d0a51994213c1295fb75467fbf77",
+    "source_id": "681ce4ab94ed2cf31aff6b427505f1cc15eb9614"
+  },
+  "source_record_sha256": "934b071f186d425381f9508299d8e46ec7ff7c62c576566b7b6c9d8405c25f60"
+}

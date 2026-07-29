@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-514084cd7bdb0005",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "d6f318d74aff97f4d6698e8473359be0118b38909429192aae8648c775ca52c5",
+      "utf8_length": 66
+    },
+    "manifest_old_output": {
+      "sha256": "6e84fb794cb9c2f6de7943810436a5e657c32cbb3ae0f1a18fb68a72c9382852",
+      "utf8_length": 61
+    },
+    "raw_comment": {
+      "sha256": "e7db452c34a809f9585f2634fe5421e5a2e0fd26ea12ed33c7616af7558a4908",
+      "utf8_length": 78
+    },
+    "recommended_expected_output": {
+      "sha256": "6e84fb794cb9c2f6de7943810436a5e657c32cbb3ae0f1a18fb68a72c9382852",
+      "utf8_length": 61
+    }
+  },
+  "regression": {
+    "expected_output": "Sends subscription updates to sink.hoon\n\n/===/app/source/hoon",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::  Sends subscription updates to sink.hoon\n::\n::::  /===/app/source/hoon\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "c0243a0af270724dd9dcb700f1b88ac878ba0e8c40ddb6a473a4deedb6db75a8",
+    "source_id": "621232085f82a6da7a13d940258a24d90c50ddbe"
+  },
+  "source_record_sha256": "c39e0351f7b16de91d824c938833fff01533ae4b92b5c7ebc57c0bdb4f989f93"
+}

@@ -1,0 +1,1009 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "markup_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "27402aa1f4facf7acc7702ea53cf90e243cee0027e62d216bdaa92b6012ac95c",
+      "case_id": "ant_build_system-block-a4061d3caf4c1257",
+      "comment_kind": "block",
+      "disposition": "executable_regression",
+      "exception_status": "reviewer_disagreement",
+      "expected_cleaned": "   \u252c\u256d\u2500\u256e\u252c \u252c\u256d\u2500\u256e\u256d\u2500\u256e\u256d\u252c\u256e\n   \u2502\u2570\u2500\u256e\u2502\u2502\u2502\u251c\u2524 \u251c\u2524  \u2502     This build file is desgined to transpile\n  \u2570\u256f\u2570\u2500\u256f\u2570\u2534\u256f\u2570\u2500\u256f\u2570\u2500\u256f \u2534     Java to Javascrpt using http://jsweet.org\n\n  Type 'ant' or 'ant -projecthelp' to get a list of\n  available targets\n\n  Settings and config properties are loaded from `local.properties`",
+      "expected_cleaned_sha256": "e371ca9f658a3e5c104bc8ffdf0e2b8ca2f3d3180dfe35bf11682dcb234571eb",
+      "language": "ant_build_system",
+      "oracle_exception_record_sha256": "9fa5e4a856a29d95fa24257a7d582c366f12cf18d8f51752844e98a6d8b65f79",
+      "raw_comment": "<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n#    \u252c\u256d\u2500\u256e\u252c \u252c\u256d\u2500\u256e\u256d\u2500\u256e\u256d\u252c\u256e                                                           \n#    \u2502\u2570\u2500\u256e\u2502\u2502\u2502\u251c\u2524 \u251c\u2524  \u2502     This build file is desgined to transpile         \n#   \u2570\u256f\u2570\u2500\u256f\u2570\u2534\u256f\u2570\u2500\u256f\u2570\u2500\u256f \u2534     Java to Javascrpt using http://jsweet.org\n#\n#   Type 'ant' or 'ant -projecthelp' to get a list of\n#   available targets\n#\n#   Settings and config properties are loaded from `local.properties`\n#\n# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->",
+      "raw_sha256": "225dab3422720c1375623bd7a29ab96b775212eacc22a8f2479102bdb53b3d92",
+      "raw_utf8_length": 601,
+      "source_provenance": {
+        "source_excerpt_sha256": "379c4a95a26f913672124a1aa0a4b569cac93e3397a00a38e1fe27493dbea968",
+        "source_id": "9ddcede03250a7fa29c5b45c858a91abccd75263"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "d8e8bebda216a23b4fb4180083e1d4afaec1959f1bc3174daa353ef2e197e287",
+      "case_id": "mediawiki-block-2c3473f7823c6f5f",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "mediawiki",
+      "oracle_exception_record_sha256": "28c7d05d58ea8a92ac1236f607c4c0cc4410d722d2939d4f3e01bdba7e6131c1",
+      "raw_sha256": "da0989c8bed4c9367a2eb7635ff94d3cc15f4d041a09e229c37b0583ab652779",
+      "raw_utf8_length": 1068,
+      "source_provenance": {
+        "source_excerpt_sha256": "706af4da18b53dcdb612fb4e6f3636f856bc4130cd367f9ee87af9488fb63ffa",
+        "source_id": "2e16783ac4e6dc1102c48655dcc312aed1e5f984"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-10fa5126c180f7df",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "954f302d5c3ce2d1af557d7a8789679b7d7492de72804be09f28ec978261ea41",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "851f60124848445cf7e8ec4682801848085458448f27bac5ed3a95ff99b8d08c",
+        "source_id": "01d9d408f075ced5b56c0b71b4703c0d879989c4"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-17b8b9c6dff94221",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "de75feee02a1b3fa23fca42ff650a3ba6de5b55b9404218cd624527f5671131c",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "cbce7c0e2d662d2c66373220fe1e8e56b2278b68c426d97d5da6179ce891c6cd",
+        "source_id": "6fec81331f465b2e885168064e048a390d2d4941"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-18418752f8ed2c7b",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "2866382aa864291a6bfc7f80d285fa30bda208421ae518fc68b01edf547bcad8",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "96ecfa60bd7316f76c24265aa76b138af66cce19b1e807533cc931669a4924f5",
+        "source_id": "0de289c5ac2a5d4ec7d581258263a245d579c027"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-215f227081789b1a",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "1ee2f86da7df1c5c0ffab42f79b86a9a75d13e53344c53f980663f86b4966961",
+      "raw_sha256": "69dde354ac219f96edc5a9064352a8bc2913d481d78945e07056680797fe9bb4",
+      "raw_utf8_length": 243,
+      "source_provenance": {
+        "source_excerpt_sha256": "eaef02b7a4cee4519e2aa0004e1a48b68ec55b870cfdd9da9adb1c2e9e374f09",
+        "source_id": "2fb5ade0af760212f6a08c45d41e7e9c9251d000"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-36debe5560ff31cd",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "0710467b37a926b3fb6fdf470f681dd67cdcfb0c21c669a75aae339f85d18de2",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "a5263938f1294dc8cffceec2f8d05b88b3e41005c990ad8074375d1fdb2f4f60",
+        "source_id": "5a5ffd993e6cadff7e3bdd42e3bbc911a8aaac36"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-3d870e045be86db7",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "5f09b03549bc415d17cc4789c1e27f09789bd97d8179e0d11069e2722e2a8dbb",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "6a69f084413c78e1825b921ad2704f387e4693c969b176c3dc8b9ca952ce8369",
+        "source_id": "72487ee722b38f2d2d8f21580d9441296ce6f7bc"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "410d173b7188d7833273ae561cf621099ce9e3d1d7c33450dbc9f731a9dab5bc",
+      "case_id": "web_ontology_language-block-4707739413386f2c",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "d5b8b502ac780962561e4ad39b0554a8d36c7f15407b5b781f5e06b5d03b05b6",
+      "raw_sha256": "2ddac9a7bede3246b93a6372e705cd2b90b63226b74466f8f44592cf93b39c0a",
+      "raw_utf8_length": 235,
+      "source_provenance": {
+        "source_excerpt_sha256": "e1e97a9c55115e233c6b3f304bfbd010bf6c3d7fa097607ffe3d91d73f8d5842",
+        "source_id": "cf49ee9eb35347276e4ee98c5bea2f1e523e1b49"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-4be8aca284034bcf",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "cfc0720ed95f73310e2446246282ba8fb3550a5fd3529f0df59b2fd232c7cb6a",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "d69f1ae5fb657a9292ed910e58df9e2ee8d07ad7ed77b0c982c5f50d2b410972",
+        "source_id": "a2d96d59f1568a98a14a76b0ef6d9b4525eddc01"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-571fb381d6f7282a",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "0f6df3c9b334f435c51288c40c2463cf143732677bf32b61372943a04d3a4aa3",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "6cb6e60b70e030ccabc8f2e6e1d4ae6f93f437db4a96f918d2f973d9111f745b",
+        "source_id": "284f75cb97d801d709654806f4db5df98a5fcdcb"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-6fccb05d03c2e19f",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "73c02b4a28d6c564c7f13ad5029be838d0fedef0420feac92e30b1e97c470781",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "97981a7800fab70b300e13474f60c74aedc5c9f2e7a45a3a7599616f62de9e7d",
+        "source_id": "2d4db7e97f8f13d5d091195be8dbbed232da8d96"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-7536e9869f5d27fa",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "379d61c963f1c317558112b2469d45d9d5ff5f3942e941f06dff2bb451120dfd",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "748620a667538c3050d9848dca7984ab1e27accee9fdf7bac9ad653355f2d513",
+        "source_id": "79f29b4698b673a34bd0aab080bd4e59e34a6c36"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-777f138450f5af08",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "fb6fdd80f5685b97e2c65ca49d47520ae99c9f9464efac7e1d705f45a797cd01",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "2a3a949a2d98f72c159fc8583c6d0bb629525a00e7d691a7f644dadc1162c51f",
+        "source_id": "3ec46dc83b1b54d469754abcd0ea59d6a181fb59"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-8f9d8e413c4bdec5",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "24558239f47eb042e0aa05e9289c35ba634627929f2590bd2a061aa9ae767d3f",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "373e117b8f8fb89c0ee17d1fcef534c769c107438d5b40ebce2e8084888080f6",
+        "source_id": "624a1d80021cbfac2ec83a577bd0c902bca42dae"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-a33a25de4f3d2892",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "9966d9cb137625321d81a6cf4a4002edeeb996a4b666ae6c9b4f7189ed15c755",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "70717f89f32fb70ffedac109f517b734397b888a73385caeb444bb391ca4f3cf",
+        "source_id": "64e6c43d727c5c9c7b52e7dc7b8bd1b84589dbb9"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-aaadb3e07c76ae11",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "5e631c34f6e13e6f79ecfb0a880c43ea368ae9ea31b9277dc0ac607fefb93783",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "cdb40827e08e69ff33bcf1a481bc0c5e6a5ed28ce9e6f0bfc37e5e070a7f011e",
+        "source_id": "e0bada78558a32ced0c131e785e556aec1715e54"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "a6c0c32feaab5648983ce04a5a3d40b13737434de362c1326b3780178655da83",
+      "case_id": "web_ontology_language-block-b4fe2e582be32d4c",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "7a4ce50a63fd5ac4af076384f39108aa4fb5c5045d2dd9bbfd65fe13d4df8b36",
+      "raw_sha256": "46574e6dc0f1b556b837e603864e432a5ae7a67eff36e0176c3476e787061f09",
+      "raw_utf8_length": 227,
+      "source_provenance": {
+        "source_excerpt_sha256": "ed2636fdfb9b2b88a6a99ede449c05e3b0fefd9f8ce5d172b5a6d3d68fa6da32",
+        "source_id": "4a923ee1724fa4790243ee10aaad41bb5041523d"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-b806a5ac94e8511f",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "1e954db4d21b690eb11a525c0e934723c5d6ed3e548e66f7ecddcde1588edc7d",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "43bab08b5dabbfcf7fbf69064c0fe71af5458710828f540c29b838420e9cfb9b",
+        "source_id": "420cb38da3db4905ea853c2a3d3d9460be31cb61"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-b87f07cc68fb982f",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "844f5978f6a2a6748eb64f07d1ac73733ce633e9bb96e7f70978b9969ba601bb",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "7b85833f1181c637680a41e7c4635bd69b3eef6d502ac747179caf3aa097bf07",
+        "source_id": "789a0b0836d59a87278328bc478f8fc2d77c3fa7"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-bc4af171b9efe662",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "2f0a07ecbe951a1e77ec90c8137e1c6ec4ea4420f6df4b34b7f95a4ad96b5faa",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "9bf6f7c12184c82e747d052457b6ac50f17672919aa855929d1211cb2b4ab788",
+        "source_id": "db96d48363d0d61cd33006d52776c4abe9656419"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-be94602aed1a526e",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "web_ontology_language",
+      "oracle_exception_record_sha256": "dd1ff1a4e31b0a2b056bbd7e0e6ea1f5ca1ef5924d4917bcc7014b2a60f28a99",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "2b8605e227a9b5b13009b706937182e20d093aa614a67f6ea41f5c6ba4254634",
+        "source_id": "cb629dc2f4183247988be847e9e226274c2c1c81"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "d8e8bebda216a23b4fb4180083e1d4afaec1959f1bc3174daa353ef2e197e287",
+      "case_id": "wikitext-block-4d67cb1b6382c3fb",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "oracle_not_deletion_only",
+      "language": "wikitext",
+      "oracle_exception_record_sha256": "b43a76c32acc15d683db127bcc6cc119d93494e18b4dfa0e1aaaeb4386d6b442",
+      "raw_sha256": "da0989c8bed4c9367a2eb7635ff94d3cc15f4d041a09e229c37b0583ab652779",
+      "raw_utf8_length": 1068,
+      "source_provenance": {
+        "source_excerpt_sha256": "706af4da18b53dcdb612fb4e6f3636f856bc4130cd367f9ee87af9488fb63ffa",
+        "source_id": "2e16783ac4e6dc1102c48655dcc312aed1e5f984"
+      },
+      "syntax_label": "<!--...-->"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "c81754be7db67e1aab4b5859003a04f993f482e7542b52ac00373906cc119e89",
+      "case_id": "ant_build_system-block-0d2d0796f080e172",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C)2014, International Business Machines Corporation and\nothers. All Rights Reserved.",
+      "expected_cleaned_sha256": "8641b3bc42acf603a0a97437bfe7e1d629696057abd0f5620c3fd9cfffe7ed97",
+      "language": "ant_build_system",
+      "raw_comment": "<!--\n// *******************************************************************************\n// * Copyright (C)2014, International Business Machines Corporation and *\n// * others. All Rights Reserved. *\n// *******************************************************************************\n-->",
+      "raw_sha256": "4323d20c6846f40dd8489f76e25713857edfe582d6a6e2f257281a997974ad02",
+      "raw_utf8_length": 284,
+      "source_provenance": {
+        "source_excerpt_sha256": "923a00cea835782b26d6d52e340ab7bb2efe5bda4f6bfff8036e760ad75ca0c8",
+        "source_id": "2ad83dd5f74c598c254fe10364ffbbcd66a1dcfb"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "1de0ce486851b6a9c941cfff7b0ca8fb9812547ef00474d8e8afdb7c0885ecbb",
+      "case_id": "ant_build_system-block-9579a9f295f0f4af",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "build.xml\n\nThis document lists the files which must be processed\nto produce the documentation suite for XSLTSL.\n\n$Id$",
+      "expected_cleaned_sha256": "d4ad73a1d060e74a9009a1a507cb4cc26d44c1d16485985fd58fc30507d0e4d7",
+      "language": "ant_build_system",
+      "raw_comment": "<!-- build.xml\r   -\r   -\tThis document lists the files which must be processed\r   -\tto produce the documentation suite for XSLTSL.\r   -\r   - $Id$\r   -->",
+      "raw_sha256": "89b65c0b42aa5dfbd97f82bf1ebd06a1895f1e5505536f1f1cbae55ddfc5c6d4",
+      "raw_utf8_length": 152,
+      "source_provenance": {
+        "source_excerpt_sha256": "463e16b8c6401d86e02f6a65c93d94ef1149699f073595058a60b177fd4ac7cc",
+        "source_id": "916e61fdfbc851a9d9c4e8b0a38046838449dec5"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "2e8ddbeca98d055ec6ddafb9dce3d45efc6db0143ed4515079da03c53e5f48bc",
+      "case_id": "ant_build_system-block-a18573e6f1dcd59a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2014- MHISoft LLC and/or its affiliates. All rights reserved.\nLicensed to MHISoft LLC under one or more contributor\nlicense agreements. See the NOTICE file distributed with\nthis work for additional information regarding copyright\nownership. MHISoft LLC licenses this file to you under\nthe Apache License, Version 2.0 (the \"License\"); you may\nnot use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing,\nsoftware distributed under the License is distributed on an\n\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\nKIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations\nunder the License.",
+      "expected_cleaned_sha256": "31bd7ccaa6dfa50ca6924cfe1f17726899311c735e75ed1038567b7d243a099d",
+      "language": "ant_build_system",
+      "raw_comment": "<!--\n  ~ /*\n  ~  * Copyright (c) 2014- MHISoft LLC and/or its affiliates. All rights reserved.\n  ~  * Licensed to MHISoft LLC under one or more contributor\n  ~  * license agreements. See the NOTICE file distributed with\n  ~  * this work for additional information regarding copyright\n  ~  * ownership. MHISoft LLC licenses this file to you under\n  ~  * the Apache License, Version 2.0 (the \"License\"); you may\n  ~  * not use this file except in compliance with the License.\n  ~  * You may obtain a copy of the License at\n  ~  *\n  ~  *    http://www.apache.org/licenses/LICENSE-2.0\n  ~  *\n  ~  * Unless required by applicable law or agreed to in writing,\n  ~  * software distributed under the License is distributed on an\n  ~  * \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n  ~  * KIND, either express or implied.  See the License for the\n  ~  * specific language governing permissions and limitations\n  ~  * under the License.\n  ~  */\n  ~\n  -->",
+      "raw_sha256": "38e63dd6ddab32b310864f37b09113b3e790851a98be1ff3ee01febba21a157a",
+      "raw_utf8_length": 954,
+      "source_provenance": {
+        "source_excerpt_sha256": "3d171b98c2e82a5040ebf43f26781fb8bcaa6accdb29982edb238600ff5101ae",
+        "source_id": "29cd762cefa5c38bf3b603214224cf90dd3ee53b"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "collada-block-44d659b26bff9630",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "'\"`",
+      "expected_cleaned_sha256": "a0c52c29bc76e0ce3926ee111c680320ff85a8122a662c4c4f52f25fb83e03eb",
+      "language": "collada",
+      "raw_comment": "<!-- '\"` -->",
+      "raw_sha256": "a7b3ebc33f040f22772be95bbb3dd24639f300bd0b0c8d9922cd5d6c768f2045",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "164589ee1478f3cf66cfe2183929695ce8690d98b63024105976cd446599fb10",
+        "source_id": "4c599b95fadce50a84162f135b0c573900e5a8ee"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "collada-block-5f1b0961b75df2da",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "'\"`",
+      "expected_cleaned_sha256": "a0c52c29bc76e0ce3926ee111c680320ff85a8122a662c4c4f52f25fb83e03eb",
+      "language": "collada",
+      "raw_comment": "<!-- '\"` -->",
+      "raw_sha256": "a7b3ebc33f040f22772be95bbb3dd24639f300bd0b0c8d9922cd5d6c768f2045",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "03921f9ebbc374154c9087925d507fcae2b48b38742f55e7ac1a320375caf465",
+        "source_id": "8224780c6e107582825123697222a144d1a7fa60"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "collada-block-729b2411b12de388",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "'\"`",
+      "expected_cleaned_sha256": "a0c52c29bc76e0ce3926ee111c680320ff85a8122a662c4c4f52f25fb83e03eb",
+      "language": "collada",
+      "raw_comment": "<!-- '\"` -->",
+      "raw_sha256": "a7b3ebc33f040f22772be95bbb3dd24639f300bd0b0c8d9922cd5d6c768f2045",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "65f940505eddb4e308ff380617898527765dbfcf5a15286e14e529152292d682",
+        "source_id": "daaa5a250ee21513ad43b6568f66c70482b09e90"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "5fd63e8836f564e1c31fcabb9f96da0bd7e0df3bfc02593fcd3b61777efcc2c0",
+      "case_id": "html-block-574de893c4d19f59",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "navbar",
+      "expected_cleaned_sha256": "2e01a0a7955a95ab2b168e24fcd787353879e8ba3edff8c47b188f7edd2bdb75",
+      "language": "html",
+      "raw_comment": "<!---------------------------navbar-------------------------------->",
+      "raw_sha256": "d6bac853008453299e08bebfb30d69babbe872cfae2a21c4c7d362a894817c96",
+      "raw_utf8_length": 68,
+      "source_provenance": {
+        "source_excerpt_sha256": "b8da8ff3d227f0d632af60f0e885e20d28f3a284233d8329a5c80f1b3beaa634",
+        "source_id": "f027364aa3e8fed8a84825da028ec78ad7b80354"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "42229a1ed5008c72f954e988cc25b299d4fc268a4f6b4a8b3b5e1471b8b75dbb",
+      "case_id": "markdown-block-e2f5f269ef1e9343",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Property syntax.\npublic int TrackNumber { get; }",
+      "expected_cleaned_sha256": "930b593d1a92cbd06398f9d3a00e1d696d51f0e4d70d67c226b5c58b3950a9d0",
+      "language": "markdown",
+      "raw_comment": "<!-- Property syntax.\r\npublic int TrackNumber { get; }\r\n-->",
+      "raw_sha256": "197920b0f08bb02b1b343a2ae21095a0a6b69c9b5ff063d24ebd0c12c6d3309c",
+      "raw_utf8_length": 59,
+      "source_provenance": {
+        "source_excerpt_sha256": "92823089acec33a887a5d2df90b11a2221b602cd8fd8e122ae16585234c31ab8",
+        "source_id": "061a588d9031b06aa2ee42c429bd926122eec901"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "656b2d82eb55c1c85cd8202e33ba147a2db33aeb1994eef54bcba643c00a427c",
+      "case_id": "markdown-block-f11346b1dd5abb4a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\ud83d\udc49\ud83c\udffc[Click here to see the simplified video demo of this project on Youtube.](https://www.youtube.com/watch?v=SCq7pKkoa50)",
+      "expected_cleaned_sha256": "18c1f411e3885e435d896bc4a4331274801d102a2128b6bb8b6fcb8e357174ac",
+      "language": "markdown",
+      "raw_comment": "<!---\ud83d\udc49\ud83c\udffc[Click here to see the simplified video demo of this project on Youtube.](https://www.youtube.com/watch?v=SCq7pKkoa50)--->",
+      "raw_sha256": "de8bcaf7aa873f36a2691f16397001987d5be2c1bda7c87a2f51ba22a3b35296",
+      "raw_utf8_length": 135,
+      "source_provenance": {
+        "source_excerpt_sha256": "8f3c1f5de4789db037536237132833bb161c97254458bb137098a1e0682e0621",
+        "source_id": "bc495e57c6b65b51fb4f2fdc63ee3eccb7629727"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "665f17249873212303ddfccef31ce25c93562abe1a41654ced4c1154a42ccc0b",
+      "case_id": "maven_pom-block-95b7ad316ace9b3f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.\n\nLicensed under the Apache License, Version 2.0 (the \"License\"). You may not use this file except in compliance with\nthe License. A copy of the License is located at\n\nhttp://aws.amazon.com/apache2.0\n\nor in the \"license\" file accompanying this file. This file is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions\nand limitations under the License.",
+      "expected_cleaned_sha256": "309cc5a4e0302475af7c1677454616fc97d58c6aea806e36daab4a09b9d12dba",
+      "language": "maven_pom",
+      "raw_comment": "<!--\n ~  Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.\n ~\n ~  Licensed under the Apache License, Version 2.0 (the \"License\"). You may not use this file except in compliance with\n ~  the License. A copy of the License is located at\n ~\n ~  http://aws.amazon.com/apache2.0\n ~\n ~  or in the \"license\" file accompanying this file. This file is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR\n ~  CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions\n ~  and limitations under the License.\n -->",
+      "raw_sha256": "b96e833dd3fe87d9c28e14cd4ad81a1ce53043ad3e96a9176473c26b51c7a893",
+      "raw_utf8_length": 582,
+      "source_provenance": {
+        "source_excerpt_sha256": "f8be8cb7870bd39ee7d02e7d078253c69b3f35a37e590691ee4dcb6f6a8eb1d7",
+        "source_id": "36b5bfdc885964bc5160805b967cb2cdd413d00a"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "10a6e5f74b9fe292552797081eb43cd6fcfbc0f5af6681943b51e35df626d408",
+      "case_id": "mediawiki-block-a37ad0f0d3017727",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Koordinatat",
+      "expected_cleaned_sha256": "1a361285a8f63530e49b374d4387f143790dbcbaa24f0689001a90b3bd81c95f",
+      "language": "mediawiki",
+      "raw_comment": "<!--- Koordinatat ---->",
+      "raw_sha256": "4ca93779f37233f3fa2539ea3b2b5ee14162510a289a8edaf24e22fd3ee93645",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "eb4f7365dc837a547bfe99fcf13d5156c963b4a855cdd177063c2cf6e1313130",
+        "source_id": "1655548b0b77e6b3c62954d55cdc98346ac8ebc1"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "0f330cdaf22d20bd9d4c17586f2edc782e94ee12ddf5234c8af42b219518bffb",
+      "case_id": "mediawiki-block-c3940ebf8a346dd0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u6b64\u5904\u6307\u79d1\u4e3e\u51fa\u8eab",
+      "expected_cleaned_sha256": "46a56aac782452cc40ca630f2fce7ed9170c8c483dc2d4ef5d6754f5fc354fcd",
+      "language": "mediawiki",
+      "raw_comment": "<!---\u6b64\u5904\u6307\u79d1\u4e3e\u51fa\u8eab--->",
+      "raw_sha256": "a6454059a7a8f65297bbe4cfcb77585cc34d6288dde40113e90b2f60eca99088",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "486d28a5b04b462f693ce0f26511c50da4a10b4afc2942e7b706360cb977c09a",
+        "source_id": "685ecaf96b5a248b02577fb85a5c10ea7dd223d1"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "10a6e5f74b9fe292552797081eb43cd6fcfbc0f5af6681943b51e35df626d408",
+      "case_id": "mediawiki-block-ea45e743837c1f41",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Koordinatat",
+      "expected_cleaned_sha256": "1a361285a8f63530e49b374d4387f143790dbcbaa24f0689001a90b3bd81c95f",
+      "language": "mediawiki",
+      "raw_comment": "<!--- Koordinatat ---->",
+      "raw_sha256": "4ca93779f37233f3fa2539ea3b2b5ee14162510a289a8edaf24e22fd3ee93645",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "f0266a4f207a19fd282f066c1f36e7a9afbb75fe34ab01e88f38a0f2a06ef292",
+        "source_id": "d39d5993056544379b7018dcd7b9cb73adb59607"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "be951e611d223d6460c0ecaf40e4930a7d9d93ee10ccb9e9938c2824a0eae813",
+      "case_id": "mtml-block-14a6bab1df36fe7f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<mt:Ignore>Pull Topic name and label from url</mt:Ignore>\nvar url = document.URL;\nvar cid;\nvar cname;\nif (url) {\n    var query = url.substr(url.indexOf('?', 0) + 1);\n    var q = query.split(/;/);\n    if (q) {\n        cid = q[0];\n        cname = q[1];\n    }\n}",
+      "expected_cleaned_sha256": "d5707f5e696bd0d5de65638faa8d5f7fe79dc43fb2c75fcc6669c81baff2977d",
+      "language": "mtml",
+      "raw_comment": "<!-- <mt:Ignore>Pull Topic name and label from url</mt:Ignore>\nvar url = document.URL;\nvar cid;\nvar cname;\nif (url) {\n    var query = url.substr(url.indexOf('?', 0) + 1);\n    var q = query.split(/;/);\n    if (q) {\n        cid = q[0];\n        cname = q[1];\n    }\n}\n//-->",
+      "raw_sha256": "90598ad90183342ccce15fa84ea2e5fbb1bfe905d7b64567d66e94c79079991f",
+      "raw_utf8_length": 269,
+      "source_provenance": {
+        "source_excerpt_sha256": "b74c923a7bcaa512c34c73b17cecdbfc3afcc9c6033b5c53a12ad7b69f2addc6",
+        "source_id": "2d968d3dfdd32c3779d3a880131375d12d432ea0"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b996d22eab3471a3ab6399cfd0a58de047384ff39776afa9f3d6cfcfa9e0bdfa",
+      "case_id": "rmarkdown-block-e7207a36d4253bb0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "HISTORY AND CURRENT ASSESSMENT",
+      "expected_cleaned_sha256": "70cb6ba0aac18695a476948b495a8cba8cc4098633629cfb44bd881e2aaa53bf",
+      "language": "rmarkdown",
+      "raw_comment": "<!-- ***********HISTORY AND CURRENT ASSESSMENT***************************** -->",
+      "raw_sha256": "3edab2f45edbde2c90b80229d1604b71d44fdf2aea57fdb2495decfa11462fb8",
+      "raw_utf8_length": 79,
+      "source_provenance": {
+        "source_excerpt_sha256": "0c5a5870bb5c406b4333c227ddaf1074a6e0583df821be6e3bd8685ba4b23c7e",
+        "source_id": "74eb2a6a47eb60dfbed777575e6dd8a855a55c30"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-08edbe7cf72c0490",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Annotation properties",
+      "expected_cleaned_sha256": "e64ec5d27fb6c03691ef4bc11f49553d93ec8388176958b666eb6bf48dbe2eef",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Annotation properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "6f17dfc1c0783aa268501f173ad2e38c40d4422a0f5b3b22375862960941ed8c",
+        "source_id": "2e7fc3860baf7c6582b8abe0cdfec95d91f5e126"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-2181cf380363ef21",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Annotation properties",
+      "expected_cleaned_sha256": "e64ec5d27fb6c03691ef4bc11f49553d93ec8388176958b666eb6bf48dbe2eef",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Annotation properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "11c0c798cc8130e34c2cc4119944682c97d0a85865c9de922484903e020bdd58",
+        "source_id": "b45acff6a96e25b289cdcf1baf264f6e83b1f4e7"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-299bd9c1300f962c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Annotation properties",
+      "expected_cleaned_sha256": "e64ec5d27fb6c03691ef4bc11f49553d93ec8388176958b666eb6bf48dbe2eef",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Annotation properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "aa72976898d5dbe2fc7ce5b5adb85ecf177300a4d424394b327da3dc7c0a3d5e",
+        "source_id": "582ab1a8c984dd03fd7550e0a4aa45a9b0e9bd43"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-2c3b6e38e1c4a489",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Object Properties",
+      "expected_cleaned_sha256": "67dd8e5909d484a68d1a5e82fcc65f85a8246ebbc02c57842c5ce9538e7a6ddd",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Object Properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "cedafaf44bc1cd41696a249eb2c8e3d8c8121929cac8212efeca331216ae145f",
+        "source_id": "ccfb1c97e50caf904a151c8c92d82df910e53017"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "b3bb5643991a8d1cfbb6fc465e185508001a959eaaef2a01bfcca5ae67b1224e",
+      "case_id": "web_ontology_language-block-3071384a778fa3b3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Object Properties",
+      "expected_cleaned_sha256": "67dd8e5909d484a68d1a5e82fcc65f85a8246ebbc02c57842c5ce9538e7a6ddd",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Object Properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "f8f3255772b5b4a9f10d6a4fdfdb10c36402f06738cc8db863c7e4019543a8ba",
+      "raw_utf8_length": 237,
+      "source_provenance": {
+        "source_excerpt_sha256": "e9beab42e0cb5c4f4ba44865e80ce98ff2747cbca2c8feba77efc00c113df39d",
+        "source_id": "1ff99c9219b812a3d5095908a2141984de6461f3"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e4b8b4f1b1a2b0804b2c4de04cb40268ea8d20ffe3ce0f3d823a013b278147ae",
+      "case_id": "web_ontology_language-block-cc8f1e1aeaea7953",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Individuals",
+      "expected_cleaned_sha256": "d64d3d9970aad6dd6d030970ede387d195a969a78984a13908c4369ba8aa86fa",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Individuals\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "50d5dd228fc725722f6878bd97079981b04f143d17bda7772e3ec2725d3df577",
+      "raw_utf8_length": 231,
+      "source_provenance": {
+        "source_excerpt_sha256": "24dffb1209615989978d2ea25a7e5dbdfd39178f2aae4f6fd9e6be095286f668",
+        "source_id": "7f41fa7853c350f4c1f83e5f7059e92ecd03500a"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-d050c2638c3b2628",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Annotation properties",
+      "expected_cleaned_sha256": "e64ec5d27fb6c03691ef4bc11f49553d93ec8388176958b666eb6bf48dbe2eef",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Annotation properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "23b42e5c512cb96227054ce69c572e9cb0c454094a2d68cb1b3d4cfc2e02b4cf",
+        "source_id": "6485b8f3609ffaf3b7042c5bd14ebc79978410c1"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-d46925ed3b95d7f6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Annotation properties",
+      "expected_cleaned_sha256": "e64ec5d27fb6c03691ef4bc11f49553d93ec8388176958b666eb6bf48dbe2eef",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Annotation properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "27455acaa4580b7978f91aee373eba1ef034c12412e17716bc6493f2cdd7f863",
+        "source_id": "697d5f93cf132740f48a052f9f4598c26273db03"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "69e074f6b01a27a5c1d38f7e9a8bae2f59db7dbc056816ffad0e76fe46b81deb",
+      "case_id": "web_ontology_language-block-e3783fa459e9d96f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Datatypes",
+      "expected_cleaned_sha256": "cbe4ffe620982478bd99d2d7615b427b5a46617967d6f463a7a4c24c1c29cc84",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Datatypes\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "d51695e8b151172290c474f7b35e9e751651fa1883db5f969610819f26d782e4",
+      "raw_utf8_length": 229,
+      "source_provenance": {
+        "source_excerpt_sha256": "f97f512878fb247e96c7409fb1e3c29391094bfcf11b6746cc3519e3857c8aa4",
+        "source_id": "f2b72f1bcb6da213e673da1d5ef2ad8496579418"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e966a28e05e2928439ad74fec8a2de3fe40c3cd4aca7f42b816325596f3b0e4d",
+      "case_id": "web_ontology_language-block-ee0c14552d08f94c",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Annotation properties",
+      "expected_cleaned_sha256": "e64ec5d27fb6c03691ef4bc11f49553d93ec8388176958b666eb6bf48dbe2eef",
+      "language": "web_ontology_language",
+      "raw_comment": "<!-- \n    ///////////////////////////////////////////////////////////////////////////////////////\n    //\n    // Annotation properties\n    //\n    ///////////////////////////////////////////////////////////////////////////////////////\n     -->",
+      "raw_sha256": "2a9e51eaae6ad80132c0c53162e83fb21de6aa948cf1ff56a5dabef0c83d2bb3",
+      "raw_utf8_length": 241,
+      "source_provenance": {
+        "source_excerpt_sha256": "b01b3ca88b9cf0e55a55bc864f44952fea541303dc6c8957e70b94c0b95ccb72",
+        "source_id": "bf84beb52db23d1d05e8a06887acd87e0a7e72f8"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "0f330cdaf22d20bd9d4c17586f2edc782e94ee12ddf5234c8af42b219518bffb",
+      "case_id": "wikitext-block-3c5f621b5e7e0990",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u6b64\u5904\u6307\u79d1\u4e3e\u51fa\u8eab",
+      "expected_cleaned_sha256": "46a56aac782452cc40ca630f2fce7ed9170c8c483dc2d4ef5d6754f5fc354fcd",
+      "language": "wikitext",
+      "raw_comment": "<!---\u6b64\u5904\u6307\u79d1\u4e3e\u51fa\u8eab--->",
+      "raw_sha256": "a6454059a7a8f65297bbe4cfcb77585cc34d6288dde40113e90b2f60eca99088",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "486d28a5b04b462f693ce0f26511c50da4a10b4afc2942e7b706360cb977c09a",
+        "source_id": "685ecaf96b5a248b02577fb85a5c10ea7dd223d1"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "10a6e5f74b9fe292552797081eb43cd6fcfbc0f5af6681943b51e35df626d408",
+      "case_id": "wikitext-block-9be8f5849b3e0511",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Koordinatat",
+      "expected_cleaned_sha256": "1a361285a8f63530e49b374d4387f143790dbcbaa24f0689001a90b3bd81c95f",
+      "language": "wikitext",
+      "raw_comment": "<!--- Koordinatat ---->",
+      "raw_sha256": "4ca93779f37233f3fa2539ea3b2b5ee14162510a289a8edaf24e22fd3ee93645",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "eb4f7365dc837a547bfe99fcf13d5156c963b4a855cdd177063c2cf6e1313130",
+        "source_id": "1655548b0b77e6b3c62954d55cdc98346ac8ebc1"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "10a6e5f74b9fe292552797081eb43cd6fcfbc0f5af6681943b51e35df626d408",
+      "case_id": "wikitext-block-be9a858ebd533e5b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Koordinatat",
+      "expected_cleaned_sha256": "1a361285a8f63530e49b374d4387f143790dbcbaa24f0689001a90b3bd81c95f",
+      "language": "wikitext",
+      "raw_comment": "<!--- Koordinatat ---->",
+      "raw_sha256": "4ca93779f37233f3fa2539ea3b2b5ee14162510a289a8edaf24e22fd3ee93645",
+      "raw_utf8_length": 23,
+      "source_provenance": {
+        "source_excerpt_sha256": "f0266a4f207a19fd282f066c1f36e7a9afbb75fe34ab01e88f38a0f2a06ef292",
+        "source_id": "d39d5993056544379b7018dcd7b9cb73adb59607"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "3113450af554feb6d39a2546914b1d6ff5375ef5ce1d37b6a5e88b2ff3b71ad3",
+      "case_id": "xml-block-751bdcb073fda965",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Authors:\n* Abijeet Patro\n* Vlad5250",
+      "expected_cleaned_sha256": "a61a7deceefd1ded90f9261ddfc65d40ea6f53e8775844eb1f63a27ca062a9a6",
+      "language": "xml",
+      "raw_comment": "<!-- Authors:\n* Abijeet Patro\n* Vlad5250\n-->",
+      "raw_sha256": "cdb8439b043eb0d3c4837081996007a48aa985a33b96245cf5879f790c8d6269",
+      "raw_utf8_length": 44,
+      "source_provenance": {
+        "source_excerpt_sha256": "d38f1471b8317e94e7d726c680ce6bdd78ab2cf11e9fc6e7498d84bd72fee40a",
+        "source_id": "9a176617e17fa5a8ac6fac6c6c5e9ec97f60d428"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "2ed8e03e4b7888ab788973c376a5c4b1f4158d2975c5371b1cb785b2daecd97f",
+      "case_id": "xml_property_list-block-28c17ebb8d66a99f",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file is auto-generated from Asciidoctor.YAML-tmLanguage, do not edit it by hand!",
+      "expected_cleaned_sha256": "61348aeccb18b9f8c50fba1e1b0f465249a07971728526c54ddbbf32c0716c2a",
+      "language": "xml_property_list",
+      "raw_comment": "<!--\n |\tThis file is auto-generated from Asciidoctor.YAML-tmLanguage, do not edit it by hand!\n-->",
+      "raw_sha256": "69b19b069270fa33304c59a716b2065037bb6c99de85ac28d31f5a8a4de0df68",
+      "raw_utf8_length": 97,
+      "source_provenance": {
+        "source_excerpt_sha256": "5189a88b1f0bc4a4456410d1fc00ac856450ba56ccb9fd8a282c5b0255944b7c",
+        "source_id": "676a25630eb163b0e61b3377e7e579e9284e3135"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "07810de1dd61eaa68621b5a874bdeb2b21c05aea59390ef959dca05f2ab6c720",
+      "case_id": "xml_property_list-block-47aeb800f1d95467",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The smallest CLM that will color keywords.\nCopyright (c) 2012 Bare Bones Software, Inc.",
+      "expected_cleaned_sha256": "c1b4d0a5222fca7833c47d18fbb48e16ae1ab09b6e714726476d09ee220d98dc",
+      "language": "xml_property_list",
+      "raw_comment": "<!--  The smallest CLM that will color keywords.\n      Copyright (c) 2012 Bare Bones Software, Inc. -->",
+      "raw_sha256": "beb47aedee1717912c16ecf80a8ce3488d009a1431a105b6214e8e05b2677805",
+      "raw_utf8_length": 103,
+      "source_provenance": {
+        "source_excerpt_sha256": "15fc0caa1e8c6a639982c6fb67896c80275ec1cd500bc39a2514892d8665439e",
+        "source_id": "830145c15084596f88061d341d296fa147324a85"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b3b623b97b7cd031bdffb20ec1dd68bf87f088a049008e4606330594d26a68",
+      "case_id": "xslt-block-0642d042b8e06a34",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file has been autogenerated.  Remove this comment after manual development complete!",
+      "expected_cleaned_sha256": "c2bbdc97e8ccf06d7a9921192aff2cd7d212167f3c7dc35b15edab32354b8f53",
+      "language": "xslt",
+      "raw_comment": "<!--  @@@ This file has been autogenerated.  Remove this comment after manual development complete! @@@  -->",
+      "raw_sha256": "a14b77cd242eeb9e1aace3ce80b5418a705119e4d3cb7b59db52eb350c2cc510",
+      "raw_utf8_length": 108,
+      "source_provenance": {
+        "source_excerpt_sha256": "b3633fff3edddc4607d922214929090103e9b599f36029fcb909a3afbeb73a71",
+        "source_id": "e022ccfc1001eb459c21e95d433c4eef7149eea6"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "230d139b9c48121ae56d368d5e6de369893f0e98cda5d02f73149837162a22eb",
+      "case_id": "xslt-block-09d036319a241173",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "XSLT name : ProcurementValue.xsl\nRELEASE : \"1.00\"\nLast update : 06/2018\nDescription : :ProcurementValue from ePO",
+      "expected_cleaned_sha256": "2883f9d1f7f2eeb48351617bed0cb1e8b4d1b638bf403a00a9ac9db1653f3e70",
+      "language": "xslt",
+      "raw_comment": "<!-- \n    ####################################################################################\n    #  XSLT name : ProcurementValue.xsl\n    #  RELEASE : \"1.00\"\n    #  Last update : 06/2018\n    #  Description : :ProcurementValue from ePO\n    ####################################################################################\n    -->",
+      "raw_sha256": "db6f51bd07e43f08f3fc13034879167ccbeae638a51decc7c2ca925050d115df",
+      "raw_utf8_length": 332,
+      "source_provenance": {
+        "source_excerpt_sha256": "50c3a9d8af62594634e567926ca8397d998a90019e5cb67a69ead12ad0326430",
+        "source_id": "615c75c1347b17de55e36e414e5fa88eb15c172a"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b3b623b97b7cd031bdffb20ec1dd68bf87f088a049008e4606330594d26a68",
+      "case_id": "xslt-block-675c5addd26a37af",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file has been autogenerated.  Remove this comment after manual development complete!",
+      "expected_cleaned_sha256": "c2bbdc97e8ccf06d7a9921192aff2cd7d212167f3c7dc35b15edab32354b8f53",
+      "language": "xslt",
+      "raw_comment": "<!--  @@@ This file has been autogenerated.  Remove this comment after manual development complete! @@@  -->",
+      "raw_sha256": "a14b77cd242eeb9e1aace3ce80b5418a705119e4d3cb7b59db52eb350c2cc510",
+      "raw_utf8_length": 108,
+      "source_provenance": {
+        "source_excerpt_sha256": "6936e55cec0dac071832db8277b399bfcc53be4d98d976b014afc6cf2c952a5a",
+        "source_id": "00299d608c9a3f5f2a19ec2bfd3bb52802372541"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "a2b3b623b97b7cd031bdffb20ec1dd68bf87f088a049008e4606330594d26a68",
+      "case_id": "xslt-block-bc5d49ac44a50f85",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This file has been autogenerated.  Remove this comment after manual development complete!",
+      "expected_cleaned_sha256": "c2bbdc97e8ccf06d7a9921192aff2cd7d212167f3c7dc35b15edab32354b8f53",
+      "language": "xslt",
+      "raw_comment": "<!--  @@@ This file has been autogenerated.  Remove this comment after manual development complete! @@@  -->",
+      "raw_sha256": "a14b77cd242eeb9e1aace3ce80b5418a705119e4d3cb7b59db52eb350c2cc510",
+      "raw_utf8_length": 108,
+      "source_provenance": {
+        "source_excerpt_sha256": "5b65f5833f43d63a532b8ff1545798c4f9edb991ca946b3a47c4f183b2b3dae0",
+        "source_id": "99a20e192c3b7871b82b6d27b40ccc513b77c429"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "xslt-block-c902b6199a111366",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "'\"`",
+      "expected_cleaned_sha256": "a0c52c29bc76e0ce3926ee111c680320ff85a8122a662c4c4f52f25fb83e03eb",
+      "language": "xslt",
+      "raw_comment": "<!-- '\"` -->",
+      "raw_sha256": "a7b3ebc33f040f22772be95bbb3dd24639f300bd0b0c8d9922cd5d6c768f2045",
+      "raw_utf8_length": 12,
+      "source_provenance": {
+        "source_excerpt_sha256": "2d9274794439e9055f6aaa8e6423ef3e94d3ca6850c35f06ee7d28c34765056b",
+        "source_id": "39f315b22d8e7d3ffc57d790d0d16fcb67a6525e"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "cd1e195399992359fcb840559fb0b2963db438439eb750b792a14ebfc535507f",
+      "case_id": "xslt-block-ee1ee8f3c2a9c3f0",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "xslt",
+      "raw_comment": "<!-- - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - -->",
+      "raw_sha256": "25936c4c8224a865f1be7de25cf043fbae2b6d1aac9475a019fac985c1e49a2f",
+      "raw_utf8_length": 140,
+      "source_provenance": {
+        "source_excerpt_sha256": "45646b9540dca4fe16d4821969de5c65672104ce740cfb0c9d55069e73dddd22",
+        "source_id": "b5da1625f535e5f9abb8db832750ecbc1e883979"
+      },
+      "syntax_label": "<!--...-->"
+    }
+  ],
+  "schema_version": 5
+}

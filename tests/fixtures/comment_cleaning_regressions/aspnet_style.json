@@ -1,0 +1,56 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "aspnet_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "f80043fc7db7552a320dd589ff7b15b590b645357ec65f41746313ac29215ff6",
+      "case_id": "asp-block-aebaf839db4ec59f",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "asp",
+      "oracle_exception_record_sha256": "ae5473f91aa336d24a16b7790f4c102ea3e28e1e36cfa06b7a1b92c175ea91db",
+      "raw_sha256": "dbf119335275acdb40314870b1dafbd2579f5d0b8f66221fa4abd3a894f58eea",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "1c4ee078124af89a8720793f4e778e43688156c3961934f2228dd45f881ab17a",
+        "source_id": "de54694f0f9d139a7b9407332772994fa3cc0c6c"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "f80043fc7db7552a320dd589ff7b15b590b645357ec65f41746313ac29215ff6",
+      "case_id": "asp_net-block-2f55df3511dd3979",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "asp_net",
+      "oracle_exception_record_sha256": "190c02af2d2da32b38a49b6bb2affb27e31f147b5630d032ce1b8dc79410820d",
+      "raw_sha256": "dbf119335275acdb40314870b1dafbd2579f5d0b8f66221fa4abd3a894f58eea",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "1c4ee078124af89a8720793f4e778e43688156c3961934f2228dd45f881ab17a",
+        "source_id": "de54694f0f9d139a7b9407332772994fa3cc0c6c"
+      },
+      "syntax_label": "<!--...-->"
+    },
+    {
+      "baseline_cleaned_sha256": "f80043fc7db7552a320dd589ff7b15b590b645357ec65f41746313ac29215ff6",
+      "case_id": "aspnet-block-c55504bc4b3296b7",
+      "comment_kind": "block",
+      "disposition": "accounting_only",
+      "exception_status": "intra_corpus_oracle_conflict",
+      "language": "aspnet",
+      "oracle_exception_record_sha256": "98da828ee39d73098ca0f44532861afb4651d5e94b27825e1a97245dc273b255",
+      "raw_sha256": "dbf119335275acdb40314870b1dafbd2579f5d0b8f66221fa4abd3a894f58eea",
+      "raw_utf8_length": 82,
+      "source_provenance": {
+        "source_excerpt_sha256": "1c4ee078124af89a8720793f4e778e43688156c3961934f2228dd45f881ab17a",
+        "source_id": "de54694f0f9d139a7b9407332772994fa3cc0c6c"
+      },
+      "syntax_label": "<!--...-->"
+    }
+  ],
+  "sanitizer_cases": [],
+  "schema_version": 5
+}

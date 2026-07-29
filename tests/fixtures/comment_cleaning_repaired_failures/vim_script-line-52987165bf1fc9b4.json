@@ -1,0 +1,38 @@
+{
+  "case_id": "vim_script-line-52987165bf1fc9b4",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:decorative_ruler",
+  "disposition": "executable_regression",
+  "language": "vim_script",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f3b9e7c60927a4a742acf91b3ecb53d48bff44a6e30131829493f9d1c1802783",
+      "utf8_length": 611
+    },
+    "manifest_old_output": {
+      "sha256": "7e35387622a84a72072d3abb93b2c66d994bb9c1ae9d13e558631e08de095140",
+      "utf8_length": 157
+    },
+    "raw_comment": {
+      "sha256": "5492e24bbd57462bd43ed30ebb309e1da71d93c74403f203d1cfe7365b7862a1",
+      "utf8_length": 629
+    },
+    "recommended_expected_output": {
+      "sha256": "7e35387622a84a72072d3abb93b2c66d994bb9c1ae9d13e558631e08de095140",
+      "utf8_length": 157
+    }
+  },
+  "regression": {
+    "expected_output": "Darkcloud Vim Config: settings to load after\n\nBy: Kevin MacMartin (prurigro@gmail.com)\nWebsite: https://github.com/prurigro/darkcloud-vimconfig\n\nLicense: MIT",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "\"============================================================\"\n\"                                                            \"\n\"  Darkcloud Vim Config: settings to load after              \"\n\"                                                            \"\n\"  By: Kevin MacMartin (prurigro@gmail.com)                  \"\n\"  Website: https://github.com/prurigro/darkcloud-vimconfig  \"\n\"                                                            \"\n\"  License: MIT                                              \"\n\"                                                            \"\n\"============================================================\""
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "517a9ce51805e690e73497d95e97e2eef83f55860934a6595cebf553fae09034",
+    "source_id": "ac7035a60d04283595afe32002eca12c81994ba9"
+  },
+  "source_record_sha256": "dc2fe7d9abab0bff9581b8a385b750c9d2dc672c949679236d00b73b35ba1e94"
+}

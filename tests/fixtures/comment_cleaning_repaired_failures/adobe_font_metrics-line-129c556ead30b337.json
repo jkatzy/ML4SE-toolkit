@@ -1,0 +1,29 @@
+{
+  "case_id": "adobe_font_metrics-line-129c556ead30b337",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "adobe_font_metrics",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "21fc7beb1dfb24b734574da2c284072bca05ed2768067c1f55a13d5d9b7c4e0a",
+      "utf8_length": 15223
+    },
+    "manifest_old_output": {
+      "sha256": "21fc7beb1dfb24b734574da2c284072bca05ed2768067c1f55a13d5d9b7c4e0a",
+      "utf8_length": 15223
+    },
+    "raw_comment": {
+      "sha256": "2c280a90b740665c7fe979f45171b51f14baa69791a3f8d33d71dcbd3234ae4e",
+      "utf8_length": 15224
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "016562907c125c090f17df39966242098c0607b1f8a7d10f11fa9a0fe538d5f1",
+    "source_id": "4a009935023097051fafb02b1cf86cced15e474a"
+  },
+  "source_record_sha256": "ba1e315923501243d0e9b39915632285bcc84d60d777fd14125252d0fd903620"
+}

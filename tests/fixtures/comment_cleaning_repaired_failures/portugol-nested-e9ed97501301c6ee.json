@@ -1,0 +1,29 @@
+{
+  "case_id": "portugol-nested-e9ed97501301c6ee",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "portugol",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "d51f2b9f8c91c7b6115ecacc2ea4790b983b858a67aab9941f1d1f305cbd34d9",
+      "utf8_length": 839
+    },
+    "manifest_old_output": {
+      "sha256": "0e0e87dacb9048716c6371745e0824d8c0e100ffa65bdfb46496796843c439ba",
+      "utf8_length": 831
+    },
+    "raw_comment": {
+      "sha256": "f4cff05001e81a014e88d3b573bcbe8aa0da7f2edeb62f449544e752679ae075",
+      "utf8_length": 850
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "594f7c6aa36fb7324247bb17c6b687a9f96f29df7c2a21d09553d5c396cb5a81",
+    "source_id": "ca23418419ce3442c490bdf5ca17a3370cab726c"
+  },
+  "source_record_sha256": "ebeeb0e0f0016367a3ee8ef54f62277743ab28924e152bbe68f5632cac7c1d94"
+}

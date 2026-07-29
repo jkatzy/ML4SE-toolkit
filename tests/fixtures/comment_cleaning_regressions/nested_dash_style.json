@@ -1,0 +1,347 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "nested_dash_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "6d93d14de5a8cd96fd24fd5a3094d11bbd306341eedb508a613b1eb7c7fce5ea",
+      "case_id": "literate_agda-nested-b08e76033d506209",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "literate_agda",
+      "oracle_exception_record_sha256": "9005fe348aa0f22af02690aea2602272c6d122e20dc6c99d0d21f59af985da16",
+      "raw_sha256": "e2fde34bfb3927f2687f4168cb62e79c8ffdfe4a04d2e5e93977b700b48b6634",
+      "raw_utf8_length": 4628,
+      "source_provenance": {
+        "source_excerpt_sha256": "8f7090b6213baaf6fa2a6a71b3673b29c8fc9e63f6eabc7fe331ec9b9a9a34b9",
+        "source_id": "a2ad2aab0be3bef356e21cf90ef4911fc7d74db7"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "d2488e14ea4ee63f4099baa1b51fbb2b72b7828518c8eed5b877b25982e7e9e9",
+      "case_id": "literate_agda-nested-ee9a69b6f6e15fcf",
+      "comment_kind": "nested",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "literate_agda",
+      "oracle_exception_record_sha256": "36e991c5b787aa9a3d480dffdbad307dc48b572f35ceb6804f96360c4d174416",
+      "raw_sha256": "6043cdc553bb5ed1e0f354f29bbd8f9469b631dbc20eeb2fd9168aadafc7e762",
+      "raw_utf8_length": 887,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad1678a103a7ddf537800f0fd021d7669ecf86fa1e250e71f75365f7926bc2df",
+        "source_id": "920cdf6a5b12136336179a11516bef586399f98e"
+      },
+      "syntax_label": "{-...-}"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "858ea51a802bf5edd8279a026896096afbdcfd5ee7b4d8a688a554368a9ac7ed",
+      "case_id": "agda-nested-cd0acc87b5025f5e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright \u00a9 1992\u20132002 The University of Glasgow\nCopyright \u00a9 2015 Benjamin Barenblat\n\nLicensed under the Apache License, Version 2.0 (the \u2018License\u2019); you may not use\nthis file except in compliance with the License.  You may obtain a copy of the\nLicense at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed\nunder the License is distributed on an \u2018AS IS\u2019 BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations under the License.",
+      "expected_cleaned_sha256": "483640e5e9762cf46b3e57c05273087c9a97ff78865ac331ea8d22fa71ef7501",
+      "language": "agda",
+      "raw_comment": "{- Copyright \u00a9 1992\u20132002 The University of Glasgow\nCopyright \u00a9 2015 Benjamin Barenblat\n\nLicensed under the Apache License, Version 2.0 (the \u2018License\u2019); you may not use\nthis file except in compliance with the License.  You may obtain a copy of the\nLicense at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed\nunder the License is distributed on an \u2018AS IS\u2019 BASIS, WITHOUT WARRANTIES OR\nCONDITIONS OF ANY KIND, either express or implied.  See the License for the\nspecific language governing permissions and limitations under the License. -}",
+      "raw_sha256": "c3550837f0497d782ce698cfb9d8ba389894ea2446a0e966b9788c54b8cab6b7",
+      "raw_utf8_length": 628,
+      "source_provenance": {
+        "source_excerpt_sha256": "87da11f529d0e7de7b0c77a69ae9cf6667ea98a126f3192d69e152b9131aa281",
+        "source_id": "8ab78f7d6525fcde57a6cfec863432daa464eef3"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "c8d6da5347ef55c4ab27a885d3eff143bc4b47521e0cb091dc5c4e11c9ef7771",
+      "case_id": "elm-nested-250f281e45cf6eaf",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Json decoder for a response. You may provide a custom response decoder using other decoders\nfrom this module, or some of your own craft.",
+      "expected_cleaned_sha256": "ed0056b927c4bd9321f95c908b96ccb10ae20c7739da107143a4699119bc481c",
+      "language": "elm",
+      "raw_comment": "{-| Json decoder for a response. You may provide a custom response decoder using other decoders\nfrom this module, or some of your own craft.\n-}",
+      "raw_sha256": "2e265d0a3ad846d95c768b4766fe69851a4701eea0eba998bdd643755cd1946f",
+      "raw_utf8_length": 143,
+      "source_provenance": {
+        "source_excerpt_sha256": "1fb3cc15d078a03b7f2eab21c41fdfec36543bba1e1b8c3274a35834f69c29d6",
+        "source_id": "668373b4ea519574e3f7f5d5b130259349153968"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "00571e5c6d1bf28c65d8f2df33196ee9daa864f989ea134cdee0af88495db625",
+      "case_id": "elm-nested-3c2fe25370c2876f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "DEPRECATED. USE CellAutomata.New with CellAuomata.Grid and CellAutomata.Rule instead.\n\nThis module was created to give a smooth introduction to the main module,\nbut also because for a lot of use cases this simpler version is already enough.\n\n**If you know of Conway's Game of Life and want to make something similiar,**\n**this module is the right one for you.**\n\nIn this module, a few assumptions about the automata were made:\n\n  - The cells are organized in a two dimensional grid.\n  - Each cell can have one of two states: _Dead_(`Nothing`) or _Alive_(`Just Alive`)\n  - Each cell has eight neighbors\n  - A rule can only take the amount of alive neighbored cells into account. (Not the pattern itself)\n\n**Note:** This last assumption can be ignored by using `automataWithoutSymmetry`\nor `automataWithCustomSymmetry`. We will look at an example further down the document.\n\n\n# The Basics\n\n\n## Basic Types\n\n@docs Grid, State, Position\n\n\n## Basic Automata\n\n@docs AliveNeighbors, step, Automata, automata\n\n\n# Rule Expressions and Symmetries\n\nUp until now, only the amount of living neighbors was important, but not their position.\n\nFor the remaining documentation we use a [modified version](https://orasund.github.io/elm-cellautomata/modGoL) of game of life,\nwhere only the four direct neighbors (North,South,East,West) are considered.\n\n\n## Rule\n\n@docs RuleExpression, Neighborhood, anyNeighborhood, Rule\n\n\n## Automata\n\n@docs automataWithoutSymmetry\n\n\n## Symmetry\n\n@docs Symmetry, fullSymmetry, noSymmetry, horMirrorSymmetry, vertMirrorSymmetry, rot45Symmetry, rot90Symmetry\n\n\n## Automata with Symmetry\n\n@docs automataWithCustomSymmetry",
+      "expected_cleaned_sha256": "b478618522ee3a45e2c28c440304c33ab218f2d644c907e56332223a1e02aadb",
+      "language": "elm",
+      "raw_comment": "{-| DEPRECATED. USE CellAutomata.New with CellAuomata.Grid and CellAutomata.Rule instead.\n\nThis module was created to give a smooth introduction to the main module,\nbut also because for a lot of use cases this simpler version is already enough.\n\n**If you know of Conway's Game of Life and want to make something similiar,**\n**this module is the right one for you.**\n\nIn this module, a few assumptions about the automata were made:\n\n  - The cells are organized in a two dimensional grid.\n  - Each cell can have one of two states: _Dead_(`Nothing`) or _Alive_(`Just Alive`)\n  - Each cell has eight neighbors\n  - A rule can only take the amount of alive neighbored cells into account. (Not the pattern itself)\n\n**Note:** This last assumption can be ignored by using `automataWithoutSymmetry`\nor `automataWithCustomSymmetry`. We will look at an example further down the document.\n\n\n# The Basics\n\n\n## Basic Types\n\n@docs Grid, State, Position\n\n\n## Basic Automata\n\n@docs AliveNeighbors, step, Automata, automata\n\n\n# Rule Expressions and Symmetries\n\nUp until now, only the amount of living neighbors was important, but not their position.\n\nFor the remaining documentation we use a [modified version](https://orasund.github.io/elm-cellautomata/modGoL) of game of life,\nwhere only the four direct neighbors (North,South,East,West) are considered.\n\n\n## Rule\n\n@docs RuleExpression, Neighborhood, anyNeighborhood, Rule\n\n\n## Automata\n\n@docs automataWithoutSymmetry\n\n\n## Symmetry\n\n@docs Symmetry, fullSymmetry, noSymmetry, horMirrorSymmetry, vertMirrorSymmetry, rot45Symmetry, rot90Symmetry\n\n\n## Automata with Symmetry\n\n@docs automataWithCustomSymmetry\n\n-}",
+      "raw_sha256": "287e8e137ab27badf209771ad19f100d4188289c6f79c301c6a7178c52b96738",
+      "raw_utf8_length": 1641,
+      "source_provenance": {
+        "source_excerpt_sha256": "22d4e5bcf98df06e9b63b263cd53756072d535e6d4c7ea36ba28b6b9c0db4137",
+        "source_id": "af34acc382f0bfc906591a1c15ec89e92e6463e3"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "6a70a95b56c37ce546008153aa9a8575ab5dab4f556f45aee449db5dfbadf370",
+      "case_id": "elm-nested-6f3603b7c44ba121",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Rarely updated prts of Convo. Saved in ColumnStore for fast and atomic referencing.\n\nAdding Team info since ConvoCache can be mixed up with ones from other Teams in FAM.\n\nAlso it is a bare Record, since it exists mainly for View usage.",
+      "expected_cleaned_sha256": "ffcb8da512018891b0b9c40580568cc96d2be6a02e8e9accc39587bb653c9b03",
+      "language": "elm",
+      "raw_comment": "{-| Rarely updated prts of Convo. Saved in ColumnStore for fast and atomic referencing.\n\nAdding Team info since ConvoCache can be mixed up with ones from other Teams in FAM.\n\nAlso it is a bare Record, since it exists mainly for View usage.\n\n-}",
+      "raw_sha256": "70f091ae22c75d2f8f91b74633e2438eb8ff8b190a0c76be1a65103b137fc160",
+      "raw_utf8_length": 243,
+      "source_provenance": {
+        "source_excerpt_sha256": "02b79af356cd9a96e62f81b9703d00862d8dcad7f87df6087d743552191e3912",
+        "source_id": "509c0aaaf933245f8ae3130652989157eaa6796b"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "a9a12d37c8651188f865f1ef2546d9e4152431c827293375d56a627f01e1a41c",
+      "case_id": "elm-nested-72d35f322a1210cf",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Outgoing port sends an empty Tuple in this example.\n\n   Empty Tuples are called Holes.",
+      "expected_cleaned_sha256": "16b9836cad29fd889fbbab2133bd89e5add77d1c62c7cb5c7ec36f426df22669",
+      "language": "elm",
+      "raw_comment": "{-| Outgoing port sends an empty Tuple in this example.\n\n   Empty Tuples are called Holes.\n-}",
+      "raw_sha256": "bff12cf241d11c7478f6e1f439f116ef4f017917232bbb6bd0acac57f02a63a9",
+      "raw_utf8_length": 93,
+      "source_provenance": {
+        "source_excerpt_sha256": "d3a16c3b62aa1e5226e520edc061c9706ef8371bd59b3e878db54e052ccddba9",
+        "source_id": "76e0a501259642a13d8a6c2784d5c9fd1b73b65e"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "ac6c5674b250ec9b2dd5e9915be182460285d160d6b43d88596db949abe5cc95",
+      "case_id": "elm-nested-7977edcc442615ac",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Create pagination widget, current page(list of rows), and the status string\nfrom given list of elements",
+      "expected_cleaned_sha256": "1770aaaf8457a10ca17cb3b7343ebc717899da513ce9e6f9b4db43b1fedf7f38",
+      "language": "elm",
+      "raw_comment": "{-| Create pagination widget, current page(list of rows), and the status string\nfrom given list of elements\n-}",
+      "raw_sha256": "6a126ece0371466fc14e880040c3173d79ec64169bd7e51b21a8b7cf6d57bf62",
+      "raw_utf8_length": 110,
+      "source_provenance": {
+        "source_excerpt_sha256": "80096c3613745a9d57d104c31ed1d248ca30f3ad727fb138419565bda7f795f1",
+        "source_id": "25de98c86db9cac3f2d9cdbb920a6ac3a9f50cb8"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "213d34dbac8e021bb2e8a8dff225d3a4e8d111b0b193b5118863a30855d1fffd",
+      "case_id": "elm-nested-7fd16e352ca0e665",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Http.Server.LowLevel is a low-level api for a web server. It's not intended to be used directly by developers, but through other libraries.\n\nUrl's can be parsed with `elm/url`. Routes can be matched likewise.\n\nHttp responder cmd's can be stored in the model and returned from the update function to out-of-order if needed, so it's possible to perform some other Cmd before responding.\n\nThe main entrypoints are the `subscribe` and `respond` functions.\n\n@docs subscribe, respond, HttpRequest, HttpResponse, HttpRequestId",
+      "expected_cleaned_sha256": "0af8d67cd3096dbe3ba3942e209030c8b7eca2ae92aae9b1f38b587458f41236",
+      "language": "elm",
+      "raw_comment": "{-| Http.Server.LowLevel is a low-level api for a web server. It's not intended to be used directly by developers, but through other libraries.\n\nUrl's can be parsed with `elm/url`. Routes can be matched likewise.\n\nHttp responder cmd's can be stored in the model and returned from the update function to out-of-order if needed, so it's possible to perform some other Cmd before responding.\n\nThe main entrypoints are the `subscribe` and `respond` functions.\n\n@docs subscribe, respond, HttpRequest, HttpResponse, HttpRequestId\n\n-}",
+      "raw_sha256": "df2f02ee762b10a503929d498a4bb18ba6f653cdb69c83748e407bace63b9408",
+      "raw_utf8_length": 527,
+      "source_provenance": {
+        "source_excerpt_sha256": "2a73c5b91bb534c769f58e78d2abf2cd6a8a620ce4616f1fc08de4a605e3c7db",
+        "source_id": "bf0d4a887d1d6a7da3ffdb1c37f23c212bdad731"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "db469f13bd367e42941668a20f90f83e33b6f753df3716f0f8e5074594daa987",
+      "case_id": "elm-nested-98d8a9a550999144",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A fuzzer for float values with a given minimum, inclusive.\nShrunken values will also be within the range.",
+      "expected_cleaned_sha256": "b19d31be840e7d2be64e43459aaff5b3431c6682f2193565c75ad76f326efa5a",
+      "language": "elm",
+      "raw_comment": "{-| A fuzzer for float values with a given minimum, inclusive.\nShrunken values will also be within the range.\n-}",
+      "raw_sha256": "c1cbd39686bd15ec16b9ffe8dab3736e4680c7358f9d9f0351c1d7e9d51b101d",
+      "raw_utf8_length": 112,
+      "source_provenance": {
+        "source_excerpt_sha256": "90b54d2d2c5a5963463edeb296d923812217943bcc182d03660b85efef8df4f1",
+        "source_id": "4e51511eda87757b48cfa1e96e31ec919b15c105"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "00a533986c4e679adb3e2835b53fe7052a3283cf839bc021c4c97f9f13bf346e",
+      "case_id": "elm-nested-9e74b60e28a575c2",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Slider provides a component to select a numerical value within a range.\n\n\n# Table of Contents\n\n  - [Resources](#resources)\n  - [Basic Usage](#basic-usage)\n  - [Configuration](#configuration)\n      - [Configuration Options](#configuration-options)\n  - [Continuous Slider](#continuous-slider)\n  - [Custom range values](#using-a-step-value)\n  - [Using a step value](#using-a-step-value)\n  - [Disabled Slider](#disabled-slider)\n  - [Discrete Slider](#discrete-slider)\n      - [Track Markers](#track-markers)\n  - [Focus a Slider](#focus-a-slider)\n\n\n# Resources\n\n  - [Demo: Sliders](https://aforemny.github.io/material-components-web-elm/#slider)\n  - [Material Design Guidelines: Sliders](https://material.io/go/design-sliders)\n  - [MDC Web: Slider](https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider)\n  - [Sass Mixins (MDC Web)](https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider#sass-mixins)\n\n\n# Basic Usage\n\n    import Material.Slider as Slider\n\n    type Msg\n        = ValueChanged Float\n\n    main =\n        Slider.slider\n            (Slider.config\n                |> Slider.setValue 50\n                |> Slider.setOnInput ValueChanged\n            )\n\n\n# Configurations\n\n@docs Config, config\n\n\n## Configuration Options\n\n@docs setOnInput\n@docs setDiscrete\n@docs setDisplayMarkers\n@docs setMin\n@docs setMax\n@docs setStep\n@docs setValue\n@docs setDisabled\n@docs setAttributes\n\n\n# Continuous Slider\n\n@docs slider\n\n\n# Custom range values\n\nTo set a custom range, use the slider's `setMin` and `setMax` configuration\noptions.\n\n    Slider.slider\n        (Slider.config\n            |> Slider.setMin 0\n            |> Slider.setMax 100\n        )\n\n\n# Using a step value\n\nTo allow for quantization of the user input, use the slider's `setStep`\nconfiguration option.\n\n    Slider.slider (Slider.config |> Slider.setStep 4.5)\n\n\n# Disabled Slider\n\nTo disable a slider, set its `setDisabled` configuration option to `True`.\n\nDisabled sliders cannot be interacted with and have no visual interaction\neffect.\n\n    Slider.slider (Slider.config |> Slider.setDisabled True)\n\n\n# Discrete Slider\n\nTo treat a slider as a discrete slider, set its `setDiscrete` configuration\noption to `True`.\n\n    Slider.slider (Slider.config |> Slider.setDiscrete True)\n\n\n## Track Markers\n\nTo have a discrete slider show track markers, set its `setDisplayMarkers`\nconfiguration option to `True`.\n\nNote that non-discrete sliders ignore this configuration option.\n\n    Slider.slider\n        (Slider.config |> Slider.setDisplayMarkers True)\n\n\n# Focus a Slider\n\nYou may programatically focus a slider by assigning an id attribute to it and\nuse `Browser.Dom.focus`.\n\n    Slider.slider\n        (Slider.config\n            |> Slider.setAttributes\n                [ Html.Attributes.id \"my-slider\" ]\n        )",
+      "expected_cleaned_sha256": "3956bf7621862c5aecbc2fc7c3becc45c28693e90570854b44e1234926044b8b",
+      "language": "elm",
+      "raw_comment": "{-| Slider provides a component to select a numerical value within a range.\n\n\n# Table of Contents\n\n  - [Resources](#resources)\n  - [Basic Usage](#basic-usage)\n  - [Configuration](#configuration)\n      - [Configuration Options](#configuration-options)\n  - [Continuous Slider](#continuous-slider)\n  - [Custom range values](#using-a-step-value)\n  - [Using a step value](#using-a-step-value)\n  - [Disabled Slider](#disabled-slider)\n  - [Discrete Slider](#discrete-slider)\n      - [Track Markers](#track-markers)\n  - [Focus a Slider](#focus-a-slider)\n\n\n# Resources\n\n  - [Demo: Sliders](https://aforemny.github.io/material-components-web-elm/#slider)\n  - [Material Design Guidelines: Sliders](https://material.io/go/design-sliders)\n  - [MDC Web: Slider](https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider)\n  - [Sass Mixins (MDC Web)](https://github.com/material-components/material-components-web/tree/master/packages/mdc-slider#sass-mixins)\n\n\n# Basic Usage\n\n    import Material.Slider as Slider\n\n    type Msg\n        = ValueChanged Float\n\n    main =\n        Slider.slider\n            (Slider.config\n                |> Slider.setValue 50\n                |> Slider.setOnInput ValueChanged\n            )\n\n\n# Configurations\n\n@docs Config, config\n\n\n## Configuration Options\n\n@docs setOnInput\n@docs setDiscrete\n@docs setDisplayMarkers\n@docs setMin\n@docs setMax\n@docs setStep\n@docs setValue\n@docs setDisabled\n@docs setAttributes\n\n\n# Continuous Slider\n\n@docs slider\n\n\n# Custom range values\n\nTo set a custom range, use the slider's `setMin` and `setMax` configuration\noptions.\n\n    Slider.slider\n        (Slider.config\n            |> Slider.setMin 0\n            |> Slider.setMax 100\n        )\n\n\n# Using a step value\n\nTo allow for quantization of the user input, use the slider's `setStep`\nconfiguration option.\n\n    Slider.slider (Slider.config |> Slider.setStep 4.5)\n\n\n# Disabled Slider\n\nTo disable a slider, set its `setDisabled` configuration option to `True`.\n\nDisabled sliders cannot be interacted with and have no visual interaction\neffect.\n\n    Slider.slider (Slider.config |> Slider.setDisabled True)\n\n\n# Discrete Slider\n\nTo treat a slider as a discrete slider, set its `setDiscrete` configuration\noption to `True`.\n\n    Slider.slider (Slider.config |> Slider.setDiscrete True)\n\n\n## Track Markers\n\nTo have a discrete slider show track markers, set its `setDisplayMarkers`\nconfiguration option to `True`.\n\nNote that non-discrete sliders ignore this configuration option.\n\n    Slider.slider\n        (Slider.config |> Slider.setDisplayMarkers True)\n\n\n# Focus a Slider\n\nYou may programatically focus a slider by assigning an id attribute to it and\nuse `Browser.Dom.focus`.\n\n    Slider.slider\n        (Slider.config\n            |> Slider.setAttributes\n                [ Html.Attributes.id \"my-slider\" ]\n        )\n\n-}",
+      "raw_sha256": "feecb5743b96a3f3e5801bcda7d1c28151b30b29fe47d54d6f4df9c9b3173eab",
+      "raw_utf8_length": 2849,
+      "source_provenance": {
+        "source_excerpt_sha256": "1685e386b550b9d9db7de42786c5c1ed311013bf011ab3c497871fbcac4036ca",
+        "source_id": "74e659361d4f9321a409d0b1622a889f10a0efc8"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "cbe5cfdf7c2118a9c3d78ef1d684f3afa089201352886449a06a6511cfef74a7",
+      "case_id": "elm-nested-a2d58883135966c3",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "elm",
+      "raw_comment": "{-| -}",
+      "raw_sha256": "f7a87e935611fa3e4100c69c1a67ed9b90307e6385e0b8179c3a745b121a4d8a",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "035c2e3fb9ee76a975f0117fd60f62d6de8f1b2d1c2e50316d647dd09053d575",
+        "source_id": "020877fe2bc1f19b4423d2f6aa10f7bd6a639a7e"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "20e71bcfb3f05278a8d231b32c4d13b17678b45dd781c1af634d32643ea8e63e",
+      "case_id": "elm-nested-a47afc555125d25f",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Convenience functions for working with Strings\n\n# Formatting numbers\n@docs pluralize\n\n# Whitespace\n@docs isWhitespace",
+      "expected_cleaned_sha256": "d7ecbf19372deadc1ce07ee34396992a859ac17d20ab0aa4f548741d2e75b4d1",
+      "language": "elm",
+      "raw_comment": "{-| Convenience functions for working with Strings\n\n# Formatting numbers\n@docs pluralize\n\n# Whitespace\n@docs isWhitespace\n\n-}",
+      "raw_sha256": "d08458f79e59f2ee4c9423afeb055ebda3f5a21619c52ecf3e3a0e373217aa74",
+      "raw_utf8_length": 125,
+      "source_provenance": {
+        "source_excerpt_sha256": "6db2d306944be9eedf421a2a08527bfdba48e8bab64faf1aaf2370705e963390",
+        "source_id": "0ad989723d3c4719c9a2a6c9180cebb3203cf497"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "a884f573c4e00e784215942810cf437623487b48402b43181d29117865493597",
+      "case_id": "elm-nested-c0b3a975b9fb706c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Applies an update function to the node under the zipper, then\nwalks back up to the root of the tree, to produce a new tree with\nthe update applied to the designated node.",
+      "expected_cleaned_sha256": "dc8dd26f3ab3e41dcdfd937603f29f953596380ad5f874fb42ad5509d799d896",
+      "language": "elm",
+      "raw_comment": "{-| Applies an update function to the node under the zipper, then\nwalks back up to the root of the tree, to produce a new tree with\nthe update applied to the designated node.\n-}",
+      "raw_sha256": "f278914032b8e8a6ef7b74c3c7446346280aa11b79093e7cdc2d7ba4e316dfca",
+      "raw_utf8_length": 177,
+      "source_provenance": {
+        "source_excerpt_sha256": "b092959c8c917d326820758d47c0c774329af465090e95785fd1f1aa65aa85e4",
+        "source_id": "3c47994d543d827c7c33dda89818e3add66c8af2"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "d1ec195eb4aa7b12b2a5209d2770274f57c5d400d41ab84ad74fc1b27b512018",
+      "case_id": "elm-nested-debfffb69e07e5ed",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Images from <https://pixabay.com>",
+      "expected_cleaned_sha256": "e43dce35af32c1ed5654e1bbdd1e7a1a3c74ee91570b49fc1b3d284c82804471",
+      "language": "elm",
+      "raw_comment": "{-| Images from <https://pixabay.com>\n-}",
+      "raw_sha256": "ab2cfc4db9c7629edd385054b01d5c1b1bfa5359320aeba02c603436580f20dd",
+      "raw_utf8_length": 40,
+      "source_provenance": {
+        "source_excerpt_sha256": "646e78ce0520fe8a4579b73d542f4bef13813c4fef5d26f4fb75b9f50e4c9992",
+        "source_id": "2bf566de5ea001806a162ea1d4ca9178fdf19a05"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "399fc7737763034af357cd68c1bc8fd46cd7d603d83d6f94435651108272d16d",
+      "case_id": "elm-nested-ea64c5079a7955b9",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Has no effect if the given todo id is not found",
+      "expected_cleaned_sha256": "a6b7731b20300b34d8483a924e420631bcb724b6e522e9113d8ffe38d68e9336",
+      "language": "elm",
+      "raw_comment": "{-| Has no effect if the given todo id is not found -}",
+      "raw_sha256": "8a3a51cf67ee100166becd2df9f8029210b3ac633061c9c02c2676f4b81211a8",
+      "raw_utf8_length": 54,
+      "source_provenance": {
+        "source_excerpt_sha256": "8946206a605924f82fffedc3c99d0a6ac07d5f10f829b4bc359e61eb81e14146",
+        "source_id": "f0355eb1194f629873a6c5b5c5cbc7fcbc877880"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "920b7ecd7652a1b119471fcb09f4ffc09bc71c541b69cc9b07e8fa4a425bf37c",
+      "case_id": "elm-nested-eb43e161dc7d1f4e",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "A publicly accessible reference",
+      "expected_cleaned_sha256": "757c720f3256c2b5c5ffe063d7be1fb3305121e5f6ec43e630ed3587b9d4b93f",
+      "language": "elm",
+      "raw_comment": "{-| A publicly accessible reference\n-}",
+      "raw_sha256": "94af5f547468a2dab15a11db8d09b3145dafbda329192dbaae8b88d245935726",
+      "raw_utf8_length": 38,
+      "source_provenance": {
+        "source_excerpt_sha256": "006a5952a6c40c247d88361919ec2d6c84089a38726db6a5bb07c5022f44ae69",
+        "source_id": "860b5ce638ef76f200d1ac65874c94a5b4a037a6"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "a3af7b64ab4baedba1ab453e3a70f31ac8a76b0d6e0bdd5cfe9134907a59921e",
+      "case_id": "frege-nested-7bca23ed57d9ee8c",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "    A littel bit faster than the Java version it was derived from\n    with n=100000 it takes runtime 3468.549 wallclock seconds.\n    Java needs runtime: 3817.946\n\n    This is funny, as the frege program has been adapted from the java source\n    (with the help of the then current Haskell source).\n    Anyway, the core of the algorith is the same.\n    But perhaps frege code is just better food for the JIT.\n\n    Here is the original java code:\n\n    /* The Great Computer Language Shootout\n   http://shootout.alioth.debian.org/\n\n   contributed by Isaac Gouy\n    */\n\nimport java.math.BigInteger;\n\npublic class Jpidigits {\n   static final int L = 10;\n\n   public static void main(String args[]) {\n      long t0 = System.currentTimeMillis();\n      int n = Integer.parseInt(args[0]);\n      int j = 0;\n\n      PiDigitSpigot digits = new PiDigitSpigot();\n\n      while (n > 0){\n         if (n >= L){\n            for (int i=0; i<L; i++) System.out.print( digits.next() );\n            j += L;\n         } else {\n            for (int i=0; i<n; i++) System.out.print( digits.next() );\n            for (int i=n; i<L; i++) System.out.print(\" \");\n            j += n;\n         }\n         System.out.print(\"\\t:\"); System.out.println(j);\n         n -= L;\n      }\n      long t1 = System.currentTimeMillis();\n      System.err.println(\"runtime: \" + (t1-t0)/1000.0);\n   }\n}\n\n\nclass PiDigitSpigot {\n   Transformation z, x, inverse;\n\n   public PiDigitSpigot(){\n      z = new Transformation(1,0,0,1);\n      x = new Transformation(0,0,0,0);\n      inverse = new Transformation(0,0,0,0);\n   }\n\n   public int next(){\n      int y = digit();\n      if (isSafe(y)){\n         z = produce(y); return y;\n      } else {\n         z = consume( x.next() ); return next();\n      }\n   }\n\n   public int digit(){\n      return z.extract(3);\n   }\n\n   public boolean isSafe(int digit){\n      return digit == z.extract(4);\n   }\n\n   public Transformation produce(int i){\n      return ( inverse.qrst(10,-10*i,0,1) ).compose(z);\n   }\n\n   public Transformation consume(Transformation a){\n      return z.compose(a);\n   }\n}\n\n\nclass Transformation {\n   BigInteger q, r, s, t;\n   int k;\n\n   public Transformation(int q, int r, int s, int t){\n      this.q = BigInteger.valueOf(q);\n      this.r = BigInteger.valueOf(r);\n      this.s = BigInteger.valueOf(s);\n      this.t = BigInteger.valueOf(t);\n      k = 0;\n   }\n\n   public Transformation(BigInteger q, BigInteger r, BigInteger s, BigInteger t){\n      this.q = q;\n      this.r = r;\n      this.s = s;\n      this.t = t;\n      k = 0;\n   }\n\n   public Transformation next(){\n      k++;\n      q = BigInteger.valueOf(k);\n      r = BigInteger.valueOf(4 * k + 2);\n      s = BigInteger.valueOf(0);\n      t = BigInteger.valueOf(2 * k + 1);\n      return this;\n   }\n\n   public int extract(int j){\n      BigInteger bigj = BigInteger.valueOf(j);\n      BigInteger numerator = (q.multiply(bigj)).add(r);\n      BigInteger denominator = (s.multiply(bigj)).add(t);\n      return ( numerator.divide(denominator) ).intValue();\n   }\n\n   public Transformation qrst(int q, int r, int s, int t){\n      this.q = BigInteger.valueOf(q);\n      this.r = BigInteger.valueOf(r);\n      this.s = BigInteger.valueOf(s);\n      this.t = BigInteger.valueOf(t);\n      k = 0;\n      return this;\n   }\n\n   public Transformation compose(Transformation a){\n      return new Transformation(\n         q.multiply(a.q)\n         ,(q.multiply(a.r)).add( (r.multiply(a.t)) )\n         ,(s.multiply(a.q)).add( (t.multiply(a.s)) )\n         ,(s.multiply(a.r)).add( (t.multiply(a.t)) )\n         );\n   }\n}",
+      "expected_cleaned_sha256": "ba4f3530a71c0d1586e7380fcdc6943cad01a1b514e84bb6973cd26752f9ce21",
+      "language": "frege",
+      "raw_comment": "{-\n    A littel bit faster than the Java version it was derived from\n    with n=100000 it takes runtime 3468.549 wallclock seconds.\n    Java needs runtime: 3817.946\n    \n    This is funny, as the frege program has been adapted from the java source\n    (with the help of the then current Haskell source).\n    Anyway, the core of the algorith is the same.\n    But perhaps frege code is just better food for the JIT.\n    \n    Here is the original java code:\n    \n    /* The Great Computer Language Shootout\n   http://shootout.alioth.debian.org/\n\n   contributed by Isaac Gouy\n    */\n\nimport java.math.BigInteger;\n\npublic class Jpidigits {\n   static final int L = 10;\n\n   public static void main(String args[]) {\n      long t0 = System.currentTimeMillis();\n      int n = Integer.parseInt(args[0]);\n      int j = 0;\n\n      PiDigitSpigot digits = new PiDigitSpigot();\n\n      while (n > 0){\n         if (n >= L){\n            for (int i=0; i<L; i++) System.out.print( digits.next() );\n            j += L;\n         } else {\n            for (int i=0; i<n; i++) System.out.print( digits.next() );\n            for (int i=n; i<L; i++) System.out.print(\" \");\n            j += n;\n         }\n         System.out.print(\"\\t:\"); System.out.println(j);\n         n -= L;\n      }\n      long t1 = System.currentTimeMillis();\n      System.err.println(\"runtime: \" + (t1-t0)/1000.0);\n   }\n}\n\n\nclass PiDigitSpigot {\n   Transformation z, x, inverse;\n\n   public PiDigitSpigot(){\n      z = new Transformation(1,0,0,1);\n      x = new Transformation(0,0,0,0);\n      inverse = new Transformation(0,0,0,0);\n   }\n\n   public int next(){\n      int y = digit();\n      if (isSafe(y)){\n         z = produce(y); return y;\n      } else {\n         z = consume( x.next() ); return next();\n      }\n   }\n\n   public int digit(){\n      return z.extract(3);\n   }\n\n   public boolean isSafe(int digit){\n      return digit == z.extract(4);\n   }\n\n   public Transformation produce(int i){\n      return ( inverse.qrst(10,-10*i,0,1) ).compose(z);\n   }\n\n   public Transformation consume(Transformation a){\n      return z.compose(a);\n   }\n}\n\n\nclass Transformation {\n   BigInteger q, r, s, t;\n   int k;\n\n   public Transformation(int q, int r, int s, int t){\n      this.q = BigInteger.valueOf(q);\n      this.r = BigInteger.valueOf(r);\n      this.s = BigInteger.valueOf(s);\n      this.t = BigInteger.valueOf(t);\n      k = 0;\n   }\n\n   public Transformation(BigInteger q, BigInteger r, BigInteger s, BigInteger t){\n      this.q = q;\n      this.r = r;\n      this.s = s;\n      this.t = t;\n      k = 0;\n   }\n\n   public Transformation next(){\n      k++;\n      q = BigInteger.valueOf(k);\n      r = BigInteger.valueOf(4 * k + 2);\n      s = BigInteger.valueOf(0);\n      t = BigInteger.valueOf(2 * k + 1);\n      return this;\n   }\n\n   public int extract(int j){\n      BigInteger bigj = BigInteger.valueOf(j);\n      BigInteger numerator = (q.multiply(bigj)).add(r);\n      BigInteger denominator = (s.multiply(bigj)).add(t);\n      return ( numerator.divide(denominator) ).intValue();\n   }\n\n   public Transformation qrst(int q, int r, int s, int t){\n      this.q = BigInteger.valueOf(q);\n      this.r = BigInteger.valueOf(r);\n      this.s = BigInteger.valueOf(s);\n      this.t = BigInteger.valueOf(t);\n      k = 0;\n      return this;\n   }\n\n   public Transformation compose(Transformation a){\n      return new Transformation(\n         q.multiply(a.q)\n         ,(q.multiply(a.r)).add( (r.multiply(a.t)) )\n         ,(s.multiply(a.q)).add( (t.multiply(a.s)) )\n         ,(s.multiply(a.r)).add( (t.multiply(a.t)) )\n         );\n   }\n}   \n-}",
+      "raw_sha256": "2d02b10bc3f668bfb25bb32eb869bb08dbe53ff2ca8d5fe809eef59cc9e8d117",
+      "raw_utf8_length": 3557,
+      "source_provenance": {
+        "source_excerpt_sha256": "8013cdee0dd794b28145962f8f67b94e155a6ee0461388f33e156e62776bfc34",
+        "source_id": "c49674645388998a230e6784a4974d5d8f69a8d3"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "b331924d8797e18fc0c55a0056fccf7ef78d7b8f24d653b6d87905852bb74b07",
+      "case_id": "grammatical_framework-nested-c37be78beac3f2ba",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "tools menu - \u0431\u0430\u0437\u043e\u0432\u044b\u0439 \u0444\u0440\u0435\u0439\u043c \u0434\u043b\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u043c\u0435\u043d\u044e \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u043e\u0432",
+      "expected_cleaned_sha256": "dc5d032708b2df3d9bdecc981a79701c07c8081bab673d93923d6f77777f84b8",
+      "language": "grammatical_framework",
+      "raw_comment": "{--\n\ntools menu - \u0431\u0430\u0437\u043e\u0432\u044b\u0439 \u0444\u0440\u0435\u0439\u043c \u0434\u043b\u044f \u043e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u043c\u0435\u043d\u044e \u0438\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u043e\u0432\n\n========================================================================= --}",
+      "raw_sha256": "ce665510d1f179d38946e20ca1918e72476eeef29e9290b92dca2db1c04b3756",
+      "raw_utf8_length": 186,
+      "source_provenance": {
+        "source_excerpt_sha256": "de7c63b10d996381fc32539564789d98d3e49e6091484c233df79f7a8d6faaef",
+        "source_id": "bb781bfefd5b85a4c6af8bcbd0aa293cf5371ec5"
+      },
+      "syntax_label": "{-...-}"
+    },
+    {
+      "baseline_cleaned_sha256": "9540ede58013443701d35351a5265e0bff34e3684564e39563eda2de7d33ac52",
+      "case_id": "grammatical_framework-nested-d684be7bb9cdffe6",
+      "comment_kind": "nested",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439",
+      "expected_cleaned_sha256": "cf4220f475d249871d27e4339386b199be2260b4884420df6d3d1f332346bdf3",
+      "language": "grammatical_framework",
+      "raw_comment": "{--\n\n\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439\n\n========================================================================= --}",
+      "raw_sha256": "6b3094c9e577ed18b98b06fd69c7adc997af67d2b59bba5d3877b46b7a9d8266",
+      "raw_utf8_length": 123,
+      "source_provenance": {
+        "source_excerpt_sha256": "6cb2afcb85b2b39c44460f82eda50026dc00c224baf709ba021f547f5ed99249",
+        "source_id": "b3473b2b72676fa584b59aec515a4d5beba4dda8"
+      },
+      "syntax_label": "{-...-}"
+    }
+  ],
+  "schema_version": 5
+}

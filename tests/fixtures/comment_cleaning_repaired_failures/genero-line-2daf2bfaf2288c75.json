@@ -1,0 +1,38 @@
+{
+  "case_id": "genero-line-2daf2bfaf2288c75",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u002b",
+  "disposition": "executable_regression",
+  "language": "genero",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "98991f5c3a61d5c1ea1c42483e6915ce943f14c6317b2fc50da1f41d58cc7f8a",
+      "utf8_length": 45
+    },
+    "manifest_old_output": {
+      "sha256": "ee95d5900676b4be3d35fa5278a7d1a7ebc9590d5fcf26e7592720db323a466b",
+      "utf8_length": 40
+    },
+    "raw_comment": {
+      "sha256": "d5e755a3121a9ae3d305837674eb3aead25ecc47fa3dcaf4ecb3ca015a83bf6d",
+      "utf8_length": 54
+    },
+    "recommended_expected_output": {
+      "sha256": "ee95d5900676b4be3d35fa5278a7d1a7ebc9590d5fcf26e7592720db323a466b",
+      "utf8_length": 40
+    }
+  },
+  "regression": {
+    "expected_output": "api\n\nBDL level API for accordion widgets",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "#+\n#+ api\n#+\n#+ BDL level API for accordion widgets\n#+"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "509bab8bd90d9da0300c918b9603dc5b6c9fae5908fc567e88ef7cd38b1b3c89",
+    "source_id": "0801f117f3b415547da14058dc7a2ad1036514d9"
+  },
+  "source_record_sha256": "06912525ee886ec88f4af7f3842977750c32425fed43ec4893e66f16d39bcb8b"
+}

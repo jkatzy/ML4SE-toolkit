@@ -1,0 +1,38 @@
+{
+  "case_id": "xproc-block-e167618188fafc76",
+  "category": "sanitizer_regression",
+  "cluster": "content_loss:ellipsis",
+  "disposition": "executable_regression",
+  "language": "xproc",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6b4ddc99ab11d4185e3a55c3072d47f2ab6c0a88d2fffe0f056524b85c29ad27",
+      "utf8_length": 55
+    },
+    "manifest_old_output": {
+      "sha256": "2b08ac9097ce9e882ca3e2f4083b84ae6f7538f15dc52a9db34a247a4ebda6ec",
+      "utf8_length": 58
+    },
+    "raw_comment": {
+      "sha256": "5ccb046d8ca1237dd76a5fddaf7d291aa5bb5fe5e8bf2aaa58cd72e5cc7c80af",
+      "utf8_length": 67
+    },
+    "recommended_expected_output": {
+      "sha256": "2b08ac9097ce9e882ca3e2f4083b84ae6f7538f15dc52a9db34a247a4ebda6ec",
+      "utf8_length": 58
+    }
+  },
+  "regression": {
+    "expected_output": "Should be able to configure the URI for eXist from here...",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!-- Should be able to configure the URI for eXist from here... -->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "f3fd4838358a9334f15aa1a7acf5a89d49d5c4be1ab6a31ab5a91a38e0813fb8",
+    "source_id": "1ea5c373d9e1964a0661b1c0b71a9cb54ef0b019"
+  },
+  "source_record_sha256": "e0141cbf301b60f4d8fd939d1b7cb2f87d6bbada8a2ce9ed4f85046f65203090"
+}

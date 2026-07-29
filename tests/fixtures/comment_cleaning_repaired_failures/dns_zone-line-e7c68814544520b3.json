@@ -1,0 +1,29 @@
+{
+  "case_id": "dns_zone-line-e7c68814544520b3",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:deletion",
+  "disposition": "accounting_only_no_oracle",
+  "language": "dns_zone",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "fb65574b550f05c5e5b415c7ce74ce727341365073b33a707da727eedf703e1c",
+      "utf8_length": 34
+    },
+    "manifest_old_output": {
+      "sha256": "6269db8d055f70d327c8071428c964d687559da1460d189ae594ccb5d2fe2201",
+      "utf8_length": 35
+    },
+    "raw_comment": {
+      "sha256": "4b2b470ca0fee88a3547788209d8cc146f0c7d51c6a53e186ff803dc1022035e",
+      "utf8_length": 69
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "df115a62fcb1c71d19df9d3fae96767e89bb50816dcd88c781fefff9da7c9c40",
+    "source_id": "8ed1855e5e7ca35c219e260fc2a7dc1a0de7732b"
+  },
+  "source_record_sha256": "a0ffcf00bb54e09c72d89bde7ecdfd5aaf99c125461a1a397eac303bb135e3a0"
+}

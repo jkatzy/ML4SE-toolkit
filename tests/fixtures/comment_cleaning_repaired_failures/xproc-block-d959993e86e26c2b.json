@@ -1,0 +1,38 @@
+{
+  "case_id": "xproc-block-d959993e86e26c2b",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "xproc",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "df31f2329b292cf2c32725f2af53f11cb4bcdee2242ab09a3fffc9c78d1a34e0",
+      "utf8_length": 580
+    },
+    "manifest_old_output": {
+      "sha256": "90dbbad59c723e032acd63fe88d94bd453e7139bafa463a9b4048a458119fc83",
+      "utf8_length": 557
+    },
+    "raw_comment": {
+      "sha256": "5e99362b18fc3dca72d9c95cfaac76cb02fa4e513c674ff544c4f78b70c729a4",
+      "utf8_length": 588
+    },
+    "recommended_expected_output": {
+      "sha256": "90dbbad59c723e032acd63fe88d94bd453e7139bafa463a9b4048a458119fc83",
+      "utf8_length": 557
+    }
+  },
+  "regression": {
+    "expected_output": "Copyright (c) 2011-2012 James Fuller\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "<!--\n  Copyright (c) 2011-2012 James Fuller\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n  http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n//-->"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "24cb565fdb2295802391a7336b25b4f91c04ffb7762215699030b8184b195eb5",
+    "source_id": "d6f3de334989eafa6eed5eac189531f8ddf9a179"
+  },
+  "source_record_sha256": "667d66de64a14084152a28629677e212f6c1128f0c37e0f90ab8be02e3b91266"
+}

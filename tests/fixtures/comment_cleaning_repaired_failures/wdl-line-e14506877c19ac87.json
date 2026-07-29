@@ -1,0 +1,38 @@
+{
+  "case_id": "wdl-line-e14506877c19ac87",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "wdl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ea208287e3bac95f23e3ddbc6381c3c5ad6ff5f3946997d51697212f8332012d",
+      "utf8_length": 65
+    },
+    "manifest_old_output": {
+      "sha256": "a3130d074dfaeded1e72476725a461a43e051bd62665504c8f9514393d644834",
+      "utf8_length": 61
+    },
+    "raw_comment": {
+      "sha256": "6013d5b6d781aa11efa2ada004c18bd459662dc8bd995f9f9fe7fecebe025d19",
+      "utf8_length": 68
+    },
+    "recommended_expected_output": {
+      "sha256": "a3130d074dfaeded1e72476725a461a43e051bd62665504c8f9514393d644834",
+      "utf8_length": 61
+    }
+  },
+  "regression": {
+    "expected_output": "Evaluate performance of a CNV callset against a truth callset",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Evaluate performance of a CNV callset against a truth callset\n####"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "8fc6145b825d51f57f79cf483dc4293cc2219294d206df0c8db94665ec3b48e8",
+    "source_id": "7e2d8c8c88aa5d223709dfe096f457ccba60ad24"
+  },
+  "source_record_sha256": "a2a942a35ec292cb0959fc5c9e9b884199144b74722300c9089aaf29b31523e5"
+}

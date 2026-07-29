@@ -1,0 +1,38 @@
+{
+  "case_id": "ssh_config-line-ebe3e141b2d389b4",
+  "category": "sanitizer_regression",
+  "cluster": "retained_scaffolding:mixed_edge",
+  "disposition": "executable_regression",
+  "language": "ssh_config",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "ad13252b0672de58e7e4143ea7cc844b2fab8663bc60d40d144eb2f299e9d6c2",
+      "utf8_length": 36
+    },
+    "manifest_old_output": {
+      "sha256": "58943a03a996dd2abaf1ae50bcc965f16bcf6d921d96a67917c75d01b9542491",
+      "utf8_length": 21
+    },
+    "raw_comment": {
+      "sha256": "fba0efaac702f8c455b6eea6fd0aa36dcca4714e069d539e1edc465d958538d0",
+      "utf8_length": 37
+    },
+    "recommended_expected_output": {
+      "sha256": "58943a03a996dd2abaf1ae50bcc965f16bcf6d921d96a67917c75d01b9542491",
+      "utf8_length": 21
+    }
+  },
+  "regression": {
+    "expected_output": "{{ ansible_managed }}",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "### --- {{ ansible_managed }} --- ###"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "da33a8b7a85c1222f165c466106ac07626155665152f8cb5b4a34b9f4efcf003",
+    "source_id": "eed916fb93605c14188aa9eddbcbe20cf331853b"
+  },
+  "source_record_sha256": "221bbe9e697854a50bc51d64414ea8564a9d1ff648ff135b1b2f4bf837ea7c81"
+}

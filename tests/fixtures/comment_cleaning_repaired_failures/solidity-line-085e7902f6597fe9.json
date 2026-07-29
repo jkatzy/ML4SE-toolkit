@@ -1,0 +1,29 @@
+{
+  "case_id": "solidity-line-085e7902f6597fe9",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "solidity",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "6dee9d4e5ea0879b2953ce6697b7b9d00a18e675041512518110c530b8102d38",
+      "utf8_length": 2762
+    },
+    "manifest_old_output": {
+      "sha256": "6dee9d4e5ea0879b2953ce6697b7b9d00a18e675041512518110c530b8102d38",
+      "utf8_length": 2762
+    },
+    "raw_comment": {
+      "sha256": "22260194e15075d290efc7bd98772be03377e1653e84a09742860e1936776019",
+      "utf8_length": 2762
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "6e4887426d2ee5c8e5b489d5ee132fed9bcd5ee3892fc1aecb14655265742e9a",
+    "source_id": "fe7109c3a572165b1ea672c2a10fcc326262407e"
+  },
+  "source_record_sha256": "f57e2cb287a5e45202e6726e99601f4667730711079d94d562a9cbf1e47de5ee"
+}

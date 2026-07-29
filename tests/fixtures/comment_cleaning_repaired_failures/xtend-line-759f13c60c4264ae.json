@@ -1,0 +1,29 @@
+{
+  "case_id": "xtend-line-759f13c60c4264ae",
+  "category": "needs_manual_review",
+  "cluster": "partial_cleanup:deletion",
+  "disposition": "accounting_only_no_oracle",
+  "language": "xtend",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "95644307808f71111c35dbda09dedf9afbc1211c555724eb189385951001ce5d",
+      "utf8_length": 44
+    },
+    "manifest_old_output": {
+      "sha256": "59cf595e178b68898954291c304d91e05d46db8a7f023442f091c072f69a4c54",
+      "utf8_length": 47
+    },
+    "raw_comment": {
+      "sha256": "173b2c820aac679dbc6a6f1c43753842a144a87b735b1e4b6416bdbaaee182f9",
+      "utf8_length": 50
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "30fe82c370b5f4392e9140e64091afdad07fcd56ab58fd4b7fd3aa2e72472ad2",
+    "source_id": "3e6f53c3d3232fd53219d192d622c3658fe54668"
+  },
+  "source_record_sha256": "2eb704f8b6106675ab1d0b2239eaa2d97f2fa9736b84520392779046a6740324"
+}

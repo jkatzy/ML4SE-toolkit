@@ -56,8 +56,19 @@ class CommentSyntax:
         shared_contextual_examples: Contextual examples for every alias.
         canonical_contextual_examples: Contextual examples only for the
             canonical language.
+        sanitizer_line_wrappers: Explicit line-comment ``(open, close)``
+            wrappers. These augment wrappers inferred from seeded examples and
+            are useful when example prose would make inference ambiguous.
+        sanitizer_block_wrappers: Explicit block-comment ``(open, close)``
+            wrappers. These augment nested delimiters and wrappers inferred
+            from seeded examples.
         unclosed_block_openers: Block openers that intentionally consume through
             end of file when no closing delimiter is present.
+        excluded_comment_prefixes: Exact prefixes that resemble this family's
+            comment syntax but belong to a source directive or operator.
+        language_excluded_comment_prefixes: Per-language exact-prefix exclusions
+            for directives that apply to only selected members of a syntax
+            family.
         sanitizer_mode: ``wrapped`` for delimiter-based comments or ``raw`` for
             contextual comments whose text must be preserved verbatim.
         documentation_source: Reference used to justify the syntax entry.
@@ -78,7 +89,11 @@ class CommentSyntax:
     contextual_extractor: str = ""
     shared_contextual_examples: Tuple[CommentExample, ...] = ()
     canonical_contextual_examples: Tuple[CommentExample, ...] = ()
+    sanitizer_line_wrappers: Tuple[Tuple[str, str], ...] = ()
+    sanitizer_block_wrappers: Tuple[Tuple[str, str], ...] = ()
     unclosed_block_openers: Tuple[str, ...] = ()
+    excluded_comment_prefixes: Tuple[str, ...] = ()
+    language_excluded_comment_prefixes: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     sanitizer_mode: str = "wrapped"
     documentation_source: str = "TODO"
     implementation_source: str = "src/ml4setk/Parsing/Comments/registry.py"
@@ -91,6 +106,20 @@ class CommentSyntax:
 
         return (self.canonical_name,) + self.aliases
 
+    def excluded_comment_prefixes_for_language(self, language: str) -> Tuple[str, ...]:
+        """Return family-wide and dialect-specific prefix exclusions."""
+
+        normalized = language.strip().lower()
+        dialect_prefixes = next(
+            (
+                prefixes
+                for dialect, prefixes in self.language_excluded_comment_prefixes
+                if dialect == normalized
+            ),
+            (),
+        )
+        return self.excluded_comment_prefixes + dialect_prefixes
+
 
 COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
@@ -98,6 +127,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="two_dimensional_array",
         aliases=("2_dimensional_array",),
         regex_patterns=(r"(?m)^[#/][^\r\n]*",),
+        sanitizer_line_wrappers=(("//", ""), ("#", "")),
         shared_regex_examples=(
             CommentExample(
                 "# table note\nROW VALUE",
@@ -118,8 +148,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "https://gibberlings3.github.io/iesdp/file_formats/ie_formats/2da.htm"
         ),
         implementation_source=(
-            "https://github.com/gemrb/gemrb/blob/master/gemrb/plugins/"
-            "2DAImporter/2DAImporter.cpp"
+            "https://github.com/gemrb/gemrb/blob/master/gemrb/plugins/2DAImporter/2DAImporter.cpp"
         ),
         confidence="cross-checked",
         notes=(
@@ -140,12 +169,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://apiblueprint.org/documentation/specification.html"
-        ),
-        implementation_source=(
-            "https://github.com/apiaryio/api-blueprint/issues/263"
-        ),
+        documentation_source=("https://apiblueprint.org/documentation/specification.html"),
+        implementation_source=("https://github.com/apiaryio/api-blueprint/issues/263"),
         confidence="cross-checked",
         notes=(
             "API Blueprint inherits GitHub Flavored Markdown HTML comments. "
@@ -166,12 +191,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://www.ibiblio.org/apollo/assembly_language_manual.html"
-        ),
-        implementation_source=(
-            "https://github.com/virtualagc/virtualagc/blob/master/yaYUL/Pass.c"
-        ),
+        documentation_source=("https://www.ibiblio.org/apollo/assembly_language_manual.html"),
+        implementation_source=("https://github.com/virtualagc/virtualagc/blob/master/yaYUL/Pass.c"),
         confidence="verified",
         notes="The yaYUL assembler treats everything following # as a comment.",
     ),
@@ -181,7 +202,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(r";[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
-                "(do ; note\n  (prn \"hello\"))",
+                '(do ; note\n  (prn "hello"))',
                 "; note",
                 "Arc semicolon line comment.",
                 kind="line",
@@ -191,8 +212,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://arclanguage.github.io/tut-stable.html",
         implementation_source=(
-            "https://github.com/arclanguage/anarki/blob/master/"
-            "lib/tests/parser-test.arc"
+            "https://github.com/arclanguage/anarki/blob/master/lib/tests/parser-test.arc"
         ),
         confidence="cross-checked",
         notes="Arc inherits semicolon line comments from its Lisp reader.",
@@ -207,7 +227,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         shared_regex_examples=(
             CommentExample(
-                "<%-- note --%>\n<asp:Label runat=\"server\" />",
+                '<%-- note --%>\n<asp:Label runat="server" />',
                 "<%-- note --%>",
                 "ASP.NET Web Forms server-side comment.",
                 kind="block",
@@ -226,8 +246,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "webapps/aspnet/development/inline-expressions"
         ),
         implementation_source=(
-            "https://github.com/textmate/asp.tmbundle/blob/master/"
-            "Syntaxes/HTML-ASP.plist"
+            "https://github.com/textmate/asp.tmbundle/blob/master/Syntaxes/HTML-ASP.plist"
         ),
         confidence="verified",
         notes=(
@@ -261,8 +280,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://www.beeflang.org/docs/language-guide/",
         implementation_source=(
-            "https://github.com/beefytech/Beef/blob/master/"
-            "IDEHelper/Compiler/BfParser.cpp"
+            "https://github.com/beefytech/Beef/blob/master/IDEHelper/Compiler/BfParser.cpp"
         ),
         confidence="verified",
         notes=(
@@ -295,12 +313,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://berry.readthedocs.io/en/latest/source/en/Chapter-1.html"
-        ),
-        implementation_source=(
-            "https://github.com/berry-lang/berry/blob/master/src/be_lexer.c"
-        ),
+        documentation_source=("https://berry.readthedocs.io/en/latest/source/en/Chapter-1.html"),
+        implementation_source=("https://github.com/berry-lang/berry/blob/master/src/be_lexer.c"),
         confidence="verified",
         notes=(
             "Berry block comments stop at the first -# delimiter and do not "
@@ -322,8 +336,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://speced.github.io/bikeshed/#big-text",
         implementation_source=(
-            "https://github.com/speced/bikeshed/blob/main/"
-            "bikeshed/h/parser/parser.py"
+            "https://github.com/speced/bikeshed/blob/main/bikeshed/h/parser/parser.py"
         ),
         confidence="verified",
         notes=(
@@ -351,8 +364,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "_release/help/language/lang_ref_comments.html"
         ),
         implementation_source=(
-            "https://github.com/blitz-research/blitz3d/blob/master/"
-            "compiler/toker.cpp"
+            "https://github.com/blitz-research/blitz3d/blob/master/compiler/toker.cpp"
         ),
         confidence="verified",
         notes=(
@@ -367,6 +379,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?im)^[ \t]*rem\b[\S\s]*?^[ \t]*end[ \t]*rem\b[^\r\n]*",
             r"'[^\r\n]*",
         ),
+        sanitizer_line_wrappers=(("'", ""),),
+        sanitizer_block_wrappers=(("Rem", "End Rem"), ("Rem", "EndRem")),
         shared_regex_examples=(
             CommentExample(
                 'Print "Comment Test"    \' note\nPrint "done"',
@@ -377,16 +391,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
             CommentExample(
-                "Rem\nnote\nEnd Rem\nPrint \"done\"",
+                'Rem\nnote\nEnd Rem\nPrint "done"',
                 "Rem\nnote\nEnd Rem",
                 "BlitzMax Rem block comment.",
                 kind="block",
             ),
         ),
         documentation_source="https://blitzmax.org/docs/en/language/comments/",
-        implementation_source=(
-            "https://github.com/bmx-ng/bcc/blob/master/toker.bmx"
-        ),
+        implementation_source=("https://github.com/bmx-ng/bcc/blob/master/toker.bmx"),
         confidence="verified",
         notes=(
             "Apostrophe comments run to newline. Rem blocks are line-oriented, "
@@ -419,12 +431,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://github.com/B-Lang-org/bsc/blob/main/"
-            "doc/BSV_ref_guide/BSV_lang.tex"
+            "https://github.com/B-Lang-org/bsc/blob/main/doc/BSV_ref_guide/BSV_lang.tex"
         ),
         implementation_source=(
-            "https://github.com/B-Lang-org/bsc/blob/main/"
-            "src/comp/SystemVerilogPreprocess.lhs"
+            "https://github.com/B-Lang-org/bsc/blob/main/src/comp/SystemVerilogPreprocess.lhs"
         ),
         confidence="verified",
         notes=(
@@ -467,12 +477,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://github.com/boo-lang/boo/wiki/Language-guide%3A-comments"
-        ),
+        documentation_source=("https://github.com/boo-lang/boo/wiki/Language-guide%3A-comments"),
         implementation_source=(
-            "https://github.com/boo-lang/boo/blob/master/"
-            "src/Boo.Lang.Parser/boo.g"
+            "https://github.com/boo-lang/boo/blob/master/src/Boo.Lang.Parser/boo.g"
         ),
         confidence="verified",
         notes=(
@@ -497,20 +504,16 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         shared_nested_examples=(
             CommentExample(
-                "var value:int;\n/* outer /* note */ outer */\n"
-                "assume value > 0;",
+                "var value:int;\n/* outer /* note */ outer */\nassume value > 0;",
                 "/* outer /* note */ outer */",
                 "Boogie nested block comment.",
                 kind="nested",
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://boogie-docs.readthedocs.io/en/latest/LangRef.html#comments"
-        ),
+        documentation_source=("https://boogie-docs.readthedocs.io/en/latest/LangRef.html#comments"),
         implementation_source=(
-            "https://github.com/boogie-org/boogie/blob/master/"
-            "Source/Core/BoogiePL.atg"
+            "https://github.com/boogie-org/boogie/blob/master/Source/Core/BoogiePL.atg"
         ),
         confidence="verified",
         notes=(
@@ -544,12 +547,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://github.com/rokucommunity/brighterscript/blob/master/"
-            "docs/readme.md"
+            "https://github.com/rokucommunity/brighterscript/blob/master/docs/readme.md"
         ),
         implementation_source=(
-            "https://github.com/rokucommunity/brighterscript/blob/master/"
-            "src/lexer/Lexer.ts"
+            "https://github.com/rokucommunity/brighterscript/blob/master/src/lexer/Lexer.ts"
         ),
         confidence="verified",
         notes=(
@@ -583,12 +584,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://developer.roku.com/dev/docs/expressions-variables-types"
-        ),
+        documentation_source=("https://developer.roku.com/dev/docs/expressions-variables-types"),
         implementation_source=(
-            "https://github.com/rokucommunity/brighterscript/blob/master/"
-            "src/lexer/Lexer.ts"
+            "https://github.com/rokucommunity/brighterscript/blob/master/src/lexer/Lexer.ts"
         ),
         confidence="verified",
         notes=(
@@ -612,12 +610,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://github.com/browserslist/browserslist#browserslistrc"
-        ),
-        implementation_source=(
-            "https://github.com/browserslist/browserslist/blob/main/node.js"
-        ),
+        documentation_source=("https://github.com/browserslist/browserslist#browserslistrc"),
+        implementation_source=("https://github.com/browserslist/browserslist/blob/main/node.js"),
         confidence="verified",
         notes=(
             "Browserslist strips # through newline before splitting config "
@@ -676,9 +670,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source="https://cadence-lang.org/docs/language/syntax#comments",
-        implementation_source=(
-            "https://github.com/onflow/cadence/blob/master/parser/comment.go"
-        ),
+        implementation_source=("https://github.com/onflow/cadence/blob/master/parser/comment.go"),
         confidence="verified",
         notes=(
             "Cadence line comments run to newline and block comments are "
@@ -710,12 +702,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://cartocss.readthedocs.io/en/latest/language_elements.html"
-        ),
-        implementation_source=(
-            "https://github.com/cartocss/carto/blob/master/lib/carto/parser.js"
-        ),
+        documentation_source=("https://cartocss.readthedocs.io/en/latest/language_elements.html"),
+        implementation_source=("https://github.com/cartocss/carto/blob/master/lib/carto/parser.js"),
         confidence="verified",
         notes=(
             "CartoCSS skips // comments silently and retains /* ... */ comments "
@@ -758,8 +746,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://web.mit.edu/ceylon_v1.3.3/ceylon-1.3.3/doc/en/spec/"
-            "html_single/#comments"
+            "https://web.mit.edu/ceylon_v1.3.3/ceylon-1.3.3/doc/en/spec/html_single/#comments"
         ),
         implementation_source=(
             "https://github.com/eclipse-archived/ceylon/blob/master/typechecker/"
@@ -797,12 +784,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://chapel-lang.org/docs/language/spec/lexical-structure.html"
-            "#comments"
+            "https://chapel-lang.org/docs/language/spec/lexical-structure.html#comments"
         ),
         implementation_source=(
-            "https://github.com/chapel-lang/chapel/blob/main/frontend/lib/"
-            "parsing/lexer-help.h"
+            "https://github.com/chapel-lang/chapel/blob/main/frontend/lib/parsing/lexer-help.h"
         ),
         confidence="verified",
         notes=(
@@ -820,9 +805,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         shared_regex_examples=(
             CommentExample(
-                ".method public static void Main() cil managed {\n"
-                "  ret // note\n"
-                "}",
+                ".method public static void Main() cil managed {\n  ret // note\n}",
                 "// note",
                 "ILAsm slash line comment.",
                 kind="line",
@@ -830,10 +813,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
             CommentExample(
-                ".method public static void Main() cil managed {\n"
-                "  /* note */\n"
-                "  ret\n"
-                "}",
+                ".method public static void Main() cil managed {\n  /* note */\n  ret\n}",
                 "/* note */",
                 "ILAsm non-nested block comment.",
                 kind="block",
@@ -845,8 +825,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "bugslayer-ildasm-is-your-new-best-friend"
         ),
         implementation_source=(
-            "https://github.com/dotnet/runtime/blob/main/src/coreclr/ilasm/"
-            "grammar_after.cpp"
+            "https://github.com/dotnet/runtime/blob/main/src/coreclr/ilasm/grammar_after.cpp"
         ),
         confidence="verified",
         notes=(
@@ -869,12 +848,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://clarion.help/doku.php?id=special_characters.htm"
-        ),
+        documentation_source=("https://clarion.help/doku.php?id=special_characters.htm"),
         implementation_source=(
-            "https://github.com/fushnisoft/SublimeClarion/blob/master/"
-            "clarion.configuration.json"
+            "https://github.com/fushnisoft/SublimeClarion/blob/master/clarion.configuration.json"
         ),
         confidence="verified",
         notes=(
@@ -890,6 +866,17 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"<!--[\S\s]*?-->",
             r"(?im)<%[ \t]*(?:'|rem\b)(?:(?!%>)[^\r\n])*(?:%>)?",
         ),
+        sanitizer_line_wrappers=(
+            ("<%' ", "%>"),
+            ("<%' ", ""),
+            ("<%'", "%>"),
+            ("<%'", ""),
+            ("<% Rem ", "%>"),
+            ("<% Rem ", ""),
+            ("'*", ""),
+            ("'", ""),
+        ),
+        sanitizer_block_wrappers=(("<!--", "-->"),),
         shared_regex_examples=(
             CommentExample(
                 "<!-- note -->\n<% Response.Write Now() %>",
@@ -946,9 +933,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://clean.cs.ru.nl/download/doc/CleanLangRep.2.2.pdf"
-        ),
+        documentation_source=("https://clean.cs.ru.nl/download/doc/CleanLangRep.2.2.pdf"),
         implementation_source=(
             "https://gitlab.science.ru.nl/clean-compiler-and-rts/compiler/"
             "-/blob/master/frontend/scanner.icl"
@@ -984,12 +969,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://github.com/kohler/click/blob/master/doc/click.5"
-        ),
-        implementation_source=(
-            "https://github.com/kohler/click/blob/master/lib/lexer.cc"
-        ),
+        documentation_source=("https://github.com/kohler/click/blob/master/doc/click.5"),
+        implementation_source=("https://github.com/kohler/click/blob/master/lib/lexer.cc"),
         confidence="verified",
         notes=(
             "Click uses // and non-nested /* ... */ comments throughout "
@@ -1003,7 +984,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(r";[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
-                "(defrule example ; note\n  =>\n  (printout t \"ok\" crlf))",
+                '(defrule example ; note\n  =>\n  (printout t "ok" crlf))',
                 "; note",
                 "CLIPS semicolon line comment.",
                 kind="line",
@@ -1011,12 +992,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://www.clipsrules.net/documentation/v642/bpg642.pdf"
-        ),
-        implementation_source=(
-            "https://github.com/noxdafox/clips/blob/master/core/scanner.c"
-        ),
+        documentation_source=("https://www.clipsrules.net/documentation/v642/bpg642.pdf"),
+        implementation_source=("https://github.com/noxdafox/clips/blob/master/core/scanner.c"),
         confidence="verified",
         notes=(
             "CLIPS semicolon comments run to the next newline. The scanner "
@@ -1230,8 +1207,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         regex_patterns=(
             r"\/\*[\S\s]*?\*\/",
-            r"/{2}.*.*",
+            r"/{2}[^\r\n]*",
         ),
+        language_excluded_comment_prefixes=(("c", ("/*!re2c",)),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n// note\nsuffix",
@@ -1269,8 +1247,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         implementation_source="https://github.com/cue-lang/cue",
         confidence="verified",
         notes=(
-            "CUE v0.16.1 accepts // line comments and rejects C-style "
-            "/* ... */ block comments."
+            "CUE v0.16.1 accepts // line comments and rejects C-style /* ... */ block comments."
         ),
     ),
     CommentSyntax(
@@ -1308,8 +1285,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://csound.com/docs/manual/",
         implementation_source=(
-            "https://github.com/pygments/pygments/blob/2.20.0/"
-            "pygments/lexers/csound.py"
+            "https://github.com/pygments/pygments/blob/2.20.0/pygments/lexers/csound.py"
         ),
         confidence="cross-checked",
         notes=(
@@ -1349,9 +1325,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://ctan.math.illinois.edu/info/knuth/cwebman.pdf"
-        ),
+        documentation_source=("https://ctan.math.illinois.edu/info/knuth/cwebman.pdf"),
         confidence="verified",
         notes=(
             "CWEB control text after @q up to @> is ignored by CTANGLE/CWEAVE. "
@@ -1385,10 +1359,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         documentation_source="https://openqasm.com/language/comments.html",
         implementation_source="https://github.com/openqasm/openqasm",
         confidence="verified",
-        notes=(
-            "OpenQASM 3 supports // line comments and non-nested /* ... */ "
-            "block comments."
-        ),
+        notes=("OpenQASM 3 supports // line comments and non-nested /* ... */ block comments."),
     ),
     CommentSyntax(
         family_name="rust_style",
@@ -1463,7 +1434,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "gn",
             "gnuplot",
             "haproxy",
-            "ignore_list",
             "jq",
             "janet",
             "kaitai_struct",
@@ -1557,6 +1527,28 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="ignore_list_style",
+        canonical_name="ignore_list",
+        regex_patterns=(r"(?m)^#[^\r\n]*",),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\n*.log",
+                "# note",
+                "Ignore-list comment beginning at the first byte of a line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://git-scm.com/docs/gitignore#Documentation/gitignore.txt-_PATTERN_FORMAT"
+        ),
+        confidence="verified",
+        notes=(
+            "A leading # begins a comment. Escaped hashes, indented hashes, "
+            "and hashes later in a pattern are pattern data."
         ),
     ),
     CommentSyntax(
@@ -1783,7 +1775,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "purebasic",
             "wisp",
         ),
-        regex_patterns=(r";.*",),
+        regex_patterns=(r";[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n; note\nsuffix",
@@ -1798,9 +1790,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="module_management_system_style",
         canonical_name="module_management_system",
-        regex_patterns=(
-            r"(?m)(?<!\S)[#!][^\r\n]*",
-        ),
+        regex_patterns=(r"(?m)(?<!\S)[#!][^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "! note\nMAIN.EXE : MAIN.OBJ",
@@ -1836,6 +1826,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?m)^; [^\r\n]*",
             r"(?ms)<comment\b[^>]*>[\S\s]*?</comment>",
         ),
+        sanitizer_line_wrappers=((";", ""),),
         shared_regex_examples=(
             CommentExample(
                 "; note\nParagraph text",
@@ -1899,8 +1890,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://ltwiki.org/LTspiceHelp/LTspiceHelp/"
-            "A_General_Structure_and_Conventions.htm"
+            "https://ltwiki.org/LTspiceHelp/LTspiceHelp/A_General_Structure_and_Conventions.htm"
         ),
         implementation_source=(
             "https://ez.analog.com/cfs-filesystemfile/__key/"
@@ -1999,9 +1989,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://docs.netlify.com/manage/routing/redirects/overview/"
-        ),
+        documentation_source=("https://docs.netlify.com/manage/routing/redirects/overview/"),
         confidence="verified",
         notes="Netlify _redirects comments are lines beginning with #.",
     ),
@@ -2049,8 +2037,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://github.com/antlr/stringtemplate4/blob/master/doc/"
-            "cheatsheet.md"
+            "https://github.com/antlr/stringtemplate4/blob/master/doc/cheatsheet.md"
         ),
         confidence="verified",
         notes="StringTemplate supports template comments in both delimiter modes.",
@@ -2061,6 +2048,17 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(
             r"(?m)^[ \t]*;/\*[^\r\n]*(?:\r?\n[ \t]*;[^\r\n]*)*?\r?\n[ \t]*;\*/[^\r\n]*",
             r"(?m)^[ \t]*;[^\r\n]*",
+        ),
+        sanitizer_line_wrappers=(
+            (";/*++", ""),
+            (";/*--", ""),
+            (";--*/", ""),
+            ("; //", ""),
+            (";//", ""),
+            (";", "*/"),
+            (";/*", ""),
+            (";*/", ""),
+            (";", ""),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -2078,8 +2076,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://learn.microsoft.com/en-us/windows/win32/eventlog/"
-            "message-text-files"
+            "https://learn.microsoft.com/en-us/windows/win32/eventlog/message-text-files"
         ),
         confidence="verified",
         notes=(
@@ -2091,6 +2088,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="world_of_warcraft_addon_data_style",
         canonical_name="world_of_warcraft_addon_data",
         regex_patterns=(r"(?m)^#[^#\r\n][^\r\n]*|^#$",),
+        sanitizer_line_wrappers=(("#", ""),),
         shared_regex_examples=(
             CommentExample(
                 "## Interface: 100000\n# note\nAddon.lua",
@@ -2136,6 +2134,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?m)^[ \t]*\.[!;][^\r\n]*",
             r"![^;\r\n]*",
         ),
+        sanitizer_line_wrappers=((".!", ""), (".;", ""), ("!", "")),
         shared_regex_examples=(
             CommentExample(
                 ".LEFT MARGIN 0.RIGHT MARGIN 60!note;.SKIP",
@@ -2145,15 +2144,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
             CommentExample(
-                ".!Place comment here.\n.LEFT MARGIN 0",
-                ".!Place comment here.",
+                ".!note\n.LEFT MARGIN 0",
+                ".!note",
                 "RUNOFF control/comment flag pair at line start.",
                 kind="directive",
             ),
         ),
         documentation_source=(
-            "https://docs.vmssoftware.com/"
-            "digital-standard-runoff-reference-manual/"
+            "https://docs.vmssoftware.com/digital-standard-runoff-reference-manual/"
         ),
         confidence="verified",
         notes=(
@@ -2222,8 +2220,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://xorg.freedesktop.org/archive/X11R7.5/doc/man/man1/"
-            "mkfontdir.1.html"
+            "https://xorg.freedesktop.org/archive/X11R7.5/doc/man/man1/mkfontdir.1.html"
         ),
         confidence="verified",
         notes="X fonts.alias ignores lines beginning with ! as comments.",
@@ -2308,7 +2305,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="pascal_style",
         canonical_name="pascal",
-        aliases=("oxygene", "portugol"),
+        aliases=("oxygene",),
         regex_patterns=(
             r"\{[\S\s]*?\}",
             r"/{2}.*.*",
@@ -2353,6 +2350,40 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "The generic Pascal key implements the union of Free Pascal, TP/Delphi, "
             "and Pascal65 comment forms. It accepts //, { ... }, and (* ... *)."
+        ),
+    ),
+    CommentSyntax(
+        family_name="portugol_style",
+        canonical_name="portugol",
+        regex_patterns=(
+            r"/\*[\S\s]*?\*/",
+            r"/{2}[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "programa {\n  // note\n  funcao inicio() {}\n}",
+                "// note",
+                "Portugol Studio line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "programa {\n  /* note */\n  funcao inicio() {}\n}",
+                "/* note */",
+                "Portugol Studio block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/UNIVALI-LITE/Portugol-Studio/wiki/A-Linguagem-Portugol#comentários"
+        ),
+        implementation_source=("https://github.com/UNIVALI-LITE/Portugol-Studio"),
+        confidence="cross-checked",
+        notes=(
+            "Portugol Studio uses // and /* ... */ comments. Program bodies use "
+            "braces, so Portugol must not inherit Pascal brace comments."
         ),
     ),
     CommentSyntax(
@@ -2422,12 +2453,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://fstar-lang.org/tutorial/book/part1/"
-            "part1_getting_off_the_ground.html"
+            "https://fstar-lang.org/tutorial/book/part1/part1_getting_off_the_ground.html"
         ),
         implementation_source=(
-            "https://github.com/FStarLang/FStar/blob/master/src/ml/"
-            "FStarC_Parser_LexFStar.ml"
+            "https://github.com/FStarLang/FStar/blob/master/src/ml/FStarC_Parser_LexFStar.ml"
         ),
         confidence="verified",
         notes="F* supports // comments and true nested (* ... *) comments.",
@@ -2783,6 +2812,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"\/\*[\s\S]*?\*\/",
             r"--.*",
         ),
+        excluded_comment_prefixes=("/*!",),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n-- note\nsuffix",
@@ -2832,6 +2862,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="batchfile_style",
         canonical_name="batchfile",
         regex_patterns=(r"(?mi)^[ \t]*(?:rem\b.*|::.*)$",),
+        sanitizer_line_wrappers=(("::", ""), ("REM", "")),
         shared_regex_examples=(
             CommentExample(
                 "REM note\nafter",
@@ -2857,6 +2888,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"'[^\r\n]*",
             r"(?im)^[ \t]*rem\b[^\r\n]*",
         ),
+        sanitizer_line_wrappers=(("REM", ""), ("'", "")),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n' note\nsuffix",
@@ -2871,7 +2903,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="quote_line_style",
         canonical_name="vim_script",
-        aliases=("smalltalk", "viml"),
+        aliases=("viml",),
         regex_patterns=(r"\".*",),
         shared_regex_examples=(
             CommentExample(
@@ -2885,9 +2917,33 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="smalltalk_style",
+        canonical_name="smalltalk",
+        regex_patterns=(r'"[\S\s]*?"',),
+        sanitizer_block_wrappers=(('"', '"'),),
+        shared_regex_examples=(
+            CommentExample(
+                'before\n"note"\nafter',
+                '"note"',
+                "Smalltalk paired double-quote comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.gnu.org/software/smalltalk/manual/html_node/Smalltalk-syntax.html"
+        ),
+        confidence="verified",
+        notes=(
+            "Smalltalk comments are paired double-quoted regions and may span "
+            "physical lines. This is distinct from Vim's one-sided quote syntax."
+        ),
+    ),
+    CommentSyntax(
         family_name="editorconfig_style",
         canonical_name="editorconfig",
         regex_patterns=(r"(?m)^[ \t]*[;#].*$",),
+        sanitizer_line_wrappers=(("#", ""), (";", "")),
         shared_regex_examples=(
             CommentExample(
                 "# note\nafter",
@@ -2994,6 +3050,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"#.*",
             r";.*",
         ),
+        sanitizer_line_wrappers=(("#", ""), (";", "")),
+        sanitizer_block_wrappers=(("/*", "*/"),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n; note\nsuffix",
@@ -3016,9 +3074,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="applescript_style",
         canonical_name="applescript",
         regex_patterns=(
-            r"#.*",
-            r"--.*",
+            r"(?!\A#!)#[^\r\n]*",
+            r"--[^\r\n]*",
         ),
+        sanitizer_line_wrappers=(("--", ""), ("#", "")),
         nested_delimiters=(("(*", "*)"),),
         shared_regex_examples=(
             CommentExample(
@@ -3044,7 +3103,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="hash_pipe_style",
         canonical_name="racket",
         aliases=("common_lisp",),
-        regex_patterns=(r";.*",),
+        regex_patterns=(r";[^\r\n]*",),
         nested_delimiters=(("#|", "|#"),),
         shared_regex_examples=(
             CommentExample(
@@ -3072,7 +3131,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(r";[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
-                "(message \"before\") ; note\n(message \"after\")",
+                '(message "before") ; note\n(message "after")',
                 "; note",
                 "Emacs Lisp semicolon line comment.",
                 kind="line",
@@ -3081,8 +3140,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://www.gnu.org/software/emacs/manual/html_node/elisp/"
-            "Comment-Tips.html"
+            "https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html"
         ),
         implementation_source="https://git.savannah.gnu.org/cgit/emacs.git",
         confidence="verified",
@@ -3150,6 +3208,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?<!/)'(?!/).*",
             r"(?im)^[ \t]*rem\b.*$",
         ),
+        sanitizer_line_wrappers=(("REM", ""), ("'", "")),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n' note\nsuffix",
@@ -3262,7 +3321,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         shared_regex_examples=(
             CommentExample(
-                "service {\n  // note\n  host = \"localhost\"\n}",
+                'service {\n  // note\n  host = "localhost"\n}',
                 "// note",
                 "HOCON slash line comment.",
                 kind="line",
@@ -3270,7 +3329,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
             CommentExample(
-                "service {\n  # note\n  host = \"localhost\"\n}",
+                'service {\n  # note\n  host = "localhost"\n}',
                 "# note",
                 "HOCON hash line comment.",
                 kind="line",
@@ -3291,6 +3350,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="xquery",
         aliases=("jsoniq",),
         nested_delimiters=(("(:", ":)"),),
+        sanitizer_block_wrappers=(
+            ("(::", "::)"),
+            ("(:~", ":)"),
+        ),
         shared_nested_examples=(
             CommentExample(
                 "before (: outer (: inner :) outer :) after",
@@ -3347,10 +3410,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://cmake.org/cmake/help/latest/manual/"
-            "cmake-language.7.html"
-        ),
+        documentation_source=("https://cmake.org/cmake/help/latest/manual/cmake-language.7.html"),
         implementation_source="https://gitlab.kitware.com/cmake/cmake",
         confidence="verified",
         notes=(
@@ -3602,6 +3662,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"\/\*[\S\s]*?\*\/",
             r"(?m)^\*.*$",
         ),
+        sanitizer_line_wrappers=(("*", ";"), ("*", "")),
+        sanitizer_block_wrappers=(("/*", "*/"),),
         shared_regex_examples=(
             CommentExample(
                 "* note\nafter",
@@ -3631,6 +3693,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "purescript",
         ),
         regex_patterns=(r"--.*",),
+        excluded_comment_prefixes=("-->",),
         nested_delimiters=(("{-", "-}"),),
         shared_regex_examples=(
             CommentExample(
@@ -3659,6 +3722,17 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?m)^[ \t]*\*.*$",
             r"\".*",
         ),
+        sanitizer_line_wrappers=(
+            ('*"*"', ""),
+            ("***", ""),
+            ("**", ""),
+            ('"*', ""),
+            ('"!', ""),
+            ('*"', ""),
+            ("*&", ""),
+            ('"', ""),
+            ("*", ""),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "* note\nafter",
@@ -3682,7 +3756,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="comment_record_style",
         canonical_name="adobe_font_metrics",
         aliases=("glyph_bitmap_distribution_format",),
-        regex_patterns=(r"(?im)\bcomment\b.*",),
+        regex_patterns=(r"(?im)\bcomment\b[^\r\n]*",),
+        sanitizer_line_wrappers=(("Comment", ""),),
         shared_regex_examples=(
             CommentExample(
                 "Comment note\nafter",
@@ -3940,8 +4015,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://github.com/eclipse-archived/golo-lang/blob/master/"
-            "doc/basics.adoc"
+            "https://github.com/eclipse-archived/golo-lang/blob/master/doc/basics.adoc"
         ),
         implementation_source=(
             "https://github.com/eclipse-archived/golo-lang/blob/master/"
@@ -3991,6 +4065,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?m)^([ \t]*)/[^\n]*(?:\n\1[ \t]+.*)*",
             r"(?m)^[ \t]*-#.*$",
         ),
+        unclosed_block_openers=("/",),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n-# note\nsuffix",
@@ -4014,6 +4089,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(
             r"\{\{!--[\S\s]*?--\}\}",
             r"\{\{![\S\s]*?\}\}",
+        ),
+        sanitizer_block_wrappers=(
+            ("{{!----", "----}}"),
+            ("{{!--", "--}}"),
+            ("{{!", "}}"),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -4142,6 +4222,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"\{%-?\s*comment\s*-?%\}[\S\s]*?\{%-?\s*endcomment\s*-?%\}",
             r"\{%-?\s*(?:#[^\r\n]*(?:\r?\n\s*#[^\r\n]*)*)\s*-?%\}",
         ),
+        sanitizer_block_wrappers=(
+            ("{%- comment -%}", "{%- endcomment -%}"),
+            ("{% comment -%}", "{% endcomment -%}"),
+            ("{% comment %}", "{% endcomment %}"),
+            ("{%comment %}", "{%endcomment%}"),
+            ("{%comment%}", "{%endcomment%}"),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n{% # note %}\nsuffix",
@@ -4202,6 +4289,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="mustache_style",
         canonical_name="mustache",
         regex_patterns=(r"\{\{![\S\s]*?\}\}",),
+        sanitizer_block_wrappers=(
+            ("{{!----", "----}}"),
+            ("{{!--", "--}}"),
+            ("{{!", "}}"),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n{{! note }}\nsuffix",
@@ -4221,6 +4313,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?m)^([ \t]*)//-?[^\n]*(?:\n\1[ \t]+.*)*",
             r"(?m)^[ \t]*//-?.*$",
         ),
+        sanitizer_line_wrappers=(("//-", ""), ("//", "")),
+        unclosed_block_openers=("//-", "//"),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n// note\nsuffix",
@@ -4238,6 +4332,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?ms)(?<!\S)/[ \t]*\n[\S\s]*?\n\\(?!\S)",
             r"(?m)(?<!\S)/(?![/*]).*$",
         ),
+        sanitizer_line_wrappers=(("/L/", ""), ("/F/", ""), ("/", "")),
+        sanitizer_block_wrappers=(("/\n", "\n\\"),),
         shared_regex_examples=(
             CommentExample(
                 "a:42 / note\nb:0",
@@ -4561,6 +4657,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="slim_style",
         canonical_name="slim",
         regex_patterns=(r"(?m)^([ \t]*)/!?[^\n]*(?:\n\1[ \t]+.*)*",),
+        sanitizer_line_wrappers=(("/!", ""), ("/", "")),
+        unclosed_block_openers=("/!", "/"),
         shared_regex_examples=(
             CommentExample(
                 "body\n  / note\n  p Visible content.",
@@ -4635,8 +4733,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://esolangs.org/wiki/Brainfuck",
         implementation_source=(
-            "https://github.com/pygments/pygments/blob/2.20.0/"
-            "pygments/lexers/esoteric.py"
+            "https://github.com/pygments/pygments/blob/2.20.0/pygments/lexers/esoteric.py"
         ),
         confidence="cross-checked",
         notes=(
@@ -4653,6 +4750,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?ims)^[ \t]*quiet\b[^\r\n]*(?:\r?\n[\S\s]*?)^[ \t]*loud\b[^\r\n]*",
             r"(?im)^[ \t]*shh\b[^\r\n]*",
         ),
+        sanitizer_line_wrappers=(("shh", ""),),
+        sanitizer_block_wrappers=(("quiet", "loud"),),
         shared_regex_examples=(
             CommentExample(
                 "shh much note\nvery doge is 'wow'",
@@ -4667,9 +4766,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
             ),
         ),
-        documentation_source=(
-            "https://github.com/dogescript/dogescript/blob/master/LANGUAGE.md"
-        ),
+        documentation_source=("https://github.com/dogescript/dogescript/blob/master/LANGUAGE.md"),
         confidence="verified",
         notes="Dogescript documents shh line comments and quiet/loud multiline comments.",
     ),
@@ -4717,8 +4814,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://learn.microsoft.com/en-us/aspnet/core/test/"
-            "http-files?view=aspnetcore-10.0"
+            "https://learn.microsoft.com/en-us/aspnet/core/test/http-files?view=aspnetcore-10.0"
         ),
         confidence="verified",
         notes=(
@@ -4739,9 +4835,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="attribute",
             ),
         ),
-        documentation_source=(
-            "https://dev-docs.kicad.org/en/file-formats/sexpr-intro/index.html"
-        ),
+        documentation_source=("https://dev-docs.kicad.org/en/file-formats/sexpr-intro/index.html"),
         confidence="verified",
         notes=(
             "Generic Stack KiCad files use KiCad s-expressions. The common "
@@ -4764,8 +4858,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://pythonhosted.org/Myghty/documentation.html",
         implementation_source=(
-            "https://github.com/pygments/pygments/blob/2.20.0/"
-            "pygments/lexers/templates.py"
+            "https://github.com/pygments/pygments/blob/2.20.0/pygments/lexers/templates.py"
         ),
         confidence="cross-checked",
         notes="Myghty template comment lines begin with # at the start of a line.",
@@ -4794,12 +4887,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://www.ncl.ucar.edu/Document/Manuals/Ref_Manual/"
-            "NclStatements.shtml"
+            "https://www.ncl.ucar.edu/Document/Manuals/Ref_Manual/NclStatements.shtml"
         ),
         implementation_source=(
-            "https://github.com/pygments/pygments/blob/2.20.0/"
-            "pygments/lexers/ncl.py"
+            "https://github.com/pygments/pygments/blob/2.20.0/pygments/lexers/ncl.py"
         ),
         confidence="verified",
         notes="NCL supports semicolon line comments and /; ... ;/ block comments.",
@@ -4830,8 +4921,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://shen-language.github.io/",
         implementation_source=(
-            "https://github.com/pygments/pygments/blob/2.20.0/"
-            "pygments/lexers/lisp.py"
+            "https://github.com/pygments/pygments/blob/2.20.0/pygments/lexers/lisp.py"
         ),
         confidence="cross-checked",
         notes="The Shen lexer recognizes \\\\ line comments and \\* ... *\\ block comments.",
@@ -4870,8 +4960,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         documentation_source="https://github.com/teatrove/teatrove",
         implementation_source=(
-            "https://github.com/pygments/pygments/blob/2.20.0/"
-            "pygments/lexers/templates.py"
+            "https://github.com/pygments/pygments/blob/2.20.0/pygments/lexers/templates.py"
         ),
         confidence="cross-checked",
         notes=(
@@ -4914,6 +5003,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="texinfo_style",
         canonical_name="texinfo",
         regex_patterns=(r"(?m)^[ \t]*@(?:c|comment)\b[^\r\n]*",),
+        sanitizer_line_wrappers=(("@comment", ""), ("@c", "")),
         shared_regex_examples=(
             CommentExample(
                 "@c note\n@node Top",
@@ -4997,7 +5087,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         shared_regex_examples=(
             CommentExample(
-                "Print \"Hello\" ' note\nEnd",
+                'Print "Hello" \' note\nEnd',
                 "' note",
                 "Monkey apostrophe line comment.",
                 kind="line",
@@ -5005,7 +5095,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
             CommentExample(
-                "Print \"before\"\n#Rem\nnote\n#End\nPrint \"after\"",
+                'Print "before"\n#Rem\nnote\n#End\nPrint "after"',
                 "#Rem\nnote\n#End",
                 "Monkey #Rem block comment.",
                 kind="block",
@@ -5031,6 +5121,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"\(\*[\S\s]*?\*\)",
             r"//[^\r\n]*",
         ),
+        sanitizer_block_wrappers=(("/*", "*/"),),
         shared_regex_examples=(
             CommentExample(
                 "DEFINE_PROGRAM\n// note\nWAIT 10 {}",
@@ -5044,6 +5135,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "DEFINE_PROGRAM\n(* note *)\nWAIT 10 {}",
                 "(* note *)",
                 "NetLinx parenthesized block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+            CommentExample(
+                "DEFINE_PROGRAM\n/* note */\nWAIT 10 {}",
+                "/* note */",
+                "NetLinx slash-star block comment.",
                 kind="block",
                 inline_compatible=True,
             ),
@@ -5061,7 +5159,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(r"/\*[\S\s]*?\*/",),
         shared_regex_examples=(
             CommentExample(
-                "MESSAGE \"before\".\n/* note */\nMESSAGE \"after\".",
+                'MESSAGE "before".\n/* note */\nMESSAGE "after".',
                 "/* note */",
                 "OpenEdge ABL block comment.",
                 kind="block",
@@ -5069,8 +5167,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://docs.progress.com/bundle/openedge-abl-basic-guided-journey/"
-            "page/Comments.html"
+            "https://docs.progress.com/bundle/openedge-abl-basic-guided-journey/page/Comments.html"
         ),
         confidence="verified",
         notes="OpenEdge ABL documents /* ... */ comments.",
@@ -5080,7 +5177,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="maxscript",
         regex_patterns=(
             r"/\*[\S\s]*?\*/",
-            r"--.*",
+            r"--[^\r\n]*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -5099,9 +5196,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://help.autodesk.com/cloudhelp/2026/ENU/MAXScript-Help/"
-        ),
+        documentation_source=("https://help.autodesk.com/cloudhelp/2026/ENU/MAXScript-Help/"),
         confidence="cross-checked",
         notes="MAXScript uses -- line comments and C-style /* ... */ block comments.",
     ),
@@ -5119,6 +5214,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         regex_patterns=(r"//[^\r\n]*",),
         nested_delimiters=(("/*", "*/"),),
+        language_excluded_comment_prefixes=(
+            ("reason", ("/*!re2c",)),
+            ("reasonml", ("/*!re2c",)),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "SynthDef(\\demo, { // note\n}).add;",
@@ -5150,6 +5249,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"\{[\S\s]*?\}",
             r"'{1,2}[^\r\n]*",
         ),
+        sanitizer_block_wrappers=(("{{", "}}"), ("{", "}")),
         shared_regex_examples=(
             CommentExample(
                 "PUB Main\n  ' note\n  return",
@@ -5168,8 +5268,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         documentation_source=(
-            "https://forums.parallax.com/discussion/download/85706/"
-            "Propeller_Tutorial_1.01.pdf"
+            "https://forums.parallax.com/discussion/download/85706/Propeller_Tutorial_1.01.pdf"
         ),
         confidence="verified",
         notes=(
@@ -5186,6 +5285,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"//[^\r\n]*",
             r"&&[^\r\n]*",
             r"(?im)^[ \t]*(?:\*|note\b).*$",
+        ),
+        sanitizer_line_wrappers=(
+            ("NOTE", ""),
+            ("&&", ""),
+            ("**", ""),
+            ("//", ""),
+            ("*", ""),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -5288,7 +5394,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="fennel_style",
         canonical_name="fennel",
-        regex_patterns=(r";.*",),
+        regex_patterns=(r";[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "(print :hello)\n; note\n(print :bye)",
@@ -5328,7 +5434,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="lfe_style",
         canonical_name="lfe",
-        regex_patterns=(r";.*",),
+        regex_patterns=(r";[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "(defun ping ()\n  ; note\n  'pong)",
@@ -5455,18 +5561,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         regex_patterns=(r"(?m)^#[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
-                "# note\n"
-                "e3b0c44298fc1c149afbf4c8996fb924"
-                "27ae41e4649b934ca495991b7852b855  empty",
+                "# note\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  empty",
                 "# note",
                 "GNU Coreutils checksum checker column-zero comment.",
                 kind="line",
                 grouped_line_compatible=True,
             ),
         ),
-        documentation_source=(
-            "https://www.gnu.org/software/coreutils/manual/html_node/cksum.html"
-        ),
+        documentation_source=("https://www.gnu.org/software/coreutils/manual/html_node/cksum.html"),
         implementation_source=(
             "https://github.com/coreutils/coreutils/blob/"
             "6e812858bb8b5cc1a4c91b16502a3092ead1d72f/src/cksum.c#L1414-L1416"
@@ -5535,10 +5637,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         sanitizer_mode="raw",
-        documentation_source=(
-            "https://sources.debian.org/data/main/f/figlet/"
-            "2.2.5-3/figfont.txt"
-        ),
+        documentation_source=("https://sources.debian.org/data/main/f/figlet/2.2.5-3/figfont.txt"),
         implementation_source=(
             "https://github.com/cmatsuoka/figlet/blob/"
             "202a0a8110650a943f1125f536b3bb455cf72ee1/figlet.c"
@@ -5585,13 +5684,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="ampl_nl_style",
         canonical_name="nl",
-        regex_patterns=(
-            r"(?m)^(?![ \t]*#)[^#\r\n]*\S[ \t]*\K#[^\r\n]*",
-        ),
+        regex_patterns=(r"(?m)^(?![ \t]*#)[^#\r\n]*\S[ \t]*\K#[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
-                "g3 0 1 0\t# note\n"
-                "0 0\n",
+                "g3 0 1 0\t# note\n0 0\n",
                 "# note",
                 "AMPL text .nl record annotation.",
                 kind="line",
@@ -5727,8 +5823,7 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
             )
 
         contextual_examples = (
-            syntax.shared_contextual_examples
-            or syntax.canonical_contextual_examples
+            syntax.shared_contextual_examples or syntax.canonical_contextual_examples
         )
         if syntax.contextual_extractor and not contextual_examples:
             raise ValueError(
@@ -5737,8 +5832,7 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
             )
         if contextual_examples and not syntax.contextual_extractor:
             raise ValueError(
-                "Contextual examples require a contextual extractor: "
-                + syntax.family_name
+                "Contextual examples require a contextual extractor: " + syntax.family_name
             )
         if (
             syntax.contextual_extractor
@@ -5750,23 +5844,68 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
             )
         if syntax.sanitizer_mode not in {"wrapped", "raw"}:
             raise ValueError(
-                f"Unknown sanitizer mode {syntax.sanitizer_mode!r}: "
-                + syntax.family_name
+                f"Unknown sanitizer mode {syntax.sanitizer_mode!r}: " + syntax.family_name
+            )
+        if any(
+            not open_token
+            for open_token, _ in (
+                *syntax.sanitizer_line_wrappers,
+                *syntax.sanitizer_block_wrappers,
+            )
+        ):
+            raise ValueError(
+                "Explicit sanitizer wrapper openers must not be empty: " + syntax.family_name
+            )
+        if any(not close_token for _, close_token in syntax.sanitizer_block_wrappers):
+            raise ValueError(
+                "Explicit sanitizer block closers must not be empty: " + syntax.family_name
+            )
+        if syntax.sanitizer_mode == "raw" and (
+            syntax.sanitizer_line_wrappers or syntax.sanitizer_block_wrappers
+        ):
+            raise ValueError(
+                "Raw sanitizers cannot declare explicit wrappers: " + syntax.family_name
             )
         if any(not opener for opener in syntax.unclosed_block_openers):
-            raise ValueError(
-                "Unclosed block openers must not be empty: "
-                + syntax.family_name
-            )
+            raise ValueError("Unclosed block openers must not be empty: " + syntax.family_name)
         if syntax.sanitizer_mode == "raw" and syntax.unclosed_block_openers:
             raise ValueError(
-                "Raw sanitizers cannot declare unclosed block openers: "
-                + syntax.family_name
+                "Raw sanitizers cannot declare unclosed block openers: " + syntax.family_name
             )
         if syntax.unclosed_block_openers and not syntax.regex_patterns:
+            raise ValueError("Unclosed block openers require regex patterns: " + syntax.family_name)
+        if any(not prefix for prefix in syntax.excluded_comment_prefixes):
+            raise ValueError("Excluded comment prefixes must not be empty: " + syntax.family_name)
+        if syntax.excluded_comment_prefixes and not (
+            syntax.regex_patterns or syntax.nested_delimiters
+        ):
             raise ValueError(
-                "Unclosed block openers require regex patterns: "
+                "Excluded comment prefixes require extractable syntax: " + syntax.family_name
+            )
+        dialect_exclusions = syntax.language_excluded_comment_prefixes
+        excluded_dialects = [language for language, _ in dialect_exclusions]
+        if len(excluded_dialects) != len(set(excluded_dialects)):
+            raise ValueError(
+                "Language-specific excluded comment prefixes must use unique "
+                "languages: " + syntax.family_name
+            )
+        if any(language not in syntax.language_names for language in excluded_dialects):
+            raise ValueError(
+                "Language-specific excluded comment prefixes require a family "
+                "language: " + syntax.family_name
+            )
+        if any(
+            not prefixes or any(not prefix for prefix in prefixes)
+            for _, prefixes in dialect_exclusions
+        ):
+            raise ValueError(
+                "Language-specific excluded comment prefixes must not be empty: "
                 + syntax.family_name
+            )
+        if dialect_exclusions and not (syntax.regex_patterns or syntax.nested_delimiters):
+            raise ValueError(
+                "Language-specific excluded comment prefixes require extractable "
+                "syntax: " + syntax.family_name
             )
 
         for language in syntax.language_names:
@@ -5809,6 +5948,15 @@ def _language_lookup_candidates(language: str) -> Tuple[str, ...]:
     return (normalized, stack_style)
 
 
+def _resolve_comment_language_key(language: str) -> str:
+    """Return the exact registered key selected by normalized lookup."""
+
+    for key in _language_lookup_candidates(language):
+        if key in LANGUAGE_SYNTAX:
+            return key
+    raise NotImplementedError(f"Unsupported language: {language}")
+
+
 def get_comment_syntax(language: str) -> CommentSyntax:
     """Return syntax metadata for one supported language.
 
@@ -5822,12 +5970,7 @@ def get_comment_syntax(language: str) -> CommentSyntax:
         NotImplementedError: If the language is not in the registry.
     """
 
-    for key in _language_lookup_candidates(language):
-        try:
-            return LANGUAGE_SYNTAX[key]
-        except KeyError:
-            continue
-    raise NotImplementedError(f"Unsupported language: {language}")
+    return LANGUAGE_SYNTAX[_resolve_comment_language_key(language)]
 
 
 def iter_comment_syntaxes() -> Iterable[CommentSyntax]:

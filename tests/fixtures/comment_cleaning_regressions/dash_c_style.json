@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "dash_c_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "880f9e7ba2b560239b54570087cfd013f6995bcf40f861a34c53af1a2a176d77",
+      "case_id": "euphoria-block-956270d48a959efc",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "--formatted text: creole syntax?\nSyntax                  Description\n=section                heading 1\n==section               heading 2\n===section              heading 3\n====section             heading 4\n=====section            heading 5\n======section           heading 6\ntext                    normal text\n**text**                bold text\n//text//                italic text\n__text__                underline text\n##text##                preformatted (monowidth)\n----                    horizontal line\n[[text->page]]          link to other page\n[[text->page:section]]  link to a section heading on a page\n{{imagename}}           image (must be already loaded into memory)\n* item                  bullet list\n# item                  numbered list\n<code></code>           section of non-euphoria source code (monowidth font, no syntax highlighting)\n<eucode></eucode>       section of euphoria source code (monowidth font, syntax highlighting)",
+      "expected_cleaned_sha256": "dea327af5f693c415d781435b1cb73dbe4ebaaa0c5075d8632542dc526d946d8",
+      "language": "euphoria",
+      "raw_comment": "/* --formatted text: creole syntax?\nSyntax                  Description\n=section                heading 1\n==section               heading 2\n===section              heading 3\n====section             heading 4\n=====section            heading 5\n======section           heading 6\ntext                    normal text\n**text**                bold text\n//text//                italic text\n__text__                underline text\n##text##                preformatted (monowidth)\n----                    horizontal line\n[[text->page]]          link to other page      \n[[text->page:section]]  link to a section heading on a page        \n{{imagename}}           image (must be already loaded into memory)\n* item                  bullet list\n# item                  numbered list\n<code></code>           section of non-euphoria source code (monowidth font, no syntax highlighting)\n<eucode></eucode>       section of euphoria source code (monowidth font, syntax highlighting)\n*/",
+      "raw_sha256": "bef0970c493f909e4a14a3de117fd1ffd628439462ef31af00a5a7fdf5fff116",
+      "raw_utf8_length": 965,
+      "source_provenance": {
+        "source_excerpt_sha256": "a51a76af315310c4cfda315215668b9c1620cdd424ae3e5fe9a4a0838d71274f",
+        "source_id": "a30a4e256d8bcd2861fd9ea90af60339134cc06d"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "6264415d79d330cabb70905f3dbc683d363181a513ba5e0cd8749b8e67573de7",
+      "case_id": "euphoria-line-6a4d5f96ffe9a769",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@+leo-ver=4-thin\n@+node:leonardo.20070409132846:@thin tut_1.ex\n@@language euphoria",
+      "expected_cleaned_sha256": "a24f4745da54d7973b079136eb505320b4957022c34a81cec3cadab63d248b09",
+      "language": "euphoria",
+      "raw_comment": "--@+leo-ver=4-thin\n--@+node:leonardo.20070409132846:@thin tut_1.ex\n--@@language euphoria",
+      "raw_sha256": "782db6cebc911873e620a9e4cddeee10489166f147f7b732a559c60edf439bff",
+      "raw_utf8_length": 88,
+      "source_provenance": {
+        "source_excerpt_sha256": "704758dfeeb8a0d9cd697f834002523acf99bf8e9a84180939707d9d00d2290b",
+        "source_id": "3f15ed918a696a35569c8e50f36f0590a129d8f9"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "schema_version": 5
+}

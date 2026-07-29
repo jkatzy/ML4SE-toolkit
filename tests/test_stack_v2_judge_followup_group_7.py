@@ -99,7 +99,11 @@ def test_stack_v2_handlebars_license_removes_comment_tag_delimiters():
         pytest.param(
             "nf-core/sarek Nextflow config file",
             "Default config options for all environments.",
-            (" nf-core/sarek Nextflow config file\nDefault config options for all environments."),
+            (
+                "nf-core/sarek Nextflow config file\n"
+                "-------------------------------------------------\n"
+                "Default config options for all environments."
+            ),
             id="nextflow-block-0de43860ee5c2ac5",
         ),
         pytest.param(
@@ -111,7 +115,8 @@ def test_stack_v2_handlebars_license_removes_comment_tag_delimiters():
                 "name here."
             ),
             (
-                " peterk87/nf-iav-ont Nextflow config file\n"
+                "peterk87/nf-iav-ont Nextflow config file\n"
+                "-------------------------------------------------\n"
                 "Default config options for all environments.\n"
                 "Cluster-specific config options should be saved\n"
                 "in the conf folder and imported under a profile\n"
@@ -123,14 +128,19 @@ def test_stack_v2_handlebars_license_removes_comment_tag_delimiters():
             "nf-core/proteomicslfq Nextflow config file",
             "Default config options for all environments.",
             (
-                " nf-core/proteomicslfq Nextflow config file\n"
+                "nf-core/proteomicslfq Nextflow config file\n"
+                "-------------------------------------------------\n"
                 "Default config options for all environments."
             ),
             id="nextflow-block-65f9d49bc979d24d",
         ),
     ],
 )
-def test_stack_v2_nextflow_config_removes_decorative_rulers(title, body, expected_cleaned):
+def test_stack_v2_nextflow_config_keeps_the_internal_section_divider(
+    title,
+    body,
+    expected_cleaned,
+):
     body_lines = "" if body is None else "".join(f" * {line}\n" for line in body.splitlines())
     raw_comment = (
         "/*\n"

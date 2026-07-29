@@ -1,0 +1,229 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "blitzmax_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "61db5f942637655d0bbc0f9a5ff1411f1e4f72fe845f60ab1c6ca58ff55c6412",
+      "case_id": "blitzmax-block-32650a44e46e5600",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "audio.bmx\nThis is a COLOSSEUM project BlitzMax source file.\nauthor: Tyler W Cole",
+      "expected_cleaned_sha256": "d1f213db1fa7d7308ea448331df1074b53419228b39d55610d7bbe118cb6657f",
+      "language": "blitzmax",
+      "raw_comment": "Rem\r\n\taudio.bmx\r\n\tThis is a COLOSSEUM project BlitzMax source file.\r\n\tauthor: Tyler W Cole\r\nEndRem",
+      "raw_sha256": "40bf385abc39b9f3823227a9b1d47b7b546d1f539b7365e43ee88e01716b0728",
+      "raw_utf8_length": 98,
+      "source_provenance": {
+        "source_excerpt_sha256": "71f04dd0aa81ca56b5f2ea2c1cae1bd9a277bb089dc8c0d1fb21669d568f1d4b",
+        "source_id": "abd784113d74ab79d83ebef5eaf2da271164a16c"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "1ad4fa1d246b3b40eb4e611c181c34d1f1a978503e2c96ba0526b51e8468ac2c",
+      "case_id": "blitzmax-block-3798b743265f39a9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2007-2011 Paul Maskelyne <muttley@muttleyville.org>.\n\nAll rights reserved. Use of this code is allowed under the\nArtistic License 2.0 terms, as specified in the LICENSE file\ndistributed with this code, or available from\nhttp://www.opensource.org/licenses/artistic-license-2.0.php",
+      "expected_cleaned_sha256": "788c4c811ed18c5b4aa7988312385d1625f932a44d071297abdca08bbf668cb2",
+      "language": "blitzmax",
+      "raw_comment": "Rem\r\n'\r\n' Copyright (c) 2007-2011 Paul Maskelyne <muttley@muttleyville.org>.\r\n\r\n' All rights reserved. Use of this code is allowed under the\r\n' Artistic License 2.0 terms, as specified in the LICENSE file\r\n' distributed with this code, or available from\r\n' http://www.opensource.org/licenses/artistic-license-2.0.php\r\n'\r\nEndRem",
+      "raw_sha256": "7349dec0a73abfa375cf99f5cc2fa48a9089ea85241d511c4d5ee5bebe8ab079",
+      "raw_utf8_length": 327,
+      "source_provenance": {
+        "source_excerpt_sha256": "39cb8ab3cf37c44be42d633831ce95eb33f7f1859c21f146a8bb1163ab4f8efb",
+        "source_id": "810fa58a18816a7c44ede95505b1e88f598f454d"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "d281d1e21de9e033d6a01d64eab8c9892c8e589e50da5d51483aebad74189652",
+      "case_id": "blitzmax-block-4b3cc99cdb8722c6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\n\nAll rights reserved. Use of this code is allowed under the\nArtistic License 2.0 terms, as specified in the LICENSE file\ndistributed with this code, or available from\nhttp://www.opensource.org/licenses/artistic-license-2.0.php",
+      "expected_cleaned_sha256": "069a2dd4faa70622bcf1b3b66dbc469626e81f440b35d8d100a3146d61aafe07",
+      "language": "blitzmax",
+      "raw_comment": "rem\r\n'\r\n' Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\r\n'\r\n' All rights reserved. Use of this code is allowed under the\r\n' Artistic License 2.0 terms, as specified in the LICENSE file\r\n' distributed with this code, or available from\r\n' http://www.opensource.org/licenses/artistic-license-2.0.php\r\n'\r\nendrem",
+      "raw_sha256": "12200eeed0d49dda549a91a3fbcdf6b26837627205211d480a1766ad843cf550",
+      "raw_utf8_length": 328,
+      "source_provenance": {
+        "source_excerpt_sha256": "e70ec5a721004590db9b65ddbb8224e78b391cf5c4d1e1c7e65232cf0c6fc697",
+        "source_id": "650adf590afc9f9d891a52eeecb8fa2863215f66"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "4e6c11f7c78e7c171670c685c72b6ba30fe05d65a6577b2bdab18e27a085c34f",
+      "case_id": "blitzmax-block-62c096c7bb8dfb81",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2010 Wiebo de Wit <wiebo.de.wit@gmail.com>.\n\nAll rights reserved. Use of this code is allowed under the\nArtistic License 2.0 terms, as specified in the LICENSE file\ndistributed with this code, or available from\nhttp://www.opensource.org/licenses/artistic-license-2.0.php",
+      "expected_cleaned_sha256": "df6e4673864e7ec49b70b7fba9c86f43a497694fa591554f0d70c1f500cb41a7",
+      "language": "blitzmax",
+      "raw_comment": "Rem\r\n'\r\n' Copyright (c) 2010 Wiebo de Wit <wiebo.de.wit@gmail.com>.\r\n'\r\n' All rights reserved. Use of this code is allowed under the\r\n' Artistic License 2.0 terms, as specified in the LICENSE file\r\n' distributed with this code, or available from\r\n' http://www.opensource.org/licenses/artistic-license-2.0.php\r\n'\r\nendrem",
+      "raw_sha256": "6d6aff47f7efbb858961082f5a15b55734b40a9b634822502e290335f7b69063",
+      "raw_utf8_length": 319,
+      "source_provenance": {
+        "source_excerpt_sha256": "cf3d0f1b5d2817aed2eddbe70107b034d0e372796ed16cc6329e2d86b5d85c15",
+        "source_id": "faa08e95e59f1a4275a4c894af5a695b54a11911"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "245704cd4b1626833ed905e2c5e03164a4ba986341fdea2d7950267ad572024f",
+      "case_id": "blitzmax-block-6369dac5c5786656",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\n\nAll rights reserved. Use of this code is allowed under the\nArtistic License 2.0 terms, as specified in the LICENSE file\ndistributed with this code, or available from\nhttp://www.opensource.org/licenses/artistic-license-2.0.php",
+      "expected_cleaned_sha256": "069a2dd4faa70622bcf1b3b66dbc469626e81f440b35d8d100a3146d61aafe07",
+      "language": "blitzmax",
+      "raw_comment": "Rem\r\n'\r\n' Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\r\n'\r\n' All rights reserved. Use of this code is allowed under the\r\n' Artistic License 2.0 terms, as specified in the LICENSE file\r\n' distributed with this code, or available from\r\n' http://www.opensource.org/licenses/artistic-license-2.0.php\r\n'\r\nEndRem",
+      "raw_sha256": "b5060a2abbeb845daaea5eb6ce1f66548df3a1c4e09c86122f19df7225941cbc",
+      "raw_utf8_length": 328,
+      "source_provenance": {
+        "source_excerpt_sha256": "e663ac15a4de44fe62cad5376258370b64c4edf87f57161eae257e6c571bc46b",
+        "source_id": "1b344efccce270bb49bf6132154a6b7be61890e4"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "d281d1e21de9e033d6a01d64eab8c9892c8e589e50da5d51483aebad74189652",
+      "case_id": "blitzmax-block-69f7df810f610279",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\n\nAll rights reserved. Use of this code is allowed under the\nArtistic License 2.0 terms, as specified in the LICENSE file\ndistributed with this code, or available from\nhttp://www.opensource.org/licenses/artistic-license-2.0.php",
+      "expected_cleaned_sha256": "069a2dd4faa70622bcf1b3b66dbc469626e81f440b35d8d100a3146d61aafe07",
+      "language": "blitzmax",
+      "raw_comment": "rem\r\n'\r\n' Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\r\n'\r\n' All rights reserved. Use of this code is allowed under the\r\n' Artistic License 2.0 terms, as specified in the LICENSE file\r\n' distributed with this code, or available from\r\n' http://www.opensource.org/licenses/artistic-license-2.0.php\r\n'\r\nendrem",
+      "raw_sha256": "12200eeed0d49dda549a91a3fbcdf6b26837627205211d480a1766ad843cf550",
+      "raw_utf8_length": 328,
+      "source_provenance": {
+        "source_excerpt_sha256": "9466ed51e216ee4bbf795197b2bfb3419ce0b746fb9e280287d405509e584ec7",
+        "source_id": "d6e839ed8965996f258ab96d198cea07e73406ac"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "b6f628f3250aea1d2b0859d14272ba1b47a17cf3e075235d93c433fa4990adf6",
+      "case_id": "blitzmax-block-6f00fedd759df1df",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Print\"-----\"\nPrint \"message type = \" + GMType\nPrint \"message count = \" + String(GRec)\nPrint \"message if any = \" + GMsg\nPrint \"-----\"",
+      "expected_cleaned_sha256": "35c05f6cf7adb9addab6cd42a0104bc3b76b4a92c894d26d21c4f6aad12dba4e",
+      "language": "blitzmax",
+      "raw_comment": "\t\t\t\tRem\t\n\t\t\t\t\tPrint\"-----\"\n\t\t\t\t\tPrint \"message type = \" + GMType\n\t\t\t\t\tPrint \"message count = \" + String(GRec)\n\t\t\t\t\tPrint \"message if any = \" + GMsg\n\t\t\t\t\tPrint \"-----\"\n\t\t\t\tEnd Rem\t",
+      "raw_sha256": "1878eaddc5c55d17c68a7c0855b43574dae57de8d21d43e9d4a9377049436931",
+      "raw_utf8_length": 179,
+      "source_provenance": {
+        "source_excerpt_sha256": "a273771c24b7131fe8418f5d1e793ff33dca7776e9f41c902eb69c9de2898a71",
+        "source_id": "1c93cfe080dd6b52053d95437dd7662f75bd71de"
+      },
+      "syntax_label": "Rem...End Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "d281d1e21de9e033d6a01d64eab8c9892c8e589e50da5d51483aebad74189652",
+      "case_id": "blitzmax-block-706bc98514d276ea",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\n\nAll rights reserved. Use of this code is allowed under the\nArtistic License 2.0 terms, as specified in the LICENSE file\ndistributed with this code, or available from\nhttp://www.opensource.org/licenses/artistic-license-2.0.php",
+      "expected_cleaned_sha256": "069a2dd4faa70622bcf1b3b66dbc469626e81f440b35d8d100a3146d61aafe07",
+      "language": "blitzmax",
+      "raw_comment": "rem\r\n'\r\n' Copyright (c) 2007-2010 Paul Maskelyne <muttley@muttleyville.org>.\r\n'\r\n' All rights reserved. Use of this code is allowed under the\r\n' Artistic License 2.0 terms, as specified in the LICENSE file\r\n' distributed with this code, or available from\r\n' http://www.opensource.org/licenses/artistic-license-2.0.php\r\n'\r\nendrem",
+      "raw_sha256": "12200eeed0d49dda549a91a3fbcdf6b26837627205211d480a1766ad843cf550",
+      "raw_utf8_length": 328,
+      "source_provenance": {
+        "source_excerpt_sha256": "5b5f3d53596740858c41ea415790e795d8edc840ca50120359e7d9a575312d20",
+        "source_id": "0d2ea8ca299d0cee6a97e9fdeaf7399d465fb181"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "62e101600699929ec82edf84ea6c2a39ca05a61f29342bf1d97872efc139f557",
+      "case_id": "blitzmax-block-7f21eeaf6ba6b0f5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (c) 2009 Noel R. Cower\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.",
+      "expected_cleaned_sha256": "8751ffb187a435a3d1c73f674def7c49632856623b69ae4973f303195efa0438",
+      "language": "blitzmax",
+      "raw_comment": "Rem\nCopyright (c) 2009 Noel R. Cower\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\nEndRem",
+      "raw_sha256": "62e101600699929ec82edf84ea6c2a39ca05a61f29342bf1d97872efc139f557",
+      "raw_utf8_length": 1067,
+      "source_provenance": {
+        "source_excerpt_sha256": "b9f4c251d1e7c4ffcbeac16d6c651dd5caaca91fa1c9b257998f923bb55f9a6c",
+        "source_id": "e079f9a122bccf3fb67ac1aeea91a71f28934a4f"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "39ece473906ec5c629feae9f085ef09e2b7caed36b8c24d40d4dc9788be82052",
+      "case_id": "blitzmax-block-8af32a6e2e52fdd3",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Function loadall()\n\tgrammars=New tmap\n\tFor path$=EachIn crawldir(\"grammars\")\n\t\tgrammar.fromfile(path)\n\tNext\nEnd Function",
+      "expected_cleaned_sha256": "1a3b90cfeb7425b11633b257b6938884dbdf253c84d05944082ab39ff70e0a5d",
+      "language": "blitzmax",
+      "raw_comment": "\tRem\r\n\tFunction loadall()\r\n\t\tgrammars=New tmap\r\n\t\tFor path$=EachIn crawldir(\"grammars\")\r\n\t\t\tgrammar.fromfile(path)\r\n\t\tNext\r\n\tEnd Function\r\n\tEndRem",
+      "raw_sha256": "863059ed981bcc747d4be522a5c3a257abf9e6feca90c17440f4a47d72a3768d",
+      "raw_utf8_length": 146,
+      "source_provenance": {
+        "source_excerpt_sha256": "6caf53ca945f1ea39cf8c49326452a0de6238b5bf06cae42b3ee976e7220c5bf",
+        "source_id": "4bf847a662084a2d3b758b627626f171d8802fcf"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "bb935e453fb756e0f666d5ab7ec933063bcdb113e1c33c0342bcc49a98159b6a",
+      "case_id": "blitzmax-block-ccdbe00ee4804afc",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "bbdoc: unit test for entity type",
+      "expected_cleaned_sha256": "84ff2167b3091fe6c66f98ed70a21f17b8de2cd70609b13fa13e6157dda12528",
+      "language": "blitzmax",
+      "raw_comment": "Rem\nbbdoc: unit test for entity type\nEndRem",
+      "raw_sha256": "bb935e453fb756e0f666d5ab7ec933063bcdb113e1c33c0342bcc49a98159b6a",
+      "raw_utf8_length": 43,
+      "source_provenance": {
+        "source_excerpt_sha256": "d17cb24596b35fc1fc5f1239fcee2584ed1c949c2695896bfd074b4180ac6342",
+        "source_id": "385ba9b9f9f3b61528a909358548164427c8c894"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "fdc320a6069bcd523c3743be19a1e425b7f4308616b7f0eee240fbe804d0267f",
+      "case_id": "blitzmax-block-ce688a098ce41699",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Select Rand(0,3)\n\tCase 0\n\t\tGetToastMessageCollection().AddMessage(toast, \"TOPLEFT\")\n\tCase 1\n\t\tGetToastMessageCollection().AddMessage(toast, \"TOPRIGHT\")\n\tCase 2\n\t\tGetToastMessageCollection().AddMessage(toast, \"BOTTOMLEFT\")\n\tCase 3\n\t\tGetToastMessageCollection().AddMessage(toast, \"BOTTOMRIGHT\")\nEndSelect",
+      "expected_cleaned_sha256": "9dbf22939ed5934cdb36b9361fae7f261970ea7cf3e81eda1c0f0f59a09b531d",
+      "language": "blitzmax",
+      "raw_comment": "\t\tRem\r\n\t\tSelect Rand(0,3)\r\n\t\t\tCase 0\r\n\t\t\t\tGetToastMessageCollection().AddMessage(toast, \"TOPLEFT\")\r\n\t\t\tCase 1\r\n\t\t\t\tGetToastMessageCollection().AddMessage(toast, \"TOPRIGHT\")\r\n\t\t\tCase 2\r\n\t\t\t\tGetToastMessageCollection().AddMessage(toast, \"BOTTOMLEFT\")\r\n\t\t\tCase 3\r\n\t\t\t\tGetToastMessageCollection().AddMessage(toast, \"BOTTOMRIGHT\")\r\n\t\tEndSelect\r\n\t\tendrem",
+      "raw_sha256": "827c2f569a24d789d9becbcaca89636144a6233f098f68128cbf267a3420d01c",
+      "raw_utf8_length": 348,
+      "source_provenance": {
+        "source_excerpt_sha256": "306d5557a38810726b17396cabb6adbcec789a000d1d11663f4494a47fd8bca5",
+        "source_id": "4af62da73f893aabc427dee0767c5017310acf8a"
+      },
+      "syntax_label": "Rem"
+    },
+    {
+      "baseline_cleaned_sha256": "d3fa22a852b4879a6fcefa1780d5a80a0018937fea0dc63da545cf248cb34b94",
+      "case_id": "blitzmax-block-f7884bcd6ff4149e",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Local ds#[3]\nLocal shorts[3]\nshorts=[0,1,2]\nds = [d1 , d2 , d3]\nFor i = 0 To 2\n\tn = i\n\toi=i-1\n\tWhile n < 2\n\t\tIf ds[shorts[n]] > ds[shorts[n + 1]]\n\t\t\tb = shorts[n]\n\t\t\tshorts[n] = shorts[n + 1]\n\t\t\tshorts[n + 1] = b\n\t\t\tn:+ 1\n\t\t\ti=oi\n\t\tElse\n\t\t\tn = 2\n\t\tEndIf\n\tWend\nNext\ngot = 0\ni=-1\nWhile Not got\n\ti:+1\n\tSelect shorts[i]\n\tCase 0 ' point 3 in middle\n\t\tIf diff1 * diff2 > 0 And d2 < d1 got = 1\n\tCase 1 'point 2 in middle\n\t\tIf diff2 * diff3 > 0 And d3 < d1 got = 1\n\tCase 2 'point 1 in middle\n\t\tIf diff3 * diff1 > 0 And d1 < d3 got = 1\n\tEnd Select\nWend\nSelect shorts[i]\nCase 0 '1 and 2 on line\n\tarclength#=d1\n\tIf diff1 < 0\n\t\tan# = an2\n\tElse\n\t\tan# = an1\n\tEndIf\nCase 1 '1 and 3 on line\n\tarclength# = d2\n\tIf diff2 < 0\n\t\tan# = an3\n\tElse\n\t\tan# = an1\n\tEndIf\nCase 2 '2 and 3 on line\n\tarclength# = d3\n\tIf diff3 < 0\n\t\tan# = an3\n\tElse\n\t\tan# = an2\n\tEndIf\nEnd Select\n\nIf d1 < d2\n\tIf d1 < d3\n\t\tarclength=d1\n\t\tIf diff1 < 0\n\t\t\tan = an2\n\t\tElse\n\t\t\tan = an1\n\t\tEndIf\n\tElse\n\t\tarclength = d3\n\t\tIf diff3 < 0\n\t\t\tan = an3\n\t\tElse\n\t\t\tan = an2\n\t\tEndIf\n\tEndIf\nElse\n\tIf d2 < d3\n\t\tarclength = d2\n\t\tIf diff2 < 0\n\t\t\tan = an3\n\t\tElse\n\t\t\tan = an1\n\t\tEndIf\n\tElse\n\t\tarclength = d3\n\t\tIf diff3 < 0\n\t\t\tan = an3\n\t\tElse\n\t\t\tan = an2\n\t\tEndIf\n\tEndIf\nEndIf\n\n\nIf diff1 * diff2 < 0 'point 1 is the middle one\n\tPrint \"1\"\n\tIf diff1 < 0 'point 2 is the start\n\t\tan# = an2\n\t\tarclength# = diff3\n\tElse 'point 3 is the start\n\t\tan# = an3\n\t\tarclength# = -diff3\n\tEndIf\nElseIf diff1 * diff2 > 0 'point 2 is the middle one\n\tPrint \"2\"\n\tIf diff1 > 0 'point 1 is the start\n\t\tan# = an1\n\t\tarclength# = diff2\n\tElse 'point 3 is the start\n\t\tan# = an3\n\t\tarclength = - diff2\n\tEndIf\nElse 'point 3 is the middle one\n\tPrint \"3\"\n\tIf diff2 > 0 'point 1 is the start\n\t\tan# = an1\n\t\tarclength = diff1\n\tElse 'point 2 is the start\n\t\tan# = an2\n\t\tarclength = - diff1\n\tEndIf\nEndIf\nIf arclength < 0 arclength:+ 360",
+      "expected_cleaned_sha256": "262a582d2231bae8164b77cc7950517d44e8e4f6901718bc8f7348d3d6f5e82c",
+      "language": "blitzmax",
+      "raw_comment": "\tRem\t\t\t\r\n\tLocal ds#[3]\r\n\tLocal shorts[3]\r\n\tshorts=[0,1,2]\r\n\tds = [d1 , d2 , d3]\r\n\tFor i = 0 To 2\r\n\t\tn = i\r\n\t\toi=i-1\r\n\t\tWhile n < 2\r\n\t\t\tIf ds[shorts[n]] > ds[shorts[n + 1]]\r\n\t\t\t\tb = shorts[n]\r\n\t\t\t\tshorts[n] = shorts[n + 1]\r\n\t\t\t\tshorts[n + 1] = b\r\n\t\t\t\tn:+ 1\r\n\t\t\t\ti=oi\r\n\t\t\tElse\r\n\t\t\t\tn = 2\r\n\t\t\tEndIf\r\n\t\tWend\r\n\tNext\r\n\tgot = 0\r\n\ti=-1\r\n\tWhile Not got\r\n\t\ti:+1\r\n\t\tSelect shorts[i]\r\n\t\tCase 0 ' point 3 in middle\r\n\t\t\tIf diff1 * diff2 > 0 And d2 < d1 got = 1\r\n\t\tCase 1 'point 2 in middle\r\n\t\t\tIf diff2 * diff3 > 0 And d3 < d1 got = 1\r\n\t\tCase 2 'point 1 in middle\r\n\t\t\tIf diff3 * diff1 > 0 And d1 < d3 got = 1\r\n\t\tEnd Select\r\n\tWend\r\n\tSelect shorts[i]\r\n\tCase 0 '1 and 2 on line\r\n\t\tarclength#=d1\r\n\t\tIf diff1 < 0\r\n\t\t\tan# = an2\r\n\t\tElse\r\n\t\t\tan# = an1\r\n\t\tEndIf\r\n\tCase 1 '1 and 3 on line\r\n\t\tarclength# = d2\r\n\t\tIf diff2 < 0\r\n\t\t\tan# = an3\r\n\t\tElse\r\n\t\t\tan# = an1\r\n\t\tEndIf\r\n\tCase 2 '2 and 3 on line\r\n\t\tarclength# = d3\r\n\t\tIf diff3 < 0\r\n\t\t\tan# = an3\r\n\t\tElse\r\n\t\t\tan# = an2\r\n\t\tEndIf\r\n\tEnd Select\r\n\r\n\tIf d1 < d2\r\n\t\tIf d1 < d3\r\n\t\t\tarclength=d1\t\r\n\t\t\tIf diff1 < 0\r\n\t\t\t\tan = an2\r\n\t\t\tElse\r\n\t\t\t\tan = an1\r\n\t\t\tEndIf\r\n\t\tElse\r\n\t\t\tarclength = d3\r\n\t\t\tIf diff3 < 0\r\n\t\t\t\tan = an3\r\n\t\t\tElse\r\n\t\t\t\tan = an2\r\n\t\t\tEndIf\r\n\t\tEndIf\r\n\tElse\r\n\t\tIf d2 < d3\r\n\t\t\tarclength = d2\r\n\t\t\tIf diff2 < 0\r\n\t\t\t\tan = an3\r\n\t\t\tElse\r\n\t\t\t\tan = an1\r\n\t\t\tEndIf\r\n\t\tElse\r\n\t\t\tarclength = d3\r\n\t\t\tIf diff3 < 0\r\n\t\t\t\tan = an3\r\n\t\t\tElse\r\n\t\t\t\tan = an2\r\n\t\t\tEndIf\r\n\t\tEndIf\r\n\tEndIf\r\n\t\r\n\t\r\n\tIf diff1 * diff2 < 0 'point 1 is the middle one\r\n\t\tPrint \"1\"\r\n\t\tIf diff1 < 0 'point 2 is the start\r\n\t\t\tan# = an2\r\n\t\t\tarclength# = diff3\r\n\t\tElse 'point 3 is the start\r\n\t\t\tan# = an3\r\n\t\t\tarclength# = -diff3\r\n\t\tEndIf\r\n\tElseIf diff1 * diff2 > 0 'point 2 is the middle one\r\n\t\tPrint \"2\"\r\n\t\tIf diff1 > 0 'point 1 is the start\r\n\t\t\tan# = an1\r\n\t\t\tarclength# = diff2\r\n\t\tElse 'point 3 is the start\r\n\t\t\tan# = an3\r\n\t\t\tarclength = - diff2\r\n\t\tEndIf\r\n\tElse 'point 3 is the middle one\r\n\t\tPrint \"3\"\r\n\t\tIf diff2 > 0 'point 1 is the start\r\n\t\t\tan# = an1\r\n\t\t\tarclength = diff1\r\n\t\tElse 'point 2 is the start\r\n\t\t\tan# = an2\r\n\t\t\tarclength = - diff1\r\n\t\tEndIf\r\n\tEndIf\t\t\t\r\n\tIf arclength < 0 arclength:+ 360\r\n\tEndRem",
+      "raw_sha256": "eabd448bd660c49fbb95e8d75c5364c27ecda828f0e2025834c86cc008dbcdb2",
+      "raw_utf8_length": 2079,
+      "source_provenance": {
+        "source_excerpt_sha256": "53f729b1a1a8c3822e4474349b540500c731592f06381a4e166082cd443c649b",
+        "source_id": "54e29fdb0e2dd93735dbbad62c7869a883d8e469"
+      },
+      "syntax_label": "Rem"
+    }
+  ],
+  "schema_version": 5
+}

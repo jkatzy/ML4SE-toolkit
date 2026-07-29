@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "module_management_system_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "642024e358dca3b5e0bce691bfba4a19b0482f5a0fcf25b984af9e45ee834b37",
+      "case_id": "module_management_system-line-193893f43a9fc88a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Make file for VMS\nAuthor : J.Jansen (joukj@hrem.nano.tudelft.nl)\nDate : 14 December 2010",
+      "expected_cleaned_sha256": "560b4e4419164c4e5c824bacce869856a9729b2a71d2f42a39cbbd973edc8676",
+      "language": "module_management_system",
+      "raw_comment": "#*****************************************************************************\r\n#                                                                            *\r\n# Make file for VMS                                                          *\r\n# Author : J.Jansen (joukj@hrem.nano.tudelft.nl)                             *\r\n# Date : 14 December 2010                                                    *\r\n#                                                                            *\r\n#*****************************************************************************",
+      "raw_sha256": "37170c33e563cd898008bbc5e2f97332d163dcd6dc7c304b0f4d669d39504c1a",
+      "raw_utf8_length": 558,
+      "source_provenance": {
+        "source_excerpt_sha256": "4cd1c31073fcc405a8197b8b24537d409930400212b98025c8786d66055af266",
+        "source_id": "3a5896a6ee45f5d2e00d26a4e7bbebd9ee559beb"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "b01063cdac07c8929be6e436ac7099b64e1eb69a2362ce4bf5da7ea2402bd991",
+      "case_id": "module_management_system-line-4cf10551d63035e4",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Make file for VMS\nAuthor : J.Jansen (joukj@hrem.nano.tudelft.nl)\nDate : 3 October 2009",
+      "expected_cleaned_sha256": "6c705509f74ea2a232610297f241e19db04952b5576c0aaeb6f57d4a85fbd54c",
+      "language": "module_management_system",
+      "raw_comment": "#*****************************************************************************\n#                                                                            *\n# Make file for VMS                                                          *\n# Author : J.Jansen (joukj@hrem.nano.tudelft.nl)                             *\n# Date : 3 October 2009                                                      *\n#                                                                            *\n#*****************************************************************************",
+      "raw_sha256": "82c91d73734f76b6f2782c9ff0d512da559b218a263114bae757de132eaf9121",
+      "raw_utf8_length": 552,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad6a4297a71217122a8ff2f5d533e321c5af97a0772f32f8c310225969b6863a",
+        "source_id": "8543ddea44dd97454d7e82afd7da4da514728511"
+      },
+      "syntax_label": "#"
+    },
+    {
+      "baseline_cleaned_sha256": "642024e358dca3b5e0bce691bfba4a19b0482f5a0fcf25b984af9e45ee834b37",
+      "case_id": "module_management_system-line-5412b2b677c450d2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Make file for VMS\nAuthor : J.Jansen (joukj@hrem.nano.tudelft.nl)\nDate : 14 December 2010",
+      "expected_cleaned_sha256": "560b4e4419164c4e5c824bacce869856a9729b2a71d2f42a39cbbd973edc8676",
+      "language": "module_management_system",
+      "raw_comment": "#*****************************************************************************\r\n#                                                                            *\r\n# Make file for VMS                                                          *\r\n# Author : J.Jansen (joukj@hrem.nano.tudelft.nl)                             *\r\n# Date : 14 December 2010                                                    *\r\n#                                                                            *\r\n#*****************************************************************************",
+      "raw_sha256": "37170c33e563cd898008bbc5e2f97332d163dcd6dc7c304b0f4d669d39504c1a",
+      "raw_utf8_length": 558,
+      "source_provenance": {
+        "source_excerpt_sha256": "f753f639e481359a7f3f53c60880aeb33946a50d1b520e083101d82ebe33719d",
+        "source_id": "d98c03f6c64e2349db6af6833ac6464d9f32c81d"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

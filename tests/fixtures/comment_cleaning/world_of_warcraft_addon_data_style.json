@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "family_name": "world_of_warcraft_addon_data_style",
+  "canonical_language": "world_of_warcraft_addon_data",
+  "language_keys": [
+    "world_of_warcraft_addon_data"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-directive",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "directive",
+      "raw_comment": "# cleaning_payload_shared_regex_000",
+      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "#cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    }
+  ]
+}

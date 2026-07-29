@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "family_name": "graph_modeling_language_style",
+  "canonical_language": "graph_modeling_language",
+  "language_keys": [
+    "graph_modeling_language"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-attribute",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "attribute",
+      "raw_comment": "comment \"Graph cleaning_payload_shared_regex_000\"",
+      "expected_cleaned": "comment \"Graph cleaning_payload_shared_regex_000\"",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    }
+  ]
+}

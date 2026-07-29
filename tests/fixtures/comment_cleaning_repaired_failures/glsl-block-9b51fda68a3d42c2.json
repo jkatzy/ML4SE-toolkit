@@ -1,0 +1,38 @@
+{
+  "case_id": "glsl-block-9b51fda68a3d42c2",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:slash",
+  "disposition": "executable_regression",
+  "language": "glsl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "cb882551a4df70f5fc6df8b4501f41f0c08fa52e497a97c992310a9e063354fa",
+      "utf8_length": 192
+    },
+    "manifest_old_output": {
+      "sha256": "39791ace01398b5fc9fd911667a3a31d13e35bd8b465ca87b643b38af5ce70b5",
+      "utf8_length": 178
+    },
+    "raw_comment": {
+      "sha256": "cfa17d851eb50b75406f977152f53675b8409626e685a06da85e5349d47e4c9d",
+      "utf8_length": 217
+    },
+    "recommended_expected_output": {
+      "sha256": "39791ace01398b5fc9fd911667a3a31d13e35bd8b465ca87b643b38af5ce70b5",
+      "utf8_length": 178
+    }
+  },
+  "regression": {
+    "expected_output": "vec3 result = vec3( 1.0 ) - exp( -hdrColor * exposure ) ;\n\n// also gamma correct while we're at it\nresult = pow( result, vec3( 1.0 / gamma ) ) ;\n\n\tfColor = vec4( result, 1.0f ) ;",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/*/\r\n    vec3 result = vec3( 1.0 ) - exp( -hdrColor * exposure ) ;\r\n\r\n    // also gamma correct while we're at it       \r\n    result = pow( result, vec3( 1.0 / gamma ) ) ;\r\n    \r\n\tfColor = vec4( result, 1.0f ) ;\r\n//*/"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "ab3d3dc57a78d05c8f51dfbafe936baa6e481c28d8461e42a51417c406012455",
+    "source_id": "eb589663bb08e6ea2a543c3c613a483ff6d0c53f"
+  },
+  "source_record_sha256": "3c839241c38bd423d76202cf2c52b88802eb152884cd3da266f4de951e29ba53"
+}

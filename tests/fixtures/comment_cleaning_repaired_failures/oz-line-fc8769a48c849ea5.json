@@ -1,0 +1,38 @@
+{
+  "case_id": "oz-line-fc8769a48c849ea5",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "oz",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f79b1befe7b3ba0490bec3d98a065d47ef8a291fa4ee667eaae93e2ca8801a35",
+      "utf8_length": 567
+    },
+    "manifest_old_output": {
+      "sha256": "c163b05199be393b32f80e004e9d009a2ca835dc07ecc905b907df85fb188724",
+      "utf8_length": 502
+    },
+    "raw_comment": {
+      "sha256": "dc52a06fb1ea5bbf3f0de9c1bc8a193d186385b68874630df9ebcf68ba180ef1",
+      "utf8_length": 590
+    },
+    "recommended_expected_output": {
+      "sha256": "c163b05199be393b32f80e004e9d009a2ca835dc07ecc905b907df85fb188724",
+      "utf8_length": 502
+    }
+  },
+  "regression": {
+    "expected_output": "Authors:\n  Tobias Mueller <tmueller@ps.uni-sb.de>\n  Joerg Wuertz <wuertz@de.ibm.com>\n\nCopyright:\n  Tobias Mueller, 1998\n  Joerg Wuert, 1997\n\nLast change:\n  $Date: 2001-05-25 19:19:23 +0200 (Fri, 25 May 2001) $ by $Author: schulte $\n  $Revision: 13861 $\n\nThis file is part of Mozart, an implementation\nof Oz 3\n   http://www.mozart-oz.org\n\nSee the file \"LICENSE\" or\n   http://www.mozart-oz.org/LICENSE.html\nfor information on usage and redistribution\nof this file, and for a DISCLAIMER OF ALL\nWARRANTIES.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%%\n%%% Authors:\n%%%   Tobias Mueller <tmueller@ps.uni-sb.de>\n%%%   Joerg Wuertz <wuertz@de.ibm.com>\n%%%\n%%% Copyright:\n%%%   Tobias Mueller, 1998\n%%%   Joerg Wuert, 1997\n%%%\n%%% Last change:\n%%%   $Date: 2001-05-25 19:19:23 +0200 (Fri, 25 May 2001) $ by $Author: schulte $\n%%%   $Revision: 13861 $\n%%%\n%%% This file is part of Mozart, an implementation\n%%% of Oz 3\n%%%    http://www.mozart-oz.org\n%%%\n%%% See the file \"LICENSE\" or\n%%%    http://www.mozart-oz.org/LICENSE.html\n%%% for information on usage and redistribution\n%%% of this file, and for a DISCLAIMER OF ALL\n%%% WARRANTIES.\n%%%"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "09862c77cf2a2eb22a58804c6fcc2be924d81c20f97e29fcef8529cfccb1683c",
+    "source_id": "533563a374d349c96873c784978a56a0ce7fa405"
+  },
+  "source_record_sha256": "d045e656c67bc1cc90a1c122b905447ec2d3b7b03d90d04030d5569fd574200e"
+}

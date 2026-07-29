@@ -1,0 +1,38 @@
+{
+  "case_id": "vue-line-0b279c188e90c444",
+  "category": "policy_or_judge_conflict",
+  "cluster": "policy:empty_doc_marker",
+  "disposition": "executable_regression",
+  "language": "vue",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    },
+    "manifest_old_output": {
+      "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62",
+      "utf8_length": 1
+    },
+    "raw_comment": {
+      "sha256": "82ab855e8d968d3b536fb88eb57fa0323af7e5b30adbdfa8fe6c89ac9173ade8",
+      "utf8_length": 3
+    },
+    "recommended_expected_output": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "utf8_length": 0
+    }
+  },
+  "regression": {
+    "expected_output": "",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//!"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "d9f110458143642aff3cd2f544c4be3792100caf6a4dc19769c3a4ee067abbcb",
+    "source_id": "0e6571215b0cde275d55e1e06188d9193d63bf93"
+  },
+  "source_record_sha256": "571e95bb18ef2000f78e6debcee938c1e693a852a5c570235d6b5e21ffafffd9"
+}

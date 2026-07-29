@@ -1,0 +1,38 @@
+{
+  "case_id": "visual_basic_net-line-aeea47b46f1b6aff",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u0027",
+  "disposition": "executable_regression",
+  "language": "visual_basic_net",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "aabb23abaf52c786bed7dae71d0b0d9a051017eaa7aed4f394134069c527d863",
+      "utf8_length": 136
+    },
+    "manifest_old_output": {
+      "sha256": "13356691c7621a59a6db321dcfd7ed5528f4f32ac418be634cbe21f9d180c4f0",
+      "utf8_length": 127
+    },
+    "raw_comment": {
+      "sha256": "14238f32fc076d02acfa4f3e208b22b9958f043b1794218d69d5b53ec42f531a",
+      "utf8_length": 139
+    },
+    "recommended_expected_output": {
+      "sha256": "13356691c7621a59a6db321dcfd7ed5528f4f32ac418be634cbe21f9d180c4f0",
+      "utf8_length": 127
+    }
+  },
+  "regression": {
+    "expected_output": "<summary>\n\u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0431\u0430\u0437\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u043b\u0435\u0440 \u0434\u043b\u044f \u0432\u044b\u0432\u043e\u0434\u0430 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439.\n</summary>",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "''' <summary>\n''' \u041f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0431\u0430\u0437\u043e\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0440\u043e\u043b\u043b\u0435\u0440 \u0434\u043b\u044f \u0432\u044b\u0432\u043e\u0434\u0430 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439.\n''' </summary>"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "85faf736e9d9b043128f92b7fba582fa00dc5fed02866c5c49af99b5f413b5df",
+    "source_id": "a2180806a3b529c5bda657f6343f6c4c2edbecf7"
+  },
+  "source_record_sha256": "2d9541e7aa317cab59f61e79708e96deef13229dc12849d3ae6585ecffa9f7e9"
+}

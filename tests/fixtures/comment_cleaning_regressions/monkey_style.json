@@ -1,0 +1,161 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "monkey_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "961a1cdf71e8ad0c7abde0f997183822ef2637d86ffda28a411c1463550f1346",
+      "case_id": "monkey-block-12808ff9605b7af6",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "monkeydoc True if no more data can be read from the stream.\n\nYou can still write to a filestream even if `Eof` is true - disk space permitting!",
+      "expected_cleaned_sha256": "dfcaefc53d402f4ca7df190901cb6bb6d7c6384581e3517ebb7ec794aba3a3f8",
+      "language": "monkey",
+      "raw_comment": "\t#rem monkeydoc True if no more data can be read from the stream.\n\t\n\tYou can still write to a filestream even if `Eof` is true - disk space permitting!\n\t\n\t#end",
+      "raw_sha256": "1a365128310d48085eb75a5a1c6424f3dbee0835015d5e92ae150e1c726db8b5",
+      "raw_utf8_length": 159,
+      "source_provenance": {
+        "source_excerpt_sha256": "cf26468076a1148c3f94ae8c7bf5092f68a999bc0620a98e0d23633006c11342",
+        "source_id": "1c52f33e83643f5f5205f770b928416acb06179c"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "19688797b34423c9564f8a0d7d578ffc3b98b527259a2cd0522435ed5e15cd85",
+      "case_id": "monkey-block-2a8608923648f1c4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "While (C < 0.0)\n\tC += 255.0\nWend\n\nWhile (C > 255.0)\n\tC -= 255.0\nWend",
+      "expected_cleaned_sha256": "6c161e547cc5f6ecb585963934381eec36da4ef9bcc2c79ab1122e630cec35e0",
+      "language": "monkey",
+      "raw_comment": "\t#Rem\n\tWhile (C < 0.0)\n\t\tC += 255.0\n\tWend\n\t\n\tWhile (C > 255.0)\n\t\tC -= 255.0\n\tWend\n\t#End",
+      "raw_sha256": "4ad45adce7c53dc3349cf0b9b74b7e6e57edca84dd0009c8ab1090f098ade1f6",
+      "raw_utf8_length": 87,
+      "source_provenance": {
+        "source_excerpt_sha256": "69737265a09b0c5bb592f6a8bb7a9229d5e819d6dd1c854828948caa05a9107e",
+        "source_id": "4ca4b7a622b99a9b0dc06e97b1ea25b08afb2605"
+      },
+      "syntax_label": "#Rem...#End"
+    },
+    {
+      "baseline_cleaned_sha256": "01aeaec0934e6b851308b19fc765b8688addc9351feac67eb2975ffa9380f4f1",
+      "case_id": "monkey-block-c537163e7726aaf5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "If (d.bFinal) Then\n\tLocal src_pos:= d.source.Position\n\tLocal dst_pos:= d.destination.Position\n\n\tIf (dst_pos = 45439) Then\n\t\tDebugStop()\n\tEndif\nEndif",
+      "expected_cleaned_sha256": "98d3615dde420b62a112ae8c0e310899ede960488ce4bf39303c1236beb5667c",
+      "language": "monkey",
+      "raw_comment": "\t\t#Rem\n\t\t\tIf (d.bFinal) Then\n\t\t\t\tLocal src_pos:= d.source.Position\n\t\t\t\tLocal dst_pos:= d.destination.Position\n\t\t\t\t\n\t\t\t\tIf (dst_pos = 45439) Then\n\t\t\t\t\tDebugStop()\n\t\t\t\tEndif\n\t\t\tEndif\n\t\t#End",
+      "raw_sha256": "50ebc3e8bc2cb417c7ad3da1d0e9b867f6f716b6c62d603a4ae752e288069fa1",
+      "raw_utf8_length": 187,
+      "source_provenance": {
+        "source_excerpt_sha256": "a15b09ad8f91c9c096dd5ada90c0f4ce478ac5f7aa43753eda8cdc9aaf8460e1",
+        "source_id": "0a2cba112d996724b9018ca96be4700afdd5b0ac"
+      },
+      "syntax_label": "#Rem...#End"
+    },
+    {
+      "baseline_cleaned_sha256": "117e7113686619a72412497b202a7005683df1bd6810ef92dd40b9ec075d1edb",
+      "case_id": "monkey-block-e4f8594b5d5f495a",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "monkeydoc Discards the rendertarget",
+      "expected_cleaned_sha256": "0e920e06fae80cbf3810915681872876eea1e59adcf08dbb8c48d5ce8b2b005e",
+      "language": "monkey",
+      "raw_comment": "\t#rem monkeydoc Discards the rendertarget\n\t#end",
+      "raw_sha256": "2519b645130f74c5e667290fab48dd971a190e38d8bf5975bc7ea480afe6a6f6",
+      "raw_utf8_length": 47,
+      "source_provenance": {
+        "source_excerpt_sha256": "682fa30c03710518971ff0d37f84dcded84786433d6a78d292c7a9288541028f",
+        "source_id": "763ef0bedaab855f8d0dfd23ccc264cc12760fae"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "460d34f08ad1b69115ee441611876ee877819c66f0b1ee73d68ea904276d8d9f",
+      "case_id": "monkey-block-ed720fb7946ad0e9",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "'\t\tIf atype.elemType.IsGeneric Throw New SemantEx( \"Array element type '\"+atype.elemType.Name+\"' is generic\" )\n\nLocal sizes:Value[],inits:Value[]\nIf Self.inits\n\n\t'TODO...\n\tIf atype.rank<>1 Throw New SemantEx( \"Array must be 1 dimensional\" )\n\n\tinits=SemantArgs( Self.inits,scope )\n\tinits=UpCast( inits,atype.elemType )\nElse\n\tsizes=SemantArgs( Self.sizes,scope )\n\tsizes=UpCast( sizes,Type.IntType )\nEndif\n\nReturn New NewArrayValue( atype,sizes,inits )",
+      "expected_cleaned_sha256": "c1b203717c399ad07c226e549d2258e8ab65e151c57d7b4be413a727d25ea1e1",
+      "language": "monkey",
+      "raw_comment": "\t\t#rem\n'\t\tIf atype.elemType.IsGeneric Throw New SemantEx( \"Array element type '\"+atype.elemType.Name+\"' is generic\" )\n\t\t\n\t\tLocal sizes:Value[],inits:Value[]\n\t\tIf Self.inits\n\t\t\n\t\t\t'TODO...\n\t\t\tIf atype.rank<>1 Throw New SemantEx( \"Array must be 1 dimensional\" )\n\t\t\t\n\t\t\tinits=SemantArgs( Self.inits,scope )\n\t\t\tinits=UpCast( inits,atype.elemType )\n\t\tElse\n\t\t\tsizes=SemantArgs( Self.sizes,scope )\n\t\t\tsizes=UpCast( sizes,Type.IntType )\n\t\tEndif\n\t\t\n\t\tReturn New NewArrayValue( atype,sizes,inits )\n\t\t#end",
+      "raw_sha256": "d7c06c468b2cfd4291e2a02424c3350fe6f32cad725260769f34c6ea89ed6543",
+      "raw_utf8_length": 494,
+      "source_provenance": {
+        "source_excerpt_sha256": "60ebb7617aef994a375ce9053e6fee4c40b11e9df469bdcdf987324dba09a20e",
+        "source_id": "49def9464856357647229d758ebda617f8d8f3ec"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "5b7f975ebd2a44562dd90567f83df65c32cf5d5c5ce1428f23310a1fd64a420a",
+      "case_id": "monkey-block-f73d53a81a7b9465",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This command will not create the internal-container, but instead,\nit will return a new instance of the container-type.\nTo create the internal container, please use either\n'EnsureContainer' (Recommended), or 'CreateInternalContainer'.",
+      "expected_cleaned_sha256": "0ec6960d0bcec3c4e4463f3d5147b61eb49496250bafe47d396ef1b2bb1a7cfb",
+      "language": "monkey",
+      "raw_comment": "\t#Rem\n\t\tThis command will not create the internal-container, but instead,\n\t\tit will return a new instance of the container-type.\n\t\tTo create the internal container, please use either\n\t\t'EnsureContainer' (Recommended), or 'CreateInternalContainer'.\n\t#End",
+      "raw_sha256": "af2f3683ebaf8c0fb39e8cbf583376e41de651c0b219382ca0a88ab95981756b",
+      "raw_utf8_length": 253,
+      "source_provenance": {
+        "source_excerpt_sha256": "c43e0fb617584e2e31981d7fc6ae53e6cccb9bbbe6ab7d264af67703c9b73c33",
+        "source_id": "ff343ea9565de7a3afa4c0121c332bceb04695e4"
+      },
+      "syntax_label": "#Rem...#End"
+    },
+    {
+      "baseline_cleaned_sha256": "2bba7a26c9069c03d80ef1cc1ad4f6bc99b26f6694f916013e40871b4e4a673c",
+      "case_id": "monkey-line-57881f48896cb800",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "== COMMERCIAL BREAK START ==\n============================\n\nTired of setting things up? Monkey-Wizard to the rescue!\n--> https://github.com/michaelcontento/monkey-wizard\n\nAnd the whole thing should be easy as:\n--> wizard IosAppodeal ../myproject/myproject.build/ios\n\n============================\n==  COMMERCIAL BREAK END  ==",
+      "expected_cleaned_sha256": "db4ffa27bcf62e9537703d5c9ada5c3a354626b88d49027451722f5e6214bfed",
+      "language": "monkey",
+      "raw_comment": "' ============================\n' == COMMERCIAL BREAK START ==\n' ============================\n'\n' Tired of setting things up? Monkey-Wizard to the rescue!\n' --> https://github.com/michaelcontento/monkey-wizard\n'\n' And the whole thing should be easy as:\n' --> wizard IosAppodeal ../myproject/myproject.build/ios\n'\n' ============================\n' ==  COMMERCIAL BREAK END  ==\n' ============================",
+      "raw_sha256": "44eb2cbd9a52bd439e8f2042e51323210758d8828f93e424177238071983c23c",
+      "raw_utf8_length": 404,
+      "source_provenance": {
+        "source_excerpt_sha256": "9798cb81e954023756712adc73ab2dc01b2079d4bb9c8823b3f110523bafa7e4",
+        "source_id": "d12e49799e909cbae2845fbb358fe6f06bf4201b"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "6cec28a93528096cf5650191fa8c3b495c6325e001230c705457065a9e740997",
+      "case_id": "monkey-line-cc7457ece7344202",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "FlxMouseControl\n-- Part of the Flixel Power Tools set\n\nv1.2 Added Mouse Zone, Mouse Speed and refactored addToStack process\nv1.1 Moved to a native plugin\nv1.0 First release\n\n@version 1.2 - July 28th 2011\n@link http://www.photonstorm.com\n@author Richard Davey / Photon Storm",
+      "expected_cleaned_sha256": "2effe5a2a07c9f6ddbf5aaaecdb65151ab7c95ea02f8ad2c19567b613e51716c",
+      "language": "monkey",
+      "raw_comment": "'/**\n '* FlxMouseControl\n '* -- Part of the Flixel Power Tools set\n '* \n '* v1.2 Added Mouse Zone, Mouse Speed and refactored addToStack process\n '* v1.1 Moved to a native plugin\n '* v1.0 First release\n '* \n '* @version 1.2 - July 28th 2011\n '* @link http://www.photonstorm.com\n '* @author Richard Davey / Photon Storm\n'*/",
+      "raw_sha256": "4eb8364819386e1a6f23ec17f14014265f28586bd13a0245b60a1799411b1f4d",
+      "raw_utf8_length": 322,
+      "source_provenance": {
+        "source_excerpt_sha256": "39fac7557b3130a59ac607a47b1364ed0796f166e8c272cf699f54bc42668c75",
+        "source_id": "44a842829c96f36d060ac4d6766f5fc456b43f92"
+      },
+      "syntax_label": "'"
+    },
+    {
+      "baseline_cleaned_sha256": "f8e01271f706258612f4d46df11eb3a4ff5a21849ae65cf9a8711b6b35242ed1",
+      "case_id": "monkey-line-fe7de4a802e5d06e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "For easy results, build and launch in Desktop target (GLFW)\nIn HTML5, it's necessary to edit the .html file and set CANVAS_RESIZE_MODE=2",
+      "expected_cleaned_sha256": "381beb996d3c9ea92270ad8d5cf16ca59cc89e4ea7bebb5f42e673609cbacf3b",
+      "language": "monkey",
+      "raw_comment": "' ************************** For easy results, build and launch in Desktop target (GLFW) **************************\n' ********************** In HTML5, it's necessary to edit the .html file and set CANVAS_RESIZE_MODE=2 *************",
+      "raw_sha256": "4372ee24959c7fa973b33e7dc6564e12214ea6e3c8f8ba79d70166fadaf9676c",
+      "raw_utf8_length": 231,
+      "source_provenance": {
+        "source_excerpt_sha256": "e27e03ff579c4e1788d87556effa8543735e46db8db05cbd3bbdea7751b70758",
+        "source_id": "cb8075a653812da754ca6864739fa41b9305af76"
+      },
+      "syntax_label": "'"
+    }
+  ],
+  "schema_version": 5
+}

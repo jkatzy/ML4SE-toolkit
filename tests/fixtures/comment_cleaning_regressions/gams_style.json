@@ -1,0 +1,76 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "gams_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "d47f5162a610f6de8a4a3008cb7dc9ff054faff4aaf217a12de3487d5a1ad87d",
+      "case_id": "gams-line-36ad2b22e166143c",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This piece of code calculates demand curve for a given feedstock\n30. dec 2013\nRequired environment variables are:\n\n$set n_price_1              6   Lower limit for price\n$set n_price_2             15   Price upper limit\n$set n_price_step         0.2   Step amount for the price\n$set n_source           Hange   Feedstock source (ie. mine)\n$set nk                Turvas   Feedstock type (eg. peat)\n\nPeeter Meos",
+      "expected_cleaned_sha256": "4cfdfb43021126ba852d472ab8809c8c49e12ddbceb5e77849f7f9e32c26fa03",
+      "language": "gams",
+      "raw_comment": "********************************************************************************\n**                                                                             *\n**  This piece of code calculates demand curve for a given feedstock           *\n**  30. dec 2013                                                               *\n**  Required environment variables are:                                        *\n**                                                                             *\n**  $set n_price_1              6   Lower limit for price                      *\n**  $set n_price_2             15   Price upper limit                          *\n**  $set n_price_step         0.2   Step amount for the price                  *\n**  $set n_source           Hange   Feedstock source (ie. mine)                *\n**  $set nk                Turvas   Feedstock type (eg. peat)                  *\n**                                                                             *\n**  Peeter Meos                                                                *\n**                                                                             *\n********************************************************************************",
+      "raw_sha256": "9671cacb900faa91ca12a1aa9c2aff4e84583f58c79035dce5e97885fb0670b1",
+      "raw_utf8_length": 1214,
+      "source_provenance": {
+        "source_excerpt_sha256": "d6a98926da83da7b7451f7f54eddbe256f693507c489e5987a3081f4e3060097",
+        "source_id": "7cc6fb33d41c62d3cf1f9f8a47045f9bdfc311ac"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "58697bd79443bacde3ba549af5e8081793915fd9ad810294e5f7cabe57dbd8ea",
+      "case_id": "gams-line-730deef6b102886a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "InitializeShadowStreams.gms",
+      "expected_cleaned_sha256": "cfe20098d1eb8df91384747837fab4a9612633d177af28a57e87dc2ad103f24c",
+      "language": "gams",
+      "raw_comment": "***************************************\n***** InitializeShadowStreams.gms *****\n***************************************",
+      "raw_sha256": "7545a7847893bb05ff2aba9ca6a45b03232bb66f00481b3b995562a39e76b225",
+      "raw_utf8_length": 119,
+      "source_provenance": {
+        "source_excerpt_sha256": "b4526d40f9f2b4a7f95d91658a1251060b6672658c03baefbf8b94570c12e23c",
+        "source_id": "bc5fa77fda151332b4da9b81349cc00dec86bae4"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "204bb36d3be7ba0bb439fadd6d44ddfb575dfb4a179d54ff5171d8c6172d45ab",
+      "case_id": "gams-line-9f8f812952f1d4b5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "$include set.gms\n$include data.gms",
+      "expected_cleaned_sha256": "5976925d28d347e0a7d56760dec2ad89a44f205d0726f54a74c684e9b4e6c711",
+      "language": "gams",
+      "raw_comment": "*$include set.gms\n*$include data.gms",
+      "raw_sha256": "9ecdc84515604ee587017047535743e754b7e66a8e9bebccb87b408bcb09eb40",
+      "raw_utf8_length": 36,
+      "source_provenance": {
+        "source_excerpt_sha256": "ad5da03a8af098edae3406b0bae38e4da06e4b7688dcf5dfa5431cf8320811e3",
+        "source_id": "fe5954b76b39134544e213522a25856e7161487e"
+      },
+      "syntax_label": "*"
+    },
+    {
+      "baseline_cleaned_sha256": "e48450c1c18ac2d41d67d98fe3d85ba1dfcfe9c281366fa85020a8463f58c6bb",
+      "case_id": "gams-line-e6c627d0d197382a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Dynamic investment part",
+      "expected_cleaned_sha256": "ce632b0408636bccda444dcfd91d9ffdbd78ff39499b8961f702159d80e95a76",
+      "language": "gams",
+      "raw_comment": "*==================== Dynamic investment part ==================================",
+      "raw_sha256": "9f6e5fdf606094cd286176e73287f558d2f228a9ac224d07b95360a15b8e7796",
+      "raw_utf8_length": 80,
+      "source_provenance": {
+        "source_excerpt_sha256": "24481bad6e6557274b651f299fd882bc17b7e8404db926b1847162f6b850a8ee",
+        "source_id": "026a4c50b4a05e51f6ccf71e47cc79b594c672a2"
+      },
+      "syntax_label": "*"
+    }
+  ],
+  "schema_version": 5
+}

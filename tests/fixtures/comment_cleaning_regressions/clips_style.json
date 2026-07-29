@@ -1,0 +1,93 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "clips_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "54d77344ba7a796aad1264a1d50a763010f5e27e2e192deb79e3596ac0ca1f8d",
+      "case_id": "clips-line-0e0549c53e2d4c7e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Ejercicio 3 - Aparatado a",
+      "expected_cleaned_sha256": "5a41276184371c488be249a230bc3b966bc6875170d430f148660d3f2878fc6d",
+      "language": "clips",
+      "raw_comment": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;;;;;;;;;;;;; Ejercicio 3 - Aparatado a ;;;;;;;;;;;;\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+      "raw_sha256": "c96b9e7dd1e357154e488340b212c346fd2cc45bd59b5897ed23ca6342e62319",
+      "raw_utf8_length": 158,
+      "source_provenance": {
+        "source_excerpt_sha256": "97021a3aa97d207de118bb2678c3e3c44963108f534562d38540ca4e9e2a07b4",
+        "source_id": "1ad900a3f3cc7c08dc7acddaa6e29507ea76e3fe"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "97e16b37b627906f99a506045a51fdc18f393e265b1d55cad3607fad5be5f0c7",
+      "case_id": "clips-line-6fec32ec737aff0e",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Rules for matching dishes with given preference\nSalience set to 1 so this rule will be fired at the end.\n(Other rules have salience = 2)",
+      "expected_cleaned_sha256": "3cf6652031511913b08394dfdfb663cfaa07314eb892d239b97047e5a6143a39",
+      "language": "clips",
+      "raw_comment": "; ; Rules for matching dishes with given preference\n; ; Salience set to 1 so this rule will be fired at the end.\n; ; (Other rules have salience = 2)",
+      "raw_sha256": "a181bc25256ee3e0b811364b70b9439382b022d03a69966cfcc3b27952fc53ec",
+      "raw_utf8_length": 148,
+      "source_provenance": {
+        "source_excerpt_sha256": "be68a4489f821d32f043725548808dd4b1990c9aa0809de84a1f91273babdeb2",
+        "source_id": "a57548e6fe7761f6d40fc0ce83c525e501963ffb"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "abe689f4888f59f7d55ca0d5025338e1102e12781e36ba29fa7ab155a8a648b1",
+      "case_id": "clips-line-9e4b5786cd13a5ec",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Definizione del modulo e dei template",
+      "expected_cleaned_sha256": "ca8a03597ebc53dd9c07450d8320ea230cf452228b877078004833e8ab14ed59",
+      "language": "clips",
+      "raw_comment": ";  ---------------------------------------------\n;  --- Definizione del modulo e dei template ---\n;  ---------------------------------------------",
+      "raw_sha256": "97e0bc14784972647ca15ea497a6f9d38f1de36055a0df610a45b3cfedb23101",
+      "raw_utf8_length": 146,
+      "source_provenance": {
+        "source_excerpt_sha256": "72494e8a292eaaf944917b2528d6e127bcf7aa7f6b13b679da14b638a91bdad3",
+        "source_id": "4090cc3d8dc6736b3a14dad565a0d94f592cb8fa"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "c0c3a72d480de663c0dd737726cc44baec485eb7c98b852a0d73584f42b8ba96",
+      "case_id": "clips-line-be48eef1d0d715d8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "objects_deftemplates definitions\nJ.Savage, UNAM\n1/5/20",
+      "expected_cleaned_sha256": "527ffbb8e3cba779d218b917426953185e8d0bccc0f7850d3f908229b5d06dcd",
+      "language": "clips",
+      "raw_comment": ";************************************************\r\n;*\t\t\t\t\t\t*\r\n;*\tobjects_deftemplates definitions\t*\r\n;*\t\t\t\t\t\t*\r\n;*\t\t\tJ.Savage, UNAM\t\t*\r\n;*\t\t\t1/5/20\t\t\t*\r\n;*\t\t\t\t\t\t*\r\n;************************************************",
+      "raw_sha256": "d31fbfe7b2fb9e3eae880c54885a467d8ff0d58479cfc3d67f51ccff978d41d9",
+      "raw_utf8_length": 213,
+      "source_provenance": {
+        "source_excerpt_sha256": "3c50402b0a861fe2bf9cf043a27ec669fe1eaeccd0dad81b645f3a41beed66ec",
+        "source_id": "984edf494b856efde9440ce7d9be65ebebf8989e"
+      },
+      "syntax_label": ";"
+    },
+    {
+      "baseline_cleaned_sha256": "10699d6f157197607f8847ed7c8ee925c982450f34937fe5b98cf577e8b3b7ba",
+      "case_id": "clips-line-d7db48ece54b9300",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "PARA EJECUTAR batch ((batch \"carga.clp\"))\nONTOLOGIA",
+      "expected_cleaned_sha256": "4c3a9ad727c8808327b6f0674dd85e698d4f99d865f7ee79cd4b089b9ffeb18b",
+      "language": "clips",
+      "raw_comment": ";;;PARA EJECUTAR batch ((batch \"carga.clp\"))\r\n;;;;;;;;;;;;;;;;;;;;;;;;; ONTOLOGIA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+      "raw_sha256": "c7b938eca855e5a7d855e66bc5e7800afc6dad87262a6be4bf3ec451582bfa86",
+      "raw_utf8_length": 119,
+      "source_provenance": {
+        "source_excerpt_sha256": "cd7a3610ad4c2b86dda3b97876a64eae8e0adc4725f60d153492a58893e3b858",
+        "source_id": "209c0943cb3fe256a2c93423fbf9af418a3bdeca"
+      },
+      "syntax_label": ";"
+    }
+  ],
+  "schema_version": 5
+}

@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "latte_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "209bdbb73a4b71719e6fa75781f6f1bee28b7f639df02fefaf2a91ccbc14c929",
+      "case_id": "latte-block-66618e5668377158",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "souhrn\u00e1 zpr\u00e1va z t\u00e1bora\n$education - informace o t\u00e1bo\u0159e\n$functions - seznam funkc\u00ed na akci\n$participants - \u00fa\u010dastn\u00edci akce\n$personsDays - po\u010det osobodn\u00ed\n$chits - paragony akce",
+      "expected_cleaned_sha256": "371e55915a1225f0a664b386ccca43afd0fe9f9109c8911539d16187570febe5",
+      "language": "latte",
+      "raw_comment": "{* souhrn\u00e1 zpr\u00e1va z t\u00e1bora\n$education - informace o t\u00e1bo\u0159e\n$functions - seznam funkc\u00ed na akci\n$participants - \u00fa\u010dastn\u00edci akce\n$personsDays - po\u010det osobodn\u00ed\n$chits - paragony akce\n*}",
+      "raw_sha256": "09575799cd1fbe3460ac385fbd33a12226ecc4f567cb22254164adad4e45a5b9",
+      "raw_utf8_length": 191,
+      "source_provenance": {
+        "source_excerpt_sha256": "569b3b7bd2f6b4cc760799b6766f697a2e5b0e45574a21f8921e14af843daaaa",
+        "source_id": "27534c69258fb4aaa175a2bac407489be6654d4f"
+      },
+      "syntax_label": "{*...*}"
+    }
+  ],
+  "schema_version": 5
+}

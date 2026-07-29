@@ -1,7 +1,7 @@
 value_0 = 0
 !fixture_1
 value_1 = 1
-.!Place comment here.
+.!note
 .LEFT MARGIN 0
 value_2 = 2
 !!!!!!!! repeated_open_1

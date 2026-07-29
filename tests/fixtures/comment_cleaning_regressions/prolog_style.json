@@ -1,0 +1,280 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "prolog_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "59ab6a99d6e67ee9c077ab37f39d16b6a5a03881cd46bf5bee0d7b40cc4374a3",
+      "case_id": "eclipse-line-3308fa4d78886612",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ":- lib(branch_and_bound).\na) interadores atuam sobre listas e estruturas\nb) alternativa a recursao\nc) em geral tornam pgms mais simples\nd)",
+      "expected_cleaned_sha256": "31e68ad70847866be4cf746081e7450f800f2248b3f1ef60069c48cc59b36bb2",
+      "language": "eclipse",
+      "raw_comment": "%%% :- lib(branch_and_bound).\n%% a) interadores atuam sobre listas e estruturas\n%% b) alternativa a recursao\n%% c) em geral tornam pgms mais simples\n%% d) ",
+      "raw_sha256": "34f857b0a5e1319a764c37b50a8ff05b074548a21443174c279eb5da60a43753",
+      "raw_utf8_length": 155,
+      "source_provenance": {
+        "source_excerpt_sha256": "13534f9c259e80cb8b506112a62dbeb6d8cbfad66fbe12099f50f2a048e2e77f",
+        "source_id": "0f1c35354aa75923d1a84870e73825f1440cd042"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "bda22f7853410c789fc29fc6d4840530d6219d10326b854b721b8d7b3d7952d6",
+      "case_id": "eclipse-line-68f734cf9618561f",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Contraintes 4INFO\nTP 01\nGuillaume ROY\nAntoine CHENON",
+      "expected_cleaned_sha256": "5dd3889c8e7bfbf3e4811dd83c0ac268eb54c122a8b2783163ab7d55cb48bc04",
+      "language": "eclipse",
+      "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%\n%% Contraintes 4INFO %%\n%%       TP 01       %%\n%%   Guillaume ROY   %%\n%%   Antoine CHENON  %%\n%%%%%%%%%%%%%%%%%%%%%%%",
+      "raw_sha256": "65674a8b2e3b239265eb5ac187f7aba2fca62b173fc0cde32adfd7edff3cb239",
+      "raw_utf8_length": 143,
+      "source_provenance": {
+        "source_excerpt_sha256": "6fdeb5e2090f2065e3a7872efe59e6ff39559798518def71e28644300e1b7412",
+        "source_id": "883d930c0da607a5921c7bf057deb31d97d648b4"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "5bed8b9329983e6b6a635e6ea5d14fada7792e656b934f3c2b997edd595e254d",
+      "case_id": "eclipse-line-fb4510c31c578da8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": ":-lib(listut).\n:-lib(propia).",
+      "expected_cleaned_sha256": "844ea31f012893b1abf2afe8d7c6d983646a9d394ac269239a91e57f32900ca0",
+      "language": "eclipse",
+      "raw_comment": "%:-lib(listut).\n%:-lib(propia).",
+      "raw_sha256": "859f520a17b59b40017cf9b642b0da4b00ff53aa6a7aa1241eb683f5b5af562b",
+      "raw_utf8_length": 31,
+      "source_provenance": {
+        "source_excerpt_sha256": "09e66baad085d0943a21039f8f240a564502e031084a2fdee6421428a2f705c7",
+        "source_id": "0baebff32d10b22c4d09353c10188061bd2d95ba"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "c78f7ccb4a8d3e443ff72d5d04919c5ebbc16b9dfc6487489d46798a39c3429a",
+      "case_id": "logtalk-line-1d0ec7f0740a7488",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Board",
+      "expected_cleaned_sha256": "4816cbfd74aa8297b9c9cdaae89e2f0d2ced6041e952dfcd114e01b4c82e9c6d",
+      "language": "logtalk",
+      "raw_comment": "%%\n    % Board\n    %%",
+      "raw_sha256": "41a4d8c6223385cf9bb2fefd9db1323ead31561287acfe87a4577c636ec03608",
+      "raw_utf8_length": 21,
+      "source_provenance": {
+        "source_excerpt_sha256": "d66238e488de10fb7db591f72d5903be61bdac97775fdbe5c4158ab09b87c068",
+        "source_id": "fae9f5d7c8fb3dd49d7cdbaae84955df70aa005d"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "b0e14fbf64615d8b2894e027cd6543c7a498a6a6cb01172ba439be649505acb6",
+      "case_id": "logtalk-line-5bbae9d4dd0b637b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Original example posted by Gerg\u00f6 Barany on the SWI-Prolog mailing list on\nFebruary 16, 2012\n\nported to Logtalk by Paulo Moura (requires Qu-Prolog 9.0 or later)",
+      "expected_cleaned_sha256": "db5321461f14882824bbaf33666852e0c2e744932559690e020e0fcbb9b8db97",
+      "language": "logtalk",
+      "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%%\n%% Original example posted by Gerg\u00f6 Barany on the SWI-Prolog mailing list on\n%% February 16, 2012 \n%%\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%% \n%% ported to Logtalk by Paulo Moura (requires Qu-Prolog 9.0 or later)",
+      "raw_sha256": "0d5bd1475fd61d1485ec53097363c9d28a31b194885fab31b2b9388dcf3bcdf0",
+      "raw_utf8_length": 341,
+      "source_provenance": {
+        "source_excerpt_sha256": "749381425e6fc705ab6dd843edcf16a8693d2e2a90d894bd6834c296dda023a6",
+        "source_id": "e373e443f0a2fb8da518315b9c8338a42ddc623b"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "287326f8a0ce3545ecebf55fb277742df41d316f9efc0da81e021c1937103c0f",
+      "case_id": "logtalk-line-6775bd97bbb39ab0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "16 June 2003 Bart Demoen, Tom Schrijvers, K.U.Leuven\n\nported to Logtalk by Paulo Moura",
+      "expected_cleaned_sha256": "0b29b9c9d1c54214d7bcf018005e12c2306748cedd6b14693b48daffeab7e51d",
+      "language": "logtalk",
+      "raw_comment": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%%\n%% 16 June 2003 Bart Demoen, Tom Schrijvers, K.U.Leuven\n%%\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n%% \n%% ported to Logtalk by Paulo Moura",
+      "raw_sha256": "82467e97e00fa78acb82768f5f2bafccda2f9d79b29f4e6156a847627a4b558c",
+      "raw_utf8_length": 263,
+      "source_provenance": {
+        "source_excerpt_sha256": "4f7504ef47060fc8b464d59a1ae57aa0d352e9bccb993816b9d1751c2d3a30ef",
+        "source_id": "35f2ccc3faf8614124b933d0b776f105b3676cda"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "cdc811c0634337e35b52a194b465111daa4eee738531aa380bec4bb7dac90f65",
+      "case_id": "mercury-line-19b229c04183dfaa",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Copyright (C) 2013-2014 Opturion Pty Ltd.\nCopyright (C) 2006-2009 NICTA.\n\nAuthor: Gregory J. Duck\n\nExtract lookups from ml_b_blocks.\n\nASSUMPTIONS:\n- 'loop' optimisation has not yet being performed.  Otherwise invalid\n  lookups may be generated.",
+      "expected_cleaned_sha256": "90491ee8be4eb0c1b2a95daf3921352de9e2b518fa7bc883ae6f9a0e5e0c9377",
+      "language": "mercury",
+      "raw_comment": "%---------------------------------------------------------------------------%\n% Copyright (C) 2013-2014 Opturion Pty Ltd.\n% Copyright (C) 2006-2009 NICTA.\n%---------------------------------------------------------------------------%\n%\n% Author: Gregory J. Duck\n%\n% Extract lookups from ml_b_blocks.\n%\n% ASSUMPTIONS: \n% - 'loop' optimisation has not yet being performed.  Otherwise invalid \n%   lookups may be generated.\n%\n%---------------------------------------------------------------------------%",
+      "raw_sha256": "a38c323d7f2a05b520b61e535e333518633380a391aae47e348ae456c7ea1bf4",
+      "raw_utf8_length": 499,
+      "source_provenance": {
+        "source_excerpt_sha256": "bc4317c3e23c196cbedf7e5a3f0d2c4014abc5e9f8c93f83d25596ed43d6fa44",
+        "source_id": "15654b9dfdce4c3f82c577a486a6aa8a30da1a53"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "0edb24b6a2b83c14791babaad67fb8804813e6c1c65f868b7eaf0561d9fc7170",
+      "case_id": "mercury-line-46a829fddea50406",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "vim: ft=mercury ts=4 sw=4 et wm=0 tw=0\nCopyright (C) 2016, Julien Fischer.\nSee the file COPYING for license details.\n\nAuthor: Julien Fischer <juliensf@gmail.com>\n\nThis module provides unsigned 8-bit integers.",
+      "expected_cleaned_sha256": "9bfc2939e20da61c7e319c1765e492a5aef5adbe11dfbb833ac935d8f7b82afd",
+      "language": "mercury",
+      "raw_comment": "%---------------------------------------------------------------------------%\n% vim: ft=mercury ts=4 sw=4 et wm=0 tw=0\n%---------------------------------------------------------------------------%\n% Copyright (C) 2016, Julien Fischer.\n% See the file COPYING for license details.\n%\n% Author: Julien Fischer <juliensf@gmail.com>\n%\n% This module provides unsigned 8-bit integers.\n%\n%---------------------------------------------------------------------------%",
+      "raw_sha256": "81d584a3a05a2d73cd00be4984ea04d07b46e09822413c1bc15160ffe4dbd949",
+      "raw_utf8_length": 456,
+      "source_provenance": {
+        "source_excerpt_sha256": "e472ea53ce18a5cce5296befb7458d10c3c240bd0497c1e5c0104d2efdc9302f",
+        "source_id": "ee78f095bc4a232753ec29d1f9f6487907d2db0a"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "186f8b738a9a7d0a2b1f1c57ccddea16fe92cd8085ff619fe70e728fb34e4d17",
+      "case_id": "mercury-line-56b0ba15e0c506a3",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "vim: ft=mercury ts=4 sw=4 et\nCopyright (C) 2019, Julien Fischer.\nSee the file COPYING for license details.\n\nAuthor: Julien Fischer <juliensf@gmail.com>\n\nMercury wrapper for java.time.Month.",
+      "expected_cleaned_sha256": "816fcbefdb5db4f790c10a4a9e490c883fa179bd68a24c6339481d81403ea80e",
+      "language": "mercury",
+      "raw_comment": "%---------------------------------------------------------------------------%\n% vim: ft=mercury ts=4 sw=4 et\n%---------------------------------------------------------------------------%\n% Copyright (C) 2019, Julien Fischer.\n% See the file COPYING for license details.\n%\n% Author: Julien Fischer <juliensf@gmail.com>\n%\n% Mercury wrapper for java.time.Month.\n%\n%---------------------------------------------------------------------------%",
+      "raw_sha256": "731d6cec550840568d1a0342c620e57d7faaa80c84dac1ff5bc8b2745618c60d",
+      "raw_utf8_length": 437,
+      "source_provenance": {
+        "source_excerpt_sha256": "225866ce549f5a2b5d116a25e785340eab0995c9f3c242da91e90cc344d6e5bc",
+        "source_id": "87bada99b9f8a48badaf21d6fa958a2c62f3be05"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "6211b2f2eb321de5338e4d5ba309dd235c97102802231d2cad924f3a2b431c3f",
+      "case_id": "mercury-line-eb097df02c51903a",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "FILENAME : tapl.m\nAUTHOR   : Simon Nielsen Knights\nCOPYRIGHT: Copyright \u00a9 2019 Simon Nielsen Knights <tauoverpi@yandex.com>\nLICENSE  : MIT\nCREATED  : Fri Feb 15, 2019  03:45AM\nMODIFIED : Fri Feb 15, 2019  04:15AM\nTBD: write documentation",
+      "expected_cleaned_sha256": "5a3f6668783a214bb8fe89a75beaa1a33f13caa0f726f0f260d9c70ca94411b3",
+      "language": "mercury",
+      "raw_comment": "%----------------------------------------------------------------------------%\n% FILENAME : tapl.m\n% AUTHOR   : Simon Nielsen Knights\n% COPYRIGHT: Copyright \u00a9 2019 Simon Nielsen Knights <tauoverpi@yandex.com>\n% LICENSE  : MIT\n% CREATED  : Fri Feb 15, 2019  03:45AM\n% MODIFIED : Fri Feb 15, 2019  04:15AM\n%----------------------------------------------------------------------------%\n% TBD: write documentation\n%----------------------------------------------------------------------------%",
+      "raw_sha256": "e53a5ad307eebfecb7125d670e4a25a50ec0910977c1ac5959b913a1ac20e39b",
+      "raw_utf8_length": 489,
+      "source_provenance": {
+        "source_excerpt_sha256": "7711e40f353feb2cb24e58c3bb36a25ff204e5f230aea1bb638087cab5b5b88f",
+        "source_id": "caceddb3f2541226aa066ccf398bc1b4c37dd0fd"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "e1c4073ddb789c9deef94899b838a950753fd4aa0480d31a17de336f78c30ddd",
+      "case_id": "oz-line-4fe3d25779a8c5f5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "oz",
+      "raw_comment": "%===================================\r",
+      "raw_sha256": "af69e0cf881763262a8d084a8a38a2b5d26d4d9423b793d2773c3e3e5829e9d7",
+      "raw_utf8_length": 37,
+      "source_provenance": {
+        "source_excerpt_sha256": "8f59568e253cd3629f995d028235e4d4d5f25193b04a9b5b47c1045260820cf1",
+        "source_id": "a4d9f4b936509772984a3f1f4b44207a85249d0b"
+      },
+      "syntax_label": "%"
+    },
+    {
+      "baseline_cleaned_sha256": "8265e0a9b90df94e5a50dd15f65fd502d8dbd9c1dddb024b4e8fa9c2c7b8439a",
+      "case_id": "prolog-block-3fee85bc83f3ed0b",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "<examples>\n\n% Basic usage\n?- assert_and_retract.\n\n% Show timing\n?- assert_many(1 000 000).\n\n% Pengines have a (default) 100Mb limit to their program size\n?- assert_many(10 000 000).",
+      "expected_cleaned_sha256": "e83a6ee47090f8a6d11a90057ce0a40f8476690fc249c2b5f6662f5aef884004",
+      "language": "prolog",
+      "raw_comment": "/** <examples>\n\n% Basic usage\n?- assert_and_retract.\n\n% Show timing\n?- assert_many(1 000 000).\n\n% Pengines have a (default) 100Mb limit to their program size\n?- assert_many(10 000 000).\n*/",
+      "raw_sha256": "4ca383905878ce224f44e50d47effb144fc86ac41259cc53c2c7c973f1794bf4",
+      "raw_utf8_length": 188,
+      "source_provenance": {
+        "source_excerpt_sha256": "7e2a66dd404a8b2fff86c65036f6aa70b387e3009bba5414fa2fbce0d47b33c0",
+        "source_id": "5d5ae7c715eac34ac597bff290accac1de27b9cc"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "d4cd2d1f7318104033f3a1674c40cf399037ad7fde4f497b8f09a96b6f633637",
+      "case_id": "prolog-block-cc3e687ab3d12028",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "xml_diagnosis.pl : XML exception diagnosis.\n\nCopyright (C) 2001, 2002 Binding Time Limited\n\nTERMS AND CONDITIONS:\n\nThis program is offered free of charge, as unsupported source code. You may\nuse it, copy it, distribute it, modify it or sell it without restriction.\n\nWe hope that it will be useful to you, but it is provided \"as is\" without\nany warranty express or implied, including but not limited to the warranty\nof non-infringement and the implied warranties of merchantability and fitness\nfor a particular purpose.\n\nBinding Time Limited will not be liable for any damages suffered by you as\na result of using the Program. In no event will Binding Time Limited be\nliable for any special, indirect or consequential damages or lost profits\neven if Binding Time Limited has been advised of the possibility of their\noccurrence. Binding Time Limited will not be liable for any third party\nclaims against you.\n\nHistory:\n$Log: xml_diagnosis.pl,v $\nRevision 1.3  2002-05-10 10:22:10+01  john\nDiagnosing invalid character data.\n\nRevision 1.2  2002-04-21 19:39:03+01  john\nCorrecting format of explanatory strings.\n\nRevision 1.1  2002-01-31 21:04:45+00  john\nUpdated Copyright statements.\n\nRevision 1.0  2001-10-17 20:46:23+01  john\nInitial revision",
+      "expected_cleaned_sha256": "1f44ad068328f99b04c36150c5033cbe76cd667b5bfe17c12916d2525c343389",
+      "language": "prolog",
+      "raw_comment": "/* xml_diagnosis.pl : XML exception diagnosis.\r\n *\r\n * Copyright (C) 2001, 2002 Binding Time Limited\r\n * \r\n * TERMS AND CONDITIONS:\r\n *\r\n * This program is offered free of charge, as unsupported source code. You may\r\n * use it, copy it, distribute it, modify it or sell it without restriction. \r\n * \r\n * We hope that it will be useful to you, but it is provided \"as is\" without\r\n * any warranty express or implied, including but not limited to the warranty\r\n * of non-infringement and the implied warranties of merchantability and fitness\r\n * for a particular purpose.\r\n * \r\n * Binding Time Limited will not be liable for any damages suffered by you as\r\n * a result of using the Program. In no event will Binding Time Limited be\r\n * liable for any special, indirect or consequential damages or lost profits\r\n * even if Binding Time Limited has been advised of the possibility of their\r\n * occurrence. Binding Time Limited will not be liable for any third party\r\n * claims against you.\r\n *\r\n * History:\r\n * $Log: xml_diagnosis.pl,v $\r\n * Revision 1.3  2002-05-10 10:22:10+01  john\r\n * Diagnosing invalid character data.\r\n *\r\n * Revision 1.2  2002-04-21 19:39:03+01  john\r\n * Correcting format of explanatory strings.\r\n *\r\n * Revision 1.1  2002-01-31 21:04:45+00  john\r\n * Updated Copyright statements.\r\n *\r\n * Revision 1.0  2001-10-17 20:46:23+01  john\r\n * Initial revision\r\n *\r\n *\r\n *\r\n */",
+      "raw_sha256": "22463249a0b5f272438ddeeada45dee02e211abe1414d502a688bdd698fbf45d",
+      "raw_utf8_length": 1389,
+      "source_provenance": {
+        "source_excerpt_sha256": "395663dc7b0b7da580d546c1aa5c19bd0c606011363fa768d6ad894c6af57432",
+        "source_id": "3c5874aba069476edb82f1c9021a9a177ea2bb00"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "94c68c1c2ee08f4167b87ce69b337dbc5c344212f0734bfd254eb7ac8daced3c",
+      "case_id": "prolog-block-cdb7b9e0ea6a9a96",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "01 =====================\nPredicado: primeiro(L,P)\nDefini\u00e7\u00e3o: L \u00e9 uma lista e P \u00e9 o primeiro dado de L.",
+      "expected_cleaned_sha256": "ec0325747129264936efb86867595a83d3100bac3d58e450ab0897b2a7efcfd4",
+      "language": "prolog",
+      "raw_comment": "/* 01 =====================\n* Predicado: primeiro(L,P)\n* Defini\u00e7\u00e3o: L \u00e9 uma lista e P \u00e9 o primeiro dado de L.\n*/",
+      "raw_sha256": "33422b4fb918089214643d4bc4b6c6fe5e71f7c6a9901b754dc2042e294713f6",
+      "raw_utf8_length": 116,
+      "source_provenance": {
+        "source_excerpt_sha256": "aa9f6e0cbf0af25729cb95a7b48e2abd57db48616362d09b4bd4cb7b21352fb4",
+        "source_id": "0640a245d0127b961df9577f9d0f4925ae0caeeb"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "8c652f949af16e82ec05b38c3908ef59a9d9928d53aad1c20ba779c7ea6cb41c",
+      "case_id": "prolog-block-ecbde442e15f3de5",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "simple synthetizers, try:\n\n?-syn((A*B)+(~C)).\n\n?-syn(3:29). % <number of vars>:<truth table as integer>",
+      "expected_cleaned_sha256": "161198d1d9c9819a5f450700720a82b17c355c85e05270b9cc56ae6d90427ff4",
+      "language": "prolog",
+      "raw_comment": "/* simple synthetizers, try:\r\n\r\n?-syn((A*B)+(~C)).\r\n\r\n?-syn(3:29). % <number of vars>:<truth table as integer>\r\n\r\n*/",
+      "raw_sha256": "a13c35d9e74a3e2bf997a4c8c10dc8db3553af581b38a61748564cc68ba60129",
+      "raw_utf8_length": 116,
+      "source_provenance": {
+        "source_excerpt_sha256": "2be974f3232fac657f7bd96c2dd4bef6f37fa3a7ebebc5f5e9eb0d9c06dee9ac",
+        "source_id": "e5b226f3894b5f81af983f6d654ba36b210e0349"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "d7b5f10de392e6486f0ff4186f2e2dd480db83845aa5b27f4cf44a46a7d3c720",
+      "case_id": "prolog-line-a93b9f60bbd407ce",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "(SysFile,ObsNum,AlgorithmName,PreprocessTime,InitCones,ConesRemoved,MC,MCTime).\n('c880_0',1,nc,0,0,0,1,3.2116036415100098).",
+      "expected_cleaned_sha256": "77923a9f8571c3543f45544dc67b272ada26ec2d3cb077a3a6bbbabbe6026363",
+      "language": "prolog",
+      "raw_comment": "%(SysFile,ObsNum,AlgorithmName,PreprocessTime,InitCones,ConesRemoved,MC,MCTime).\n%('c880_0',1,nc,0,0,0,1,3.2116036415100098).",
+      "raw_sha256": "d0f50a7465f2351cf9e02776f5cac39a6671200ebd7405bf562403785817e088",
+      "raw_utf8_length": 125,
+      "source_provenance": {
+        "source_excerpt_sha256": "296ce4d4b94ff88359d9ffb39cfbeaddf7cd3071e5e757c4cb69786c8a0dabac",
+        "source_id": "c3193b2d6e5b5efc7afc33768fd0a4c102c0808f"
+      },
+      "syntax_label": "%"
+    }
+  ],
+  "schema_version": 5
+}

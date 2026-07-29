@@ -1,0 +1,195 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "slash_line_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "88f32b1452dd3ae7465da64ed9ccaacfd9338ca89c4fcdfb32a983c6472e9bc7",
+      "case_id": "gleam-line-91e9dccaaad55b36",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# Solving for Carrots\n\nDifficulty: 1.3\nSee: https://open.kattis.com/problems/carrots\n\n### Overview\n\nCarrots are good for you! First of all, they give you good night vision.\nInstead of having your lights on at home, you could eat carrots and save\nenergy! Ethnomedically, it has also been shown that the roots of carrots\ncan be used to treat digestive problems. In this contest, you also earn a\ncarrot for each difficult problem you solve, or huffle-puff problems as we\nprefer to call them.\n\nYou will be given the number of contestants in a hypothetical contest, the\nnumber of huffle-puff problems that people solved in the contest and a\ndescription of each contestant. Now, find the number of carrots that will\nbe handed out during the contest.\n\n### Input\n\nInput starts with two integers 1 \u2264 N,P \u2264 1000 on a single line, denoting\nthe number of contestants in the contest and the number of huffle-puff\nproblems solved in total. Then follow N lines, each consisting of a single\nnon-empty line in which the contestant describes him or herself. You may\nassume that the contestants are good at describing themselves, in a way\nsuch that an arbitrary 5-year-old with hearing problems could understand\nit.\n\n### Output\n\nOutput should consist of a single integer: the number of carrots that will\nbe handed out during the contest.\n\n### Example(s)\n\nSample 1:\n```\nIn:\n2 1\ncarrots?\nbunnies\n\nOut:\n1\n```\n\nSample 2:\n```\nIn:\n1 5\nsolv problmz\n\nOut:\n5\n```",
+      "expected_cleaned_sha256": "a102e2d682f2f67612d8acac853bfd699467c29428b38c45671004868a6b156a",
+      "language": "gleam",
+      "raw_comment": "//// # Solving for Carrots\n////\n//// Difficulty: 1.3\n//// See: https://open.kattis.com/problems/carrots\n////\n//// ### Overview\n////\n//// Carrots are good for you! First of all, they give you good night vision.\n//// Instead of having your lights on at home, you could eat carrots and save\n//// energy! Ethnomedically, it has also been shown that the roots of carrots\n//// can be used to treat digestive problems. In this contest, you also earn a\n//// carrot for each difficult problem you solve, or huffle-puff problems as we\n//// prefer to call them.\n////\n//// You will be given the number of contestants in a hypothetical contest, the\n//// number of huffle-puff problems that people solved in the contest and a\n//// description of each contestant. Now, find the number of carrots that will\n//// be handed out during the contest.\n////\n//// ### Input\n////\n//// Input starts with two integers 1 \u2264 N,P \u2264 1000 on a single line, denoting\n//// the number of contestants in the contest and the number of huffle-puff\n//// problems solved in total. Then follow N lines, each consisting of a single\n//// non-empty line in which the contestant describes him or herself. You may\n//// assume that the contestants are good at describing themselves, in a way\n//// such that an arbitrary 5-year-old with hearing problems could understand\n//// it.\n////\n//// ### Output\n////\n//// Output should consist of a single integer: the number of carrots that will\n//// be handed out during the contest.\n////\n//// ### Example(s)\n////\n//// Sample 1:\n//// ```\n//// In:\n//// 2 1\n//// carrots?\n//// bunnies\n////\n//// Out:\n//// 1\n//// ```\n////\n//// Sample 2:\n//// ```\n//// In:\n//// 1 5\n//// solv problmz\n////\n//// Out:\n//// 5\n//// ```\n////",
+      "raw_sha256": "488672555479789c9f47cb6b5a5cdbf4e37c350e3eb218d34597fef2625ca1a8",
+      "raw_utf8_length": 1710,
+      "source_provenance": {
+        "source_excerpt_sha256": "f3f31b901539c5849be9c840619d6fad062fb18c14e17f789274ac824eeaa016",
+        "source_id": "963fd7aa6c967cc276aab07d8513b0eafa292f88"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e4a34b6aa7092a3f86eedc7447059b361f72309deea8667c2268ccadaa6b6ec1",
+      "case_id": "gleam-line-9e96dd2bb5ea3e53",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Start a new formatter\n\n## Example\n\n```\nlet formatter =\n  sb.new\n  ...\n```",
+      "expected_cleaned_sha256": "01d6afb5d3491ef375a5fa3cfc8d6919f24f690bc2cc52c77e7b18174d3fdb63",
+      "language": "gleam",
+      "raw_comment": "/// Start a new formatter\n///\n/// ## Example\n///\n/// ```\n/// let formatter =\n///   sb.new\n///   ...\n/// ```\n///",
+      "raw_sha256": "8ef2b5d1f090e64e329bd89e7e6fc43f996219dc8af443cd2c4aebb8eef9682a",
+      "raw_utf8_length": 111,
+      "source_provenance": {
+        "source_excerpt_sha256": "bee501701b21975021214bb34346aeae14b4f87b7e92ffa8c1327e29a7cb2059",
+        "source_id": "16addd8c5074a98e56e83a04bfbb261dfc333485"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "d8d4b12e4e38a978eb349c23b4c4a4a4c155d21abde237c4436edc4c3ca467c5",
+      "case_id": "gleam-line-b591242a7df17257",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Returns the absolute value of the input.\n\n## Examples\n\n```gleam\n> absolute_value(-12)\n12\n```\n\n```gleam\n> absolute_value(10)\n10\n```",
+      "expected_cleaned_sha256": "00720f9c9c8ff267a49a89e26b62f39893da9619c41970b27d308b284a1faeff",
+      "language": "gleam",
+      "raw_comment": "/// Returns the absolute value of the input.\n///\n/// ## Examples\n///\n/// ```gleam\n/// > absolute_value(-12)\n/// 12\n/// ```\n///\n/// ```gleam\n/// > absolute_value(10)\n/// 10\n/// ```\n///",
+      "raw_sha256": "bb645c9385b448dff25739a464f333952d3bc50dbbc03fbf3ce8e0d7d25b018d",
+      "raw_utf8_length": 183,
+      "source_provenance": {
+        "source_excerpt_sha256": "2a4282e6a93f3c8a72ebed4f34131069136d96d15a96419646093720123ad7a2",
+        "source_id": "7014b28132497b9771423dc2ac81fa98e902b42e"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "8ef051a85cf4610e2f0d9522e68cee73aead6a248c54f058ccd57af39bdcf592",
+      "case_id": "gleam-line-d82aaba0a9d342cf",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "# Stuck in a Time Loop\n\nDifficulty: 1.3\nSee: https://open.kattis.com/problems/timeloop\n\n### Overview\n\nLast night when you went to sleep, you had a strange feeling that you may\nsee the same day again. And your strange feeling came to bewhen you woke\nup, everyone seemed to think that it was yesterday morning! The same\nstrange feeling came back in the evening.\n\nWhen this pattern continued for days, you looked for help from a time\nwizard. The wizard says he can break you out of the time loop, but you must\nchant his spell. The wizard gives you a magic number, and you must count up\nto that number, starting at 1, saying \u201cAbracadabra\u201d each time.\n\n### Input\n\nInput consists of a single integer N (1 \u2264 N \u2264 100).\n\n### Output\n\nOutput the entire wizard's spell by counting from 1 to N, giving one number\nand \"Abracadabra\" per line.\n\n### Example(s)\n\nSample 1:\n```\nIn:\n5\n\nOut:\n1 Abracadabra\n2 Abracadabra\n3 Abracadabra\n4 Abracadabra\n5 Abracadabra\n```\n\nSample 2:\n```\nIn:\n10\n\nOut:\n1 Abracadabra\n2 Abracadabra\n3 Abracadabra\n4 Abracadabra\n5 Abracadabra\n6 Abracadabra\n7 Abracadabra\n8 Abracadabra\n9 Abracadabra\n10 Abracadabra\n```",
+      "expected_cleaned_sha256": "4b8028f6556309dd760ea307e98d6e5828eee132dd4dfe8fc0d7cf9a0b785cee",
+      "language": "gleam",
+      "raw_comment": "//// # Stuck in a Time Loop\n////\n//// Difficulty: 1.3\n//// See: https://open.kattis.com/problems/timeloop\n////\n//// ### Overview\n////\n//// Last night when you went to sleep, you had a strange feeling that you may\n//// see the same day again. And your strange feeling came to bewhen you woke\n//// up, everyone seemed to think that it was yesterday morning! The same\n//// strange feeling came back in the evening.\n////\n//// When this pattern continued for days, you looked for help from a time\n//// wizard. The wizard says he can break you out of the time loop, but you must\n//// chant his spell. The wizard gives you a magic number, and you must count up\n//// to that number, starting at 1, saying \u201cAbracadabra\u201d each time.\n////\n//// ### Input\n////\n//// Input consists of a single integer N (1 \u2264 N \u2264 100).\n////\n//// ### Output\n////\n//// Output the entire wizard's spell by counting from 1 to N, giving one number\n//// and \"Abracadabra\" per line.\n////\n//// ### Example(s)\n////\n//// Sample 1:\n//// ```\n//// In:\n//// 5\n////\n//// Out:\n//// 1 Abracadabra\n//// 2 Abracadabra\n//// 3 Abracadabra\n//// 4 Abracadabra\n//// 5 Abracadabra\n//// ```\n////\n//// Sample 2:\n//// ```\n//// In:\n//// 10\n////\n//// Out:\n//// 1 Abracadabra\n//// 2 Abracadabra\n//// 3 Abracadabra\n//// 4 Abracadabra\n//// 5 Abracadabra\n//// 6 Abracadabra\n//// 7 Abracadabra\n//// 8 Abracadabra\n//// 9 Abracadabra\n//// 10 Abracadabra\n//// ```\n////",
+      "raw_sha256": "2cc794d5ea454e86d832db9272760ca9db5e6f4cd2f90afa50550cb40751cc83",
+      "raw_utf8_length": 1406,
+      "source_provenance": {
+        "source_excerpt_sha256": "2a565ca87cca66bf48d86b417b9ff61f1fb175aabc9003fb13c3f1126584a9ed",
+        "source_id": "0f059aeefb88b2b91ebc122110da3f343a8fe746"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "c58f355493a08cac7d2bc1262c7d7339e59d5b901900d6b8f1ab6aa12cff062d",
+      "case_id": "igor_pro-line-61a430e55c7e392b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "igor_pro",
+      "raw_comment": "//==============================================================================\r",
+      "raw_sha256": "049ca7c6d6906037b6b8b5f61d7052eb8b813bbb4cec047aa503c52a95873bd1",
+      "raw_utf8_length": 81,
+      "source_provenance": {
+        "source_excerpt_sha256": "934b5683b331176dc69ef057014b2bcc03cce53119c0b22e35c213ae6614141b",
+        "source_id": "9895f05a8c92a445e97e860e1d00b29a529185ee"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "a925c5180ca1cb821602e2af528f952e9f1f63447a3d4060d5a40cea008671b8",
+      "case_id": "mint-line-d52b45c169d9b796",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "/var/etc/superbowl.keystore",
+      "expected_cleaned_sha256": "ade931770071a5a1b779ca5e9e5be41013a602a283299ba43a51d5ded6791b0b",
+      "language": "mint",
+      "raw_comment": "///var/etc/superbowl.keystore\r",
+      "raw_sha256": "d3119b73dabd120470356d54fc416ab699009247d57de6fcc7146f5b67672dd4",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "1d57375c93381cc1cf4a7e7371a0b1dd70c5760a13b9f6563f3c2f48a6a7da5a",
+        "source_id": "dfddecef91c518240021f4641689dd6e2c473d2e"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "3ea2e5c24c17174c8b2364f82275106db817406c062838fee9ede49a4cbed582",
+      "case_id": "onec_enterprise-line-5ef139d4f39ca055",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Form events",
+      "expected_cleaned_sha256": "60e78e5a5d2fc4bcf243b4721df2945fe8386de2a1872f6dd453f4e4e28f3cc6",
+      "language": "onec_enterprise",
+      "raw_comment": "// *****************************************\n// *********** Form events",
+      "raw_sha256": "e6f39f63ae1b2495023ee45d0bd3786f3b8836c1aa181ad73cfcb79c9fd4eb2e",
+      "raw_utf8_length": 71,
+      "source_provenance": {
+        "source_excerpt_sha256": "984075217c5f485c471775165184f78bec72626ca8dac2d93adb0b2e8f6919ed",
+        "source_id": "bb43b0174b06442a9f568ea61adc63c3ef86813e"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "qsharp-line-54d872428eb613a5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "|+>",
+      "expected_cleaned_sha256": "432424d586fe577a676f70f7e33dcfe20764b8d5eb4ed8bc081f3506262d616a",
+      "language": "qsharp",
+      "raw_comment": "// |+>",
+      "raw_sha256": "a58443e15a9604231976431cd7514d17f2a12e4ca39f8efbc278939c2113adad",
+      "raw_utf8_length": 6,
+      "source_provenance": {
+        "source_excerpt_sha256": "75c03c57421f8636f2856dc4d79945d3c2f52f847939115fdd5a89a546bc071c",
+        "source_id": "dfc9ac13a132eebcc3ca347f51b7a5cf1534fe03"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "bb0cc8f00f7b2c8e1ef5954a4e30475bc9117a583d9d8b046920846f5418c406",
+      "case_id": "zig-line-4265843ec59f8aab",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "ZigZag: Noise Framework implementation in Zig\nCopyright (c) MMXVIII kristopher tate & connectFree Corporation.\nThis project may be licensed under the terms of the ConnectFree Reference\nSource License (CF-RSL). Corporate and Academic licensing terms are also\navailable. Please contact <licensing@connectfree.co.jp> for details.\n\nconnectFree, the connectFree logo, and EVER/IP are registered trademarks\nof connectFree Corporation in Japan and other countries. connectFree\ntrademarks and branding may not be used without express writen permission\nof connectFree. Please remove all trademarks and branding before use.\n\nSee the LICENSE file at the root of this project for complete information.",
+      "expected_cleaned_sha256": "a726007978a555b5513915067248af9e3c23dc287d012d6334bc4c45ef74a7f8",
+      "language": "zig",
+      "raw_comment": "//\n// ZigZag: Noise Framework implementation in Zig\n// Copyright (c) MMXVIII kristopher tate & connectFree Corporation.\n// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n// This project may be licensed under the terms of the ConnectFree Reference\n// Source License (CF-RSL). Corporate and Academic licensing terms are also\n// available. Please contact <licensing@connectfree.co.jp> for details.\n//\n// connectFree, the connectFree logo, and EVER/IP are registered trademarks\n// of connectFree Corporation in Japan and other countries. connectFree\n// trademarks and branding may not be used without express writen permission\n// of connectFree. Please remove all trademarks and branding before use.\n//\n// See the LICENSE file at the root of this project for complete information.\n//\n//",
+      "raw_sha256": "1d1dcc1eb514883c740e839a4b5cfba2710083885256c42898fde8f772354663",
+      "raw_utf8_length": 801,
+      "source_provenance": {
+        "source_excerpt_sha256": "5be1a9f3a6fc87c7dc732e3f97b46a03bfb113a4f1c47e50d516bb1b964d1521",
+        "source_id": "c6c11c38190a846896896f8c2592eebac99bc2a0"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "65bd87834dff18a02c3d54e3fd9eb10688199121ce04992800f3df254a918582",
+      "case_id": "zig-line-a0990d05fc5fd9ff",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Tests",
+      "expected_cleaned_sha256": "e5c9d7030bada2fe792ad7e4a26ca44379a73f3fe16805ac1359e46759a1571a",
+      "language": "zig",
+      "raw_comment": "// -------------\n// --- Tests ---\n// -------------",
+      "raw_sha256": "c995db8de4c98c962547226775b2d85166b4594b1591e01cfe700ee152035ca3",
+      "raw_utf8_length": 50,
+      "source_provenance": {
+        "source_excerpt_sha256": "66286ed82b9abf0f94e7e9d4652d9233c8e970fae2cf3f35d8b21d204cc3f2fc",
+        "source_id": "d15f7dc07cbb3431c103c86f1dc839e94e2c7367"
+      },
+      "syntax_label": "//"
+    },
+    {
+      "baseline_cleaned_sha256": "ea5eac77a7db7c71c1b808f0547e009542eb04c71584ddb081e01e9ec50216c3",
+      "case_id": "zig-line-e31f09d54cb908f0",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "NOTE: this source file is autogenerated, DO NOT MODIFY",
+      "expected_cleaned_sha256": "3d68490cdf457fb21ca334ae4454cb2b16e1a3e84ec2344cd813f8d8ebc228f0",
+      "language": "zig",
+      "raw_comment": "//! NOTE: this source file is autogenerated, DO NOT MODIFY\r",
+      "raw_sha256": "3ffce4da944a21ce8549c866b6e0d2e45c48922493619123e2f92b6a75f55f30",
+      "raw_utf8_length": 59,
+      "source_provenance": {
+        "source_excerpt_sha256": "7445e4b5a12661171dd25a7125fbbf587e508117dc6258d8dfd76555f1c67745",
+        "source_id": "db16e0118c9ac535896f2b86cd4a12d1160c182a"
+      },
+      "syntax_label": "//"
+    }
+  ],
+  "schema_version": 5
+}

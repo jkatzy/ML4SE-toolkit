@@ -1,0 +1,29 @@
+{
+  "case_id": "newlisp-line-970a2e30f37c786e",
+  "category": "extractor_or_source_invalid",
+  "cluster": "fixture:extractor_boundary",
+  "disposition": "accounting_only_no_oracle",
+  "language": "newlisp",
+  "original_expected_output_source": null,
+  "original_integrity": {
+    "current_output": {
+      "sha256": "f4e0e19fe9b58d2c20abb22ee754c6600e913339477e5d4f3cff6418c9cef033",
+      "utf8_length": 3898
+    },
+    "manifest_old_output": {
+      "sha256": "f4e0e19fe9b58d2c20abb22ee754c6600e913339477e5d4f3cff6418c9cef033",
+      "utf8_length": 3898
+    },
+    "raw_comment": {
+      "sha256": "037084b4fe65da4677594719130e342340bd6ca72f0264b6dac1b3f4555e2503",
+      "utf8_length": 3914
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "500fbf76ebc4aa358c9119f3cec02381159dc31636034834fc8215cd3774e56e",
+    "source_id": "a255c301a66f56b1b7530ba7637563407a476e69"
+  },
+  "source_record_sha256": "04e342491f96d2f4b69253930105cb716b5de55b2e798b94e96f5dab0cba4952"
+}

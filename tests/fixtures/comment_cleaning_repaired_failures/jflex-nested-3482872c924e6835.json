@@ -1,0 +1,38 @@
+{
+  "case_id": "jflex-nested-3482872c924e6835",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:star",
+  "disposition": "executable_regression",
+  "language": "jflex",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "650b2294fdbc81c4c61ddd84970ff5301767ad358a318a66d8cd91d54a790d20",
+      "utf8_length": 54
+    },
+    "manifest_old_output": {
+      "sha256": "2cce4afc9e2396b9b57c0f3bcdfed101908b37702d16da4d359764ec94f5ea7c",
+      "utf8_length": 52
+    },
+    "raw_comment": {
+      "sha256": "08c4d63836403bb93add240e7e67730c2448b298d1dde5bbfe4cd8f322919045",
+      "utf8_length": 68
+    },
+    "recommended_expected_output": {
+      "sha256": "2cce4afc9e2396b9b57c0f3bcdfed101908b37702d16da4d359764ec94f5ea7c",
+      "utf8_length": 52
+    }
+  },
+  "regression": {
+    "expected_output": "Defaultconstructor : erzeugt einen neuen TextScanner",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "/** \n   * Defaultconstructor : erzeugt einen neuen TextScanner\n   */"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "267ecb711b0718587da446b6d393f2203d5d164e4fb8e47af1b947025eaadba6",
+    "source_id": "3c0fdd883bbf58fc21c0f292011da9beb5bf198c"
+  },
+  "source_record_sha256": "9b4e22eafae2f2f273cd2c2f4c6ba1a2b6db111eeaafcd5a885883cb2c837571"
+}

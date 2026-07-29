@@ -1,0 +1,38 @@
+{
+  "case_id": "agda-line-556874cb96714447",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:dash",
+  "disposition": "executable_regression",
+  "language": "agda",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2c640f86d7ac406ac1de1a5546dbfc88a7ca9f3b5b418327dd2d8121cbc45947",
+      "utf8_length": 68
+    },
+    "manifest_old_output": {
+      "sha256": "132514eef5c2f43a87b52816ded902cc382c6abff7ae14c4a97d01d15ff36a8b",
+      "utf8_length": 35
+    },
+    "raw_comment": {
+      "sha256": "be00c0cc21959ebe1a7067bdef1c83b3ddf1bb03982554f712981ebf53aa91a1",
+      "utf8_length": 215
+    },
+    "recommended_expected_output": {
+      "sha256": "132514eef5c2f43a87b52816ded902cc382c6abff7ae14c4a97d01d15ff36a8b",
+      "utf8_length": 35
+    }
+  },
+  "regression": {
+    "expected_output": "Definitions of concrete colineales.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "-----------------------------------------------------------------------\n-- Definitions of concrete colineales.                               --\n-----------------------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "5ab170d649904088ec5744c4b3686bdb7935fa9f5eb69c9a5d78ea3323c8440c",
+    "source_id": "062c2bd32ea1b465f0d6d41208881033b8761df5"
+  },
+  "source_record_sha256": "b72daa455cab8c61165d886f3d28af35c6971193f13f4e3d4e1035f7d7c8bac7"
+}

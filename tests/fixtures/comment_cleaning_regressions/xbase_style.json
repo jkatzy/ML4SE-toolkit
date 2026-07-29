@@ -1,0 +1,296 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "xbase_style",
+  "oracle_exception_cases": [
+    {
+      "baseline_cleaned_sha256": "a4f2c91f7ce8a4c95b22a796f25985db1a31c89b32bea0c9d32e35de15f70288",
+      "case_id": "harbour-line-100b519a8c09196c",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "harbour",
+      "oracle_exception_record_sha256": "3c6dfa70f618fdde414e5d68334e26444aa86130415d27d201b9cf1e6577736f",
+      "raw_sha256": "a4f2c91f7ce8a4c95b22a796f25985db1a31c89b32bea0c9d32e35de15f70288",
+      "raw_utf8_length": 29,
+      "source_provenance": {
+        "source_excerpt_sha256": "cf4b146889dd5447e1bf78d5b9e1872b37ce1152be2a778f4c19e496c834e6b1",
+        "source_id": "2af85bd36f57bd8e1227780cef58efa2cc977f07"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "b59eb8966fb0e8d1fc3689c1bbadc1508ee26df3fa1792dc4c1ed5495f6881eb",
+      "case_id": "harbour-line-33ea3cc0b1fbd403",
+      "comment_kind": "line",
+      "disposition": "accounting_only",
+      "exception_status": "reviewer_disagreement",
+      "language": "harbour",
+      "oracle_exception_record_sha256": "027d5b3b649ed530b4fc75139cf4a2c366034ec74559f147ce438933b9886770",
+      "raw_sha256": "b59eb8966fb0e8d1fc3689c1bbadc1508ee26df3fa1792dc4c1ed5495f6881eb",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "69c3a4a2faac527ef9e28d5da50d4184991338458d5b27427ae98da7806f7848",
+        "source_id": "dc3ec2b5ac1534fcfdd5a2fe2f7af185a32a322b"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "case_id": "harbour-block-c3f16fd7fb28dc28",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "{{{.}}}",
+      "expected_cleaned_sha256": "92682b0eb5d75bc6c00ccdfbbc616ddd4391c5d24d592ebb3f2b37a7f5da586b",
+      "language": "harbour",
+      "raw_comment": "/**\n         * {{{.}}}\n         **/",
+      "raw_sha256": "814f84dbdfaf5ceca22aeb14d628307544203ab33084cea9226a4fe7dbab0649",
+      "raw_utf8_length": 35,
+      "source_provenance": {
+        "source_excerpt_sha256": "51bb80c106cec2539541813cf3d521b283ab4188a4ab05ac5d01836907d37a5a",
+        "source_id": "6a901a926280d1b6513b1bce6e45f4dfede00d1d"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "0ee9e6dab5cb2cc5329aaa8719ebd99e860523ab4adb3e0c968eb665e47c7121",
+      "case_id": "harbour-line-398482f5bdab45a8",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "isPlainObject(parameter)) {",
+      "expected_cleaned_sha256": "131f72eff4209a9558665db4098a107e6ccf051ef79a5ddf5b24879260461767",
+      "language": "harbour",
+      "raw_comment": "&& isPlainObject(parameter)) {",
+      "raw_sha256": "0ee9e6dab5cb2cc5329aaa8719ebd99e860523ab4adb3e0c968eb665e47c7121",
+      "raw_utf8_length": 30,
+      "source_provenance": {
+        "source_excerpt_sha256": "c4c71d8618c5d009748fdc82e1a0e44f3f67fea18b727022ac8e275c8ce69877",
+        "source_id": "5b3063b6870a74eb072c4a2a16577ec556cceb83"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "ec3282613d7db3943dbcd0e9fc4d3b14cee27f06714f2f70c8c4f020c1bf663d",
+      "case_id": "harbour-line-6fd8b7d06081c2e5",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "{",
+      "expected_cleaned_sha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96",
+      "language": "harbour",
+      "raw_comment": "    * {",
+      "raw_sha256": "8e5a96b48d21de6e629e378d7ebc9f392a1e5a720ff98ef5af85b30842f9a2b2",
+      "raw_utf8_length": 7,
+      "source_provenance": {
+        "source_excerpt_sha256": "f577472d4eb86d5dca1cffcd84663fe12554d0b340dda93027026642c790d4af",
+        "source_id": "b972b8b8b3818665b4062130709bec5f0020f4b2"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "ff7c4b381afd9ad09bc72f4970378d3a6934874ed57ccb3ce6046f740be1486e",
+      "case_id": "harbour-line-b3479d3dbcd79405",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "{{difference}}={{lang.harvested}}-{{lang.expected}}",
+      "expected_cleaned_sha256": "ff9f1cec9d9c5d01594a63b7eec1808af70371f457c9cbf520601520977b9c31",
+      "language": "harbour",
+      "raw_comment": "*{{difference}}={{lang.harvested}}-{{lang.expected}}",
+      "raw_sha256": "ff7c4b381afd9ad09bc72f4970378d3a6934874ed57ccb3ce6046f740be1486e",
+      "raw_utf8_length": 52,
+      "source_provenance": {
+        "source_excerpt_sha256": "4e026339955ef97afa548b024c7938bc2d868e44f1f2a8b530b4155196f038e5",
+        "source_id": "613b1755399f8a547c7ea78e3e0c394683362291"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "f0e076dddafd2fb45b7ab71682fed0905aa936889c54946e3dbd14b2f857ed57",
+      "case_id": "harbour-line-dc0c36cd41d3957b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "!",
+      "expected_cleaned_sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62",
+      "language": "harbour",
+      "raw_comment": "&&!  ",
+      "raw_sha256": "efdeabd26b4f4eeb1c8fb991d234901bb3b87ae10d2b000ac383c510d1c00bce",
+      "raw_utf8_length": 5,
+      "source_provenance": {
+        "source_excerpt_sha256": "be1d7375bf597bceae0af24b2a2c7106d018c23d21f93d6cd324cec2c7bcb526",
+        "source_id": "a4bc2fe2d85aada4d3b594f2ec65a6b59f39837e"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "b84599b41e827b7d006724a9257ac9a0d883d70e4142175a0b659edbf8616037",
+      "case_id": "xbase-block-2f9a1211e3745981",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The following code example demonstrates how to send an\nimage to the clipboard",
+      "expected_cleaned_sha256": "1d3daf2fa85edff6fbcb517595ac2554aa2fb030d45c5ca9cab0f34799177e5c",
+      "language": "xbase",
+      "raw_comment": "** The following code example demonstrates how to send an\n** image to the clipboard",
+      "raw_sha256": "b84599b41e827b7d006724a9257ac9a0d883d70e4142175a0b659edbf8616037",
+      "raw_utf8_length": 83,
+      "source_provenance": {
+        "source_excerpt_sha256": "9fb68b49a13212cec9026e743111bdec397e8f421f8b17f457126f68f52b1458",
+        "source_id": "432c60337f3438598276906ab9ab61d70c5c3ecc"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "5a64f53a8cb74b46c4b061647d0547459370cd7952a34cc979e86a829813532c",
+      "case_id": "xbase-block-7964df0d282453ca",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "SIMA - CONTABILIDAD PROFESORES\n\nMODULO      : INDICADORES\nSUBMODULO...: IMPRIMIR\n\nTITULO..: LISTA LOS INDICADORES DE LOS PROFESORES\n\nAUTOR: Nelson Fern\u00e1ndez G\u00f3mez       FECHA DE CREACION: MAR 20/96 MIE A\n       Colombia, Bucaramanga        INICIO: 03:55 PM   MAR 20/96 MIE\n\n\nREQUERIMIENTOS:\n\n1- Para ejecutar la funci\u00f3n tener presente la sintaxis\n\nOBJETIVOS:\n\n1- Permite imprimir los indicadores\n\n2- Retorna NIL\n\nSINTAXIS:\n\n\nPROGRAMA",
+      "expected_cleaned_sha256": "48aad3a2bdf46df24eed1280efa1a21e7a84716a06f209c3081b3096e3f1b1ff",
+      "language": "xbase",
+      "raw_comment": "/* SIMA - CONTABILIDAD PROFESORES\n\nMODULO      : INDICADORES\nSUBMODULO...: IMPRIMIR\n\n**************************************************************************\n* TITULO..: LISTA LOS INDICADORES DE LOS PROFESORES                      *\n**************************************************************************\n\nAUTOR: Nelson Fern\u00e1ndez G\u00f3mez       FECHA DE CREACION: MAR 20/96 MIE A\n       Colombia, Bucaramanga        INICIO: 03:55 PM   MAR 20/96 MIE\n\n\nREQUERIMIENTOS:\n\n1- Para ejecutar la funci\u00f3n tener presente la sintaxis\n\nOBJETIVOS:\n\n1- Permite imprimir los indicadores\n\n2- Retorna NIL\n\nSINTAXIS:\n\n\n*------------------------------------------------------------------------*\n*                              PROGRAMA                                  *\n*------------------------------------------------------------------------*/",
+      "raw_sha256": "a6d0ea1b16e7f62e5327b26f1402ac20e8c6fa5fe4c4bfeda5b11644c2ada38c",
+      "raw_utf8_length": 831,
+      "source_provenance": {
+        "source_excerpt_sha256": "0949d5c57df92730c2df9ebb9b691347693583a26589da6fc87d86d912061829",
+        "source_id": "410a5994937cbc0ca92cca5daf29cea185a056c7"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "0b42147970cf7dca8e6c0e197dd617fbe0bb62198a785b0cb8ec3d893062995d",
+      "case_id": "xbase-block-a565cf8f5ed350e4",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "fsock example\nMini BennuGD WebServer by SplinterGU",
+      "expected_cleaned_sha256": "4313ae2a613ed91f5935058751f6452ab192f31f3ade2d3d4587aeeed18c6dc8",
+      "language": "xbase",
+      "raw_comment": "/* fsock example\nMini BennuGD WebServer by SplinterGU\n*/",
+      "raw_sha256": "bf3eb38aa84f88d4e173287a4c4094268ad807859aff199283c3d9e2990a9526",
+      "raw_utf8_length": 56,
+      "source_provenance": {
+        "source_excerpt_sha256": "c17c1ea229a2142703f2481f9942d7decfce09af97686a57329d6fd15f46d2c6",
+        "source_id": "9183638189d3c0daffd64ff0de32f28dc84c08de"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "53a65f6d5f582d644886ea30e679ad343b85da710865b364915c8a570be58eb9",
+      "case_id": "xbase-block-c0d90fbf34bbe421",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "WELCOME is the procedure that provides the actions for\nthe Welcome to FoxPro topic.",
+      "expected_cleaned_sha256": "91ebe8079ab4fe075d5195f804353479da79098338016d2ed3b974c42e0ff7eb",
+      "language": "xbase",
+      "raw_comment": "* * * * * * * * * * * * * * * * * * * * * * * * * *\n* WELCOME is the procedure that provides the actions for\n* the Welcome to FoxPro topic.\n*",
+      "raw_sha256": "53a65f6d5f582d644886ea30e679ad343b85da710865b364915c8a570be58eb9",
+      "raw_utf8_length": 141,
+      "source_provenance": {
+        "source_excerpt_sha256": "1727e05a8eb90ea8d45b8f8a8b8ebc51e5c5b44a2b2bb1e790eb1ad4d5d54c6f",
+        "source_id": "451bf5854abf3239d576db3dc70dfbc52664eabc"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "054f7a693ad0d02e412988f40d2957375bf69067b80b0435fc6d96b9e3b6b09e",
+      "case_id": "xbase-block-d5942f49ff135636",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "FECHA      PEDIDO     ORD COMPRA CLIENTE                                  PRDUCTO                                            CANTIDAD    ATENDIDO    SALDO\n12/12/1234 1234567890 1234567890 1234567890123456789012345678901234567890 12345678901234567890123456789012345678901234567890 999,999.999 999,999.999 999,999.999",
+      "expected_cleaned_sha256": "2518385d297a1afebd0dff43c46894bfffcc6d4bc2ca654b1f6bd9a3c5a95840",
+      "language": "xbase",
+      "raw_comment": "*FECHA      PEDIDO     ORD COMPRA CLIENTE                                  PRDUCTO                                            CANTIDAD    ATENDIDO    SALDO\n*12/12/1234 1234567890 1234567890 1234567890123456789012345678901234567890 12345678901234567890123456789012345678901234567890 999,999.999 999,999.999 999,999.999 ",
+      "raw_sha256": "2e6e72cfa56a356c2be961c560e3ec4300eec4c50b6d00ad8498a661e0dd19f0",
+      "raw_utf8_length": 318,
+      "source_provenance": {
+        "source_excerpt_sha256": "61e5d468e36619258ea705f9b6faa3c2e16f3579888605693070b0c49f4cb9d2",
+        "source_id": "dd0ab58b96bfd9c4d219b697a045ec31b81a2d3d"
+      },
+      "syntax_label": "multiline"
+    },
+    {
+      "baseline_cleaned_sha256": "3443dfc10d7e1a64d70564878fed678d74bee90b402bb29d429909892429907e",
+      "case_id": "xbase-line-0f3b38cef42e8923",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "=44774 (hi msg last call)",
+      "expected_cleaned_sha256": "f18ceede1aef93c9dac8a516ad91432f69de114c640c69f667be65fbb3fa8ad2",
+      "language": "xbase",
+      "raw_comment": "*=44774 (hi msg last call)\r",
+      "raw_sha256": "bb3cdb6641268e0b7bebbb1f269853a38efc3f106cc968ed8c390e65631e7fa4",
+      "raw_utf8_length": 27,
+      "source_provenance": {
+        "source_excerpt_sha256": "07aac703885fc8e13ac491dfa2113f84fab5a7bdc58b1ab8aef0a4366fa4d1c8",
+        "source_id": "f989d02f606f0af2b592daa81a41a4ed7e0d52a4"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "bafecb0e247a31c76a3b3572fd54fb07d76214db11c49c452956b4687efbc509",
+      "case_id": "xbase-line-15f93bdc43b360fd",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435 (name) \u0447\u0435\u0433\u043e-\u0442\u043e \u043f\u043e \u043a\u043e\u0434\u0443 (kod) \u0432 \u0431\u0430\u0437\u0435 \u0434\u0430\u043d\u043d\u044b\u0445",
+      "expected_cleaned_sha256": "bdedc1b45f68a31416557de32f2827ce7f57db287c625d405bd84a0960ec23b1",
+      "language": "xbase",
+      "raw_comment": "***** \u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435 (name) \u0447\u0435\u0433\u043e-\u0442\u043e \u043f\u043e \u043a\u043e\u0434\u0443 (kod) \u0432 \u0431\u0430\u0437\u0435 \u0434\u0430\u043d\u043d\u044b\u0445",
+      "raw_sha256": "bafecb0e247a31c76a3b3572fd54fb07d76214db11c49c452956b4687efbc509",
+      "raw_utf8_length": 111,
+      "source_provenance": {
+        "source_excerpt_sha256": "69934f59674f4258867db1f7f96d4a182f24c73668aa41d35612e6a7eb33cd26",
+        "source_id": "d0011e58d8e5af5742ecde164b9f8f2e8c8575e4"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "562108bedf4acf5f84de05208c4e33dc2f4f09a11b467c770608d89ce1bc383d",
+      "case_id": "xbase-line-293b3efb185f72e1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "vfpclubsaymecountry",
+      "expected_cleaned_sha256": "4c8a10b2fa537aebd6474cc856a4b703264909c8493a83e0c85fc3d30ef70d23",
+      "language": "xbase",
+      "raw_comment": "*vfpclubsaymecountry",
+      "raw_sha256": "562108bedf4acf5f84de05208c4e33dc2f4f09a11b467c770608d89ce1bc383d",
+      "raw_utf8_length": 20,
+      "source_provenance": {
+        "source_excerpt_sha256": "711ce86c213d0f4fc20ab664d8dfd80a7524f0ee94ce8e6d7d74b6f192a7dd0a",
+        "source_id": "d44a80e7bf6e4895373a3ca8520952b7fb686bef"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "case_id": "xbase-line-4745ffd2c84ffea1",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "xbase",
+      "raw_comment": "*",
+      "raw_sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "raw_utf8_length": 1,
+      "source_provenance": {
+        "source_excerpt_sha256": "b067f5a714f1f9496f78ce68832c227e0aea6c9f7197772438517a7110198d43",
+        "source_id": "1265733f2d6d69dcb83143084b0a7d3f71d96fa6"
+      },
+      "syntax_label": "single-line"
+    },
+    {
+      "baseline_cleaned_sha256": "e83b3f065a2054dbd6f2382aec38e698a116edb38e3dee767a382592463e3915",
+      "case_id": "xbase-line-e97db82b4ca2d2a2",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Write here code to be performed before application build",
+      "expected_cleaned_sha256": "c6d6da5a2ccf84ea0a6d3d554c9bd91ad8b93e4d2b0f4d4217b1b3755fc94f89",
+      "language": "xbase",
+      "raw_comment": "\t*** Write here code to be performed before application build ",
+      "raw_sha256": "439be8b6a10bafc4cd323e293506691d2848f8d4775e043d53805ca851c9e108",
+      "raw_utf8_length": 62,
+      "source_provenance": {
+        "source_excerpt_sha256": "be36b0e6fb87f06e5d6e643f34bc6985e38f5ccad4fbc7331535487b1d8b28fd",
+        "source_id": "d02836303ad6f192721f2f4f0005637b845ba667"
+      },
+      "syntax_label": "single-line"
+    }
+  ],
+  "schema_version": 5
+}

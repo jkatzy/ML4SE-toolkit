@@ -1,0 +1,38 @@
+{
+  "case_id": "faust-line-0bf949421f1ef8fa",
+  "category": "sanitizer_regression",
+  "cluster": "active_regression:known_gutter",
+  "disposition": "executable_regression",
+  "language": "faust",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "3e55e8a5df1fb1383b31b42c9cdef659ca4afc2e21eb206fb585c8ca5e321328",
+      "utf8_length": 21
+    },
+    "manifest_old_output": {
+      "sha256": "d8b9bd81fcb6486c1ea9eccf258219e79710c92f890f42dce6a32fb64f6494aa",
+      "utf8_length": 19
+    },
+    "raw_comment": {
+      "sha256": "e95a227345a98418f225714ee44671c13bfb837a41e38b4985ba36fc6cbfee43",
+      "utf8_length": 122
+    },
+    "recommended_expected_output": {
+      "sha256": "d8b9bd81fcb6486c1ea9eccf258219e79710c92f890f42dce6a32fb64f6494aa",
+      "utf8_length": 19
+    }
+  },
+  "regression": {
+    "expected_output": "stereo sample delay",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//-----------------------------------------------\n// stereo sample delay\n//-----------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "cd050d92682ea6733a0a95bc70da020c7e6e7ff8ef35e7fb3294c3b587472312",
+    "source_id": "69a1359041d522b0a85ef4153472bbcee1cacc99"
+  },
+  "source_record_sha256": "d42e581e79b8eb5a93b07c3e66101a1c2aa54ac82044914497fc2e8bbfdac1b6"
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "prolog-line-38ca46c77fd76e3f",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:percent",
+  "disposition": "executable_regression",
+  "language": "prolog",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "8014139658e01d62776e4beee4f98933abe47385f4cc50311c33662b9f0b26f8",
+      "utf8_length": 248
+    },
+    "manifest_old_output": {
+      "sha256": "d7cb6c05204b3cad2e6829e2c8a4756d80117b98e8680d3c047ad0c4deef3e9e",
+      "utf8_length": 239
+    },
+    "raw_comment": {
+      "sha256": "f5d7963027e5d6164edc17b10090c8bedd090582b54f22e38bce0eb9321a0fda",
+      "utf8_length": 268
+    },
+    "recommended_expected_output": {
+      "sha256": "d7cb6c05204b3cad2e6829e2c8a4756d80117b98e8680d3c047ad0c4deef3e9e",
+      "utf8_length": 239
+    }
+  },
+  "regression": {
+    "expected_output": "$Id$\n\nMSc dissertation Guesstimation Project\nBy Jonathan Abourbih\n(c) 2009 The University of Edinburgh\n\nThis file contains predicates for updating the RDF database with a local\ncustomized ontology for doing inference on a specific problem.",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "%%%% \n%% $Id$\n%% \n%% MSc dissertation Guesstimation Project\n%% By Jonathan Abourbih\n%% (c) 2009 The University of Edinburgh\n%%\n%% This file contains predicates for updating the RDF database with a local\n%% customized ontology for doing inference on a specific problem."
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "77b9d0083f30b6deefbaf1ad6aab4597ec35e300fdcfe5290a5724d773de546c",
+    "source_id": "18ea10165d7748e85349f28df2bb2d4c33b382aa"
+  },
+  "source_record_sha256": "2802940849d3290e6d40938470ebef75a52cbbd72b8e8626e47e99f3cc95ef93"
+}

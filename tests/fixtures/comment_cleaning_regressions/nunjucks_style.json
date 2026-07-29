@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "nunjucks_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "71cfcb4eabf2746f72dbce83d3b22437359b57717c3abb6cb53af086b98aeae8",
+      "case_id": "nunjucks-block-1fb827d2e18aad36",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "The SVG needs `focusable=\"false\"` so that Internet Explorer does not\ntreat it as an interactive element - without this it will be 'focusable'\nwhen using the keyboard to navigate.",
+      "expected_cleaned_sha256": "d313a65aded104afd6e75b286dbd709ca2c68c3d8f987b092dc37efd848fb402",
+      "language": "nunjucks",
+      "raw_comment": "{#-\n      The SVG needs `focusable=\"false\"` so that Internet Explorer does not\n      treat it as an interactive element - without this it will be 'focusable'\n      when using the keyboard to navigate.\n    #}",
+      "raw_sha256": "0f91e9dd7d2b8822fc2653655d3075e44d7fa31466cfb811d790e05988caf860",
+      "raw_utf8_length": 207,
+      "source_provenance": {
+        "source_excerpt_sha256": "c148a01369eac677bf2ecfbadb256e7743a545524b40f7ac358813fe9c3917cb",
+        "source_id": "ebabf0a2decb84cebc7941c4bbe26466cea403b8"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "7f0d59b9ce6fc23170379b378a9cda6755a47203abc9d7a228404344ed3b0d4d",
+      "case_id": "nunjucks-block-e17c144a82846e85",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Import atom macros",
+      "expected_cleaned_sha256": "b3460ec1ab2061f9bcbddc641d58551724775d92f5369fd6f4a8260aea814b05",
+      "language": "nunjucks",
+      "raw_comment": "{#- Import atom macros -#}",
+      "raw_sha256": "2451a73c6a514558af49d7d2e175453c3f7e5f90e6c98f3fd8f5f8cc201bb286",
+      "raw_utf8_length": 26,
+      "source_provenance": {
+        "source_excerpt_sha256": "91e669dd7f34a55fbdbffc5ccea2fee901e1609d067d236f7eccd5d74f836308",
+        "source_id": "1a60083622868a3eee43816b985fbb2733b66db1"
+      },
+      "syntax_label": "{#...#}"
+    },
+    {
+      "baseline_cleaned_sha256": "1f0bdd212fbd3429447cb7226dd4eac6068443d71b851d7d4dbfb5a02b07a888",
+      "case_id": "twig-block-05fbe1b3490db1f8",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Branded Copy of eDirectory",
+      "expected_cleaned_sha256": "5d2a2db937cd1cfc3969efc9adfdcfee84a2d4683c437cb1c60c48d3614ba016",
+      "language": "twig",
+      "raw_comment": "{# Branded Copy of eDirectory -#}",
+      "raw_sha256": "c4f5f5f85a25dd941e3a1039bfa68a4b8d4b3af4666b2b1d7486120919c2e50a",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "e463d5326fa6539b092e15ad340c17ba3eb3fead4e11749cb41017d16c6b18b1",
+        "source_id": "b66c62590446c00b9b1c90557b7bd350fd3fc1bb"
+      },
+      "syntax_label": "{#...#}"
+    }
+  ],
+  "schema_version": 5
+}

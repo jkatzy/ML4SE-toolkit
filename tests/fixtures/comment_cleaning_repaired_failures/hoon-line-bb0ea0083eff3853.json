@@ -1,0 +1,38 @@
+{
+  "case_id": "hoon-line-bb0ea0083eff3853",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:u003a",
+  "disposition": "executable_regression",
+  "language": "hoon",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "80a89211e7ff96ea0588118b5b4d7201b0679eb9ec142db58e54ca33d7ba5721",
+      "utf8_length": 77
+    },
+    "manifest_old_output": {
+      "sha256": "ca0261cd84ac7162edb0415e04df12eefec67619cab64f9139511cc5df059cb9",
+      "utf8_length": 72
+    },
+    "raw_comment": {
+      "sha256": "d0b5824a63d83bd2b353fa6798e6d9b117a8667424192bbeb111e2b13cbd78b9",
+      "utf8_length": 89
+    },
+    "recommended_expected_output": {
+      "sha256": "ca0261cd84ac7162edb0415e04df12eefec67619cab64f9139511cc5df059cb9",
+      "utf8_length": 72
+    }
+  },
+  "regression": {
+    "expected_output": "Kiln: make (subtree in) desk privately readable.\n\n/gen/hood/private/hoon",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "::  Kiln: make (subtree in) desk privately readable.\n::\n::::  /gen/hood/private/hoon\n  ::"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "26232f5070bbf080662d5aeaaf681133162bf8b973e103a70d505733211fc4ea",
+    "source_id": "07ea6caaabfcbf768123e77e95623de297d0125c"
+  },
+  "source_record_sha256": "0046aed10b63c4df4028bcee927afe8061e9c2fd90d2098a04dd297089714f3b"
+}

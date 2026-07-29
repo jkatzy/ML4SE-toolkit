@@ -1,0 +1,38 @@
+{
+  "case_id": "clean-line-c3cd7b0e7e2140a9",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "executable_regression",
+  "language": "clean",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "8c2236b054db98cc92f03eb38c09a53bdb924e3f24388aa7fee43e5c53583a8d",
+      "utf8_length": 415
+    },
+    "manifest_old_output": {
+      "sha256": "8c2236b054db98cc92f03eb38c09a53bdb924e3f24388aa7fee43e5c53583a8d",
+      "utf8_length": 415
+    },
+    "raw_comment": {
+      "sha256": "f7b7be36d8721b9261964480ec64676cae8171ef86ccf5460b199689ef9be98d",
+      "utf8_length": 569
+    },
+    "recommended_expected_output": {
+      "sha256": "8c2236b054db98cc92f03eb38c09a53bdb924e3f24388aa7fee43e5c53583a8d",
+      "utf8_length": 415
+    }
+  },
+  "regression": {
+    "expected_output": " Copyright Mentor Graphics Corporation\n All Rights Reserved\n\n THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY\n INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS\n CORPORATION OR ITS LICENSORS AND IS SUBJECT\n TO LICENSE TERMS.\n\n--------------------------------------------------------\n File created by: Tessent Shell\n         Version: 2018.4-snapshot_2018.10.04_03.00\n      Created on: Thu Oct  4 04:27:23 PDT 2018",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "//--------------------------------------------------------\n//\n//  Copyright Mentor Graphics Corporation\n//  All Rights Reserved\n//\n//  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY\n//  INFORMATION WHICH IS THE PROPERTY OF MENTOR GRAPHICS\n//  CORPORATION OR ITS LICENSORS AND IS SUBJECT\n//  TO LICENSE TERMS.\n//\n//--------------------------------------------------------\n//  File created by: Tessent Shell\n//          Version: 2018.4-snapshot_2018.10.04_03.00\n//       Created on: Thu Oct  4 04:27:23 PDT 2018\n//--------------------------------------------------------"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "df7184313db3d21cbe048d135e32e130b12651499d767376752f8efc153fbeb7",
+    "source_id": "3b3ac7bab0b28a1e2e8cc055ce35f839134f3305"
+  },
+  "source_record_sha256": "78b306166810b9f6f82122c2f0eef6a8f86ee29dc98836939ac4ea8416e9436c"
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": "genero_forms-block-58eab17332f7cdab",
+  "category": "policy_or_judge_conflict",
+  "cluster": "judge_drift:unchanged_output",
+  "disposition": "accounting_only_superseded",
+  "language": "genero_forms",
+  "original_expected_output_source": "current",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "2e1a0a8997f0ea9eeb46204a850c8448eae0e1991e8f8f4b1f023c94aa3d8a05",
+      "utf8_length": 447
+    },
+    "manifest_old_output": {
+      "sha256": "2e1a0a8997f0ea9eeb46204a850c8448eae0e1991e8f8f4b1f023c94aa3d8a05",
+      "utf8_length": 447
+    },
+    "raw_comment": {
+      "sha256": "82a2874f6f170dd94a4b6e3daf04ed23c95001047481b41455908ba014167526",
+      "utf8_length": 524
+    },
+    "recommended_expected_output": {
+      "sha256": "2e1a0a8997f0ea9eeb46204a850c8448eae0e1991e8f8f4b1f023c94aa3d8a05",
+      "utf8_length": 447
+    }
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1033936d013b68ec39c32a0bb6f444fbe383db83f66749a7d0dc42c4966672d1",
+    "source_id": "e652cb3b6687b2098e280fb2fda2fbbc5401db98"
+  },
+  "source_record_sha256": "f31b01a243a78f7c4ffd3bd1cb2da26a05e97d11d0d8b8b99f3a2d663cfc4690"
+}

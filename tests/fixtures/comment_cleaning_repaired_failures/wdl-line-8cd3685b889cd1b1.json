@@ -1,0 +1,38 @@
+{
+  "case_id": "wdl-line-8cd3685b889cd1b1",
+  "category": "sanitizer_regression",
+  "cluster": "retained_marker:hash",
+  "disposition": "executable_regression",
+  "language": "wdl",
+  "original_expected_output_source": "manifest_old",
+  "original_integrity": {
+    "current_output": {
+      "sha256": "857ead87fa0e76b67185701764ce4772bc474c53d7a8b7f68b246a1ecb44cea9",
+      "utf8_length": 93
+    },
+    "manifest_old_output": {
+      "sha256": "262993133ecba9754b4ed45ff03c1f86dbb24f8616940ed056044d5fe50af980",
+      "utf8_length": 89
+    },
+    "raw_comment": {
+      "sha256": "a8a545643c7f0621e17238feee36b73d9d7320c6872c403f65fac26061fc4154",
+      "utf8_length": 96
+    },
+    "recommended_expected_output": {
+      "sha256": "262993133ecba9754b4ed45ff03c1f86dbb24f8616940ed056044d5fe50af980",
+      "utf8_length": 89
+    }
+  },
+  "regression": {
+    "expected_output": "Evaluate performance of GATK gCNV against a callset produced by Talkowski lab SV pipeline",
+    "provenance": "exact_classification_literal",
+    "raw_comment": "# Evaluate performance of GATK gCNV against a callset produced by Talkowski lab SV pipeline\n####"
+  },
+  "schema_version": 2,
+  "source_provenance": {
+    "dataset": "bigcode/the-stack-v2-dedup",
+    "source_excerpt_sha256": "1af159e00e8c15c694068d76a60c6b87b2309dffed3cdfb557b66c979469d3c1",
+    "source_id": "1d6baf7ef8fff3d616834d35e5756f8d8e649947"
+  },
+  "source_record_sha256": "0e517863de1f05fbced5cf5d7d98e61a7af5432f95411df7becd60f716833ee2"
+}
