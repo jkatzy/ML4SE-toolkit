@@ -1118,7 +1118,7 @@ def _registry_wrapper_marker_kinds(
     )
 
 
-def _registry_wrapper_kind(canonical_name: str, match_text: str) -> str | None:
+def _registry_wrapper_kind(canonical_name: str, match_text: str) -> Optional[str]:
     """Classify a scanner range from registry-derived delimiter metadata."""
 
     stripped = match_text.lstrip()
