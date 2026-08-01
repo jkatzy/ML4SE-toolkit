@@ -12,7 +12,7 @@ import ast
 import json
 from functools import lru_cache
 from importlib import resources
-from typing import Iterable, List, Tuple
+from typing import Iterable, List, Optional, Tuple
 
 import regex as re
 
@@ -1244,7 +1244,7 @@ def remove_comments(content, langs):
     return extract_comments(content, langs)
 
 
-def extract_opening_comment(content: str, langs) -> CommentSpan | None:
+def extract_opening_comment(content: str, langs) -> Optional[CommentSpan]:
     """Return the first file-opening comment, if present.
 
     Args:

@@ -51,6 +51,10 @@ class CommentSyntax:
         canonical_regex_examples: Seeded examples only for ``canonical_name``.
         shared_nested_examples: Nested examples that apply to every alias.
         canonical_nested_examples: Nested examples only for ``canonical_name``.
+        documentation_source: Reference used to justify the syntax entry.
+        implementation_source: File that owns this implementation.
+        confidence: Research confidence level for the syntax entry.
+        notes: Maintainer-facing caveats for parser behavior or dialect scope.
         contextual_extractor: Optional named range extractor for formats whose
             comments depend on file-level structure rather than delimiters.
         shared_contextual_examples: Contextual examples for every alias.
@@ -71,10 +75,6 @@ class CommentSyntax:
             family.
         sanitizer_mode: ``wrapped`` for delimiter-based comments or ``raw`` for
             contextual comments whose text must be preserved verbatim.
-        documentation_source: Reference used to justify the syntax entry.
-        implementation_source: File that owns this implementation.
-        confidence: Research confidence level for the syntax entry.
-        notes: Maintainer-facing caveats for parser behavior or dialect scope.
     """
 
     family_name: str
@@ -86,6 +86,11 @@ class CommentSyntax:
     canonical_regex_examples: Tuple[CommentExample, ...] = ()
     shared_nested_examples: Tuple[CommentExample, ...] = ()
     canonical_nested_examples: Tuple[CommentExample, ...] = ()
+    documentation_source: str = "TODO"
+    implementation_source: str = "src/ml4setk/Parsing/Comments/registry.py"
+    confidence: str = "seeded-from-implementation"
+    notes: str = ""
+    # Preserve the published v0.0.2 positional field order above this line.
     contextual_extractor: str = ""
     shared_contextual_examples: Tuple[CommentExample, ...] = ()
     canonical_contextual_examples: Tuple[CommentExample, ...] = ()
@@ -95,10 +100,6 @@ class CommentSyntax:
     excluded_comment_prefixes: Tuple[str, ...] = ()
     language_excluded_comment_prefixes: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     sanitizer_mode: str = "wrapped"
-    documentation_source: str = "TODO"
-    implementation_source: str = "src/ml4setk/Parsing/Comments/registry.py"
-    confidence: str = "seeded-from-implementation"
-    notes: str = ""
 
     @property
     def language_names(self) -> Tuple[str, ...]:
@@ -2812,7 +2813,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"\/\*[\s\S]*?\*\/",
             r"--.*",
         ),
-        excluded_comment_prefixes=("/*!",),
+        language_excluded_comment_prefixes=(("sql", ("/*!",)),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n-- note\nsuffix",
