@@ -1,0 +1,3 @@
+var value = 1 # inline contextual_fixture_1
+return value
+value_1 = 1

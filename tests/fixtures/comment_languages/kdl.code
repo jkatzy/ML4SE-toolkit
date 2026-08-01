@@ -1,0 +1,10 @@
+server host="localhost" // contextual_fixture_1
+
+value_1 = 1
+server /* outer /* block contextual_fixture_2 */ outer */ port=8080
+value_2 = 2
+/- legacy host="old.example" {
+  child value=1
+ contextual_fixture_3}
+kept value=2
+value_3 = 3

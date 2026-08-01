@@ -1,0 +1,8 @@
+uniform vec4 tint; // material contextual_fixture_1
+
+value_1 = 1
+/** inspector contextual_fixture_2 */
+uniform float strength;
+value_2 = 2
+shader_type spatial;
+/* accepted through EOF

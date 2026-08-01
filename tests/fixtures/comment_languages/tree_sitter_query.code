@@ -1,0 +1,3 @@
+(identifier) @name ; query contextual_fixture_1
+"; literal"
+value_1 = 1

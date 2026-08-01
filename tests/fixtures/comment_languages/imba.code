@@ -1,0 +1,7 @@
+tag App
+# component contextual_fixture_1
+
+value_1 = 1
+### block contextual_fixture_2 ###
+value_2 = 2
+### accepted through EOF

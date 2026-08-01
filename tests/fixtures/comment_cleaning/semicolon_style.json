@@ -33,7 +33,11 @@
     "windows_registry_entries",
     "rebol",
     "purebasic",
-    "wisp"
+    "wisp",
+    "dune",
+    "firrtl",
+    "pact",
+    "pddl"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

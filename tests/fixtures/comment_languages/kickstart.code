@@ -1,0 +1,6 @@
+  # contextual_fixture_1
+reboot
+value_1 = 1
+url --url="https://host/tree#fragment" # contextual_fixture_2
+reboot
+value_2 = 2

@@ -1,0 +1,6 @@
+string Name // public contextual_fixture_1
+
+value_1 = 1
+/// documentation contextual_fixture_2
+string Name
+value_2 = 2

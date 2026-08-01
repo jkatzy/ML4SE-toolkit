@@ -5,7 +5,6 @@
   "language_keys": [
     "qsharp",
     "q_sharp",
-    "go_module",
     "onec_enterprise",
     "1c_enterprise",
     "cairo",
@@ -17,7 +16,9 @@
     "grace",
     "cloud_firestore_security_rules",
     "igor_pro",
-    "valve_data_format"
+    "valve_data_format",
+    "hare",
+    "kerboscript"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

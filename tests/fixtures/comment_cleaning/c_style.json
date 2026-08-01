@@ -16,7 +16,6 @@
     "objective_cpp",
     "objective_c_plus_plus",
     "go",
-    "kotlin",
     "vue",
     "scala",
     "dart",
@@ -45,6 +44,7 @@
     "ballerina",
     "bison",
     "chuck",
+    "cypher",
     "cycript",
     "dataweave",
     "edje_data_collection",
@@ -162,7 +162,12 @@
     "x_bitmap",
     "x_pix_map",
     "x_pixmap",
-    "zenscript"
+    "zenscript",
+    "hip",
+    "ispc",
+    "zmodel",
+    "overpassql",
+    "tact"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

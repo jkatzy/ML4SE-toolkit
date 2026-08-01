@@ -1,0 +1,3 @@
+[node name="Demo"] ; scene contextual_fixture_1
+color = #ff00ff
+value_1 = 1

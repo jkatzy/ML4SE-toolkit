@@ -1,0 +1,7 @@
+${
+  # expression contextual_fixture_1
+  var.name
+}
+value_1 = 1
+${var.name /* block contextual_fixture_2 */}
+value_2 = 2

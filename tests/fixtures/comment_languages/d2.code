@@ -1,0 +1,6 @@
+client -> server # contextual_fixture_1
+server: ok
+value_1 = 1
+""" block contextual_fixture_2 """
+client -> server
+value_2 = 2

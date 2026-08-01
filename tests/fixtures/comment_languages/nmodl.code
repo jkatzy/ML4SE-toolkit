@@ -1,0 +1,8 @@
+SUFFIX demo : suffix contextual_fixture_1
+
+value_1 = 1
+COMMENT
+block contextual_fixture_2
+ENDCOMMENT
+
+value_2 = 2

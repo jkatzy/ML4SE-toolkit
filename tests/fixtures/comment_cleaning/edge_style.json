@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "family_name": "edge_style",
+  "canonical_language": "edge",
+  "language_keys": [
+    "edge"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_contextual-000-block",
+      "source": "registry:shared_contextual_examples[0]",
+      "kind": "block",
+      "raw_comment": "{{-- cleaning_payload_shared_contextual_000 --}}",
+      "expected_cleaned": "cleaning_payload_shared_contextual_000",
+      "payload_marker": "cleaning_payload_shared_contextual_000"
+    },
+    {
+      "id": "shared_contextual-001-nested",
+      "source": "registry:shared_contextual_examples[1]",
+      "kind": "nested",
+      "raw_comment": "{{-- outer {{-- inner --}} tail --}}",
+      "expected_cleaned": "outer {{-- inner --}} tail",
+      "payload_marker": null
+    },
+    {
+      "id": "sanitizer-block-wrapper-000",
+      "source": "registry:sanitizer_block_wrappers[0]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "{{-- cleaning_payload_sanitizer_block_wrapper_000 --}}",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_000"
+    }
+  ]
+}

@@ -7,17 +7,18 @@ import subprocess
 import sys
 from pathlib import PurePosixPath
 
+DISALLOWED_MAIN_DIRECTORIES = (
+    "docs/comment_research",
+    "docs/comment_testing",
+    "scratch",
+    "tmp",
+)
+DISALLOWED_MAIN_DIRECTORY_NAMES = frozenset({".idea"})
 DISALLOWED_MAIN_PATTERNS = (
     "AGENTS.md",
-    "docs/comment_research/**",
-    "docs/comment_testing/**",
     "docs/comment_syntax_matrix.md",
     "docs/comment_syntax_stack_v2.md",
     "docs/two_stage_comment_cleaner_judge.md",
-    ".idea/**",
-    "**/.idea/**",
-    "scratch/**",
-    "tmp/**",
     "*.tmp",
     "*.bak",
     "*.orig",
@@ -38,6 +39,13 @@ def list_tracked_files() -> list[str]:
 
 def is_disallowed_on_main(path: str) -> bool:
     pure_path = PurePosixPath(path)
+    if any(
+        pure_path == PurePosixPath(directory) or PurePosixPath(directory) in pure_path.parents
+        for directory in DISALLOWED_MAIN_DIRECTORIES
+    ):
+        return True
+    if DISALLOWED_MAIN_DIRECTORY_NAMES.intersection(pure_path.parts):
+        return True
     return any(pure_path.match(pattern) for pattern in DISALLOWED_MAIN_PATTERNS)
 
 

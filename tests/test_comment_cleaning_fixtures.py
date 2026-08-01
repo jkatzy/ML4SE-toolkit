@@ -129,6 +129,7 @@ def test_comment_cleaning_fixture_covers_every_registry_form(fixture):
         assert set(source_cases) == expected_sources
         for index, example in enumerate(examples):
             case = source_cases[f"registry:{attribute_name}[{index}]"]
+            assert case.kind == example.kind
             placeholder = FIXTURE_BUILDER._split_payload_placeholder(example.expected_match)
             assert (case.payload_marker is not None) == (placeholder is not None)
 
@@ -167,15 +168,15 @@ def test_comment_cleaning_fixture_covers_every_registry_form(fixture):
     )
 
     expected_grouped_sources = set()
-    for attribute_name in (
-        "shared_regex_examples",
-        "canonical_regex_examples",
-    ):
-        for index, example in enumerate(getattr(syntax, attribute_name)):
+    for attribute_name, examples in FIXTURE_BUILDER._iter_example_groups(syntax):
+        for index, example in enumerate(examples):
+            placeholder = FIXTURE_BUILDER._split_payload_placeholder(example.expected_match)
             if (
-                example.kind == "line"
+                syntax.sanitizer_mode == "wrapped"
+                and example.kind == "line"
                 and example.grouped_line_compatible
-                and FIXTURE_BUILDER._split_payload_placeholder(example.expected_match) is not None
+                and placeholder is not None
+                and bool(placeholder[0].strip())
             ):
                 expected_grouped_sources.add(f"generated-group:registry:{attribute_name}[{index}]")
     assert set(_case_sources(fixture, "generated-group:")) == (expected_grouped_sources)

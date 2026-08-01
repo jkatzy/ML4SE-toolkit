@@ -28,6 +28,7 @@ DEFAULT_RELEVANT_PATHS = (
     "src/ml4setk/Parsing/Comments/CommentSanitizer.py",
     "src/ml4setk/Parsing/Comments/registry.py",
     "scripts/build_stack_v2_comment_judge_cases.py",
+    "scripts/build_stack_v3_full_comment_judge_cases.py",
     "scripts/comment_judge_validation_ledger.py",
     "scripts/comment_judge_limits.py",
     "scripts/run_codex_comment_judge.py",

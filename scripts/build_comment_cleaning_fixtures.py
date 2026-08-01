@@ -122,17 +122,88 @@ def _matches_wrapper(text: str, open_delimiter: str, close_delimiter: str) -> bo
     return text.startswith(open_delimiter) and text.endswith(close_delimiter)
 
 
+def _normalize_expected_body(body: str) -> str:
+    body = _normalize_newlines(body).strip("\n")
+    if "\n" not in body:
+        return body.strip()
+
+    normalized = textwrap.dedent(body)
+    return "\n".join(line.rstrip() for line in normalized.split("\n")).strip("\n")
+
+
+def _normalize_block_inner(inner: str) -> str:
+    inner = _normalize_newlines(inner)
+    if inner.startswith("\n"):
+        inner = inner[1:]
+    else:
+        inner = inner.lstrip(" \t")
+    if inner.endswith("\n"):
+        inner = inner[:-1]
+    return _normalize_expected_body(inner)
+
+
+def _line_wrapper_expected(
+    syntax: CommentSyntax,
+    raw_comment: str,
+) -> Optional[str]:
+    normalized = _normalize_newlines(raw_comment)
+    if syntax.canonical_name == "slang":
+        physical_lines = normalized.split("\n")
+        if (
+            normalized.startswith("//")
+            and len(physical_lines) >= 2
+            and all(line.endswith("\\") for line in physical_lines[:-1])
+        ):
+            body = normalized[2:]
+            if body.startswith((" ", "\t")):
+                body = body[1:]
+            return _normalize_expected_body(body)
+
+    if "\n" in normalized:
+        return None
+
+    if syntax.canonical_name == "bluespec_bh":
+        dash_run = re.fullmatch(r"-{2,}(.*)", raw_comment)
+        if dash_run is not None:
+            return _normalize_expected_body(dash_run.group(1))
+
+    if syntax.canonical_name == "linear_programming" and raw_comment.startswith("\\"):
+        return _normalize_newlines(raw_comment[1:]).rstrip()
+
+    for open_delimiter, close_delimiter in sorted(
+        syntax.sanitizer_line_wrappers,
+        key=lambda wrapper: len(wrapper[0]) + len(wrapper[1]),
+        reverse=True,
+    ):
+        if not _matches_wrapper(raw_comment, open_delimiter, close_delimiter):
+            continue
+        inner_end = len(raw_comment) - len(close_delimiter) if close_delimiter else None
+        inner = _normalize_newlines(raw_comment[len(open_delimiter) : inner_end])
+        if inner.startswith((" ", "\t")):
+            inner = inner[1:]
+        return _normalize_expected_body(inner)
+
+    return None
+
+
 def _explicit_wrapper_expected(
     syntax: CommentSyntax,
     kind: str,
     raw_comment: str,
 ) -> Optional[str]:
     if kind in {"line", "directive"}:
-        if "\n" in _normalize_newlines(raw_comment):
-            return None
-        wrappers = syntax.sanitizer_line_wrappers
-    elif kind == "block":
-        wrappers = syntax.sanitizer_block_wrappers
+        return _line_wrapper_expected(syntax, raw_comment)
+    if kind in {"block", "nested"}:
+        if syntax.canonical_name == "lua":
+            lua_long = re.fullmatch(
+                r"--\[(?P<equals>=*)\[(?P<body>[\s\S]*)\](?P=equals)\]",
+                raw_comment,
+            )
+            if lua_long is not None:
+                return _normalize_block_inner(lua_long.group("body"))
+        wrappers = tuple(
+            dict.fromkeys((*syntax.sanitizer_block_wrappers, *syntax.nested_delimiters))
+        )
     else:
         return None
 
@@ -145,15 +216,22 @@ def _explicit_wrapper_expected(
             continue
         inner_end = len(raw_comment) - len(close_delimiter) if close_delimiter else None
         inner = raw_comment[len(open_delimiter) : inner_end]
-        inner = _normalize_newlines(inner)
-        if kind in {"line", "directive"}:
-            if inner.startswith((" ", "\t")):
-                inner = inner[1:]
-            return inner.strip()
+        return _normalize_block_inner(inner)
 
-        inner = inner.strip("\n")
-        return textwrap.dedent(inner).strip()
+    return None
 
+
+def _unclosed_wrapper_expected(
+    syntax: CommentSyntax,
+    raw_comment: str,
+) -> Optional[str]:
+    for open_delimiter in sorted(syntax.unclosed_block_openers, key=len, reverse=True):
+        if any(char.isalpha() for char in open_delimiter):
+            matches = raw_comment[: len(open_delimiter)].lower() == open_delimiter.lower()
+        else:
+            matches = raw_comment.startswith(open_delimiter)
+        if matches:
+            return _normalize_block_inner(raw_comment[len(open_delimiter) :])
     return None
 
 
@@ -174,9 +252,10 @@ def _example_case(
     else:
         raw_comment = example.expected_match
 
-    has_removable_wrapper = (
+    has_inferred_regex_wrapper = (
         syntax.sanitizer_mode == "wrapped"
         and example.kind in {"line", "block", "directive"}
+        and attribute_name.endswith("regex_examples")
         and can_substitute
         and bool(prefix.strip())
     )
@@ -185,9 +264,15 @@ def _example_case(
         example.kind,
         raw_comment,
     )
+    if (
+        explicit_expected is None
+        and not has_inferred_regex_wrapper
+        and example.kind in {"block", "nested"}
+    ):
+        explicit_expected = _unclosed_wrapper_expected(syntax, raw_comment)
     if explicit_expected is not None:
         expected_cleaned = explicit_expected
-    elif has_removable_wrapper:
+    elif has_inferred_regex_wrapper:
         expected_cleaned = marker
     else:
         expected_cleaned = _normalize_newlines(raw_comment)

@@ -1,0 +1,7 @@
+# contextual_fixture_1
+build:
+  echo ok
+value_1 = 1
+build: # contextual_fixture_2
+  echo ok # recipe text
+value_2 = 2

@@ -1,0 +1,7 @@
+A B 10 90 0 ; survey contextual_fixture_1
+
+value_1 = 1
+*set comment %
+A B 10 90 0 % contextual_fixture_2
+
+value_2 = 2

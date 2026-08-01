@@ -1,0 +1,6 @@
+(name: "Ada", // display contextual_fixture_1
+ active: true)
+value_1 = 1
+/* outer /* nested */ block contextual_fixture_2 */
+(value: 1)
+value_2 = 2

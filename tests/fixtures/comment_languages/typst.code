@@ -1,0 +1,5 @@
+Text // line contextual_fixture_1
+Next
+value_1 = 1
+Text /* outer /* block contextual_fixture_2 */ tail */ Next
+value_2 = 2

@@ -60,7 +60,6 @@
     "nginx",
     "ninja",
     "nit",
-    "nu",
     "openrc_runscript",
     "open_policy_agent",
     "opentype_feature_file",
@@ -71,6 +70,7 @@
     "pic",
     "picolisp",
     "protocol_buffer_text_format",
+    "polar",
     "puppet",
     "qmake",
     "raml",
@@ -116,12 +116,13 @@
     "wget_config",
     "xonsh",
     "xcompose",
-    "yaml",
     "yasnippet",
     "zeek",
     "zimpl",
     "ragel",
-    "slash"
+    "slash",
+    "edgeql",
+    "hosts_file"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

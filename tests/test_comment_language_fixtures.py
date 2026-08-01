@@ -69,6 +69,97 @@ def test_comment_language_fixture_folder_has_one_file_per_language():
     assert actual_filenames == expected_filenames
 
 
+@pytest.mark.parametrize(
+    "language",
+    ("circom", "ecmarkup", "hosts_file", "linear_programming", "pddl"),
+)
+def test_raw_syntaxes_do_not_receive_string_negative_probes(language):
+    probes = [
+        case
+        for case in FIXTURE_BUILDER.build_fixture_cases(language)
+        if (case.forbidden_sentinel or "").startswith("string_probe_")
+    ]
+
+    assert probes == []
+
+
+def test_coq_string_probes_use_only_its_documented_double_quote_form():
+    probes = [
+        case
+        for case in FIXTURE_BUILDER.build_fixture_cases("coq")
+        if (case.forbidden_sentinel or "").startswith("string_probe_")
+    ]
+
+    assert probes
+    assert all(' = "not ' in case.content for case in probes)
+
+
+def test_minizinc_eof_seed_is_unique_and_last():
+    cases = FIXTURE_BUILDER.build_fixture_cases("minizinc")
+    eof_cases = [case for case in cases if case.consumes_eof]
+
+    assert len(eof_cases) == 1
+    assert cases[-1] == eof_cases[0]
+    assert cases[-1].expected_match == "/* accepted through EOF"
+    content = FIXTURE_BUILDER.build_fixture_content("minizinc")
+    assert content.endswith(cases[-1].expected_match)
+    assert content.count(cases[-1].expected_match) == 1
+
+
+def test_nested_dash_doc_synthesis_uses_the_registered_outer_closer():
+    doc_cases = [
+        case.expected_match
+        for case in FIXTURE_BUILDER.build_fixture_cases("agda")
+        if case.expected_match and "star_doc_" in case.expected_match
+    ]
+
+    assert doc_cases
+    assert all(comment.startswith("{-\n") for comment in doc_cases)
+    assert all(comment.endswith("\n-}") for comment in doc_cases)
+
+
+def test_contextual_and_xmake_fixtures_keep_all_reviewed_seed_forms():
+    slang_matches = FIXTURE_BUILDER.expected_matches_for_language("slang")
+    xmake_matches = FIXTURE_BUILDER.expected_matches_for_language("xmake")
+
+    assert len(slang_matches) == 3
+    assert any(match.startswith("/*") for match in slang_matches)
+    assert any("\\\ncontinued" in match for match in slang_matches)
+    assert "--[=[ long fixture_2 ]=]" in xmake_matches
+
+
+@pytest.mark.parametrize(
+    "language",
+    (
+        "basic",
+        "realbasic",
+        "vba",
+        "vb6",
+        "vbscript",
+        "visual_basic",
+        "visual_basic_6_0",
+        "visual_basic_net",
+        "xojo",
+    ),
+)
+def test_mixed_visual_basic_fixtures_keep_contextual_and_regex_seeds_once(language):
+    expected_matches = FIXTURE_BUILDER.expected_matches_for_language(language)
+    fixture_content = (FIXTURE_DIR / FIXTURE_BUILDER.language_fixture_filename(language)).read_text(
+        encoding="utf-8"
+    )
+    required_seeds = (
+        "Rem contextual_fixture_1",
+        "Rem contextual_fixture_2",
+        "' fixture_1",
+    )
+
+    for seed in required_seeds:
+        assert expected_matches.count(seed) == 1
+        assert fixture_content.count(seed) == 1
+
+    assert fixture_content == FIXTURE_BUILDER.build_fixture_content(language)
+
+
 @pytest.mark.parametrize("fixture", LANGUAGE_FIXTURES, ids=lambda fixture: fixture.language)
 def test_comment_language_fixture_files_keep_expected_comments(fixture):
     content = (FIXTURE_DIR / fixture.filename).read_text(encoding="utf-8")

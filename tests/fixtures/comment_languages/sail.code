@@ -1,0 +1,6 @@
+function f(x) = x // function contextual_fixture_1
+
+value_1 = 1
+/*! outer /* nested */ block contextual_fixture_2 */
+function f(x) = x
+value_2 = 2

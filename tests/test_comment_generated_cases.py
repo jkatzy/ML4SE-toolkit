@@ -58,7 +58,7 @@ def _iter_registry_examples_for_language(syntax, language):
 
 
 def _find_regex_example(syntax, language, *, kind, predicate=None):
-    for example in _iter_regex_examples_for_language(syntax, language):
+    for example in _iter_registry_examples_for_language(syntax, language):
         if example.kind != kind:
             continue
         if predicate is not None and not predicate(example):
@@ -75,7 +75,9 @@ def _build_single_line_cases():
                 syntax,
                 language,
                 kind="line",
-                predicate=lambda example: example.grouped_line_compatible,
+                predicate=lambda example: (
+                    example.grouped_line_compatible and example.standalone_compatible
+                ),
             )
             if example is None:
                 continue
@@ -99,7 +101,9 @@ def _build_grouped_line_cases():
                 syntax,
                 language,
                 kind="line",
-                predicate=lambda example: example.grouped_line_compatible,
+                predicate=lambda example: (
+                    example.grouped_line_compatible and example.standalone_compatible
+                ),
             )
             if example is None:
                 continue
@@ -132,7 +136,9 @@ def _build_blank_separated_line_cases():
                 syntax,
                 language,
                 kind="line",
-                predicate=lambda example: example.grouped_line_compatible,
+                predicate=lambda example: (
+                    example.grouped_line_compatible and example.standalone_compatible
+                ),
             )
             if example is None:
                 continue
@@ -168,7 +174,9 @@ def _build_inline_adjacent_line_cases():
                 language,
                 kind="line",
                 predicate=lambda example: (
-                    example.grouped_line_compatible and example.inline_compatible
+                    example.grouped_line_compatible
+                    and example.inline_compatible
+                    and example.standalone_compatible
                 ),
             )
             if example is None:
@@ -202,7 +210,10 @@ def _build_block_cases():
         for language in syntax.language_names:
             example = _find_regex_example(syntax, language, kind="block")
             if example is not None:
-                sample = f"{example.expected_match}\nafter"
+                if example.standalone_compatible:
+                    sample = f"{example.expected_match}\nafter"
+                else:
+                    sample = example.sample
                 cases.append(
                     GeneratedCommentCase(
                         language=language,
@@ -241,7 +252,10 @@ def _build_inline_cases():
                 predicate=lambda example: example.inline_compatible,
             )
             if line_example is not None:
-                sample = f"value = 1 {line_example.expected_match}\nreturn value"
+                if line_example.standalone_compatible:
+                    sample = f"value = 1 {line_example.expected_match}\nreturn value"
+                else:
+                    sample = line_example.sample
                 cases.append(
                     GeneratedCommentCase(
                         language=language,
@@ -259,7 +273,10 @@ def _build_inline_cases():
                 predicate=lambda example: example.inline_compatible,
             )
             if block_example is not None:
-                sample = f"value = 1 {block_example.expected_match} return value"
+                if block_example.standalone_compatible:
+                    sample = f"value = 1 {block_example.expected_match} return value"
+                else:
+                    sample = block_example.sample
                 cases.append(
                     GeneratedCommentCase(
                         language=language,
@@ -292,10 +309,8 @@ def _build_registry_sample_cases():
     generic_kinds = {"line", "block", "nested"}
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
-            for index, example in enumerate(
-                _iter_registry_examples_for_language(syntax, language)
-            ):
-                if example.kind in generic_kinds:
+            for index, example in enumerate(_iter_registry_examples_for_language(syntax, language)):
+                if example.kind in generic_kinds and example.standalone_compatible:
                     continue
                 cases.append(
                     GeneratedCommentCase(
@@ -314,9 +329,7 @@ def _build_nested_cases():
         if not syntax.nested_delimiters:
             continue
         open_delim, close_delim = syntax.nested_delimiters[0]
-        expected_match = (
-            f"{open_delim} outer {open_delim} inner {close_delim} outer {close_delim}"
-        )
+        expected_match = f"{open_delim} outer {open_delim} inner {close_delim} outer {close_delim}"
         sample = f"before {expected_match} after"
         for language in syntax.language_names:
             cases.append(
@@ -345,7 +358,13 @@ def _build_block_with_inner_line_cases():
                 block_example.expected_match,
                 line_example.expected_match,
             )
-            if block_example.inline_compatible:
+            if not block_example.standalone_compatible:
+                sample = block_example.sample.replace(
+                    block_example.expected_match,
+                    expected_match,
+                    1,
+                )
+            elif block_example.inline_compatible:
                 sample = f"before {expected_match} after"
             else:
                 sample = f"before\n{expected_match}\nafter"
@@ -380,11 +399,18 @@ def _build_outer_block_wins_cases():
                     block_example.expected_match,
                     line_example.expected_match,
                 )
-                sample = (
-                    f"before {expected_match} after"
-                    if block_example.inline_compatible
-                    else f"before\n{expected_match}\nafter"
-                )
+                if not block_example.standalone_compatible:
+                    sample = block_example.sample.replace(
+                        block_example.expected_match,
+                        expected_match,
+                        1,
+                    )
+                else:
+                    sample = (
+                        f"before {expected_match} after"
+                        if block_example.inline_compatible
+                        else f"before\n{expected_match}\nafter"
+                    )
             elif syntax.nested_delimiters:
                 open_delim, close_delim = syntax.nested_delimiters[0]
                 expected_match = (
@@ -525,9 +551,7 @@ def test_generated_registry_sample_cases(case):
     query = CommentQuery(case.language)
 
     assert query.contains(case.sample) is True
-    assert query.parse(case.sample) == [
-        _expected_query_match(case.sample, case.expected_match)
-    ]
+    assert query.parse(case.sample) == [_expected_query_match(case.sample, case.expected_match)]
 
 
 def test_generated_cases_cover_every_supported_language():

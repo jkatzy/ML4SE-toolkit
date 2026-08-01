@@ -41,6 +41,12 @@ _JAVA_SCANNER_LINE_ENDINGS = str.maketrans(
         "\u2029": "\n",
     }
 )
+_GENERO_LANGUAGE_KEYS = frozenset({"genero", "genero_forms"})
+_GENERO_FORMS_LANGUAGE_KEYS = frozenset({"genero_forms"})
+_ROCQ_LANGUAGE_KEYS = frozenset({"coq", "rocq", "rocq_prover"})
+_VISUAL_BASIC_6_LANGUAGE_KEYS = frozenset(
+    {"visual_basic", "visual_basic_6_0", "visual_basic_net", "vb6"}
+)
 
 
 @dataclass(frozen=True)
@@ -511,6 +517,19 @@ def _strip_block_wrapper(
             inner = candidate[len(open_text) : len(candidate) - len(close_text)]
             return inner, (open_text, close_text)
     return None
+
+
+def _strip_lua_long_comment_wrapper(
+    raw_comment: str,
+) -> tuple[str, tuple[str, str]] | None:
+    """Strip a level-matched Lua long-comment wrapper."""
+
+    candidate = raw_comment.strip(" \t")
+    match = re.fullmatch(r"--\[(?P<equals>=*)\[(?P<body>[\s\S]*)\](?P=equals)\]", candidate)
+    if match is None:
+        return None
+    equals = match.group("equals")
+    return match.group("body"), (f"--[{equals}[", f"]{equals}]")
 
 
 def _is_punctuation_only(line: str) -> bool:
@@ -2237,6 +2256,52 @@ def _strip_unclosed_continuation_indent(body: str) -> str:
     )
 
 
+def _sanitize_unclosed_block_comment(
+    raw_comment: str,
+    syntax: CommentSyntax,
+    line_wrappers: tuple[tuple[str, str], ...],
+    protected_ruler_chars: frozenset[str],
+) -> str | None:
+    for open_text in syntax.unclosed_block_openers:
+        flags = re.IGNORECASE if _is_case_insensitive_token(open_text) else 0
+        opener_match = re.match(
+            rf"^[^\S\r\n]*{_line_open_pattern(open_text)}",
+            raw_comment,
+            flags,
+        )
+        if opener_match is None:
+            continue
+
+        unclosed_body = _strip_unclosed_continuation_indent(raw_comment[opener_match.end() :])
+        if unclosed_body.startswith((" ", "\t")):
+            unclosed_body = unclosed_body[1:]
+        return _sanitize_block_body(
+            unclosed_body,
+            (open_text, ""),
+            line_wrappers,
+            allow_doc_star=True,
+            protected_ruler_chars=protected_ruler_chars,
+        )
+    return None
+
+
+def _sanitize_slang_spliced_line(raw_comment: str) -> str | None:
+    normalized = _normalize_newlines(raw_comment)
+    candidate = normalized.lstrip(" \t")
+    physical_lines = candidate.split("\n")
+    if (
+        not candidate.startswith("//")
+        or len(physical_lines) < 2
+        or not all(line.endswith("\\") for line in physical_lines[:-1])
+    ):
+        return None
+
+    body = candidate[2:]
+    if body.startswith((" ", "\t")):
+        body = body[1:]
+    return _normalize_sanitized_body(body)
+
+
 def _sanitize_grouped_block_lines(lines: list[str], wrappers: tuple[tuple[str, str], ...]) -> str:
     wrapper_chars = frozenset(
         char for wrapper in wrappers for char in _wrapper_punctuation_chars(wrapper)
@@ -2344,7 +2409,9 @@ _SECONDARY_GUTTER_TOKENS = {
     "nwscript": ("::", 1),
     "php": ("|", 1),
     "tcsh": ("!", 1),
+    "vb6": ("*", 2),
     "visual_basic": ("*", 2),
+    "visual_basic_6_0": ("*", 2),
     "visual_basic_net": ("*", 2),
 }
 
@@ -3957,7 +4024,7 @@ def _sanitize_batch_two_exact_layout(language: str, raw_comment: str) -> str | N
         return _normalize_sanitized_body("\n".join(restored))
 
     if (
-        language == "genero_forms"
+        language in _GENERO_FORMS_LANGUAGE_KEYS
         and raw_comment.startswith("{\n|")
         and raw_comment.endswith("\n}")
         and "RCS INFO" in raw_comment
@@ -4127,7 +4194,7 @@ def _sanitize_batch_two_exact_layout(language: str, raw_comment: str) -> str | N
             if len(restored) >= 2 and raw_comment.startswith("%%%%"):
                 return _normalize_sanitized_body("\n".join(restored))
 
-    if language in {"visual_basic", "visual_basic_net"}:
+    if language in _VISUAL_BASIC_6_LANGUAGE_KEYS:
         raw_lines = raw_comment.split("\n")
         if raw_lines and all(
             re.match(r"^[ \t]*'''(?:[ \t]|<|$)", line) is not None for line in raw_lines
@@ -4264,7 +4331,7 @@ def _sanitize_batch_two_exact_layout(language: str, raw_comment: str) -> str | N
                 restored.append(framed.group("body").strip())
             return _normalize_sanitized_body("\n".join(restored))
 
-    if language == "coq":
+    if language in _ROCQ_LANGUAGE_KEYS:
         lines = raw_comment.split("\n")
         if (
             len(lines) == 3
@@ -4450,7 +4517,7 @@ def _sanitize_batch_two_exact_layout(language: str, raw_comment: str) -> str | N
         if important is not None:
             return important.group("body").strip()
 
-    if language == "genero":
+    if language in _GENERO_LANGUAGE_KEYS:
         lines = raw_comment.split("\n")
         if lines and all(line.startswith("#+") for line in lines):
             restored = []
@@ -5252,7 +5319,7 @@ def _sanitize_validated_legacy_frame(
                     "\n".join([*body[:first], *body[first + 1 : last], *body[last + 1 :]])
                 )
 
-    if language == "genero" and re.fullmatch(r"[ \t]*#{8,}[ \t]*", raw_comment):
+    if language in _GENERO_LANGUAGE_KEYS and re.fullmatch(r"[ \t]*#{8,}[ \t]*", raw_comment):
         return ""
 
     if language == "imagej_macro":
@@ -5699,7 +5766,7 @@ def _sanitize_final_safe_indentation_layout(
                 padding_spaces=2,
             )
 
-    if language == "coq":
+    if language in _ROCQ_LANGUAGE_KEYS:
         lines = raw_comment.split("\n")
         if (
             len(lines) == 2
@@ -6976,6 +7043,10 @@ class CommentSanitizer:
             "objective_j": {("//!", "")},
             "rascal": {("///", ""), ("//!", "")},
             "scilab": {("//!", "")},
+            "smithy": {("///", "")},
+            "webassembly_interface_type": {("///", "")},
+            "wit": {("///", "")},
+            "zmodel": {("///", "")},
         }
         if language in literal_doc_marker_languages:
             self._sanitizer_syntax = _SanitizerSyntax(
@@ -6985,6 +7056,15 @@ class CommentSanitizer:
                     if wrapper not in literal_doc_marker_languages[language]
                 ),
                 block_wrappers=self._sanitizer_syntax.block_wrappers,
+            )
+        if language in {"webassembly_interface_type", "wit", "zmodel"}:
+            self._sanitizer_syntax = _SanitizerSyntax(
+                line_wrappers=self._sanitizer_syntax.line_wrappers,
+                block_wrappers=tuple(
+                    wrapper
+                    for wrapper in self._sanitizer_syntax.block_wrappers
+                    if not wrapper[0].startswith("/**")
+                ),
             )
         language_specific_line_wrappers = {
             "antlr": (("////", ""),),
@@ -7005,6 +7085,7 @@ class CommentSanitizer:
             "fortran_free_form": (("!>", ""), ("!!", "")),
             "freebasic": (("''", ""),),
             "genero": (("#+", ""),),
+            "genero_forms": (("#+", ""),),
             "gleam": (("////", ""),),
             "glsl": (("////", ""),),
             "grace": (("////", ""),),
@@ -7059,6 +7140,8 @@ class CommentSanitizer:
             "chuck": frozenset("<"),
             "clean": frozenset("<"),
             "coq": frozenset("*"),
+            "rocq": frozenset("*"),
+            "rocq_prover": frozenset("*"),
             "faust": frozenset("="),
             "forth": frozenset("*"),
             "literate_coffeescript": frozenset("#"),
@@ -7084,9 +7167,83 @@ class CommentSanitizer:
         """
 
         raw_comment = _coerce_comment_text(comment)
+        directive_candidate = raw_comment.lstrip(" \t")
+        excluded_prefixes = self.syntax.excluded_comment_prefixes_for_language(self._language_key)
+        if any(directive_candidate.startswith(prefix) for prefix in excluded_prefixes):
+            return raw_comment
+        if self._language_key == "survex_data" and directive_candidate:
+            marker = directive_candidate[0]
+            if ord(marker) < 128 and not marker.isalnum() and not marker.isspace():
+                normalized = _normalize_newlines(directive_candidate)
+                lines = normalized.split("\n")
+                if len(lines) > 1 and all(
+                    line.lstrip(" \t").startswith(marker) for line in lines[1:]
+                ):
+                    bodies = []
+                    for line in lines:
+                        body = line.lstrip(" \t")[1:]
+                        bodies.append(body[1:] if body.startswith((" ", "\t")) else body)
+                    return _normalize_sanitized_body("\n".join(bodies))
+                body = normalized[1:]
+                if body.startswith((" ", "\t")):
+                    body = body[1:]
+                return _normalize_sanitized_body(body)
+        if self.syntax.canonical_name == "rust" and directive_candidate.startswith("////"):
+            normalized = _normalize_newlines(directive_candidate)
+            lines = normalized.split("\n")
+            if all(line.startswith("////") for line in lines):
+                return _normalize_sanitized_body("\n".join(line[2:] for line in lines))
+        if (
+            self.syntax.canonical_name == "rust"
+            and directive_candidate.startswith("/***")
+            and directive_candidate.endswith("*/")
+        ):
+            return _sanitize_block_body(
+                directive_candidate[2:-2],
+                ("/*", "*/"),
+                self._sanitizer_syntax.line_wrappers,
+                allow_doc_star=True,
+                protected_ruler_chars=self._protected_padding_chars,
+            )
+        if self._language_key == "mdsvex" and re.match(
+            r"<!--\s*svelte-ignore\s", directive_candidate
+        ):
+            return raw_comment
+        if self._language_key == "mermaid" and directive_candidate.startswith("%%{"):
+            return raw_comment
+        if self._language_key == "mermaid":
+            normalized_comment = _normalize_newlines(raw_comment)
+            mermaid_bodies = []
+            for line in normalized_comment.split("\n"):
+                stripped_line = line.lstrip(" \t")
+                if not stripped_line.startswith("%%") or len(stripped_line) == 2:
+                    break
+                body = stripped_line[2:]
+                if body.startswith((" ", "\t")):
+                    body = body[1:]
+                mermaid_bodies.append(body)
+            else:
+                return _normalize_sanitized_body("\n".join(mermaid_bodies))
+        if self._language_key == "linear_programming":
+            normalized_comment = _normalize_newlines(raw_comment)
+            lines = normalized_comment.split("\n")
+            if lines and all(line.startswith("\\") for line in lines):
+                return "\n".join(line[1:] for line in lines)
         if self.syntax.canonical_name == "omgrofl":
             raw_comment = raw_comment.translate(_JAVA_SCANNER_LINE_ENDINGS)
         raw_comment = _normalize_newlines(raw_comment)
+        if self._language_key in {"dune", "pact", "pddl"}:
+            cleaned_lines = []
+            for line in raw_comment.split("\n"):
+                wrapper = re.match(r"^[ \t]*;", line)
+                if wrapper is None:
+                    cleaned_lines.append(line)
+                    continue
+                body = line[wrapper.end() :]
+                cleaned_lines.append(body[1:] if body.startswith(" ") else body)
+            return _normalize_sanitized_body("\n".join(cleaned_lines))
+        if self._language_key == "bluespec_bh" and not raw_comment.lstrip(" \t").startswith("{-"):
+            raw_comment = re.sub(r"(?m)^([ \t]*)-{2,}", r"\1--", raw_comment)
         if self.syntax.canonical_name == "cobol":
             raw_comment = re.sub(
                 r"(?m)^[^\r\n]{6}(?=[*/])",
@@ -7212,7 +7369,7 @@ class CommentSanitizer:
             if faust_result is not None:
                 return faust_result
 
-        if self._language_key == "genero" and re.match(
+        if self._language_key in _GENERO_LANGUAGE_KEYS and re.match(
             r"^[ \t]*#[ \t]+\+-{8,}\+",
             raw_comment,
         ):
@@ -7234,6 +7391,18 @@ class CommentSanitizer:
             scaml_result = _sanitize_scaml_scoped_comment(raw_comment)
             if scaml_result is not None:
                 return scaml_result
+
+        if self.syntax.canonical_name == "lua":
+            lua_long_comment = _strip_lua_long_comment_wrapper(raw_comment)
+            if lua_long_comment is not None:
+                inner, wrapper = lua_long_comment
+                return _sanitize_block_body(
+                    inner,
+                    wrapper,
+                    self._sanitizer_syntax.line_wrappers,
+                    allow_doc_star=True,
+                    protected_ruler_chars=self._protected_padding_chars,
+                )
 
         grouped_block_result = _strip_grouped_wrapped_lines(
             raw_comment, self._sanitizer_syntax.block_wrappers
@@ -7337,6 +7506,21 @@ class CommentSanitizer:
                 cleaned_block,
             )
 
+        if self._language_key == "imba":
+            unclosed_block_result = _sanitize_unclosed_block_comment(
+                raw_comment,
+                self.syntax,
+                self._sanitizer_syntax.line_wrappers,
+                self._protected_padding_chars,
+            )
+            if unclosed_block_result is not None:
+                return unclosed_block_result
+
+        if self._language_key == "slang":
+            spliced_line_result = _sanitize_slang_spliced_line(raw_comment)
+            if spliced_line_result is not None:
+                return spliced_line_result
+
         line_result = _strip_grouped_line_wrappers(
             raw_comment,
             self._sanitizer_syntax.line_wrappers,
@@ -7355,7 +7539,7 @@ class CommentSanitizer:
                 return _sanitize_faust_frame_result(line_result)
             if self._language_key == "gap":
                 return _sanitize_gap_line_result(raw_comment, line_result)
-            if self._language_key == "genero":
+            if self._language_key in _GENERO_LANGUAGE_KEYS:
                 return _sanitize_genero_line_result(raw_comment, line_result)
             if self._language_key == "glyph":
                 return _sanitize_glyph_line_result(line_result)
@@ -7411,26 +7595,14 @@ class CommentSanitizer:
                 protected_ruler_chars=self._protected_padding_chars,
             )
 
-        for open_text in self.syntax.unclosed_block_openers:
-            flags = re.IGNORECASE if _is_case_insensitive_token(open_text) else 0
-            opener_match = re.match(
-                rf"^[^\S\r\n]*{_line_open_pattern(open_text)}",
-                raw_comment,
-                flags,
-            )
-            if opener_match is not None:
-                unclosed_body = _strip_unclosed_continuation_indent(
-                    raw_comment[opener_match.end() :]
-                )
-                if unclosed_body.startswith((" ", "\t")):
-                    unclosed_body = unclosed_body[1:]
-                return _sanitize_block_body(
-                    unclosed_body,
-                    (open_text, ""),
-                    self._sanitizer_syntax.line_wrappers,
-                    allow_doc_star=True,
-                    protected_ruler_chars=self._protected_padding_chars,
-                )
+        unclosed_block_result = _sanitize_unclosed_block_comment(
+            raw_comment,
+            self.syntax,
+            self._sanitizer_syntax.line_wrappers,
+            self._protected_padding_chars,
+        )
+        if unclosed_block_result is not None:
+            return unclosed_block_result
 
         return _normalize_sanitized_body(raw_comment)
 

@@ -1,0 +1,4 @@
+sequenceDiagram
+  %% retry contextual_fixture_1
+  Client->>Server: request
+value_1 = 1

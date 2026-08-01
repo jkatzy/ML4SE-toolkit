@@ -1,0 +1,6 @@
+resource 'STR ' (128) { "Ready" }; // status contextual_fixture_1
+
+value_1 = 1
+/* resource block contextual_fixture_2 */
+#define kStatus 128
+value_2 = 2

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "family_name": "smithy_style",
+  "canonical_language": "smithy",
+  "language_keys": [
+    "smithy"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_contextual-000-line",
+      "source": "registry:shared_contextual_examples[0]",
+      "kind": "line",
+      "raw_comment": "// public cleaning_payload_shared_contextual_000",
+      "expected_cleaned": "public cleaning_payload_shared_contextual_000",
+      "payload_marker": "cleaning_payload_shared_contextual_000"
+    },
+    {
+      "id": "grouped-shared_contextual-000-line",
+      "source": "generated-group:registry:shared_contextual_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "// public cleaning_payload_grouped_shared_contextual_000_first\n// public cleaning_payload_grouped_shared_contextual_000_second",
+      "expected_cleaned": "public cleaning_payload_grouped_shared_contextual_000_first\npublic cleaning_payload_grouped_shared_contextual_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_contextual_000"
+    },
+    {
+      "id": "shared_contextual-001-line",
+      "source": "registry:shared_contextual_examples[1]",
+      "kind": "line",
+      "raw_comment": "/// documentation cleaning_payload_shared_contextual_001",
+      "expected_cleaned": "/ documentation cleaning_payload_shared_contextual_001",
+      "payload_marker": "cleaning_payload_shared_contextual_001"
+    },
+    {
+      "id": "grouped-shared_contextual-001-line",
+      "source": "generated-group:registry:shared_contextual_examples[1]",
+      "kind": "grouped_line",
+      "raw_comment": "/// documentation cleaning_payload_grouped_shared_contextual_001_first\n/// documentation cleaning_payload_grouped_shared_contextual_001_second",
+      "expected_cleaned": "/ documentation cleaning_payload_grouped_shared_contextual_001_first\n/ documentation cleaning_payload_grouped_shared_contextual_001_second",
+      "payload_marker": "cleaning_payload_grouped_shared_contextual_001"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "//cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    }
+  ]
+}
