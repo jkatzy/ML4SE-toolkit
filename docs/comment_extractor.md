@@ -331,124 +331,13 @@ The seed, random input size, and structured payload count are configurable
 through `COMMENT_FUZZ_SEED`, `COMMENT_FUZZ_MAX_LENGTH`, and
 `COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE`, so failures are reproducible.
 
-For real Stack v2 samples judged by Codex, generate a manifest and run the
-manual LLM judge suite:
-
-```bash
-make comment-judge-manifest \
-  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
-  COMMENT_JUDGE_PER_KIND=10
-make comment-judge-smoke
-make comment-judge-test
-make comment-judge-testgen-pipeline
-```
-
-The judge suite checks extraction and sanitization as separate verdicts. It is
-manual rather than CI-bound because it fetches corpus content and starts Codex
-judge processes. It prints live per-case progress by default for large manifests.
-
-To judge only the cleaner against real-world raw comments, use the isolated
-cleaner targets:
-
-```bash
-make comment-cleaner-judge-manifest \
-  COMMENT_JUDGE_LANGUAGES='python,java,coffeescript' \
-  COMMENT_JUDGE_PER_KIND=10
-make comment-cleaner-judge-smoke COMMENT_JUDGE_BACKEND=codex
-make comment-cleaner-judge-test COMMENT_JUDGE_BACKEND=codex
-```
-
-These targets write under `tmp/stack_v2_comment_cleaner_judge` by default. The
-manifest builder also supports a total-file quota, with at most one judged
-comment per distinct source file. It greedily favors underrepresented comment
-kinds among the files encountered before the quota is filled. For example, the
-requested deduplicated-corpus scope is:
-
-```bash
-make comment-cleaner-judge-manifest \
-  COMMENT_JUDGE_LANGUAGES= \
-  COMMENT_JUDGE_FILES_PER_LANGUAGE=50 \
-  COMMENT_JUDGE_MANIFEST_ARGS='--dataset bigcode/the-stack-v2-dedup'
-```
-
-A language with fewer than 50 eligible files gets an explicit
-`source_files` failure row; registry keys with no eligible Stack v2 kinds are
-also reported rather than silently omitted. This all-language command is a
-bulk content transfer; review and satisfy the current Stack v2 and Software
-Heritage access terms before running it.
-
-Cleaner-judge manifests quarantine `line` matches longer than 12,000
-characters by default and keep scanning for a replacement source file. These
-pathological matches are likely language/source-format collisions rather than
-useful cleaner inputs, so admitting them can turn corpus classification noise
-into misleading sanitizer failures. The guard affects sampling only: properly
-delimited `block` and `nested` comments are not capped. Pass
-`--max-line-comment-chars 0` to disable the quarantine for an explicit
-extraction-boundary audit.
-
-Dataset revisions are optional. Exact regeneration requires passing an
-explicit immutable Hugging Face commit through `--dataset-revision`; do not
-describe a run against an unpinned default revision as byte-for-byte
-reproducible. Conversely, The Stack's current opt-out/removal terms may require
-using the latest dataset revision so that removals are honored. In that case,
-omit `--dataset-revision`, record the run date, and treat the corpus snapshot as
-time-dependent.
-
-The manifest pipeline was last verified with `datasets==5.0.1`,
-`boto3==1.43.58`, and `smart_open[s3]==8.0.1`. A controlled invocation can pin
-those client versions together with an explicitly selected immutable dataset
-revision:
-
-```bash
-uv run \
-  --with datasets==5.0.1 \
-  --with boto3==1.43.58 \
-  --with 'smart_open[s3]==8.0.1' \
-  python scripts/run_stack_v2_comment_manifest_pipeline.py \
-  --all-languages \
-  --dataset bigcode/the-stack-v2-dedup \
-  --dataset-revision "$STACK_V2_DATASET_REVISION" \
-  --files-per-language 50 \
-  --output-root tmp/stack_v2_comment_cleaner_all_languages_50
-```
-
-Set `STACK_V2_DATASET_REVISION` to an immutable revision published by the
-dataset repository when historical reproducibility is appropriate. No
-revision is hard-coded here because dataset governance can make a formerly
-valid snapshot unsuitable for a new download.
-
-The cleaning-only judge passes each manifest row's `raw_comment` directly to
-`CommentSanitizer`; it does not rerun extraction and does not treat the
-manifest's sanitizer-produced `cleaned_comment` snapshot as an oracle. The LLM
-instead judges the current candidate against the documented content-preservation
-contract.
-
-Codex is the default backend. Its adapter starts an ephemeral, read-only
-`codex exec` process with approval requests disabled. To use a local Ollama
-model instead:
-
-```bash
-make comment-cleaner-judge-test \
-  COMMENT_JUDGE_BACKEND=ollama \
-  COMMENT_JUDGE_LOCAL_MODEL=gemma4:31b
-```
-
-Set `COMMENT_JUDGE_LOCAL_BASE_URL` for a non-default Ollama endpoint, or use
-`COMMENT_JUDGE_BACKEND=vllm` with an OpenAI-compatible vLLM server. A custom
-JSON judge command can be supplied through `COMMENT_JUDGE_AGENT_CMD`. Combined
-judges return `verdict`, `extraction_correct`, `cleaning_correct`, and
-`rationale`; cleaning-only judges return `verdict`, `cleaning_correct`, and
-`rationale`.
-
-Before Codex is launched, the suite checks the central validation ledger in
-`docs/comment_testing/stack_v2_judge_validation_ledger.md`; buckets that already
-passed for the same judge scope, committed code fingerprint, and exact manifest
-case set are skipped, and recorded failures fail fast with their prior report
-link. Use `COMMENT_JUDGE_FORCE=1` for an intentional rerun, or
-`COMMENT_JUDGE_LEDGER=0` for an uncommitted scratch run. When a judge case fails,
-pytest writes a Markdown failure report containing expected behavior, actual
-behavior, and instructions for a test-generation agent to add deterministic
-pytest coverage.
+Corpus research, adversarial test generation, fuzz campaigns, and LLM judges
+are development operations. Their current commands, evidence rules, and
+failure-to-regression workflow live in the
+[`dev` branch comment-testing guide](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing).
+The executable scripts remain versioned with the release so every promoted
+regression can be reproduced without keeping raw judge or corpus artifacts on
+`main`.
 
 ## Current limitations
 
@@ -468,7 +357,8 @@ To add a language, update the registry instead of editing branching logic:
 1. Add or extend a `CommentSyntax` family in
    `src/ml4setk/Parsing/Comments/registry.py`.
 2. Include seeded examples so the generated tests cover the new behavior.
-3. Record research evidence under `docs/comment_research/` and promote the
-   result into the registry once it is ready.
+3. Record research evidence using the
+   [`dev` branch research workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_research)
+   and promote only confirmed behavior into the registry.
 4. Run `make comment-fuzz` and add a minimized regression for every confirmed
    failure.

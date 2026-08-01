@@ -157,12 +157,12 @@ marker-only scanning would misclassify strings, counted records, or binary data.
 
 ## Git workflow
 
-`development-base` is the long-lived base branch for agent-assisted
-development. Create future development branches from `development-base`, not
-directly from `main`. Development branches may contain agent instructions, raw
-research outputs, and other temporary working artifacts. `main` may not, and
-`development-base` itself should not be merged directly to `main`. The
-permanent rules and the enforced main-branch policy are documented in
+`main` is the release branch and `dev` is the single long-lived integration
+branch. Agent instructions, comment-syntax research, adversarial testing
+guides, and LLM-judge operations live on `dev`; release code, deterministic
+regressions, and stable user documentation live on `main`. Promote tested code
+from `dev` to `main`, then remove any short-lived topic branch used for review.
+The permanent rules and the enforced main-branch policy are documented in
 [docs/git_workflow.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/git_workflow.md).
 
 ## Repository map
@@ -175,3 +175,5 @@ permanent rules and the enforced main-branch policy are documented in
 - `docs/comment_extractor.md`: how to use `CommentQuery` and related extractors
 - `docs/git_workflow.md`: branch policy, development-only artifacts, and the
   main-branch guard
+- [`dev` comment workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing):
+  syntax research, adversarial tests, fuzzing, LLM judges, and regression intake

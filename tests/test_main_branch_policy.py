@@ -14,21 +14,27 @@ SPEC.loader.exec_module(MODULE)
 
 def test_find_disallowed_paths_flags_development_only_artifacts():
     paths = [
+        ".idea/workspace.xml",
         "AGENTS.md",
         "docs/comment_research/chunk_0_nonalpha_a_report.md",
         "docs/comment_testing/chunk_0_findings.md",
         "docs/comment_syntax_matrix.md",
+        "docs/two_stage_comment_cleaner_judge.md",
+        "src/ml4setk/EBNF/RRD/.idea/misc.xml",
         "tmp/scratch.txt",
         "notes.tmp",
         "src/ml4setk/__init__.py",
     ]
 
     assert MODULE.find_disallowed_paths(paths) == [
+        ".idea/workspace.xml",
         "AGENTS.md",
         "docs/comment_research/chunk_0_nonalpha_a_report.md",
         "docs/comment_syntax_matrix.md",
         "docs/comment_testing/chunk_0_findings.md",
+        "docs/two_stage_comment_cleaner_judge.md",
         "notes.tmp",
+        "src/ml4setk/EBNF/RRD/.idea/misc.xml",
         "tmp/scratch.txt",
     ]
 

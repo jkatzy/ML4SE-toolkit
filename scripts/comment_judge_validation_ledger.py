@@ -20,7 +20,7 @@ from typing import Any
 SCHEMA_VERSION = 1
 LEDGER_START = "<!-- STACK_V2_COMMENT_JUDGE_LEDGER_START"
 LEDGER_END = "STACK_V2_COMMENT_JUDGE_LEDGER_END -->"
-DEFAULT_LEDGER_PATH = Path("docs/comment_testing/stack_v2_judge_validation_ledger.md")
+DEFAULT_LEDGER_PATH = Path("tmp/stack_v2_comment_judge/validation_ledger.md")
 DEFAULT_RELEVANT_PATHS = (
     "src/ml4setk/Parsing/Query.py",
     "src/ml4setk/Parsing/Comments/__init__.py",

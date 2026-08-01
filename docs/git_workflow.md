@@ -1,48 +1,58 @@
 # Git Workflow
 
-`main` is the release-ready branch. Development branches may carry extra
-working material while research, agent-assisted exploration, and cleanup are
-still in progress, but `main` must stay publishable.
+The repository has two long-lived branches:
 
-## Branch rules
+- `main` is always release-ready.
+- `dev` is the integration branch for active development, agent instructions,
+  research evidence, and operational testing guides.
 
-- `development-base` is the long-lived base branch for shared development
-  workflow files and agent instructions.
-- Create all future development branches from `development-base`, not directly
-  from `main`.
-- Do feature and research work on named development branches.
-- Do not merge `development-base` directly to `main`.
-- Merge to `main` only when the branch is safe to publish and maintain.
-- Before merging to `main`, run `make check-main-branch`.
-
-## Allowed on development branches only
-
-These are useful during active work, but they must not land on `main`:
-
-- `AGENTS.md`
-- `docs/comment_research/`
-- `docs/comment_testing/`
-- `docs/comment_syntax_matrix.md`
-- `docs/comment_syntax_stack_v2.md`
-- scratch directories such as `tmp/` and `scratch/`
-- tracked temporary files such as `*.tmp`, `*.bak`, `*.orig`, `*.rej`, and `*.swp`
+Short-lived topic branches may be used for review, but they branch from `dev`,
+target `dev`, and are deleted after merge. Release pull requests promote tested
+code from `dev` to `main`.
 
 ## Main branch standard
 
-`main` must not contain:
+Keep on `main`:
 
-- agent instructions or agent-only workflow files
-- raw agent outputs, prompt packets, or chunk reports
-- adversarial testing prompt packets, breaker findings, or fixer resolution logs
-- temporary research staging artifacts
-- scratch files or editor backup files
+- package source and public APIs
+- deterministic unit, integration, fuzz-invariant, and regression tests
+- regression fixtures with provenance notices
+- stable user and architecture documentation
+- build, release, and reproducible validation tooling
 
-If development-only work produces something valuable, promote the stable result
-into permanent code, tests, or user-facing documentation and remove the raw
-artifact before merging.
+Do not keep on `main`:
+
+- `AGENTS.md`
+- comment research workbooks or evidence staging
+- adversarial prompt packets, agent reports, or judge ledgers
+- operational LLM-judge documentation
+- scratch directories or editor backup files
+
+Run the following before every release merge:
+
+```bash
+make lint
+make test
+make test-optional
+make check-main-branch
+make check-release-version
+make build
+```
+
+## Dev branch standard
+
+`dev` contains everything on `main`, plus the development-only material under
+`docs/comment_research/` and `docs/comment_testing/`, and the root
+`AGENTS.md`. Comment extraction or cleaning changes begin on `dev`; confirmed
+failures become deterministic tests and fixtures before promotion to `main`.
+
+Generated corpora, downloaded repositories, judge transcripts, and raw failure
+reports stay under ignored `tmp/` or `scratch/` paths. Only durable evidence,
+reusable instructions, and minimized regressions are committed.
 
 ## Enforcement
 
-- `make check-main-branch` runs the repository guard locally.
-- CI runs the same guard on pushes to `main` and pull requests targeting
-  `main`.
+- `make check-main-branch` rejects development-only paths on `main`.
+- CI runs the guard on pushes to `main` and pull requests targeting `main`.
+- Branch protection should require CI on both `main` and `dev` and restrict
+  direct pushes to `main`.

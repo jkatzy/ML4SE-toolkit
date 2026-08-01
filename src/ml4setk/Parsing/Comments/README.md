@@ -38,7 +38,8 @@ When adding a language or revising syntax support:
 
 1. Update `registry.py`; add a narrowly scoped lexical or contextual helper
    only when delimiters alone cannot express the format.
-2. Record the evidence in `docs/comment_syntax_matrix.md`.
+2. Record the evidence with the
+   [`dev` branch research workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_research).
 3. Add or adjust seeded examples in the registry so the pytest suite exercises
    the new behavior automatically.
 4. Run `make comment-fuzz`; minimize every confirmed failure into a deterministic
