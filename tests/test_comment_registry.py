@@ -2,12 +2,40 @@ import pytest
 
 from ml4setk.Parsing.Comments import (
     SUPPORTED_LANGUAGES,
+    CommentSyntax,
     get_comment_syntax,
     get_supported_comment_languages,
     iter_comment_syntaxes,
 )
 
 pytestmark = pytest.mark.unit
+
+
+def test_comment_syntax_preserves_v0_0_2_positional_layout():
+    syntax = CommentSyntax(
+        "legacy_family",
+        "legacy",
+        ("legacy_alias",),
+        (r"#.*",),
+        (("/*", "*/"),),
+        (),
+        (),
+        (),
+        (),
+        "https://example.test/comments",
+        "legacy_parser.py",
+        "verified",
+        "Legacy positional construction.",
+    )
+
+    assert syntax.documentation_source == "https://example.test/comments"
+    assert syntax.implementation_source == "legacy_parser.py"
+    assert syntax.confidence == "verified"
+    assert syntax.notes == "Legacy positional construction."
+    assert syntax.contextual_extractor == ""
+    assert syntax.sanitizer_line_wrappers == ()
+    assert syntax.excluded_comment_prefixes == ()
+    assert syntax.sanitizer_mode == "wrapped"
 
 
 def test_supported_languages_are_sorted_and_resolvable():

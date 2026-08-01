@@ -320,6 +320,17 @@ def test_sql_executable_directive_is_not_a_block_comment():
     ]
 
 
+@pytest.mark.parametrize(
+    "language", ["hiveql", "piglatin", "plpgsql", "plsql", "sqlpl", "tsql"]
+)
+def test_mysql_executable_syntax_remains_a_comment_in_other_sql_dialects(
+    language: str,
+):
+    source = "/*! ordinary dialect block comment */"
+
+    assert [match.match for match in CommentQuery(language).parse(source)] == [source]
+
+
 @pytest.mark.parametrize("language", ["c", "reason", "reasonml"])
 def test_re2c_generator_block_is_not_a_source_comment(language: str):
     source = '/*!re2c\n\t<a> "a" {}\n*/\n/* ordinary block comment */\n'
