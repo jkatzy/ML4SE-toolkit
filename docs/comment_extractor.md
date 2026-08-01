@@ -189,7 +189,7 @@ print(len(languages))
 print(languages[:10])
 ```
 
-As of this revision, the comment extractor implements `671` language keys.
+As of this revision, the comment extractor implements `776` language keys.
 That includes mainstream source languages plus template, markup, config, and
 record-oriented syntaxes such as `astro`, `coldfusion`, `g_code`, `gams`,
 `genero`, `jsp`, `marko`, `openqasm`, `plantuml`, `q`, `rexx`, `slim`,
@@ -306,9 +306,10 @@ make test
 make comment-fuzz
 ```
 
-Cleaning has one committed JSON oracle for each of the 191 comment syntax
+Cleaning has one committed JSON oracle for each of the 262 comment syntax
 families under `tests/fixtures/comment_cleaning`. The fixture tests apply those
-505 explicit raw-to-cleaned cases to all 671 supported language keys. Expected
+957 explicit raw-to-cleaned cases to all 776 supported language keys, producing
+2,362 alias-expanded checks. Expected
 cleaned text is derived from registry syntax rather than by calling the
 sanitizer under test. Regenerate and verify the files with:
 
