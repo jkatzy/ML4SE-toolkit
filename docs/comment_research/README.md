@@ -2,8 +2,8 @@
 
 Use this workflow when a dataset revision introduces new language labels or
 changes the frequency and coverage of existing labels. This directory holds
-curated method documentation, not dataset snapshots, generated prompt packets,
-raw model output, or one-off worker reports.
+curated method documentation and durable evidence reports, not dataset
+snapshots, generated prompt packets, raw model output, or scratch artifacts.
 
 The active Stack v3 full intake is tracked in
 [`stack_v3_full/README.md`](stack_v3_full/README.md). Regenerate its ignored
@@ -16,6 +16,11 @@ make research-prompts
 The command verifies the pinned provider statistics before writing below
 `tmp/stack_v3_comment_research/`. Do not copy those generated artifacts into
 this directory.
+
+The predecessor research is retained in the
+[Stack v2 archive](stack_v2/README.md). It is historical evidence rather than a
+current parser-support matrix; revalidate its sources before using a conclusion
+for a new implementation.
 
 Before implementation handoff, validate completed records with:
 

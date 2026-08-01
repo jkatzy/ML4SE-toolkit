@@ -20,6 +20,26 @@ def _load_module() -> Any:
 
 VALIDATOR = _load_module()
 
+STACK_V2_ARCHIVE = Path(__file__).resolve().parents[1] / "docs" / "comment_research" / "stack_v2"
+STACK_V2_REPORTS = {
+    "chunk_0_nonalpha_a_report.md",
+    "chunk_1_b_c_report.md",
+    "chunk_2_d_f_report.md",
+    "chunk_3_g_i_report.md",
+    "chunk_4_j_m_report.md",
+    "chunk_5_n_p_report.md",
+    "chunk_6_q_s_report.md",
+    "chunk_7_t_z_report.md",
+}
+STACK_V2_CONFIRMATIONS = {
+    "chunk_2_d_f_confirmation.md",
+    "chunk_3_g_i_confirmation.md",
+    "chunk_4_j_m_confirmation.md",
+    "chunk_5_n_p_confirmation.md",
+    "chunk_6_q_s_confirmation.md",
+    "chunk_7_t_z_confirmation.md",
+}
+
 
 def _report(
     label: str,
@@ -127,3 +147,19 @@ def test_load_assignments_rejects_duplicate_ownership(tmp_path: Path) -> None:
         assert "assigned more than once" in str(error)
     else:
         raise AssertionError("duplicate assignments should fail validation")
+
+
+def test_stack_v2_research_archive_retains_all_reports() -> None:
+    reports = {path.name for path in STACK_V2_ARCHIVE.glob("chunk_*_report.md")}
+    confirmations = {path.name for path in (STACK_V2_ARCHIVE / "confirmation_reports").glob("*.md")}
+
+    assert reports == STACK_V2_REPORTS
+    assert confirmations == STACK_V2_CONFIRMATIONS
+
+    for path in (
+        *(STACK_V2_ARCHIVE / name for name in reports),
+        *(STACK_V2_ARCHIVE / "confirmation_reports" / name for name in confirmations),
+    ):
+        contents = path.read_text(encoding="utf-8")
+        assert contents.startswith("# ")
+        assert "\n## " in contents
