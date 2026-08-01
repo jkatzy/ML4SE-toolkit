@@ -1,0 +1,2 @@
+Hello <%-- block contextual_fixture_1 --%> world
+value_1 = 1

@@ -1,8 +1,12 @@
 value_0 = 0
 (* fixture_1_outer (* fixture_1_inner *) fixture_1_outer *)
 value_1 = 1
-value_inline_1 = 1 (* inline_block_1_outer (* inline_block_1_inner *) inline_block_1_outer *) + 2
+(* fixture_2_outer "quoted "" *) still quoted" tail *)
 value_2 = 2
+value_inline_1 = 1 (* inline_block_1_outer (* inline_block_1_inner *) inline_block_1_outer *) + 2
+value_3 = 3
+value_inline_2 = 1 (* inline_block_2_outer "quoted "" *) still quoted" tail *) + 2
+value_4 = 4
 (*
  * star_doc_1 Description of what the method does.
  *
@@ -10,6 +14,14 @@ value_2 = 2
  * @return Description of return value.
  * @throws Exception Description of exception.
 *)
-value_3 = 3
+value_5 = 5
+(*
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*)
+value_6 = 6
 value_string_1 = "not (* string_probe_1_outer (* string_probe_1_inner *) string_probe_1_outer *)";
-value_4 = 4
+value_7 = 7

@@ -1,0 +1,3 @@
+fn value() -> Int { 1 } /// documentation contextual_fixture_1
+
+value_1 = 1

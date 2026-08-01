@@ -14,6 +14,24 @@ import regex as re
 from ..Query import Query, QueryMatch
 from .contextual import contextual_comment_ranges
 from .registry import get_comment_syntax
+from .stack_v3_batch_02_03_contextual import reviewed_alias_comment_ranges
+from .stack_v3_batch_04_contextual import (
+    ispc_ignored_ranges,
+    kerboscript_literal_ranges,
+    koka_literal_ranges,
+    lean_ignored_ranges,
+)
+from .stack_v3_batch_05_contextual import luau_string_ranges, minizinc_string_ranges
+from .stack_v3_batch_06_07_contextual import (
+    reviewed_batch_06_07_alias_comment_ranges,
+    rust_noir_literal_ranges,
+)
+from .stack_v3_batch_08_09_contextual import (
+    coq_comment_ranges,
+    reviewed_batch_08_09_alias_comment_ranges,
+)
+from .stack_v3_batch_11 import lua_long_bracket_string_ranges
+from .stack_v3_contextual import b4x_string_ranges, carbon_string_ranges
 
 _WARNED_LANGUAGE_CAVEATS = set()
 _RANGE_END_SENTINEL = float("inf")
@@ -22,11 +40,14 @@ _ECERE_STRING_AWARE_LANGUAGES = {"ecere_projects"}
 _POGOSCRIPT_STRING_AWARE_LANGUAGES = {"pogoscript"}
 _RDF_IRI_AWARE_LANGUAGES = {"sparql", "turtle"}
 _SMALLTALK_STRING_AWARE_LANGUAGES = {"smalltalk"}
-_GENERO_FORMS_SCREEN_OPEN = re.compile(
-    r"(?im)^[ \t]*screen[ \t]*"
+_KOTLIN_STRING_AWARE_LANGUAGES = {"gradle_kotlin_dsl", "kotlin"}
+_NO_ADJACENT_LINE_GROUPING_LANGUAGES = {"java_template_engine", "jte"}
+_GENERO_FORMS_LAYOUT_OPEN = re.compile(
+    r"(?im)^[ \t]*(?:screen|grid|table|tree)\b[^\{\r\n]*"
     r"(?:(?:\r\n|[\r\n\u0085\u2028\u2029])[ \t]*)*"
     r"(?P<open>\{)"
 )
+_GENERO_DEFINE_DIRECTIVE = re.compile(r"(?im)^[ \t]*&[ \t]*define\b[^\r\n]*")
 _NL_RAW_RECORD = re.compile(r"(?m)^h[ \t\v\f\r]*([0-9]+):")
 _NL_BINARY_HEADER = re.compile(
     r"^b(?:"
@@ -216,10 +237,19 @@ def _tcsh_initial_hashbang_range(text):
     return [(-1, line_end)]
 
 
-def _genero_forms_screen_header_ranges(text):
-    """Return headers whose opening brace starts a Genero Forms screen body."""
+def _genero_forms_layout_ranges(text):
+    """Return complete Genero Forms layout bodies introduced by known headers."""
 
-    return [match.span() for match in _GENERO_FORMS_SCREEN_OPEN.finditer(text)]
+    ranges = []
+    for match in _GENERO_FORMS_LAYOUT_OPEN.finditer(text):
+        close_match = re.search(
+            r"(?m)^[ \t]*\}",
+            text,
+            pos=match.end("open"),
+        )
+        range_end = len(text) if close_match is None else close_match.end()
+        ranges.append((match.start(), range_end))
+    return ranges
 
 
 def _merge_ignored_ranges(ranges):
@@ -245,6 +275,17 @@ def _json_string_ranges(text):
     text_length = len(text)
 
     while index < text_length:
+        if text.startswith("//", index):
+            index += 2
+            while index < text_length and text[index] not in "\r\n":
+                index += 1
+            continue
+
+        if text.startswith("/*", index):
+            block_end = text.find("*/", index + 2)
+            index = text_length if block_end == -1 else block_end + 2
+            continue
+
         if text[index] != '"':
             index += 1
             continue
@@ -300,6 +341,63 @@ def _c_style_double_quoted_string_ranges(text):
                 continue
             if text[index] == '"':
                 index += 1
+                break
+            index += 1
+        ranges.append((start, index))
+
+    return ranges
+
+
+def _kotlin_string_ranges(text):
+    """Return Kotlin character, regular-string, and raw-string ranges."""
+
+    ranges = []
+    index = 0
+    text_length = len(text)
+
+    while index < text_length:
+        if text.startswith("//", index):
+            index += 2
+            while index < text_length and text[index] not in "\r\n":
+                index += 1
+            continue
+
+        if text.startswith("/*", index):
+            depth = 1
+            index += 2
+            while index < text_length and depth:
+                if text.startswith("/*", index):
+                    depth += 1
+                    index += 2
+                elif text.startswith("*/", index):
+                    depth -= 1
+                    index += 2
+                else:
+                    index += 1
+            continue
+
+        if text.startswith('"""', index):
+            start = index
+            raw_end = text.find('"""', index + 3)
+            index = text_length if raw_end == -1 else raw_end + 3
+            ranges.append((start, index))
+            continue
+
+        if text[index] not in {'"', "'"}:
+            index += 1
+            continue
+
+        start = index
+        quote = text[index]
+        index += 1
+        while index < text_length:
+            if text[index] == "\\":
+                index = min(index + 2, text_length)
+                continue
+            if text[index] == quote:
+                index += 1
+                break
+            if text[index] in "\r\n" and quote == "'":
                 break
             index += 1
         ranges.append((start, index))
@@ -584,6 +682,8 @@ def _comment_scan_context(language, text):
     """Return ignored ranges and the maximum source offset to scan."""
 
     normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+    if normalized in {"circom", "linear_programming"}:
+        return [], len(text)
     if normalized == "nl":
         return _nl_comment_scan_context(text)
     if normalized in _JSON_STRING_AWARE_LANGUAGES:
@@ -592,8 +692,36 @@ def _comment_scan_context(language, text):
         return _c_style_double_quoted_string_ranges(text), len(text)
     if normalized in _POGOSCRIPT_STRING_AWARE_LANGUAGES:
         return _pogoscript_string_ranges(text), len(text)
+    if normalized in _KOTLIN_STRING_AWARE_LANGUAGES:
+        return _kotlin_string_ranges(text), len(text)
+    if normalized == "ispc":
+        return ispc_ignored_ranges(text), len(text)
+    if normalized == "kerboscript":
+        return kerboscript_literal_ranges(text), len(text)
+    if normalized == "koka":
+        return koka_literal_ranges(text), len(text)
+    if normalized in {"lean", "lean4", "lean_4"}:
+        return lean_ignored_ranges(text), len(text)
     if normalized in _SMALLTALK_STRING_AWARE_LANGUAGES:
         return _smalltalk_literal_ranges(text), len(text)
+    if normalized == "b4x":
+        return b4x_string_ranges(text), len(text)
+    if normalized == "carbon":
+        return carbon_string_ranges(text), len(text)
+    if normalized == "luau":
+        return luau_string_ranges(text), len(text)
+    if normalized in {"lua", "moonscript", "terra", "xmake"}:
+        quoted_ranges = _quoted_string_ranges(text)
+        return (
+            _merge_ignored_ranges(
+                quoted_ranges + lua_long_bracket_string_ranges(text, quoted_ranges)
+            ),
+            len(text),
+        )
+    if normalized in {"minizinc", "minizinc_data"}:
+        return minizinc_string_ranges(text), len(text)
+    if normalized in {"noir", "rust", "sway"}:
+        return rust_noir_literal_ranges(text), len(text)
     if normalized == "tcsh":
         return (
             _merge_ignored_ranges(_quoted_string_ranges(text) + _tcsh_initial_hashbang_range(text)),
@@ -602,7 +730,9 @@ def _comment_scan_context(language, text):
     if normalized == "genero_forms":
         return (
             _merge_ignored_ranges(
-                _quoted_string_ranges(text) + _genero_forms_screen_header_ranges(text)
+                _quoted_string_ranges(text)
+                + _genero_forms_layout_ranges(text)
+                + [match.span() for match in _GENERO_DEFINE_DIRECTIVE.finditer(text)]
             ),
             len(text),
         )
@@ -685,6 +815,42 @@ def _query_matches_from_ranges(text, ranges):
     return [_query_match_from_range(text, start, end) for start, end in ranges]
 
 
+def _reviewed_alias_ranges(language, text):
+    """Return ranges from a reviewed alias scanner, when one owns ``language``."""
+
+    for extractor in (
+        reviewed_alias_comment_ranges,
+        reviewed_batch_06_07_alias_comment_ranges,
+        reviewed_batch_08_09_alias_comment_ranges,
+    ):
+        ranges = extractor(language, text)
+        if ranges is not None:
+            return ranges
+    return None
+
+
+def _starts_with_nested_delimiter(syntax, text, start, end):
+    """Return whether a classified range uses this syntax's nested opener."""
+
+    candidate = text[start:end].lstrip()
+    return any(candidate.startswith(opener) for opener, _closer in syntax.nested_delimiters)
+
+
+def _adjust_language_specific_regex_range(language, text, start, end):
+    """Preserve legacy Lua slices while honoring new alias line terminators."""
+
+    normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+    if normalized not in {"luau", "xmake"}:
+        return start, end
+
+    candidate = text[start:end]
+    if not candidate.startswith("--") or re.match(r"--\[[=]*\[", candidate):
+        return start, end
+
+    carriage_return = text.find("\r", start, end)
+    return (start, carriage_return) if carriage_return >= 0 else (start, end)
+
+
 class LineCommentQuery(Query):
     """Extract registry regex comments for one language.
 
@@ -726,6 +892,14 @@ class LineCommentQuery(Query):
     def parse_ranges(self, text, quoted_ranges=None, scan_limit=None):
         """Return regex and contextual comment ranges in source order."""
 
+        reviewed_ranges = _reviewed_alias_ranges(self.language, text)
+        if reviewed_ranges is not None:
+            return self._dedupe_match_ranges(
+                (start, end)
+                for start, end in reviewed_ranges
+                if not _starts_with_nested_delimiter(self.syntax, text, start, end)
+            )
+
         if not self.regexes and not self.contextual_extractor:
             return []
 
@@ -737,7 +911,7 @@ class LineCommentQuery(Query):
                 scan_limit = default_limit
 
         match_ranges = [
-            (start, end)
+            _adjust_language_specific_regex_range(self.language, text, start, end)
             for start, end in self._iter_match_ranges(text)
             if end <= scan_limit
             and not _starts_inside_ignored_range(start, quoted_ranges)
@@ -836,13 +1010,22 @@ class NestedCommentQuery(Query):
         if not self.delimiters:
             return []
 
+        normalized = re.sub(r"[^a-z0-9]+", "_", self.language.strip().lower()).strip("_")
+        if normalized in {"coq", "rocq", "rocq_prover"}:
+            return list(coq_comment_ranges(text))
+
         if quoted_ranges is None:
             quoted_ranges = _comment_start_ignored_ranges(self.language, text)
         ranges = []
         for open_delim, close_delim in self.delimiters:
             ranges.extend(
                 (start, end)
-                for start, end in self.parse_nested_ranges(open_delim, close_delim, text)
+                for start, end in self.parse_nested_ranges(
+                    open_delim,
+                    close_delim,
+                    text,
+                    quoted_ranges,
+                )
                 if not _starts_inside_ignored_range(start, quoted_ranges)
                 and not _starts_with_excluded_comment_prefix(
                     text,
@@ -871,7 +1054,7 @@ class NestedCommentQuery(Query):
         )
 
     @staticmethod
-    def parse_nested_ranges(open_delim, close_delim, text):
+    def parse_nested_ranges(open_delim, close_delim, text, ignored_ranges=()):
         """Extract top-level delimited text ranges, including the delimiters."""
 
         result = []
@@ -888,12 +1071,18 @@ class NestedCommentQuery(Query):
                 break
 
             if open_index != -1 and (close_index == -1 or open_index <= close_index):
+                if stack_depth == 0 and _starts_inside_ignored_range(open_index, ignored_ranges):
+                    search_from = open_index + open_len
+                    continue
                 if stack_depth == 0:
                     block_start = open_index
                 stack_depth += 1
                 search_from = open_index + open_len
                 continue
 
+            if stack_depth == 0 and _starts_inside_ignored_range(close_index, ignored_ranges):
+                search_from = close_index + close_len
+                continue
             if stack_depth:
                 stack_depth -= 1
                 if stack_depth == 0 and block_start is not None:
@@ -997,12 +1186,18 @@ class CommentQuery(Query):
         quoted_ranges, scan_limit = _comment_scan_context(line_comments.language, text)
         ranges = []
         ranges.extend(nested_comments.parse_ranges(text, quoted_ranges))
-        ranges.extend(
-            CommentQuery._group_line_comment_block_ranges(
-                text,
-                line_comments.parse_ranges(text, quoted_ranges, scan_limit=scan_limit),
+        line_ranges = line_comments.parse_ranges(text, quoted_ranges, scan_limit=scan_limit)
+        normalized = re.sub(r"[^a-z0-9]+", "_", line_comments.language.strip().lower()).strip("_")
+        if normalized in _NO_ADJACENT_LINE_GROUPING_LANGUAGES:
+            ranges.extend(line_ranges)
+        else:
+            ranges.extend(
+                CommentQuery._group_line_comment_block_ranges(
+                    text,
+                    line_ranges,
+                    language=line_comments.language,
+                )
             )
-        )
         return LineCommentQuery._dedupe_match_ranges(ranges)
 
     @staticmethod
@@ -1018,7 +1213,7 @@ class CommentQuery(Query):
         return _query_matches_from_ranges(text, grouped_ranges)
 
     @staticmethod
-    def _group_line_comment_block_ranges(text, ranges):
+    def _group_line_comment_block_ranges(text, ranges, language=""):
         """Group adjacent standalone line comment ranges into logical blocks."""
 
         if not ranges:
@@ -1043,8 +1238,8 @@ class CommentQuery(Query):
                 continue
 
             separator = text[group_end:start]
-            group_key = CommentQuery._line_comment_group_key(text[group_start:group_end])
-            next_key = CommentQuery._line_comment_group_key(text[start:end])
+            group_key = CommentQuery._line_comment_group_key(text[group_start:group_end], language)
+            next_key = CommentQuery._line_comment_group_key(text[start:end], language)
             if (
                 CommentQuery._is_consecutive_line_separator(separator)
                 and group_key is not None
@@ -1097,6 +1292,8 @@ class CommentQuery(Query):
         """Return ``True`` when a match is the only non-space content on a line."""
 
         match_text = text[start:end]
+        if match_text.endswith("\r") and text[end : end + 1] == "\n":
+            match_text = match_text[:-1]
         if any(ending in match_text for ending in _PHYSICAL_LINE_ENDINGS):
             return False
 
@@ -1126,7 +1323,7 @@ class CommentQuery(Query):
         )
 
     @staticmethod
-    def _line_comment_group_key(comment):
+    def _line_comment_group_key(comment, language=""):
         """Return the delimiter family used for adjacent line grouping.
 
         Args:
@@ -1138,8 +1335,31 @@ class CommentQuery(Query):
         """
 
         stripped = comment.lstrip()
+        normalized_language = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+        if normalized_language == "nmodl" and stripped.startswith((":", "?")):
+            return "nmodl-line"
+        if normalized_language == "praat" and stripped.startswith(("#", ";", "!")):
+            return "praat-line"
+        if normalized_language in {"perl6", "raku"} and stripped.startswith(("#|", "#=")):
+            paired_openers = ("#|(", "#|{", "#|[", "#|<", "#=(", "#={", "#=[", "#=<")
+            return None if stripped.startswith(paired_openers) else "#"
+        if normalized_language == "imba" and stripped.startswith("###"):
+            return None
+        if normalized_language in {
+            "lua",
+            "luau",
+            "moonscript",
+            "terra",
+            "xmake",
+        } and re.match(r"--\[[=]*\[", stripped):
+            return None
+        if normalized_language in {"glimmer_js", "glimmer_ts"} and stripped.startswith(
+            ("{{!", "{{~!")
+        ):
+            return None
         block_prefixes = (
             "/*",
+            "/-",
             "/+",
             "(*",
             "{-",
@@ -1148,6 +1368,7 @@ class CommentQuery(Query):
             "<%#",
             "<% #",
             "#-",
+            "#|",
             "#[[",
             "#[=",
         )

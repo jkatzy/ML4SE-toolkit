@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "family_name": "terraform_template_style",
+  "canonical_language": "terraform_template",
+  "language_keys": [
+    "terraform_template"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_contextual-000-line",
+      "source": "registry:shared_contextual_examples[0]",
+      "kind": "line",
+      "raw_comment": "# expression cleaning_payload_shared_contextual_000",
+      "expected_cleaned": "expression cleaning_payload_shared_contextual_000",
+      "payload_marker": "cleaning_payload_shared_contextual_000"
+    },
+    {
+      "id": "shared_contextual-001-block",
+      "source": "registry:shared_contextual_examples[1]",
+      "kind": "block",
+      "raw_comment": "/* cleaning_payload_shared_contextual_001 */",
+      "expected_cleaned": "cleaning_payload_shared_contextual_001",
+      "payload_marker": "cleaning_payload_shared_contextual_001"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "//cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    },
+    {
+      "id": "sanitizer-line-wrapper-001",
+      "source": "registry:sanitizer_line_wrappers[1]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "#cleaning_payload_sanitizer_line_wrapper_001",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_001",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_001"
+    },
+    {
+      "id": "sanitizer-block-wrapper-000",
+      "source": "registry:sanitizer_block_wrappers[0]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "/* cleaning_payload_sanitizer_block_wrapper_000 */",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_000"
+    }
+  ]
+}

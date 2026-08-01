@@ -1,0 +1,7 @@
+value := 1 // line contextual_fixture_1
+value++
+value_1 = 1
+/* outer /* block contextual_fixture_2 */ tail */
+value_2 = 2
+text := "literal // $(1 /* expression contextual_fixture_3 */) tail"
+value_3 = 3

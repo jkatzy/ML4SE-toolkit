@@ -1,0 +1,6 @@
+value = 1 # line contextual_fixture_1
+value
+value_1 = 1
+#| outer #| inner |# block contextual_fixture_2 |#
+value
+value_2 = 2

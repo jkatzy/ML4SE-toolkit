@@ -1,0 +1,6 @@
+value_0 = 0
+\ objective fixture_1
+value_1 = 1
+\ objective grouped_line_1_a
+\ objective grouped_line_1_b
+value_2 = 2

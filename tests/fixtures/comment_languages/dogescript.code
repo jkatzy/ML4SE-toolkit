@@ -6,7 +6,6 @@ quiet
 loud
 value_2 = 2
 quiet
-  much
  * star_doc_2 Description of what the method does.
  *
  * @param input Description of parameter.

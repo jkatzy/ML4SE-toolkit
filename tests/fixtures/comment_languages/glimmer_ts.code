@@ -1,0 +1,5 @@
+/* block contextual_fixture_1 */
+<template><p>ok</p></template>
+value_1 = 1
+<template><button {{! attr contextual_fixture_2 }}>ok</button></template>
+value_2 = 2

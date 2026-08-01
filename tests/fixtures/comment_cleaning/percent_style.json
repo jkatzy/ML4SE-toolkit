@@ -5,6 +5,7 @@
   "language_keys": [
     "erlang",
     "bibtex",
+    "bibtex_style",
     "charity",
     "postscript",
     "tex"

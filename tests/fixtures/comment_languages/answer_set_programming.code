@@ -1,0 +1,8 @@
+chosen(X). % contextual_fixture_1
+next(X).
+value_1 = 1
+#! contextual_fixture_2
+chosen(a).
+value_2 = 2
+before %* block contextual_fixture_3 %* inner *% outer *% after
+value_3 = 3

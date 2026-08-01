@@ -1,0 +1,5 @@
+model Widget { id: string; // line contextual_fixture_1
+}
+value_1 = 1
+const value = "literal ${name /* block contextual_fixture_2 */} tail";
+value_2 = 2

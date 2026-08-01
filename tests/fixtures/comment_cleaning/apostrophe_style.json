@@ -7,8 +7,10 @@
     "basic",
     "realbasic",
     "vba",
+    "vb6",
     "vbscript",
     "visual_basic",
+    "visual_basic_6_0",
     "xojo"
   ],
   "sanitizer_mode": "wrapped",
@@ -28,6 +30,38 @@
       "raw_comment": "' cleaning_payload_grouped_shared_regex_000_first\n' cleaning_payload_grouped_shared_regex_000_second",
       "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
       "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "shared_contextual-000-line",
+      "source": "registry:shared_contextual_examples[0]",
+      "kind": "line",
+      "raw_comment": "Rem cleaning_payload_shared_contextual_000",
+      "expected_cleaned": "cleaning_payload_shared_contextual_000",
+      "payload_marker": "cleaning_payload_shared_contextual_000"
+    },
+    {
+      "id": "grouped-shared_contextual-000-line",
+      "source": "generated-group:registry:shared_contextual_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "Rem cleaning_payload_grouped_shared_contextual_000_first\nRem cleaning_payload_grouped_shared_contextual_000_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_contextual_000_first\ncleaning_payload_grouped_shared_contextual_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_contextual_000"
+    },
+    {
+      "id": "shared_contextual-001-line",
+      "source": "registry:shared_contextual_examples[1]",
+      "kind": "line",
+      "raw_comment": "Rem cleaning_payload_shared_contextual_001",
+      "expected_cleaned": "cleaning_payload_shared_contextual_001",
+      "payload_marker": "cleaning_payload_shared_contextual_001"
+    },
+    {
+      "id": "grouped-shared_contextual-001-line",
+      "source": "generated-group:registry:shared_contextual_examples[1]",
+      "kind": "grouped_line",
+      "raw_comment": "Rem cleaning_payload_grouped_shared_contextual_001_first\nRem cleaning_payload_grouped_shared_contextual_001_second",
+      "expected_cleaned": "cleaning_payload_grouped_shared_contextual_001_first\ncleaning_payload_grouped_shared_contextual_001_second",
+      "payload_marker": "cleaning_payload_grouped_shared_contextual_001"
     },
     {
       "id": "sanitizer-line-wrapper-000",

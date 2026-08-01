@@ -24,7 +24,8 @@
     "xml_property_list",
     "xpages",
     "xproc",
-    "xslt"
+    "xslt",
+    "ecmarkup"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

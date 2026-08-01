@@ -8,10 +8,23 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
+import regex
+
 from ml4setk.Parsing.Comments import SUPPORTED_LANGUAGES, get_comment_syntax
 
 FIXTURE_DIR = Path("tests/fixtures/comment_languages")
 FIXTURE_SUFFIX = ".code"
+_DEFAULT_STRING_PROBE_QUOTES = ('"', "'", "`")
+# Empty tuples record raw syntaxes where quote-looking bytes do not shield
+# comment markers. Other entries narrow probes to documented literal forms.
+_STRING_PROBE_QUOTES_BY_LANGUAGE = {
+    "circom": (),
+    "coq": ('"',),
+    "ecmarkup": (),
+    "hosts_file": (),
+    "linear_programming": (),
+    "pddl": (),
+}
 
 
 @dataclass(frozen=True)
@@ -19,6 +32,7 @@ class FixtureCase:
     content: str
     expected_match: Optional[str] = None
     forbidden_sentinel: Optional[str] = None
+    consumes_eof: bool = False
 
 
 @dataclass(frozen=True)
@@ -87,25 +101,81 @@ def forbidden_sentinels_for_language(language: str) -> tuple[str, ...]:
 
 
 def build_fixture_cases(language: str) -> tuple[FixtureCase, ...]:
+    syntax = get_comment_syntax(language)
     contextual_examples = _contextual_examples_for_language(language)
-    if contextual_examples:
-        example = contextual_examples[0]
-        return (
-            FixtureCase(
-                content=example.sample,
-                expected_match=example.expected_match,
-            ),
+    examples = _registry_examples_for_language(language)
+    ordinary_contextual, eof_contextual = _partition_eof_examples(syntax, contextual_examples)
+    ordinary_examples, eof_examples = _partition_eof_examples(syntax, examples)
+    if len(eof_contextual) + len(eof_examples) > 1:
+        raise ValueError(
+            "A language fixture cannot contain multiple EOF-consuming examples: "
+            + syntax.family_name
         )
 
-    examples = _registry_examples_for_language(language)
-    cases = _seeded_cases_for_examples(examples)
-    cases.extend(_repeated_opener_cases_for_examples(examples))
-    cases.extend(_inline_block_cases_for_examples(examples))
-    cases.extend(_star_prefixed_block_cases_for_examples(examples))
-    cases.extend(_grouped_line_cases_for_examples(examples))
-    cases.extend(_string_probe_cases_for_examples(examples))
+    cases = _contextual_seeded_cases(ordinary_contextual)
+    cases.extend(_seeded_cases_for_examples(ordinary_examples))
+    cases.extend(_repeated_opener_cases_for_examples(syntax, ordinary_examples))
+    cases.extend(_inline_block_cases_for_examples(ordinary_examples))
+    cases.extend(
+        _star_prefixed_block_cases_for_examples(
+            ordinary_examples,
+            (*syntax.sanitizer_block_wrappers, *syntax.nested_delimiters),
+        )
+    )
+    cases.extend(_grouped_line_cases_for_examples(ordinary_examples))
+    cases.extend(_string_probe_cases_for_examples(language, ordinary_examples))
     cases.extend(_language_specific_cases(language))
+    cases.extend(_contextual_seeded_cases(eof_contextual, consumes_eof=True))
+    cases.extend(_seeded_cases_for_examples(eof_examples, consumes_eof=True))
     return tuple(cases)
+
+
+def _partition_eof_examples(syntax, examples):
+    eof_examples = []
+    ordinary_examples = []
+    block_wrappers = (*syntax.sanitizer_block_wrappers, *syntax.nested_delimiters)
+    for example in examples:
+        stripped = example.expected_match.lstrip()
+        starts_unclosed_opener = any(
+            stripped.startswith(opener) for opener in syntax.unclosed_block_openers
+        )
+        has_closing_wrapper = any(
+            stripped.startswith(opener) and stripped.endswith(closer)
+            for opener, closer in block_wrappers
+        )
+        if example.consumes_eof and (not starts_unclosed_opener or has_closing_wrapper):
+            raise ValueError(
+                "EOF-consuming examples require an unclosed registered opener: "
+                + syntax.family_name
+            )
+        target = eof_examples if example.consumes_eof else ordinary_examples
+        target.append(example)
+
+    if len(eof_examples) > 1:
+        raise ValueError(
+            "A language fixture cannot contain multiple EOF-consuming examples: "
+            + syntax.family_name
+        )
+    return tuple(ordinary_examples), tuple(eof_examples)
+
+
+def _contextual_seeded_cases(examples, *, consumes_eof: bool = False) -> list[FixtureCase]:
+    cases = []
+    for index, example in enumerate(examples, start=1):
+        expected_match = _unique_fixture_match(
+            example.expected_match,
+            f"contextual_fixture_{index}",
+            example.kind,
+        )
+        content = example.sample.replace(example.expected_match, expected_match, 1)
+        cases.append(
+            FixtureCase(
+                content=content,
+                expected_match=expected_match,
+                consumes_eof=consumes_eof,
+            )
+        )
+    return cases
 
 
 def _language_specific_cases(language: str) -> list[FixtureCase]:
@@ -147,7 +217,7 @@ def _contextual_examples_for_language(language: str):
     return tuple(examples)
 
 
-def _seeded_cases_for_examples(examples) -> list[FixtureCase]:
+def _seeded_cases_for_examples(examples, *, consumes_eof: bool = False) -> list[FixtureCase]:
     cases = []
     for index, example in enumerate(examples, start=1):
         if example.kind not in {"line", "block", "nested"}:
@@ -155,6 +225,7 @@ def _seeded_cases_for_examples(examples) -> list[FixtureCase]:
                 FixtureCase(
                     content=example.sample,
                     expected_match=example.expected_match,
+                    consumes_eof=consumes_eof,
                 )
             )
             continue
@@ -167,14 +238,18 @@ def _seeded_cases_for_examples(examples) -> list[FixtureCase]:
         if example.standalone_compatible:
             content = expected_match
         else:
-            content = example.sample.replace(
-                example.expected_match, expected_match, 1
+            content = example.sample.replace(example.expected_match, expected_match, 1)
+        cases.append(
+            FixtureCase(
+                content=content,
+                expected_match=expected_match,
+                consumes_eof=consumes_eof,
             )
-        cases.append(FixtureCase(content=content, expected_match=expected_match))
+        )
     return cases
 
 
-def _repeated_opener_cases_for_examples(examples) -> list[FixtureCase]:
+def _repeated_opener_cases_for_examples(syntax, examples) -> list[FixtureCase]:
     cases = []
     for index, example in enumerate(examples, start=1):
         if example.kind != "line" or not example.standalone_compatible:
@@ -186,17 +261,37 @@ def _repeated_opener_cases_for_examples(examples) -> list[FixtureCase]:
         )
         if expected_match is None:
             continue
-        cases.append(FixtureCase(content=expected_match, expected_match=expected_match))
+        marker = f"repeated_open_{index}"
+        if _matches_registered_regex(syntax, expected_match):
+            cases.append(FixtureCase(content=expected_match, expected_match=expected_match))
+        else:
+            cases.append(FixtureCase(content=expected_match, forbidden_sentinel=marker))
 
+        odd_marker = f"odd_repeated_open_{index}"
         odd_expected_match = _odd_repeated_line_opener_match(
             example.expected_match,
-            f"odd_repeated_open_{index}",
+            odd_marker,
         )
         if odd_expected_match is not None:
-            cases.append(
-                FixtureCase(content=odd_expected_match, expected_match=odd_expected_match)
-            )
+            if _matches_registered_regex(syntax, odd_expected_match):
+                cases.append(
+                    FixtureCase(
+                        content=odd_expected_match,
+                        expected_match=odd_expected_match,
+                    )
+                )
+            else:
+                cases.append(
+                    FixtureCase(
+                        content=odd_expected_match,
+                        forbidden_sentinel=odd_marker,
+                    )
+                )
     return cases
+
+
+def _matches_registered_regex(syntax, content: str) -> bool:
+    return any(regex.fullmatch(pattern, content) for pattern in syntax.regex_patterns)
 
 
 def _inline_block_cases_for_examples(examples) -> list[FixtureCase]:
@@ -219,7 +314,7 @@ def _inline_block_cases_for_examples(examples) -> list[FixtureCase]:
     return cases
 
 
-def _star_prefixed_block_cases_for_examples(examples) -> list[FixtureCase]:
+def _star_prefixed_block_cases_for_examples(examples, block_wrappers) -> list[FixtureCase]:
     cases = []
     for index, example in enumerate(examples, start=1):
         if example.kind not in {"block", "nested"}:
@@ -228,6 +323,7 @@ def _star_prefixed_block_cases_for_examples(examples) -> list[FixtureCase]:
         expected_match = _star_prefixed_block_match(
             example.expected_match,
             f"star_doc_{index}",
+            block_wrappers,
         )
         if expected_match is None:
             continue
@@ -256,7 +352,11 @@ def _grouped_line_cases_for_examples(examples) -> list[FixtureCase]:
     return cases
 
 
-def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
+def _string_probe_cases_for_examples(language, examples) -> list[FixtureCase]:
+    quote_candidates = _STRING_PROBE_QUOTES_BY_LANGUAGE.get(language, _DEFAULT_STRING_PROBE_QUOTES)
+    if not quote_candidates:
+        return []
+
     cases = []
     comment_start_chars = _comment_start_characters(examples)
     for index, example in enumerate(examples, start=1):
@@ -272,7 +372,11 @@ def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
             f"string_probe_{index}",
             example.kind,
         )
-        quote = _quote_for_string_probe(expected_match, comment_start_chars)
+        quote = _quote_for_string_probe(
+            expected_match,
+            comment_start_chars,
+            quote_candidates,
+        )
         if quote is None:
             continue
         if f"string_probe_{index}" not in expected_match:
@@ -288,15 +392,13 @@ def _string_probe_cases_for_examples(examples) -> list[FixtureCase]:
 
 
 def build_fixture_content(language: str) -> str:
-    contextual_examples = _contextual_examples_for_language(language)
-    if contextual_examples:
-        return contextual_examples[0].sample
-
-    chunks = [_code_separator(0)]
-    for index, case in enumerate(build_fixture_cases(language), start=1):
+    chunks = [] if _contextual_examples_for_language(language) else [_code_separator(0)]
+    cases = build_fixture_cases(language)
+    for index, case in enumerate(cases, start=1):
         chunks.append(case.content)
-        chunks.append(_code_separator(index))
-    return "\n".join(chunks) + "\n"
+        if not case.consumes_eof:
+            chunks.append(_code_separator(index))
+    return "\n".join(chunks) + ("" if cases and cases[-1].consumes_eof else "\n")
 
 
 def build_language_fixtures() -> tuple[CommentLanguageFixture, ...]:
@@ -444,8 +546,12 @@ def _is_even_repeated_symbol_opener(opener: str) -> bool:
     )
 
 
-def _star_prefixed_block_match(expected_match: str, marker: str) -> Optional[str]:
-    bounds = _comment_payload_bounds(expected_match)
+def _star_prefixed_block_match(
+    expected_match: str,
+    marker: str,
+    block_wrappers=(),
+) -> Optional[str]:
+    bounds = _comment_payload_bounds(expected_match, block_wrappers)
     if bounds is None:
         return None
 
@@ -457,7 +563,18 @@ def _star_prefixed_block_match(expected_match: str, marker: str) -> Optional[str
     return f"{open_delim}\n{_star_prefixed_doc_body(marker)}\n{close_delim}"
 
 
-def _comment_payload_bounds(expected_match: str) -> Optional[tuple[str, str]]:
+def _comment_payload_bounds(
+    expected_match: str,
+    block_wrappers=(),
+) -> Optional[tuple[str, str]]:
+    for open_delim, close_delim in sorted(
+        block_wrappers,
+        key=lambda wrapper: len(wrapper[0]),
+        reverse=True,
+    ):
+        if expected_match.startswith(open_delim) and expected_match.endswith(close_delim):
+            return open_delim, close_delim
+
     payload_markers = ("note", "outer", "inner")
     payload_starts = [
         expected_match.index(marker) for marker in payload_markers if marker in expected_match
@@ -500,11 +617,15 @@ def _comment_start_characters(examples) -> set[str]:
     return start_chars
 
 
-def _quote_for_string_probe(expected_match: str, comment_start_chars: set[str]) -> Optional[str]:
+def _quote_for_string_probe(
+    expected_match: str,
+    comment_start_chars: set[str],
+    candidates=('"', "'", "`"),
+) -> Optional[str]:
     if "\n" in expected_match or "\r" in expected_match:
         return None
 
-    for quote in ('"', "'", "`"):
+    for quote in candidates:
         if quote not in expected_match and quote not in comment_start_chars:
             return quote
     return None

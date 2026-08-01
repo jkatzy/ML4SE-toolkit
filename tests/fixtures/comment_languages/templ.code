@@ -1,0 +1,9 @@
+// top-level Go contextual_fixture_1
+templ render() { <p>Ready</p> }
+value_1 = 1
+templ render() { <!-- rendered block contextual_fixture_2 --> }
+value_2 = 2
+templ render() {
+  /* Go block contextual_fixture_3 */
+}
+value_3 = 3

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "family_name": "livecode_script_style",
+  "canonical_language": "livecode_script",
+  "language_keys": [
+    "livecode_script"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_regex-000-line",
+      "source": "registry:shared_regex_examples[0]",
+      "kind": "line",
+      "raw_comment": "# hash cleaning_payload_shared_regex_000",
+      "expected_cleaned": "hash cleaning_payload_shared_regex_000",
+      "payload_marker": "cleaning_payload_shared_regex_000"
+    },
+    {
+      "id": "grouped-shared_regex-000-line",
+      "source": "generated-group:registry:shared_regex_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "# hash cleaning_payload_grouped_shared_regex_000_first\n# hash cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "hash cleaning_payload_grouped_shared_regex_000_first\nhash cleaning_payload_grouped_shared_regex_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-line",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "line",
+      "raw_comment": "-- dash cleaning_payload_shared_regex_001",
+      "expected_cleaned": "dash cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
+    },
+    {
+      "id": "grouped-shared_regex-001-line",
+      "source": "generated-group:registry:shared_regex_examples[1]",
+      "kind": "grouped_line",
+      "raw_comment": "-- dash cleaning_payload_grouped_shared_regex_001_first\n-- dash cleaning_payload_grouped_shared_regex_001_second",
+      "expected_cleaned": "dash cleaning_payload_grouped_shared_regex_001_first\ndash cleaning_payload_grouped_shared_regex_001_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_001"
+    },
+    {
+      "id": "shared_regex-002-line",
+      "source": "registry:shared_regex_examples[2]",
+      "kind": "line",
+      "raw_comment": "// slash cleaning_payload_shared_regex_002",
+      "expected_cleaned": "slash cleaning_payload_shared_regex_002",
+      "payload_marker": "cleaning_payload_shared_regex_002"
+    },
+    {
+      "id": "grouped-shared_regex-002-line",
+      "source": "generated-group:registry:shared_regex_examples[2]",
+      "kind": "grouped_line",
+      "raw_comment": "// slash cleaning_payload_grouped_shared_regex_002_first\n// slash cleaning_payload_grouped_shared_regex_002_second",
+      "expected_cleaned": "slash cleaning_payload_grouped_shared_regex_002_first\nslash cleaning_payload_grouped_shared_regex_002_second",
+      "payload_marker": "cleaning_payload_grouped_shared_regex_002"
+    },
+    {
+      "id": "shared_regex-003-block",
+      "source": "registry:shared_regex_examples[3]",
+      "kind": "block",
+      "raw_comment": "/* cleaning_payload_shared_regex_003 */",
+      "expected_cleaned": "cleaning_payload_shared_regex_003",
+      "payload_marker": "cleaning_payload_shared_regex_003"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "#cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    },
+    {
+      "id": "sanitizer-line-wrapper-001",
+      "source": "registry:sanitizer_line_wrappers[1]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "--cleaning_payload_sanitizer_line_wrapper_001",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_001",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_001"
+    },
+    {
+      "id": "sanitizer-line-wrapper-002",
+      "source": "registry:sanitizer_line_wrappers[2]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "//cleaning_payload_sanitizer_line_wrapper_002",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_002",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_002"
+    },
+    {
+      "id": "sanitizer-block-wrapper-000",
+      "source": "registry:sanitizer_block_wrappers[0]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "/* cleaning_payload_sanitizer_block_wrapper_000 */",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_000"
+    }
+  ]
+}

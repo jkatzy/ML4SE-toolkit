@@ -1,0 +1,6 @@
+value
+--- contextual_fixture_1
+next
+value_1 = 1
+before {- block contextual_fixture_2 {- inner -} outer -} after
+value_2 = 2

@@ -1,0 +1,3 @@
+package==1 # pinned version contextual_fixture_1
+
+value_1 = 1
