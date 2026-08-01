@@ -1,0 +1,5 @@
+//* contextual_fixture_1
+//STEP EXEC PGM=IEFBR14
+value_1 = 1
+//STEP EXEC PGM=IEFBR14  compatibility contextual_fixture_2
+value_2 = 2

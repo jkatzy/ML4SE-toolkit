@@ -1,0 +1,6 @@
+local value = 1 // contextual_fixture_1
+print(value)
+value_1 = 1
+local value = 1 /* block contextual_fixture_2 */ print(value)
+value_2 = 2
+local value = 1 /* block contextual_fixture_1

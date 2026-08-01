@@ -1,0 +1,10 @@
+// host contextual_fixture_1
+<template><p>ok</p></template>
+value_1 = 1
+/* block contextual_fixture_2 */
+<template><p>ok</p></template>
+value_2 = 2
+<template>{{!-- template contextual_fixture_3 --}}</template>
+value_3 = 3
+<template><!-- markup contextual_fixture_4 --></template>
+value_4 = 4

@@ -1,0 +1,8 @@
+Hello. // author contextual_fixture_1
+Next.
+value_1 = 1
+/* multiline
+   author contextual_fixture_2 */
+Story text
+value_2 = 2
+/* accepted through EOF

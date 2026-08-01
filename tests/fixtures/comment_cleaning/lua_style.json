@@ -4,8 +4,10 @@
   "canonical_language": "lua",
   "language_keys": [
     "lua",
+    "luau",
     "moonscript",
-    "terra"
+    "terra",
+    "xmake"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [
@@ -24,6 +26,14 @@
       "raw_comment": "-- cleaning_payload_grouped_shared_regex_000_first\n-- cleaning_payload_grouped_shared_regex_000_second",
       "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
       "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-block",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "block",
+      "raw_comment": "--[=[ long cleaning_payload_shared_regex_001 ]=]",
+      "expected_cleaned": "long cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
     },
     {
       "id": "canonical_regex-000-block",

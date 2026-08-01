@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "family_name": "templ_style",
+  "canonical_language": "templ",
+  "language_keys": [
+    "templ"
+  ],
+  "sanitizer_mode": "wrapped",
+  "cases": [
+    {
+      "id": "shared_contextual-000-line",
+      "source": "registry:shared_contextual_examples[0]",
+      "kind": "line",
+      "raw_comment": "// top-level Go cleaning_payload_shared_contextual_000",
+      "expected_cleaned": "top-level Go cleaning_payload_shared_contextual_000",
+      "payload_marker": "cleaning_payload_shared_contextual_000"
+    },
+    {
+      "id": "grouped-shared_contextual-000-line",
+      "source": "generated-group:registry:shared_contextual_examples[0]",
+      "kind": "grouped_line",
+      "raw_comment": "// top-level Go cleaning_payload_grouped_shared_contextual_000_first\n// top-level Go cleaning_payload_grouped_shared_contextual_000_second",
+      "expected_cleaned": "top-level Go cleaning_payload_grouped_shared_contextual_000_first\ntop-level Go cleaning_payload_grouped_shared_contextual_000_second",
+      "payload_marker": "cleaning_payload_grouped_shared_contextual_000"
+    },
+    {
+      "id": "shared_contextual-001-block",
+      "source": "registry:shared_contextual_examples[1]",
+      "kind": "block",
+      "raw_comment": "<!-- rendered cleaning_payload_shared_contextual_001 -->",
+      "expected_cleaned": "rendered cleaning_payload_shared_contextual_001",
+      "payload_marker": "cleaning_payload_shared_contextual_001"
+    },
+    {
+      "id": "shared_contextual-002-block",
+      "source": "registry:shared_contextual_examples[2]",
+      "kind": "block",
+      "raw_comment": "/* Go cleaning_payload_shared_contextual_002 */",
+      "expected_cleaned": "Go cleaning_payload_shared_contextual_002",
+      "payload_marker": "cleaning_payload_shared_contextual_002"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "//cleaning_payload_sanitizer_line_wrapper_000",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    },
+    {
+      "id": "sanitizer-block-wrapper-000",
+      "source": "registry:sanitizer_block_wrappers[0]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "<!-- cleaning_payload_sanitizer_block_wrapper_000 -->",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_000"
+    },
+    {
+      "id": "sanitizer-block-wrapper-001",
+      "source": "registry:sanitizer_block_wrappers[1]",
+      "kind": "sanitizer_block_wrapper",
+      "raw_comment": "/* cleaning_payload_sanitizer_block_wrapper_001 */",
+      "expected_cleaned": "cleaning_payload_sanitizer_block_wrapper_001",
+      "payload_marker": "cleaning_payload_sanitizer_block_wrapper_001"
+    }
+  ]
+}

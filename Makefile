@@ -39,6 +39,13 @@ COMMENT_FUZZ_SEED ?= 0xC0FFEE
 COMMENT_FUZZ_CASES_PER_LANGUAGE ?= 100
 COMMENT_FUZZ_MAX_LENGTH ?= 128
 COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE ?= 4
+STACK_V3_FULL_JUDGE_INPUT ?=
+STACK_V3_FULL_JUDGE_OUTPUT_ROOT ?= tmp/stack_v3_full_comment_judge
+STACK_V3_FULL_JUDGE_MANIFEST ?= $(STACK_V3_FULL_JUDGE_OUTPUT_ROOT)/manifest.jsonl
+STACK_V3_FULL_JUDGE_FAILURES ?= $(STACK_V3_FULL_JUDGE_OUTPUT_ROOT)/failures.jsonl
+STACK_V3_FULL_JUDGE_REPORT_DIR ?= $(STACK_V3_FULL_JUDGE_OUTPUT_ROOT)/reports
+STACK_V3_FULL_JUDGE_LEDGER ?= $(STACK_V3_FULL_JUDGE_OUTPUT_ROOT)/validation_ledger.md
+STACK_V3_FULL_JUDGE_MANIFEST_ARGS ?=
 
 ifeq ($(COMMENT_JUDGE_BACKEND),codex)
 COMMENT_JUDGE_AGENT_ENV = COMMENT_JUDGE_USE_CODEX=1 COMMENT_JUDGE_CODEX_TIMEOUT=$(COMMENT_JUDGE_CODEX_TIMEOUT)
@@ -47,12 +54,15 @@ COMMENT_JUDGE_AGENT_ENV = COMMENT_JUDGE_USE_LOCAL=1 COMMENT_JUDGE_LOCAL_PROVIDER
 endif
 
 .PHONY: setup setup-optional test test-optional lint smoke build research-prompts
+.PHONY: research-validate
 .PHONY: comment-confirmation-prompts comment-test-prompts
 .PHONY: comment-cleaner-fixtures comment-fuzz comment-cleaner-fuzz
 .PHONY: comment-judge-manifest comment-judge-coverage comment-judge-smoke comment-judge-test
 .PHONY: comment-cleaner-judge-manifest comment-cleaner-judge-smoke comment-cleaner-judge-test
 .PHONY: comment-judge-generate-tests comment-judge-testgen-pipeline
 .PHONY: comment-judge-clear-ledger comment-judge-full-run check-main-branch check-release-version
+.PHONY: stack-v3-full-comment-judge-manifest stack-v3-full-comment-judge-coverage
+.PHONY: stack-v3-full-comment-judge-smoke stack-v3-full-comment-judge-test
 
 setup:
 	$(UV) sync --group dev
@@ -76,7 +86,11 @@ build:
 	$(UV) build
 
 research-prompts:
-	$(UV) run python scripts/build_comment_research_packets.py
+	$(UV) run python scripts/build_comment_research_packets.py \
+		--output-root tmp/stack_v3_comment_research
+
+research-validate:
+	$(UV) run python scripts/validate_comment_research.py --require-reviewed
 
 comment-confirmation-prompts:
 	$(UV) run python scripts/build_comment_confirmation_packets.py
@@ -160,6 +174,50 @@ comment-judge-test:
 			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
 			$(COMMENT_JUDGE_TEST_NODE) \
 			-q --no-cov
+
+stack-v3-full-comment-judge-manifest:
+	@test -n "$(STACK_V3_FULL_JUDGE_INPUT)" || \
+		(echo "STACK_V3_FULL_JUDGE_INPUT must name a local flat contents-table JSONL export" >&2; exit 2)
+	$(UV) run python scripts/build_stack_v3_full_comment_judge_cases.py \
+		--input-jsonl "$(STACK_V3_FULL_JUDGE_INPUT)" \
+		$(if $(COMMENT_JUDGE_LANGUAGES),--languages $(COMMENT_JUDGE_LANGUAGES),) \
+		$(if $(COMMENT_JUDGE_LANGUAGE_COUNT),--language-count $(COMMENT_JUDGE_LANGUAGE_COUNT),) \
+		--per-kind $(COMMENT_JUDGE_PER_KIND) \
+		$(if $(COMMENT_JUDGE_FILES_PER_LANGUAGE),--files-per-language $(COMMENT_JUDGE_FILES_PER_LANGUAGE),) \
+		$(if $(COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE),--max-records-per-language $(COMMENT_JUDGE_MAX_RECORDS_PER_LANGUAGE),) \
+		--progress-every $(COMMENT_JUDGE_PROGRESS_EVERY) \
+		--num-workers $(COMMENT_JUDGE_NUM_WORKERS) \
+		--content-prefetch-workers $(COMMENT_JUDGE_CONTENT_PREFETCH_WORKERS) \
+		--content-prefetch-buffer-size $(COMMENT_JUDGE_CONTENT_PREFETCH_BUFFER_SIZE) \
+		--max-content-chars $(COMMENT_JUDGE_MAX_CONTENT_CHARS) \
+		--output-root $(STACK_V3_FULL_JUDGE_OUTPUT_ROOT) \
+		$(STACK_V3_FULL_JUDGE_MANIFEST_ARGS)
+
+stack-v3-full-comment-judge-coverage:
+	$(MAKE) stack-v3-full-comment-judge-manifest
+	STACK_V2_COMMENT_JUDGE_MANIFEST=$(STACK_V3_FULL_JUDGE_MANIFEST) \
+		STACK_V2_COMMENT_JUDGE_FAILURES=$(STACK_V3_FULL_JUDGE_FAILURES) \
+		STACK_V2_COMMENT_JUDGE_REPORT_DIR=$(STACK_V3_FULL_JUDGE_REPORT_DIR) \
+		COMMENT_JUDGE_LEDGER=0 \
+		$(UV) run pytest \
+			tests/test_stack_v2_comment_judge.py::test_stack_v2_manifest_generation_has_no_missing_comment_kinds \
+			-q --no-cov
+
+stack-v3-full-comment-judge-smoke:
+	$(MAKE) comment-judge-smoke \
+		COMMENT_JUDGE_OUTPUT_ROOT=$(STACK_V3_FULL_JUDGE_OUTPUT_ROOT) \
+		COMMENT_JUDGE_MANIFEST=$(STACK_V3_FULL_JUDGE_MANIFEST) \
+		COMMENT_JUDGE_FAILURES=$(STACK_V3_FULL_JUDGE_FAILURES) \
+		COMMENT_JUDGE_REPORT_DIR=$(STACK_V3_FULL_JUDGE_REPORT_DIR) \
+		COMMENT_JUDGE_LEDGER=$(STACK_V3_FULL_JUDGE_LEDGER)
+
+stack-v3-full-comment-judge-test:
+	$(MAKE) comment-judge-test \
+		COMMENT_JUDGE_OUTPUT_ROOT=$(STACK_V3_FULL_JUDGE_OUTPUT_ROOT) \
+		COMMENT_JUDGE_MANIFEST=$(STACK_V3_FULL_JUDGE_MANIFEST) \
+		COMMENT_JUDGE_FAILURES=$(STACK_V3_FULL_JUDGE_FAILURES) \
+		COMMENT_JUDGE_REPORT_DIR=$(STACK_V3_FULL_JUDGE_REPORT_DIR) \
+		COMMENT_JUDGE_LEDGER=$(STACK_V3_FULL_JUDGE_LEDGER)
 
 
 comment-cleaner-judge-manifest:

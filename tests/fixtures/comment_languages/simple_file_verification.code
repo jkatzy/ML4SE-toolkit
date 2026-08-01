@@ -1,0 +1,8 @@
+value_0 = 0
+; Generated manifest fixture_1
+value_1 = 1
+; Generated manifest grouped_line_1_a
+; Generated manifest grouped_line_1_b
+value_2 = 2
+value_string_1 = "not ; Generated manifest string_probe_1";
+value_3 = 3

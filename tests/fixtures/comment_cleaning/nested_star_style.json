@@ -4,7 +4,9 @@
   "canonical_language": "coq",
   "language_keys": [
     "coq",
-    "ocaml"
+    "ocaml",
+    "rocq",
+    "rocq_prover"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

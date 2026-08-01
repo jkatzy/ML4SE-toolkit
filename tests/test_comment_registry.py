@@ -54,6 +54,13 @@ def test_supported_language_helper_returns_sorted_list_copy():
     assert languages is not SUPPORTED_LANGUAGES
 
 
+def test_stack_v3_f_star_label_resolves_to_existing_family():
+    syntax = get_comment_syntax("F*")
+
+    assert syntax.canonical_name == "f_star"
+    assert syntax.family_name == "f_star_style"
+
+
 def test_registry_entries_seed_examples_for_each_implemented_feature():
     for syntax in iter_comment_syntaxes():
         if syntax.regex_patterns:

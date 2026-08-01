@@ -22,6 +22,7 @@ The detailed guides are:
 - [Adversarial testing](adversarial_testing.md)
 - [Deterministic fuzzing](fuzzing.md)
 - [LLM judge setup and calibration](llm_judges.md)
+- [Stack v3 full judge manifests](stack_v3_full_judges.md)
 - [Regression test policy](regressions.md)
 - [Failure dispositions](failure_dispositions.md)
 

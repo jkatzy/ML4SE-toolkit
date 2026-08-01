@@ -825,6 +825,9 @@ def _load_language_map(path: Path | None) -> dict[str, Any]:
 def _emit_manifest_progress(args: argparse.Namespace, message: str) -> None:
     if args.no_progress:
         return
+    progress_label = getattr(args, "manifest_progress_label", None)
+    if progress_label:
+        message = message.replace("[stack-v2 manifest]", f"[{progress_label}]")
     print(message, file=sys.stderr, flush=True)
 
 

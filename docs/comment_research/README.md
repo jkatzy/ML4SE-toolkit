@@ -5,6 +5,27 @@ changes the frequency and coverage of existing labels. This directory holds
 curated method documentation, not dataset snapshots, generated prompt packets,
 raw model output, or one-off worker reports.
 
+The active Stack v3 full intake is tracked in
+[`stack_v3_full/README.md`](stack_v3_full/README.md). Regenerate its ignored
+inventory and research packets with:
+
+```bash
+make research-prompts
+```
+
+The command verifies the pinned provider statistics before writing below
+`tmp/stack_v3_comment_research/`. Do not copy those generated artifacts into
+this directory.
+
+Before implementation handoff, validate completed records with:
+
+```bash
+make research-validate
+```
+
+During an active research wave, pass `--allow-missing` directly to
+`scripts/validate_comment_research.py` to validate only records already present.
+
 Start one research record from [the template](report_template.md) for each
 unresolved label. Keep large inputs and investigation artifacts outside the
 tracked tree.

@@ -3,7 +3,8 @@
   "family_name": "boogie_style",
   "canonical_language": "boogie",
   "language_keys": [
-    "boogie"
+    "boogie",
+    "daslang"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [

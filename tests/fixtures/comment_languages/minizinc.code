@@ -1,0 +1,31 @@
+value_0 = 0
+% worker fixture_1
+value_1 = 1
+/** block fixture_2 */
+value_2 = 2
+/*** file documentation */
+value_3 = 3
+/**
+ * star_doc_2 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*/
+value_4 = 4
+/***
+ * star_doc_3 Description of what the method does.
+ *
+ * @param input Description of parameter.
+ * @return Description of return value.
+ * @throws Exception Description of exception.
+*/
+value_5 = 5
+% worker grouped_line_1_a
+% worker grouped_line_1_b
+value_6 = 6
+value_string_1 = "not % worker string_probe_1";
+value_7 = 7
+value_string_2 = "not /** block string_probe_2 */";
+value_8 = 8
+/* accepted through EOF

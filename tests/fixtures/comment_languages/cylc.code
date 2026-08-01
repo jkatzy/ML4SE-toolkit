@@ -1,0 +1,3 @@
+[runtime] # contextual_fixture_1
+    script = true
+value_1 = 1

@@ -1,0 +1,10 @@
+float gain = 1.0; // calibration contextual_fixture_1
+
+value_1 = 1
+/* shader block contextual_fixture_2 */
+float enabled = 1;
+value_2 = 2
+// spliced contextual_fixture_3\
+continued
+float value = 1;
+value_3 = 3

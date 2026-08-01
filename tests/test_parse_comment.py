@@ -121,6 +121,12 @@ def test_registry_only_families_preserve_seeded_matches_and_kinds(language, exam
         assert kind in {"line", "block"}
 
 
+def test_visual_basic_contextual_rem_preserves_legacy_line_kind():
+    assert pc.extract_comments("100 Rem numbered note\n", ["Visual Basic 6.0"]) == [
+        ((4, 21), "Rem numbered note", "line")
+    ]
+
+
 def test_registry_adapter_preserves_candidate_order_duplicates_and_unknowns():
     content = "/* early */\n# late\n"
 
@@ -133,6 +139,21 @@ def test_registry_adapter_preserves_candidate_order_duplicates_and_unknowns():
         ("# late", "line"),
         ("/* early */", "block"),
         ("# late", "line"),
+    ]
+
+
+@pytest.mark.parametrize(
+    ("language", "content", "expected_text"),
+    (
+        ("HIP", "// note\\\ncontinued\n", "// note\\\ncontinued"),
+        ("Sway", "// note\rstill\n", "// note\rstill"),
+    ),
+)
+def test_registry_adapter_classifies_alias_override_line_ranges(
+    language, content, expected_text
+):
+    assert pc.extract_comments(content, [language]) == [
+        ((0, len(expected_text)), expected_text, "line")
     ]
 
 

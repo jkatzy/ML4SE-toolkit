@@ -58,11 +58,11 @@ def _iter_registry_examples_for_language(syntax, language):
 def _line_case_sample(example, expected_match):
     if example.standalone_compatible:
         return f"before\n{expected_match}\nafter"
-    return f"before\nn1 {expected_match}\nafter"
+    return example.sample.replace(example.expected_match, expected_match, 1)
 
 
 def _first_line_example(syntax, language):
-    for example in _iter_regex_examples_for_language(syntax, language):
+    for example in _iter_registry_examples_for_language(syntax, language):
         if (
             example.kind == "line"
             or (example.kind == "directive" and syntax.sanitizer_line_wrappers)
@@ -72,7 +72,7 @@ def _first_line_example(syntax, language):
 
 
 def _first_block_example(syntax, language):
-    for example in _iter_regex_examples_for_language(syntax, language):
+    for example in _iter_registry_examples_for_language(syntax, language):
         if example.kind == "block":
             return example
     return None
@@ -110,6 +110,29 @@ def _line_example_parts(syntax, example):
     return _split_example_placeholder(expected_match)
 
 
+def _explicit_wrapper_body(syntax, expected_match):
+    wrappers = sorted(
+        (*syntax.sanitizer_line_wrappers, *syntax.sanitizer_block_wrappers),
+        key=lambda wrapper: len(wrapper[0]) + len(wrapper[1]),
+        reverse=True,
+    )
+    for open_token, close_token in wrappers:
+        if not expected_match.startswith(open_token):
+            continue
+        if close_token and not expected_match.endswith(close_token):
+            continue
+        body_end = len(expected_match) - len(close_token) if close_token else None
+        body = expected_match[len(open_token) : body_end]
+        if body.startswith((" ", "\t")):
+            body = body[1:]
+        if body.endswith((" ", "\t")):
+            body = body[:-1]
+        return body
+    return next(
+        placeholder for placeholder in _EXAMPLE_BODY_PLACEHOLDERS if placeholder in expected_match
+    )
+
+
 def _build_line_cases():
     removal_cases = []
     preservation_cases = []
@@ -131,6 +154,8 @@ def _build_line_cases():
             else:
                 removal_match = removal_line_one
                 removal_expected = "adversarial *** ### $$$ %%%"
+            if language == "linear_programming":
+                removal_expected = "\n".join(f" {line}" for line in removal_expected.split("\n"))
             removal_cases.append(
                 SanitizerCase(
                     language=language,
@@ -153,6 +178,8 @@ def _build_line_cases():
             else:
                 keep_match = keep_line_one
                 keep_expected = f"keep {preserved_text} exactly and *** ### $$$ %%%"
+            if language == "linear_programming":
+                keep_expected = "\n".join(f" {line}" for line in keep_expected.split("\n"))
             preservation_cases.append(
                 SanitizerCase(
                     language=language,
@@ -169,9 +196,13 @@ def _build_line_cases():
 def _build_block_case(language, example, body, case_id):
     prefix, suffix = _split_example_placeholder(example.expected_match)
     expected_match = f"{prefix}{body}{suffix}"
+    if example.standalone_compatible:
+        sample = f"before\n{expected_match}\nafter"
+    else:
+        sample = example.sample.replace(example.expected_match, expected_match, 1)
     return SanitizerCase(
         language=language,
-        sample=f"before\n{expected_match}\nafter",
+        sample=sample,
         expected_match=expected_match,
         expected_sanitized=body,
         case_id=case_id,
@@ -253,7 +284,7 @@ def _build_registry_sample_cases():
     for syntax in iter_comment_syntaxes():
         for language in syntax.language_names:
             for index, example in enumerate(_iter_registry_examples_for_language(syntax, language)):
-                if example.kind in generic_kinds:
+                if example.kind in generic_kinds and example.standalone_compatible:
                     continue
                 expected_sanitized = example.expected_match
                 if example.kind == "directive":
@@ -261,6 +292,11 @@ def _build_registry_sample_cases():
                         placeholder
                         for placeholder in _EXAMPLE_BODY_PLACEHOLDERS
                         if placeholder in example.expected_match
+                    )
+                elif example.kind in generic_kinds and not example.standalone_compatible:
+                    expected_sanitized = _explicit_wrapper_body(
+                        syntax,
+                        example.expected_match,
                     )
                 cases.append(
                     SanitizerCase(
@@ -601,3 +637,37 @@ def test_stack_v2_cpp_qpid_decoder_doxygen_line_comment_sanitizes_delimiters():
 
     assert CommentSanitizer("c++").sanitize(target) == expected_cleaned
     assert sanitize_comment("c++", raw_comment) == expected_cleaned
+
+
+@pytest.mark.parametrize(
+    ("language", "raw_comment", "expected_cleaned"),
+    (
+        ("imba", "### accepted through EOF", "accepted through EOF"),
+        (
+            "slang",
+            "// spliced note\\\ncontinued",
+            "spliced note\\\ncontinued",
+        ),
+    ),
+)
+def test_stack_v3_structural_comment_sanitizer_regressions(
+    language,
+    raw_comment,
+    expected_cleaned,
+):
+    target = QueryMatch("", "", raw_comment)
+    sanitizer = CommentSanitizer(language)
+
+    assert sanitizer.sanitize(raw_comment) == expected_cleaned
+    assert sanitizer.sanitize(target) == expected_cleaned
+    assert sanitize_comment(language, raw_comment) == expected_cleaned
+    assert sanitize_comment_text(language, target) == expected_cleaned
+
+
+@pytest.mark.parametrize("language", ("lua", "luau", "moonscript", "terra", "xmake"))
+def test_lua_family_level_matched_long_comment_preserves_inner_prose(language):
+    raw_comment = "--[=[ long note ]=]"
+    expected_cleaned = "long note"
+
+    assert CommentSanitizer(language).sanitize(raw_comment) == expected_cleaned
+    assert sanitize_comment(language, raw_comment) == expected_cleaned

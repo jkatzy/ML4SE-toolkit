@@ -43,6 +43,11 @@ make comment-judge-coverage \
 Do not regenerate the manifest while comparing models. All comparisons must
 use the same file and hash.
 
+For gated `HuggingFaceCode/stack-v3-full` data, use the local-only
+[Stack v3 full manifest workflow](stack_v3_full_judges.md). It pins the full
+dataset revision, rejects repository-level train rows, and reuses the judge
+harness without downloading a dataset.
+
 ## Single-stage backends
 
 The combined scope judges extraction and cleaning. The cleaner targets use a

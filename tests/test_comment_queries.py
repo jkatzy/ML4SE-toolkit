@@ -108,6 +108,7 @@ CONTEXTUAL_CASES = list(_iter_contextual_cases())
 NESTED_ONLY_LANGUAGES = list(_iter_nested_only_languages())
 REGEX_ONLY_CASES = list(_iter_regex_only_cases())
 SLASH_LINE_COMMENT_CASES = list(_iter_slash_line_comment_cases())
+SLASH_MARKERS_PRECEDE_STRINGS = frozenset({"circom"})
 
 
 @pytest.mark.parametrize(("language", "example"), REGEX_CASES)
@@ -253,8 +254,7 @@ def test_comment_query_multiple_languages_validates_input():
         ),
         pytest.param(
             "liquid",
-            "{% # inline %}\n{%\n  # first\n  # second\n%}\n"
-            "{% comment %}block{% endcomment %}\n",
+            "{% # inline %}\n{%\n  # first\n  # second\n%}\n{% comment %}block{% endcomment %}\n",
             [
                 "{% # inline %}",
                 "{%\n  # first\n  # second\n%}",
@@ -276,9 +276,7 @@ def test_comment_query_multiple_languages_validates_input():
         ),
     ],
 )
-def test_sparse_comment_syntaxes_match_audited_forms(
-    language, sample, expected_matches
-):
+def test_sparse_comment_syntaxes_match_audited_forms(language, sample, expected_matches):
     assert _comment_matches(language, sample) == expected_matches
 
 
@@ -337,9 +335,7 @@ def test_cmake_bracket_comments_are_not_nested_comments():
         ),
     ],
 )
-def test_sparse_block_comment_syntaxes_stop_at_first_closer(
-    language, sample, expected_match
-):
+def test_sparse_block_comment_syntaxes_stop_at_first_closer(language, sample, expected_match):
     assert _comment_matches(language, sample) == [expected_match]
 
 
@@ -358,9 +354,7 @@ def test_jsonc_comments_ignore_delimiters_inside_closed_strings():
 
 def test_jsonc_comments_ignore_delimiters_inside_unterminated_string():
     sample = (
-        "{\n"
-        '\t"contents": "<link rel=\\"stylesheet\\" '
-        'href=\\"https://www.facebook.com/rsrc.css\\"'
+        '{\n\t"contents": "<link rel=\\"stylesheet\\" href=\\"https://www.facebook.com/rsrc.css\\"'
     )
 
     assert CommentQuery("jsonc").contains(sample) is False
@@ -501,11 +495,7 @@ def test_stack_v2_csharp_xml_doc_line_comment_extracts_reported_span():
 
 
 def test_stack_v2_csharp_chinese_xml_doc_line_comment_extracts_reported_span():
-    raw_comment = (
-        "/// <summary>\n"
-        "    /// 单点采集器GPRS通讯对象\n"
-        "    /// </summary>"
-    )
+    raw_comment = "/// <summary>\n    /// 单点采集器GPRS通讯对象\n    /// </summary>"
     sample = (
         "\ufeffusing JYGCloud.JOBMonitor.Common;\n"
         "using JYGCloud.JOBMonitor.ICommunicate;\n"
@@ -627,15 +617,20 @@ def test_slash_line_comment_parses_url_inside_comment(language, example):
     expected_match = f"{opener} see {url}"
     sample = example.sample.replace(example.expected_match, expected_match, 1)
 
-    assert CommentQuery(language).parse(sample) == [
-        _expected_query_match(sample, expected_match)
-    ]
+    assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
 @pytest.mark.parametrize(("language", "example"), SLASH_LINE_COMMENT_CASES)
 def test_slash_line_comment_ignores_url_inside_string(language, example):
     url_string = '"https://example.test/path//segment"'
     sample = example.sample.replace(example.expected_match, url_string, 1)
+
+    if language in SLASH_MARKERS_PRECEDE_STRINGS:
+        expected_match = '//example.test/path//segment"'
+        assert CommentQuery(language).parse(sample) == [
+            _expected_query_match(sample, expected_match)
+        ]
+        return
 
     assert CommentQuery(language).parse(sample) == []
 
@@ -712,9 +707,7 @@ def test_comment_query_groups_triple_slash_doc_line_comments():
         ),
     ],
 )
-def test_comment_query_parses_repeated_line_comment_openers(
-    language, sample, expected_match
-):
+def test_comment_query_parses_repeated_line_comment_openers(language, sample, expected_match):
     assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, expected_match)]
 
 
@@ -836,6 +829,18 @@ def test_nested_comment_query_ignores_unclosed_nested_comments():
     assert NestedCommentQuery("haskell").parse(sample) == []
 
 
+@pytest.mark.parametrize("language", ("noir", "sway"))
+def test_reviewed_rust_alias_queries_keep_line_and_nested_ranges_separate(language):
+    sample = "// line note\n/* outer /* inner */ tail */\n"
+    line_match = _expected_query_match(sample, "// line note")
+    nested_match = _expected_query_match(sample, "/* outer /* inner */ tail */")
+
+    assert LineCommentQuery(language).parse(sample) == [line_match]
+    assert LineCommentQuery(language).contains("/* outer /* inner */ tail */") is False
+    assert NestedCommentQuery(language).parse(sample) == [nested_match]
+    assert CommentQuery(language).parse(sample) == [line_match, nested_match]
+
+
 @pytest.mark.parametrize(
     ("language", "sample"),
     [
@@ -920,33 +925,25 @@ def test_java_properties_comments_only_match_at_line_start():
     assert query.parse("x=1!2") == []
     assert query.parse("x=1 # not comment?") == []
     assert query.parse("# top=1") == [_expected_query_match("# top=1", "# top=1")]
-    assert query.parse("  ! top=1") == [
-        _expected_query_match("  ! top=1", "  ! top=1")
-    ]
+    assert query.parse("  ! top=1") == [_expected_query_match("  ! top=1", "  ! top=1")]
 
 
 def test_forth_parenthesized_comment_accepts_token_adjacent_closer():
     sample = "before ( a b c--d e) after"
 
-    assert CommentQuery("forth").parse(sample) == [
-        _expected_query_match(sample, "( a b c--d e)")
-    ]
+    assert CommentQuery("forth").parse(sample) == [_expected_query_match(sample, "( a b c--d e)")]
 
 
 def test_lua_long_bracket_comment_handles_equal_sign_variants():
     sample = "x=1 --[=[ note ]=] y=2"
 
-    assert CommentQuery("lua").parse(sample) == [
-        _expected_query_match(sample, "--[=[ note ]=]")
-    ]
+    assert CommentQuery("lua").parse(sample) == [_expected_query_match(sample, "--[=[ note ]=]")]
 
 
 def test_julia_block_comment_wins_over_line_comment_prefix():
     sample = "x = 1 #= note =# y = 2"
 
-    assert CommentQuery("julia").parse(sample) == [
-        _expected_query_match(sample, "#= note =#")
-    ]
+    assert CommentQuery("julia").parse(sample) == [_expected_query_match(sample, "#= note =#")]
 
 
 def test_julia_nested_block_comment_consumes_full_nested_region():
@@ -960,9 +957,7 @@ def test_julia_nested_block_comment_consumes_full_nested_region():
 def test_perl_pod_block_requires_line_start():
     sample = "x = 1 # note\n=cut\n"
 
-    assert CommentQuery("perl").parse(sample) == [
-        _expected_query_match(sample, "# note")
-    ]
+    assert CommentQuery("perl").parse(sample) == [_expected_query_match(sample, "# note")]
 
 
 def test_perl_pod_block_does_not_start_midline():
@@ -978,6 +973,81 @@ def test_raku_embedded_comment_uses_backtick_syntax():
 
     assert CommentQuery("raku").parse(sample) == [
         _expected_query_match(sample, "#`( why would I ever write an inline comment here? )")
+    ]
+
+
+@pytest.mark.parametrize("language", ("raku", "perl6"))
+def test_raku_groups_declarator_line_comments_but_not_paired_blocks(language):
+    sample = "#| first line\n#| second line\n#|(paired block)\n#|(second block)"
+
+    assert CommentQuery(language).parse(sample) == [
+        _expected_query_match(sample, "#| first line\n#| second line"),
+        _expected_query_match(sample, "#|(paired block)"),
+        _expected_query_match(sample, "#|(second block)"),
+    ]
+
+
+@pytest.mark.parametrize("sample", ("/// repeated", "//////// repeated"))
+def test_carbon_rejects_whole_malformed_slash_runs(sample):
+    assert CommentQuery("carbon").parse(sample) == []
+
+
+@pytest.mark.parametrize("language", ("moonscript", "terra"))
+def test_lua_family_aliases_mask_equal_level_long_bracket_strings(language):
+    sample = "local text = [=[-- hidden]=]\n--[=[ long note ]=]\n-- visible"
+
+    assert CommentQuery(language).parse(sample) == [
+        _expected_query_match(sample, "--[=[ long note ]=]"),
+        _expected_query_match(sample, "-- visible"),
+    ]
+
+
+@pytest.mark.parametrize("language", ("lua", "moonscript", "terra", "xmake"))
+@pytest.mark.parametrize(
+    ("sample", "expected_matches"),
+    (
+        ('local text = "[=[ fake"; -- actual', ("-- actual",)),
+        (
+            "-- prose [=[ fake\nlocal value = 1\n-- actual",
+            ("-- prose [=[ fake", "-- actual"),
+        ),
+    ),
+)
+def test_lua_family_long_brackets_inside_quotes_and_comments_do_not_mask_comments(
+    language,
+    sample,
+    expected_matches,
+):
+    assert CommentQuery(language).parse(sample) == [
+        _expected_query_match(sample, expected_match) for expected_match in expected_matches
+    ]
+
+
+def test_lua_legacy_crlf_comment_slice_preserves_carriage_return():
+    sample = "-- legacy note\r\nlocal value = 1"
+
+    assert CommentQuery("lua").parse(sample) == [
+        _expected_query_match(sample, "-- legacy note\r")
+    ]
+
+
+@pytest.mark.parametrize("language", ("luau", "xmake"))
+@pytest.mark.parametrize("line_ending", ("\r\n", "\r"))
+def test_new_lua_aliases_exclude_carriage_return_from_short_comments(
+    language, line_ending
+):
+    sample = f"-- alias note{line_ending}local value = 1"
+
+    assert CommentQuery(language).parse(sample) == [
+        _expected_query_match(sample, "-- alias note")
+    ]
+
+
+def test_carbon_quote_in_comment_prose_does_not_mask_later_comment():
+    sample = '// " fake\n// actual'
+
+    assert CommentQuery("carbon").parse(sample) == [
+        _expected_query_match(sample, sample),
     ]
 
 

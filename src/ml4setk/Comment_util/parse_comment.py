@@ -21,6 +21,7 @@ from ..Parsing.Comments.CommentQuery import (
     LineCommentQuery,
     NestedCommentQuery,
 )
+from ..Parsing.Comments.CommentSanitizer import _build_sanitizer_syntax
 from ..Parsing.Comments.registry import get_comment_syntax
 
 CommentSpan = Tuple[Tuple[int, int], str, str]  # ((start, end), text, kind)
@@ -224,7 +225,7 @@ def extract_comments_alloy(content):
 
 
 def extract_comments_apl(content):
-    return _regex_line_matches(content, ["\u235D.*"])
+    return _regex_line_matches(content, ["\u235d.*"])
 
 
 def extract_comments_matlab(content):
@@ -282,7 +283,10 @@ def extract_comments_smarty(content):
 
 def extract_comments_blitzmax(content):
     blocks = _regex_matches(content, [r"(?ims)^[ \t]*Rem\b[\S\s]*?^[ \t]*End[ \t]*Rem\b"])
-    lines = _regex_line_matches(content, [r"'.*", r"(?i)^[ \t]*rem\b.+"],)
+    lines = _regex_line_matches(
+        content,
+        [r"'.*", r"(?i)^[ \t]*rem\b.+"],
+    )
     return _sorted_spans(blocks, lines)
 
 
@@ -325,7 +329,7 @@ def extract_comments_ruby(content):
 
 
 def extract_comments_abap(content):
-    return _regex_line_matches(content, [r'^\*.*', r'".*'])
+    return _regex_line_matches(content, [r"^\*.*", r'".*'])
 
 
 def extract_comments_mathematica(content):
@@ -1086,11 +1090,86 @@ def _registry_pattern_kinds(canonical_name: str) -> tuple[frozenset[str], ...]:
                 kinds.add(_legacy_kind_from_example_kind(example.kind))
         if not kinds:
             raise ValueError(
-                "Registry regex lacks legacy kind metadata: "
-                f"{canonical_name}[{pattern_index}]"
+                f"Registry regex lacks legacy kind metadata: {canonical_name}[{pattern_index}]"
             )
         result.append(frozenset(kinds))
     return tuple(result)
+
+
+@lru_cache(maxsize=None)
+def _registry_wrapper_marker_kinds(
+    canonical_name: str,
+) -> tuple[tuple[str, frozenset[str]], ...]:
+    """Return inferred wrapper openers and their legacy kinds, longest first."""
+
+    syntax = get_comment_syntax(canonical_name)
+    wrappers = _build_sanitizer_syntax(syntax)
+    marker_kinds: dict[str, set[str]] = {}
+    for opener, _closer in wrappers.line_wrappers:
+        marker_kinds.setdefault(opener, set()).add("line")
+    for opener, _closer in wrappers.block_wrappers:
+        marker_kinds.setdefault(opener, set()).add("block")
+    return tuple(
+        sorted(
+            ((marker, frozenset(kinds)) for marker, kinds in marker_kinds.items()),
+            key=lambda item: len(item[0]),
+            reverse=True,
+        )
+    )
+
+
+def _registry_wrapper_kind(canonical_name: str, match_text: str) -> str | None:
+    """Classify a scanner range from registry-derived delimiter metadata."""
+
+    stripped = match_text.lstrip()
+    for marker, kinds in _registry_wrapper_marker_kinds(canonical_name):
+        if stripped.startswith(marker):
+            return _resolve_ambiguous_registry_kind(canonical_name, stripped, kinds)
+    return None
+
+
+@lru_cache(maxsize=None)
+def _registry_contextual_marker_kinds(
+    canonical_name: str,
+) -> tuple[tuple[str, frozenset[str]], ...]:
+    """Return longest-first contextual wrapper markers with seeded kinds."""
+
+    syntax = get_comment_syntax(canonical_name)
+    examples = syntax.shared_contextual_examples + syntax.canonical_contextual_examples
+    openers = {
+        *(opener for opener, _ in syntax.sanitizer_line_wrappers),
+        *(opener for opener, _ in syntax.sanitizer_block_wrappers),
+        *(opener for opener, _ in syntax.nested_delimiters),
+    }
+    marker_kinds: dict[str, set[str]] = {}
+    for example in examples:
+        stripped = example.expected_match.lstrip()
+        matching_openers = [opener for opener in openers if stripped.startswith(opener)]
+        if not matching_openers:
+            continue
+        marker = max(matching_openers, key=len)
+        marker_kinds.setdefault(marker, set()).add(_legacy_kind_from_example_kind(example.kind))
+    return tuple(
+        sorted(
+            ((marker, frozenset(kinds)) for marker, kinds in marker_kinds.items()),
+            key=lambda item: len(item[0]),
+            reverse=True,
+        )
+    )
+
+
+def _registry_contextual_kind(canonical_name: str, match_text: str) -> str:
+    """Infer one contextual range's legacy kind from its seeded wrapper."""
+
+    stripped = match_text.lstrip()
+    for marker, kinds in _registry_contextual_marker_kinds(canonical_name):
+        if stripped.startswith(marker):
+            return _resolve_ambiguous_registry_kind(canonical_name, stripped, kinds)
+
+    syntax = get_comment_syntax(canonical_name)
+    examples = syntax.shared_contextual_examples + syntax.canonical_contextual_examples
+    kinds = {_legacy_kind_from_example_kind(example.kind) for example in examples}
+    return "line" if kinds == {"line"} else "block"
 
 
 def _resolve_ambiguous_registry_kind(
@@ -1136,21 +1215,32 @@ def _registry_comment_spans(content: str, language: str) -> List[CommentSpan]:
             )
             range_kinds.setdefault(comment_range, set()).add(resolved_kind)
 
+    if not syntax.contextual_extractor:
+        for start, end in accepted_line_ranges.difference(range_kinds):
+            kind = _registry_wrapper_kind(syntax.canonical_name, content[start:end])
+            if kind is not None:
+                range_kinds.setdefault((start, end), set()).add(kind)
+
     contextual_ranges = (
         accepted_line_ranges - set(range_kinds) if syntax.contextual_extractor else set()
     )
     spans = []
     for start, end in final_ranges:
+        contextual_component_kinds = {
+            _registry_contextual_kind(
+                syntax.canonical_name,
+                content[contextual_start:contextual_end],
+            )
+            for contextual_start, contextual_end in contextual_ranges
+            if start <= contextual_start and contextual_end <= end
+        }
         if any(
             start <= nested_start and nested_end <= end
             for nested_start, nested_end in nested_ranges
         ):
             kind = "block"
-        elif any(
-            start <= contextual_start and contextual_end <= end
-            for contextual_start, contextual_end in contextual_ranges
-        ):
-            kind = "block"
+        elif contextual_component_kinds:
+            kind = "block" if "block" in contextual_component_kinds else "line"
         else:
             component_kinds = {
                 component_kind
@@ -1169,9 +1259,7 @@ def _registry_comment_spans(content: str, language: str) -> List[CommentSpan]:
     return _merge_legacy_line_spans(content, spans)
 
 
-def _merge_legacy_line_spans(
-    content: str, comments: List[CommentSpan]
-) -> List[CommentSpan]:
+def _merge_legacy_line_spans(content: str, comments: List[CommentSpan]) -> List[CommentSpan]:
     """Preserve the legacy cross-delimiter consecutive-line grouping rule."""
 
     merged: List[CommentSpan] = []

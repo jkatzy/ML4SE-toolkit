@@ -9,6 +9,21 @@ from __future__ import annotations
 import re
 from collections.abc import Callable
 
+from .stack_v3_batch_01_contextual import STACK_V3_BATCH_01_CONTEXTUAL_EXTRACTORS
+from .stack_v3_batch_02_03_contextual import (
+    STACK_V3_BATCH_02_03_CONTEXTUAL_EXTRACTORS,
+)
+from .stack_v3_batch_04_contextual import STACK_V3_BATCH_04_CONTEXTUAL_EXTRACTORS
+from .stack_v3_batch_05_contextual import STACK_V3_BATCH_05_CONTEXTUAL_EXTRACTORS
+from .stack_v3_batch_06_07_contextual import (
+    STACK_V3_BATCH_06_07_CONTEXTUAL_EXTRACTORS,
+)
+from .stack_v3_batch_08_09_contextual import (
+    STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS,
+)
+from .stack_v3_batch_10_contextual import STACK_V3_BATCH_10_CONTEXTUAL_EXTRACTORS
+from .stack_v3_contextual import STACK_V3_CONTEXTUAL_EXTRACTORS
+
 _SIGNED_DECIMAL = re.compile(r"[+-]?[0-9]{1,9}\Z")
 _FIGLET_HEADER_WHITESPACE = " \t\v\f"
 
@@ -89,8 +104,90 @@ def figlet_header_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return ()
 
 
+def visual_basic_rem_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Visual Basic ``Rem`` comments at statement boundaries."""
+
+    ranges: list[tuple[int, int]] = []
+    line_start = 0
+    text_length = len(text)
+
+    while line_start < text_length:
+        line_end = line_start
+        while line_end < text_length and text[line_end] not in "\r\n\u0085\u2028\u2029":
+            line_end += 1
+
+        index = line_start
+        at_statement_start = True
+        in_string = False
+        while index < line_end:
+            char = text[index]
+            if in_string:
+                if char != '"':
+                    index += 1
+                    continue
+                if index + 1 < line_end and text[index + 1] == '"':
+                    index += 2
+                    continue
+                in_string = False
+                index += 1
+                continue
+
+            if char == "'":
+                break
+            if char == '"':
+                in_string = True
+                at_statement_start = False
+                index += 1
+                continue
+            if char == ":":
+                at_statement_start = True
+                index += 1
+                continue
+            if char in " \t\v\f":
+                index += 1
+                continue
+            if at_statement_start and char.isdigit():
+                number_end = index + 1
+                while number_end < line_end and text[number_end].isdigit():
+                    number_end += 1
+                if number_end < line_end and text[number_end] in " \t\v\f":
+                    index = number_end
+                    continue
+            if (
+                at_statement_start
+                and text[index : index + 3].lower() == "rem"
+                and (
+                    index + 3 == line_end
+                    or not (text[index + 3].isalnum() or text[index + 3] == "_")
+                )
+            ):
+                ranges.append((index, line_end))
+                break
+
+            at_statement_start = False
+            index += 1
+
+        if line_end == text_length:
+            break
+        if text[line_end : line_end + 2] == "\r\n":
+            line_start = line_end + 2
+        else:
+            line_start = line_end + 1
+
+    return tuple(ranges)
+
+
 _CONTEXTUAL_EXTRACTORS: dict[str, Callable[[str], tuple[tuple[int, int], ...]]] = {
     "figlet_header_comments": figlet_header_comment_ranges,
+    "visual_basic_rem_comments": visual_basic_rem_comment_ranges,
+    **STACK_V3_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_01_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_02_03_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_04_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_05_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_06_07_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS,
+    **STACK_V3_BATCH_10_CONTEXTUAL_EXTRACTORS,
 }
 SUPPORTED_CONTEXTUAL_EXTRACTORS = frozenset(_CONTEXTUAL_EXTRACTORS)
 
@@ -109,4 +206,5 @@ __all__ = [
     "SUPPORTED_CONTEXTUAL_EXTRACTORS",
     "contextual_comment_ranges",
     "figlet_header_comment_ranges",
+    "visual_basic_rem_comment_ranges",
 ]
