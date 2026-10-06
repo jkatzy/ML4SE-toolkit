@@ -168,5 +168,137 @@ _PROSE_IN_INFERRED_WRAPPER_CASES = [
 def test_seeded_example_prose_is_not_inferred_as_comment_delimiter(
     language, source, raw_comment, expected
 ):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+def _assert_extracts_and_cleans(language, source, raw_comment, expected):
     assert [match.match for match in CommentQuery(language).parse(source)] == [raw_comment]
     assert sanitize_comment(language, raw_comment) == expected
+
+
+_CASE_FIELDS = ("language", "source", "raw_comment", "expected")
+
+
+def _inline_cases(language_cases):
+    """Build params whose source places each raw comment between code lines."""
+
+    return [
+        pytest.param(language, f"x;\n{raw}\ny;", raw, expected, id=case_id)
+        for case_id, language, raw, expected in language_cases
+    ]
+
+
+# A leading run of punctuation that only looks like a ruler is dropped while the
+# matching trailing run, or the rest of the prose, survives. Doctest prompts,
+# merge-conflict markers, and Markdown emphasis are content.
+@pytest.mark.xfail(
+    strict=True,
+    reason="Leading punctuation runs are stripped as rulers; remove when fixed.",
+)
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("c-block-chevrons", "c", "/* <<< merge >>> */", "<<< merge >>>"),
+            ("c-line-chevrons", "c", "// <<< merge >>>", "<<< merge >>>"),
+            ("c-block-doctest", "c", "/* >>> prompt */", ">>> prompt"),
+            ("java-block-doctest", "java", "/* >>> prompt */", ">>> prompt"),
+            ("c-line-doctest", "c", "// >>> f()", ">>> f()"),
+            ("c-line-conflict-marker", "c", "// <<<<<<< HEAD", "<<<<<<< HEAD"),
+            ("c-block-conflict-marker", "c", "/* <<<<<<< HEAD */", "<<<<<<< HEAD"),
+            ("c-block-bold", "c", "/* ** bold ** */", "** bold **"),
+            ("c-line-bold", "c", "// ** bold **", "** bold **"),
+        )
+    ),
+)
+def test_leading_punctuation_run_is_content_not_a_ruler(language, source, raw_comment, expected):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+# GNU and OCaml styles align continuation lines with the text after the opener
+# rather than with a star gutter. That alignment is layout, as a `` * `` gutter
+# is; indentation beyond it is content and must stay relative.
+@pytest.mark.xfail(
+    strict=True,
+    reason="Opener-aligned continuation indent is kept; remove when fixed.",
+)
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("c-two-lines", "c", "/* a\n   b */", "a\nb"),
+            (
+                "c-three-lines",
+                "c",
+                "/* First line\n   second line\n   third */",
+                "First line\nsecond line\nthird",
+            ),
+            (
+                "c-relative-indent",
+                "c",
+                "/* a\n     b indented more\n   c */",
+                "a\n  b indented more\nc",
+            ),
+            ("c-doc-opener", "c", "/** a\n    b */", "a\nb"),
+            ("java", "java", "/* a\n   b */", "a\nb"),
+            ("javascript", "javascript", "/* a\n   b */", "a\nb"),
+            ("rust", "rust", "/* a\n   b */", "a\nb"),
+            ("go", "go", "/* a\n   b */", "a\nb"),
+            ("ocaml", "ocaml", "(* a\n   b *)", "a\nb"),
+            ("ocaml-doc", "ocaml", "(** a\n    b *)", "a\nb"),
+        )
+    ),
+)
+def test_block_continuation_aligned_with_opener_text_is_dedented(
+    language, source, raw_comment, expected
+):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+# Documentation openers are already removed in their compact or line forms
+# (``{-|``, ``-- |``, ``///``, ``/**``), but not in these equivalent spellings.
+@pytest.mark.xfail(
+    strict=True,
+    reason="Documentation opener variant leaves a marker behind; remove when fixed.",
+)
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("haskell-spaced-haddock", "haskell", "{- | doc -}", "doc"),
+            ("purescript-spaced-haddock", "purescript", "{- | doc -}", "doc"),
+            ("elm-spaced-doc", "elm", "{- | doc -}", "doc"),
+            ("idris-spaced-doc", "idris", "{- | doc -}", "doc"),
+            ("d-single-line-ddoc-plus", "d", "/++ doc +/", "doc"),
+            ("lua-ldoc", "lua", "--- Doc comment", "Doc comment"),
+            ("lua-luals-annotation", "lua", "---@param x number", "@param x number"),
+            ("lua-ldoc-grouped", "lua", "--- a\n--- b", "a\nb"),
+            ("luau-ldoc", "luau", "--- Doc comment", "Doc comment"),
+            ("terra-ldoc", "terra", "--- Doc comment", "Doc comment"),
+            ("moonscript-ldoc", "moonscript", "--- Doc comment", "Doc comment"),
+        )
+    ),
+)
+def test_documentation_opener_variants_are_removed(language, source, raw_comment, expected):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+# Inside a one-line block comment ``//`` cannot be a delimiter; it is
+# commented-out code and must be kept.
+@pytest.mark.xfail(
+    strict=True,
+    reason="Line marker inside a block comment is stripped; remove when fixed.",
+)
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("c", "c", "/* // disabled code */", "// disabled code"),
+            ("java", "java", "/* // x = 1; */", "// x = 1;"),
+        )
+    ),
+)
+def test_line_marker_inside_single_line_block_comment_is_content(
+    language, source, raw_comment, expected
+):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
