@@ -28,7 +28,7 @@
       "source": "registry:shared_regex_examples[1]",
       "kind": "line",
       "raw_comment": "{%\n  # cleaning_payload_shared_regex_001\n  # more\n%}",
-      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "expected_cleaned": "cleaning_payload_shared_regex_001\nmore",
       "payload_marker": "cleaning_payload_shared_regex_001"
     },
     {

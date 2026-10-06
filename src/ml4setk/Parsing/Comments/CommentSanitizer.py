@@ -163,8 +163,10 @@ def _add_known_block_wrapper_variants(
         ),
         ("{-", "-}"): (
             ("{-|", "-}"),
+            ("{- |", "-}"),
             ("{-!", "-}"),
         ),
+        ("/+", "+/"): (("/++", "+/"),),
         ("{#", "#}"): (
             ("{#-", "-#}"),
             ("{#-", "#}"),
@@ -212,7 +214,9 @@ def _build_sanitizer_syntax(syntax: CommentSyntax) -> _SanitizerSyntax:
         if example.kind == "directive" and "\n" in example.expected_match:
             continue
         parts = _split_example_placeholder(example.expected_match)
-        if parts is None:
+        # A line wrapper never spans lines; a multiline example would turn its
+        # remaining prose lines into a closing delimiter.
+        if parts is None or "\n" in parts[0].strip() + parts[2]:
             continue
         for wrapper in (
             (parts[0].strip(), parts[2]),
@@ -860,7 +864,9 @@ def _strip_inline_ruler_padding(
     """Strip long homogeneous decoration attached to content-bearing text."""
 
     stripped_lines: list[str] = []
-    leading = re.compile(r"^([ \t]*)([@#%\-=*_<>/+|])\2{3,}[ \t]+(.+)$")
+    # Leading chevron runs such as ``<<<<<<< HEAD`` are merge-conflict
+    # markers or prompts, not ruler padding.
+    leading = re.compile(r"^([ \t]*)([@#%\-=*_/+|])\2{3,}[ \t]+(.+)$")
     trailing = re.compile(r"^(.+?)[ \t]+([@#%\-=*_<>/+|])\2{3,}[ \t]*$")
     for line in lines:
         current = line
@@ -1175,8 +1181,10 @@ def _strip_single_line_decorative_padding(
         stripped[index] = paired.group(1) + paired.group(3).strip()
         return stripped
 
+    # Chevron runs are not rulers here: ``>>>`` opens a doctest prompt and
+    # ``<<<<<<<`` a merge-conflict marker, both content-bearing.
     leading_run = re.match(
-        r"^([ \t]*)([%.\-=*_<>/+|])\2{2,}[ \t]*(.+)$",
+        r"^([ \t]*)([%.\-=*_/+|])\2{2,}[ \t]*(.+)$",
         line,
     )
     if (
@@ -1191,6 +1199,8 @@ def _strip_single_line_decorative_padding(
     if (
         doubled_star is not None
         and "*" not in protected_chars
+        # A closing ``**`` pairs the opener as Markdown strong emphasis.
+        and not doubled_star.group(2).rstrip().endswith("**")
         and any(char.isalnum() for char in doubled_star.group(2))
     ):
         stripped[index] = doubled_star.group(1) + doubled_star.group(2).strip()
@@ -2293,6 +2303,22 @@ def _sanitize_unclosed_block_comment(
     return None
 
 
+def _sanitize_liquid_inline_comment_tag(raw_comment: str) -> str | None:
+    """Clean a Liquid ``{% # ... %}`` tag whose content lines each start with #."""
+
+    match = re.fullmatch(r"\{%-?[ \t]*\n?(.*?)[ \t\n]*-?%\}", raw_comment, re.DOTALL)
+    if match is None:
+        return None
+    bodies = []
+    for line in match.group(1).split("\n"):
+        stripped = line.lstrip(" \t")
+        if not stripped.startswith("#"):
+            return None
+        body = stripped[1:]
+        bodies.append(body[1:] if body.startswith((" ", "\t")) else body)
+    return _normalize_sanitized_body("\n".join(bodies))
+
+
 def _sanitize_slang_spliced_line(raw_comment: str) -> str | None:
     normalized = _normalize_newlines(raw_comment)
     candidate = normalized.lstrip(" \t")
@@ -2344,6 +2370,7 @@ def _sanitize_block_body(
         body = body[:-1]
 
     lines = body.split("\n")
+    physical_line_count = len(lines)
     nested_line_wrappers = tuple(
         wrapper for wrapper in line_wrappers if not any(char.isalnum() for char in wrapper[0])
     )
@@ -2364,13 +2391,16 @@ def _sanitize_block_body(
         lines.pop()
 
     lines, stripped_symmetric_frame = _strip_symmetric_block_frame(lines)
-    grouped_line_result = _strip_grouped_line_wrappers(
-        "\n".join(lines),
-        nested_line_wrappers,
-        protected_padding_chars=protected_ruler_chars,
-    )
-    if grouped_line_result is not None:
-        return grouped_line_result
+    # In a one-line block comment a line marker cannot be a gutter; it is
+    # commented-out text such as ``/* // disabled code */``.
+    if physical_line_count > 1:
+        grouped_line_result = _strip_grouped_line_wrappers(
+            "\n".join(lines),
+            nested_line_wrappers,
+            protected_padding_chars=protected_ruler_chars,
+        )
+        if grouped_line_result is not None:
+            return grouped_line_result
 
     lines, stripped_left_gutter = _strip_common_left_gutter(
         lines,
@@ -7100,7 +7130,11 @@ class CommentSanitizer:
             "gsc": (("////", ""),),
             "lfe": ((";;;;", ""),),
             "lisp": ((";;;;", ""),),
+            # LDoc and LuaLS documentation comments start with three dashes.
+            "lua": (("---", ""),),
+            "luau": (("---", ""),),
             "matlab": (("%%%", ""), ("%%", "")),
+            "moonscript": (("---", ""),),
             "nextflow": (("////", ""),),
             "openscad": (("////", ""),),
             "openstep_property_list": (("////", ""),),
@@ -7111,6 +7145,8 @@ class CommentSanitizer:
             "r": (("#'", ""),),
             "supercollider": (("////", ""),),
             "sqlpl": (("----", ""),),
+            "terra": (("---", ""),),
+            "xmake": (("---", ""),),
             "zeek": (("##!", ""), ("#!", "")),
             "zenscript": (("////", ""),),
         }
@@ -7394,6 +7430,11 @@ class CommentSanitizer:
             powerbuilder_result = _sanitize_powerbuilder_template(raw_comment)
             if powerbuilder_result is not None:
                 return powerbuilder_result
+
+        if self._language_key == "liquid":
+            liquid_result = _sanitize_liquid_inline_comment_tag(raw_comment)
+            if liquid_result is not None:
+                return liquid_result
 
         if self._language_key == "scaml":
             scaml_result = _sanitize_scaml_scoped_comment(raw_comment)

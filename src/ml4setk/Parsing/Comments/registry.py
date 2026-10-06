@@ -1400,6 +1400,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"/\*[\S\s]*?\*/",
             r"//[^\r\n]*",
         ),
+        sanitizer_line_wrappers=(("@q", "@>"), ("//", "")),
         shared_regex_examples=(
             CommentExample(
                 "@q reader note @>\n@c",
@@ -1598,7 +1599,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "sed",
             "selinux_policy",
             "talon",
-           
             "tcsh",
             "toml",
             "turtle",
@@ -1935,6 +1935,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         regex_patterns=(r"--.*",),
         nested_delimiters=(("{-", "-}"),),
+        sanitizer_line_wrappers=(("--", ""),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n-- note\nsuffix",
@@ -2456,6 +2457,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="x_font_directory_index_style",
         canonical_name="x_font_directory_index",
         regex_patterns=(r"(?m)^![^\r\n]*",),
+        sanitizer_line_wrappers=(("!", ""),),
         shared_regex_examples=(
             CommentExample(
                 (

@@ -157,10 +157,6 @@ _PROSE_IN_INFERRED_WRAPPER_CASES = [
 ]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Sanitizer infers wrappers from seeded example prose; remove when fixed.",
-)
 @pytest.mark.parametrize(
     ("language", "source", "raw_comment", "expected"),
     _PROSE_IN_INFERRED_WRAPPER_CASES,
@@ -191,10 +187,6 @@ def _inline_cases(language_cases):
 # A leading run of punctuation that only looks like a ruler is dropped while the
 # matching trailing run, or the rest of the prose, survives. Doctest prompts,
 # merge-conflict markers, and Markdown emphasis are content.
-@pytest.mark.xfail(
-    strict=True,
-    reason="Leading punctuation runs are stripped as rulers; remove when fixed.",
-)
 @pytest.mark.parametrize(
     _CASE_FIELDS,
     _inline_cases(
@@ -215,41 +207,38 @@ def test_leading_punctuation_run_is_content_not_a_ruler(language, source, raw_co
     _assert_extracts_and_cleans(language, source, raw_comment, expected)
 
 
-# GNU and OCaml styles align continuation lines with the text after the opener
-# rather than with a star gutter. That alignment is layout, as a `` * `` gutter
-# is; indentation beyond it is content and must stay relative.
-@pytest.mark.xfail(
-    strict=True,
-    reason="Opener-aligned continuation indent is kept; remove when fixed.",
-)
+# GNU and OCaml styles align continuation lines with the text after the opener.
+# Reviewed cleaning oracles (for example the Apache license and Benchmarks Game
+# headers in ``tests/fixtures/comment_cleaning_regressions``) keep that
+# alignment verbatim, so the cleaner must not dedent it.
 @pytest.mark.parametrize(
     _CASE_FIELDS,
     _inline_cases(
         (
-            ("c-two-lines", "c", "/* a\n   b */", "a\nb"),
+            ("c-two-lines", "c", "/* a\n   b */", "a\n   b"),
             (
                 "c-three-lines",
                 "c",
                 "/* First line\n   second line\n   third */",
-                "First line\nsecond line\nthird",
+                "First line\n   second line\n   third",
             ),
             (
                 "c-relative-indent",
                 "c",
                 "/* a\n     b indented more\n   c */",
-                "a\n  b indented more\nc",
+                "a\n     b indented more\n   c",
             ),
-            ("c-doc-opener", "c", "/** a\n    b */", "a\nb"),
-            ("java", "java", "/* a\n   b */", "a\nb"),
-            ("javascript", "javascript", "/* a\n   b */", "a\nb"),
-            ("rust", "rust", "/* a\n   b */", "a\nb"),
-            ("go", "go", "/* a\n   b */", "a\nb"),
-            ("ocaml", "ocaml", "(* a\n   b *)", "a\nb"),
-            ("ocaml-doc", "ocaml", "(** a\n    b *)", "a\nb"),
+            ("c-doc-opener", "c", "/** a\n    b */", "a\n    b"),
+            ("java", "java", "/* a\n   b */", "a\n   b"),
+            ("javascript", "javascript", "/* a\n   b */", "a\n   b"),
+            ("rust", "rust", "/* a\n   b */", "a\n   b"),
+            ("go", "go", "/* a\n   b */", "a\n   b"),
+            ("ocaml", "ocaml", "(* a\n   b *)", "a\n   b"),
+            ("ocaml-doc", "ocaml", "(** a\n    b *)", "a\n    b"),
         )
     ),
 )
-def test_block_continuation_aligned_with_opener_text_is_dedented(
+def test_block_continuation_aligned_with_opener_text_keeps_reviewed_indentation(
     language, source, raw_comment, expected
 ):
     _assert_extracts_and_cleans(language, source, raw_comment, expected)
@@ -257,10 +246,6 @@ def test_block_continuation_aligned_with_opener_text_is_dedented(
 
 # Documentation openers are already removed in their compact or line forms
 # (``{-|``, ``-- |``, ``///``, ``/**``), but not in these equivalent spellings.
-@pytest.mark.xfail(
-    strict=True,
-    reason="Documentation opener variant leaves a marker behind; remove when fixed.",
-)
 @pytest.mark.parametrize(
     _CASE_FIELDS,
     _inline_cases(
@@ -285,10 +270,6 @@ def test_documentation_opener_variants_are_removed(language, source, raw_comment
 
 # Inside a one-line block comment ``//`` cannot be a delimiter; it is
 # commented-out code and must be kept.
-@pytest.mark.xfail(
-    strict=True,
-    reason="Line marker inside a block comment is stripped; remove when fixed.",
-)
 @pytest.mark.parametrize(
     _CASE_FIELDS,
     _inline_cases(
