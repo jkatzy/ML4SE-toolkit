@@ -1602,15 +1602,25 @@ def _sanitize_denizenscript_line_result(raw_comment: str, cleaned: str) -> str:
     """Remove Denizen's exact doubled metadata marker and header footer."""
 
     lines = cleaned.split("\n")
-    if any(re.fullmatch(r"[ \t]*##[ \t]+@file[ \t]*", line) for line in raw_comment.split("\n")):
+    # A doubled ``##`` before a Doxygen-style ``@tag`` line is marker, not content.
+    doubled_tags = {
+        match.group(1)
+        for line in raw_comment.split("\n")
+        if (match := re.fullmatch(r"[ \t]*##[ \t]+(@\w+)[ \t]*", line)) is not None
+    }
+    if doubled_tags:
         lines = [
-            "@file" if re.fullmatch(r"#[ \t]+@file", line) is not None else line for line in lines
+            match.group(1)
+            if (match := re.fullmatch(r"#[ \t]+(@\w+)", line)) is not None
+            and match.group(1) in doubled_tags
+            else line
+            for line in lines
         ]
 
     raw_content_lines = [
         line
         for line in raw_comment.split("\n")
-        if line.strip() and re.fullmatch(r"[ \t]*#{1,2}(?:[ \t]+@file)?[ \t]*", line) is None
+        if line.strip() and re.fullmatch(r"[ \t]*#{1,2}(?:[ \t]+@\w+)?[ \t]*", line) is None
     ]
     if raw_content_lines and all(re.match(r"^[ \t]*#[ ]{2}", line) for line in raw_content_lines):
         lines = [line[1:] if line.startswith(" ") else line for line in lines]
