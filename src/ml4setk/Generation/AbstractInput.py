@@ -18,8 +18,8 @@ def unpack_query_match(query_match):
 
     return prefix, suffix, match
 
-class AbstractInput(ABC):
 
+class AbstractInput(ABC):
     """
     Generates model-ready inputs from a parsed query match.
 

@@ -1,6 +1,6 @@
 import pytest
 
-from ml4setk import CommentSanitizer, sanitize_comment
+from ml4setk import CommentQuery, CommentSanitizer, sanitize_comment
 
 pytestmark = pytest.mark.unit
 
@@ -71,3 +71,215 @@ def test_sanitizer_preserves_the_callers_language_string():
     sanitizer = CommentSanitizer("BrightScript")
 
     assert sanitizer.language == "BrightScript"
+
+
+# Seeded registry examples whose prose leaks into an inferred sanitizer wrapper.
+# ``_build_sanitizer_syntax`` splits each line example on its body placeholder,
+# so words before "note" (``uplc``, ``reader``, ``font alias``) become part of
+# the opening delimiter, and a multiline Liquid example turns its second line
+# into a closing delimiter. The seeded example then loses content, and other
+# comments with the real delimiter are not cleaned at all. Each case lists the
+# seeded example and a variant with different prose; extraction is already
+# correct, so the expected output is the comment body without its delimiters.
+_PROSE_IN_INFERRED_WRAPPER_CASES = [
+    pytest.param(
+        language,
+        source,
+        raw_comment,
+        expected,
+        id=f"{language}-{case}",
+    )
+    for language in (
+        "agda",
+        "elm",
+        "frege",
+        "grammatical_framework",
+        "literate_agda",
+        "untyped_plutus_core",
+    )
+    for case, source, raw_comment, expected in (
+        (
+            "seeded",
+            "(program 1.1.0 -- uplc note\n  (lam x x))",
+            "-- uplc note",
+            "uplc note",
+        ),
+        (
+            "variant",
+            "x -- uplc compiler output\ny",
+            "-- uplc compiler output",
+            "uplc compiler output",
+        ),
+    )
+] + [
+    pytest.param(
+        "cweb",
+        "@q reader note @>\n@c",
+        "@q reader note @>",
+        "reader note",
+        id="cweb-seeded",
+    ),
+    pytest.param(
+        "cweb",
+        "@q Copyright 2024 @>\n@c",
+        "@q Copyright 2024 @>",
+        "Copyright 2024",
+        id="cweb-variant",
+    ),
+    pytest.param(
+        "x_font_directory_index",
+        "! font alias note\nfixed -misc-fixed-medium-r-normal--13-120-75-75-c-70-iso10646-1",
+        "! font alias note",
+        "font alias note",
+        id="x_font_directory_index-seeded",
+    ),
+    pytest.param(
+        "x_font_directory_index",
+        "! Copyright 1999\nfixed -misc-fixed-medium-r-normal--13-120-75-75-c-70-iso10646-1",
+        "! Copyright 1999",
+        "Copyright 1999",
+        id="x_font_directory_index-variant",
+    ),
+    pytest.param(
+        "liquid",
+        "prefix\n{%\n  # note\n  # more\n%}\nsuffix",
+        "{%\n  # note\n  # more\n%}",
+        "note\nmore",
+        id="liquid-multiline-seeded",
+    ),
+    pytest.param(
+        "liquid",
+        "prefix\n{%\n  # first line\n  # second line\n%}\nsuffix",
+        "{%\n  # first line\n  # second line\n%}",
+        "first line\nsecond line",
+        id="liquid-multiline-variant",
+    ),
+]
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "raw_comment", "expected"),
+    _PROSE_IN_INFERRED_WRAPPER_CASES,
+)
+def test_seeded_example_prose_is_not_inferred_as_comment_delimiter(
+    language, source, raw_comment, expected
+):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+def _assert_extracts_and_cleans(language, source, raw_comment, expected):
+    assert [match.match for match in CommentQuery(language).parse(source)] == [raw_comment]
+    assert sanitize_comment(language, raw_comment) == expected
+
+
+_CASE_FIELDS = ("language", "source", "raw_comment", "expected")
+
+
+def _inline_cases(language_cases):
+    """Build params whose source places each raw comment between code lines."""
+
+    return [
+        pytest.param(language, f"x;\n{raw}\ny;", raw, expected, id=case_id)
+        for case_id, language, raw, expected in language_cases
+    ]
+
+
+# A leading run of punctuation that only looks like a ruler is dropped while the
+# matching trailing run, or the rest of the prose, survives. Doctest prompts,
+# merge-conflict markers, and Markdown emphasis are content.
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("c-block-chevrons", "c", "/* <<< merge >>> */", "<<< merge >>>"),
+            ("c-line-chevrons", "c", "// <<< merge >>>", "<<< merge >>>"),
+            ("c-block-doctest", "c", "/* >>> prompt */", ">>> prompt"),
+            ("java-block-doctest", "java", "/* >>> prompt */", ">>> prompt"),
+            ("c-line-doctest", "c", "// >>> f()", ">>> f()"),
+            ("c-line-conflict-marker", "c", "// <<<<<<< HEAD", "<<<<<<< HEAD"),
+            ("c-block-conflict-marker", "c", "/* <<<<<<< HEAD */", "<<<<<<< HEAD"),
+            ("c-block-bold", "c", "/* ** bold ** */", "** bold **"),
+            ("c-line-bold", "c", "// ** bold **", "** bold **"),
+        )
+    ),
+)
+def test_leading_punctuation_run_is_content_not_a_ruler(language, source, raw_comment, expected):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+# GNU and OCaml styles align continuation lines with the text after the opener.
+# Reviewed cleaning oracles (for example the Apache license and Benchmarks Game
+# headers in ``tests/fixtures/comment_cleaning_regressions``) keep that
+# alignment verbatim, so the cleaner must not dedent it.
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("c-two-lines", "c", "/* a\n   b */", "a\n   b"),
+            (
+                "c-three-lines",
+                "c",
+                "/* First line\n   second line\n   third */",
+                "First line\n   second line\n   third",
+            ),
+            (
+                "c-relative-indent",
+                "c",
+                "/* a\n     b indented more\n   c */",
+                "a\n     b indented more\n   c",
+            ),
+            ("c-doc-opener", "c", "/** a\n    b */", "a\n    b"),
+            ("java", "java", "/* a\n   b */", "a\n   b"),
+            ("javascript", "javascript", "/* a\n   b */", "a\n   b"),
+            ("rust", "rust", "/* a\n   b */", "a\n   b"),
+            ("go", "go", "/* a\n   b */", "a\n   b"),
+            ("ocaml", "ocaml", "(* a\n   b *)", "a\n   b"),
+            ("ocaml-doc", "ocaml", "(** a\n    b *)", "a\n    b"),
+        )
+    ),
+)
+def test_block_continuation_aligned_with_opener_text_keeps_reviewed_indentation(
+    language, source, raw_comment, expected
+):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+# Documentation openers are already removed in their compact or line forms
+# (``{-|``, ``-- |``, ``///``, ``/**``), but not in these equivalent spellings.
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("haskell-spaced-haddock", "haskell", "{- | doc -}", "doc"),
+            ("purescript-spaced-haddock", "purescript", "{- | doc -}", "doc"),
+            ("elm-spaced-doc", "elm", "{- | doc -}", "doc"),
+            ("idris-spaced-doc", "idris", "{- | doc -}", "doc"),
+            ("d-single-line-ddoc-plus", "d", "/++ doc +/", "doc"),
+            ("lua-ldoc", "lua", "--- Doc comment", "Doc comment"),
+            ("lua-luals-annotation", "lua", "---@param x number", "@param x number"),
+            ("lua-ldoc-grouped", "lua", "--- a\n--- b", "a\nb"),
+            ("luau-ldoc", "luau", "--- Doc comment", "Doc comment"),
+            ("terra-ldoc", "terra", "--- Doc comment", "Doc comment"),
+            ("moonscript-ldoc", "moonscript", "--- Doc comment", "Doc comment"),
+        )
+    ),
+)
+def test_documentation_opener_variants_are_removed(language, source, raw_comment, expected):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)
+
+
+# Inside a one-line block comment ``//`` cannot be a delimiter; it is
+# commented-out code and must be kept.
+@pytest.mark.parametrize(
+    _CASE_FIELDS,
+    _inline_cases(
+        (
+            ("c", "c", "/* // disabled code */", "// disabled code"),
+            ("java", "java", "/* // x = 1; */", "// x = 1;"),
+        )
+    ),
+)
+def test_line_marker_inside_single_line_block_comment_is_content(
+    language, source, raw_comment, expected
+):
+    _assert_extracts_and_cleans(language, source, raw_comment, expected)

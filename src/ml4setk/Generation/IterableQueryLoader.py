@@ -5,6 +5,7 @@ Iterable dataset that generates samples based on a query.
 try:
     from torch.utils.data import IterableDataset
 except ModuleNotFoundError:
+
     class IterableDataset:  # pragma: no cover - simple fallback for optional torch dependency
         """Fallback base class when PyTorch is not installed."""
 
@@ -22,7 +23,7 @@ class IterableQueryLoader(IterableDataset):
         self.iterator = iter(self.source_dataset)
 
         self.i = 0
-   
+
     def __iter__(self):
         self.iterator = iter(self.source_dataset)
         self.i = 0

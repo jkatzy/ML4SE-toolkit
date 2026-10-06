@@ -43,9 +43,17 @@
       "id": "sanitizer-line-wrapper-001",
       "source": "registry:sanitizer_line_wrappers[1]",
       "kind": "sanitizer_line_wrapper",
-      "raw_comment": "REM cleaning_payload_sanitizer_line_wrapper_001",
+      "raw_comment": "@REM cleaning_payload_sanitizer_line_wrapper_001",
       "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_001",
       "payload_marker": "cleaning_payload_sanitizer_line_wrapper_001"
+    },
+    {
+      "id": "sanitizer-line-wrapper-002",
+      "source": "registry:sanitizer_line_wrappers[2]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "REM cleaning_payload_sanitizer_line_wrapper_002",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_002",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_002"
     }
   ]
 }

@@ -7,9 +7,7 @@ from pathlib import Path
 
 def _load_script():
     script_path = (
-        Path(__file__).resolve().parents[1]
-        / "scripts"
-        / "run_codex_comment_test_generator.py"
+        Path(__file__).resolve().parents[1] / "scripts" / "run_codex_comment_test_generator.py"
     )
     spec = importlib.util.spec_from_file_location("comment_test_generator", script_path)
     assert spec is not None
@@ -118,9 +116,7 @@ def test_codex_command_uses_configured_sandbox(tmp_path: Path) -> None:
     assert command[command.index("--sandbox") + 1] == "danger-full-access"
 
 
-def test_testgen_usage_limit_returns_special_exit(
-    tmp_path: Path, monkeypatch: object
-) -> None:
+def test_testgen_usage_limit_returns_special_exit(tmp_path: Path, monkeypatch: object) -> None:
     module = _load_script()
     report = tmp_path / "report.md"
     report.write_text("# report", encoding="utf-8")

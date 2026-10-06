@@ -448,9 +448,11 @@ def _build_block_case(spec):
 
 def _build_nested_case(spec):
     nested_desc = spec.fields.get("Nested comments", "").lower()
-    is_nested_supported = nested_desc in {"yes", "supported"} or nested_desc.endswith(
-        " is supported"
-    ) or nested_desc.endswith(" are supported")
+    is_nested_supported = (
+        nested_desc in {"yes", "supported"}
+        or nested_desc.endswith(" is supported")
+        or nested_desc.endswith(" are supported")
+    )
     if not is_nested_supported:
         return None
 
@@ -484,9 +486,7 @@ def _build_nested_case(spec):
     if open_delim == close_delim:
         return None
 
-    expected_match = (
-        f"{open_delim} outer {open_delim} inner {close_delim} outer {close_delim}"
-    )
+    expected_match = f"{open_delim} outer {open_delim} inner {close_delim} outer {close_delim}"
     sample = f"before {expected_match} after"
     return CandidateCommentCase(
         language=spec.language,

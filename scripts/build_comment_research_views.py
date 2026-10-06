@@ -166,9 +166,7 @@ def parse_reports(expected_languages: Sequence[str]) -> Dict[str, LanguageRecord
                 implementation_source=normalize_text(
                     current_fields.get("Implementation source", "")
                 ),
-                recommended_action=normalize_text(
-                    current_fields.get("Recommended action", "")
-                ),
+                recommended_action=normalize_text(current_fields.get("Recommended action", "")),
                 notes=normalize_text(current_fields.get("Notes", "")),
                 report_file=str(report_path.relative_to(ROOT)),
             )

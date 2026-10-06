@@ -163,8 +163,10 @@ def _add_known_block_wrapper_variants(
         ),
         ("{-", "-}"): (
             ("{-|", "-}"),
+            ("{- |", "-}"),
             ("{-!", "-}"),
         ),
+        ("/+", "+/"): (("/++", "+/"),),
         ("{#", "#}"): (
             ("{#-", "-#}"),
             ("{#-", "#}"),
@@ -212,7 +214,9 @@ def _build_sanitizer_syntax(syntax: CommentSyntax) -> _SanitizerSyntax:
         if example.kind == "directive" and "\n" in example.expected_match:
             continue
         parts = _split_example_placeholder(example.expected_match)
-        if parts is None:
+        # A line wrapper never spans lines; a multiline example would turn its
+        # remaining prose lines into a closing delimiter.
+        if parts is None or "\n" in parts[0].strip() + parts[2]:
             continue
         for wrapper in (
             (parts[0].strip(), parts[2]),
@@ -860,7 +864,9 @@ def _strip_inline_ruler_padding(
     """Strip long homogeneous decoration attached to content-bearing text."""
 
     stripped_lines: list[str] = []
-    leading = re.compile(r"^([ \t]*)([@#%\-=*_<>/+|])\2{3,}[ \t]+(.+)$")
+    # Leading chevron runs such as ``<<<<<<< HEAD`` are merge-conflict
+    # markers or prompts, not ruler padding.
+    leading = re.compile(r"^([ \t]*)([@#%\-=*_/+|])\2{3,}[ \t]+(.+)$")
     trailing = re.compile(r"^(.+?)[ \t]+([@#%\-=*_<>/+|])\2{3,}[ \t]*$")
     for line in lines:
         current = line
@@ -1175,8 +1181,10 @@ def _strip_single_line_decorative_padding(
         stripped[index] = paired.group(1) + paired.group(3).strip()
         return stripped
 
+    # Chevron runs are not rulers here: ``>>>`` opens a doctest prompt and
+    # ``<<<<<<<`` a merge-conflict marker, both content-bearing.
     leading_run = re.match(
-        r"^([ \t]*)([%.\-=*_<>/+|])\2{2,}[ \t]*(.+)$",
+        r"^([ \t]*)([%.\-=*_/+|])\2{2,}[ \t]*(.+)$",
         line,
     )
     if (
@@ -1191,6 +1199,8 @@ def _strip_single_line_decorative_padding(
     if (
         doubled_star is not None
         and "*" not in protected_chars
+        # A closing ``**`` pairs the opener as Markdown strong emphasis.
+        and not doubled_star.group(2).rstrip().endswith("**")
         and any(char.isalnum() for char in doubled_star.group(2))
     ):
         stripped[index] = doubled_star.group(1) + doubled_star.group(2).strip()
@@ -1592,15 +1602,25 @@ def _sanitize_denizenscript_line_result(raw_comment: str, cleaned: str) -> str:
     """Remove Denizen's exact doubled metadata marker and header footer."""
 
     lines = cleaned.split("\n")
-    if any(re.fullmatch(r"[ \t]*##[ \t]+@file[ \t]*", line) for line in raw_comment.split("\n")):
+    # A doubled ``##`` before a Doxygen-style ``@tag`` line is marker, not content.
+    doubled_tags = {
+        match.group(1)
+        for line in raw_comment.split("\n")
+        if (match := re.fullmatch(r"[ \t]*##[ \t]+(@\w+)[ \t]*", line)) is not None
+    }
+    if doubled_tags:
         lines = [
-            "@file" if re.fullmatch(r"#[ \t]+@file", line) is not None else line for line in lines
+            match.group(1)
+            if (match := re.fullmatch(r"#[ \t]+(@\w+)", line)) is not None
+            and match.group(1) in doubled_tags
+            else line
+            for line in lines
         ]
 
     raw_content_lines = [
         line
         for line in raw_comment.split("\n")
-        if line.strip() and re.fullmatch(r"[ \t]*#{1,2}(?:[ \t]+@file)?[ \t]*", line) is None
+        if line.strip() and re.fullmatch(r"[ \t]*#{1,2}(?:[ \t]+@\w+)?[ \t]*", line) is None
     ]
     if raw_content_lines and all(re.match(r"^[ \t]*#[ ]{2}", line) for line in raw_content_lines):
         lines = [line[1:] if line.startswith(" ") else line for line in lines]
@@ -2293,21 +2313,53 @@ def _sanitize_unclosed_block_comment(
     return None
 
 
-def _sanitize_slang_spliced_line(raw_comment: str) -> str | None:
+def _sanitize_liquid_inline_comment_tag(raw_comment: str) -> str | None:
+    """Clean a Liquid ``{% # ... %}`` tag whose content lines each start with #."""
+
+    match = re.fullmatch(r"\{%-?[ \t]*\n?(.*?)[ \t\n]*-?%\}", raw_comment, re.DOTALL)
+    if match is None:
+        return None
+    bodies = []
+    for line in match.group(1).split("\n"):
+        stripped = line.lstrip(" \t")
+        if not stripped.startswith("#"):
+            return None
+        body = stripped[1:]
+        bodies.append(body[1:] if body.startswith((" ", "\t")) else body)
+    return _normalize_sanitized_body("\n".join(bodies))
+
+
+def _sanitize_spliced_line_comment(raw_comment: str, opener: str) -> str | None:
+    """Strip only the opener from a line comment continued by trailing backslashes."""
+
     normalized = _normalize_newlines(raw_comment)
     candidate = normalized.lstrip(" \t")
     physical_lines = candidate.split("\n")
     if (
-        not candidate.startswith("//")
+        not candidate.startswith(opener)
         or len(physical_lines) < 2
         or not all(line.endswith("\\") for line in physical_lines[:-1])
     ):
         return None
 
-    body = candidate[2:]
+    body = candidate[len(opener) :]
     if body.startswith((" ", "\t")):
         body = body[1:]
     return _normalize_sanitized_body(body)
+
+
+def _sanitize_ruby_embedded_document(raw_comment: str) -> str | None:
+    """Clean ``=begin``/``=end`` documents, keeping text on either marker line."""
+
+    match = re.fullmatch(
+        r"[ \t]*=begin\b([^\n]*)\n(.*?)\n?[ \t]*=end\b([^\n]*)",
+        raw_comment,
+        re.DOTALL,
+    )
+    if match is None:
+        return None
+    lines = [match.group(1).strip(), match.group(2), match.group(3).strip()]
+    return _normalize_sanitized_body("\n".join(line for line in lines if line))
 
 
 def _sanitize_grouped_block_lines(lines: list[str], wrappers: tuple[tuple[str, str], ...]) -> str:
@@ -2344,6 +2396,7 @@ def _sanitize_block_body(
         body = body[:-1]
 
     lines = body.split("\n")
+    physical_line_count = len(lines)
     nested_line_wrappers = tuple(
         wrapper for wrapper in line_wrappers if not any(char.isalnum() for char in wrapper[0])
     )
@@ -2364,13 +2417,16 @@ def _sanitize_block_body(
         lines.pop()
 
     lines, stripped_symmetric_frame = _strip_symmetric_block_frame(lines)
-    grouped_line_result = _strip_grouped_line_wrappers(
-        "\n".join(lines),
-        nested_line_wrappers,
-        protected_padding_chars=protected_ruler_chars,
-    )
-    if grouped_line_result is not None:
-        return grouped_line_result
+    # In a one-line block comment a line marker cannot be a gutter; it is
+    # commented-out text such as ``/* // disabled code */``.
+    if physical_line_count > 1:
+        grouped_line_result = _strip_grouped_line_wrappers(
+            "\n".join(lines),
+            nested_line_wrappers,
+            protected_padding_chars=protected_ruler_chars,
+        )
+        if grouped_line_result is not None:
+            return grouped_line_result
 
     lines, stripped_left_gutter = _strip_common_left_gutter(
         lines,
@@ -7100,7 +7156,11 @@ class CommentSanitizer:
             "gsc": (("////", ""),),
             "lfe": ((";;;;", ""),),
             "lisp": ((";;;;", ""),),
+            # LDoc and LuaLS documentation comments start with three dashes.
+            "lua": (("---", ""),),
+            "luau": (("---", ""),),
             "matlab": (("%%%", ""), ("%%", "")),
+            "moonscript": (("---", ""),),
             "nextflow": (("////", ""),),
             "openscad": (("////", ""),),
             "openstep_property_list": (("////", ""),),
@@ -7111,6 +7171,8 @@ class CommentSanitizer:
             "r": (("#'", ""),),
             "supercollider": (("////", ""),),
             "sqlpl": (("----", ""),),
+            "terra": (("---", ""),),
+            "xmake": (("---", ""),),
             "zeek": (("##!", ""), ("#!", "")),
             "zenscript": (("////", ""),),
         }
@@ -7395,6 +7457,16 @@ class CommentSanitizer:
             if powerbuilder_result is not None:
                 return powerbuilder_result
 
+        if self._language_key == "liquid":
+            liquid_result = _sanitize_liquid_inline_comment_tag(raw_comment)
+            if liquid_result is not None:
+                return liquid_result
+
+        if self.syntax.canonical_name in {"ruby", "rdoc"}:
+            ruby_document = _sanitize_ruby_embedded_document(raw_comment)
+            if ruby_document is not None:
+                return ruby_document
+
         if self._language_key == "scaml":
             scaml_result = _sanitize_scaml_scoped_comment(raw_comment)
             if scaml_result is not None:
@@ -7531,8 +7603,9 @@ class CommentSanitizer:
             if unclosed_block_result is not None:
                 return unclosed_block_result
 
-        if self._language_key == "slang":
-            spliced_line_result = _sanitize_slang_spliced_line(raw_comment)
+        spliced_line_opener = {"slang": "//", "makefile": "#"}.get(self._language_key)
+        if spliced_line_opener is not None:
+            spliced_line_result = _sanitize_spliced_line_comment(raw_comment, spliced_line_opener)
             if spliced_line_result is not None:
                 return spliced_line_result
 

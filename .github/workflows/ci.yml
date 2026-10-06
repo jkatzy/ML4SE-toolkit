@@ -28,6 +28,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync --group dev
       - run: uv run ruff check src tests examples
+      - run: uv run ruff format --check src tests examples scripts
       - run: uv run pytest -m "not optional_dependency"
 
   optional-tree-sitter:
