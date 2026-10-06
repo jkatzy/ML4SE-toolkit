@@ -78,6 +78,10 @@ class CommentSyntax:
             family.
         sanitizer_mode: ``wrapped`` for delimiter-based comments or ``raw`` for
             contextual comments whose text must be preserved verbatim.
+        language_regex_patterns: Per-language regex replacements for family
+            members whose comment openers are context-restricted (for example
+            word-initial or line-initial ``#``). The listed language uses its
+            patterns instead of ``regex_patterns``.
     """
 
     family_name: str
@@ -103,12 +107,26 @@ class CommentSyntax:
     excluded_comment_prefixes: Tuple[str, ...] = ()
     language_excluded_comment_prefixes: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     sanitizer_mode: str = "wrapped"
+    language_regex_patterns: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
 
     @property
     def language_names(self) -> Tuple[str, ...]:
         """Return the canonical language key followed by all aliases."""
 
         return (self.canonical_name,) + self.aliases
+
+    def regex_patterns_for_language(self, language: str) -> Tuple[str, ...]:
+        """Return the regex comment patterns that apply to ``language``."""
+
+        normalized = language.strip().lower()
+        return next(
+            (
+                patterns
+                for dialect, patterns in self.language_regex_patterns
+                if dialect == normalized
+            ),
+            self.regex_patterns,
+        )
 
     def excluded_comment_prefixes_for_language(self, language: str) -> Tuple[str, ...]:
         """Return family-wide and dialect-specific prefix exclusions."""
@@ -1458,7 +1476,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     ),
     CommentSyntax(
         family_name="hash_line_style",
-        canonical_name="dockerfile",
+        canonical_name="shell",
         aliases=(
             "apacheconf",
             "awk",
@@ -1537,7 +1555,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "robots_txt",
             "sage",
             "saltstack",
-            "shell",
             "shellcheck_config",
             "shellsession",
             "singularity",
@@ -1581,6 +1598,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "hosts_file",
         ),
         regex_patterns=(r"#.*",),
+        language_regex_patterns=(
+            # POSIX XCU 2.3: # starts a comment only at the beginning of a word,
+            # so $#, ${#x}, and a#b are not comments.
+            ("shell", (r"(?<![^\s;&|()<>])#.*",)),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n# note\nsuffix",
@@ -1590,6 +1612,34 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="dockerfile_style",
+        canonical_name="dockerfile",
+        regex_patterns=(r"(?m)(?<=^[ \t]*)#.*",),
+        shared_regex_examples=(
+            CommentExample(
+                "FROM alpine\n# note\nRUN true",
+                "# note",
+                "Dockerfile comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "FROM alpine\n  # note\nRUN true",
+                "# note",
+                "Dockerfile comment after leading whitespace.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://docs.docker.com/reference/dockerfile/#format",
+        confidence="verified",
+        notes=(
+            "Docker treats lines that begin with # as comments, after optional "
+            "leading whitespace. A # marker anywhere else in a line is passed "
+            "through as an argument."
         ),
     ),
     CommentSyntax(
@@ -1760,7 +1810,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "ren_py",
         ),
         regex_patterns=(
-            r"#.*",
+            r"#(?:[^\r\n]|\r(?!\n))*",
             r"\"{3}([\S\s]*?)\"{3}",
         ),
         shared_regex_examples=(
@@ -2821,7 +2871,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="perl",
         regex_patterns=(
             r"(?ms)^[ \t]*=pod\b[\s\S]*?^[ \t]*=cut\b[ \t]*$",
-            r"#.*",
+            # perldata: $#array and $#{expr} are last-index expressions.
+            r"(?<!\$)#.*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -2951,7 +3002,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="ruby",
         aliases=("opal", "ragel_in_ruby_host"),
         regex_patterns=(
-            r"#.*",
+            r"#(?:[^\r\n]|\r(?!\n))*",
             r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[ \t]*$",
         ),
         shared_regex_examples=(
@@ -2979,7 +3030,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         aliases=("hiveql", "piglatin", "plpgsql", "plsql", "sqlpl", "tsql"),
         regex_patterns=(
             r"\/\*[\s\S]*?\*\/",
-            r"--.*",
+            r"--(?:[^\r\n]|\r(?!\n))*",
         ),
         language_excluded_comment_prefixes=(("sql", ("/*!",)),),
         shared_regex_examples=(
@@ -3890,7 +3941,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "literate_haskell",
             "purescript",
         ),
-        regex_patterns=(r"--.*",),
+        # Haskell 2010 Report 2.3: dashes that form part of an operator lexeme
+        # (for example --> , --+ , or |--) do not begin a comment.
+        regex_patterns=(
+            r"(?<![!#$%&*+./<=>?@\\^|~:])--+(?![!#$%&*+./<=>?@\\^|~:])"
+            r"(?:[^\r\n]|\r(?!\n))*",
+        ),
         excluded_comment_prefixes=("-->",),
         nested_delimiters=(("{-", "-}"),),
         shared_regex_examples=(
@@ -8525,6 +8581,27 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
             raise ValueError(
                 "Language-specific excluded comment prefixes require extractable "
                 "syntax: " + syntax.family_name
+            )
+
+        regex_dialects = [language for language, _ in syntax.language_regex_patterns]
+        if len(regex_dialects) != len(set(regex_dialects)):
+            raise ValueError(
+                "Language-specific regex patterns must use unique languages: "
+                + syntax.family_name
+            )
+        if any(language not in syntax.language_names for language in regex_dialects):
+            raise ValueError(
+                "Language-specific regex patterns require a family language: "
+                + syntax.family_name
+            )
+        if any(not patterns for _, patterns in syntax.language_regex_patterns):
+            raise ValueError(
+                "Language-specific regex patterns must not be empty: " + syntax.family_name
+            )
+        if syntax.language_regex_patterns and not syntax.regex_patterns:
+            raise ValueError(
+                "Language-specific regex patterns require family regex patterns: "
+                + syntax.family_name
             )
 
         for language in syntax.language_names:

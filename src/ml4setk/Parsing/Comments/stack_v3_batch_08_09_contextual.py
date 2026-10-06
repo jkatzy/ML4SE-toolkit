@@ -451,6 +451,10 @@ def sail_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
+_LONE_SURROGATE = re.compile("[\ud800-\udfff]")
+_PYTHON_LINE_ENDING = re.compile(r"\r\n|\r|\n")
+
+
 def _python_position_offset(line_starts: list[int], position: tuple[int, int]) -> int:
     row, column = position
     if row <= 0:
@@ -463,12 +467,18 @@ def _python_position_offset(line_starts: list[int], position: tuple[int, int]) -
 def python_hash_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return Python ``COMMENT`` token ranges with conservative error recovery."""
 
+    # Python accepts LF, CRLF, and lone CR as physical line terminators. Reading
+    # with universal newlines keeps token rows aligned with these line starts
+    # and avoids a CPython tokenizer crash on a lone CR before non-ASCII text.
     line_starts = [0]
-    line_starts.extend(index + 1 for index, char in enumerate(text) if char == "\n")
+    line_starts.extend(match.end() for match in _PYTHON_LINE_ENDING.finditer(text))
     ranges: list[tuple[int, int]] = []
     error_offset = len(text) + 1
+    # The C tokenizer encodes to UTF-8, so lone surrogates would raise. A
+    # one-for-one replacement keeps every token offset unchanged.
+    tokenizable = _LONE_SURROGATE.sub("\ufffd", text)
     try:
-        tokens = tokenize.generate_tokens(io.StringIO(text).readline)
+        tokens = tokenize.generate_tokens(io.StringIO(tokenizable, newline="").readline)
         for token in tokens:
             start = _python_position_offset(line_starts, token.start)
             if token.type == tokenize.ERRORTOKEN and token.string in {'"', "'", "\\"}:

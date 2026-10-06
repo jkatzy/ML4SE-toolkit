@@ -24,6 +24,8 @@ _STRING_PROBE_QUOTES_BY_LANGUAGE = {
     "hosts_file": (),
     "linear_programming": (),
     "pddl": (),
+    # TeXbook ch. 7: TeX has no string syntax; % starts a comment outside verbatim.
+    "tex": (),
 }
 
 

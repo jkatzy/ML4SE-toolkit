@@ -1,15 +1,13 @@
-"""Open spec-derived breaker regressions for comment extraction and cleaning.
+"""Spec-derived breaker regressions for comment extraction and cleaning.
 
 Every case in this module was written from a language specification or a
-language-independent comment contract, reproduced against the current
-extractor or sanitizer, and minimized. The cases document confirmed defects
-that are not fixed yet, so each one is a strict ``xfail``: the suite stays green
-while the defect is open, and fails as soon as a fix makes the case pass. When
-that happens, drop the ``xfail`` marker (or remove the language from the pinned
-failing set) so the case becomes an ordinary regression.
+language-independent comment contract, reproduced against the extractor or
+sanitizer, and minimized. Expected values come from the cited language
+contract, never from parser output.
 
-Expected values come from the cited language contract, never from the current
-parser output.
+Cases whose defect is still open are listed in ``_OPEN_CASES`` and run as
+strict ``xfail``: the suite stays green while the defect is open and fails as
+soon as a fix makes the case pass, at which point the entry is removed.
 """
 
 from dataclasses import dataclass
@@ -28,6 +26,48 @@ def _matches(language, source):
 
 def _open_defect(reason):
     return pytest.mark.xfail(reason=reason, strict=True)
+
+
+# Case id -> reason for defects that are confirmed but not fixed yet.
+_OPEN_CASES = {
+    "javascript-regex-literal": (
+        "Quotes inside JavaScript regular expression literals are scanned as strings."
+    ),
+    "perl-hash-delimited-substitution": "Perl quote-like operators with # delimiters.",
+    "c-line-splice-continues-comment": "C line splices do not extend // comments.",
+    "php-close-tag-ends-line-comment": "PHP ?> does not end a one-line comment.",
+    "php-hash-comment": "PHP # comments are not registered.",
+    "ocaml-string-inside-comment": "OCaml strings inside comments are not lexed.",
+    "scala-nested-block": "Scala block comments do not nest.",
+    "swift-nested-block": "Swift block comments do not nest.",
+    "dart-nested-block": "Dart block comments do not nest.",
+    "sql-nested-block": "SQL bracketed comments do not nest.",
+    "plpgsql-nested-block": "PostgreSQL block comments do not nest.",
+    "d-line-comment": "D registers only documentation comments.",
+    "d-block-comment": "D registers only documentation comments.",
+    "d-nesting-comment": "D registers only documentation comments.",
+    "lua-cr-terminates-comment": (
+        "Lua keeps its legacy published slices; see "
+        "test_lua_legacy_crlf_comment_slice_preserves_carriage_return."
+    ),
+    "classic-asp-html-comment-keeps-leading-quote": "Sanitizer strips a leading quote.",
+    "glyph-keeps-command-line-flag": "Sanitizer strips a leading --.",
+    "sql-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
+    "ada-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
+    "lua-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
+    "vhdl-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
+}
+
+
+def _with_open_marks(params):
+    """Apply strict xfail marks to cases listed in ``_OPEN_CASES``."""
+
+    return [
+        pytest.param(*param.values, id=param.id, marks=_open_defect(_OPEN_CASES[param.id]))
+        if param.id in _OPEN_CASES
+        else param
+        for param in params
+    ]
 
 
 # ---------------------------------------------------------------------------
@@ -194,10 +234,9 @@ _LINE_COMMENT_HIDDEN_BY_LEXICAL_APOSTROPHE = [
 ]
 
 
-@_open_defect("Generic quote scanner treats language-specific apostrophes as strings.")
 @pytest.mark.parametrize(
     ("language", "source", "expected", "reference"),
-    _LINE_COMMENT_HIDDEN_BY_LEXICAL_APOSTROPHE,
+    _with_open_marks(_LINE_COMMENT_HIDDEN_BY_LEXICAL_APOSTROPHE),
 )
 def test_apostrophe_syntax_does_not_hide_following_comment(language, source, expected, reference):
     assert reference
@@ -379,10 +418,9 @@ _SPURIOUS_COMMENT_FROM_NON_COMMENT_SYNTAX = [
 ]
 
 
-@_open_defect("Comment-looking text in non-comment syntax is extracted.")
 @pytest.mark.parametrize(
     ("language", "source", "reference"),
-    _SPURIOUS_COMMENT_FROM_NON_COMMENT_SYNTAX,
+    _with_open_marks(_SPURIOUS_COMMENT_FROM_NON_COMMENT_SYNTAX),
 )
 def test_comment_marker_inside_non_comment_syntax_is_ignored(language, source, reference):
     assert reference
@@ -541,8 +579,9 @@ _WRONG_COMMENT_BOUNDARIES = [
 ]
 
 
-@_open_defect("Comment boundary does not follow the language contract.")
-@pytest.mark.parametrize(("language", "source", "expected", "reference"), _WRONG_COMMENT_BOUNDARIES)
+@pytest.mark.parametrize(
+    ("language", "source", "expected", "reference"), _with_open_marks(_WRONG_COMMENT_BOUNDARIES)
+)
 def test_comment_boundaries_follow_language_contract(language, source, expected, reference):
     assert reference
     assert _matches(language, source) == expected
@@ -553,27 +592,28 @@ def test_comment_boundaries_follow_language_contract(language, source, expected,
 # ---------------------------------------------------------------------------
 
 
-@_open_defect("Sanitizer drops content-bearing characters.")
 @pytest.mark.parametrize(
     ("language", "raw_comment", "expected"),
-    [
-        pytest.param(
-            "classic_asp",
-            "<!-- 'quoted' -->",
-            "'quoted'",
-            id="classic-asp-html-comment-keeps-leading-quote",
-        ),
-        pytest.param(
-            "glyph",
-            "# --verbose enables logging",
-            "--verbose enables logging",
-            id="glyph-keeps-command-line-flag",
-        ),
-        pytest.param("sql", "-- | a | b |", "| a | b |", id="sql-keeps-table-pipe"),
-        pytest.param("ada", "-- | a | b |", "| a | b |", id="ada-keeps-table-pipe"),
-        pytest.param("lua", "-- | a | b |", "| a | b |", id="lua-keeps-table-pipe"),
-        pytest.param("vhdl", "-- | a | b |", "| a | b |", id="vhdl-keeps-table-pipe"),
-    ],
+    _with_open_marks(
+        [
+            pytest.param(
+                "classic_asp",
+                "<!-- 'quoted' -->",
+                "'quoted'",
+                id="classic-asp-html-comment-keeps-leading-quote",
+            ),
+            pytest.param(
+                "glyph",
+                "# --verbose enables logging",
+                "--verbose enables logging",
+                id="glyph-keeps-command-line-flag",
+            ),
+            pytest.param("sql", "-- | a | b |", "| a | b |", id="sql-keeps-table-pipe"),
+            pytest.param("ada", "-- | a | b |", "| a | b |", id="ada-keeps-table-pipe"),
+            pytest.param("lua", "-- | a | b |", "| a | b |", id="lua-keeps-table-pipe"),
+            pytest.param("vhdl", "-- | a | b |", "| a | b |", id="vhdl-keeps-table-pipe"),
+        ]
+    ),
 )
 def test_sanitizer_preserves_content_edges(language, raw_comment, expected):
     assert sanitize_comment(language, raw_comment) == expected
@@ -624,6 +664,7 @@ def _build_apostrophe_pair_cases():
                     for example in _registry_examples(syntax, language)
                     if example.kind in {"block", "nested"}
                     and example.inline_compatible
+                    and not example.consumes_eof
                     and _single_line(example)
                 ),
                 None,
@@ -668,482 +709,46 @@ def _build_nested_opener_in_line_comment_cases():
     return cases
 
 
-# Languages where an apostrophe in one inline block comment pairs with an
-# apostrophe in the next comment on the same line, hiding the second comment
-# (or exposing a fragment of it).
-_APOSTROPHE_PAIR_FAILING_LANGUAGES = frozenset(
-    {
-        "4d",
-        "abap_cds",
-        "actionscript",
-        "agda",
-        "ags_script",
-        "aidl",
-        "al",
-        "alloy",
-        "ampl",
-        "angelscript",
-        "ant_build_system",
-        "antlers",
-        "antlr",
-        "apex",
-        "api_blueprint",
-        "applescript",
-        "arduino",
-        "asl",
-        "asp",
-        "asp_net",
-        "aspectj",
-        "aspnet",
-        "astro",
-        "asymptote",
-        "ats",
-        "autohotkey",
-        "avro_idl",
-        "ballerina",
-        "beef",
-        "berry",
-        "bicep",
-        "bikeshed",
-        "bison",
-        "blade",
-        "bluespec",
-        "boo",
-        "boogie",
-        "c",
-        "c#",
-        "c++",
-        "c2hs_haskell",
-        "c_sharp",
-        "cadence",
-        "cameligo",
-        "cap_cds",
-        "cartocss",
-        "ceylon",
-        "chapel",
-        "chuck",
-        "cil",
-        "classic_asp",
-        "clean",
-        "click",
-        "closure_templates",
-        "cmake",
-        "codeql",
-        "coldfusion",
-        "coldfusion_cfc",
-        "collada",
-        "common_lisp",
-        "cool",
-        "csharp",
-        "csound",
-        "csound_document",
-        "csound_score",
-        "css",
-        "cuda",
-        "curry",
-        "cweb",
-        "cycript",
-        "cypher",
-        "d",
-        "dafny",
-        "dart",
-        "daslang",
-        "dataweave",
-        "dhall",
-        "dm",
-        "dtrace",
-        "dylan",
-        "eagle",
-        "ec",
-        "ecl",
-        "edje_data_collection",
-        "ejs",
-        "elm",
-        "eq",
-        "euphoria",
-        "f#",
-        "f_sharp",
-        "fantom",
-        "faust",
-        "filterscript",
-        "forth",
-        "four_d",
-        "freebasic",
-        "freemarker",
-        "frege",
-        "fsharp",
-        "g_code",
-        "game_maker_language",
-        "gaml",
-        "gams",
-        "genero",
-        "genero_forms",
-        "genie",
-        "genshi",
-        "glsl",
-        "go",
-        "gosu",
-        "gradle",
-        "grammatical_framework",
-        "graphviz_dot",
-        "groovy",
-        "groovy_server_pages",
-        "gsc",
-        "hack",
-        "handlebars",
-        "harbour",
-        "haskell",
-        "haxe",
-        "hcl",
-        "hlsl",
-        "holyc",
-        "html",
-        "html_django",
-        "html_ecr",
-        "html_eex",
-        "html_erb",
-        "html_php",
-        "html_plus_django",
-        "html_plus_ecr",
-        "html_plus_eex",
-        "html_plus_erb",
-        "html_plus_php",
-        "html_plus_razor",
-        "html_plusdjango",
-        "html_razor",
-        "hyphy",
-        "idl",
-        "idris",
-        "imagej_macro",
-        "inform_7",
-        "inno_setup",
-        "io",
-        "java",
-        "java_server_pages",
-        "javascript",
-        "javascript_erb",
-        "javascript_plus_erb",
-        "jest_snapshot",
-        "jetbrains_mps",
-        "jflex",
-        "jinja",
-        "jison",
-        "jison_lex",
-        "jolie",
-        "json5",
-        "json_with_comments",
-        "jsoniq",
-        "jsonnet",
-        "jsp",
-        "jsx",
-        "julia",
-        "kit",
-        "krl",
-        "labview",
-        "lasso",
-        "latte",
-        "leo",
-        "less",
-        "lex",
-        "ligolang",
-        "linker_script",
-        "literate_agda",
-        "literate_haskell",
-        "livecode_script",
-        "livescript",
-        "logos",
-        "loomscript",
-        "lsl",
-        "lua",
-        "macaulay2",
-        "markdown",
-        "marko",
-        "mask",
-        "mathematica",
-        "maven_pom",
-        "maxscript",
-        "mediawiki",
-        "metal",
-        "minid",
-        "minizinc",
-        "minizinc_data",
-        "modelica",
-        "monkey_c",
-        "moocode",
-        "moonscript",
-        "motoko",
-        "move",
-        "mql",
-        "mql4",
-        "mql5",
-        "mtml",
-        "mupad",
-        "nemerle",
-        "nesc",
-        "netlinx",
-        "netlinx_plus_erb",
-        "nextflow",
-        "nim",
-        "nimrod",
-        "nsis",
-        "nunjucks",
-        "nwscript",
-        "objective-c",
-        "objective_c_plus_plus",
-        "objective_cpp",
-        "objective_j",
-        "objectscript",
-        "ocaml",
-        "odin",
-        "ooc",
-        "opa",
-        "opencl",
-        "openedge_abl",
-        "openqasm",
-        "openscad",
-        "openstep_property_list",
-        "ox",
-        "oxygene",
-        "p4",
-        "pascal",
-        "pawn",
-        "peg_js",
-        "pegjs",
-        "php",
-        "pike",
-        "plantuml",
-        "pony",
-        "portugol",
-        "postcss",
-        "pov_ray_sdl",
-        "powerbuilder",
-        "powershell",
-        "prisma",
-        "processing",
-        "prolog",
-        "promela",
-        "propeller_spin",
-        "protocol_buffer",
-        "purescript",
-        "qml",
-        "qt_script",
-        "quake",
-        "racket",
-        "rascal",
-        "rdoc",
-        "reason",
-        "reason_ligo",
-        "reasonligo",
-        "reasonml",
-        "renderscript",
-        "rescript",
-        "rexx",
-        "rhtml",
-        "ring",
-        "riot",
-        "rmarkdown",
-        "rpc",
-        "rpgle",
-        "sas",
-        "sass",
-        "scala",
-        "scilab",
-        "scss",
-        "shaderlab",
-        "shen",
-        "sieve",
-        "slice",
-        "smarty",
-        "smpl",
-        "solidity",
-        "soong",
-        "sourcepawn",
-        "sqf",
-        "sql",
-        "squirrel",
-        "stan",
-        "stata",
-        "stringtemplate",
-        "stylus",
-        "sugarss",
-        "supercollider",
-        "svelte",
-        "svg",
-        "swift",
-        "swig",
-        "systemverilog",
-        "tea",
-        "terra",
-        "textile",
-        "thrift",
-        "tla",
-        "tsx",
-        "twig",
-        "type_language",
-        "typescript",
-        "unified_parallel_c",
-        "uno",
-        "unrealscript",
-        "untyped_plutus_core",
-        "upc",
-        "v",
-        "vala",
-        "vcl",
-        "velocity_template_language",
-        "vento",
-        "verilog",
-        "volt",
-        "vue",
-        "web_ontology_language",
-        "webassembly",
-        "webassembly_interface_type",
-        "webidl",
-        "wgsl",
-        "whiley",
-        "wikitext",
-        "wit",
-        "witcher_script",
-        "wollok",
-        "wren",
-        "x10",
-        "x_bit_map",
-        "x_bitmap",
-        "x_pix_map",
-        "x_pixmap",
-        "xbase",
-        "xc",
-        "xmake",
-        "xml",
-        "xml_property_list",
-        "xpages",
-        "xproc",
-        "xquery",
-        "xs",
-        "xslt",
-        "xtend",
-        "yacc",
-        "yang",
-        "yara",
-        "yul",
-        "zenscript",
-        "zephir",
-        "zmodel",
-    }
-)
-
-# Languages whose nested-comment scanner counts an opener inside a line comment,
-# so a later, real block comment is never closed at depth zero and is lost.
-_NESTED_OPENER_IN_LINE_COMMENT_FAILING_LANGUAGES = frozenset(
-    {
-        "agda",
-        "applescript",
-        "ats",
-        "beef",
-        "boo",
-        "boogie",
-        "c2hs_haskell",
-        "cadence",
-        "cameligo",
-        "ceylon",
-        "chapel",
-        "clean",
-        "common_lisp",
-        "cool",
-        "curry",
-        "dafny",
-        "daslang",
-        "dhall",
-        "dm",
-        "dylan",
-        "elm",
-        "f#",
-        "f_sharp",
-        "frege",
-        "fsharp",
-        "gradle_kotlin_dsl",
-        "grammatical_framework",
-        "haskell",
-        "idris",
-        "jflex",
-        "julia",
-        "koka",
-        "kotlin",
-        "lean",
-        "lean4",
-        "lean_4",
-        "ligolang",
-        "literate_agda",
-        "literate_haskell",
-        "motoko",
-        "nim",
-        "nimrod",
-        "noir",
-        "powerbuilder",
-        "purescript",
-        "racket",
-        "reason",
-        "reason_ligo",
-        "reasonligo",
-        "reasonml",
-        "rust",
-        "supercollider",
-        "sway",
-        "tla",
-        "untyped_plutus_core",
-        "v",
-        "webassembly",
-        "webassembly_interface_type",
-        "wgsl",
-        "wit",
-        "wren",
-    }
-)
-
-
-def _params(cases, failing_languages, reason):
-    return [
-        pytest.param(
-            case,
-            id=case.language,
-            marks=_open_defect(reason) if case.language in failing_languages else (),
-        )
-        for case in cases
-    ]
-
-
-@pytest.mark.parametrize(
-    "case",
-    _params(
-        _build_apostrophe_pair_cases(),
-        _APOSTROPHE_PAIR_FAILING_LANGUAGES,
-        "Quote scanner pairs apostrophes across separate comments.",
-    ),
-)
+@pytest.mark.parametrize("case", _build_apostrophe_pair_cases(), ids=lambda case: case.language)
 def test_apostrophes_in_separate_comments_do_not_form_a_string(case):
     assert tuple(_matches(case.language, case.source)) == case.expected
 
 
 @pytest.mark.parametrize(
-    "case",
-    _params(
-        _build_nested_opener_in_line_comment_cases(),
-        _NESTED_OPENER_IN_LINE_COMMENT_FAILING_LANGUAGES,
-        "Nested scanner counts block openers inside line comments.",
-    ),
+    "case", _build_nested_opener_in_line_comment_cases(), ids=lambda case: case.language
 )
 def test_block_opener_inside_line_comment_does_not_hide_later_block(case):
     assert tuple(_matches(case.language, case.source)) == case.expected
 
 
-def test_generated_failing_sets_name_registered_languages():
-    apostrophe_languages = {case.language for case in _build_apostrophe_pair_cases()}
-    nested_languages = {case.language for case in _build_nested_opener_in_line_comment_cases()}
-
-    assert _APOSTROPHE_PAIR_FAILING_LANGUAGES <= apostrophe_languages
-    assert _NESTED_OPENER_IN_LINE_COMMENT_FAILING_LANGUAGES <= nested_languages
-
-
-@_open_defect("Scenic extraction encodes text as strict UTF-8 and rejects lone surrogates.")
 def test_scenic_accepts_lone_surrogate_in_python_string():
     # Minimized from the seeded parser fuzz campaign (seed 0xC0FFEE, scenic case 0).
     assert _matches("scenic", "x = 1  # note \ud800\n") == ["# note \ud800"]
+
+
+@pytest.mark.parametrize("language", ["scenic", "snakemake"])
+def test_python_tokenized_comments_accept_lone_cr_before_non_ascii(language):
+    # CPython's tokenizer raised UnicodeDecodeError on a lone CR followed by
+    # non-ASCII text; Python reference 2.1.2 treats the CR as a line ending.
+    source = "x = 1 # a\rж = 2 # b\n"
+
+    assert _matches(language, source) == ["# a", "# b"]
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "expected"),
+    [
+        pytest.param("matlab", "s = 'a % b'; % real\n", ["% real"], id="matlab-char-array"),
+        pytest.param("julia", 's = "a # b" # real\n', ["# real"], id="julia-string"),
+        pytest.param("haskell", 's = "a -- b" -- real\n', ["-- real"], id="haskell-string"),
+        pytest.param("haskell", "c = '\"' -- real\n", ["-- real"], id="haskell-quote-char"),
+        pytest.param("scheme", '(display "a ; b") ; real\n', ["; real"], id="scheme-string"),
+        pytest.param("erlang", 'X = "a % b", % real\n', ["% real"], id="erlang-string"),
+        pytest.param("tex", "a \\\\% real\n", ["% real"], id="tex-escaped-backslash"),
+        pytest.param("go", "s := `a // b` // real\n", ["// real"], id="go-raw-string"),
+        pytest.param("shell", "echo a; # real\n", ["# real"], id="shell-after-operator"),
+        pytest.param("dockerfile", "  # real\nRUN x\n", ["# real"], id="dockerfile-indented"),
+    ],
+)
+def test_lexical_rules_keep_ordinary_literals_and_comments(language, source, expected):
+    assert _matches(language, source) == expected

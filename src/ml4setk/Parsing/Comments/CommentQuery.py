@@ -8,11 +8,13 @@ returning the normalized ``QueryMatch(prefix, suffix, match)`` contract.
 import warnings
 from bisect import bisect_right
 from collections.abc import Iterable
+from functools import lru_cache
 
 import regex as re
 
 from ..Query import Query, QueryMatch
 from .contextual import contextual_comment_ranges
+from .lexical import lexical_rules_for
 from .registry import get_comment_syntax
 from .stack_v3_batch_02_03_contextual import reviewed_alias_comment_ranges
 from .stack_v3_batch_04_contextual import (
@@ -679,69 +681,230 @@ def _advance_utf8_bytes(text, start, byte_count, limit):
 
 
 def _comment_scan_context(language, text):
-    """Return ignored ranges and the maximum source offset to scan."""
+    """Return ignored ranges and the maximum source offset to scan.
+
+    String-like ranges are collected in one left-to-right pass that skips
+    complete comments, so quote characters inside comment text never pair
+    with quotes elsewhere. The interiors of regex comments are returned as
+    protected ranges as well, which keeps nested-comment openers written
+    inside line comments from opening a block.
+    """
 
     normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
     if normalized in {"circom", "linear_programming"}:
         return [], len(text)
     if normalized == "nl":
         return _nl_comment_scan_context(text)
+    string_ranges = _language_string_ranges(normalized, text)
+    return _comment_aware_ignored_ranges(language, text, string_ranges), len(text)
+
+
+def _language_string_ranges(normalized, text):
+    """Return language-specific protected ranges, or ``None`` for the default."""
+
     if normalized in _JSON_STRING_AWARE_LANGUAGES:
-        return _json_string_ranges(text), len(text)
+        return _json_string_ranges(text)
     if normalized in _ECERE_STRING_AWARE_LANGUAGES:
-        return _c_style_double_quoted_string_ranges(text), len(text)
+        return _c_style_double_quoted_string_ranges(text)
     if normalized in _POGOSCRIPT_STRING_AWARE_LANGUAGES:
-        return _pogoscript_string_ranges(text), len(text)
+        return _pogoscript_string_ranges(text)
     if normalized in _KOTLIN_STRING_AWARE_LANGUAGES:
-        return _kotlin_string_ranges(text), len(text)
+        return _kotlin_string_ranges(text)
     if normalized == "ispc":
-        return ispc_ignored_ranges(text), len(text)
+        return ispc_ignored_ranges(text)
     if normalized == "kerboscript":
-        return kerboscript_literal_ranges(text), len(text)
+        return kerboscript_literal_ranges(text)
     if normalized == "koka":
-        return koka_literal_ranges(text), len(text)
+        return koka_literal_ranges(text)
     if normalized in {"lean", "lean4", "lean_4"}:
-        return lean_ignored_ranges(text), len(text)
+        return lean_ignored_ranges(text)
     if normalized in _SMALLTALK_STRING_AWARE_LANGUAGES:
-        return _smalltalk_literal_ranges(text), len(text)
+        return _smalltalk_literal_ranges(text)
     if normalized == "b4x":
-        return b4x_string_ranges(text), len(text)
+        return b4x_string_ranges(text)
     if normalized == "carbon":
-        return carbon_string_ranges(text), len(text)
+        return carbon_string_ranges(text)
     if normalized == "luau":
-        return luau_string_ranges(text), len(text)
+        return luau_string_ranges(text)
     if normalized in {"lua", "moonscript", "terra", "xmake"}:
         quoted_ranges = _quoted_string_ranges(text)
-        return (
-            _merge_ignored_ranges(
-                quoted_ranges + lua_long_bracket_string_ranges(text, quoted_ranges)
-            ),
-            len(text),
+        return _merge_ignored_ranges(
+            quoted_ranges + lua_long_bracket_string_ranges(text, quoted_ranges)
         )
     if normalized in {"minizinc", "minizinc_data"}:
-        return minizinc_string_ranges(text), len(text)
+        return minizinc_string_ranges(text)
     if normalized in {"noir", "rust", "sway"}:
-        return rust_noir_literal_ranges(text), len(text)
+        return rust_noir_literal_ranges(text)
     if normalized == "tcsh":
-        return (
-            _merge_ignored_ranges(_quoted_string_ranges(text) + _tcsh_initial_hashbang_range(text)),
-            len(text),
+        return _merge_ignored_ranges(
+            _quoted_string_ranges(text) + _tcsh_initial_hashbang_range(text)
         )
     if normalized == "genero_forms":
-        return (
-            _merge_ignored_ranges(
-                _quoted_string_ranges(text)
-                + _genero_forms_layout_ranges(text)
-                + [match.span() for match in _GENERO_DEFINE_DIRECTIVE.finditer(text)]
-            ),
-            len(text),
+        return _merge_ignored_ranges(
+            _quoted_string_ranges(text)
+            + _genero_forms_layout_ranges(text)
+            + [match.span() for match in _GENERO_DEFINE_DIRECTIVE.finditer(text)]
         )
     if normalized in _RDF_IRI_AWARE_LANGUAGES:
-        return (
-            _merge_ignored_ranges(_quoted_string_ranges(text) + _rdf_iri_ranges(text)),
-            len(text),
-        )
-    return _quoted_string_ranges(text), len(text)
+        return _merge_ignored_ranges(_quoted_string_ranges(text) + _rdf_iri_ranges(text))
+    return None
+
+
+@lru_cache(maxsize=None)
+def _compiled_comment_patterns(language):
+    """Return compiled regex comment patterns for ``language``."""
+
+    patterns = get_comment_syntax(language).regex_patterns_for_language(language)
+    return tuple(re.compile(pattern) for pattern in patterns)
+
+
+def _scan_quoted_at(text, start):
+    """Scan a simple single-line quoted string opened at ``start``.
+
+    Returns:
+        ``(end, closed)`` where ``end`` is exclusive for a closed string and
+        the line-ending offset (or ``len(text)``) for an unclosed one.
+    """
+
+    quote = text[start]
+    index = start + 1
+    length = len(text)
+    while index < length:
+        char = text[index]
+        if char in "\r\n":
+            return index, False
+        if char == "\\":
+            index += 2
+            continue
+        if char == quote:
+            return index + 1, True
+        index += 1
+    return length, False
+
+
+def _nested_comment_end(text, start, open_delim, close_delim):
+    """Return the end of the depth-balanced comment opened at ``start``."""
+
+    depth = 0
+    search_from = start
+    while True:
+        open_index = text.find(open_delim, search_from)
+        close_index = text.find(close_delim, search_from)
+        if close_index == -1:
+            return None
+        if open_index != -1 and open_index <= close_index:
+            depth += 1
+            search_from = open_index + len(open_delim)
+            continue
+        depth -= 1
+        search_from = close_index + len(close_delim)
+        if depth == 0:
+            return search_from
+
+
+def _comment_aware_ignored_ranges(language, text, string_ranges=None):
+    """Return string and comment ranges found by one source-order pass.
+
+    Args:
+        language: Registry language key.
+        text: Source text to scan.
+        string_ranges: Precomputed language-specific protected ranges, or
+            ``None`` to scan simple single-line quoted strings in place.
+
+    Returns:
+        Sorted, disjoint ranges. A string that starts inside a complete
+        comment is not a string, and a comment marker that starts inside a
+        string is not a comment.
+    """
+
+    syntax = get_comment_syntax(language)
+    excluded = syntax.excluded_comment_prefixes_for_language(language)
+    comment_ends = {}
+
+    def add_comment(start, end):
+        if end > start and not _starts_with_excluded_comment_prefix(text, start, excluded):
+            comment_ends[start] = max(comment_ends.get(start, start), end)
+
+    reviewed_ranges = _reviewed_alias_ranges(language, text)
+    if reviewed_ranges is not None:
+        for start, end in reviewed_ranges:
+            add_comment(start, end)
+    else:
+        for pattern in _compiled_comment_patterns(language):
+            for match in pattern.finditer(text, overlapped=True):
+                add_comment(
+                    *_adjust_language_specific_regex_range(
+                        language, text, match.start(), match.end()
+                    )
+                )
+        if syntax.contextual_extractor:
+            for start, end in contextual_comment_ranges(syntax.contextual_extractor, text):
+                add_comment(start, end)
+
+    nested_starts = {}
+    for open_delim, close_delim in syntax.nested_delimiters:
+        index = text.find(open_delim)
+        while index != -1:
+            nested_starts.setdefault(index, []).append((open_delim, close_delim))
+            index = text.find(open_delim, index + 1)
+
+    rules = lexical_rules_for(re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_"))
+    if string_ranges is None:
+        string_starts = None
+        candidate_chars = rules.quote_chars | rules.literal_start_chars
+        quote_positions = [index for index, char in enumerate(text) if char in candidate_chars]
+    else:
+        string_starts = {}
+        for start, end in string_ranges:
+            string_starts[start] = max(string_starts.get(start, start), end)
+        quote_positions = list(string_starts)
+
+    events = sorted(set(comment_ends) | set(nested_starts) | set(quote_positions))
+    result = []
+    # Some protected ranges deliberately start at -1 to cover offset zero.
+    position = float("-inf")
+    for start in events:
+        if start < position:
+            continue
+        end = comment_ends.get(start)
+        for open_delim, close_delim in nested_starts.get(start, ()):
+            if _starts_with_excluded_comment_prefix(text, start, excluded):
+                continue
+            nested_end = _nested_comment_end(text, start, open_delim, close_delim)
+            if nested_end is not None and (end is None or nested_end > end):
+                end = nested_end
+        if end is not None:
+            result.append((start, end))
+            position = end
+            continue
+        if string_starts is not None:
+            if start in string_starts:
+                result.append((start, string_starts[start]))
+                position = string_starts[start]
+            continue
+        char = text[start]
+        if char in rules.literal_start_chars:
+            literal_end = next(
+                (
+                    match.end()
+                    for match in (pattern.match(text, start) for pattern in rules.literals)
+                    if match is not None and match.end() > start
+                ),
+                None,
+            )
+            if literal_end is not None:
+                result.append((start, literal_end))
+                position = literal_end
+                continue
+        if char not in rules.quote_chars:
+            continue
+        if rules.non_string_quote is not None and rules.non_string_quote.match(text, start):
+            continue
+        end, closed = _scan_quoted_at(text, start)
+        if closed:
+            result.append((start, end))
+        position = end
+    return result
 
 
 def _comment_start_ignored_ranges(language, text):
@@ -836,15 +999,30 @@ def _starts_with_nested_delimiter(syntax, text, start, end):
     return any(candidate.startswith(opener) for opener, _closer in syntax.nested_delimiters)
 
 
+# Languages whose lexers end a line comment at a lone CR, keyed to the line
+# comment openers that the trim applies to. Python: reference 2.1.2 physical
+# lines; Haskell 2010 Report 2.2 ``newline``. Lua and Terra keep their legacy
+# published slices; only the newer Lua aliases end at a lone CR.
+_LONE_CR_LINE_COMMENT_OPENERS = {
+    "haskell": ("--",),
+    "literate_haskell": ("--",),
+    "luau": ("--",),
+    "numpy": ("#",),
+    "python": ("#",),
+    "xmake": ("--",),
+}
+
+
 def _adjust_language_specific_regex_range(language, text, start, end):
-    """Preserve legacy Lua slices while honoring new alias line terminators."""
+    """End line comments at a lone CR for languages whose lexers do so."""
 
     normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
-    if normalized not in {"luau", "xmake"}:
+    openers = _LONE_CR_LINE_COMMENT_OPENERS.get(normalized)
+    if openers is None:
         return start, end
 
     candidate = text[start:end]
-    if not candidate.startswith("--") or re.match(r"--\[[=]*\[", candidate):
+    if not candidate.startswith(openers) or re.match(r"--\[[=]*\[", candidate):
         return start, end
 
     carriage_return = text.find("\r", start, end)
@@ -863,7 +1041,7 @@ class LineCommentQuery(Query):
         _warn_language_caveat_once(language)
         self.language = language
         self.syntax = get_comment_syntax(language)
-        self.regex_patterns = self.syntax.regex_patterns
+        self.regex_patterns = self.syntax.regex_patterns_for_language(language)
         self.regexes = tuple(re.compile(pattern) for pattern in self.regex_patterns)
         self.contextual_extractor = self.syntax.contextual_extractor
         self.excluded_comment_prefixes = self.syntax.excluded_comment_prefixes_for_language(
