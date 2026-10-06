@@ -231,13 +231,13 @@
       "sha256": "c5d157bacf6dace83439aca11ad649c1d1d9c43f42bdf14cd0a43556c3eaa289"
     },
     {
-      "case_count": 495,
+      "case_count": 486,
       "extractor_boundary_case_count": 2,
       "family_name": "c_style",
       "filename": "c_style.json",
-      "oracle_exception_case_count": 58,
-      "sanitizer_case_count": 435,
-      "sha256": "529d1681f9a90321d868d6807101b2f2d44809ccb4b78d9d2679b93b65b5dd00"
+      "oracle_exception_case_count": 55,
+      "sanitizer_case_count": 429,
+      "sha256": "490386a30bd5838e917e86c4bdb7c75d9311fe22840d22ec9e6eb902d2fe0305"
     },
     {
       "case_count": 1,
@@ -404,11 +404,11 @@
     {
       "case_count": 2,
       "extractor_boundary_case_count": 0,
-      "family_name": "d_doc_style",
-      "filename": "d_doc_style.json",
+      "family_name": "d_style",
+      "filename": "d_style.json",
       "oracle_exception_case_count": 0,
       "sanitizer_case_count": 2,
-      "sha256": "4486bf55054981782be9905052240f617d608e3cd4aa2e6efdd3c61bd0821d9c"
+      "sha256": "86fd0737b5411d4c80683b35cc931fe488007b2350703905db55d82a1b6c53cd"
     },
     {
       "case_count": 2,
@@ -555,13 +555,13 @@
       "sha256": "9664ebc2b383f5a6f5762fc18bc148b1d310e56f0cc050bf398c8d401b8058fd"
     },
     {
-      "case_count": 141,
+      "case_count": 140,
       "extractor_boundary_case_count": 0,
       "family_name": "hash_line_style",
       "filename": "hash_line_style.json",
       "oracle_exception_case_count": 8,
-      "sanitizer_case_count": 133,
-      "sha256": "74c1204d1d31002e6ae36241078a139892695d8c8d9b67302e076990bb1c43e0"
+      "sanitizer_case_count": 132,
+      "sha256": "27cf340c0f01ba5203681cfea315116c57cb8187f4101c0776e837bcb521efa2"
     },
     {
       "case_count": 3,
@@ -834,6 +834,15 @@
       "sha256": "f56c152cd4ff470f46ca8d696aa80b68c096e9da479d9b0cc0e881a243264887"
     },
     {
+      "case_count": 6,
+      "extractor_boundary_case_count": 0,
+      "family_name": "nested_block_c_style",
+      "filename": "nested_block_c_style.json",
+      "oracle_exception_case_count": 3,
+      "sanitizer_case_count": 3,
+      "sha256": "6d8434dc57cbcc3aa01ef42de701fb12ebd52ac9859c68ee41c2473d67af75e7"
+    },
+    {
       "case_count": 18,
       "extractor_boundary_case_count": 0,
       "family_name": "nested_c_style",
@@ -931,6 +940,15 @@
       "oracle_exception_case_count": 0,
       "sanitizer_case_count": 1,
       "sha256": "2ead00b671b4017b49891768fe69f966e95415399c828a5d9fadd68d87659d44"
+    },
+    {
+      "case_count": 3,
+      "extractor_boundary_case_count": 0,
+      "family_name": "php_style",
+      "filename": "php_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 3,
+      "sha256": "d8e7f063e9c0dee383c825698654a505cd7b70436e96f10a2fdace263c10aeea"
     },
     {
       "case_count": 1,
@@ -1158,13 +1176,22 @@
       "sha256": "c18674d1da3bfaf5052a61856c952849c972b098e6abf5e4c2bd1e08aabfc330"
     },
     {
-      "case_count": 12,
+      "case_count": 2,
+      "extractor_boundary_case_count": 0,
+      "family_name": "sql_nested_style",
+      "filename": "sql_nested_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 2,
+      "sha256": "31e21a9a1cd345d4d0cfee6a81c5e695f9d8fd4563bd3495c4e031073e902030"
+    },
+    {
+      "case_count": 10,
       "extractor_boundary_case_count": 0,
       "family_name": "sql_style",
       "filename": "sql_style.json",
       "oracle_exception_case_count": 0,
-      "sanitizer_case_count": 12,
-      "sha256": "ec38105f7857655856c0fdf3acdbb9982abcfa9b00e40139738c8a763cf0275b"
+      "sanitizer_case_count": 10,
+      "sha256": "f924591306c5d2d8abd57f1633a197e5d97a59c634926a4706f8bb75b965a853"
     },
     {
       "case_count": 5,
@@ -1183,6 +1210,15 @@
       "oracle_exception_case_count": 0,
       "sanitizer_case_count": 9,
       "sha256": "dc48927bbaa0b101c36b0e260980c5378ed407a7248e626708ad1b8407d1f2e6"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "tcl_style",
+      "filename": "tcl_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "13d7266873eb4ed1d200fc4c8baaf34ba7893325c6b256d30a80a182023bef90"
     },
     {
       "case_count": 3,

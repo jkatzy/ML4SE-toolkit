@@ -299,3 +299,31 @@ def test_jai_remains_explicitly_deferred() -> None:
         get_comment_syntax("Jai")
     with pytest.raises(NotImplementedError, match="Jai"):
         CommentQuery("Jai")
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        pytest.param("node /-(u8)1 2\n", ["/-(u8)1"], id="typed-argument"),
+        pytest.param('node /-key="a b" x\n', ['/-key="a b"'], id="property-with-string"),
+        pytest.param(
+            'node /-{ child "}" /* c */ }\n',
+            ['/-{ child "}" /* c */ }'],
+            id="children-with-string-and-comment",
+        ),
+        pytest.param('node /-{ child #"}"# }\n', ['/-{ child #"}"# }'], id="children-raw-string"),
+        pytest.param(
+            '/-parent "a" /* x */ /-arg { child; }\nnext\n',
+            ['/-parent "a" /* x */ /-arg { child; }'],
+            id="node-with-string-comment-slashdash-and-children",
+        ),
+        pytest.param("node /-(u8 1\n", [], id="unclosed-type-annotation"),
+        pytest.param("node /-{ /* unclosed }\n", [], id="unclosed-comment-in-children"),
+    ],
+)
+def test_kdl_slashdash_spans_follow_value_node_and_children_grammar(
+    source: str, expected: list[str]
+) -> None:
+    # KDL spec "Slashdash comments": /- comments out the next node, argument,
+    # property, or children block, including any strings and comments inside it.
+    assert _matches("kdl", source) == expected

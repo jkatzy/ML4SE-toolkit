@@ -12,6 +12,7 @@ import io
 import re
 import tokenize
 from collections.abc import Callable
+from typing import Optional
 
 _CR_LF = "\r\n"
 _CXX_RAW_PREFIX = re.compile(r'(?:u8|u|U|L)?R"([^\s()\\]{0,16})\(')
@@ -284,6 +285,124 @@ def coq_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
+_OCAML_CHAR_LITERAL = re.compile(r"'(?:\\(?:[0-9]{3}|x[0-9a-fA-F]{2}|o[0-7]{3}|.)|[^'\\\r\n])'")
+_FSHARP_CHAR_LITERAL = re.compile(
+    r"'(?:\\(?:[0-9]{3}|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8}|.)|[^'\\\r\n])'"
+)
+_FSHARP_TRIPLE_QUOTE = '"' * 3
+
+
+def _ocaml_literal_end(text: str, index: int) -> Optional[int]:
+    char_literal = _OCAML_CHAR_LITERAL.match(text, index)
+    if char_literal is not None:
+        return char_literal.end()
+    if text[index] == '"':
+        return _quoted_end(text, index, '"', multiline=True)[0]
+    return None
+
+
+def _fsharp_literal_end(text: str, index: int) -> Optional[int]:
+    if text.startswith(_FSHARP_TRIPLE_QUOTE, index):
+        end = text.find(_FSHARP_TRIPLE_QUOTE, index + 3)
+        return len(text) if end == -1 else end + 3
+    if text.startswith('@"', index):
+        # Verbatim strings have no backslash escapes; "" is a literal quote.
+        closer = index + 2
+        while True:
+            closer = text.find('"', closer)
+            if closer == -1:
+                return len(text)
+            if text.startswith('""', closer):
+                closer += 2
+                continue
+            return closer + 1
+    char_literal = _FSHARP_CHAR_LITERAL.match(text, index)
+    if char_literal is not None:
+        return char_literal.end()
+    if text[index] == '"':
+        return _quoted_end(text, index, '"', multiline=True)[0]
+    return None
+
+
+def _ml_comment_ranges(
+    text: str,
+    literal_end: Callable[[str, int], Optional[int]],
+    *,
+    line_comments: bool = False,
+) -> tuple[tuple[int, int], ...]:
+    """Return nested ``(* *)`` comments, lexing literals inside comments too."""
+
+    ranges: list[tuple[int, int]] = []
+    index = 0
+    while index < len(text):
+        if line_comments and text.startswith("//", index):
+            while index < len(text) and text[index] not in "\r\n":
+                index += 1
+            continue
+        end = literal_end(text, index)
+        if end is not None:
+            index = end
+            continue
+        if line_comments and text.startswith("(*)", index):
+            index += 3
+            continue
+        if not text.startswith("(*", index):
+            index += 1
+            continue
+
+        start = index
+        depth = 1
+        index += 2
+        complete = False
+        while index < len(text):
+            if text[index] == '"' or text.startswith('@"', index) or text[index] == "'":
+                end = literal_end(text, index)
+                if end is not None:
+                    if end >= len(text) and not text.endswith('"', 0, end):
+                        index = len(text)
+                        break
+                    index = end
+                    continue
+            if text.startswith("(*", index):
+                depth += 1
+                index += 2
+                continue
+            if text.startswith("*)", index):
+                depth -= 1
+                index += 2
+                if depth == 0:
+                    ranges.append((start, index))
+                    complete = True
+                    break
+                continue
+            index += 1
+        if not complete:
+            break
+    return tuple(ranges)
+
+
+def ocaml_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return OCaml nested comments, lexing string literals inside comments.
+
+    The OCaml lexer recognizes string and character literals within comments,
+    so ``(* "*)" *)`` is one comment. Strings use backslash escapes and may
+    span lines.
+    """
+
+    return _ml_comment_ranges(text, _ocaml_literal_end)
+
+
+def fsharp_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return F# block comments, lexing string literals inside comments.
+
+    F# spec 3.2: strings embedded in block comments are tokenized, so
+    ``(* "*)" *)`` is one comment. ``//`` line comments and the ``(*)``
+    operator token do not open a block comment.
+    """
+
+    return _ml_comment_ranges(text, _fsharp_literal_end, line_comments=True)
+
+
 def rbs_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return standalone RBS hash comments outside annotations and literals."""
 
@@ -451,6 +570,10 @@ def sail_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
+_LONE_SURROGATE = re.compile("[\ud800-\udfff]")
+_PYTHON_LINE_ENDING = re.compile(r"\r\n|\r|\n")
+
+
 def _python_position_offset(line_starts: list[int], position: tuple[int, int]) -> int:
     row, column = position
     if row <= 0:
@@ -463,12 +586,18 @@ def _python_position_offset(line_starts: list[int], position: tuple[int, int]) -
 def python_hash_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return Python ``COMMENT`` token ranges with conservative error recovery."""
 
+    # Python accepts LF, CRLF, and lone CR as physical line terminators. Reading
+    # with universal newlines keeps token rows aligned with these line starts
+    # and avoids a CPython tokenizer crash on a lone CR before non-ASCII text.
     line_starts = [0]
-    line_starts.extend(index + 1 for index, char in enumerate(text) if char == "\n")
+    line_starts.extend(match.end() for match in _PYTHON_LINE_ENDING.finditer(text))
     ranges: list[tuple[int, int]] = []
     error_offset = len(text) + 1
+    # The C tokenizer encodes to UTF-8, so lone surrogates would raise. A
+    # one-for-one replacement keeps every token offset unchanged.
+    tokenizable = _LONE_SURROGATE.sub("\ufffd", text)
     try:
-        tokens = tokenize.generate_tokens(io.StringIO(text).readline)
+        tokens = tokenize.generate_tokens(io.StringIO(tokenizable, newline="").readline)
         for token in tokens:
             start = _python_position_offset(line_starts, token.start)
             if token.type == tokenize.ERRORTOKEN and token.string in {'"', "'", "\\"}:
@@ -1007,6 +1136,8 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
 __all__ = [
     "STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS",
     "coq_comment_ranges",
+    "fsharp_comment_ranges",
+    "ocaml_comment_ranges",
     "pyret_comment_ranges",
     "rbs_comment_ranges",
     "reviewed_batch_08_09_alias_comment_ranges",

@@ -46,7 +46,7 @@ def _matches(language, text):
         ("OMNeT++ NED", "omnet_plus_plus_ned", "omnet_plus_plus_ned_style"),
         ("PDDL", "assembly", "semicolon_style"),
         ("Pip Requirements", "pip_requirements", "pip_requirements_style"),
-        ("Polar", "dockerfile", "hash_line_style"),
+        ("Polar", "shell", "hash_line_style"),
         ("Praat", "praat", "praat_style"),
     ),
 )

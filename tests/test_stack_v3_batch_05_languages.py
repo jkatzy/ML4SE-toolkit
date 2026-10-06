@@ -363,3 +363,44 @@ def test_minizinc_comment_prose_does_not_open_literal_ranges(label, source):
     expected_first = source.split("\n", 1)[0]
 
     assert _matches(label, source) == [expected_first, "% actual"]
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        pytest.param("text {/* c */} more\n", ["/* c */"], id="content-expression"),
+        pytest.param('<A title="{/* no */}" />\n', [], id="double-quoted-attribute"),
+        pytest.param("<A t='{/* no */}' />\n", [], id="single-quoted-attribute"),
+        pytest.param("<A x={/* c */ 1} />\n", ["/* c */"], id="attribute-expression"),
+        pytest.param("<A\n  x = {/* c */ 1}\n/>\n", ["/* c */"], id="spaced-attribute-expression"),
+        pytest.param('<A x={ "}" /* c */ } />\n', ["/* c */"], id="brace-in-string"),
+        pytest.param("{ '}' /* c */ }\n", ["/* c */"], id="brace-in-single-quotes"),
+        pytest.param("{ `}` // c\n}\n", ["// c"], id="brace-in-template"),
+        pytest.param("{ /* unclosed\n", [], id="unclosed-block"),
+    ],
+)
+def test_mdx_brace_contexts_separate_expressions_from_quoted_attributes(source, expected):
+    # MDX: {...} in content and unquoted JSX attribute values holds JavaScript;
+    # quoted attribute values are strings.
+    assert _matches("mdx", source) == expected
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        pytest.param('Text { "}<!-- no -->" } <!-- real -->\n', id="double-quoted-brace"),
+        pytest.param("Text { 'a\\'}<!-- no -->' } <!-- real -->\n", id="escaped-single-quote"),
+        pytest.param("Text { `}<!-- no -->` } <!-- real -->\n", id="template-literal"),
+        pytest.param('Text { a { "<!-- no -->" } b } <!-- real -->\n', id="nested-braces"),
+        pytest.param("Text { x // } <!-- no -->\n} <!-- real -->\n", id="line-comment"),
+        pytest.param("Text { x /* } <!-- no --> */ } <!-- real -->\n", id="block-comment"),
+    ],
+)
+def test_mdsvex_expressions_mask_markup_comment_markers(source):
+    # Svelte: {...} holds a JavaScript expression, so its strings, comments, and
+    # nested braces decide where it ends; markup comment markers inside it are code.
+    assert _matches("mdsvex", source) == ["<!-- real -->"]
+
+
+def test_mdsvex_unclosed_expression_comment_masks_rest_of_file():
+    assert _matches("mdsvex", "Text { x /* unclosed <!-- no -->\n") == []

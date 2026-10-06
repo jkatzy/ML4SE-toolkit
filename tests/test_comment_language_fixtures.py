@@ -71,7 +71,7 @@ def test_comment_language_fixture_folder_has_one_file_per_language():
 
 @pytest.mark.parametrize(
     "language",
-    ("circom", "ecmarkup", "hosts_file", "linear_programming", "pddl"),
+    ("circom", "ecmarkup", "hosts_file", "linear_programming", "pddl", "tex", "markdown", "html"),
 )
 def test_raw_syntaxes_do_not_receive_string_negative_probes(language):
     probes = [

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "family_name": "hash_line_style",
-  "canonical_language": "dockerfile",
+  "canonical_language": "shell",
   "language_keys": [
-    "dockerfile",
+    "shell",
     "apacheconf",
     "awk",
     "alpine_abuild",
@@ -81,7 +81,6 @@
     "robots_txt",
     "sage",
     "saltstack",
-    "shell",
     "shellcheck_config",
     "shellsession",
     "singularity",
@@ -91,7 +90,6 @@
     "sed",
     "selinux_policy",
     "talon",
-    "tcl",
     "tcsh",
     "toml",
     "turtle",
