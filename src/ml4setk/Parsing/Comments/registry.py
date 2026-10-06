@@ -78,6 +78,10 @@ class CommentSyntax:
             family.
         sanitizer_mode: ``wrapped`` for delimiter-based comments or ``raw`` for
             contextual comments whose text must be preserved verbatim.
+        language_regex_patterns: Per-language regex replacements for family
+            members whose comment openers are context-restricted (for example
+            word-initial or line-initial ``#``). The listed language uses its
+            patterns instead of ``regex_patterns``.
     """
 
     family_name: str
@@ -103,12 +107,26 @@ class CommentSyntax:
     excluded_comment_prefixes: Tuple[str, ...] = ()
     language_excluded_comment_prefixes: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     sanitizer_mode: str = "wrapped"
+    language_regex_patterns: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
 
     @property
     def language_names(self) -> Tuple[str, ...]:
         """Return the canonical language key followed by all aliases."""
 
         return (self.canonical_name,) + self.aliases
+
+    def regex_patterns_for_language(self, language: str) -> Tuple[str, ...]:
+        """Return the regex comment patterns that apply to ``language``."""
+
+        normalized = language.strip().lower()
+        return next(
+            (
+                patterns
+                for dialect, patterns in self.language_regex_patterns
+                if dialect == normalized
+            ),
+            self.regex_patterns,
+        )
 
     def excluded_comment_prefixes_for_language(self, language: str) -> Tuple[str, ...]:
         """Return family-wide and dialect-specific prefix exclusions."""
@@ -1063,8 +1081,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "objective_c_plus_plus",
             "go",
             "vue",
-            "scala",
-            "dart",
             "hack",
             "less",
             "groovy",
@@ -1074,8 +1090,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "cuda",
             "scilab",
             "antlr",
-            "swift",
-            "php",
             "four_d",
             "4d",
             "actionscript",
@@ -1220,6 +1234,44 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"/{2}[^\r\n]*",
         ),
         language_excluded_comment_prefixes=(("c", ("/*!re2c",)),),
+        # C11 5.1.1.2: line splicing (translation phase 2) precedes comment
+        # removal (phase 3), so a backslash-newline continues a // comment.
+        language_regex_patterns=(
+            # C11 5.1.1.2: line splicing (translation phase 2) precedes comment
+            # removal (phase 3), so a backslash-newline continues a // comment.
+            *(
+                (
+                    language,
+                    (
+                        r"\/\*[\S\s]*?\*\/",
+                        r"/{2}(?:\\(?:\r\n|\r|\n)|[^\r\n])*",
+                    ),
+                )
+                for language in (
+                    "c",
+                    "c++",
+                    "cuda",
+                    "objective-c",
+                    "objective_c_plus_plus",
+                    "objective_cpp",
+                )
+            ),
+            # ECMA-262 12.3: LineTerminator includes U+2028 and U+2029.
+            *(
+                (language, (r"\/\*[\S\s]*?\*\/", r"/{2}[^\r\n\u2028\u2029]*"))
+                for language in ("javascript", "jsx", "typescript", "tsx")
+            ),
+            # C# spec 6.3.2: new_line also includes U+0085, U+2028, and U+2029.
+            *(
+                (language, (r"\/\*[\S\s]*?\*\/", r"/{2}[^\r\n\x85\u2028\u2029]*"))
+                for language in ("c#", "c_sharp", "csharp")
+            ),
+            # JLS 3.3/3.4: a \u000a or \u000d escape is a line terminator.
+            (
+                "java",
+                (r"\/\*[\S\s]*?\*\/", r"/{2}(?:(?!\\u+000[aAdD])[^\r\n])*"),
+            ),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n// note\nsuffix",
@@ -1458,7 +1510,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     ),
     CommentSyntax(
         family_name="hash_line_style",
-        canonical_name="dockerfile",
+        canonical_name="shell",
         aliases=(
             "apacheconf",
             "awk",
@@ -1537,7 +1589,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "robots_txt",
             "sage",
             "saltstack",
-            "shell",
             "shellcheck_config",
             "shellsession",
             "singularity",
@@ -1547,7 +1598,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "sed",
             "selinux_policy",
             "talon",
-            "tcl",
+           
             "tcsh",
             "toml",
             "turtle",
@@ -1581,6 +1632,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "hosts_file",
         ),
         regex_patterns=(r"#.*",),
+        language_regex_patterns=(
+            # POSIX XCU 2.3: # starts a comment only at the beginning of a word,
+            # so $#, ${#x}, and a#b are not comments.
+            ("shell", (r"(?<![^\s;&|()<>])#.*",)),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n# note\nsuffix",
@@ -1593,9 +1649,67 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="tcl_style",
+        canonical_name="tcl",
+        # Tcl(n) rule [10]: # starts a comment only where Tcl expects the first
+        # word of a command: at line start, or after ; [ or {.
+        regex_patterns=(r"(?m)(?<=(?:^|[;\[{])[ \t]*)#.*",),
+        sanitizer_line_wrappers=(("#", ""),),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\nputs ok",
+                "# note",
+                "Comment at the start of a command.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "set x 1 ;# note\nputs $x",
+                "# note",
+                "Comment after a command separator.",
+                kind="line",
+            ),
+        ),
+        documentation_source="https://www.tcl-lang.org/man/tcl/TclCmd/Tcl.htm",
+        confidence="verified",
+        notes=(
+            "A # is a comment only where a command is expected; inside a command's "
+            "arguments, as in set x #y, it is ordinary text."
+        ),
+    ),
+    CommentSyntax(
+        family_name="dockerfile_style",
+        canonical_name="dockerfile",
+        regex_patterns=(r"(?m)(?<=^[ \t]*)#.*",),
+        shared_regex_examples=(
+            CommentExample(
+                "FROM alpine\n# note\nRUN true",
+                "# note",
+                "Dockerfile comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "FROM alpine\n  # note\nRUN true",
+                "# note",
+                "Dockerfile comment after leading whitespace.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source="https://docs.docker.com/reference/dockerfile/#format",
+        confidence="verified",
+        notes=(
+            "Docker treats lines that begin with # as comments, after optional "
+            "leading whitespace. A # marker anywhere else in a line is passed "
+            "through as an argument."
+        ),
+    ),
+    CommentSyntax(
         family_name="ignore_list_style",
         canonical_name="ignore_list",
-        regex_patterns=(r"(?m)^#[^\r\n]*",),
+        # git dir.c add_patterns_from_buffer skips a UTF-8 byte order mark.
+        regex_patterns=(r"(?m)(?:^|(?<=\A\ufeff))#[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "# note\n*.log",
@@ -1760,7 +1874,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "ren_py",
         ),
         regex_patterns=(
-            r"#.*",
+            r"#(?:[^\r\n]|\r(?!\n))*",
             r"\"{3}([\S\s]*?)\"{3}",
         ),
         shared_regex_examples=(
@@ -1795,6 +1909,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "vhdl",
         ),
         regex_patterns=(r"--.*",),
+        # IEEE 1076-2008 15.9: VHDL-2008 adds delimited /* */ comments.
+        language_regex_patterns=(("vhdl", (r"--.*", r"\/\*[\S\s]*?\*\/")),),
+        sanitizer_block_wrappers=(("/*", "*/"),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n-- note\nsuffix",
@@ -1898,6 +2015,16 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "pddl",
         ),
         regex_patterns=(r";[^\r\n]*",),
+        # R7RS 2.2: #; comments out the next datum.
+        language_regex_patterns=(
+            (
+                "scheme",
+                (
+                    r";[^\r\n]*",
+                    r'#;\s*(?P<d>(?:[\'`,]|,@)*(?:\((?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\)|\[(?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\]|"(?:\\[\s\S]|[^"\\])*"|[^\s()\[\]";]+))',
+                ),
+            ),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n; note\nsuffix",
@@ -2413,14 +2540,22 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
-        family_name="d_doc_style",
+        family_name="d_style",
         canonical_name="d",
         regex_patterns=(
-            r"\/\*\*[\S\s]*?\*\/",
-            r"\/\+\+[\S\s]*?\+\/",
-            r"\/\/\/.*",
+            r"\/\*[\S\s]*?\*\/",
+            r"\/\/[^\r\n]*",
         ),
+        nested_delimiters=(("/+", "+/"),),
         shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "Line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
             CommentExample(
                 "prefix\n/// note\nsuffix",
                 "/// note",
@@ -2429,8 +2564,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
-        ),
-        canonical_regex_examples=(
+            CommentExample(
+                "prefix\n/* note */\nsuffix",
+                "/* note */",
+                "Non-nesting block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
             CommentExample(
                 "prefix\n/** note */\nsuffix",
                 "/** note */",
@@ -2438,13 +2578,28 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
                 inline_compatible=True,
             ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "before /+ outer /+ inner +/ outer +/ after",
+                "/+ outer /+ inner +/ outer +/",
+                "Nesting block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
             CommentExample(
                 "prefix\n/++ note +/\nsuffix",
                 "/++ note +/",
                 "Plus-delimited doc comment.",
-                kind="block",
+                kind="nested",
                 inline_compatible=True,
             ),
+        ),
+        documentation_source="https://dlang.org/spec/lex.html#comment",
+        confidence="verified",
+        notes=(
+            "D has // line comments, non-nesting /* */ block comments, and "
+            "nesting /+ +/ block comments; doc comments are subsets of each."
         ),
     ),
     CommentSyntax(
@@ -2717,7 +2872,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "xslt",
             "ecmarkup",
         ),
-        regex_patterns=(r"<!--([\S\s]*?)-->",),
+        # WHATWG HTML 13.2.5.43-52 and CommonMark 6.6: <!--> and <!---> are empty
+        # comments, and --!> also closes a comment.
+        regex_patterns=(r"<!--(?:-?>|[\S\s]*?--!?>)",),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n<!-- note -->\nsuffix",
@@ -2779,7 +2936,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "urweb",
         ),
         nested_delimiters=(("(*", "*)"),),
-        canonical_nested_examples=(
+        # Every member nests (* *) comments: Mathematica, SML, Modula-2/3,
+        # Component Pascal, Isabelle, Ur/Web, Augeas, and ISO 14977 EBNF.
+        shared_nested_examples=(
             CommentExample(
                 "before (* outer (* inner *) outer *) after",
                 "(* outer (* inner *) outer *)",
@@ -2793,6 +2952,19 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="matlab_style",
         canonical_name="matlab",
         aliases=("lilypond", "turing", "txl"),
+        # MATLAB 'Comments': %{ and %} open and close a block only alone on
+        # their lines, and block comments nest; otherwise % starts a line comment.
+        language_regex_patterns=(
+            (
+                "matlab",
+                (
+                    r"(?m)(?<=^[ \t]*)(?P<b>%\{[ \t]*\r?$"
+                    r"(?:\r?\n(?:[ \t]*(?&b)[ \t]*\r?$|(?![ \t]*%[{}][ \t]*\r?$)[^\r\n]*))*"
+                    r"\r?\n[ \t]*%\})(?=[ \t]*\r?$)",
+                    r"(?m)%(?!(?<=^[ \t]*%)[{}][ \t]*\r?$)[^\r\n]*",
+                ),
+            ),
+        ),
         regex_patterns=(
             r"%{([\S\s]*?)%}",
             r"%(?!\{|\}).*",
@@ -2809,9 +2981,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         canonical_regex_examples=(
             CommentExample(
-                "prefix\n%{ note %}\nsuffix",
-                "%{ note %}",
-                "Percent-brace block comment.",
+                "x = 1;\n%{\nnote\n%}\ny = 2;",
+                "%{\nnote\n%}",
+                "MATLAB block comment with %{ and %} alone on their lines.",
                 kind="block",
             ),
         ),
@@ -2820,8 +2992,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="perl_style",
         canonical_name="perl",
         regex_patterns=(
-            r"(?ms)^[ \t]*=pod\b[\s\S]*?^[ \t]*=cut\b[ \t]*$",
-            r"#.*",
+            # perlpod: any =command paragraph (=pod, =head1, =over, ...) begins Pod.
+            r"(?ms)^[ \t]*=(?!cut\b)[A-Za-z]\w*\b[\s\S]*?^[ \t]*=cut\b[ \t]*$",
+            # perldata: $#array and $#{expr} are last-index expressions.
+            r"(?<!\$)#.*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -2951,7 +3125,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="ruby",
         aliases=("opal", "ragel_in_ruby_host"),
         regex_patterns=(
-            r"#.*",
+            r"#(?:[^\r\n]|\r(?!\n))*",
             r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[ \t]*$",
         ),
         shared_regex_examples=(
@@ -2976,10 +3150,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="sql_style",
         canonical_name="sql",
-        aliases=("hiveql", "piglatin", "plpgsql", "plsql", "sqlpl", "tsql"),
+        aliases=("hiveql", "piglatin", "plsql", "sqlpl"),
         regex_patterns=(
             r"\/\*[\s\S]*?\*\/",
-            r"--.*",
+            r"--(?:[^\r\n]|\r(?!\n))*",
         ),
         language_excluded_comment_prefixes=(("sql", ("/*!",)),),
         shared_regex_examples=(
@@ -3030,7 +3204,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="batchfile_style",
         canonical_name="batchfile",
-        regex_patterns=(r"(?mi)^[ \t]*(?:rem\b.*|::.*)$",),
+        regex_patterns=(
+            r"(?mi)^[ \t]*(?:rem\b.*|::.*)$",
+            # cmd /?: &, &&, ||, and ( start a new command, which may be REM.
+            r"(?i)(?<=(?:&|\||\()[ \t]*@?)rem\b[^\r\n]*",
+        ),
         sanitizer_line_wrappers=(("::", ""), ("REM", "")),
         shared_regex_examples=(
             CommentExample(
@@ -3039,6 +3217,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "Batch REM comment.",
                 kind="line",
                 grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "echo ok & rem note\nafter",
+                "rem note",
+                "REM command after a command separator.",
+                kind="line",
             ),
         ),
     ),
@@ -3102,7 +3286,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="quote_line_style",
         canonical_name="vim_script",
         aliases=("viml",),
-        regex_patterns=(r"\".*",),
+        # Vim :help :comment: " starts a comment where a command is expected, or
+        # after a command when no closing quote follows on the line; a quoted
+        # argument such as echo "text" is a string.
+        regex_patterns=(r"(?m)(?<=^[ \t:]*)\".*", r"(?m)\"[^\"\r\n]*(?=\r?$)"),
         shared_regex_examples=(
             CommentExample(
                 'prefix\n" note\nsuffix',
@@ -3302,6 +3489,17 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="racket",
         aliases=("common_lisp",),
         regex_patterns=(r";[^\r\n]*",),
+        # Racket reference 1.3.9: #; comments out the next datum.
+        language_regex_patterns=(
+            (
+                "racket",
+                (
+                    r";[^\r\n]*",
+                    r'#;\s*(?P<d>(?:[\'`,]|,@)*(?:\((?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\)|\[(?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\]|"(?:\\[\s\S]|[^"\\])*"|[^\s()\[\]";]+))',
+                ),
+            ),
+        ),
+        sanitizer_line_wrappers=(("#;", ""),),
         nested_delimiters=(("#|", "|#"),),
         shared_regex_examples=(
             CommentExample(
@@ -3890,7 +4088,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "literate_haskell",
             "purescript",
         ),
-        regex_patterns=(r"--.*",),
+        # Haskell 2010 Report 2.3: dashes that form part of an operator lexeme
+        # (for example --> , --+ , or |--) do not begin a comment.
+        regex_patterns=(
+            r"(?<![!#$%&*+./<=>?@\\^|~:])--+(?![!#$%&*+./<=>?@\\^|~:])"
+            r"(?:[^\r\n]|\r(?!\n))*",
+        ),
         excluded_comment_prefixes=("-->",),
         nested_delimiters=(("{-", "-}"),),
         shared_regex_examples=(
@@ -4102,6 +4305,121 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="nested",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="php_style",
+        canonical_name="php",
+        # PHP manual "Comments": one-line comments end at the line end or at
+        # the ?> close tag, whichever comes first. PHP 8 #[ starts an attribute.
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}(?:(?!\?>)[^\r\n])*",
+            r"#(?!\[)(?:(?!\?>)[^\r\n])*",
+        ),
+        sanitizer_line_wrappers=(("//", ""), ("#", "")),
+        shared_regex_examples=(
+            CommentExample(
+                "<?php\n// note\n$x = 1;",
+                "// note",
+                "Slash one-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "<?php\n# note\n$x = 1;",
+                "# note",
+                "Shell-style one-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "<?php\n/* note */\n$x = 1;",
+                "/* note */",
+                "Block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.php.net/manual/en/language.basic-syntax.comments.php",
+        confidence="verified",
+        notes=(
+            "PHP supports //, #, and /* */ comments. One-line comments stop "
+            "before ?>. #[ begins a PHP 8 attribute, not a comment."
+        ),
+    ),
+    CommentSyntax(
+        family_name="nested_block_c_style",
+        canonical_name="scala",
+        aliases=("dart", "swift"),
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "Slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "before /* outer /* inner */ outer */ after",
+                "/* outer /* inner */ outer */",
+                "Nested slash block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://scala-lang.org/files/archive/spec/2.13/01-lexical-syntax.html#comments; "
+            "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/"
+            "lexicalstructure/#Comments; https://spec.dart.dev/DartLangSpecDraft.pdf"
+        ),
+        confidence="verified",
+        notes=(
+            "Scala, Swift, and Dart block comments nest, unlike C. Line comments end at CR or LF."
+        ),
+    ),
+    CommentSyntax(
+        family_name="sql_nested_style",
+        canonical_name="plpgsql",
+        aliases=("tsql",),
+        regex_patterns=(r"--(?:[^\r\n]|\r(?!\n))*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n-- note\nsuffix",
+                "-- note",
+                "Dash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "SELECT 1 /* outer /* inner */ outer */ FROM t",
+                "/* outer /* inner */ outer */",
+                "Nested bracketed comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.postgresql.org/docs/current/sql-syntax-lexical.html"
+            "#SQL-SYNTAX-COMMENTS; https://learn.microsoft.com/sql/t-sql/language-"
+            "elements/slash-star-comment-transact-sql"
+        ),
+        confidence="verified",
+        notes=(
+            "PostgreSQL and SQL Server nest block comments as the SQL standard "
+            "specifies. MySQL and SQLite do not, so the generic sql key keeps "
+            "non-nesting blocks."
         ),
     ),
     CommentSyntax(
@@ -7165,7 +7483,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="leo",
         regex_patterns=(
             r"//[^\r\n\u202a-\u202e\u2066-\u2069]*",
-            r"/\*(?:(?!\*/)[^\u202a-\u202e\u2066-\u2069])*\*/",
+            r"/\*[^\u202a-\u202e\u2066-\u2069]*?\*/",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -8525,6 +8843,25 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
             raise ValueError(
                 "Language-specific excluded comment prefixes require extractable "
                 "syntax: " + syntax.family_name
+            )
+
+        regex_dialects = [language for language, _ in syntax.language_regex_patterns]
+        if len(regex_dialects) != len(set(regex_dialects)):
+            raise ValueError(
+                "Language-specific regex patterns must use unique languages: " + syntax.family_name
+            )
+        if any(language not in syntax.language_names for language in regex_dialects):
+            raise ValueError(
+                "Language-specific regex patterns require a family language: " + syntax.family_name
+            )
+        if any(not patterns for _, patterns in syntax.language_regex_patterns):
+            raise ValueError(
+                "Language-specific regex patterns must not be empty: " + syntax.family_name
+            )
+        if syntax.language_regex_patterns and not syntax.regex_patterns:
+            raise ValueError(
+                "Language-specific regex patterns require family regex patterns: "
+                + syntax.family_name
             )
 
         for language in syntax.language_names:

@@ -1,0 +1,59 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "php_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "338c1c1effc3fefff89fbb649a495985c68957a5d00b26554f1d029b8dff7557",
+      "case_id": "php-block-0a857f282fa80152",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "@var Type[] $data",
+      "expected_cleaned_sha256": "dbdc96f6980ec04e506799a908d269339d3d1ea4a44cf391ba11088602db412f",
+      "language": "php",
+      "raw_comment": "/** @var Type[] $data */",
+      "raw_sha256": "241edb9bf0e4618a86e73d3806eb37fd58e2c8d7362735e1694fb32204648b2f",
+      "raw_utf8_length": 24,
+      "source_provenance": {
+        "source_excerpt_sha256": "f3532a11d50b6cea214b17c7047ba060709d5bc83ac47cec5b1483f42f5a2f9d",
+        "source_id": "01d6f6778fdbf0d5a1d7b9ab7ed6e6409d3b365a"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "4507caff2d0cbe8878959bd9d41e33c4d9bd10b2140ffef76ca7985898b7bf8d",
+      "case_id": "php-block-2d3fc839befc3725",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Web Routes\n\nThis file is where you may define all of the routes that are handled\nby your application. Just tell Laravel the URIs it should respond\nto using a Closure or controller method. Build something great!",
+      "expected_cleaned_sha256": "07d6cea34a85273ec1e31e5c25ae4c63a8ad5ad8efc611121f7948e23e9110e4",
+      "language": "php",
+      "raw_comment": "/*\n|--------------------------------------------------------------------------\n| Web Routes\n|--------------------------------------------------------------------------\n|\n| This file is where you may define all of the routes that are handled\n| by your application. Just tell Laravel the URIs it should respond\n| to using a Closure or controller method. Build something great!\n|\n*/",
+      "raw_sha256": "cdc61718d78ba4bbf84517f260af4d911000c1497ede200bc6dd57705cf73b98",
+      "raw_utf8_length": 379,
+      "source_provenance": {
+        "source_excerpt_sha256": "da2d96af359dd3e5f3fae376de058aa9c9476b3aa7c65f99f8bd1b7fbaa3590b",
+        "source_id": "e283b2b70e4ba4b6bf87469007972259157a13e3"
+      },
+      "syntax_label": "/*...*/"
+    },
+    {
+      "baseline_cleaned_sha256": "e532c74f00a894d2b3ebd7b805f7f54261f7f2b550f895c6aa8783d2b3dae1e3",
+      "case_id": "php-block-8b8d30aff4b195ef",
+      "comment_kind": "block",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "Web Routes\n\nHere is where you can register web routes for your application. These\nroutes are loaded by the RouteServiceProvider within a group which\ncontains the \"web\" middleware group. Now create something great!",
+      "expected_cleaned_sha256": "40cf527ba37d2d996f54b416823bac218496aee3651d03b220be54aa5559f8cd",
+      "language": "php",
+      "raw_comment": "/*\n|--------------------------------------------------------------------------\n| Web Routes\n|--------------------------------------------------------------------------\n|\n| Here is where you can register web routes for your application. These\n| routes are loaded by the RouteServiceProvider within a group which\n| contains the \"web\" middleware group. Now create something great!\n|\n*/",
+      "raw_sha256": "2a688c4d9fd9cf97743390d62efb0f6765315a8997b22cfa72fea942b5ac0fdb",
+      "raw_utf8_length": 382,
+      "source_provenance": {
+        "source_excerpt_sha256": "ed3d31e6e719378c76ddee535b64ae5258e59a5db03941be3e732d5bb810eca5",
+        "source_id": "5ca81bbf975f439cd326032c7b984fb274bf8cdd"
+      },
+      "syntax_label": "/*...*/"
+    }
+  ],
+  "schema_version": 5
+}

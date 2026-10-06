@@ -170,22 +170,6 @@
       "syntax_label": "/*...*/"
     },
     {
-      "baseline_cleaned_sha256": "bf4d991d34929f37786354d2cc3cf92eb67890690c16ca8518fbcc52f4d791c2",
-      "case_id": "dart-block-2fb54778189982b4",
-      "comment_kind": "block",
-      "disposition": "accounting_only",
-      "exception_status": "oracle_not_deletion_only",
-      "language": "dart",
-      "oracle_exception_record_sha256": "9e2f3cbbbf0160cb4e3f3b99a296095deb1e14478ef88cafbb2639438c6cea6a",
-      "raw_sha256": "e52e39825972b80d7cd90a86bf902203ac55fafc8886f8ad7a4067c547489f05",
-      "raw_utf8_length": 890,
-      "source_provenance": {
-        "source_excerpt_sha256": "e47de275524ccbe3013184ceb4d0d97462940b7c082188c2dfeafcbb132b3b5a",
-        "source_id": "71880b19ee6e9759aabe419a30f79f5fb2e33155"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
       "baseline_cleaned_sha256": "7e69b1c74d2b7582a90dbdf8ed487ec64d47898c9495fdf8a10d5e068b09aca1",
       "case_id": "ec-block-ba1d0681e33b100d",
       "comment_kind": "block",
@@ -534,38 +518,6 @@
       "source_provenance": {
         "source_excerpt_sha256": "f137f2aec413cb498f31f377013f4c00940109b92d329e52d894c072335d3d2c",
         "source_id": "0456b610815f6f0284d1e5ef057ec0c7f6aaae29"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
-      "baseline_cleaned_sha256": "1208d8b79c57bad5a890ee46fb9b9daad061513e2607744ed8c9e639e890e7cb",
-      "case_id": "scala-block-b0d4deaa00a72761",
-      "comment_kind": "block",
-      "disposition": "accounting_only",
-      "exception_status": "reviewer_disagreement",
-      "language": "scala",
-      "oracle_exception_record_sha256": "fa4e95e40f70bc722f3ee8fa1a9386b34963b5375dd1eb0996054161f43688ce",
-      "raw_sha256": "cb8e8ecd6a85a2c9da38476efac8135aa449d48ec4b5ab8e8c43d1a39ef9d562",
-      "raw_utf8_length": 12,
-      "source_provenance": {
-        "source_excerpt_sha256": "7e2eed394ef21afb6c4adfa215ee00396e490ed66f7eea15ba11218a15d0dc0e",
-        "source_id": "118fe4a0033b66fa3ac17422d741341976da7086"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
-      "baseline_cleaned_sha256": "8f0f6e23a6fc57477cfaabd77419904d3c29e96a74cbae49961cc79f3fc83ce8",
-      "case_id": "scala-block-b2fba317a14c2713",
-      "comment_kind": "block",
-      "disposition": "accounting_only",
-      "exception_status": "reviewer_disagreement",
-      "language": "scala",
-      "oracle_exception_record_sha256": "8e74ccaaa253ff3f6e563e171ef0dc0da776bf8e5f65ed6bf8eb24edfc69b8a2",
-      "raw_sha256": "e55dc1e7ea723cf056e9e23ade8996b322cd32fc3224050716aa123134e5fa0c",
-      "raw_utf8_length": 182,
-      "source_provenance": {
-        "source_excerpt_sha256": "557cce4d497d96ff880e1b54f22b93679d70bbe7f918c982eff242bb643259b9",
-        "source_id": "edb216c03932efa35b2c0e5360a11d5119c51123"
       },
       "syntax_label": "/*...*/"
     },
@@ -5663,57 +5615,6 @@
       "syntax_label": "/*...*/"
     },
     {
-      "baseline_cleaned_sha256": "338c1c1effc3fefff89fbb649a495985c68957a5d00b26554f1d029b8dff7557",
-      "case_id": "php-block-0a857f282fa80152",
-      "comment_kind": "block",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "@var Type[] $data",
-      "expected_cleaned_sha256": "dbdc96f6980ec04e506799a908d269339d3d1ea4a44cf391ba11088602db412f",
-      "language": "php",
-      "raw_comment": "/** @var Type[] $data */",
-      "raw_sha256": "241edb9bf0e4618a86e73d3806eb37fd58e2c8d7362735e1694fb32204648b2f",
-      "raw_utf8_length": 24,
-      "source_provenance": {
-        "source_excerpt_sha256": "f3532a11d50b6cea214b17c7047ba060709d5bc83ac47cec5b1483f42f5a2f9d",
-        "source_id": "01d6f6778fdbf0d5a1d7b9ab7ed6e6409d3b365a"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
-      "baseline_cleaned_sha256": "4507caff2d0cbe8878959bd9d41e33c4d9bd10b2140ffef76ca7985898b7bf8d",
-      "case_id": "php-block-2d3fc839befc3725",
-      "comment_kind": "block",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "Web Routes\n\nThis file is where you may define all of the routes that are handled\nby your application. Just tell Laravel the URIs it should respond\nto using a Closure or controller method. Build something great!",
-      "expected_cleaned_sha256": "07d6cea34a85273ec1e31e5c25ae4c63a8ad5ad8efc611121f7948e23e9110e4",
-      "language": "php",
-      "raw_comment": "/*\n|--------------------------------------------------------------------------\n| Web Routes\n|--------------------------------------------------------------------------\n|\n| This file is where you may define all of the routes that are handled\n| by your application. Just tell Laravel the URIs it should respond\n| to using a Closure or controller method. Build something great!\n|\n*/",
-      "raw_sha256": "cdc61718d78ba4bbf84517f260af4d911000c1497ede200bc6dd57705cf73b98",
-      "raw_utf8_length": 379,
-      "source_provenance": {
-        "source_excerpt_sha256": "da2d96af359dd3e5f3fae376de058aa9c9476b3aa7c65f99f8bd1b7fbaa3590b",
-        "source_id": "e283b2b70e4ba4b6bf87469007972259157a13e3"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
-      "baseline_cleaned_sha256": "e532c74f00a894d2b3ebd7b805f7f54261f7f2b550f895c6aa8783d2b3dae1e3",
-      "case_id": "php-block-8b8d30aff4b195ef",
-      "comment_kind": "block",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "Web Routes\n\nHere is where you can register web routes for your application. These\nroutes are loaded by the RouteServiceProvider within a group which\ncontains the \"web\" middleware group. Now create something great!",
-      "expected_cleaned_sha256": "40cf527ba37d2d996f54b416823bac218496aee3651d03b220be54aa5559f8cd",
-      "language": "php",
-      "raw_comment": "/*\n|--------------------------------------------------------------------------\n| Web Routes\n|--------------------------------------------------------------------------\n|\n| Here is where you can register web routes for your application. These\n| routes are loaded by the RouteServiceProvider within a group which\n| contains the \"web\" middleware group. Now create something great!\n|\n*/",
-      "raw_sha256": "2a688c4d9fd9cf97743390d62efb0f6765315a8997b22cfa72fea942b5ac0fdb",
-      "raw_utf8_length": 382,
-      "source_provenance": {
-        "source_excerpt_sha256": "ed3d31e6e719378c76ddee535b64ae5258e59a5db03941be3e732d5bb810eca5",
-        "source_id": "5ca81bbf975f439cd326032c7b984fb274bf8cdd"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
       "baseline_cleaned_sha256": "d8e074bfe0cd1e61b172f2dd39e9c233309c72fe6c298de0db356383d5cd386f",
       "case_id": "pike-block-14e4f8a2e539eec9",
       "comment_kind": "block",
@@ -6547,23 +6448,6 @@
       "syntax_label": "//"
     },
     {
-      "baseline_cleaned_sha256": "3a062aa0ac773c291612567b03684ea13df1d914d07fd0a0b1748df7a477b805",
-      "case_id": "scala-block-f9574001ce900240",
-      "comment_kind": "block",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "Logs debugging information to the console.\n\n@example\n```javascript\n// Enable logging\nfirebase.database.enableLogging(true);\n```\n\n@example\n```javascript\n// Disable logging\nfirebase.database.enableLogging(false);\n```\n\n@example\n```javascript\n// Enable logging across page refreshes\nfirebase.database.enableLogging(true, true);\n```\n\n@example\n```javascript\n// Provide custom logger which prefixes log statements with \"[FIREBASE]\"\nfirebase.database.enableLogging(function(message) {\n  console.log(\"[FIREBASE]\", message);\n});\n```\n\n@param logger Enables logging if `true`;\n  disables logging if `false`. You can also provide a custom logger function\n  to control how things get logged.\n@param persistent Remembers the logging state between page\n  refreshes if `true`.",
-      "expected_cleaned_sha256": "0d22607b59edcd4590741f15729acf307a86bb1f48e19271312598ced23da38d",
-      "language": "scala",
-      "raw_comment": "/**\n    * Logs debugging information to the console.\n    *\n    * @example\n    * ```javascript\n    * // Enable logging\n    * firebase.database.enableLogging(true);\n    * ```\n    *\n    * @example\n    * ```javascript\n    * // Disable logging\n    * firebase.database.enableLogging(false);\n    * ```\n    *\n    * @example\n    * ```javascript\n    * // Enable logging across page refreshes\n    * firebase.database.enableLogging(true, true);\n    * ```\n    *\n    * @example\n    * ```javascript\n    * // Provide custom logger which prefixes log statements with \"[FIREBASE]\"\n    * firebase.database.enableLogging(function(message) {\n    *   console.log(\"[FIREBASE]\", message);\n    * });\n    * ```\n    *\n    * @param logger Enables logging if `true`;\n    *   disables logging if `false`. You can also provide a custom logger function\n    *   to control how things get logged.\n    * @param persistent Remembers the logging state between page\n    *   refreshes if `true`.\n    */",
-      "raw_sha256": "408f84eff7bc9a53ac880cccba8b5c9875f71201fda1ee418e3ad796cb5528a6",
-      "raw_utf8_length": 963,
-      "source_provenance": {
-        "source_excerpt_sha256": "4ade4c8b5741f1fa3b6e3b59b18a8d3b5706538fcb4ce70a74c3acd3d3096b88",
-        "source_id": "900afd4e85bff56addd02fc2e6625ac9faf3aff3"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
       "baseline_cleaned_sha256": "c0fb95e5d80a1bec75bffb477f4b51765b65d7d2cb1d7b9f394888dd6dcdec9f",
       "case_id": "scss-block-324a65fd6f5b8fdb",
       "comment_kind": "block",
@@ -6987,40 +6871,6 @@
         "source_id": "f6c2a3ab5fc7979963c6831c5d878c2d368623cc"
       },
       "syntax_label": "//"
-    },
-    {
-      "baseline_cleaned_sha256": "c2ae061a4457d15b66dbc53fa1936d97ea8114d8862f2a55c02e5f068faec87b",
-      "case_id": "swift-block-4142bd7d75300e21",
-      "comment_kind": "block",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "A Receipt provides all the receipt fields for an App-Receipt.\nIt bundles all the Receipt Fields from the payload of the receipt file\nthat was created during the purchase of an App from the MacApp Store or\nduring an In-App-Purchase. If the Receipt is from an In-App-Purchase, the\nproperty `inAppPurchaseReceipts` holds the corresponding Receipt Fields.\n\n**See also:**\n[Receipt Validation Programming Guide - Receipt Fields](https://developer.apple.com/library/content/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1)",
-      "expected_cleaned_sha256": "89291a2525983a079612380eda6e92b5b9dc631fd901fa267df5f6b1f9f0516d",
-      "language": "swift",
-      "raw_comment": "/** A Receipt provides all the receipt fields for an App-Receipt.\nIt bundles all the Receipt Fields from the payload of the receipt file\nthat was created during the purchase of an App from the MacApp Store or\nduring an In-App-Purchase. If the Receipt is from an In-App-Purchase, the\nproperty `inAppPurchaseReceipts` holds the corresponding Receipt Fields.\n\n**See also:**\n[Receipt Validation Programming Guide - Receipt Fields](https://developer.apple.com/library/content/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html#//apple_ref/doc/uid/TP40010573-CH106-SW1)\n*/",
-      "raw_sha256": "2046119efafc7c30597ca89cce9358c06d8bb4c8b5a16edb48daf5b8e3220ea1",
-      "raw_utf8_length": 588,
-      "source_provenance": {
-        "source_excerpt_sha256": "f4aa95d4827d08e7dd814db3357acd1e2821ada3497ebcf20f47d0f0b24322c0",
-        "source_id": "5bdbbd05f2c26b52d386a5026af86fe458829202"
-      },
-      "syntax_label": "/*...*/"
-    },
-    {
-      "baseline_cleaned_sha256": "75d235e20e17ce6ca3b777bd6a9d5071bb48a71628e537e32b5583a50f06b322",
-      "case_id": "swift-block-4c5c34f9bbf60c61",
-      "comment_kind": "block",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "\u540d\u5b57",
-      "expected_cleaned_sha256": "6773310492a96fcf96035a33dc957b7f552d26dd6630bc2c14189d2e6aa723ee",
-      "language": "swift",
-      "raw_comment": "/**\u540d\u5b57*/",
-      "raw_sha256": "71847fd47a45fefd75cb6b106202587e0ae2e8b9461ea148bf6cf4022d3999b2",
-      "raw_utf8_length": 11,
-      "source_provenance": {
-        "source_excerpt_sha256": "8e74bed145cac542529a120b0ebc09c7d4c7fd949fd1bf6b677d2fe6ce890185",
-        "source_id": "855d3a3bfb8da148e89c7cf672314a94faf30bba"
-      },
-      "syntax_label": "/*...*/"
     },
     {
       "baseline_cleaned_sha256": "bf9d24f6aff18a843de45fa0f7ad20f9d20114289114fec03fad7fa6bbe7fac5",

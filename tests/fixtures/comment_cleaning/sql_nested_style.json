@@ -1,13 +1,10 @@
 {
   "schema_version": 1,
-  "family_name": "sql_style",
-  "canonical_language": "sql",
+  "family_name": "sql_nested_style",
+  "canonical_language": "plpgsql",
   "language_keys": [
-    "sql",
-    "hiveql",
-    "piglatin",
-    "plsql",
-    "sqlpl"
+    "plpgsql",
+    "tsql"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [
@@ -28,12 +25,12 @@
       "payload_marker": "cleaning_payload_grouped_shared_regex_000"
     },
     {
-      "id": "canonical_regex-000-block",
-      "source": "registry:canonical_regex_examples[0]",
-      "kind": "block",
-      "raw_comment": "/* cleaning_payload_canonical_regex_000 */",
-      "expected_cleaned": "cleaning_payload_canonical_regex_000",
-      "payload_marker": "cleaning_payload_canonical_regex_000"
+      "id": "nested-delimiter-000",
+      "source": "registry:nested_delimiters[0]",
+      "kind": "nested",
+      "raw_comment": "/* cleaning_payload_nested_delimiter_000_outer_before /* cleaning_payload_nested_delimiter_000_inner */ cleaning_payload_nested_delimiter_000_outer_after */",
+      "expected_cleaned": "cleaning_payload_nested_delimiter_000_outer_before /* cleaning_payload_nested_delimiter_000_inner */ cleaning_payload_nested_delimiter_000_outer_after",
+      "payload_marker": "cleaning_payload_nested_delimiter_000"
     }
   ]
 }

@@ -110,8 +110,14 @@ def _refines_explicit_wrapper(
     )
 
 
+# Haddock's ``-- |`` documentation marker is Haskell-family syntax; in other
+# ``--`` languages a leading ``|`` is content (for example a Markdown table).
+_HADDOCK_FAMILIES = frozenset({"haskell_style"})
+
+
 def _add_known_line_wrapper_variants(
     wrappers: list[tuple[str, str]],
+    family_name: str = "",
 ) -> None:
     """Add exact, conventional documentation markers for registered openers.
 
@@ -126,6 +132,8 @@ def _add_known_line_wrapper_variants(
         ("--", ""): (("-- |", ""), ("--|", "")),
         (";", ""): ((";;;", ""), (";;", "")),
     }
+    if family_name not in _HADDOCK_FAMILIES:
+        del known_variants[("--", "")]
     registered = set(wrappers)
     for base_wrapper, variants in known_variants.items():
         if base_wrapper not in registered:
@@ -236,7 +244,7 @@ def _build_sanitizer_syntax(syntax: CommentSyntax) -> _SanitizerSyntax:
             ):
                 block_wrappers.append(wrapper)
 
-    _add_known_line_wrapper_variants(line_wrappers)
+    _add_known_line_wrapper_variants(line_wrappers, syntax.family_name)
     _add_known_block_wrapper_variants(block_wrappers)
     block_wrappers.sort(key=lambda wrapper: len(wrapper[0]) + len(wrapper[1]), reverse=True)
     line_wrappers.sort(key=lambda wrapper: len(wrapper[0]) + len(wrapper[1]), reverse=True)
@@ -2136,7 +2144,7 @@ def _sanitize_glyph_line_result(body: str) -> str:
 
     lines = body.split("\n")
     non_empty = [line for line in lines if line.strip()]
-    if non_empty and all(line.lstrip().startswith("--") for line in non_empty):
+    if non_empty and all(re.match(r"--(?:[ \t]|$)", line.lstrip()) for line in non_empty):
         stripped_lines: list[str] = []
         for line in lines:
             if not line.strip():
@@ -7451,10 +7459,17 @@ class CommentSanitizer:
                 if raw_comment.startswith(wrapper[0] + wrapper[0][-1] + "\n")
                 else frozenset()
             )
+            # Classic ASP markup comments are HTML, where VBScript ' and Rem
+            # line markers are ordinary text rather than a comment gutter.
+            block_line_wrappers = (
+                ()
+                if self._language_key == "classic_asp" and wrapper[0] == "<!--"
+                else self._sanitizer_syntax.line_wrappers
+            )
             cleaned_block = _sanitize_block_body(
                 inner,
                 wrapper,
-                self._sanitizer_syntax.line_wrappers,
+                block_line_wrappers,
                 allow_doc_star=self._language_key not in {"handlebars", "mediawiki", "wikitext"},
                 protected_ruler_chars=protected_ruler_chars,
                 strip_single_line_padding=self._language_key != "powershell",

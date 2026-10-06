@@ -1,6 +1,6 @@
 {
   "extractor_boundary_cases": [],
-  "family_name": "d_doc_style",
+  "family_name": "d_style",
   "oracle_exception_cases": [],
   "sanitizer_cases": [
     {

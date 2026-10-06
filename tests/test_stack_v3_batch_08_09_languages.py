@@ -388,3 +388,47 @@ def test_terraform_template_limits_comments_to_complete_code_modes() -> None:
 )
 def test_terraform_template_malformed_or_string_modes_do_not_leak(source: str) -> None:
     assert _matches("Terraform Template", source) == []
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        pytest.param(
+            't: "\\{ {a: 1}.a } // x"; // real\n', ["// real"], id="braces-inside-interpolation"
+        ),
+        pytest.param(
+            't: "a \\{ f({b: "}"}) } b"; // real\n', ["// real"], id="string-inside-interpolation"
+        ),
+        pytest.param(
+            't: "a \\{ x } \\{ y } z"; /* real */\n', ["/* real */"], id="two-interpolations"
+        ),
+        pytest.param('t: "a \\{ x\n// c\n', [], id="unterminated-interpolation"),
+    ],
+)
+def test_slint_interpolation_brace_depth_and_recovery(source: str, expected: list[str]) -> None:
+    # Slint "String" type: \{expr} interpolates an expression into a string.
+    assert _matches("slint", source) == expected
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        pytest.param(
+            "templ hello(name string) {\n\t<p>{ name /* who */ }</p>\n}\n",
+            ["/* who */"],
+            id="block-comment-in-expression",
+        ),
+        pytest.param(
+            "templ hello(name string) {\n"
+            '\t<p>{ fmt.Sprint("/* no */", name) // trailing\n'
+            "\t}</p>\n}\n",
+            ["// trailing"],
+            id="string-then-line-comment",
+        ),
+        pytest.param("templ t() {\n\t<p>{ `/* raw */` }</p>\n}\n", [], id="raw-string"),
+        pytest.param("templ t() {\n\t<p>{ x /* unclosed }</p>\n}\n", [], id="unclosed-comment"),
+    ],
+)
+def test_templ_go_expressions_yield_go_comments(source: str, expected: list[str]) -> None:
+    # templ docs "Expressions": { ... } inside a component holds Go code.
+    assert _matches("templ", source) == expected
