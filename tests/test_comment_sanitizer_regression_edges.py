@@ -1,6 +1,6 @@
 import pytest
 
-from ml4setk import CommentSanitizer, sanitize_comment
+from ml4setk import CommentQuery, CommentSanitizer, sanitize_comment
 
 pytestmark = pytest.mark.unit
 
@@ -71,3 +71,102 @@ def test_sanitizer_preserves_the_callers_language_string():
     sanitizer = CommentSanitizer("BrightScript")
 
     assert sanitizer.language == "BrightScript"
+
+
+# Seeded registry examples whose prose leaks into an inferred sanitizer wrapper.
+# ``_build_sanitizer_syntax`` splits each line example on its body placeholder,
+# so words before "note" (``uplc``, ``reader``, ``font alias``) become part of
+# the opening delimiter, and a multiline Liquid example turns its second line
+# into a closing delimiter. The seeded example then loses content, and other
+# comments with the real delimiter are not cleaned at all. Each case lists the
+# seeded example and a variant with different prose; extraction is already
+# correct, so the expected output is the comment body without its delimiters.
+_PROSE_IN_INFERRED_WRAPPER_CASES = [
+    pytest.param(
+        language,
+        source,
+        raw_comment,
+        expected,
+        id=f"{language}-{case}",
+    )
+    for language in (
+        "agda",
+        "elm",
+        "frege",
+        "grammatical_framework",
+        "literate_agda",
+        "untyped_plutus_core",
+    )
+    for case, source, raw_comment, expected in (
+        (
+            "seeded",
+            "(program 1.1.0 -- uplc note\n  (lam x x))",
+            "-- uplc note",
+            "uplc note",
+        ),
+        (
+            "variant",
+            "x -- uplc compiler output\ny",
+            "-- uplc compiler output",
+            "uplc compiler output",
+        ),
+    )
+] + [
+    pytest.param(
+        "cweb",
+        "@q reader note @>\n@c",
+        "@q reader note @>",
+        "reader note",
+        id="cweb-seeded",
+    ),
+    pytest.param(
+        "cweb",
+        "@q Copyright 2024 @>\n@c",
+        "@q Copyright 2024 @>",
+        "Copyright 2024",
+        id="cweb-variant",
+    ),
+    pytest.param(
+        "x_font_directory_index",
+        "! font alias note\nfixed -misc-fixed-medium-r-normal--13-120-75-75-c-70-iso10646-1",
+        "! font alias note",
+        "font alias note",
+        id="x_font_directory_index-seeded",
+    ),
+    pytest.param(
+        "x_font_directory_index",
+        "! Copyright 1999\nfixed -misc-fixed-medium-r-normal--13-120-75-75-c-70-iso10646-1",
+        "! Copyright 1999",
+        "Copyright 1999",
+        id="x_font_directory_index-variant",
+    ),
+    pytest.param(
+        "liquid",
+        "prefix\n{%\n  # note\n  # more\n%}\nsuffix",
+        "{%\n  # note\n  # more\n%}",
+        "note\nmore",
+        id="liquid-multiline-seeded",
+    ),
+    pytest.param(
+        "liquid",
+        "prefix\n{%\n  # first line\n  # second line\n%}\nsuffix",
+        "{%\n  # first line\n  # second line\n%}",
+        "first line\nsecond line",
+        id="liquid-multiline-variant",
+    ),
+]
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason="Sanitizer infers wrappers from seeded example prose; remove when fixed.",
+)
+@pytest.mark.parametrize(
+    ("language", "source", "raw_comment", "expected"),
+    _PROSE_IN_INFERRED_WRAPPER_CASES,
+)
+def test_seeded_example_prose_is_not_inferred_as_comment_delimiter(
+    language, source, raw_comment, expected
+):
+    assert [match.match for match in CommentQuery(language).parse(source)] == [raw_comment]
+    assert sanitize_comment(language, raw_comment) == expected
