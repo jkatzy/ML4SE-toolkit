@@ -57,7 +57,7 @@ def test_extract_comments_python_line_and_block():
     comments = pc.extract_comments_python(content)
 
     texts = [c[1] for c in comments]
-    assert '# inline comment' in texts
+    assert "# inline comment" in texts
     assert '"""docstring"""' in texts
 
 
@@ -71,10 +71,7 @@ def test_extract_comments_combines_multiple_languages():
 
 
 def test_extract_comments_supports_registry_only_languages():
-    content = (
-        '{"url": "https://example.test//path"} // real note\n'
-        "/* block note */\n"
-    )
+    content = '{"url": "https://example.test//path"} // real note\n/* block note */\n'
 
     comments = pc.extract_comments(content, ["jsonc"])
 
@@ -105,13 +102,9 @@ def test_extract_comments_adapts_contextual_registry_matches_to_blocks():
 @pytest.mark.parametrize(("language", "example"), REGISTRY_ONLY_LEGACY_CASES)
 def test_registry_only_families_preserve_seeded_matches_and_kinds(language, example):
     comments = pc.extract_comments(example.sample, [language])
-    matching_comments = [
-        comment for comment in comments if example.expected_match in comment[1]
-    ]
+    matching_comments = [comment for comment in comments if example.expected_match in comment[1]]
     expected_kind = (
-        "line"
-        if example.kind in {"line", "directive", "attribute", "ignored"}
-        else "block"
+        "line" if example.kind in {"line", "directive", "attribute", "ignored"} else "block"
     )
 
     assert matching_comments
@@ -149,9 +142,7 @@ def test_registry_adapter_preserves_candidate_order_duplicates_and_unknowns():
         ("Sway", "// note\rstill\n", "// note\rstill"),
     ),
 )
-def test_registry_adapter_classifies_alias_override_line_ranges(
-    language, content, expected_text
-):
+def test_registry_adapter_classifies_alias_override_line_ranges(language, content, expected_text):
     assert pc.extract_comments(content, [language]) == [
         ((0, len(expected_text)), expected_text, "line")
     ]
@@ -160,9 +151,7 @@ def test_registry_adapter_classifies_alias_override_line_ranges(
 def test_remove_comments_uses_the_updated_legacy_adapter():
     content = '{"url": "https://example.test//path"} // note\n'
 
-    assert pc.remove_comments(content, ["jsonc"]) == pc.extract_comments(
-        content, ["jsonc"]
-    )
+    assert pc.remove_comments(content, ["jsonc"]) == pc.extract_comments(content, ["jsonc"])
 
 
 def test_line_comments_merge_consecutive_lines():
@@ -283,13 +272,11 @@ def test_extract_comments_from_fixture(fixture, lang, expects_block, has_line_co
 
     if has_line_comments:
         merged_lines = [
-            c
-            for c in comments
-            if c[2] == "line" and "multi line comment part 1" in c[1]
+            c for c in comments if c[2] == "line" and "multi line comment part 1" in c[1]
         ]
-        assert (
-            len(merged_lines) == 1
-        ), f"consecutive line comments should merge into one block in {fixture}"
+        assert len(merged_lines) == 1, (
+            f"consecutive line comments should merge into one block in {fixture}"
+        )
         merged_text = merged_lines[0][1]
         assert "multi line comment part 1\n" in merged_text
         assert "multi line comment part 2" in merged_text
@@ -976,7 +963,7 @@ def test_stata_aliases(lang):
 
 @pytest.mark.parametrize("lang", NONE_ALIAS_LANGS)
 def test_none_aliases(lang):
-    content = '{\"cells\": [], \"metadata\": {}}\n'
+    content = '{"cells": [], "metadata": {}}\n'
     comments = pc.extract_comments(content, [lang])
 
     assert comments == []
@@ -1036,10 +1023,10 @@ def test_hash_cblock_aliases(lang):
 
 @pytest.mark.parametrize("lang", APL_ALIAS_LANGS)
 def test_apl_aliases(lang):
-    content = "value <- 1 \u235D note\nvalue <- value + 1\n"
+    content = "value <- 1 \u235d note\nvalue <- value + 1\n"
     comments = pc.extract_comments(content, [lang])
 
-    assert [comment[1] for comment in comments] == ["\u235D note"]
+    assert [comment[1] for comment in comments] == ["\u235d note"]
 
 
 @pytest.mark.parametrize("lang", ALLOY_ALIAS_LANGS)
@@ -1074,11 +1061,11 @@ def test_clips_alias_is_semicolon_line_only(lang):
 @pytest.mark.parametrize("lang", CLOSURE_TEMPLATES_ALIAS_LANGS)
 def test_closure_templates_alias_uses_soy_comment_rules(lang):
     content = (
-        '{template .example}\n'
+        "{template .example}\n"
         '  <a href="https://example.test">link</a>\n'
-        '  // note\n'
-        '  /* block note */\n'
-        '{/template}\n'
+        "  // note\n"
+        "  /* block note */\n"
+        "{/template}\n"
     )
 
     comments = pc.extract_comments(content, [lang])
@@ -1529,7 +1516,7 @@ CASE_BATCHFILE = _case(
     trailer="echo value",
 )
 CASE_SMALLTALK = _case(
-    ('block', _merged('"adversarial *** ### $$$ %%%', _block_body(), '"')),
+    ("block", _merged('"adversarial *** ### $$$ %%%', _block_body(), '"')),
     trailer="Transcript show: 'ok'.",
 )
 CASE_NEWLISP = {

@@ -269,7 +269,9 @@ extractor output can be used directly.
 
 If you need the comment text without the surrounding syntax, use
 `CommentSanitizer(language)` or the convenience helper
-`sanitize_comment_text(language, comment)`.
+`sanitize_comment_text(language, comment)`. The
+[comment cleaning policy](comment_cleaning_policy.md) defines what cleaning
+removes and what it keeps.
 
 ```python
 from ml4setk import CommentQuery, CommentSanitizer

@@ -1,0 +1,465 @@
+{
+  "description": "Reviewed cleaning cases whose correct output currently depends on the specific words in the comment. This list may only shrink; see tests/test_comment_cleaner_content_independence.py.",
+  "cases": [
+    {
+      "key": "4d-block-7544d30c65a5d09f:c2695e4cd1ed3285",
+      "language": "4d",
+      "decided_by": "_sanitize_block_body"
+    },
+    {
+      "key": "abap-line-7f907b9d867d247f:6b974d0a0f927297",
+      "language": "abap",
+      "decided_by": "_sanitize_abap_comment"
+    },
+    {
+      "key": "abap-line-db603a79d7c056af:ecb7249ea2c54840",
+      "language": "abap",
+      "decided_by": "_sanitize_abap_comment"
+    },
+    {
+      "key": "ada-line-9c0cb77d6504d335:cb1c794221164582",
+      "language": "ada",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "aidl-block-eaf73e966997d0f0:319213441f85d33a",
+      "language": "aidl",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "apacheconf-line-02ce3bab76d24c9c:1ece369dc49fed74",
+      "language": "apacheconf",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "apex-block-10f87c23d2e61897:644babebeb2145d8",
+      "language": "apex",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "asn1-line-a12921c51cd41e04:63b0ffb3154031d7",
+      "language": "asn1",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "asn_1-line-450a0c9c1c2664fd:26c28e94ff274654",
+      "language": "asn_1",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "asn_1-line-a81d4000083e6f3d:63b0ffb3154031d7",
+      "language": "asn_1",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "brightscript-line-044b596b95b848bb:b2a08d65b03c7f0c",
+      "language": "brightscript",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "c-block-4ea119dd25f82771:e698275ed2a833b3",
+      "language": "c",
+      "decided_by": "_sanitize_validated_legacy_frame"
+    },
+    {
+      "key": "chapel-nested-ac6b71a9b8d1899d:b5f5e2c79bc53c78",
+      "language": "chapel",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "cobol-line-c5b42a0a980b4490:1a0ccde4ba947b31",
+      "language": "cobol",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "cuda-block-1eea7d8df9f1fccd:2d9845dac694ec73",
+      "language": "cuda",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "cuda-block-fea65387cbe82533:0ee16f2010c1f8d6",
+      "language": "cuda",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "curry-line-23444fdefd068fb2:fc2925437323ae36",
+      "language": "curry",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "dm-line-d411f3f58b36b13d:7dedd7c0f340053e",
+      "language": "dm",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "dm-nested-e83321b0331aae0c:01f97207bb32706d",
+      "language": "dm",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "easybuild-line-8c9fae5c867bfec0:866d83c4fa889b45",
+      "language": "easybuild",
+      "decided_by": "_sanitize_final_safe_strict_layout"
+    },
+    {
+      "key": "eclipse-line-e9a3194794d2e527:1d5e27c37f3d8453",
+      "language": "eclipse",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "elvish-line-d4950011ab6b81fe:d9c589487568e318",
+      "language": "elvish",
+      "decided_by": "_sanitize_final_safe_strict_layout"
+    },
+    {
+      "key": "euphoria-block-956270d48a959efc:bef0970c493f909e",
+      "language": "euphoria",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "f-line-753bf86641597258:2bec1603cbfa5d16",
+      "language": "f#",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "faust-block-078fdd1e9531a36b:bf246bda35c24705",
+      "language": "faust",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "faust-block-2fcdd32f33f9174c:a488e18c6b9c7aca",
+      "language": "faust",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "fortran_free_form-line-96be0e592e723099:4aa1df5e0d1e843a",
+      "language": "fortran_free_form",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "fortran_free_form-line-9b428351db7400ff:1f7ab4fc69aa6703",
+      "language": "fortran_free_form",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "genero_forms-block-58eab17332f7cdab:82a2874f6f170dd9",
+      "language": "genero_forms",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "gn-line-c8ed500c7c0d6c16:263bfec766b654fb",
+      "language": "gn",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "hocon-line-8a28114a6baa74d1:3a0db7ad94141394",
+      "language": "hocon",
+      "decided_by": "_sanitize_validated_legacy_frame"
+    },
+    {
+      "key": "hoon-line-3efe19978cd95ad8:3ca7db2441d18edb",
+      "language": "hoon",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "hy-line-f8032347ff3508bf:552bea1b3953262c",
+      "language": "hy",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "jade-line-d117d9cd047f8347:b7ce8fb297dff519",
+      "language": "jade",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "java_properties-line-99110cc7317eb2ac:0ced727ef002146a",
+      "language": "java_properties",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "java_properties-line-e1f61e1717e92eae:0ced727ef002146a",
+      "language": "java_properties",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "javascript-block-b4c60bb156f3b96b:d55e349485be4162",
+      "language": "javascript",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "jsx-block-52c3aed3ce348364:da78659b1a366eaa",
+      "language": "jsx",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "jsx-block-cc5ccdd7665b9862:d55e349485be4162",
+      "language": "jsx",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "lex-block-7e454e2084bbd01b:5a89f1669f8bbbff",
+      "language": "lex",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "liquid-block-13f35c9fbf185412:1a2072a5bf8800f7",
+      "language": "liquid",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "logtalk-line-5bbae9d4dd0b637b:0d5bd1475fd61d14",
+      "language": "logtalk",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "logtalk-line-6775bd97bbb39ab0:82467e97e00fa78a",
+      "language": "logtalk",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "makefile-line-04aa358fc4ea11c8:59cf3eaed91fdc6a",
+      "language": "makefile",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "metal-block-80e5ff7359ed3dfc:bd8f0da040b7a097",
+      "language": "metal",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "metal-block-eba980b5d4b91997:97aeff97449326a1",
+      "language": "metal",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "modula_2-nested-cba03f6fe75eb932:c4a983f961c2b738",
+      "language": "modula_2",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "monkey_c-block-19e822728e4ad251:9800567720a4c556",
+      "language": "monkey_c",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "moocode-block-10c021520bca655e:731bf742bee38772",
+      "language": "moocode",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "motoko-nested-3c71454e62fcaa4e:5262ccf07d321c20",
+      "language": "motoko",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "motoko-nested-e9a2bc0a96367f66:5262ccf07d321c20",
+      "language": "motoko",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "mql-line-995b093145ef5a66:ef9894341f734b5c",
+      "language": "mql",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "mql4-line-a3e3115fc0af5cc2:ef9894341f734b5c",
+      "language": "mql4",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "mupad-block-0d6002c3c3ff7e12:fc7d7e66660757ea",
+      "language": "mupad",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "nasl-line-f60db92a6511e712:9ceb9521c2e7e6ed",
+      "language": "nasl",
+      "decided_by": "_sanitize_validated_legacy_frame"
+    },
+    {
+      "key": "nix-line-fcca42b104e91afa:82f124f4436d320a",
+      "language": "nix",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "objective_c-block-ddd75d6545f28007:a139867213845403",
+      "language": "objective-c",
+      "decided_by": "_sanitize_validated_padding_layout"
+    },
+    {
+      "key": "objective_c-line-e9fd2a9d9d8f00ea:f5c39873148ce91b",
+      "language": "objective-c",
+      "decided_by": "_sanitize_validated_padding_layout"
+    },
+    {
+      "key": "opencl-block-3791a1dba23ca1f6:ca2dc2c6bdaaaa17",
+      "language": "opencl",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "pawn-block-e6956c51f991b22e:2667a14f5bb8da16",
+      "language": "pawn",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "pike-block-14e4f8a2e539eec9:599b4f9ba7e364d4",
+      "language": "pike",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "pike-block-186a538c8d37a564:599b4f9ba7e364d4",
+      "language": "pike",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "pike-block-1d5b2e63380cea1d:599b4f9ba7e364d4",
+      "language": "pike",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "pike-block-cebab9bbb33c685b:599b4f9ba7e364d4",
+      "language": "pike",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "powershell-line-6c8cb2a8b60ce1a3:8935901d60be78c2",
+      "language": "powershell",
+      "decided_by": "_sanitize_final_safe_strict_layout"
+    },
+    {
+      "key": "proguard-line-dfadcb6dcef6af14:797fc08fdf7f20f5",
+      "language": "proguard",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "promela-block-0107db9716b95b6e:eb0f80009ca179fa",
+      "language": "promela",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "propeller_spin-block-852910b508fd06af:f7837a4290021b85",
+      "language": "propeller_spin",
+      "decided_by": "_sanitize_policy_safe_residual_layout"
+    },
+    {
+      "key": "robots_txt-line-f58c36c905889fb8:eeab4de55b5d0a40",
+      "language": "robots_txt",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "rpm_spec-line-edef6e8b9d0d60ec:1205b373c2386d46",
+      "language": "rpm_spec",
+      "decided_by": "_sanitize_final_safe_strict_layout"
+    },
+    {
+      "key": "scss-line-867f8291c9d23948:460d22ba703098e8",
+      "language": "scss",
+      "decided_by": "_sanitize_final_safe_strict_layout"
+    },
+    {
+      "key": "stylus-line-2f4b756bcfe24b28:adc6ccb6cfcd0f64",
+      "language": "stylus",
+      "decided_by": "_sanitize_validated_padding_layout"
+    },
+    {
+      "key": "supercollider-nested-ad9446f40a31e7d9:36c6568bba7fcdf4",
+      "language": "supercollider",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "supercollider-nested-c792677afeb50802:cc01db2a8254a14c",
+      "language": "supercollider",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "tcl-line-b21eca4732ade3e3:2001408a9c4ebf68",
+      "language": "tcl",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "unrealscript-block-679459953550b80a:9389e6e8b3410375",
+      "language": "unrealscript",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "verilog-line-c80f4d193a40534b:bd07065b1a51bd4b",
+      "language": "verilog",
+      "decided_by": "_sanitize_final_safe_mixed_layout"
+    },
+    {
+      "key": "webassembly-nested-086f71e391944596:30d76734f8d366a7",
+      "language": "webassembly",
+      "decided_by": "_sanitize_strict_real_world_scaffold"
+    },
+    {
+      "key": "webassembly-nested-f7bf664946f34ad0:613bdf032ad35e42",
+      "language": "webassembly",
+      "decided_by": "_sanitize_strict_real_world_scaffold"
+    },
+    {
+      "key": "win32_message_file-directive-788589bffafad54c:00147da469f25849",
+      "language": "win32_message_file",
+      "decided_by": "_sanitize_win32_message_result"
+    },
+    {
+      "key": "win32_message_file-directive-79289e6926df4ccd:69635d50a7d6b2f8",
+      "language": "win32_message_file",
+      "decided_by": "_sanitize_win32_message_result"
+    },
+    {
+      "key": "win32_message_file-directive-7a8dffcc46b17cc8:151e96069e02a4f4",
+      "language": "win32_message_file",
+      "decided_by": "_sanitize_win32_message_result"
+    },
+    {
+      "key": "xbase-block-e6a93f23568f0866:83d97ee79a80dbc0",
+      "language": "xbase",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "xml-block-751bdcb073fda965:cdb8439b043eb0d3",
+      "language": "xml",
+      "decided_by": "_sanitize_strict_restoration_layout"
+    },
+    {
+      "key": "xml_property_list-block-28c17ebb8d66a99f:69b19b069270fa33",
+      "language": "xml_property_list",
+      "decided_by": "_sanitize_final_safe_strict_layout"
+    },
+    {
+      "key": "xml_property_list-block-47aeb800f1d95467:beb47aedee171791",
+      "language": "xml_property_list",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "xs-block-57c70df90223e3a1:8b4e867225b8da0c",
+      "language": "xs",
+      "decided_by": "_sanitize_final_safe_indentation_layout"
+    },
+    {
+      "key": "yasnippet-line-5ec1ebbdb4bd17d7:23b437670ac3b55f",
+      "language": "yasnippet",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "yasnippet-line-64f7278bb268116f:b5df2b54ee403bf2",
+      "language": "yasnippet",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "yasnippet-line-a7b84299d22f1280:71f3f0ddb694b295",
+      "language": "yasnippet",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "yasnippet-line-d7be757b6b96c29a:af918074f8e98a88",
+      "language": "yasnippet",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    },
+    {
+      "key": "yasnippet-line-fbf05106c07d8732:0057d640903c9a25",
+      "language": "yasnippet",
+      "decided_by": "_sanitize_batch_two_exact_layout"
+    }
+  ]
+}

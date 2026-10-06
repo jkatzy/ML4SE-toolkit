@@ -12,7 +12,7 @@
       "source": "registry:shared_regex_examples[0]",
       "kind": "line",
       "raw_comment": "@q reader cleaning_payload_shared_regex_000 @>",
-      "expected_cleaned": "cleaning_payload_shared_regex_000",
+      "expected_cleaned": "reader cleaning_payload_shared_regex_000",
       "payload_marker": "cleaning_payload_shared_regex_000"
     },
     {
@@ -38,6 +38,22 @@
       "raw_comment": "// cleaning_payload_grouped_shared_regex_002_first\n// cleaning_payload_grouped_shared_regex_002_second",
       "expected_cleaned": "cleaning_payload_grouped_shared_regex_002_first\ncleaning_payload_grouped_shared_regex_002_second",
       "payload_marker": "cleaning_payload_grouped_shared_regex_002"
+    },
+    {
+      "id": "sanitizer-line-wrapper-000",
+      "source": "registry:sanitizer_line_wrappers[0]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "@q cleaning_payload_sanitizer_line_wrapper_000@>",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
+    },
+    {
+      "id": "sanitizer-line-wrapper-001",
+      "source": "registry:sanitizer_line_wrappers[1]",
+      "kind": "sanitizer_line_wrapper",
+      "raw_comment": "//cleaning_payload_sanitizer_line_wrapper_001",
+      "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_001",
+      "payload_marker": "cleaning_payload_sanitizer_line_wrapper_001"
     }
   ]
 }

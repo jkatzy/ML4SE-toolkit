@@ -68,6 +68,7 @@ test-optional:
 
 lint:
 	$(UV) run ruff check src tests examples
+	$(UV) run ruff format --check src tests examples scripts
 
 smoke:
 	$(UV) run pytest tests/test_smoke.py -q --no-cov

@@ -7,8 +7,7 @@ pytestmark = pytest.mark.unit
 
 def test_stack_v2_haml_banner_removes_comment_opener_and_decorative_hashes():
     raw_comment = (
-        "/ #####################  JAVASCRIPT FOR THE MAP  "
-        "##################################"
+        "/ #####################  JAVASCRIPT FOR THE MAP  ##################################"
     )
 
     assert CommentSanitizer("haml").sanitize(raw_comment) == "JAVASCRIPT FOR THE MAP"

@@ -4,7 +4,7 @@ Batch analyze all code files under a directory using RuleCounter and generate
 colored railroad diagrams based on aggregated counts.
 
 Usage examples:
-  python batch_directory_analysis.py /path/to/src --language python \
+  python scripts/ebnf/batch_directory_analysis.py /path/to/src --language python \
     --work-dir results --extensions .py --top-n 20
 
 Notes:
@@ -25,7 +25,7 @@ import json
 
 # Allow running from repo root without install
 THIS_FILE = Path(__file__).resolve()
-REPO_ROOT = THIS_FILE.parent
+REPO_ROOT = THIS_FILE.parents[2]
 SRC_DIR = REPO_ROOT / "src"
 sys.path.append(str(SRC_DIR))
 
@@ -58,7 +58,12 @@ def aggregate_counts(
             print(f"[WARN] Failed to analyze {fp}: {e}")
         if idx % 50 == 0:
             print(f"Processed {idx}/{total_files} files...")
-        if checkpoint_every and checkpoint_every > 0 and on_checkpoint and idx % checkpoint_every == 0:
+        if (
+            checkpoint_every
+            and checkpoint_every > 0
+            and on_checkpoint
+            and idx % checkpoint_every == 0
+        ):
             part_index = idx // checkpoint_every
             on_checkpoint(dict(total), idx, part_index)
     return dict(total)
@@ -80,7 +85,14 @@ def save_csv(counts: Dict[str, int], out_csv: Path) -> None:
 
 def run_visualization(language: str, counts_json: Path) -> None:
     vis_script = REPO_ROOT / "src/ml4setk/EBNF/visualize_grammars.py"
-    cmd = [sys.executable, str(vis_script), "--languages", language, "--counts-json", str(counts_json)]
+    cmd = [
+        sys.executable,
+        str(vis_script),
+        "--languages",
+        language,
+        "--counts-json",
+        str(counts_json),
+    ]
     print(f"[RUN] {' '.join(cmd)}")
     proc = subprocess.run(cmd, cwd=str(REPO_ROOT))
     if proc.returncode != 0:
@@ -90,14 +102,39 @@ def run_visualization(language: str, counts_json: Path) -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Batch directory EBNF rule counting and visualization")
+    parser = argparse.ArgumentParser(
+        description="Batch directory EBNF rule counting and visualization"
+    )
     parser.add_argument("directory", help="Root directory to scan for code files")
-    parser.add_argument("--language", "-l", default="python", help="Programming language (default: python)")
-    parser.add_argument("--extensions", "-e", nargs="+", default=[".py"], help="File extensions to include (e.g., .py .js)")
-    parser.add_argument("--work-dir", "-w", default="results", help="Working directory for outputs (default: results)")
-    parser.add_argument("--base-name", "-n", default=None, help="Base name for output files (default: derived from directory name)")
+    parser.add_argument(
+        "--language", "-l", default="python", help="Programming language (default: python)"
+    )
+    parser.add_argument(
+        "--extensions",
+        "-e",
+        nargs="+",
+        default=[".py"],
+        help="File extensions to include (e.g., .py .js)",
+    )
+    parser.add_argument(
+        "--work-dir",
+        "-w",
+        default="results",
+        help="Working directory for outputs (default: results)",
+    )
+    parser.add_argument(
+        "--base-name",
+        "-n",
+        default=None,
+        help="Base name for output files (default: derived from directory name)",
+    )
     parser.add_argument("--top-n", type=int, default=20, help="Top N to print in summary")
-    parser.add_argument("--checkpoint-every", type=int, default=50000, help="Save intermediate counts every N files (default: 50000)")
+    parser.add_argument(
+        "--checkpoint-every",
+        type=int,
+        default=50000,
+        help="Save intermediate counts every N files (default: 50000)",
+    )
     args = parser.parse_args()
 
     root = Path(args.directory).resolve()
@@ -121,6 +158,7 @@ def main():
 
     # Count with optional checkpointing
     counter = RuleCounter(language=args.language)
+
     def on_checkpoint(counts_snapshot: Dict[str, int], processed: int, part_index: int) -> None:
         ck_json = work_dir / "counts" / f"{base_name}_part{part_index}_counts.json"
         ck_csv = work_dir / "csv" / f"{base_name}_part{part_index}_counts.csv"
@@ -158,5 +196,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-

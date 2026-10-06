@@ -9,6 +9,7 @@ except ModuleNotFoundError as exc:
 else:
     _TREE_SITTER_IMPORT_ERROR = None
 
+
 class TreeSitterQuery(Query):
     def __init__(self, language):
         if get_language is None or get_parser is None:
@@ -25,7 +26,6 @@ class TreeSitterQuery(Query):
     def contains(self, text, rule):
         return len(self.parse(text, rule)) > 0
 
-
     def parse(self, text, rule):
         tree = self.parser.parse(text.encode())
         node = tree.root_node
@@ -35,9 +35,9 @@ class TreeSitterQuery(Query):
 
         tuples = [
             QueryMatch(
-                text[:node.start_byte],
-                text[node.end_byte:],
-                text[node.start_byte:node.end_byte],
+                text[: node.start_byte],
+                text[node.end_byte :],
+                text[node.start_byte : node.end_byte],
             )
             for node, _ in matches
         ]

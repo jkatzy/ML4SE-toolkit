@@ -229,9 +229,7 @@ def run_report(args: argparse.Namespace, report: Path) -> int:
             print(result.stdout, file=sys.stderr, end="")
         if result.stderr:
             print(result.stderr, file=sys.stderr, end="")
-        output_text = (
-            output_path.read_text(encoding="utf-8") if output_path.exists() else ""
-        )
+        output_text = output_path.read_text(encoding="utf-8") if output_path.exists() else ""
         if output_text:
             print(output_text, file=sys.stderr)
         usage_limit_seen = looks_like_usage_limit(result.stderr)

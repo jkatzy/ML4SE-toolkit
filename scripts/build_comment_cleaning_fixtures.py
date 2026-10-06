@@ -235,6 +235,22 @@ def _unclosed_wrapper_expected(
     return None
 
 
+def _multiline_line_expected(prefix: str, raw_comment: str) -> str:
+    """Strip the placeholder line's marker from every line that carries it.
+
+    A multiline line example, such as a Liquid ``{%`` tag with ``#`` content
+    lines, has no single wrapper; its remaining marked lines are content.
+    """
+
+    line_marker = prefix.rsplit("\n", 1)[-1].strip()
+    bodies = []
+    for line in _normalize_newlines(raw_comment).split("\n"):
+        stripped = line.strip()
+        if stripped.startswith(line_marker):
+            bodies.append(stripped[len(line_marker) :].strip())
+    return "\n".join(bodies)
+
+
 def _example_case(
     syntax: CommentSyntax,
     example: CommentExample,
@@ -272,6 +288,8 @@ def _example_case(
         explicit_expected = _unclosed_wrapper_expected(syntax, raw_comment)
     if explicit_expected is not None:
         expected_cleaned = explicit_expected
+    elif has_inferred_regex_wrapper and example.kind == "line" and "\n" in raw_comment:
+        expected_cleaned = _multiline_line_expected(prefix, raw_comment)
     elif has_inferred_regex_wrapper:
         expected_cleaned = marker
     else:

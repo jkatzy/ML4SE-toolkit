@@ -52,14 +52,10 @@ def load_backlog() -> dict[str, BacklogEntry]:
                 status=row["status"],
                 confidence=row["confidence"],
                 version_scope=row.get("version_scope", "unresolved"),
-                version_specific_syntax=row.get(
-                    "version_specific_syntax", "unresolved"
-                ),
+                version_specific_syntax=row.get("version_specific_syntax", "unresolved"),
                 line_comments=row["line_comments"],
                 block_comments=row["block_comments"],
-                termination_behavior=row.get(
-                    "termination_behavior", "unresolved"
-                ),
+                termination_behavior=row.get("termination_behavior", "unresolved"),
                 nested_comments=row["nested_comments"],
                 recommended_action=row["recommended_action"],
                 docs_source=row["docs_source"],
@@ -222,9 +218,7 @@ def build_index(chunks: dict[str, list[BacklogEntry]]) -> str:
         packet_path = f"{chunk_name}_confirmation_prompt.md"
         report_path = confirmation_report_path(chunk_name)
         lines.append(
-            f"| {chunk_name} | {len(entries)} | "
-            f"[{packet_path}]({packet_path}) | "
-            f"`{report_path}` |"
+            f"| {chunk_name} | {len(entries)} | [{packet_path}]({packet_path}) | `{report_path}` |"
         )
     return "\n".join(lines) + "\n"
 
