@@ -1258,3 +1258,25 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
 )
 def test_iteration_2_literal_rules_keep_surrounding_comments(language, source, expected):
     assert _matches(language, source) == expected
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        pytest.param('(* """*)""" *)\nlet x = 1\n', ['(* """*)""" *)'], id="triple-quoted"),
+        pytest.param('(* @"*)" *)\nlet x = 1\n', ['(* @"*)" *)'], id="verbatim"),
+        pytest.param(
+            '(* @"a""*)" *)\nlet x = 1\n', ['(* @"a""*)" *)'], id="verbatim-doubled-quote"
+        ),
+        pytest.param(
+            '(* @"C:\\" *) x (* y *)\n', ['(* @"C:\\" *)', "(* y *)"], id="verbatim-backslash"
+        ),
+        pytest.param("(* '\"' *) x\n", ["(* '\"' *)"], id="char-literal-quote"),
+        pytest.param('let s = """(* not *)""" (* real *)\n', ["(* real *)"], id="code-triple"),
+        pytest.param('(* "unclosed *)\n', [], id="unclosed-string-in-comment"),
+    ],
+)
+def test_fsharp_strings_inside_block_comments_are_tokenized(source, expected):
+    # F# spec 3.2: strings embedded within block comments are tokenized by the
+    # string literal rules, so a closer inside them does not end the comment.
+    assert _matches("fsharp", source) == expected

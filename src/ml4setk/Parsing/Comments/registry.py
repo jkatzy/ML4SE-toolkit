@@ -2936,7 +2936,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "urweb",
         ),
         nested_delimiters=(("(*", "*)"),),
-        canonical_nested_examples=(
+        # Every member nests (* *) comments: Mathematica, SML, Modula-2/3,
+        # Component Pascal, Isabelle, Ur/Web, Augeas, and ISO 14977 EBNF.
+        shared_nested_examples=(
             CommentExample(
                 "before (* outer (* inner *) outer *) after",
                 "(* outer (* inner *) outer *)",
