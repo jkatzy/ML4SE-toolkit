@@ -30,6 +30,7 @@ from .stack_v3_batch_06_07_contextual import (
 )
 from .stack_v3_batch_08_09_contextual import (
     coq_comment_ranges,
+    fsharp_comment_ranges,
     ocaml_comment_ranges,
     reviewed_batch_08_09_alias_comment_ranges,
 )
@@ -43,11 +44,13 @@ _ECERE_STRING_AWARE_LANGUAGES = {"ecere_projects"}
 _POGOSCRIPT_STRING_AWARE_LANGUAGES = {"pogoscript"}
 _RDF_IRI_AWARE_LANGUAGES = {"sparql", "turtle"}
 _SMALLTALK_STRING_AWARE_LANGUAGES = {"smalltalk"}
-_KOTLIN_STRING_AWARE_LANGUAGES = {"gradle_kotlin_dsl", "kotlin"}
 _NO_ADJACENT_LINE_GROUPING_LANGUAGES = {"java_template_engine", "jte"}
 # Nested-comment scanners for languages that lex literals inside comments.
 _NESTED_COMMENT_SCANNERS = {
     "coq": coq_comment_ranges,
+    "f": fsharp_comment_ranges,
+    "f_sharp": fsharp_comment_ranges,
+    "fsharp": fsharp_comment_ranges,
     "ocaml": ocaml_comment_ranges,
     "rocq": coq_comment_ranges,
     "rocq_prover": coq_comment_ranges,
@@ -358,63 +361,6 @@ def _c_style_double_quoted_string_ranges(text):
     return ranges
 
 
-def _kotlin_string_ranges(text):
-    """Return Kotlin character, regular-string, and raw-string ranges."""
-
-    ranges = []
-    index = 0
-    text_length = len(text)
-
-    while index < text_length:
-        if text.startswith("//", index):
-            index += 2
-            while index < text_length and text[index] not in "\r\n":
-                index += 1
-            continue
-
-        if text.startswith("/*", index):
-            depth = 1
-            index += 2
-            while index < text_length and depth:
-                if text.startswith("/*", index):
-                    depth += 1
-                    index += 2
-                elif text.startswith("*/", index):
-                    depth -= 1
-                    index += 2
-                else:
-                    index += 1
-            continue
-
-        if text.startswith('"""', index):
-            start = index
-            raw_end = text.find('"""', index + 3)
-            index = text_length if raw_end == -1 else raw_end + 3
-            ranges.append((start, index))
-            continue
-
-        if text[index] not in {'"', "'"}:
-            index += 1
-            continue
-
-        start = index
-        quote = text[index]
-        index += 1
-        while index < text_length:
-            if text[index] == "\\":
-                index = min(index + 2, text_length)
-                continue
-            if text[index] == quote:
-                index += 1
-                break
-            if text[index] in "\r\n" and quote == "'":
-                break
-            index += 1
-        ranges.append((start, index))
-
-    return ranges
-
-
 def _pogoscript_string_ranges(text):
     """Return PogoScript string and regexp ranges outside interpolation code."""
 
@@ -716,8 +662,6 @@ def _language_string_ranges(normalized, text):
         return _c_style_double_quoted_string_ranges(text)
     if normalized in _POGOSCRIPT_STRING_AWARE_LANGUAGES:
         return _pogoscript_string_ranges(text)
-    if normalized in _KOTLIN_STRING_AWARE_LANGUAGES:
-        return _kotlin_string_ranges(text)
     if normalized == "ispc":
         return ispc_ignored_ranges(text)
     if normalized == "kerboscript":
@@ -758,14 +702,6 @@ def _language_string_ranges(normalized, text):
     return None
 
 
-@lru_cache(maxsize=None)
-def _compiled_comment_patterns(language):
-    """Return compiled regex comment patterns for ``language``."""
-
-    patterns = get_comment_syntax(language).regex_patterns_for_language(language)
-    return tuple(re.compile(pattern) for pattern in patterns)
-
-
 def _scan_quoted_at(text, start):
     """Scan a simple single-line quoted string opened at ``start``.
 
@@ -790,15 +726,26 @@ def _scan_quoted_at(text, start):
     return length, False
 
 
-def _nested_comment_end(text, start, open_delim, close_delim):
-    """Return the end of the depth-balanced comment opened at ``start``."""
+def _nested_comment_end(text, start, open_delim, close_delim, memo=None):
+    """Return the end of the depth-balanced comment opened at ``start``.
 
+    ``memo`` remembers the offset after which no closer exists, so many
+    unclosed openers do not each rescan to the end of the text.
+    """
+
+    memo_key = ("nested-unclosed", open_delim, close_delim)
+    if memo is not None and start >= memo.get(memo_key, len(text) + 1):
+        return None
     depth = 0
     search_from = start
     while True:
         open_index = text.find(open_delim, search_from)
         close_index = text.find(close_delim, search_from)
         if close_index == -1:
+            # No closer exists at or after ``search_from``, so no opener
+            # starting there can close either.
+            if memo is not None:
+                memo[memo_key] = min(memo.get(memo_key, len(text) + 1), search_from)
             return None
         if open_index != -1 and open_index <= close_index:
             depth += 1
@@ -808,6 +755,156 @@ def _nested_comment_end(text, start, open_delim, close_delim):
         search_from = close_index + len(close_delim)
         if depth == 0:
             return search_from
+
+
+_LAZY_BODIES = (r"[\S\s]*?", r"[\s\S]*?")
+_UNESCAPED_BACKREFERENCE = re.compile(r"(?<!\\)\\([1-9])")
+
+
+def _split_lazy_block_pattern(pattern_text):
+    """Split ``OPEN[\\s\\S]*?CLOSE`` into its opener and closer, if possible.
+
+    The split is used only when the lazy body appears once at the top level,
+    outside groups and character classes, with no top-level alternation, so
+    searching for the opener and then the first closer is equivalent to the
+    original regex.
+    """
+
+    depth = 0
+    in_class = False
+    index = 0
+    split_at = None
+    while index < len(pattern_text):
+        char = pattern_text[index]
+        if char == "\\":
+            index += 2
+            continue
+        if in_class:
+            if char == "]":
+                in_class = False
+            index += 1
+            continue
+        if depth == 0:
+            body = next((b for b in _LAZY_BODIES if pattern_text.startswith(b, index)), None)
+            if body is not None:
+                if split_at is not None:
+                    return None
+                split_at = (index, index + len(body))
+                index += len(body)
+                continue
+            if char == "|":
+                return None
+        if char == "[":
+            in_class = True
+        elif char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+        index += 1
+    if split_at is None or depth != 0:
+        return None
+    opener, closer = pattern_text[: split_at[0]], pattern_text[split_at[1] :]
+    if not opener or not closer or opener.startswith("(?") and not opener.startswith("(?<"):
+        return None
+    return opener, closer
+
+
+class _CommentPatternMatcher:
+    """Search one registry comment pattern without quadratic rescans."""
+
+    def __init__(self, pattern_text):
+        self.pattern = re.compile(pattern_text)
+        split = _split_lazy_block_pattern(pattern_text)
+        self.opener = None if split is None else re.compile(split[0])
+        self.closer_text = None if split is None else split[1]
+        self.closer_has_groups = bool(
+            split is not None and _UNESCAPED_BACKREFERENCE.search(split[1])
+        )
+        self._closers = {}
+
+    def _closer_for(self, groups):
+        key = tuple(groups)
+        closer = self._closers.get(key)
+        if closer is None:
+            text = _UNESCAPED_BACKREFERENCE.sub(
+                lambda match: re.escape(groups[int(match.group(1)) - 1] or ""),
+                self.closer_text,
+            )
+            closer = self._closers[key] = re.compile(text)
+        return closer
+
+    def search(self, text, offset, memo):
+        """Return the leftmost match span at or after ``offset``, or ``None``."""
+
+        if self.opener is None:
+            match = self.pattern.search(text, offset)
+            return None if match is None else match.span()
+        while True:
+            opened = self.opener.search(text, offset)
+            if opened is None:
+                return None
+            groups = opened.groups() if self.closer_has_groups else ()
+            memo_key = (id(self), groups)
+            if opened.end() >= memo.get(memo_key, len(text) + 1):
+                if not self.closer_has_groups:
+                    return None
+                offset = opened.start() + 1
+                continue
+            closed = self._closer_for(groups).search(text, opened.end())
+            if closed is not None:
+                return opened.start(), closed.end()
+            memo[memo_key] = min(memo.get(memo_key, len(text) + 1), opened.end())
+            if not self.closer_has_groups:
+                return None
+            offset = opened.start() + 1
+
+
+@lru_cache(maxsize=None)
+def _comment_pattern_matchers(language):
+    """Return search helpers for the regex comment patterns of ``language``."""
+
+    patterns = get_comment_syntax(language).regex_patterns_for_language(language)
+    return tuple(_CommentPatternMatcher(pattern) for pattern in patterns)
+
+
+class _PatternCursor:
+    """Find the next usable match of one comment regex at or after an offset.
+
+    Searching lazily from the scanner position, instead of collecting every
+    overlapped match up front, keeps long comments that contain their own
+    opener (for example spliced ``//`` lines) linear.
+    """
+
+    def __init__(self, matcher, language, text, excluded, memo):
+        self.matcher = matcher
+        self.memo = memo
+        self.language = language
+        self.text = text
+        self.excluded = excluded
+        self.found = None
+        self.exhausted = False
+
+    def peek(self, offset):
+        """Return the first ``(start, end)`` match starting at or after ``offset``."""
+
+        if self.found is not None and self.found[0] >= offset:
+            return self.found
+        self.found = None
+        while not self.exhausted:
+            span = self.matcher.search(self.text, offset, self.memo)
+            if span is None:
+                self.exhausted = True
+                break
+            start, end = _adjust_language_specific_regex_range(
+                self.language, self.text, span[0], span[1]
+            )
+            if end > start and not _starts_with_excluded_comment_prefix(
+                self.text, start, self.excluded
+            ):
+                self.found = (start, end)
+                break
+            offset = span[0] + 1
+        return self.found
 
 
 def _comment_aware_ignored_ranges(language, text, string_ranges=None):
@@ -828,23 +925,22 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
     syntax = get_comment_syntax(language)
     excluded = syntax.excluded_comment_prefixes_for_language(language)
     comment_ends = {}
+    memo = {}
 
     def add_comment(start, end):
         if end > start and not _starts_with_excluded_comment_prefix(text, start, excluded):
             comment_ends[start] = max(comment_ends.get(start, start), end)
 
+    cursors = []
     reviewed_ranges = _reviewed_alias_ranges(language, text)
     if reviewed_ranges is not None:
         for start, end in reviewed_ranges:
             add_comment(start, end)
     else:
-        for pattern in _compiled_comment_patterns(language):
-            for match in pattern.finditer(text, overlapped=True):
-                add_comment(
-                    *_adjust_language_specific_regex_range(
-                        language, text, match.start(), match.end()
-                    )
-                )
+        cursors = [
+            _PatternCursor(matcher, language, text, excluded, memo)
+            for matcher in _comment_pattern_matchers(language)
+        ]
         if syntax.contextual_extractor:
             for start, end in contextual_comment_ranges(syntax.contextual_extractor, text):
                 add_comment(start, end)
@@ -861,7 +957,7 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
             nested_starts.setdefault(index, []).append((open_delim, close_delim))
             index = text.find(open_delim, index + 1)
 
-    rules = lexical_rules_for(normalized)
+    rules = lexical_rules_for(language)
     if string_ranges is None:
         string_starts = None
         candidate_chars = rules.quote_chars | rules.literal_start_chars
@@ -873,17 +969,44 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
         quote_positions = list(string_starts)
 
     events = sorted(set(comment_ends) | set(nested_starts) | set(quote_positions))
+    event_index = 0
     result = []
+    # A heredoc body is protected from the line after its opener; the rest of
+    # the opener's line is still scanned before the body is skipped.
+    pending = None
     # Some protected ranges deliberately start at -1 to cover offset zero.
     position = float("-inf")
-    for start in events:
-        if start < position:
-            continue
+    scan_from = float("-inf")
+    while True:
+        offset = max(position, scan_from)
+        while event_index < len(events) and events[event_index] < offset:
+            event_index += 1
+        candidates = [events[event_index]] if event_index < len(events) else []
+        regex_offset = max(0, int(offset)) if offset != float("-inf") else 0
+        for cursor in cursors:
+            found = cursor.peek(regex_offset)
+            if found is not None:
+                candidates.append(found[0])
+        if not candidates:
+            break
+        start = min(candidates)
+        scan_from = start + 1
+        if pending is not None and start >= pending[0]:
+            if position <= pending[0]:
+                result.append(pending)
+                position = pending[1]
+            pending = None
+            if start < position:
+                continue
         end = comment_ends.get(start)
+        for cursor in cursors:
+            found = cursor.found
+            if found is not None and found[0] == start and (end is None or found[1] > end):
+                end = found[1]
         for open_delim, close_delim in nested_starts.get(start, ()):
             if _starts_with_excluded_comment_prefix(text, start, excluded):
                 continue
-            nested_end = _nested_comment_end(text, start, open_delim, close_delim)
+            nested_end = _nested_comment_end(text, start, open_delim, close_delim, memo)
             if nested_end is not None and (end is None or nested_end > end):
                 end = nested_end
         if end is not None:
@@ -897,17 +1020,22 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
             continue
         char = text[start]
         if char in rules.literal_start_chars:
-            literal_end = next(
+            literal_range = next(
                 (
-                    match.end()
-                    for match in (pattern.match(text, start) for pattern in rules.literals)
-                    if match is not None and match.end() > start
+                    found
+                    for found in (literal.scan(text, start, memo) for literal in rules.literals)
+                    if found is not None
                 ),
                 None,
             )
-            if literal_end is not None:
-                result.append((start, literal_end))
-                position = literal_end
+            if literal_range is not None:
+                range_start, range_end = literal_range
+                if range_start > start:
+                    if pending is None:
+                        pending = literal_range
+                    continue
+                result.append(literal_range)
+                position = range_end
                 continue
         if char not in rules.quote_chars:
             continue
@@ -917,6 +1045,8 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
         if closed:
             result.append((start, end))
         position = end
+    if pending is not None and position <= pending[0]:
+        result.append(pending)
     return result
 
 
@@ -1101,31 +1231,49 @@ class LineCommentQuery(Query):
             if scan_limit is None:
                 scan_limit = default_limit
 
+        def accept(start, end):
+            return (
+                end <= scan_limit
+                and not _starts_inside_ignored_range(start, quoted_ranges)
+                and not _starts_with_excluded_comment_prefix(
+                    text,
+                    start,
+                    self.excluded_comment_prefixes,
+                )
+            )
+
         match_ranges = [
             _adjust_language_specific_regex_range(self.language, text, start, end)
-            for start, end in self._iter_match_ranges(text)
-            if end <= scan_limit
-            and not _starts_inside_ignored_range(start, quoted_ranges)
-            and not _starts_with_excluded_comment_prefix(
-                text,
-                start,
-                self.excluded_comment_prefixes,
-            )
+            for start, end in self._iter_match_ranges(text, accept)
         ]
         if self.contextual_extractor:
             match_ranges.extend(contextual_comment_ranges(self.contextual_extractor, text))
         return self._dedupe_match_ranges(match_ranges)
 
-    def _iter_match_ranges(self, text):
-        """Yield raw regex match ranges for all configured patterns."""
+    def _iter_match_ranges(self, text, accept=None):
+        """Yield regex match ranges for all configured patterns, lazily.
 
-        for pattern in self.regexes:
-            seen_starts = set()
-            for match in pattern.finditer(text, overlapped=True):
-                if match.start() in seen_starts:
-                    continue
-                seen_starts.add(match.start())
-                yield match.start(), match.end()
+        After an accepted match the search resumes at its end; after a
+        rejected one it resumes one character later, so overlapping
+        candidates are still found without rescanning long comments.
+        """
+
+        memo = {}
+        for matcher in _comment_pattern_matchers(self.language):
+            offset = 0
+            while True:
+                span = matcher.search(text, offset, memo)
+                if span is None:
+                    break
+                start, end = span
+                if accept is None or accept(start, end):
+                    yield start, end
+                    adjusted_end = _adjust_language_specific_regex_range(
+                        self.language, text, start, end
+                    )[1]
+                    offset = max(adjusted_end, start + 1)
+                else:
+                    offset = start + 1
 
     @staticmethod
     def _dedupe_match_ranges(ranges):

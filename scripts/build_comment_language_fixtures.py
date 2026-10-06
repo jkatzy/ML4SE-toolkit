@@ -17,6 +17,8 @@ FIXTURE_SUFFIX = ".code"
 _DEFAULT_STRING_PROBE_QUOTES = ('"', "'", "`")
 # Empty tuples record raw syntaxes where quote-looking bytes do not shield
 # comment markers. Other entries narrow probes to documented literal forms.
+# In HTML/XML text content quotes are prose, so a comment inside them is real.
+_NO_STRING_PROBE_FAMILIES = frozenset({"markup_style"})
 _STRING_PROBE_QUOTES_BY_LANGUAGE = {
     "circom": (),
     "coq": ('"',),
@@ -26,6 +28,8 @@ _STRING_PROBE_QUOTES_BY_LANGUAGE = {
     "pddl": (),
     # TeXbook ch. 7: TeX has no string syntax; % starts a comment outside verbatim.
     "tex": (),
+    # CommonMark 6.6: quotes in prose are text, so an HTML comment inside them is real.
+    "markdown": (),
 }
 
 
@@ -355,6 +359,8 @@ def _grouped_line_cases_for_examples(examples) -> list[FixtureCase]:
 
 
 def _string_probe_cases_for_examples(language, examples) -> list[FixtureCase]:
+    if get_comment_syntax(language).family_name in _NO_STRING_PROBE_FAMILIES:
+        return []
     quote_candidates = _STRING_PROBE_QUOTES_BY_LANGUAGE.get(language, _DEFAULT_STRING_PROBE_QUOTES)
     if not quote_candidates:
         return []

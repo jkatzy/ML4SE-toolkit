@@ -1,10 +1,9 @@
 {
   "schema_version": 1,
-  "family_name": "hash_pipe_style",
-  "canonical_language": "racket",
+  "family_name": "tcl_style",
+  "canonical_language": "tcl",
   "language_keys": [
-    "racket",
-    "common_lisp"
+    "tcl"
   ],
   "sanitizer_mode": "wrapped",
   "cases": [
@@ -12,7 +11,7 @@
       "id": "shared_regex-000-line",
       "source": "registry:shared_regex_examples[0]",
       "kind": "line",
-      "raw_comment": "; cleaning_payload_shared_regex_000",
+      "raw_comment": "# cleaning_payload_shared_regex_000",
       "expected_cleaned": "cleaning_payload_shared_regex_000",
       "payload_marker": "cleaning_payload_shared_regex_000"
     },
@@ -20,25 +19,25 @@
       "id": "grouped-shared_regex-000-line",
       "source": "generated-group:registry:shared_regex_examples[0]",
       "kind": "grouped_line",
-      "raw_comment": "; cleaning_payload_grouped_shared_regex_000_first\n; cleaning_payload_grouped_shared_regex_000_second",
+      "raw_comment": "# cleaning_payload_grouped_shared_regex_000_first\n# cleaning_payload_grouped_shared_regex_000_second",
       "expected_cleaned": "cleaning_payload_grouped_shared_regex_000_first\ncleaning_payload_grouped_shared_regex_000_second",
       "payload_marker": "cleaning_payload_grouped_shared_regex_000"
+    },
+    {
+      "id": "shared_regex-001-line",
+      "source": "registry:shared_regex_examples[1]",
+      "kind": "line",
+      "raw_comment": "# cleaning_payload_shared_regex_001",
+      "expected_cleaned": "cleaning_payload_shared_regex_001",
+      "payload_marker": "cleaning_payload_shared_regex_001"
     },
     {
       "id": "sanitizer-line-wrapper-000",
       "source": "registry:sanitizer_line_wrappers[0]",
       "kind": "sanitizer_line_wrapper",
-      "raw_comment": "#;cleaning_payload_sanitizer_line_wrapper_000",
+      "raw_comment": "#cleaning_payload_sanitizer_line_wrapper_000",
       "expected_cleaned": "cleaning_payload_sanitizer_line_wrapper_000",
       "payload_marker": "cleaning_payload_sanitizer_line_wrapper_000"
-    },
-    {
-      "id": "nested-delimiter-000",
-      "source": "registry:nested_delimiters[0]",
-      "kind": "nested",
-      "raw_comment": "#| cleaning_payload_nested_delimiter_000_outer_before #| cleaning_payload_nested_delimiter_000_inner |# cleaning_payload_nested_delimiter_000_outer_after |#",
-      "expected_cleaned": "cleaning_payload_nested_delimiter_000_outer_before #| cleaning_payload_nested_delimiter_000_inner |# cleaning_payload_nested_delimiter_000_outer_after",
-      "payload_marker": "cleaning_payload_nested_delimiter_000"
     }
   ]
 }

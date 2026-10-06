@@ -1236,22 +1236,41 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         language_excluded_comment_prefixes=(("c", ("/*!re2c",)),),
         # C11 5.1.1.2: line splicing (translation phase 2) precedes comment
         # removal (phase 3), so a backslash-newline continues a // comment.
-        language_regex_patterns=tuple(
-            (
-                language,
+        language_regex_patterns=(
+            # C11 5.1.1.2: line splicing (translation phase 2) precedes comment
+            # removal (phase 3), so a backslash-newline continues a // comment.
+            *(
                 (
-                    r"\/\*[\S\s]*?\*\/",
-                    r"/{2}(?:\\(?:\r\n|\r|\n)|[^\r\n])*",
-                ),
-            )
-            for language in (
-                "c",
-                "c++",
-                "cuda",
-                "objective-c",
-                "objective_c_plus_plus",
-                "objective_cpp",
-            )
+                    language,
+                    (
+                        r"\/\*[\S\s]*?\*\/",
+                        r"/{2}(?:\\(?:\r\n|\r|\n)|[^\r\n])*",
+                    ),
+                )
+                for language in (
+                    "c",
+                    "c++",
+                    "cuda",
+                    "objective-c",
+                    "objective_c_plus_plus",
+                    "objective_cpp",
+                )
+            ),
+            # ECMA-262 12.3: LineTerminator includes U+2028 and U+2029.
+            *(
+                (language, (r"\/\*[\S\s]*?\*\/", r"/{2}[^\r\n\u2028\u2029]*"))
+                for language in ("javascript", "jsx", "typescript", "tsx")
+            ),
+            # C# spec 6.3.2: new_line also includes U+0085, U+2028, and U+2029.
+            *(
+                (language, (r"\/\*[\S\s]*?\*\/", r"/{2}[^\r\n\x85\u2028\u2029]*"))
+                for language in ("c#", "c_sharp", "csharp")
+            ),
+            # JLS 3.3/3.4: a \u000a or \u000d escape is a line terminator.
+            (
+                "java",
+                (r"\/\*[\S\s]*?\*\/", r"/{2}(?:(?!\\u+000[aAdD])[^\r\n])*"),
+            ),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -1579,7 +1598,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "sed",
             "selinux_policy",
             "talon",
-            "tcl",
+           
             "tcsh",
             "toml",
             "turtle",
@@ -1630,6 +1649,35 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
+        family_name="tcl_style",
+        canonical_name="tcl",
+        # Tcl(n) rule [10]: # starts a comment only where Tcl expects the first
+        # word of a command: at line start, or after ; [ or {.
+        regex_patterns=(r"(?m)(?<=(?:^|[;\[{])[ \t]*)#.*",),
+        sanitizer_line_wrappers=(("#", ""),),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\nputs ok",
+                "# note",
+                "Comment at the start of a command.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "set x 1 ;# note\nputs $x",
+                "# note",
+                "Comment after a command separator.",
+                kind="line",
+            ),
+        ),
+        documentation_source="https://www.tcl-lang.org/man/tcl/TclCmd/Tcl.htm",
+        confidence="verified",
+        notes=(
+            "A # is a comment only where a command is expected; inside a command's "
+            "arguments, as in set x #y, it is ordinary text."
+        ),
+    ),
+    CommentSyntax(
         family_name="dockerfile_style",
         canonical_name="dockerfile",
         regex_patterns=(r"(?m)(?<=^[ \t]*)#.*",),
@@ -1660,7 +1708,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="ignore_list_style",
         canonical_name="ignore_list",
-        regex_patterns=(r"(?m)^#[^\r\n]*",),
+        # git dir.c add_patterns_from_buffer skips a UTF-8 byte order mark.
+        regex_patterns=(r"(?m)(?:^|(?<=\A\ufeff))#[^\r\n]*",),
         shared_regex_examples=(
             CommentExample(
                 "# note\n*.log",
@@ -1860,6 +1909,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "vhdl",
         ),
         regex_patterns=(r"--.*",),
+        # IEEE 1076-2008 15.9: VHDL-2008 adds delimited /* */ comments.
+        language_regex_patterns=(("vhdl", (r"--.*", r"\/\*[\S\s]*?\*\/")),),
+        sanitizer_block_wrappers=(("/*", "*/"),),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n-- note\nsuffix",
@@ -1963,6 +2015,16 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "pddl",
         ),
         regex_patterns=(r";[^\r\n]*",),
+        # R7RS 2.2: #; comments out the next datum.
+        language_regex_patterns=(
+            (
+                "scheme",
+                (
+                    r";[^\r\n]*",
+                    r'#;\s*(?P<d>(?:[\'`,]|,@)*(?:\((?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\)|\[(?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\]|"(?:\\[\s\S]|[^"\\])*"|[^\s()\[\]";]+))',
+                ),
+            ),
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n; note\nsuffix",
@@ -2810,7 +2872,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "xslt",
             "ecmarkup",
         ),
-        regex_patterns=(r"<!--([\S\s]*?)-->",),
+        # WHATWG HTML 13.2.5.43-52 and CommonMark 6.6: <!--> and <!---> are empty
+        # comments, and --!> also closes a comment.
+        regex_patterns=(r"<!--(?:-?>|[\S\s]*?--!?>)",),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n<!-- note -->\nsuffix",
@@ -2886,6 +2950,19 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="matlab_style",
         canonical_name="matlab",
         aliases=("lilypond", "turing", "txl"),
+        # MATLAB 'Comments': %{ and %} open and close a block only alone on
+        # their lines, and block comments nest; otherwise % starts a line comment.
+        language_regex_patterns=(
+            (
+                "matlab",
+                (
+                    r"(?m)(?<=^[ \t]*)(?P<b>%\{[ \t]*\r?$"
+                    r"(?:\r?\n(?:[ \t]*(?&b)[ \t]*\r?$|(?![ \t]*%[{}][ \t]*\r?$)[^\r\n]*))*"
+                    r"\r?\n[ \t]*%\})(?=[ \t]*\r?$)",
+                    r"(?m)%(?!(?<=^[ \t]*%)[{}][ \t]*\r?$)[^\r\n]*",
+                ),
+            ),
+        ),
         regex_patterns=(
             r"%{([\S\s]*?)%}",
             r"%(?!\{|\}).*",
@@ -2902,9 +2979,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         canonical_regex_examples=(
             CommentExample(
-                "prefix\n%{ note %}\nsuffix",
-                "%{ note %}",
-                "Percent-brace block comment.",
+                "x = 1;\n%{\nnote\n%}\ny = 2;",
+                "%{\nnote\n%}",
+                "MATLAB block comment with %{ and %} alone on their lines.",
                 kind="block",
             ),
         ),
@@ -2913,7 +2990,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="perl_style",
         canonical_name="perl",
         regex_patterns=(
-            r"(?ms)^[ \t]*=pod\b[\s\S]*?^[ \t]*=cut\b[ \t]*$",
+            # perlpod: any =command paragraph (=pod, =head1, =over, ...) begins Pod.
+            r"(?ms)^[ \t]*=(?!cut\b)[A-Za-z]\w*\b[\s\S]*?^[ \t]*=cut\b[ \t]*$",
             # perldata: $#array and $#{expr} are last-index expressions.
             r"(?<!\$)#.*",
         ),
@@ -3124,7 +3202,11 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="batchfile_style",
         canonical_name="batchfile",
-        regex_patterns=(r"(?mi)^[ \t]*(?:rem\b.*|::.*)$",),
+        regex_patterns=(
+            r"(?mi)^[ \t]*(?:rem\b.*|::.*)$",
+            # cmd /?: &, &&, ||, and ( start a new command, which may be REM.
+            r"(?i)(?<=(?:&|\||\()[ \t]*@?)rem\b[^\r\n]*",
+        ),
         sanitizer_line_wrappers=(("::", ""), ("REM", "")),
         shared_regex_examples=(
             CommentExample(
@@ -3133,6 +3215,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "Batch REM comment.",
                 kind="line",
                 grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "echo ok & rem note\nafter",
+                "rem note",
+                "REM command after a command separator.",
+                kind="line",
             ),
         ),
     ),
@@ -3196,7 +3284,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="quote_line_style",
         canonical_name="vim_script",
         aliases=("viml",),
-        regex_patterns=(r"\".*",),
+        # Vim :help :comment: " starts a comment where a command is expected, or
+        # after a command when no closing quote follows on the line; a quoted
+        # argument such as echo "text" is a string.
+        regex_patterns=(r"(?m)(?<=^[ \t:]*)\".*", r"(?m)\"[^\"\r\n]*(?=\r?$)"),
         shared_regex_examples=(
             CommentExample(
                 'prefix\n" note\nsuffix',
@@ -3396,6 +3487,17 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="racket",
         aliases=("common_lisp",),
         regex_patterns=(r";[^\r\n]*",),
+        # Racket reference 1.3.9: #; comments out the next datum.
+        language_regex_patterns=(
+            (
+                "racket",
+                (
+                    r";[^\r\n]*",
+                    r'#;\s*(?P<d>(?:[\'`,]|,@)*(?:\((?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\)|\[(?:[^()\[\]"\\;]|"(?:\\[\s\S]|[^"\\])*"|\\[\s\S]|;[^\r\n]*|(?&d))*\]|"(?:\\[\s\S]|[^"\\])*"|[^\s()\[\]";]+))',
+                ),
+            ),
+        ),
+        sanitizer_line_wrappers=(("#;", ""),),
         nested_delimiters=(("#|", "|#"),),
         shared_regex_examples=(
             CommentExample(
@@ -7379,7 +7481,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         canonical_name="leo",
         regex_patterns=(
             r"//[^\r\n\u202a-\u202e\u2066-\u2069]*",
-            r"/\*(?:(?!\*/)[^\u202a-\u202e\u2066-\u2069])*\*/",
+            r"/\*[^\u202a-\u202e\u2066-\u2069]*?\*/",
         ),
         shared_regex_examples=(
             CommentExample(

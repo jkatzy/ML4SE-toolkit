@@ -739,18 +739,8 @@ def test_lexical_rules_keep_ordinary_literals_and_comments(language, source, exp
 
 
 # ---------------------------------------------------------------------------
-# Second breaker iteration: spec-derived cases that are open defects.
+# Second breaker iteration: spec-derived cases (now fixed).
 # ---------------------------------------------------------------------------
-
-_ITERATION_2_REASONS = {
-    "line_terminator": "Unicode or escape-form line terminators do not end line comments.",
-    "string": "Multi-line or custom-delimited string syntax is not protected.",
-    "interpolation": "Strings nested inside interpolation are not protected.",
-    "literal": "Language literal or escape syntax is not protected.",
-    "end_marker": "Text after the end-of-program marker is treated as code.",
-    "comment_form": "Comment form is missing or has the wrong boundaries.",
-    "bom": "A leading byte order mark hides a line-anchored comment.",
-}
 
 _ITERATION_2_CASES = [
     pytest.param(
@@ -759,7 +749,6 @@ _ITERATION_2_CASES = [
         ["// a", "// b"],
         "ECMA-262 12.3: U+2028 LINE SEPARATOR is a LineTerminator.",
         id="javascript-line-separator-ends-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["line_terminator"]),
     ),
     pytest.param(
         "typescript",
@@ -767,7 +756,6 @@ _ITERATION_2_CASES = [
         ["// a"],
         "TypeScript inherits ECMAScript LineTerminator, including U+2029.",
         id="typescript-paragraph-separator-ends-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["line_terminator"]),
     ),
     pytest.param(
         "csharp",
@@ -775,7 +763,6 @@ _ITERATION_2_CASES = [
         ["// a"],
         "C# spec 6.3.2: new_line includes U+2028.",
         id="csharp-line-separator-ends-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["line_terminator"]),
     ),
     pytest.param(
         "csharp",
@@ -783,7 +770,6 @@ _ITERATION_2_CASES = [
         ["// a"],
         "C# spec 6.3.2: new_line includes U+0085.",
         id="csharp-next-line-ends-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["line_terminator"]),
     ),
     pytest.param(
         "java",
@@ -791,7 +777,6 @@ _ITERATION_2_CASES = [
         ["// a ", "// b"],
         "JLS 3.3/3.4: Unicode escapes are translated before line terminators and comments.",
         id="java-unicode-escape-newline-ends-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["line_terminator"]),
     ),
     pytest.param(
         "c++",
@@ -799,7 +784,6 @@ _ITERATION_2_CASES = [
         ["// it's"],
         "C++14 [lex.icon]: ' is a digit separator.",
         id="cpp-single-digit-separator",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "c++",
@@ -807,7 +791,6 @@ _ITERATION_2_CASES = [
         ["// real"],
         'C++ [lex.string]: R"d( ... )d" ends only at )d".',
         id="cpp-raw-string-delimiter",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "c++",
@@ -815,7 +798,6 @@ _ITERATION_2_CASES = [
         [],
         "C++ [lex.string]: raw strings may span lines.",
         id="cpp-multiline-raw-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "javascript",
@@ -823,7 +805,6 @@ _ITERATION_2_CASES = [
         ["// real"],
         "ECMA-262 13.2.8: substitutions inside templates are expressions.",
         id="javascript-nested-template-backtick",
-        marks=_open_defect(_ITERATION_2_REASONS["interpolation"]),
     ),
     pytest.param(
         "php",
@@ -831,7 +812,6 @@ _ITERATION_2_CASES = [
         [],
         "PHP manual 'Heredoc': body text is string data.",
         id="php-heredoc",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "php",
@@ -839,7 +819,6 @@ _ITERATION_2_CASES = [
         [],
         "PHP manual 'Nowdoc': body text is string data.",
         id="php-nowdoc",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "ruby",
@@ -847,7 +826,6 @@ _ITERATION_2_CASES = [
         [],
         "Ruby syntax/literals 'Here Documents'.",
         id="ruby-squiggly-heredoc",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "ruby",
@@ -855,7 +833,6 @@ _ITERATION_2_CASES = [
         [],
         "Ruby: __END__ at line start ends the program; the rest is DATA.",
         id="ruby-end-marker",
-        marks=_open_defect(_ITERATION_2_REASONS["end_marker"]),
     ),
     pytest.param(
         "ruby",
@@ -863,7 +840,6 @@ _ITERATION_2_CASES = [
         [],
         "Ruby syntax/literals: %r{} regexp literal.",
         id="ruby-percent-regexp",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "perl",
@@ -871,7 +847,6 @@ _ITERATION_2_CASES = [
         [],
         "perlop '<<EOF': here-document body is string data.",
         id="perl-heredoc",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "perl",
@@ -879,7 +854,6 @@ _ITERATION_2_CASES = [
         ["=head1 NAME\n\nfoo\n\n=cut"],
         "perlpod: any =command paragraph at line start begins Pod, not only =pod.",
         id="perl-pod-head-command",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "perl",
@@ -887,7 +861,6 @@ _ITERATION_2_CASES = [
         [],
         "perldata: __END__ ends the program text.",
         id="perl-end-marker",
-        marks=_open_defect(_ITERATION_2_REASONS["end_marker"]),
     ),
     pytest.param(
         "shell",
@@ -895,7 +868,6 @@ _ITERATION_2_CASES = [
         ["# it's"],
         "POSIX XCU 2.2.1: backslash quotes the next character outside quotes.",
         id="shell-escaped-apostrophe",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "shell",
@@ -903,7 +875,6 @@ _ITERATION_2_CASES = [
         ["# c'"],
         "POSIX XCU 2.2.2: a backslash inside single quotes is literal.",
         id="shell-single-quote-has-no-escape",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "shell",
@@ -911,7 +882,6 @@ _ITERATION_2_CASES = [
         [],
         "POSIX XCU 2.7.4: here-document lines are data.",
         id="shell-heredoc",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "plpgsql",
@@ -919,7 +889,6 @@ _ITERATION_2_CASES = [
         [],
         "PostgreSQL 4.1.2.4: dollar-quoted string constants.",
         id="plpgsql-dollar-quote",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "plpgsql",
@@ -927,7 +896,6 @@ _ITERATION_2_CASES = [
         [],
         "PostgreSQL 4.1.2.4: tagged dollar quotes.",
         id="plpgsql-tagged-dollar-quote",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "tsql",
@@ -935,7 +903,6 @@ _ITERATION_2_CASES = [
         [],
         "T-SQL 'Database identifiers': [ ] delimited identifiers.",
         id="tsql-bracket-identifier",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "r",
@@ -943,7 +910,6 @@ _ITERATION_2_CASES = [
         [],
         'R ?Quotes (R >= 4.0): raw strings r"(...)".',
         id="r-raw-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "scss",
@@ -951,7 +917,6 @@ _ITERATION_2_CASES = [
         [],
         "Sass 'Special Functions': unquoted url() is parsed specially.",
         id="scss-unquoted-url",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "less",
@@ -959,7 +924,6 @@ _ITERATION_2_CASES = [
         [],
         "Less parses url() arguments as URLs.",
         id="less-unquoted-url",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "html",
@@ -967,7 +931,6 @@ _ITERATION_2_CASES = [
         ["<!-->", "<!-- b -->"],
         "WHATWG HTML 13.2.5.43: '<!-->' emits an empty comment.",
         id="html-abrupt-empty-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "html",
@@ -975,7 +938,6 @@ _ITERATION_2_CASES = [
         ["<!-- a --!>"],
         "WHATWG HTML 13.2.5.52: '--!>' closes a comment.",
         id="html-bang-comment-close",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "markdown",
@@ -983,7 +945,6 @@ _ITERATION_2_CASES = [
         [],
         "CommonMark 4.5: fenced code block content is literal text.",
         id="markdown-fenced-code",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "vhdl",
@@ -991,7 +952,6 @@ _ITERATION_2_CASES = [
         ["/* a */"],
         "IEEE 1076-2008 15.9: delimited comments.",
         id="vhdl-2008-delimited-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "dart",
@@ -999,7 +959,6 @@ _ITERATION_2_CASES = [
         ["// real"],
         "Dart spec 17.7: interpolated expressions may contain strings.",
         id="dart-nested-interpolation-quote",
-        marks=_open_defect(_ITERATION_2_REASONS["interpolation"]),
     ),
     pytest.param(
         "swift",
@@ -1007,7 +966,6 @@ _ITERATION_2_CASES = [
         ["// real"],
         "Swift reference: interpolated expressions may contain strings.",
         id="swift-nested-interpolation-quote",
-        marks=_open_defect(_ITERATION_2_REASONS["interpolation"]),
     ),
     pytest.param(
         "swift",
@@ -1015,7 +973,6 @@ _ITERATION_2_CASES = [
         ["// real"],
         'Swift reference: #"..."# raw strings end at "#.',
         id="swift-raw-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "python",
@@ -1023,7 +980,6 @@ _ITERATION_2_CASES = [
         ["# real"],
         "PEP 701 (Python 3.12): f-string replacement fields may reuse the quote.",
         id="python-312-fstring-same-quote",
-        marks=_open_defect(_ITERATION_2_REASONS["interpolation"]),
     ),
     pytest.param(
         "kotlin",
@@ -1031,7 +987,6 @@ _ITERATION_2_CASES = [
         ["// real"],
         "Kotlin grammar: ${} templates contain expressions, including strings.",
         id="kotlin-nested-template-string",
-        marks=_open_defect(_ITERATION_2_REASONS["interpolation"]),
     ),
     pytest.param(
         "zig",
@@ -1039,7 +994,6 @@ _ITERATION_2_CASES = [
         [],
         "Zig reference 'Multiline String Literals': \\\\ lines are string data.",
         id="zig-multiline-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "fsharp",
@@ -1047,7 +1001,6 @@ _ITERATION_2_CASES = [
         ['(* "*)" *)'],
         "F# spec 3.2: strings inside block comments are tokenized.",
         id="fsharp-string-inside-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "nix",
@@ -1055,7 +1008,6 @@ _ITERATION_2_CASES = [
         [],
         "Nix manual: ''...'' indented strings.",
         id="nix-indented-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "hcl",
@@ -1063,7 +1015,6 @@ _ITERATION_2_CASES = [
         [],
         "HCL native syntax spec: heredoc templates.",
         id="hcl-heredoc",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "jsonnet",
@@ -1071,7 +1022,6 @@ _ITERATION_2_CASES = [
         [],
         "Jsonnet spec: ||| text blocks.",
         id="jsonnet-text-block",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "julia",
@@ -1079,7 +1029,6 @@ _ITERATION_2_CASES = [
         [],
         "Julia manual: triple-quoted string literals.",
         id="julia-triple-quoted-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "nim",
@@ -1087,7 +1036,6 @@ _ITERATION_2_CASES = [
         [],
         "Nim manual: triple-quoted string literals.",
         id="nim-triple-quoted-string",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "elixir",
@@ -1095,7 +1043,6 @@ _ITERATION_2_CASES = [
         [],
         "Elixir sigils: ~r/.../.",
         id="elixir-regex-sigil",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "elixir",
@@ -1103,7 +1050,6 @@ _ITERATION_2_CASES = [
         [],
         "Elixir sigils: ~s(...).",
         id="elixir-string-sigil",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "common_lisp",
@@ -1111,7 +1057,6 @@ _ITERATION_2_CASES = [
         [],
         "CLHS 2.1.4.2: |...| multiple escape in symbols.",
         id="common-lisp-multiple-escape",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "racket",
@@ -1119,7 +1064,6 @@ _ITERATION_2_CASES = [
         [],
         "Racket reference 1.3.2: |...| in symbols.",
         id="racket-bar-symbol",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "scheme",
@@ -1127,7 +1071,6 @@ _ITERATION_2_CASES = [
         ["#;(foo bar)"],
         "R7RS 2.2: #; comments out the next datum.",
         id="scheme-datum-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "racket",
@@ -1135,7 +1078,6 @@ _ITERATION_2_CASES = [
         ["#;(foo bar)"],
         "Racket reference 1.3.9: #; datum comments.",
         id="racket-datum-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "matlab",
@@ -1143,7 +1085,6 @@ _ITERATION_2_CASES = [
         ["%{\n%{\ninner\n%}\nouter\n%}"],
         "MATLAB 'Comments': block comments can be nested.",
         id="matlab-nested-block-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "matlab",
@@ -1151,7 +1092,6 @@ _ITERATION_2_CASES = [
         ["%{ not a block"],
         "MATLAB 'Comments': %{ opens a block only alone on its line.",
         id="matlab-inline-percent-brace-is-line-comment",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "tcl",
@@ -1159,7 +1099,6 @@ _ITERATION_2_CASES = [
         [],
         "Tcl(n) rule [10]: # starts a comment only where a command is expected.",
         id="tcl-hash-in-argument",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "cmake",
@@ -1167,7 +1106,6 @@ _ITERATION_2_CASES = [
         [],
         "cmake-language(7): bracket arguments.",
         id="cmake-bracket-argument",
-        marks=_open_defect(_ITERATION_2_REASONS["string"]),
     ),
     pytest.param(
         "vim_script",
@@ -1175,7 +1113,6 @@ _ITERATION_2_CASES = [
         [],
         'Vim :help :comment: " in a command argument is a string.',
         id="vim-echo-string",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "tex",
@@ -1183,7 +1120,6 @@ _ITERATION_2_CASES = [
         ["% real"],
         "LaTeX manual \\verb: the argument is verbatim.",
         id="latex-verb",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "tex",
@@ -1191,7 +1127,6 @@ _ITERATION_2_CASES = [
         [],
         "LaTeX manual: verbatim environment content is literal.",
         id="latex-verbatim-environment",
-        marks=_open_defect(_ITERATION_2_REASONS["literal"]),
     ),
     pytest.param(
         "batchfile",
@@ -1199,7 +1134,6 @@ _ITERATION_2_CASES = [
         ["rem b"],
         "cmd /?: & separates commands; REM is a command.",
         id="batchfile-rem-after-ampersand",
-        marks=_open_defect(_ITERATION_2_REASONS["comment_form"]),
     ),
     pytest.param(
         "ignore_list",
@@ -1207,7 +1141,6 @@ _ITERATION_2_CASES = [
         ["# note"],
         "git dir.c add_patterns_from_buffer: skip_utf8_bom.",
         id="gitignore-utf8-bom",
-        marks=_open_defect(_ITERATION_2_REASONS["bom"]),
     ),
 ]
 
@@ -1218,14 +1151,10 @@ def test_iteration_2_extraction_follows_language_contract(language, source, expe
     assert _matches(language, source) == expected
 
 
-# Performance: each input is far smaller than real source files, and a linear
-# scan finishes well under the budget. The marked cases are quadratic today.
-# Wall-clock budgets vary by machine, so these marks are non-strict.
+# Performance: each input is far smaller than real source files. These cases
+# used to rescan to EOF from every opener; a linear scan finishes them in a few
+# hundredths of a second, far under the budget.
 _PARSE_BUDGET_SECONDS = 0.5
-
-
-def _open_performance_defect(reason):
-    return pytest.mark.xfail(reason=reason, strict=False)
 
 
 @pytest.mark.parametrize(
@@ -1236,30 +1165,24 @@ def _open_performance_defect(reason):
             "/* ",
             2500,
             id="leo-many-unclosed-blocks",
-            marks=_open_performance_defect("Leo block regex rescans to EOF from every opener."),
         ),
         pytest.param(
             "c++",
             "// a \\\n",
             2500,
             id="cpp-long-line-splice-chain",
-            marks=_open_performance_defect("Overlapped splice-aware // regex rescans the chain."),
         ),
         pytest.param(
             "powershell",
             '@"\n ',
             8000,
             id="powershell-many-unclosed-here-strings",
-            marks=_open_performance_defect(
-                "Here-string literal is retried to EOF at every opener."
-            ),
         ),
         pytest.param(
             "lua",
             "--[[ ",
             12000,
             id="lua-many-unclosed-long-comments",
-            marks=_open_performance_defect("Long-comment regex rescans to EOF from every opener."),
         ),
         pytest.param("c", "/* ", 7000, id="c-many-unclosed-blocks"),
         pytest.param("javascript", "` ", 20000, id="javascript-many-backticks"),
@@ -1274,3 +1197,64 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+# Guards for the iteration-2 lexical rules: each literal form stays narrow
+# enough that ordinary comments around it are still extracted.
+@pytest.mark.parametrize(
+    ("language", "source", "expected"),
+    [
+        pytest.param("f#", "let f' = 1 // it's\n", ["// it's"], id="fsharp-alias-key"),
+        pytest.param("c#", 'var p = @"C:\\"; // real\n', ["// real"], id="csharp-alias-key"),
+        pytest.param("shell", 'echo "a # b" # real\n', ["# real"], id="shell-double-quotes"),
+        pytest.param(
+            "shell",
+            "cat <<EOF # real\nbody # not\nEOF\necho hi # after\n",
+            ["# real", "# after"],
+            id="shell-heredoc-opener-line",
+        ),
+        pytest.param("shell", "x=$((1 << 2)) # real\n", ["# real"], id="shell-shift"),
+        pytest.param(
+            "ruby",
+            "s = <<~EOS # real\n  # not\nEOS\nx = 1 # after\n",
+            ["# real", "# after"],
+            id="ruby-heredoc-opener-line",
+        ),
+        pytest.param("perl", "print 1 << 2; # real\n", ["# real"], id="perl-shift"),
+        pytest.param("python", 'x = f"{v!r:>{w}}" # real\n', ["# real"], id="python-format-spec"),
+        pytest.param("python", 's = f"{{#}}" # real\n', ["# real"], id="python-doubled-brace"),
+        pytest.param("markdown", "It's <!-- c --> isn't\n", ["<!-- c -->"], id="markdown-prose"),
+        pytest.param(
+            "html", "<p>It's</p><!-- c --><p>isn't</p>\n", ["<!-- c -->"], id="html-prose"
+        ),
+        pytest.param(
+            "html",
+            '<p title="<!-- no -->">x</p><!-- real -->\n',
+            ["<!-- real -->"],
+            id="html-attribute-value",
+        ),
+        pytest.param("xml", "<a>It's</a><!-- c --><b>isn't</b>\n", ["<!-- c -->"], id="xml-prose"),
+        pytest.param(
+            "kotlin", 'val s = """a "quoted" b""" // real\n', ["// real"], id="kotlin-raw"
+        ),
+        pytest.param("plpgsql", "SELECT $1 -- real\n", ["-- real"], id="plpgsql-parameter"),
+        pytest.param("tsql", "SELECT a[1] -- real\n", ["-- real"], id="tsql-subscript"),
+        pytest.param("cmake", "set(x [y]) # real\n", ["# real"], id="cmake-plain-bracket"),
+        pytest.param("matlab", "x = [1 2]'; % real\n", ["% real"], id="matlab-transpose"),
+        pytest.param("vim_script", 'let x = "a" " real\n', ['" real'], id="vim-after-string"),
+        pytest.param("tcl", "proc f {} { # real\n}\n", ["# real"], id="tcl-in-body"),
+        pytest.param("batchfile", "echo (a) & rem real\n", ["rem real"], id="batch-after-paren"),
+        pytest.param("racket", "(f #;x y) ; real\n", ["#;x", "; real"], id="racket-atom-datum"),
+        pytest.param(
+            "fsharp", "let m = (*) 2 3 // c\n(* b *)", ["// c", "(* b *)"], id="fsharp-op"
+        ),
+        pytest.param(
+            "lua",
+            "--[==[ a ]] b ]==] x --[[ c ]]\n",
+            ["--[==[ a ]] b ]==]", "--[[ c ]]"],
+            id="lua-levels",
+        ),
+    ],
+)
+def test_iteration_2_literal_rules_keep_surrounding_comments(language, source, expected):
+    assert _matches(language, source) == expected

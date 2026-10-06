@@ -555,13 +555,13 @@
       "sha256": "9664ebc2b383f5a6f5762fc18bc148b1d310e56f0cc050bf398c8d401b8058fd"
     },
     {
-      "case_count": 141,
+      "case_count": 140,
       "extractor_boundary_case_count": 0,
       "family_name": "hash_line_style",
       "filename": "hash_line_style.json",
       "oracle_exception_case_count": 8,
-      "sanitizer_case_count": 133,
-      "sha256": "74c1204d1d31002e6ae36241078a139892695d8c8d9b67302e076990bb1c43e0"
+      "sanitizer_case_count": 132,
+      "sha256": "27cf340c0f01ba5203681cfea315116c57cb8187f4101c0776e837bcb521efa2"
     },
     {
       "case_count": 3,
@@ -1210,6 +1210,15 @@
       "oracle_exception_case_count": 0,
       "sanitizer_case_count": 9,
       "sha256": "dc48927bbaa0b101c36b0e260980c5378ed407a7248e626708ad1b8407d1f2e6"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "tcl_style",
+      "filename": "tcl_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "13d7266873eb4ed1d200fc4c8baaf34ba7893325c6b256d30a80a182023bef90"
     },
     {
       "case_count": 3,

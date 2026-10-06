@@ -11,5 +11,3 @@ value_2 = 2
  * @throws Exception Description of exception.
 -->
 value_3 = 3
-value_string_1 = "not <!-- string_probe_1 -->";
-value_4 = 4
