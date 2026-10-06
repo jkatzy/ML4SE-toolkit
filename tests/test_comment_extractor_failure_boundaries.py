@@ -2,7 +2,7 @@
 
 import pytest
 
-from ml4setk import CommentQuery
+from ml4setk import CommentQuery, sanitize_comment
 from ml4setk.Parsing.Comments import get_comment_syntax
 
 pytestmark = pytest.mark.unit
@@ -487,3 +487,88 @@ def test_genero_forms_screen_context_preserves_genuine_brace_comments():
         "{ genuine comment after a different statement }",
         "-- actual line comment",
     ]
+
+
+def _extract_and_clean(language, source):
+    matches = [match.match for match in CommentQuery(language).parse(source)]
+    return matches, [sanitize_comment(language, match) for match in matches]
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "expected_matches", "expected_cleaned"),
+    [
+        # cmd: a leading @ only suppresses command echo; @REM is still REM.
+        pytest.param(
+            "batchfile", "@REM note\necho ok\n", ["@REM note"], ["note"], id="batch-at-rem"
+        ),
+        pytest.param(
+            "batchfile", "@rem note\necho ok\n", ["@rem note"], ["note"], id="batch-at-rem-lower"
+        ),
+        pytest.param("batchfile", "@REMARK x\necho ok\n", [], [], id="batch-at-remark-not-rem"),
+        # GNU make manual 3.1: a trailing backslash not escaped by another
+        # backslash continues the comment across lines.
+        pytest.param(
+            "makefile",
+            "# a \\\n  b\nall:\n\techo ok\n",
+            ["# a \\\n  b"],
+            ["a \\\n  b"],
+            id="makefile-continued-comment",
+        ),
+        pytest.param(
+            "makefile",
+            "# a \\\nb \\\nc\nall:\n",
+            ["# a \\\nb \\\nc"],
+            ["a \\\nb \\\nc"],
+            id="makefile-twice-continued-comment",
+        ),
+        pytest.param(
+            "makefile",
+            "# a \\\\\nall:\n",
+            ["# a \\\\"],
+            ["a \\\\"],
+            id="makefile-escaped-backslash-ends-comment",
+        ),
+        # Ruby: the rest of the =end line is part of the embedded document.
+        pytest.param(
+            "ruby",
+            "x = 1\n=begin\nnote\n=end trailing\ny = 2\n",
+            ["=begin\nnote\n=end trailing"],
+            ["note\ntrailing"],
+            id="ruby-end-with-trailing-text",
+        ),
+        pytest.param(
+            "ruby",
+            "x = 1\n=begin\nnote\n=endx\n=end\ny = 2\n",
+            ["=begin\nnote\n=endx\n=end"],
+            ["note\n=endx"],
+            id="ruby-endx-does-not-close",
+        ),
+        # GHC: {-# ... #-} is a compiler pragma, not a comment, but inside a
+        # comment its opener still nests like {-.
+        pytest.param(
+            "haskell",
+            "{-# INLINE f #-}\nf = 1 -- note\n",
+            ["-- note"],
+            ["note"],
+            id="haskell-pragma-is-not-comment",
+        ),
+        pytest.param(
+            "haskell",
+            "{-# LANGUAGE GADTs #-}\nmodule M where\n",
+            [],
+            [],
+            id="haskell-language-pragma",
+        ),
+        pytest.param(
+            "haskell",
+            "x = 1 {- a {-# b #-} c -} y\n",
+            ["{- a {-# b #-} c -}"],
+            ["a {-# b #-} c"],
+            id="haskell-pragma-syntax-nests-inside-comment",
+        ),
+    ],
+)
+def test_spec_comment_boundaries_extract_and_clean(
+    language, source, expected_matches, expected_cleaned
+):
+    assert _extract_and_clean(language, source) == (expected_matches, expected_cleaned)

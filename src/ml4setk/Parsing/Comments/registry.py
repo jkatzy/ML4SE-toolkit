@@ -1636,6 +1636,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             # POSIX XCU 2.3: # starts a comment only at the beginning of a word,
             # so $#, ${#x}, and a#b are not comments.
             ("shell", (r"(?<![^\s;&|()<>])#.*",)),
+            # GNU make manual 3.1: a trailing backslash not escaped by another
+            # backslash continues the comment across lines.
+            ("makefile", (r"#(?:[^\\\r\n]|\\(?:\r?\n|[^\r\n]|\Z))*",)),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -3128,7 +3131,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         aliases=("opal", "ragel_in_ruby_host"),
         regex_patterns=(
             r"#(?:[^\r\n]|\r(?!\n))*",
-            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[ \t]*$",
+            # Ruby embedded documents end at =end followed by whitespace or
+            # EOL; the rest of that line belongs to the comment.
+            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end(?=[ \t\r\n]|\Z)[^\r\n]*",
         ),
         shared_regex_examples=(
             CommentExample(
@@ -3207,11 +3212,12 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="batchfile_style",
         canonical_name="batchfile",
         regex_patterns=(
-            r"(?mi)^[ \t]*(?:rem\b.*|::.*)$",
+            # A leading @ only suppresses command echo; @REM is still REM.
+            r"(?mi)^[ \t]*(?:@?rem\b.*|::.*)$",
             # cmd /?: &, &&, ||, and ( start a new command, which may be REM.
             r"(?i)(?<=(?:&|\||\()[ \t]*@?)rem\b[^\r\n]*",
         ),
-        sanitizer_line_wrappers=(("::", ""), ("REM", "")),
+        sanitizer_line_wrappers=(("::", ""), ("@REM", ""), ("REM", "")),
         shared_regex_examples=(
             CommentExample(
                 "REM note\nafter",
@@ -4097,6 +4103,14 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"(?:[^\r\n]|\r(?!\n))*",
         ),
         excluded_comment_prefixes=("-->",),
+        # GHC and Curry {-# ... #-} pragmas are compiler directives. Dhall,
+        # Idris, and PureScript have no such pragmas, so {-# is a comment there.
+        language_excluded_comment_prefixes=(
+            ("haskell", ("{-#",)),
+            ("literate_haskell", ("{-#",)),
+            ("c2hs_haskell", ("{-#",)),
+            ("curry", ("{-#",)),
+        ),
         nested_delimiters=(("{-", "-}"),),
         shared_regex_examples=(
             CommentExample(
@@ -5173,7 +5187,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         family_name="rdoc_style",
         canonical_name="rdoc",
         regex_patterns=(
-            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end\b[ \t]*$",
+            # Ruby embedded documents end at =end followed by whitespace or
+            # EOL; the rest of that line belongs to the comment.
+            r"(?ms)^[ \t]*=begin\b[\s\S]*?^[ \t]*=end(?=[ \t\r\n]|\Z)[^\r\n]*",
             r"\/\*[\S\s]*?\*\/",
             r"#.*",
         ),

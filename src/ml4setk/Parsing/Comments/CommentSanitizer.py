@@ -2319,21 +2319,37 @@ def _sanitize_liquid_inline_comment_tag(raw_comment: str) -> str | None:
     return _normalize_sanitized_body("\n".join(bodies))
 
 
-def _sanitize_slang_spliced_line(raw_comment: str) -> str | None:
+def _sanitize_spliced_line_comment(raw_comment: str, opener: str) -> str | None:
+    """Strip only the opener from a line comment continued by trailing backslashes."""
+
     normalized = _normalize_newlines(raw_comment)
     candidate = normalized.lstrip(" \t")
     physical_lines = candidate.split("\n")
     if (
-        not candidate.startswith("//")
+        not candidate.startswith(opener)
         or len(physical_lines) < 2
         or not all(line.endswith("\\") for line in physical_lines[:-1])
     ):
         return None
 
-    body = candidate[2:]
+    body = candidate[len(opener) :]
     if body.startswith((" ", "\t")):
         body = body[1:]
     return _normalize_sanitized_body(body)
+
+
+def _sanitize_ruby_embedded_document(raw_comment: str) -> str | None:
+    """Clean ``=begin``/``=end`` documents, keeping text on either marker line."""
+
+    match = re.fullmatch(
+        r"[ \t]*=begin\b([^\n]*)\n(.*?)\n?[ \t]*=end\b([^\n]*)",
+        raw_comment,
+        re.DOTALL,
+    )
+    if match is None:
+        return None
+    lines = [match.group(1).strip(), match.group(2), match.group(3).strip()]
+    return _normalize_sanitized_body("\n".join(line for line in lines if line))
 
 
 def _sanitize_grouped_block_lines(lines: list[str], wrappers: tuple[tuple[str, str], ...]) -> str:
@@ -7436,6 +7452,11 @@ class CommentSanitizer:
             if liquid_result is not None:
                 return liquid_result
 
+        if self.syntax.canonical_name in {"ruby", "rdoc"}:
+            ruby_document = _sanitize_ruby_embedded_document(raw_comment)
+            if ruby_document is not None:
+                return ruby_document
+
         if self._language_key == "scaml":
             scaml_result = _sanitize_scaml_scoped_comment(raw_comment)
             if scaml_result is not None:
@@ -7572,8 +7593,9 @@ class CommentSanitizer:
             if unclosed_block_result is not None:
                 return unclosed_block_result
 
-        if self._language_key == "slang":
-            spliced_line_result = _sanitize_slang_spliced_line(raw_comment)
+        spliced_line_opener = {"slang": "//", "makefile": "#"}.get(self._language_key)
+        if spliced_line_opener is not None:
+            spliced_line_result = _sanitize_spliced_line_comment(raw_comment, spliced_line_opener)
             if spliced_line_result is not None:
                 return spliced_line_result
 
