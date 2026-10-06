@@ -320,9 +320,7 @@ def test_sql_executable_directive_is_not_a_block_comment():
     ]
 
 
-@pytest.mark.parametrize(
-    "language", ["hiveql", "piglatin", "plpgsql", "plsql", "sqlpl", "tsql"]
-)
+@pytest.mark.parametrize("language", ["hiveql", "piglatin", "plpgsql", "plsql", "sqlpl", "tsql"])
 def test_mysql_executable_syntax_remains_a_comment_in_other_sql_dialects(
     language: str,
 ):

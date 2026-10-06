@@ -54,9 +54,7 @@ def find_release_issues(tag: str | None = None) -> tuple[str, list[str]]:
         expected_tag = f"v{pyproject_version}"
         if normalized_tag != expected_tag:
             issues.append(
-                "Tag mismatch: "
-                f"expected {expected_tag} from pyproject.toml, "
-                f"got {normalized_tag}"
+                f"Tag mismatch: expected {expected_tag} from pyproject.toml, got {normalized_tag}"
             )
 
     return pyproject_version, issues
@@ -87,8 +85,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Release version check passed for version {version}.")
     else:
         print(
-            "Release version check passed for "
-            f"version {version} and tag {normalize_tag(args.tag)}."
+            f"Release version check passed for version {version} and tag {normalize_tag(args.tag)}."
         )
     return 0
 

@@ -32,9 +32,7 @@ REQUIRED_SUBHEADINGS = (
 )
 ACTION_PATTERN = re.compile(r"(?m)^- Recommended action: `([^`]+)`[ \t]*$")
 REVIEWER_PATTERN = re.compile(r"(?m)^- Reviewer: (?P<reviewer>\S.*?)[ \t]*$")
-REVIEW_DATE_PATTERN = re.compile(
-    r"(?m)^- Review date: (?P<date>\d{4}-\d{2}-\d{2})[ \t]*$"
-)
+REVIEW_DATE_PATTERN = re.compile(r"(?m)^- Review date: (?P<date>\d{4}-\d{2}-\d{2})[ \t]*$")
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
@@ -68,9 +66,7 @@ def load_assignments(path: Path) -> dict[str, list[str]]:
             raise ValueError(f"batch {batch!r} contains an invalid label")
         duplicates = assigned.intersection(labels)
         if duplicates:
-            raise ValueError(
-                "labels assigned more than once: " + ", ".join(sorted(duplicates))
-            )
+            raise ValueError("labels assigned more than once: " + ", ".join(sorted(duplicates)))
         assigned.update(labels)
         result[batch] = labels
     return result
@@ -97,9 +93,7 @@ def validate_report(
     expected = set(expected_labels)
     actual = set(sections).difference({"Dataset provenance"})
 
-    if require_reviewed and not re.search(
-        r"(?m)^- Review status: `reviewed`[ \t]*$", text
-    ):
+    if require_reviewed and not re.search(r"(?m)^- Review status: `reviewed`[ \t]*$", text):
         errors.append(f"{path.name}: report is not marked reviewed")
 
     for label in sorted(expected.difference(actual), key=str.casefold):
@@ -124,9 +118,7 @@ def validate_report(
                 f"{path.name}: {label}: expected one recommendation, found {len(actions)}"
             )
         elif actions[0] not in ALLOWED_ACTIONS:
-            errors.append(
-                f"{path.name}: {label}: unsupported recommendation {actions[0]!r}"
-            )
+            errors.append(f"{path.name}: {label}: unsupported recommendation {actions[0]!r}")
         if section.count("https://") < 1:
             errors.append(f"{path.name}: {label}: no HTTPS evidence link")
         if require_reviewed:
@@ -169,12 +161,8 @@ def main(argv: Sequence[str] | None = None) -> None:
     )
     if errors:
         raise SystemExit("Research validation failed:\n- " + "\n- ".join(errors))
-    report_count = sum(
-        (args.report_dir / f"{batch}.md").is_file() for batch in assignments
-    )
-    print(
-        f"Validated {report_count}/{len(assignments)} Stack v3 full research reports"
-    )
+    report_count = sum((args.report_dir / f"{batch}.md").is_file() for batch in assignments)
+    print(f"Validated {report_count}/{len(assignments)} Stack v3 full research reports")
 
 
 if __name__ == "__main__":

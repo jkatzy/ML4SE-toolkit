@@ -9,6 +9,6 @@ class FIMInput(AbstractInput):
 
     def generate(self, query_tuple):
         prefix, suffix, middle = unpack_query_match(query_tuple)
-        
+
         text = self.FIM_PREFIX + prefix + self.FIM_SUFFIX + suffix + self.FIM_MIDDLE
         return text, middle

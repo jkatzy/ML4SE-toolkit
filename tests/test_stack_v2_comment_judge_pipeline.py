@@ -97,14 +97,10 @@ def test_stack_v2_comment_judge_pipeline_keeps_later_languages_after_failure(
     assert result.returncode == 1, result.stdout + result.stderr
     assert (tmp_path / "out" / "languages" / "python" / "manifest.jsonl").exists()
     assert (tmp_path / "out" / "languages" / "java" / "manifest.jsonl").exists()
-    assert (
-        tmp_path / "out" / "languages" / "coffeescript" / "manifest.jsonl"
-    ).exists()
+    assert (tmp_path / "out" / "languages" / "coffeescript" / "manifest.jsonl").exists()
     assert (tmp_path / "out" / "reports" / "java.md").exists()
 
-    aggregate_rows = (tmp_path / "out" / "manifest.jsonl").read_text(
-        encoding="utf-8"
-    ).splitlines()
+    aggregate_rows = (tmp_path / "out" / "manifest.jsonl").read_text(encoding="utf-8").splitlines()
     assert len(aggregate_rows) == 3
     assert '"language":"coffeescript"' in aggregate_rows[-1]
 

@@ -41,9 +41,7 @@ def looks_like_usage_limit(*values: Any) -> bool:
     """Return true when command output looks like an LLM usage-limit failure."""
 
     text = "\n".join(
-        normalized
-        for value in values
-        if (normalized := normalize_output(value)) is not None
+        normalized for value in values if (normalized := normalize_output(value)) is not None
     ).lower()
     return any(phrase in text for phrase in USAGE_LIMIT_PHRASES)
 

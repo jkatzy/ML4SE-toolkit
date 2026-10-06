@@ -29,9 +29,7 @@ DEFAULT_OUTPUT_ROOT = ROOT / "tmp" / "stack_v3_comment_research"
 STACK_V3_DATASET = "HuggingFaceCode/stack-v3-full"
 STACK_V3_STATS_REPOSITORY = "HuggingFaceCode/stack-v3-train"
 STACK_V3_REVISION = "716a043a6c2adc34a2032b159364908a09ffe4ec"
-STACK_V3_FULL_STATS_SHA256 = (
-    "804cbdea6fc5329282096628a9865f5e91079f845dbcb82cd0da7af4be0a6d45"
-)
+STACK_V3_FULL_STATS_SHA256 = "804cbdea6fc5329282096628a9865f5e91079f845dbcb82cd0da7af4be0a6d45"
 STACK_V3_FULL_STATS_URL = (
     "https://huggingface.co/datasets/"
     f"{STACK_V3_STATS_REPOSITORY}/resolve/{STACK_V3_REVISION}/"
@@ -353,17 +351,14 @@ def research_queue(
         missing_labels = [label for label in intake_labels if label not in by_language]
         if missing_labels:
             raise ValueError(
-                "pinned Stack v3 intake labels missing from inventory: "
-                + ", ".join(missing_labels)
+                "pinned Stack v3 intake labels missing from inventory: " + ", ".join(missing_labels)
             )
         return [by_language[label] for label in intake_labels]
 
     return [
         record
         for record in records
-        if (
-            record.registry_status == "missing" and record.v2_status == "new_or_renamed"
-        )
+        if (record.registry_status == "missing" and record.v2_status == "new_or_renamed")
         or record.language in MAPPING_REVIEW_LABELS
     ]
 
@@ -490,9 +485,7 @@ def write_outputs(
         "schema_version": 1,
         "dataset": STACK_V3_DATASET,
         "revision": STACK_V3_REVISION,
-        "batches": {
-            name: [record.language for record in batch] for name, batch in chunks
-        },
+        "batches": {name: [record.language for record in batch] for name, batch in chunks},
     }
     (output_root / "assignments.json").write_text(
         json.dumps(assignments, indent=2, sort_keys=True) + "\n", encoding="utf-8"

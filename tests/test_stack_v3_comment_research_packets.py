@@ -59,9 +59,10 @@ def test_inventory_discrepancy_labels_receive_a_separate_review() -> None:
         ["Befunge", "Python", "Python_traceback"],
     )
 
-    assert [
-        record.language for record in PACKETS.inventory_discrepancy_queue(records)
-    ] == ["Befunge", "Python traceback"]
+    assert [record.language for record in PACKETS.inventory_discrepancy_queue(records)] == [
+        "Befunge",
+        "Python traceback",
+    ]
 
 
 def test_inventory_rejects_duplicate_labels() -> None:

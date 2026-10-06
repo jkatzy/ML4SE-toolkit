@@ -6,7 +6,7 @@ pytestmark = pytest.mark.unit
 
 
 def _sanitize_extracted_autoit_block(source: str) -> str:
-    match, = CommentQuery("autoit").parse(source)
+    (match,) = CommentQuery("autoit").parse(source)
     return CommentSanitizer("autoit").sanitize(match)
 
 

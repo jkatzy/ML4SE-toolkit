@@ -1026,21 +1026,15 @@ def test_lua_family_long_brackets_inside_quotes_and_comments_do_not_mask_comment
 def test_lua_legacy_crlf_comment_slice_preserves_carriage_return():
     sample = "-- legacy note\r\nlocal value = 1"
 
-    assert CommentQuery("lua").parse(sample) == [
-        _expected_query_match(sample, "-- legacy note\r")
-    ]
+    assert CommentQuery("lua").parse(sample) == [_expected_query_match(sample, "-- legacy note\r")]
 
 
 @pytest.mark.parametrize("language", ("luau", "xmake"))
 @pytest.mark.parametrize("line_ending", ("\r\n", "\r"))
-def test_new_lua_aliases_exclude_carriage_return_from_short_comments(
-    language, line_ending
-):
+def test_new_lua_aliases_exclude_carriage_return_from_short_comments(language, line_ending):
     sample = f"-- alias note{line_ending}local value = 1"
 
-    assert CommentQuery(language).parse(sample) == [
-        _expected_query_match(sample, "-- alias note")
-    ]
+    assert CommentQuery(language).parse(sample) == [_expected_query_match(sample, "-- alias note")]
 
 
 def test_carbon_quote_in_comment_prose_does_not_mask_later_comment():

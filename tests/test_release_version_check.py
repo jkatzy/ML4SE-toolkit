@@ -50,9 +50,7 @@ def test_find_release_issues_flags_internal_version_mismatch(
 
     _, issues = MODULE.find_release_issues()
 
-    assert issues == [
-        "Version mismatch: pyproject.toml has 0.0.2, package __version__ has 0.0.3"
-    ]
+    assert issues == ["Version mismatch: pyproject.toml has 0.0.2, package __version__ has 0.0.3"]
 
 
 def test_find_release_issues_flags_tag_mismatch(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
@@ -62,9 +60,7 @@ def test_find_release_issues_flags_tag_mismatch(tmp_path: Path, monkeypatch: pyt
 
     _, issues = MODULE.find_release_issues(tag="v0.0.3")
 
-    assert issues == [
-        "Tag mismatch: expected v0.0.2 from pyproject.toml, got v0.0.3"
-    ]
+    assert issues == ["Tag mismatch: expected v0.0.2 from pyproject.toml, got v0.0.3"]
 
 
 def test_normalize_tag_strips_github_prefix():

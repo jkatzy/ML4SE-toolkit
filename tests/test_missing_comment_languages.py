@@ -10,19 +10,7 @@ def _comment_matches(language, sample):
 
 
 def _nl_binary_sample(first_line, payload="\x00# binary payload"):
-    return (
-        f"{first_line}\n"
-        "0 0 0\n"
-        "0 0\n"
-        "0 0\n"
-        "0 0\n"
-        "0 0\n"
-        "0 0\n"
-        "0 0\n"
-        "0 0\n"
-        "0 0 0 0 0\n"
-        f"{payload}"
-    )
+    return f"{first_line}\n0 0 0\n0 0\n0 0\n0 0\n0 0\n0 0\n0 0\n0 0\n0 0 0 0 0\n{payload}"
 
 
 def test_checksums_only_accepts_column_zero_manifest_comments():
@@ -74,9 +62,7 @@ def test_visual_studio_solution_comments_must_occupy_the_line():
 def test_visual_studio_solution_uses_trim_whitespace_semantics():
     sample = "Microsoft Visual Studio Solution File\n\u2003# note\nGlobal\n"
 
-    assert _comment_matches("microsoft_visual_studio_solution", sample) == [
-        "\u2003# note"
-    ]
+    assert _comment_matches("microsoft_visual_studio_solution", sample) == ["\u2003# note"]
     match = CommentQuery("microsoft_visual_studio_solution").parse(sample)[0]
     assert CommentSanitizer("microsoft_visual_studio_solution").sanitize(match) == "note"
 
@@ -84,9 +70,7 @@ def test_visual_studio_solution_uses_trim_whitespace_semantics():
 def test_visual_studio_solution_supports_stream_reader_cr_lines():
     sample = "Microsoft Visual Studio Solution File\r# first\r\t# second\rGlobal\r"
 
-    assert _comment_matches("microsoft_visual_studio_solution", sample) == [
-        "# first\r\t# second"
-    ]
+    assert _comment_matches("microsoft_visual_studio_solution", sample) == ["# first\r\t# second"]
 
 
 def test_omgrofl_requires_a_complete_leading_w00t_token():
@@ -206,20 +190,13 @@ def test_pogoscript_interpolation_keeps_real_comments_visible():
 
 
 def test_pogoscript_nested_interpolation_masks_only_literal_segments():
-    sample = (
-        'message = "before #((value + (1))) after // string data"\n'
-        "value = 1 // actual\n"
-    )
+    sample = 'message = "before #((value + (1))) after // string data"\nvalue = 1 // actual\n'
 
     assert _comment_matches("pogoscript", sample) == ["// actual"]
 
 
 def test_pogoscript_crlf_interpolation_keeps_block_comments_visible():
-    sample = (
-        'message = "before\r\n'
-        "#(value /* block ) note */\r\n"
-        ') after"\r\n'
-    )
+    sample = 'message = "before\r\n#(value /* block ) note */\r\n) after"\r\n'
 
     assert _comment_matches("pogoscript", sample) == ["/* block ) note */"]
 
@@ -232,17 +209,13 @@ def test_pogoscript_crlf_interpolation_keeps_block_comments_visible():
     ],
 )
 def test_pogoscript_unterminated_strings_do_not_hide_later_markers(sample):
-    assert _comment_matches("pogoscript", sample) == [
-        "// malformed-source marker"
-    ]
+    assert _comment_matches("pogoscript", sample) == ["// malformed-source marker"]
 
 
 def test_pogoscript_malformed_interpolation_does_not_hide_the_rest_of_the_file():
     sample = 'message = "before #(value\n// malformed-source marker'
 
-    assert _comment_matches("pogoscript", sample) == [
-        "// malformed-source marker"
-    ]
+    assert _comment_matches("pogoscript", sample) == ["// malformed-source marker"]
 
 
 def test_pogoscript_unterminated_regexp_has_no_comment_match():
@@ -251,10 +224,7 @@ def test_pogoscript_unterminated_regexp_has_no_comment_match():
 
 @pytest.mark.parametrize("numeric_token", ["1", "0x1"])
 def test_pogoscript_regexp_can_immediately_follow_a_numeric_token(numeric_token):
-    sample = (
-        f"x = {numeric_token}r/a\\/*b/\n"
-        "next = 1 // actual\n"
-    )
+    sample = f"x = {numeric_token}r/a\\/*b/\nnext = 1 // actual\n"
 
     assert _comment_matches("pogoscript", sample) == ["// actual"]
 
@@ -324,9 +294,7 @@ def test_figlet_font_does_not_apply_quote_masking_to_the_hardblank():
 def test_figlet_font_preserves_unicode_comment_payloads():
     sample = "flf2a$ 1 1 1 0 1\n注釈 Примечание ملاحظة 🧪\n@ glyph\n"
 
-    assert _comment_matches("figlet_font", sample) == [
-        "注釈 Примечание ملاحظة 🧪"
-    ]
+    assert _comment_matches("figlet_font", sample) == ["注釈 Примечание ملاحظة 🧪"]
 
 
 def test_figlet_font_preserves_a_declared_blank_comment_line():
@@ -342,9 +310,7 @@ def test_figlet_font_preserves_a_declared_blank_comment_line():
 def test_figlet_font_accepts_an_eof_terminated_final_comment_line():
     sample = "flf2a$ 1 1 1 0 2\nfirst note\nsecond note"
 
-    assert _comment_matches("figlet_font", sample) == [
-        "first note\nsecond note"
-    ]
+    assert _comment_matches("figlet_font", sample) == ["first note\nsecond note"]
 
 
 @pytest.mark.parametrize(
