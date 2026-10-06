@@ -1081,8 +1081,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "objective_c_plus_plus",
             "go",
             "vue",
-            "scala",
-            "dart",
             "hack",
             "less",
             "groovy",
@@ -1092,8 +1090,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "cuda",
             "scilab",
             "antlr",
-            "swift",
-            "php",
             "four_d",
             "4d",
             "actionscript",
@@ -1238,6 +1234,25 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             r"/{2}[^\r\n]*",
         ),
         language_excluded_comment_prefixes=(("c", ("/*!re2c",)),),
+        # C11 5.1.1.2: line splicing (translation phase 2) precedes comment
+        # removal (phase 3), so a backslash-newline continues a // comment.
+        language_regex_patterns=tuple(
+            (
+                language,
+                (
+                    r"\/\*[\S\s]*?\*\/",
+                    r"/{2}(?:\\(?:\r\n|\r|\n)|[^\r\n])*",
+                ),
+            )
+            for language in (
+                "c",
+                "c++",
+                "cuda",
+                "objective-c",
+                "objective_c_plus_plus",
+                "objective_cpp",
+            )
+        ),
         shared_regex_examples=(
             CommentExample(
                 "prefix\n// note\nsuffix",
@@ -2463,14 +2478,22 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
     ),
     CommentSyntax(
-        family_name="d_doc_style",
+        family_name="d_style",
         canonical_name="d",
         regex_patterns=(
-            r"\/\*\*[\S\s]*?\*\/",
-            r"\/\+\+[\S\s]*?\+\/",
-            r"\/\/\/.*",
+            r"\/\*[\S\s]*?\*\/",
+            r"\/\/[^\r\n]*",
         ),
+        nested_delimiters=(("/+", "+/"),),
         shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "Line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
             CommentExample(
                 "prefix\n/// note\nsuffix",
                 "/// note",
@@ -2479,8 +2502,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
-        ),
-        canonical_regex_examples=(
+            CommentExample(
+                "prefix\n/* note */\nsuffix",
+                "/* note */",
+                "Non-nesting block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
             CommentExample(
                 "prefix\n/** note */\nsuffix",
                 "/** note */",
@@ -2488,13 +2516,28 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="block",
                 inline_compatible=True,
             ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "before /+ outer /+ inner +/ outer +/ after",
+                "/+ outer /+ inner +/ outer +/",
+                "Nesting block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
             CommentExample(
                 "prefix\n/++ note +/\nsuffix",
                 "/++ note +/",
                 "Plus-delimited doc comment.",
-                kind="block",
+                kind="nested",
                 inline_compatible=True,
             ),
+        ),
+        documentation_source="https://dlang.org/spec/lex.html#comment",
+        confidence="verified",
+        notes=(
+            "D has // line comments, non-nesting /* */ block comments, and "
+            "nesting /+ +/ block comments; doc comments are subsets of each."
         ),
     ),
     CommentSyntax(
@@ -3027,7 +3070,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="sql_style",
         canonical_name="sql",
-        aliases=("hiveql", "piglatin", "plpgsql", "plsql", "sqlpl", "tsql"),
+        aliases=("hiveql", "piglatin", "plsql", "sqlpl"),
         regex_patterns=(
             r"\/\*[\s\S]*?\*\/",
             r"--(?:[^\r\n]|\r(?!\n))*",
@@ -4158,6 +4201,121 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="nested",
                 inline_compatible=True,
             ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="php_style",
+        canonical_name="php",
+        # PHP manual "Comments": one-line comments end at the line end or at
+        # the ?> close tag, whichever comes first. PHP 8 #[ starts an attribute.
+        regex_patterns=(
+            r"\/\*[\S\s]*?\*\/",
+            r"/{2}(?:(?!\?>)[^\r\n])*",
+            r"#(?!\[)(?:(?!\?>)[^\r\n])*",
+        ),
+        sanitizer_line_wrappers=(("//", ""), ("#", "")),
+        shared_regex_examples=(
+            CommentExample(
+                "<?php\n// note\n$x = 1;",
+                "// note",
+                "Slash one-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "<?php\n# note\n$x = 1;",
+                "# note",
+                "Shell-style one-line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "<?php\n/* note */\n$x = 1;",
+                "/* note */",
+                "Block comment.",
+                kind="block",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source="https://www.php.net/manual/en/language.basic-syntax.comments.php",
+        confidence="verified",
+        notes=(
+            "PHP supports //, #, and /* */ comments. One-line comments stop "
+            "before ?>. #[ begins a PHP 8 attribute, not a comment."
+        ),
+    ),
+    CommentSyntax(
+        family_name="nested_block_c_style",
+        canonical_name="scala",
+        aliases=("dart", "swift"),
+        regex_patterns=(r"/{2}[^\r\n]*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n// note\nsuffix",
+                "// note",
+                "Slash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "before /* outer /* inner */ outer */ after",
+                "/* outer /* inner */ outer */",
+                "Nested slash block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://scala-lang.org/files/archive/spec/2.13/01-lexical-syntax.html#comments; "
+            "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/"
+            "lexicalstructure/#Comments; https://spec.dart.dev/DartLangSpecDraft.pdf"
+        ),
+        confidence="verified",
+        notes=(
+            "Scala, Swift, and Dart block comments nest, unlike C. Line comments end at CR or LF."
+        ),
+    ),
+    CommentSyntax(
+        family_name="sql_nested_style",
+        canonical_name="plpgsql",
+        aliases=("tsql",),
+        regex_patterns=(r"--(?:[^\r\n]|\r(?!\n))*",),
+        nested_delimiters=(("/*", "*/"),),
+        shared_regex_examples=(
+            CommentExample(
+                "prefix\n-- note\nsuffix",
+                "-- note",
+                "Dash line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        shared_nested_examples=(
+            CommentExample(
+                "SELECT 1 /* outer /* inner */ outer */ FROM t",
+                "/* outer /* inner */ outer */",
+                "Nested bracketed comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://www.postgresql.org/docs/current/sql-syntax-lexical.html"
+            "#SQL-SYNTAX-COMMENTS; https://learn.microsoft.com/sql/t-sql/language-"
+            "elements/slash-star-comment-transact-sql"
+        ),
+        confidence="verified",
+        notes=(
+            "PostgreSQL and SQL Server nest block comments as the SQL standard "
+            "specifies. MySQL and SQLite do not, so the generic sql key keeps "
+            "non-nesting blocks."
         ),
     ),
     CommentSyntax(
@@ -8586,13 +8744,11 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
         regex_dialects = [language for language, _ in syntax.language_regex_patterns]
         if len(regex_dialects) != len(set(regex_dialects)):
             raise ValueError(
-                "Language-specific regex patterns must use unique languages: "
-                + syntax.family_name
+                "Language-specific regex patterns must use unique languages: " + syntax.family_name
             )
         if any(language not in syntax.language_names for language in regex_dialects):
             raise ValueError(
-                "Language-specific regex patterns require a family language: "
-                + syntax.family_name
+                "Language-specific regex patterns require a family language: " + syntax.family_name
             )
         if any(not patterns for _, patterns in syntax.language_regex_patterns):
             raise ValueError(

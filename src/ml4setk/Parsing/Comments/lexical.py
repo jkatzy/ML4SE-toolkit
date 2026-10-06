@@ -65,11 +65,18 @@ _DART_LITERALS = (
     r'"{3}[\s\S]*?(?<!\\)"{3}',
 )
 _TRANSPOSE = r"(?<=[\w)\]}.'])'"
+# ECMA-262 12.9.5: a / after an operator, punctuator, or keyword (not after an
+# operand) starts a RegularExpressionLiteral.
+_REGEX_LITERAL = (
+    r"(?<=(?:(?m:^)|[=(,:\[!&|?{};+\-*%<>~^]|\b(?:return|typeof|case|do|else|in|instanceof"
+    r"|new|void|delete|throw|yield|await))[ \t]*)"
+    r"/(?![/*])(?:\\.|\[(?:\\.|[^\]\\\r\n])*\]|[^/\\\r\n\[])+/[A-Za-z]*"
+)
 
 _HASKELL = _rules('"', literals=(_ML_CHAR_LITERAL,), starts="'")
 _LISP = _rules('"', literals=(r"#\\(?:[A-Za-z][A-Za-z0-9-]*|[\s\S])",), starts="#")
 _FSHARP = _rules('"', literals=_FSHARP_LITERALS, starts="\"@'")
-_ECMASCRIPT = _rules("'\"", literals=(_TEMPLATE_LITERAL,), starts="`")
+_ECMASCRIPT = _rules("'\"", literals=(_TEMPLATE_LITERAL, _REGEX_LITERAL), starts="`/")
 _CSHARP = _rules("'\"`", literals=_CSHARP_LITERALS, starts='"$@')
 
 _LEXICAL_RULES = {
@@ -132,6 +139,16 @@ _LEXICAL_RULES = {
             r"%[wWiIqQ]?<(?:\\[\s\S]|[^<>\\])*>",
         ),
         starts="?%",
+    ),
+    # perlop "Quote and Quote-like Operators": # may delimit q, qq, qw, qr, qx,
+    # m, s, tr, and y when it follows the operator name immediately.
+    "perl": _rules(
+        "'\"`",
+        literals=(
+            r"(?<![\w$@%&])(?:s|tr|y)#(?:\\[\s\S]|[^#\\])*#(?:\\[\s\S]|[^#\\])*#[A-Za-z]*",
+            r"(?<![\w$@%&])(?:qq|qw|qr|qx|q|m)#(?:\\[\s\S]|[^#\\])*#[A-Za-z]*",
+        ),
+        starts="stymq",
     ),
     # TeXbook ch. 7: \c is a control symbol, so \% is not a comment.
     "tex": _rules("", literals=(r"\\[\s\S]",), starts="\\"),

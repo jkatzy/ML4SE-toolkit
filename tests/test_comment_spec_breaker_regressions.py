@@ -30,32 +30,10 @@ def _open_defect(reason):
 
 # Case id -> reason for defects that are confirmed but not fixed yet.
 _OPEN_CASES = {
-    "javascript-regex-literal": (
-        "Quotes inside JavaScript regular expression literals are scanned as strings."
-    ),
-    "perl-hash-delimited-substitution": "Perl quote-like operators with # delimiters.",
-    "c-line-splice-continues-comment": "C line splices do not extend // comments.",
-    "php-close-tag-ends-line-comment": "PHP ?> does not end a one-line comment.",
-    "php-hash-comment": "PHP # comments are not registered.",
-    "ocaml-string-inside-comment": "OCaml strings inside comments are not lexed.",
-    "scala-nested-block": "Scala block comments do not nest.",
-    "swift-nested-block": "Swift block comments do not nest.",
-    "dart-nested-block": "Dart block comments do not nest.",
-    "sql-nested-block": "SQL bracketed comments do not nest.",
-    "plpgsql-nested-block": "PostgreSQL block comments do not nest.",
-    "d-line-comment": "D registers only documentation comments.",
-    "d-block-comment": "D registers only documentation comments.",
-    "d-nesting-comment": "D registers only documentation comments.",
     "lua-cr-terminates-comment": (
         "Lua keeps its legacy published slices; see "
         "test_lua_legacy_crlf_comment_slice_preserves_carriage_return."
     ),
-    "classic-asp-html-comment-keeps-leading-quote": "Sanitizer strips a leading quote.",
-    "glyph-keeps-command-line-flag": "Sanitizer strips a leading --.",
-    "sql-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
-    "ada-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
-    "lua-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
-    "vhdl-keeps-table-pipe": "Haddock '-- |' marker stripped outside Haskell.",
 }
 
 
@@ -500,13 +478,6 @@ _WRONG_COMMENT_BOUNDARIES = [
         id="dart-nested-block",
     ),
     pytest.param(
-        "sql",
-        "/* a /* b */ c */ SELECT 1\n",
-        ["/* a /* b */ c */"],
-        "ISO SQL <bracketed comment> nests; PostgreSQL docs 4.1.5 follow the standard.",
-        id="sql-nested-block",
-    ),
-    pytest.param(
         "plpgsql",
         "/* a /* b */ c */ SELECT 1\n",
         ["/* a /* b */ c */"],
@@ -612,6 +583,9 @@ def test_comment_boundaries_follow_language_contract(language, source, expected,
             pytest.param("ada", "-- | a | b |", "| a | b |", id="ada-keeps-table-pipe"),
             pytest.param("lua", "-- | a | b |", "| a | b |", id="lua-keeps-table-pipe"),
             pytest.param("vhdl", "-- | a | b |", "| a | b |", id="vhdl-keeps-table-pipe"),
+            pytest.param("haskell", "-- | Haddock doc", "Haddock doc", id="haskell-haddock-marker"),
+            pytest.param("glyph", "# -- note", "note", id="glyph-secondary-gutter"),
+            pytest.param("php", "# note", "note", id="php-hash-wrapper"),
         ]
     ),
 )
@@ -748,6 +722,15 @@ def test_python_tokenized_comments_accept_lone_cr_before_non_ascii(language):
         pytest.param("go", "s := `a // b` // real\n", ["// real"], id="go-raw-string"),
         pytest.param("shell", "echo a; # real\n", ["# real"], id="shell-after-operator"),
         pytest.param("dockerfile", "  # real\nRUN x\n", ["# real"], id="dockerfile-indented"),
+        pytest.param("javascript", "x = a / b / c; // real\n", ["// real"], id="js-division"),
+        pytest.param("perl", "print $s # real\n", ["# real"], id="perl-variable-then-comment"),
+        pytest.param("php", "<?php\n#[Attr]\n// real\n", ["// real"], id="php-attribute"),
+        pytest.param("c", "// a \\ b\nint x;\n", ["// a \\ b"], id="c-backslash-not-at-eol"),
+        pytest.param("ocaml", "let c = '\"' (* real *)\n", ["(* real *)"], id="ocaml-quote-char"),
+        pytest.param("d", "/++ doc /+ in +/ +/ x\n", ["/++ doc /+ in +/ +/"], id="d-nested-doc"),
+        pytest.param(
+            "tsql", "/* a /* b */ c */ SELECT 1\n", ["/* a /* b */ c */"], id="tsql-nested"
+        ),
     ],
 )
 def test_lexical_rules_keep_ordinary_literals_and_comments(language, source, expected):

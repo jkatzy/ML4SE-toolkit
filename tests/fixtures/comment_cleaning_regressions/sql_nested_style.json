@@ -1,0 +1,42 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "sql_nested_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "6892f4365e9545c89e17ddd1050cfb1b3d1669ab75f6fffa2015ed03c388a668",
+      "case_id": "tsql-line-0087cbf234f4eaea",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tsql",
+      "raw_comment": "-- =============================================\r",
+      "raw_sha256": "4bad71801c11ce32c08edde6ba707d3ee3803108bbf562d0bcb197dd09dae137",
+      "raw_utf8_length": 49,
+      "source_provenance": {
+        "source_excerpt_sha256": "dc85af3bb39a644fcfb0a899b4476fb25745dea43679ee1dc232a72fa1c98705",
+        "source_id": "f4f13fd5b4323e2bdfa886ecaab47b1abc58c5d9"
+      },
+      "syntax_label": "--"
+    },
+    {
+      "baseline_cleaned_sha256": "76619405d102d485d68c0d54ecc053e7b49c07bbba3952435bad22e0dfbfbfb6",
+      "case_id": "tsql-line-0506a81d1ef84e5b",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "",
+      "expected_cleaned_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "language": "tsql",
+      "raw_comment": "-- ================================================\r",
+      "raw_sha256": "699c438d3a8165d9fd63eb3423cb614209d1e1537096c5e8e66d640c8332cad3",
+      "raw_utf8_length": 52,
+      "source_provenance": {
+        "source_excerpt_sha256": "b623d18be2653e4d1cd495e4d6060c579214d8f97d4864de57b5868a26c25baa",
+        "source_id": "9bb9a2cf321dcb97529ff9cd02ace50932cbdecd"
+      },
+      "syntax_label": "--"
+    }
+  ],
+  "schema_version": 5
+}

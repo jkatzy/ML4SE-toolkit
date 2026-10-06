@@ -284,6 +284,64 @@ def coq_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
+_OCAML_CHAR_LITERAL = re.compile(r"'(?:\\(?:[0-9]{3}|x[0-9a-fA-F]{2}|o[0-7]{3}|.)|[^'\\\r\n])'")
+
+
+def ocaml_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return OCaml nested comments, lexing string literals inside comments.
+
+    The OCaml lexer recognizes string and character literals within comments,
+    so ``(* "*)" *)`` is one comment. Strings use backslash escapes and may
+    span lines.
+    """
+
+    ranges: list[tuple[int, int]] = []
+    index = 0
+    while index < len(text):
+        char_literal = _OCAML_CHAR_LITERAL.match(text, index)
+        if char_literal is not None:
+            index = char_literal.end()
+            continue
+        if text[index] == '"':
+            index, _ = _quoted_end(text, index, '"', multiline=True)
+            continue
+        if not text.startswith("(*", index):
+            index += 1
+            continue
+
+        start = index
+        depth = 1
+        index += 2
+        complete = False
+        while index < len(text):
+            char_literal = _OCAML_CHAR_LITERAL.match(text, index)
+            if char_literal is not None:
+                index = char_literal.end()
+                continue
+            if text[index] == '"':
+                index, closed = _quoted_end(text, index, '"', multiline=True)
+                if not closed:
+                    index = len(text)
+                    break
+                continue
+            if text.startswith("(*", index):
+                depth += 1
+                index += 2
+                continue
+            if text.startswith("*)", index):
+                depth -= 1
+                index += 2
+                if depth == 0:
+                    ranges.append((start, index))
+                    complete = True
+                    break
+                continue
+            index += 1
+        if not complete:
+            break
+    return tuple(ranges)
+
+
 def rbs_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return standalone RBS hash comments outside annotations and literals."""
 
@@ -1017,6 +1075,7 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
 __all__ = [
     "STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS",
     "coq_comment_ranges",
+    "ocaml_comment_ranges",
     "pyret_comment_ranges",
     "rbs_comment_ranges",
     "reviewed_batch_08_09_alias_comment_ranges",

@@ -30,6 +30,7 @@ from .stack_v3_batch_06_07_contextual import (
 )
 from .stack_v3_batch_08_09_contextual import (
     coq_comment_ranges,
+    ocaml_comment_ranges,
     reviewed_batch_08_09_alias_comment_ranges,
 )
 from .stack_v3_batch_11 import lua_long_bracket_string_ranges
@@ -44,6 +45,13 @@ _RDF_IRI_AWARE_LANGUAGES = {"sparql", "turtle"}
 _SMALLTALK_STRING_AWARE_LANGUAGES = {"smalltalk"}
 _KOTLIN_STRING_AWARE_LANGUAGES = {"gradle_kotlin_dsl", "kotlin"}
 _NO_ADJACENT_LINE_GROUPING_LANGUAGES = {"java_template_engine", "jte"}
+# Nested-comment scanners for languages that lex literals inside comments.
+_NESTED_COMMENT_SCANNERS = {
+    "coq": coq_comment_ranges,
+    "ocaml": ocaml_comment_ranges,
+    "rocq": coq_comment_ranges,
+    "rocq_prover": coq_comment_ranges,
+}
 _GENERO_FORMS_LAYOUT_OPEN = re.compile(
     r"(?im)^[ \t]*(?:screen|grid|table|tree)\b[^\{\r\n]*"
     r"(?:(?:\r\n|[\r\n\u0085\u2028\u2029])[ \t]*)*"
@@ -842,13 +850,18 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
                 add_comment(start, end)
 
     nested_starts = {}
-    for open_delim, close_delim in syntax.nested_delimiters:
+    normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+    nested_scanner = _NESTED_COMMENT_SCANNERS.get(normalized)
+    if nested_scanner is not None:
+        for start, end in nested_scanner(text):
+            comment_ends[start] = max(comment_ends.get(start, start), end)
+    for open_delim, close_delim in () if nested_scanner else syntax.nested_delimiters:
         index = text.find(open_delim)
         while index != -1:
             nested_starts.setdefault(index, []).append((open_delim, close_delim))
             index = text.find(open_delim, index + 1)
 
-    rules = lexical_rules_for(re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_"))
+    rules = lexical_rules_for(normalized)
     if string_ranges is None:
         string_starts = None
         candidate_chars = rules.quote_chars | rules.literal_start_chars
@@ -1189,8 +1202,9 @@ class NestedCommentQuery(Query):
             return []
 
         normalized = re.sub(r"[^a-z0-9]+", "_", self.language.strip().lower()).strip("_")
-        if normalized in {"coq", "rocq", "rocq_prover"}:
-            return list(coq_comment_ranges(text))
+        scanner = _NESTED_COMMENT_SCANNERS.get(normalized)
+        if scanner is not None:
+            return list(scanner(text))
 
         if quoted_ranges is None:
             quoted_ranges = _comment_start_ignored_ranges(self.language, text)
