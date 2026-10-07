@@ -627,6 +627,16 @@ LEXICAL_VERSION_PROFILES = {
     ),
     # CMake before 3.0 has no [[...]] bracket arguments.
     "cmake-2.8": _rules("'\""),
+    # Group hash-line profiles begin.
+    # Group hash-line profiles end.
+    # Group contextual profiles begin.
+    # Group contextual profiles end.
+    # Group script profiles begin.
+    # Group script profiles end.
+    # Group markup profiles begin.
+    # Group markup profiles end.
+    # Group block profiles begin.
+    # Group block profiles end.
 }
 
 
