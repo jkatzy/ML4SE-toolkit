@@ -15,7 +15,7 @@ from typing import Optional, Tuple
 
 import regex as re
 
-from .registry import LANGUAGE_SYNTAX
+from .registry import LANGUAGE_SYNTAX, get_comment_language_version
 
 DEFAULT_QUOTE_CHARS = frozenset("'\"`")
 
@@ -616,10 +616,28 @@ _LEXICAL_RULES = {
 }
 
 
-def lexical_rules_for(language: str) -> LexicalRules:
-    """Return literal rules for a registry language key such as ``c++``."""
+# Version profiles named by ``CommentLanguageVersion.lexical_profile``. A
+# profile replaces a language's literal rules for that version only.
+LEXICAL_VERSION_PROFILES = {
+    # CMake before 3.0 has no [[...]] bracket arguments.
+    "cmake-2.8": _rules("'\""),
+}
+
+
+def lexical_rules_for(language: str, version: Optional[str] = None) -> LexicalRules:
+    """Return literal rules for a registry language key such as ``c++``.
+
+    Args:
+        language: Registry language key.
+        version: Resolved version name. A version whose registry entry names a
+            ``lexical_profile`` uses that profile instead of the language rules.
+    """
 
     key = language.strip().lower()
+    if version is not None:
+        profile = _version_lexical_profile(key, version)
+        if profile:
+            return LEXICAL_VERSION_PROFILES[profile]
     rules = _LEXICAL_RULES.get(key)
     if rules is None:
         rules = _LEXICAL_RULES.get(re.sub(r"[^a-z0-9]+", "_", key).strip("_"))
@@ -630,3 +648,10 @@ def lexical_rules_for(language: str) -> LexicalRules:
 
 
 _DEFAULT_RULES = LexicalRules()
+
+
+def _version_lexical_profile(language: str, version: str) -> str:
+    """Return the lexical profile named by ``language``'s ``version``, if any."""
+
+    metadata = get_comment_language_version(language, version)
+    return "" if metadata is None else metadata.lexical_profile

@@ -14,11 +14,19 @@ from .Parsing.Comments.CommentSanitizer import (
     sanitize_comment,
     sanitize_comment_text,
 )
-from .Parsing.Comments.registry import get_supported_comment_languages
+from .Parsing.Comments.registry import (
+    CommentLanguageVersionWarning,
+    UnsupportedCommentLanguageVersionError,
+    comment_language_requires_version,
+    get_comment_language_versions,
+    get_default_comment_language_version,
+    get_supported_comment_languages,
+)
 from .Parsing.Query import Query, QueryMatch
 
 __all__ = [
     "CausalInput",
+    "CommentLanguageVersionWarning",
     "CommentQuery",
     "CommentSanitizer",
     "FIMInput",
@@ -28,6 +36,10 @@ __all__ = [
     "OpeningCommentQuery",
     "Query",
     "QueryMatch",
+    "UnsupportedCommentLanguageVersionError",
+    "comment_language_requires_version",
+    "get_comment_language_versions",
+    "get_default_comment_language_version",
     "get_supported_comment_languages",
     "sanitize_comment",
     "sanitize_comment_text",

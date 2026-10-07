@@ -5,8 +5,13 @@ support by updating ``COMMENT_SYNTAXES`` with regex patterns, nested delimiters,
 and seeded examples instead of branching in parser code.
 """
 
-from dataclasses import dataclass
-from typing import Dict, Iterable, Tuple
+import os
+import re
+import sys
+import warnings
+from dataclasses import dataclass, replace
+from functools import lru_cache
+from typing import Dict, Iterable, Optional, Tuple
 
 from .contextual import SUPPORTED_CONTEXTUAL_EXTRACTORS
 
@@ -38,6 +43,105 @@ class CommentExample:
     grouped_line_compatible: bool = False
     standalone_compatible: bool = True
     consumes_eof: bool = False
+
+
+@dataclass(frozen=True)
+class CommentLanguageVersion:
+    """One version range of a language whose comment syntax changed over time.
+
+    The default version of a language is implemented by its ``CommentSyntax``
+    entry and declares no overlay. Every other version overlays only the
+    fields it changes; ``None`` keeps the default version's value.
+
+    Attributes:
+        name: Canonical lowercase version id, for example ``c89``.
+        aliases: Other accepted labels for the same range, for example ``c90``.
+        release: First release of the range for numeric lookup, for example
+            ``3.0``. When every version of a language declares one, any dotted
+            release number selects the latest range that starts at or before it.
+        span: Human-readable releases or standards covered by the range.
+        comment_rules: Comment forms valid in this version.
+        regex_patterns: Replacement line and non-nested block patterns.
+        nested_delimiters: Replacement recursive block delimiters.
+        excluded_comment_prefixes: Replacement exact-prefix exclusions.
+        contextual_extractor: Replacement contextual extractor name; an empty
+            string disables the default version's extractor.
+        unclosed_block_openers: Replacement unclosed block openers.
+        lexical_profile: Name of a literal-rule profile in ``lexical.py`` that
+            replaces the language's string and literal protection rules.
+        sanitizer_line_wrappers: Extra sanitizer line wrappers for comment
+            forms that only this version accepts.
+        sanitizer_block_wrappers: Extra sanitizer block wrappers for comment
+            forms that only this version accepts.
+        examples: Seeded examples whose ``expected_match`` is a comment under
+            this version.
+        documentation_source: Evidence for this version's comment rules.
+    """
+
+    name: str
+    aliases: Tuple[str, ...] = ()
+    release: str = ""
+    span: str = ""
+    comment_rules: str = ""
+    regex_patterns: Optional[Tuple[str, ...]] = None
+    nested_delimiters: Optional[Tuple[Tuple[str, str], ...]] = None
+    excluded_comment_prefixes: Optional[Tuple[str, ...]] = None
+    contextual_extractor: Optional[str] = None
+    unclosed_block_openers: Optional[Tuple[str, ...]] = None
+    lexical_profile: str = ""
+    sanitizer_line_wrappers: Tuple[Tuple[str, str], ...] = ()
+    sanitizer_block_wrappers: Tuple[Tuple[str, str], ...] = ()
+    examples: Tuple[CommentExample, ...] = ()
+    documentation_source: str = ""
+
+    @property
+    def labels(self) -> Tuple[str, ...]:
+        """Return the canonical name followed by its aliases."""
+
+        return (self.name,) + self.aliases
+
+    @property
+    def has_overlay(self) -> bool:
+        """Return whether this version changes any extraction behavior."""
+
+        return bool(
+            self.regex_patterns is not None
+            or self.nested_delimiters is not None
+            or self.excluded_comment_prefixes is not None
+            or self.contextual_extractor is not None
+            or self.unclosed_block_openers is not None
+            or self.lexical_profile
+            or self.sanitizer_line_wrappers
+            or self.sanitizer_block_wrappers
+        )
+
+
+@dataclass(frozen=True)
+class CommentLanguageVersions:
+    """Version table for registry languages with version-dependent comments.
+
+    Attributes:
+        languages: Registry keys from one family that share this table.
+        versions: Version ranges in chronological order.
+        default: Name of the version implemented by the ``CommentSyntax`` entry.
+        notes: Maintainer-facing caveats for the version split.
+    """
+
+    languages: Tuple[str, ...]
+    versions: Tuple[CommentLanguageVersion, ...]
+    default: str
+    notes: str = ""
+
+    @property
+    def version_names(self) -> Tuple[str, ...]:
+        """Return canonical version names in chronological order."""
+
+        return tuple(version.name for version in self.versions)
+
+    def version(self, name: str) -> CommentLanguageVersion:
+        """Return the version with canonical ``name``."""
+
+        return next(version for version in self.versions if version.name == name)
 
 
 @dataclass(frozen=True)
@@ -82,6 +186,10 @@ class CommentSyntax:
             members whose comment openers are context-restricted (for example
             word-initial or line-initial ``#``). The listed language uses its
             patterns instead of ``regex_patterns``.
+        language_versions: Version tables for family members whose comment
+            syntax depends on the language version. A listed language requires
+            a version: queries default to the table's default version and warn
+            once when the caller does not choose one.
     """
 
     family_name: str
@@ -108,6 +216,21 @@ class CommentSyntax:
     language_excluded_comment_prefixes: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     sanitizer_mode: str = "wrapped"
     language_regex_patterns: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
+    language_versions: Tuple[CommentLanguageVersions, ...] = ()
+
+    def versions_for_language(self, language: str) -> Optional[CommentLanguageVersions]:
+        """Return the version table for ``language``, or ``None`` if it has none."""
+
+        normalized = language.strip().lower()
+        return next(
+            (table for table in self.language_versions if normalized in table.languages),
+            None,
+        )
+
+    def requires_version(self, language: str) -> bool:
+        """Return whether ``language`` has version-dependent comment syntax."""
+
+        return self.versions_for_language(language) is not None
 
     @property
     def language_names(self) -> Tuple[str, ...]:
@@ -3820,6 +3943,64 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "CMake bracket comments use the same equal-delimited bracket "
             "syntax as bracket arguments, and bracket arguments do not nest."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("cmake",),
+                default="3.0",
+                versions=(
+                    CommentLanguageVersion(
+                        name="2.8",
+                        aliases=("pre-3.0", "2.6", "2.8.12"),
+                        release="0",
+                        span="CMake releases before 3.0",
+                        comment_rules=(
+                            "# comments run to the end of the line; #[[ and #[=[ have "
+                            "no special meaning, and [[...]] is not a bracket argument."
+                        ),
+                        regex_patterns=(r"#[^\r\n]*",),
+                        lexical_profile="cmake-2.8",
+                        examples=(
+                            CommentExample(
+                                "#[[ note ]] set(x 1)\nset(y 2)",
+                                "#[[ note ]] set(x 1)",
+                                "Before 3.0, #[[ starts an ordinary line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                            CommentExample(
+                                "set(x [[ a ]]) # note\n",
+                                "# note",
+                                "Before 3.0, [[ is not a bracket argument.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                            CommentExample(
+                                "set(x [[ # note ]])\n",
+                                "# note ]])",
+                                "Before 3.0, # inside [[ ]] starts a comment.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://cmake.org/cmake/help/v3.0/release/3.0.0.html "
+                            "(bracket comments and arguments are new and change the "
+                            "meaning of #[[ lines)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="3.0",
+                        aliases=("3.x", "4.x"),
+                        release="3.0",
+                        span="CMake 3.0.0 and later",
+                        comment_rules=(
+                            "# line comments plus #[[...]] and #[=[...]=] bracket "
+                            "comments; [[...]] bracket arguments protect their content."
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(
@@ -8744,6 +8925,85 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
 )
 
 
+_RELEASE_PATTERN = re.compile(r"[0-9]+(?:\.[0-9]+)*")
+
+
+def _normalize_version_label(version: str) -> str:
+    """Return a lookup key for a user- or registry-provided version label."""
+
+    normalized = re.sub(r"\s+", "", str(version).strip().lower())
+    if re.fullmatch(r"v[0-9][0-9.]*", normalized):
+        normalized = normalized[1:]
+    return normalized
+
+
+def _release_key(release: str) -> Tuple[int, ...]:
+    """Return a comparable tuple for a dotted numeric release such as ``3.0``."""
+
+    parts = [int(part) for part in release.split(".")]
+    while len(parts) > 1 and parts[-1] == 0:
+        parts.pop()
+    return tuple(parts)
+
+
+def _validate_language_versions(syntax: CommentSyntax) -> None:
+    """Reject malformed version tables for one registry family."""
+
+    family = syntax.family_name
+    seen_languages = set()
+    for table in syntax.language_versions:
+        if not table.languages:
+            raise ValueError("Version tables must name at least one language: " + family)
+        for language in table.languages:
+            if language not in syntax.language_names:
+                raise ValueError(f"Version table language {language!r} is not in family: " + family)
+            if language in seen_languages:
+                raise ValueError(f"Language {language!r} has more than one version table")
+            seen_languages.add(language)
+        if len(table.versions) < 2:
+            raise ValueError("Version tables need at least two versions: " + family)
+        labels = [_normalize_version_label(label) for v in table.versions for label in v.labels]
+        if any(not label for label in labels):
+            raise ValueError("Version names and aliases must not be empty: " + family)
+        if len(labels) != len(set(labels)):
+            raise ValueError("Version names and aliases must be unique: " + family)
+        if any(version.name != version.name.lower() for version in table.versions):
+            raise ValueError("Version names must be lowercase: " + family)
+        if table.default not in table.version_names:
+            raise ValueError(f"Default version {table.default!r} is not declared: " + family)
+        default = table.version(table.default)
+        if default.has_overlay:
+            raise ValueError(
+                "The default version is the registry entry and must not overlay it: " + family
+            )
+        releases = [version.release for version in table.versions]
+        if any(releases):
+            if not all(_RELEASE_PATTERN.fullmatch(release) for release in releases):
+                raise ValueError("Every version release must be a dotted number: " + family)
+            keys = [_release_key(release) for release in releases]
+            if keys != sorted(keys) or len(keys) != len(set(keys)):
+                raise ValueError("Version releases must increase strictly: " + family)
+        for version in table.versions:
+            if version.name == table.default:
+                continue
+            if not version.has_overlay:
+                raise ValueError(
+                    f"Version {version.name!r} must change extraction behavior: " + family
+                )
+            if not version.examples:
+                raise ValueError(f"Version {version.name!r} needs seeded examples: " + family)
+            if version.regex_patterns is not None:
+                for pattern in version.regex_patterns:
+                    re.compile(pattern)
+            if (
+                version.contextual_extractor
+                and version.contextual_extractor not in SUPPORTED_CONTEXTUAL_EXTRACTORS
+            ):
+                raise ValueError(
+                    f"Unknown contextual extractor {version.contextual_extractor!r}: " + family
+                )
+
+
 def _build_language_lookup() -> Dict[str, CommentSyntax]:
     """Build and validate the lowercase language-to-syntax lookup.
 
@@ -8882,6 +9142,8 @@ def _build_language_lookup() -> Dict[str, CommentSyntax]:
                 + syntax.family_name
             )
 
+        _validate_language_versions(syntax)
+
         for language in syntax.language_names:
             if language != language.lower():
                 raise ValueError(f"Language names must be lowercase: {language}")
@@ -8931,20 +9193,243 @@ def _resolve_comment_language_key(language: str) -> str:
     raise NotImplementedError(f"Unsupported language: {language}")
 
 
-def get_comment_syntax(language: str) -> CommentSyntax:
+class UnsupportedCommentLanguageVersionError(NotImplementedError, ValueError):
+    """Raised when a version is unknown for a language or the language has none.
+
+    Attributes:
+        language: Language label passed by the caller.
+        version: Version label passed by the caller.
+        supported_versions: Canonical version names the language supports, in
+            chronological order; empty when the language is not versioned.
+    """
+
+    def __init__(self, language: str, version: str, supported_versions: Tuple[str, ...]):
+        self.language = language
+        self.version = version
+        self.supported_versions = supported_versions
+        key = _resolve_comment_language_key(language)
+        table = LANGUAGE_SYNTAX[key].versions_for_language(key)
+        if table is None:
+            message = (
+                f"Language {language!r} has no version-dependent comment syntax; "
+                f"omit version (got {version!r})."
+            )
+        else:
+            message = (
+                f"Unsupported version {version!r} for language {language!r}. "
+                f"Supported versions: {_describe_versions(table)}."
+            )
+        super().__init__(message)
+
+
+class CommentLanguageVersionWarning(UserWarning):
+    """Warns that a version-dependent language was used without a version."""
+
+
+_WARNED_DEFAULT_VERSIONS = set()
+
+
+def _describe_versions(table: CommentLanguageVersions) -> str:
+    """Return a readable list of a table's versions, aliases, and default."""
+
+    described = []
+    for index, version in enumerate(table.versions):
+        details = []
+        if version.name == table.default:
+            details.append("default")
+        if version.release and index == 0 and _release_key(version.release) == (0,):
+            details.append(f"releases before {table.versions[1].release}")
+        elif version.release:
+            details.append(f"releases from {version.release}")
+        if version.aliases:
+            details.append("aliases: " + ", ".join(version.aliases))
+        described.append(version.name + (f" ({'; '.join(details)})" if details else ""))
+    return ", ".join(described)
+
+
+def _version_table(language: str) -> Tuple[str, Optional[CommentLanguageVersions]]:
+    """Return the resolved registry key and its version table, if any."""
+
+    key = _resolve_comment_language_key(language)
+    return key, LANGUAGE_SYNTAX[key].versions_for_language(key)
+
+
+def resolve_comment_language_version(language: str, version: Optional[str]) -> Optional[str]:
+    """Return the canonical version name selected by ``version``.
+
+    Args:
+        language: Registry key or alias.
+        version: Version name, alias, or dotted release number. ``None``
+            selects the default version of a version-dependent language.
+
+    Returns:
+        The canonical version name, or ``None`` when the language has no
+        version-dependent comment syntax and no version was requested.
+
+    Raises:
+        NotImplementedError: If the language is not in the registry.
+        UnsupportedCommentLanguageVersionError: If ``version`` is not a
+            supported version of the language, or the language has no versions.
+    """
+
+    key, table = _version_table(language)
+    if version is None:
+        return None if table is None else table.default
+    if not isinstance(version, str):
+        raise TypeError("version must be a string or None")
+    if table is None:
+        raise UnsupportedCommentLanguageVersionError(language, version, ())
+    label = _normalize_version_label(version)
+    for candidate in table.versions:
+        if label in (_normalize_version_label(name) for name in candidate.labels):
+            return candidate.name
+    if _RELEASE_PATTERN.fullmatch(label) and all(v.release for v in table.versions):
+        requested = _release_key(label)
+        selected = None
+        for candidate in table.versions:
+            if _release_key(candidate.release) <= requested:
+                selected = candidate.name
+        if selected is not None:
+            return selected
+    raise UnsupportedCommentLanguageVersionError(language, version, table.version_names)
+
+
+def warn_default_comment_language_version(language: str) -> None:
+    """Warn once per language that its default comment version was assumed."""
+
+    key, table = _version_table(language)
+    if table is None or key in _WARNED_DEFAULT_VERSIONS:
+        return
+    _WARNED_DEFAULT_VERSIONS.add(key)
+    warnings.warn(
+        f"Comment syntax for {language!r} depends on the language version; assuming "
+        f"{table.default!r}. Pass version= to choose one of: {_describe_versions(table)}.",
+        CommentLanguageVersionWarning,
+        stacklevel=_caller_stacklevel(),
+    )
+
+
+_PACKAGE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+def _caller_stacklevel() -> int:
+    """Return the ``warnings.warn`` stacklevel of the first frame outside ml4setk."""
+
+    frame = sys._getframe(1)
+    level = 1
+    while frame is not None:
+        if not os.path.abspath(frame.f_code.co_filename).startswith(_PACKAGE_DIR + os.sep):
+            return level
+        frame = frame.f_back
+        level += 1
+    return 1
+
+
+def resolve_query_language_version(language: str, version: Optional[str]) -> Optional[str]:
+    """Resolve a query's version, warning once when a needed version is omitted."""
+
+    resolved = resolve_comment_language_version(language, version)
+    if version is None and resolved is not None:
+        warn_default_comment_language_version(language)
+    return resolved
+
+
+@lru_cache(maxsize=None)
+def _versioned_comment_syntax(key: str, version_name: str) -> CommentSyntax:
+    """Return ``key``'s syntax with a non-default version overlay applied."""
+
+    base = LANGUAGE_SYNTAX[key]
+    table = base.versions_for_language(key)
+    version = table.version(version_name)
+
+    def pick(value, default):
+        return default if value is None else value
+
+    return replace(
+        base,
+        regex_patterns=pick(version.regex_patterns, base.regex_patterns_for_language(key)),
+        language_regex_patterns=(),
+        nested_delimiters=pick(version.nested_delimiters, base.nested_delimiters),
+        excluded_comment_prefixes=pick(
+            version.excluded_comment_prefixes, base.excluded_comment_prefixes_for_language(key)
+        ),
+        language_excluded_comment_prefixes=(),
+        contextual_extractor=pick(version.contextual_extractor, base.contextual_extractor),
+        unclosed_block_openers=pick(version.unclosed_block_openers, base.unclosed_block_openers),
+        sanitizer_line_wrappers=base.sanitizer_line_wrappers + version.sanitizer_line_wrappers,
+        sanitizer_block_wrappers=base.sanitizer_block_wrappers + version.sanitizer_block_wrappers,
+        canonical_regex_examples=base.canonical_regex_examples
+        + tuple(example for example in version.examples if example.kind != "nested"),
+        canonical_nested_examples=base.canonical_nested_examples
+        + tuple(example for example in version.examples if example.kind == "nested"),
+    )
+
+
+def get_comment_syntax(language: str, version: Optional[str] = None) -> CommentSyntax:
     """Return syntax metadata for one supported language.
 
     Args:
         language: Registry key or alias. Lookup is case-insensitive.
+        version: Optional language version name, alias, or release number.
+            ``None`` and the default version return the registry entry itself;
+            another version returns a copy with that version's overlay applied.
 
     Returns:
         The matching ``CommentSyntax`` entry.
 
     Raises:
         NotImplementedError: If the language is not in the registry.
+        UnsupportedCommentLanguageVersionError: If ``version`` is not
+            supported for the language.
     """
 
-    return LANGUAGE_SYNTAX[_resolve_comment_language_key(language)]
+    key = _resolve_comment_language_key(language)
+    if version is None:
+        return LANGUAGE_SYNTAX[key]
+    version_name = resolve_comment_language_version(key, version)
+    if version_name == LANGUAGE_SYNTAX[key].versions_for_language(key).default:
+        return LANGUAGE_SYNTAX[key]
+    return _versioned_comment_syntax(key, version_name)
+
+
+def get_comment_language_version(
+    language: str, version: Optional[str] = None
+) -> Optional[CommentLanguageVersion]:
+    """Return version metadata, using the default version when ``version`` is ``None``."""
+
+    key, table = _version_table(language)
+    name = resolve_comment_language_version(key, version)
+    return None if name is None else table.version(name)
+
+
+def get_comment_language_versions(language: str) -> Tuple[str, ...]:
+    """Return a language's supported comment versions in chronological order.
+
+    The tuple is empty for languages whose comment syntax does not depend on
+    the language version.
+    """
+
+    _, table = _version_table(language)
+    return () if table is None else table.version_names
+
+
+def get_default_comment_language_version(language: str) -> Optional[str]:
+    """Return the version assumed when none is given, or ``None`` if unversioned."""
+
+    _, table = _version_table(language)
+    return None if table is None else table.default
+
+
+def comment_language_requires_version(language: str) -> bool:
+    """Return whether ``language`` has version-dependent comment syntax."""
+
+    _, table = _version_table(language)
+    return table is not None
+
+
+VERSIONED_COMMENT_LANGUAGES = tuple(
+    language for language in SUPPORTED_LANGUAGES if comment_language_requires_version(language)
+)
 
 
 def iter_comment_syntaxes() -> Iterable[CommentSyntax]:
