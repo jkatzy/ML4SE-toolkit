@@ -619,6 +619,12 @@ _LEXICAL_RULES = {
 # Version profiles named by ``CommentLanguageVersion.lexical_profile``. A
 # profile replaces a language's literal rules for that version only.
 LEXICAL_VERSION_PROFILES = {
+    # C before C23 and C++ before C++14: ' never separates digits.
+    "c-without-digit-separators": _rules("'\"`"),
+    # C++11: raw string literals, but no digit separators yet.
+    "cpp-raw-strings-without-digit-separators": _rules(
+        "'\"`", literals=(_CPP_RAW_STRING,), starts="uULR"
+    ),
     # CMake before 3.0 has no [[...]] bracket arguments.
     "cmake-2.8": _rules("'\""),
 }

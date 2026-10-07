@@ -266,6 +266,214 @@ class CommentSyntax:
         return self.excluded_comment_prefixes + dialect_prefixes
 
 
+# C11 5.1.1.2 and C++ [lex.phases]: line splicing (phase 2) precedes comment
+# removal (phase 3), so a backslash-newline continues a // comment and may sit
+# between the * and / of a block terminator. Trigraph replacement (phase 1)
+# makes ??/ a backslash in C89-C17 and C++98-C++14. C++23 also splices a
+# backslash followed by whitespace before the newline.
+_SPLICE = r"\\(?:\r\n|\r|\n)"
+_TRIGRAPH_SPLICE = r"(?:\\|\?\?/)(?:\r\n|\r|\n)"
+_CPP23_SPLICE = r"\\[ \t\f\v]*(?:\r\n|\r|\n)"
+
+
+def _c_block_pattern(splice: str) -> str:
+    return r"\/\*[\S\s]*?\*(?:" + splice + r")*\/"
+
+
+def _c_line_pattern(splice: str) -> str:
+    return r"/{2}(?:" + splice + r"|[^\r\n])*"
+
+
+_C_SPLICE_PATTERNS = (_c_block_pattern(_SPLICE), _c_line_pattern(_SPLICE))
+_C_TRIGRAPH_PATTERNS = (_c_block_pattern(_TRIGRAPH_SPLICE), _c_line_pattern(_TRIGRAPH_SPLICE))
+_GCC_LANG_DEFAULTS = (
+    "https://github.com/gcc-mirror/gcc/blob/releases/gcc-14.2.0/libcpp/init.cc "
+    "(lang_defaults: c99, trigraphs, and digit separators per standard)"
+)
+
+_C_LANGUAGE_VERSIONS = CommentLanguageVersions(
+    languages=("c", "objective-c"),
+    default="c23",
+    notes=(
+        "Objective-C comments are lexed by the C front end at the selected C "
+        "edition. GCC and Clang accept // in C89 modes as an extension; the "
+        "c89 version follows ISO C90, which has no // comments."
+    ),
+    versions=(
+        CommentLanguageVersion(
+            name="c89",
+            aliases=("c90", "c95", "ansi", "iso9899:1990", "iso9899:199409"),
+            span="ANSI X3.159-1989 / ISO C90 and the C95 amendment",
+            comment_rules=(
+                "Only non-nested /* */ comments; // is two division operators. "
+                "Trigraph ??/ and backslash-newline splices precede comment "
+                "removal; ' never separates digits."
+            ),
+            regex_patterns=(_c_block_pattern(_TRIGRAPH_SPLICE),),
+            lexical_profile="c-without-digit-separators",
+            examples=(
+                CommentExample(
+                    "a = b //* note */ c;\n",
+                    "/* note */",
+                    "C90 lexes //* as a division followed by a block comment.",
+                    kind="block",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=("ISO/IEC 9899:1990 6.1.9 Comments; " + _GCC_LANG_DEFAULTS),
+        ),
+        CommentLanguageVersion(
+            name="c99",
+            aliases=("c11", "c17", "c18", "iso9899:1999", "iso9899:2011", "iso9899:2017"),
+            span="C99, C11, and C17/C18",
+            comment_rules=(
+                "/* */ and // comments. Trigraph ??/ splices lines like a "
+                "backslash; ' never separates digits."
+            ),
+            regex_patterns=_C_TRIGRAPH_PATTERNS,
+            lexical_profile="c-without-digit-separators",
+            examples=(
+                CommentExample(
+                    "x = 1; // note??/\ny = 2;\n",
+                    "// note??/\ny = 2;",
+                    "Before C23 the trigraph ??/ continues a // comment.",
+                    kind="line",
+                    inline_compatible=True,
+                ),
+                CommentExample(
+                    "const char *s = S(1'2'/*'*/);\n",
+                    "/*'*/",
+                    "Before C23 '2' is a character constant, not part of 1'2.",
+                    kind="block",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=("ISO/IEC 9899:1999 5.1.1.2 and 6.4.9; " + _GCC_LANG_DEFAULTS),
+        ),
+        CommentLanguageVersion(
+            name="c23",
+            aliases=("c2x", "iso9899:2024"),
+            span="C23 (ISO/IEC 9899:2024)",
+            comment_rules=(
+                "/* */ and // comments with backslash-newline splicing. "
+                "Trigraphs are removed and ' is a digit separator."
+            ),
+        ),
+    ),
+)
+
+_CPP_LANGUAGE_VERSIONS = CommentLanguageVersions(
+    languages=("c++", "objective_cpp", "objective_c_plus_plus", "cuda"),
+    default="cpp17",
+    notes=(
+        "Objective-C++ and CUDA C++ are lexed by the C++ front end at the "
+        "selected C++ edition. HIP keeps its reviewed HIP-Clang scanner."
+    ),
+    versions=(
+        CommentLanguageVersion(
+            name="cpp98",
+            aliases=("c++98", "c++03", "cpp03"),
+            span="ISO C++98 and C++03",
+            comment_rules=(
+                "// and non-nested /* */ comments with trigraph and backslash "
+                "splices; no raw string literals or digit separators."
+            ),
+            regex_patterns=_C_TRIGRAPH_PATTERNS,
+            lexical_profile="c-without-digit-separators",
+            examples=(
+                CommentExample(
+                    'S(R"(a" /* note */ )");\n',
+                    "/* note */",
+                    'Before C++11, R"( is the identifier R and a string literal.',
+                    kind="block",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/cplusplus/draft/blob/n4140/source/compatibility.tex "
+                "([diff.cpp03.lex]: raw string prefixes change valid C++03 code); "
+                + _GCC_LANG_DEFAULTS
+            ),
+        ),
+        CommentLanguageVersion(
+            name="cpp11",
+            aliases=("c++11", "c++0x"),
+            span="C++11",
+            comment_rules=(
+                "As cpp98 plus raw string literals, whose content is not a "
+                "comment; ' never separates digits."
+            ),
+            regex_patterns=_C_TRIGRAPH_PATTERNS,
+            lexical_profile="cpp-raw-strings-without-digit-separators",
+            examples=(
+                CommentExample(
+                    "const char *s = S(1'2'/*'*/);\n",
+                    "/*'*/",
+                    "Before C++14 '2' is a character literal, not part of 1'2.",
+                    kind="block",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/cplusplus/draft/blob/n4140/source/compatibility.tex "
+                "([diff.cpp11.lex]: digit separators change valid C++11 code)"
+            ),
+        ),
+        CommentLanguageVersion(
+            name="cpp14",
+            aliases=("c++14", "c++1y"),
+            span="C++14",
+            comment_rules="As cpp11 plus ' digit separators; trigraphs still apply.",
+            regex_patterns=_C_TRIGRAPH_PATTERNS,
+            examples=(
+                CommentExample(
+                    "x = 1; // note??/\ny = 2;\n",
+                    "// note??/\ny = 2;",
+                    "Before C++17 the trigraph ??/ continues a // comment.",
+                    kind="line",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/cplusplus/draft/blob/n4659/source/compatibility.tex "
+                "([diff.cpp14.lex]: trigraph removal changes comments)"
+            ),
+        ),
+        CommentLanguageVersion(
+            name="cpp17",
+            aliases=("c++17", "c++1z", "c++20", "c++2a", "cpp20"),
+            span="C++17 and C++20",
+            comment_rules=(
+                "// and non-nested /* */ comments; a backslash immediately "
+                "before a newline splices; no trigraphs."
+            ),
+        ),
+        CommentLanguageVersion(
+            name="cpp23",
+            aliases=("c++23", "c++2b", "c++26", "c++2c", "cpp26"),
+            span="C++23 and the C++26 working draft",
+            comment_rules=(
+                "As cpp17, but whitespace may separate the splicing backslash from the newline."
+            ),
+            regex_patterns=(_c_block_pattern(_CPP23_SPLICE), _c_line_pattern(_CPP23_SPLICE)),
+            examples=(
+                CommentExample(
+                    "x = 1; // note \\ \ny = 2;\n",
+                    "// note \\ \ny = 2;",
+                    "C++23 splices a backslash followed by spaces and a newline.",
+                    kind="line",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/cplusplus/draft/blob/n4950/source/lex.tex "
+                "([lex.phases] phase 2, P2223)"
+            ),
+        ),
+    ),
+)
+
+
 COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="two_dimensional_array_style",
@@ -1363,13 +1571,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             # C11 5.1.1.2: line splicing (translation phase 2) precedes comment
             # removal (phase 3), so a backslash-newline continues a // comment.
             *(
-                (
-                    language,
-                    (
-                        r"\/\*[\S\s]*?\*\/",
-                        r"/{2}(?:\\(?:\r\n|\r|\n)|[^\r\n])*",
-                    ),
-                )
+                (language, _C_SPLICE_PATTERNS)
                 for language in (
                     "c",
                     "c++",
@@ -1413,6 +1615,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         notes="Slash-based line and non-nested block comments.",
+        language_versions=(_C_LANGUAGE_VERSIONS, _CPP_LANGUAGE_VERSIONS),
     ),
     CommentSyntax(
         family_name="kotlin_style",

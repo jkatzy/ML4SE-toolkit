@@ -17,7 +17,9 @@ from .contextual import contextual_comment_ranges
 from .lexical import lexical_rules_for
 from .registry import (
     _resolve_comment_language_key,
+    get_comment_language_version,
     get_comment_syntax,
+    get_default_comment_language_version,
     resolve_query_language_version,
 )
 from .stack_v3_batch_02_03_contextual import reviewed_alias_comment_ranges
@@ -653,8 +655,30 @@ def _comment_scan_context(language, text, version=None):
         return [], len(text)
     if normalized == "nl":
         return _nl_comment_scan_context(text)
-    string_ranges = _language_string_ranges(normalized, text)
+    overlay = _version_overlay(language, version)
+    string_ranges = (
+        None
+        if overlay is not None and overlay.lexical_profile
+        else _language_string_ranges(normalized, text)
+    )
     return _comment_aware_ignored_ranges(language, text, string_ranges, version), len(text)
+
+
+@lru_cache(maxsize=None)
+def _version_overlay(language, version):
+    """Return a non-default version's metadata, or ``None`` for the default.
+
+    A language-specific scanner (reviewed alias, string, or nested-comment
+    scanner) implements only the default version. A non-default version that
+    overrides the scanner's concern takes the generic registry path instead.
+    """
+
+    if version is None:
+        return None
+    metadata = get_comment_language_version(language, version)
+    if metadata is None or metadata.name == get_default_comment_language_version(language):
+        return None
+    return metadata
 
 
 def _language_string_ranges(normalized, text):
@@ -937,7 +961,7 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None, version=No
             comment_ends[start] = max(comment_ends.get(start, start), end)
 
     cursors = []
-    reviewed_ranges = _reviewed_alias_ranges(language, text)
+    reviewed_ranges = _reviewed_alias_ranges(language, text, version)
     if reviewed_ranges is not None:
         for start, end in reviewed_ranges:
             add_comment(start, end)
@@ -952,7 +976,12 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None, version=No
 
     nested_starts = {}
     normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
-    nested_scanner = _NESTED_COMMENT_SCANNERS.get(normalized)
+    overlay = _version_overlay(language, version)
+    nested_scanner = (
+        None
+        if overlay is not None and overlay.nested_delimiters is not None
+        else _NESTED_COMMENT_SCANNERS.get(normalized)
+    )
     if nested_scanner is not None:
         for start, end in nested_scanner(text):
             comment_ends[start] = max(comment_ends.get(start, start), end)
@@ -1126,8 +1155,14 @@ def _query_matches_from_ranges(text, ranges):
     return [_query_match_from_range(text, start, end) for start, end in ranges]
 
 
-def _reviewed_alias_ranges(language, text):
-    """Return ranges from a reviewed alias scanner, when one owns ``language``."""
+def _reviewed_alias_ranges(language, text, version=None):
+    """Return ranges from a reviewed alias scanner, when one owns ``language``.
+
+    Reviewed scanners implement a language's default version only.
+    """
+
+    if _version_overlay(language, version) is not None:
+        return None
 
     for extractor in (
         reviewed_alias_comment_ranges,
@@ -1225,7 +1260,7 @@ class LineCommentQuery(Query):
     def parse_ranges(self, text, quoted_ranges=None, scan_limit=None):
         """Return regex and contextual comment ranges in source order."""
 
-        reviewed_ranges = _reviewed_alias_ranges(self.language, text)
+        reviewed_ranges = _reviewed_alias_ranges(self.language, text, self.version)
         if reviewed_ranges is not None:
             return self._dedupe_match_ranges(
                 (start, end)
@@ -1369,7 +1404,12 @@ class NestedCommentQuery(Query):
             return []
 
         normalized = re.sub(r"[^a-z0-9]+", "_", self.language.strip().lower()).strip("_")
-        scanner = _NESTED_COMMENT_SCANNERS.get(normalized)
+        overlay = _version_overlay(self.language, self.version)
+        scanner = (
+            None
+            if overlay is not None and overlay.nested_delimiters is not None
+            else _NESTED_COMMENT_SCANNERS.get(normalized)
+        )
         if scanner is not None:
             return list(scanner(text))
 

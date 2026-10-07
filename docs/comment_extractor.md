@@ -68,6 +68,52 @@ stream must resolve.
 - `NestedCommentQuery(language)`: finds top-level nested comment regions for
   languages with recursive delimiters such as Haskell, Agda, Racket, or Nim.
 
+## Language versions
+
+Some languages changed their comment syntax between versions. CMake before 3.0,
+for example, treats `#[[ note ]] set(x 1)` as one line comment, while CMake 3.0
+and later read a bracket comment followed by code. Such languages carry a
+version table, and every query accepts a `version` keyword:
+
+```python
+from ml4setk import CommentQuery, comment_language_requires_version
+
+assert comment_language_requires_version("cmake")
+
+source = "#[[ note ]] set(x 1)\n"
+assert [m.match for m in CommentQuery("cmake", version="2.8").parse(source)] == [
+    "#[[ note ]] set(x 1)"
+]
+assert [m.match for m in CommentQuery("cmake", version="3.0").parse(source)] == [
+    "#[[ note ]]"
+]
+```
+
+- A version may be given by its name, one of its aliases, or (for languages
+  versioned by release number) any dotted release: `version="3.18"` selects
+  the range that starts at 3.0. Lookup ignores case and a leading `v`.
+- Without a version, a versioned language uses its default version and emits
+  one `CommentLanguageVersionWarning` per language and process. The message
+  names the assumed default and every supported version. Pass the version
+  explicitly, or filter the warning, to silence it.
+- An unknown version raises `UnsupportedCommentLanguageVersionError`, whose
+  message and `supported_versions` attribute list the language's versions.
+  Passing a version for a language whose comments do not depend on its version
+  raises the same error. The error subclasses both `NotImplementedError` and
+  `ValueError`.
+- `CommentQuery([...])` over several languages takes a mapping, for example
+  `version={"c": "c89"}`; unmapped languages use their defaults.
+- `get_comment_syntax(language, version)`, `CommentSanitizer(language,
+  version=...)`, and `sanitize_comment(language, comment, version=...)`
+  resolve versions the same way.
+
+`comment_language_requires_version(language)` is the version flag.
+`get_comment_language_versions(language)` lists the supported versions in
+chronological order, `get_default_comment_language_version(language)` names
+the default, and `VERSIONED_COMMENT_LANGUAGES` lists every flagged language.
+
+<!-- versioned-language-table -->
+
 ## Behavior that matters
 
 ### Adjacent single-line comments are grouped

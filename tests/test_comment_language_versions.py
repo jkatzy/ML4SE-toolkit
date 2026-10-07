@@ -208,3 +208,73 @@ def test_multi_language_query_takes_a_version_mapping():
         CommentQuery([language, "java"], version={"python": "3"})
     with pytest.raises(UnsupportedCommentLanguageVersionError):
         CommentQuery([language, "java"], version={"java": "17"})
+
+
+# Differential sources from the version research. Each row gives the exact
+# comment slices under every version of the language.
+_C_SOURCE = (
+    "#define S(x) #x\n"
+    "int a = 4 //* div */ 2\n"
+    ";\n"
+    "const char *s = S(1'2'/*'*/);\n"
+    "/* note *??/\n"
+    "/ int b; /**/\n"
+)
+_CPP_SOURCE = (
+    "#define S(x) #x\n"
+    'const char *a = S(R"(a" /* b )" */);\n'
+    "const char *b = S(1'2'/*'*/);\n"
+    "// why??/\n"
+    "int c;\n"
+    "// note \\ \n"
+    "int d;\n"
+)
+_CPP_EXPECTED = {
+    "cpp98": ['/* b )" */', "/*'*/", "// why??/\nint c;", "// note \\ "],
+    "cpp11": ["/*'*/", "// why??/\nint c;", "// note \\ "],
+    "cpp14": ["// why??/\nint c;", "// note \\ "],
+    "cpp17": ["// why??/", "// note \\ "],
+    "cpp23": ["// why??/", "// note \\ \nint d;"],
+}
+_DIFFERENTIAL_CASES = [
+    *(
+        pytest.param(
+            language,
+            _C_SOURCE,
+            {
+                "c89": ["/* div */", "/*'*/", "/* note *??/\n/", "/**/"],
+                "c99": ["//* div */ 2", "/*'*/", "/* note *??/\n/", "/**/"],
+                "c23": ["//* div */ 2", "/* note *??/\n/ int b; /**/"],
+            },
+            id=f"{language}-editions",
+        )
+        for language in ("c", "objective-c")
+    ),
+    *(
+        pytest.param(language, _CPP_SOURCE, _CPP_EXPECTED, id=f"{language}-editions")
+        for language in ("c++", "objective_cpp", "objective_c_plus_plus", "cuda")
+    ),
+    pytest.param(
+        "cmake",
+        "#[[ note ]] set(x 1)\nset(y [[ # a ]]) # b\n",
+        {
+            "2.8": ["#[[ note ]] set(x 1)", "# a ]]) # b"],
+            "3.0": ["#[[ note ]]", "# b"],
+        },
+        id="cmake-bracket-comments",
+    ),
+]
+
+
+@pytest.mark.parametrize(("language", "source", "expected"), _DIFFERENTIAL_CASES)
+def test_differential_source_matches_every_version(language, source, expected):
+    assert set(expected) == set(get_comment_language_versions(language))
+    for version, comments in expected.items():
+        assert _matches(language, source, version) == comments, version
+
+
+def test_base_c_block_comment_closes_across_a_line_splice():
+    # C11 5.1.1.2: splicing precedes comment removal, so * \ newline / closes.
+    source = "/* a *\\\n/ int x; /* b */\n"
+    assert _matches("c", source, "c23") == ["/* a *\\\n/", "/* b */"]
+    assert _matches("c++", source, "cpp17") == ["/* a *\\\n/", "/* b */"]
