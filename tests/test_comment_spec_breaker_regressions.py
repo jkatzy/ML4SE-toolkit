@@ -29,11 +29,160 @@ def _open_defect(reason):
     return pytest.mark.xfail(reason=reason, strict=True)
 
 
+# Shared reasons for the open third-iteration real-code cases.
+_APOSTROPHE_NOT_STRING = (
+    "The fallback quote scanner pairs apostrophes that this language uses as "
+    "primes, transposes, or text."
+)
+_MULTILINE_STRING = "Protected ranges for this string form stop at the physical line."
+_LITERAL_FORM = "This language-specific literal form does not protect comment markers."
+_REGEX_LITERAL = "Regular-expression literals do not protect comment markers."
+_TEMPLATE_TEXT = "Template, markup, or verbatim text is scanned as code."
+_MARKER_POSITION = "The marker starts a comment only at a line, word, token, or command start."
+_MISSING_FORM = "This documented comment form is absent from the registry."
+_LONE_CR = "A lone CR does not end the line comment."
+
 # Case id -> reason for defects that are confirmed but not fixed yet.
 _OPEN_CASES = {
     "lua-cr-terminates-comment": (
         "Lua keeps its legacy published slices; see "
         "test_lua_legacy_crlf_comment_slice_preserves_carriage_return."
+    ),
+    **dict.fromkeys(
+        (
+            "standard-ml-primed-binding",
+            "isabelle-primed-name",
+            "mathematica-derivative",
+            "scilab-transpose",
+            "yaml-sequence-plain-scalar-apostrophe",
+            "yaml-mapping-plain-scalar-apostrophe",
+            "jsx-text-apostrophe",
+            "tsx-text-apostrophe",
+        ),
+        _APOSTROPHE_NOT_STRING,
+    ),
+    **dict.fromkeys(
+        (
+            "scala-triple-quoted-string",
+            "groovy-triple-quoted-string",
+            "gdscript-triple-quoted-string",
+            "meson-multiline-string",
+            "elixir-charlist-heredoc",
+            "ruby-multiline-single-quoted-string",
+            "r-multiline-string",
+            "sql-multiline-string",
+            "common-lisp-multiline-string",
+        ),
+        _MULTILINE_STRING,
+    ),
+    **dict.fromkeys(
+        (
+            "perl-q-brace-string",
+            "ruby-nested-interpolation",
+            "plsql-q-quoted-string",
+            "groovy-dollar-slashy-string",
+            "rebol-braced-string",
+            "red-braced-string",
+            "abap-string-template",
+            "postscript-parenthesized-string",
+            "bibtex-braced-field-value",
+            "bibtex-escaped-percent-in-field",
+            "m4-quoted-hash",
+            "ocaml-quoted-string-literal",
+        ),
+        _LITERAL_FORM,
+    ),
+    **dict.fromkeys(
+        (
+            "ruby-slash-regex-literal",
+            "perl-slash-substitution",
+            "perl-qr-regex",
+            "awk-regex-pattern",
+            "awk-match-operator-regex",
+            "coffeescript-regex-literal",
+        ),
+        _REGEX_LITERAL,
+    ),
+    **dict.fromkeys(
+        (
+            "html-textarea-rcdata",
+            "vue-template-url-text",
+            "jsx-text-url",
+            "astro-template-url-text",
+            "asciidoc-listing-block",
+        ),
+        _TEMPLATE_TEXT,
+    ),
+    **dict.fromkeys(
+        (
+            "nginx-hash-inside-token",
+            "ninja-hash-inside-variable-value",
+            "apacheconf-hash-inside-directive",
+            "desktop-entry-hash-in-value",
+            "debian-control-hash-in-field",
+            "rpm-spec-source-url-fragment",
+            "mcfunction-block-tag",
+            "mcfunction-function-tag",
+            "gherkin-hash-in-step",
+            "cucumber-hash-in-step",
+            "org-hash-in-paragraph",
+            "asciidoc-url-in-paragraph",
+            "java-properties-continuation-line",
+            "jinja-double-hash-is-text",
+            "html-django-double-hash-is-text",
+        ),
+        _MARKER_POSITION,
+    ),
+    **dict.fromkeys(
+        (
+            "sas-star-comment-ends-at-semicolon",
+            "sas-star-comment-after-statement",
+            "sas-star-comment-spans-lines",
+        ),
+        "SAS * comment statements may start any statement and end at the semicolon.",
+    ),
+    **dict.fromkeys(
+        (
+            "puppet-c-style-block-comment",
+            "lfe-block-comment",
+            "scheme-nested-block-comment",
+            "autoit-long-form-comment-block",
+            "html-django-comment-tag",
+            "html-erb-html-comment",
+            "saltstack-jinja-comment",
+        ),
+        _MISSING_FORM,
+    ),
+    "odin-nested-block-comment": (
+        "Odin block comments nest, but odin still uses non-nesting c_style blocks."
+    ),
+    "haskell-dash-arrow-operator": (
+        "Only the --> prefix is excluded; ---> is also an operator lexeme."
+    ),
+    **dict.fromkeys(
+        (
+            "plpgsql-lone-cr-line-ending",
+            "ada-lone-cr-line-ending",
+            "nim-lone-cr-line-ending",
+        ),
+        _LONE_CR,
+    ),
+    **dict.fromkeys(
+        ("python-triple-quoted-assignment", "python-triple-quoted-call-argument"),
+        "The hash_style family reports every triple-quoted string, not only docstrings.",
+    ),
+    **dict.fromkeys(
+        (
+            "rst-admonition-directive",
+            "rst-code-block-directive",
+            "rst-hyperlink-target",
+            "rst-image-directive",
+        ),
+        "Directives and hyperlink targets match the .. comment pattern.",
+    ),
+    "matlab-doubled-quote-string": (
+        "Regression: transpose detection reads the doubled quote in 'it''s' as a "
+        "transpose, exposing the % inside the character vector."
     ),
 }
 
@@ -1280,3 +1429,732 @@ def test_fsharp_strings_inside_block_comments_are_tokenized(source, expected):
     # F# spec 3.2: strings embedded within block comments are tokenized by the
     # string literal rules, so a closer inside them does not end the comment.
     assert _matches("fsharp", source) == expected
+
+
+# ---------------------------------------------------------------------------
+# Third breaker iteration: real-code audit. Each source is a small fragment of
+# ordinary code in the target language; open cases are listed in _OPEN_CASES.
+# ---------------------------------------------------------------------------
+
+_ITERATION_3_CASES = [
+    # Apostrophes that are primes, ticks, transposes, or text.
+    pytest.param(
+        "ocaml",
+        "let x' = 1 (* it's *)\n",
+        ["(* it's *)"],
+        "OCaml manual 11.1: identifiers may contain '.",
+        id="ocaml-primed-binding",
+    ),
+    pytest.param(
+        "standard_ml",
+        "val x' = 1 (* it's *)\n",
+        ["(* it's *)"],
+        "SML Definition 2.4: alphanumeric identifiers may contain '.",
+        id="standard-ml-primed-binding",
+    ),
+    pytest.param(
+        "isabelle",
+        "lemma x': \"P\" (* it's *)\n",
+        ["(* it's *)"],
+        "Isabelle outer syntax: ' is a quasi-letter in identifiers.",
+        id="isabelle-primed-name",
+    ),
+    pytest.param(
+        "mathematica",
+        "f'[x] (* it's *)\n",
+        ["(* it's *)"],
+        "Wolfram Language: f' is Derivative[1][f].",
+        id="mathematica-derivative",
+    ),
+    pytest.param(
+        "systemverilog",
+        "assign x = 'b0; // it's\n",
+        ["// it's"],
+        "IEEE 1800 5.7.1: 'b0 is an unsized based number.",
+        id="systemverilog-unsized-literal",
+    ),
+    pytest.param(
+        "vhdl",
+        "if clk'event and clk = '1' then -- it's\n",
+        ["-- it's"],
+        "IEEE 1076 16.2: clk'event is an attribute name; '1' is a character literal.",
+        id="vhdl-attribute-then-char-literal",
+    ),
+    pytest.param(
+        "ada",
+        "X := T'(A => 1); -- it's\n",
+        ["-- it's"],
+        "Ada RM 4.7: T'(...) is a qualified expression.",
+        id="ada-qualified-expression",
+    ),
+    pytest.param(
+        "scilab",
+        "x = a'; // it's\n",
+        ["// it's"],
+        "Scilab: postfix ' is the transpose operator.",
+        id="scilab-transpose",
+    ),
+    pytest.param(
+        "tex",
+        "Don't do it. % it's\n",
+        ["% it's"],
+        "TeXbook ch. 7: only % (catcode 14) starts a comment; ' is text.",
+        id="tex-prose-apostrophes",
+    ),
+    pytest.param(
+        "yaml",
+        "- don't # note\n- it's\n",
+        ["# note"],
+        "YAML 1.2 7.3.3: ' inside a plain scalar is content.",
+        id="yaml-sequence-plain-scalar-apostrophe",
+    ),
+    pytest.param(
+        "yaml",
+        "msg: It's here # note\n",
+        ["# note"],
+        "YAML 1.2 7.3.3: ' inside a plain scalar is content.",
+        id="yaml-mapping-plain-scalar-apostrophe",
+    ),
+    pytest.param(
+        "jsx",
+        "const el = <p>Don't panic</p>; // it's\n",
+        ["// it's"],
+        "JSX spec: JSXText is not a string literal.",
+        id="jsx-text-apostrophe",
+    ),
+    pytest.param(
+        "tsx",
+        "const el = <p>Don't panic</p>; // it's\n",
+        ["// it's"],
+        "TSX follows JSX: JSXText is not a string literal.",
+        id="tsx-text-apostrophe",
+    ),
+    pytest.param(
+        "matlab",
+        "s = 'it''s %not'; % note\n",
+        ["% note"],
+        "MATLAB: '' inside a character vector is an escaped quote.",
+        id="matlab-doubled-quote-string",
+    ),
+    # Multi-line, raw, and continued strings.
+    pytest.param(
+        "c#",
+        'var s = """\n// not\n"""; // note\n',
+        ["// note"],
+        "C# 11: raw string literals span lines.",
+        id="csharp-raw-string",
+    ),
+    pytest.param(
+        "scala",
+        'val s = """\n// not\n""" // note\n',
+        ["// note"],
+        "Scala spec 1.3.5: multi-line string literals.",
+        id="scala-triple-quoted-string",
+    ),
+    pytest.param(
+        "dart",
+        "var s = '''\n// not\n'''; // note\n",
+        ["// note"],
+        "Dart spec 17.7: multi-line strings.",
+        id="dart-triple-single-quoted-string",
+    ),
+    pytest.param(
+        "groovy",
+        "def s = '''\n// not\n''' // note\n",
+        ["// note"],
+        "Groovy syntax 4.3: triple-single-quoted strings span lines.",
+        id="groovy-triple-quoted-string",
+    ),
+    pytest.param(
+        "python",
+        "s = '''\n# not a comment\n'''\n",
+        [],
+        "Python reference 2.4.1: triple-quoted strings span lines.",
+        id="python-triple-single-quoted-string",
+    ),
+    pytest.param(
+        "python",
+        "s = 'a\\\n# not'\n",
+        [],
+        "Python reference 2.4.1: backslash-newline continues a string.",
+        id="python-string-line-continuation",
+    ),
+    pytest.param(
+        "toml",
+        "a = '''\n# not\n'''\n",
+        [],
+        "TOML 1.0, Multi-line literal strings.",
+        id="toml-multiline-literal-string",
+    ),
+    pytest.param(
+        "gdscript",
+        'var s = """\n# not\n"""\n',
+        [],
+        "GDScript reference: triple-quoted strings span lines.",
+        id="gdscript-triple-quoted-string",
+    ),
+    pytest.param(
+        "meson",
+        "x = '''\n# not\n'''\n",
+        [],
+        "Meson syntax: triple-quoted multiline strings.",
+        id="meson-multiline-string",
+    ),
+    pytest.param(
+        "elixir",
+        "s = '''\n# not\n'''\n",
+        [],
+        "Elixir syntax reference: ''' delimits a charlist heredoc.",
+        id="elixir-charlist-heredoc",
+    ),
+    pytest.param(
+        "ruby",
+        "s = 'a\n# not\nb' # note\n",
+        ["# note"],
+        "Ruby syntax: string literals may contain newlines.",
+        id="ruby-multiline-single-quoted-string",
+    ),
+    pytest.param(
+        "shell",
+        'echo "a\n# not\nb" # note\n',
+        ["# note"],
+        "POSIX 2.2.3: double quotes preserve newlines.",
+        id="shell-multiline-double-quoted-string",
+    ),
+    pytest.param(
+        "r",
+        "x <- 'a\n# not\nb' # note\n",
+        ["# note"],
+        "R language definition 10.3.1: strings may span lines.",
+        id="r-multiline-string",
+    ),
+    pytest.param(
+        "sql",
+        "SELECT 'a\n-- not\nb' FROM t; -- note\n",
+        ["-- note"],
+        "SQL character string literals may contain newlines.",
+        id="sql-multiline-string",
+    ),
+    pytest.param(
+        "common_lisp",
+        '(f "multi\nline ; not comment") ; note\n',
+        ["; note"],
+        'CLHS 2.4.5: " strings may contain newlines.',
+        id="common-lisp-multiline-string",
+    ),
+    pytest.param(
+        "c",
+        'char *s = "a\\\nb // not"; // note\n',
+        ["// note"],
+        "C11 5.1.1.2 phase 2 splices lines before tokenization.",
+        id="c-string-line-splice",
+    ),
+    pytest.param(
+        "haskell",
+        'x = "a\\\n  \\b -- not"\n',
+        [],
+        "Haskell 2010 2.6: string gaps span lines.",
+        id="haskell-string-gap",
+    ),
+    pytest.param(
+        "powershell",
+        '$s = @"\n# not\n"@ # note\n',
+        ["# note"],
+        "about_Quoting_Rules: here-strings span lines.",
+        id="powershell-here-string-body",
+    ),
+    # Language-specific literal forms.
+    pytest.param(
+        "perl",
+        "my $s = q{# not}; # note\n",
+        ["# note"],
+        "perlop, Quote and Quote-like Operators.",
+        id="perl-q-brace-string",
+    ),
+    pytest.param(
+        "ruby",
+        "s = %q(# not) # note\n",
+        ["# note"],
+        "Ruby syntax, Percent Strings.",
+        id="ruby-percent-q-string",
+    ),
+    pytest.param(
+        "ruby",
+        's = "#{"#"} # not" # note\n',
+        ["# note"],
+        "Ruby syntax: #{...} interpolation may contain strings.",
+        id="ruby-nested-interpolation",
+    ),
+    pytest.param(
+        "plsql",
+        "SELECT q'[it's -- not]' FROM dual; -- note\n",
+        ["-- note"],
+        "Oracle SQL Reference, Text Literals: q'[...]'.",
+        id="plsql-q-quoted-string",
+    ),
+    pytest.param(
+        "groovy",
+        "def s = $/a//b/$ // note\n",
+        ["// note"],
+        "Groovy syntax 4.7: dollar slashy strings.",
+        id="groovy-dollar-slashy-string",
+    ),
+    pytest.param(
+        "rebol",
+        "print {a;b} ; note\n",
+        ["; note"],
+        "REBOL/Core: {...} is a multi-line string.",
+        id="rebol-braced-string",
+    ),
+    pytest.param(
+        "red",
+        "print {a;b} ; note\n",
+        ["; note"],
+        "Red follows REBOL: {...} is a string.",
+        id="red-braced-string",
+    ),
+    pytest.param(
+        "abap",
+        'DATA(s) = |a"b|. " note\n',
+        ['" note'],
+        "ABAP keyword docs: |...| is a string template.",
+        id="abap-string-template",
+    ),
+    pytest.param(
+        "postscript",
+        "(50%) show % note\n",
+        ["% note"],
+        "PLRM 3.2.2: (...) is a string; % in a string is text.",
+        id="postscript-parenthesized-string",
+    ),
+    pytest.param(
+        "bibtex",
+        "@misc{a, url = {http://x/a%20b}}\n",
+        [],
+        "BibTeX: braced field values are literal text.",
+        id="bibtex-braced-field-value",
+    ),
+    pytest.param(
+        "bibtex",
+        "@misc{a, title = {50\\% off}}\n",
+        [],
+        "BibTeX field text: \\% is an escaped percent sign.",
+        id="bibtex-escaped-percent-in-field",
+    ),
+    pytest.param(
+        "m4",
+        "define(`x', `#not')\n",
+        [],
+        "GNU m4 manual 3.3: quoted # does not start a comment.",
+        id="m4-quoted-hash",
+    ),
+    pytest.param(
+        "ocaml",
+        "let s = {|(* not *)|} (* note *)\n",
+        ["(* note *)"],
+        "OCaml manual 11.1: {|...|} quoted strings.",
+        id="ocaml-quoted-string-literal",
+    ),
+    # Regular-expression literals.
+    pytest.param(
+        "javascript",
+        "const re = /[/*]/; x = 1; /* note */\n",
+        ["/* note */"],
+        "ECMA-262 12.9.5: a class may contain an unescaped /.",
+        id="javascript-regex-class-with-slash",
+    ),
+    pytest.param(
+        "ruby",
+        "r = /#[a-z]/ # note\n",
+        ["# note"],
+        "Ruby syntax: /.../ is a regexp literal.",
+        id="ruby-slash-regex-literal",
+    ),
+    pytest.param(
+        "perl",
+        "s/#//g; # note\n",
+        ["# note"],
+        "perlop: s/// is a quote-like substitution.",
+        id="perl-slash-substitution",
+    ),
+    pytest.param(
+        "perl",
+        "my $re = qr/a#b/; # note\n",
+        ["# note"],
+        "perlop: qr// is a quote-like regex.",
+        id="perl-qr-regex",
+    ),
+    pytest.param(
+        "awk",
+        "/^#/ { next }\n{ print } # note\n",
+        ["# note"],
+        "POSIX awk: /ERE/ is a regular expression token.",
+        id="awk-regex-pattern",
+    ),
+    pytest.param(
+        "awk",
+        "$0 ~ /#/ { n++ } # note\n",
+        ["# note"],
+        "POSIX awk: /ERE/ is a regular expression token.",
+        id="awk-match-operator-regex",
+    ),
+    pytest.param(
+        "coffeescript",
+        "x = /#/.test(s) # note\n",
+        ["# note"],
+        "CoffeeScript lexer: /.../ is a regex literal.",
+        id="coffeescript-regex-literal",
+    ),
+    # Template, markup, and verbatim text.
+    pytest.param(
+        "html",
+        "<textarea><!-- not --></textarea>\n",
+        [],
+        "HTML 13.1.2: textarea is an escapable raw text element.",
+        id="html-textarea-rcdata",
+    ),
+    pytest.param(
+        "vue",
+        "<template>\n  <p>see http://example.com</p>\n</template>\n",
+        [],
+        "Vue SFC: template text is HTML text, not script.",
+        id="vue-template-url-text",
+    ),
+    pytest.param(
+        "jsx",
+        'const a = <a href="x">http://example.com</a>; // note\n',
+        ["// note"],
+        "JSX spec: JSXText is literal text.",
+        id="jsx-text-url",
+    ),
+    pytest.param(
+        "astro",
+        "---\nconst x = 1; // note\n---\n<p>see http://example.com</p>\n",
+        ["// note"],
+        "Astro: content after frontmatter is HTML template text.",
+        id="astro-template-url-text",
+    ),
+    pytest.param(
+        "asciidoc",
+        "----\n// not a comment in listing\n----\n",
+        [],
+        "AsciiDoc: listing block content is verbatim.",
+        id="asciidoc-listing-block",
+    ),
+    # Markers that start a comment only at a specific position.
+    pytest.param(
+        "tcl",
+        "set x a#b\n",
+        [],
+        "Tcl(n) rule 10: # is a comment only where a command starts.",
+        id="tcl-hash-inside-word",
+    ),
+    pytest.param(
+        "nginx",
+        "return 302 /app/#/login; # note\n",
+        ["# note"],
+        "ngx_conf_read_token: # is a comment only at token start.",
+        id="nginx-hash-inside-token",
+    ),
+    pytest.param(
+        "ninja",
+        "rule cc\n  command = gcc -c $in # not\n",
+        [],
+        "Ninja lexer: comments are skipped only between statements.",
+        id="ninja-hash-inside-variable-value",
+    ),
+    pytest.param(
+        "apacheconf",
+        "RewriteRule ^/old$ /new#section [NE,R]\n# note\n",
+        ["# note"],
+        "httpd docs: comments may not share a line with a directive.",
+        id="apacheconf-hash-inside-directive",
+    ),
+    pytest.param(
+        "desktop",
+        "[Desktop Entry]\nName=C# Editor\n# note\n",
+        ["# note"],
+        "Desktop Entry spec: only lines beginning with # are comments.",
+        id="desktop-entry-hash-in-value",
+    ),
+    pytest.param(
+        "debian_package_control_file",
+        "Homepage: https://example.com/#readme\n# note\n",
+        ["# note"],
+        "Debian Policy 5.1: comments are lines starting with #.",
+        id="debian-control-hash-in-field",
+    ),
+    pytest.param(
+        "rpm_spec",
+        "Source0: https://example.com/foo.tar.gz#/foo-1.0.tar.gz\n# note\n",
+        ["# note"],
+        "RPM spec: comments are lines starting with #.",
+        id="rpm-spec-source-url-fragment",
+    ),
+    pytest.param(
+        "mcfunction",
+        "execute if block ~ ~ ~ #minecraft:logs run say hi\n",
+        [],
+        "Minecraft functions: # is a comment only at line start.",
+        id="mcfunction-block-tag",
+    ),
+    pytest.param(
+        "mcfunction",
+        "function #minecraft:tick\n",
+        [],
+        "Minecraft functions: #namespace:tag is a tag reference.",
+        id="mcfunction-function-tag",
+    ),
+    pytest.param(
+        "gherkin",
+        "Then I see issue #42\n# note\n",
+        ["# note"],
+        "Gherkin token matcher: comments are lines starting with #.",
+        id="gherkin-hash-in-step",
+    ),
+    pytest.param(
+        "cucumber",
+        "Then I see issue #42\n# note\n",
+        ["# note"],
+        "Gherkin token matcher: comments are lines starting with #.",
+        id="cucumber-hash-in-step",
+    ),
+    pytest.param(
+        "org",
+        "Issue #42 is fixed.\n# note\n",
+        ["# note"],
+        "Org manual: comment lines start with # and whitespace.",
+        id="org-hash-in-paragraph",
+    ),
+    pytest.param(
+        "asciidoc",
+        "See http://example.com\n",
+        [],
+        "Asciidoctor CommentLineRx: ^//(?=[^/]|$).",
+        id="asciidoc-url-in-paragraph",
+    ),
+    pytest.param(
+        "java_properties",
+        "a=b\\\n  # not a comment\n",
+        [],
+        "java.util.Properties.load: continuation lines are values.",
+        id="java-properties-continuation-line",
+    ),
+    pytest.param(
+        "jinja",
+        "## {{ title }}\n",
+        [],
+        "Jinja defaults: LINE_COMMENT_PREFIX is None.",
+        id="jinja-double-hash-is-text",
+    ),
+    pytest.param(
+        "html_django",
+        "## Heading {{ x }}\n",
+        [],
+        "Django templates have no ## line comments.",
+        id="html-django-double-hash-is-text",
+    ),
+    pytest.param(
+        "sas",
+        "* note; data x; set y; run;\n",
+        ["* note;"],
+        "SAS comment statement: *message; ends at the semicolon.",
+        id="sas-star-comment-ends-at-semicolon",
+    ),
+    pytest.param(
+        "sas",
+        "data x; * note; set y; run;\n",
+        ["* note;"],
+        "SAS comment statement may start any statement.",
+        id="sas-star-comment-after-statement",
+    ),
+    pytest.param(
+        "sas",
+        "* multi\n  line note;\ndata x; run;\n",
+        ["* multi\n  line note;"],
+        "SAS comment statement continues to the semicolon.",
+        id="sas-star-comment-spans-lines",
+    ),
+    # Missing comment forms and nesting.
+    pytest.param(
+        "puppet",
+        "/* note */\nclass a {}\n",
+        ["/* note */"],
+        "Puppet lexer2: PATTERN_MLCOMMENT = /\\*(.*?)\\*/.",
+        id="puppet-c-style-block-comment",
+    ),
+    pytest.param(
+        "lfe",
+        "#| note |# (f)\n",
+        ["#| note |#"],
+        "lfe_scan.erl: scan_block_comment handles #| ... |#.",
+        id="lfe-block-comment",
+    ),
+    pytest.param(
+        "scheme",
+        "#| outer #| inner |# still |# (f)\n",
+        ["#| outer #| inner |# still |#"],
+        "R7RS 2.2: #| ... |# comments nest.",
+        id="scheme-nested-block-comment",
+    ),
+    pytest.param(
+        "autoit",
+        "#comments-start\nnote\n#comments-end\n$x = 1\n",
+        ["#comments-start\nnote\n#comments-end"],
+        "AutoIt docs: #comments-start/#comments-end (#cs/#ce).",
+        id="autoit-long-form-comment-block",
+    ),
+    pytest.param(
+        "html_django",
+        "{% comment %}note{% endcomment %}\n<p>x</p>\n",
+        ["{% comment %}note{% endcomment %}"],
+        "Django built-in tags: {% comment %} ... {% endcomment %}.",
+        id="html-django-comment-tag",
+    ),
+    pytest.param(
+        "html_erb",
+        "<!-- note -->\n<%= x %>\n",
+        ["<!-- note -->"],
+        "HTML+ERB documents carry HTML comments.",
+        id="html-erb-html-comment",
+    ),
+    pytest.param(
+        "saltstack",
+        "{# note #}\npkg.installed: []\n",
+        ["{# note #}"],
+        "Salt SLS files render with jinja|yaml by default.",
+        id="saltstack-jinja-comment",
+    ),
+    pytest.param(
+        "odin",
+        "/* outer /* inner */ still */ x := 1\n",
+        ["/* outer /* inner */ still */"],
+        "Odin tokenizer scan_comment tracks nest depth.",
+        id="odin-nested-block-comment",
+    ),
+    pytest.param(
+        "haskell",
+        "x = a ---> b\n",
+        [],
+        "Haskell 2010 2.3: dashes in a legal lexeme do not comment.",
+        id="haskell-dash-arrow-operator",
+    ),
+    # Line endings.
+    pytest.param(
+        "plpgsql",
+        "-- a\rSELECT 1;\r",
+        ["-- a"],
+        "PostgreSQL scan.l: newline is [\\n\\r].",
+        id="plpgsql-lone-cr-line-ending",
+    ),
+    pytest.param(
+        "ada",
+        "-- a\rX := 1;\r",
+        ["-- a"],
+        "Ada RM 2.2: a format effector other than HT ends a line.",
+        id="ada-lone-cr-line-ending",
+    ),
+    pytest.param(
+        "nim",
+        "# a\rlet x = 1\r",
+        ["# a"],
+        "Nim lexer: CR, LF, and CRLF end a line.",
+        id="nim-lone-cr-line-ending",
+    ),
+    pytest.param(
+        "d",
+        "/// a\rint x;\r",
+        ["/// a"],
+        "D spec, EndOfLine includes \\u000D.",
+        id="d-lone-cr-line-ending",
+    ),
+    # Docstring policy, explicit markup, and string-versus-comment markers.
+    pytest.param(
+        "python",
+        'QUERY = """\nSELECT 1\n"""\n',
+        [],
+        "Python reference 7.2: an assigned string is data.",
+        id="python-triple-quoted-assignment",
+    ),
+    pytest.param(
+        "python",
+        'cursor.execute("""SELECT 1""")  # note\n',
+        ["# note"],
+        "Python reference 6.3.4: a call argument is data.",
+        id="python-triple-quoted-call-argument",
+    ),
+    pytest.param(
+        "python",
+        'def f():\n    """Docstring."""\n',
+        ['"""Docstring."""'],
+        "Registry policy: docstring statements are comment blocks.",
+        id="python-docstring-remains-comment",
+    ),
+    pytest.param(
+        "restructuredtext",
+        ".. note:: Important text\n",
+        [],
+        "Docutils spec, Comments: directives are not comments.",
+        id="rst-admonition-directive",
+    ),
+    pytest.param(
+        "restructuredtext",
+        ".. code-block:: python\n\n   x = 1\n",
+        [],
+        "Docutils spec, Comments: directives are not comments.",
+        id="rst-code-block-directive",
+    ),
+    pytest.param(
+        "restructuredtext",
+        ".. _label:\n\nTitle\n",
+        [],
+        "Docutils spec, Comments: hyperlink targets are not comments.",
+        id="rst-hyperlink-target",
+    ),
+    pytest.param(
+        "restructuredtext",
+        ".. image:: a.png\n",
+        [],
+        "Docutils spec, Comments: directives are not comments.",
+        id="rst-image-directive",
+    ),
+    pytest.param(
+        "restructuredtext",
+        ".. this is a comment\n",
+        [".. this is a comment"],
+        "Docutils spec, Comments: other explicit markup is a comment.",
+        id="rst-plain-comment",
+    ),
+    pytest.param(
+        "vim_script",
+        '" note\nlet x = 1\n',
+        ['" note'],
+        'Vim cmdline.txt: a line starting with " is a comment.',
+        id="vim-standalone-comment",
+    ),
+    # String-protection guards that a lexical fix must preserve.
+    pytest.param(
+        "verilog",
+        '$display("//not"); // note\n',
+        ["// note"],
+        "IEEE 1364 3.6: // inside a string is text.",
+        id="verilog-string-protects-slashes",
+    ),
+    pytest.param(
+        "shell",
+        "echo '#' # note\n",
+        ["# note"],
+        "POSIX 2.2.2: single quotes preserve #.",
+        id="shell-single-quoted-hash",
+    ),
+]
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "expected", "reference"), _with_open_marks(_ITERATION_3_CASES)
+)
+def test_iteration_3_real_code_extraction_follows_language_contract(
+    language, source, expected, reference
+):
+    assert reference
+    assert _matches(language, source) == expected

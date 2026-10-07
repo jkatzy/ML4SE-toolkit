@@ -36,6 +36,10 @@ Use the narrowest existing home:
 - extraction boundary defects:
   `tests/test_comment_extractor_failure_boundaries.py` and
   `tests/test_stack_v2_comment_regressions.py`;
+- spec-derived breaker and real-code audit cases, fixed or still open:
+  `tests/test_comment_spec_breaker_regressions.py`. A confirmed but unfixed
+  case keeps its exact expected output and is listed in `_OPEN_CASES`, which
+  runs it as a strict xfail; the fix removes the entry;
 - sanitizer edge behavior:
   `tests/test_comment_sanitizer_regression_edges.py` and the existing
   `tests/test_comment_sanitizer_*.py` family suites;
