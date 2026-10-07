@@ -474,6 +474,130 @@ _CPP_LANGUAGE_VERSIONS = CommentLanguageVersions(
 )
 
 
+_C_STYLE_BLOCK = r"\/\*[\S\s]*?\*\/"
+_C_STYLE_LINE = r"/{2}[^\r\n]*"
+
+_GLSL_LANGUAGE_VERSIONS = CommentLanguageVersions(
+    languages=("glsl",),
+    default="glsl110",
+    notes=(
+        "Shaders declare their version with a #version directive. GLSL below "
+        "4.20 with GL_ARB_shading_language_420pack behaves like glsl420."
+    ),
+    versions=(
+        CommentLanguageVersion(
+            name="glsl110",
+            aliases=("110", "120", "130", "140", "150", "330", "400", "410", "100", "100es"),
+            span="Desktop GLSL 1.10 to 4.10 and GLSL ES 1.00",
+            comment_rules=(
+                "// to the end of the line and non-nested /* */; there is no line "
+                "continuation, so a trailing backslash does not extend a comment."
+            ),
+        ),
+        CommentLanguageVersion(
+            name="glsl420",
+            aliases=("420", "430", "440", "450", "460", "300es", "310es", "320es"),
+            span="Desktop GLSL 4.20 and later, GLSL ES 3.00 and later",
+            comment_rules=(
+                "// and non-nested /* */ after backslash-newline continuation, so a "
+                "// comment ending in a backslash includes the next line."
+            ),
+            regex_patterns=_C_SPLICE_PATTERNS,
+            examples=(
+                CommentExample(
+                    "float y = x; // note \\\n    y = 2.0 * y;\n",
+                    "// note \\\n    y = 2.0 * y;",
+                    "GLSL 4.20 line continuation precedes comment removal.",
+                    kind="line",
+                    inline_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/KhronosGroup/OpenGL-Registry/blob/"
+                "6af574a14089ccfee87efe230ebcdd8742859813/specs/gl/GLSLangSpec.4.20.pdf "
+                "(3.3: line continuation precedes comments); glslang 15.0.0 "
+                "ParseHelper.cpp lineContinuationCheck"
+            ),
+        ),
+    ),
+)
+
+_HACK_LANGUAGE_VERSIONS = CommentLanguageVersions(
+    languages=("hack",),
+    default="hhvm4.133",
+    notes="HHVM 4.81 to 4.131 could disable # comments with disallow_hash_comments.",
+    versions=(
+        CommentLanguageVersion(
+            name="hhvm4.131",
+            aliases=("hhvm3", "hhvm4.0", "hhvm4.80", "hhvm4.81"),
+            release="0",
+            span="Hack as shipped with HHVM 3.x through 4.131",
+            comment_rules="//, # to the end of the line, and non-nested /* */.",
+            regex_patterns=(_C_STYLE_BLOCK, _C_STYLE_LINE, r"#[^\r\n]*"),
+            examples=(
+                CommentExample(
+                    "$x = 1; # note\n$y = 2;\n",
+                    "# note",
+                    "HHVM up to 4.131 lexes # comments as trivia.",
+                    kind="line",
+                    inline_compatible=True,
+                    grouped_line_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/facebook/hhvm/blob/HHVM-4.131.0/hphp/hack/src/"
+                "parser/core/lexer.rs (scan_php_trivium: scan_hash_comment)"
+            ),
+        ),
+        CommentLanguageVersion(
+            name="hhvm4.133",
+            aliases=("hhvm4.134", "hhvm4.150", "current"),
+            release="4.133",
+            span="HHVM 4.133 and later",
+            comment_rules="Only // and non-nested /* */; # is a Hash token.",
+        ),
+    ),
+)
+
+_STAN_LANGUAGE_VERSIONS = CommentLanguageVersions(
+    languages=("stan",),
+    default="2.33",
+    versions=(
+        CommentLanguageVersion(
+            name="2.32",
+            aliases=("stanc2",),
+            release="0",
+            span="Stan language up to 2.32 (stanc2 and stanc3 through v2.32.x)",
+            comment_rules=(
+                "//, non-nested /* */, and deprecated # line comments; #include is "
+                "an include directive, not a comment."
+            ),
+            regex_patterns=(_C_STYLE_BLOCK, _C_STYLE_LINE, r"#(?!include\b)[^\r\n]*"),
+            examples=(
+                CommentExample(
+                    "int<lower=0> N;  # note\nvector[N] y;\n",
+                    "# note",
+                    "Stan up to 2.32 accepts # line comments.",
+                    kind="line",
+                    inline_compatible=True,
+                    grouped_line_compatible=True,
+                ),
+            ),
+            documentation_source=(
+                "https://github.com/stan-dev/stanc3/blob/v2.32.2/src/frontend/lexer.mll "
+                "(# comment rule with deprecation warning); v2.33.0 "
+                "Deprecation_removals.ml"
+            ),
+        ),
+        CommentLanguageVersion(
+            name="2.33",
+            release="2.33",
+            span="Stan 2.33 and later",
+            comment_rules="Only // and non-nested /* */; # comments are an error.",
+        ),
+    ),
+)
+
 COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="two_dimensional_array_style",
@@ -1615,7 +1739,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         notes="Slash-based line and non-nested block comments.",
-        language_versions=(_C_LANGUAGE_VERSIONS, _CPP_LANGUAGE_VERSIONS),
+        language_versions=(
+            _C_LANGUAGE_VERSIONS,
+            _CPP_LANGUAGE_VERSIONS,
+            _GLSL_LANGUAGE_VERSIONS,
+            _HACK_LANGUAGE_VERSIONS,
+            _STAN_LANGUAGE_VERSIONS,
+        ),
     ),
     CommentSyntax(
         family_name="kotlin_style",

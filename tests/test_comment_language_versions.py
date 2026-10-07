@@ -278,3 +278,49 @@ def test_base_c_block_comment_closes_across_a_line_splice():
     source = "/* a *\\\n/ int x; /* b */\n"
     assert _matches("c", source, "c23") == ["/* a *\\\n/", "/* b */"]
     assert _matches("c++", source, "cpp17") == ["/* a *\\\n/", "/* b */"]
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "expected"),
+    [
+        pytest.param(
+            "glsl",
+            "float f(float x) {\n    float y = x; // copy \\\n    y = 2.0 * y;\n    return y;\n}\n",
+            {"glsl110": ["// copy \\"], "glsl420": ["// copy \\\n    y = 2.0 * y;"]},
+            id="glsl-line-continuation",
+        ),
+        pytest.param(
+            "hack",
+            "<?hh\nfunction main(): void {\n  $x = 1; # legacy note\n  $y = 2; // note\n}\n",
+            {"hhvm4.131": ["# legacy note", "// note"], "hhvm4.133": ["// note"]},
+            id="hack-hash-comments",
+        ),
+        pytest.param(
+            "stan",
+            "#include common.stan\ndata {\n  int<lower=0> N;  # number of observations\n"
+            "  vector[N] y;     // outcomes\n}\n",
+            {"2.32": ["# number of observations", "// outcomes"], "2.33": ["// outcomes"]},
+            id="stan-hash-comments",
+        ),
+    ],
+)
+def test_c_style_member_versions(language, source, expected):
+    assert set(expected) == set(get_comment_language_versions(language))
+    for version, comments in expected.items():
+        assert _matches(language, source, version) == comments, version
+
+
+@pytest.mark.parametrize(
+    ("language", "release", "expected"),
+    [
+        ("hack", "3.30", "hhvm4.131"),
+        ("hack", "4.132", "hhvm4.131"),
+        ("hack", "4.170", "hhvm4.133"),
+        ("stan", "2.18.1", "2.32"),
+        ("stan", "v2.36.0", "2.33"),
+        ("glsl", "330", "glsl110"),
+        ("glsl", "300 es", "glsl420"),
+    ],
+)
+def test_release_numbers_select_the_containing_version(language, release, expected):
+    assert resolve_comment_language_version(language, release) == expected
