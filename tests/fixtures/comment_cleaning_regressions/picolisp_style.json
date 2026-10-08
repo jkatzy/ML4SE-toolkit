@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "picolisp_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "00eac950aadce527d15f6536d55e036a612501ea54734e90b3a4e6c2f2926a32",
+      "case_id": "picolisp-line-d2bd50d481eba1bf",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "#(1@!(2@(3@#(4@5)@6@!#(7@8)@9)))",
+      "expected_cleaned_sha256": "1ec63c82b53ef3638a39e14f5db298d4be5677757a8360fff5a657d1578258c9",
+      "language": "picolisp",
+      "raw_comment": "##(1@!(2@(3@#(4@5)@6@!#(7@8)@9)))",
+      "raw_sha256": "b36d8428e025c805ee58def033085a52f0dcad20b026671db24f31dd0a646da3",
+      "raw_utf8_length": 33,
+      "source_provenance": {
+        "source_excerpt_sha256": "8408f77d23e55e479fcc8335d563116d5c909e529f3b439ab0085e91218d9b65",
+        "source_id": "ed86d9f5d508b840a4501376875de707bd0bb492"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

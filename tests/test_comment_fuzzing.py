@@ -47,9 +47,10 @@ def test_seeded_unicode_parser_and_sanitizer_fuzz_contracts_hold_across_registry
         sanitizer_payloads_per_example=2,
     )
 
-    assert run.cases == run.languages * 8
-    assert run.parser_cases == run.languages * 8
-    assert run.sanitizer_random_cases == run.languages * 8
+    assert run.targets > run.languages
+    assert run.cases == run.targets * 8
+    assert run.parser_cases == run.targets * 8
+    assert run.sanitizer_random_cases == run.targets * 8
     assert run.sanitizer_structured_cases > 2_000
     assert run.failures == ()
 
@@ -207,3 +208,43 @@ def test_sanitizer_failure_records_actionable_provenance(monkeypatch):
     assert failure.mutation == "random_text"
     assert failure.invariant == "forced_cleaner_invariant"
     assert failure.detail == "forced detail"
+    assert failure.version is None
+
+
+def test_fuzzing_covers_every_language_version_without_default_warnings(monkeypatch):
+    from ml4setk.Parsing.Comments import CommentLanguageVersionWarning
+
+    fuzzer = _load_fuzzer()
+    seen = []
+    check_parser_case = fuzzer._check_parser_case
+
+    def record_parser_case(language, query, text):
+        seen.append((language, query.version))
+        check_parser_case(language, query, text)
+
+    monkeypatch.setattr(fuzzer, "_check_parser_case", record_parser_case)
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", CommentLanguageVersionWarning)
+        run = fuzzer.run_fuzz(
+            languages=("cmake", "java"),
+            cases_per_language=2,
+            campaign="parser",
+            max_failures=1,
+        )
+
+    assert run.languages == 2
+    assert run.targets == 3
+    assert run.cases == 6
+    assert sorted(set(seen)) == [("cmake", "2.8"), ("cmake", "3.0"), ("java", None)]
+    assert run.failures == ()
+
+
+def test_default_version_keeps_the_language_seed_stream():
+    fuzzer = _load_fuzzer()
+    targets = fuzzer._fuzz_targets(("cmake", "java"))
+
+    assert targets == (
+        ("cmake", "3.0", "cmake"),
+        ("cmake", "2.8", "cmake@2.8"),
+        ("java", None, "java"),
+    )

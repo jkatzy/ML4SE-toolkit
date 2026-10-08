@@ -13,6 +13,8 @@ from dataclasses import dataclass, replace
 from functools import lru_cache
 from typing import Dict, Iterable, Optional, Tuple
 
+import regex
+
 from .contextual import SUPPORTED_CONTEXTUAL_EXTRACTORS
 
 
@@ -597,6 +599,16 @@ _STAN_LANGUAGE_VERSIONS = CommentLanguageVersions(
         ),
     ),
 )
+
+_PHP8_HTML_PATTERNS = (r"\/\*[\S\s]*?\*\/", r"/{2}.*", r"#(?!\[).*")
+
+_SSH_CONFIG_PATTERNS = (
+    r"(?m)(?<=^[ \t]*)#[^\r\n]*",
+    r"(?m)(?<=[ \t])"
+    r"(?<!^[ \t]*(?i:proxycommand|localcommand|remotecommand|knownhostscommand)\b[^\r\n]*)"
+    r"#[^\r\n]*",
+)
+_ORG_COMMENT_BLOCK = r"(?ims)(?<=^[ \t]*)#\+begin_comment\b.*?^[ \t]*#\+end_comment\b[^\r\n]*"
 
 COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
@@ -1990,7 +2002,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "elvish",
             "fish",
             "filebench_wml",
-            "fluent",
             "gap",
             "gas",
             "gdb",
@@ -2014,7 +2025,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "lookml",
             "makefile",
             "meson",
-            "mcfunction",
             "mirah",
             "mini_yaml",
             "miniyaml",
@@ -2028,12 +2038,10 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "openrc_runscript",
             "open_policy_agent",
             "opentype_feature_file",
-            "org",
             "parrot",
             "parrot_assembly",
             "parrot_internal_representation",
             "pic",
-            "picolisp",
             "protocol_buffer_text_format",
             "polar",
             "puppet",
@@ -2095,6 +2103,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             # GNU make manual 3.1: a trailing backslash not escaped by another
             # backslash continues the comment across lines.
             ("makefile", (r"#(?:[^\\\r\n]|\\(?:\r?\n|[^\r\n]|\Z))*",)),
+            # OpenSSH 8.7 readconf.c: argv_split ends a line at an unquoted # that
+            # starts an argument; command keywords keep the raw rest of the line.
+            ("ssh_config", _SSH_CONFIG_PATTERNS),
         ),
         shared_regex_examples=(
             CommentExample(
@@ -2104,6 +2115,468 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="line",
                 inline_compatible=True,
                 grouped_line_compatible=True,
+            ),
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("jq",),
+                default="1.7",
+                versions=(
+                    CommentLanguageVersion(
+                        name="1.7",
+                        release="0",
+                        span="jq 1.7.1 and earlier",
+                        comment_rules="An unquoted # starts a comment to the end of the line.",
+                        documentation_source=(
+                            "https://github.com/jqlang/jq/blob/jq-1.7.1/src/lexer.l#L40 "
+                            '("#"[^\\n]* comment rule)'
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="1.8",
+                        aliases=("current",),
+                        release="1.8",
+                        span="jq 1.8.0 and later",
+                        comment_rules=(
+                            "An unquoted # starts a comment; an odd number of backslashes "
+                            "before the line break continues it onto the next line."
+                        ),
+                        regex_patterns=(r"#(?:\\(?:\\|\r?\n)|\r(?!\n)|[^\r\n])*",),
+                        examples=(
+                            CommentExample(
+                                "[\n  1,\n  # skip two \\\n  2,\n  3\n]\n",
+                                "# skip two \\\n  2,",
+                                "From jq 1.8, a trailing backslash continues a comment.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/jqlang/jq/blob/jq-1.8.0/src/lexer.l#L24-L46 "
+                            "(IN_COMMENT state); https://github.com/jqlang/jq/blob/jq-1.8.0/"
+                            "NEWS.md (Tcl-style multiline comments)"
+                        ),
+                    ),
+                ),
+            ),
+            CommentLanguageVersions(
+                languages=("ssh_config",),
+                default="8.7",
+                notes="sshd_config command keywords such as ForceCommand are not modelled.",
+                versions=(
+                    CommentLanguageVersion(
+                        name="8.4",
+                        release="0",
+                        span="OpenSSH 8.4p1 and earlier",
+                        comment_rules=(
+                            "Only a line whose first non-blank character is # is a "
+                            "comment; a later # is an ordinary argument."
+                        ),
+                        regex_patterns=(r"(?m)(?<=^[ \t]*)#[^\r\n]*",),
+                        examples=(
+                            CommentExample(
+                                "Host example # office\n# note\n",
+                                "# note",
+                                "Before OpenSSH 8.5, only full lines are comments.",
+                                kind="line",
+                                grouped_line_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/openssh/openssh-portable/blob/V_8_4_P1/"
+                            "readconf.c#L1930-L1935 (only a keyword starting with # is "
+                            "a comment)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="8.5",
+                        release="8.5",
+                        span="OpenSSH 8.5p1 and 8.6p1",
+                        comment_rules=(
+                            "Every line is cut at its first #, inside tokens, quotes, "
+                            "and command values too."
+                        ),
+                        regex_patterns=(r"#[^\r\n]*",),
+                        lexical_profile="ssh-config-8.5",
+                        examples=(
+                            CommentExample(
+                                "Host example\n  LocalCommand echo connected # notify\n",
+                                "# notify",
+                                "OpenSSH 8.5 and 8.6 also cut command values at #.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/openssh/openssh-portable/blob/V_8_5_P1/"
+                            "readconf.c#L2136 (strchr(line, '#') cut)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="8.7",
+                        aliases=("current",),
+                        release="8.7",
+                        span="OpenSSH 8.7p1 and later",
+                        comment_rules=(
+                            "Full-line comments, and an unquoted # at the start of an "
+                            "argument; ProxyCommand, LocalCommand, RemoteCommand, and "
+                            "KnownHostsCommand keep # in their value."
+                        ),
+                        documentation_source=(
+                            "https://github.com/openssh/openssh-portable/blob/V_8_7_P1/"
+                            "misc.c (argv_split terminate_on_comment); "
+                            "https://github.com/openssh/openssh-portable/blob/V_8_7_P1/"
+                            "readconf.c#L1319-L1333 (parse_command keeps the raw value)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="fluent_style",
+        canonical_name="fluent",
+        # Fluent 1.0 EBNF CommentLine: #, ##, or ### in column 0, then a space
+        # and text, or the line end.
+        regex_patterns=(r"(?m)^#{1,3}(?: [^\r\n]*)?(?=\r?\n|\Z)",),
+        sanitizer_line_wrappers=(("###", ""), ("##", ""), ("#", "")),
+        shared_regex_examples=(
+            CommentExample(
+                "# note\nhello = Hello\n",
+                "# note",
+                "Fluent message comment.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "### note\nhello = Hello\n",
+                "### note",
+                "Fluent resource comment.",
+                kind="line",
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/projectfluent/fluent/blob/v1.0.0/spec/fluent.ebnf#L19"
+        ),
+        confidence="verified",
+        notes=(
+            "Comment lines start in column 0. A # inside a message value, or #word "
+            "without a following space, is not a comment."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("fluent",),
+                default="1.0",
+                versions=(
+                    CommentLanguageVersion(
+                        name="0.4",
+                        release="0.3",
+                        span="Fluent Syntax 0.3 and 0.4",
+                        comment_rules=(
+                            "Comment lines start with // in column 0; #word lines are tags."
+                        ),
+                        regex_patterns=(r"(?m)^//[^\r\n]*",),
+                        sanitizer_line_wrappers=(("//", ""),),
+                        examples=(
+                            CommentExample(
+                                "// note\nhello = Hello\n",
+                                "// note",
+                                "Fluent 0.3 and 0.4 comment lines start with //.",
+                                kind="line",
+                                grouped_line_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/projectfluent/fluent/blob/v0.4.0/spec/"
+                            "fluent.ebnf#L6 (comment ::= ('//' (char - NL)* NL)+)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="1.0",
+                        aliases=("current",),
+                        release="0.5",
+                        span="Fluent Syntax 0.5 through 1.0",
+                        comment_rules=(
+                            "Comment lines start in column 0 with #, ##, or ###, then a "
+                            "space or the line end."
+                        ),
+                        documentation_source=(
+                            "https://github.com/projectfluent/fluent/blob/"
+                            "3dbb402ed5af6b64f5c09faeb067acff127a0f34/spec/CHANGELOG.md "
+                            "(0.5.0: the comment sigil changed to #)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="org_style",
+        canonical_name="org",
+        # Org manual "Comment lines": optional indentation, one # and white
+        # space, and #+BEGIN_COMMENT ... #+END_COMMENT regions.
+        regex_patterns=(_ORG_COMMENT_BLOCK, r"(?m)(?<=^[ \t]*)#(?=[ \t]|\r?$)[^\r\n]*"),
+        shared_regex_examples=(
+            CommentExample(
+                "Text\n# note\nMore text\n",
+                "# note",
+                "Org comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+            CommentExample(
+                "Text\n  # note\nMore text\n",
+                "# note",
+                "Indented Org comment line.",
+                kind="line",
+            ),
+            CommentExample(
+                "Text\n#+BEGIN_COMMENT\nnote\n#+END_COMMENT\nMore text\n",
+                "#+BEGIN_COMMENT\nnote\n#+END_COMMENT",
+                "Org comment block.",
+                kind="block",
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/bzg/org-mode/blob/release_8.0/doc/org.texi#L9728-L9738"
+        ),
+        confidence="verified",
+        notes=(
+            "A # without following white space, as in Issue #42 or #+TITLE:, is not "
+            "a comment. COMMENT subtrees and # lines inside source blocks are not "
+            "modelled."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("org",),
+                default="8.0",
+                versions=(
+                    CommentLanguageVersion(
+                        name="7.8",
+                        release="0",
+                        span="Org mode before 7.9.2",
+                        comment_rules=(
+                            "A line with # in column zero is a comment unless it starts "
+                            "#+KEYWORD; an indented comment starts with #+ and a space. "
+                            "#+BEGIN_COMMENT ... #+END_COMMENT regions are comments."
+                        ),
+                        regex_patterns=(
+                            _ORG_COMMENT_BLOCK,
+                            r"(?m)^#(?!\+\S)[^\r\n]*",
+                            r"(?m)(?<=^[ \t]+)#\+[ \t][^\r\n]*",
+                        ),
+                        examples=(
+                            CommentExample(
+                                "#todo tighten wording\nText\n",
+                                "#todo tighten wording",
+                                "Before Org 7.9.2, # in column zero starts a comment.",
+                                kind="line",
+                                grouped_line_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/bzg/org-mode/blob/release_7.8.11/doc/"
+                            "org.texi#L8985-L8995"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="8.0",
+                        aliases=("current",),
+                        release="7.9.2",
+                        span="Org mode 7.9.2 and later",
+                        comment_rules=(
+                            "Optional indentation, one #, and white space or the line "
+                            "end; #+BEGIN_COMMENT ... #+END_COMMENT regions."
+                        ),
+                        documentation_source=(
+                            "https://github.com/bzg/org-mode/blob/main/etc/ORG-NEWS "
+                            "(Version 7.9.2: the space after # is mandatory); "
+                            "https://github.com/bzg/org-mode/blob/release_8.0/doc/"
+                            "org.texi#L9728-L9738"
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="mcfunction_style",
+        canonical_name="mcfunction",
+        # A trimmed function line starting with # is a comment. From 1.20.2 a
+        # trailing backslash joins the next line first, comment lines included.
+        regex_patterns=(
+            r"(?m)(?<=^[ \t]*)(?<!\\[ \t]*\r?\n[ \t]*)#(?:[^\r\n]*\\[ \t]*\r?\n)*[^\r\n]*",
+        ),
+        shared_regex_examples=(
+            CommentExample(
+                "say hi\n# note\nsay bye\n",
+                "# note",
+                "Function comment line.",
+                kind="line",
+                grouped_line_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/SpyglassMC/Spyglass/blob/"
+            "c1c7894a864c1397a1ec281227e25e71a20a8ea1/packages/mcfunction/src/"
+            "parser/entry.ts#L57-L65"
+        ),
+        confidence="cross-checked",
+        notes=(
+            "A # later in a line, as in a #namespace:tag reference, is not a comment. "
+            "A line continued from a line ending in a backslash is not a comment."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("mcfunction",),
+                default="1.20.2",
+                versions=(
+                    CommentLanguageVersion(
+                        name="1.20.1",
+                        release="0",
+                        span="Minecraft Java Edition function files before 1.20.2",
+                        comment_rules=(
+                            "A trimmed line starting with # is a comment and ends at "
+                            "its line break; there is no line continuation."
+                        ),
+                        regex_patterns=(r"(?m)(?<=^[ \t]*)#[^\r\n]*",),
+                        examples=(
+                            CommentExample(
+                                "# note \\\nsay shown\n",
+                                "# note \\",
+                                "Before 1.20.2, a function comment ends at its line break.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "Decompiled 1.20.1 CommandFunction.fromLines (third-party "
+                            "mirror: https://github.com/Blackjack200/"
+                            "minecraft_client_1_20_1, net/minecraft/commands/"
+                            "CommandFunction.java#L33-L40)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="1.20.2",
+                        aliases=("current",),
+                        release="1.20.2",
+                        span="Minecraft Java Edition 1.20.2 (23w31a) and later",
+                        comment_rules=(
+                            "Lines ending in a backslash are joined to the next line "
+                            "before the # test, so a comment line ending in a "
+                            "backslash also covers the next line."
+                        ),
+                        examples=(
+                            CommentExample(
+                                "# note \\\nsay hidden\nsay shown\n",
+                                "# note \\\nsay hidden",
+                                "From 1.20.2, a trailing backslash continues a comment line.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "Decompiled 1.21.1 CommandFunction.fromLines (third-party "
+                            "mirror: https://github.com/hackersense/OptiFine-Source/blob/"
+                            "b77c5c6995874f6cf2755bc5234428906b337b75/1.21.1/net/"
+                            "minecraft/commands/functions/CommandFunction.java#L37-L71)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    CommentSyntax(
+        family_name="picolisp_style",
+        canonical_name="picolisp",
+        regex_patterns=(r"#(?!\{)[^\r\n]*",),
+        nested_delimiters=(("#{", "}#"),),
+        shared_regex_examples=(
+            CommentExample(
+                "(setq X 1) # note\n(setq Y 2)",
+                "# note",
+                "PicoLisp line comment.",
+                kind="line",
+                inline_compatible=True,
+                grouped_line_compatible=True,
+            ),
+        ),
+        canonical_nested_examples=(
+            CommentExample(
+                "(setq X 1) #{ outer #{ inner }# outer }# (setq Y 2)",
+                "#{ outer #{ inner }# outer }#",
+                "Nested PicoLisp block comment.",
+                kind="nested",
+                inline_compatible=True,
+            ),
+        ),
+        documentation_source=(
+            "https://github.com/pahihu/picoLisp/blob/"
+            "9c68fc01bae3b8b61a25a7ac5621f30b28adf874/src/io.c#L1157-L1180"
+        ),
+        confidence="verified",
+        notes="Block comments #{ ... }# nest from picoLisp 18.6.",
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("picolisp",),
+                default="18.6",
+                versions=(
+                    CommentLanguageVersion(
+                        name="2.3.6",
+                        release="0",
+                        span="picoLisp releases before 2.3.7",
+                        comment_rules="# to the end of the line only; #{ has no special meaning.",
+                        regex_patterns=(r"#[^\r\n]*",),
+                        nested_delimiters=(),
+                        examples=(
+                            CommentExample(
+                                "(setq X 1) #{ note }# (setq Y 2)\n",
+                                "#{ note }# (setq Y 2)",
+                                "Before 2.3.7, #{ starts an ordinary line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/picolisp/picolisp/blob/master/CHANGES "
+                            "(30jun09 picoLisp-2.3.7: multi-line block comments)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="2.3.7",
+                        release="2.3.7",
+                        span="picoLisp 2.3.7 through 17.12",
+                        comment_rules=(
+                            "# to the end of the line and #{ ... }# block comments that "
+                            "close at the first }#."
+                        ),
+                        regex_patterns=(r"#(?!\{)[^\r\n]*", r"#\{[\S\s]*?\}#"),
+                        nested_delimiters=(),
+                        sanitizer_block_wrappers=(("#{", "}#"),),
+                        examples=(
+                            CommentExample(
+                                "#{ outer #{ inner }# outer }#\n",
+                                "#{ outer #{ inner }#",
+                                "Before 18.6, block comments do not nest.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/picolisp/picolisp/blob/master/src/io.c"
+                            "#L1021-L1040 (picoLisp 16.12 comment(): the first }# closes)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="18.6",
+                        aliases=("pil21", "current"),
+                        release="18.6",
+                        span="picoLisp 18.6 and later, including pil21",
+                        comment_rules="# to the end of the line and nested #{ ... }# blocks.",
+                        documentation_source=(
+                            "https://github.com/pahihu/picoLisp/blob/"
+                            "9c68fc01bae3b8b61a25a7ac5621f30b28adf874/CHANGES "
+                            "(28jun18 picoLisp-18.6: nested block comments)"
+                        ),
+                    ),
+                ),
             ),
         ),
     ),
@@ -3305,6 +3778,46 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("julia",),
+                default="0.3",
+                versions=(
+                    CommentLanguageVersion(
+                        name="0.2",
+                        release="0",
+                        span="Julia releases before 0.3",
+                        comment_rules="# to the end of the line only; #= has no special meaning.",
+                        regex_patterns=(r"#[^\r\n]*",),
+                        nested_delimiters=(),
+                        examples=(
+                            CommentExample(
+                                "x = 1 #= note =# + 2\n",
+                                "#= note =# + 2",
+                                "Before Julia 0.3, #= starts an ordinary line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/JuliaLang/julia/blob/v0.2.0/src/"
+                            "julia-parser.scm#L323 (# skips to the end of the line)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="0.3",
+                        aliases=("1.x", "current"),
+                        release="0.3",
+                        span="Julia 0.3 and later, including 1.x",
+                        comment_rules="# to the end of the line and nested #= =# blocks.",
+                        documentation_source=(
+                            "https://github.com/JuliaLang/julia/blob/v1.10.0/HISTORY.md "
+                            "(Julia v0.3.0 release notes: multi-line comments #= =#)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="markup_style",
@@ -4239,14 +4752,15 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
+        language_regex_patterns=(
+            # PHP 8.0 scanner: #[ is the T_ATTRIBUTE token, not a # comment.
+            ("html_php", _PHP8_HTML_PATTERNS),
+            ("html_plus_php", _PHP8_HTML_PATTERNS),
+        ),
         language_versions=(
             CommentLanguageVersions(
                 languages=("html_php", "html_plus_php"),
-                default="php7.4",
-                notes=(
-                    "The default keeps the shared jsonnet_style rules, under which #[ "
-                    "is a comment; pass php8.0 for PHP 8 attribute syntax."
-                ),
+                default="php8.0",
                 versions=(
                     CommentLanguageVersion(
                         name="php7.4",
@@ -4254,6 +4768,17 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                         release="0",
                         span="PHP 7.4 and earlier",
                         comment_rules="#, //, and non-nested /* */; #[ is an ordinary # comment.",
+                        regex_patterns=(r"\/\*[\S\s]*?\*\/", r"/{2}.*", r"#.*"),
+                        examples=(
+                            CommentExample(
+                                "<?php\n#[Pure]\nfunction f() {} # tail\n",
+                                "#[Pure]",
+                                "Before PHP 8.0, #[ starts an ordinary # line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                                grouped_line_compatible=True,
+                            ),
+                        ),
                         documentation_source=(
                             "https://github.com/php/php-src/blob/php-7.4.0/Zend/"
                             "zend_language_scanner.l#L2147 (# and // comment rule, no #[ rule)"
@@ -4267,16 +4792,6 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                         comment_rules=(
                             "#, //, and non-nested /* */; #[ opens an attribute and is "
                             "not a comment."
-                        ),
-                        regex_patterns=(r"\/\*[\S\s]*?\*\/", r"/{2}.*", r"#(?!\[).*"),
-                        examples=(
-                            CommentExample(
-                                "<?php\n#[Pure]\nfunction f() {} # tail\n",
-                                "# tail",
-                                "From PHP 8.0, #[ opens an attribute; other # starts a comment.",
-                                kind="line",
-                                inline_compatible=True,
-                            ),
                         ),
                         documentation_source=(
                             "https://github.com/php/php-src/blob/php-8.0.0/Zend/"
@@ -9695,7 +10210,8 @@ def _validate_language_versions(syntax: CommentSyntax) -> None:
                 raise ValueError(f"Version {version.name!r} needs seeded examples: " + family)
             if version.regex_patterns is not None:
                 for pattern in version.regex_patterns:
-                    re.compile(pattern)
+                    # Compile with the query engine's regex module.
+                    regex.compile(pattern)
             if (
                 version.contextual_extractor
                 and version.contextual_extractor not in SUPPORTED_CONTEXTUAL_EXTRACTORS

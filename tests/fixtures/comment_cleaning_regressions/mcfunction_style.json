@@ -1,0 +1,25 @@
+{
+  "extractor_boundary_cases": [],
+  "family_name": "mcfunction_style",
+  "oracle_exception_cases": [],
+  "sanitizer_cases": [
+    {
+      "baseline_cleaned_sha256": "0234eb3b00fbeada8808862d4d1009843f5dfb53c39b020ea8c931911a38746e",
+      "case_id": "mcfunction-line-b25679636af10d25",
+      "comment_kind": "line",
+      "disposition": "confirmed_bug",
+      "expected_cleaned": "This function was coded by BlueCommander\nPlease don't claim this as your own work\nLINK www.youtube.com/c/BlueCommander",
+      "expected_cleaned_sha256": "dbcef528ac42a5faf93f30b7e04871be6cc28509dd2ffbfa08fd92c077d0d51e",
+      "language": "mcfunction",
+      "raw_comment": "#==================NOTE====================#\n# This function was coded by BlueCommander #\n# Please don't claim this as your own work #\n#   LINK www.youtube.com/c/BlueCommander   #\n#==========================================#",
+      "raw_sha256": "8fe0ec49c8766cf77589866401d3e0e763488cb826cf01fe49303aafe39f14ab",
+      "raw_utf8_length": 224,
+      "source_provenance": {
+        "source_excerpt_sha256": "bda401eed231df7f572eb821e7299da029232ed6295eb0c90c394153375e6280",
+        "source_id": "68815b073d2bafa51b37161f316a2b25ca6300f1"
+      },
+      "syntax_label": "#"
+    }
+  ],
+  "schema_version": 5
+}

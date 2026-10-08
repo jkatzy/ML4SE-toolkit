@@ -628,6 +628,8 @@ LEXICAL_VERSION_PROFILES = {
     # CMake before 3.0 has no [[...]] bracket arguments.
     "cmake-2.8": _rules("'\""),
     # Group hash-line profiles begin.
+    # OpenSSH 8.5 and 8.6 cut every line at its first #, even inside quotes.
+    "ssh-config-8.5": _rules(""),
     # Group hash-line profiles end.
     # Group contextual profiles begin.
     # Group contextual profiles end.
