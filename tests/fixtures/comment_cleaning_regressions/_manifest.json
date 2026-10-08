@@ -555,13 +555,13 @@
       "sha256": "9664ebc2b383f5a6f5762fc18bc148b1d310e56f0cc050bf398c8d401b8058fd"
     },
     {
-      "case_count": 140,
+      "case_count": 138,
       "extractor_boundary_case_count": 0,
       "family_name": "hash_line_style",
       "filename": "hash_line_style.json",
       "oracle_exception_case_count": 8,
-      "sanitizer_case_count": 132,
-      "sha256": "27cf340c0f01ba5203681cfea315116c57cb8187f4101c0776e837bcb521efa2"
+      "sanitizer_case_count": 130,
+      "sha256": "a03a9039de958583dcdf821fec8b1845aa952b938ac188d9a15e6f20a9b9c2e3"
     },
     {
       "case_count": 3,
@@ -780,6 +780,15 @@
       "sha256": "d88d6ffa7ce671785d6a45d9b1fc25881c64bb4b5857720280c4705d3285b142"
     },
     {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "mcfunction_style",
+      "filename": "mcfunction_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "8fc2ddc858a831046d001660393fdf2f349e09fc22e9f99844111c64a6a4e11f"
+    },
+    {
       "case_count": 3,
       "extractor_boundary_case_count": 0,
       "family_name": "module_management_system_style",
@@ -949,6 +958,15 @@
       "oracle_exception_case_count": 0,
       "sanitizer_case_count": 3,
       "sha256": "d8e7f063e9c0dee383c825698654a505cd7b70436e96f10a2fdace263c10aeea"
+    },
+    {
+      "case_count": 1,
+      "extractor_boundary_case_count": 0,
+      "family_name": "picolisp_style",
+      "filename": "picolisp_style.json",
+      "oracle_exception_case_count": 0,
+      "sanitizer_case_count": 1,
+      "sha256": "674e9190a2ced30b70748b75ca6be6af9ff574d07fc946462830e9c473292047"
     },
     {
       "case_count": 1,

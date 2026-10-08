@@ -292,13 +292,45 @@ _FSHARP_CHAR_LITERAL = re.compile(
 _FSHARP_TRIPLE_QUOTE = '"' * 3
 
 
-def _ocaml_literal_end(text: str, index: int) -> Optional[int]:
+# OCaml 4.02 lexer.mll: "{" lowercase* "|" opens a quoted string that ends at
+# "|" delim "}"; it is lexed inside comments too.
+_OCAML_QUOTED_STRING = re.compile(r"\{([a-z_]*)\|")
+# OCaml 4.11 lexer.mll adds quoted extensions {%ext|...|} and {%%ext id|...|id}.
+_OCAML_QUOTED_EXTENSION = re.compile(
+    r"\{(?:%%?[A-Za-z_'0-9]+(?:\.[A-Za-z_'0-9]+)*[ \t]*)?([a-z_]*)\|"
+)
+
+
+def _ocaml_quoted_end(text: str, index: int, opener: re.Pattern[str]) -> Optional[int]:
+    opened = opener.match(text, index)
+    if opened is None:
+        return None
+    closer = "|" + opened.group(1) + "}"
+    end = text.find(closer, opened.end())
+    return len(text) if end == -1 else end + len(closer)
+
+
+def _ocaml_401_literal_end(text: str, index: int) -> Optional[int]:
     char_literal = _OCAML_CHAR_LITERAL.match(text, index)
     if char_literal is not None:
         return char_literal.end()
     if text[index] == '"':
         return _quoted_end(text, index, '"', multiline=True)[0]
     return None
+
+
+def _ocaml_402_literal_end(text: str, index: int) -> Optional[int]:
+    end = _ocaml_401_literal_end(text, index)
+    if end is None and text[index] == "{":
+        end = _ocaml_quoted_end(text, index, _OCAML_QUOTED_STRING)
+    return end
+
+
+def _ocaml_literal_end(text: str, index: int) -> Optional[int]:
+    end = _ocaml_401_literal_end(text, index)
+    if end is None and text[index] == "{":
+        end = _ocaml_quoted_end(text, index, _OCAML_QUOTED_EXTENSION)
+    return end
 
 
 def _fsharp_literal_end(text: str, index: int) -> Optional[int]:
@@ -355,7 +387,7 @@ def _ml_comment_ranges(
         index += 2
         complete = False
         while index < len(text):
-            if text[index] == '"' or text.startswith('@"', index) or text[index] == "'":
+            if text[index] in "\"'{" or text.startswith('@"', index):
                 end = literal_end(text, index)
                 if end is not None:
                     if end >= len(text) and not text.endswith('"', 0, end):
@@ -386,10 +418,66 @@ def ocaml_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
 
     The OCaml lexer recognizes string and character literals within comments,
     so ``(* "*)" *)`` is one comment. Strings use backslash escapes and may
-    span lines.
+    span lines. From OCaml 4.11, quoted strings ``{id|...|id}`` and quoted
+    extensions ``{%ext|...|}`` are lexed in and outside comments.
     """
 
     return _ml_comment_ranges(text, _ocaml_literal_end)
+
+
+def supercollider_38_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return sclang 3.8 comments, whose nested /* */ delimiters may overlap.
+
+    Before 3.9 PyrLexer's comment2 loop compared each character with the
+    previous one, so */*/ inside a comment closes, reopens, and closes again.
+    """
+
+    ranges: list[tuple[int, int]] = []
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if char == "$":
+            index += 2
+            continue
+        if char in {'"', "'"}:
+            index = _quoted_end(text, index, char, multiline=True)[0]
+            continue
+        if text.startswith("//", index):
+            end = _line_end(text, index)
+            ranges.append((index, end))
+            index = end
+            continue
+        if text.startswith("/*", index):
+            depth = 1
+            cursor = index + 2
+            previous = ""
+            while cursor < len(text) and depth:
+                current = text[cursor]
+                if previous == "*" and current == "/":
+                    depth -= 1
+                elif previous == "/" and current == "*":
+                    depth += 1
+                previous = current
+                cursor += 1
+            if depth:
+                break
+            ranges.append((index, cursor))
+            index = cursor
+            continue
+        index += 1
+    return tuple(ranges)
+
+
+def ocaml_402_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return OCaml 4.02-4.10 comments: quoted strings, no quoted extensions."""
+
+    return _ml_comment_ranges(text, _ocaml_402_literal_end)
+
+
+def ocaml_401_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return OCaml 4.01 comments: only "..." and character literals are lexed."""
+
+    return _ml_comment_ranges(text, _ocaml_401_literal_end)
 
 
 def fsharp_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
@@ -893,6 +981,20 @@ def _go_code_comment_ranges(
 def templ_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return templ Go and HTML comment nodes across parser modes."""
 
+    return _templ_comment_ranges(text, body_go_comments=True)
+
+
+def templ_0_2_364_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return templ v0.2.364 comments: // and /* */ in a body are text."""
+
+    return _templ_comment_ranges(text, body_go_comments=False)
+
+
+def _templ_comment_ranges(
+    text: str,
+    *,
+    body_go_comments: bool,
+) -> tuple[tuple[int, int], ...]:
     ranges: list[tuple[int, int]] = []
     index = 0
     template_depth = 0
@@ -963,7 +1065,7 @@ def templ_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
             index = cursor
             continue
 
-        line_prefix_is_space = text[line_start:index].strip() == ""
+        line_prefix_is_space = body_go_comments and text[line_start:index].strip() == ""
         if text.startswith("//", index) and (not template_depth or line_prefix_is_space):
             end = _line_end(text, index + 2)
             ranges.append((index, end))
@@ -1117,6 +1219,8 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
     str,
     Callable[[str], tuple[tuple[int, int], ...]],
 ] = {
+    "ocaml_401_comments": ocaml_401_comment_ranges,
+    "ocaml_402_comments": ocaml_402_comment_ranges,
     "pyret_comments": pyret_comment_ranges,
     "rbs_comments": rbs_comment_ranges,
     "rez_comments": rez_comment_ranges,
@@ -1127,9 +1231,11 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
     "slang_comments": slang_comment_ranges,
     "slint_comments": slint_comment_ranges,
     "smithy_comments": smithy_comment_ranges,
+    "supercollider_38_comments": supercollider_38_comment_ranges,
     "snakemake_comments": snakemake_comment_ranges,
     "survex_data_comments": survex_data_comment_ranges,
     "templ_comments": templ_comment_ranges,
+    "templ_0_2_364_comments": templ_0_2_364_comment_ranges,
     "terraform_template_comments": terraform_template_comment_ranges,
 }
 
@@ -1137,6 +1243,8 @@ __all__ = [
     "STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS",
     "coq_comment_ranges",
     "fsharp_comment_ranges",
+    "ocaml_401_comment_ranges",
+    "ocaml_402_comment_ranges",
     "ocaml_comment_ranges",
     "pyret_comment_ranges",
     "rbs_comment_ranges",
@@ -1151,6 +1259,7 @@ __all__ = [
     "smithy_comment_ranges",
     "snakemake_comment_ranges",
     "survex_data_comment_ranges",
+    "templ_0_2_364_comment_ranges",
     "templ_comment_ranges",
     "terraform_template_comment_ranges",
 ]

@@ -16,6 +16,7 @@ from .registry import (
     CommentSyntax,
     _resolve_comment_language_key,
     get_comment_syntax,
+    resolve_query_language_version,
 )
 
 _EXAMPLE_BODY_PLACEHOLDERS = (
@@ -7084,15 +7085,20 @@ class CommentSanitizer:
 
     Args:
         language: Registry language key used to resolve comment delimiters.
+        version: Optional language version for languages whose comment syntax
+            depends on it. ``None`` uses the default version and warns once.
 
     Raises:
         NotImplementedError: If the language is not present in the registry.
+        UnsupportedCommentLanguageVersionError: If ``version`` is not
+            supported for the language.
     """
 
-    def __init__(self, language: str):
+    def __init__(self, language: str, version: str | None = None):
         self.language = language
         self._language_key = _resolve_comment_language_key(language)
-        self.syntax = get_comment_syntax(self._language_key)
+        self.version = resolve_query_language_version(language, version)
+        self.syntax = get_comment_syntax(self._language_key, self.version)
         self._sanitizer_syntax = _build_sanitizer_syntax(self.syntax)
         language = self._language_key
         if language == "bro":
@@ -7695,16 +7701,18 @@ class CommentSanitizer:
         return _normalize_sanitized_body(raw_comment)
 
 
-def sanitize_comment(language: str, comment: str | QueryMatch) -> str:
-    """Return sanitized comment text for ``language``."""
+def sanitize_comment(language: str, comment: str | QueryMatch, version: str | None = None) -> str:
+    """Return sanitized comment text for ``language`` and optional ``version``."""
 
-    return CommentSanitizer(language).sanitize(comment)
+    return CommentSanitizer(language, version=version).sanitize(comment)
 
 
-def sanitize_comment_text(language: str, comment: str | QueryMatch) -> str:
+def sanitize_comment_text(
+    language: str, comment: str | QueryMatch, version: str | None = None
+) -> str:
     """Backward-compatible alias for ``sanitize_comment``."""
 
-    return sanitize_comment(language, comment)
+    return sanitize_comment(language, comment, version=version)
 
 
 __all__ = [

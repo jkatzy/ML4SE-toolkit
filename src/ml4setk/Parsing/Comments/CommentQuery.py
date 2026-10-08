@@ -7,7 +7,7 @@ returning the normalized ``QueryMatch(prefix, suffix, match)`` contract.
 
 import warnings
 from bisect import bisect_right
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from functools import lru_cache
 
 import regex as re
@@ -15,7 +15,13 @@ import regex as re
 from ..Query import Query, QueryMatch
 from .contextual import contextual_comment_ranges
 from .lexical import lexical_rules_for
-from .registry import get_comment_syntax
+from .registry import (
+    _resolve_comment_language_key,
+    get_comment_language_version,
+    get_comment_syntax,
+    get_default_comment_language_version,
+    resolve_query_language_version,
+)
 from .stack_v3_batch_02_03_contextual import reviewed_alias_comment_ranges
 from .stack_v3_batch_04_contextual import (
     ispc_ignored_ranges,
@@ -634,7 +640,7 @@ def _advance_utf8_bytes(text, start, byte_count, limit):
     return index
 
 
-def _comment_scan_context(language, text):
+def _comment_scan_context(language, text, version=None):
     """Return ignored ranges and the maximum source offset to scan.
 
     String-like ranges are collected in one left-to-right pass that skips
@@ -649,8 +655,30 @@ def _comment_scan_context(language, text):
         return [], len(text)
     if normalized == "nl":
         return _nl_comment_scan_context(text)
-    string_ranges = _language_string_ranges(normalized, text)
-    return _comment_aware_ignored_ranges(language, text, string_ranges), len(text)
+    overlay = _version_overlay(language, version)
+    string_ranges = (
+        None
+        if overlay is not None and overlay.lexical_profile
+        else _language_string_ranges(normalized, text)
+    )
+    return _comment_aware_ignored_ranges(language, text, string_ranges, version), len(text)
+
+
+@lru_cache(maxsize=None)
+def _version_overlay(language, version):
+    """Return a non-default version's metadata, or ``None`` for the default.
+
+    A language-specific scanner (reviewed alias, string, or nested-comment
+    scanner) implements only the default version. A non-default version that
+    overrides the scanner's concern takes the generic registry path instead.
+    """
+
+    if version is None:
+        return None
+    metadata = get_comment_language_version(language, version)
+    if metadata is None or metadata.name == get_default_comment_language_version(language):
+        return None
+    return metadata
 
 
 def _language_string_ranges(normalized, text):
@@ -860,10 +888,10 @@ class _CommentPatternMatcher:
 
 
 @lru_cache(maxsize=None)
-def _comment_pattern_matchers(language):
+def _comment_pattern_matchers(language, version=None):
     """Return search helpers for the regex comment patterns of ``language``."""
 
-    patterns = get_comment_syntax(language).regex_patterns_for_language(language)
+    patterns = get_comment_syntax(language, version).regex_patterns_for_language(language)
     return tuple(_CommentPatternMatcher(pattern) for pattern in patterns)
 
 
@@ -907,7 +935,7 @@ class _PatternCursor:
         return self.found
 
 
-def _comment_aware_ignored_ranges(language, text, string_ranges=None):
+def _comment_aware_ignored_ranges(language, text, string_ranges=None, version=None):
     """Return string and comment ranges found by one source-order pass.
 
     Args:
@@ -915,6 +943,7 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
         text: Source text to scan.
         string_ranges: Precomputed language-specific protected ranges, or
             ``None`` to scan simple single-line quoted strings in place.
+        version: Resolved language version, or ``None`` for the default.
 
     Returns:
         Sorted, disjoint ranges. A string that starts inside a complete
@@ -922,7 +951,7 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
         string is not a comment.
     """
 
-    syntax = get_comment_syntax(language)
+    syntax = get_comment_syntax(language, version)
     excluded = syntax.excluded_comment_prefixes_for_language(language)
     comment_ends = {}
     memo = {}
@@ -932,14 +961,14 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
             comment_ends[start] = max(comment_ends.get(start, start), end)
 
     cursors = []
-    reviewed_ranges = _reviewed_alias_ranges(language, text)
+    reviewed_ranges = _reviewed_alias_ranges(language, text, version)
     if reviewed_ranges is not None:
         for start, end in reviewed_ranges:
             add_comment(start, end)
     else:
         cursors = [
             _PatternCursor(matcher, language, text, excluded, memo)
-            for matcher in _comment_pattern_matchers(language)
+            for matcher in _comment_pattern_matchers(language, version)
         ]
         if syntax.contextual_extractor:
             for start, end in contextual_comment_ranges(syntax.contextual_extractor, text):
@@ -947,7 +976,12 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
 
     nested_starts = {}
     normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
-    nested_scanner = _NESTED_COMMENT_SCANNERS.get(normalized)
+    overlay = _version_overlay(language, version)
+    nested_scanner = (
+        None
+        if overlay is not None and overlay.nested_delimiters is not None
+        else _NESTED_COMMENT_SCANNERS.get(normalized)
+    )
     if nested_scanner is not None:
         for start, end in nested_scanner(text):
             comment_ends[start] = max(comment_ends.get(start, start), end)
@@ -957,7 +991,7 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
             nested_starts.setdefault(index, []).append((open_delim, close_delim))
             index = text.find(open_delim, index + 1)
 
-    rules = lexical_rules_for(language)
+    rules = lexical_rules_for(language, version)
     if string_ranges is None:
         string_starts = None
         candidate_chars = rules.quote_chars | rules.literal_start_chars
@@ -1050,10 +1084,10 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None):
     return result
 
 
-def _comment_start_ignored_ranges(language, text):
+def _comment_start_ignored_ranges(language, text, version=None):
     """Return source ranges where comment delimiters should be ignored."""
 
-    ignored_ranges, _ = _comment_scan_context(language, text)
+    ignored_ranges, _ = _comment_scan_context(language, text, version)
     return ignored_ranges
 
 
@@ -1121,8 +1155,14 @@ def _query_matches_from_ranges(text, ranges):
     return [_query_match_from_range(text, start, end) for start, end in ranges]
 
 
-def _reviewed_alias_ranges(language, text):
-    """Return ranges from a reviewed alias scanner, when one owns ``language``."""
+def _reviewed_alias_ranges(language, text, version=None):
+    """Return ranges from a reviewed alias scanner, when one owns ``language``.
+
+    Reviewed scanners implement a language's default version only.
+    """
+
+    if _version_overlay(language, version) is not None:
+        return None
 
     for extractor in (
         reviewed_alias_comment_ranges,
@@ -1178,12 +1218,19 @@ class LineCommentQuery(Query):
     Args:
         language: Registry language key or alias understood by
             ``get_comment_syntax``.
+        version: Optional language version for languages whose comment syntax
+            depends on it. ``None`` uses the default version and warns once.
+
+    Raises:
+        UnsupportedCommentLanguageVersionError: If ``version`` is not
+            supported for the language.
     """
 
-    def __init__(self, language):
+    def __init__(self, language, version=None):
         _warn_language_caveat_once(language)
         self.language = language
-        self.syntax = get_comment_syntax(language)
+        self.version = resolve_query_language_version(language, version)
+        self.syntax = get_comment_syntax(language, self.version)
         self.regex_patterns = self.syntax.regex_patterns_for_language(language)
         self.regexes = tuple(re.compile(pattern) for pattern in self.regex_patterns)
         self.contextual_extractor = self.syntax.contextual_extractor
@@ -1213,7 +1260,7 @@ class LineCommentQuery(Query):
     def parse_ranges(self, text, quoted_ranges=None, scan_limit=None):
         """Return regex and contextual comment ranges in source order."""
 
-        reviewed_ranges = _reviewed_alias_ranges(self.language, text)
+        reviewed_ranges = _reviewed_alias_ranges(self.language, text, self.version)
         if reviewed_ranges is not None:
             return self._dedupe_match_ranges(
                 (start, end)
@@ -1225,7 +1272,7 @@ class LineCommentQuery(Query):
             return []
 
         if quoted_ranges is None or scan_limit is None:
-            default_ranges, default_limit = _comment_scan_context(self.language, text)
+            default_ranges, default_limit = _comment_scan_context(self.language, text, self.version)
             if quoted_ranges is None:
                 quoted_ranges = default_ranges
             if scan_limit is None:
@@ -1259,7 +1306,7 @@ class LineCommentQuery(Query):
         """
 
         memo = {}
-        for matcher in _comment_pattern_matchers(self.language):
+        for matcher in _comment_pattern_matchers(self.language, self.version):
             offset = 0
             while True:
                 span = matcher.search(text, offset, memo)
@@ -1309,12 +1356,19 @@ class NestedCommentQuery(Query):
 
     Args:
         language: Registry language key with nested delimiter metadata.
+        version: Optional language version for languages whose comment syntax
+            depends on it. ``None`` uses the default version and warns once.
+
+    Raises:
+        UnsupportedCommentLanguageVersionError: If ``version`` is not
+            supported for the language.
     """
 
-    def __init__(self, language):
+    def __init__(self, language, version=None):
         _warn_language_caveat_once(language)
         self.language = language
-        self.syntax = get_comment_syntax(language)
+        self.version = resolve_query_language_version(language, version)
+        self.syntax = get_comment_syntax(language, self.version)
         self.delimiters = self.syntax.nested_delimiters
         self.delimeters = self.delimiters  # Preserve the older misspelled attribute.
         self.excluded_comment_prefixes = self.syntax.excluded_comment_prefixes_for_language(
@@ -1350,12 +1404,17 @@ class NestedCommentQuery(Query):
             return []
 
         normalized = re.sub(r"[^a-z0-9]+", "_", self.language.strip().lower()).strip("_")
-        scanner = _NESTED_COMMENT_SCANNERS.get(normalized)
+        overlay = _version_overlay(self.language, self.version)
+        scanner = (
+            None
+            if overlay is not None and overlay.nested_delimiters is not None
+            else _NESTED_COMMENT_SCANNERS.get(normalized)
+        )
         if scanner is not None:
             return list(scanner(text))
 
         if quoted_ranges is None:
-            quoted_ranges = _comment_start_ignored_ranges(self.language, text)
+            quoted_ranges = _comment_start_ignored_ranges(self.language, text, self.version)
         ranges = []
         for open_delim, close_delim in self.delimiters:
             ranges.extend(
@@ -1439,18 +1498,41 @@ class CommentQuery(Query):
     Args:
         language: One registry language key, or an iterable of keys when the
             source language is ambiguous.
+        version: Optional language version. With one language it is a version
+            name, alias, or release number. With several languages it is a
+            mapping from language to version; unmapped languages use their
+            default. ``None`` uses defaults and warns once per language whose
+            comment syntax depends on its version.
 
     Raises:
-        TypeError: If ``language`` is not a string or iterable of strings.
-        ValueError: If an iterable of languages is empty.
+        TypeError: If ``language`` is not a string or iterable of strings, or
+            ``version`` does not match the shape of ``language``.
+        ValueError: If an iterable of languages is empty, or a version mapping
+            names a language that is not queried.
         NotImplementedError: If any language key is unknown to the registry.
+        UnsupportedCommentLanguageVersionError: If a version is not supported
+            for its language.
     """
 
-    def __init__(self, language):
+    def __init__(self, language, version=None):
         self.languages = self._normalize_languages(language)
         self.language = self.languages[0] if len(self.languages) == 1 else self.languages
+        requested = self._normalize_versions(self.languages, version)
+        self.versions = tuple(
+            resolve_query_language_version(entry, entry_version)
+            for entry, entry_version in zip(self.languages, requested)
+        )
+        self.version = (
+            self.versions[0]
+            if len(self.languages) == 1
+            else dict(zip(self.languages, self.versions))
+        )
         self._query_pairs = [
-            (LineCommentQuery(entry), NestedCommentQuery(entry)) for entry in self.languages
+            (
+                LineCommentQuery(entry, entry_version),
+                NestedCommentQuery(entry, entry_version),
+            )
+            for entry, entry_version in zip(self.languages, self.versions)
         ]
 
     def contains(self, text):
@@ -1511,6 +1593,30 @@ class CommentQuery(Query):
         return languages
 
     @staticmethod
+    def _normalize_versions(languages, version):
+        """Return one requested version (or ``None``) per language."""
+
+        if version is None:
+            return (None,) * len(languages)
+        if len(languages) == 1 and isinstance(version, str):
+            return (version,)
+        if isinstance(version, str) or not isinstance(version, Mapping):
+            raise TypeError(
+                "version must be a string for one language or a mapping from "
+                "language to version for several languages"
+            )
+        keys = [_resolve_comment_language_key(entry) for entry in languages]
+        requested = [None] * len(languages)
+        for label, entry_version in version.items():
+            key = _resolve_comment_language_key(label)
+            if key not in keys:
+                raise ValueError(f"version mapping names a language that is not queried: {label}")
+            for index, entry_key in enumerate(keys):
+                if entry_key == key:
+                    requested[index] = entry_version
+        return tuple(requested)
+
+    @staticmethod
     def _parse_single_language(text, line_comments, nested_comments):
         """Return grouped and deduplicated matches for one language."""
 
@@ -1523,7 +1629,9 @@ class CommentQuery(Query):
     def _parse_single_language_ranges(text, line_comments, nested_comments):
         """Return grouped and deduplicated match ranges for one language."""
 
-        quoted_ranges, scan_limit = _comment_scan_context(line_comments.language, text)
+        quoted_ranges, scan_limit = _comment_scan_context(
+            line_comments.language, text, line_comments.version
+        )
         ranges = []
         ranges.extend(nested_comments.parse_ranges(text, quoted_ranges))
         line_ranges = line_comments.parse_ranges(text, quoted_ranges, scan_limit=scan_limit)
@@ -1767,21 +1875,26 @@ class OpeningCommentQuery(Query):
             begin.
         skip_hashbang: Whether to ignore an initial ``#!`` line before applying
             the opening-comment rule.
+        version: Optional language version for languages whose comment syntax
+            depends on it. ``None`` uses the default version and warns once.
 
     Raises:
         ValueError: If ``max_start_row`` is less than one.
+        UnsupportedCommentLanguageVersionError: If ``version`` is not
+            supported for the language.
     """
 
-    def __init__(self, language, max_start_row=3, skip_hashbang=True):
+    def __init__(self, language, max_start_row=3, skip_hashbang=True, version=None):
         if max_start_row < 1:
             raise ValueError("max_start_row must be at least 1")
 
         _warn_language_caveat_once(language)
         self.language = language
+        self.version = resolve_query_language_version(language, version)
         self.max_start_row = max_start_row
         self.skip_hashbang = skip_hashbang
-        self.line_comments = LineCommentQuery(language)
-        self.nested_comments = NestedCommentQuery(language)
+        self.line_comments = LineCommentQuery(language, self.version)
+        self.nested_comments = NestedCommentQuery(language, self.version)
 
     def contains(self, text):
         """Return ``True`` when an opening comment block is found."""
@@ -1821,7 +1934,7 @@ class OpeningCommentQuery(Query):
         """Return candidate comment ranges that start after the hashbang anchor."""
 
         ranges = []
-        quoted_ranges = _comment_start_ignored_ranges(self.language, text)
+        quoted_ranges = _comment_start_ignored_ranges(self.language, text, self.version)
         ranges.extend(self.line_comments.parse_ranges(text, quoted_ranges))
         ranges.extend(self.nested_comments.parse_ranges(text, quoted_ranges))
 

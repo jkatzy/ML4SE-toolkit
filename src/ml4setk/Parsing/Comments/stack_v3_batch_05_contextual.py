@@ -526,6 +526,19 @@ def _mdx_brace_context(text: str, brace: int, tag_range: tuple[int, int] | None)
 def mdx_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return JavaScript comments from valid default MDX regions."""
 
+    return _mdx_comment_ranges(text, mdx1=False)
+
+
+def mdx1_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return MDX 1 comments: HTML comments, and JavaScript in ESM and JSX.
+
+    MDX 1 has no expressions in Markdown text, so a brace there is literal.
+    """
+
+    return _mdx_comment_ranges(text, mdx1=True)
+
+
+def _mdx_comment_ranges(text: str, *, mdx1: bool) -> tuple[tuple[int, int], ...]:
     protected = _markdown_code_ranges(text, front_matter=True)
     tag_ranges = _markup_tag_ranges(text, protected)
     esm_ranges = _mdx_esm_ranges(text, protected)
@@ -544,11 +557,21 @@ def mdx_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
         if containing is not None:
             index = containing[1]
             continue
+        if mdx1 and text.startswith("<!--", index):
+            close = text.find("-->", index + 4)
+            if close < 0:
+                break
+            comments.append((index, close + 3))
+            index = close + 3
+            continue
         if text[index] != "{":
             index += 1
             continue
 
         tag_range = _containing_range(index, tag_ranges)
+        if mdx1 and tag_range is None:
+            index += 1
+            continue
         context = _mdx_brace_context(text, index, tag_range)
         if context == "quoted":
             index += 1
@@ -563,6 +586,38 @@ def mdx_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
         index = expression_end
 
     return tuple(_merge_ranges(comments))
+
+
+def mermaid_10_0_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Mermaid 10.0 comments from the diagram lexers' %% rules.
+
+    Before 10.1 a %% not followed by { starts a comment to the end of the line
+    wherever it appears outside a quoted label; %%{ ... }%% is a directive.
+    """
+
+    front_matter = _front_matter_range(text)
+    ranges: list[tuple[int, int]] = []
+    index = front_matter[1] if front_matter is not None and front_matter[0] == 0 else 0
+    while index < len(text):
+        if text[index] == '"':
+            close = text.find('"', index + 1)
+            if close < 0:
+                break
+            index = close + 1
+            continue
+        if text.startswith("%%{", index):
+            close = text.find("}%%", index + 3)
+            if close < 0:
+                break
+            index = close + 3
+            continue
+        if text.startswith("%%", index):
+            end, _ = _line_bounds(text, index)
+            ranges.append((index, end))
+            index = end
+            continue
+        index += 1
+    return tuple(ranges)
 
 
 def mermaid_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
@@ -667,7 +722,9 @@ def minizinc_string_ranges(text: str) -> list[tuple[int, int]]:
 STACK_V3_BATCH_05_CONTEXTUAL_EXTRACTORS: dict[str, Callable[[str], tuple[tuple[int, int], ...]]] = {
     "mdsvex_comments": mdsvex_comment_ranges,
     "mdx_comments": mdx_comment_ranges,
+    "mdx1_comments": mdx1_comment_ranges,
     "mermaid_comments": mermaid_comment_ranges,
+    "mermaid_10_0_comments": mermaid_10_0_comment_ranges,
 }
 
 
@@ -675,7 +732,9 @@ __all__ = [
     "STACK_V3_BATCH_05_CONTEXTUAL_EXTRACTORS",
     "luau_string_ranges",
     "mdsvex_comment_ranges",
+    "mdx1_comment_ranges",
     "mdx_comment_ranges",
+    "mermaid_10_0_comment_ranges",
     "mermaid_comment_ranges",
     "minizinc_string_ranges",
 ]

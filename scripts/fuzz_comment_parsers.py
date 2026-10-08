@@ -21,6 +21,8 @@ from ml4setk import (
 from ml4setk.Parsing.Comments import (
     CommentExample,
     CommentSyntax,
+    get_comment_language_versions,
+    get_default_comment_language_version,
     get_supported_comment_languages,
 )
 
@@ -132,6 +134,7 @@ class FuzzFailure:
     detail: str
     campaign: str = "parser"
     mutation: str = "random_text"
+    version: str | None = None
 
 
 @dataclass(frozen=True)
@@ -146,6 +149,7 @@ class FuzzRun:
     parser_cases: int = 0
     sanitizer_random_cases: int = 0
     sanitizer_structured_cases: int = 0
+    targets: int = 0
 
 
 class _InvariantFailure(AssertionError):
@@ -168,6 +172,23 @@ def _stable_campaign_seed(seed: int, language: str, campaign: str) -> int:
     if campaign == "parser":
         return _stable_language_seed(seed, language)
     return _stable_language_seed(seed, f"{campaign}:{language}")
+
+
+def _fuzz_targets(languages: Sequence[str]) -> tuple[tuple[str, str | None, str], ...]:
+    """Return ``(language, version, seed_key)`` for every language version.
+
+    The default version of a language keeps the language key as its seed key,
+    so adding version tables does not shift the existing random streams.
+    """
+
+    targets = []
+    for language in languages:
+        default = get_default_comment_language_version(language)
+        targets.append((language, default, language))
+        for version in get_comment_language_versions(language):
+            if version != default:
+                targets.append((language, version, f"{language}@{version}"))
+    return tuple(targets)
 
 
 def _random_text(rng: random.Random, max_length: int) -> str:
@@ -282,8 +303,9 @@ def _check_sanitizer_case(
         )
 
     query_match_cleaned = sanitizer.sanitize(QueryMatch("prefix", "suffix", text))
-    helper_cleaned = sanitize_comment(language, text)
-    legacy_helper_cleaned = sanitize_comment_text(language, text)
+    version = getattr(sanitizer, "version", None)
+    helper_cleaned = sanitize_comment(language, text, version=version)
+    legacy_helper_cleaned = sanitize_comment_text(language, text, version=version)
     if not (cleaned == query_match_cleaned == helper_cleaned == legacy_helper_cleaned):
         raise _InvariantFailure(
             "sanitizer_api_parity",
@@ -436,6 +458,7 @@ def run_fuzz(
         raise ValueError("sanitizer_payloads_per_example must not be negative")
 
     selected = tuple(sorted(languages or get_supported_comment_languages()))
+    targets = _fuzz_targets(selected)
     failures: list[FuzzFailure] = []
     parser_cases = 0
     sanitizer_random_cases = 0
@@ -447,6 +470,7 @@ def run_fuzz(
             seed=seed,
             languages=len(selected),
             cases=random_cases,
+            targets=len(targets),
             failures=tuple(failures),
             campaign=campaign,
             parser_cases=parser_cases,
@@ -457,6 +481,7 @@ def run_fuzz(
     def record_failure(
         *,
         language: str,
+        version: str | None,
         language_seed: int,
         case_index: int,
         failure_campaign: str,
@@ -475,6 +500,7 @@ def run_fuzz(
                 detail=str(exc),
                 campaign=failure_campaign,
                 mutation=mutation,
+                version=version,
             )
         )
 
@@ -484,11 +510,11 @@ def run_fuzz(
             message="Promela parsing only supports native",
             category=UserWarning,
         )
-        for language in selected:
+        for language, version, seed_key in targets:
             if campaign in {"all", "parser"}:
-                parser_seed = _stable_campaign_seed(seed, language, "parser")
+                parser_seed = _stable_campaign_seed(seed, seed_key, "parser")
                 parser_rng = random.Random(parser_seed)
-                query = CommentQuery(language)
+                query = CommentQuery(language, version=version)
                 for case_index in range(cases_per_language):
                     text = _random_text(parser_rng, max_length)
                     parser_cases += 1
@@ -497,6 +523,7 @@ def run_fuzz(
                     except Exception as exc:
                         record_failure(
                             language=language,
+                            version=version,
                             language_seed=parser_seed,
                             case_index=case_index,
                             failure_campaign="parser",
@@ -510,10 +537,10 @@ def run_fuzz(
             if campaign not in {"all", "sanitizer"}:
                 continue
 
-            sanitizer = CommentSanitizer(language)
+            sanitizer = CommentSanitizer(language, version=version)
             sanitizer_seed = _stable_campaign_seed(
                 seed,
-                language,
+                seed_key,
                 "sanitizer_random",
             )
             sanitizer_rng = random.Random(sanitizer_seed)
@@ -525,6 +552,7 @@ def run_fuzz(
                 except Exception as exc:
                     record_failure(
                         language=language,
+                        version=version,
                         language_seed=sanitizer_seed,
                         case_index=case_index,
                         failure_campaign="sanitizer",
@@ -537,7 +565,7 @@ def run_fuzz(
 
             structured_seed = _stable_campaign_seed(
                 seed,
-                language,
+                seed_key,
                 "sanitizer_structured",
             )
             structured_rng = random.Random(structured_seed)
@@ -552,6 +580,7 @@ def run_fuzz(
             except Exception as exc:
                 record_failure(
                     language=language,
+                    version=version,
                     language_seed=structured_seed,
                     case_index=0,
                     failure_campaign="sanitizer",
@@ -575,6 +604,7 @@ def run_fuzz(
                 except Exception as exc:
                     record_failure(
                         language=language,
+                        version=version,
                         language_seed=structured_seed,
                         case_index=case_index,
                         failure_campaign="sanitizer",
@@ -646,6 +676,7 @@ def main() -> int:
                 "campaign": run.campaign,
                 "seed": run.seed,
                 "languages": run.languages,
+                "targets": run.targets,
                 "cases": run.cases,
                 "parser_cases": run.parser_cases,
                 "sanitizer_random_cases": run.sanitizer_random_cases,

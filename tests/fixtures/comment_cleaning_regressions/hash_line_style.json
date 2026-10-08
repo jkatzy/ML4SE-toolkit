@@ -1612,23 +1612,6 @@
       "syntax_label": "#"
     },
     {
-      "baseline_cleaned_sha256": "0234eb3b00fbeada8808862d4d1009843f5dfb53c39b020ea8c931911a38746e",
-      "case_id": "mcfunction-line-b25679636af10d25",
-      "comment_kind": "line",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "This function was coded by BlueCommander\nPlease don't claim this as your own work\nLINK www.youtube.com/c/BlueCommander",
-      "expected_cleaned_sha256": "dbcef528ac42a5faf93f30b7e04871be6cc28509dd2ffbfa08fd92c077d0d51e",
-      "language": "mcfunction",
-      "raw_comment": "#==================NOTE====================#\n# This function was coded by BlueCommander #\n# Please don't claim this as your own work #\n#   LINK www.youtube.com/c/BlueCommander   #\n#==========================================#",
-      "raw_sha256": "8fe0ec49c8766cf77589866401d3e0e763488cb826cf01fe49303aafe39f14ab",
-      "raw_utf8_length": 224,
-      "source_provenance": {
-        "source_excerpt_sha256": "bda401eed231df7f572eb821e7299da029232ed6295eb0c90c394153375e6280",
-        "source_id": "68815b073d2bafa51b37161f316a2b25ca6300f1"
-      },
-      "syntax_label": "#"
-    },
-    {
       "baseline_cleaned_sha256": "494ee97a2bcda3b1c6681d5680d9d263873220d036658e26b9336c40478b2e98",
       "case_id": "miniyaml-line-2c599f1e493c6e06",
       "comment_kind": "line",
@@ -1914,23 +1897,6 @@
       "source_provenance": {
         "source_excerpt_sha256": "bdcd3c7118b0e72cc203a19002d7c9d7e9885a9f3b6277f96632aaeeab27f4cf",
         "source_id": "c6fdb03e48526718b7539bec72ce2547ccd61f34"
-      },
-      "syntax_label": "#"
-    },
-    {
-      "baseline_cleaned_sha256": "00eac950aadce527d15f6536d55e036a612501ea54734e90b3a4e6c2f2926a32",
-      "case_id": "picolisp-line-d2bd50d481eba1bf",
-      "comment_kind": "line",
-      "disposition": "confirmed_bug",
-      "expected_cleaned": "#(1@!(2@(3@#(4@5)@6@!#(7@8)@9)))",
-      "expected_cleaned_sha256": "1ec63c82b53ef3638a39e14f5db298d4be5677757a8360fff5a657d1578258c9",
-      "language": "picolisp",
-      "raw_comment": "##(1@!(2@(3@#(4@5)@6@!#(7@8)@9)))",
-      "raw_sha256": "b36d8428e025c805ee58def033085a52f0dcad20b026671db24f31dd0a646da3",
-      "raw_utf8_length": 33,
-      "source_provenance": {
-        "source_excerpt_sha256": "8408f77d23e55e479fcc8335d563116d5c909e529f3b439ab0085e91218d9b65",
-        "source_id": "ed86d9f5d508b840a4501376875de707bd0bb492"
       },
       "syntax_label": "#"
     },

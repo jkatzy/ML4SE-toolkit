@@ -202,6 +202,27 @@ def _nushell_raw_string_end(text: str, start: int) -> int | None:
 def nushell_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return Nushell boundary-qualified comments outside literal items."""
 
+    return _nushell_comment_ranges(text, raw_strings=True, hash_ends_words=False)
+
+
+def nushell_077_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Nushell 0.77-0.93 comments, which have no raw strings."""
+
+    return _nushell_comment_ranges(text, raw_strings=False, hash_ends_words=False)
+
+
+def nushell_076_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Nushell 0.76 comments, where an unquoted # also ends a bare word."""
+
+    return _nushell_comment_ranges(text, raw_strings=False, hash_ends_words=True)
+
+
+def _nushell_comment_ranges(
+    text: str,
+    *,
+    raw_strings: bool,
+    hash_ends_words: bool,
+) -> tuple[tuple[int, int], ...]:
     ranges: list[tuple[int, int]] = []
     index = 0
     depth = 0
@@ -209,7 +230,7 @@ def nushell_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
         index = _line_end(text, 0, "\n")
 
     while index < len(text):
-        raw_end = _nushell_raw_string_end(text, index)
+        raw_end = _nushell_raw_string_end(text, index) if raw_strings else None
         if raw_end is not None:
             index = raw_end
             continue
@@ -229,12 +250,17 @@ def nushell_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
         if char == "#":
             previous = text[index - 1 : index]
             at_item_boundary = index == 0 or previous in _ASCII_HORIZONTAL_SPACE + "\r\n([{,;|"
-            if at_item_boundary:
+            if at_item_boundary or hash_ends_words:
                 endings = "\r\n" if depth else "\n"
                 end = _line_end(text, index, endings)
                 ranges.append((index, end))
                 index = end
                 continue
+            # From 0.77 lex_item keeps a mid-word # in the word and stops
+            # tracking quotes until the word ends at white space.
+            while index < len(text) and text[index] not in _ASCII_HORIZONTAL_SPACE + "\r\n":
+                index += 1
+            continue
         index += 1
     return tuple(ranges)
 
@@ -566,6 +592,8 @@ STACK_V3_BATCH_06_07_CONTEXTUAL_EXTRACTORS: dict[
     "moonbit_comments": moonbit_comment_ranges,
     "nmodl_comments": nmodl_comment_ranges,
     "nushell_comments": nushell_comment_ranges,
+    "nushell_076_comments": nushell_076_comment_ranges,
+    "nushell_077_comments": nushell_077_comment_ranges,
     "omnet_msg_comments": omnet_msg_comment_ranges,
     "omnet_ned_comments": omnet_ned_comment_ranges,
     "pip_requirements_comments": pip_requirements_comment_ranges,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections.abc import Callable
 
 _LINE_ENDINGS = "\r\n"
@@ -220,7 +221,71 @@ def _dotenv_quote_end(text: str, start: int, quote: str) -> int | None:
     return None
 
 
+# Node dotenv before 15 splits the source into lines and matches each one
+# against RE_INI_KEY_VAL; these patterns capture that regex's comment part.
+_DOTENV_14_0_LINE = re.compile(
+    r"\s*[A-Za-z0-9_.-]+\s*=\s*(?:\"[^\"]*\"|'[^']*'|[^#]*)?(?P<comment>\s*|\s*#.*)?"
+)
+_DOTENV_14_3_2_LINE = re.compile(
+    r"\s*[A-Za-z0-9_.-]+\s*=\s*(?:\"[^\"]*\"|'[^']*'|.*?)(?P<comment>\s+#.*)?"
+)
+
+
+def dotenv_13_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Node dotenv 13 comments: only lines starting with #."""
+
+    return _dotenv_line_comment_ranges(text, None)
+
+
+def dotenv_14_0_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Node dotenv 14.0-14.3.1 comments: any # after the value."""
+
+    return _dotenv_line_comment_ranges(text, _DOTENV_14_0_LINE)
+
+
+def dotenv_14_3_2_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Node dotenv 14.3.2 comments: # after white space ends the value."""
+
+    return _dotenv_line_comment_ranges(text, _DOTENV_14_3_2_LINE)
+
+
+def _dotenv_line_comment_ranges(
+    text: str,
+    line_pattern: re.Pattern[str] | None,
+) -> tuple[tuple[int, int], ...]:
+    ranges: list[tuple[int, int]] = []
+    line_start = 1 if text.startswith("\ufeff") else 0
+    while line_start < len(text):
+        line_end = _line_end(text, line_start)
+        line = text[line_start:line_end]
+        stripped = line.lstrip()
+        if stripped.startswith("#"):
+            ranges.append((line_end - len(stripped), line_end))
+        elif line_pattern is not None:
+            matched = line_pattern.fullmatch(line)
+            comment = None if matched is None else matched.group("comment")
+            if comment and "#" in comment:
+                hash_start = line_start + matched.start("comment") + comment.index("#")
+                ranges.append((hash_start, line_end))
+        if line_end >= len(text):
+            break
+        line_start = _next_line_start(text, line_end)
+    return tuple(ranges)
+
+
+def dotenv_15_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Node dotenv 15 comments, where backticks do not quote values."""
+
+    return _dotenv_comment_ranges(text, "'\"")
+
+
 def dotenv_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Node dotenv >=16 comment ranges from valid assignment lines."""
+
+    return _dotenv_comment_ranges(text, "'\"`")
+
+
+def _dotenv_comment_ranges(text: str, quotes: str) -> tuple[tuple[int, int], ...]:
     """Return Node dotenv >=15 comment ranges from valid assignment lines."""
 
     ranges: list[tuple[int, int]] = []
@@ -266,7 +331,7 @@ def dotenv_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
         while index < line_end and text[index] in " \t":
             index += 1
 
-        if index < line_end and text[index] in {"'", '"', "`"}:
+        if index < line_end and text[index] in quotes:
             quote = text[index]
             close = _dotenv_quote_end(text, index, quote)
             if close is None:
@@ -297,6 +362,10 @@ STACK_V3_BATCH_01_CONTEXTUAL_EXTRACTORS: dict[str, Callable[[str], tuple[tuple[i
     "cylc_comments": cylc_comment_ranges,
     "d2_comments": d2_comment_ranges,
     "dotenv_comments": dotenv_comment_ranges,
+    "dotenv_13_comments": dotenv_13_comment_ranges,
+    "dotenv_14_0_comments": dotenv_14_0_comment_ranges,
+    "dotenv_14_3_2_comments": dotenv_14_3_2_comment_ranges,
+    "dotenv_15_comments": dotenv_15_comment_ranges,
 }
 
 __all__ = [
@@ -304,5 +373,9 @@ __all__ = [
     "clue_comment_ranges",
     "cylc_comment_ranges",
     "d2_comment_ranges",
+    "dotenv_13_comment_ranges",
+    "dotenv_14_0_comment_ranges",
+    "dotenv_14_3_2_comment_ranges",
+    "dotenv_15_comment_ranges",
     "dotenv_comment_ranges",
 ]

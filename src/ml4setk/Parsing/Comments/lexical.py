@@ -15,7 +15,7 @@ from typing import Optional, Tuple
 
 import regex as re
 
-from .registry import LANGUAGE_SYNTAX
+from .registry import LANGUAGE_SYNTAX, get_comment_language_version
 
 DEFAULT_QUOTE_CHARS = frozenset("'\"`")
 
@@ -616,10 +616,55 @@ _LEXICAL_RULES = {
 }
 
 
-def lexical_rules_for(language: str) -> LexicalRules:
-    """Return literal rules for a registry language key such as ``c++``."""
+# Version profiles named by ``CommentLanguageVersion.lexical_profile``. A
+# profile replaces a language's literal rules for that version only.
+LEXICAL_VERSION_PROFILES = {
+    # C before C23 and C++ before C++14: ' never separates digits.
+    "c-without-digit-separators": _rules("'\"`"),
+    # C++11: raw string literals, but no digit separators yet.
+    "cpp-raw-strings-without-digit-separators": _rules(
+        "'\"`", literals=(_CPP_RAW_STRING,), starts="uULR"
+    ),
+    # CMake before 3.0 has no [[...]] bracket arguments.
+    "cmake-2.8": _rules("'\""),
+    # OpenSSH 8.5 and 8.6 cut every line at its first #, even inside quotes.
+    "ssh-config-8.5": _rules(""),
+    # PHP before 7.3: a heredoc closes only at its label in column 0, followed
+    # by an optional ; and the line break.
+    "php-7.2": _rules(
+        "'\"`",
+        literals=(
+            DelimitedLiteral(
+                r"<<<[ \t]*(['\"]?)([A-Za-z_]\w*)\1\r?\n",
+                r"(?m)^{1};?(?=[\r\n]|\Z)",
+            ),
+        ),
+        starts="<",
+    ),
+    # Vim9 script: "..." strings take backslash escapes; '...' strings double
+    # a quote to escape it and treat a backslash literally.
+    "vim9": _rules('"', literals=(r"'(?:[^'\r\n]|'')*'",), starts="'"),
+    # EditorConfig cores before spec 0.15 (ini.c) have no quoted values.
+    "editorconfig-pre-0.15": _rules(""),
+    # Lua 4.0 and 5.0: [[ ]] long strings nest; there are no leveled brackets.
+    "lua-5.0": _rules("'\"", literals=(r"\[\[(?:(?!\[\[|\]\])[\s\S]|(?R))*\]\]",), starts="["),
+}
+
+
+def lexical_rules_for(language: str, version: Optional[str] = None) -> LexicalRules:
+    """Return literal rules for a registry language key such as ``c++``.
+
+    Args:
+        language: Registry language key.
+        version: Resolved version name. A version whose registry entry names a
+            ``lexical_profile`` uses that profile instead of the language rules.
+    """
 
     key = language.strip().lower()
+    if version is not None:
+        profile = _version_lexical_profile(key, version)
+        if profile:
+            return LEXICAL_VERSION_PROFILES[profile]
     rules = _LEXICAL_RULES.get(key)
     if rules is None:
         rules = _LEXICAL_RULES.get(re.sub(r"[^a-z0-9]+", "_", key).strip("_"))
@@ -630,3 +675,10 @@ def lexical_rules_for(language: str) -> LexicalRules:
 
 
 _DEFAULT_RULES = LexicalRules()
+
+
+def _version_lexical_profile(language: str, version: str) -> str:
+    """Return the lexical profile named by ``language``'s ``version``, if any."""
+
+    metadata = get_comment_language_version(language, version)
+    return "" if metadata is None else metadata.lexical_profile
