@@ -292,13 +292,45 @@ _FSHARP_CHAR_LITERAL = re.compile(
 _FSHARP_TRIPLE_QUOTE = '"' * 3
 
 
-def _ocaml_literal_end(text: str, index: int) -> Optional[int]:
+# OCaml 4.02 lexer.mll: "{" lowercase* "|" opens a quoted string that ends at
+# "|" delim "}"; it is lexed inside comments too.
+_OCAML_QUOTED_STRING = re.compile(r"\{([a-z_]*)\|")
+# OCaml 4.11 lexer.mll adds quoted extensions {%ext|...|} and {%%ext id|...|id}.
+_OCAML_QUOTED_EXTENSION = re.compile(
+    r"\{(?:%%?[A-Za-z_'0-9]+(?:\.[A-Za-z_'0-9]+)*[ \t]*)?([a-z_]*)\|"
+)
+
+
+def _ocaml_quoted_end(text: str, index: int, opener: re.Pattern[str]) -> Optional[int]:
+    opened = opener.match(text, index)
+    if opened is None:
+        return None
+    closer = "|" + opened.group(1) + "}"
+    end = text.find(closer, opened.end())
+    return len(text) if end == -1 else end + len(closer)
+
+
+def _ocaml_401_literal_end(text: str, index: int) -> Optional[int]:
     char_literal = _OCAML_CHAR_LITERAL.match(text, index)
     if char_literal is not None:
         return char_literal.end()
     if text[index] == '"':
         return _quoted_end(text, index, '"', multiline=True)[0]
     return None
+
+
+def _ocaml_402_literal_end(text: str, index: int) -> Optional[int]:
+    end = _ocaml_401_literal_end(text, index)
+    if end is None and text[index] == "{":
+        end = _ocaml_quoted_end(text, index, _OCAML_QUOTED_STRING)
+    return end
+
+
+def _ocaml_literal_end(text: str, index: int) -> Optional[int]:
+    end = _ocaml_401_literal_end(text, index)
+    if end is None and text[index] == "{":
+        end = _ocaml_quoted_end(text, index, _OCAML_QUOTED_EXTENSION)
+    return end
 
 
 def _fsharp_literal_end(text: str, index: int) -> Optional[int]:
@@ -355,7 +387,7 @@ def _ml_comment_ranges(
         index += 2
         complete = False
         while index < len(text):
-            if text[index] == '"' or text.startswith('@"', index) or text[index] == "'":
+            if text[index] in "\"'{" or text.startswith('@"', index):
                 end = literal_end(text, index)
                 if end is not None:
                     if end >= len(text) and not text.endswith('"', 0, end):
@@ -386,10 +418,23 @@ def ocaml_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
 
     The OCaml lexer recognizes string and character literals within comments,
     so ``(* "*)" *)`` is one comment. Strings use backslash escapes and may
-    span lines.
+    span lines. From OCaml 4.11, quoted strings ``{id|...|id}`` and quoted
+    extensions ``{%ext|...|}`` are lexed in and outside comments.
     """
 
     return _ml_comment_ranges(text, _ocaml_literal_end)
+
+
+def ocaml_402_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return OCaml 4.02-4.10 comments: quoted strings, no quoted extensions."""
+
+    return _ml_comment_ranges(text, _ocaml_402_literal_end)
+
+
+def ocaml_401_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return OCaml 4.01 comments: only "..." and character literals are lexed."""
+
+    return _ml_comment_ranges(text, _ocaml_401_literal_end)
 
 
 def fsharp_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
@@ -1117,6 +1162,8 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
     str,
     Callable[[str], tuple[tuple[int, int], ...]],
 ] = {
+    "ocaml_401_comments": ocaml_401_comment_ranges,
+    "ocaml_402_comments": ocaml_402_comment_ranges,
     "pyret_comments": pyret_comment_ranges,
     "rbs_comments": rbs_comment_ranges,
     "rez_comments": rez_comment_ranges,
@@ -1137,6 +1184,8 @@ __all__ = [
     "STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS",
     "coq_comment_ranges",
     "fsharp_comment_ranges",
+    "ocaml_401_comment_ranges",
+    "ocaml_402_comment_ranges",
     "ocaml_comment_ranges",
     "pyret_comment_ranges",
     "rbs_comment_ranges",

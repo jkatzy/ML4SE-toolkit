@@ -655,6 +655,8 @@ LEXICAL_VERSION_PROFILES = {
     # Group markup profiles begin.
     # Group markup profiles end.
     # Group block profiles begin.
+    # Lua 4.0 and 5.0: [[ ]] long strings nest; there are no leveled brackets.
+    "lua-5.0": _rules("'\"", literals=(r"\[\[(?:(?!\[\[|\]\])[\s\S]|(?R))*\]\]",), starts="["),
     # Group block profiles end.
 }
 

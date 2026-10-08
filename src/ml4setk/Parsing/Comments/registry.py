@@ -3470,7 +3470,88 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "Rocq Prover is the current Stack label for Coq and retains its "
             "nested (* ... *) comments. Coq/Rocq quoted spans shield delimiters "
-            "inside comments; OCaml keeps the generic nested-star behavior."
+            "inside comments; OCaml lexes its string, character, and quoted "
+            "string literals inside comments."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("ocaml",),
+                default="4.11",
+                versions=(
+                    CommentLanguageVersion(
+                        name="4.01",
+                        release="0",
+                        span="OCaml 4.01 and earlier",
+                        comment_rules=(
+                            "Nested (* *) comments; string and character literals are "
+                            "lexed inside comments, and {| has no meaning."
+                        ),
+                        nested_delimiters=(),
+                        contextual_extractor="ocaml_401_comments",
+                        sanitizer_block_wrappers=(("(*", "*)"),),
+                        examples=(
+                            CommentExample(
+                                "(* {| *) let x = 1 (* |} *)\n",
+                                "(* {| *)",
+                                "Before OCaml 4.02, {| inside a comment is ordinary text.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/ocaml/ocaml/blob/4.01.0/parsing/lexer.mll "
+                            "(the comment rule lexes strings but has no { rule)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="4.02",
+                        release="4.02",
+                        span="OCaml 4.02 through 4.10",
+                        comment_rules=(
+                            "As 4.01, plus quoted strings {id|...|id} lexed in and "
+                            "outside comments."
+                        ),
+                        nested_delimiters=(),
+                        contextual_extractor="ocaml_402_comments",
+                        sanitizer_block_wrappers=(("(*", "*)"),),
+                        examples=(
+                            CommentExample(
+                                "(* {%ext| *) let y = 2 (* |} *)\n",
+                                "(* {%ext| *)",
+                                "Before OCaml 4.11, {%ext| inside a comment is ordinary text.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/ocaml/ocaml/blob/4.02.0/parsing/lexer.mll "
+                            '(comment rule: "{" lowercase* "|" starts a quoted string)'
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="4.11",
+                        aliases=("5.x", "current"),
+                        release="4.11",
+                        span="OCaml 4.11 and later, including 5.x",
+                        comment_rules=(
+                            "As 4.02, plus quoted extensions {%ext|...|} and {%%ext id|...|id}."
+                        ),
+                        examples=(
+                            CommentExample(
+                                "(* {%ext| *) let y = 2 (* |} *)\n",
+                                "(* {%ext| *) let y = 2 (* |} *)",
+                                "From OCaml 4.11, a quoted extension is lexed inside a comment.",
+                                kind="nested",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/ocaml/ocaml/blob/4.11.0/parsing/lexer.mll "
+                            "(comment rule: quoted extensions)"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(
@@ -3858,6 +3939,55 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
             ),
         ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("markdown",),
+                default="commonmark-0.31",
+                notes="GFM 0.29 keeps the 0.30 inline rule.",
+                versions=(
+                    CommentLanguageVersion(
+                        name="commonmark-0.30",
+                        aliases=("0.30", "gfm", "gfm-0.29"),
+                        span="CommonMark 0.30 and earlier, and GFM 0.29",
+                        comment_rules=(
+                            "A line starting with <!-- opens an HTML block comment. An "
+                            "inline comment's text must not start with > or ->, end "
+                            "with -, or contain --."
+                        ),
+                        regex_patterns=(
+                            r"(?m)(?<=^[ ]{0,3})<!--(?:-?>|[\S\s]*?--!?>)",
+                            r"<!--(?!>|->)(?:(?!--)[\S\s])*-->",
+                        ),
+                        examples=(
+                            CommentExample(
+                                "foo <!-- a -- b -->\n<!-- note -- here -->\n",
+                                "<!-- note -- here -->",
+                                "CommonMark 0.30 HTML block comment; the inline one is text.",
+                                kind="block",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/commonmark/commonmark-spec/blob/0.30/"
+                            "spec.txt#L8983 (HTML comment text rules) and #L2386 (HTML "
+                            "block type 2)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="commonmark-0.31",
+                        aliases=("0.31", "0.31.2", "current"),
+                        span="CommonMark 0.31 and later",
+                        comment_rules=(
+                            "<!-->, <!--->, or <!-- and any text up to the first --> "
+                            "is an HTML comment, inline or as a block."
+                        ),
+                        documentation_source=(
+                            "https://github.com/commonmark/commonmark-spec/blob/0.31.2/"
+                            "spec.txt#L8994"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="lua_style",
@@ -3894,6 +4024,86 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             ),
         ),
         language_excluded_comment_prefixes=(("luau", ("--!",)),),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("lua",),
+                default="5.1",
+                versions=(
+                    CommentLanguageVersion(
+                        name="4.0",
+                        aliases=("lua4",),
+                        release="0",
+                        span="Lua 4.0 and earlier",
+                        comment_rules="Only -- comments to the end of the line.",
+                        regex_patterns=(r"--[^\n]*",),
+                        lexical_profile="lua-5.0",
+                        examples=(
+                            CommentExample(
+                                "--[[ a ]] y = 2\n",
+                                "--[[ a ]] y = 2",
+                                "Lua 4.0 has no long comments.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/lua/lua/blob/v4.0/llex.c (after -- the "
+                            "lexer skips to the end of the line)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="5.0",
+                        aliases=("lua5.0",),
+                        release="5.0",
+                        span="Lua 5.0",
+                        comment_rules=(
+                            "--[[ opens a long comment closed by the matching ]], "
+                            "counting nested [[ ]]; any other -- runs to the end of "
+                            "the line."
+                        ),
+                        regex_patterns=(
+                            r"--(\[\[(?:(?!\[\[|\]\])[\s\S]|(?1))*\]\])",
+                            r"--(?!\[\[)[^\n]*",
+                        ),
+                        lexical_profile="lua-5.0",
+                        examples=(
+                            CommentExample(
+                                "--[[ a [[ b ]] c ]] x = 1\n",
+                                "--[[ a [[ b ]] c ]]",
+                                "Lua 5.0 long comments nest [[ ]] pairs.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                            CommentExample(
+                                "--[==[ b ]==] z = 3\n",
+                                "--[==[ b ]==] z = 3",
+                                "Lua 5.0 has no leveled long brackets.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/lua/lua/blob/v5.0/llex.c (--[[ calls "
+                            "read_long_string, which counts nested [[ ]])"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="5.1",
+                        aliases=("lua5.1", "lua5.4", "current"),
+                        release="5.1",
+                        span="Lua 5.1 through 5.4",
+                        comment_rules=(
+                            "-- followed by [=*[ opens a long comment closed by ]=*] "
+                            "with the same level; long comments do not nest."
+                        ),
+                        documentation_source=(
+                            "https://github.com/lua/lua/blob/v5.4.6/llex.c (long "
+                            "comment when skip_sep finds a leveled bracket)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="nested_star_only_style",

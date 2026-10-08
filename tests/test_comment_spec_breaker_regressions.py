@@ -93,7 +93,6 @@ _OPEN_CASES = {
             "bibtex-braced-field-value",
             "bibtex-escaped-percent-in-field",
             "m4-quoted-hash",
-            "ocaml-quoted-string-literal",
         ),
         _LITERAL_FORM,
     ),
