@@ -62,7 +62,10 @@ stream must resolve.
 - `OpeningCommentQuery(language, max_start_row=3)`: extracts one logical
   opening comment block from the top of a file. It skips an initial hashbang
   line, requires the first real comment to start within the first `n` rows, and
-  then expands across contiguous top-of-file comments until code appears.
+  then expands across contiguous top-of-file comments until code appears. A
+  leading UTF-8 byte order mark is ignored, a `#![` line is a Rust-style inner
+  attribute rather than a hashbang, and the `\r` of a CRLF line ending is never
+  part of the match.
 - `LineCommentQuery(language)`: finds line comments and non-nested block
   comments driven by registry regexes or a named contextual extractor.
 - `NestedCommentQuery(language)`: finds top-level nested comment regions for
