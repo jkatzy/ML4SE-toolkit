@@ -1,4 +1,4 @@
-"""Version-dependent block comments in Lua, OCaml, and Markdown.
+"""Version-dependent block comments in Lua, OCaml, SuperCollider, and Markdown.
 
 Each case gives the exact comment slices of one source under every supported
 version, so a change to any version's rules shows up as a precise diff.
@@ -61,6 +61,15 @@ def _matches(language, source, version):
             id="ocaml-quoted-strings-in-comments",
         ),
         pytest.param(
+            "supercollider",
+            'x = 1; /* a /* b */*/ y = 2; // */\ns = "/* no"; $/ /*/ x */ // c\n',
+            {
+                "3.8": ["/* a /* b */*/ y = 2; // */", "/*/ x */", "// c"],
+                "3.9": ["/* a /* b */*/", "// */", "/*/ x */", "// c"],
+            },
+            id="supercollider-overlapping-delimiters",
+        ),
+        pytest.param(
             "markdown",
             "foo <!-- a -- b -->\n<!-- note -- here -->\nbar <!-- ok --> <!---->\n"
             "`<!-- code -->`\n",
@@ -110,6 +119,8 @@ def test_ocaml_default_quoted_literal_forms(source, expected):
         ("ocaml", "3.12.1", "4.01"),
         ("ocaml", "4.10.2", "4.02"),
         ("ocaml", "5.2", "4.11"),
+        ("supercollider", "3.8.0", "3.8"),
+        ("supercollider", "3.13", "3.9"),
     ],
 )
 def test_release_numbers_select_the_containing_version(language, release, expected):

@@ -7310,6 +7310,55 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         documentation_source="https://doc.sccode.org/Reference/Comments.html",
         confidence="verified",
         notes="SuperCollider supports // comments and nested /* ... */ block comments.",
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("supercollider",),
+                default="3.9",
+                versions=(
+                    CommentLanguageVersion(
+                        name="3.8",
+                        release="0",
+                        span="SuperCollider 3.8 and earlier",
+                        comment_rules=(
+                            "// line comments and nested /* */ comments whose "
+                            "delimiters overlap, so */*/ closes, reopens, and closes."
+                        ),
+                        regex_patterns=(),
+                        nested_delimiters=(),
+                        contextual_extractor="supercollider_38_comments",
+                        sanitizer_block_wrappers=(("/*", "*/"),),
+                        examples=(
+                            CommentExample(
+                                "x = 1; /* a /* b */*/ y = 2; // */\n",
+                                "/* a /* b */*/ y = 2; // */",
+                                "Before 3.9, */*/ reopens the nested comment.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/supercollider/supercollider/blob/"
+                            "Version-3.8.0/lang/LangSource/PyrLexer.cpp#L840-L852"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="3.9",
+                        aliases=("current",),
+                        release="3.9",
+                        span="SuperCollider 3.9 and later",
+                        comment_rules=(
+                            "// line comments and nested /* */ comments; each "
+                            "delimiter consumes both of its characters."
+                        ),
+                        documentation_source=(
+                            "https://github.com/supercollider/supercollider/blob/"
+                            "Version-3.9.0/CHANGELOG.md (sclang: nestable comment fix, "
+                            "#2625)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="propeller_spin_style",

@@ -17,6 +17,10 @@ The command verifies the pinned provider statistics before writing below
 `tmp/stack_v3_comment_research/`. Do not copy those generated artifacts into
 this directory.
 
+Languages whose comment syntax changed between language versions are recorded
+in [`version_dependent_comments.md`](version_dependent_comments.md), with the
+evidence behind each registry version table.
+
 The predecessor research is retained in the
 [Stack v2 archive](stack_v2/README.md). It is historical evidence rather than a
 current parser-support matrix; revalidate its sources before using a conclusion

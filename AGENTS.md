@@ -86,6 +86,10 @@ Run `make test-optional` when optional Tree-sitter behavior changes. Use
   metadata fields after the compatibility boundary.
 - Unsupported or unresolved syntax raises `NotImplementedError`; uncertainty
   is not a reason to add a permissive marker pattern.
+- Comment syntax that changed between language versions belongs in the
+  family's `language_versions` table. The registry entry implements the
+  default version; other versions overlay only what they change and need a
+  differential test. See `docs/comment_research/version_dependent_comments.md`.
 - Extraction and cleaning are separate contracts. A cleaner may remove verified
   comment scaffolding and normalize line endings, but must not silently discard
   comment content.

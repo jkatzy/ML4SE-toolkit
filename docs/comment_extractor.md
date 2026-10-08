@@ -112,7 +112,42 @@ assert [m.match for m in CommentQuery("cmake", version="3.0").parse(source)] == 
 chronological order, `get_default_comment_language_version(language)` names
 the default, and `VERSIONED_COMMENT_LANGUAGES` lists every flagged language.
 
-<!-- versioned-language-table -->
+<!-- versioned-language-table:start -->
+The default version of each language is in bold. Versions are listed oldest first.
+
+| Languages | Versions | What changes |
+| --- | --- | --- |
+| `c`, `objective-c` | c89, c99, **c23** | `//` comments from C99; trigraph `??/` splices until C23, which also adds `'` digit separators. |
+| `c++`, `objective_cpp`, `objective_c_plus_plus`, `cuda` | cpp98, cpp11, cpp14, **cpp17**, cpp23 | Raw strings from C++11, `'` digit separators from C++14, no trigraphs from C++17, and white space before a splicing backslash from C++23. |
+| `glsl` | **glsl110**, glsl420 | From GLSL 4.20 a trailing backslash continues a `//` comment. |
+| `hack` | hhvm4.131, **hhvm4.133** | `#` comments end at HHVM 4.133. |
+| `stan` | 2.32, **2.33** | `#` comments end at Stan 2.33. |
+| `cmake` | 2.8, **3.0** | Bracket comments `#[[ ]]` and bracket arguments from 3.0. |
+| `php` | php7.2, php7.3, **php8.0** | Flexible heredoc closers from 7.3; `#[` is an attribute, not a comment, from 8.0. |
+| `html_php`, `html_plus_php` | php7.4, **php8.0** | `#[` is an attribute, not a comment, from PHP 8.0. |
+| `vim_script`, `viml` | **legacy**, vim9 | Vim9 script uses `#` comments and `"` strings. |
+| `editorconfig` | pre-0.15, **0.15** | Inline `;` and `#` comments end at specification 0.15. |
+| `cairo_zero` | 0.9, **0.10** | The comment marker changes from `#` to `//` at cairo-lang 0.10. |
+| `macaulay2` | 1.10, 1.11, **1.13** | Block comments change from `{* *}` to `-* *-` (both in 1.11 and 1.12). |
+| `julia` | 0.2, **0.3** | Nested `#= =#` block comments from 0.3. |
+| `jq` | **1.7**, 1.8 | From 1.8 a trailing backslash continues a comment. |
+| `ssh_config` | 8.4, 8.5, **8.7** | Full-line comments only until 8.4; 8.5 and 8.6 cut every line at its first `#`; from 8.7 `#` starts a comment at the start of an argument. |
+| `fluent` | 0.4, **1.0** | The comment sigil changes from `//` to `#` at Fluent Syntax 0.5. |
+| `org` | 7.8, **8.0** | From 7.9.2 a comment line needs white space after `#` and may be indented. |
+| `mcfunction` | 1.20.1, **1.20.2** | From 1.20.2 a trailing backslash continues a comment line. |
+| `picolisp` | 2.3.6, 2.3.7, **18.6** | `#{ }#` block comments from 2.3.7; they nest from 18.6. |
+| `lua` | 4.0, 5.0, **5.1** | Nesting `--[[ ]]` long comments in 5.0; leveled, non-nesting `--[=[ ]=]` from 5.1. |
+| `ocaml` | 4.01, 4.02, **4.11** | Quoted strings `{id\|...\|id}` are lexed inside comments from 4.02, quoted extensions `{%ext\|...\|}` from 4.11. |
+| `markdown` | commonmark-0.30, **commonmark-0.31** | Inline HTML comments may contain `--` from CommonMark 0.31. |
+| `nushell` | 0.76, 0.77, **0.94** | A mid-word `#` stops starting a comment at 0.77; raw strings `r#'...'#` from 0.94. |
+| `caddyfile` | 2.0, **2.1** | From 2.1 `#` starts a comment only at the start of a token. |
+| `dotenv` | 13, 14.0, 14.3.2, 15, **16** | Inline comments from Node dotenv 14.0, multi-line quoted values from 15, and backtick quotes from 16. |
+| `templ` | 0.2.364, **0.2.408** | `//` and `/* */` inside component bodies are comments from v0.2.408. |
+| `mermaid` | 10.0, **10.1** | From 10.1 only own-line `%%` comments are removed; a trailing `%%` after flowchart code is not a comment. |
+| `imba` | **imba1**, imba2 | Imba 2 adds `//` and `/* */` comments. |
+| `supercollider` | 3.8, **3.9** | Before 3.9 nested comment delimiters overlap, so `*/*/` reopens a comment. |
+| `mdx` | mdx1, **mdx2** | MDX 1 has HTML comments; MDX 2 has JavaScript comments in `{...}` expressions. |
+<!-- versioned-language-table:end -->
 
 ## Behavior that matters
 

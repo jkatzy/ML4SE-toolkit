@@ -425,6 +425,49 @@ def ocaml_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return _ml_comment_ranges(text, _ocaml_literal_end)
 
 
+def supercollider_38_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return sclang 3.8 comments, whose nested /* */ delimiters may overlap.
+
+    Before 3.9 PyrLexer's comment2 loop compared each character with the
+    previous one, so */*/ inside a comment closes, reopens, and closes again.
+    """
+
+    ranges: list[tuple[int, int]] = []
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if char == "$":
+            index += 2
+            continue
+        if char in {'"', "'"}:
+            index = _quoted_end(text, index, char, multiline=True)[0]
+            continue
+        if text.startswith("//", index):
+            end = _line_end(text, index)
+            ranges.append((index, end))
+            index = end
+            continue
+        if text.startswith("/*", index):
+            depth = 1
+            cursor = index + 2
+            previous = ""
+            while cursor < len(text) and depth:
+                current = text[cursor]
+                if previous == "*" and current == "/":
+                    depth -= 1
+                elif previous == "/" and current == "*":
+                    depth += 1
+                previous = current
+                cursor += 1
+            if depth:
+                break
+            ranges.append((index, cursor))
+            index = cursor
+            continue
+        index += 1
+    return tuple(ranges)
+
+
 def ocaml_402_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return OCaml 4.02-4.10 comments: quoted strings, no quoted extensions."""
 
@@ -1188,6 +1231,7 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
     "slang_comments": slang_comment_ranges,
     "slint_comments": slint_comment_ranges,
     "smithy_comments": smithy_comment_ranges,
+    "supercollider_38_comments": supercollider_38_comment_ranges,
     "snakemake_comments": snakemake_comment_ranges,
     "survex_data_comments": survex_data_comment_ranges,
     "templ_comments": templ_comment_ranges,

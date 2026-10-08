@@ -324,3 +324,30 @@ def test_c_style_member_versions(language, source, expected):
 )
 def test_release_numbers_select_the_containing_version(language, release, expected):
     assert resolve_comment_language_version(language, release) == expected
+
+
+def test_extractor_docs_list_every_version_table():
+    import re
+    from pathlib import Path
+
+    docs = Path(__file__).resolve().parents[1] / "docs" / "comment_extractor.md"
+    text = docs.read_text(encoding="utf-8")
+    start = text.index("<!-- versioned-language-table:start -->")
+    end = text.index("<!-- versioned-language-table:end -->")
+    rows = {}
+    for line in text[start:end].splitlines():
+        cells = (
+            [cell.strip() for cell in line.strip("|").split("|")] if line.startswith("|") else []
+        )
+        if len(cells) >= 2 and cells[0].startswith("`"):
+            languages = tuple(re.findall(r"`([^`]+)`", cells[0]))
+            rows[languages] = cells[1]
+
+    documented = {}
+    for syntax, table in _tables():
+        assert table.languages in rows, table.languages
+        names = [name.strip() for name in rows[table.languages].split(",")]
+        documented[table.languages] = names
+        assert [name.strip("*") for name in names] == list(table.version_names)
+        assert [name for name in names if name.startswith("**")] == [f"**{table.default}**"]
+    assert set(documented) == set(rows)
