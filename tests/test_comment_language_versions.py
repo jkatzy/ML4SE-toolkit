@@ -9,7 +9,9 @@ versions when the requested version is unknown.
 """
 
 import importlib
+import re
 import warnings
+from pathlib import Path
 
 import pytest
 
@@ -327,9 +329,6 @@ def test_release_numbers_select_the_containing_version(language, release, expect
 
 
 def test_extractor_docs_list_every_version_table():
-    import re
-    from pathlib import Path
-
     docs = Path(__file__).resolve().parents[1] / "docs" / "comment_extractor.md"
     text = docs.read_text(encoding="utf-8")
     start = text.index("<!-- versioned-language-table:start -->")

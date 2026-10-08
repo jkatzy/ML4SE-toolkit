@@ -627,13 +627,8 @@ LEXICAL_VERSION_PROFILES = {
     ),
     # CMake before 3.0 has no [[...]] bracket arguments.
     "cmake-2.8": _rules("'\""),
-    # Group hash-line profiles begin.
     # OpenSSH 8.5 and 8.6 cut every line at its first #, even inside quotes.
     "ssh-config-8.5": _rules(""),
-    # Group hash-line profiles end.
-    # Group contextual profiles begin.
-    # Group contextual profiles end.
-    # Group script profiles begin.
     # PHP before 7.3: a heredoc closes only at its label in column 0, followed
     # by an optional ; and the line break.
     "php-7.2": _rules(
@@ -651,13 +646,8 @@ LEXICAL_VERSION_PROFILES = {
     "vim9": _rules('"', literals=(r"'(?:[^'\r\n]|'')*'",), starts="'"),
     # EditorConfig cores before spec 0.15 (ini.c) have no quoted values.
     "editorconfig-pre-0.15": _rules(""),
-    # Group script profiles end.
-    # Group markup profiles begin.
-    # Group markup profiles end.
-    # Group block profiles begin.
     # Lua 4.0 and 5.0: [[ ]] long strings nest; there are no leveled brackets.
     "lua-5.0": _rules("'\"", literals=(r"\[\[(?:(?!\[\[|\]\])[\s\S]|(?R))*\]\]",), starts="["),
-    # Group block profiles end.
 }
 
 

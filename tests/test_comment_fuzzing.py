@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from ml4setk import CommentQuery, CommentSanitizer
-from ml4setk.Parsing.Comments import iter_comment_syntaxes
+from ml4setk.Parsing.Comments import CommentLanguageVersionWarning, iter_comment_syntaxes
 
 _BODY_PLACEHOLDERS = (
     "Remember the bull.",
@@ -212,8 +212,6 @@ def test_sanitizer_failure_records_actionable_provenance(monkeypatch):
 
 
 def test_fuzzing_covers_every_language_version_without_default_warnings(monkeypatch):
-    from ml4setk.Parsing.Comments import CommentLanguageVersionWarning
-
     fuzzer = _load_fuzzer()
     seen = []
     check_parser_case = fuzzer._check_parser_case
