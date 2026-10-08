@@ -41,6 +41,11 @@ _TEMPLATE_TEXT = "Template, markup, or verbatim text is scanned as code."
 _MARKER_POSITION = "The marker starts a comment only at a line, word, token, or command start."
 _MISSING_FORM = "This documented comment form is absent from the registry."
 _LONE_CR = "A lone CR does not end the line comment."
+_NEWER_RULES_NOT_IMPLEMENTED = (
+    "The newer version's comment rules read every valid older program the same "
+    "way, so no version flag is needed, but the registry still implements the "
+    "older or incomplete rules."
+)
 
 # Case id -> reason for defects that are confirmed but not fixed yet.
 _OPEN_CASES = {
@@ -183,6 +188,23 @@ _OPEN_CASES = {
     "matlab-doubled-quote-string": (
         "Regression: transpose detection reads the doubled quote in 'it''s' as a "
         "transpose, exposing the % inside the character vector."
+    ),
+    **dict.fromkeys(
+        (
+            "javascript-es2023-hashbang-comment",
+            "typescript-shebang-trivia",
+            "python-312-fstring-field-comment",
+            "makefile-43-hash-inside-function-call",
+            "rpm-415-dnl-comment",
+            "handlebars-3-whitespace-control-comment",
+            "mini-yaml-escaped-hash",
+            "twig-315-inline-expression-comment",
+            "openedge-116-line-comment",
+            "mirc-61-block-comment",
+            "fortran-fixed-form-column-one-comments",
+            "factor-bang-inside-word",
+        ),
+        _NEWER_RULES_NOT_IMPLEMENTED,
     ),
 }
 
@@ -2156,5 +2178,109 @@ _ITERATION_3_CASES = [
 def test_iteration_3_real_code_extraction_follows_language_contract(
     language, source, expected, reference
 ):
+    assert reference
+    assert _matches(language, source) == expected
+
+
+# ---------------------------------------------------------------------------
+# Fourth breaker iteration: version research. In each language below a newer
+# version changed comment syntax in a way that never alters the comments of a
+# valid program written for an older version, so the language needs no version
+# table; the registry should simply implement the newer rules.
+# ---------------------------------------------------------------------------
+
+_ITERATION_4_CASES = [
+    pytest.param(
+        "javascript",
+        "#!/usr/bin/env node\nconst n = 1; // note\n",
+        ["#!/usr/bin/env node", "// note"],
+        "ECMA-262 2023 sec-hashbang: HashbangComment at the start of the source.",
+        id="javascript-es2023-hashbang-comment",
+    ),
+    pytest.param(
+        "typescript",
+        "#!/usr/bin/env node\nconst n: number = 1; // note\n",
+        ["#!/usr/bin/env node", "// note"],
+        "TypeScript 1.6 scanner.ts: shebang trivia at position 0.",
+        id="typescript-shebang-trivia",
+    ),
+    pytest.param(
+        "python",
+        'total = f"""{\n    price * qty  # line total\n}"""\nprint(total)  # show\n',
+        ["# line total", "# show"],
+        "PEP 701 (Python 3.12): replacement fields may span lines and hold comments.",
+        id="python-312-fstring-field-comment",
+    ),
+    pytest.param(
+        "makefile",
+        "# build flags\n\nfoo := $(subst /,#,a/b)\n",
+        ["# build flags"],
+        "GNU make 4.3 NEWS: # inside a function invocation does not start a comment.",
+        id="makefile-43-hash-inside-function-call",
+    ),
+    pytest.param(
+        "rpm_spec",
+        "Name: demo\n%dnl packaging note\nVersion: 1.0\n# legacy note\nRelease: 1\n",
+        ["%dnl packaging note", "# legacy note"],
+        "RPM 4.15 macros: %dnl discards to the end of the line.",
+        id="rpm-415-dnl-comment",
+    ),
+    pytest.param(
+        "handlebars",
+        "<ul>\n{{~! trim before list ~}}\n{{! plain note }}\n</ul>\n",
+        ["{{~! trim before list ~}}", "{{! plain note }}"],
+        "Handlebars 3.0: comments accept whitespace control.",
+        id="handlebars-3-whitespace-control-comment",
+    ),
+    pytest.param(
+        "mini_yaml",
+        "Tooltip:\n\tName: C\\# Tank # prototype unit\n",
+        ["# prototype unit"],
+        "OpenRA release-20180923 MiniYaml: \\# is an escaped hash.",
+        id="mini-yaml-escaped-hash",
+    ),
+    pytest.param(
+        "twig",
+        '{{\n    "Hello World"|upper # shout it\n}}\n{# page footer #}\n',
+        ["# shout it", "{# page footer #}"],
+        "Twig 3.15: # starts an inline comment inside expressions.",
+        id="twig-315-inline-expression-comment",
+    ),
+    pytest.param(
+        "openedge_abl",
+        "DEFINE VARIABLE i AS INTEGER NO-UNDO. /* counter */\n"
+        "i = 10. // initial value\nDISPLAY i.\n",
+        ["/* counter */", "// initial value"],
+        "OpenEdge 11.6 ABL: // single-line comments.",
+        id="openedge-116-line-comment",
+    ),
+    pytest.param(
+        "mirc_script",
+        "/*\necho -a disabled\n*/\n; greet\nalias hi { echo -a hi }\n",
+        ["/*\necho -a disabled\n*/", "; greet"],
+        "mIRC 6.1: /* and */ on their own lines delimit a block comment.",
+        id="mirc-61-block-comment",
+    ),
+    pytest.param(
+        "fortran",
+        "C     old style\n*     star style\n      X = 1.0 ! inline\n",
+        ["C     old style", "*     star style", "! inline"],
+        "Fortran 90 fixed form: C, c, or * in column 1, and ! outside column 6.",
+        id="fortran-fixed-form-column-one-comments",
+    ),
+    pytest.param(
+        "factor",
+        'USING: io ;\n: hello! ( -- ) "hi" print ;\n',
+        [],
+        "Factor lexer: only a token exactly equal to ! starts a comment.",
+        id="factor-bang-inside-word",
+    ),
+]
+
+
+@pytest.mark.parametrize(
+    ("language", "source", "expected", "reference"), _with_open_marks(_ITERATION_4_CASES)
+)
+def test_iteration_4_newer_comment_rules_need_no_version(language, source, expected, reference):
     assert reference
     assert _matches(language, source) == expected
