@@ -7086,7 +7086,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="directive",
             ),
         ),
-        documentation_source="https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Comments.html",
+        documentation_source=(
+            "https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Comments.html"
+        ),
         confidence="verified",
         notes="Texinfo comments are introduced by @c or @comment at the start of a command line.",
     ),
@@ -8170,6 +8172,51 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "A hash starts a comment only at the beginning of a lexer token. "
             "Quoted tokens, backticks, heredocs, and escaped newlines are protected."
         ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("caddyfile",),
+                default="2.1",
+                versions=(
+                    CommentLanguageVersion(
+                        name="2.0",
+                        aliases=("v1",),
+                        release="0",
+                        span="Caddy 1.x and 2.0",
+                        comment_rules=(
+                            "An unquoted # anywhere, even inside a token, starts a comment to the "
+                            "end of the line."
+                        ),
+                        contextual_extractor="caddyfile_20_comments",
+                        examples=(
+                            CommentExample(
+                                "redir /help https://example.com/docs#install\n",
+                                "#install",
+                                "Before Caddy 2.1, a # inside a token starts a comment.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/caddyserver/caddy/blob/v2.0.0/caddyconfig/"
+                            "caddyfile/lexer.go#L141-L146"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="2.1",
+                        aliases=("current",),
+                        release="2.1",
+                        span="Caddy 2.1 and later",
+                        comment_rules=(
+                            "# starts a comment only at the start of a token; quotes, backticks, "
+                            "and heredocs protect it."
+                        ),
+                        documentation_source=(
+                            "https://github.com/caddyserver/caddy/blob/v2.1.0/caddyconfig/"
+                            "caddyfile/lexer.go#L144"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="cairo_zero_style",
@@ -8491,6 +8538,114 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "Implements Node dotenv >=15 assignment, quote, multiline, and "
             "unclosed-quote fallback behavior. Invalid assignment lines are ignored."
         ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("dotenv",),
+                default="16",
+                versions=(
+                    CommentLanguageVersion(
+                        name="13",
+                        release="0",
+                        span="Node dotenv 13 and earlier",
+                        comment_rules=(
+                            "Only lines whose first non-blank character is # are comments; # in a "
+                            "value is literal."
+                        ),
+                        contextual_extractor="dotenv_13_comments",
+                        examples=(
+                            CommentExample(
+                                "# note\nSECRET=abc # rotate\n",
+                                "# note",
+                                "Before 14.0, dotenv has no inline comments.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/motdotla/dotenv/blob/v13.0.1/lib/main.js "
+                            "(RE_INI_KEY_VAL)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="14.0",
+                        release="14.0",
+                        span="Node dotenv 14.0.0 through 14.3.1",
+                        comment_rules=(
+                            "The first # after an unquoted value starts a comment; single-line "
+                            "quotes protect #."
+                        ),
+                        contextual_extractor="dotenv_14_0_comments",
+                        examples=(
+                            CommentExample(
+                                "TOKEN=`x#y`\n",
+                                "#y`",
+                                "Node dotenv 14.0 does not treat backticks as quotes.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/motdotla/dotenv/blob/v14.0.0/lib/main.js "
+                            "(RE_INI_KEY_VAL)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="14.3.2",
+                        release="14.3.2",
+                        span="Node dotenv 14.3.2",
+                        comment_rules=(
+                            "Only a # after white space starts an inline comment; values are "
+                            "single-line."
+                        ),
+                        contextual_extractor="dotenv_14_3_2_comments",
+                        examples=(
+                            CommentExample(
+                                'KEY="a\n# b\nc"\n',
+                                "# b",
+                                "Node dotenv 14 splits lines before parsing quoted values.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/motdotla/dotenv/blob/v14.3.2/lib/main.js "
+                            "(RE_INI_KEY_VAL)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="15",
+                        release="15",
+                        span="Node dotenv 15",
+                        comment_rules=(
+                            "Any unquoted # starts a comment; single- and double-quoted values may "
+                            "span lines."
+                        ),
+                        contextual_extractor="dotenv_15_comments",
+                        examples=(
+                            CommentExample(
+                                "TOKEN=`x#y`\n",
+                                "#y`",
+                                "Node dotenv 15 does not treat backticks as quotes.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/motdotla/dotenv/blob/v15.0.0/lib/main.js (LINE)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="16",
+                        aliases=(
+                            "17",
+                            "current",
+                        ),
+                        release="16",
+                        span="Node dotenv 16 and later",
+                        comment_rules="As 15, plus backtick-quoted values that may span lines.",
+                        documentation_source=(
+                            "https://github.com/motdotla/dotenv/blob/v16.0.0/lib/main.js (LINE)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="edge_style",
@@ -8755,6 +8910,60 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "Only hash forms shared by Imba 1 and 2 are enabled. Unversioned "
             "source does not enable Imba-2-only slash comments."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("imba",),
+                default="imba1",
+                notes=(
+                    "Imba 2 is published as alpha and documents only # and ### comments, so imba1 "
+                    "stays the default."
+                ),
+                versions=(
+                    CommentLanguageVersion(
+                        name="imba1",
+                        aliases=(
+                            "1",
+                            "1.5",
+                        ),
+                        release="",
+                        span="Imba 1.x",
+                        comment_rules=(
+                            "# followed by white space or !, or at the line end, and ### ... ### "
+                            "blocks."
+                        ),
+                        documentation_source=(
+                            "https://github.com/imba/imba/blob/v1.5.2/src/compiler/"
+                            "lexer.imba#L143-L145"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="imba2",
+                        aliases=("2",),
+                        release="",
+                        span="Imba 2 (2.0.0 alpha series)",
+                        comment_rules=(
+                            "The Imba 1 forms plus // (not ///) line comments and /* */ blocks."
+                        ),
+                        contextual_extractor="imba2_comments",
+                        sanitizer_line_wrappers=(("//", ""),),
+                        sanitizer_block_wrappers=(("/*", "*/"),),
+                        examples=(
+                            CommentExample(
+                                "let x = 1 // note\n",
+                                "// note",
+                                "Imba 2 accepts // line comments.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/imba/imba/blob/"
+                            "9eaa35332461a3dde4342e67cd1f1e40fb16400e/packages/imba/src/compiler/"
+                            "lexer.mjs#L215-L217"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(
@@ -9290,6 +9499,56 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "Returns JavaScript comment token ranges only from MDX expressions, "
             "valid JSX expression slots, and top-level ESM regions."
         ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("mdx",),
+                default="mdx2",
+                versions=(
+                    CommentLanguageVersion(
+                        name="mdx1",
+                        aliases=("1",),
+                        release="0",
+                        span="MDX 1.x",
+                        comment_rules=(
+                            "HTML <!-- --> comments outside code; JavaScript comments only in ESM "
+                            "and JSX tag expressions."
+                        ),
+                        contextual_extractor="mdx1_comments",
+                        sanitizer_block_wrappers=(("<!--", "-->"),),
+                        examples=(
+                            CommentExample(
+                                "# Title\n\n<!-- draft note -->\n",
+                                "<!-- draft note -->",
+                                "MDX 1 compiles HTML comments to JSX comments.",
+                                kind="block",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/mdx-js/mdx/blob/v1.6.22/packages/mdx/test/"
+                            "index.test.js#L141"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="mdx2",
+                        aliases=(
+                            "mdx3",
+                            "current",
+                        ),
+                        release="2",
+                        span="MDX 2 and 3",
+                        comment_rules=(
+                            "JavaScript // and /* */ comments inside {...} expressions and ESM; "
+                            "<!-- is an error."
+                        ),
+                        documentation_source=(
+                            "https://github.com/mdx-js/mdx/blob/"
+                            "685627a819567c0788eadb85f5f57065bcc81c2c/docs/docs/"
+                            "what-is-mdx.mdx#L166-L169"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="mermaid_style",
@@ -9319,6 +9578,58 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "Implements the portable global own-line %% form only. Directives, "
             "front matter, bare markers, and diagram-specific inline forms are excluded."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("mermaid",),
+                default="10.1",
+                notes=(
+                    "Before 10.1 each diagram grammar defined its own %% rules; the flowchart "
+                    "rules are modelled."
+                ),
+                versions=(
+                    CommentLanguageVersion(
+                        name="10.0",
+                        release="0",
+                        span="Mermaid before 10.1.0",
+                        comment_rules=(
+                            "%% not followed by { starts a comment to the end of the line outside "
+                            "quoted labels, also after code."
+                        ),
+                        contextual_extractor="mermaid_10_0_comments",
+                        examples=(
+                            CommentExample(
+                                "flowchart LR\n  A --> B %% trailing\n",
+                                "%% trailing",
+                                "Before 10.1, the flowchart lexer skips a trailing %% comment.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/mermaid-js/mermaid/blob/v10.0.2/packages/mermaid/"
+                            "src/diagrams/flowchart/parser/flow.jison#L30-L31"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="10.1",
+                        aliases=(
+                            "11",
+                            "current",
+                        ),
+                        release="10.1",
+                        span="Mermaid 10.1.0 and later",
+                        comment_rules=(
+                            "Own-line %% comments are removed before parsing; a trailing %% after "
+                            "flowchart code is not a comment."
+                        ),
+                        documentation_source=(
+                            "https://github.com/mermaid-js/mermaid/blob/v10.1.0/packages/mermaid/"
+                            "src/diagram-api/comments.ts "
+                            "(cleanupComments)"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(
@@ -9502,6 +9813,75 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "Boundary-qualified hash comments use the lexer's distinct top-level "
             "and compound CR rules. A byte-zero shebang and hashes inside literals "
             "or bare items are excluded. This is not the separate Nu language."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("nushell",),
+                default="0.94",
+                versions=(
+                    CommentLanguageVersion(
+                        name="0.76",
+                        release="0",
+                        span="Nushell 0.76 and earlier",
+                        comment_rules=(
+                            "# outside quotes starts a comment to the end of the line, even inside "
+                            "a bare word."
+                        ),
+                        contextual_extractor="nushell_076_comments",
+                        examples=(
+                            CommentExample(
+                                "http get https://example.com/docs#intro\n",
+                                "#intro",
+                                "Before 0.77, # ends a bare word and starts a comment.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/nushell/nushell/blob/0.76.0/crates/nu-parser/src/"
+                            "lex.rs#L62 "
+                            "(is_item_terminator includes #)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="0.77",
+                        release="0.77",
+                        span="Nushell 0.77 through 0.93",
+                        comment_rules=(
+                            "# starts a comment only at the start of an item; there are no raw "
+                            "strings."
+                        ),
+                        contextual_extractor="nushell_077_comments",
+                        examples=(
+                            CommentExample(
+                                "echo r#'a #b'#\n",
+                                "#b'#",
+                                "Before 0.94, r#'...'# is not a raw string.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/nushell/nushell/blob/0.77.0/crates/nu-parser/src/"
+                            "lex.rs#L49-L63 "
+                            "(# is no longer an item terminator)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="0.94",
+                        aliases=("current",),
+                        release="0.94",
+                        span="Nushell 0.94 and later",
+                        comment_rules=(
+                            "# starts a comment at the start of an item; raw strings r#'...'# "
+                            "protect #."
+                        ),
+                        documentation_source=(
+                            "https://github.com/nushell/nushell/blob/0.94.0/crates/nu-parser/src/"
+                            "lex.rs#L228 "
+                            "(lex_raw_string)"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(
@@ -9958,7 +10338,9 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         sanitizer_line_wrappers=(("//", ""),),
         sanitizer_block_wrappers=(("/*", "*/"),),
-        documentation_source="https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#comments",
+        documentation_source=(
+            "https://docs.slint.dev/latest/docs/slint/guide/language/coding/file/#comments"
+        ),
         implementation_source=(
             "https://github.com/slint-ui/slint/blob/"
             "cf62c975c311e7036d599ed8ed0b7e6a8386a934/internal/compiler/lexer.rs#L51-L123"
@@ -10111,6 +10493,51 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
             "Returns parser-recognized Go line/block and HTML block nodes. Plain "
             "template text and raw script/style bodies remain protected target "
             "language content."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("templ",),
+                default="0.2.408",
+                versions=(
+                    CommentLanguageVersion(
+                        name="0.2.364",
+                        release="0",
+                        span="templ v0.2.364 and earlier",
+                        comment_rules=(
+                            "Inside component bodies only <!-- --> comments exist; // and /* */ "
+                            "there are template text."
+                        ),
+                        contextual_extractor="templ_0_2_364_comments",
+                        examples=(
+                            CommentExample(
+                                "// note\ntempl hello() {\n\t// shown\n\t<p>Hi</p>\n}\n",
+                                "// note",
+                                "Before v0.2.408, only Go code outside components has // comments.",
+                                kind="line",
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/a-h/templ/blob/v0.2.364/parser/v2/"
+                            "templateparser.go#L63 "
+                            "(HTML comments only)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="0.2.408",
+                        aliases=("current",),
+                        release="0.2.408",
+                        span="templ v0.2.408 and later",
+                        comment_rules=(
+                            "Go // and /* */ comments are also recognized inside component bodies."
+                        ),
+                        documentation_source=(
+                            "https://github.com/a-h/templ/blob/v0.2.408/parser/v2/"
+                            "templateparser.go#L96-L116 "
+                            "(goComment)"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(

@@ -372,6 +372,47 @@ def yaml_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
+def caddyfile_20_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Caddy 1.x and 2.0 comments: an unquoted # anywhere in a token.
+
+    Only a double quote at the start of a token opens a quoted token; there
+    are no backtick tokens, heredocs, or escaped line breaks.
+    """
+
+    ranges: list[tuple[int, int]] = []
+    index = 1 if text.startswith("\ufeff") else 0
+    token_start = True
+    while index < len(text):
+        char = text[index]
+        if char.isspace():
+            token_start = True
+            index += 1
+            continue
+        if char == "#":
+            end = _line_end(text, index)
+            ranges.append((index, end))
+            index = end
+            continue
+        if token_start and char == '"':
+            index += 1
+            while index < len(text):
+                if text[index] == "\\":
+                    index = min(index + 2, len(text))
+                    continue
+                if text[index] == '"':
+                    index += 1
+                    break
+                index += 1
+            else:
+                break
+            # The closing quote ends the token.
+            token_start = True
+            continue
+        token_start = False
+        index += 1
+    return tuple(ranges)
+
+
 def caddyfile_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return Caddyfile comments that begin at lexer token boundaries."""
 
@@ -560,6 +601,7 @@ STACK_V3_CONTEXTUAL_EXTRACTORS: dict[str, Callable[[str], tuple[tuple[int, int],
     "bqn_comments": bqn_comment_ranges,
     "yaml_comments": yaml_comment_ranges,
     "caddyfile_comments": caddyfile_comment_ranges,
+    "caddyfile_20_comments": caddyfile_20_comment_ranges,
     "cairo_zero_comments": cairo_zero_comment_ranges,
     "cairo_zero_09_comments": cairo_zero_09_comment_ranges,
 }
@@ -570,6 +612,7 @@ __all__ = [
     "b4x_string_ranges",
     "bluespec_bh_comment_ranges",
     "bqn_comment_ranges",
+    "caddyfile_20_comment_ranges",
     "caddyfile_comment_ranges",
     "cairo_zero_09_comment_ranges",
     "cairo_zero_comment_ranges",

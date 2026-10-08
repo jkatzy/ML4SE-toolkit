@@ -567,6 +567,16 @@ def godot_resource_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
 def imba_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return the hash-comment subset shared by Imba 1 and Imba 2."""
 
+    return _imba_comment_ranges(text, slash_comments=False)
+
+
+def imba2_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return Imba 2 comments: the hash forms plus // and /* */."""
+
+    return _imba_comment_ranges(text, slash_comments=True)
+
+
+def _imba_comment_ranges(text: str, *, slash_comments: bool) -> tuple[tuple[int, int], ...]:
     ranges: list[tuple[int, int]] = []
     index = 0
     while index < len(text):
@@ -576,6 +586,22 @@ def imba_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
             continue
         if text[index] in {"'", '"', "`"}:
             index = _quoted_end(text, index, text[index])
+            continue
+        if slash_comments and text.startswith("///", index):
+            # Imba 2 lexes ///.../// as a heregex before // comments.
+            close = text.find("///", index + 3)
+            index = len(text) if close < 0 else close + 3
+            continue
+        if slash_comments and text.startswith("/*", index):
+            close = text.find("*/", index + 2)
+            if close >= 0:
+                ranges.append((index, close + 2))
+                index = close + 2
+                continue
+        if slash_comments and text.startswith("//", index) and not text.startswith("///", index):
+            end = _line_end(text, index, "\n")
+            ranges.append((index, end))
+            index = end
             continue
         if text[index] == "/":
             regex_end = _regex_literal_end(text, index)
@@ -656,6 +682,7 @@ STACK_V3_BATCH_02_03_CONTEXTUAL_EXTRACTORS: dict[
     "glimmer_comments": glimmer_comment_ranges,
     "godot_resource_comments": godot_resource_comment_ranges,
     "imba_comments": imba_comment_ranges,
+    "imba2_comments": imba2_comment_ranges,
     "ink_comments": ink_comment_ranges,
 }
 

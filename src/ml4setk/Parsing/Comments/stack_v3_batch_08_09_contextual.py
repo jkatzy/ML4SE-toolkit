@@ -938,6 +938,20 @@ def _go_code_comment_ranges(
 def templ_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return templ Go and HTML comment nodes across parser modes."""
 
+    return _templ_comment_ranges(text, body_go_comments=True)
+
+
+def templ_0_2_364_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return templ v0.2.364 comments: // and /* */ in a body are text."""
+
+    return _templ_comment_ranges(text, body_go_comments=False)
+
+
+def _templ_comment_ranges(
+    text: str,
+    *,
+    body_go_comments: bool,
+) -> tuple[tuple[int, int], ...]:
     ranges: list[tuple[int, int]] = []
     index = 0
     template_depth = 0
@@ -1008,7 +1022,7 @@ def templ_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
             index = cursor
             continue
 
-        line_prefix_is_space = text[line_start:index].strip() == ""
+        line_prefix_is_space = body_go_comments and text[line_start:index].strip() == ""
         if text.startswith("//", index) and (not template_depth or line_prefix_is_space):
             end = _line_end(text, index + 2)
             ranges.append((index, end))
@@ -1177,6 +1191,7 @@ STACK_V3_BATCH_08_09_CONTEXTUAL_EXTRACTORS: dict[
     "snakemake_comments": snakemake_comment_ranges,
     "survex_data_comments": survex_data_comment_ranges,
     "templ_comments": templ_comment_ranges,
+    "templ_0_2_364_comments": templ_0_2_364_comment_ranges,
     "terraform_template_comments": terraform_template_comment_ranges,
 }
 
@@ -1200,6 +1215,7 @@ __all__ = [
     "smithy_comment_ranges",
     "snakemake_comment_ranges",
     "survex_data_comment_ranges",
+    "templ_0_2_364_comment_ranges",
     "templ_comment_ranges",
     "terraform_template_comment_ranges",
 ]
