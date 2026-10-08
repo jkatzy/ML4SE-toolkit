@@ -435,6 +435,18 @@ def caddyfile_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
 def cairo_zero_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return Cairo Zero slash comments outside hints and literals."""
 
+    return _cairo_zero_marker_ranges(text, "//")
+
+
+def cairo_zero_09_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
+    """Return cairo-lang 0.9 hash comments outside hints and literals."""
+
+    return _cairo_zero_marker_ranges(text, "#")
+
+
+def _cairo_zero_marker_ranges(text: str, marker: str) -> tuple[tuple[int, int], ...]:
+    """Return Cairo Zero ``marker`` line comments outside hints and literals."""
+
     ranges: list[tuple[int, int]] = []
     index = 0
     while index < len(text):
@@ -451,7 +463,7 @@ def cairo_zero_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
                 break
             index = end + 1
             continue
-        if text.startswith("//", index):
+        if text.startswith(marker, index):
             end = _line_end(text, index)
             ranges.append((index, end))
             index = end
@@ -549,6 +561,7 @@ STACK_V3_CONTEXTUAL_EXTRACTORS: dict[str, Callable[[str], tuple[tuple[int, int],
     "yaml_comments": yaml_comment_ranges,
     "caddyfile_comments": caddyfile_comment_ranges,
     "cairo_zero_comments": cairo_zero_comment_ranges,
+    "cairo_zero_09_comments": cairo_zero_09_comment_ranges,
 }
 
 __all__ = [
@@ -558,6 +571,7 @@ __all__ = [
     "bluespec_bh_comment_ranges",
     "bqn_comment_ranges",
     "caddyfile_comment_ranges",
+    "cairo_zero_09_comment_ranges",
     "cairo_zero_comment_ranges",
     "carbon_string_ranges",
     "yaml_comment_ranges",

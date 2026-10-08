@@ -3764,6 +3764,66 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 grouped_line_compatible=True,
             ),
         ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("vim_script", "viml"),
+                default="legacy",
+                notes=(
+                    "Vim 9 applies Vim9 rules only after a leading vim9script command "
+                    "and inside :def functions; choose vim9 for such files."
+                ),
+                versions=(
+                    CommentLanguageVersion(
+                        name="legacy",
+                        aliases=("vim8", "neovim", "nvim"),
+                        span=(
+                            "Legacy Vim script: Vim up to 8.2, Vim 9 files without "
+                            "vim9script, and Neovim"
+                        ),
+                        comment_rules=(
+                            '" starts a comment where a command is expected, or after a '
+                            "command when no closing quote follows on the line; # is "
+                            "not a comment."
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="vim9",
+                        aliases=("vim9script",),
+                        span="Vim9 script: files starting with vim9script and :def bodies",
+                        comment_rules=(
+                            '# at the line start or after white space starts a comment; " '
+                            "starts a string. A comment may not start with #{ unless it "
+                            "starts with #{{."
+                        ),
+                        regex_patterns=(r"(?m)(?:^|(?<=[ \t]))#(?!\{(?!\{))[^\r\n]*",),
+                        lexical_profile="vim9",
+                        sanitizer_line_wrappers=(("#", ""),),
+                        examples=(
+                            CommentExample(
+                                "vim9script\n# header note\nvar total = 0  # running total\n",
+                                "# running total",
+                                "Vim9 script # comment after white space.",
+                                kind="line",
+                                inline_compatible=True,
+                                grouped_line_compatible=True,
+                            ),
+                            CommentExample(
+                                'vim9script\necho "a # b" # note\n',
+                                "# note",
+                                'In Vim9 script, " opens a string, not a comment.',
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/vim/vim/blob/v9.0.0000/runtime/doc/"
+                            "vim9.txt#L120-L146 (comments start with #, white space "
+                            "is required before #, and #{ is an error)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="smalltalk_style",
@@ -3800,6 +3860,54 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 "Start-of-line EditorConfig comment.",
                 kind="line",
                 grouped_line_compatible=True,
+            ),
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("editorconfig",),
+                default="0.15",
+                versions=(
+                    CommentLanguageVersion(
+                        name="pre-0.15",
+                        release="0",
+                        span="EditorConfig specification before 0.15.0 (core-c 0.12.x)",
+                        comment_rules=(
+                            "A line whose first non-blank character is ; or # is a "
+                            "comment, and a ; or # after white space starts an inline "
+                            "comment to the end of the line."
+                        ),
+                        regex_patterns=(r"(?m)^[ \t]*[;#].*$", r"(?<=[ \t])[;#][^\r\n]*"),
+                        lexical_profile="editorconfig-pre-0.15",
+                        examples=(
+                            CommentExample(
+                                "[*.py]\nindent_style = space ; use spaces\n",
+                                "; use spaces",
+                                "Before 0.15, ; after white space starts an inline comment.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/editorconfig/editorconfig-core-c/blob/"
+                            "v0.12.5/src/lib/ini.c#L64-L75 (find_char_or_comment stops "
+                            "at ; or # after white space)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="0.15",
+                        aliases=("current",),
+                        release="0.15",
+                        span="EditorConfig specification 0.15.0 and later",
+                        comment_rules=(
+                            "Only full-line comments; ; or # elsewhere is part of the "
+                            "section name or value."
+                        ),
+                        documentation_source=(
+                            "https://github.com/editorconfig/specification/blob/v0.15.1/"
+                            "index.rst#L97-L100 (no inline comments, versionchanged 0.15.0)"
+                        ),
+                    ),
+                ),
             ),
         ),
     ),
@@ -4129,6 +4237,54 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 kind="line",
                 inline_compatible=True,
                 grouped_line_compatible=True,
+            ),
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("html_php", "html_plus_php"),
+                default="php7.4",
+                notes=(
+                    "The default keeps the shared jsonnet_style rules, under which #[ "
+                    "is a comment; pass php8.0 for PHP 8 attribute syntax."
+                ),
+                versions=(
+                    CommentLanguageVersion(
+                        name="php7.4",
+                        aliases=("php5", "php7", "php7.0", "php7.1", "php7.2", "php7.3"),
+                        release="0",
+                        span="PHP 7.4 and earlier",
+                        comment_rules="#, //, and non-nested /* */; #[ is an ordinary # comment.",
+                        documentation_source=(
+                            "https://github.com/php/php-src/blob/php-7.4.0/Zend/"
+                            "zend_language_scanner.l#L2147 (# and // comment rule, no #[ rule)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="php8.0",
+                        aliases=("php8", "php8.1", "php8.2", "php8.3", "php8.4", "current"),
+                        release="8.0",
+                        span="PHP 8.0 and later",
+                        comment_rules=(
+                            "#, //, and non-nested /* */; #[ opens an attribute and is "
+                            "not a comment."
+                        ),
+                        regex_patterns=(r"\/\*[\S\s]*?\*\/", r"/{2}.*", r"#(?!\[).*"),
+                        examples=(
+                            CommentExample(
+                                "<?php\n#[Pure]\nfunction f() {} # tail\n",
+                                "# tail",
+                                "From PHP 8.0, #[ opens an attribute; other # starts a comment.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/php/php-src/blob/php-8.0.0/Zend/"
+                            "zend_language_scanner.l#L1409-L1412 (#[ returns "
+                            "T_ATTRIBUTE ahead of the # comment rule)"
+                        ),
+                    ),
+                ),
             ),
         ),
     ),
@@ -4878,6 +5034,100 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "PHP supports //, #, and /* */ comments. One-line comments stop "
             "before ?>. #[ begins a PHP 8 attribute, not a comment."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("php",),
+                default="php8.0",
+                versions=(
+                    CommentLanguageVersion(
+                        name="php7.2",
+                        aliases=("php5", "php7.0", "php7.1"),
+                        release="0",
+                        span="PHP 7.2 and earlier",
+                        comment_rules=(
+                            "#, // to the end of the line or before ?>, and non-nested "
+                            "/* */; #[ is an ordinary # comment. A heredoc or nowdoc "
+                            "closes only at its label in column 0, followed by an "
+                            "optional ; and a line break."
+                        ),
+                        regex_patterns=(
+                            r"\/\*[\S\s]*?\*\/",
+                            r"/{2}(?:(?!\?>)[^\r\n])*",
+                            r"#(?:(?!\?>)[^\r\n])*",
+                        ),
+                        lexical_profile="php-7.2",
+                        examples=(
+                            CommentExample(
+                                "<?php\n#[Pure]\nfunction f() {}\n",
+                                "#[Pure]",
+                                "Before PHP 8.0, #[ starts an ordinary # line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                                grouped_line_compatible=True,
+                            ),
+                            CommentExample(
+                                "<?php\n$s = <<<EOT\n  EOT; # text\nEOT; # note\n",
+                                "# note",
+                                "Before PHP 7.3, an indented label does not close a heredoc.",
+                                kind="line",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/php/php-src/blob/php-7.3.0/UPGRADING "
+                            "(flexible heredoc and nowdoc: before 7.3 the closing label "
+                            "had to start its line); https://github.com/php/php-src/blob/"
+                            "php-7.4.0/Zend/zend_language_scanner.l#L2147 (no #[ rule)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="php7.3",
+                        aliases=("php7.4",),
+                        release="7.3",
+                        span="PHP 7.3 and 7.4",
+                        comment_rules=(
+                            "As PHP 7.2, but a heredoc or nowdoc closes at an indented "
+                            "label, so the rest of that line is code or a comment."
+                        ),
+                        regex_patterns=(
+                            r"\/\*[\S\s]*?\*\/",
+                            r"/{2}(?:(?!\?>)[^\r\n])*",
+                            r"#(?:(?!\?>)[^\r\n])*",
+                        ),
+                        examples=(
+                            CommentExample(
+                                "<?php\n#[Pure]\nfunction f() {}\n",
+                                "#[Pure]",
+                                "Before PHP 8.0, #[ starts an ordinary # line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                                grouped_line_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/php/php-src/blob/php-7.4.0/Zend/"
+                            "zend_language_scanner.l#L2147 (# and // comment rule, no #[ "
+                            "rule); https://github.com/php/php-src/blob/php-7.3.0/UPGRADING "
+                            "(flexible heredoc and nowdoc closing labels)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="php8.0",
+                        aliases=("php8", "php8.1", "php8.2", "php8.3", "php8.4", "current"),
+                        release="8.0",
+                        span="PHP 8.0 and later",
+                        comment_rules=(
+                            "#, // to the end of the line or before ?>, and non-nested "
+                            "/* */; #[ opens an attribute and is not a comment."
+                        ),
+                        documentation_source=(
+                            "https://github.com/php/php-src/blob/php-8.0.0/UPGRADING "
+                            "(#[ is no longer a comment)"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(
@@ -6591,6 +6841,74 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         confidence="verified",
         notes="Macaulay2 uses -- line comments and -* ... *- enclosed comments.",
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("macaulay2",),
+                default="1.13",
+                versions=(
+                    CommentLanguageVersion(
+                        name="1.10",
+                        release="0",
+                        span="Macaulay2 1.0 through 1.10",
+                        comment_rules="-- line comments and non-nested {* *} block comments.",
+                        regex_patterns=(r"\{\*[\S\s]*?\*\}", r"--.*"),
+                        sanitizer_block_wrappers=(("{*", "*}"),),
+                        examples=(
+                            CommentExample(
+                                "x = 1\ny = {* note *} 2",
+                                "{* note *}",
+                                "Before 1.11, {* *} encloses a block comment.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/Macaulay2/M2/blob/master/M2/Macaulay2/"
+                            "packages/Macaulay2Doc/changes.m2 (changes, 1.0 and 1.1: "
+                            "{* ... *} block comments)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="1.11",
+                        aliases=("1.12",),
+                        release="1.11",
+                        span="Macaulay2 1.11 and 1.12",
+                        comment_rules=(
+                            "-- line comments, non-nested -* *- block comments, and the "
+                            "deprecated {* *} block comments."
+                        ),
+                        regex_patterns=(r"-\*[\S\s]*?\*-", r"\{\*[\S\s]*?\*\}", r"--.*"),
+                        sanitizer_block_wrappers=(("{*", "*}"),),
+                        examples=(
+                            CommentExample(
+                                "x = 1\ny = {* note *} 2",
+                                "{* note *}",
+                                "Macaulay2 1.11 and 1.12 still accept {* *} block comments.",
+                                kind="block",
+                                inline_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/Macaulay2/M2/blob/master/M2/Macaulay2/"
+                            "packages/Macaulay2Doc/changes.m2 (changes, 1.11: -* ... *- "
+                            "replaces {* ... *}, which is still recognized)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="1.13",
+                        aliases=("current",),
+                        release="1.13",
+                        span="Macaulay2 1.13 and later",
+                        comment_rules="-- line comments and non-nested -* *- block comments.",
+                        documentation_source=(
+                            "https://github.com/Macaulay2/M2/blob/master/M2/Macaulay2/"
+                            "packages/Macaulay2Doc/changes.m2 (changes, 1.13: the old "
+                            "block comment syntax is disabled)"
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     CommentSyntax(
         family_name="motoko_style",
@@ -7157,6 +7475,56 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         notes=(
             "Cairo Zero %{ %} hint bodies and quoted literals take precedence "
             "over // comment recognition."
+        ),
+        language_versions=(
+            CommentLanguageVersions(
+                languages=("cairo_zero",),
+                default="0.10",
+                versions=(
+                    CommentLanguageVersion(
+                        name="0.9",
+                        aliases=("cairo0.9",),
+                        release="0",
+                        span="cairo-lang Cairo 0 releases before 0.10.0",
+                        comment_rules=(
+                            "# starts a comment to the end of the line; // is not a "
+                            "comment. Hint bodies and quoted literals are protected."
+                        ),
+                        contextual_extractor="cairo_zero_09_comments",
+                        sanitizer_line_wrappers=(("#", ""),),
+                        examples=(
+                            CommentExample(
+                                "const SIZE = 3  # cells\nret;",
+                                "# cells",
+                                "Before cairo-lang 0.10, # starts a line comment.",
+                                kind="line",
+                                inline_compatible=True,
+                                grouped_line_compatible=True,
+                            ),
+                        ),
+                        documentation_source=(
+                            "https://github.com/starkware-libs/cairo-lang/blob/v0.9.1/"
+                            "src/starkware/cairo/lang/compiler/cairo.ebnf#L143 "
+                            "(COMMENT: /#.*/)"
+                        ),
+                    ),
+                    CommentLanguageVersion(
+                        name="0.10",
+                        aliases=("cairo0.10", "current"),
+                        release="0.10",
+                        span="cairo-lang Cairo 0 releases 0.10.0 and later",
+                        comment_rules=(
+                            "// starts a comment to the end of the line; # is not a "
+                            "comment. Hint bodies and quoted literals are protected."
+                        ),
+                        documentation_source=(
+                            "https://github.com/starkware-libs/cairo-lang/blob/v0.10.0/"
+                            "src/starkware/cairo/lang/compiler/cairo.ebnf#L143 "
+                            "(COMMENT: /\\/\\/.*/)"
+                        ),
+                    ),
+                ),
+            ),
         ),
     ),
     CommentSyntax(

@@ -632,6 +632,23 @@ LEXICAL_VERSION_PROFILES = {
     # Group contextual profiles begin.
     # Group contextual profiles end.
     # Group script profiles begin.
+    # PHP before 7.3: a heredoc closes only at its label in column 0, followed
+    # by an optional ; and the line break.
+    "php-7.2": _rules(
+        "'\"`",
+        literals=(
+            DelimitedLiteral(
+                r"<<<[ \t]*(['\"]?)([A-Za-z_]\w*)\1\r?\n",
+                r"(?m)^{1};?(?=[\r\n]|\Z)",
+            ),
+        ),
+        starts="<",
+    ),
+    # Vim9 script: "..." strings take backslash escapes; '...' strings double
+    # a quote to escape it and treat a backslash literally.
+    "vim9": _rules('"', literals=(r"'(?:[^'\r\n]|'')*'",), starts="'"),
+    # EditorConfig cores before spec 0.15 (ini.c) have no quoted values.
+    "editorconfig-pre-0.15": _rules(""),
     # Group script profiles end.
     # Group markup profiles begin.
     # Group markup profiles end.
