@@ -8,7 +8,9 @@ reproducible machine-learning examples for software engineering research.
 - Comment-oriented parsing utilities that return a normalized
   `QueryMatch(prefix, suffix, match)` contract.
 - Comment sanitization utilities that strip comment syntax after extraction.
-- Input builders for causal and fill-in-the-middle style training examples.
+- Input formatters for fill-in-the-middle, autoregressive, masked diffusion,
+  masked LM, and span corruption models, with sentinel and mask tokens picked
+  from a model name or Hugging Face object.
 - Optional integrations for Tree-sitter queries and PyTorch-style iterable
   datasets.
 - Existing EBNF and grammar-analysis tooling remains available under
@@ -121,8 +123,7 @@ print(ground_truth)
 Pass `FIMInput.from_model("bigcode/starcoder2-3b")` instead of the token
 strings to use a model's own sentinel tokens. The
 [input formatting guide](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/input_formatting.md)
-covers the supported models, the tokenizer fallback, SPM ordering, and
-autoregressive inputs.
+covers every input format and the models each one supports.
 
 The parsing contract is stable across the core query implementations:
 
@@ -175,13 +176,16 @@ The permanent rules and the enforced main-branch policy are documented in
 
 ## Repository map
 
-- `src/ml4setk/Parsing`: query primitives and optional Tree-sitter support
-- `src/ml4setk/Generation`: model-input builders
+- `src/ml4setk/Parsing`: query primitives, the comment registry, the
+  sanitizer, and optional Tree-sitter support
+- `src/ml4setk/Generation`: input formatters and the model token registries
 - `src/ml4setk/EBNF`: grammar-processing and railroad-diagram utilities
 - `tests`: regression, unit, integration, and smoke coverage
 - `docs/architecture.md`: concise architecture and extension notes
 - `docs/comment_extractor.md`: how comment extraction and cleaning work and how
   to use them
+- `docs/comment_cleaning_policy.md`: what cleaning removes and what it keeps
+- `docs/input_formatting.md`: every input format and its supported models
 - `docs/git_workflow.md`: branch policy, development-only artifacts, and the
   main-branch guard
 - [`dev` comment workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing):
