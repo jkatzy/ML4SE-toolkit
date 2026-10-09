@@ -151,7 +151,8 @@ marker-only scanning would misclassify strings, counted records, or binary data.
 - `make smoke`: run the minimal end-to-end smoke tests
 - `make build`: create source and wheel distributions in `dist/`
 - `make docs`: build the MkDocs site into `site/` and fail on broken links;
-  `make docs-serve` previews it at http://127.0.0.1:8000
+  `make docs-serve` previews it at http://127.0.0.1:8000. The `Docs` workflow
+  publishes the site from `main` to GitHub Pages.
 - `make check-main-branch`: fail if development-only artifacts are still
   tracked and the branch is not ready to merge to `main`
 - `make check-release-version`: fail if package version metadata is inconsistent
