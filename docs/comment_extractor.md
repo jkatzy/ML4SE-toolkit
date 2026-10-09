@@ -1,13 +1,193 @@
-# Comment Extractor
+# Comment Extraction and Cleaning
 
-The comment extractor turns source text into `QueryMatch(prefix, suffix, match)`
-records that can be fed into downstream generation utilities such as
-`FIMInput`, `CausalInput`, and `MultiTokenInput`.
+ML4SE-toolkit pulls comments out of source files in two stages:
 
-## Default entry point
+1. **Extraction** finds where each comment is. A query such as
+   `CommentQuery("java")` scans source text and returns one
+   `QueryMatch(prefix, suffix, match)` per comment, where `match` is the raw
+   comment exactly as written, and `prefix` and `suffix` are the source text
+   before and after it.
+2. **Cleaning** turns one raw comment into its content. `CommentSanitizer`
+   removes the comment syntax (`//`, `/* */`, `#`, a ` * ` gutter, and so on)
+   and keeps the words, code, and layout a reader needs.
 
-Use `CommentQuery(language)` unless you specifically need only non-nested or
-only nested block matching.
+Both stages read the same per-language registry, so a language key that works
+for one works for the other. The generation utilities (`FIMInput`,
+`CausalInput`, `MultiTokenInput`) take a `QueryMatch` directly, so extracted
+comments can become training examples without conversion.
+
+## Quick start
+
+Install the package (`pip install ml4setk`), then run:
+
+```python
+from ml4setk import CommentQuery, CommentSanitizer
+
+source = '''\
+/*
+ * Copyright 2026 Example Corp.
+ */
+package demo;
+
+public class Greeter {
+    /**
+     * Builds a greeting.
+     *
+     * @param name who to greet
+     */
+    public String greet(String name) {
+        // Keep the URL below intact:
+        // it is a string, not a comment.
+        String url = "https://example.com"; // inline note
+        return "Hello, " + name;
+    }
+}
+'''
+
+query = CommentQuery("java")
+cleaner = CommentSanitizer("java")
+
+for match in query.parse(source):
+    line = match.prefix.count("\n") + 1
+    print(f"line {line}: {match.match!r}")
+    print(f"  cleaned: {cleaner.sanitize(match)!r}")
+```
+
+Output:
+
+```text
+line 1: '/*\n * Copyright 2026 Example Corp.\n */'
+  cleaned: 'Copyright 2026 Example Corp.'
+line 7: '/**\n     * Builds a greeting.\n     *\n     * @param name who to greet\n     */'
+  cleaned: 'Builds a greeting.\n\n@param name who to greet'
+line 13: '// Keep the URL below intact:\n        // it is a string, not a comment.'
+  cleaned: 'Keep the URL below intact:\nit is a string, not a comment.'
+line 15: '// inline note'
+  cleaned: 'inline note'
+```
+
+The example shows the main behaviors:
+
+- The `//` inside `"https://example.com"` is not reported, because it starts
+  inside a string.
+- The two consecutive `//` lines come back as one match, and cleaning removes
+  the marker from each line.
+- The inline `// inline note` stays a separate match; it is never grouped with
+  the comment lines above it.
+- Cleaning the Javadoc block drops the `/** */` delimiters and the ` * `
+  gutter but keeps the blank line and the `@param` tag.
+- `match.prefix` holds everything before the comment, so its newline count
+  gives the line number.
+
+## How it works
+
+### Extraction
+
+Every language key resolves to a `CommentSyntax` entry in
+`src/ml4setk/Parsing/Comments/registry.py`. An entry lists the language's
+line and block comment regexes, its nesting delimiter pairs, prefixes that look
+like comments but are not (such as MySQL `/*!` hints in SQL), and seeded examples
+that the test suite runs. Many languages share one syntax family; `java`,
+`c`, and `javascript`, for example, are aliases of the same C-style family.
+Adding or correcting a language normally means changing registry data; parser
+code holds only the scanners that delimiters alone cannot express.
+
+For each language, `CommentQuery.parse(text)` then:
+
+1. **Marks protected ranges.** It finds string literals (and, for some
+   languages, other literals such as raw strings or IRIs) in one left-to-right
+   pass that skips over complete comments. A comment candidate that starts
+   inside a protected range is rejected.
+2. **Runs the line and block scanner** (`LineCommentQuery`). Every registry
+   regex is applied to the text. For formats whose comments depend on file
+   structure rather than a delimiter, a named contextual extractor supplies
+   the ranges instead. When two candidates start at the same offset, the
+   longest wins, and a candidate that starts inside an earlier match is
+   dropped, so a `//` inside a `/* */` block is not reported twice.
+3. **Runs the nested scanner** (`NestedCommentQuery`). For languages with
+   recursive delimiters such as Haskell's `{- -}`, it counts opening and
+   closing delimiters and reports each complete top-level region once, with
+   inner comments included. Unclosed regions are ignored.
+4. **Groups adjacent line comments.** Line comments that each occupy a whole
+   line, use the same marker, and are separated by exactly one line break
+   become one match. A comment that shares its line with code is never
+   grouped.
+5. **Returns matches in source order** as `QueryMatch` values.
+
+When you pass several languages, steps 1 to 4 run once per language and the
+results are merged, keeping one copy of each identical source range.
+
+`OpeningCommentQuery` reuses the same scanners but keeps only the first
+comment block of a file, and only when nothing but white space (and an
+optional `#!` line) comes before it.
+
+Some languages changed their comment syntax between releases. Those carry a
+version table, and every query and the sanitizer take a `version` argument;
+see [Language versions](#language-versions).
+
+### Cleaning
+
+`CommentSanitizer(language)` builds the list of comment wrappers for the
+language from the same registry entry: line openers such as `//` or `#`,
+block delimiter pairs, and documentation variants such as `///` or `/**`.
+`sanitize(comment)` accepts a raw string or a `QueryMatch` and:
+
+1. Normalizes line endings to `\n`.
+2. Removes the outer delimiters of a block comment, or the line marker from
+   each line of a grouped line comment.
+3. Removes a gutter that every line shares, such as the ` * ` column of a
+   Javadoc block, and decorative rulers or box frames made of one repeated
+   character.
+4. Removes the shared indentation and one padding space after the opener and
+   before the closer, while keeping indentation relative to the comment body.
+
+Cleaning decisions depend on the comment's layout and the language syntax,
+never on the words in the comment, and uncertain cases keep text rather than
+drop it. Comments that start with an excluded directive prefix are returned
+unchanged. The full contract, with examples of what is removed and what is
+kept, is in the [comment cleaning policy](comment_cleaning_policy.md).
+
+## API reference
+
+All names below are importable from `ml4setk`.
+
+| API | Returns | Use it for |
+| --- | --- | --- |
+| `CommentQuery(language, version=None)` | query object | The default extractor. `language` is one key or a list of keys. |
+| `OpeningCommentQuery(language, max_start_row=3, skip_hashbang=True, version=None)` | query object | The file header comment only. |
+| `LineCommentQuery(language, version=None)` | query object | Line comments and non-nested block comments only, without grouping. |
+| `NestedCommentQuery(language, version=None)` | query object | Nested block comments only. |
+| `query.parse(text)` | `list[QueryMatch]` | All matches in source order. |
+| `query.contains(text)` | `bool` | A quick check that at least one comment exists. |
+| `QueryMatch(prefix, suffix, match)` | named tuple | The shared result type; `prefix + match + suffix` is the original text. |
+| `CommentSanitizer(language, version=None)` | sanitizer object | Reusable cleaner for one language; call `.sanitize(comment)`. |
+| `sanitize_comment(language, comment, version=None)` | `str` | One-off cleaning. `sanitize_comment_text` is an alias. |
+| `get_supported_comment_languages()` | `list[str]` | Every registry key. |
+| `comment_language_requires_version(language)` | `bool` | Whether a language has a version table. |
+| `get_comment_language_versions(language)` | `tuple[str, ...]` | Its supported versions, oldest first. |
+| `get_default_comment_language_version(language)` | `str` | The version used when none is given. |
+
+Errors:
+
+- An unknown language key raises `NotImplementedError` when the query or
+  sanitizer is constructed.
+- An unknown version raises `UnsupportedCommentLanguageVersionError`.
+- Omitting the version of a versioned language emits one
+  `CommentLanguageVersionWarning` per language and process.
+
+Build a query or sanitizer once and reuse it across files: construction
+compiles the language's patterns.
+
+## Using the extractor
+
+`contains(text)` returns `True` when the configured language can find at least
+one supported comment.
+
+`parse(text)` returns a list of `QueryMatch` objects:
+
+- `prefix`: text before the extracted comment
+- `match`: the extracted comment itself
+- `suffix`: text after the extracted comment
 
 ```python
 from ml4setk import CommentQuery
@@ -20,21 +200,10 @@ def classify(x):
 
 query = CommentQuery("python")
 
-print(query.contains(sample))
+assert query.contains(sample)
 match = query.parse(sample)[0]
-print(match.prefix)
-print(match.match)
-print(match.suffix)
+assert match.match == "# keep this branch for ablations"
 ```
-
-`contains(text)` returns `True` when the configured language can find at least
-one supported comment.
-
-`parse(text)` returns a list of `QueryMatch` objects:
-
-- `prefix`: text before the extracted comment
-- `match`: the extracted comment itself
-- `suffix`: text after the extracted comment
 
 If the language is uncertain, `CommentQuery` also accepts a list of language
 keys and returns the union of unique matches from all of them:
@@ -52,21 +221,6 @@ assert [match.match for match in matches] == ["# note", "/* block */"]
 Only identical source ranges are deduplicated. Ambiguous multi-language queries
 can return overlapping matches, which callers that need a non-overlapping token
 stream must resolve.
-
-## Which query to use
-
-- `CommentQuery(language_or_languages)`: the default. Combines regex-based
-  comments with nested-block comments and returns matches in source order. When
-  you pass a list of languages, it returns the union of unique comment matches
-  across those parsers.
-- `OpeningCommentQuery(language, max_start_row=3)`: extracts one logical
-  opening comment block from the top of a file. It skips an initial hashbang
-  line, requires the first real comment to start within the first `n` rows, and
-  then expands across contiguous top-of-file comments until code appears.
-- `LineCommentQuery(language)`: finds line comments and non-nested block
-  comments driven by registry regexes or a named contextual extractor.
-- `NestedCommentQuery(language)`: finds top-level nested comment regions for
-  languages with recursive delimiters such as Haskell, Agda, Racket, or Nim.
 
 ## Language versions
 
@@ -172,26 +326,6 @@ assert match.match == "// first line\n// second line"
 This is useful when a training target should preserve a multi-line comment
 block instead of splitting it into per-line matches.
 
-### Deterministic Unicode fuzzing
-
-Run the property fuzzer across every registry key after changing shared query
-or sanitizer behavior:
-
-```bash
-make comment-fuzz
-```
-
-The default campaign uses a stable seed and exercises delimiter-heavy text,
-multiple writing systems, combining marks, bidi controls, Unicode whitespace,
-line-separator variants, emoji, NULs, and lone surrogates. Override
-`COMMENT_FUZZ_SEED`, `COMMENT_FUZZ_CASES_PER_LANGUAGE`, or
-`COMMENT_FUZZ_MAX_LENGTH` to broaden or reproduce a campaign.
-
-This is a contract fuzzer: it validates match bounds, source reconstruction,
-ordering, `parse`/iteration/`contains` consistency, and sanitizer totality. It is
-not a language-semantics oracle, so retain focused fixtures and differential
-tests for syntax and sanitizer normalization behavior.
-
 ### Inline comments are preserved as-is
 
 ```python
@@ -254,6 +388,8 @@ If your repository keeps header comments lower in the file, increase the row
 limit:
 
 ```python
+from ml4setk import OpeningCommentQuery
+
 query = OpeningCommentQuery("python", max_start_row=5)
 ```
 
@@ -309,25 +445,6 @@ except NotImplementedError:
     pass
 ```
 
-### Legacy tuple API
-
-Existing dataset code can continue to use
-`ml4setk.Comment_util.parse_comment.extract_comments`. It returns historical
-`((start, end), text, kind)` tuples and now accepts registry-only language keys:
-
-```python
-from ml4setk.Comment_util.parse_comment import extract_comments
-
-comments = extract_comments("value // note\n", ["jsonc"])
-assert comments == [((6, 13), "// note", "line")]
-```
-
-Candidate languages are processed independently, so their order and duplicate
-matches are preserved; unknown names are ignored. Exact names supported by the
-original compatibility table retain their historical behavior, while newer keys
-use the registry-backed parser. New code should prefer `CommentQuery` and its
-`QueryMatch` contract.
-
 ## Feeding matches into generation
 
 ```python
@@ -346,11 +463,11 @@ model_input, ground_truth = FIMInput(
 The generation classes operate on the same `QueryMatch` contract, so the
 extractor output can be used directly.
 
-## Sanitizing extracted comments
+## Using the sanitizer
 
 If you need the comment text without the surrounding syntax, use
 `CommentSanitizer(language)` or the convenience helper
-`sanitize_comment_text(language, comment)`. The
+`sanitize_comment(language, comment)`. The
 [comment cleaning policy](comment_cleaning_policy.md) defines what cleaning
 removes and what it keeps.
 
@@ -367,18 +484,39 @@ assert text == "keep the legacy path"
 Grouped line comments are sanitized line-by-line:
 
 ```python
-from ml4setk import sanitize_comment_text
+from ml4setk import sanitize_comment
 
 comment = "// first line\n// second line"
-assert sanitize_comment_text("java", comment) == "first line\nsecond line"
+assert sanitize_comment("java", comment) == "first line\nsecond line"
 ```
 
 Block comments keep their inner text and drop only the outer syntax:
 
 ```python
+from ml4setk import sanitize_comment
+
 comment = "/**\n * first line\n * second line\n */"
-assert sanitize_comment_text("java", comment) == "first line\nsecond line"
+assert sanitize_comment("java", comment) == "first line\nsecond line"
 ```
+
+## Legacy tuple API
+
+Existing dataset code can continue to use
+`ml4setk.Comment_util.parse_comment.extract_comments`. It returns historical
+`((start, end), text, kind)` tuples and now accepts registry-only language keys:
+
+```python
+from ml4setk.Comment_util.parse_comment import extract_comments
+
+comments = extract_comments("value // note\n", ["jsonc"])
+assert comments == [((6, 13), "// note", "line")]
+```
+
+Candidate languages are processed independently, so their order and duplicate
+matches are preserved; unknown names are ignored. Exact names supported by the
+original compatibility table retain their historical behavior, while newer keys
+use the registry-backed parser. New code should prefer `CommentQuery` and its
+`QueryMatch` contract.
 
 ## Testing comment behavior
 
@@ -422,6 +560,20 @@ failure-to-regression workflow live in the
 The executable scripts remain versioned with the release so every promoted
 regression can be reproduced without keeping raw judge or corpus artifacts on
 `main`.
+
+### Deterministic Unicode fuzzing
+
+Run `make comment-fuzz` after changing shared query or sanitizer behavior. The
+default campaign uses a stable seed and exercises delimiter-heavy text,
+multiple writing systems, combining marks, bidi controls, Unicode whitespace,
+line-separator variants, emoji, NULs, and lone surrogates. Override
+`COMMENT_FUZZ_SEED`, `COMMENT_FUZZ_CASES_PER_LANGUAGE`, or
+`COMMENT_FUZZ_MAX_LENGTH` to broaden or reproduce a campaign.
+
+This is a contract fuzzer: it validates match bounds, source reconstruction,
+ordering, `parse`/iteration/`contains` consistency, and sanitizer totality. It is
+not a language-semantics oracle, so retain focused fixtures and differential
+tests for syntax and sanitizer normalization behavior.
 
 ## Current limitations
 
