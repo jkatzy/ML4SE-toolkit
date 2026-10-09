@@ -2867,6 +2867,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
         ),
         regex_patterns=(r"--.*",),
         nested_delimiters=(("{-", "-}"),),
+        # Agda {-# ... #-} is a pragma, not a comment.
+        language_excluded_comment_prefixes=(("agda", ("{-#",)), ("literate_agda", ("{-#",))),
         sanitizer_line_wrappers=(("--", ""),),
         shared_regex_examples=(
             CommentExample(
@@ -3033,7 +3035,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="cue_sheet_style",
         canonical_name="cue_sheet",
-        regex_patterns=(r"(?im)^[ \t]*REM(?:[ \t][^\r\n]*)?$",),
+        regex_patterns=(r"(?im)^[ \t]*REM(?:[ \t][^\r\n]*)?(?=\r?$)",),
         shared_regex_examples=(
             CommentExample(
                 'REM note\nFILE "album.wav" WAVE',
@@ -4894,8 +4896,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="freebasic_style",
         canonical_name="freebasic",
+        nested_delimiters=(("/'", "'/"),),
         regex_patterns=(
-            r"\/'[\S\s]*?'\/",
             r"(?<!/)'(?!/).*",
             r"(?im)^[ \t]*rem\b.*$",
         ),
@@ -4909,11 +4911,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+        ),
+        shared_nested_examples=(
             CommentExample(
-                "prefix\n/' note '/\nsuffix",
-                "/' note '/",
-                "Slash-apostrophe block comment.",
-                kind="block",
+                "prefix\n/' outer /' note '/ outer '/\nsuffix",
+                "/' outer /' note '/ outer '/",
+                "Slash-apostrophe block comments nest.",
+                kind="nested",
                 inline_compatible=True,
             ),
         ),
@@ -6399,7 +6403,7 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="restructuredtext_style",
         canonical_name="restructuredtext",
-        regex_patterns=(r"(?m)^\.\.\s.*(?:\n[ \t]+.*)*",),
+        regex_patterns=(r"(?m)^\.\.\s(?![ \t]*(?:[\w.+:-]+::|_|\[|\|)).*(?:\n[ \t]+.*)*",),
         shared_regex_examples=(
             CommentExample(
                 "Heading\n\n.. note\n\ntext",
@@ -6442,8 +6446,8 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="stata_style",
         canonical_name="stata",
+        nested_delimiters=(("/*", "*/"),),
         regex_patterns=(
-            r"\/\*[\S\s]*?\*\/",
             r"/{2}.*.*",
             r"(?m)^\*.*$",
         ),
@@ -6456,11 +6460,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
                 inline_compatible=True,
                 grouped_line_compatible=True,
             ),
+        ),
+        shared_nested_examples=(
             CommentExample(
-                "prefix\n/* note */\nsuffix",
-                "/* note */",
-                "Stata block comment.",
-                kind="block",
+                "prefix\n/* outer /* note */ outer */\nsuffix",
+                "/* outer /* note */ outer */",
+                "Stata block comments nest.",
+                kind="nested",
                 inline_compatible=True,
             ),
         ),
@@ -6551,13 +6557,13 @@ COMMENT_SYNTAXES: Tuple[CommentSyntax, ...] = (
     CommentSyntax(
         family_name="inform7_style",
         canonical_name="inform_7",
-        regex_patterns=(r"\[[\S\s]*?\]",),
-        shared_regex_examples=(
+        nested_delimiters=(("[", "]"),),
+        shared_nested_examples=(
             CommentExample(
-                "The China Shop is a room. [Remember the bull.]",
-                "[Remember the bull.]",
-                "Inform 7 bracket comment.",
-                kind="block",
+                "The China Shop is a room. [Remember [the] bull.]",
+                "[Remember [the] bull.]",
+                "Inform 7 bracket comments nest.",
+                kind="nested",
                 inline_compatible=True,
             ),
         ),

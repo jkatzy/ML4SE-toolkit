@@ -1912,23 +1912,30 @@ class OpeningCommentQuery(Query):
             list when the file does not begin with a supported comment block.
         """
 
-        start_anchor = self._hashbang_end(text) if self.skip_hashbang else 0
-        ranges = self._opening_comment_ranges(text, start_anchor)
+        # A UTF-8 byte order mark is encoding metadata, not source text.
+        bom = 1 if text.startswith("\ufeff") else 0
+        body = text[bom:]
+        start_anchor = self._hashbang_end(body) if self.skip_hashbang else 0
+        ranges = self._opening_comment_ranges(body, start_anchor)
         if not ranges:
             return []
 
         block_start, block_end = ranges[0]
-        if self._row_number(text, block_start) > self.max_start_row:
+        if self._row_number(body, block_start) > self.max_start_row:
             return []
-        if text[start_anchor:block_start].strip():
+        if body[start_anchor:block_start].strip():
             return []
 
         for next_start, next_end in ranges[1:]:
-            if text[block_end:next_start].strip():
+            if body[block_end:next_start].strip():
                 break
             block_end = next_end
 
-        return [_query_match_from_range(text, block_start, block_end)]
+        # The "\r" of a CRLF line ending belongs to the line break, not the comment.
+        if block_end > block_start and body[block_end - 1] == "\r":
+            block_end -= 1
+
+        return [_query_match_from_range(text, block_start + bom, block_end + bom)]
 
     def _opening_comment_ranges(self, text, start_anchor):
         """Return candidate comment ranges that start after the hashbang anchor."""
@@ -1955,7 +1962,8 @@ class OpeningCommentQuery(Query):
     def _hashbang_end(text):
         """Return the offset immediately after an initial hashbang line."""
 
-        if not text.startswith("#!"):
+        # "#![" opens a Rust-style inner attribute, which is code.
+        if not text.startswith("#!") or text.startswith("#!["):
             return 0
         line_end = text.find("\n")
         if line_end == -1:

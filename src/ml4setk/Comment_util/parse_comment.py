@@ -1050,7 +1050,7 @@ _REGEX_KIND_OVERRIDES = {
     ("visual_basic_net", 1): "line",
     ("nsis", 1): "line",
     ("applescript", 0): "line",
-    ("freebasic", 2): "line",
+    ("freebasic", 1): "line",
     ("q", 0): "block",
     ("objectscript", 3): "line",
     ("textile", 1): "block",
