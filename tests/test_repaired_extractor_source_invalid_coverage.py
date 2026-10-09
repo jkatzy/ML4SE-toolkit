@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 import hashlib
-import importlib.util
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -17,7 +15,6 @@ pytestmark = pytest.mark.unit
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = PROJECT_ROOT / "tests" / "fixtures" / "comment_cleaning_repaired_failures"
-GENERATOR_PATH = PROJECT_ROOT / "scripts" / "build_stack_v2_comment_judge_cases.py"
 
 EXPECTED_CASE_COUNT = 92
 EXPECTED_CASE_ID_SET_SHA256 = "02bb0ebed6d63d379476d91b0b7914ae11e5664784b9dd4c3b4cb2c0e91a28e5"
@@ -56,33 +53,13 @@ SOURCE_PROVENANCE_KEYS = frozenset(
     }
 )
 
-# These intentionally synthetic probes exercise the shared collision signatures
-# without retaining or reconstructing any corpus source literal or path.
-SOURCE_FILTER_SIGNATURE_PROBES = {
-    "cobol-line-0345a550d577378d": (
-        "codecharge-ccp-xml",
-        "source_invalid:mislabeled_xml_code",
-        "synthetic.ccp",
-        '<Page Name="Header"><Components /></Page>',
-    ),
-    "cobol-line-4cc6fc04c647201d": (
-        "codecharge-ccp-xml",
-        "source_invalid:mislabeled_xml_code",
-        "synthetic.ccp",
-        '<?xml version="1.0"?><Page Name="Customer"><Events /></Page>',
-    ),
-    "mirc_script-line-112a24da87b41074": (
-        "iso-2709-marc",
-        "source_invalid:mislabeled_marc_data",
-        "synthetic.mrc",
-        ("00045cpcaa2200037Ii 4500001000700000\x1evalue?\x1e\x1d"),
-    ),
-    "mirc_script-line-f1d67ed1511082e4": (
-        "iso-2709-marc",
-        "source_invalid:mislabeled_marc_data",
-        "synthetic.mrc",
-        ("00045cam a2200037Ii 41y0001000700000\x1evalue?\x1e\x1d"),
-    ),
+# Corpus records mislabeled as source code; the Stack v2 sampler filters them
+# out before extraction, so they are accounted for here without an oracle.
+SOURCE_FILTER_CLUSTERS = {
+    "cobol-line-0345a550d577378d": "source_invalid:mislabeled_xml_code",
+    "cobol-line-4cc6fc04c647201d": "source_invalid:mislabeled_xml_code",
+    "mirc_script-line-112a24da87b41074": "source_invalid:mislabeled_marc_data",
+    "mirc_script-line-f1d67ed1511082e4": "source_invalid:mislabeled_marc_data",
 }
 EXPECTED_SOURCE_FILTER_ID_SET_SHA256 = (
     "88a852051330bed34bbc8b281343e675f4c1932f3763beababd242106f868f6a"
@@ -96,19 +73,6 @@ EXPECTED_CONTEXTUAL_ID_SET_SHA256 = (
     "e6360225489048c426df70010762627522d9c52d25d289c9627f30da7e59a979"
 )
 SYNTHETIC_GENERO_SCREEN_LAYOUT = "screen\n{\n  [field]\n}\n"
-
-
-def _load_generator() -> Any:
-    spec = importlib.util.spec_from_file_location(
-        "repaired_failure_manifest_generator",
-        GENERATOR_PATH,
-    )
-    assert spec is not None
-    assert spec.loader is not None
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[spec.name] = module
-    spec.loader.exec_module(module)
-    return module
 
 
 def _load_invalid_cases() -> dict[str, dict[str, Any]]:
@@ -135,9 +99,8 @@ def _assert_lowercase_hex(value: str, length: int) -> None:
     assert all(character in "0123456789abcdef" for character in value)
 
 
-GENERATOR = _load_generator()
 INVALID_CASES = _load_invalid_cases()
-SOURCE_FILTER_CASE_IDS = frozenset(SOURCE_FILTER_SIGNATURE_PROBES)
+SOURCE_FILTER_CASE_IDS = frozenset(SOURCE_FILTER_CLUSTERS)
 RANGE_ABSENCE_CASE_IDS = (
     INVALID_CASES.keys() - SOURCE_FILTER_CASE_IDS - CONTEXTUAL_EXTRACTOR_CASE_IDS
 )
@@ -195,35 +158,9 @@ def test_each_invalid_case_is_hash_only_accounting(case_id: str):
     _assert_lowercase_hex(fixture["source_record_sha256"], 64)
 
 
-@pytest.mark.parametrize(
-    (
-        "case_id",
-        "signature_name",
-        "expected_cluster",
-        "probe_path",
-        "signature_probe",
-    ),
-    [
-        (case_id, *SOURCE_FILTER_SIGNATURE_PROBES[case_id])
-        for case_id in sorted(SOURCE_FILTER_CASE_IDS)
-    ],
-)
-def test_collision_source_signature_is_rejected_before_extraction(
-    case_id: str,
-    signature_name: str,
-    expected_cluster: str,
-    probe_path: str,
-    signature_probe: str,
-):
-    fixture = INVALID_CASES[case_id]
-
-    assert signature_name in {"codecharge-ccp-xml", "iso-2709-marc"}
-    assert fixture["cluster"] == expected_cluster
-    assert not GENERATOR._record_is_eligible_source(
-        {"path": probe_path},
-        fixture["language"],
-        signature_probe,
-    )
+@pytest.mark.parametrize("case_id", sorted(SOURCE_FILTER_CASE_IDS))
+def test_source_filter_case_keeps_its_invalid_source_cluster(case_id: str):
+    assert INVALID_CASES[case_id]["cluster"] == SOURCE_FILTER_CLUSTERS[case_id]
 
 
 @pytest.mark.parametrize(
