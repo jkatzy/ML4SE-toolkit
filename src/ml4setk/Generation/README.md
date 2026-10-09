@@ -5,8 +5,8 @@ The generation layer turns parsed examples into model-ready inputs.
 ## Core classes
 
 - `FIMInput`: builds fill-in-the-middle prompts from a parsed match.
-  `FIMInput.from_model(model)` picks the sentinel tokens for a model name or
-  Hugging Face model, tokenizer, or pipeline (see `sentinels.py`).
+  `FIMInput.from_model(model)` picks a model's sentinel tokens; see
+  `docs/input_formatting.md`.
 - `CausalInput`: builds prefix-to-target training pairs.
 - `MultiTokenInput`: expands a target sequence into per-token contexts for
   next-token style training.
