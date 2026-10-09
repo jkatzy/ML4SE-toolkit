@@ -9,10 +9,15 @@ generation utilities transform that match into model-ready inputs.
 ## Data flow
 
 1. A parser scans raw source text and returns one or more `QueryMatch` values.
-2. A generator such as `FIMInput`, `CausalInput`, `SpanCorruptionInput`, or a diffusion input
-   consumes the match and creates the actual prompt plus ground-truth target (see
-   [Input formatting](input_formatting.md)).
-3. `IterableQueryLoader` can wrap a dataset to produce those samples lazily.
+2. An input formatter such as `FIMInput`, `CausalInput`, `MaskedLMInput`,
+   `SpanCorruptionInput`, or a diffusion input consumes the match and returns
+   `(model_input, ground_truth)` (see [Input formatting](input_formatting.md)).
+3. `ml4setk.Generation.IterableQueryLoader` can wrap a dataset to produce those
+   samples lazily; subclasses implement `process(file, query)`.
+
+Comment queries and `CommentSanitizer` read one per-language registry in
+`ml4setk.Parsing.Comments.registry`. Input formatters that support
+`from_model` read the model token registries in `ml4setk.Generation.sentinels`.
 
 ## Extension points
 
@@ -20,10 +25,13 @@ generation utilities transform that match into model-ready inputs.
   source order.
 - Add a new generator by subclassing `AbstractInput` and documenting its input
   shape.
+- Add a comment language by adding registry data, and a model family by adding
+  an entry to `MODEL_SENTINELS`, `MODEL_MASK_TOKENS`, or `MODEL_SPAN_TOKENS`.
 - Keep optional integrations isolated so importing `ml4setk` does not require
   every heavy dependency.
 
 ## Optional dependencies
 
-- `treesitter`: enables `TreeSitterQuery`
+- `treesitter`: enables `ml4setk.Parsing.Code.TreeSitterQuery`, whose
+  `parse(text, rule)` also takes a Tree-sitter query string
 - `torch`: enables direct interoperability with PyTorch dataset utilities
