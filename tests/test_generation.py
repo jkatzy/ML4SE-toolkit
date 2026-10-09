@@ -268,3 +268,128 @@ def test_span_corruption_input_defaults_and_tokenizer_fallback():
 def test_get_span_tokens_rejects_unknown_models():
     with pytest.raises(ValueError, match="explicitly"):
         get_span_tokens("bigcode/starcoder2-3b")
+
+
+SOURCE = "a = 1  # one\nb = 2  # two\nc = 3  # three\n"
+
+
+def _comment_matches():
+    matches = []
+    for comment in ("# one", "# two", "# three"):
+        start = SOURCE.index(comment)
+        end = start + len(comment)
+        matches.append(QueryMatch(SOURCE[:start], SOURCE[end:], comment))
+    return matches
+
+
+def test_generate_many_single_span_format_returns_one_pair_per_match():
+    fim = FIMInput("<pre>", "<suf>", "<mid>")
+    matches = _comment_matches()
+
+    pairs = fim.generate_many(matches)
+
+    assert pairs == [fim.generate(match) for match in matches]
+    assert [truth for _, truth in pairs] == ["# one", "# two", "# three"]
+
+
+@pytest.mark.parametrize(
+    ("select", "expected"),
+    [
+        ([2, 0, 0], ["# one", "# three"]),
+        ([-1], ["# three"]),
+        (lambda match: "t" in match.match, ["# two", "# three"]),
+        (0, []),
+    ],
+)
+def test_generate_many_selects_indices_or_predicate(select, expected):
+    pairs = CausalInput().generate_many(_comment_matches(), select=select)
+
+    assert [truth for _, truth in pairs] == expected
+
+
+def test_generate_many_samples_count_reproducibly_in_source_order():
+    matches = _comment_matches()
+
+    first = CausalInput().generate_many(matches, select=2, seed=7)
+
+    assert first == CausalInput().generate_many(matches, select=2, seed=7)
+    assert len(first) == 2
+    assert [m.match for m in matches if (m.prefix, m.match) in first] == [t for _, t in first]
+
+
+def test_generate_many_masks_all_spans_in_one_masked_input():
+    masked = DiffusionExpandingInfillInput("<m>", num_masks=2)
+
+    assert masked.generate_many(_comment_matches(), select=[0, 2]) == [
+        (
+            "a = 1  <m><m>\nb = 2  # two\nc = 3  <m><m>\n",
+            ["# one", "# three"],
+        )
+    ]
+
+
+def test_generate_many_uses_one_mask_per_token_for_masked_lm():
+    class CharTokenizer:
+        def encode(self, text, add_special_tokens=True):
+            return list(text)
+
+    masked = MaskedLMInput("<m>", CharTokenizer())
+
+    ((model_input, truths),) = masked.generate_many(_comment_matches()[:2])
+
+    assert model_input == "a = 1  " + "<m>" * 5 + "\nb = 2  " + "<m>" * 5 + "\nc = 3  # three\n"
+    assert truths == ["# one", "# two"]
+
+
+def test_generate_many_numbers_span_corruption_sentinels():
+    span = SpanCorruptionInput(mode="[NLU] ")
+
+    ((model_input, truths),) = span.generate_many(reversed(_comment_matches()))
+
+    assert model_input == ("[NLU] a = 1  <extra_id_0>\nb = 2  <extra_id_1>\nc = 3  <extra_id_2>\n")
+    assert truths == ["# one", "# two", "# three"]
+    assert SpanCorruptionInput("<mask0>").generate_many(_comment_matches()[:2])[0][0] == (
+        "a = 1  <mask0>\nb = 2  <mask1>" + "\nc = 3  # three\n"
+    )
+
+
+def test_generate_many_completion_masks_each_match_separately():
+    completion = DiffusionCompletionInput("<m>", num_masks=1)
+
+    pairs = completion.generate_many(_comment_matches())
+
+    assert pairs[1] == ("a = 1  # one\nb = 2  <m>", "# two")
+    assert completion.generate_many([]) == []
+    assert SpanCorruptionInput().generate_many(_comment_matches(), select=[]) == []
+
+
+@pytest.mark.parametrize(
+    ("matches", "fmt", "message"),
+    [
+        (
+            [QueryMatch("a ", "", "bc"), QueryMatch("a b", "", "c")],
+            DiffusionExpandingInfillInput("<m>"),
+            "overlap",
+        ),
+        (
+            [QueryMatch("a", "", "b"), QueryMatch("x", "", "y")],
+            DiffusionExpandingInfillInput("<m>"),
+            "same source",
+        ),
+        (
+            [QueryMatch("", " b", "a"), QueryMatch("a ", "", "b")],
+            SpanCorruptionInput("<mask>"),
+            "number",
+        ),
+    ],
+)
+def test_generate_many_rejects_spans_it_cannot_mask_together(matches, fmt, message):
+    with pytest.raises(ValueError, match=message):
+        fmt.generate_many(matches)
+
+
+def test_generate_many_rejects_out_of_range_selection():
+    with pytest.raises(IndexError):
+        CausalInput().generate_many(_comment_matches(), select=[3])
+    with pytest.raises(ValueError):
+        CausalInput().generate_many(_comment_matches(), select=4)

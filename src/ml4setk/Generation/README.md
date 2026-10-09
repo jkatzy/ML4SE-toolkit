@@ -23,5 +23,7 @@ The recommended flow is:
 
 1. Parse a source string into a `QueryMatch`.
 2. Feed that match into an input builder such as `FIMInput` or `CausalInput`.
+   `generate_many(matches, select=...)` masks all or some of a query's matches;
+   see `docs/input_formatting.md`.
 3. Use `IterableQueryLoader` when you want to generate those samples lazily from
    a larger corpus.
