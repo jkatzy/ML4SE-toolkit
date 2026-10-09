@@ -23,8 +23,8 @@ All returned matches follow the same `QueryMatch(prefix, suffix, match)`
 contract so they can feed directly into generation utilities such as
 `FIMInput` and `CausalInput`.
 
-For concrete usage, examples, supported-language lookup, and current
-limitations, see
+For how extraction and cleaning work, a runnable quick start, the API
+reference, supported-language lookup, and current limitations, see
 [`docs/comment_extractor.md`](../../../../docs/comment_extractor.md).
 
 The registry currently covers `776` language keys, including programming,
