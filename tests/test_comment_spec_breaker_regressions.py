@@ -172,15 +172,6 @@ _OPEN_CASES = {
         ("python-triple-quoted-assignment", "python-triple-quoted-call-argument"),
         "The hash_style family reports every triple-quoted string, not only docstrings.",
     ),
-    **dict.fromkeys(
-        (
-            "rst-admonition-directive",
-            "rst-code-block-directive",
-            "rst-hyperlink-target",
-            "rst-image-directive",
-        ),
-        "Directives and hyperlink targets match the .. comment pattern.",
-    ),
     "matlab-doubled-quote-string": (
         "Regression: transpose detection reads the doubled quote in 'it''s' as a "
         "transpose, exposing the % inside the character vector."

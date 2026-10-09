@@ -118,6 +118,12 @@ print(model_input)
 print(ground_truth)
 ```
 
+Pass `FIMInput.from_model("bigcode/starcoder2-3b")` instead of the token
+strings to use a model's own sentinel tokens. The
+[input formatting guide](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/input_formatting.md)
+covers the supported models, the tokenizer fallback, SPM ordering, and
+autoregressive inputs.
+
 The parsing contract is stable across the core query implementations:
 
 - `prefix`: text before the match

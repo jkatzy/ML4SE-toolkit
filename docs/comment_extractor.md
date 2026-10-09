@@ -119,7 +119,9 @@ results are merged, keeping one copy of each identical source range.
 
 `OpeningCommentQuery` reuses the same scanners but keeps only the first
 comment block of a file, and only when nothing but white space (and an
-optional `#!` line) comes before it.
+optional `#!` line) comes before it. A leading UTF-8 byte order mark is
+ignored, a `#![` line is a Rust-style inner attribute rather than a hashbang,
+and the `\r` of a CRLF line ending is never part of the match.
 
 Some languages changed their comment syntax between releases. Those carry a
 version table, and every query and the sanitizer take a `version` argument;
@@ -461,7 +463,8 @@ model_input, ground_truth = FIMInput(
 ```
 
 The generation classes operate on the same `QueryMatch` contract, so the
-extractor output can be used directly.
+extractor output can be used directly. See [Input formatting](input_formatting.md)
+for picking a model's sentinel tokens and for autoregressive inputs.
 
 ## Using the sanitizer
 
