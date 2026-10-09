@@ -1,6 +1,8 @@
 """Inputs for denoising pretrained models: BERT-style masked LMs and
 T5-style span corruption."""
 
+import re
+
 from .AbstractInput import AbstractInput, unpack_query_match
 from .DiffusionInput import DiffusionInfillInput
 from .sentinels import get_span_tokens
@@ -22,7 +24,11 @@ class SpanCorruptionInput(AbstractInput):
 
     The decoder answers with ``sentinel + span`` (and, for T5, a closing
     ``<extra_id_1>``), so one sentinel stands for the whole target.
+    :meth:`generate_many` numbers the sentinels of several spans by counting
+    up the sentinel's last number, as in ``<extra_id_0>``, ``<extra_id_1>``.
     """
+
+    multi_span = True
 
     def __init__(self, sentinel="<extra_id_0>", mode=""):
         self.sentinel = sentinel
@@ -39,3 +45,9 @@ class SpanCorruptionInput(AbstractInput):
         prefix, suffix, middle = unpack_query_match(query_match)
 
         return self.mode + prefix + self.sentinel + suffix, middle
+
+    def _join_spans(self, segments, middles):
+        if len(middles) > 1 and not re.search(r"\d", self.sentinel):
+            raise ValueError(f"Cannot number the span sentinel {self.sentinel!r}.")
+        sentinels = [re.sub(r"\d+(?=\D*$)", str(i), self.sentinel) for i in range(len(middles))]
+        return self.mode + "".join(s + m for s, m in zip(segments, sentinels + [""]))

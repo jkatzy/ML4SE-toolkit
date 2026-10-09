@@ -11,7 +11,8 @@ generation utilities transform that match into model-ready inputs.
 1. A parser scans raw source text and returns one or more `QueryMatch` values.
 2. An input formatter such as `FIMInput`, `CausalInput`, `MaskedLMInput`,
    `SpanCorruptionInput`, or a diffusion input consumes the match and returns
-   `(model_input, ground_truth)` (see [Input formatting](input_formatting.md)).
+   `(model_input, ground_truth)`; `generate_many` formats several matches at
+   once (see [Input formatting](input_formatting.md)).
 3. `ml4setk.Generation.IterableQueryLoader` can wrap a dataset to produce those
    samples lazily; subclasses implement `process(file, query)`.
 
