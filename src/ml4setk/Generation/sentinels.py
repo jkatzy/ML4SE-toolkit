@@ -1,4 +1,4 @@
-"""Resolve a model's fill-in-the-middle sentinel tokens from a name or HF object."""
+"""Resolve a model's FIM sentinel or diffusion mask tokens from a name or HF object."""
 
 from dataclasses import dataclass
 
@@ -39,6 +39,14 @@ MODEL_SENTINELS = (
     (("codestral",), SentinelTokens("[PREFIX]", "[SUFFIX]", "", order="spm")),
 )
 
+# Mask tokens of masked diffusion LLMs, matched the same way. ``dream`` covers
+# Dream, Dream-Coder and DreamOn, and DiffuCoder's ``model_type`` ("Dream").
+MODEL_MASK_TOKENS = (
+    (("llada",), "<|mdm_mask|>"),
+    (("dream",), "<|mask|>"),
+    (("diffucoder",), "<|mask|>"),
+)
+
 
 def _model_names(model):
     if isinstance(model, str):
@@ -65,6 +73,21 @@ def _in_vocab(token, vocab):
     return not stripped or stripped in vocab or "▁" + stripped in vocab
 
 
+def _resolve(model, registry, tokens_of):
+    for name in _model_names(model):
+        lowered = name.lower()
+        for fragments, entry in registry:
+            if all(fragment in lowered for fragment in fragments):
+                return entry
+
+    vocab = _tokenizer_vocab(model)
+    if vocab:
+        for _fragments, entry in registry:
+            if all(_in_vocab(token, vocab) for token in tokens_of(entry)):
+                return entry
+    return None
+
+
 def get_sentinel_tokens(model):
     """Return the :class:`SentinelTokens` for ``model``.
 
@@ -75,21 +98,23 @@ def get_sentinel_tokens(model):
     is used.
     """
 
-    for name in _model_names(model):
-        lowered = name.lower()
-        for fragments, tokens in MODEL_SENTINELS:
-            if all(fragment in lowered for fragment in fragments):
-                return tokens
+    tokens = _resolve(model, MODEL_SENTINELS, lambda t: (t.prefix, t.suffix, t.middle))
+    if tokens is None:
+        raise ValueError(
+            f"Could not resolve FIM sentinel tokens for {model!r}. "
+            "Pass the tokens to FIMInput explicitly."
+        )
+    return tokens
 
-    vocab = _tokenizer_vocab(model)
-    if vocab:
-        for _fragments, tokens in MODEL_SENTINELS:
-            if all(
-                _in_vocab(token, vocab) for token in (tokens.prefix, tokens.suffix, tokens.middle)
-            ):
-                return tokens
 
-    raise ValueError(
-        f"Could not resolve FIM sentinel tokens for {model!r}. "
-        "Pass the tokens to FIMInput explicitly."
-    )
+def get_mask_token(model):
+    """Return the diffusion mask token for ``model``, resolved like
+    :func:`get_sentinel_tokens` but against ``MODEL_MASK_TOKENS``."""
+
+    token = _resolve(model, MODEL_MASK_TOKENS, lambda t: (t,))
+    if token is None:
+        raise ValueError(
+            f"Could not resolve a diffusion mask token for {model!r}. "
+            "Pass the mask token explicitly."
+        )
+    return token
