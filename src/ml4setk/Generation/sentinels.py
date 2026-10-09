@@ -1,4 +1,4 @@
-"""Resolve a model's FIM sentinel or diffusion mask tokens from a name or HF object."""
+"""Resolve a model's FIM sentinel, mask or span tokens from a name or HF object."""
 
 from dataclasses import dataclass
 
@@ -37,14 +37,43 @@ MODEL_SENTINELS = (
     (("qwen", "coder"), _PIPE_FIM),
     (("codegemma",), _PIPE_FIM),
     (("codestral",), SentinelTokens("[PREFIX]", "[SUFFIX]", "", order="spm")),
+    # Causal-masking models: the hole is a mask sentinel inside the document,
+    # and the prompt ends by reopening that sentinel.
+    (("incoder",), SentinelTokens("", "<|mask:0|>", "<|mask:1|><|mask:0|>")),
+    (("codegen2",), SentinelTokens("", "<mask_1>", "<|endoftext|><sep><mask_1>")),
 )
 
-# Mask tokens of masked diffusion LLMs, matched the same way. ``dream`` covers
-# Dream, Dream-Coder and DreamOn, and DiffuCoder's ``model_type`` ("Dream").
+# Mask tokens of masked diffusion LLMs and masked LMs, matched the same way.
+# ``dream`` covers Dream, Dream-Coder and DreamOn, and DiffuCoder's
+# ``model_type`` ("Dream"). RoBERTa-based encoders (CodeBERT, GraphCodeBERT,
+# UniXcoder, whose ``model_type`` is "roberta") come before the ``bert`` catch-all.
 MODEL_MASK_TOKENS = (
     (("llada",), "<|mdm_mask|>"),
     (("dream",), "<|mask|>"),
     (("diffucoder",), "<|mask|>"),
+    (("roberta",), "<mask>"),
+    (("codebert",), "<mask>"),
+    (("unixcoder",), "<mask>"),
+    (("bert",), "[MASK]"),
+)
+
+
+@dataclass(frozen=True)
+class SpanTokens:
+    """The span sentinel of an encoder-decoder model and an optional mode
+    token that opens the encoder input."""
+
+    sentinel: str = "<extra_id_0>"
+    mode: str = ""
+
+
+# Span sentinels of encoder-decoder models. ``t5`` covers T5, CodeT5 and
+# CodeT5+ (and the ``model_type`` of UL2), so the UL2 entries come first.
+MODEL_SPAN_TOKENS = (
+    (("flan-ul2",), SpanTokens()),
+    (("ul2",), SpanTokens(mode="[NLU] ")),
+    (("unixcoder",), SpanTokens("<mask0>")),
+    (("t5",), SpanTokens()),
 )
 
 
@@ -118,3 +147,16 @@ def get_mask_token(model):
             "Pass the mask token explicitly."
         )
     return token
+
+
+def get_span_tokens(model):
+    """Return the :class:`SpanTokens` for ``model``, resolved like
+    :func:`get_sentinel_tokens` but against ``MODEL_SPAN_TOKENS``."""
+
+    tokens = _resolve(model, MODEL_SPAN_TOKENS, lambda t: (t.sentinel, t.mode))
+    if tokens is None:
+        raise ValueError(
+            f"Could not resolve span tokens for {model!r}. "
+            "Pass the sentinel to SpanCorruptionInput explicitly."
+        )
+    return tokens

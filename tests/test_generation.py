@@ -6,11 +6,15 @@ from ml4setk import (
     DiffusionExpandingInfillInput,
     DiffusionInfillInput,
     FIMInput,
+    MaskedLMInput,
     MultiTokenInput,
     QueryMatch,
     SentinelTokens,
+    SpanCorruptionInput,
+    SpanTokens,
     get_mask_token,
     get_sentinel_tokens,
+    get_span_tokens,
 )
 from ml4setk.Generation.AbstractInput import unpack_query_match
 
@@ -74,6 +78,8 @@ def test_multi_token_input_returns_independent_context_snapshots():
         ("Qwen/Qwen2.5-Coder-7B", "<|fim_prefix|>p<|fim_suffix|>s<|fim_middle|>"),
         ("google/codegemma-2b", "<|fim_prefix|>p<|fim_suffix|>s<|fim_middle|>"),
         ("mistralai/Codestral-22B-v0.1", "[SUFFIX]s[PREFIX]p"),
+        ("facebook/incoder-1B", "p<|mask:0|>s<|mask:1|><|mask:0|>"),
+        ("Salesforce/codegen25-7b-multi_P", "p<mask_1>s<|endoftext|><sep><mask_1>"),
     ],
 )
 def test_fim_input_from_model_name_uses_family_sentinels(name, expected):
@@ -212,3 +218,53 @@ def test_diffusion_infill_input_from_model_uses_tokenizer_for_length():
 def test_get_mask_token_rejects_unknown_models():
     with pytest.raises(ValueError, match="explicitly"):
         get_mask_token("Qwen/Qwen2.5-Coder-7B")
+
+
+@pytest.mark.parametrize(
+    ("name", "expected"),
+    [
+        ("microsoft/codebert-base-mlm", "<mask>"),
+        ("microsoft/graphcodebert-base", "<mask>"),
+        ("microsoft/unixcoder-base", "<mask>"),
+        ("FacebookAI/roberta-base", "<mask>"),
+        ("answerdotai/ModernBERT-base", "[MASK]"),
+        ("google-bert/bert-base-uncased", "[MASK]"),
+    ],
+)
+def test_masked_lm_input_uses_family_mask_and_oracle_length(name, expected):
+    match = QueryMatch("p ", " s", "a b")
+
+    assert MaskedLMInput.from_model(name, WordTokenizer()).generate(match) == (
+        "p " + expected * 2 + " s",
+        "a b",
+    )
+
+
+@pytest.mark.parametrize(
+    ("name", "expected"),
+    [
+        ("Salesforce/codet5-base", "p<extra_id_0>s"),
+        ("Salesforce/codet5p-220m", "p<extra_id_0>s"),
+        ("google/ul2", "[NLU] p<extra_id_0>s"),
+        ("google/flan-ul2", "p<extra_id_0>s"),
+        ("microsoft/unixcoder-base", "p<mask0>s"),
+    ],
+)
+def test_span_corruption_input_from_model_name_uses_family_tokens(name, expected):
+    assert SpanCorruptionInput.from_model(name).generate(QueryMatch("p", "s", "m")) == (
+        expected,
+        "m",
+    )
+
+
+def test_span_corruption_input_defaults_and_tokenizer_fallback():
+    match = QueryMatch("p", "s", "m")
+
+    assert SpanCorruptionInput().generate(match) == ("p<extra_id_0>s", "m")
+    assert SpanCorruptionInput("<s0>", mode="[M] ").generate(match)[0] == "[M] p<s0>s"
+    assert get_span_tokens(WordTokenizer(["<mask0>"])) == SpanTokens("<mask0>")
+
+
+def test_get_span_tokens_rejects_unknown_models():
+    with pytest.raises(ValueError, match="explicitly"):
+        get_span_tokens("bigcode/starcoder2-3b")
