@@ -4,8 +4,10 @@ Every query returns a `QueryMatch(prefix, suffix, match)`. An input formatter
 turns that match into a `(model_input, ground_truth)` pair, where the ground
 truth is always `match`. This page covers the formatters for code models:
 `FIMInput` for fill-in-the-middle (FIM) prompts, `CausalInput` for
-autoregressive (AR) prompts, and three
-[masked diffusion](#masked-diffusion-prompts) formatters.
+autoregressive (AR) prompts, three
+[masked diffusion](#masked-diffusion-prompts) formatters, and
+[`MaskedLMInput` and `SpanCorruptionInput`](#masked-lm-and-span-corruption-prompts)
+for BERT-style and T5-style models.
 
 ## Quick start
 
@@ -76,8 +78,17 @@ name wins.
 | Qwen-Coder | `qwen` and `coder` | `<|fim_prefix|>`, `<|fim_suffix|>`, `<|fim_middle|>` | PSM |
 | CodeGemma | `codegemma` | `<|fim_prefix|>`, `<|fim_suffix|>`, `<|fim_middle|>` | PSM |
 | Codestral | `codestral` | `[PREFIX]`, `[SUFFIX]`, empty | SPM |
+| InCoder | `incoder` | empty, `<|mask:0|>`, `<|mask:1|><|mask:0|>` | PSM |
+| CodeGen2, CodeGen2.5 | `codegen2` | empty, `<mask_1>`, `<|endoftext|><sep><mask_1>` | PSM |
 
 The Code Llama tokens carry their surrounding spaces, as the model expects.
+
+InCoder and CodeGen2 use causal masking rather than dedicated FIM tokens: the
+hole is a mask sentinel inside the document, the suffix follows it, and the
+prompt ends by reopening that sentinel so the model writes the span. Stop
+generation at `<|endofmask|>` for InCoder and at `<eom>` for CodeGen2. Both
+entries contain more than one token in a slot, so they resolve by name only,
+not through the tokenizer fallback.
 
 ### Tokenizer fallback
 
@@ -226,12 +237,101 @@ raises `ValueError`; pass the mask token to the formatter directly instead.
 | LLaDA | `llada` | `<|mdm_mask|>` (id 126336) |
 | Dream, Dream-Coder, DreamOn | `dream` (also DiffuCoder's `model_type`) | `<|mask|>` (id 151666) |
 | DiffuCoder | `diffucoder` | `<|mask|>` (id 151666) |
+| RoBERTa, CodeBERT, GraphCodeBERT, UniXcoder | `roberta`, `codebert`, `unixcoder` | `<mask>` |
+| BERT, ModernBERT, other `*bert` models | `bert` | `[MASK]` |
+
+The last two rows serve [`MaskedLMInput`](#masked-lm-prompts). The
+RoBERTa-based rows come first because `codebert` and `roberta` also contain
+`bert`.
 
 Mercury (Inception) and Seed Diffusion are closed models. Mercury's FIM
 endpoint takes the prefix and suffix as separate `prompt` and `suffix`
 fields and never exposes a mask token, so it needs no formatter here.
 
-### Sources
+## Masked LM and span corruption prompts
+
+Encoder models pretrained with masked language modelling (MLM) and
+encoder-decoder models pretrained with span corruption can both fill a hole
+without FIM sentinels, but they mark the hole differently.
+
+```python
+from ml4setk import MaskedLMInput, QueryMatch, SpanCorruptionInput
+
+match = QueryMatch(prefix="def add(a, b):\n    ", suffix="\n", match="return a + b")
+
+span = SpanCorruptionInput.from_model("Salesforce/codet5p-220m")
+model_input, ground_truth = span.generate(match)
+assert model_input == "def add(a, b):\n    <extra_id_0>\n"
+assert ground_truth == "return a + b"
+```
+
+### Masked LM prompts
+
+`MaskedLMInput(mask_token, tokenizer)` builds prefix + one mask per target
+token + suffix for BERT-style encoders such as CodeBERT, GraphCodeBERT,
+UniXcoder and ModernBERT. The tokenizer adds `[CLS]` and `[SEP]` (or `<s>` and
+`</s>`) when it encodes the string, so the formatter adds neither. An MLM head
+predicts exactly one token per mask, so the mask count must match the target:
+like [`DiffusionInfillInput`](#fixed-length-infilling), which it extends, it
+uses the oracle length from `tokenizer.encode(match, add_special_tokens=False)`.
+Byte-level BPE tokenizers such as RoBERTa's can split the match differently
+alone than in context, so the count can be off by a token at the edges.
+
+`MaskedLMInput.from_model(tokenizer)` reads the mask token and the length from
+one tokenizer, and `MaskedLMInput.from_model("microsoft/codebert-base-mlm",
+tokenizer)` takes the mask token from the name. CodeBERT, GraphCodeBERT and
+UniXcoder read at most 512 tokens and ModernBERT 8,192, so trim the prefix and
+suffix to fit.
+
+### Span corruption prompts
+
+`SpanCorruptionInput(sentinel="<extra_id_0>", mode="")` builds
+`mode + prefix + sentinel + suffix` for encoder-decoder models trained to
+reconstruct dropped spans. One sentinel stands for the whole target, whatever
+its length, and the decoder answers with the sentinel followed by the span:
+T5 and CodeT5 write `<extra_id_0> span <extra_id_1>`, so drop the sentinels
+from the output (or decode with `skip_special_tokens=True`) before comparing it
+with the ground truth. To train on the pair, use
+`<extra_id_0>` + match + `<extra_id_1>` as the decoder labels.
+
+`from_model` resolves the sentinel and mode through `MODEL_SPAN_TOKENS` in
+`ml4setk.Generation.sentinels`, with the same name matching and tokenizer
+fallback as the other registries; `get_span_tokens(model)` returns the
+`SpanTokens(sentinel, mode)` on its own.
+
+| Family | Matched by | Sentinel | Mode |
+| --- | --- | --- | --- |
+| Flan-UL2 | `flan-ul2` | `<extra_id_0>` | none |
+| UL2 | `ul2` | `<extra_id_0>` | `[NLU] ` |
+| UniXcoder | `unixcoder` | `<mask0>` | none |
+| T5, CodeT5, CodeT5+ | `t5` | `<extra_id_0>` | none |
+
+- **UL2** was trained with three denoisers and expects a mode token before the
+  input: `[NLU]` for span corruption, which is the infilling setting used here,
+  `[S2S]` for prefix language modelling and `[NLG]` for extreme denoising.
+  Flan-UL2 was fine-tuned without them.
+- **UniXcoder** marks the hole with `<mask0>`, but its encoder-decoder mode
+  also wraps the input as `<s><encoder-decoder></s> ... </s>`. A stock
+  tokenizer does not add that wrapper, so pass the model input to UniXcoder's
+  own `tokenize(..., mode="<encoder-decoder>")`.
+- **CodeT5+** documents span infilling for the 220M and 770M checkpoints. The
+  2B, 6B and 16B checkpoints are shown only for left-to-right completion,
+  where the prompt is also fed as `decoder_input_ids`; use `CausalInput` for
+  those.
+
+### Models without a formatter
+
+- **XLNet** infills through a permutation mask and target mapping passed as
+  tensors, not through a token layout, so there is no string to build.
+- **ELECTRA's** discriminator only labels tokens as original or replaced and
+  cannot generate. Its generator is a small MLM that `MaskedLMInput` covers.
+- **PLBART** and other BART-style models take `<mask>` in the encoder like a
+  span sentinel, but their decoder rewrites the whole sequence rather than the
+  span, so the target has to be cut out of the output.
+
+## Sources
+
+### Masked diffusion
 
 - LLaDA reference sampler, `generate.py`:
   <https://github.com/ML-GSAI/LLaDA/blob/main/generate.py>
@@ -244,3 +344,24 @@ fields and never exposes a mask token, so it needs no formatter here.
   `Dream-org/DreamOn-v0-7B` model card
 - Seed Diffusion: <https://arxiv.org/abs/2508.02193>
 - Mercury FIM API: <https://docs.inceptionlabs.ai/capabilities/fim>
+
+### Causal masking, masked LMs and span corruption
+
+- InCoder: `example_usage.py` in <https://github.com/dpfried/incoder>, and
+  <https://arxiv.org/abs/2204.05999>
+- CodeGen2 and CodeGen2.5 infill format: the `Salesforce/codegen2-1B_P` and
+  `Salesforce/codegen25-7b-multi_P` model cards
+- CodeBERT MLM: the `microsoft/codebert-base-mlm` model card, and
+  <https://arxiv.org/abs/2002.08155>
+- GraphCodeBERT: <https://arxiv.org/abs/2009.08366>
+- ModernBERT: the `answerdotai/ModernBERT-base` model card
+  (`[MASK]`, 8,192-token context)
+- UniXcoder: `unixcoder.py` and the README in
+  <https://github.com/microsoft/CodeBERT/tree/master/UniXcoder>
+- T5 span corruption: <https://arxiv.org/abs/1910.10683>
+- CodeT5: the `Salesforce/codet5-base` model card, and
+  <https://arxiv.org/abs/2109.00859>
+- CodeT5+: the `Salesforce/codet5p-220m` and `Salesforce/codet5p-2b` model
+  cards, and <https://arxiv.org/abs/2305.07922>
+- UL2 mode tokens: the `google/ul2` model card, and
+  <https://arxiv.org/abs/2205.05131>
