@@ -1,5 +1,6 @@
 site_name: ML4SE-toolkit
 site_description: Primitives for turning source code into machine-learning examples.
+site_url: https://jkatzy.github.io/ML4SE-toolkit/
 repo_url: https://github.com/jkatzy/ML4SE-toolkit
 edit_uri: edit/dev/docs/
 
