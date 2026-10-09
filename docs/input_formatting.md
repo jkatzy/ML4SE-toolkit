@@ -28,7 +28,53 @@ assert ground_truth == "return a + b"
 
 Any query output works in place of the hand-built `QueryMatch`, for example a
 match from [`CommentQuery`](comment_extractor.md). `generate` also accepts a
-plain `(prefix, suffix, match)` tuple.
+plain `(prefix, suffix, match)` tuple. To format every match a query returns
+in one call, see [Masking several matches](#masking-several-matches).
+
+## Masking several matches
+
+A query usually returns several matches in one file. `generate_many(matches,
+select=None, seed=None)` on any formatter turns them into a list of
+`(model_input, ground_truth)` pairs. `select` picks which matches to mask:
+
+| `select` | Masks |
+| --- | --- |
+| `None` | every match |
+| an `int` `k` | `k` matches sampled with `random.Random(seed)`, so a fixed `seed` gives the same pick |
+| a list of indices | those matches (negative indices count from the end) |
+| a function | the matches for which `select(match)` is true |
+
+How the selected matches are masked follows the format's rules. FIM, AR and
+[completion](#completion) prompts hold one hole, so they return one pair per
+selected match, each with the other matches left visible. The infilling
+formats can hold several holes, so they return a single pair that masks every
+selected match, with the ground truths as a list in source order:
+[`DiffusionInfillInput`](#fixed-length-infilling),
+[`DiffusionExpandingInfillInput`](#variable-length-infilling) and
+[`MaskedLMInput`](#masked-lm-prompts) put masks in each hole, and
+[`SpanCorruptionInput`](#span-corruption-prompts) numbers its sentinels
+`<extra_id_0>`, `<extra_id_1>`, and so on (`<mask0>`, `<mask1>` for
+UniXcoder).
+
+```python
+from ml4setk import CommentQuery, FIMInput, SpanCorruptionInput
+
+source = "a = 1  # one\nb = 2  # two\nc = 3  # three\n"
+matches = CommentQuery("python").parse(source)
+
+fim = FIMInput.from_model("bigcode/starcoder2-3b")
+pairs = fim.generate_many(matches, select=2, seed=0)
+assert len(pairs) == 2
+
+span = SpanCorruptionInput.from_model("Salesforce/codet5p-220m")
+[(model_input, ground_truths)] = span.generate_many(matches, select=[0, 2])
+assert model_input == "a = 1  <extra_id_0>\nb = 2  # two\nc = 3  <extra_id_1>\n"
+assert ground_truths == ["# one", "# three"]
+```
+
+The matches must come from the same source text. A multi-hole input raises
+`ValueError` when two selected matches overlap, as nested tree-sitter captures
+can; select non-overlapping matches instead.
 
 ## Fill-in-the-middle prompts
 

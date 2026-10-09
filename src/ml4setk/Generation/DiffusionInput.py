@@ -11,6 +11,7 @@ from .sentinels import get_mask_token
 
 class _MaskedInput(AbstractInput):
     keep_suffix = True
+    multi_span = True
 
     def __init__(self, mask_token, num_masks):
         if num_masks < 1:
@@ -33,12 +34,17 @@ class _MaskedInput(AbstractInput):
         masks = self.mask_token * self._count(middle)
         return prefix + masks + (suffix if self.keep_suffix else ""), middle
 
+    def _join_spans(self, segments, middles):
+        masks = [self.mask_token * self._count(middle) for middle in middles]
+        return "".join(s + m for s, m in zip(segments, masks + [""]))
+
 
 class DiffusionCompletionInput(_MaskedInput):
     """``prefix + num_masks masks``: the suffix is dropped, as in LLaDA's
     ``generate`` (default ``gen_length=128``) and Dream's ``diffusion_generate``."""
 
     keep_suffix = False
+    multi_span = False
 
     def __init__(self, mask_token, num_masks=128):
         super().__init__(mask_token, num_masks)
