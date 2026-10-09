@@ -2,10 +2,14 @@ import pytest
 
 from ml4setk import (
     CausalInput,
+    DiffusionCompletionInput,
+    DiffusionExpandingInfillInput,
+    DiffusionInfillInput,
     FIMInput,
     MultiTokenInput,
     QueryMatch,
     SentinelTokens,
+    get_mask_token,
     get_sentinel_tokens,
 )
 from ml4setk.Generation.AbstractInput import unpack_query_match
@@ -125,3 +129,86 @@ def test_get_sentinel_tokens_rejects_unknown_models():
 def test_fim_input_rejects_unknown_order():
     with pytest.raises(ValueError):
         FIMInput("<pre>", "<suf>", "<mid>", order="mps")
+
+
+class WordTokenizer:
+    name_or_path = "/ckpt/unknown"
+
+    def __init__(self, vocab=()):
+        self.vocab = vocab
+
+    def get_vocab(self):
+        return dict.fromkeys(self.vocab, 0)
+
+    def encode(self, text, add_special_tokens=True):
+        assert not add_special_tokens
+        return text.split()
+
+
+def test_diffusion_inputs_place_masks_per_setting():
+    match = QueryMatch("p ", " s", "a b c")
+
+    assert DiffusionCompletionInput("<m>", num_masks=2).generate(match) == (
+        "p <m><m>",
+        "a b c",
+    )
+    assert DiffusionInfillInput("<m>", WordTokenizer()).generate(match) == (
+        "p <m><m><m> s",
+        "a b c",
+    )
+    assert DiffusionExpandingInfillInput("<m>", num_masks=1).generate(match) == (
+        "p <m> s",
+        "a b c",
+    )
+
+
+def test_diffusion_inputs_default_mask_counts():
+    match = QueryMatch("", "", "m")
+
+    assert DiffusionCompletionInput("<m>").generate(match)[0] == "<m>" * 128
+    assert DiffusionExpandingInfillInput("<m>").generate(match)[0] == "<m>" * 4
+
+
+@pytest.mark.parametrize("cls", [DiffusionCompletionInput, DiffusionExpandingInfillInput])
+def test_diffusion_inputs_reject_empty_canvas(cls):
+    with pytest.raises(ValueError):
+        cls("<m>", num_masks=0)
+
+
+@pytest.mark.parametrize(
+    ("name", "expected"),
+    [
+        ("GSAI-ML/LLaDA-8B-Base", "<|mdm_mask|>"),
+        ("Dream-org/Dream-Coder-v0-Instruct-7B", "<|mask|>"),
+        ("Dream-org/DreamOn-v0-7B", "<|mask|>"),
+        ("apple/DiffuCoder-7B-cpGRPO", "<|mask|>"),
+    ],
+)
+def test_diffusion_input_from_model_name_uses_family_mask(name, expected):
+    match = QueryMatch("p", "s", "m")
+
+    assert DiffusionCompletionInput.from_model(name, num_masks=1).generate(match)[0] == (
+        "p" + expected
+    )
+    assert DiffusionExpandingInfillInput.from_model(name, num_masks=1).generate(match)[0] == (
+        "p" + expected + "s"
+    )
+
+
+def test_diffusion_infill_input_from_model_uses_tokenizer_for_length():
+    match = QueryMatch("p", "s", "x y")
+    tokenizer = WordTokenizer(["<|mdm_mask|>"])
+
+    # A bare tokenizer supplies both the mask token (via its vocab) and the length.
+    assert DiffusionInfillInput.from_model(tokenizer).generate(match)[0] == (
+        "p<|mdm_mask|><|mdm_mask|>s"
+    )
+    assert (
+        DiffusionInfillInput.from_model("Dream-org/Dream-v0-Base-7B", tokenizer).generate(match)[0]
+        == "p<|mask|><|mask|>s"
+    )
+
+
+def test_get_mask_token_rejects_unknown_models():
+    with pytest.raises(ValueError, match="explicitly"):
+        get_mask_token("Qwen/Qwen2.5-Coder-7B")

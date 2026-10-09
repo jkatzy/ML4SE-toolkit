@@ -1,9 +1,14 @@
 """Public package surface for the ML4SE toolkit."""
 
 from .Generation.CausalInput import CausalInput
+from .Generation.DiffusionInput import (
+    DiffusionCompletionInput,
+    DiffusionExpandingInfillInput,
+    DiffusionInfillInput,
+)
 from .Generation.FIMInput import FIMInput
 from .Generation.MultiTokenInput import MultiTokenInput
-from .Generation.sentinels import SentinelTokens, get_sentinel_tokens
+from .Generation.sentinels import SentinelTokens, get_mask_token, get_sentinel_tokens
 from .Parsing.Comments.CommentQuery import (
     CommentQuery,
     LineCommentQuery,
@@ -30,6 +35,9 @@ __all__ = [
     "CommentLanguageVersionWarning",
     "CommentQuery",
     "CommentSanitizer",
+    "DiffusionCompletionInput",
+    "DiffusionExpandingInfillInput",
+    "DiffusionInfillInput",
     "FIMInput",
     "LineCommentQuery",
     "MultiTokenInput",
@@ -42,6 +50,7 @@ __all__ = [
     "comment_language_requires_version",
     "get_comment_language_versions",
     "get_default_comment_language_version",
+    "get_mask_token",
     "get_sentinel_tokens",
     "get_supported_comment_languages",
     "sanitize_comment",
