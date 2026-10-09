@@ -51,6 +51,19 @@ Generated corpora, downloaded repositories, judge transcripts, and raw failure
 reports stay under ignored `tmp/` or `scratch/` paths. Only durable evidence,
 reusable instructions, and minimized regressions are committed.
 
+## Releasing
+
+1. Cut a release branch from `origin/main`, never from `dev`, and bring over
+   only the release paths: `git checkout origin/dev -- <paths>` for package
+   source, the tests and fixtures they need, user docs, and `mkdocs.yml`.
+   Keep `main`'s own `Makefile`, `requirements.txt`, and policy guard.
+2. Run the release checks above and open a pull request into `main`.
+3. After it merges, merge `main` back into `dev` through a pull request. A
+   plain merge deletes the development-only files that `main` excludes, so
+   restore `dev`'s copies of them (and of the `Makefile`) in that merge.
+
+Every merge to `main` republishes the documentation site to GitHub Pages.
+
 ## Enforcement
 
 - `make check-main-branch` rejects development-only paths on `main`.
