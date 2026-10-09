@@ -118,18 +118,11 @@ print(model_input)
 print(ground_truth)
 ```
 
-To use a specific model's sentinel tokens, pass its name or a Hugging Face
-model, tokenizer, or pipeline instead of the token strings:
-
-```python
-fim = FIMInput.from_model("bigcode/starcoder2-3b")  # or FIMInput.from_model(model)
-model_input, ground_truth = fim.generate(match)
-```
-
-Known families (StarCoder, SantaCoder, CodeLlama, DeepSeek-Coder, Qwen-Coder,
-CodeGemma, Codestral, Granite Code, Stable Code) are matched by name or
-`config.model_type`; otherwise the tokenizer's vocabulary is checked for a known
-sentinel set. `get_sentinel_tokens(model)` returns the resolved tokens.
+Pass `FIMInput.from_model("bigcode/starcoder2-3b")` instead of the token
+strings to use a model's own sentinel tokens. The
+[input formatting guide](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/input_formatting.md)
+covers the supported models, the tokenizer fallback, SPM ordering, and
+autoregressive inputs.
 
 The parsing contract is stable across the core query implementations:
 

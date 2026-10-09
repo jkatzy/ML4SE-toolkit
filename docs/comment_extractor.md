@@ -463,7 +463,8 @@ model_input, ground_truth = FIMInput(
 ```
 
 The generation classes operate on the same `QueryMatch` contract, so the
-extractor output can be used directly.
+extractor output can be used directly. See [Input formatting](input_formatting.md)
+for picking a model's sentinel tokens and for autoregressive inputs.
 
 ## Using the sanitizer
 
