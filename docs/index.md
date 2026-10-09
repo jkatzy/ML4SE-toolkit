@@ -15,8 +15,9 @@ pip install ml4setk
 - [Comment cleaning policy](comment_cleaning_policy.md): what cleaning removes
   and what it keeps.
 - [Input formatting](input_formatting.md): turn matches into
-  fill-in-the-middle or autoregressive model inputs, with sentinel tokens
-  picked from a model name or Hugging Face object.
+  fill-in-the-middle, autoregressive, masked diffusion, masked LM, or span
+  corruption model inputs, with sentinel and mask tokens picked from a model
+  name or Hugging Face object.
 - [Architecture](architecture.md): the `QueryMatch` contract and extension
   points.
 - [Git workflow](git_workflow.md): how `dev` and `main` relate.

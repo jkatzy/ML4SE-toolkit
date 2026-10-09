@@ -9,8 +9,8 @@ generation utilities transform that match into model-ready inputs.
 ## Data flow
 
 1. A parser scans raw source text and returns one or more `QueryMatch` values.
-2. A generator such as `FIMInput` or `CausalInput` consumes the match and
-   creates the actual prompt plus ground-truth target (see
+2. A generator such as `FIMInput`, `CausalInput`, `SpanCorruptionInput`, or a diffusion input
+   consumes the match and creates the actual prompt plus ground-truth target (see
    [Input formatting](input_formatting.md)).
 3. `IterableQueryLoader` can wrap a dataset to produce those samples lazily.
 
