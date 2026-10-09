@@ -4,7 +4,7 @@ COMMENT_FUZZ_CASES_PER_LANGUAGE ?= 100
 COMMENT_FUZZ_MAX_LENGTH ?= 128
 COMMENT_FUZZ_SANITIZER_PAYLOADS_PER_EXAMPLE ?= 4
 
-.PHONY: setup setup-optional test test-optional lint smoke build
+.PHONY: setup setup-optional test test-optional lint smoke build docs docs-serve
 .PHONY: comment-cleaner-fixtures comment-fuzz comment-cleaner-fuzz
 .PHONY: check-main-branch check-release-version
 
@@ -29,6 +29,12 @@ smoke:
 
 build:
 	$(UV) build
+
+docs:
+	$(UV) run --group docs mkdocs build --strict
+
+docs-serve:
+	$(UV) run --group docs mkdocs serve
 
 comment-cleaner-fixtures:
 	$(UV) run python scripts/build_comment_cleaning_fixtures.py --force
