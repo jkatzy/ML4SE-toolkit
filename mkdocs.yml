@@ -1,0 +1,34 @@
+site_name: ML4SE-toolkit
+site_description: Primitives for turning source code into machine-learning examples.
+repo_url: https://github.com/jkatzy/ML4SE-toolkit
+edit_uri: edit/dev/docs/
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - navigation.sections
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Comments:
+      - Extraction and cleaning: comment_extractor.md
+      - Cleaning policy: comment_cleaning_policy.md
+  - Architecture: architecture.md
+  - Git workflow: git_workflow.md
+
+# Development-only guides live on dev and stay out of the published site.
+exclude_docs: |
+  comment_research/
+  comment_testing/
+
+validation:
+  anchors: warn
