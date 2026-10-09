@@ -24,7 +24,7 @@ nav:
       - Extraction and cleaning: comment_extractor.md
       - Cleaning policy: comment_cleaning_policy.md
   - Input formatting:
-      - FIM and AR inputs: input_formatting.md
+      - Model input formats: input_formatting.md
   - Architecture: architecture.md
   - Git workflow: git_workflow.md
 

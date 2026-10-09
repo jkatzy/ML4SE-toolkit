@@ -12,9 +12,9 @@ ML4SE-toolkit pulls comments out of source files in two stages:
    and keeps the words, code, and layout a reader needs.
 
 Both stages read the same per-language registry, so a language key that works
-for one works for the other. The generation utilities (`FIMInput`,
-`CausalInput`, `MultiTokenInput`) take a `QueryMatch` directly, so extracted
-comments can become training examples without conversion.
+for one works for the other. The input formatters take a `QueryMatch`
+directly, so extracted comments can become model inputs without conversion
+(see [Input formatting](input_formatting.md)).
 
 ## Quick start
 
@@ -464,7 +464,7 @@ model_input, ground_truth = FIMInput(
 
 The generation classes operate on the same `QueryMatch` contract, so the
 extractor output can be used directly. See [Input formatting](input_formatting.md)
-for picking a model's sentinel tokens and for autoregressive inputs.
+for the other formats and for picking a model's own tokens.
 
 ## Using the sanitizer
 
@@ -530,10 +530,10 @@ make test
 make comment-fuzz
 ```
 
-Cleaning has one committed JSON oracle for each of the 262 comment syntax
+Cleaning has one committed JSON oracle for each of the 271 comment syntax
 families under `tests/fixtures/comment_cleaning`. The fixture tests apply those
-957 explicit raw-to-cleaned cases to all 776 supported language keys, producing
-2,362 alias-expanded checks. Expected
+1,004 explicit raw-to-cleaned cases to all 776 supported language keys, producing
+2,400 alias-expanded checks. Expected
 cleaned text is derived from registry syntax rather than by calling the
 sanitizer under test. Regenerate and verify the files with:
 
@@ -560,9 +560,9 @@ Corpus research, adversarial test generation, fuzz campaigns, and LLM judges
 are development operations. Their current commands, evidence rules, and
 failure-to-regression workflow live in the
 [`dev` branch comment-testing guide](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing).
-The executable scripts remain versioned with the release so every promoted
-regression can be reproduced without keeping raw judge or corpus artifacts on
-`main`.
+The judge and prompt-packet scripts live on `dev` with that guide. Every
+promoted regression lands on `main` as a deterministic test or fixture, so it
+can be reproduced without them.
 
 ### Deterministic Unicode fuzzing
 
