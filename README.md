@@ -124,9 +124,8 @@ The parsing contract is stable across the core query implementations:
 - `suffix`: text after the match
 - `match`: the extracted region itself
 
-For a fuller extractor guide, including `contains`, grouped line comments,
-nested comments, comment sanitization, opening file-header extraction,
-supported-language lookup, and unsupported-language behavior,
+For the comment extraction and cleaning guide, with a runnable quick start, an
+explanation of how extraction and cleaning work, and the API reference,
 see [docs/comment_extractor.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/comment_extractor.md).
 
 At the moment the comment extractor covers `776` registry keys, including
@@ -151,6 +150,9 @@ marker-only scanning would misclassify strings, counted records, or binary data.
   EBNF utility tree keeps its existing separate style baseline
 - `make smoke`: run the minimal end-to-end smoke tests
 - `make build`: create source and wheel distributions in `dist/`
+- `make docs`: build the MkDocs site into `site/` and fail on broken links;
+  `make docs-serve` previews it at http://127.0.0.1:8000. The `Docs` workflow
+  publishes the site from `main` to GitHub Pages.
 - `make check-main-branch`: fail if development-only artifacts are still
   tracked and the branch is not ready to merge to `main`
 - `make check-release-version`: fail if package version metadata is inconsistent
@@ -172,7 +174,8 @@ The permanent rules and the enforced main-branch policy are documented in
 - `src/ml4setk/EBNF`: grammar-processing and railroad-diagram utilities
 - `tests`: regression, unit, integration, and smoke coverage
 - `docs/architecture.md`: concise architecture and extension notes
-- `docs/comment_extractor.md`: how to use `CommentQuery` and related extractors
+- `docs/comment_extractor.md`: how comment extraction and cleaning work and how
+  to use them
 - `docs/git_workflow.md`: branch policy, development-only artifacts, and the
   main-branch guard
 - [`dev` comment workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing):
