@@ -27,6 +27,12 @@ def test_find_disallowed_paths_flags_development_only_artifacts():
         "tmp/scratch.txt",
         "tmp/stack_v3/reports/result.json",
         "notes.tmp",
+        "scripts/build_comment_test_packets.py",
+        "scripts/build_stack_v2_comment_judge_cases.py",
+        "scripts/comment_judge_validation_ledger.py",
+        "scripts/run_codex_comment_test_generator.py",
+        "scripts/run_stack_v2_comment_judge_pipeline.sh",
+        "scripts/run_two_stage_comment_cleaner_judge.py",
         "src/ml4setk/__init__.py",
     ]
 
@@ -40,6 +46,12 @@ def test_find_disallowed_paths_flags_development_only_artifacts():
         "docs/comment_testing/runs/stack_v3/findings.md",
         "docs/two_stage_comment_cleaner_judge.md",
         "notes.tmp",
+        "scripts/build_comment_test_packets.py",
+        "scripts/build_stack_v2_comment_judge_cases.py",
+        "scripts/comment_judge_validation_ledger.py",
+        "scripts/run_codex_comment_test_generator.py",
+        "scripts/run_stack_v2_comment_judge_pipeline.sh",
+        "scripts/run_two_stage_comment_cleaner_judge.py",
         "src/ml4setk/EBNF/RRD/.idea/misc.xml",
         "src/ml4setk/EBNF/RRD/generated/.idea/workspace.xml",
         "tmp/scratch.txt",
@@ -51,7 +63,8 @@ def test_find_disallowed_paths_ignores_normal_repository_files():
     paths = [
         "README.md",
         "docs/comment_extractor.md",
-        "scripts/build_comment_research_views.py",
+        "scripts/build_comment_cleaning_fixtures.py",
+        "scripts/fuzz_comment_parsers.py",
         "src/ml4setk/Parsing/Comments/registry.py",
         "tests/test_comment_queries.py",
     ]

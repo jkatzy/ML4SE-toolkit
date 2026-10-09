@@ -42,8 +42,9 @@ make build
 ## Dev branch standard
 
 `dev` contains everything on `main`, plus the development-only material under
-`docs/comment_research/` and `docs/comment_testing/`, and the root
-`AGENTS.md`. Comment extraction or cleaning changes begin on `dev`; confirmed
+`docs/comment_research/` and `docs/comment_testing/`, the root `AGENTS.md`,
+and the prompt-packet and LLM-judge scripts under `scripts/` (with their tests
+and Makefile targets). Comment extraction or cleaning changes begin on `dev`; confirmed
 failures become deterministic tests and fixtures before promotion to `main`.
 
 Generated corpora, downloaded repositories, judge transcripts, and raw failure
