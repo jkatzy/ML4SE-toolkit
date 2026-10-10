@@ -98,8 +98,8 @@ python scripts/check_release_version.py
 uv run pytest -m "not optional_dependency"
 uv run pytest -m "optional_dependency" --no-cov
 uv run ruff check src tests examples
-git tag v0.0.2
-git push origin main v0.0.2
+git tag v0.1.0
+git push origin main v0.1.0
 ```
 
 The publish workflow checks that the package version in `pyproject.toml`, the
