@@ -39,7 +39,7 @@ jobs:
         with:
           python-version: "3.11"
       - uses: astral-sh/setup-uv@v5
-      - run: uv sync --group dev --extra treesitter
+      - run: uv sync --group dev --extra treesitter --extra datasets
       - run: uv run pytest -m "optional_dependency" --no-cov
 
   package:
@@ -53,3 +53,8 @@ jobs:
       - run: python scripts/check_release_version.py
       - run: uv build
       - run: uvx twine check dist/*
+      - name: Install the wheel in a clean environment
+        run: |
+          uv venv /tmp/wheel-check
+          uv pip install --python /tmp/wheel-check dist/*.whl
+          /tmp/wheel-check/bin/python -c "import ml4setk; print(ml4setk.__version__)"

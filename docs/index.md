@@ -18,6 +18,9 @@ pip install ml4setk
   fill-in-the-middle, autoregressive, masked diffusion, masked LM, or span
   corruption model inputs, with sentinel and mask tokens picked from a model
   name or Hugging Face object.
+- [Chunked datasets](chunked_datasets.md): run a function over every row of a
+  dataset split into many files, such as The Stack, one file at a time, with
+  restartable state on disk and any number of workers.
 - [Architecture](architecture.md): the `QueryMatch` contract and extension
   points.
 - [Git workflow](git_workflow.md): how `dev` and `main` relate.

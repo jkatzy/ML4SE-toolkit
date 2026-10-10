@@ -11,10 +11,12 @@ reproducible machine-learning examples for software engineering research.
 - Input formatters for fill-in-the-middle, autoregressive, masked diffusion,
   masked LM, and span corruption models, with sentinel and mask tokens picked
   from a model name or Hugging Face object.
+- A restartable, multi-worker iterator that applies a function to every row
+  of a dataset split into many files, such as The Stack, one file at a time.
 - Optional integrations for Tree-sitter queries and PyTorch-style iterable
   datasets.
-- Existing EBNF and grammar-analysis tooling remains available under
-  `src/ml4setk/EBNF`.
+- Existing EBNF and grammar-analysis tooling remains available in the
+  repository under `src/ml4setk/EBNF`; it is not part of the PyPI package.
 
 ## Installation
 
@@ -29,6 +31,7 @@ Install optional extras only when you need them:
 ```bash
 pip install "ml4setk[treesitter]"
 pip install "ml4setk[torch]"
+pip install "ml4setk[datasets]"
 ```
 
 ## Development setup
@@ -179,6 +182,7 @@ The permanent rules and the enforced main-branch policy are documented in
 - `src/ml4setk/Parsing`: query primitives, the comment registry, the
   sanitizer, and optional Tree-sitter support
 - `src/ml4setk/Generation`: input formatters and the model token registries
+- `src/ml4setk/Datasets`: the chunked, restartable dataset iterator
 - `src/ml4setk/EBNF`: grammar-processing and railroad-diagram utilities
 - `tests`: regression, unit, integration, and smoke coverage
 - `docs/architecture.md`: concise architecture and extension notes
@@ -186,6 +190,7 @@ The permanent rules and the enforced main-branch policy are documented in
   to use them
 - `docs/comment_cleaning_policy.md`: what cleaning removes and what it keeps
 - `docs/input_formatting.md`: every input format and its supported models
+- `docs/chunked_datasets.md`: iterating over large file-chunked datasets
 - `docs/git_workflow.md`: branch policy, development-only artifacts, and the
   main-branch guard
 - [`dev` comment workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing):

@@ -1,0 +1,3 @@
+# Ship the package source only; tests need repository fixtures and EBNF is repo-only tooling.
+prune tests
+prune src/ml4setk/EBNF
