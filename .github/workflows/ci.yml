@@ -39,7 +39,7 @@ jobs:
         with:
           python-version: "3.11"
       - uses: astral-sh/setup-uv@v5
-      - run: uv sync --group dev --extra treesitter
+      - run: uv sync --group dev --extra treesitter --extra datasets
       - run: uv run pytest -m "optional_dependency" --no-cov
 
   package:
