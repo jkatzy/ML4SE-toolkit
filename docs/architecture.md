@@ -16,6 +16,10 @@ generation utilities transform that match into model-ready inputs.
 3. `ml4setk.Generation.IterableQueryLoader` can wrap a dataset to produce those
    samples lazily; subclasses implement `process(file, query)`.
 
+`ml4setk.Datasets.ChunkedIterator` runs any row function over a dataset stored
+as many files, one file at a time, with its progress kept on disk (see
+[Chunked datasets](chunked_datasets.md)).
+
 Comment queries and `CommentSanitizer` read one per-language registry in
 `ml4setk.Parsing.Comments.registry`. Input formatters that support
 `from_model` read the model token registries in `ml4setk.Generation.sentinels`.
@@ -35,4 +39,6 @@ Comment queries and `CommentSanitizer` read one per-language registry in
 
 - `treesitter`: enables `ml4setk.Parsing.Code.TreeSitterQuery`, whose
   `parse(text, rule)` also takes a Tree-sitter query string
+- `datasets`: adds `pyarrow` for Parquet chunks and `huggingface_hub` for
+  remote chunks in `ml4setk.Datasets.ChunkedIterator`
 - `torch`: enables direct interoperability with PyTorch dataset utilities

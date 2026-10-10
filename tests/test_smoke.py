@@ -9,6 +9,7 @@ from ml4setk import CommentQuery, FIMInput
 def test_public_modules_import():
     for module_name in [
         "ml4setk",
+        "ml4setk.Datasets",
         "ml4setk.Generation",
         "ml4setk.Parsing",
         "ml4setk.Parsing.Code",

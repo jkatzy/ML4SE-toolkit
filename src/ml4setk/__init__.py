@@ -1,5 +1,6 @@
 """Public package surface for the ML4SE toolkit."""
 
+from .Datasets.ChunkedIterator import ChunkedIterator, ChunkResult
 from .Generation.CausalInput import CausalInput
 from .Generation.DenoisingInput import MaskedLMInput, SpanCorruptionInput
 from .Generation.DiffusionInput import (
@@ -39,6 +40,8 @@ from .Parsing.Query import Query, QueryMatch
 
 __all__ = [
     "CausalInput",
+    "ChunkResult",
+    "ChunkedIterator",
     "CommentLanguageVersionWarning",
     "CommentQuery",
     "CommentSanitizer",

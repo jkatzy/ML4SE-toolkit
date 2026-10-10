@@ -12,7 +12,7 @@ setup:
 	$(UV) sync --group dev
 
 setup-optional:
-	$(UV) sync --group dev --extra treesitter
+	$(UV) sync --group dev --extra treesitter --extra datasets
 
 test:
 	$(UV) run pytest -m "not optional_dependency"

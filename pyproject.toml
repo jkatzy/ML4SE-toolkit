@@ -12,29 +12,40 @@ description = "A package aimed at implementing core functionality for ML4SE to s
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
+keywords = ["machine learning", "software engineering", "code comments", "fill-in-the-middle"]
 dependencies = [
-    "regex==2026.1.15; python_full_version == '3.9.*'",
-    "regex==2026.3.32; python_full_version == '3.10.*'",
-    "regex==2026.3.32; python_full_version >= '3.11'",
+    "regex>=2026.1.15",
 ]
 classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development",
 ]
 
 [project.optional-dependencies]
 treesitter = [
-    "tree-sitter==0.21.3",
-    "tree-sitter-languages==1.10.2",
+    "tree-sitter>=0.21.3,<0.22",
+    "tree-sitter-languages>=1.10.2,<2",
+]
+datasets = [
+    "huggingface_hub>=0.30",
+    "pyarrow>=17",
 ]
 torch = [
-    "torch==2.8.0; python_full_version == '3.9.*'",
-    "torch==2.11.0; python_full_version == '3.10.*'",
-    "torch==2.11.0; python_full_version >= '3.11'",
+    "torch>=2.8.0",
 ]
 
 [project.urls]
 Homepage = "https://github.com/jkatzy/ML4SE-toolkit"
+Documentation = "https://jkatzy.github.io/ML4SE-toolkit/"
 Issues = "https://github.com/jkatzy/ML4SE-toolkit/issues"
 [dependency-groups]
 dev = [
@@ -57,6 +68,8 @@ package-dir = {"" = "src"}
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["ml4setk*"]
+# The EBNF tree is a set of repository scripts, not importable package modules.
+exclude = ["ml4setk.EBNF*"]
 
 [tool.setuptools.package-data]
 ml4setk = ["Comment_util/*.json"]

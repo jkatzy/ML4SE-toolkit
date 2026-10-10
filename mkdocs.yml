@@ -25,6 +25,8 @@ nav:
       - Cleaning policy: comment_cleaning_policy.md
   - Input formatting:
       - Model input formats: input_formatting.md
+  - Datasets:
+      - Chunked datasets: chunked_datasets.md
   - Architecture: architecture.md
   - Git workflow: git_workflow.md
 
