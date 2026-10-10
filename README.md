@@ -15,8 +15,8 @@ reproducible machine-learning examples for software engineering research.
   of a dataset split into many files, such as The Stack, one file at a time.
 - Optional integrations for Tree-sitter queries and PyTorch-style iterable
   datasets.
-- Existing EBNF and grammar-analysis tooling remains available under
-  `src/ml4setk/EBNF`.
+- Existing EBNF and grammar-analysis tooling remains available in the
+  repository under `src/ml4setk/EBNF`; it is not part of the PyPI package.
 
 ## Installation
 
