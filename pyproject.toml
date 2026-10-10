@@ -35,6 +35,10 @@ treesitter = [
     "tree-sitter>=0.21.3,<0.22",
     "tree-sitter-languages>=1.10.2,<2",
 ]
+datasets = [
+    "huggingface_hub>=0.30",
+    "pyarrow>=17",
+]
 torch = [
     "torch>=2.8.0",
 ]
