@@ -3,7 +3,7 @@ requires = ["setuptools==81.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ml4setk"
+name = "ML4SE-ToolKit"
 version = "0.1.0"
 authors = [
   { name="Jonathan Katzy", email="J.B.Katzy@TUDelft.nl" },
