@@ -3,109 +3,24 @@
 ML4SE-toolkit provides small, composable primitives for turning source code into
 reproducible machine-learning examples for software engineering research.
 
-## What is in scope
-
-- Comment-oriented parsing utilities that return a normalized
-  `QueryMatch(prefix, suffix, match)` contract.
-- Comment sanitization utilities that strip comment syntax after extraction.
-- Input formatters for fill-in-the-middle, autoregressive, masked diffusion,
-  masked LM, and span corruption models, with sentinel and mask tokens picked
-  from a model name or Hugging Face object.
-- A restartable, multi-worker iterator that applies a function to every row
-  of a dataset split into many files, such as The Stack, one file at a time.
-- Optional integrations for Tree-sitter queries and PyTorch-style iterable
-  datasets.
-- Existing EBNF and grammar-analysis tooling remains available in the
-  repository under `src/ml4setk/EBNF`; it is not part of the PyPI package.
+Documentation: https://jkatzy.github.io/ML4SE-toolkit/
 
 ## Installation
-
-Install the published package from PyPI:
 
 ```bash
 pip install ML4SE-ToolKit
 ```
 
 The import name is `ml4setk`, for example `from ml4setk import CommentQuery`.
+Optional extras:
 
-Install optional extras only when you need them:
-
-```bash
-pip install "ML4SE-ToolKit[treesitter]"
-pip install "ML4SE-ToolKit[torch]"
-pip install "ML4SE-ToolKit[datasets]"
-```
-
-## Development setup
-
-Use `uv` so package state stays locked to the repository:
+- `treesitter`: Tree-sitter queries through `ml4setk.Parsing.Code.TreeSitterQuery`
+- `datasets`: Parquet and Hugging Face Hub chunks for `ml4setk.Datasets.ChunkedIterator`
+- `torch`: PyTorch dataset interoperability
 
 ```bash
-uv venv .venv
-uv sync --group dev
+pip install "ML4SE-ToolKit[treesitter,datasets,torch]"
 ```
-
-Install optional extras only when you need them:
-
-```bash
-uv sync --group dev --extra treesitter
-uv sync --group dev --extra torch
-```
-
-## Build
-
-Build source and wheel distributions locally with:
-
-```bash
-uv build
-```
-
-Or via the repo command:
-
-```bash
-make build
-```
-
-Artifacts are written to `dist/`.
-
-To validate the built distributions before uploading:
-
-```bash
-uvx twine check dist/*
-```
-
-## Publishing
-
-The repository includes a dedicated GitHub Actions workflow at
-`.github/workflows/publish.yml`.
-
-- `workflow_dispatch`: build, validate, and publish the current branch to
-  TestPyPI
-- `push` of a tag matching `v*`: build, validate, and publish to PyPI
-
-The workflow uses PyPI Trusted Publishing rather than a long-lived API token.
-Before the first automated release, configure trusted publishers for this
-project in both PyPI and TestPyPI with:
-
-- owner: `jkatzy`
-- repository: `ML4SE-toolkit`
-- workflow name: `publish.yml`
-- environment: `pypi` for PyPI, `testpypi` for TestPyPI
-
-Release flow:
-
-```bash
-git switch main
-python scripts/check_release_version.py
-uv run pytest -m "not optional_dependency"
-uv run pytest -m "optional_dependency" --no-cov
-uv run ruff check src tests examples
-git tag v0.1.0
-git push origin main v0.1.0
-```
-
-The publish workflow checks that the package version in `pyproject.toml`, the
-package `__version__`, and the release tag all agree before uploading.
 
 ## Minimal example
 
@@ -125,59 +40,67 @@ print(model_input)
 print(ground_truth)
 ```
 
-Pass `FIMInput.from_model("bigcode/starcoder2-3b")` instead of the token
-strings to use a model's own sentinel tokens. The
-[input formatting guide](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/input_formatting.md)
-covers every input format and the models each one supports.
+Queries return `QueryMatch(prefix, suffix, match)` values, and input
+formatters turn a match into `(model_input, ground_truth)`. Use
+`FIMInput.from_model("bigcode/starcoder2-3b")` to pick a model's own sentinel
+tokens instead of passing them by hand.
 
-The parsing contract is stable across the core query implementations:
+## Guides
 
-- `prefix`: text before the match
-- `suffix`: text after the match
-- `match`: the extracted region itself
+- [Comment extraction and cleaning](https://jkatzy.github.io/ML4SE-toolkit/comment_extractor/):
+  find comments in source files across 776 language keys, strip their syntax,
+  and feed them into model inputs. Start here for the quick start and API
+  reference.
+- [Comment cleaning policy](https://jkatzy.github.io/ML4SE-toolkit/comment_cleaning_policy/):
+  what cleaning removes and what it keeps.
+- [Input formatting](https://jkatzy.github.io/ML4SE-toolkit/input_formatting/):
+  fill-in-the-middle, autoregressive, masked diffusion, masked LM, and span
+  corruption inputs, with sentinel and mask tokens picked from a model name or
+  Hugging Face object.
+- [Chunked datasets](https://jkatzy.github.io/ML4SE-toolkit/chunked_datasets/):
+  run a function over every row of a dataset split into many files, such as
+  The Stack, with restartable state on disk and any number of workers.
+- [Architecture](https://jkatzy.github.io/ML4SE-toolkit/architecture/): the
+  `QueryMatch` contract and extension points.
+- [Git workflow](https://jkatzy.github.io/ML4SE-toolkit/git_workflow/): how
+  `dev` and `main` relate, and how releases work.
 
-For the comment extraction and cleaning guide, with a runnable quick start, an
-explanation of how extraction and cleaning work, and the API reference,
-see [docs/comment_extractor.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/comment_extractor.md).
+## Development
 
-At the moment the comment extractor covers `776` registry keys, including
-template and document syntaxes such as `astro`, `coldfusion`, `jsp`, `marko`,
-`plantuml`, `slim`, `smarty`, and `restructuredtext`, plus nested-comment
-languages such as `coldfusion`, `dafny`, `frege`, `grammatical_framework`,
-`rexx`, `tla`, and `v`.
+Use `uv` so package state stays locked to the repository:
 
-Format-aware coverage includes GNU `checksums`, `ecere_projects`, `figlet_font`,
-`microsoft_visual_studio_solution`, AMPL `nl`, `omgrofl`, and `pogoscript`.
-These entries use narrowly scoped structural or syntax-aware guards where
-marker-only scanning would misclassify strings, counted records, or binary data.
+```bash
+make setup            # uv sync --group dev
+make setup-optional   # adds the treesitter and datasets extras
+```
 
-## Development commands
+- `make test`: unit and integration suite with coverage
+- `make test-optional`: optional-dependency tests without coverage gating
+- `make lint`: `ruff` on maintained source, tests, and examples
+- `make smoke`: minimal end-to-end smoke tests
+- `make comment-fuzz`: deterministic Unicode-heavy parser and sanitizer
+  invariants across every registered language (`make comment-cleaner-fuzz`
+  runs only the sanitizer campaign)
+- `make comment-cleaner-fixtures`: regenerate the comment cleaning oracles
+- `make docs`: build the documentation site into `site/` and fail on broken
+  links; `make docs-serve` previews it at http://127.0.0.1:8000
+- `make build`: source and wheel distributions in `dist/`
+- `make check-main-branch`: fail if development-only files are tracked
+- `make check-release-version`: fail if package version metadata disagrees
 
-- `make setup`: create and sync the local development environment with `uv`
-- `make test`: run the default unit and integration suite with coverage
-- `make test-optional`: run optional-dependency tests without coverage gating
-- `make comment-fuzz`: run deterministic Unicode-heavy parser invariants across
-  every registered language
-- `make lint`: run `ruff` on maintained source, tests, and examples; the legacy
-  EBNF utility tree keeps its existing separate style baseline
-- `make smoke`: run the minimal end-to-end smoke tests
-- `make build`: create source and wheel distributions in `dist/`
-- `make docs`: build the MkDocs site into `site/` and fail on broken links;
-  `make docs-serve` previews it at http://127.0.0.1:8000. The `Docs` workflow
-  publishes the site from `main` to GitHub Pages.
-- `make check-main-branch`: fail if development-only artifacts are still
-  tracked and the branch is not ready to merge to `main`
-- `make check-release-version`: fail if package version metadata is inconsistent
+## Branches and releases
 
-## Git workflow
+`main` is the release branch and `dev` is the integration branch. Topic
+branches start from `dev` and target `dev`; release pull requests promote
+tested code from `dev` to `main`. Every merge to `main` republishes the
+documentation site. See the
+[git workflow](https://jkatzy.github.io/ML4SE-toolkit/git_workflow/) for the
+release checks and the main-branch policy.
 
-`main` is the release branch and `dev` is the single long-lived integration
-branch. Agent instructions, comment-syntax research, adversarial testing
-guides, and LLM-judge operations live on `dev`; release code, deterministic
-regressions, and stable user documentation live on `main`. Promote tested code
-from `dev` to `main`, then remove any short-lived topic branch used for review.
-The permanent rules and the enforced main-branch policy are documented in
-[docs/git_workflow.md](https://github.com/jkatzy/ML4SE-toolkit/blob/main/docs/git_workflow.md).
+The `Publish` workflow (`.github/workflows/publish.yml`) uses PyPI Trusted
+Publishing. A tag matching `v*` on `main` builds, validates, and publishes to
+PyPI; a manual run publishes the current branch to TestPyPI. The workflow
+checks that the tag, `pyproject.toml`, and the package `__version__` agree.
 
 ## Repository map
 
@@ -185,15 +108,8 @@ The permanent rules and the enforced main-branch policy are documented in
   sanitizer, and optional Tree-sitter support
 - `src/ml4setk/Generation`: input formatters and the model token registries
 - `src/ml4setk/Datasets`: the chunked, restartable dataset iterator
-- `src/ml4setk/EBNF`: grammar-processing and railroad-diagram utilities
+- `src/ml4setk/Comment_util`: the legacy tuple-based comment API
+- `src/ml4setk/EBNF`: grammar-processing and railroad-diagram utilities, kept
+  in the repository but not shipped in the PyPI package
 - `tests`: regression, unit, integration, and smoke coverage
-- `docs/architecture.md`: concise architecture and extension notes
-- `docs/comment_extractor.md`: how comment extraction and cleaning work and how
-  to use them
-- `docs/comment_cleaning_policy.md`: what cleaning removes and what it keeps
-- `docs/input_formatting.md`: every input format and its supported models
-- `docs/chunked_datasets.md`: iterating over large file-chunked datasets
-- `docs/git_workflow.md`: branch policy, development-only artifacts, and the
-  main-branch guard
-- [`dev` comment workflow](https://github.com/jkatzy/ML4SE-toolkit/tree/dev/docs/comment_testing):
-  syntax research, adversarial tests, fuzzing, LLM judges, and regression intake
+- `docs`: the source of the documentation site
