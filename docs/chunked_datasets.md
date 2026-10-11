@@ -11,7 +11,7 @@ number of workers, on one machine or several sharing a filesystem, can process
 the same run at the same time or one after another.
 
 ```bash
-pip install "ml4setk[datasets]"   # pyarrow for Parquet, huggingface_hub for the Hub
+pip install "ML4SE-ToolKit[datasets]"   # pyarrow for Parquet, huggingface_hub for the Hub
 ```
 
 Local JSON Lines input and output need no extra.

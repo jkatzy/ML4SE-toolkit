@@ -4,7 +4,7 @@ ML4SE-toolkit provides small, composable primitives for turning source code
 into reproducible machine-learning examples for software engineering research.
 
 ```bash
-pip install ml4setk
+pip install ML4SE-ToolKit
 ```
 
 ## Guides
