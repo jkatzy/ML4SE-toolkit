@@ -18,7 +18,7 @@ directly, so extracted comments can become model inputs without conversion
 
 ## Quick start
 
-Install the package (`pip install ml4setk`), then run:
+Install the package (`pip install ML4SE-ToolKit`), then run:
 
 ```python
 from ml4setk import CommentQuery, CommentSanitizer
