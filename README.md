@@ -23,15 +23,17 @@ reproducible machine-learning examples for software engineering research.
 Install the published package from PyPI:
 
 ```bash
-pip install ml4setk
+pip install ML4SE-ToolKit
 ```
+
+The import name is `ml4setk`, for example `from ml4setk import CommentQuery`.
 
 Install optional extras only when you need them:
 
 ```bash
-pip install "ml4setk[treesitter]"
-pip install "ml4setk[torch]"
-pip install "ml4setk[datasets]"
+pip install "ML4SE-ToolKit[treesitter]"
+pip install "ML4SE-ToolKit[torch]"
+pip install "ML4SE-ToolKit[datasets]"
 ```
 
 ## Development setup

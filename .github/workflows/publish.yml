@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: testpypi
-      url: https://test.pypi.org/p/ml4setk
+      url: https://test.pypi.org/p/ML4SE-ToolKit
     permissions:
       contents: read
       id-token: write
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/ml4setk
+      url: https://pypi.org/p/ML4SE-ToolKit
     permissions:
       contents: read
       id-token: write
