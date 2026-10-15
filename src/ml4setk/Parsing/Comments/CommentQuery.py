@@ -1158,9 +1158,34 @@ def _win32_message_block_spans(text):
     return sorted(spans)
 
 
+# Makefile ``#`` comments continued by a backslash before the line break.
+_MAKEFILE_COMMENT_PATTERN = r"#(?:[^\\\r\n]|\\(?:\r?\n|[^\r\n]|\Z))*"
+_MAKEFILE_COMMENT = re.compile(_MAKEFILE_COMMENT_PATTERN)
+
+
+def _makefile_comment_spans(text):
+    """Return the match of ``_MAKEFILE_COMMENT_PATTERN`` at every ``#``.
+
+    The body is a run of one-character tokens and backslash escapes, and a
+    ``#`` is a whole token or the end of an escape, so the body after a ``#``
+    inside an earlier match continues on the same token boundaries and ends
+    where that match ends. Only ``#`` outside earlier matches needs a scan.
+    """
+
+    spans = []
+    end = -1
+    for marker in re.finditer("#", text):
+        start = marker.start()
+        if start >= end:
+            end = _MAKEFILE_COMMENT.match(text, start).end()
+        spans.append((start, end))
+    return spans
+
+
 _CUSTOM_SPAN_FINDERS = {
     _MATLAB_BLOCK_PATTERN: _matlab_block_spans,
     _WIN32_MESSAGE_BLOCK_PATTERN: _win32_message_block_spans,
+    _MAKEFILE_COMMENT_PATTERN: _makefile_comment_spans,
 }
 
 

@@ -1402,6 +1402,9 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("common_lisp", "`\\|#", 3000, id="common-lisp-unclosed-escaped-bars"),
         pytest.param("swift", '#"a', 12000, id="swift-unclosed-raw-strings"),
         pytest.param("bluespec_bh", "-->a", 8000, id="bluespec-arrow-operators"),
+        pytest.param("kdl", "/-{", 3000, id="kdl-slashdash-unclosed-children"),
+        pytest.param("kdl", "/-(", 3000, id="kdl-slashdash-unclosed-type-annotations"),
+        pytest.param("makefile", "`\\#", 4000, id="makefile-hashes-in-one-continued-comment"),
     ],
 )
 def test_adversarial_input_scans_within_budget(language, unit, repeat):

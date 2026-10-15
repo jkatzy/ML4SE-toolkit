@@ -133,10 +133,29 @@ def _kdl_hash_run_end(text: str, start: int) -> int:
     return end
 
 
-def _kdl_balanced_end(text: str, start: int, opener: str, closer: str) -> int | None:
+def _kdl_balanced_end(
+    text: str, start: int, opener: str, closer: str, memo: dict | None = None
+) -> int | None:
+    """Return the end of the bracket group opened at ``start``, or ``None``.
+
+    Which offsets the scan visits does not depend on its depth. So when a
+    scan fails after reaching an offset at depth ``d`` and later dipping at
+    most ``d - t`` below it, every scan reaching that offset at depth ``t`` or
+    more fails too. ``memo`` keeps those thresholds per opener, so unclosed
+    groups opened over and over are not each scanned to the end.
+    """
+
+    dead = {} if memo is None else memo.setdefault(opener, {})
     depth = 1
     index = start + 1
+    trail = []
+    lowest = None
     while index < len(text):
+        threshold = dead.get(index)
+        if threshold is not None and depth >= threshold:
+            lowest = depth + 1 - threshold
+            break
+        trail.append((index, depth))
         string_end = _kdl_string_end(text, index)
         if string_end is not None:
             index = string_end
@@ -150,7 +169,7 @@ def _kdl_balanced_end(text: str, start: int, opener: str, closer: str) -> int | 
         if text.startswith("/*", index):
             block_end = _nested_block_end(text, index)
             if block_end is None:
-                return None
+                break
             index = block_end
             continue
         if text[index] == opener:
@@ -160,6 +179,10 @@ def _kdl_balanced_end(text: str, start: int, opener: str, closer: str) -> int | 
             if depth == 0:
                 return index + 1
         index += 1
+    lowest = depth if lowest is None else lowest
+    for offset, reached in reversed(trail):
+        lowest = min(lowest, reached)
+        dead[offset] = 1 + reached - lowest
     return None
 
 
@@ -191,10 +214,10 @@ def _kdl_node_position(text: str, slashdash_start: int) -> bool:
     return index < 0 or text[index] in "\r\n\v\f\u0085\u2028\u2029;{}"
 
 
-def _kdl_value_end(text: str, start: int) -> int | None:
+def _kdl_value_end(text: str, start: int, memo: dict) -> int | None:
     index = start
     if text[index] == "(":
-        typed_end = _kdl_balanced_end(text, index, "(", ")")
+        typed_end = _kdl_balanced_end(text, index, "(", ")", memo)
         if typed_end is None:
             return None
         index = typed_end
@@ -212,7 +235,7 @@ def _kdl_value_end(text: str, start: int) -> int | None:
             index = _kdl_hash_run_end(text, index)
             continue
         if text[index] == "(":
-            group_end = _kdl_balanced_end(text, index, "(", ")")
+            group_end = _kdl_balanced_end(text, index, "(", ")", memo)
             if group_end is None:
                 return None
             index = group_end
@@ -225,7 +248,7 @@ def _kdl_value_end(text: str, start: int) -> int | None:
     return index if index > start else None
 
 
-def _kdl_node_end(text: str, start: int) -> int | None:
+def _kdl_node_end(text: str, start: int, memo: dict) -> int | None:
     index = start
     last_content = start
     while index < len(text):
@@ -247,14 +270,14 @@ def _kdl_node_end(text: str, start: int) -> int | None:
             last_content = index
             continue
         if text.startswith("/-", index):
-            nested_end = _kdl_slashdash_end(text, index)
+            nested_end = _kdl_slashdash_end(text, index, memo)
             if nested_end is None:
                 return None
             index = nested_end
             last_content = index
             continue
         if text[index] == "{":
-            child_end = _kdl_balanced_end(text, index, "{", "}")
+            child_end = _kdl_balanced_end(text, index, "{", "}", memo)
             if child_end is None:
                 return None
             index = child_end
@@ -268,7 +291,7 @@ def _kdl_node_end(text: str, start: int) -> int | None:
     return last_content if last_content > start else None
 
 
-def _kdl_slashdash_end(text: str, start: int) -> int | None:
+def _kdl_slashdash_end(text: str, start: int, memo: dict) -> int | None:
     target_start = _skip_kdl_space(text, start + 2)
     if target_start is None or target_start >= len(text):
         return None
@@ -280,16 +303,17 @@ def _kdl_slashdash_end(text: str, start: int) -> int | None:
     ):
         return None
     if text[target_start] == "{":
-        return _kdl_balanced_end(text, target_start, "{", "}")
+        return _kdl_balanced_end(text, target_start, "{", "}", memo)
     if _kdl_node_position(text, start):
-        return _kdl_node_end(text, target_start)
-    return _kdl_value_end(text, target_start)
+        return _kdl_node_end(text, target_start, memo)
+    return _kdl_value_end(text, target_start, memo)
 
 
 def kdl_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return KDL v1/v2 line, nested-block, and slashdash comment ranges."""
 
     ranges: list[tuple[int, int]] = []
+    memo: dict = {}
     index = 0
     while index < len(text):
         string_end = _kdl_string_end(text, index)
@@ -312,7 +336,7 @@ def kdl_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
             index = end
             continue
         if text.startswith("/-", index):
-            end = _kdl_slashdash_end(text, index)
+            end = _kdl_slashdash_end(text, index, memo)
             if end is not None:
                 ranges.append((index, end))
                 index = end
