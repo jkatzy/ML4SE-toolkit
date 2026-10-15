@@ -1384,6 +1384,12 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("mdx", "//`", 6000, id="mdx-backticks-and-slashes"),
         pytest.param("win32_message_file", ";/*\n", 1500, id="win32-unclosed-message-blocks"),
         pytest.param("html", "<!--a", 8000, id="html-unclosed-comment-openers"),
+        pytest.param("imba", "/[", 3000, id="imba-regex-literals-with-unclosed-classes"),
+        pytest.param("glimmer_js", "(/[", 3000, id="glimmer-regex-literals-with-unclosed-classes"),
+        pytest.param("tsx", "(/[", 3000, id="tsx-regex-literals-with-unclosed-classes"),
+        pytest.param("brightscript", "'REM", 12000, id="brightscript-rem-inside-quote-comment"),
+        pytest.param("dogescript", "quiet\n", 3000, id="dogescript-unclosed-quiet-blocks"),
+        pytest.param("regular_expression", "(?#", 16000, id="regex-unclosed-inline-comments"),
     ],
 )
 def test_adversarial_input_scans_within_budget(language, unit, repeat):
@@ -1392,6 +1398,38 @@ def test_adversarial_input_scans_within_budget(language, unit, repeat):
 
     started = time.perf_counter()
     query.parse_ranges(source)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+@pytest.mark.parametrize(
+    ("language", "unit", "count", "expected_groups"),
+    [
+        pytest.param(
+            "java", "/* " + "a" * 24 + " */ ", 20000, 20000, id="java-comments-sharing-one-line"
+        ),
+        pytest.param("apl", "\u235d a\r", 8000, 1, id="apl-cr-separated-comment-block"),
+    ],
+)
+def test_line_comment_grouping_is_linear(language, unit, count, expected_groups):
+    source = unit * count
+    width = len(unit)
+    ranges = [(width * index, width * index + width - 1) for index in range(count)]
+
+    started = time.perf_counter()
+    grouped = CommentQuery._group_line_comment_block_ranges(source, ranges, language)
+    elapsed = time.perf_counter() - started
+
+    assert len(grouped) == expected_groups
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+def test_gams_star_framed_line_check_is_linear():
+    comment = "*" + "a " * 12000 + "\n*"
+
+    started = time.perf_counter()
+    sanitize_comment("gams", comment)
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
@@ -1477,6 +1515,11 @@ _MATCHER_TOKENS = (
     "{",
     "}",
     "rem",
+    "REM",
+    ".",
+    "quiet",
+    "loud",
+    "(?#",
 )
 
 

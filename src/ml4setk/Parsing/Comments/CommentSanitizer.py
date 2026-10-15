@@ -4096,8 +4096,13 @@ def _sanitize_batch_two_exact_layout(language: str, raw_comment: str) -> str | N
 
     if language == "gams":
         lines = raw_comment.split("\n")
+        # Each line is ``*BODY*`` with no inner ``*`` and an ASCII letter or
+        # digit in BODY (checked by hand: the regex backtracks quadratically).
         if len(lines) >= 2 and all(
-            re.fullmatch(r"\*(?P<body>[^*\n]*[A-Za-z0-9][^*\n]*)\*", line) is not None
+            len(line) >= 2
+            and line[0] == line[-1] == "*"
+            and "*" not in line[1:-1]
+            and re.search(r"[A-Za-z0-9]", line[1:-1]) is not None
             for line in lines
         ):
             return _normalize_sanitized_body("\n".join(line[1:-1].strip() for line in lines))

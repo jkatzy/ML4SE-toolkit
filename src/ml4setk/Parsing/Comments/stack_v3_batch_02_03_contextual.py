@@ -413,8 +413,15 @@ def edge_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
-def _regex_literal_end(text: str, start: int) -> int | None:
-    """Return a conservative JavaScript/Imba regex literal end."""
+def _regex_literal_end(
+    text: str, start: int, failed: dict[bool, bytearray] | None = None
+) -> int | None:
+    """Return a conservative JavaScript/Imba regex literal end.
+
+    ``failed`` maps ``in_class`` to the offsets from which a scan in that state
+    is known to reach a line end unclosed. Callers scanning one text pass the
+    same dict so unclosed literals are not rescanned from every slash.
+    """
 
     previous = start - 1
     while previous >= 0 and text[previous].isspace():
@@ -424,13 +431,19 @@ def _regex_literal_end(text: str, start: int) -> int | None:
 
     index = start + 1
     in_class = False
+    visited: list[tuple[int, bool]] = []
     while index < len(text):
+        if failed is not None:
+            known = failed.get(in_class)
+            if known is not None and known[index]:
+                break
+            visited.append((index, in_class))
         char = text[index]
         if char == "\\":
             index = min(index + 2, len(text))
             continue
         if char in _ECMASCRIPT_LINE_ENDINGS:
-            return None
+            break
         if char == "[":
             in_class = True
         elif char == "]":
@@ -441,6 +454,12 @@ def _regex_literal_end(text: str, start: int) -> int | None:
                 index += 1
             return index
         index += 1
+    if failed is not None:
+        for offset, state in visited:
+            known = failed.get(state)
+            if known is None:
+                known = failed[state] = bytearray(len(text) + 1)
+            known[offset] = 1
     return None
 
 
@@ -510,6 +529,7 @@ def glimmer_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return JS/TS comments outside content tags and Glimmer comments inside."""
 
     ranges: list[tuple[int, int]] = []
+    failed_regex_scans: dict[bool, bytearray] = {}
     index = 0
     if text.startswith("#!"):
         index = _line_end(text, 0, _ECMASCRIPT_LINE_ENDINGS)
@@ -531,7 +551,7 @@ def glimmer_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
             index = end
             continue
         if text[index] == "/":
-            regex_end = _regex_literal_end(text, index)
+            regex_end = _regex_literal_end(text, index, failed_regex_scans)
             if regex_end is not None:
                 index = regex_end
                 continue
@@ -578,6 +598,7 @@ def imba2_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
 
 def _imba_comment_ranges(text: str, *, slash_comments: bool) -> tuple[tuple[int, int], ...]:
     ranges: list[tuple[int, int]] = []
+    failed_regex_scans: dict[bool, bytearray] = {}
     index = 0
     while index < len(text):
         triple = text[index : index + 3]
@@ -604,7 +625,7 @@ def _imba_comment_ranges(text: str, *, slash_comments: bool) -> tuple[tuple[int,
             index = end
             continue
         if text[index] == "/":
-            regex_end = _regex_literal_end(text, index)
+            regex_end = _regex_literal_end(text, index, failed_regex_scans)
             if regex_end is not None:
                 index = regex_end
                 continue

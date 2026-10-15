@@ -348,11 +348,64 @@ _CSHARP_LITERALS = (r'"""[\s\S]*?"""', r'\$?@\$?"(?:""|[^"])*"')
 _TRANSPOSE = r"(?<=[\w)\]}.'])'"
 # ECMA-262 12.9.5: a / after an operator, punctuator, or keyword (not after an
 # operand) starts a RegularExpressionLiteral.
-_REGEX_LITERAL = (
+_REGEX_LITERAL_PATTERN = (
     r"(?<=(?:(?m:^)|[=(,:\[!&|?{};+\-*%<>~^]|\b(?:return|typeof|case|do|else|in|instanceof"
     r"|new|void|delete|throw|yield|await))[ \t]*)"
     r"/(?![/*])(?:\\.|\[(?:\\.|[^\]\\\r\n])*\]|[^/\\\r\n\[])+/[A-Za-z]*"
 )
+
+
+class EcmaRegexLiteral:
+    r"""``_REGEX_LITERAL_PATTERN`` with its body scanned by hand.
+
+    The body alternatives (``\\.``, a ``[...]`` class, any other character)
+    start with different characters, so the regex never backtracks into them
+    and a hand scan gives the same span. Offsets from which a body scan, in or
+    out of a class, is known to hit a line break unclosed are remembered, so
+    slashes in front of an unclosed class do not each rescan the line.
+    """
+
+    _opener = re.compile(_REGEX_LITERAL_PATTERN.split("/(?![/*])")[0] + "/(?![/*])")
+    _flags = re.compile(r"[A-Za-z]*")
+
+    def scan(self, text, start, memo):
+        opened = self._opener.match(text, start)
+        if opened is None:
+            return None
+        failed = memo.setdefault(id(self), {})
+        index = opened.end()
+        in_class = False
+        visited = []
+        while index < len(text):
+            known = failed.get(in_class)
+            if known is not None and known[index]:
+                break
+            visited.append((index, in_class))
+            char = text[index]
+            if char == "\\":
+                if index + 1 >= len(text) or text[index + 1] == "\n":
+                    break
+                index += 2
+            elif char in "\r\n":
+                break
+            elif in_class:
+                in_class = char != "]"
+                index += 1
+            elif char == "/":
+                return start, self._flags.match(text, index + 1).end()
+            else:
+                in_class = char == "["
+                index += 1
+        for offset, state in visited:
+            known = failed.get(state)
+            if known is None:
+                known = failed[state] = bytearray(len(text) + 1)
+            known[offset] = 1
+        return None
+
+
+_REGEX_LITERAL = EcmaRegexLiteral()
+
 
 _TRIPLE_DOUBLE = '"' * 3
 _TRIPLE_SINGLE = "'" * 3
