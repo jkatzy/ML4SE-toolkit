@@ -6,7 +6,7 @@ returning the normalized ``QueryMatch(prefix, suffix, match)`` contract.
 """
 
 import warnings
-from bisect import bisect_right
+from bisect import bisect_left, bisect_right
 from collections.abc import Iterable, Mapping
 from functools import lru_cache
 
@@ -757,36 +757,55 @@ def _scan_quoted_at(text, start):
 def _nested_comment_end(text, start, open_delim, close_delim, memo=None):
     """Return the end of the depth-balanced comment opened at ``start``.
 
-    ``memo`` remembers the offset after which no closer exists, so many
-    unclosed openers do not each rescan to the end of the text.
+    ``memo`` remembers the offset after which no closer exists, and the end
+    of every opener met while scanning, so overlapping openers do not each
+    rescan the text.
     """
 
     memo_key = ("nested-unclosed", open_delim, close_delim)
     if memo is not None and start >= memo.get(memo_key, len(text) + 1):
         return None
-    depth = 0
+    ends = None if memo is None else memo.setdefault(("nested-ends", open_delim, close_delim), {})
+    if ends is not None and start in ends:
+        return ends[start]
+    openers = []
     search_from = start
+    open_index = close_index = -2
     while True:
-        open_index = text.find(open_delim, search_from)
-        close_index = text.find(close_delim, search_from)
+        if open_index != -1 and open_index < search_from:
+            open_index = text.find(open_delim, search_from)
+        if close_index < search_from:
+            close_index = text.find(close_delim, search_from)
         if close_index == -1:
             # No closer exists at or after ``search_from``, so no opener
             # starting there can close either.
             if memo is not None:
                 memo[memo_key] = min(memo.get(memo_key, len(text) + 1), search_from)
+                ends.update(dict.fromkeys(openers))
             return None
         if open_index != -1 and open_index <= close_index:
-            depth += 1
+            openers.append(open_index)
             search_from = open_index + len(open_delim)
             continue
-        depth -= 1
         search_from = close_index + len(close_delim)
-        if depth == 0:
+        opened = openers.pop()
+        if ends is not None:
+            ends[opened] = search_from
+        if not openers:
             return search_from
 
 
 _LAZY_BODIES = (r"[\S\s]*?", r"[\s\S]*?")
+_TEMPERED_BLOCK = re.compile(
+    r"(?P<open>.+?)\(\?:\(\?!(?P<close>.+)\)\[(?:\\S\\s|\\s\\S)\]\)\*(?P=close)"
+)
 _UNESCAPED_BACKREFERENCE = re.compile(r"(?<!\\)\\([1-9])")
+# ``OPEN(?:QUICK|[\S\s]*?CLOSE)`` with a fixed-width literal opener and no
+# groups, classes, or alternation inside QUICK and CLOSE (HTML's ``<!--``).
+_QUICK_OR_LAZY = re.compile(
+    r"(?P<open>(?:\\.|[^\\()|\[\]*+?{}])+)\(\?:(?P<quick>(?:\\.|[^\\()|\[\]])+)"
+    r"\|\[(?:\\S\\s|\\s\\S)\]\*\?(?P<close>(?:\\.|[^\\()|\[\]])+)\)"
+)
 
 
 def _split_lazy_block_pattern(pattern_text):
@@ -795,9 +814,17 @@ def _split_lazy_block_pattern(pattern_text):
     The split is used only when the lazy body appears once at the top level,
     outside groups and character classes, with no top-level alternation, so
     searching for the opener and then the first closer is equivalent to the
-    original regex.
+    original regex. A tempered body ``OPEN(?:(?!CLOSE)[\\S\\s])*CLOSE`` stops at
+    the first ``CLOSE`` just like a lazy one, so it splits the same way.
     """
 
+    tempered = _TEMPERED_BLOCK.fullmatch(pattern_text)
+    if tempered is not None:
+        opener, closer = tempered.group("open"), tempered.group("close")
+        open_scan, close_scan = _scan_top_level(opener), _scan_top_level(closer)
+        if open_scan[:2] == close_scan[:2] == (True, False) and not opener.startswith("(?"):
+            return opener, closer
+        return None
     depth = 0
     in_class = False
     index = 0
@@ -832,9 +859,264 @@ def _split_lazy_block_pattern(pattern_text):
     if split_at is None or depth != 0:
         return None
     opener, closer = pattern_text[: split_at[0]], pattern_text[split_at[1] :]
-    if not opener or not closer or opener.startswith("(?") and not opener.startswith("(?<"):
+    if not opener or not closer:
         return None
+    if opener.startswith("(?") and not opener.startswith("(?<"):
+        # Leading global flags apply to the whole regex, so the closer keeps them.
+        flags = _GLOBAL_INLINE_FLAGS.match(opener)
+        if flags is None or set(flags.group(1)) & set("xV"):
+            return None
+        closer = flags.group(0) + closer
     return opener, closer
+
+
+# DOTALL or verbose inline flags change what a tail means, so skip those.
+_DOTALL_OR_VERBOSE_FLAGS = re.compile(r"\(\?[a-zA-Z]*[sxV]")
+_GLOBAL_INLINE_FLAGS = re.compile(r"\(\?([a-zA-Z]+)\)")
+_LEADING_INLINE_FLAGS = re.compile(r"(?:\(\?[a-zA-Z]+\))*")
+# A trailing ``(?:LITERAL)?`` taken when the tail stops right before it.
+_OPTIONAL_LITERAL_SUFFIX = re.compile(r"\(\?:(?P<literal>(?:\\[^\w]|[^\\()\[\]|*+?{}.^$])+)\)\?$")
+# ``(?:SPLICE|[^\r\n])`` where SPLICE is ``PREFIX(?:\r\n|\r|\n)``, as in C.
+_SPLICED_LINE_TAIL = re.compile(r"\(\?:(?P<prefix>.+)\(\?:\\r\\n\|\\r\|\\n\)\|\[\^\\r\\n\]\)")
+
+
+def _scan_top_level(pattern_text):
+    """Return ``(balanced, has_top_level_alternation, last_top_level_atom)``.
+
+    The last atom is the ``(start, end)`` span of the final top-level group or
+    character class, or ``None``.
+    """
+
+    depth = 0
+    in_class = False
+    alternation = False
+    class_start = group_start = last_atom = None
+    index = 0
+    while index < len(pattern_text):
+        char = pattern_text[index]
+        if char == "\\":
+            index += 2
+            continue
+        if in_class:
+            body_start = class_start + (2 if pattern_text.startswith("[^", class_start) else 1)
+            if char == "]" and index > body_start:
+                in_class = False
+                if depth == 0:
+                    last_atom = (class_start, index + 1)
+        elif char == "[":
+            in_class = True
+            class_start = index
+        elif char == "(":
+            if depth == 0:
+                group_start = index
+            depth += 1
+        elif char == ")":
+            depth -= 1
+            if depth < 0:
+                return False, alternation, None
+            if depth == 0:
+                last_atom = (group_start, index + 1)
+        elif char == "|" and depth == 0:
+            alternation = True
+        index += 1
+    balanced = depth == 0 and not in_class and index == len(pattern_text)
+    return balanced, alternation, last_atom
+
+
+def _split_line_tail_pattern(pattern_text):
+    r"""Split ``HEAD[^\r\n]*`` into its head and a regex for the tail's stops.
+
+    A trailing rest-of-line tail always matches, so the regex match is the
+    leftmost head match extended to the first offset the tail cannot take.
+    Computing that end from a stop index avoids rescanning a long line once
+    per candidate opener on it. Handled tails are ``.*``, ``[^...]*``,
+    ``(?:(?!LOOK)[^...])*``, ``(?:[^\r\n]|\r(?!\n))*`` and C's spliced
+    ``//`` tail, optionally followed by a ``(?:LITERAL)?`` taken when it is
+    next. Returns ``(head, stops, literal)``, or ``None`` unless the tail ends
+    the pattern at the top level with no top-level alternation.
+    """
+
+    if _DOTALL_OR_VERBOSE_FLAGS.search(pattern_text) or _GLOBAL_INLINE_FLAGS.search(
+        pattern_text, len(_LEADING_INLINE_FLAGS.match(pattern_text).group(0))
+    ):
+        # A global flag after the start would also govern the head.
+        return None
+    suffix = ""
+    optional = _OPTIONAL_LITERAL_SUFFIX.search(pattern_text)
+    if optional is not None:
+        suffix = re.sub(r"\\(.)", r"\1", optional.group("literal"))
+        if not suffix.isascii() or any(char.isalnum() for char in suffix):
+            return None
+        pattern_text = pattern_text[: optional.start()]
+    balanced, alternation, last_atom = _scan_top_level(pattern_text)
+    if not balanced or alternation or not pattern_text.endswith("*"):
+        return None
+    if pattern_text.endswith(".*") and pattern_text[-3:-2] != "\\":
+        head, stops = pattern_text[:-2], r"\n"
+    elif last_atom is not None and last_atom[1] == len(pattern_text) - 1:
+        head = pattern_text[: last_atom[0]]
+        stops = _tail_stops(pattern_text[last_atom[0] : last_atom[1]], head)
+        if stops is None:
+            return None
+    else:
+        return None
+    if not head:
+        return None
+    flags = "".join(_GLOBAL_INLINE_FLAGS.findall(pattern_text))
+    return head, re.compile(f"(?{flags})(?:{stops})" if flags else stops), suffix
+
+
+def _tail_stops(atom, head):
+    """Return a regex for the offsets where repeating ``atom`` stops, or ``None``."""
+
+    if atom.startswith("[^"):
+        return "[" + atom[2:-1] + "]"
+    if atom == r"(?:[^\r\n]|\r(?!\n))":
+        return r"\n|\r(?=\n)"
+    spliced = _SPLICED_LINE_TAIL.fullmatch(atom)
+    if spliced is not None and head in ("//", "/{2}"):
+        # A line break is part of the comment when a splice prefix right
+        # before it began a splice; ``\r\n`` splices take both characters.
+        prefix = spliced.group("prefix")
+        if _scan_top_level(prefix)[0]:
+            return rf"(?<!{prefix})\r|(?<!{prefix}\r?)\n"
+    tempered = re.fullmatch(r"\(\?:\(\?!(?P<look>.+)\)(?P<chars>\[\^.+\])\)", atom)
+    if tempered is None:
+        return None
+    look = tempered.group("look")
+    chars = tempered.group("chars")
+    # Both parts must stand alone, or the match above split the atom wrongly.
+    look_balanced, _, _ = _scan_top_level(look)
+    chars_scan = _scan_top_level(chars)
+    if not look_balanced or not chars_scan[0] or chars_scan[2] != (0, len(chars)):
+        return None
+    return f"(?={look})|[{chars[2:-1]}]"
+
+
+def _line_stop_end(text, offset, stops, memo):
+    """Return the first offset at or after ``offset`` where ``stops`` matches."""
+
+    key = ("line-stops", stops.pattern)
+    positions = memo.get(key)
+    if positions is None:
+        positions = memo[key] = [match.start() for match in stops.finditer(text)]
+    index = bisect_left(positions, offset)
+    return positions[index] if index < len(positions) else len(text)
+
+
+# Prefix atoms: one character or escape, or a group of one-character choices.
+_RECURSIVE_BRACKET = re.compile(
+    r"(?P<prefix>(?:\\.|[^\\()|*+?{}\[\]]|\(\?:(?:\\[^\w]|[^\\()|*+?{}\[\].^$])"
+    r"(?:\|(?:\\[^\w]|[^\\()|*+?{}\[\].^$]))*\))+)"
+    r"\(\?P<(?P<name>\w+)>(?P<open>\\?.)\(\?:\[\^(?P<body>(?:\\.|[^\]\\])*)\]\|\(\?P>(?P=name)\)\)\*"
+    r"(?P<close>\\?.)\)"
+)
+
+
+def _recursive_bracket_parts(pattern_text):
+    r"""Split ``PREFIX(?P<n>\((?:[^()]|(?P>n))*\))`` into a prefix and brackets.
+
+    The recursive group matches exactly the depth-balanced bracket run, so
+    the match is the first prefix whose bracket balances. The prefix must
+    have one fixed width, so no other prefix match at the same start exists.
+    """
+
+    parts = _RECURSIVE_BRACKET.fullmatch(pattern_text)
+    if parts is None:
+        return None
+    open_char = parts.group("open")[-1]
+    close_char = parts.group("close")[-1]
+    body = parts.group("body").replace("\\", "")
+    if open_char == close_char or sorted(body) != sorted(open_char + close_char):
+        return None
+    return re.compile(parts.group("prefix") + "(?=" + re.escape(open_char) + ")"), (
+        open_char,
+        close_char,
+    )
+
+
+# MATLAB nested %{ ... %} blocks (registry pattern below) as a line scanner.
+_MATLAB_BLOCK_PATTERN = (
+    r"(?m)(?<=^[ \t]*)(?P<b>%\{[ \t]*\r?$"
+    r"(?:\r?\n(?:[ \t]*(?&b)[ \t]*\r?$|(?![ \t]*%[{}][ \t]*\r?$)[^\r\n]*))*"
+    r"\r?\n[ \t]*%\})(?=[ \t]*\r?$)"
+)
+_MATLAB_MARKER_LINE = re.compile(r"[ \t]*%([{}])[ \t]*")
+
+
+def _matlab_block_spans(text):
+    """Return every match of ``_MATLAB_BLOCK_PATTERN`` in one pass over lines.
+
+    A block matches when its ``%{`` line pairs with a ``%}`` line by depth.
+    A line holding a CR other than before its LF cannot be consumed by the
+    regex, so it closes nothing and voids every block open across it.
+    """
+
+    spans = []
+    open_starts = []
+    line_start = 0
+    while line_start <= len(text):
+        line_end = text.find("\n", line_start)
+        if line_end < 0:
+            line_end = len(text)
+        content_end = line_end - 1 if text.endswith("\r", line_start, line_end) else line_end
+        if "\r" in text[line_start:content_end]:
+            open_starts.clear()
+        else:
+            marker = _MATLAB_MARKER_LINE.fullmatch(text, line_start, content_end)
+            if marker is not None and marker.group(1) == "{":
+                open_starts.append(marker.start(1) - 1)
+            elif marker is not None and open_starts:
+                spans.append((open_starts.pop(), marker.end(1)))
+        line_start = line_end + 1
+    return sorted(spans)
+
+
+# Win32 message-file ``;/*`` ... ``;*/`` blocks of ``;`` lines, as a line scanner.
+_WIN32_MESSAGE_BLOCK_PATTERN = (
+    r"(?m)^[ \t]*;/\*[^\r\n]*(?:\r?\n[ \t]*;[^\r\n]*)*?\r?\n[ \t]*;\*/[^\r\n]*"
+)
+_WIN32_MESSAGE_LINE = re.compile(r"[ \t]*;(/\*|\*/)?")
+
+
+def _win32_message_block_spans(text):
+    """Return every match of ``_WIN32_MESSAGE_BLOCK_PATTERN`` in one backward pass.
+
+    A ``;/*`` line opens a block that closes at the first later ``;*/`` line
+    reached through ``;`` lines only. A line can lead to the next only through
+    its LF (optionally after one CR), so a line holding another CR, or the
+    last line, ends every block that would continue past it.
+    """
+
+    lines = []
+    line_start = 0
+    while line_start <= len(text):
+        newline = text.find("\n", line_start)
+        line_end = len(text) if newline < 0 else newline
+        content_end = line_end - 1 if text.endswith("\r", line_start, line_end) else line_end
+        stop = text.find("\r", line_start, line_end)
+        continues = newline >= 0 and "\r" not in text[line_start:content_end]
+        marker = _WIN32_MESSAGE_LINE.match(text, line_start, line_end)
+        kind = None if marker is None else marker.group(1) or ";"
+        lines.append((line_start, line_end if stop < 0 else stop, continues, kind))
+        line_start = line_end + 1
+    spans = []
+    # End of the closing line reached by continuing from the line below.
+    closes_from = None
+    for line_start, stop, continues, kind in reversed(lines):
+        if kind == "/*" and continues and closes_from is not None:
+            spans.append((line_start, closes_from))
+        if kind == "*/":
+            closes_from = stop
+        elif kind is None or not continues:
+            closes_from = None
+    return sorted(spans)
+
+
+_CUSTOM_SPAN_FINDERS = {
+    _MATLAB_BLOCK_PATTERN: _matlab_block_spans,
+    _WIN32_MESSAGE_BLOCK_PATTERN: _win32_message_block_spans,
+}
 
 
 class _CommentPatternMatcher:
@@ -843,12 +1125,25 @@ class _CommentPatternMatcher:
     def __init__(self, pattern_text):
         self.pattern = re.compile(pattern_text)
         split = _split_lazy_block_pattern(pattern_text)
+        quick_or_lazy = None if split is not None else _QUICK_OR_LAZY.fullmatch(pattern_text)
+        if quick_or_lazy is not None:
+            split = quick_or_lazy.group("open", "close")
+        # ``OPEN(?:QUICK|[\S\s]*?CLOSE)`` tries QUICK right after the opener first.
+        self.quick = None if quick_or_lazy is None else re.compile(quick_or_lazy.group("quick"))
         self.opener = None if split is None else re.compile(split[0])
         self.closer_text = None if split is None else split[1]
         self.closer_has_groups = bool(
             split is not None and _UNESCAPED_BACKREFERENCE.search(split[1])
         )
         self._closers = {}
+        line_split = None if split is not None else _split_line_tail_pattern(pattern_text)
+        self.head = None if line_split is None else re.compile(line_split[0])
+        self.line_stops = None if line_split is None else line_split[1]
+        self.line_suffix = None if line_split is None else line_split[2]
+        self.span_finder = _CUSTOM_SPAN_FINDERS.get(pattern_text)
+        bracket = _recursive_bracket_parts(pattern_text)
+        self.bracket_prefix = None if bracket is None else bracket[0]
+        self.brackets = None if bracket is None else bracket[1]
 
     def _closer_for(self, groups):
         key = tuple(groups)
@@ -864,25 +1159,63 @@ class _CommentPatternMatcher:
     def search(self, text, offset, memo):
         """Return the leftmost match span at or after ``offset``, or ``None``."""
 
+        if self.span_finder is not None:
+            key = ("spans", id(self))
+            spans = memo.get(key)
+            if spans is None:
+                spans = memo[key] = self.span_finder(text)
+            index = bisect_left(spans, (offset, -1))
+            return spans[index] if index < len(spans) else None
+        if self.bracket_prefix is not None:
+            while True:
+                match = self.bracket_prefix.search(text, offset)
+                if match is None:
+                    return None
+                end = _nested_comment_end(text, match.end(), *self.brackets, memo)
+                if end is not None:
+                    return match.start(), end
+                offset = match.start() + 1
+        if self.head is not None:
+            match = self.head.search(text, offset)
+            if match is None:
+                return None
+            end = _line_stop_end(text, match.end(), self.line_stops, memo)
+            if self.line_suffix and text.startswith(self.line_suffix, end):
+                end += len(self.line_suffix)
+            return match.start(), end
         if self.opener is None:
             match = self.pattern.search(text, offset)
             return None if match is None else match.span()
+        # Without closer groups or a quick branch, an opener with no closer
+        # after it means no later opener can match either.
+        give_up = not self.closer_has_groups and self.quick is None
         while True:
             opened = self.opener.search(text, offset)
             if opened is None:
                 return None
+            if self.quick is not None:
+                quick = self.quick.match(text, opened.end())
+                if quick is not None:
+                    return opened.start(), quick.end()
             groups = opened.groups() if self.closer_has_groups else ()
             memo_key = (id(self), groups)
             if opened.end() >= memo.get(memo_key, len(text) + 1):
-                if not self.closer_has_groups:
+                if give_up:
                     return None
                 offset = opened.start() + 1
                 continue
+            # The first closer at or after one offset is also the first after
+            # any later offset up to it, so reuse it for nearby openers.
+            closer_key = ("closer", id(self), groups)
+            cached = memo.get(closer_key)
+            if cached is not None and cached[0] <= opened.end() <= cached[1]:
+                return opened.start(), cached[2]
             closed = self._closer_for(groups).search(text, opened.end())
             if closed is not None:
+                memo[closer_key] = (opened.end(), closed.start(), closed.end())
                 return opened.start(), closed.end()
             memo[memo_key] = min(memo.get(memo_key, len(text) + 1), opened.end())
-            if not self.closer_has_groups:
+            if give_up:
                 return None
             offset = opened.start() + 1
 
@@ -924,7 +1257,7 @@ class _PatternCursor:
                 self.exhausted = True
                 break
             start, end = _adjust_language_specific_regex_range(
-                self.language, self.text, span[0], span[1]
+                self.language, self.text, span[0], span[1], self.memo
             )
             if end > start and not _starts_with_excluded_comment_prefix(
                 self.text, start, self.excluded
@@ -1196,20 +1529,30 @@ _LONE_CR_LINE_COMMENT_OPENERS = {
 }
 
 
-def _adjust_language_specific_regex_range(language, text, start, end):
-    """End line comments at a lone CR for languages whose lexers do so."""
+_LUA_LONG_BRACKET = re.compile(r"--\[[=]*\[")
+_CARRIAGE_RETURN = re.compile(r"\r")
+
+
+def _adjust_language_specific_regex_range(language, text, start, end, memo=None):
+    """End line comments at a lone CR for languages whose lexers do so.
+
+    ``memo`` caches the text's CR offsets, so many candidates on one long line
+    do not each rescan it.
+    """
 
     normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
     openers = _LONE_CR_LINE_COMMENT_OPENERS.get(normalized)
     if openers is None:
         return start, end
 
-    candidate = text[start:end]
-    if not candidate.startswith(openers) or re.match(r"--\[[=]*\[", candidate):
+    if not text.startswith(openers, start, end) or _LUA_LONG_BRACKET.match(text, start, end):
         return start, end
 
-    carriage_return = text.find("\r", start, end)
-    return (start, carriage_return) if carriage_return >= 0 else (start, end)
+    if memo is None:
+        carriage_return = text.find("\r", start, end)
+    else:
+        carriage_return = _line_stop_end(text, start, _CARRIAGE_RETURN, memo)
+    return (start, carriage_return) if 0 <= carriage_return < end else (start, end)
 
 
 class LineCommentQuery(Query):
@@ -1463,9 +1806,14 @@ class NestedCommentQuery(Query):
         close_len = len(close_delim)
         search_from = 0
 
+        open_index = close_index = -2
         while True:
-            open_index = text.find(open_delim, search_from)
-            close_index = text.find(close_delim, search_from)
+            # Reuse a lookahead result until the scan passes it, so a run of
+            # one delimiter does not rescan the text for the other.
+            if open_index != -1 and open_index < search_from:
+                open_index = text.find(open_delim, search_from)
+            if close_index != -1 and close_index < search_from:
+                close_index = text.find(close_delim, search_from)
             if open_index == -1 and close_index == -1:
                 break
 
