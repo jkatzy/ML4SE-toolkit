@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import re
 import textwrap
+from bisect import bisect_left
 from dataclasses import dataclass
 
 from ..Query import QueryMatch
@@ -961,17 +962,20 @@ def _has_framed_content_line(lines: list[str], frame_char: str) -> bool:
         indicating an ASCII title card whose frame should be preserved.
     """
 
-    for line in lines:
-        stripped = line.strip()
-        if not stripped or _is_decorative_ruler_line(stripped):
-            continue
-        if (
-            stripped.startswith(frame_char)
-            and stripped.endswith(frame_char)
-            and any(char != frame_char for char in stripped)
-        ):
-            return True
-    return False
+    return any(_is_framed_content_line(line, frame_char) for line in lines)
+
+
+def _is_framed_content_line(line: str, frame_char: str) -> bool:
+    """Return whether ``line`` is non-ruler content framed by ``frame_char``."""
+
+    stripped = line.strip()
+    if not stripped or _is_decorative_ruler_line(stripped):
+        return False
+    return (
+        stripped.startswith(frame_char)
+        and stripped.endswith(frame_char)
+        and any(char != frame_char for char in stripped)
+    )
 
 
 def _strip_decorative_edge_rulers(
@@ -1003,39 +1007,53 @@ def _strip_decorative_edge_rulers(
             return []
         return lines
 
-    stripped = list(lines)
-    while stripped and not stripped[0].strip():
-        stripped.pop(0)
-    while stripped and not stripped[-1].strip():
-        stripped.pop()
+    # Trim a [start, end) window instead of popping, and index framed lines
+    # once per frame character, so stacks of ruler lines stay linear.
+    start, end = 0, len(lines)
+    while start < end and not lines[start].strip():
+        start += 1
+    while end > start and not lines[end - 1].strip():
+        end -= 1
+    framed_indexes: dict[str, list[int]] = {}
 
-    while stripped:
-        first = stripped[0]
+    def has_framed_line(frame_char: str, low: int, high: int) -> bool:
+        indexes = framed_indexes.get(frame_char)
+        if indexes is None:
+            indexes = framed_indexes[frame_char] = [
+                index
+                for index, line in enumerate(lines)
+                if _is_framed_content_line(line, frame_char)
+            ]
+        position = bisect_left(indexes, low)
+        return position < len(indexes) and indexes[position] < high
+
+    while start < end:
+        first = lines[start]
         first_text = first.strip()
         if not (_is_decorative_ruler_line(first) or _is_empty_ruler_line(first, empty_ruler_chars)):
             break
         if len(set(first_text)) == 1 and first_text[0] in protected_ruler_chars:
             break
-        if _has_framed_content_line(stripped[1:], first_text[0]):
+        if has_framed_line(first_text[0], start + 1, end):
             break
-        stripped.pop(0)
-        while stripped and not stripped[0].strip():
-            stripped.pop(0)
+        start += 1
+        while start < end and not lines[start].strip():
+            start += 1
 
-    while stripped:
-        last = stripped[-1]
+    while start < end:
+        last = lines[end - 1]
         last_text = last.strip()
         if not (_is_decorative_ruler_line(last) or _is_empty_ruler_line(last, empty_ruler_chars)):
             break
         if len(set(last_text)) == 1 and last_text[0] in protected_ruler_chars:
             break
-        if _has_framed_content_line(stripped[:-1], last_text[0]):
+        if has_framed_line(last_text[0], start, end - 1):
             break
-        stripped.pop()
-        while stripped and not stripped[-1].strip():
-            stripped.pop()
+        end -= 1
+        while end > start and not lines[end - 1].strip():
+            end -= 1
 
-    return stripped
+    return lines[start:end]
 
 
 def _remove_decorative_block_lines(
@@ -2130,12 +2148,20 @@ def _strip_residual_line_gutters(
         if len(non_empty) > 1 and _has_framed_content_line(stripped_lines, gutter_char):
             return stripped_lines
 
+        # The checks above answer the same while every non-empty line keeps at
+        # least four leading gutter characters, so strip down to four in one
+        # pass instead of one character per pass.
+        shortest_run = min(
+            len(body) - len(body.lstrip(gutter_char))
+            for body in (line.lstrip() for line in non_empty)
+        )
+        count = max(1, shortest_run - 4)
         next_lines: list[str] = []
         for line in stripped_lines:
             prefix_length = len(line) - len(line.lstrip())
             stripped = line[prefix_length:]
             if stripped.startswith(gutter_char):
-                stripped = stripped[1:]
+                stripped = stripped[count:]
             next_lines.append(line[:prefix_length] + stripped)
         stripped_lines = next_lines
 
@@ -4279,12 +4305,15 @@ def _sanitize_batch_two_exact_layout(language: str, raw_comment: str) -> str | N
             return _normalize_sanitized_body("\n".join(semicolon_lines))
 
     if language in {"assembly", "clarity"}:
-        semicolon_title = re.fullmatch(
-            r";{4,}[ \t]*(?P<body>.*?[A-Za-z0-9].*?)[ \t]*;{4,}\n?",
-            raw_comment,
-        )
-        if semicolon_title is not None:
-            return semicolon_title.group("body").strip()
+        # ``;;;; title ;;;;``, matched by hand: the equivalent regex
+        # ``;{4,}[ \t]*(.*?[A-Za-z0-9].*?)[ \t]*;{4,}\n?`` backtracks
+        # quadratically on long semicolon rulers.
+        line = raw_comment[:-1] if raw_comment.endswith("\n") else raw_comment
+        lead = len(line) - len(line.lstrip(";"))
+        trail = len(line) - len(line.rstrip(";"))
+        title = line[lead : len(line) - trail]
+        if lead >= 4 and trail >= 4 and "\n" not in title and re.search(r"[A-Za-z0-9]", title):
+            return title.strip()
 
     if language == "nextflow" and raw_comment.startswith("/*") and raw_comment.endswith("*/"):
         inner_lines = _normalize_newlines(raw_comment[2:-2]).strip("\n").split("\n")
@@ -6547,13 +6576,20 @@ def _sanitize_final_safe_mixed_layout(
             return _join_restored_lines(restored)
 
     if language == "limbo":
-        banner = re.fullmatch(
-            r"(?P<hashes>#{8,})(?P<body>[^\n]*#{4,}[^\n]*#{4,})"
-            r"[ \t]+\*\n?",
-            raw_comment,
-        )
-        if banner is not None:
-            return (banner.group("hashes")[1:] + banner.group("body")).rstrip()
+        # One-line ``########...####...#### *`` banner, checked without the
+        # cubic backtracking of ``#{8,}[^\n]*#{4,}[^\n]*#{4,}`` on long rulers.
+        line = raw_comment[:-1] if raw_comment.endswith("\n") else raw_comment
+        core = line[:-1].rstrip(" \t")
+        body = core[8:]
+        if (
+            line.endswith("*")
+            and len(core) < len(line) - 1
+            and "\n" not in core
+            and core.startswith("#" * 8)
+            and body.endswith("####")
+            and "####" in body[:-4]
+        ):
+            return core[1:].rstrip()
 
     if language == "makefile":
         lines = raw_comment.split("\n")

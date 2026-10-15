@@ -490,6 +490,9 @@ def _cairo_zero_marker_ranges(text: str, marker: str) -> tuple[tuple[int, int], 
 
     ranges: list[tuple[int, int]] = []
     index = 0
+    # End of the line holding the last quote seen, reused for later quotes on
+    # that line instead of rescanning to the line end from each one.
+    line_limit = -1
     while index < len(text):
         if text.startswith("%{", index):
             end = text.find("%}", index + 2)
@@ -499,7 +502,9 @@ def _cairo_zero_marker_ranges(text: str, marker: str) -> tuple[tuple[int, int], 
             continue
         if text[index] in {'"', "'"}:
             quote = text[index]
-            end = text.find(quote, index + 1, _line_end(text, index))
+            if index > line_limit:
+                line_limit = _line_end(text, index)
+            end = text.find(quote, index + 1, line_limit)
             if end < 0:
                 break
             index = end + 1
@@ -563,7 +568,11 @@ def carbon_string_ranges(text: str) -> list[tuple[int, int]]:
             continue
         literal = _carbon_literal_at(text, index)
         if literal is None:
+            # No later ``#`` of this run starts a literal either, so skip the
+            # run at once instead of re-measuring it from every offset.
             index += 1
+            while text[index - 1] == "#" and index < len(text) and text[index] == "#":
+                index += 1
             continue
         quote_start, quote, hash_count = literal
         triple = quote * 3

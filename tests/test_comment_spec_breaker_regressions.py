@@ -10,13 +10,16 @@ strict ``xfail``: the suite stays green while the defect is open and fails as
 soon as a fix makes the case pass, at which point the entry is removed.
 """
 
+import random
 import time
 from dataclasses import dataclass
 
 import pytest
+import regex as re
 
 from ml4setk import CommentQuery, sanitize_comment
 from ml4setk.Parsing.Comments import iter_comment_syntaxes
+from ml4setk.Parsing.Comments.CommentQuery import _comment_pattern_matchers
 
 pytestmark = pytest.mark.unit
 
@@ -1355,6 +1358,141 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+# Inputs built to maximize scan time: long runs of one delimiter, openers that
+# never close, and ruler rows. Each used to take seconds (quadratic or worse in
+# the input size) and now scans in a few hundredths of a second.
+@pytest.mark.parametrize(
+    ("language", "unit", "repeat"),
+    [
+        pytest.param("java", "/**/", 2000, id="java-line-openers-on-one-line"),
+        pytest.param("c", "/**/", 2000, id="c-spliced-line-openers-on-one-line"),
+        pytest.param("boogie", "/*", 5000, id="boogie-unclosed-nested-openers"),
+        pytest.param("haskell", "-}{-", 2500, id="haskell-nested-delimiter-pairs"),
+        pytest.param("kdl", "#", 8000, id="kdl-hash-run"),
+        pytest.param("carbon", "#", 8000, id="carbon-hash-run"),
+        pytest.param("cairo_zero", "'", 8000, id="cairo-zero-quotes-on-one-line"),
+        pytest.param("markdown", "`", 8000, id="markdown-backtick-run"),
+        pytest.param("markdown", "````a\n```\n", 8000, id="markdown-unclosed-long-fences"),
+        pytest.param("matlab", "%{\n\n", 2000, id="matlab-unclosed-block-openers"),
+        pytest.param("raku", "#`[", 2500, id="raku-unclosed-embedded-comments"),
+        pytest.param("classic_asp", "'<%'", 2000, id="classic-asp-comment-openers"),
+        pytest.param("tsql", "[", 8000, id="tsql-unclosed-bracket-identifiers"),
+        pytest.param("html_ecr", "<%#", 3000, id="ecr-unclosed-comment-tags"),
+        pytest.param("perl", "=a\n", 4000, id="perl-unclosed-pod-blocks"),
+        pytest.param("mdx", "//`", 6000, id="mdx-backticks-and-slashes"),
+        pytest.param("win32_message_file", ";/*\n", 1500, id="win32-unclosed-message-blocks"),
+        pytest.param("html", "<!--a", 8000, id="html-unclosed-comment-openers"),
+    ],
+)
+def test_adversarial_input_scans_within_budget(language, unit, repeat):
+    source = unit * repeat
+    query = CommentQuery(language)
+
+    started = time.perf_counter()
+    query.parse_ranges(source)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+@pytest.mark.parametrize(
+    ("language", "unit", "repeat"),
+    [
+        pytest.param("awk", "#", 10000, id="awk-hash-gutter-ruler"),
+        pytest.param("apl", "\u235d", 10000, id="apl-lamp-gutter-ruler"),
+        pytest.param("limbo", "#", 200, id="limbo-hash-banner-ruler"),
+        pytest.param("minizinc", "/***/*\n", 2000, id="minizinc-stacked-rulers"),
+        pytest.param("clarity", ";", 16000, id="clarity-semicolon-ruler"),
+    ],
+)
+def test_adversarial_comment_sanitizes_within_budget(language, unit, repeat):
+    comment = unit * repeat
+
+    started = time.perf_counter()
+    sanitize_comment(language, comment)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+def _rewritten_pattern_matchers():
+    matchers = {}
+    for syntax in iter_comment_syntaxes():
+        for language in syntax.language_names:
+            table = syntax.versions_for_language(language)
+            versions = [None] if table is None else [version.name for version in table.versions]
+            for version in versions:
+                for matcher in _comment_pattern_matchers(language, version):
+                    rewritten = (
+                        matcher.opener is not None
+                        or matcher.head is not None
+                        or matcher.bracket_prefix is not None
+                        or matcher.span_finder is not None
+                    )
+                    if rewritten:
+                        matchers.setdefault(matcher.pattern.pattern, matcher)
+    return sorted(matchers.items())
+
+
+_MATCHER_TOKENS = (
+    "=cut",
+    "<!--",
+    "--!>",
+    "->",
+    ">",
+    "=pod",
+    "/*",
+    "*/",
+    ";/*",
+    ";*/",
+    "<%#",
+    "//",
+    "/",
+    "\\",
+    "\r",
+    "\n",
+    "\r\n",
+    "??/",
+    " ",
+    "\t",
+    "x",
+    "#",
+    "#`",
+    "--",
+    "%",
+    "%{",
+    "%}",
+    ";",
+    "?>",
+    "<%",
+    "%>",
+    "'",
+    '"',
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "rem",
+)
+
+
+@pytest.mark.parametrize(("pattern", "matcher"), _rewritten_pattern_matchers())
+def test_rewritten_pattern_matcher_agrees_with_regex(pattern, matcher):
+    """Fast matchers for block, rest-of-line, bracket, and line-block patterns stay exact."""
+
+    regex = re.compile(pattern)
+    rng = random.Random(pattern)
+    for _ in range(40):
+        text = "".join(rng.choice(_MATCHER_TOKENS) for _ in range(rng.randint(1, 16)))
+        memo = {}
+        for offset in range(len(text) + 1):
+            expected = regex.search(text, offset)
+            expected = None if expected is None else expected.span()
+            assert matcher.search(text, offset, memo) == expected, (text, offset)
 
 
 # Guards for the iteration-2 lexical rules: each literal form stays narrow

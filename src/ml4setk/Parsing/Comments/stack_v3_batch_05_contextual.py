@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from bisect import bisect_right
 from collections.abc import Callable
 
 _ECMASCRIPT_LINE_ENDINGS = "\r\n\u2028\u2029"
@@ -34,11 +35,11 @@ def _merge_ranges(ranges: list[tuple[int, int]]) -> list[tuple[int, int]]:
 
 
 def _containing_range(index: int, ranges: list[tuple[int, int]]) -> tuple[int, int] | None:
-    for start, end in ranges:
-        if start <= index < end:
-            return start, end
-        if start > index:
-            break
+    """Return the range holding ``index`` from sorted, disjoint ``ranges``."""
+
+    position = bisect_right(ranges, (index, float("inf"))) - 1
+    if position >= 0 and index < ranges[position][1]:
+        return ranges[position]
     return None
 
 

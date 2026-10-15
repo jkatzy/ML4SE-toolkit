@@ -119,6 +119,20 @@ def _kdl_string_end(text: str, start: int) -> int | None:
     return len(text) if close < 0 else close + len(close_token)
 
 
+def _kdl_hash_run_end(text: str, start: int) -> int:
+    """Return the end of the ``#`` run at ``start``.
+
+    Call it where ``_kdl_string_end`` just returned ``None`` at a ``#``: no
+    later ``#`` in the same run opens a raw string either, so scanners skip
+    the run at once instead of re-measuring it from every offset.
+    """
+
+    end = start
+    while end < len(text) and text[end] == "#":
+        end += 1
+    return end
+
+
 def _kdl_balanced_end(text: str, start: int, opener: str, closer: str) -> int | None:
     depth = 1
     index = start + 1
@@ -126,6 +140,9 @@ def _kdl_balanced_end(text: str, start: int, opener: str, closer: str) -> int | 
         string_end = _kdl_string_end(text, index)
         if string_end is not None:
             index = string_end
+            continue
+        if text[index] == "#":
+            index = _kdl_hash_run_end(text, index)
             continue
         if text.startswith("//", index):
             index = _line_end(text, index + 2)
@@ -191,6 +208,9 @@ def _kdl_value_end(text: str, start: int) -> int | None:
         if string_end is not None:
             index = string_end
             continue
+        if text[index] == "#":
+            index = _kdl_hash_run_end(text, index)
+            continue
         if text[index] == "(":
             group_end = _kdl_balanced_end(text, index, "(", ")")
             if group_end is None:
@@ -213,6 +233,9 @@ def _kdl_node_end(text: str, start: int) -> int | None:
         if string_end is not None:
             index = string_end
             last_content = index
+            continue
+        if text[index] == "#":
+            index = last_content = _kdl_hash_run_end(text, index)
             continue
         if text.startswith("//", index):
             return max(last_content, _line_end(text, index + 2))
@@ -272,6 +295,9 @@ def kdl_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
         string_end = _kdl_string_end(text, index)
         if string_end is not None:
             index = string_end
+            continue
+        if text[index] == "#":
+            index = _kdl_hash_run_end(text, index)
             continue
         if text.startswith("//", index):
             end = _line_end(text, index + 2)

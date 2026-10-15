@@ -10,6 +10,7 @@ CDATA). A ``LexicalRules`` entry describes those cases for one language.
 Rules only protect source ranges; they never create comments.
 """
 
+from bisect import bisect_left, bisect_right
 from dataclasses import dataclass
 from typing import Optional, Tuple
 
@@ -114,6 +115,124 @@ class DelimitedLiteral:
 
 
 _NEXT_LINE = re.compile(r"\r\n|\r|\n")
+_BACKTICK_RUN = re.compile(r"`+")
+
+
+class LineBoundedLiteral(RegexLiteral):
+    """A regex literal that can fail only by reaching the end of its line.
+
+    For such a pattern, a failure at one offset means every later offset on
+    that line fails too, so the failure is remembered up to the line end
+    instead of each opener rescanning the rest of a long line.
+    """
+
+    def scan(self, text, start, memo):
+        failed = memo.get(id(self))
+        if failed is not None and failed[0] <= start < failed[1]:
+            return None
+        found = super().scan(text, start, memo)
+        if found is None:
+            line_break = _LINE_BREAK.search(text, start)
+            memo[id(self)] = (start, len(text) if line_break is None else line_break.start())
+        return found
+
+
+class CodeSpanLiteral:
+    r"""CommonMark code span, ``(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)``, via a run index.
+
+    The span closes at the next backtick run of exactly the opener's length.
+    Indexing every run once keeps long backtick runs and many unmatched
+    openers linear instead of rescanning the rest of the text per offset.
+    """
+
+    def scan(self, text, start, memo):
+        index = memo.get(id(self))
+        if index is None:
+            runs = [match.span() for match in _BACKTICK_RUN.finditer(text)]
+            by_length = {}
+            for run_start, run_end in runs:
+                by_length.setdefault(run_end - run_start, []).append(run_start)
+            index = memo[id(self)] = (runs, by_length)
+        runs, by_length = index
+        containing = bisect_right(runs, (start, len(text) + 1)) - 1
+        if containing < 0 or runs[containing][1] <= start:
+            return None
+        run_end = runs[containing][1]
+        length = run_end - start
+        starts = by_length.get(length, ())
+        closer = bisect_left(starts, run_end)
+        if closer == len(starts):
+            return None
+        return start, starts[closer] + length
+
+
+class FencedBlockLiteral:
+    r"""CommonMark fenced code block, scanned with a per-text closer index.
+
+        Equivalent to ``(?m)(?<=^[ 	]{0,3})(`{3,}|~{3,})[^
+    ]*(?:
+    ?
+    |
+    )``
+        ``[\s\S]*?^[ 	]{0,3}[`~]*[ 	]*$``. That regex backtracks the fence
+        down to three characters, so the block uses the longest fence some later
+        closing line can match, and closes at the first such line. Indexing the
+        closing lines once avoids rescanning the text per fence length and per
+        unclosed opener.
+    """
+
+    def scan(self, text, start, memo):
+        if not _FENCE_START.match(text, start):
+            return None
+        fence_char = text[start]
+        fence_end = start + 3
+        while fence_end < len(text) and text[fence_end] == fence_char:
+            fence_end += 1
+        line_break = _LINE_BREAK.search(text, fence_end)
+        if line_break is None:
+            return None
+        body_start = line_break.start() + 1
+        lines = memo.get((id(self), fence_char))
+        if lines is None:
+            lines = memo[(id(self), fence_char)] = _closing_fence_lines(text, fence_char)
+        starts, run_lengths, ends, longest_after = lines
+        index = bisect_left(starts, body_start)
+        if index == len(starts) or longest_after[index] < 3:
+            return None
+        fence_length = min(fence_end - start, longest_after[index])
+        while run_lengths[index] < fence_length:
+            index += 1
+        return start, ends[index]
+
+
+_FENCE_START = re.compile(r"(?m)(?<=^[ \t]{0,3})(?:```|~~~)")
+_LINE_BREAK = re.compile(r"[\r\n]")
+
+
+def _closing_fence_lines(text, fence_char):
+    """Index lines that close a ``fence_char`` fence: starts, run lengths, ends.
+
+    The last list holds, per line, the longest fence run on it or any later
+    closing line, so a lookup can tell at once whether any closer remains.
+    """
+
+    closing = re.compile(r"[ \t]{0,3}(" + re.escape(fence_char) + r"+)[`~]*[ \t]*")
+    starts, run_lengths, ends = [], [], []
+    line_start = 0
+    while line_start <= len(text):
+        line_end = text.find("\n", line_start)
+        if line_end < 0:
+            line_end = len(text)
+        match = closing.fullmatch(text, line_start, line_end)
+        if match is not None:
+            starts.append(line_start)
+            run_lengths.append(len(match.group(1)))
+            ends.append(line_end)
+        line_start = line_end + 1
+    longest_after = run_lengths[:]
+    for index in range(len(longest_after) - 2, -1, -1):
+        longest_after[index] = max(longest_after[index], longest_after[index + 1])
+    return starts, run_lengths, ends, longest_after
 
 
 @dataclass(frozen=True)
@@ -556,7 +675,8 @@ _LEXICAL_RULES = {
         starts="$",
     ),
     # T-SQL: [ ] delimited identifiers, with ]] as an escaped bracket.
-    "tsql": _rules("'\"", literals=(r"\[(?:\]\]|[^\]\r\n])*\]",), starts="["),
+    # A bracket identifier fails only when no ] follows on its line.
+    "tsql": _rules("'\"", literals=(LineBoundedLiteral(r"\[(?:\]\]|[^\]\r\n])*\]"),), starts="["),
     # R ?Quotes (R >= 4.0): r"(...)", r"[...]", r"{...}" with optional dashes.
     "r": _rules(
         "'\"`",
@@ -607,9 +727,8 @@ _LEXICAL_RULES = {
     "markdown": _rules(
         "",
         literals=(
-            r"(?m)(?<=^[ \t]{0,3})(`{3,}|~{3,})[^\r\n]*(?:\r?\n|\r)"
-            r"[\s\S]*?^[ \t]{0,3}\1[`~]*[ \t]*$",
-            r"(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)",
+            FencedBlockLiteral(),
+            CodeSpanLiteral(),
         ),
         starts="`~",
     ),
