@@ -496,6 +496,11 @@ def _java_balanced_end(text: str, start: int, opener: str, closer: str) -> int:
     return len(text)
 
 
+_JTE_RAW = re.compile(r"@raw\b", re.IGNORECASE)
+_JTE_ENDRAW = re.compile(r"@endraw\b", re.IGNORECASE)
+_JTE_DIRECTIVE = re.compile(r"@([A-Za-z_][A-Za-z0-9_]*)")
+
+
 def java_template_engine_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     """Return native JTE comments recognized in template text mode."""
 
@@ -513,17 +518,21 @@ def java_template_engine_comment_ranges(text: str) -> tuple[tuple[int, int], ...
         if text.startswith("${", index):
             index = _java_balanced_end(text, index + 1, "{", "}")
             continue
-        raw_match = re.match(r"@raw\b", text[index:], re.IGNORECASE)
+        if text[index] != "@":
+            index += 1
+            continue
+        # Match in place: slicing ``text[index:]`` per offset is quadratic.
+        raw_match = _JTE_RAW.match(text, index)
         if raw_match is not None:
-            raw_end = re.search(r"@endraw\b", text[index + raw_match.end() :], re.IGNORECASE)
+            raw_end = _JTE_ENDRAW.search(text, raw_match.end())
             if raw_end is None:
                 break
-            index += raw_match.end() + raw_end.end()
+            index = raw_end.end()
             continue
-        directive = re.match(r"@([A-Za-z_][A-Za-z0-9_]*)", text[index:])
+        directive = _JTE_DIRECTIVE.match(text, index)
         if directive is not None:
             name = directive.group(1).lower()
-            directive_end = index + directive.end()
+            directive_end = directive.end()
             argument = directive_end
             while argument < len(text) and text[argument] in " \t":
                 argument += 1

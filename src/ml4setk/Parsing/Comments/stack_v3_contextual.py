@@ -12,6 +12,7 @@ import unicodedata
 from collections.abc import Callable
 
 _LINE_ENDINGS = "\r\n\u0085\u2028\u2029"
+_LINE_ENDING = re.compile("[\r\n\u0085\u2028\u2029]")
 _BH_ASCII_SYMBOLS = frozenset("!@#$%&*+./<=>?\\^|:-~,")
 _YAML_BLOCK_HEADER = re.compile(
     r"(?:^|[?:-][ \t]+|:[ \t]*)(?P<style>[|>])(?P<mods>[1-9+-]{0,2})[ \t]*\Z"
@@ -21,10 +22,8 @@ _YAML_BLOCK_HEADER = re.compile(
 def _line_end(text: str, start: int) -> int:
     """Return the end of the physical line containing ``start``."""
 
-    index = start
-    while index < len(text) and text[index] not in _LINE_ENDINGS:
-        index += 1
-    return index
+    match = _LINE_ENDING.search(text, start)
+    return match.start() if match else len(text)
 
 
 def _next_line_start(text: str, line_end: int) -> int:
@@ -206,12 +205,11 @@ def bluespec_bh_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
             while dash_end < len(text) and text[dash_end] == "-":
                 dash_end += 1
             following = text[dash_end : dash_end + 1]
-            line_end = _line_end(text, dash_end)
-            has_physical_lf = line_end < len(text) and (
-                text[line_end] == "\n" or text.startswith("\r\n", line_end)
-            )
             if following == "@" or not following or not _is_bh_symbol(following):
-                if has_physical_lf:
+                line_end = _line_end(text, dash_end)
+                if line_end < len(text) and (
+                    text[line_end] == "\n" or text.startswith("\r\n", line_end)
+                ):
                     ranges.append((index, line_end))
                 index = line_end
                 continue

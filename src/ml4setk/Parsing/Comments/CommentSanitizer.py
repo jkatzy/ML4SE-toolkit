@@ -2148,22 +2148,49 @@ def _strip_residual_line_gutters(
         if len(non_empty) > 1 and _has_framed_content_line(stripped_lines, gutter_char):
             return stripped_lines
 
-        # The checks above answer the same while every non-empty line keeps at
-        # least four leading gutter characters, so strip down to four in one
-        # pass instead of one character per pass.
-        shortest_run = min(
-            len(body) - len(body.lstrip(gutter_char))
-            for body in (line.lstrip() for line in non_empty)
-        )
-        count = max(1, shortest_run - 4)
+        # Each pass drops one gutter character after the leading whitespace,
+        # and whitespace that followed it joins the next pass's indentation.
+        # The checks above read lines with whitespace removed, so they answer
+        # the same while every non-empty line keeps at least six gutter
+        # characters before its first other character. Take the passes that
+        # stay above that in one step instead of one character per pass.
+        count = 1
+        if gutter_char != "_":
+            count = max(1, min(_leading_gutter_count(line, gutter_char) for line in non_empty) - 6)
         next_lines: list[str] = []
         for line in stripped_lines:
             prefix_length = len(line) - len(line.lstrip())
             stripped = line[prefix_length:]
             if stripped.startswith(gutter_char):
-                stripped = stripped[count:]
+                stripped = _drop_leading_gutters(stripped, gutter_char, count)
             next_lines.append(line[:prefix_length] + stripped)
         stripped_lines = next_lines
+
+
+def _leading_gutter_count(line: str, gutter_char: str) -> int:
+    """Count ``gutter_char`` before the first other non-space character of ``line``."""
+
+    count = 0
+    for char in line:
+        if char == gutter_char:
+            count += 1
+        elif not char.isspace():
+            break
+    return count
+
+
+def _drop_leading_gutters(body: str, gutter_char: str, count: int) -> str:
+    """Remove the first ``count`` gutter characters of ``body``, keeping its whitespace."""
+
+    kept = []
+    index = 0
+    while count:
+        if body[index] == gutter_char:
+            count -= 1
+        else:
+            kept.append(body[index])
+        index += 1
+    return "".join(kept) + body[index:]
 
 
 def _normalize_sanitized_body(body: str, *, preserve_single_line_padding: bool = False) -> str:

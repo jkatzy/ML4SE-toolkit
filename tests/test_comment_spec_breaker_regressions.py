@@ -20,6 +20,11 @@ import regex as re
 from ml4setk import CommentQuery, sanitize_comment
 from ml4setk.Parsing.Comments import iter_comment_syntaxes
 from ml4setk.Parsing.Comments.CommentQuery import _comment_pattern_matchers
+from ml4setk.Parsing.Comments.lexical import (
+    _LEXICAL_RULES,
+    LEXICAL_VERSION_PROFILES,
+    RegexLiteral,
+)
 
 pytestmark = pytest.mark.unit
 
@@ -1390,6 +1395,13 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("brightscript", "'REM", 12000, id="brightscript-rem-inside-quote-comment"),
         pytest.param("dogescript", "quiet\n", 3000, id="dogescript-unclosed-quiet-blocks"),
         pytest.param("regular_expression", "(?#", 16000, id="regex-unclosed-inline-comments"),
+        pytest.param("java", '"""\\\\', 3000, id="java-text-blocks-of-escaped-backslashes"),
+        pytest.param("templ", "templ ", 8000, id="templ-unfinished-declarations"),
+        pytest.param("java_template_engine", "a", 200000, id="jte-long-text-without-directives"),
+        pytest.param("tsx", "`" + "\\`-->" * 3000, 1, id="tsx-template-of-escaped-backticks"),
+        pytest.param("common_lisp", "`\\|#", 3000, id="common-lisp-unclosed-escaped-bars"),
+        pytest.param("swift", '#"a', 12000, id="swift-unclosed-raw-strings"),
+        pytest.param("bluespec_bh", "-->a", 8000, id="bluespec-arrow-operators"),
     ],
 )
 def test_adversarial_input_scans_within_budget(language, unit, repeat):
@@ -1401,6 +1413,31 @@ def test_adversarial_input_scans_within_budget(language, unit, repeat):
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+# Each unit opens a string and an interpolation inside it, so the input nests
+# them as deep as it is long. Scanning used to take exponential time: about
+# four times longer for every two more units.
+@pytest.mark.parametrize(
+    ("language", "unit"),
+    [
+        pytest.param("tsx", "`${", id="tsx-template-literals"),
+        pytest.param("javascript", "`${", id="javascript-template-literals"),
+        pytest.param("python", 'f"{', id="python-f-strings"),
+        pytest.param("kotlin", '"${', id="kotlin-string-templates"),
+        pytest.param("swift", '"\\(', id="swift-string-interpolation"),
+        pytest.param("dart", "'${", id="dart-string-interpolation"),
+    ],
+)
+def test_nested_interpolation_scans_within_budget(language, unit):
+    query = CommentQuery(language)
+
+    for repeat in (18, 150):
+        started = time.perf_counter()
+        query.parse_ranges(unit * repeat)
+        elapsed = time.perf_counter() - started
+
+        assert elapsed < _PARSE_BUDGET_SECONDS, repeat
 
 
 @pytest.mark.parametrize(
@@ -1443,6 +1480,7 @@ def test_gams_star_framed_line_check_is_linear():
         pytest.param("limbo", "#", 200, id="limbo-hash-banner-ruler"),
         pytest.param("minizinc", "/***/*\n", 2000, id="minizinc-stacked-rulers"),
         pytest.param("clarity", ";", 16000, id="clarity-semicolon-ruler"),
+        pytest.param("assembly", ";\x85", 4000, id="assembly-gutters-between-unicode-spaces"),
     ],
 )
 def test_adversarial_comment_sanitizes_within_budget(language, unit, repeat):
@@ -1536,6 +1574,32 @@ def test_rewritten_pattern_matcher_agrees_with_regex(pattern, matcher):
             expected = regex.search(text, offset)
             expected = None if expected is None else expected.span()
             assert matcher.search(text, offset, memo) == expected, (text, offset)
+
+
+def _rewritten_lexical_literals():
+    literals = {}
+    for rules in (*_LEXICAL_RULES.values(), *LEXICAL_VERSION_PROFILES.values()):
+        for literal in rules.literals:
+            if not isinstance(literal, RegexLiteral) and hasattr(literal, "pattern"):
+                literals.setdefault(literal.pattern.pattern, literal)
+    return sorted(literals.items())
+
+
+@pytest.mark.parametrize(("pattern", "literal"), _rewritten_lexical_literals())
+def test_rewritten_lexical_literal_agrees_with_regex(pattern, literal):
+    """Literals scanned without their regex still match exactly what it matches."""
+
+    words = re.findall(r"[A-Za-z]+|[^A-Za-z\s]", pattern)
+    tokens = sorted({*words, "\\", "\n", "\r", " ", "a", "x"})
+    regex = RegexLiteral(pattern)
+    rng = random.Random(pattern)
+    for _ in range(300):
+        text = "".join(rng.choice(tokens) for _ in range(rng.randint(1, 16)))
+        offsets = list(range(len(text)))
+        rng.shuffle(offsets)
+        memo = {}
+        for offset in offsets:
+            assert literal.scan(text, offset, memo) == regex.scan(text, offset, {}), (text, offset)
 
 
 # Guards for the iteration-2 lexical rules: each literal form stays narrow
