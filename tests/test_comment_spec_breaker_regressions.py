@@ -1405,6 +1405,9 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("kdl", "/-{", 3000, id="kdl-slashdash-unclosed-children"),
         pytest.param("kdl", "/-(", 3000, id="kdl-slashdash-unclosed-type-annotations"),
         pytest.param("makefile", "`\\#", 4000, id="makefile-hashes-in-one-continued-comment"),
+        pytest.param("autohotkey", "*//*;", 8000, id="autohotkey-semicolons-on-one-line"),
+        pytest.param("turing", "%{%%{", 8000, id="turing-unclosed-block-openers"),
+        pytest.param("cweb", "@q@q@q", 8000, id="cweb-unclosed-meta-comments"),
     ],
 )
 def test_adversarial_input_scans_within_budget(language, unit, repeat):
@@ -1413,6 +1416,25 @@ def test_adversarial_input_scans_within_budget(language, unit, repeat):
 
     started = time.perf_counter()
     query.parse_ranges(source)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+@pytest.mark.parametrize(
+    ("language", "version", "unit", "repeat"),
+    [
+        pytest.param("lua", "5.0", "----[[--[=", 2400, id="lua-5.0-unclosed-nested-long-comments"),
+        pytest.param(
+            "markdown", "commonmark-0.30", "<!-- a\n\n\n", 8000, id="commonmark-0.30-unclosed-html"
+        ),
+    ],
+)
+def test_adversarial_input_scans_within_budget_for_version(language, version, unit, repeat):
+    query = CommentQuery(language, version=version)
+
+    started = time.perf_counter()
+    query.parse_ranges(unit * repeat)
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
@@ -1561,6 +1583,8 @@ _MATCHER_TOKENS = (
     "quiet",
     "loud",
     "(?#",
+    "@q",
+    "@>",
 )
 
 

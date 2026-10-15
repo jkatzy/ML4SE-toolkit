@@ -822,14 +822,18 @@ _UNESCAPED_QUANTIFIER = re.compile(r"(?<![\\(])[*+?{]")
 _GROUPED_LAZY_BODY = re.compile(
     r"(?<!\\)\(\?:(?P<lead>(?:\\.|[^\\()|\[\]])*)(?P<body>\[(?:\\S\\s|\\s\\S)\]\*\?)\)(?![*+?{])"
 )
+_CAPTURED_LAZY_BODY = re.compile(r"(?<!\\)\((?P<body>\[(?:\\S\\s|\\s\\S)\]\*\?)\)(?![*+?{])")
 _TEMPERED_BLOCK = re.compile(
     r"(?P<open>.+?)\(\?:\(\?!(?P<close>.+)\)\[(?:\\S\\s|\\s\\S)\]\)\*(?P=close)"
 )
 _UNESCAPED_BACKREFERENCE = re.compile(r"(?<!\\)\\([1-9])")
 # ``OPEN(?:QUICK|[\S\s]*?CLOSE)`` with a fixed-width literal opener and no
 # groups, classes, or alternation inside QUICK and CLOSE (HTML's ``<!--``).
+# The opener may follow ``(?m)`` and a lookbehind without groups, which only
+# filter where it starts (CommonMark's indented ``<!--``).
 _QUICK_OR_LAZY = re.compile(
-    r"(?P<open>(?:\\.|[^\\()|\[\]*+?{}])+)\(\?:(?P<quick>(?:\\.|[^\\()|\[\]])+)"
+    r"(?P<open>(?:\(\?m\))?(?:\(\?<=[^()|]*\))?(?:\\.|[^\\()|\[\]*+?{}])+)"
+    r"\(\?:(?P<quick>(?:\\.|[^\\()|\[\]])+)"
     r"\|\[(?:\\S\\s|\\s\\S)\]\*\?(?P<close>(?:\\.|[^\\()|\[\]])+)\)"
 )
 
@@ -865,6 +869,9 @@ def _split_lazy_block_pattern(pattern_text):
         return None
     # ``(?:X[\S\s]*?)`` with a plain X and no quantifier is just ``X[\S\s]*?``.
     pattern_text = _GROUPED_LAZY_BODY.sub(r"\g<lead>\g<body>", pattern_text)
+    if not _UNESCAPED_BACKREFERENCE.search(pattern_text):
+        # Nothing refers to a captured lazy body, so its group can go too.
+        pattern_text = _CAPTURED_LAZY_BODY.sub(r"\g<body>", pattern_text)
     depth = 0
     in_class = False
     index = 0
@@ -916,7 +923,9 @@ _GLOBAL_INLINE_FLAGS = re.compile(r"\(\?([a-zA-Z]+)\)")
 _LEADING_INLINE_FLAGS = re.compile(r"(?:\(\?[a-zA-Z]+\))*")
 _WHOLE_PATTERN_SCOPED_FLAGS = re.compile(r"\(\?(?P<flags>[a-zA-Z]+):(?P<body>.*)\)", re.DOTALL)
 # A trailing ``(?:LITERAL)?`` taken when the tail stops right before it.
-_OPTIONAL_LITERAL_SUFFIX = re.compile(r"\(\?:(?P<literal>(?:\\[^\w]|[^\\()\[\]|*+?{}.^$])+)\)\?$")
+_OPTIONAL_LITERAL_SUFFIX = re.compile(
+    r"\(\?:(?P<literal>(?:\\[^\w]|[^\\()\[\]|*+?{}.^$])+)\)\?$|(?<!\\)(?P<cr>\\r)\?$"
+)
 # ``(?:SPLICE|[^\r\n])`` where SPLICE is ``PREFIX(?:\r\n|\r|\n)``, as in C.
 _SPLICED_LINE_TAIL = re.compile(r"\(\?:(?P<prefix>.+)\(\?:\\r\\n\|\\r\|\\n\)\|\[\^\\r\\n\]\)")
 
@@ -972,8 +981,8 @@ def _split_line_tail_pattern(pattern_text):
     Computing that end from a stop index avoids rescanning a long line once
     per candidate opener on it. Handled tails are ``.*``, ``[^...]*``,
     ``(?:(?!LOOK)[^...])*``, ``(?:[^\r\n]|\r(?!\n))*`` and C's spliced
-    ``//`` tail, optionally followed by a ``(?:LITERAL)?`` taken when it is
-    next. Returns ``(head, stops, literal)``, or ``None`` unless the tail ends
+    ``//`` tail, optionally followed by a ``(?:LITERAL)?`` or ``\r?`` taken
+    when it is next. Returns ``(head, stops, literal)``, or ``None`` unless the tail ends
     the pattern at the top level with no top-level alternation.
     """
 
@@ -988,7 +997,10 @@ def _split_line_tail_pattern(pattern_text):
         pattern_text = f"(?{scoped.group('flags')})" + scoped.group("body")
     suffix = ""
     optional = _OPTIONAL_LITERAL_SUFFIX.search(pattern_text)
-    if optional is not None:
+    if optional is not None and optional.group("cr"):
+        suffix = "\r"
+        pattern_text = pattern_text[: optional.start()]
+    elif optional is not None:
         suffix = re.sub(r"\\(.)", r"\1", optional.group("literal"))
         if not suffix.isascii() or any(char.isalnum() for char in suffix):
             return None
@@ -1058,6 +1070,12 @@ _RECURSIVE_BRACKET = re.compile(
 )
 
 
+# Lua 5.0 long comments, whose ``[[``/``]]`` pairs nest. At a ``[[`` only the
+# recursion applies and at a ``]]`` only the close, so the group matches the
+# depth-balanced run of two-character brackets.
+_LUA50_LONG_COMMENT_PATTERN = r"--(\[\[(?:(?!\[\[|\]\])[\s\S]|(?1))*\]\])"
+
+
 def _recursive_bracket_parts(pattern_text):
     r"""Split ``PREFIX(?P<n>\((?:[^()]|(?P>n))*\))`` into a prefix and brackets.
 
@@ -1066,6 +1084,8 @@ def _recursive_bracket_parts(pattern_text):
     have one fixed width, so no other prefix match at the same start exists.
     """
 
+    if pattern_text == _LUA50_LONG_COMMENT_PATTERN:
+        return re.compile(r"--(?=\[\[)"), ("[[", "]]")
     parts = _RECURSIVE_BRACKET.fullmatch(pattern_text)
     if parts is None:
         return None
@@ -1182,10 +1202,37 @@ def _makefile_comment_spans(text):
     return spans
 
 
+# CWEB ``@q ... @>`` meta-comments, which close on the line they open.
+_CWEB_META_COMMENT_PATTERN = r"@q[^\r\n]*?@>"
+
+
+def _cweb_meta_comment_spans(text):
+    """Return the match of ``_CWEB_META_COMMENT_PATTERN`` at every ``@q``.
+
+    Each ``@q`` closes at the first ``@>`` after it unless a line break comes
+    first, so one sorted list of closers and one of breaks answer every
+    opener.
+    """
+
+    closers = [match.start() for match in re.finditer("@>", text)]
+    breaks = [match.start() for match in re.finditer(r"[\r\n]", text)]
+    spans = []
+    for opener in re.finditer("@q", text):
+        body = opener.end()
+        index = bisect_left(closers, body)
+        if index == len(closers):
+            break
+        line = bisect_left(breaks, body)
+        if line == len(breaks) or breaks[line] >= closers[index]:
+            spans.append((opener.start(), closers[index] + 2))
+    return spans
+
+
 _CUSTOM_SPAN_FINDERS = {
     _MATLAB_BLOCK_PATTERN: _matlab_block_spans,
     _WIN32_MESSAGE_BLOCK_PATTERN: _win32_message_block_spans,
     _MAKEFILE_COMMENT_PATTERN: _makefile_comment_spans,
+    _CWEB_META_COMMENT_PATTERN: _cweb_meta_comment_spans,
 }
 
 
