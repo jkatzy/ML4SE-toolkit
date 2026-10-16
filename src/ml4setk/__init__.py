@@ -22,6 +22,8 @@ from .Parsing.Comments.CommentQuery import (
     LineCommentQuery,
     NestedCommentQuery,
     OpeningCommentQuery,
+    UnclosedCommentError,
+    UnclosedCommentWarning,
 )
 from .Parsing.Comments.CommentSanitizer import (
     CommentSanitizer,
@@ -59,6 +61,8 @@ __all__ = [
     "SentinelTokens",
     "SpanCorruptionInput",
     "SpanTokens",
+    "UnclosedCommentError",
+    "UnclosedCommentWarning",
     "UnsupportedCommentLanguageVersionError",
     "comment_language_requires_version",
     "get_comment_language_versions",

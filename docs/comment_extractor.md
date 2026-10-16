@@ -155,7 +155,7 @@ All names below are importable from `ml4setk`.
 
 | API | Returns | Use it for |
 | --- | --- | --- |
-| `CommentQuery(language, version=None)` | query object | The default extractor. `language` is one key or a list of keys. |
+| `CommentQuery(language, version=None, on_unclosed="ignore")` | query object | The default extractor. `language` is one key or a list of keys. `on_unclosed` picks what happens to a comment that never closes (see [Unclosed comments](#unclosed-comments)). |
 | `OpeningCommentQuery(language, max_start_row=3, skip_hashbang=True, version=None)` | query object | The file header comment only. |
 | `LineCommentQuery(language, version=None)` | query object | Line comments and non-nested block comments only, without grouping. |
 | `NestedCommentQuery(language, version=None)` | query object | Nested block comments only. |
@@ -176,6 +176,8 @@ Errors:
 - An unknown version raises `UnsupportedCommentLanguageVersionError`.
 - Omitting the version of a versioned language emits one
   `CommentLanguageVersionWarning` per language and process.
+- An unclosed comment raises `UnclosedCommentError` (a `ValueError`) or emits
+  `UnclosedCommentWarning` when `on_unclosed` asks for it.
 
 Build a query or sanitizer once and reuse it across files: construction
 compiles the language's patterns.
@@ -347,6 +349,50 @@ sample = "answer = 42 {- outer {- inner -} outer -} done"
 match = CommentQuery("haskell").parse(sample)[0]
 assert match.match == "{- outer {- inner -} outer -}"
 ```
+
+### Unclosed comments
+
+A block comment whose opener never closes, such as a trailing `/*` in Java,
+is not a match by default. Pass `on_unclosed` to choose what `parse` does
+instead:
+
+| `on_unclosed` | Result |
+| --- | --- |
+| `"ignore"` (default) | The unclosed comment is left out; every other match is returned. |
+| `"warn"` | Same matches as `"ignore"`, plus an `UnclosedCommentWarning`. |
+| `"raise"` | Raises `UnclosedCommentError` with `language`, `offset`, and `line`. |
+| `"to_eof"` | The unclosed comment runs to the end of the text and replaces any matches after its opener. |
+| `"skip"` | Every unclosed comment is dropped wherever it sits; well-formed comments before and after it are returned, including ones the unclosed opener would otherwise swallow. |
+| `"empty"` | Returns no comments for the text. |
+
+```python
+from ml4setk import CommentQuery
+
+sample = "int a; // ok\n/* never closed\nint b; // inside\n"
+assert [m.match for m in CommentQuery("java").parse(sample)] == ["// ok", "// inside"]
+assert [m.match for m in CommentQuery("java", on_unclosed="to_eof").parse(sample)] == [
+    "// ok",
+    "/* never closed\nint b; // inside\n",
+]
+assert CommentQuery("java", on_unclosed="empty").parse(sample) == []
+
+broken = "{- broken {- fine -}\nx = 1 -- after\n"
+assert [m.match for m in CommentQuery("haskell").parse(broken)] == ["-- after"]
+assert [m.match for m in CommentQuery("haskell", on_unclosed="skip").parse(broken)] == [
+    "{- fine -}",
+    "-- after",
+]
+```
+
+`"ignore"` and `"skip"` differ when an unclosed opener hides a complete
+comment, as in the nested example above: `"skip"` rescans as if the unclosed
+opener were not there.
+
+The check covers registry block patterns of the form `OPEN...CLOSE` and nested
+delimiter pairs; an opener inside a string or another comment does not count.
+Languages whose lexers accept a block running to end of file (listed in
+`unclosed_block_openers`) already return it as a match. With several
+languages, each language's result is handled on its own before merging.
 
 ### Structural formats can declare comment regions
 
