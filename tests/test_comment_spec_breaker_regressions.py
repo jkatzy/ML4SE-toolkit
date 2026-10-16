@@ -1409,7 +1409,6 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("turing", "%{%%{", 8000, id="turing-unclosed-block-openers"),
         pytest.param("cweb", "@q@q@q", 8000, id="cweb-unclosed-meta-comments"),
         pytest.param("ssh_config", "# ", 8000, id="ssh-config-hashes-on-one-line"),
-        pytest.param("swift", "#", 24000, id="swift-hash-run"),
         pytest.param("org", "Text\n#+BEGIN_COMMENT\nnote", 4000, id="org-unclosed-comment-blocks"),
     ],
 )
@@ -1442,6 +1441,22 @@ def test_adversarial_input_scans_within_budget_for_version(language, version, un
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+def test_swift_hash_run_scans_in_linear_time():
+    # Each ``#`` costs enough that a fixed budget cannot tell slow CI from a
+    # quadratic scan, so compare growth: 4x the input used to take 16x longer.
+    query = CommentQuery("swift")
+
+    def best_time(source):
+        timings = []
+        for _ in range(3):
+            started = time.perf_counter()
+            query.parse_ranges(source)
+            timings.append(time.perf_counter() - started)
+        return min(timings)
+
+    assert best_time("#" * 20000) < 8 * best_time("#" * 5000)
 
 
 # Each unit opens a string and an interpolation inside it, so the input nests
