@@ -362,6 +362,7 @@ instead:
 | `"warn"` | Same matches as `"ignore"`, plus an `UnclosedCommentWarning`. |
 | `"raise"` | Raises `UnclosedCommentError` with `language`, `offset`, and `line`. |
 | `"to_eof"` | The unclosed comment runs to the end of the text and replaces any matches after its opener. |
+| `"skip"` | Every unclosed comment is dropped wherever it sits; well-formed comments before and after it are returned, including ones the unclosed opener would otherwise swallow. |
 | `"empty"` | Returns no comments for the text. |
 
 ```python
@@ -374,7 +375,18 @@ assert [m.match for m in CommentQuery("java", on_unclosed="to_eof").parse(sample
     "/* never closed\nint b; // inside\n",
 ]
 assert CommentQuery("java", on_unclosed="empty").parse(sample) == []
+
+broken = "{- broken {- fine -}\nx = 1 -- after\n"
+assert [m.match for m in CommentQuery("haskell").parse(broken)] == ["-- after"]
+assert [m.match for m in CommentQuery("haskell", on_unclosed="skip").parse(broken)] == [
+    "{- fine -}",
+    "-- after",
+]
 ```
+
+`"ignore"` and `"skip"` differ when an unclosed opener hides a complete
+comment, as in the nested example above: `"skip"` rescans as if the unclosed
+opener were not there.
 
 The check covers registry block patterns of the form `OPEN...CLOSE` and nested
 delimiter pairs; an opener inside a string or another comment does not count.

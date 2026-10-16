@@ -1840,7 +1840,7 @@ class NestedCommentQuery(Query):
         return result
 
 
-UNCLOSED_COMMENT_POLICIES = ("ignore", "raise", "warn", "to_eof", "empty")
+UNCLOSED_COMMENT_POLICIES = ("ignore", "raise", "warn", "to_eof", "skip", "empty")
 
 
 class UnclosedCommentError(ValueError):
@@ -1863,8 +1863,8 @@ class UnclosedCommentWarning(UserWarning):
     """Warning emitted by ``CommentQuery(..., on_unclosed="warn")``."""
 
 
-def _unclosed_comment_start(language, version, text, ranges):
-    """Return the offset of the first block comment opener that never closes.
+def _unclosed_comment_openers(language, version, text, ranges):
+    """Return the ``(start, end)`` spans of block comment openers that never close.
 
     An opener counts when it starts outside protected literals and outside
     every comment in ``ranges``, and its registry block pattern or nested
@@ -1886,26 +1886,61 @@ def _unclosed_comment_start(language, version, text, ranges):
             and not _starts_with_excluded_comment_prefix(text, start, excluded)
         )
 
-    found = len(text)
+    spans = []
     memo = {}
     for matcher in _comment_pattern_matchers(language, version):
         if matcher.opener is None:
             continue
-        for opened in matcher.opener.finditer(text, 0, found):
-            start = opened.start()
-            if usable(start):
-                span = matcher.search(text, start, memo)
-                if span is None or span[0] != start:
-                    found = start
-                    break
+        unclosed = False
+        for opened in matcher.opener.finditer(text):
+            if not usable(opened.start()):
+                continue
+            if not unclosed:
+                span = matcher.search(text, opened.start(), memo)
+                unclosed = span is None or span[0] != opened.start()
+            # No closer follows the first unclosed opener, so none follows a later one.
+            if unclosed:
+                spans.append(opened.span())
     for open_delim, close_delim in syntax.nested_delimiters:
-        start = text.find(open_delim, 0, found)
+        start = text.find(open_delim)
         while start != -1:
             if usable(start) and _nested_comment_end(text, start, open_delim, close_delim) is None:
-                found = start
+                spans.extend(_unbalanced_openers(text, start, open_delim, close_delim))
                 break
-            start = text.find(open_delim, start + 1, found)
-    return None if found == len(text) else found
+            start = text.find(open_delim, start + 1)
+    return sorted(spans)
+
+
+def _unbalanced_openers(text, start, open_delim, close_delim):
+    """Return the spans of openers from ``start`` on that no closer balances."""
+
+    stack = []
+    index = start
+    while True:
+        open_index = text.find(open_delim, index)
+        close_index = text.find(close_delim, index)
+        if open_index == -1 and close_index == -1:
+            return stack
+        if open_index != -1 and (close_index == -1 or open_index <= close_index):
+            stack.append((open_index, open_index + len(open_delim)))
+            index = open_index + len(open_delim)
+        else:
+            if stack:
+                stack.pop()
+            index = close_index + len(close_delim)
+
+
+def _blank_spans(text, spans):
+    """Return ``text`` with each span's non-newline characters replaced by spaces."""
+
+    pieces = []
+    previous = 0
+    for start, end in spans:
+        pieces.append(text[previous:start])
+        pieces.append(re.sub(r"[^\r\n]", " ", text[start:end]))
+        previous = end
+    pieces.append(text[previous:])
+    return "".join(pieces)
 
 
 class CommentQuery(Query):
@@ -1926,7 +1961,10 @@ class CommentQuery(Query):
             ``UnclosedCommentWarning`` and returns what ``"ignore"`` returns.
             ``"to_eof"`` returns the unclosed comment running to the end of
             the text, in place of anything found after its opener.
-            ``"empty"`` returns no comments for that text. With several
+            ``"skip"`` drops every unclosed comment and returns the
+            well-formed comments around and after it, including any the
+            unclosed opener would otherwise swallow. ``"empty"`` returns no
+            comments for that text. With several
             languages, each language's result is handled on its own.
 
     Raises:
@@ -1998,6 +2036,7 @@ class CommentQuery(Query):
             return self._apply_unclosed_policy(
                 text,
                 line_comments,
+                nested_comments,
                 self._parse_single_language_ranges(text, line_comments, nested_comments),
             )
 
@@ -2007,6 +2046,7 @@ class CommentQuery(Query):
                 self._apply_unclosed_policy(
                     text,
                     line_comments,
+                    nested_comments,
                     self._parse_single_language_ranges(text, line_comments, nested_comments),
                 )
             )
@@ -2017,19 +2057,29 @@ class CommentQuery(Query):
 
         yield from self.parse_ranges(text)
 
-    def _apply_unclosed_policy(self, text, line_comments, ranges):
+    def _apply_unclosed_policy(self, text, line_comments, nested_comments, ranges):
         """Return one language's ranges after applying ``on_unclosed``."""
 
         if self.on_unclosed == "ignore":
             return ranges
-        start = _unclosed_comment_start(line_comments.language, line_comments.version, text, ranges)
-        if start is None:
+        language, version = line_comments.language, line_comments.version
+        openers = _unclosed_comment_openers(language, version, text, ranges)
+        if not openers:
             return ranges
+        start = openers[0][0]
         if self.on_unclosed == "empty":
             return []
         if self.on_unclosed == "to_eof":
             return [(begin, end) for begin, end in ranges if begin < start] + [(start, len(text))]
-        error = UnclosedCommentError(line_comments.language, start, text.count("\n", 0, start) + 1)
+        if self.on_unclosed == "skip":
+            # Rescan as if the unclosed openers were spaces, so comments they
+            # swallowed come back; offsets stay valid for the original text.
+            while openers:
+                text = _blank_spans(text, openers)
+                ranges = self._parse_single_language_ranges(text, line_comments, nested_comments)
+                openers = _unclosed_comment_openers(language, version, text, ranges)
+            return ranges
+        error = UnclosedCommentError(language, start, text.count("\n", 0, start) + 1)
         if self.on_unclosed == "raise":
             raise error
         warnings.warn(str(error), UnclosedCommentWarning, stacklevel=4)

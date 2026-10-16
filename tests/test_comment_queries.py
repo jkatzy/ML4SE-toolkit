@@ -1130,6 +1130,7 @@ _UNCLOSED_JAVA = "int a; // ok\n/* never closed\nint b; // inside\n"
     [
         ("ignore", ["// ok", "// inside"]),
         ("to_eof", ["// ok", "/* never closed\nint b; // inside\n"]),
+        ("skip", ["// ok", "// inside"]),
         ("empty", []),
     ],
 )
@@ -1159,6 +1160,25 @@ def test_unclosed_nested_comment_runs_to_eof():
     matches = CommentQuery("haskell", on_unclosed="to_eof").parse(sample)
 
     assert [match.match for match in matches] == ["-- a", "{- open {- inner -}\ny"]
+
+
+def test_unclosed_comment_skip_keeps_well_formed_comments_around_broken_ones():
+    sample = "x -- a\n{- broken {- good -}\ny = 1 -- after\n{- also broken\n"
+
+    ignored = CommentQuery("haskell").parse(sample)
+    skipped = CommentQuery("haskell", on_unclosed="skip").parse(sample)
+
+    assert [match.match for match in ignored] == ["-- a", "-- after"]
+    assert [match.match for match in skipped] == ["-- a", "{- good -}", "-- after"]
+    assert all(sample[len(match.prefix) :].startswith(match.match) for match in skipped)
+
+
+def test_unclosed_comment_skip_recovers_other_comment_kinds():
+    sample = "(* broken { kept } \n"
+
+    matches = CommentQuery("pascal", on_unclosed="skip").parse(sample)
+
+    assert [match.match for match in matches] == ["{ kept }"]
 
 
 def test_unclosed_comment_policy_ignores_openers_in_strings_and_comments():
