@@ -5,6 +5,8 @@ from .CommentQuery import (
     LineCommentQuery,
     NestedCommentQuery,
     OpeningCommentQuery,
+    UnclosedCommentError,
+    UnclosedCommentWarning,
 )
 from .CommentSanitizer import (
     CommentSanitizer,
@@ -43,6 +45,8 @@ __all__ = [
     "LineCommentQuery",
     "NestedCommentQuery",
     "OpeningCommentQuery",
+    "UnclosedCommentError",
+    "UnclosedCommentWarning",
     "UnsupportedCommentLanguageVersionError",
     "comment_language_requires_version",
     "get_comment_language_version",

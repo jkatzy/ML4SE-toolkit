@@ -77,6 +77,27 @@ _NL_BINARY_HEADER = re.compile(
 _NL_HEADER_REQUIRED_UINTS = (3, 2, 2, 2, 2, 2, 2, 2, 5)
 _NL_C_WHITESPACE = " \t\v\f\r"
 _PHYSICAL_LINE_ENDINGS = "\r\n\u0085\u2028\u2029"
+UNCLOSED_COMMENT_POLICIES = ("ignore", "raise", "warn", "to_eof", "empty")
+
+
+class UnclosedCommentError(ValueError):
+    """Raised by ``CommentQuery(..., on_unclosed="raise")`` for an unclosed comment.
+
+    Attributes:
+        language: Language whose comment was left open.
+        offset: Source offset of the unclosed opener.
+        line: One-based line number of the unclosed opener.
+    """
+
+    def __init__(self, language, offset, line):
+        super().__init__(f"unclosed {language} comment at line {line} (offset {offset})")
+        self.language = language
+        self.offset = offset
+        self.line = line
+
+
+class UnclosedCommentWarning(UserWarning):
+    """Warning emitted by ``CommentQuery(..., on_unclosed="warn")``."""
 
 
 def _warn_language_caveat_once(language):
@@ -1840,6 +1861,51 @@ class NestedCommentQuery(Query):
         return result
 
 
+def _unclosed_comment_start(language, version, text, ranges):
+    """Return the offset of the first block comment opener that never closes.
+
+    An opener counts when it starts outside protected literals and outside
+    every comment in ``ranges``, and its registry block pattern or nested
+    delimiter pair finds no closer after it. Comment kinds that only
+    language-specific scanners understand are not checked.
+    """
+
+    syntax = get_comment_syntax(language, version)
+    excluded = syntax.excluded_comment_prefixes_for_language(language)
+    quoted_ranges, scan_limit = _comment_scan_context(language, text, version)
+    starts = [start for start, _ in ranges]
+
+    def usable(start):
+        index = bisect_right(starts, start) - 1
+        return (
+            start < scan_limit
+            and (index < 0 or ranges[index][1] <= start)
+            and not _starts_inside_ignored_range(start, quoted_ranges)
+            and not _starts_with_excluded_comment_prefix(text, start, excluded)
+        )
+
+    found = len(text)
+    memo = {}
+    for matcher in _comment_pattern_matchers(language, version):
+        if matcher.opener is None:
+            continue
+        for opened in matcher.opener.finditer(text, 0, found):
+            start = opened.start()
+            if usable(start):
+                span = matcher.search(text, start, memo)
+                if span is None or span[0] != start:
+                    found = start
+                    break
+    for open_delim, close_delim in syntax.nested_delimiters:
+        start = text.find(open_delim, 0, found)
+        while start != -1:
+            if usable(start) and _nested_comment_end(text, start, open_delim, close_delim) is None:
+                found = start
+                break
+            start = text.find(open_delim, start + 1, found)
+    return None if found == len(text) else found
+
+
 class CommentQuery(Query):
     """Extract comments by combining line/block regex and nested matching.
 
@@ -1851,18 +1917,34 @@ class CommentQuery(Query):
             mapping from language to version; unmapped languages use their
             default. ``None`` uses defaults and warns once per language whose
             comment syntax depends on its version.
+        on_unclosed: What ``parse`` does when a block comment opener never
+            closes. ``"ignore"`` (the default) leaves the unclosed comment out
+            and returns everything else. ``"raise"`` raises
+            ``UnclosedCommentError``. ``"warn"`` emits
+            ``UnclosedCommentWarning`` and returns what ``"ignore"`` returns.
+            ``"to_eof"`` returns the unclosed comment running to the end of
+            the text, in place of anything found after its opener.
+            ``"empty"`` returns no comments for that text. With several
+            languages, each language's result is handled on its own.
 
     Raises:
         TypeError: If ``language`` is not a string or iterable of strings, or
             ``version`` does not match the shape of ``language``.
-        ValueError: If an iterable of languages is empty, or a version mapping
-            names a language that is not queried.
+        ValueError: If an iterable of languages is empty, a version mapping
+            names a language that is not queried, or ``on_unclosed`` is not
+            one of ``UNCLOSED_COMMENT_POLICIES``.
         NotImplementedError: If any language key is unknown to the registry.
         UnsupportedCommentLanguageVersionError: If a version is not supported
             for its language.
     """
 
-    def __init__(self, language, version=None):
+    def __init__(self, language, version=None, on_unclosed="ignore"):
+        if on_unclosed not in UNCLOSED_COMMENT_POLICIES:
+            raise ValueError(
+                f"on_unclosed must be one of {', '.join(UNCLOSED_COMMENT_POLICIES)}, "
+                f"got {on_unclosed!r}"
+            )
+        self.on_unclosed = on_unclosed
         self.languages = self._normalize_languages(language)
         self.language = self.languages[0] if len(self.languages) == 1 else self.languages
         requested = self._normalize_versions(self.languages, version)
@@ -1911,17 +1993,45 @@ class CommentQuery(Query):
 
         if len(self._query_pairs) == 1:
             line_comments, nested_comments = self._query_pairs[0]
-            return self._parse_single_language_ranges(text, line_comments, nested_comments)
+            return self._apply_unclosed_policy(
+                text,
+                line_comments,
+                self._parse_single_language_ranges(text, line_comments, nested_comments),
+            )
 
         ranges = []
         for line_comments, nested_comments in self._query_pairs:
-            ranges.extend(self._parse_single_language_ranges(text, line_comments, nested_comments))
+            ranges.extend(
+                self._apply_unclosed_policy(
+                    text,
+                    line_comments,
+                    self._parse_single_language_ranges(text, line_comments, nested_comments),
+                )
+            )
         return self._union_comment_ranges(ranges)
 
     def iter_ranges(self, text):
         """Yield unique comment ranges in source order."""
 
         yield from self.parse_ranges(text)
+
+    def _apply_unclosed_policy(self, text, line_comments, ranges):
+        """Return one language's ranges after applying ``on_unclosed``."""
+
+        if self.on_unclosed == "ignore":
+            return ranges
+        start = _unclosed_comment_start(line_comments.language, line_comments.version, text, ranges)
+        if start is None:
+            return ranges
+        if self.on_unclosed == "empty":
+            return []
+        if self.on_unclosed == "to_eof":
+            return [(begin, end) for begin, end in ranges if begin < start] + [(start, len(text))]
+        error = UnclosedCommentError(line_comments.language, start, text.count("\n", 0, start) + 1)
+        if self.on_unclosed == "raise":
+            raise error
+        warnings.warn(str(error), UnclosedCommentWarning, stacklevel=4)
+        return ranges
 
     @staticmethod
     def _normalize_languages(language):
