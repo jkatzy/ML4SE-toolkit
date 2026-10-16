@@ -77,27 +77,6 @@ _NL_BINARY_HEADER = re.compile(
 _NL_HEADER_REQUIRED_UINTS = (3, 2, 2, 2, 2, 2, 2, 2, 5)
 _NL_C_WHITESPACE = " \t\v\f\r"
 _PHYSICAL_LINE_ENDINGS = "\r\n\u0085\u2028\u2029"
-UNCLOSED_COMMENT_POLICIES = ("ignore", "raise", "warn", "to_eof", "empty")
-
-
-class UnclosedCommentError(ValueError):
-    """Raised by ``CommentQuery(..., on_unclosed="raise")`` for an unclosed comment.
-
-    Attributes:
-        language: Language whose comment was left open.
-        offset: Source offset of the unclosed opener.
-        line: One-based line number of the unclosed opener.
-    """
-
-    def __init__(self, language, offset, line):
-        super().__init__(f"unclosed {language} comment at line {line} (offset {offset})")
-        self.language = language
-        self.offset = offset
-        self.line = line
-
-
-class UnclosedCommentWarning(UserWarning):
-    """Warning emitted by ``CommentQuery(..., on_unclosed="warn")``."""
 
 
 def _warn_language_caveat_once(language):
@@ -1859,6 +1838,29 @@ class NestedCommentQuery(Query):
             search_from = close_index + close_len
 
         return result
+
+
+UNCLOSED_COMMENT_POLICIES = ("ignore", "raise", "warn", "to_eof", "empty")
+
+
+class UnclosedCommentError(ValueError):
+    """Raised by ``CommentQuery(..., on_unclosed="raise")`` for an unclosed comment.
+
+    Attributes:
+        language: Language whose comment was left open.
+        offset: Source offset of the unclosed opener.
+        line: One-based line number of the unclosed opener.
+    """
+
+    def __init__(self, language, offset, line):
+        super().__init__(f"unclosed {language} comment at line {line} (offset {offset})")
+        self.language = language
+        self.offset = offset
+        self.line = line
+
+
+class UnclosedCommentWarning(UserWarning):
+    """Warning emitted by ``CommentQuery(..., on_unclosed="warn")``."""
 
 
 def _unclosed_comment_start(language, version, text, ranges):
