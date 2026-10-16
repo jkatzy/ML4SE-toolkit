@@ -53,6 +53,64 @@ def _rules(quote_chars="'\"`", literals=(), starts="", non_string_quote=None):
     )
 
 
+def _nested_comment_end(text, start, open_delim, close_delim, memo=None):
+    """Return the end of the depth-balanced comment opened at ``start``.
+
+    ``memo`` remembers the offset after which no closer exists, and the end
+    of every opener met while scanning, so overlapping openers do not each
+    rescan the text.
+    """
+
+    memo_key = ("nested-unclosed", open_delim, close_delim)
+    if memo is not None and start >= memo.get(memo_key, len(text) + 1):
+        return None
+    ends = None if memo is None else memo.setdefault(("nested-ends", open_delim, close_delim), {})
+    if ends is not None and start in ends:
+        return ends[start]
+    openers = []
+    search_from = start
+    open_index = close_index = -2
+    while True:
+        if open_index != -1 and open_index < search_from:
+            open_index = text.find(open_delim, search_from)
+        if close_index < search_from:
+            close_index = text.find(close_delim, search_from)
+        if close_index == -1:
+            # No closer exists at or after ``search_from``, so no opener
+            # starting there can close either.
+            if memo is not None:
+                memo[memo_key] = min(memo.get(memo_key, len(text) + 1), search_from)
+                ends.update(dict.fromkeys(openers))
+            return None
+        if open_index != -1 and open_index <= close_index:
+            openers.append(open_index)
+            search_from = open_index + len(open_delim)
+            continue
+        search_from = close_index + len(close_delim)
+        opened = openers.pop()
+        if ends is not None:
+            ends[opened] = search_from
+        if not openers:
+            return search_from
+
+
+class BalancedLiteral:
+    """A literal of nesting two-delimiter pairs, matched by depth.
+
+    It replaces a recursive regex such as Lua 5.0's ``[[ ... ]]`` whose
+    failed matches rescan to the end from every opener.
+    """
+
+    def __init__(self, open_delim, close_delim):
+        self.delimiters = (open_delim, close_delim)
+
+    def scan(self, text, start, memo):
+        if not text.startswith(self.delimiters[0], start):
+            return None
+        end = _nested_comment_end(text, start, *self.delimiters, memo)
+        return None if end is None else (start, end)
+
+
 class RegexLiteral:
     """A literal whose whole span is one regex match at the start offset."""
 
@@ -83,14 +141,29 @@ class DelimitedLiteral:
 
     def __init__(self, opener, closer, body_on_next_line=False, same_line=False):
         self.opener = re.compile(opener)
+        # An opener led by ``(C+)`` that fails at one offset fails at every
+        # later offset in the same run of ``C``: its ``C+`` there can only
+        # end where the first one already tried.
+        run = re.match(r"\((\\?[^\\\w()\[\]|*+?{}.^$])\+\)", opener)
+        self.run_char = None if run is None else run.group(1)[-1]
         self.closer = closer
         self.body_on_next_line = body_on_next_line
         # The closer must start before the next CR or LF after the body start.
         self.same_line = same_line
 
     def scan(self, text, start, memo):
+        if self.run_char is not None:
+            run_key = (id(self), "run")
+            failed_run = memo.get(run_key)
+            if failed_run is not None and failed_run[0] < start < failed_run[1]:
+                return None
         opened = self.opener.match(text, start)
         if opened is None:
+            if self.run_char is not None:
+                run_end = start
+                while run_end < len(text) and text[run_end] == self.run_char:
+                    run_end += 1
+                memo[run_key] = (start, run_end)
             return None
         closer_text = self.closer.format(*(re.escape(group or "") for group in opened.groups()))
         body_start = opened.end()
@@ -513,13 +586,20 @@ def _escaped_quote_literal(pattern):
     return EscapedQuoteLiteral(shape.group("open"), quote, shape.group("suffix"))
 
 
+# Recursive regexes whose match is the depth-balanced run of their delimiters.
+_BALANCED_LITERALS = {r"\[\[(?:(?!\[\[|\]\])[\s\S]|(?R))*\]\]": ("[[", "]]")}
+
+
 def _literal(value):
     if not isinstance(value, str):
         return value
     # A lazy block regex rescans to the end of the text from every unclosed
     # opener; a delimited literal remembers that its closer is missing.
     split = _split_lazy_literal(value)
-    literal = DelimitedLiteral(*split) if split else _escaped_quote_literal(value)
+    if value in _BALANCED_LITERALS:
+        literal = BalancedLiteral(*_BALANCED_LITERALS[value])
+    else:
+        literal = DelimitedLiteral(*split) if split else _escaped_quote_literal(value)
     if literal is None:
         return RegexLiteral(value)
     # The regex it replaces; tests check that both agree.

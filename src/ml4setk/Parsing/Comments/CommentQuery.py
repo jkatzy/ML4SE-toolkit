@@ -14,7 +14,7 @@ import regex as re
 
 from ..Query import Query, QueryMatch
 from .contextual import contextual_comment_ranges
-from .lexical import lexical_rules_for
+from .lexical import _nested_comment_end, lexical_rules_for
 from .registry import (
     _resolve_comment_language_key,
     get_comment_language_version,
@@ -773,47 +773,6 @@ def _scan_quoted_at(text, start):
     return length, False
 
 
-def _nested_comment_end(text, start, open_delim, close_delim, memo=None):
-    """Return the end of the depth-balanced comment opened at ``start``.
-
-    ``memo`` remembers the offset after which no closer exists, and the end
-    of every opener met while scanning, so overlapping openers do not each
-    rescan the text.
-    """
-
-    memo_key = ("nested-unclosed", open_delim, close_delim)
-    if memo is not None and start >= memo.get(memo_key, len(text) + 1):
-        return None
-    ends = None if memo is None else memo.setdefault(("nested-ends", open_delim, close_delim), {})
-    if ends is not None and start in ends:
-        return ends[start]
-    openers = []
-    search_from = start
-    open_index = close_index = -2
-    while True:
-        if open_index != -1 and open_index < search_from:
-            open_index = text.find(open_delim, search_from)
-        if close_index < search_from:
-            close_index = text.find(close_delim, search_from)
-        if close_index == -1:
-            # No closer exists at or after ``search_from``, so no opener
-            # starting there can close either.
-            if memo is not None:
-                memo[memo_key] = min(memo.get(memo_key, len(text) + 1), search_from)
-                ends.update(dict.fromkeys(openers))
-            return None
-        if open_index != -1 and open_index <= close_index:
-            openers.append(open_index)
-            search_from = open_index + len(open_delim)
-            continue
-        search_from = close_index + len(close_delim)
-        opened = openers.pop()
-        if ends is not None:
-            ends[opened] = search_from
-        if not openers:
-            return search_from
-
-
 _LAZY_BODIES = (r"[\S\s]*?", r"[\s\S]*?")
 _EXCLUDED_CHAR_RUN_CLOSE = re.compile(
     r"(?P<head>.+)\[\^(?P<char>\\[^\w]|[^\\\]])\]\*(?P<close>\\[^\w]|[^\\\w])"
@@ -872,6 +831,11 @@ def _split_lazy_block_pattern(pattern_text):
     if not _UNESCAPED_BACKREFERENCE.search(pattern_text):
         # Nothing refers to a captured lazy body, so its group can go too.
         pattern_text = _CAPTURED_LAZY_BODY.sub(r"\g<body>", pattern_text)
+    lazy_bodies = _LAZY_BODIES
+    leading = _GLOBAL_INLINE_FLAGS.match(pattern_text)
+    if leading is not None and "s" in leading.group(1):
+        # Under a leading DOTALL flag, ``.*?`` is a lazy body too (org blocks).
+        lazy_bodies += (".*?",)
     depth = 0
     in_class = False
     index = 0
@@ -887,7 +851,7 @@ def _split_lazy_block_pattern(pattern_text):
             index += 1
             continue
         if depth == 0:
-            body = next((b for b in _LAZY_BODIES if pattern_text.startswith(b, index)), None)
+            body = next((b for b in lazy_bodies if pattern_text.startswith(b, index)), None)
             if body is not None:
                 if split_at is not None:
                     return None
@@ -1228,11 +1192,56 @@ def _cweb_meta_comment_spans(text):
     return spans
 
 
+# OpenSSH 8.7+ ``#`` comments after a space, except on command lines.
+_SSH_CONFIG_TRAILING_COMMENT_PATTERN = (
+    r"(?m)(?<=[ \t])"
+    r"(?<!^[ \t]*(?i:proxycommand|localcommand|remotecommand|knownhostscommand)\b[^\r\n]*)"
+    r"#[^\r\n]*"
+)
+_SSH_CONFIG_COMMAND_LINE = re.compile(
+    r"[ \t]*(?i:proxycommand|localcommand|remotecommand|knownhostscommand)\b"
+)
+
+
+def _ssh_config_trailing_comment_spans(text):
+    """Return the match of ``_SSH_CONFIG_TRAILING_COMMENT_PATTERN`` at every ``#``.
+
+    The lookbehind rejects a ``#`` when its line (from the last LF) starts
+    with a command keyword and no CR or LF lies between the keyword and the
+    ``#``. Each line and each break is looked up once, not once per ``#``.
+    """
+
+    breaks = [match.start() for match in re.finditer(r"[\r\n]", text)]
+    spans = []
+    previous = 0
+    line_start = 0
+    blocked_until = -1
+    for marker in re.finditer(r"(?<=[ \t])#", text):
+        start = marker.start()
+        newline = text.rfind("\n", previous, start)
+        if newline >= 0 or previous == 0:
+            line_start = newline + 1 if newline >= 0 else text.rfind("\n", 0, start) + 1
+            keyword = _SSH_CONFIG_COMMAND_LINE.match(text, line_start)
+            # A ``#`` up to the first break after the keyword is not a comment.
+            blocked_until = -1
+            if keyword is not None:
+                after = bisect_left(breaks, keyword.end())
+                blocked_until = breaks[after] if after < len(breaks) else len(text)
+                blocked_from = keyword.end()
+        previous = start
+        if blocked_until >= 0 and blocked_from <= start < blocked_until:
+            continue
+        index = bisect_left(breaks, start)
+        spans.append((start, breaks[index] if index < len(breaks) else len(text)))
+    return spans
+
+
 _CUSTOM_SPAN_FINDERS = {
     _MATLAB_BLOCK_PATTERN: _matlab_block_spans,
     _WIN32_MESSAGE_BLOCK_PATTERN: _win32_message_block_spans,
     _MAKEFILE_COMMENT_PATTERN: _makefile_comment_spans,
     _CWEB_META_COMMENT_PATTERN: _cweb_meta_comment_spans,
+    _SSH_CONFIG_TRAILING_COMMENT_PATTERN: _ssh_config_trailing_comment_spans,
 }
 
 

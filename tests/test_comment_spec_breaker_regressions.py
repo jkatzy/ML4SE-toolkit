@@ -1408,6 +1408,9 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("autohotkey", "*//*;", 4000, id="autohotkey-semicolons-on-one-line"),
         pytest.param("turing", "%{%%{", 8000, id="turing-unclosed-block-openers"),
         pytest.param("cweb", "@q@q@q", 8000, id="cweb-unclosed-meta-comments"),
+        pytest.param("ssh_config", "# ", 8000, id="ssh-config-hashes-on-one-line"),
+        pytest.param("swift", "#", 24000, id="swift-hash-run"),
+        pytest.param("org", "Text\n#+BEGIN_COMMENT\nnote", 4000, id="org-unclosed-comment-blocks"),
     ],
 )
 def test_adversarial_input_scans_within_budget(language, unit, repeat):
@@ -1428,6 +1431,7 @@ def test_adversarial_input_scans_within_budget(language, unit, repeat):
         pytest.param(
             "markdown", "commonmark-0.30", "<!-- a\n\n\n", 8000, id="commonmark-0.30-unclosed-html"
         ),
+        pytest.param("lua", "4.0", "[", 4000, id="lua-4.0-bracket-run"),
     ],
 )
 def test_adversarial_input_scans_within_budget_for_version(language, version, unit, repeat):
@@ -1585,6 +1589,11 @@ _MATCHER_TOKENS = (
     "(?#",
     "@q",
     "@>",
+    "ProxyCommand",
+    "localcommand",
+    "LocalCommandx",
+    "#+begin_comment",
+    "#+END_COMMENT",
 )
 
 
