@@ -1874,14 +1874,19 @@ def _unclosed_comment_openers(language, version, text, ranges):
 
     syntax = get_comment_syntax(language, version)
     excluded = syntax.excluded_comment_prefixes_for_language(language)
-    quoted_ranges, scan_limit = _comment_scan_context(language, text, version)
     starts = [start for start, _ in ranges]
+    context = []
 
     def usable(start):
         index = bisect_right(starts, start) - 1
+        if index >= 0 and ranges[index][1] > start:
+            return False
+        # Most openers start a found comment, so scan literals only when needed.
+        if not context:
+            context.extend(_comment_scan_context(language, text, version))
+        quoted_ranges, scan_limit = context
         return (
             start < scan_limit
-            and (index < 0 or ranges[index][1] <= start)
             and not _starts_inside_ignored_range(start, quoted_ranges)
             and not _starts_with_excluded_comment_prefix(text, start, excluded)
         )
@@ -1916,9 +1921,14 @@ def _unbalanced_openers(text, start, open_delim, close_delim):
 
     stack = []
     index = start
+    open_index = close_index = -2
     while True:
-        open_index = text.find(open_delim, index)
-        close_index = text.find(close_delim, index)
+        # Reuse a lookahead until the scan passes it, so a run of one
+        # delimiter does not rescan the text for the other.
+        if open_index != -1 and open_index < index:
+            open_index = text.find(open_delim, index)
+        if close_index != -1 and close_index < index:
+            close_index = text.find(close_delim, index)
         if open_index == -1 and close_index == -1:
             return stack
         if open_index != -1 and (close_index == -1 or open_index <= close_index):
