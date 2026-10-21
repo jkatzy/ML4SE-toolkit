@@ -162,8 +162,8 @@ All names below are importable from `ml4setk`.
 | `query.parse(text)` | `list[QueryMatch]` | All matches in source order. |
 | `query.contains(text)` | `bool` | A quick check that at least one comment exists. |
 | `QueryMatch(prefix, suffix, match)` | named tuple | The shared result type; `prefix + match + suffix` is the original text. |
-| `CommentSanitizer(language, version=None)` | sanitizer object | Reusable cleaner for one language; call `.sanitize(comment)`. |
-| `sanitize_comment(language, comment, version=None)` | `str` | One-off cleaning. `sanitize_comment_text` is an alias. |
+| `CommentSanitizer(language, version=None, on_unclosed="ignore")` | sanitizer object | Reusable cleaner for one language; call `.sanitize(comment)`. `on_unclosed` picks what happens to a comment that never closes (see [Unclosed comments](#unclosed-comments)). |
+| `sanitize_comment(language, comment, version=None, on_unclosed="ignore")` | `str` | One-off cleaning. `sanitize_comment_text` is an alias. |
 | `get_supported_comment_languages()` | `list[str]` | Every registry key. |
 | `comment_language_requires_version(language)` | `bool` | Whether a language has a version table. |
 | `get_comment_language_versions(language)` | `tuple[str, ...]` | Its supported versions, oldest first. |
@@ -393,6 +393,32 @@ delimiter pairs; an opener inside a string or another comment does not count.
 Languages whose lexers accept a block running to end of file (listed in
 `unclosed_block_openers`) already return it as a match. With several
 languages, each language's result is handled on its own before merging.
+
+`CommentSanitizer` takes the same `on_unclosed` values for a comment whose
+opener never closes, such as one `"to_eof"` returned:
+
+| `on_unclosed` | `sanitize` result |
+| --- | --- |
+| `"ignore"` (default) | Cleaned like any other text; an opener the cleaner cannot pair stays in the result. |
+| `"warn"` | Same as `"ignore"`, plus an `UnclosedCommentWarning`. |
+| `"raise"` | Raises `UnclosedCommentError`; `offset` and `line` are within the comment. |
+| `"to_eof"` | Cleaned as a block that runs to the end of the comment: the opener is removed. |
+| `"skip"`, `"empty"` | `""`. |
+
+```python
+from ml4setk import CommentQuery, CommentSanitizer
+
+sample = "int a; // ok\n/** doc\n * more\n"
+matches = CommentQuery("java", on_unclosed="to_eof").parse(sample)
+cleaner = CommentSanitizer("java", on_unclosed="to_eof")
+assert [cleaner.sanitize(match) for match in matches] == ["ok", "doc\nmore"]
+assert CommentSanitizer("java").sanitize(matches[1]) == "/** doc\n * more"
+```
+
+The sanitizer runs the same check on the comment text, so a comment counts as
+unclosed only when an opener at its start finds no closer and the comment's
+own syntax does not already cover it (`### note` in a `#` line comment is
+closed). Detection runs only when `on_unclosed` is not `"ignore"`.
 
 ### Structural formats can declare comment regions
 
