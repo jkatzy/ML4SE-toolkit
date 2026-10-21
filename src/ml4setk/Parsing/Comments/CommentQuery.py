@@ -14,7 +14,7 @@ import regex as re
 
 from ..Query import Query, QueryMatch
 from .contextual import contextual_comment_ranges
-from .lexical import lexical_rules_for
+from .lexical import _nested_comment_end, lexical_rules_for
 from .registry import (
     _resolve_comment_language_key,
     get_comment_language_version,
@@ -77,6 +77,25 @@ _NL_BINARY_HEADER = re.compile(
 _NL_HEADER_REQUIRED_UINTS = (3, 2, 2, 2, 2, 2, 2, 2, 5)
 _NL_C_WHITESPACE = " \t\v\f\r"
 _PHYSICAL_LINE_ENDINGS = "\r\n\u0085\u2028\u2029"
+_PHYSICAL_LINE_BREAK = re.compile("[" + _PHYSICAL_LINE_ENDINGS + "]")
+_CONSECUTIVE_LINE_SEPARATOR = re.compile(
+    r"[^\S\r\n\u0085\u2028\u2029]*"
+    r"(?:\r\n|[\r\n\u0085\u2028\u2029])"
+    r"[^\S\r\n\u0085\u2028\u2029]*"
+)
+
+
+def _physical_line_breaks(text):
+    """Return the sorted offsets of every physical line-ending character."""
+
+    return [match.start() for match in _PHYSICAL_LINE_BREAK.finditer(text)]
+
+
+@lru_cache(maxsize=None)
+def _normalized_language_key(language):
+    """Return the ``snake_case`` lookup key used for per-language behavior."""
+
+    return re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
 
 
 def _warn_language_caveat_once(language):
@@ -650,7 +669,7 @@ def _comment_scan_context(language, text, version=None):
     inside line comments from opening a block.
     """
 
-    normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+    normalized = _normalized_language_key(language)
     if normalized in {"circom", "linear_programming"}:
         return [], len(text)
     if normalized == "nl":
@@ -754,56 +773,26 @@ def _scan_quoted_at(text, start):
     return length, False
 
 
-def _nested_comment_end(text, start, open_delim, close_delim, memo=None):
-    """Return the end of the depth-balanced comment opened at ``start``.
-
-    ``memo`` remembers the offset after which no closer exists, and the end
-    of every opener met while scanning, so overlapping openers do not each
-    rescan the text.
-    """
-
-    memo_key = ("nested-unclosed", open_delim, close_delim)
-    if memo is not None and start >= memo.get(memo_key, len(text) + 1):
-        return None
-    ends = None if memo is None else memo.setdefault(("nested-ends", open_delim, close_delim), {})
-    if ends is not None and start in ends:
-        return ends[start]
-    openers = []
-    search_from = start
-    open_index = close_index = -2
-    while True:
-        if open_index != -1 and open_index < search_from:
-            open_index = text.find(open_delim, search_from)
-        if close_index < search_from:
-            close_index = text.find(close_delim, search_from)
-        if close_index == -1:
-            # No closer exists at or after ``search_from``, so no opener
-            # starting there can close either.
-            if memo is not None:
-                memo[memo_key] = min(memo.get(memo_key, len(text) + 1), search_from)
-                ends.update(dict.fromkeys(openers))
-            return None
-        if open_index != -1 and open_index <= close_index:
-            openers.append(open_index)
-            search_from = open_index + len(open_delim)
-            continue
-        search_from = close_index + len(close_delim)
-        opened = openers.pop()
-        if ends is not None:
-            ends[opened] = search_from
-        if not openers:
-            return search_from
-
-
 _LAZY_BODIES = (r"[\S\s]*?", r"[\s\S]*?")
+_EXCLUDED_CHAR_RUN_CLOSE = re.compile(
+    r"(?P<head>.+)\[\^(?P<char>\\[^\w]|[^\\\]])\]\*(?P<close>\\[^\w]|[^\\\w])"
+)
+_UNESCAPED_QUANTIFIER = re.compile(r"(?<![\\(])[*+?{]")
+_GROUPED_LAZY_BODY = re.compile(
+    r"(?<!\\)\(\?:(?P<lead>(?:\\.|[^\\()|\[\]])*)(?P<body>\[(?:\\S\\s|\\s\\S)\]\*\?)\)(?![*+?{])"
+)
+_CAPTURED_LAZY_BODY = re.compile(r"(?<!\\)\((?P<body>\[(?:\\S\\s|\\s\\S)\]\*\?)\)(?![*+?{])")
 _TEMPERED_BLOCK = re.compile(
     r"(?P<open>.+?)\(\?:\(\?!(?P<close>.+)\)\[(?:\\S\\s|\\s\\S)\]\)\*(?P=close)"
 )
 _UNESCAPED_BACKREFERENCE = re.compile(r"(?<!\\)\\([1-9])")
 # ``OPEN(?:QUICK|[\S\s]*?CLOSE)`` with a fixed-width literal opener and no
 # groups, classes, or alternation inside QUICK and CLOSE (HTML's ``<!--``).
+# The opener may follow ``(?m)`` and a lookbehind without groups, which only
+# filter where it starts (CommonMark's indented ``<!--``).
 _QUICK_OR_LAZY = re.compile(
-    r"(?P<open>(?:\\.|[^\\()|\[\]*+?{}])+)\(\?:(?P<quick>(?:\\.|[^\\()|\[\]])+)"
+    r"(?P<open>(?:\(\?m\))?(?:\(\?<=[^()|]*\))?(?:\\.|[^\\()|\[\]*+?{}])+)"
+    r"\(\?:(?P<quick>(?:\\.|[^\\()|\[\]])+)"
     r"\|\[(?:\\S\\s|\\s\\S)\]\*\?(?P<close>(?:\\.|[^\\()|\[\]])+)\)"
 )
 
@@ -825,6 +814,28 @@ def _split_lazy_block_pattern(pattern_text):
         if open_scan[:2] == close_scan[:2] == (True, False) and not opener.startswith("(?"):
             return opener, closer
         return None
+    excluded = _EXCLUDED_CHAR_RUN_CLOSE.fullmatch(pattern_text)
+    if excluded is not None and excluded.group("char")[-1] == excluded.group("close")[-1]:
+        # ``HEAD[^C]*C`` stops at the first ``C`` after the head, like a lazy body.
+        # The head may not repeat anything, so its match cannot backtrack.
+        head = excluded.group("head")
+        if (
+            _scan_top_level(head)[:2] == (True, False)
+            and "\\\\" not in head
+            and not _UNESCAPED_QUANTIFIER.search(head)
+        ):
+            return head, excluded.group("close")
+        return None
+    # ``(?:X[\S\s]*?)`` with a plain X and no quantifier is just ``X[\S\s]*?``.
+    pattern_text = _GROUPED_LAZY_BODY.sub(r"\g<lead>\g<body>", pattern_text)
+    if not _UNESCAPED_BACKREFERENCE.search(pattern_text):
+        # Nothing refers to a captured lazy body, so its group can go too.
+        pattern_text = _CAPTURED_LAZY_BODY.sub(r"\g<body>", pattern_text)
+    lazy_bodies = _LAZY_BODIES
+    leading = _GLOBAL_INLINE_FLAGS.match(pattern_text)
+    if leading is not None and "s" in leading.group(1):
+        # Under a leading DOTALL flag, ``.*?`` is a lazy body too (org blocks).
+        lazy_bodies += (".*?",)
     depth = 0
     in_class = False
     index = 0
@@ -840,7 +851,7 @@ def _split_lazy_block_pattern(pattern_text):
             index += 1
             continue
         if depth == 0:
-            body = next((b for b in _LAZY_BODIES if pattern_text.startswith(b, index)), None)
+            body = next((b for b in lazy_bodies if pattern_text.startswith(b, index)), None)
             if body is not None:
                 if split_at is not None:
                     return None
@@ -874,8 +885,11 @@ def _split_lazy_block_pattern(pattern_text):
 _DOTALL_OR_VERBOSE_FLAGS = re.compile(r"\(\?[a-zA-Z]*[sxV]")
 _GLOBAL_INLINE_FLAGS = re.compile(r"\(\?([a-zA-Z]+)\)")
 _LEADING_INLINE_FLAGS = re.compile(r"(?:\(\?[a-zA-Z]+\))*")
+_WHOLE_PATTERN_SCOPED_FLAGS = re.compile(r"\(\?(?P<flags>[a-zA-Z]+):(?P<body>.*)\)", re.DOTALL)
 # A trailing ``(?:LITERAL)?`` taken when the tail stops right before it.
-_OPTIONAL_LITERAL_SUFFIX = re.compile(r"\(\?:(?P<literal>(?:\\[^\w]|[^\\()\[\]|*+?{}.^$])+)\)\?$")
+_OPTIONAL_LITERAL_SUFFIX = re.compile(
+    r"\(\?:(?P<literal>(?:\\[^\w]|[^\\()\[\]|*+?{}.^$])+)\)\?$|(?<!\\)(?P<cr>\\r)\?$"
+)
 # ``(?:SPLICE|[^\r\n])`` where SPLICE is ``PREFIX(?:\r\n|\r|\n)``, as in C.
 _SPLICED_LINE_TAIL = re.compile(r"\(\?:(?P<prefix>.+)\(\?:\\r\\n\|\\r\|\\n\)\|\[\^\\r\\n\]\)")
 
@@ -931,8 +945,8 @@ def _split_line_tail_pattern(pattern_text):
     Computing that end from a stop index avoids rescanning a long line once
     per candidate opener on it. Handled tails are ``.*``, ``[^...]*``,
     ``(?:(?!LOOK)[^...])*``, ``(?:[^\r\n]|\r(?!\n))*`` and C's spliced
-    ``//`` tail, optionally followed by a ``(?:LITERAL)?`` taken when it is
-    next. Returns ``(head, stops, literal)``, or ``None`` unless the tail ends
+    ``//`` tail, optionally followed by a ``(?:LITERAL)?`` or ``\r?`` taken
+    when it is next. Returns ``(head, stops, literal)``, or ``None`` unless the tail ends
     the pattern at the top level with no top-level alternation.
     """
 
@@ -941,9 +955,16 @@ def _split_line_tail_pattern(pattern_text):
     ):
         # A global flag after the start would also govern the head.
         return None
+    scoped = _WHOLE_PATTERN_SCOPED_FLAGS.fullmatch(pattern_text)
+    if scoped is not None and _scan_top_level(scoped.group("body"))[0]:
+        # Flags scoped to the whole pattern act as global flags.
+        pattern_text = f"(?{scoped.group('flags')})" + scoped.group("body")
     suffix = ""
     optional = _OPTIONAL_LITERAL_SUFFIX.search(pattern_text)
-    if optional is not None:
+    if optional is not None and optional.group("cr"):
+        suffix = "\r"
+        pattern_text = pattern_text[: optional.start()]
+    elif optional is not None:
         suffix = re.sub(r"\\(.)", r"\1", optional.group("literal"))
         if not suffix.isascii() or any(char.isalnum() for char in suffix):
             return None
@@ -1013,6 +1034,12 @@ _RECURSIVE_BRACKET = re.compile(
 )
 
 
+# Lua 5.0 long comments, whose ``[[``/``]]`` pairs nest. At a ``[[`` only the
+# recursion applies and at a ``]]`` only the close, so the group matches the
+# depth-balanced run of two-character brackets.
+_LUA50_LONG_COMMENT_PATTERN = r"--(\[\[(?:(?!\[\[|\]\])[\s\S]|(?1))*\]\])"
+
+
 def _recursive_bracket_parts(pattern_text):
     r"""Split ``PREFIX(?P<n>\((?:[^()]|(?P>n))*\))`` into a prefix and brackets.
 
@@ -1021,6 +1048,8 @@ def _recursive_bracket_parts(pattern_text):
     have one fixed width, so no other prefix match at the same start exists.
     """
 
+    if pattern_text == _LUA50_LONG_COMMENT_PATTERN:
+        return re.compile(r"--(?=\[\[)"), ("[[", "]]")
     parts = _RECURSIVE_BRACKET.fullmatch(pattern_text)
     if parts is None:
         return None
@@ -1113,9 +1142,106 @@ def _win32_message_block_spans(text):
     return sorted(spans)
 
 
+# Makefile ``#`` comments continued by a backslash before the line break.
+_MAKEFILE_COMMENT_PATTERN = r"#(?:[^\\\r\n]|\\(?:\r?\n|[^\r\n]|\Z))*"
+_MAKEFILE_COMMENT = re.compile(_MAKEFILE_COMMENT_PATTERN)
+
+
+def _makefile_comment_spans(text):
+    """Return the match of ``_MAKEFILE_COMMENT_PATTERN`` at every ``#``.
+
+    The body is a run of one-character tokens and backslash escapes, and a
+    ``#`` is a whole token or the end of an escape, so the body after a ``#``
+    inside an earlier match continues on the same token boundaries and ends
+    where that match ends. Only ``#`` outside earlier matches needs a scan.
+    """
+
+    spans = []
+    end = -1
+    for marker in re.finditer("#", text):
+        start = marker.start()
+        if start >= end:
+            end = _MAKEFILE_COMMENT.match(text, start).end()
+        spans.append((start, end))
+    return spans
+
+
+# CWEB ``@q ... @>`` meta-comments, which close on the line they open.
+_CWEB_META_COMMENT_PATTERN = r"@q[^\r\n]*?@>"
+
+
+def _cweb_meta_comment_spans(text):
+    """Return the match of ``_CWEB_META_COMMENT_PATTERN`` at every ``@q``.
+
+    Each ``@q`` closes at the first ``@>`` after it unless a line break comes
+    first, so one sorted list of closers and one of breaks answer every
+    opener.
+    """
+
+    closers = [match.start() for match in re.finditer("@>", text)]
+    breaks = [match.start() for match in re.finditer(r"[\r\n]", text)]
+    spans = []
+    for opener in re.finditer("@q", text):
+        body = opener.end()
+        index = bisect_left(closers, body)
+        if index == len(closers):
+            break
+        line = bisect_left(breaks, body)
+        if line == len(breaks) or breaks[line] >= closers[index]:
+            spans.append((opener.start(), closers[index] + 2))
+    return spans
+
+
+# OpenSSH 8.7+ ``#`` comments after a space, except on command lines.
+_SSH_CONFIG_TRAILING_COMMENT_PATTERN = (
+    r"(?m)(?<=[ \t])"
+    r"(?<!^[ \t]*(?i:proxycommand|localcommand|remotecommand|knownhostscommand)\b[^\r\n]*)"
+    r"#[^\r\n]*"
+)
+_SSH_CONFIG_COMMAND_LINE = re.compile(
+    r"[ \t]*(?i:proxycommand|localcommand|remotecommand|knownhostscommand)\b"
+)
+
+
+def _ssh_config_trailing_comment_spans(text):
+    """Return the match of ``_SSH_CONFIG_TRAILING_COMMENT_PATTERN`` at every ``#``.
+
+    The lookbehind rejects a ``#`` when its line (from the last LF) starts
+    with a command keyword and no CR or LF lies between the keyword and the
+    ``#``. Each line and each break is looked up once, not once per ``#``.
+    """
+
+    breaks = [match.start() for match in re.finditer(r"[\r\n]", text)]
+    spans = []
+    previous = 0
+    line_start = 0
+    blocked_until = -1
+    for marker in re.finditer(r"(?<=[ \t])#", text):
+        start = marker.start()
+        newline = text.rfind("\n", previous, start)
+        if newline >= 0 or previous == 0:
+            line_start = newline + 1 if newline >= 0 else text.rfind("\n", 0, start) + 1
+            keyword = _SSH_CONFIG_COMMAND_LINE.match(text, line_start)
+            # A ``#`` up to the first break after the keyword is not a comment.
+            blocked_until = -1
+            if keyword is not None:
+                after = bisect_left(breaks, keyword.end())
+                blocked_until = breaks[after] if after < len(breaks) else len(text)
+                blocked_from = keyword.end()
+        previous = start
+        if blocked_until >= 0 and blocked_from <= start < blocked_until:
+            continue
+        index = bisect_left(breaks, start)
+        spans.append((start, breaks[index] if index < len(breaks) else len(text)))
+    return spans
+
+
 _CUSTOM_SPAN_FINDERS = {
     _MATLAB_BLOCK_PATTERN: _matlab_block_spans,
     _WIN32_MESSAGE_BLOCK_PATTERN: _win32_message_block_spans,
+    _MAKEFILE_COMMENT_PATTERN: _makefile_comment_spans,
+    _CWEB_META_COMMENT_PATTERN: _cweb_meta_comment_spans,
+    _SSH_CONFIG_TRAILING_COMMENT_PATTERN: _ssh_config_trailing_comment_spans,
 }
 
 
@@ -1308,7 +1434,7 @@ def _comment_aware_ignored_ranges(language, text, string_ranges=None, version=No
                 add_comment(start, end)
 
     nested_starts = {}
-    normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+    normalized = _normalized_language_key(language)
     overlay = _version_overlay(language, version)
     nested_scanner = (
         None
@@ -1540,7 +1666,7 @@ def _adjust_language_specific_regex_range(language, text, start, end, memo=None)
     do not each rescan it.
     """
 
-    normalized = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+    normalized = _normalized_language_key(language)
     openers = _LONE_CR_LINE_COMMENT_OPENERS.get(normalized)
     if openers is None:
         return start, end
@@ -1746,7 +1872,7 @@ class NestedCommentQuery(Query):
         if not self.delimiters:
             return []
 
-        normalized = re.sub(r"[^a-z0-9]+", "_", self.language.strip().lower()).strip("_")
+        normalized = _normalized_language_key(self.language)
         overlay = _version_overlay(self.language, self.version)
         scanner = (
             None
@@ -2155,7 +2281,7 @@ class CommentQuery(Query):
         ranges = []
         ranges.extend(nested_comments.parse_ranges(text, quoted_ranges))
         line_ranges = line_comments.parse_ranges(text, quoted_ranges, scan_limit=scan_limit)
-        normalized = re.sub(r"[^a-z0-9]+", "_", line_comments.language.strip().lower()).strip("_")
+        normalized = _normalized_language_key(line_comments.language)
         if normalized in _NO_ADJACENT_LINE_GROUPING_LANGUAGES:
             ranges.extend(line_ranges)
         else:
@@ -2190,9 +2316,10 @@ class CommentQuery(Query):
         grouped = []
         group_start = None
         group_end = None
+        line_breaks = _physical_line_breaks(text)
 
         for start, end in ranges:
-            if not CommentQuery._is_standalone_single_line(text, start, end):
+            if not CommentQuery._is_standalone_single_line(text, start, end, line_breaks):
                 if group_start is not None:
                     grouped.append((group_start, group_end))
                     group_start = None
@@ -2200,14 +2327,16 @@ class CommentQuery(Query):
                 grouped.append((start, end))
                 continue
 
+            next_key = CommentQuery._line_comment_group_key(text[start:end], language)
             if group_start is None:
                 group_start = start
                 group_end = end
+                # The key reads only a short prefix of the group's first
+                # comment, so it does not change as the group grows.
+                group_key = next_key
                 continue
 
             separator = text[group_end:start]
-            group_key = CommentQuery._line_comment_group_key(text[group_start:group_end], language)
-            next_key = CommentQuery._line_comment_group_key(text[start:end], language)
             if (
                 CommentQuery._is_consecutive_line_separator(separator)
                 and group_key is not None
@@ -2219,6 +2348,7 @@ class CommentQuery(Query):
             grouped.append((group_start, group_end))
             group_start = start
             group_end = end
+            group_key = next_key
 
         if group_start is not None:
             grouped.append((group_start, group_end))
@@ -2256,39 +2386,44 @@ class CommentQuery(Query):
         return sorted(result)
 
     @staticmethod
-    def _is_standalone_single_line(text, start, end):
-        """Return ``True`` when a match is the only non-space content on a line."""
+    def _is_standalone_single_line(text, start, end, line_breaks=None):
+        """Return ``True`` when a match is the only non-space content on a line.
 
+        ``line_breaks`` is the sorted list of physical line-break offsets in
+        ``text``; callers checking many matches pass it so each check is a
+        bisect instead of a scan for every line-ending character.
+        """
+
+        if line_breaks is None:
+            line_breaks = _physical_line_breaks(text)
         match_text = text[start:end]
         if match_text.endswith("\r") and text[end : end + 1] == "\n":
             match_text = match_text[:-1]
         if any(ending in match_text for ending in _PHYSICAL_LINE_ENDINGS):
             return False
 
-        previous_endings = (text.rfind(ending, 0, start) for ending in _PHYSICAL_LINE_ENDINGS)
-        line_start = max(previous_endings) + 1
-        next_endings = (
-            index for ending in _PHYSICAL_LINE_ENDINGS if (index := text.find(ending, end)) != -1
-        )
-        line_end = min(next_endings, default=len(text))
+        before_index = bisect_left(line_breaks, start)
+        line_start = line_breaks[before_index - 1] + 1 if before_index else 0
+        after_index = bisect_left(line_breaks, end)
+        line_end = line_breaks[after_index] if after_index < len(line_breaks) else len(text)
 
-        before = text[line_start:start]
-        after = text[end:line_end]
-        return before.strip() == "" and after.strip() == ""
+        # Walk only the whitespace next to the match: slicing the line would
+        # copy it once per comment when many comments share one long line.
+        index = start - 1
+        while index >= line_start and text[index].isspace():
+            index -= 1
+        if index >= line_start:
+            return False
+        index = end
+        while index < line_end and text[index].isspace():
+            index += 1
+        return index == line_end
 
     @staticmethod
     def _is_consecutive_line_separator(separator):
         """Return ``True`` for whitespace plus exactly one newline."""
 
-        return (
-            re.fullmatch(
-                r"[^\S\r\n\u0085\u2028\u2029]*"
-                r"(?:\r\n|[\r\n\u0085\u2028\u2029])"
-                r"[^\S\r\n\u0085\u2028\u2029]*",
-                separator,
-            )
-            is not None
-        )
+        return _CONSECUTIVE_LINE_SEPARATOR.fullmatch(separator) is not None
 
     @staticmethod
     def _line_comment_group_key(comment, language=""):
@@ -2303,7 +2438,7 @@ class CommentQuery(Query):
         """
 
         stripped = comment.lstrip()
-        normalized_language = re.sub(r"[^a-z0-9]+", "_", language.strip().lower()).strip("_")
+        normalized_language = _normalized_language_key(language)
         if normalized_language == "nmodl" and stripped.startswith((":", "?")):
             return "nmodl-line"
         if normalized_language == "praat" and stripped.startswith(("#", ";", "!")):
@@ -2342,7 +2477,7 @@ class CommentQuery(Query):
         )
         if not stripped or stripped.startswith(block_prefixes):
             return None
-        if stripped.lower().startswith("w00t"):
+        if stripped[:4].lower().startswith("w00t"):
             return "w00t"
 
         line_prefixes = (

@@ -20,6 +20,11 @@ import regex as re
 from ml4setk import CommentQuery, sanitize_comment
 from ml4setk.Parsing.Comments import iter_comment_syntaxes
 from ml4setk.Parsing.Comments.CommentQuery import _comment_pattern_matchers
+from ml4setk.Parsing.Comments.lexical import (
+    _LEXICAL_RULES,
+    LEXICAL_VERSION_PROFILES,
+    RegexLiteral,
+)
 
 pytestmark = pytest.mark.unit
 
@@ -1384,6 +1389,27 @@ def test_adversarial_repetition_parses_within_budget(language, unit, repeat):
         pytest.param("mdx", "//`", 6000, id="mdx-backticks-and-slashes"),
         pytest.param("win32_message_file", ";/*\n", 1500, id="win32-unclosed-message-blocks"),
         pytest.param("html", "<!--a", 8000, id="html-unclosed-comment-openers"),
+        pytest.param("imba", "/[", 3000, id="imba-regex-literals-with-unclosed-classes"),
+        pytest.param("glimmer_js", "(/[", 3000, id="glimmer-regex-literals-with-unclosed-classes"),
+        pytest.param("tsx", "(/[", 3000, id="tsx-regex-literals-with-unclosed-classes"),
+        pytest.param("brightscript", "'REM", 12000, id="brightscript-rem-inside-quote-comment"),
+        pytest.param("dogescript", "quiet\n", 3000, id="dogescript-unclosed-quiet-blocks"),
+        pytest.param("regular_expression", "(?#", 16000, id="regex-unclosed-inline-comments"),
+        pytest.param("java", '"""\\\\', 3000, id="java-text-blocks-of-escaped-backslashes"),
+        pytest.param("templ", "templ ", 8000, id="templ-unfinished-declarations"),
+        pytest.param("java_template_engine", "a", 200000, id="jte-long-text-without-directives"),
+        pytest.param("tsx", "`" + "\\`-->" * 3000, 1, id="tsx-template-of-escaped-backticks"),
+        pytest.param("common_lisp", "`\\|#", 3000, id="common-lisp-unclosed-escaped-bars"),
+        pytest.param("swift", '#"a', 8000, id="swift-unclosed-raw-strings"),
+        pytest.param("bluespec_bh", "-->a", 8000, id="bluespec-arrow-operators"),
+        pytest.param("kdl", "/-{", 3000, id="kdl-slashdash-unclosed-children"),
+        pytest.param("kdl", "/-(", 3000, id="kdl-slashdash-unclosed-type-annotations"),
+        pytest.param("makefile", "`\\#", 4000, id="makefile-hashes-in-one-continued-comment"),
+        pytest.param("autohotkey", "*//*;", 4000, id="autohotkey-semicolons-on-one-line"),
+        pytest.param("turing", "%{%%{", 8000, id="turing-unclosed-block-openers"),
+        pytest.param("cweb", "@q@q@q", 8000, id="cweb-unclosed-meta-comments"),
+        pytest.param("ssh_config", "# ", 8000, id="ssh-config-hashes-on-one-line"),
+        pytest.param("org", "Text\n#+BEGIN_COMMENT\nnote", 4000, id="org-unclosed-comment-blocks"),
     ],
 )
 def test_adversarial_input_scans_within_budget(language, unit, repeat):
@@ -1398,6 +1424,99 @@ def test_adversarial_input_scans_within_budget(language, unit, repeat):
 
 
 @pytest.mark.parametrize(
+    ("language", "version", "unit", "repeat"),
+    [
+        pytest.param("lua", "5.0", "----[[--[=", 2400, id="lua-5.0-unclosed-nested-long-comments"),
+        pytest.param(
+            "markdown", "commonmark-0.30", "<!-- a\n\n\n", 8000, id="commonmark-0.30-unclosed-html"
+        ),
+        pytest.param("lua", "4.0", "[", 4000, id="lua-4.0-bracket-run"),
+    ],
+)
+def test_adversarial_input_scans_within_budget_for_version(language, version, unit, repeat):
+    query = CommentQuery(language, version=version)
+
+    started = time.perf_counter()
+    query.parse_ranges(unit * repeat)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+def test_swift_hash_run_scans_in_linear_time():
+    # Each ``#`` costs enough that a fixed budget cannot tell slow CI from a
+    # quadratic scan, so compare growth: 4x the input used to take 16x longer.
+    query = CommentQuery("swift")
+
+    def best_time(source):
+        timings = []
+        for _ in range(3):
+            started = time.perf_counter()
+            query.parse_ranges(source)
+            timings.append(time.perf_counter() - started)
+        return min(timings)
+
+    assert best_time("#" * 20000) < 8 * best_time("#" * 5000)
+
+
+# Each unit opens a string and an interpolation inside it, so the input nests
+# them as deep as it is long. Scanning used to take exponential time: about
+# four times longer for every two more units.
+@pytest.mark.parametrize(
+    ("language", "unit"),
+    [
+        pytest.param("tsx", "`${", id="tsx-template-literals"),
+        pytest.param("javascript", "`${", id="javascript-template-literals"),
+        pytest.param("python", 'f"{', id="python-f-strings"),
+        pytest.param("kotlin", '"${', id="kotlin-string-templates"),
+        pytest.param("swift", '"\\(', id="swift-string-interpolation"),
+        pytest.param("dart", "'${", id="dart-string-interpolation"),
+    ],
+)
+def test_nested_interpolation_scans_within_budget(language, unit):
+    query = CommentQuery(language)
+
+    for repeat in (18, 150):
+        started = time.perf_counter()
+        query.parse_ranges(unit * repeat)
+        elapsed = time.perf_counter() - started
+
+        assert elapsed < _PARSE_BUDGET_SECONDS, repeat
+
+
+@pytest.mark.parametrize(
+    ("language", "unit", "count", "expected_groups"),
+    [
+        pytest.param(
+            "java", "/* " + "a" * 24 + " */ ", 20000, 20000, id="java-comments-sharing-one-line"
+        ),
+        pytest.param("apl", "\u235d a\r", 8000, 1, id="apl-cr-separated-comment-block"),
+    ],
+)
+def test_line_comment_grouping_is_linear(language, unit, count, expected_groups):
+    source = unit * count
+    width = len(unit)
+    ranges = [(width * index, width * index + width - 1) for index in range(count)]
+
+    started = time.perf_counter()
+    grouped = CommentQuery._group_line_comment_block_ranges(source, ranges, language)
+    elapsed = time.perf_counter() - started
+
+    assert len(grouped) == expected_groups
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+def test_gams_star_framed_line_check_is_linear():
+    comment = "*" + "a " * 12000 + "\n*"
+
+    started = time.perf_counter()
+    sanitize_comment("gams", comment)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+@pytest.mark.parametrize(
     ("language", "unit", "repeat"),
     [
         pytest.param("awk", "#", 10000, id="awk-hash-gutter-ruler"),
@@ -1405,6 +1524,7 @@ def test_adversarial_input_scans_within_budget(language, unit, repeat):
         pytest.param("limbo", "#", 200, id="limbo-hash-banner-ruler"),
         pytest.param("minizinc", "/***/*\n", 2000, id="minizinc-stacked-rulers"),
         pytest.param("clarity", ";", 16000, id="clarity-semicolon-ruler"),
+        pytest.param("assembly", ";\x85", 4000, id="assembly-gutters-between-unicode-spaces"),
     ],
 )
 def test_adversarial_comment_sanitizes_within_budget(language, unit, repeat):
@@ -1477,6 +1597,18 @@ _MATCHER_TOKENS = (
     "{",
     "}",
     "rem",
+    "REM",
+    ".",
+    "quiet",
+    "loud",
+    "(?#",
+    "@q",
+    "@>",
+    "ProxyCommand",
+    "localcommand",
+    "LocalCommandx",
+    "#+begin_comment",
+    "#+END_COMMENT",
 )
 
 
@@ -1493,6 +1625,32 @@ def test_rewritten_pattern_matcher_agrees_with_regex(pattern, matcher):
             expected = regex.search(text, offset)
             expected = None if expected is None else expected.span()
             assert matcher.search(text, offset, memo) == expected, (text, offset)
+
+
+def _rewritten_lexical_literals():
+    literals = {}
+    for rules in (*_LEXICAL_RULES.values(), *LEXICAL_VERSION_PROFILES.values()):
+        for literal in rules.literals:
+            if not isinstance(literal, RegexLiteral) and hasattr(literal, "pattern"):
+                literals.setdefault(literal.pattern.pattern, literal)
+    return sorted(literals.items())
+
+
+@pytest.mark.parametrize(("pattern", "literal"), _rewritten_lexical_literals())
+def test_rewritten_lexical_literal_agrees_with_regex(pattern, literal):
+    """Literals scanned without their regex still match exactly what it matches."""
+
+    words = re.findall(r"[A-Za-z]+|[^A-Za-z\s]", pattern)
+    tokens = sorted({*words, "\\", "\n", "\r", " ", "a", "x"})
+    regex = RegexLiteral(pattern)
+    rng = random.Random(pattern)
+    for _ in range(300):
+        text = "".join(rng.choice(tokens) for _ in range(rng.randint(1, 16)))
+        offsets = list(range(len(text)))
+        rng.shuffle(offsets)
+        memo = {}
+        for offset in offsets:
+            assert literal.scan(text, offset, memo) == regex.scan(text, offset, {}), (text, offset)
 
 
 # Guards for the iteration-2 lexical rules: each literal form stays narrow

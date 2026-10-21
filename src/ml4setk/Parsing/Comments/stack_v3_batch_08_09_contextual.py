@@ -918,6 +918,19 @@ def survex_data_comment_ranges(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(ranges)
 
 
+_TEMPL_RAW_ELEMENT = re.compile(r"(?is)<\s*(script|style)(?=[\s>])")
+_TEMPL_DECLARATION_HEAD = re.compile(r"templ\b[^\r\n{]*")
+
+
+def _only_space_before(text: str, line_start: int, index: int) -> bool:
+    """Return whether ``text[line_start:index]`` is blank, reading back from ``index``."""
+
+    cursor = index - 1
+    while cursor >= line_start and text[cursor].isspace():
+        cursor -= 1
+    return cursor < line_start
+
+
 def _skip_html_tag(text: str, start: int) -> int:
     quote = ""
     index = start + 1
@@ -999,6 +1012,9 @@ def _templ_comment_ranges(
     index = 0
     template_depth = 0
     line_start = 0
+    # Offsets cached so repeated openers do not each rescan the text.
+    html_close = -1
+    declaration_fails_before = -1
     while index < len(text):
         if text[index] in _CR_LF:
             if text.startswith("\r\n", index):
@@ -1009,15 +1025,17 @@ def _templ_comment_ranges(
             continue
 
         if template_depth and text[index] == "<":
-            raw = re.match(r"(?is)<\s*(script|style)(?=[\s>])", text[index:])
+            raw = _TEMPL_RAW_ELEMENT.match(text, index)
             if raw is not None:
                 index = _templ_raw_element_end(text, index, raw.group(1))
                 continue
             if text.startswith("<!--", index):
-                close = text.find("-->", index + 4)
+                if html_close < index + 4:
+                    html_close = text.find("-->", index + 4)
+                close = html_close
                 if close < 0:
                     break
-                if "--" not in text[index + 4 : close]:
+                if text.find("--", index + 4, close) < 0:
                     end = close + 3
                     ranges.append((index, end))
                     index = end
@@ -1065,13 +1083,15 @@ def _templ_comment_ranges(
             index = cursor
             continue
 
-        line_prefix_is_space = body_go_comments and text[line_start:index].strip() == ""
-        if text.startswith("//", index) and (not template_depth or line_prefix_is_space):
+        go_comment = text.startswith(("//", "/*"), index)
+        if go_comment and template_depth:
+            go_comment = body_go_comments and _only_space_before(text, line_start, index)
+        if go_comment and text.startswith("//", index):
             end = _line_end(text, index + 2)
             ranges.append((index, end))
             index = end
             continue
-        if text.startswith("/*", index) and (not template_depth or line_prefix_is_space):
+        if go_comment:
             close = text.find("*/", index + 2)
             if close < 0:
                 break
@@ -1080,11 +1100,20 @@ def _templ_comment_ranges(
             index = end
             continue
 
-        declaration = re.match(r"\btempl\b[^\r\n{]*\{", text[index:])
-        if not template_depth and declaration is not None:
-            template_depth = 1
-            index += declaration.end()
-            continue
+        if (
+            not template_depth
+            and index >= declaration_fails_before
+            and text.startswith("templ", index)
+        ):
+            # ``templ\b[^\r\n{]*\{``; a failed run fails for every later
+            # ``templ`` that starts inside it, so remember where it stopped.
+            declaration = _TEMPL_DECLARATION_HEAD.match(text, index)
+            if declaration is not None:
+                if text.startswith("{", declaration.end()):
+                    template_depth = 1
+                    index = declaration.end() + 1
+                    continue
+                declaration_fails_before = declaration.end()
         if template_depth and text[index] == "}":
             template_depth -= 1
         index += 1

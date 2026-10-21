@@ -53,6 +53,64 @@ def _rules(quote_chars="'\"`", literals=(), starts="", non_string_quote=None):
     )
 
 
+def _nested_comment_end(text, start, open_delim, close_delim, memo=None):
+    """Return the end of the depth-balanced comment opened at ``start``.
+
+    ``memo`` remembers the offset after which no closer exists, and the end
+    of every opener met while scanning, so overlapping openers do not each
+    rescan the text.
+    """
+
+    memo_key = ("nested-unclosed", open_delim, close_delim)
+    if memo is not None and start >= memo.get(memo_key, len(text) + 1):
+        return None
+    ends = None if memo is None else memo.setdefault(("nested-ends", open_delim, close_delim), {})
+    if ends is not None and start in ends:
+        return ends[start]
+    openers = []
+    search_from = start
+    open_index = close_index = -2
+    while True:
+        if open_index != -1 and open_index < search_from:
+            open_index = text.find(open_delim, search_from)
+        if close_index < search_from:
+            close_index = text.find(close_delim, search_from)
+        if close_index == -1:
+            # No closer exists at or after ``search_from``, so no opener
+            # starting there can close either.
+            if memo is not None:
+                memo[memo_key] = min(memo.get(memo_key, len(text) + 1), search_from)
+                ends.update(dict.fromkeys(openers))
+            return None
+        if open_index != -1 and open_index <= close_index:
+            openers.append(open_index)
+            search_from = open_index + len(open_delim)
+            continue
+        search_from = close_index + len(close_delim)
+        opened = openers.pop()
+        if ends is not None:
+            ends[opened] = search_from
+        if not openers:
+            return search_from
+
+
+class BalancedLiteral:
+    """A literal of nesting two-delimiter pairs, matched by depth.
+
+    It replaces a recursive regex such as Lua 5.0's ``[[ ... ]]`` whose
+    failed matches rescan to the end from every opener.
+    """
+
+    def __init__(self, open_delim, close_delim):
+        self.delimiters = (open_delim, close_delim)
+
+    def scan(self, text, start, memo):
+        if not text.startswith(self.delimiters[0], start):
+            return None
+        end = _nested_comment_end(text, start, *self.delimiters, memo)
+        return None if end is None else (start, end)
+
+
 class RegexLiteral:
     """A literal whose whole span is one regex match at the start offset."""
 
@@ -81,14 +139,31 @@ class DelimitedLiteral:
     cost one search instead of one search each.
     """
 
-    def __init__(self, opener, closer, body_on_next_line=False):
+    def __init__(self, opener, closer, body_on_next_line=False, same_line=False):
         self.opener = re.compile(opener)
+        # An opener led by ``(C+)`` that fails at one offset fails at every
+        # later offset in the same run of ``C``: its ``C+`` there can only
+        # end where the first one already tried.
+        run = re.match(r"\((\\?[^\\\w()\[\]|*+?{}.^$])\+\)", opener)
+        self.run_char = None if run is None else run.group(1)[-1]
         self.closer = closer
         self.body_on_next_line = body_on_next_line
+        # The closer must start before the next CR or LF after the body start.
+        self.same_line = same_line
 
     def scan(self, text, start, memo):
+        if self.run_char is not None:
+            run_key = (id(self), "run")
+            failed_run = memo.get(run_key)
+            if failed_run is not None and failed_run[0] < start < failed_run[1]:
+                return None
         opened = self.opener.match(text, start)
         if opened is None:
+            if self.run_char is not None:
+                run_end = start
+                while run_end < len(text) and text[run_end] == self.run_char:
+                    run_end += 1
+                memo[run_key] = (start, run_end)
             return None
         closer_text = self.closer.format(*(re.escape(group or "") for group in opened.groups()))
         body_start = opened.end()
@@ -101,15 +176,22 @@ class DelimitedLiteral:
             # Start at the line break so a marker at the body's first column is
             # strictly inside the protected range.
             range_start = newline.start()
-        failed_from = memo.get((id(self), closer_text))
-        if failed_from is not None and body_start >= failed_from:
+        line_end = len(text)
+        if self.same_line:
+            breaks = memo.get("line-breaks")
+            if breaks is None:
+                breaks = memo["line-breaks"] = [m.start() for m in _LINE_BREAK.finditer(text)]
+            after = bisect_left(breaks, body_start)
+            line_end = breaks[after] if after < len(breaks) else len(text)
+        failed = memo.get((id(self), closer_text))
+        if failed is not None and failed[0] <= body_start < failed[1]:
             return None
         closer = memo.get(("pattern", closer_text))
         if closer is None:
             closer = memo[("pattern", closer_text)] = re.compile(closer_text)
-        closed = closer.search(text, body_start)
+        closed = closer.search(text, body_start, line_end)
         if closed is None:
-            memo[(id(self), closer_text)] = body_start
+            memo[(id(self), closer_text)] = (body_start, line_end)
             return None
         return range_start, closed.end()
 
@@ -276,27 +358,59 @@ class InterpolatedStrings:
         self.forms = tuple(forms)
 
     def scan(self, text, start, memo):
-        end = self._scan_string(text, start, 0)
+        state = memo.get(id(self))
+        if state is None:
+            state = memo[id(self)] = ({}, {}, {})
+        end = self._scan_string(text, start, 0, state)
         return None if end is None else (start, end)
 
-    def _scan_string(self, text, start, depth):
+    # ``state`` holds three per-text caches. A string scan depends only on its
+    # start and nesting depth, so its result is cached; a body scan that finds
+    # no closer marks the offsets it passed, since any later body scan of the
+    # same form and depth reaching one of them fails the same way; and
+    # ``_scan_code`` keeps its own dead offsets. Without them, unclosed nested
+    # interpolations rescan exponentially.
+
+    def _scan_string(self, text, start, depth, state):
         if depth > 32:
             return None
+        results = state[0]
+        key = (start, depth)
+        if key in results:
+            return results[key]
+        end = None
         for form in self.forms:
             opened = form.opener.match(text, start)
             if opened is not None:
-                return self._scan_body(text, opened.end(), form, depth)
-        return None
+                end = self._scan_body(text, opened.end(), form, depth, state)
+                break
+        results[key] = end
+        return end
 
-    def _scan_body(self, text, index, form, depth):
+    def _scan_body(self, text, index, form, depth, state):
+        failed = state[1]
+        known = failed.get((id(form), depth))
+        visited = []
+        end = self._walk_body(text, index, form, depth, state, known, visited)
+        if end is None:
+            if known is None:
+                known = failed[(id(form), depth)] = bytearray(len(text) + 1)
+            for offset in visited:
+                known[offset] = 1
+        return end
+
+    def _walk_body(self, text, index, form, depth, state, known, visited):
         length = len(text)
         while index < length:
+            if known is not None and known[index]:
+                return None
+            visited.append(index)
             if form.interpolation and text.startswith(form.interpolation, index):
                 if form.doubled_brace_is_text and text.startswith("{{", index):
                     index += 2
                     continue
                 index = self._scan_code(
-                    text, index + len(form.interpolation), form.interpolation_close, depth
+                    text, index + len(form.interpolation), form.interpolation_close, depth, state
                 )
                 if index is None:
                     return None
@@ -315,12 +429,26 @@ class InterpolatedStrings:
             index += 1
         return None
 
-    def _scan_code(self, text, index, closer, depth):
+    def _scan_code(self, text, index, closer, depth, state):
+        """Return the end of an embedded expression, or ``None`` if unclosed.
+
+        Which offsets the scan visits does not depend on the bracket stack,
+        and a closer that does not match the top is ignored. So when a failed
+        scan reached EOF without ever popping below its stack height at an
+        offset, a scan with only ``[top]`` on its stack at that offset fails
+        too; such offsets are remembered per depth as ``dead``.
+        """
+
+        dead = state[2].setdefault(depth, {})
         stack = [closer]
+        trail = []
         length = len(text)
         while index < length:
+            if len(stack) == 1 and dead.get(index) == stack[0]:
+                break
+            trail.append((index, len(stack), stack[-1]))
             char = text[index]
-            nested = self._scan_string(text, index, depth + 1)
+            nested = self._scan_string(text, index, depth + 1, state)
             if nested is not None:
                 index = nested
                 continue
@@ -331,11 +459,152 @@ class InterpolatedStrings:
                 if not stack:
                     return index + 1
             index += 1
+        lowest = len(stack)
+        for offset, height, top in reversed(trail):
+            lowest = min(lowest, height)
+            if height == lowest:
+                dead[offset] = top
         return None
 
 
+_LAZY_BODIES = (r"[\s\S]*?", r"[\S\s]*?", r"[^\r\n]*?")
+
+
+def _split_lazy_literal(pattern):
+    r"""Split ``OPEN[\s\S]*?CLOSE`` into ``DelimitedLiteral`` arguments.
+
+    The lazy body must appear once at the top level with no top-level
+    alternation, so matching the opener and then searching for the first
+    closer gives the regex's span. Backreferences in the closer become
+    format fields. A ``[^\r\n]*?`` body keeps the closer on the opener's
+    line, which needs a closer without anchors or lookaround. Returns
+    ``None`` for other shapes.
+    """
+
+    depth = 0
+    in_class = False
+    index = 0
+    split_at = None
+    while index < len(pattern):
+        char = pattern[index]
+        if char == "\\":
+            index += 2
+            continue
+        if in_class:
+            in_class = char != "]"
+        elif depth == 0 and pattern.startswith(_LAZY_BODIES, index):
+            if split_at is not None:
+                return None
+            body = next(body for body in _LAZY_BODIES if pattern.startswith(body, index))
+            split_at, split_end = index, index + len(body)
+            index = split_end
+            continue
+        elif char == "[":
+            in_class = True
+        elif char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+        elif char == "|" and depth == 0:
+            return None
+        index += 1
+    if split_at is None or depth != 0 or split_at == 0:
+        return None
+    opener, closer = pattern[:split_at], pattern[split_end:]
+    same_line = pattern[split_at:split_end] == _LAZY_BODIES[2]
+    if not closer or (same_line and re.search(r"\(\?|[$^]|\\[bBAZz]", closer)):
+        return None
+    template = []
+    index = 0
+    while index < len(closer):
+        char = closer[index]
+        if char == "\\" and index + 1 < len(closer):
+            escaped = closer[index + 1]
+            if escaped in "123456789":
+                template.append("{%d}" % (int(escaped) - 1))
+            else:
+                template.append(char + escaped.replace("{", "{{").replace("}", "}}"))
+            index += 2
+            continue
+        template.append("{{" if char == "{" else "}}" if char == "}" else char)
+        index += 1
+    return opener, "".join(template), False, same_line
+
+
+class EscapedQuoteLiteral:
+    r"""``OPEN Q(?:\\[\s\S]|[^Q\\])*Q`` plus an optional ``[A-Za-z]*``, scanned by hand.
+
+    The body ends only at an unescaped ``Q`` or the end of the text. When a
+    body from offset ``b`` runs off the end, a body from any later opener does
+    too: its start follows a ``Q`` that ``b``'s scan either stopped at, which
+    it did not, or skipped as escaped, which lands on the same offset. So one
+    failure is remembered instead of rescanning from every escaped quote.
+    """
+
+    def __init__(self, opener, quote, suffix):
+        self.opener = re.compile(opener)
+        self.stop = re.compile("[\\\\" + re.escape(quote) + "]")
+        self.suffix = re.compile(suffix)
+
+    def scan(self, text, start, memo):
+        opened = self.opener.match(text, start)
+        if opened is None:
+            return None
+        body = opened.end()
+        failed_from = memo.get(id(self))
+        if failed_from is not None and body >= failed_from:
+            return None
+        index = body
+        while True:
+            stop = self.stop.search(text, index)
+            if stop is None or (text[stop.start()] == "\\" and stop.start() + 1 >= len(text)):
+                memo[id(self)] = body if failed_from is None else min(failed_from, body)
+                return None
+            if text[stop.start()] == "\\":
+                index = stop.start() + 2
+                continue
+            return start, self.suffix.match(text, stop.end()).end()
+
+
+_ESCAPED_QUOTE_SHAPE = re.compile(
+    r"(?P<open>.*?(?P<quote>\\[^\w]|[^\\]))"
+    r"\(\?:\\\\\[\\s\\S\]\|\[\^(?P<class>\\[^\w]|[^\\])\\\\\]\)\*"
+    r"(?P<close>\\[^\w]|[^\\])(?P<suffix>(?:\[A-Za-z\]\*)?)"
+)
+
+
+def _escaped_quote_literal(pattern):
+    """Return an ``EscapedQuoteLiteral`` for a pattern of that shape, else ``None``."""
+
+    shape = _ESCAPED_QUOTE_SHAPE.fullmatch(pattern)
+    if shape is None:
+        return None
+    quote, excluded, close = (shape.group(name)[-1] for name in ("quote", "class", "close"))
+    if not quote == excluded == close or quote == "\\" or "*" in shape.group("open"):
+        # A repeated opener could itself rescan, so keep those as regexes.
+        return None
+    return EscapedQuoteLiteral(shape.group("open"), quote, shape.group("suffix"))
+
+
+# Recursive regexes whose match is the depth-balanced run of their delimiters.
+_BALANCED_LITERALS = {r"\[\[(?:(?!\[\[|\]\])[\s\S]|(?R))*\]\]": ("[[", "]]")}
+
+
 def _literal(value):
-    return RegexLiteral(value) if isinstance(value, str) else value
+    if not isinstance(value, str):
+        return value
+    # A lazy block regex rescans to the end of the text from every unclosed
+    # opener; a delimited literal remembers that its closer is missing.
+    split = _split_lazy_literal(value)
+    if value in _BALANCED_LITERALS:
+        literal = BalancedLiteral(*_BALANCED_LITERALS[value])
+    else:
+        literal = DelimitedLiteral(*split) if split else _escaped_quote_literal(value)
+    if literal is None:
+        return RegexLiteral(value)
+    # The regex it replaces; tests check that both agree.
+    literal.pattern = re.compile(value)
+    return literal
 
 
 # A Haskell/ML-style character literal: one character or one escape.
@@ -348,11 +617,64 @@ _CSHARP_LITERALS = (r'"""[\s\S]*?"""', r'\$?@\$?"(?:""|[^"])*"')
 _TRANSPOSE = r"(?<=[\w)\]}.'])'"
 # ECMA-262 12.9.5: a / after an operator, punctuator, or keyword (not after an
 # operand) starts a RegularExpressionLiteral.
-_REGEX_LITERAL = (
+_REGEX_LITERAL_PATTERN = (
     r"(?<=(?:(?m:^)|[=(,:\[!&|?{};+\-*%<>~^]|\b(?:return|typeof|case|do|else|in|instanceof"
     r"|new|void|delete|throw|yield|await))[ \t]*)"
     r"/(?![/*])(?:\\.|\[(?:\\.|[^\]\\\r\n])*\]|[^/\\\r\n\[])+/[A-Za-z]*"
 )
+
+
+class EcmaRegexLiteral:
+    r"""``_REGEX_LITERAL_PATTERN`` with its body scanned by hand.
+
+    The body alternatives (``\\.``, a ``[...]`` class, any other character)
+    start with different characters, so the regex never backtracks into them
+    and a hand scan gives the same span. Offsets from which a body scan, in or
+    out of a class, is known to hit a line break unclosed are remembered, so
+    slashes in front of an unclosed class do not each rescan the line.
+    """
+
+    _opener = re.compile(_REGEX_LITERAL_PATTERN.split("/(?![/*])")[0] + "/(?![/*])")
+    _flags = re.compile(r"[A-Za-z]*")
+
+    def scan(self, text, start, memo):
+        opened = self._opener.match(text, start)
+        if opened is None:
+            return None
+        failed = memo.setdefault(id(self), {})
+        index = opened.end()
+        in_class = False
+        visited = []
+        while index < len(text):
+            known = failed.get(in_class)
+            if known is not None and known[index]:
+                break
+            visited.append((index, in_class))
+            char = text[index]
+            if char == "\\":
+                if index + 1 >= len(text) or text[index + 1] == "\n":
+                    break
+                index += 2
+            elif char in "\r\n":
+                break
+            elif in_class:
+                in_class = char != "]"
+                index += 1
+            elif char == "/":
+                return start, self._flags.match(text, index + 1).end()
+            else:
+                in_class = char == "["
+                index += 1
+        for offset, state in visited:
+            known = failed.get(state)
+            if known is None:
+                known = failed[state] = bytearray(len(text) + 1)
+            known[offset] = 1
+        return None
+
+
+_REGEX_LITERAL = EcmaRegexLiteral()
+
 
 _TRIPLE_DOUBLE = '"' * 3
 _TRIPLE_SINGLE = "'" * 3
