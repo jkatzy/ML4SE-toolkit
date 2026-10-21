@@ -25,7 +25,8 @@ from ml4setk import ChunkedIterator, CommentQuery
 query = CommentQuery("python")
 
 def comments(row):
-    return [{"path": row["path"], "comment": m.match} for m in query.parse(row["content"])]
+    text = row["content"]
+    return [{"path": row["path"], "comment": text[start:end]} for start, end in query.parse_ranges(text)]
 
 iterator = ChunkedIterator(
     "datasets/bigcode/the-stack/data/python/*.parquet",
@@ -185,5 +186,5 @@ s3 = boto3.client("s3", config=Config(signature_version=UNSIGNED))
 def with_content(row):
     obj = s3.get_object(Bucket="softwareheritage", Key=f"content/{row['blob_id']}")
     text = gzip.decompress(obj["Body"].read()).decode(row["src_encoding"])
-    return {"blob_id": row["blob_id"], "comments": [m.match for m in query.parse(text)]}
+    return {"blob_id": row["blob_id"], "comments": [text[start:end] for start, end in query.parse_ranges(text)]}
 ```

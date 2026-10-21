@@ -12,6 +12,7 @@ import textwrap
 import warnings
 from bisect import bisect_left
 from dataclasses import dataclass
+from functools import lru_cache
 
 from ..Query import QueryMatch
 from .CommentQuery import (
@@ -825,6 +826,7 @@ def _strip_symmetric_block_frame(lines: list[str]) -> tuple[list[str], bool]:
     return [*lines[:first], *cleaned, *lines[last + 1 :]], True
 
 
+@lru_cache(maxsize=4096)
 def _is_decorative_ruler_line(line: str) -> bool:
     if _is_spaced_underscore_art_line(line):
         return False
@@ -842,6 +844,7 @@ def _is_decorative_ruler_line(line: str) -> bool:
     return len(set(stripped)) == 1 or bool(re.search(r"([#%\-=*_<>/+|])\1{2,}", stripped))
 
 
+@lru_cache(maxsize=4096)
 def _is_spaced_underscore_art_line(line: str) -> bool:
     """Return whether spaces divide an underscore-only ASCII-art row."""
 
@@ -7863,7 +7866,13 @@ def sanitize_comment(
 ) -> str:
     """Return sanitized comment text for ``language`` and optional ``version``."""
 
-    return CommentSanitizer(language, version=version, on_unclosed=on_unclosed).sanitize(comment)
+    return _cached_sanitizer(language, version, on_unclosed).sanitize(comment)
+
+
+@lru_cache(maxsize=256)
+def _cached_sanitizer(language, version, on_unclosed):
+    # Building a sanitizer costs about as much as cleaning one comment.
+    return CommentSanitizer(language, version=version, on_unclosed=on_unclosed)
 
 
 def sanitize_comment_text(

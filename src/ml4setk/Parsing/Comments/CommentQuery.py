@@ -1850,7 +1850,7 @@ class NestedCommentQuery(Query):
         if not self.delimiters:
             return False
 
-        return bool(self.parse(string))
+        return bool(self.parse_ranges(string))
 
     def parse(self, text):
         """Return nested comment matches in source order.
