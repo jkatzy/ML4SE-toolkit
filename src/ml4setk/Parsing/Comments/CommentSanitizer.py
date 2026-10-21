@@ -2387,14 +2387,34 @@ def _sanitize_open_block_body(
     )
 
 
+def _liquid_tag_content(raw_comment: str) -> str | None:
+    """Return what ``{%-?[ \t]*\n?(.*?)[ \t\n]*-?%}`` captures, without regex.
+
+    The lazy group retried the trailing whitespace run at every length, which
+    took quadratic time on a tag padded with whitespace.
+    """
+
+    if len(raw_comment) < 4 or not raw_comment.startswith("{%") or not raw_comment.endswith("%}"):
+        return None
+    content = raw_comment[2:-2]
+    if content.startswith("-"):
+        content = content[1:]
+    content = content.lstrip(" \t")
+    if content.startswith("\n"):
+        content = content[1:]
+    if content.endswith("-"):
+        content = content[:-1]
+    return content.rstrip(" \t\n")
+
+
 def _sanitize_liquid_inline_comment_tag(raw_comment: str) -> str | None:
     """Clean a Liquid ``{% # ... %}`` tag whose content lines each start with #."""
 
-    match = re.fullmatch(r"\{%-?[ \t]*\n?(.*?)[ \t\n]*-?%\}", raw_comment, re.DOTALL)
-    if match is None:
+    content = _liquid_tag_content(raw_comment)
+    if content is None:
         return None
     bodies = []
-    for line in match.group(1).split("\n"):
+    for line in content.split("\n"):
         stripped = line.lstrip(" \t")
         if not stripped.startswith("#"):
             return None

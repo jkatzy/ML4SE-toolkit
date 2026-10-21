@@ -12,14 +12,25 @@ soon as a fix makes the case pass, at which point the entry is removed.
 
 import random
 import time
+import warnings
 from dataclasses import dataclass
 
 import pytest
 import regex as re
 
-from ml4setk import CommentQuery, sanitize_comment
+from ml4setk import (
+    CommentQuery,
+    CommentSanitizer,
+    UnclosedCommentError,
+    UnclosedCommentWarning,
+    sanitize_comment,
+)
 from ml4setk.Parsing.Comments import iter_comment_syntaxes
-from ml4setk.Parsing.Comments.CommentQuery import _comment_pattern_matchers
+from ml4setk.Parsing.Comments.CommentQuery import (
+    UNCLOSED_COMMENT_POLICIES,
+    _comment_pattern_matchers,
+)
+from ml4setk.Parsing.Comments.CommentSanitizer import _liquid_tag_content
 from ml4setk.Parsing.Comments.lexical import (
     _LEXICAL_RULES,
     LEXICAL_VERSION_PROFILES,
@@ -1535,6 +1546,62 @@ def test_adversarial_comment_sanitizes_within_budget(language, unit, repeat):
     elapsed = time.perf_counter() - started
 
     assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+@pytest.mark.parametrize(
+    ("language", "opener", "unit", "repeat", "closer"),
+    [
+        pytest.param("liquid", "{% comment %}", " ", 20000, "", id="liquid-padded-unclosed-tag"),
+        pytest.param("liquid", "{%- comment -%}", "\n", 20000, "", id="liquid-unclosed-tag-lines"),
+        pytest.param("liquid", "{% #", "\t", 20000, "%}", id="liquid-padded-inline-tag"),
+    ],
+)
+def test_adversarial_wrapped_comment_sanitizes_within_budget(
+    language, opener, unit, repeat, closer
+):
+    comment = opener + unit * repeat + closer
+
+    started = time.perf_counter()
+    sanitize_comment(language, comment)
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+@pytest.mark.parametrize("policy", UNCLOSED_COMMENT_POLICIES)
+@pytest.mark.parametrize(
+    ("language", "comment"),
+    [
+        pytest.param("java", "/*" * 8000, id="java-opener-run"),
+        pytest.param("haskell", "{-" * 8000, id="haskell-nested-opener-run"),
+        pytest.param("java", "/* " + "a\n" * 8000, id="java-many-line-unclosed-block"),
+    ],
+)
+def test_unclosed_comment_sanitizes_within_budget(language, comment, policy):
+    sanitizer = CommentSanitizer(language, on_unclosed=policy)
+
+    started = time.perf_counter()
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UnclosedCommentWarning)
+        try:
+            sanitizer.sanitize(comment)
+        except UnclosedCommentError:
+            pass
+    elapsed = time.perf_counter() - started
+
+    assert elapsed < _PARSE_BUDGET_SECONDS
+
+
+def test_liquid_tag_content_agrees_with_regex():
+    """The hand-written Liquid tag scan captures what its old regex captured."""
+
+    pattern = re.compile(r"\{%-?[ \t]*\n?(.*?)[ \t\n]*-?%\}", re.DOTALL)
+    tokens = ("{%", "%}", "{", "}", "%", "-", " ", "\t", "\n", "#", "a")
+    rng = random.Random(0)
+    for _ in range(20000):
+        text = "".join(rng.choice(tokens) for _ in range(rng.randint(0, 9)))
+        match = pattern.fullmatch(text)
+        assert _liquid_tag_content(text) == (match and match.group(1)), text
 
 
 def _rewritten_pattern_matchers():
