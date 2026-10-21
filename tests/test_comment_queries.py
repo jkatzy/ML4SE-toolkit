@@ -9,6 +9,8 @@ from ml4setk import (
     NestedCommentQuery,
     OpeningCommentQuery,
     QueryMatch,
+    UnclosedCommentError,
+    UnclosedCommentWarning,
 )
 from ml4setk.Parsing.Comments import get_comment_syntax, iter_comment_syntaxes
 
@@ -1118,3 +1120,98 @@ def test_unsupported_languages_raise_clear_errors():
 
     with pytest.raises(NotImplementedError):
         NestedCommentQuery("befunge")
+
+
+_UNCLOSED_JAVA = "int a; // ok\n/* never closed\nint b; // inside\n"
+
+
+@pytest.mark.parametrize(
+    ("policy", "expected"),
+    [
+        ("ignore", ["// ok", "// inside"]),
+        ("to_eof", ["// ok", "/* never closed\nint b; // inside\n"]),
+        ("skip", ["// ok", "// inside"]),
+        ("empty", []),
+    ],
+)
+def test_unclosed_comment_policy_shapes_matches(policy, expected):
+    query = CommentQuery("java", on_unclosed=policy)
+
+    assert [match.match for match in query.parse(_UNCLOSED_JAVA)] == expected
+
+
+def test_unclosed_comment_policy_raise_reports_location():
+    with pytest.raises(UnclosedCommentError) as error:
+        CommentQuery("java", on_unclosed="raise").parse(_UNCLOSED_JAVA)
+
+    assert (error.value.language, error.value.offset, error.value.line) == ("java", 13, 2)
+
+
+def test_unclosed_comment_policy_warn_keeps_default_matches():
+    with pytest.warns(UnclosedCommentWarning, match="line 2"):
+        matches = CommentQuery("java", on_unclosed="warn").parse(_UNCLOSED_JAVA)
+
+    assert [match.match for match in matches] == ["// ok", "// inside"]
+
+
+def test_unclosed_nested_comment_runs_to_eof():
+    sample = "x = 1 -- a\n{- open {- inner -}\ny"
+
+    matches = CommentQuery("haskell", on_unclosed="to_eof").parse(sample)
+
+    assert [match.match for match in matches] == ["-- a", "{- open {- inner -}\ny"]
+
+
+def test_unclosed_comment_skip_keeps_well_formed_comments_around_broken_ones():
+    sample = "x -- a\n{- broken {- good -}\ny = 1 -- after\n{- also broken\n"
+
+    ignored = CommentQuery("haskell").parse(sample)
+    skipped = CommentQuery("haskell", on_unclosed="skip").parse(sample)
+
+    assert [match.match for match in ignored] == ["-- a", "-- after"]
+    assert [match.match for match in skipped] == ["-- a", "{- good -}", "-- after"]
+    assert all(sample[len(match.prefix) :].startswith(match.match) for match in skipped)
+
+
+def test_unclosed_comment_skip_recovers_other_comment_kinds():
+    sample = "(* broken { kept } \n"
+
+    matches = CommentQuery("pascal", on_unclosed="skip").parse(sample)
+
+    assert [match.match for match in matches] == ["{ kept }"]
+
+
+def test_unclosed_comment_policy_ignores_openers_in_strings_and_comments():
+    sample = 's = "/*"; // also /* here\n/* closed */\n'
+
+    matches = CommentQuery("java", on_unclosed="raise").parse(sample)
+
+    assert [match.match for match in matches] == ["// also /* here", "/* closed */"]
+
+
+def test_unclosed_comment_policy_applies_per_language():
+    sample = "-- note\n/* open\n"
+
+    matches = CommentQuery(["haskell", "java"], on_unclosed="empty").parse(sample)
+
+    assert [match.match for match in matches] == ["-- note"]
+
+
+def test_unclosed_comment_policy_rejects_unknown_value():
+    with pytest.raises(ValueError, match="on_unclosed"):
+        CommentQuery("java", on_unclosed="crash")
+
+
+def test_seeded_examples_have_no_unclosed_comments():
+    for syntax in iter_comment_syntaxes():
+        examples = (
+            *syntax.shared_regex_examples,
+            *syntax.shared_nested_examples,
+            *syntax.shared_contextual_examples,
+            *syntax.canonical_regex_examples,
+            *syntax.canonical_nested_examples,
+            *syntax.canonical_contextual_examples,
+        )
+        query = CommentQuery(syntax.canonical_name, on_unclosed="raise")
+        for example in examples:
+            query.parse(example.sample)
