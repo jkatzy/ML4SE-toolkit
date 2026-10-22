@@ -2,7 +2,7 @@
   "case_id": "flux-line-74b768b276731ccd",
   "category": "policy_or_judge_conflict",
   "cluster": "judge_drift:unchanged_output",
-  "disposition": "executable_regression",
+  "disposition": "accounting_only_superseded",
   "language": "flux",
   "original_expected_output_source": "current",
   "original_integrity": {
@@ -22,11 +22,6 @@
       "sha256": "7b24f79d65eff3d6794e813052b7b277b64f8ff74bd807315dc06956debfb8cf",
       "utf8_length": 120
     }
-  },
-  "regression": {
-    "expected_output": "Include some common stuff\n---------------------------------------------------------------------\n#define GENERATE_NORMALS",
-    "provenance": "exact_classification_literal",
-    "raw_comment": "//---------------------------------------------------------------------\n// Include some common stuff\n//---------------------------------------------------------------------\n//#define GENERATE_NORMALS"
   },
   "schema_version": 2,
   "source_provenance": {

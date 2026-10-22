@@ -25,6 +25,7 @@ layout and different prose clean the same way.
 | Documentation opener variants | `{- \| doc -}` (Haskell) | `doc` |
 | Decorative rulers and frames made of one repeated character | `// ============ Section ============` | `Section` |
 | Box frames whose edges all match | `/***********\n * Title *\n ***********/` | `Title` |
+| Rulers that set off a title, and boxes drawn with line comments | `# ====\n# Title\n# ====\n# body` | `Title\nbody` |
 | One padding space after an opener and before a closer | `REM note` (Batch) | `note` |
 | Line-ending differences | `// a\r\n// b` | `a\nb` |
 
@@ -45,8 +46,10 @@ layout and different prose clean the same way.
 Some markers are deliberately literal in specific languages. For example,
 Smithy and WIT keep the third slash of `///` (`/// documentation` cleans to
 `/ documentation`), and Ada keeps the third dash of `---` because a diff header
-such as `--- src/file.orig` is content. These exceptions are listed in the
-sanitizer and covered by tests.
+such as `--- src/file.orig` is content. ASL headers and indentation-scoped
+unclosed blocks (Clue `/*` without a closer) flush continuation lines left
+instead of keeping their alignment under the opener. These exceptions are
+listed in the sanitizer and covered by tests.
 
 Uncertainty is resolved toward keeping text. A cleaner may leave a little
 scaffolding behind; it must not silently discard content.

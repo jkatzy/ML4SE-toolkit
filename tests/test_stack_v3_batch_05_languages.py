@@ -104,7 +104,7 @@ def test_linear_programming_rejects_other_format_markers_and_cleans_one_wrapper(
     source = "* MPS line\n# MathProg line\n// slash line\nleft / right"
 
     assert _matches("Linear Programming", source) == []
-    assert CommentSanitizer("Linear Programming").sanitize("\\  keep spacing") == ("  keep spacing")
+    assert CommentSanitizer("Linear Programming").sanitize("\\  keep spacing") == "keep spacing"
 
 
 def test_livecode_script_extracts_all_four_forms_outside_strings():

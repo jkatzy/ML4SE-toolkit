@@ -167,9 +167,6 @@ def _line_wrapper_expected(
         if dash_run is not None:
             return _normalize_expected_body(dash_run.group(1))
 
-    if syntax.canonical_name == "linear_programming" and raw_comment.startswith("\\"):
-        return _normalize_newlines(raw_comment[1:]).rstrip()
-
     for open_delimiter, close_delimiter in sorted(
         syntax.sanitizer_line_wrappers,
         key=lambda wrapper: len(wrapper[0]) + len(wrapper[1]),

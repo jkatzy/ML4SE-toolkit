@@ -12,7 +12,7 @@
       "source": "registry:shared_regex_examples[0]",
       "kind": "line",
       "raw_comment": "\\ objective cleaning_payload_shared_regex_000",
-      "expected_cleaned": " objective cleaning_payload_shared_regex_000",
+      "expected_cleaned": "objective cleaning_payload_shared_regex_000",
       "payload_marker": "cleaning_payload_shared_regex_000"
     },
     {
@@ -20,7 +20,7 @@
       "source": "generated-group:registry:shared_regex_examples[0]",
       "kind": "grouped_line",
       "raw_comment": "\\ objective cleaning_payload_grouped_shared_regex_000_first\n\\ objective cleaning_payload_grouped_shared_regex_000_second",
-      "expected_cleaned": " objective cleaning_payload_grouped_shared_regex_000_first\n objective cleaning_payload_grouped_shared_regex_000_second",
+      "expected_cleaned": "objective cleaning_payload_grouped_shared_regex_000_first\nobjective cleaning_payload_grouped_shared_regex_000_second",
       "payload_marker": "cleaning_payload_grouped_shared_regex_000"
     },
     {

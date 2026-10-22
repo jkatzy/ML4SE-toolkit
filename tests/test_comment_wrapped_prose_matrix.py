@@ -9,9 +9,10 @@ comment lines, and text aligned under a block opener. Cleaning must return
 exactly the wrapped lines, and ``unwrap_comment`` must turn them back into the
 paragraph.
 
-Layouts the sanitizer does not clean yet are frozen in
-``tests/fixtures/comment_cleaning_wrapped_prose_known_gaps.json``. That list
-may only shrink: an entry that starts passing fails the test until removed.
+``tests/fixtures/comment_cleaning_wrapped_prose_known_gaps.json`` lists
+reviewed language conventions that clean a layout differently on purpose, and
+layouts the sanitizer does not clean yet. The gap list may only shrink: an
+entry that starts passing fails the test until removed.
 """
 
 import json
@@ -63,9 +64,15 @@ def _wrappers_by_language():
 
 
 WRAPPERS = _wrappers_by_language()
+_EXCEPTIONS = json.loads(KNOWN_GAPS_PATH.read_text())
 KNOWN_GAPS = {
-    (gap["language"], gap["wrapper"], gap["layout"]): gap["reason"]
-    for gap in json.loads(KNOWN_GAPS_PATH.read_text())["gaps"]
+    (gap["language"], gap["wrapper"], gap["layout"]): gap["reason"] for gap in _EXCEPTIONS["gaps"]
+}
+# Conventions whose reviewed output flushes continuation lines left instead of
+# keeping their alignment under the opener.
+FLUSH_LEFT = {
+    (entry["language"], entry["wrapper"], entry["closer"], entry["layout"])
+    for entry in _EXCEPTIONS["flush_left_conventions"]
 }
 
 
@@ -142,6 +149,8 @@ def test_wrapped_prose_cleans_and_unwraps(language):
         for layout, raw, cleaned_lines, unwrapped_lines in _layouts(kind, opener, closer):
             cleaned = sanitizer.sanitize(raw)
             gap = (language, opener, layout)
+            if (language, opener, closer, layout) in FLUSH_LEFT:
+                cleaned_lines = [line.lstrip(" ") for line in cleaned_lines]
             if cleaned != "\n".join(cleaned_lines):
                 if gap in KNOWN_GAPS:
                     gap_hits.add(gap)
@@ -157,5 +166,152 @@ def test_wrapped_prose_cleans_and_unwraps(language):
 
 
 def test_known_gaps_name_tested_layouts():
-    for language, opener, _layout in KNOWN_GAPS:
+    for language, opener, *_ in [*KNOWN_GAPS, *FLUSH_LEFT]:
         assert opener in {wrapper[1] for wrapper in WRAPPERS[language]}
+    assert {language for language, _ in HEADER_GAPS} <= set(WRAPPERS)
+
+
+@pytest.mark.parametrize(
+    ("language", "raw", "expected"),
+    [
+        ("dune", "; ========\n; first line\n; second line\n; ========", "first line\nsecond line"),
+        ("mermaid", "%% --------\n%% first line\n%% --------", "first line"),
+        ("survex_data", "! ********\n! first line\n! second line", "first line\nsecond line"),
+        ("linear_programming", "\\ ====\n\\ first line\n\\ ====", "first line"),
+        ("abap", "*** first line\n***\n*** second line", "first line\n\nsecond line"),
+        (
+            "classic_asp",
+            "<% Rem first line\n<% Rem\n<% Rem second line",
+            "first line\n\nsecond line",
+        ),
+    ],
+)
+def test_layouts_the_matrix_found(language, raw, expected):
+    assert CommentSanitizer(language).sanitize(raw) == expected
+
+
+BOXED_TITLE = (
+    "/********************************\n"
+    " *     CACHE INITIALIZATION     *\n"
+    " ********************************\n"
+    " * Initializes the application cache by loading\n"
+    " * frequently accessed data into memory.\n"
+    " *\n"
+    " * Existing cache entries are preserved unless\n"
+    " * they have expired or become invalid.\n"
+    " */"
+)
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        BOXED_TITLE,
+        BOXED_TITLE.replace(
+            " *     CACHE INITIALIZATION     *\n",
+            " *     CACHE                    *\n *     INITIALIZATION           *\n",
+        ),
+    ],
+)
+def test_boxed_title_rows_lose_their_frame(raw):
+    title = "CACHE INITIALIZATION" if raw == BOXED_TITLE else "CACHE\nINITIALIZATION"
+    body = (
+        "Initializes the application cache by loading\n"
+        "frequently accessed data into memory.\n\n"
+        "Existing cache entries are preserved unless\n"
+        "they have expired or become invalid."
+    )
+    assert CommentSanitizer("java").sanitize(raw) == f"{title}\n{body}"
+
+
+# Decorative headers around the same comment: a title set off by rulers, boxed
+# in a frame, or drawn with the line marker itself. Cleaning keeps the title
+# rows and the body and drops every ruler and frame.
+HEADER_TITLE = "CACHE INITIALIZATION"
+HEADER_BODY = (
+    "Initializes the application cache by loading",
+    "frequently accessed data into memory.",
+    "",
+    "Existing cache entries are preserved unless",
+    "they have expired or become invalid.",
+)
+HEADER_WIDTH = 52
+HEADER_GAPS = {
+    (gap["language"], shape) for gap in _EXCEPTIONS["header_gaps"] for shape in gap["shapes"]
+}
+
+
+def _boxed(char, text, lead=""):
+    return f"{lead}{char}{text.center(HEADER_WIDTH - 2)}{char}"
+
+
+def _block_headers(opener, closer):
+    width, title, body = HEADER_WIDTH, HEADER_TITLE, HEADER_BODY
+    for char in sorted(set("*=-#") - {opener[-1]}):
+        rule = char * width
+        rows = [_boxed(char, " " + line.ljust(width - 3)) for line in body]
+        yield f"inline-title {char}", [opener, f"{char * 6} {title} {char * 6}", *body, closer]
+        yield f"title-between-rulers {char}", [opener, rule, title, rule, *body, closer]
+        yield f"full-box {char}", [opener + rule, _boxed(char, title), *rows, rule + closer]
+    if opener.endswith("*"):
+        rule = " " + "*" * width
+        gutter = [f" * {line}".rstrip() for line in body]
+        for name, titles in (("title-box", [title]), ("title-box-two-rows", title.split())):
+            framed = [_boxed("*", row, " ") for row in titles]
+            yield name, [opener + rule[1:], *framed, rule, *gutter, " " + closer]
+
+
+def _line_headers(opener, closer):
+    width, title, body = HEADER_WIDTH, HEADER_TITLE, HEADER_BODY
+    tail = f" {closer}" if closer else ""
+
+    def line(text):
+        return f"{opener} {text}{tail}" if text else f"{opener}{tail}"
+
+    marker = opener[-1]
+    for char in sorted(set("*=-#") | ({marker} & set("/;%!"))):
+        rule = line(char * width)
+        boxed = line(_boxed(char, title))
+        rows = [line(f"{char} {text.ljust(width - 4)} {char}") for text in body]
+        inline = line(f"{char * 6} {title} {char * 6}")
+        yield f"line-inline-title {char}", [inline, *map(line, body)]
+        yield f"line-title-between-rulers {char}", [rule, line(title), rule, *map(line, body)]
+        yield f"line-title-box {char}", [rule, boxed, rule, *map(line, body)]
+        yield f"line-full-box {char}", [rule, boxed, rule, *rows, rule]
+    if closer or marker not in "*=-#/;%!":
+        return
+    # The marker draws the box's left edge: ``#####`` / ``#  TITLE  #``.
+    rule = opener + marker * width
+    banner = f"{opener}{title.center(width)}{marker}"
+    rows = [f"{opener} {text.ljust(width - 1)}{marker}" for text in body]
+    yield "line-banner", [rule, banner, rule, *map(line, body)]
+    yield "line-banner-box", [rule, banner, rule, *rows, rule]
+
+
+@pytest.mark.parametrize("language", sorted(WRAPPERS))
+def test_decorative_headers_clean_to_title_and_body(language):
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        sanitizer = CommentSanitizer(language)
+    body = [line for line in HEADER_BODY if line]
+    joined = " ".join(HEADER_BODY[:2])
+    failures = []
+    gap_hits = set()
+    for kind, opener, closer in WRAPPERS[language]:
+        if kind == "line" and len(closer) > 3:
+            continue
+        shapes = _line_headers if kind == "line" else _block_headers
+        for shape, rows in shapes(opener, closer):
+            cleaned = sanitizer.sanitize("\n".join(rows))
+            filled = [line for line in cleaned.split("\n") if line.strip()]
+            titles = HEADER_TITLE.split() if "two-rows" in shape else [HEADER_TITLE]
+            unwrapped = unwrap_comment(cleaned).split("\n")
+            if filled == [*titles, *body] and titles[-1] in unwrapped and joined in unwrapped:
+                continue
+            if (language, shape) in HEADER_GAPS:
+                gap_hits.add((language, shape))
+            else:
+                failures.append(f"{shape} {opener!r}: {cleaned!r}")
+    fixed = {gap for gap in HEADER_GAPS if gap[0] == language} - gap_hits
+    failures += [f"header gap now passes, remove it from the list: {gap}" for gap in sorted(fixed)]
+    assert not failures, "\n".join(failures[:20])
