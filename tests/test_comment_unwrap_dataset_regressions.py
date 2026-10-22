@@ -93,6 +93,23 @@ KEEPS = {
         "    end\n"
         "  end"
     ),
+    # pandas-dev/pandas pandas/core/frame.py: numpydoc parameter rows.
+    "numpydoc_fields": (
+        "other : scalar, sequence, Series, dict or DataFrame\n"
+        "func : arithmetic or comparison operator"
+    ),
+    # sqlite/sqlite src/btree.c: items numbered in parentheses.
+    "parenthesized_items": (
+        "(1) We found one or more cells (cntNew[0])>0), or\n"
+        "(2) pPage is a virtual root page.  A virtual root page is when"
+    ),
+    # python/cpython Lib/difflib.py: doctest output after a prompt.
+    "doctest_output": (
+        ">>> for block in s.get_matching_blocks():\n"
+        '...     print("a[%d] and b[%d] match for %d elements" % block)\n'
+        "a[0] and b[0] match for 8 elements\n"
+        "a[8] and b[17] match for 21 elements"
+    ),
 }
 
 JOINS = {
@@ -161,6 +178,31 @@ JOINS = {
         "is similar to `{:noreply, new_state}` except a timeout or continue occurs.",
         "Returning `{:noreply, new_state, timeout | :hibernate | {:continue, arg}}` "
         "is similar to `{:noreply, new_state}` except a timeout or continue occurs.",
+    ),
+    # haskell/text src/Data/Text.hs: a line that opens with /O(n)/ emphasis.
+    "haddock_emphasis": (
+        "/O(n)/ 'dropWhileEnd' @p@ @t@ returns the prefix remaining after\n"
+        "dropping characters that satisfy the predicate @p@ from the end of\n"
+        "@t@.",
+        "/O(n)/ 'dropWhileEnd' @p@ @t@ returns the prefix remaining after "
+        "dropping characters that satisfy the predicate @p@ from the end of\n"
+        "@t@.",
+    ),
+    # WordPress/WordPress wp-includes/post.php: a deep hanging indent.
+    "phpdoc_aligned_description": (
+        "@type bool|string $label        A descriptive name for the post status marked\n"
+        "                                for translation. Defaults to value of $post_status.",
+        "@type bool|string $label        A descriptive name for the post status marked "
+        "for translation. Defaults to value of $post_status.",
+    ),
+    # pandas-dev/pandas pandas/core/frame.py: an autolink on its own line.
+    "rst_autolink": (
+        "This method returns a new object using a lazy copy. See the `user guide\n"
+        "<https://pandas.pydata.org/docs/dev/user_guide/migration.html>`__\n"
+        "for more details.",
+        "This method returns a new object using a lazy copy. See the `user guide "
+        "<https://pandas.pydata.org/docs/dev/user_guide/migration.html>`__ "
+        "for more details.",
     ),
 }
 

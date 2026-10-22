@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-_LIST_ITEM = re.compile(r"[ \t]*(?:[-*+•]|\d+[.)]|[A-Za-z][.)])[ \t]+")
+_LIST_ITEM = re.compile(r"[ \t]*(?:[-*+•]|\d+[.)]|[A-Za-z][.)]|\(\w{1,3}\))[ \t]+")
 # Lines that start a new entry but may wrap onto the lines after them: tags
 # (@param, \brief), field lists (:param x:), key: value rows, and paragraph
 # or list markup. A key that starts with a lowercase letter, even inside an
@@ -14,15 +14,17 @@ _LEADER = re.compile(
     r"|(?!(?:<\w+>)?[a-z])[^\s:]{1,30}(?:[ \t][^\s:]+){0,3}[ \t]*(?:\.{2,}[ \t]*)?:(?:[ \t]|$))"
 )
 # Lines whose break carries meaning on both sides: doctest, REPL (iex>), and
-# shell prompts,
-# quotes, headings, tables, fences, markup other than inline tags such as
-# <tt> and the entry tags above, directives, URLs, link definitions ([name]: target), and
-# tab-separated columns.
+# shell prompts, numpydoc fields (name : type), quotes, headings, tables,
+# fences, markup other than inline tags (<tt>), autolinks, and the entry tags
+# above, directives, paths (but not /emphasis/), URLs, link definitions
+# ([name]: target), and tab-separated columns.
 _STRUCTURE = re.compile(
-    r"[ \t]*(?:>>>|\$ |\w+(?:\(\d+\))?> |[#|>=/]"
-    r"|<(?!(?i:tt|code|b|i|em|strong|a|span|var|kbd|p|li|dd|dt)\b)"
+    r"[ \t]*(?:>>>|\$ |\w+(?:\(\d+\))?> |[\w*]+(?:, [\w*]+)* : |[#|>=]|/(?![^/\s]+/[ \t])"
+    r"|<(?!(?i:tt|code|b|i|em|strong|a|span|var|kbd|p|li|dd|dt)\b|https?:)"
     r"|```|~~~|[A-Za-z][\w+.-]*://|www\.|\[[^\]]+\]:|\S[^\t]*\t)"
 )
+# A doctest or REPL prompt; the lines after it are its output.
+_PROMPT = re.compile(r"[ \t]*(?:>>>|\w+(?:\(\d+\))?>)[ \t]")
 _CODE_EDGE = re.compile(r"(?:[{}]|(?<![<>!=])=|\w[(\[])[ \t]*$|^[ \t]*[{}]")
 # A statement ends in a semicolon. Prose may too, so a line of four or more
 # words needs a bracket, an assignment, or a leading keyword as well.
@@ -89,10 +91,10 @@ def _unwrap_paragraph(lines: list[str], min_width: int) -> list[str]:
     # Indents a continuation of the current line may have. A list item allows
     # both its text column and its own indent.
     hang: tuple[int, ...] = ()
-    # A line may also continue at a deeper indent, as text aligned under a
-    # block opener (``/* text`` then ``   more``) or a hanging indent under a
-    # list item or tag does.
-    aligned = False
+    # How much deeper a continuation of the current line may be indented: up
+    # to 16 columns for text aligned under a block opener (``/* text`` then
+    # ``   more``), and anywhere under the text of a list item or tag.
+    reach = 0
     last = ""
     for line in lines:
         text = line.strip()
@@ -100,10 +102,7 @@ def _unwrap_paragraph(lines: list[str], min_width: int) -> list[str]:
             tail = out[-1][-1].rstrip()[-2:]
             deeper = _indent(line) - _indent(last)
             continues = _indent(line) in hang or (
-                aligned
-                and 0 < deeper <= 16
-                and tail[-1:] != ":"
-                and _CODE_EXAMPLE.match(line) is None
+                0 < deeper <= reach and tail[-1:] != ":" and _CODE_EXAMPLE.match(line) is None
             )
             if (
                 continues
@@ -115,19 +114,22 @@ def _unwrap_paragraph(lines: list[str], min_width: int) -> list[str]:
             ):
                 out[-1][-1] = out[-1][-1].rstrip()
                 out[-1].append(text if _HYPHENATED.search(tail) else " " + text)
-                if aligned and deeper > 0:
+                if reach and deeper > 0:
                     hang = (_indent(line),)
-                aligned = False
+                reach = 0
                 last = line
                 continue
         item = _LIST_ITEM.match(line)
         leader = item is not None or _LEADER.match(line) is not None
         if _STRUCTURE.match(line) or _is_code(line) or _WORD.search(line) is None:
             hang = ()
-            aligned = False
+            reach = 0
         else:
             hang = (item.end(), _indent(line)) if item is not None else (_indent(line),)
-            aligned = leader or (not out and _indent(line) == 0)
+            if leader:
+                reach = len(text)
+            else:
+                reach = 16 if not out and _indent(line) == 0 else 0
         out.append([line])
         last = line
     return ["".join(pieces) for pieces in out]
@@ -136,18 +138,17 @@ def _unwrap_paragraph(lines: list[str], min_width: int) -> list[str]:
 def unwrap_comment(text: str, min_width: int = 40) -> str:
     """Join hard-wrapped lines of cleaned comment text into paragraphs.
 
-    Blank lines, list items, tags such as ``@param``, ``key: value`` rows,
-    headings, quotes, tables, markup, code-like lines, fenced blocks,
-    indented example paragraphs, and changes in indentation keep their line
-    breaks. Lines that begin an entry (list items, tags, ``key: value`` rows,
-    ``<p>``) keep the break before them but may continue onto the lines after
-    them. The one
-    indentation change that is joined is a hanging indent: lines up to 16
-    columns deeper than an unindented first line (text aligned under a block
-    opener) or than such an entry. A line is joined to the one before it only
-    when that line reaches close to the paragraph's wrap column, so lists of
-    short lines stay as they are. In a paragraph narrower than 60 columns,
-    only a line that starts in lowercase is joined.
+    Blank lines, headings, quotes, tables, markup, prompts and the output
+    that follows them, numpydoc ``name : type`` rows, code-like lines, fenced
+    blocks, indented example paragraphs, and changes in indentation keep
+    their line breaks. Lines that begin an entry (list items, tags,
+    ``Key: value`` rows, ``<p>``) keep the break before them but may continue
+    onto the lines after them, at any hanging indent under their text. Text
+    aligned under a block opener (an unindented first line followed by lines
+    up to 16 columns deeper) is joined too. A line is joined to the one
+    before it only when that line reaches close to the paragraph's wrap
+    column, so lists of short lines stay as they are. In a paragraph narrower
+    than 60 columns, only a line that starts in lowercase is joined.
 
     Args:
         text: Cleaned comment text, such as ``sanitize_comment`` returns.
@@ -162,16 +163,17 @@ def unwrap_comment(text: str, min_width: int = 40) -> str:
 
     lines = text.split("\n")
     # Prose sits at the shallowest indent after the first line (a docstring's
-    # summary line has none). A paragraph that starts deeper and has a line of
-    # code or a prompt is an indented example and is kept as it is.
+    # summary line has none). A paragraph that sits deeper and has a line of
+    # code or a prompt is an indented example and is kept as it is, as is any
+    # paragraph with a prompt, whose output follows it.
     base = min((_indent(line) for line in lines[1:] if line.strip()), default=0)
     out: list[str] = []
     paragraph: list[str] = []
     fenced = False
 
     def flush() -> None:
-        if (
-            _indent(paragraph[0]) > base
+        if any(_PROMPT.match(line) for line in paragraph) or (
+            all(_indent(line) > base for line in paragraph)
             and _LIST_ITEM.match(paragraph[0]) is None
             and any(_is_code(line) or _STRUCTURE.match(line) for line in paragraph)
         ):
