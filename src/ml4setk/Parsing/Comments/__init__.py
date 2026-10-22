@@ -31,6 +31,7 @@ from .registry import (
     iter_comment_syntaxes,
     resolve_comment_language_version,
 )
+from .unwrap import unwrap_comment
 
 __all__ = [
     "SUPPORTED_LANGUAGES",
@@ -58,4 +59,5 @@ __all__ = [
     "resolve_comment_language_version",
     "sanitize_comment",
     "sanitize_comment_text",
+    "unwrap_comment",
 ]
