@@ -164,7 +164,7 @@ All names below are importable from `ml4setk`.
 | `QueryMatch(prefix, suffix, match)` | named tuple | The shared result type; `prefix + match + suffix` is the original text. |
 | `CommentSanitizer(language, version=None)` | sanitizer object | Reusable cleaner for one language; call `.sanitize(comment)`. |
 | `sanitize_comment(language, comment, version=None)` | `str` | One-off cleaning. `sanitize_comment_text` is an alias. |
-| `unwrap_comment(text, min_width=60)` | `str` | Opt-in: join hard-wrapped lines of cleaned text into paragraphs (see [Unwrapping hard-wrapped text](#unwrapping-hard-wrapped-text)). |
+| `unwrap_comment(text, min_width=40)` | `str` | Opt-in: join hard-wrapped lines of cleaned text into paragraphs (see [Unwrapping hard-wrapped text](#unwrapping-hard-wrapped-text)). |
 | `get_supported_comment_languages()` | `list[str]` | Every registry key. |
 | `comment_language_requires_version(language)` | `bool` | Whether a language has a version table. |
 | `get_comment_language_versions(language)` | `tuple[str, ...]` | Its supported versions, oldest first. |
@@ -571,11 +571,23 @@ assert unwrap_comment(sanitize_comment("java", comment)) == (
 A line is joined to the previous one only when the previous line reaches
 close to the paragraph's wrap column (its longest line), so lists of short
 lines stay as they are. Blank lines, list items, tags such as `@param`,
-`key: value` rows, headings, tables, markup, code-like lines, fenced blocks,
-and indentation changes keep their breaks, and paragraphs narrower than
-`min_width` are left alone. Only whitespace around a joined break changes. It
-is a layout heuristic, so a list of long lines without bullets can still be
-joined; `sanitize_comment` output is unchanged unless you call it.
+`key: value` rows, headings, tables, markup, URLs, code-like lines, fenced
+blocks, and indentation changes keep their breaks. The exception is text
+aligned under a block opener (`/* first line` then `   more text`), which is
+joined. In a paragraph narrower than 60 columns only a line that starts in
+lowercase is joined, and paragraphs narrower than `min_width` are left alone.
+Only whitespace around a joined break changes. It is a layout heuristic, so a
+list of long lines without bullets can still be joined; `sanitize_comment`
+output is unchanged unless you call it.
+
+`tests/test_comment_wrapped_prose_matrix.py` runs wrapped prose through every
+language key's proven line and block wrappers in about 48,000 layouts, with
+one to six marked lines, different padding and indentation, gutters, rulers,
+blank comment lines, and opener-aligned text. Cleaning must return the
+wrapped lines and unwrapping must return the paragraph. Layouts the sanitizer
+does not clean yet are frozen in
+`tests/fixtures/comment_cleaning_wrapped_prose_known_gaps.json`, and that list
+may only shrink.
 
 ## Legacy tuple API
 

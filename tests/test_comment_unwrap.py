@@ -107,3 +107,29 @@ def test_only_whitespace_changes_on_the_cleaning_corpus():
         assert unwrapped.count("\n") <= text.count("\n")
         changed += unwrapped != text
     assert changed > 100
+
+
+def test_joins_text_aligned_under_a_block_opener():
+    text = (
+        "Returns the cached value for the key, or computes it with the loader\n"
+        "   when the cache has no entry and stores the result for later calls."
+    )
+    assert unwrap_comment(text) == (
+        "Returns the cached value for the key, or computes it with the loader "
+        "when the cache has no entry and stores the result for later calls."
+    )
+
+
+def test_keeps_urls_and_narrow_lists_on_their_own_lines():
+    for text in (
+        "Copyright 2018 Example Software Corporation and contributors.\nhttps://example.com",
+        "This function was written by the example maintainers\nPlease keep this notice",
+    ):
+        assert unwrap_comment(text) == text
+
+
+def test_joins_narrow_paragraphs_only_mid_sentence():
+    text = "This document lists the files which must be\nprocessed to produce the docs."
+    assert unwrap_comment(text) == (
+        "This document lists the files which must be processed to produce the docs."
+    )
