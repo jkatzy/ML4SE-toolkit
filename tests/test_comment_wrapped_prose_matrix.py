@@ -187,3 +187,37 @@ def test_known_gaps_name_tested_layouts():
 )
 def test_layouts_the_matrix_found(language, raw, expected):
     assert CommentSanitizer(language).sanitize(raw) == expected
+
+
+BOXED_TITLE = (
+    "/********************************\n"
+    " *     CACHE INITIALIZATION     *\n"
+    " ********************************\n"
+    " * Initializes the application cache by loading\n"
+    " * frequently accessed data into memory.\n"
+    " *\n"
+    " * Existing cache entries are preserved unless\n"
+    " * they have expired or become invalid.\n"
+    " */"
+)
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        BOXED_TITLE,
+        BOXED_TITLE.replace(
+            " *     CACHE INITIALIZATION     *\n",
+            " *     CACHE                    *\n *     INITIALIZATION           *\n",
+        ),
+    ],
+)
+def test_boxed_title_rows_lose_their_frame(raw):
+    title = "CACHE INITIALIZATION" if raw == BOXED_TITLE else "CACHE\nINITIALIZATION"
+    body = (
+        "Initializes the application cache by loading\n"
+        "frequently accessed data into memory.\n\n"
+        "Existing cache entries are preserved unless\n"
+        "they have expired or become invalid."
+    )
+    assert CommentSanitizer("java").sanitize(raw) == f"{title}\n\n{body}"

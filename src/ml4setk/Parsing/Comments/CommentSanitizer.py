@@ -632,6 +632,47 @@ def _strip_common_left_gutter(
     return stripped, True
 
 
+def _strip_title_card_edges(lines: list[str]) -> list[str]:
+    """Strip the right edge and centering of title rows boxed by rulers.
+
+    A box header such as ``* TITLE *`` between two ``****`` rulers frames only
+    its title rows, so the common right gutter (which needs most lines) does
+    not see them. The top ruler may already be gone with the block opener.
+    """
+
+    def edge_char(line: str) -> str | None:
+        edge = re.search(r"[ \t]+([^\w\s])\1*[ \t]*$", line)
+        if edge is None or not line[: edge.start()].strip():
+            return None
+        return edge.group(1)
+
+    def is_ruler_of(line: str, char: str) -> bool:
+        return _is_decorative_ruler_line(line) and set("".join(line.split())) == {char}
+
+    cleaned = list(lines)
+    index = 0
+    while index < len(lines):
+        char = edge_char(lines[index])
+        if char is None or (index and not is_ruler_of(lines[index - 1], char)):
+            index += 1
+            continue
+        end = index
+        while end < len(lines) and edge_char(lines[end]) == char:
+            end += 1
+        if end < len(lines) and is_ruler_of(lines[end], char):
+            for row in range(index, end):
+                title = re.sub(r"[ \t]+[^\w\s]+[ \t]*$", "", lines[row])
+                # Keep a left gutter such as `` * `` for the gutter pass, but
+                # drop the spaces that centered the title after it.
+                gutter = re.match(r"[ \t]*([^\w\s])\1*(?=[ \t])", title)
+                if gutter is not None and gutter.group(1) == char:
+                    cleaned[row] = f"{gutter.group()} {title[gutter.end() :].strip()}"
+                else:
+                    cleaned[row] = title.strip()
+        index = end
+    return cleaned
+
+
 def _strip_common_right_gutter(
     lines: list[str],
     allowed_chars: frozenset[str],
@@ -2493,6 +2534,8 @@ def _sanitize_block_body(
         if grouped_line_result is not None:
             return grouped_line_result
 
+    if not stripped_symmetric_frame:
+        lines = _strip_title_card_edges(lines)
     lines, stripped_left_gutter = _strip_common_left_gutter(
         lines,
         wrapper,
