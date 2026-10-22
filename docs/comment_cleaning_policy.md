@@ -54,6 +54,11 @@ listed in the sanitizer and covered by tests.
 Uncertainty is resolved toward keeping text. A cleaner may leave a little
 scaffolding behind; it must not silently discard content.
 
+For the same reason, the cleaner does not look for unclosed comments by
+default, and a block opener it cannot pair with a closer stays in the text. `CommentSanitizer(language, on_unclosed="to_eof")` removes it
+instead, and the other `on_unclosed` values warn, raise, or drop the comment;
+see [Unclosed comments](comment_extractor.md#unclosed-comments).
+
 ## Enforcement
 
 - Generated per-family fixtures in `tests/fixtures/comment_cleaning` derive the

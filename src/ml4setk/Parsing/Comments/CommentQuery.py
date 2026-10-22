@@ -1969,6 +1969,17 @@ class NestedCommentQuery(Query):
 UNCLOSED_COMMENT_POLICIES = ("ignore", "raise", "warn", "to_eof", "skip", "empty")
 
 
+def _check_unclosed_policy(on_unclosed):
+    """Return ``on_unclosed`` if it names a policy, else raise ``ValueError``."""
+
+    if on_unclosed not in UNCLOSED_COMMENT_POLICIES:
+        raise ValueError(
+            f"on_unclosed must be one of {', '.join(UNCLOSED_COMMENT_POLICIES)}, "
+            f"got {on_unclosed!r}"
+        )
+    return on_unclosed
+
+
 class UnclosedCommentError(ValueError):
     """Raised by ``CommentQuery(..., on_unclosed="raise")`` for an unclosed comment.
 
@@ -2115,12 +2126,7 @@ class CommentQuery(Query):
     """
 
     def __init__(self, language, version=None, on_unclosed="ignore"):
-        if on_unclosed not in UNCLOSED_COMMENT_POLICIES:
-            raise ValueError(
-                f"on_unclosed must be one of {', '.join(UNCLOSED_COMMENT_POLICIES)}, "
-                f"got {on_unclosed!r}"
-            )
-        self.on_unclosed = on_unclosed
+        self.on_unclosed = _check_unclosed_policy(on_unclosed)
         self.languages = self._normalize_languages(language)
         self.language = self.languages[0] if len(self.languages) == 1 else self.languages
         requested = self._normalize_versions(self.languages, version)

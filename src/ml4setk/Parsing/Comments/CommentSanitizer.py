@@ -9,10 +9,18 @@ from __future__ import annotations
 
 import re
 import textwrap
+import warnings
 from bisect import bisect_left
 from dataclasses import dataclass
 
 from ..Query import QueryMatch
+from .CommentQuery import (
+    CommentQuery,
+    UnclosedCommentError,
+    UnclosedCommentWarning,
+    _check_unclosed_policy,
+    _unclosed_comment_openers,
+)
 from .registry import (
     CommentSyntax,
     _resolve_comment_language_key,
@@ -2534,28 +2542,60 @@ def _sanitize_unclosed_block_comment(
         )
         if opener_match is None:
             continue
-
-        unclosed_body = _strip_unclosed_continuation_indent(raw_comment[opener_match.end() :])
-        if unclosed_body.startswith((" ", "\t")):
-            unclosed_body = unclosed_body[1:]
-        return _sanitize_block_body(
-            unclosed_body,
-            (open_text, ""),
-            line_wrappers,
-            allow_doc_star=True,
-            protected_ruler_chars=protected_ruler_chars,
+        return _sanitize_open_block_body(
+            raw_comment[opener_match.end() :], open_text, line_wrappers, protected_ruler_chars
         )
     return None
+
+
+def _sanitize_open_block_body(
+    body: str,
+    open_text: str,
+    line_wrappers: tuple[tuple[str, str], ...],
+    protected_ruler_chars: frozenset[str],
+) -> str:
+    """Clean the ``body`` that follows ``open_text`` in a block with no closer."""
+
+    body = _strip_unclosed_continuation_indent(body)
+    if body.startswith((" ", "\t")):
+        body = body[1:]
+    return _sanitize_block_body(
+        body,
+        (open_text, ""),
+        line_wrappers,
+        allow_doc_star=True,
+        protected_ruler_chars=protected_ruler_chars,
+    )
+
+
+def _liquid_tag_content(raw_comment: str) -> str | None:
+    """Return what ``{%-?[ \t]*\n?(.*?)[ \t\n]*-?%}`` captures, without regex.
+
+    The lazy group retried the trailing whitespace run at every length, which
+    took quadratic time on a tag padded with whitespace.
+    """
+
+    if len(raw_comment) < 4 or not raw_comment.startswith("{%") or not raw_comment.endswith("%}"):
+        return None
+    content = raw_comment[2:-2]
+    if content.startswith("-"):
+        content = content[1:]
+    content = content.lstrip(" \t")
+    if content.startswith("\n"):
+        content = content[1:]
+    if content.endswith("-"):
+        content = content[:-1]
+    return content.rstrip(" \t\n")
 
 
 def _sanitize_liquid_inline_comment_tag(raw_comment: str) -> str | None:
     """Clean a Liquid ``{% # ... %}`` tag whose content lines each start with #."""
 
-    match = re.fullmatch(r"\{%-?[ \t]*\n?(.*?)[ \t\n]*-?%\}", raw_comment, re.DOTALL)
-    if match is None:
+    content = _liquid_tag_content(raw_comment)
+    if content is None:
         return None
     bodies = []
-    for line in match.group(1).split("\n"):
+    for line in content.split("\n"):
         stripped = line.lstrip(" \t")
         if not stripped.startswith("#"):
             return None
@@ -7347,14 +7387,25 @@ class CommentSanitizer:
         language: Registry language key used to resolve comment delimiters.
         version: Optional language version for languages whose comment syntax
             depends on it. ``None`` uses the default version and warns once.
+        on_unclosed: What ``sanitize`` does with a comment whose block opener
+            never closes, such as one ``CommentQuery(..., on_unclosed="to_eof")``
+            returns. ``"ignore"`` (the default) cleans it like any other text.
+            ``"warn"`` does the same and emits ``UnclosedCommentWarning``.
+            ``"raise"`` raises ``UnclosedCommentError``. ``"to_eof"`` treats
+            the comment as a block that runs to its end and removes the
+            opener. ``"skip"`` and ``"empty"`` return ``""``.
 
     Raises:
+        ValueError: If ``on_unclosed`` is not one of
+            ``UNCLOSED_COMMENT_POLICIES``.
         NotImplementedError: If the language is not present in the registry.
         UnsupportedCommentLanguageVersionError: If ``version`` is not
             supported for the language.
     """
 
-    def __init__(self, language: str, version: str | None = None):
+    def __init__(self, language: str, version: str | None = None, on_unclosed: str = "ignore"):
+        self.on_unclosed = _check_unclosed_policy(on_unclosed)
+        self._query = None
         self.language = language
         self._language_key = _resolve_comment_language_key(language)
         self.version = resolve_query_language_version(language, version)
@@ -7503,6 +7554,10 @@ class CommentSanitizer:
         """
 
         raw_comment = _coerce_comment_text(comment)
+        if self.on_unclosed != "ignore":
+            unclosed = self._apply_unclosed_policy(raw_comment)
+            if unclosed is not None:
+                return unclosed
         directive_candidate = raw_comment.lstrip(" \t")
         excluded_prefixes = self.syntax.excluded_comment_prefixes_for_language(self._language_key)
         if any(directive_candidate.startswith(prefix) for prefix in excluded_prefixes):
@@ -7961,11 +8016,47 @@ class CommentSanitizer:
 
         return _normalize_sanitized_body(raw_comment)
 
+    def _apply_unclosed_policy(self, raw_comment: str) -> str | None:
+        """Return the result ``on_unclosed`` picks, or ``None`` to clean as usual."""
 
-def sanitize_comment(language: str, comment: str | QueryMatch, version: str | None = None) -> str:
+        # Extract from the comment as from source, so an opener the comment's
+        # own syntax covers (``###`` in a ``#`` line comment) does not count.
+        if self._query is None:
+            self._query = CommentQuery(self._language_key, version=self.version)
+        ranges = self._query.parse_ranges(raw_comment)
+        openers = _unclosed_comment_openers(self._language_key, self.version, raw_comment, ranges)
+        start = len(raw_comment) - len(raw_comment.lstrip())
+        # Only an opener that starts the comment leaves the comment itself open.
+        if not openers or openers[0][0] != start:
+            return None
+        if self.on_unclosed in {"skip", "empty"}:
+            return ""
+        end = openers[0][1]
+        if self.on_unclosed == "to_eof":
+            if self.syntax.sanitizer_mode == "raw":
+                return raw_comment
+            return _sanitize_open_block_body(
+                raw_comment[end:],
+                raw_comment[start:end],
+                self._sanitizer_syntax.line_wrappers,
+                self._protected_padding_chars,
+            )
+        error = UnclosedCommentError(self.language, start, raw_comment.count("\n", 0, start) + 1)
+        if self.on_unclosed == "raise":
+            raise error
+        warnings.warn(str(error), UnclosedCommentWarning, stacklevel=3)
+        return None
+
+
+def sanitize_comment(
+    language: str,
+    comment: str | QueryMatch,
+    version: str | None = None,
+    on_unclosed: str = "ignore",
+) -> str:
     """Return sanitized comment text for ``language`` and optional ``version``."""
 
-    return CommentSanitizer(language, version=version).sanitize(comment)
+    return CommentSanitizer(language, version=version, on_unclosed=on_unclosed).sanitize(comment)
 
 
 def sanitize_comment_text(
