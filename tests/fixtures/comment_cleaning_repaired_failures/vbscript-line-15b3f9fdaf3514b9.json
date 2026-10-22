@@ -2,7 +2,7 @@
   "case_id": "vbscript-line-15b3f9fdaf3514b9",
   "category": "policy_or_judge_conflict",
   "cluster": "judge_drift:unchanged_output",
-  "disposition": "executable_regression",
+  "disposition": "accounting_only_superseded",
   "language": "vbscript",
   "original_expected_output_source": "current",
   "original_integrity": {
@@ -22,11 +22,6 @@
       "sha256": "11f663b03c9d1f6df9b56ba286e3b500eab871d2917845055a2c2848de3877e2",
       "utf8_length": 198
     }
-  },
-  "regression": {
-    "expected_output": "TCP/IP\u3067\u901a\u4fe1\u3059\u308b\u30b5\u30f3\u30d7\u30eb(VBS/VBA)\n\u901a\u4fe1\u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u751f\u6210\n===========================================================\n\u3010\u8d77\u52d5\u65b9\u6cd5\u3011\ncscript.exe pptCntrl.vbs [ppt\u30d5\u30a1\u30a4\u30eb\u540d]",
-    "provenance": "exact_classification_literal",
-    "raw_comment": "'===========================================================\n'TCP/IP\u3067\u901a\u4fe1\u3059\u308b\u30b5\u30f3\u30d7\u30eb(VBS/VBA)\n'\u901a\u4fe1\u30aa\u30d6\u30b8\u30a7\u30af\u30c8\u751f\u6210\n'===========================================================\n'\u3010\u8d77\u52d5\u65b9\u6cd5\u3011\n' cscript.exe pptCntrl.vbs [ppt\u30d5\u30a1\u30a4\u30eb\u540d] \n'==========================================================="
   },
   "schema_version": 2,
   "source_provenance": {

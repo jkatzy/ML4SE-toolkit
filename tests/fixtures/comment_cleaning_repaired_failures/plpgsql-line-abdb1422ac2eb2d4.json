@@ -2,7 +2,7 @@
   "case_id": "plpgsql-line-abdb1422ac2eb2d4",
   "category": "sanitizer_regression",
   "cluster": "retained_marker:dash",
-  "disposition": "executable_regression",
+  "disposition": "accounting_only_superseded",
   "language": "plpgsql",
   "original_expected_output_source": "manifest_old",
   "original_integrity": {
@@ -22,11 +22,6 @@
       "sha256": "f2a88eea987df9591c933c0bd14b3b0b0e8a5d8f5af181154abc9a5e369a0c5c",
       "utf8_length": 433
     }
-  },
-  "regression": {
-    "expected_output": "Name :REFRESH_MV\n\nDescription : To refresh mv of a particular schema.\nParameters: IN_SCHEMA_NM, IN_MVIEW_NM, WITH_DATA_FLG\n\nRefNo  Name            JIRA NO \t\tDate     Description of change\n----- ---------------- -------- -------------------------------------------\n1      Akshay        CSPUBCC-4383   4/15/2021  Added variable\n                                               removed upper function from query and added exception block.",
-    "provenance": "exact_classification_literal",
-    "raw_comment": "-----------------------------------------------------------------------------\n   -- Name :REFRESH_MV                                             \n   -----------------------------------------------------------------------------\n   -- Description : To refresh mv of a particular schema.\n   -- Parameters: IN_SCHEMA_NM, IN_MVIEW_NM, WITH_DATA_FLG\n   ------------------------------------------------------------------------------\n   -- RefNo  Name            JIRA NO \t\tDate     Description of change\n   -- ----- ---------------- -------- -------------------------------------------\n   -- 1      Akshay        CSPUBCC-4383   4/15/2021  Added variable \n   --                                                removed upper function from query and added exception block.                                                                                                  \n   ------------------------------------------------------------------------------"
   },
   "schema_version": 2,
   "source_provenance": {

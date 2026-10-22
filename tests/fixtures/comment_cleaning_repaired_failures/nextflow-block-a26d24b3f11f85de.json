@@ -2,7 +2,7 @@
   "case_id": "nextflow-block-a26d24b3f11f85de",
   "category": "sanitizer_regression",
   "cluster": "content_loss:markdown_heading",
-  "disposition": "executable_regression",
+  "disposition": "accounting_only_superseded",
   "language": "nextflow",
   "original_expected_output_source": "manifest_old",
   "original_integrity": {
@@ -22,11 +22,6 @@
       "sha256": "126413b66612d4be4d415ac04a569f6ac78ff27768c8b819fc4d224a7e24a6aa",
       "utf8_length": 226
     }
-  },
-  "regression": {
-    "expected_output": "                         nf-core/hicar\n========================================================================================\n nf-core/hicar Analysis Pipeline.\n #### Homepage / Documentation\n https://github.com/nf-core/hicar",
-    "provenance": "exact_classification_literal",
-    "raw_comment": "/*\n========================================================================================\n                         nf-core/hicar\n========================================================================================\n nf-core/hicar Analysis Pipeline.\n #### Homepage / Documentation\n https://github.com/nf-core/hicar\n----------------------------------------------------------------------------------------\n*/"
   },
   "schema_version": 2,
   "source_provenance": {

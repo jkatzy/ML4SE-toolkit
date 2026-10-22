@@ -168,6 +168,7 @@ def test_wrapped_prose_cleans_and_unwraps(language):
 def test_known_gaps_name_tested_layouts():
     for language, opener, *_ in [*KNOWN_GAPS, *FLUSH_LEFT]:
         assert opener in {wrapper[1] for wrapper in WRAPPERS[language]}
+    assert {language for language, _ in HEADER_GAPS} <= set(WRAPPERS)
 
 
 @pytest.mark.parametrize(
@@ -220,4 +221,97 @@ def test_boxed_title_rows_lose_their_frame(raw):
         "Existing cache entries are preserved unless\n"
         "they have expired or become invalid."
     )
-    assert CommentSanitizer("java").sanitize(raw) == f"{title}\n\n{body}"
+    assert CommentSanitizer("java").sanitize(raw) == f"{title}\n{body}"
+
+
+# Decorative headers around the same comment: a title set off by rulers, boxed
+# in a frame, or drawn with the line marker itself. Cleaning keeps the title
+# rows and the body and drops every ruler and frame.
+HEADER_TITLE = "CACHE INITIALIZATION"
+HEADER_BODY = (
+    "Initializes the application cache by loading",
+    "frequently accessed data into memory.",
+    "",
+    "Existing cache entries are preserved unless",
+    "they have expired or become invalid.",
+)
+HEADER_WIDTH = 52
+HEADER_GAPS = {
+    (gap["language"], shape) for gap in _EXCEPTIONS["header_gaps"] for shape in gap["shapes"]
+}
+
+
+def _boxed(char, text, lead=""):
+    return f"{lead}{char}{text.center(HEADER_WIDTH - 2)}{char}"
+
+
+def _block_headers(opener, closer):
+    width, title, body = HEADER_WIDTH, HEADER_TITLE, HEADER_BODY
+    for char in sorted(set("*=-#") - {opener[-1]}):
+        rule = char * width
+        rows = [_boxed(char, " " + line.ljust(width - 3)) for line in body]
+        yield f"inline-title {char}", [opener, f"{char * 6} {title} {char * 6}", *body, closer]
+        yield f"title-between-rulers {char}", [opener, rule, title, rule, *body, closer]
+        yield f"full-box {char}", [opener + rule, _boxed(char, title), *rows, rule + closer]
+    if opener.endswith("*"):
+        rule = " " + "*" * width
+        gutter = [f" * {line}".rstrip() for line in body]
+        for name, titles in (("title-box", [title]), ("title-box-two-rows", title.split())):
+            framed = [_boxed("*", row, " ") for row in titles]
+            yield name, [opener + rule[1:], *framed, rule, *gutter, " " + closer]
+
+
+def _line_headers(opener, closer):
+    width, title, body = HEADER_WIDTH, HEADER_TITLE, HEADER_BODY
+    tail = f" {closer}" if closer else ""
+
+    def line(text):
+        return f"{opener} {text}{tail}" if text else f"{opener}{tail}"
+
+    marker = opener[-1]
+    for char in sorted(set("*=-#") | ({marker} & set("/;%!"))):
+        rule = line(char * width)
+        boxed = line(_boxed(char, title))
+        rows = [line(f"{char} {text.ljust(width - 4)} {char}") for text in body]
+        inline = line(f"{char * 6} {title} {char * 6}")
+        yield f"line-inline-title {char}", [inline, *map(line, body)]
+        yield f"line-title-between-rulers {char}", [rule, line(title), rule, *map(line, body)]
+        yield f"line-title-box {char}", [rule, boxed, rule, *map(line, body)]
+        yield f"line-full-box {char}", [rule, boxed, rule, *rows, rule]
+    if closer or marker not in "*=-#/;%!":
+        return
+    # The marker draws the box's left edge: ``#####`` / ``#  TITLE  #``.
+    rule = opener + marker * width
+    banner = f"{opener}{title.center(width)}{marker}"
+    rows = [f"{opener} {text.ljust(width - 1)}{marker}" for text in body]
+    yield "line-banner", [rule, banner, rule, *map(line, body)]
+    yield "line-banner-box", [rule, banner, rule, *rows, rule]
+
+
+@pytest.mark.parametrize("language", sorted(WRAPPERS))
+def test_decorative_headers_clean_to_title_and_body(language):
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        sanitizer = CommentSanitizer(language)
+    body = [line for line in HEADER_BODY if line]
+    joined = " ".join(HEADER_BODY[:2])
+    failures = []
+    gap_hits = set()
+    for kind, opener, closer in WRAPPERS[language]:
+        if kind == "line" and len(closer) > 3:
+            continue
+        shapes = _line_headers if kind == "line" else _block_headers
+        for shape, rows in shapes(opener, closer):
+            cleaned = sanitizer.sanitize("\n".join(rows))
+            filled = [line for line in cleaned.split("\n") if line.strip()]
+            titles = HEADER_TITLE.split() if "two-rows" in shape else [HEADER_TITLE]
+            unwrapped = unwrap_comment(cleaned).split("\n")
+            if filled == [*titles, *body] and titles[-1] in unwrapped and joined in unwrapped:
+                continue
+            if (language, shape) in HEADER_GAPS:
+                gap_hits.add((language, shape))
+            else:
+                failures.append(f"{shape} {opener!r}: {cleaned!r}")
+    fixed = {gap for gap in HEADER_GAPS if gap[0] == language} - gap_hits
+    failures += [f"header gap now passes, remove it from the list: {gap}" for gap in sorted(fixed)]
+    assert not failures, "\n".join(failures[:20])

@@ -18,7 +18,7 @@ pytestmark = pytest.mark.unit
 FIXTURE_PATH = (
     Path(__file__).parent / "fixtures" / "comment_cleaning_final_validation_failures.json"
 )
-EXPECTED_FIXTURE_SHA256 = "d323e686a42a231495effc4b68582980e402e0ce4f194df58f1040371c55e89e"
+EXPECTED_FIXTURE_SHA256 = "d678595684e3da29da2f7c76a83306ba8a3464cae461ab9a5cbc7a3d6365fedb"
 EXPECTED_CASE_ID_SET_SHA256 = "bc42d71309178d2a231d2c4819a473987a12e6fada4155922cd9fea2f8fb38ed"
 EXPECTED_SOURCE = {
     "dataset": "bigcode/the-stack-v2-dedup",

@@ -1,5 +1,5 @@
 {
-  "description": "Wrapped-prose layouts that clean differently from the generic expectation. flush_left_conventions are reviewed language rules. gaps are layouts the sanitizer does not clean yet; that list may only shrink. See tests/test_comment_wrapped_prose_matrix.py.",
+  "description": "Wrapped-prose layouts that clean differently from the generic expectation. flush_left_conventions are reviewed language rules. gaps are layouts the sanitizer does not clean yet, and header_gaps are decorative header shapes it does not clean yet; both lists may only shrink. See tests/test_comment_wrapped_prose_matrix.py.",
   "flush_left_conventions": [
     {
       "language": "asl",
@@ -16,5 +16,323 @@
       "reason": "An unclosed Clue /* comment is indentation-scoped, so its continuation indent is source indentation."
     }
   ],
-  "gaps": []
+  "gaps": [],
+  "header_gaps": [
+    {
+      "language": "abap",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-full-box *", "line-full-box -", "line-title-between-rulers !", "line-title-box !", "line-title-box *", "line-title-box -"]
+    },
+    {
+      "language": "answer_set_programming",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-title-between-rulers !", "line-title-box !"]
+    },
+    {
+      "language": "apacheconf",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "asciidoc",
+      "shapes": ["line-banner-box"]
+    },
+    {
+      "language": "autoit",
+      "shapes": ["line-inline-title ="]
+    },
+    {
+      "language": "beef",
+      "shapes": ["line-inline-title #", "line-inline-title -"]
+    },
+    {
+      "language": "berry",
+      "shapes": ["full-box #"]
+    },
+    {
+      "language": "bluespec_bh",
+      "shapes": ["line-banner", "line-banner-box"]
+    },
+    {
+      "language": "brightscript",
+      "shapes": ["line-inline-title *"]
+    },
+    {
+      "language": "bro",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "cap_cds",
+      "shapes": ["line-banner", "line-banner-box"]
+    },
+    {
+      "language": "classic_asp",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "clips",
+      "shapes": ["line-full-box *"]
+    },
+    {
+      "language": "cmake",
+      "shapes": ["full-box #"]
+    },
+    {
+      "language": "coffeescript",
+      "shapes": ["line-banner-box"]
+    },
+    {
+      "language": "common_lisp",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "cson",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "curl_config",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "cweb",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "dune",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title ;", "line-inline-title =", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "editorconfig",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "emberscript",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "erlang",
+      "shapes": ["line-full-box -", "line-title-box -"]
+    },
+    {
+      "language": "faust",
+      "shapes": ["line-full-box -"]
+    },
+    {
+      "language": "forth",
+      "shapes": ["inline-title *", "line-inline-title *"]
+    },
+    {
+      "language": "gams",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-title-between-rulers !", "line-title-box !"]
+    },
+    {
+      "language": "gerber_image",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "handlebars",
+      "shapes": ["line-full-box !", "line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title !", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers !", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box !", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "html_django",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "html_plus_django",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "html_plusdjango",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "imba",
+      "shapes": ["line-banner-box"]
+    },
+    {
+      "language": "jinja",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "lark",
+      "shapes": ["line-banner", "line-banner-box"]
+    },
+    {
+      "language": "linear_programming",
+      "shapes": ["line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title ="]
+    },
+    {
+      "language": "liquid",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "literate_coffeescript",
+      "shapes": ["line-banner-box", "line-inline-title #"]
+    },
+    {
+      "language": "m4",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "mako",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "mini_yaml",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "miniyaml",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "monkey",
+      "shapes": ["line-inline-title ="]
+    },
+    {
+      "language": "mustache",
+      "shapes": ["line-full-box !", "line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title !", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers !", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box !", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "nasal",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "nextflow",
+      "shapes": ["inline-title #", "line-inline-title #"]
+    },
+    {
+      "language": "nim",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "nimrod",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "noir",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-title-between-rulers !", "line-title-box !"]
+    },
+    {
+      "language": "objectscript",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "pact",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title ;", "line-inline-title =", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "parrot_internal_representation",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "pascal",
+      "shapes": ["inline-title -", "line-inline-title -"]
+    },
+    {
+      "language": "pddl",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title ;", "line-inline-title =", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "perl6",
+      "shapes": ["full-box #", "line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "powershell",
+      "shapes": ["line-banner-box"]
+    },
+    {
+      "language": "propeller_spin",
+      "shapes": ["inline-title #", "line-inline-title #"]
+    },
+    {
+      "language": "puppet",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "pyret",
+      "shapes": ["full-box #"]
+    },
+    {
+      "language": "racket",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "raku",
+      "shapes": ["full-box #"]
+    },
+    {
+      "language": "runoff",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-full-box ;", "line-title-between-rulers !", "line-title-between-rulers ;", "line-title-box !", "line-title-box ;"]
+    },
+    {
+      "language": "rust",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-title-between-rulers !", "line-title-box !"]
+    },
+    {
+      "language": "saltstack",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "sas",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title =", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ="]
+    },
+    {
+      "language": "slim",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-title-between-rulers !", "line-title-box !"]
+    },
+    {
+      "language": "survex_data",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-full-box ;", "line-inline-title !", "line-inline-title #", "line-inline-title %", "line-inline-title *", "line-inline-title -", "line-inline-title ;", "line-inline-title =", "line-title-between-rulers !", "line-title-between-rulers ;", "line-title-box !", "line-title-box ;"]
+    },
+    {
+      "language": "sway",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box !", "line-title-between-rulers !", "line-title-box !"]
+    },
+    {
+      "language": "texinfo",
+      "shapes": ["line-inline-title ="]
+    },
+    {
+      "language": "velocity_template_language",
+      "shapes": ["title-box", "title-box-two-rows"]
+    },
+    {
+      "language": "wavefront_object",
+      "shapes": ["line-banner-box"]
+    },
+    {
+      "language": "wdl",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "webassembly",
+      "shapes": ["line-banner", "line-banner-box", "line-full-box ;", "line-title-between-rulers ;", "line-title-box ;"]
+    },
+    {
+      "language": "wget_config",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "win32_message_file",
+      "shapes": ["line-full-box #", "line-full-box *", "line-full-box -", "line-full-box ;", "line-full-box =", "line-inline-title #", "line-inline-title *", "line-inline-title -", "line-inline-title ;", "line-inline-title =", "line-title-between-rulers #", "line-title-between-rulers *", "line-title-between-rulers -", "line-title-between-rulers ;", "line-title-between-rulers =", "line-title-box #", "line-title-box *", "line-title-box -", "line-title-box ;", "line-title-box ="]
+    },
+    {
+      "language": "x_bit_map",
+      "shapes": ["inline-title -", "line-inline-title -"]
+    },
+    {
+      "language": "x_bitmap",
+      "shapes": ["inline-title -", "line-inline-title -"]
+    },
+    {
+      "language": "xbase",
+      "shapes": ["title-box", "title-box-two-rows"]
+    },
+    {
+      "language": "zeek",
+      "shapes": ["line-full-box #", "line-inline-title #", "line-title-box #"]
+    },
+    {
+      "language": "zimpl",
+      "shapes": ["line-banner-box"]
+    }
+  ]
 }

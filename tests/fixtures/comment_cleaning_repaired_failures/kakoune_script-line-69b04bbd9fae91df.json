@@ -2,7 +2,7 @@
   "case_id": "kakoune_script-line-69b04bbd9fae91df",
   "category": "policy_or_judge_conflict",
   "cluster": "judge_drift:unchanged_output",
-  "disposition": "executable_regression",
+  "disposition": "accounting_only_superseded",
   "language": "kakoune_script",
   "original_expected_output_source": "current",
   "original_integrity": {
@@ -22,11 +22,6 @@
       "sha256": "3efb4a66186e5c35ffcfe8f99a7976f3c4f199d0e82edf9e456092b7cc15eed0",
       "utf8_length": 207
     }
-  },
-  "regression": {
-    "expected_output": "EXAMPLES\n==============================================================================\nhttps://github.com/andreyorst/dotfiles/blob/187ebb84f9542b76a4f3c3e08f9533cd8187faa1/.config/kak/mnemonic-user-mode.kak",
-    "provenance": "exact_classification_literal",
-    "raw_comment": "# ==============================================================================\n# EXAMPLES\n# ==============================================================================\n# https://github.com/andreyorst/dotfiles/blob/187ebb84f9542b76a4f3c3e08f9533cd8187faa1/.config/kak/mnemonic-user-mode.kak"
   },
   "schema_version": 2,
   "source_provenance": {

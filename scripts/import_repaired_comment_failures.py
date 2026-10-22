@@ -61,12 +61,13 @@ DISPOSITION_NO_ORACLE = "accounting_only_no_oracle"
 DISPOSITION_SUPERSEDED = "accounting_only_superseded"
 
 # These original expectations were replaced by focused policy-oracle or final
-# validation fixtures.  Retaining another raw/expected copy here adds corpus
-# material without adding executable coverage.
+# validation fixtures, or by layout tests such as the decorative header shapes.
+# Retaining another raw/expected copy here adds corpus material without adding
+# executable coverage.
 SUPERSEDED_EXECUTABLE_CASE_IDS = frozenset(
     {
-        "curry-line-23444fdefd068fb2",
         "cuda-line-9be1a4d25d76a815",
+        "curry-line-23444fdefd068fb2",
         "dataweave-block-176a378804208c72",
         "dataweave-block-57a44aedd448d3e4",
         "dataweave-block-7ca8f6613b33c681",
@@ -75,11 +76,19 @@ SUPERSEDED_EXECUTABLE_CASE_IDS = frozenset(
         "dataweave-block-b6abc7d8d1b5348e",
         "dircolors-line-7584f27f1d223ba4",
         "dm-line-d411f3f58b36b13d",
+        "flux-line-74b768b276731ccd",
         "gams-line-3424ffb6abad3895",
         "genero_forms-block-58eab17332f7cdab",
+        "gsc-block-041132bf7049961b",
+        "kakoune_script-line-69b04bbd9fae91df",
         "makefile-line-04aa358fc4ea11c8",
         "monkey_c-block-af494f83e5638bc2",
+        "nextflow-block-a26d24b3f11f85de",
+        "plpgsql-line-abdb1422ac2eb2d4",
         "qml-block-a7c77eedd1191b90",
+        "tsql-line-05fafd2538df19ef",
+        "vbscript-line-15b3f9fdaf3514b9",
+        "vbscript-line-4450223db33dccf5",
         "xbase-block-e6a93f23568f0866",
         "yasnippet-line-5ec1ebbdb4bd17d7",
         "yasnippet-line-64f7278bb268116f",

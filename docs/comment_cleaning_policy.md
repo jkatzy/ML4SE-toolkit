@@ -25,6 +25,7 @@ layout and different prose clean the same way.
 | Documentation opener variants | `{- \| doc -}` (Haskell) | `doc` |
 | Decorative rulers and frames made of one repeated character | `// ============ Section ============` | `Section` |
 | Box frames whose edges all match | `/***********\n * Title *\n ***********/` | `Title` |
+| Rulers that set off a title, and boxes drawn with line comments | `# ====\n# Title\n# ====\n# body` | `Title\nbody` |
 | One padding space after an opener and before a closer | `REM note` (Batch) | `note` |
 | Line-ending differences | `// a\r\n// b` | `a\nb` |
 

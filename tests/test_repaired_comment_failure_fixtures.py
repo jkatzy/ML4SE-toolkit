@@ -22,15 +22,15 @@ SENTINEL_PATH = FIXTURE_DIR / ".generated-by-import_repaired_comment_failures"
 
 SCHEMA_VERSION = 2
 EXPECTED_CASE_COUNT = 569
-EXPECTED_EXECUTABLE_COUNT = 420
-EXPECTED_EXACT_EXECUTABLE_COUNT = 418
+EXPECTED_EXECUTABLE_COUNT = 412
+EXPECTED_EXACT_EXECUTABLE_COUNT = 410
 EXPECTED_MINIMIZED_EXECUTABLE_COUNT = 2
-EXPECTED_ACCOUNTING_ONLY_COUNT = 149
+EXPECTED_ACCOUNTING_ONLY_COUNT = 157
 EXPECTED_NO_ORACLE_COUNT = 128
-EXPECTED_SUPERSEDED_COUNT = 21
+EXPECTED_SUPERSEDED_COUNT = 29
 EXPECTED_CASE_ID_SET_SHA256 = "fbce7ffaf1fc07858fd92c4d3c621720545140df1e3d49341251b1d916320d85"
 EXPECTED_CLASSIFICATION_SHA256 = "1882604637de5107a85b5a1f7d671eb8565bb34bcb2f2d1d60c5442cc7b9a2c1"
-EXPECTED_MANIFEST_SHA256 = "fdfa93a333aa6684ecd3bc42d94f3ce4d74676ea30a31c65bfe308377e653394"
+EXPECTED_MANIFEST_SHA256 = "46f49326d24adbec348934d51611f3ff676e8dbc4bf0a4d733a4b85ee95d31d7"
 EXPECTED_CATEGORY_COUNTS = {
     "approved_oracle_match": 3,
     "extractor_or_source_invalid": 92,
@@ -84,8 +84,8 @@ DESCRIPTOR_KEYS = frozenset(
 )
 SUPERSEDED_IDS = frozenset(
     {
-        "curry-line-23444fdefd068fb2",
         "cuda-line-9be1a4d25d76a815",
+        "curry-line-23444fdefd068fb2",
         "dataweave-block-176a378804208c72",
         "dataweave-block-57a44aedd448d3e4",
         "dataweave-block-7ca8f6613b33c681",
@@ -94,11 +94,19 @@ SUPERSEDED_IDS = frozenset(
         "dataweave-block-b6abc7d8d1b5348e",
         "dircolors-line-7584f27f1d223ba4",
         "dm-line-d411f3f58b36b13d",
+        "flux-line-74b768b276731ccd",
         "gams-line-3424ffb6abad3895",
         "genero_forms-block-58eab17332f7cdab",
+        "gsc-block-041132bf7049961b",
+        "kakoune_script-line-69b04bbd9fae91df",
         "makefile-line-04aa358fc4ea11c8",
         "monkey_c-block-af494f83e5638bc2",
+        "nextflow-block-a26d24b3f11f85de",
+        "plpgsql-line-abdb1422ac2eb2d4",
         "qml-block-a7c77eedd1191b90",
+        "tsql-line-05fafd2538df19ef",
+        "vbscript-line-15b3f9fdaf3514b9",
+        "vbscript-line-4450223db33dccf5",
         "xbase-block-e6a93f23568f0866",
         "yasnippet-line-5ec1ebbdb4bd17d7",
         "yasnippet-line-64f7278bb268116f",

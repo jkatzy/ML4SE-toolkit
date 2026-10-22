@@ -10,8 +10,8 @@
   },
   "disposition_counts": {
     "accounting_only_no_oracle": 128,
-    "accounting_only_superseded": 21,
-    "executable_regression": 420
+    "accounting_only_superseded": 29,
+    "executable_regression": 412
   },
   "fixtures": [
     {
@@ -1286,10 +1286,10 @@
     {
       "case_id": "flux-line-74b768b276731ccd",
       "category": "policy_or_judge_conflict",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "flux-line-74b768b276731ccd.json",
       "original_expected_output_source": "current",
-      "sha256": "2ffd41123a36495e01176b139fc1564e1e84e90d89b77b9c1828a6178debf949",
+      "sha256": "06d5f627f052dc60cd8119bbadf04dae7e4378c3a4b5e7befe24bdc294aba814",
       "source_record_sha256": "0a938aee10084aa374675c54974864bf5e2b8ecbbae9d94db213bd0cfc1c78d9"
     },
     {
@@ -1646,10 +1646,10 @@
     {
       "case_id": "gsc-block-041132bf7049961b",
       "category": "policy_or_judge_conflict",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "gsc-block-041132bf7049961b.json",
       "original_expected_output_source": "current",
-      "sha256": "4da90e744def3acaef360f5aee6680c25ba059362b705e4da367cc70290c3d33",
+      "sha256": "bf943fa847ba8f2c027003cba0787f4b40325ac06b6dc4f0978ad3a08135e4cd",
       "source_record_sha256": "d18c2cb2cfeb90214be1942c34de56065b23839dbc7ec189f1a2d1e39600f26f"
     },
     {
@@ -2042,10 +2042,10 @@
     {
       "case_id": "kakoune_script-line-69b04bbd9fae91df",
       "category": "policy_or_judge_conflict",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "kakoune_script-line-69b04bbd9fae91df.json",
       "original_expected_output_source": "current",
-      "sha256": "40eae45e8f8acf6e4efa7c3b7a2a77158b3edd64aa44d276ad3667fed383cda8",
+      "sha256": "43151141194b82f9eb6d0cb16136a56393a9f46333fe1622d51108d484250995",
       "source_record_sha256": "83230963e355921f1520d2f725abd11878e8317fbc8a4529fe4b32bf1666506d"
     },
     {
@@ -2771,10 +2771,10 @@
     {
       "case_id": "nextflow-block-a26d24b3f11f85de",
       "category": "sanitizer_regression",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "nextflow-block-a26d24b3f11f85de.json",
       "original_expected_output_source": "manifest_old",
-      "sha256": "fa7109e5101b4749f22e501e86733e41fd26fe367d32827060078f031f1ac71a",
+      "sha256": "060bf2df6e0ea816a07299466c45907280f89aedab150aa207545ed9a49f85aa",
       "source_record_sha256": "e465d67429b3fb4d7f3487895801cb180f888d57346dfb6f4e86a412d63e5bd3"
     },
     {
@@ -3167,10 +3167,10 @@
     {
       "case_id": "plpgsql-line-abdb1422ac2eb2d4",
       "category": "sanitizer_regression",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "plpgsql-line-abdb1422ac2eb2d4.json",
       "original_expected_output_source": "manifest_old",
-      "sha256": "a9316b01fa1ae596fefb6bbf162ad88147869d37ecdbfc25673cd8cbdf15bffc",
+      "sha256": "77ae776af68488eab2b1f3fd45a48b346dae87568afa5e3ca8ec7d2e3b816ab3",
       "source_record_sha256": "728cd770df757f7f27c13733923920a59452875feeb505d4f81ac0b0b6b1ed62"
     },
     {
@@ -4553,10 +4553,10 @@
     {
       "case_id": "tsql-line-05fafd2538df19ef",
       "category": "policy_or_judge_conflict",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "tsql-line-05fafd2538df19ef.json",
       "original_expected_output_source": "current",
-      "sha256": "430404b63881a6e96c2fec960e61090b6a2c0f299e6c3095e7d43cce84e706b4",
+      "sha256": "98d7b54a0a2dfbd1660f38f178793151719c46215fcadaaab212237faa35e955",
       "source_record_sha256": "5274c58ad15c7a3a72bd8b078dd363a922b565b2dd4dc4e8dc9f3181d3a9bcbd"
     },
     {
@@ -4589,19 +4589,19 @@
     {
       "case_id": "vbscript-line-15b3f9fdaf3514b9",
       "category": "policy_or_judge_conflict",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "vbscript-line-15b3f9fdaf3514b9.json",
       "original_expected_output_source": "current",
-      "sha256": "1c88aa3a929bb92dc27a2170780f12761176c0587c85a05811a26bed8c07c545",
+      "sha256": "d35aaf5a4be7e6ff4250047f7c9f7414295f80f437be8724e0d58a3b36fd553b",
       "source_record_sha256": "4302df79257e75c04f4cb7e73f13ccb74137db52397bac883229d52b12ef07a2"
     },
     {
       "case_id": "vbscript-line-4450223db33dccf5",
       "category": "policy_or_judge_conflict",
-      "disposition": "executable_regression",
+      "disposition": "accounting_only_superseded",
       "filename": "vbscript-line-4450223db33dccf5.json",
       "original_expected_output_source": "current",
-      "sha256": "7dc75d5c229368785bab081f61b9b8910f288e89bf4fdc7b1444b258afda47da",
+      "sha256": "ca5dfa5f05a7c0e67ac6b2bc61909632d415160cd24e72bc8dd25334f1eb552d",
       "source_record_sha256": "c23759bc7f787576ad546455e4ae68900a7c89ccf7687447459a33803c0826a3"
     },
     {
@@ -5143,7 +5143,7 @@
     "oracle": 3
   },
   "regression_provenance_counts": {
-    "exact_classification_literal": 418,
+    "exact_classification_literal": 410,
     "reviewed_minimized_reproduction": 2
   },
   "schema_version": 2,

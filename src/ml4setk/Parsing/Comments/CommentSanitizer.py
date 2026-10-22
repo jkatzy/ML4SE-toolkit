@@ -456,6 +456,14 @@ def _strip_grouped_line_wrappers(
 
         stripped_lines.append(stripped.rstrip())
 
+    registered_ruler_chars = {
+        token[-1]
+        for token in matched_open_tokens
+        if len(token) == 1 and not token[-1].isalnum() and not token[-1].isspace()
+    }
+    stripped_lines = _strip_line_comment_box(stripped_lines, frozenset(registered_ruler_chars))
+    stripped_lines = _strip_title_rulers(stripped_lines, frozenset(registered_ruler_chars))
+    stripped_lines = _strip_marker_title_rulers(stripped_lines, matched_open_tokens)
     stripped_lines = _strip_residual_line_gutters(
         stripped_lines,
         tuple(matched_open_tokens),
@@ -467,11 +475,6 @@ def _strip_grouped_line_wrappers(
         allow_repeated_single_char=bool(repeated_registered_openers)
         and all(repeated_registered_openers),
     )
-    registered_ruler_chars = {
-        token[-1]
-        for token in matched_open_tokens
-        if len(token) == 1 and not token[-1].isalnum() and not token[-1].isspace()
-    }
     stripped_lines = [
         line
         for line in stripped_lines
@@ -671,6 +674,131 @@ def _strip_title_card_edges(lines: list[str]) -> list[str]:
                     cleaned[row] = title.strip()
         index = end
     return cleaned
+
+
+def _strip_line_comment_box(lines: list[str], ruler_chars: frozenset[str]) -> list[str]:
+    """Strip a box drawn with grouped line comments.
+
+    The box has rulers above and below and a right edge on every row. Its left
+    edge is either drawn after the marker (``// * text *``) or is the marker
+    itself (``# text #`` under ``#####``). Rulers inside the box become blank
+    lines.
+    """
+
+    filled = [index for index, line in enumerate(lines) if line.strip()]
+    if len(filled) < 3:
+        return lines
+    top = "".join(lines[filled[0]].split())
+    if (
+        len(top) < 4
+        or len(set(top)) != 1
+        or not (top[0] in ruler_chars or _is_decorative_ruler_line(top))
+        or set("".join(lines[filled[-1]].split())) != {top[0]}
+    ):
+        return lines
+    edge = re.escape(top[0])
+    rows = lines[filled[0] + 1 : filled[-1]]
+    ruler = re.compile(rf"[ \t]*{edge}{{4,}}[ \t]*")
+    framed = re.compile(rf"(?:(.*?)[ \t]+)?{edge}[ \t]*")
+    if not all(not row.strip() or ruler.fullmatch(row) or framed.fullmatch(row) for row in rows):
+        return lines
+    texts = [
+        framed.fullmatch(row).group(1) or ""
+        for row in rows
+        if row.strip() and not ruler.fullmatch(row)
+    ]
+    left = re.compile(rf"[ \t]*{edge}(?=[ \t]|$)")
+    has_left = all(left.match(text) for text in texts)
+    cleaned = []
+    for row in rows:
+        if not row.strip() or ruler.fullmatch(row):
+            cleaned.append("")
+            continue
+        text = framed.fullmatch(row).group(1) or ""
+        cleaned.append((left.sub("", text, count=1) if has_left else text).strip())
+    return [*lines[: filled[0]], *cleaned, *lines[filled[-1] + 1 :]]
+
+
+def _strip_marker_title_rulers(lines: list[str], open_tokens: list[str]) -> list[str]:
+    """Strip inline rulers drawn with the line marker, as in ``;;;;;; Title ;;;;;;``.
+
+    The marker takes part of the left ruler, so the generic ruler passes see an
+    unbalanced ``;; Title ;;;;;;``. The right ruler must be at least four long,
+    so emphasis such as ``!!! note !!!`` stays, and ``#`` is left alone because
+    ``#### heading ####`` can be a Markdown heading.
+    """
+
+    chars = {token[-1] for token in open_tokens if token and not token[-1].isalnum()}
+    chars -= {" ", "#"}
+    patterns = [
+        re.compile(rf"{re.escape(char)}+[ \t]+(\S.*?)[ \t]+{re.escape(char)}{{4,}}")
+        for char in chars
+    ]
+    cleaned = []
+    for line in lines:
+        for pattern in patterns:
+            match = pattern.fullmatch(line)
+            if match is not None:
+                line = match.group(1)
+                break
+        cleaned.append(line)
+    return cleaned
+
+
+def _strip_title_rulers(lines: list[str], ruler_chars: frozenset[str] = frozenset()) -> list[str]:
+    """Drop the two rulers that set off a title at the top of a comment.
+
+    ``====`` / ``TITLE`` / ``====`` / body becomes ``TITLE`` and the body.
+    Title rows framed in the ruler character (``# TITLE #``) lose the frame.
+    A title under a single ruler is left alone, since ``Title`` over ``====``
+    is a Markdown heading.
+    """
+
+    def ruler_char(line: str) -> str | None:
+        compact = "".join(line.split())
+        if len(compact) < 4 or len(set(compact)) != 1:
+            return None
+        if compact[0] in ruler_chars or _is_decorative_ruler_line(line):
+            return compact[0]
+        return None
+
+    start = 0
+    while start < len(lines) and not lines[start].strip():
+        start += 1
+    if start == len(lines):
+        return lines
+    char = ruler_char(lines[start])
+    if char is None or _strip_symmetric_block_frame(lines)[1]:
+        return lines
+    end = start + 1
+    # Up to three title rows, then the closing ruler.
+    while end - start <= 3 and end < len(lines) and lines[end].strip():
+        if ruler_char(lines[end]):
+            break
+        end += 1
+    if (
+        end == start + 1
+        or end >= len(lines)
+        or ruler_char(lines[end]) != char
+        or not "".join(lines[end + 1 :]).strip()
+    ):
+        return lines
+    edge = re.escape(char)
+    rest = lines[end + 1 :]
+    # A left frame the body rows share is their gutter: keep it for the gutter
+    # pass, but drop the spaces that centered the title after it.
+    body = next(line for line in rest if line.strip())
+    gutter = re.match(rf"[ \t]*{edge}+(?=[ \t]|$)", body)
+    titles = []
+    for line in lines[start + 1 : end]:
+        title = re.sub(rf"^[ \t]*{edge}+(?=[ \t])|[ \t]+{edge}+[ \t]*$", "", line)
+        if title == line:
+            titles.append(line)
+        elif gutter is not None:
+            titles.append(f"{gutter.group()} {title.strip()}")
+        else:
+            titles.append(title.strip())
+    return [*lines[:start], *titles, *rest]
 
 
 def _strip_common_right_gutter(
@@ -881,9 +1009,10 @@ def _is_decorative_ruler_line(line: str) -> bool:
 
 
 def _strip_edge_ruler_lines(body: str) -> str:
-    """Drop decorative ruler lines above and below a grouped line comment."""
+    """Drop decorative rulers and boxes around a grouped line comment."""
 
-    return "\n".join(_strip_decorative_edge_rulers(body.split("\n")))
+    lines = _strip_title_rulers(_strip_line_comment_box(body.split("\n"), frozenset()))
+    return "\n".join(_strip_decorative_edge_rulers(lines))
 
 
 def _is_spaced_underscore_art_line(line: str) -> bool:
@@ -2501,7 +2630,7 @@ def _sanitize_block_body(
     if body.endswith("\n"):
         body = body[:-1]
 
-    lines = body.split("\n")
+    lines = _strip_title_rulers(body.split("\n"))
     physical_line_count = len(lines)
     nested_line_wrappers = tuple(
         wrapper for wrapper in line_wrappers if not any(char.isalnum() for char in wrapper[0])
