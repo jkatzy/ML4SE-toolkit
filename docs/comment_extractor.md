@@ -160,6 +160,7 @@ All names below are importable from `ml4setk`.
 | `LineCommentQuery(language, version=None)` | query object | Line comments and non-nested block comments only, without grouping. |
 | `NestedCommentQuery(language, version=None)` | query object | Nested block comments only. |
 | `query.parse(text)` | `list[QueryMatch]` | All matches in source order. |
+| `query.parse_ranges(text)` | `list[tuple[int, int]]` | The same matches as `(start, end)` offsets, so `text[start:end]` is each comment. Use it on large files: every `QueryMatch` copies the whole text around its comment, so `parse` grows with comments times file size. |
 | `query.contains(text)` | `bool` | A quick check that at least one comment exists. |
 | `QueryMatch(prefix, suffix, match)` | named tuple | The shared result type; `prefix + match + suffix` is the original text. |
 | `CommentSanitizer(language, version=None, on_unclosed="ignore")` | sanitizer object | Reusable cleaner for one language; call `.sanitize(comment)`. `on_unclosed` picks what happens to a comment that never closes (see [Unclosed comments](#unclosed-comments)). |
