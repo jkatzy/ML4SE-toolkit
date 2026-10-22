@@ -7435,7 +7435,8 @@ class CommentSanitizer:
             normalized_comment = _normalize_newlines(raw_comment)
             lines = normalized_comment.split("\n")
             if lines and all(line.startswith("\\") for line in lines):
-                return _strip_edge_ruler_lines("\n".join(line[1:] for line in lines))
+                bodies = [line[2:] if line[1:2] in (" ", "\t") else line[1:] for line in lines]
+                return _normalize_sanitized_body(_strip_edge_ruler_lines("\n".join(bodies)))
         if self.syntax.canonical_name == "omgrofl":
             raw_comment = raw_comment.translate(_JAVA_SCANNER_LINE_ENDINGS)
         raw_comment = _normalize_newlines(raw_comment)

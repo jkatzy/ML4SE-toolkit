@@ -154,8 +154,6 @@ def _build_line_cases():
             else:
                 removal_match = removal_line_one
                 removal_expected = "adversarial *** ### $$$ %%%"
-            if language == "linear_programming":
-                removal_expected = "\n".join(f" {line}" for line in removal_expected.split("\n"))
             removal_cases.append(
                 SanitizerCase(
                     language=language,
@@ -178,8 +176,6 @@ def _build_line_cases():
             else:
                 keep_match = keep_line_one
                 keep_expected = f"keep {preserved_text} exactly and *** ### $$$ %%%"
-            if language == "linear_programming":
-                keep_expected = "\n".join(f" {line}" for line in keep_expected.split("\n"))
             preservation_cases.append(
                 SanitizerCase(
                     language=language,

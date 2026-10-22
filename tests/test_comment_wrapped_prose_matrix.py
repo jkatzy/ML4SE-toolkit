@@ -176,7 +176,7 @@ def test_known_gaps_name_tested_layouts():
         ("dune", "; ========\n; first line\n; second line\n; ========", "first line\nsecond line"),
         ("mermaid", "%% --------\n%% first line\n%% --------", "first line"),
         ("survex_data", "! ********\n! first line\n! second line", "first line\nsecond line"),
-        ("linear_programming", "\\ ====\n\\ first line\n\\ ====", " first line"),
+        ("linear_programming", "\\ ====\n\\ first line\n\\ ====", "first line"),
         ("abap", "*** first line\n***\n*** second line", "first line\n\nsecond line"),
         (
             "classic_asp",

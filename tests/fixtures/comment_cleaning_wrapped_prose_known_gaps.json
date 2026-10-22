@@ -16,24 +16,5 @@
       "reason": "An unclosed Clue /* comment is indentation-scoped, so its continuation indent is source indentation."
     }
   ],
-  "gaps": [
-    {
-      "language": "linear_programming",
-      "wrapper": "\\",
-      "layout": "line",
-      "reason": "Cleaning keeps the space after the backslash, as existing linear_programming tests pin, while the cleaning policy removes one padding space. Needs a decision."
-    },
-    {
-      "language": "linear_programming",
-      "wrapper": "\\",
-      "layout": "line-ruler",
-      "reason": "Cleaning keeps the space after the backslash, as existing linear_programming tests pin, while the cleaning policy removes one padding space. Needs a decision."
-    },
-    {
-      "language": "linear_programming",
-      "wrapper": "\\",
-      "layout": "line-two-paragraphs",
-      "reason": "Cleaning keeps the space after the backslash, as existing linear_programming tests pin, while the cleaning policy removes one padding space. Needs a decision."
-    }
-  ]
+  "gaps": []
 }
