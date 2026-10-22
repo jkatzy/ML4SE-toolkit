@@ -164,6 +164,7 @@ All names below are importable from `ml4setk`.
 | `QueryMatch(prefix, suffix, match)` | named tuple | The shared result type; `prefix + match + suffix` is the original text. |
 | `CommentSanitizer(language, version=None)` | sanitizer object | Reusable cleaner for one language; call `.sanitize(comment)`. |
 | `sanitize_comment(language, comment, version=None)` | `str` | One-off cleaning. `sanitize_comment_text` is an alias. |
+| `unwrap_comment(text, min_width=60)` | `str` | Opt-in: join hard-wrapped lines of cleaned text into paragraphs (see [Unwrapping hard-wrapped text](#unwrapping-hard-wrapped-text)). |
 | `get_supported_comment_languages()` | `list[str]` | Every registry key. |
 | `comment_language_requires_version(language)` | `bool` | Whether a language has a version table. |
 | `get_comment_language_versions(language)` | `tuple[str, ...]` | Its supported versions, oldest first. |
@@ -547,6 +548,34 @@ from ml4setk import sanitize_comment
 comment = "/**\n * first line\n * second line\n */"
 assert sanitize_comment("java", comment) == "first line\nsecond line"
 ```
+
+### Unwrapping hard-wrapped text
+
+Cleaning keeps the comment's line breaks. To turn prose that was wrapped at a
+fixed column back into one line per paragraph, pass the cleaned text to
+`unwrap_comment`:
+
+```python
+from ml4setk import sanitize_comment, unwrap_comment
+
+comment = (
+    "// Returns the cached value for the key, or computes it with the loader\n"
+    "// when the cache has no entry and stores the result for later calls."
+)
+assert unwrap_comment(sanitize_comment("java", comment)) == (
+    "Returns the cached value for the key, or computes it with the loader "
+    "when the cache has no entry and stores the result for later calls."
+)
+```
+
+A line is joined to the previous one only when the previous line reaches
+close to the paragraph's wrap column (its longest line), so lists of short
+lines stay as they are. Blank lines, list items, tags such as `@param`,
+`key: value` rows, headings, tables, markup, code-like lines, fenced blocks,
+and indentation changes keep their breaks, and paragraphs narrower than
+`min_width` are left alone. Only whitespace around a joined break changes. It
+is a layout heuristic, so a list of long lines without bullets can still be
+joined; `sanitize_comment` output is unchanged unless you call it.
 
 ## Legacy tuple API
 

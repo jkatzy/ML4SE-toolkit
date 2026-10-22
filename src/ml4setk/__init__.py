@@ -38,6 +38,7 @@ from .Parsing.Comments.registry import (
     get_default_comment_language_version,
     get_supported_comment_languages,
 )
+from .Parsing.Comments.unwrap import unwrap_comment
 from .Parsing.Query import Query, QueryMatch
 
 __all__ = [
@@ -73,6 +74,7 @@ __all__ = [
     "get_supported_comment_languages",
     "sanitize_comment",
     "sanitize_comment_text",
+    "unwrap_comment",
 ]
 
 __version__ = "0.1.0"
