@@ -282,9 +282,14 @@ def _line_open_pattern(open_token: str) -> str:
     Returns:
         Regex text that strips exactly the registered opener, followed by a word
         boundary when the opener ends in an alphanumeric token. Documentation
-        variants such as ``///`` are registered explicitly.
+        variants such as ``///`` are registered explicitly. An opener
+        registered with trailing padding, such as ``<% Rem ``, also matches
+        a bare marker line without it.
     """
 
+    bare = open_token.rstrip(" \t")
+    if bare and bare != open_token:
+        return f"{re.escape(bare)}(?:{re.escape(open_token[len(bare) :])}|$)"
     pattern = re.escape(open_token)
 
     if open_token[-1].isalnum():
@@ -832,6 +837,12 @@ def _is_decorative_ruler_line(line: str) -> bool:
     if len(stripped) < 4 or not set(stripped) <= _DECORATIVE_RULER_CHARS:
         return False
     return len(set(stripped)) == 1 or bool(re.search(r"([#%\-=*_<>/+|])\1{2,}", stripped))
+
+
+def _strip_edge_ruler_lines(body: str) -> str:
+    """Drop decorative ruler lines above and below a grouped line comment."""
+
+    return "\n".join(_strip_decorative_edge_rulers(body.split("\n")))
 
 
 def _is_spaced_underscore_art_line(line: str) -> bool:
@@ -2979,6 +2990,15 @@ def _sanitize_abap_line_card(raw_comment: str) -> str | None:
     non_empty = [line for line in lines if line]
     if len(non_empty) < 2 or not all(line.startswith("*") for line in non_empty):
         return None
+
+    # Every line opening with the same ``**`` or longer run is a grouped line
+    # comment with a repeated marker; a bare marker line there is a blank line,
+    # not a card ruler.
+    markers = {re.match(r"\*+", line).group() for line in non_empty}
+    if len(markers) == 1 and len(next(iter(markers))) >= 2:
+        width = len(next(iter(markers)))
+        if all(line[width : width + 1] in ("", " ", "\t") for line in non_empty):
+            return None
 
     parsed = [("", "") if not line else _strip_abap_line_marker(line) for line in lines]
     if not any(_is_abap_line_ruler(body) for _, body in parsed):
@@ -7327,7 +7347,7 @@ class CommentSanitizer:
                     for line in lines:
                         body = line.lstrip(" \t")[1:]
                         bodies.append(body[1:] if body.startswith((" ", "\t")) else body)
-                    return _normalize_sanitized_body("\n".join(bodies))
+                    return _normalize_sanitized_body(_strip_edge_ruler_lines("\n".join(bodies)))
                 body = normalized[1:]
                 if body.startswith((" ", "\t")):
                     body = body[1:]
@@ -7367,12 +7387,12 @@ class CommentSanitizer:
                     body = body[1:]
                 mermaid_bodies.append(body)
             else:
-                return _normalize_sanitized_body("\n".join(mermaid_bodies))
+                return _normalize_sanitized_body(_strip_edge_ruler_lines("\n".join(mermaid_bodies)))
         if self._language_key == "linear_programming":
             normalized_comment = _normalize_newlines(raw_comment)
             lines = normalized_comment.split("\n")
             if lines and all(line.startswith("\\") for line in lines):
-                return "\n".join(line[1:] for line in lines)
+                return _strip_edge_ruler_lines("\n".join(line[1:] for line in lines))
         if self.syntax.canonical_name == "omgrofl":
             raw_comment = raw_comment.translate(_JAVA_SCANNER_LINE_ENDINGS)
         raw_comment = _normalize_newlines(raw_comment)
@@ -7385,7 +7405,7 @@ class CommentSanitizer:
                     continue
                 body = line[wrapper.end() :]
                 cleaned_lines.append(body[1:] if body.startswith(" ") else body)
-            return _normalize_sanitized_body("\n".join(cleaned_lines))
+            return _normalize_sanitized_body(_strip_edge_ruler_lines("\n".join(cleaned_lines)))
         if self._language_key == "bluespec_bh" and not raw_comment.lstrip(" \t").startswith("{-"):
             raw_comment = re.sub(r"(?m)^([ \t]*)-{2,}", r"\1--", raw_comment)
         if self.syntax.canonical_name == "cobol":

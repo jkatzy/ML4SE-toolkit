@@ -9,9 +9,10 @@ comment lines, and text aligned under a block opener. Cleaning must return
 exactly the wrapped lines, and ``unwrap_comment`` must turn them back into the
 paragraph.
 
-Layouts the sanitizer does not clean yet are frozen in
-``tests/fixtures/comment_cleaning_wrapped_prose_known_gaps.json``. That list
-may only shrink: an entry that starts passing fails the test until removed.
+``tests/fixtures/comment_cleaning_wrapped_prose_known_gaps.json`` lists
+reviewed language conventions that clean a layout differently on purpose, and
+layouts the sanitizer does not clean yet. The gap list may only shrink: an
+entry that starts passing fails the test until removed.
 """
 
 import json
@@ -63,9 +64,15 @@ def _wrappers_by_language():
 
 
 WRAPPERS = _wrappers_by_language()
+_EXCEPTIONS = json.loads(KNOWN_GAPS_PATH.read_text())
 KNOWN_GAPS = {
-    (gap["language"], gap["wrapper"], gap["layout"]): gap["reason"]
-    for gap in json.loads(KNOWN_GAPS_PATH.read_text())["gaps"]
+    (gap["language"], gap["wrapper"], gap["layout"]): gap["reason"] for gap in _EXCEPTIONS["gaps"]
+}
+# Conventions whose reviewed output flushes continuation lines left instead of
+# keeping their alignment under the opener.
+FLUSH_LEFT = {
+    (entry["language"], entry["wrapper"], entry["closer"], entry["layout"])
+    for entry in _EXCEPTIONS["flush_left_conventions"]
 }
 
 
@@ -142,6 +149,8 @@ def test_wrapped_prose_cleans_and_unwraps(language):
         for layout, raw, cleaned_lines, unwrapped_lines in _layouts(kind, opener, closer):
             cleaned = sanitizer.sanitize(raw)
             gap = (language, opener, layout)
+            if (language, opener, closer, layout) in FLUSH_LEFT:
+                cleaned_lines = [line.lstrip(" ") for line in cleaned_lines]
             if cleaned != "\n".join(cleaned_lines):
                 if gap in KNOWN_GAPS:
                     gap_hits.add(gap)
@@ -157,5 +166,24 @@ def test_wrapped_prose_cleans_and_unwraps(language):
 
 
 def test_known_gaps_name_tested_layouts():
-    for language, opener, _layout in KNOWN_GAPS:
+    for language, opener, *_ in [*KNOWN_GAPS, *FLUSH_LEFT]:
         assert opener in {wrapper[1] for wrapper in WRAPPERS[language]}
+
+
+@pytest.mark.parametrize(
+    ("language", "raw", "expected"),
+    [
+        ("dune", "; ========\n; first line\n; second line\n; ========", "first line\nsecond line"),
+        ("mermaid", "%% --------\n%% first line\n%% --------", "first line"),
+        ("survex_data", "! ********\n! first line\n! second line", "first line\nsecond line"),
+        ("linear_programming", "\\ ====\n\\ first line\n\\ ====", " first line"),
+        ("abap", "*** first line\n***\n*** second line", "first line\n\nsecond line"),
+        (
+            "classic_asp",
+            "<% Rem first line\n<% Rem\n<% Rem second line",
+            "first line\n\nsecond line",
+        ),
+    ],
+)
+def test_layouts_the_matrix_found(language, raw, expected):
+    assert CommentSanitizer(language).sanitize(raw) == expected

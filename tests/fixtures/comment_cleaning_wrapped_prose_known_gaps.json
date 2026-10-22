@@ -1,89 +1,39 @@
 {
-  "description": "Wrapped-prose layouts the sanitizer does not clean yet. This list may only shrink; see tests/test_comment_wrapped_prose_matrix.py.",
-  "gaps": [
-    {
-      "language": "abap",
-      "wrapper": "***",
-      "layout": "line-two-paragraphs",
-      "reason": "A bare `***` line between paragraphs is not read as a blank comment line, so the other lines keep `**`."
-    },
+  "description": "Wrapped-prose layouts that clean differently from the generic expectation. flush_left_conventions are reviewed language rules. gaps are layouts the sanitizer does not clean yet; that list may only shrink. See tests/test_comment_wrapped_prose_matrix.py.",
+  "flush_left_conventions": [
     {
       "language": "asl",
       "wrapper": "/*",
+      "closer": "*/",
       "layout": "block-aligned",
-      "reason": "Removes the continuation alignment under the opener text, which the cleaning policy keeps."
-    },
-    {
-      "language": "classic_asp",
-      "wrapper": "<% Rem",
-      "layout": "line-two-paragraphs",
-      "reason": "A bare `<% Rem` line between paragraphs stops the group from being cleaned at all."
+      "reason": "Reviewed ASL and UEFI headers (/** @file followed by indented text) clean to flush-left lines."
     },
     {
       "language": "clue",
       "wrapper": "/*",
+      "closer": "",
       "layout": "block-aligned",
-      "reason": "Removes the continuation alignment under the opener text, which the cleaning policy keeps."
-    },
-    {
-      "language": "dune",
-      "wrapper": ";",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
-    },
+      "reason": "An unclosed Clue /* comment is indentation-scoped, so its continuation indent is source indentation."
+    }
+  ],
+  "gaps": [
     {
       "language": "linear_programming",
       "wrapper": "\\",
       "layout": "line",
-      "reason": "The language's early cleaning path strips the marker but not the padding space or rulers."
+      "reason": "Cleaning keeps the space after the backslash, as existing linear_programming tests pin, while the cleaning policy removes one padding space. Needs a decision."
     },
     {
       "language": "linear_programming",
       "wrapper": "\\",
       "layout": "line-ruler",
-      "reason": "The language's early cleaning path strips the marker but not the padding space or rulers."
+      "reason": "Cleaning keeps the space after the backslash, as existing linear_programming tests pin, while the cleaning policy removes one padding space. Needs a decision."
     },
     {
       "language": "linear_programming",
       "wrapper": "\\",
       "layout": "line-two-paragraphs",
-      "reason": "The language's early cleaning path strips the marker but not the padding space or rulers."
-    },
-    {
-      "language": "mermaid",
-      "wrapper": "%%",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
-    },
-    {
-      "language": "pact",
-      "wrapper": ";",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
-    },
-    {
-      "language": "pddl",
-      "wrapper": ";",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
-    },
-    {
-      "language": "survex_data",
-      "wrapper": "!",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
-    },
-    {
-      "language": "survex_data",
-      "wrapper": "%",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
-    },
-    {
-      "language": "survex_data",
-      "wrapper": ";",
-      "layout": "line-ruler",
-      "reason": "The language's early cleaning path for grouped line comments skips ruler removal."
+      "reason": "Cleaning keeps the space after the backslash, as existing linear_programming tests pin, while the cleaning policy removes one padding space. Needs a decision."
     }
   ]
 }
