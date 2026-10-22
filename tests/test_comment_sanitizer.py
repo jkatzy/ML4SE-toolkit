@@ -8,6 +8,8 @@ from ml4setk import (
     CommentQuery,
     CommentSanitizer,
     QueryMatch,
+    UnclosedCommentError,
+    UnclosedCommentWarning,
     sanitize_comment,
     sanitize_comment_text,
 )
@@ -671,3 +673,92 @@ def test_lua_family_level_matched_long_comment_preserves_inner_prose(language):
 
     assert CommentSanitizer(language).sanitize(raw_comment) == expected_cleaned
     assert sanitize_comment(language, raw_comment) == expected_cleaned
+
+
+_UNCLOSED_JAVA_COMMENT = "/* never closed\nint b; // inside\n"
+
+
+@pytest.mark.parametrize(
+    ("policy", "expected"),
+    [
+        ("ignore", "/* never closed\nint b; // inside"),
+        ("to_eof", "never closed\nint b; // inside"),
+        ("skip", ""),
+        ("empty", ""),
+    ],
+)
+def test_unclosed_comment_policy_shapes_cleaning(policy, expected):
+    sanitizer = CommentSanitizer("java", on_unclosed=policy)
+
+    assert sanitizer.sanitize(_UNCLOSED_JAVA_COMMENT) == expected
+    assert sanitize_comment("java", _UNCLOSED_JAVA_COMMENT, on_unclosed=policy) == expected
+
+
+def test_unclosed_comment_policy_raise_reports_location():
+    with pytest.raises(UnclosedCommentError) as error:
+        CommentSanitizer("java", on_unclosed="raise").sanitize("\n  /* open")
+
+    assert (error.value.language, error.value.offset, error.value.line) == ("java", 3, 2)
+
+
+def test_unclosed_comment_policy_warn_keeps_default_cleaning():
+    with pytest.warns(UnclosedCommentWarning, match="line 1"):
+        cleaned = CommentSanitizer("java", on_unclosed="warn").sanitize(_UNCLOSED_JAVA_COMMENT)
+
+    assert cleaned == CommentSanitizer("java").sanitize(_UNCLOSED_JAVA_COMMENT)
+
+
+def test_unclosed_comment_to_eof_cleans_query_matches():
+    sample = "int a; // ok\n/** doc\n * more\n"
+    matches = CommentQuery("java", on_unclosed="to_eof").parse(sample)
+    sanitizer = CommentSanitizer("java", on_unclosed="to_eof")
+
+    assert [sanitizer.sanitize(match) for match in matches] == ["ok", "doc\nmore"]
+
+
+@pytest.mark.parametrize(
+    ("language", "raw_comment", "expected"),
+    [
+        ("haskell", "{- broken {- fine -}", "broken {- fine -}"),
+        ("pascal", "(* a { b }", "a { b }"),
+        ("html", "<!-- open", "open"),
+    ],
+)
+def test_unclosed_comment_to_eof_removes_only_the_opener(language, raw_comment, expected):
+    assert sanitize_comment(language, raw_comment, on_unclosed="to_eof") == expected
+
+
+@pytest.mark.parametrize(
+    ("language", "raw_comment"),
+    [
+        ("java", "/* closed */"),
+        ("java", "// mentions /* an opener"),
+        ("haskell", "{- a {- b -} c -}"),
+        ("cson", "### heading"),
+    ],
+)
+def test_unclosed_comment_policy_ignores_closed_comments(language, raw_comment):
+    expected = sanitize_comment(language, raw_comment)
+
+    assert sanitize_comment(language, raw_comment, on_unclosed="raise") == expected
+
+
+def test_unclosed_comment_policy_rejects_unknown_value():
+    with pytest.raises(ValueError, match="on_unclosed"):
+        CommentSanitizer("java", on_unclosed="crash")
+
+
+def test_seeded_example_comments_are_not_unclosed():
+    for syntax in iter_comment_syntaxes():
+        examples = (
+            *syntax.shared_regex_examples,
+            *syntax.shared_nested_examples,
+            *syntax.shared_contextual_examples,
+            *syntax.canonical_regex_examples,
+            *syntax.canonical_nested_examples,
+            *syntax.canonical_contextual_examples,
+        )
+        sanitizer = CommentSanitizer(syntax.canonical_name, on_unclosed="raise")
+        for example in examples:
+            if example.expected_match:
+                sanitizer.sanitize(example.expected_match)
