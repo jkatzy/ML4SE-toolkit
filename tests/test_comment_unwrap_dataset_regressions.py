@@ -144,6 +144,58 @@ KEEPS = {
 }
 
 JOINS = {
+    # haskell/containers Data/Set/Internal.hs: a Note title underlined with
+    # tildes, which is not a fence.
+    "tilde_underlined_note": (
+        "[Note: Using INLINABLE]\n"
+        "~~~~~~~~~~~~~~~~~~~~~~~\n"
+        "It is crucial to the performance that the functions specialize on the Ord\n"
+        "type when possible. GHC 7.0 and higher does this by itself when it sees th\n"
+        "unfolding of a function -- that is why all public functions are marked\n"
+        "INLINABLE (that exposes the unfolding).",
+        "[Note: Using INLINABLE]\n"
+        "~~~~~~~~~~~~~~~~~~~~~~~\n"
+        "It is crucial to the performance that the functions specialize on the Ord "
+        "type when possible. GHC 7.0 and higher does this by itself when it sees th "
+        "unfolding of a function -- that is why all public functions are marked "
+        "INLINABLE (that exposes the unfolding).",
+    ),
+    # Kitware/CMake Modules/ExternalProject.cmake: a reStructuredText section
+    # whose underline is as long as its title.
+    "rst_tilde_section": (
+        "URL\n"
+        "~~~\n"
+        "\n"
+        "``URL <url1> [<url2>...]``\n"
+        "  List of paths and/or URL(s) of the external project's source. When more\n"
+        "  than one URL is given, they are tried in turn until one succeeds. A URL\n"
+        "  may be an ordinary path in the local file system (in which case it",
+        "URL\n"
+        "~~~\n"
+        "\n"
+        "``URL <url1> [<url2>...]``\n"
+        "  List of paths and/or URL(s) of the external project's source. When more "
+        "than one URL is given, they are tried in turn until one succeeds. A URL "
+        "may be an ordinary path in the local file system (in which case it",
+    ),
+    # leanprover/lean4 src/Init/Prelude.lean: a long link line does not set
+    # the wrap column.
+    "long_link_line": (
+        "`False` is the empty proposition. Thus, it has no introduction rules.\n"
+        "It represents a contradiction. `False` elimination rule, `False.rec`,\n"
+        "expresses the fact that anything follows from a contradiction.\n"
+        "This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),\n"
+        "or the principle of explosion.\n"
+        "For more information: [Propositional Logic](https://lean-lang.org/"
+        "theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)",
+        "`False` is the empty proposition. Thus, it has no introduction rules.\n"
+        "It represents a contradiction. `False` elimination rule, `False.rec`, "
+        "expresses the fact that anything follows from a contradiction.\n"
+        "This rule is sometimes called ex falso (short for ex falso sequitur quodlibet), "
+        "or the principle of explosion.\n"
+        "For more information: [Propositional Logic](https://lean-lang.org/"
+        "theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)",
+    ),
     # openjdk/jdk java/util/HashMap.java: lines that start with {@code x}.
     "javadoc_inline_tag_lines": (
         "operations ({@code get} and {@code put}), assuming the hash function\n"

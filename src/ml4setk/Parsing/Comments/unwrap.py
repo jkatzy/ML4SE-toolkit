@@ -67,6 +67,7 @@ _SENTENCE_END = re.compile(r"[.!?:][\"')]?$")
 _WORD = re.compile(r"\w")
 _HYPHENATED = re.compile(r"\w-$")
 _FENCES = ("```", "~~~")
+_UNDERLINE = re.compile(r"[ \t]*~+[ \t]*$")
 _NARROW_WIDTH = 60
 
 
@@ -96,6 +97,11 @@ def _unwrap_paragraph(lines: list[str], min_width: int) -> list[str]:
     # The longest line approximates the wrap column. A line ended early (below
     # 80% of it) is taken as a deliberate break rather than a wrap.
     width = max(len(line.rstrip()) for line in lines)
+    # A line holding a URL may run past the wrap column. When at least three
+    # other lines are wide enough to show the column, they set it instead.
+    plain = [len(line.rstrip()) for line in lines if "://" not in line]
+    if len(plain) >= 3 and max(plain) >= _NARROW_WIDTH:
+        width = max(plain)
     if width < min_width:
         return lines
     # Short lines are as often a list of short entries as narrow prose, so a
@@ -155,16 +161,18 @@ def unwrap_comment(text: str, min_width: int = 40) -> str:
 
     Blank lines, headings, quotes, tables, markup, prompts and the output
     that follows them, numpydoc ``name : type`` rows, code-like lines, fenced
-    blocks, lines of nothing but block tags, indented example paragraphs, and
+    blocks (a line of tildes under a title is a heading underline, not a
+    fence), lines of nothing but block tags, indented example paragraphs, and
     changes in indentation keep their line breaks. Lines that begin an entry
     (list items, tags, ``Key: value`` rows, ``<p>``, XML doc tags such as
     ``<summary>``) keep the break before them but may continue onto the
     lines after them, at any hanging indent under their text. Text aligned
     under a block opener (an unindented first line followed by lines up to
-    16 columns deeper) is joined too. A line is joined to the one
-    before it only when that line reaches close to the paragraph's wrap
-    column, so lists of short lines stay as they are. In a paragraph narrower
-    than 60 columns, only a line that starts in lowercase is joined.
+    16 columns deeper) is joined too. A line is joined to the one before it
+    only when that line reaches close to the paragraph's wrap column
+    (ignoring lines with a URL when three others show it), so lists of short
+    lines stay as they are. In a paragraph narrower than 60 columns, only a
+    line that starts in lowercase is joined.
 
     Args:
         text: Cleaned comment text, such as ``sanitize_comment`` returns.
@@ -198,8 +206,18 @@ def unwrap_comment(text: str, min_width: int = 40) -> str:
             out.extend(_unwrap_paragraph(paragraph, min_width))
         paragraph.clear()
 
+    prev = ""
     for line in lines:
-        fence = line.lstrip().startswith(_FENCES)
+        # A line of tildes under a title at least as long is a reStructuredText
+        # heading underline, not a fence.
+        underline = (
+            not fenced
+            and prev.strip() != ""
+            and _UNDERLINE.match(line) is not None
+            and len(line.strip()) >= len(prev.strip())
+        )
+        fence = line.lstrip().startswith(_FENCES) and not underline
+        prev = line
         if fence or fenced or not line.strip():
             if paragraph:
                 flush()
