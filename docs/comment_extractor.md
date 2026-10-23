@@ -599,8 +599,9 @@ A line is joined to the previous one only when the previous line reaches
 close to the paragraph's wrap column (its longest line), so lists of short
 lines stay as they are. Blank lines, headings, quotes, tables, markup, URLs,
 link definitions, prompts (`>>>`, `iex>`) and their output, numpydoc
-`name : type` rows, code-like lines (calls, assignments, signatures, `# =>`
-results, column layouts, `type` definitions), lines of nothing but block
+`name : type` rows, code-like lines (calls that fill the line, assignments,
+signatures, `# =>` results, column layouts, `type` definitions, Ruby calls
+such as `belongs_to :author, ...`), lines of nothing but block
 tags (a lone `<code>`), fenced blocks, indented example paragraphs, and
 indentation changes keep their breaks. List items (including `(1)` and
 `1 - `), tags such as `@param`, `Key: value` rows, `<p>`, and XML doc tags
@@ -608,7 +609,8 @@ followed by text (`<summary>`, `<param name="x">`) keep the break before
 them, but their text may wrap onto the lines after them, at any hanging
 indent. Text aligned under a block opener (`/* first line` then
 `   more text`) is joined too. A `key:` that starts in lowercase is read as
-the end of a sentence. In a paragraph narrower than 60 columns only a line
+the end of a sentence, and a line that starts with a Javadoc inline tag
+(`{@code x} ...`) is prose. In a paragraph narrower than 60 columns only a line
 that starts in lowercase is joined, and paragraphs narrower than `min_width`
 are left alone.
 Only whitespace around a joined break changes. It is a layout heuristic, so a

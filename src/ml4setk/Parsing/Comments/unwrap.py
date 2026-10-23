@@ -31,24 +31,33 @@ _STRUCTURE = re.compile(
 )
 # A doctest or REPL prompt; the lines after it are its output.
 _PROMPT = re.compile(r"[ \t]*(?:>>>|\w+(?:\(\d+\))?>)[ \t]")
-_CODE_EDGE = re.compile(r"(?:[{}]|(?<![<>!=])=|\w[(\[])[ \t]*$|^[ \t]*[{}]")
+# A line that opens or closes a block, ends in an assignment, or opens a call.
+# A Javadoc inline tag ({@code x} text) starts prose, but a lone {@code opens
+# a block.
+_CODE_EDGE = re.compile(r"(?:[{}]|(?<![<>!=])=|\w[(\[])[ \t]*$|^[ \t]*(?:\{(?!@\w+[ \t]+\S)|\})")
 # A statement ends in a semicolon. Prose may too, so a line of four or more
 # words needs a bracket, an assignment, or a leading keyword as well.
 _STATEMENT = re.compile(
     r"[ \t]*(?:(?:return|break|continue)\b.*|.*[(){}\[\]=].*|\S+(?:[ \t]+\S+){0,2});[ \t]*$"
 )
+# A call whose parentheses balance, nested up to three deep.
+_CALL = r"[\w.$]+\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)"
 # An indented call or assignment under a prose line is an example, not a
-# continuation aligned under the opener.
+# continuation aligned under the opener. Calls joined by operators must span
+# the line, so prose that starts and ends with a call stays prose. A Verilog
+# `MACRO(...) counts, but not `code` quoted inline.
 _CODE_EXAMPLE = re.compile(
-    r"[ \t]*(?:[\w.$]+\(.*\)\W*$"
+    rf"[ \t]*(?:(?:`(?![^`]*`))?{_CALL}(?:[^\w(]+{_CALL})*\W*$"
     r"|(?:(?:var|let|const|val|my|local|type)[ \t]+)?\S+[ \t]+[-+*/:!<>]?=[ \t])"
 )
 # Other lines of example code: type signatures (name :: Type), match arms,
-# block openers and ends (do |x|, end), trailing comments (# => value, or a
-# comment set off by two spaces), results (f(x) = y), and table rows or
-# diagrams laid out in columns.
+# block openers and ends (do |x|, end), calls with a symbol argument
+# (belongs_to :author, ...), trailing comments (# => value, or a comment set
+# off by two spaces), results (f(x) = y), and table rows or diagrams laid out
+# in columns.
 _CODE_LINE = re.compile(
-    r"[ \t]*(?:[\w']+(?:[ \t]*,[ \t]*[\w']+)*[ \t]+::[ \t]|case[ \t].*=>|end[ \t]*$)"
+    r"[ \t]*(?:[\w']+(?:[ \t]*,[ \t]*[\w']+)*[ \t]+::[ \t]|case[ \t].*=>|end[ \t]*$"
+    r"|[a-z_]\w*[ \t]+:\w+,[ \t])"
     r"|.*\bdo[ \t]*\|[^|]*\|[ \t]*$"
     r"|.*(?:[ \t](?:#|//|--)[ \t]*=>|\S[ \t]{2,}(?:#|//)[ \t]|\)[ \t]+==?[ \t])"
     r"|(?:.*\S {3,}){2}\S"
