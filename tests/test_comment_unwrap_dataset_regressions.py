@@ -128,9 +128,54 @@ KEEPS = {
         "1 - Use a single thread for compilation of Rust code (the default)\n"
         "N - Number of threads used for compilation of Rust code"
     ),
+    # rails/rails activerecord/lib/active_record/associations.rb: calls with
+    # a symbol argument.
+    "ruby_symbol_calls": (
+        '  belongs_to :person, primary_key: "name", foreign_key: "person_name"\n'
+        '  belongs_to :author, class_name: "Person", foreign_key: "author_id"\n'
+        '  belongs_to :valid_coupon, ->(o) { where "discounts > ?", o.payments_count },\n'
+        "  belongs_to :attachable, polymorphic: true"
+    ),
+    # lowRISC/ibex rtl/ibex_core.sv: a Verilog macro call after prose.
+    "verilog_macro_call": (
+        "If the ID stage signals its ready the mult/div FSMs must be idle in the following cycle\n"
+        "`ASSERT(MultDivFSMIdleOnIdReady, id_in_ready |=> ex_block_i.sva_multdiv_fsm_idle)"
+    ),
 }
 
 JOINS = {
+    # openjdk/jdk java/util/HashMap.java: lines that start with {@code x}.
+    "javadoc_inline_tag_lines": (
+        "operations ({@code get} and {@code put}), assuming the hash function\n"
+        "disperses the elements properly among the buckets.  Iteration over\n"
+        'collection views requires time proportional to the "capacity" of the\n'
+        "{@code HashMap} instance (the number of buckets) plus its size (the number\n"
+        "of key-value mappings).",
+        "operations ({@code get} and {@code put}), assuming the hash function "
+        "disperses the elements properly among the buckets.  Iteration over "
+        'collection views requires time proportional to the "capacity" of the '
+        "{@code HashMap} instance (the number of buckets) plus its size (the number "
+        "of key-value mappings).",
+    ),
+    # sqlite/sqlite src/pager.c: indented prose that starts and ends with calls.
+    "indented_prose_with_calls": (
+        "Variable dbFileSize.\n"
+        "\n"
+        "  The only reason the dbFileSize variable is required is to suppress\n"
+        "  unnecessary calls to xTruncate() after committing a transaction. If,\n"
+        "  when a transaction is committed, the dbFileSize variable indicates\n"
+        "  that the database file is larger than the database image (Pager.dbSize),\n"
+        "  pager_truncate() is called. The pager_truncate() call uses xFilesize()\n"
+        "  to measure the database file on disk, and then truncates it if required.",
+        "Variable dbFileSize.\n"
+        "\n"
+        "  The only reason the dbFileSize variable is required is to suppress "
+        "unnecessary calls to xTruncate() after committing a transaction. If, "
+        "when a transaction is committed, the dbFileSize variable indicates "
+        "that the database file is larger than the database image (Pager.dbSize), "
+        "pager_truncate() is called. The pager_truncate() call uses xFilesize() "
+        "to measure the database file on disk, and then truncates it if required.",
+    ),
     # dotnet/fsharp src/FSharp.Core/list.fsi: XML doc text after its tag.
     "xml_doc_summary": (
         "<summary>Returns a new list that contains the elements of the first list\n"
