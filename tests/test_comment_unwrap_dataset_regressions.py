@@ -110,9 +110,34 @@ KEEPS = {
         "a[0] and b[0] match for 8 elements\n"
         "a[8] and b[17] match for 21 elements"
     ),
+    # dotnet/fsharp src/FSharp.Core/list.fsi: a lone <code> line after prose.
+    "fsharp_code_tag_line": (
+        "Using the identity function <c>id</c> (is defined like <c>fun x -> x</c>):\n"
+        '<code lang="fsharp">\n'
+        "let input1 = [ Some 1; None; Some 3; None ]"
+    ),
+    # dotnet/fsharp src/FSharp.Core/list.fsi: a type definition in an example.
+    "fsharp_type_definition": (
+        '<code lang="fsharp">Count the number of times the coins match:\n'
+        "type CoinToss = Head | Tails"
+    ),
+    # rust-lang/rust bootstrap.example.toml: items numbered with a dash.
+    "numbered_dash_items": (
+        "0 - Set the number of threads according to the detected number of threads of the "
+        "host system\n"
+        "1 - Use a single thread for compilation of Rust code (the default)\n"
+        "N - Number of threads used for compilation of Rust code"
+    ),
 }
 
 JOINS = {
+    # dotnet/fsharp src/FSharp.Core/list.fsi: XML doc text after its tag.
+    "xml_doc_summary": (
+        "<summary>Returns a new list that contains the elements of the first list\n"
+        "followed by elements of the second list.</summary>",
+        "<summary>Returns a new list that contains the elements of the first list "
+        "followed by elements of the second list.</summary>",
+    ),
     # google/guava ImmutableList.java: a paragraph opened by <p>.
     "javadoc_paragraph_tag": (
         "<p>It is not specified if any performance benefits apply if {@code expectedSize} is\n"

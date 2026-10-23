@@ -4,23 +4,29 @@ from __future__ import annotations
 
 import re
 
-_LIST_ITEM = re.compile(r"[ \t]*(?:[-*+•]|\d+[.)]|[A-Za-z][.)]|\(\w{1,3}\))[ \t]+")
+_LIST_ITEM = re.compile(r"[ \t]*(?:[-*+•]|\d+(?:[.)]| -)|[A-Za-z][.)]|\(\w{1,3}\))[ \t]+")
+# Inline tags, which sit inside a line of prose rather than starting a block.
+_INLINE_TAGS = "tt|code|c|b|i|em|strong|a|span|var|kbd"
 # Lines that start a new entry but may wrap onto the lines after them: tags
-# (@param, \brief), field lists (:param x:), key: value rows, and paragraph
-# or list markup. A key that starts with a lowercase letter, even inside an
-# inline tag, is more often the end of a sentence that contains a colon.
+# (@param, \brief), field lists (:param x:), key: value rows, and an
+# opening tag followed by its text (<p>, <summary>, <param name="x">) other
+# than <pre> and inline tags. A key that starts with a lowercase letter, even
+# inside an inline tag, is more often the end of a sentence with a colon.
 _LEADER = re.compile(
     r"[ \t]*(?:[@\\][A-Za-z]|:[A-Za-z]+[: ]|<(?i:p|li|dd|dt)>"
+    rf"|<(?!(?i:{_INLINE_TAGS}|pre)\b|https?:)[A-Za-z][^<>]*>(?=\S)"
     r"|(?!(?:<\w+>)?[a-z])[^\s:]{1,30}(?:[ \t][^\s:]+){0,3}[ \t]*(?:\.{2,}[ \t]*)?:(?:[ \t]|$))"
 )
 # Lines whose break carries meaning on both sides: doctest, REPL (iex>), and
 # shell prompts, numpydoc fields (name : type), quotes, headings, tables,
-# fences, markup other than inline tags (<tt>), autolinks, and the entry tags
-# above, directives, paths (but not /emphasis/), URLs, link definitions
-# ([name]: target), and tab-separated columns.
+# fences, lines of nothing but block tags (a lone <code> counts), other markup
+# except inline tags, autolinks, and the entry tags above, directives, paths
+# (but not /emphasis/), URLs, link definitions ([name]: target), and
+# tab-separated columns.
 _STRUCTURE = re.compile(
     r"[ \t]*(?:>>>|\$ |\w+(?:\(\d+\))?> |[\w*]+(?:, [\w*]+)* : |[#|>=]|/(?![^/\s]+/[ \t])"
-    r"|<(?!(?i:tt|code|b|i|em|strong|a|span|var|kbd|p|li|dd|dt)\b|https?:)"
+    r"|(?:<(?!/?(?i:tt|c|b|i|em|strong|a|span|var|kbd)\b|https?:)[^<>]+>[ \t]*)+$"
+    rf"|<(?!(?i:{_INLINE_TAGS}|p|li|dd|dt)\b|https?:|(?!/|(?i:pre)\b)[A-Za-z][^<>]*>(?=\S))"
     r"|```|~~~|[A-Za-z][\w+.-]*://|www\.|\[[^\]]+\]:|\S[^\t]*\t)"
 )
 # A doctest or REPL prompt; the lines after it are its output.
@@ -35,12 +41,12 @@ _STATEMENT = re.compile(
 # continuation aligned under the opener.
 _CODE_EXAMPLE = re.compile(
     r"[ \t]*(?:[\w.$]+\(.*\)\W*$"
-    r"|(?:(?:var|let|const|val|my|local)[ \t]+)?\S+[ \t]+[-+*/:!<>]?=[ \t])"
+    r"|(?:(?:var|let|const|val|my|local|type)[ \t]+)?\S+[ \t]+[-+*/:!<>]?=[ \t])"
 )
 # Other lines of example code: type signatures (name :: Type), match arms,
 # block openers and ends (do |x|, end), trailing comments (# => value, or a
-# comment set off by two spaces), results (f(x) = y), and table rows or diagrams laid out in
-# columns.
+# comment set off by two spaces), results (f(x) = y), and table rows or
+# diagrams laid out in columns.
 _CODE_LINE = re.compile(
     r"[ \t]*(?:[\w']+(?:[ \t]*,[ \t]*[\w']+)*[ \t]+::[ \t]|case[ \t].*=>|end[ \t]*$)"
     r"|.*\bdo[ \t]*\|[^|]*\|[ \t]*$"
@@ -140,12 +146,13 @@ def unwrap_comment(text: str, min_width: int = 40) -> str:
 
     Blank lines, headings, quotes, tables, markup, prompts and the output
     that follows them, numpydoc ``name : type`` rows, code-like lines, fenced
-    blocks, indented example paragraphs, and changes in indentation keep
-    their line breaks. Lines that begin an entry (list items, tags,
-    ``Key: value`` rows, ``<p>``) keep the break before them but may continue
-    onto the lines after them, at any hanging indent under their text. Text
-    aligned under a block opener (an unindented first line followed by lines
-    up to 16 columns deeper) is joined too. A line is joined to the one
+    blocks, lines of nothing but block tags, indented example paragraphs, and
+    changes in indentation keep their line breaks. Lines that begin an entry
+    (list items, tags, ``Key: value`` rows, ``<p>``, XML doc tags such as
+    ``<summary>``) keep the break before them but may continue onto the
+    lines after them, at any hanging indent under their text. Text aligned
+    under a block opener (an unindented first line followed by lines up to
+    16 columns deeper) is joined too. A line is joined to the one
     before it only when that line reaches close to the paragraph's wrap
     column, so lists of short lines stay as they are. In a paragraph narrower
     than 60 columns, only a line that starts in lowercase is joined.
