@@ -597,12 +597,17 @@ assert unwrap_comment(sanitize_comment("java", comment)) == (
 
 A line is joined to the previous one only when the previous line reaches
 close to the paragraph's wrap column (its longest line), so lists of short
-lines stay as they are. Blank lines, list items, tags such as `@param`,
-`key: value` rows, headings, tables, markup, URLs, code-like lines, fenced
-blocks, and indentation changes keep their breaks. The exception is text
-aligned under a block opener (`/* first line` then `   more text`), which is
-joined. In a paragraph narrower than 60 columns only a line that starts in
-lowercase is joined, and paragraphs narrower than `min_width` are left alone.
+lines stay as they are. Blank lines, headings, quotes, tables, markup, URLs,
+link definitions, prompts (`>>>`, `iex>`) and their output, numpydoc
+`name : type` rows, code-like lines (calls, assignments, signatures, `# =>`
+results, column layouts), fenced blocks, indented example paragraphs, and
+indentation changes keep their breaks. List items (including `(1)`), tags
+such as `@param`, `Key: value` rows, and `<p>` keep the break before them,
+but their text may wrap onto the lines after them, at any hanging indent. Text aligned under a block opener (`/* first line` then
+`   more text`) is joined too. A `key:` that starts in lowercase is read as
+the end of a sentence. In a paragraph narrower than 60 columns only a line
+that starts in lowercase is joined, and paragraphs narrower than `min_width`
+are left alone.
 Only whitespace around a joined break changes. It is a layout heuristic, so a
 list of long lines without bullets can still be joined; `sanitize_comment`
 output is unchanged unless you call it.
