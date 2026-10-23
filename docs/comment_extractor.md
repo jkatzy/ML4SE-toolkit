@@ -614,7 +614,9 @@ hanging indent. Text aligned under a block opener (`/* first line` then
 `   more text`) is joined too. A `key:` that starts in lowercase is read as the
 end of a sentence, and a line that starts or ends with a Javadoc inline tag
 (`{@code x} ...`, `... {@link X}`) is prose, while Dartdoc directives
-(`{@template x}`, `{@endtemplate}`) keep their breaks. In a paragraph narrower than 60 columns only a line that
+(`{@template x}`, `{@endtemplate}`) keep their breaks. A line that starts
+with a `{reference}`, a `#method` reference, `#{interpolation}`, or inline
+code is prose too, while `#` comments such as commented-out code keep theirs. In a paragraph narrower than 60 columns only a line that
 starts in lowercase is joined, and paragraphs narrower than `min_width` are
 left alone.
 Only whitespace around a joined break changes. It is a layout heuristic, so a
