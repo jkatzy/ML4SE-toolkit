@@ -602,7 +602,8 @@ least three other lines show it, they set the column instead. Blank lines,
 headings, quotes, tables, markup, URLs, link definitions, prompts (`>>>`,
 `iex>`) and their output, numpydoc `name : type` rows, code-like lines (calls
 that fill the line, assignments, signatures, `# =>` results, column layouts,
-`type` definitions, Ruby calls such as `belongs_to :author, ...`), lines of
+`type` definitions, Ruby calls such as `belongs_to :author, ...`, results
+such as `f(x) => y` outside inline code, statements before a `//` comment), lines of
 nothing but block tags (a lone `<code>`), fenced blocks (a line of tildes
 under a title at least as long is a heading underline, not a fence), indented
 example paragraphs, and indentation changes keep their breaks. List items
@@ -611,8 +612,9 @@ and XML doc tags followed by text (`<summary>`, `<param name="x">`) keep the
 break before them, but their text may wrap onto the lines after them, at any
 hanging indent. Text aligned under a block opener (`/* first line` then
 `   more text`) is joined too. A `key:` that starts in lowercase is read as the
-end of a sentence, and a line that starts with a Javadoc inline tag
-(`{@code x} ...`) is prose. In a paragraph narrower than 60 columns only a line that
+end of a sentence, and a line that starts or ends with a Javadoc inline tag
+(`{@code x} ...`, `... {@link X}`) is prose, while Dartdoc directives
+(`{@template x}`, `{@endtemplate}`) keep their breaks. In a paragraph narrower than 60 columns only a line that
 starts in lowercase is joined, and paragraphs narrower than `min_width` are
 left alone.
 Only whitespace around a joined break changes. It is a layout heuristic, so a

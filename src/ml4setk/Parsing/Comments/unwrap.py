@@ -21,10 +21,11 @@ _LEADER = re.compile(
 # shell prompts, numpydoc fields (name : type), quotes, headings, tables,
 # fences, lines of nothing but block tags (a lone <code> counts), other markup
 # except inline tags, autolinks, and the entry tags above, directives, paths
-# (but not /emphasis/), URLs, link definitions ([name]: target), and
-# tab-separated columns.
+# (but not /emphasis/), URLs, link definitions ([name]: target),
+# tab-separated columns, and Dartdoc directives ({@template x}, {@macro x}).
 _STRUCTURE = re.compile(
     r"[ \t]*(?:>>>|\$ |\w+(?:\(\d+\))?> |[\w*]+(?:, [\w*]+)* : |[#|>=]|/(?![^/\s]+/[ \t])"
+    r"|\{@(?:template|endtemplate|macro|tool|end-tool)\b"
     r"|(?:<(?!/?(?i:tt|c|b|i|em|strong|a|span|var|kbd)\b|https?:)[^<>]+>[ \t]*)+$"
     rf"|<(?!(?i:{_INLINE_TAGS}|p|li|dd|dt)\b|https?:|(?!/|(?i:pre)\b)[A-Za-z][^<>]*>(?=\S))"
     r"|```|~~~|[A-Za-z][\w+.-]*://|www\.|\[[^\]]+\]:|\S[^\t]*\t)"
@@ -33,12 +34,17 @@ _STRUCTURE = re.compile(
 _PROMPT = re.compile(r"[ \t]*(?:>>>|\w+(?:\(\d+\))?>)[ \t]")
 # A line that opens or closes a block, ends in an assignment, or opens a call.
 # A Javadoc inline tag ({@code x} text) starts prose, but a lone {@code opens
-# a block.
-_CODE_EDGE = re.compile(r"(?:[{}]|(?<![<>!=])=|\w[(\[])[ \t]*$|^[ \t]*(?:\{(?!@\w+[ \t]+\S)|\})")
-# A statement ends in a semicolon. Prose may too, so a line of four or more
-# words needs a bracket, an assignment, or a leading keyword as well.
+# a block. A line that ends by closing an inline tag ({@link X}) is prose too.
+_CODE_EDGE = re.compile(
+    r"(?:\{|(?<![<>!=])=|\w[(\[])[ \t]*$|^(?!.*\{@[^{}]*\}[ \t]*$).*\}[ \t]*$"
+    r"|^[ \t]*(?:\{(?!@\w+[ \t]+\S)|\})"
+)
+# A statement ends in a semicolon, perhaps before a // comment. Prose may end
+# in a semicolon too, so a line of four or more words needs a bracket, an
+# assignment, or a leading keyword as well.
 _STATEMENT = re.compile(
-    r"[ \t]*(?:(?:return|break|continue)\b.*|.*[(){}\[\]=].*|\S+(?:[ \t]+\S+){0,2});[ \t]*$"
+    r"[ \t]*(?:(?:return|break|continue)\b.*|.*[(){}\[\]=].*|\S+(?:[ \t]+\S+){0,2});"
+    r"[ \t]*(?://.*)?$"
 )
 # A call whose parentheses balance, nested up to three deep.
 _CALL = r"[\w.$]+\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)"
@@ -53,13 +59,14 @@ _CODE_EXAMPLE = re.compile(
 # Other lines of example code: type signatures (name :: Type), match arms,
 # block openers and ends (do |x|, end), calls with a symbol argument
 # (belongs_to :author, ...), trailing comments (# => value, or a comment set
-# off by two spaces), results (f(x) = y), and table rows or diagrams laid out
-# in columns.
+# off by two spaces), results (f(x) = y, or f(x) => y, outside inline code),
+# and table rows or diagrams laid out in columns.
 _CODE_LINE = re.compile(
     r"[ \t]*(?:[\w']+(?:[ \t]*,[ \t]*[\w']+)*[ \t]+::[ \t]|case[ \t].*=>|end[ \t]*$"
     r"|[a-z_]\w*[ \t]+:\w+,[ \t])"
     r"|.*\bdo[ \t]*\|[^|]*\|[ \t]*$"
-    r"|.*(?:[ \t](?:#|//|--)[ \t]*=>|\S[ \t]{2,}(?:#|//)[ \t]|\)[ \t]+==?[ \t])"
+    r"|.*(?:[ \t](?:#|//|--)[ \t]*=>|\S[ \t]{2,}(?:#|//)[ \t])"
+    r"|[^`]*\)[ \t]+(?:==?|=>)[ \t]"
     r"|(?:.*\S {3,}){2}\S"
     r"|(?:.*[ \t]\|[ \t]){3}"
 )

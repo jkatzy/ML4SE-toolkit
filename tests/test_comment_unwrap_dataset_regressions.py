@@ -2,8 +2,9 @@
 
 Each case is a minimized comment from a public project's source, cleaned by
 ``sanitize_comment``. The project and file are named above each case. The
-link definition, prompt, indented example, and two-pipe cases already passed
-before the fix; they guard the new rules against reaching too far.
+link definition, prompt, indented example, two-pipe, and Dartdoc directive
+cases already passed before the fix; they guard the new rules against reaching
+too far.
 """
 
 import pytest
@@ -141,9 +142,49 @@ KEEPS = {
         "If the ID stage signals its ready the mult/div FSMs must be idle in the following cycle\n"
         "`ASSERT(MultDivFSMIdleOnIdReady, id_in_ready |=> ex_block_i.sva_multdiv_fsm_idle)"
     ),
+    # dlang/phobos std/range/package.d: example results laid out as a table.
+    "d_result_table": (
+        "5.iota.slides(2, 1) => [0, 1], [1, 2], [2, 3], [3, 4]       (4)\n"
+        "7.iota.slides(2, 2) => [0, 1], [2, 3], [4, 5], [6]          (3)\n"
+        "7.iota.slides(2, 3) => [0, 1], [3, 4], [6]                  (2)"
+    ),
+    # dlang/phobos std/range/package.d: a statement with a trailing comment.
+    "statement_with_comment": (
+        "This does not work because map() and filter() return different types.\n"
+        "return pickFirst ? data1 : data2; // does not compile"
+    ),
 }
 
 JOINS = {
+    # flutter/flutter packages/flutter/lib/src/widgets/scroll_view.dart:
+    # Dartdoc directives on their own lines around wrapped prose.
+    "dartdoc_directives": (
+        "{@template flutter.widgets.scroll_view.primary}\n"
+        "Whether this is the primary scroll view associated with the parent\n"
+        "[PrimaryScrollController].\n"
+        "{@endtemplate}",
+        "{@template flutter.widgets.scroll_view.primary}\n"
+        "Whether this is the primary scroll view associated with the parent "
+        "[PrimaryScrollController].\n"
+        "{@endtemplate}",
+    ),
+    # junit-team/junit5 junit-jupiter-api .../api/Test.java: a line that ends
+    # with an inline {@link} tag.
+    "javadoc_line_ending_in_tag": (
+        "<p>To control the order in which test methods are executed, annotate your\n"
+        "test class or test interface with {@link TestMethodOrder @TestMethodOrder}\n"
+        "and specify the desired {@link MethodOrderer} implementation.",
+        "<p>To control the order in which test methods are executed, annotate your "
+        "test class or test interface with {@link TestMethodOrder @TestMethodOrder} "
+        "and specify the desired {@link MethodOrderer} implementation.",
+    ),
+    # nim-lang/Nim lib/pure/os.nim: a comparison inside inline code.
+    "inline_code_comparison": (
+        "Returns whether the caller's process is a member of the Administrators local\n"
+        "group (on Windows) or a root (on POSIX), via `geteuid() == 0`.",
+        "Returns whether the caller's process is a member of the Administrators local "
+        "group (on Windows) or a root (on POSIX), via `geteuid() == 0`.",
+    ),
     # haskell/containers Data/Set/Internal.hs: a Note title underlined with
     # tildes, which is not a fence.
     "tilde_underlined_note": (
