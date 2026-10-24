@@ -18,13 +18,16 @@ _LEADER = re.compile(
     r"|(?!(?:<\w+>)?[a-z])[^\s:]{1,30}(?:[ \t][^\s:]+){0,3}[ \t]*(?:\.{2,}[ \t]*)?:(?:[ \t]|$))"
 )
 # Lines whose break carries meaning on both sides: doctest, REPL (iex>), and
-# shell prompts, numpydoc fields (name : type), quotes, headings, tables,
+# shell prompts, numpydoc fields (name : type), quotes, headings and #
+# comments (but not #method references, #123, or #{interpolation}), tables,
 # fences, lines of nothing but block tags (a lone <code> counts), other markup
 # except inline tags, autolinks, and the entry tags above, directives, paths
 # (but not /emphasis/), URLs, link definitions ([name]: target),
 # tab-separated columns, and Dartdoc directives ({@template x}, {@macro x}).
 _STRUCTURE = re.compile(
-    r"[ \t]*(?:>>>|\$ |\w+(?:\(\d+\))?> |[\w*]+(?:, [\w*]+)* : |[#|>=]|/(?![^/\s]+/[ \t])"
+    r"[ \t]*(?:>>>|\$ |\w+(?:\(\d+\))?> |[\w*]+(?:, [\w*]+)* : |[|>=]|/(?![^/\s]+/[ \t])"
+    r"|#(?!\{|\d|[a-z_]\w*[?!]?(?:[\s.,;:)]|$))"
+    r"|#(?:include|define|undef|if|ifdef|ifndef|elif|else|endif|pragma)\b"
     r"|\{@(?:template|endtemplate|macro|tool|end-tool)\b"
     r"|(?:<(?!/?(?i:tt|c|b|i|em|strong|a|span|var|kbd)\b|https?:)[^<>]+>[ \t]*)+$"
     rf"|<(?!(?i:{_INLINE_TAGS}|p|li|dd|dt)\b|https?:|(?!/|(?i:pre)\b)[A-Za-z][^<>]*>(?=\S))"
@@ -34,10 +37,11 @@ _STRUCTURE = re.compile(
 _PROMPT = re.compile(r"[ \t]*(?:>>>|\w+(?:\(\d+\))?>)[ \t]")
 # A line that opens or closes a block, ends in an assignment, or opens a call.
 # A Javadoc inline tag ({@code x} text) starts prose, but a lone {@code opens
-# a block. A line that ends by closing an inline tag ({@link X}) is prose too.
+# a block. A line that ends by closing an inline tag ({@link X}) is prose too,
+# as is one that starts with a {reference} followed by text.
 _CODE_EDGE = re.compile(
     r"(?:\{|(?<![<>!=])=|\w[(\[])[ \t]*$|^(?!.*\{@[^{}]*\}[ \t]*$).*\}[ \t]*$"
-    r"|^[ \t]*(?:\{(?!@\w+[ \t]+\S)|\})"
+    r"|^[ \t]*(?:\{(?!@\w+[ \t]+\S|@?\w+\}[ \t]+\S)|\})"
 )
 # A statement ends in a semicolon, perhaps before a // comment. Prose may end
 # in a semicolon too, so a line of four or more words needs a bracket, an
@@ -51,10 +55,11 @@ _CALL = r"[\w.$]+\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)"
 # An indented call or assignment under a prose line is an example, not a
 # continuation aligned under the opener. Calls joined by operators must span
 # the line, so prose that starts and ends with a call stays prose. A Verilog
-# `MACRO(...) counts, but not `code` quoted inline.
+# `MACRO(...) counts, but not `code` quoted inline, and an assignment does not
+# start with inline code (`x != y` is ...).
 _CODE_EXAMPLE = re.compile(
     rf"[ \t]*(?:(?:`(?![^`]*`))?{_CALL}(?:[^\w(]+{_CALL})*\W*$"
-    r"|(?:(?:var|let|const|val|my|local|type)[ \t]+)?\S+[ \t]+[-+*/:!<>]?=[ \t])"
+    r"|(?:(?:var|let|const|val|my|local|type)[ \t]+)?(?!`)\S+[ \t]+[-+*/:!<>]?=[ \t])"
 )
 # Other lines of example code: type signatures (name :: Type), match arms,
 # block openers and ends (do |x|, end), calls with a symbol argument

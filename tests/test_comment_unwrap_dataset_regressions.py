@@ -2,9 +2,9 @@
 
 Each case is a minimized comment from a public project's source, cleaned by
 ``sanitize_comment``. The project and file are named above each case. The
-link definition, prompt, indented example, two-pipe, and Dartdoc directive
-cases already passed before the fix; they guard the new rules against reaching
-too far.
+link definition, prompt, indented example, two-pipe, Dartdoc directive, and
+Tcl comment cases already passed before the fix; they guard the new rules
+against reaching too far.
 """
 
 import pytest
@@ -153,9 +153,49 @@ KEEPS = {
         "This does not work because map() and filter() return different types.\n"
         "return pickFirst ? data1 : data2; // does not compile"
     ),
+    # tcltk/tcl library/http/http.tcl: commented-out commands.
+    "tcl_commented_commands": (
+        "#Log socketPlayCmd($state(socketinfo)) is $socketPlayCmd($state(socketinfo))\n"
+        "#Log socketWrQueue($state(socketinfo)) is $socketWrQueue($state(socketinfo))"
+    ),
 }
 
 JOINS = {
+    # rails/rails activerecord/lib/active_record/associations.rb: a line that
+    # starts with a #method reference.
+    "ruby_method_reference_line": (
+        "You can set the <tt>:autosave</tt> option on a #has_one, #belongs_to,\n"
+        "#has_many, or #has_and_belongs_to_many association. Setting it\n"
+        "to +true+ will _always_ save the members, whereas setting it to +false+ will",
+        "You can set the <tt>:autosave</tt> option on a #has_one, #belongs_to, "
+        "#has_many, or #has_and_belongs_to_many association. Setting it "
+        "to +true+ will _always_ save the members, whereas setting it to +false+ will",
+    ),
+    # phoenixframework/phoenix_live_view lib/phoenix_live_view.ex: a line that
+    # starts with string interpolation.
+    "elixir_interpolation_line": (
+        "#{fun} only exists while mounting. If you require access to this information\n"
+        "after mount, store the state in socket assigns.",
+        "#{fun} only exists while mounting. If you require access to this information "
+        "after mount, store the state in socket assigns.",
+    ),
+    # leanprover/lean4 src/Init/Core.lean: a line that starts with inline code.
+    "inline_code_comparison_first": (
+        "`x != y` is boolean not-equal. It is the negation of `x == y` which is supplied by\n"
+        "the `BEq` typeclass.",
+        "`x != y` is boolean not-equal. It is the negation of `x == y` which is supplied by "
+        "the `BEq` typeclass.",
+    ),
+    # OpenZeppelin/openzeppelin-contracts contracts/access/AccessControl.sol: a
+    # line that starts with a NatSpec {reference}.
+    "natspec_reference_line": (
+        "Roles can be granted and revoked dynamically via the {grantRole} and\n"
+        "{revokeRole} functions. Each role has an associated admin role, and only\n"
+        "accounts that have a role's admin role can call {grantRole} and {revokeRole}.",
+        "Roles can be granted and revoked dynamically via the {grantRole} and "
+        "{revokeRole} functions. Each role has an associated admin role, and only "
+        "accounts that have a role's admin role can call {grantRole} and {revokeRole}.",
+    ),
     # flutter/flutter packages/flutter/lib/src/widgets/scroll_view.dart:
     # Dartdoc directives on their own lines around wrapped prose.
     "dartdoc_directives": (
