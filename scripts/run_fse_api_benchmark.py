@@ -7,12 +7,15 @@ contains freshly derived quantities and is committed after all three methods.
 import argparse
 import hashlib
 import json
+import random
 import sqlite3
 import sys
 import time
 from pathlib import Path
 from statistics import mean
+from types import SimpleNamespace
 
+import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
 import torch
@@ -52,6 +55,12 @@ def complete_cases(root, model):
     }:
         raise ValueError("Incomplete FSE model cohort")
     return rows
+
+
+def run_identity(rows, model):
+    name, revision = SNAPSHOTS[model]
+    cohort_hash = hashlib.sha256(pd.util.hash_pandas_object(rows).values.tobytes()).hexdigest()
+    return dict(model=name, revision=revision, cohort=cohort_hash, protocol=2)
 
 
 def open_run(path, stamp):
@@ -103,6 +112,40 @@ def measure(rows, tokenizer, model, device, ast_neighbors):
     ]
 
 
+def check_reference(rows, tokenizer, model, device, ast_neighbors):
+    """Compare the adapter with the deposited scoring routines on fixed controls."""
+    from attacks.loss_attack import LossAttack
+    from attacks.pac_attack import (
+        calculate_token_probabilities_sequential,
+        generate_adjacent_samples_by_swap,
+        polarized_distance,
+    )
+
+    sample = rows.iloc[[0, 64]]
+    scored = measure(sample, tokenizer, model, device, ast_neighbors)
+    upstream_loss = LossAttack(
+        SimpleNamespace(model=SimpleNamespace(max_length=8192)), model, tokenizer
+    )
+    differences = []
+    for text, record in zip(sample.content, scored):
+        seed = int.from_bytes(hashlib.sha256(text.encode()).digest()[:8], "big")
+        random.seed(seed)
+        signed = [upstream_loss.compute_score(text)]
+        for neighbors in (
+            generate_adjacent_samples_by_swap(text, tokenizer),
+            ast_neighbors(text, tokenizer, seed=seed),
+        ):
+            probs = calculate_token_probabilities_sequential(
+                [text, *neighbors], model, tokenizer, 8192
+            )
+            if not all(len(values) for values in probs):
+                raise ValueError("The reference did not score every input")
+            signed.append(-polarized_distance(probs[0].tolist(), probs[1:]))
+        np.testing.assert_allclose(record[1:4], signed, rtol=0, atol=1e-12)
+        differences.append(np.abs(np.asarray(record[1:4]) - signed))
+    print("Maximum absolute score differences (Loss, PAC, AST-PAC):", np.max(differences, axis=0))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("artifact", type=Path)
@@ -111,6 +154,11 @@ def main():
     parser.add_argument("--checkpoint", help="Local snapshot of the specified pinned model")
     parser.add_argument("--shards", type=int, default=1)
     parser.add_argument("--shard", type=int, default=0)
+    parser.add_argument(
+        "--check-reference-only",
+        action="store_true",
+        help="Compare rows 0 and 64 with the deposited scoring functions",
+    )
     args = parser.parse_args()
     if not 0 <= args.shard < args.shards:
         parser.error("Require 0 <= shard < shards")
@@ -124,15 +172,6 @@ def main():
     sys.setrecursionlimit(max(sys.getrecursionlimit(), 4096))
     rows = complete_cases(args.artifact, args.model)
     name, revision = SNAPSHOTS[args.model]
-    cohort_hash = hashlib.sha256(pd.util.hash_pandas_object(rows).values.tobytes()).hexdigest()
-    stamp = dict(model=name, revision=revision, cohort=cohort_hash, protocol=1)
-    args.output.mkdir(parents=True, exist_ok=True)
-    db = open_run(args.output / f"{MODELS[args.model]}.sqlite", stamp)
-    done = {r[0] for r in db.execute("SELECT row_id FROM fresh")}
-    rows = rows.iloc[args.shard :: args.shards]
-    rows = rows.loc[~rows.index.isin(done)]
-    if rows.empty:
-        return
     checkpoint = args.checkpoint or name
     tokenizer = AutoTokenizer.from_pretrained(checkpoint, revision=revision)
     device = "cuda:0"
@@ -143,6 +182,17 @@ def main():
         .eval()
         .to(device)
     )
+    if args.check_reference_only:
+        check_reference(rows, tokenizer, model, device, generate_adjacent_samples_ts)
+        return
+    stamp = run_identity(rows, args.model)
+    args.output.mkdir(parents=True, exist_ok=True)
+    db = open_run(args.output / f"{MODELS[args.model]}.sqlite", stamp)
+    done = {r[0] for r in db.execute("SELECT row_id FROM fresh")}
+    rows = rows.iloc[args.shard :: args.shards]
+    rows = rows.loc[~rows.index.isin(done)]
+    if rows.empty:
+        return
     start = time.monotonic()
     for offset in range(0, len(rows), 8):
         batch = rows.iloc[offset : offset + 8]

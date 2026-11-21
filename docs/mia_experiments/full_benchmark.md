@@ -17,6 +17,12 @@ For each file the experiment derives a seed from the first eight bytes of the SH
 | Mellum-4B | [83cce26](https://huggingface.co/JetBrains/Mellum-4b-base/tree/83cce2605fbdf6a3868627e9b0a5924e0072b94d) |
 | SmolLM3-3B | [a07cc9a](https://huggingface.co/HuggingFaceTB/SmolLM3-3B/tree/a07cc9a04f16550a088caea529712d1d335b0ac1) |
 
+## Forward-pass control
+
+The initial experiment suppressed the model cache and supplied token IDs alone. On complete-case rows 0 and 64 of each model, supplying the tokenizer's attention mask removed the observed differences in original-file loss and polarized gap relative to the authors' forward call. The full run uses the complete tokenizer inputs, labels equal to the input IDs, and the model's default cache behavior. The preliminary scores were kept in a separate run.
+
+With identical seeded neighbors on those two files per model, the corrected adapter matched all 24 independently recomputed scores from the deposited implementation within absolute tolerance `1e-12`. The largest absolute difference was `1.8e-15`. To repeat this control, add `--check-reference-only` to each model command below.
+
 ## Comparisons
 
 - **API agreement.** For each eligible aggregate and stratified comparison, the analysis checks both API outputs against scikit-learn's ROC-AUC and trapezoidal PR-AUC, with absolute tolerance `1e-12`. For the RQ1 threshold metrics, it selects Youden's cutoff as in the notebook and checks `MembershipThreshold.predict_many` against the inclusive array comparison.

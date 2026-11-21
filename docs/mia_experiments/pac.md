@@ -2,7 +2,7 @@
 
 ## Shared API run from original source
 
-On all 225 files in the StarCoder2-3B Mid-Low exact-member comparison, the shared scorer interface and evaluator produced the following results. The experiment implemented the public scorer contract, passed Java source to inherited `score_many`, and evaluated its higher-is-member outputs with `evaluate_membership_scores`.
+This preliminary run supplied token IDs alone and disabled the model cache. The full benchmark uses the authors’ forward inputs. On all 225 files in the StarCoder2-3B Mid-Low exact-member comparison, the shared scorer interface and evaluator produced the following results. The experiment implemented the public scorer contract, passed Java source to inherited `score_many`, and evaluated its higher-is-member outputs with `evaluate_membership_scores`.
 
 | Metric | Shared API | Scikit-learn on the same scores | FSE reference |
 | --- | ---: | ---: | ---: |

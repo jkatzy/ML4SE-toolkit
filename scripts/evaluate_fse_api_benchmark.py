@@ -1,6 +1,7 @@
 """Compare fresh joint API outputs with the FSE paper and deposited notebooks."""
 
 import argparse
+import json
 import sqlite3
 from pathlib import Path
 
@@ -15,7 +16,7 @@ from check_mia_reproduction import (
     published_table,
     table2_cutoffs,
 )
-from run_fse_api_benchmark import EVALUATORS, complete_cases
+from run_fse_api_benchmark import EVALUATORS, complete_cases, run_identity
 from sklearn.metrics import (
     accuracy_score,
     auc,
@@ -93,10 +94,15 @@ def bootstrap(frame, method):
 
 
 def evaluate_model(root, pdf, out, model):
-    meta = complete_cases(root, model).drop(columns=["content"])
+    rows = complete_cases(root, model)
+    stamp = run_identity(rows, model)
+    meta = rows.drop(columns=["content"])
     slug = MODELS[model]
     path = out / f"{slug}.sqlite"
     with sqlite3.connect(f"file:{path.resolve()}?mode=ro", uri=True) as db:
+        recorded = db.execute("SELECT stamp FROM metadata WHERE id=1").fetchone()
+        if recorded is None or json.loads(recorded[0]) != stamp:
+            raise ValueError("Score database does not match the model, cohort and forward protocol")
         scores = pd.read_sql_query("SELECT * FROM fresh", db, index_col="row_id")
     if not scores.index.is_unique or set(scores.index) != set(meta.index):
         raise ValueError(f"{model}: {len(scores)} of {len(meta)} complete rows")

@@ -13,10 +13,11 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from statistics import mean
 
+import numpy as np
 import pandas as pd
 import torch
 from check_mia_reproduction import archived_strata
-from reproduce_mia_stratum import EVALUATORS, MODEL, REVISION, model_statistics
+from reproduce_mia_stratum import EVALUATORS, MODEL, REVISION, polarized_gap
 from sklearn.metrics import auc, precision_recall_curve, roc_auc_score
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -52,6 +53,21 @@ def token_neighbors(source, tokenizer, seed):
     return neighbors
 
 
+@torch.inference_mode()
+def fse_statistics(text, tokenizer, model, device):
+    # Match the deposit's forward arguments, including the attention mask.
+    inputs = tokenizer(text, truncation=True, max_length=8192, return_tensors="pt").to(device)
+    ids = inputs.input_ids
+    if ids.shape[1] < 2:
+        raise ValueError("Missing next-token targets")
+    output = model(**inputs, labels=ids)
+    targets = ids[0, 1:, None]
+    logs = []
+    for logits, labels in zip(output.logits[0, :-1].split(256), targets.split(256)):
+        logs.append(logits.log_softmax(-1).gather(1, labels).flatten().cpu().numpy())
+    return -output.loss.item(), polarized_gap(np.concatenate(logs))
+
+
 class BenchmarkScorer(MembershipScorer):
     """Experiment adapter over the explicitly labeled FSE benchmark sources."""
 
@@ -65,13 +81,11 @@ class BenchmarkScorer(MembershipScorer):
     def score(self, model, source):
         variants = self.neighbors[source]
         if self.original_stats is None:
-            log_likelihood, gap = model_statistics(
-                source, self.tokenizer, model, self.device, original=True
-            )
+            log_likelihood, gap = fse_statistics(source, self.tokenizer, model, self.device)
         else:
             if source not in self.original_stats:
-                self.original_stats[source] = model_statistics(
-                    source, self.tokenizer, model, self.device, original=True
+                self.original_stats[source] = fse_statistics(
+                    source, self.tokenizer, model, self.device
                 )
             log_likelihood, gap = self.original_stats[source]
         if self.method == "loss":
@@ -79,9 +93,7 @@ class BenchmarkScorer(MembershipScorer):
         gaps = {source: gap}
         for neighbor in variants:
             if neighbor not in gaps:
-                _, gaps[neighbor] = model_statistics(
-                    neighbor, self.tokenizer, model, self.device, original=False
-                )
+                _, gaps[neighbor] = fse_statistics(neighbor, self.tokenizer, model, self.device)
         # The joint API requires higher scores for members. The FSE raw PAC
         # columns use the opposite sign.
         return mean(gaps[text] for text in variants) - gap
