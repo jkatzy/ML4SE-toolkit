@@ -29,7 +29,11 @@ nav:
       - Chunked datasets: chunked_datasets.md
   - Membership inference:
       - Module guide: membership_inference.md
-      - Reproduction report: mia_reproduction_report.md
+      - Archived score evaluation: mia_reproduction_report.md
+      - Model reproduction reports:
+          - Loss: mia_experiments/loss.md
+          - PAC: mia_experiments/pac.md
+          - AST-PAC: mia_experiments/ast_pac.md
   - Architecture: architecture.md
   - Git workflow: git_workflow.md
 

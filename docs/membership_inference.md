@@ -5,6 +5,44 @@ membership. Each method has its own import and citation. The
 [reproduction report](mia_reproduction_report.md) compares all three methods
 across all four models and identifies two discrepancies in the published paper.
 
+## Experiments with fresh model scores
+
+Three reports compare independently scored StarCoder2-3B inputs with the
+FSE companion tables. Each covers the complete Mid-Low alphanumeric stratum
+for exact members versus nonmembers.
+
+- [Loss experiment](mia_experiments/loss.md)
+- [PAC experiment](mia_experiments/pac.md)
+- [AST-PAC experiment](mia_experiments/ast_pac.md)
+
+### Repeat the model run
+
+From the repository root, use a CUDA-capable GPU. The experiment used two A40s
+with files distributed across devices. One GPU can process the entire stratum
+sequentially using the default `--gpus 1`. Download and verify the versioned
+artifact, then run the three methods together to share the original-file
+forward passes. The runner downloads the pinned model and tokenizer on first
+use. For an offline run, pass `--checkpoint /path/to/pinned/snapshot`.
+
+```bash
+curl -fL https://zenodo.org/api/records/18348152/files/ast-pac-fse-ivr-submission.zip/content -o /tmp/fse-mia.zip
+echo '2f137cfa98c98f1088d9454485840283  /tmp/fse-mia.zip' | md5sum -c -
+unzip -o /tmp/fse-mia.zip 'ast-pac-fse-ivr-submission/dataset/full.parquet' \
+    'ast-pac-fse-ivr-submission/results/results_sc2_3b_new_approach_orig_m_worker_0.parquet' -d /tmp
+uv run --python 3.13 --with torch==2.8.0 --with transformers==4.55.4 \
+    --with numpy==2.5.5 --with pandas==3.0.6 --with pyarrow==25.0.0 \
+    python scripts/reproduce_mia_stratum.py /tmp/ast-pac-fse-ivr-submission --gpus 2
+```
+
+The runner in `scripts/reproduce_mia_stratum.py` uses original
+ML4SETK experiment code and the package's three public evaluators. It joins
+the deposited complete cases to Java source by ID, repository, path, and
+membership label. PAC and AST-PAC use the five archived neighbor texts for
+each method and file. Reusing those texts holds random perturbations fixed
+while testing tokenization, model inference, scoring, and evaluation.
+The external inputs and model weights are downloaded separately.
+[Versioned dataset and reference results](https://doi.org/10.5281/zenodo.18348152) · [Model revision](https://huggingface.co/bigcode/starcoder2-3b/tree/733247c55e3f73af49ce8e9c7949bf14af205928)
+
 ## Shared scoring API
 
 Subclass `ml4setk.MIA.MembershipScorer` and implement
