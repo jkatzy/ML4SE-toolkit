@@ -4,6 +4,38 @@
 membership. Each method has its own import and citation. The first reproduction
 covers the aggregate evaluation in the AST-PAC study on StarCoder2-3B.
 
+## Shared scoring API
+
+Subclass `ml4setk.MIA.MembershipScorer` and implement
+`score(model, source: str) -> float`. The source string holds one file's
+complete contents. The caller supplies the model together with any tokenizer
+the method needs. Method-specific settings belong on the scorer instance.
+Return a finite score with higher values indicating stronger evidence of
+membership.
+
+The inherited `score_many(model, sources)` calls `score` once per file and
+returns a list in input order, including duplicates. It accepts generators
+and dataset columns such as `dataset["content"]`. An empty iterable produces
+an empty list. A method with native batching can override `score_many` while
+preserving these semantics.
+
+`MembershipThreshold` applies an explicit inclusive cutoff to scores in
+this orientation. For benchmark comparisons, choose the cutoff on a separate
+calibration split and use the same value on the evaluation split.
+
+```python
+from ml4setk.MIA import MembershipThreshold
+
+rule = MembershipThreshold(cutoff=0.3)
+rule.predict_many([0.4, 0.2, 0.3])  # [True, False, True]
+```
+
+## Recorded-score evaluators
+
+The three paper-specific functions below accept their respective raw archive
+values. The PAC and AST-PAC archive columns use the opposite direction to
+the shared scorer contract.
+
 | Method | Benchmark input | Entry point |
 | --- | --- | --- |
 | AST-PAC | Recorded `pac_ast_score` | `evaluate_ast_pac_scores` |
