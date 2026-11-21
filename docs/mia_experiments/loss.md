@@ -2,14 +2,14 @@
 
 ## Shared API run from original source
 
-This preliminary run supplied token IDs alone and disabled the model cache. The full benchmark uses the authors’ forward inputs. On all 225 files in the StarCoder2-3B Mid-Low exact-member comparison, the shared scorer interface and evaluator produced the following results. The experiment implemented the public scorer contract, passed Java source to inherited `score_many`, and evaluated its higher-is-member outputs with `evaluate_membership_scores`.
+The corrected benchmark adapter supplied the authors' forward inputs and freshly scored all 225 Java files in the StarCoder2-3B Mid-Low exact-member comparison. The runner passed original source to inherited `MembershipScorer.score_many`, then evaluated its higher-is-member outputs with `evaluate_membership_scores`.
 
 | Metric | Shared API | Scikit-learn on the same scores | FSE reference |
 | --- | ---: | ---: | ---: |
-| ROC-AUC | 0.621456500 | 0.621456500 | 0.622 |
-| PR-AUC | 0.699859994 | 0.699859994 | 0.700 |
+| ROC-AUC | 0.621619420 | 0.621619420 | 0.622 |
+| PR-AUC | 0.699924464 | 0.699924464 | 0.700 |
 
-PR-AUC agrees at the published precision. ROC-AUC falls just below the rounding boundary. Both independent metric checks agree within an absolute tolerance of `1e-12`. The complete four-model protocol specifies the cohort, model revisions, and fresh-neighbor seed. [Shared API protocol](full_benchmark.md)
+Both estimates agree with the FSE table at its published three-decimal precision. Both metric checks against scikit-learn passed at an absolute tolerance of `1e-12`. The complete four-model protocol records the per-file score control, the attention-mask correction and the seed used to generate each file's neighbors. [Shared API protocol](full_benchmark.md)
 
 ## Earlier fixed-input comparison
 
