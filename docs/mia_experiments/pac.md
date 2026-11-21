@@ -1,5 +1,18 @@
 # PAC reproduction on StarCoder2-3B
 
+## Shared API run from original source
+
+On all 225 files in the StarCoder2-3B Mid-Low exact-member comparison, the shared scorer interface and evaluator produced the following results. The experiment implemented the public scorer contract, passed Java source to inherited `score_many`, and evaluated its higher-is-member outputs with `evaluate_membership_scores`.
+
+| Metric | Shared API | Scikit-learn on the same scores | FSE reference |
+| --- | ---: | ---: | ---: |
+| ROC-AUC | 0.703649397 | 0.703649397 | 0.698 |
+| PR-AUC | 0.790439601 | 0.790439601 | 0.788 |
+
+Both estimates exceed the reference for this independent draw of token swaps. Both independent metric checks agree within an absolute tolerance of `1e-12`. The complete four-model protocol specifies the cohort, model revisions, and fresh-neighbor seed. [Shared API protocol](full_benchmark.md)
+
+## Earlier fixed-input comparison
+
 **Both metrics match the reference at three decimal places.** This run generated new scores for all 225 Java files in the Mid-Low alphanumeric stratum, comparing 132 exact members with 93 nonmembers. The reference is the StarCoder2-3B row for PAC in `analysis/RQ2/rq2_table_ME_vs_NM.tex`, the companion table for Figure 1 of Koohestani et al., *AST-PAC: AST-guided Membership Inference for Code*. [FSE paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication package](https://doi.org/10.5281/zenodo.18348152)
 
 | Metric | FSE companion table | Run with fresh model scores | Evaluator on archived scores |

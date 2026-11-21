@@ -30,6 +30,7 @@ nav:
   - Membership inference:
       - Module guide: membership_inference.md
       - Archived score evaluation: mia_reproduction_report.md
+      - Full benchmark through the shared API: mia_experiments/full_benchmark.md
       - Model reproduction reports:
           - Loss: mia_experiments/loss.md
           - PAC: mia_experiments/pac.md

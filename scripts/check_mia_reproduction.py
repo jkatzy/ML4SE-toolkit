@@ -49,7 +49,7 @@ def published_table(pdf):
             yield (model, scenario, "pac"), row[4:6]
 
 
-def archived_strata(path):
+def archived_strata(path, *, with_intervals=False):
     labels = ["", "", ""]
     for line in path.read_text().splitlines():
         cells = [part.strip() for part in line.split("&")]
@@ -61,7 +61,11 @@ def archived_strata(path):
         method, model, dimension = labels
         yield (
             (model, method, DIMENSIONS[dimension], cells[3]),
-            (cells[4].split()[0], cells[5].split()[0]),
+            (
+                tuple(re.findall(r"\d+\.\d+", " ".join(cells[4:])))
+                if with_intervals
+                else (cells[4].split()[0], cells[5].split()[0])
+            ),
         )
 
 
@@ -77,6 +81,20 @@ def points(group, method):
     positive = group["type"].ne("non_member")
     result = EVALUATE[method](members=scores[positive], nonmembers=scores[~positive])
     return result.roc_auc, result.pr_auc
+
+
+def table2_cutoffs(root):
+    # Table 2 gives the observed maxima below the top bucket of each dimension.
+    # The alphanumeric fraction is printed to one decimal place in the paper.
+    corpus = root / "dataset" / "full.parquet"
+    for dim, column, expected, digits in [
+        ("size_bucket", "size", (1074, 1946, 3369, 6844), 0),
+        ("complexity_bucket", "node_count", (58, 211), 0),
+        ("alpha_bucket", "alphanum_fraction", (0.2, 0.4, 0.6, 0.8), 1),
+    ]:
+        frame = pd.read_parquet(corpus, columns=[dim, column])
+        maxima = frame.groupby(dim, observed=True)[column].max().sort_values().iloc[:-1]
+        yield dim, maxima, expected, digits
 
 
 def run(root, pdf):
@@ -165,16 +183,7 @@ def run(root, pdf):
         ratio, model, bucket = key
         compare("Figure 3", ratio, (model, bucket, quartiles), expected, changes[key], 6)
 
-    # Table 2 gives the observed maxima below the top bucket of each dimension.
-    # The alphanumeric fraction is printed to one decimal place in the paper.
-    corpus = root / "dataset" / "full.parquet"
-    for dim, column, expected, digits in [
-        ("size_bucket", "size", (1074, 1946, 3369, 6844), 0),
-        ("complexity_bucket", "node_count", (58, 211), 0),
-        ("alpha_bucket", "alphanum_fraction", (0.2, 0.4, 0.6, 0.8), 1),
-    ]:
-        frame = pd.read_parquet(corpus, columns=[dim, column])
-        maxima = frame.groupby(dim, observed=True)[column].max().sort_values().iloc[:-1]
+    for dim, maxima, expected, digits in table2_cutoffs(root):
         compare("Table 2", dim, (maxima.index,), expected, maxima, digits)
 
     for key, total in totals.items():

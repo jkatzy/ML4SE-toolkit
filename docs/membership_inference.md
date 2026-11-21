@@ -5,6 +5,8 @@ membership. Each method has its own import and citation. The
 [reproduction report](mia_reproduction_report.md) compares all three methods
 across all four models and identifies two discrepancies in the published paper.
 
+The [full FSE benchmark protocol](mia_experiments/full_benchmark.md) exercises the shared scoring interface on all four models with newly generated neighbors.
+
 ## Experiments with fresh model scores
 
 Three reports compare independently scored StarCoder2-3B inputs with the

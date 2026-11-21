@@ -53,6 +53,26 @@ def polarized_gap(values):
 
 
 @torch.inference_mode()
+def model_statistics(text, tokenizer, model, device, *, original):
+    ids = tokenizer(text, truncation=True, max_length=8192, return_tensors="pt").input_ids.to(
+        device
+    )
+    if ids.shape[1] < 2:
+        raise ValueError("Missing next-token targets")
+    logits = model(ids, use_cache=False).logits[0, :-1]
+    targets = ids[0, 1:, None]
+    # Chunk over positions to bound the vocabulary-sized intermediates.
+    parts = []
+    log_sum = 0.0
+    for chunk, labels in zip(logits.split(256), targets.split(256)):
+        logs = chunk.log_softmax(-1).gather(1, labels)
+        parts.append(logs.flatten().cpu().numpy())
+        if original:
+            log_sum += chunk.float().log_softmax(-1).gather(1, labels).double().sum().item()
+    return log_sum / len(targets), polarized_gap(np.concatenate(parts))
+
+
+@torch.inference_mode()
 def run_partition(rows, tokenizer, model, device):
     result = []
     for index, row in enumerate(rows.itertuples()):
@@ -63,23 +83,9 @@ def run_partition(rows, tokenizer, model, device):
         for text in [row.content, *variants[0], *variants[1]]:
             if text in cache:
                 continue
-            ids = tokenizer(
-                text, truncation=True, max_length=8192, return_tensors="pt"
-            ).input_ids.to(device)
-            if ids.shape[1] < 2:
-                raise ValueError("Missing next-token targets")
-            logits = model(ids, use_cache=False).logits[0, :-1]
-            targets = ids[0, 1:, None]
-            # Chunk over positions to bound the vocabulary-sized intermediates.
-            parts = []
-            log_sum = 0.0
-            for chunk, labels in zip(logits.split(256), targets.split(256)):
-                logs = chunk.log_softmax(-1).gather(1, labels)
-                parts.append(logs.flatten().cpu().numpy())
-                if text == row.content:
-                    log_sum += chunk.float().log_softmax(-1).gather(1, labels).double().sum().item()
-            cache[text] = log_sum / len(targets), polarized_gap(np.concatenate(parts))
-            del logits
+            cache[text] = model_statistics(
+                text, tokenizer, model, device, original=text == row.content
+            )
         loss, original_gap = cache[row.content]
         result.append(
             (row.Index, loss, *(original_gap - mean(cache[t][1] for t in v) for v in variants))
