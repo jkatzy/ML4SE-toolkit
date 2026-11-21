@@ -27,6 +27,7 @@ nav:
       - Model input formats: input_formatting.md
   - Datasets:
       - Chunked datasets: chunked_datasets.md
+  - Membership inference: membership_inference.md
   - Architecture: architecture.md
   - Git workflow: git_workflow.md
 

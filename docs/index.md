@@ -23,4 +23,6 @@ pip install ML4SE-ToolKit
   restartable state on disk and any number of workers.
 - [Architecture](architecture.md): the `QueryMatch` contract and extension
   points.
+- [Membership inference](membership_inference.md) covers the AST-PAC benchmark
+  and its Loss and PAC baselines.
 - [Git workflow](git_workflow.md): how `dev` and `main` relate.

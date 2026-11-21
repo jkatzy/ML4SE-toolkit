@@ -1,0 +1,129 @@
+# Membership inference
+
+`ml4setk.MIA` evaluates recorded scores for examples with known training
+membership. Each method has its own import and citation. The first reproduction
+covers the aggregate evaluation in the AST-PAC study on StarCoder2-3B.
+
+| Method | Benchmark input | Entry point |
+| --- | --- | --- |
+| AST-PAC | Recorded `pac_ast_score` | `evaluate_ast_pac_scores` |
+| PAC | Recorded `pac_score` | `evaluate_pac_scores` |
+| Loss | Recorded `loss_score` (negative loss) | `evaluate_loss_scores` |
+
+```python
+from ml4setk.MIA import evaluate_ast_pac_scores
+
+# Illustrative recorded scores for two known cohorts.
+result = evaluate_ast_pac_scores(members=[0.1, 0.3], nonmembers=[0.2, 0.4])
+print(result.roc_auc, result.n_members, result.n_nonmembers)  # 0.75 2 2
+```
+
+Pass finite scores from one model and comparison at a time. Each cohort must
+have at least one observation. The entry points handle the archived score
+directions. For another benchmark with higher scores favoring membership,
+use `evaluate_membership_scores` directly. Tied scores enter the curves
+together. PR-AUC uses trapezoidal integration, starting at recall zero and
+precision one. The returned values are point estimates.
+
+## AST-PAC
+
+Roham Koohestani, Ali Al-Kaswan, Jonathan Katzy, and Maliheh Izadi.
+“AST-PAC: AST-guided Membership Inference for Code.” *FSE Companion 2026*,
+Ideas, Visions and Reflections, pp. 1361–1365. The authors compare a
+syntax-aware variant of PAC with two existing baselines. [Conference paper](https://doi.org/10.1145/3803437.3805588)
+
+**Reproduction.** The entry evaluates the raw scores from the authors' RQ3
+notebook. Across the 12 reported StarCoder2-3B strata for exact members versus
+nonmembers, both area estimates match the archived table to three decimal
+places. For example, the complex-files stratum yields ROC-AUC 0.638 and
+PR-AUC 0.603 for 1,063 members and 1,189 nonmembers. The observed agreement
+covers the archived scores and point estimates. Generating model scores and
+reproducing bootstrap intervals are outside this result. [Versioned replication package, deposited by Roham Koohestani](https://doi.org/10.5281/zenodo.18348152)
+
+**Rights and reuse.** The final paper and the Zenodo software deposit each
+declare CC BY 4.0. The ZIP contains no separate LICENSE, COPYING, or NOTICE
+entry. Its README and the AST-PAC source file contain no separate license
+declaration. ML4SETK's evaluator is independently written. The optional test
+reads external scores and a results table. The source code, datasets, model
+outputs, and notebooks from the deposit are not bundled. Direct redistribution
+of covered material would require attribution, a license link and change
+indications where applicable. The deposit's grant extends only to rights its
+licensor can grant. [Paper and rights](https://research.tudelft.nl/en/publications/ast-pac-ast-guided-membership-inference-for-code/) · [Software rights record](https://api.datacite.org/dois/10.5281/zenodo.18348152) · [CC BY 4.0 terms](https://creativecommons.org/licenses/by/4.0/)
+
+## PAC baseline
+
+Wentao Ye, Jiaqi Hu, Liyao Li, Haobo Wang, Gang Chen, and Junbo Zhao.
+“Data Contamination Calibration for Black-box LLMs.” *Findings of ACL 2024*,
+pp. 10845–10861. This is the source of Polarized Augment Calibration.
+[Original paper](https://doi.org/10.18653/v1/2024.findings-acl.644)
+
+**Reproduction.** The PAC entry evaluates the recorded scores in the AST-PAC
+study. Lower raw PAC scores favor membership. The three StarCoder2-3B
+comparisons agree with both metrics in Table 1 at the printed precision.
+This verifies PAC's evaluation in the FSE study. Reproduction of Ye et al.'s
+original experiments remains open. The pinned PAC repository contains no
+saved score file, and the linked StackMIAsub benchmark provides snippets and
+labels. [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [Original benchmark revision](https://huggingface.co/datasets/darklight03/StackMIAsub/tree/c87c55d8b93fcf525fbf5fbf9b3bff6808b30ac6)
+
+**Rights and reuse.** The authors' PAC repository carries MIT, copyright
+2024 Wentao Ye, at commit `79c6eca`. The MIT terms permit incorporation
+under either of ML4SETK's current license declarations if its copyright
+and permission notices accompany copies or substantial portions. This entry
+uses original toolkit code and reads the FSE deposit's scores externally.
+[Pinned PAC license](https://github.com/yyy01/PAC/blob/79c6eca14fed3a64a7a4201cdca263de52501dae/LICENSE)
+
+## Loss baseline
+
+Samuel Yeom, Irene Giacomelli, Matt Fredrikson, and Somesh Jha.
+“Privacy Risk in Machine Learning: Analyzing the Connection to Overfitting.”
+*IEEE Computer Security Foundations Symposium*, 2018, pp. 268–282.
+[Original paper](https://doi.org/10.1109/CSF.2018.00027)
+
+For the language-model setting, AST-PAC §2.1 also credits Nicholas Carlini,
+Florian Tramèr, Eric Wallace, Matthew Jagielski, Ariel Herbert-Voss,
+Katherine Lee, Adam Roberts, Tom Brown, Dawn Song, Úlfar Erlingsson,
+Alina Oprea, and Colin Raffel. “Extracting Training Data from Large Language
+Models.” *USENIX Security 2021*. [Proceedings](https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting)
+
+**Reproduction.** The Loss entry accepts the FSE artifact's signed
+`loss_score`. The three StarCoder2-3B comparisons agree with both metrics
+in Table 1 at the printed precision. This verifies the FSE benchmark's use of
+Loss. The experiments in the 2018 and 2021 papers remain open.
+Yeom's pinned repository contains experiment scripts and input data. Its
+README describes generating the result files locally. [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [CSF artifact README](https://github.com/sam-yeom/ml-privacy-csf18/blob/7b302fb80b853b040941eb90b37c0491f55e4928/README.md)
+
+**Rights and reuse.** Yeom's CSF artifact carries MIT, copyright 2019 Samuel
+Yeom, at commit `7b302fb`. The same MIT notice obligations apply to reuse of
+that code. Both Loss papers receive scholarly credit. This implementation
+incorporates no code or data from either original study.
+[Pinned CSF artifact license](https://github.com/sam-yeom/ml-privacy-csf18/blob/7b302fb80b853b040941eb90b37c0491f55e4928/LICENSE)
+
+## Reproduce the checks
+
+With the `datasets` extra installed, point `ML4SETK_AST_PAC_ARTIFACT` at the
+directory containing `results/` and `analysis/` in the Zenodo archive.
+Only two archived files are needed for the comparison.
+
+- `results/results_sc2_3b_new_approach_orig_m_worker_0.parquet`
+- `analysis/RQ3/rq3_table_ME_vs_NM.tex`
+
+```bash
+ML4SETK_AST_PAC_ARTIFACT=/path/to/ast-pac-fse-ivr-submission \
+  uv run --extra datasets pytest tests/test_ast_pac_artifact.py -q --no-cov
+```
+
+The baseline tests check all members, exact members, and near members against
+the nonmember cohort. The AST-PAC test checks the exact-member comparison by
+file size, alphanumeric ratio, and AST node count. A stratum containing only
+one class has no ROC-AUC. The small unit tests run independently of the
+archive in `tests/test_mia_evaluation.py`.
+
+**Toolkit licensing decision.** At the revision reviewed, the repository
+license is Apache-2.0 and the Python distribution declares MIT. The code in
+these three entries is original to ML4SETK. The baseline tests cite the paper
+for the published reference numbers. The MIT baseline licenses permit reuse
+with their notices under either declaration. The FSE deposit grants CC BY 4.0
+rights to covered material. Crediting its authors alone would not turn a copy
+into MIT- or Apache-2.0-only source. A future port needs a file-level reuse
+decision and the applicable terms shipped with the distribution.
+[Toolkit LICENSE](https://github.com/jkatzy/ML4SE-toolkit/blob/f2e72fd78627e17fba874cfa0e1e3202479a196b/LICENSE) · [Package metadata](https://github.com/jkatzy/ML4SE-toolkit/blob/f2e72fd78627e17fba874cfa0e1e3202479a196b/pyproject.toml#L13)
