@@ -1,8 +1,9 @@
 # Membership inference
 
 `ml4setk.MIA` evaluates recorded scores for examples with known training
-membership. Each method has its own import and citation. The first reproduction
-covers the aggregate evaluation in the AST-PAC study on StarCoder2-3B.
+membership. Each method has its own import and citation. The
+[reproduction report](mia_reproduction_report.md) compares all three methods
+across all four models and identifies two discrepancies in the published paper.
 
 ## Shared scoring API
 
