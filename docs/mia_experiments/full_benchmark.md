@@ -26,6 +26,7 @@ With identical seeded neighbors on those two files per model, the corrected adap
 ## Comparisons
 
 - **API agreement.** For each eligible aggregate and stratified comparison, the analysis checks both API outputs against scikit-learn's ROC-AUC and trapezoidal PR-AUC, with absolute tolerance `1e-12`. For the RQ1 threshold metrics, it selects Youden's cutoff as in the notebook and checks `MembershipThreshold.predict_many` against the inclusive array comparison.
+- **Per-file agreement.** After scoring finishes, join the 12,422 fresh observations per model to the archived scores by file identity. Compare median and maximum absolute differences and Spearman rank correlation after aligning score direction.
 - **Table 1 and RQ1.** Compare the 48 aggregate area estimates for PAC and Loss to the final PDF at three decimals. Compare areas, accuracy, precision, recall, and F1 to the saved RQ1 notebook at six decimals.
 - **Table 2.** Check the ten dataset cutoffs using the complete 12,484-row input dataset.
 - **RQ2 and RQ3.** Check the full set of eligible strata across three membership scenarios and three grouping dimensions. Compare all 1,152 area estimates in the six deposited tables at three decimals. PAC appears in both comparisons. Compute 95% percentile intervals with 1,000 row-wise bootstrap resamples, using seed 42. The authors' unseeded intervals are stochastic.
@@ -51,4 +52,4 @@ done
 /tmp/fse-api-env/bin/python scripts/evaluate_fse_api_benchmark.py "$artifact" /tmp/paper.pdf "$output"
 ```
 
-Each model saves completed batches in a separate SQLite file in the output directory. Repeating a command there resumes that run. An empty output directory starts a new experiment. The analysis requires complete per-model cohort coverage and writes one aggregate comparison CSV per model.
+Each model saves completed batches in a separate SQLite file in the output directory. Repeating a command there resumes that run. An empty output directory starts a new experiment. The analysis requires complete per-model cohort coverage and writes the paper comparisons and per-file agreement summaries as aggregate CSVs per model.

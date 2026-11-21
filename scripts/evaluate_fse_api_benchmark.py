@@ -16,7 +16,7 @@ from check_mia_reproduction import (
     published_table,
     table2_cutoffs,
 )
-from run_fse_api_benchmark import EVALUATORS, complete_cases, run_identity
+from run_fse_api_benchmark import EVALUATORS, KEYS, complete_cases, run_identity
 from sklearn.metrics import (
     accuracy_score,
     auc,
@@ -93,6 +93,29 @@ def bootstrap(frame, method):
     return np.percentile(np.concatenate(reps), [2.5, 97.5], axis=0).T
 
 
+def paired_score_errors(root, slug, data):
+    path = root / "results" / f"results_{slug}_new_approach_orig_m_worker_0.parquet"
+    archive = pd.read_parquet(path, columns=[*KEYS, *(k + "_score" for k in EVALUATORS)])
+    paired = data.merge(archive, on=KEYS, validate="one_to_one", how="left")
+    summaries = []
+    for method in EVALUATORS:
+        recorded = paired[method + "_score"]
+        if recorded.isna().any():
+            raise ValueError(f"Missing archived {method} comparison score")
+        oriented = recorded if method == "loss" else -recorded
+        diff = (paired[method] - oriented).abs()
+        summaries.append(
+            dict(
+                method=method,
+                pairs=len(diff),
+                median_abs=diff.median(),
+                max_abs=diff.max(),
+                spearman=paired[method].corr(oriented, method="spearman"),
+            )
+        )
+    return pd.DataFrame(summaries)
+
+
 def evaluate_model(root, pdf, out, model):
     rows = complete_cases(root, model)
     stamp = run_identity(rows, model)
@@ -107,6 +130,7 @@ def evaluate_model(root, pdf, out, model):
     if not scores.index.is_unique or set(scores.index) != set(meta.index):
         raise ValueError(f"{model}: {len(scores)} of {len(meta)} complete rows")
     data = meta.join(scores, validate="one_to_one")
+    paired_score_errors(root, slug, data).to_csv(out / f"{slug}-paired-scores.csv", index=False)
     records = []
 
     def add(section, method, scenario, dimension, bucket, metric, observed, expected, digits):
