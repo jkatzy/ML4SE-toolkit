@@ -1,6 +1,29 @@
-# PAC reproduction on the FSE benchmark
+# PAC reproduction report
 
-## Full benchmark through the joint API
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/d2d6958/reproductions/test_pac.py) · [Environment and inputs](index.md)
+
+```bash
+/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_pac.py
+```
+
+## Original paper
+
+Ye, Hu, Li, Wang, Chen, and Zhao report a ROC-AUC of 0.666 for PAC and 0.616 for perplexity in the GPT-Neo row of Table 1 on original WikiMIA text. Our check scores all 861 labeled members and 789 labeled nonmembers from the four length groups in Table 6 with GPT-Neo-2.7B. It verifies the two cohorts in each length group before scoring. [ACL 2024 paper](https://aclanthology.org/2024.findings-acl.644/) · [Dataset revision](https://huggingface.co/datasets/swj0419/WikiMIA/tree/a89ab76d88f704e9bc5870ac39cc9d458a2a70ac) · [Model revision](https://huggingface.co/EleutherAI/gpt-neo-2.7B/tree/e24fa291132763e59f4a5422741b424fb5d59056)
+
+The reproduction uses float32 model weights, five word-swap variants per text, and the top 5% and bottom 30% of next-token log probabilities. The random draws use seed 42. The authors did not publish their realized draws. We pool the four original-text splits and use the toolkit evaluators for both ROC-AUCs. Negative mean loss gives the same ranking as inverse perplexity. The test checks both the PAC advantage over perplexity and equality with the printed PAC area at three decimals. Other Table 1 models, synonymous rewrites, and StackMIAsub remain untested here.
+
+| Original WikiMIA, GPT-Neo-2.7B | Fresh ROC-AUC | ACL Table 1 |
+| --- | ---: | ---: |
+| PAC | 0.663491475 | 0.666 |
+| Perplexity baseline | 0.615686950 | 0.616 |
+
+The baseline matched at the paper’s precision. PAC exceeded it by 0.047805, reproducing the reported ordering. The strict PAC area check failed by 0.002509. The reproduction keeps the published target of 0.666 in the assertion.
+
+## FSE baseline check
+
+The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. Thirteen of 24 Table 1 areas and 60 of 288 RQ2 stratified areas matched at three decimals. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
+
+## Earlier four-model FSE run with fresh scores
 
 This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
 
@@ -71,16 +94,10 @@ Fresh ROC-AUC and PR-AUC round to 0.698 and 0.788. Both agree at the reference p
 
 Across the 225 paired files, the median absolute difference between fresh and archived raw scores was 0.001186382 and the maximum was 0.006167217. ROC-AUC and trapezoidal PR-AUC use tied scores as a group. The comparison uses the published point estimates.
 
-## Experiment
+### Earlier fixed-input protocol
 
 For each Java file, ML4SETK scored the original source and its five deposited token-swap neighbors. It calculated the gap between the mean of the five highest and 30 lowest next-token log probabilities, scaling these counts down for short sequences as in the FSE artifact. The raw score is the original gap minus the mean neighbor gap. The PAC evaluator uses lower raw scores as stronger membership evidence.
 
 Using the deposited texts fixes the random swaps at the values used for the reference row. This checks model scoring and calibration for the FSE Java application of PAC. Independently sampling swaps and reproducing the original ACL WikiMIA and StackMIAsub results remain separate experiments. [Ye et al., Findings of ACL 2024](https://aclanthology.org/2024.findings-acl.644/)
 
-The run used two NVIDIA A40 GPUs, float16 StarCoder2-3B weights, and the checkpoint's tokenizer with an 8,192-token cap. The cap applied to 22 original files and 100 of 1,125 PAC neighbor texts. The model revision was `733247c55e3f73af49ce8e9c7949bf14af205928`. The authors' archive matched its versioned checksum and the model weights matched their Hub SHA-256. The archive supplies the exact cohort and comparison scores. Only the model-derived scores feed the fresh estimates.
-
-From the repository root in the pinned environment, run the following command. The shared instructions include the artifact download, checksum, Python dependencies, and checkpoint setup. [Reproduction environment](../membership_inference.md#repeat-the-model-run)
-
-```bash
-python scripts/reproduce_mia_stratum.py /tmp/ast-pac-fse-ivr-submission --gpus 2
-```
+The run used two NVIDIA A40 GPUs, float16 StarCoder2-3B weights, and the checkpoint's tokenizer with an 8,192-token cap. The cap applied to 22 original files and 100 of 1,125 PAC neighbor texts. The model revision was `733247c55e3f73af49ce8e9c7949bf14af205928`. The authors' archive matched its versioned checksum and the model weights matched their Hub SHA-256. The archive supplies the exact cohort and comparison scores. Only the model-derived scores feed the fresh estimates. [Earlier fixed-input command](full_benchmark.md#repeat-the-earlier-fixed-input-pilot)

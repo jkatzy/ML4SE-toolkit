@@ -4,50 +4,16 @@
 evaluates scores for examples with known training membership. The FSE
 benchmark adapter implements this interface for Loss, PAC, and AST-PAC.
 
-## Experiments with fresh model scores
+## Reproduction reports
 
-The full benchmark compares fresh scores for StarCoder2-3B, StarCoder2-7B,
-Mellum-4B, and SmolLM3-3B against the FSE paper and its companion tables.
-The reports give the results for each method and retain the earlier
-225-file StarCoder2-3B comparisons. The protocol documents the models,
-cohorts, perturbations, and commands. [Full benchmark protocol](mia_experiments/full_benchmark.md)
+Each report links to a runnable pytest script. The scripts score labeled benchmark
+inputs with ML4SETK and compare the results with the paper at its published
+precision. The FSE data archive supplies reference tables and file inputs.
+[Setup and comparison criteria](reproduction_reports/index.md)
 
-- [Loss experiment](mia_experiments/loss.md)
-- [PAC experiment](mia_experiments/pac.md)
-- [AST-PAC experiment](mia_experiments/ast_pac.md)
-
-An earlier evaluation used the authors’ saved scores to check the metric
-calculations and identified two discrepancies between the printed paper
-and its notebook. [Archived-score reproduction](mia_reproduction_report.md)
-
-### Repeat the model run
-
-For the earlier 225-file comparison with fixed neighbors, use a CUDA-capable
-GPU from the repository root. The experiment used two A40s
-with files distributed across devices. One GPU can process the entire stratum
-sequentially using the default `--gpus 1`. Download and verify the versioned
-artifact, then run the three methods together to share the original-file
-forward passes. The runner downloads the pinned model and tokenizer on first
-use. For an offline run, pass `--checkpoint /path/to/pinned/snapshot`.
-
-```bash
-curl -fL https://zenodo.org/api/records/18348152/files/ast-pac-fse-ivr-submission.zip/content -o /tmp/fse-mia.zip
-echo '2f137cfa98c98f1088d9454485840283  /tmp/fse-mia.zip' | md5sum -c -
-unzip -o /tmp/fse-mia.zip 'ast-pac-fse-ivr-submission/dataset/full.parquet' \
-    'ast-pac-fse-ivr-submission/results/results_sc2_3b_new_approach_orig_m_worker_0.parquet' -d /tmp
-uv run --python 3.13 --with torch==2.8.0 --with transformers==4.55.4 \
-    --with numpy==2.5.5 --with pandas==3.0.6 --with pyarrow==25.0.0 \
-    python scripts/reproduce_mia_stratum.py /tmp/ast-pac-fse-ivr-submission --gpus 2
-```
-
-The runner in `scripts/reproduce_mia_stratum.py` uses original
-ML4SETK experiment code and the package's three public evaluators. It joins
-the deposited complete cases to Java source by ID, repository, path, and
-membership label. PAC and AST-PAC use the five archived neighbor texts for
-each method and file. Reusing those texts holds random perturbations fixed
-while testing tokenization, model inference, scoring, and evaluation.
-The external inputs and model weights are downloaded separately.
-[Versioned dataset and reference results](https://doi.org/10.5281/zenodo.18348152) · [Model revision](https://huggingface.co/bigcode/starcoder2-3b/tree/733247c55e3f73af49ce8e9c7949bf14af205928)
+- [Loss reproduction report](reproduction_reports/loss.md)
+- [PAC reproduction report](reproduction_reports/pac.md)
+- [AST-PAC reproduction report](reproduction_reports/ast_pac.md)
 
 ## Shared scoring API
 
@@ -114,8 +80,7 @@ notebook. Across the 12 reported StarCoder2-3B strata for exact members versus
 nonmembers, both area estimates match the archived table to three decimal
 places. For example, the complex-files stratum yields ROC-AUC 0.638 and
 PR-AUC 0.603 for 1,063 members and 1,189 nonmembers. The observed agreement
-covers the archived scores and point estimates. Generating model scores and
-reproducing bootstrap intervals are outside this result. [Versioned replication package, deposited by Roham Koohestani](https://doi.org/10.5281/zenodo.18348152)
+covers the archived scores and point estimates. A separate report checks fresh model scores on the deposited neighbor texts. [AST-PAC reproduction report](reproduction_reports/ast_pac.md) · [Versioned replication package, deposited by Roham Koohestani](https://doi.org/10.5281/zenodo.18348152)
 
 **Rights and reuse.** The final paper and the Zenodo software deposit each
 declare CC BY 4.0. The ZIP contains no separate LICENSE, COPYING, or NOTICE
@@ -137,10 +102,9 @@ pp. 10845–10861. This is the source of Polarized Augment Calibration.
 **Reproduction.** The PAC entry evaluates the recorded scores in the AST-PAC
 study. Lower raw PAC scores favor membership. The three StarCoder2-3B
 comparisons agree with both metrics in Table 1 at the printed precision.
-This verifies PAC's evaluation in the FSE study. Reproduction of Ye et al.'s
-original experiments remains open. The pinned PAC repository contains no
+The separate reproduction report checks Ye et al.’s original GPT-Neo row on WikiMIA. The pinned PAC repository contains no
 saved score file, and the linked StackMIAsub benchmark provides snippets and
-labels. [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [Original benchmark revision](https://huggingface.co/datasets/darklight03/StackMIAsub/tree/c87c55d8b93fcf525fbf5fbf9b3bff6808b30ac6)
+labels. [PAC reproduction report](reproduction_reports/pac.md) · [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [Original benchmark revision](https://huggingface.co/datasets/darklight03/StackMIAsub/tree/c87c55d8b93fcf525fbf5fbf9b3bff6808b30ac6)
 
 **Rights and reuse.** The authors' PAC repository carries MIT, copyright
 2024 Wentao Ye, at commit `79c6eca`. The MIT terms permit incorporation
@@ -165,9 +129,9 @@ Models.” *USENIX Security 2021*. [Proceedings](https://www.usenix.org/conferen
 **Reproduction.** The Loss entry accepts the FSE artifact's signed
 `loss_score`. The three StarCoder2-3B comparisons agree with both metrics
 in Table 1 at the printed precision. This verifies the FSE benchmark's use of
-Loss. The experiments in the 2018 and 2021 papers remain open.
+Loss. The separate reproduction report checks the theoretical curve in Yeom et al.’s Figure 2b. The empirical private-data extraction experiment in the 2021 paper remains outside its scope.
 Yeom's pinned repository contains experiment scripts and input data. Its
-README describes generating the result files locally. [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [CSF artifact README](https://github.com/sam-yeom/ml-privacy-csf18/blob/7b302fb80b853b040941eb90b37c0491f55e4928/README.md)
+README describes generating the result files locally. [Loss reproduction report](reproduction_reports/loss.md) · [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [CSF artifact README](https://github.com/sam-yeom/ml-privacy-csf18/blob/7b302fb80b853b040941eb90b37c0491f55e4928/README.md)
 
 **Rights and reuse.** Yeom's CSF artifact carries MIT, copyright 2019 Samuel
 Yeom, at commit `7b302fb`. The same MIT notice obligations apply to reuse of

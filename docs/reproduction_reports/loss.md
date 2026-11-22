@@ -1,6 +1,29 @@
-# Loss reproduction on the FSE benchmark
+# Loss reproduction report
 
-## Full benchmark through the joint API
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/d2d6958/reproductions/test_loss.py) · [Environment and inputs](index.md)
+
+```bash
+/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_loss.py
+```
+
+## Original paper
+
+Yeom, Giacomelli, Fredrikson, and Jha’s Figure 2b gives the theoretical membership advantage when only the training standard deviation is known. The script evaluates the toolkit’s inclusive loss threshold on 10,000 deterministic Gaussian quantiles per cohort. The reference is the paper’s closed form. The bound of 0.0002 follows from midpoint integration at the two interval boundaries in each cohort. [CSF 2018 paper](https://doi.org/10.1109/CSF.2018.00027) · [Figure 2b and derivation](https://par.nsf.gov/servlets/purl/10060215)
+
+| Population / training standard deviation | ML4SETK advantage | Theoretical advantage |
+| ---: | ---: | ---: |
+| 1 | 0.0000 | 0.000000 |
+| 2 | 0.2996 | 0.299765 |
+| 4 | 0.4852 | 0.485277 |
+| 8 | 0.5832 | 0.583213 |
+
+All four predictions passed the integration bound. This verifies the theoretical curve. The plotted empirical points require training the paper’s regression and tree models. The later FSE benchmark evaluates negative next-token loss on code and reports ROC-AUC and PR-AUC.
+
+## FSE baseline check
+
+The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. All 24 Table 1 areas and 285 of 288 RQ2 stratified areas matched at three decimals. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
+
+## Earlier four-model FSE run with fresh scores
 
 This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
 
@@ -68,14 +91,8 @@ Fresh PR-AUC rounds to 0.700. Fresh ROC-AUC rounds to 0.621. Its difference from
 
 Across the 225 paired files, the median absolute difference between fresh and archived raw scores was 0.000066843 and the maximum was 0.001034659. ROC-AUC and trapezoidal PR-AUC use tied scores as a group. The comparison uses the published point estimates.
 
-## Experiment
+### Earlier fixed-input protocol
 
 For each original Java file, ML4SETK computed the mean log probability of the observed next tokens. It applied a float32 log-softmax to the model's logits and accumulated the selected values in float64. Higher scores favor membership. This tests the negative cross-entropy baseline that Koohestani et al. use for code. The earlier CSF experiments use a different setting and remain outside this comparison. [Yeom et al., CSF 2018](https://doi.org/10.1109/CSF.2018.00027) · [Carlini et al., USENIX Security 2021](https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting)
 
-The run used two NVIDIA A40 GPUs, float16 StarCoder2-3B weights, and the checkpoint's tokenizer with an 8,192-token cap. The cap applied to 22 original files. The model revision was `733247c55e3f73af49ce8e9c7949bf14af205928`. The authors' archive matched its versioned checksum and the model weights matched their Hub SHA-256. The archive supplies the exact cohort and comparison scores. Only the model-derived scores feed the fresh estimates.
-
-From the repository root in the pinned environment, run the following command. The shared instructions include the artifact download, checksum, Python dependencies, and checkpoint setup. [Reproduction environment](../membership_inference.md#repeat-the-model-run)
-
-```bash
-python scripts/reproduce_mia_stratum.py /tmp/ast-pac-fse-ivr-submission --gpus 2
-```
+The run used two NVIDIA A40 GPUs, float16 StarCoder2-3B weights, and the checkpoint's tokenizer with an 8,192-token cap. The cap applied to 22 original files. The model revision was `733247c55e3f73af49ce8e9c7949bf14af205928`. The authors' archive matched its versioned checksum and the model weights matched their Hub SHA-256. The archive supplies the exact cohort and comparison scores. Only the model-derived scores feed the fresh estimates. [Earlier fixed-input command](full_benchmark.md#repeat-the-earlier-fixed-input-pilot)

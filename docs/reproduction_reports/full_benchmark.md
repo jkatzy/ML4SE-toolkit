@@ -1,6 +1,8 @@
-# Full FSE benchmark through the shared scoring API
+# FSE benchmark protocol and earlier four-model results
 
 This experiment tests whether a benchmark implementation of `MembershipScorer` can score Java source through `score_many`, whether the shared and method-specific evaluators agree, and how accurately fresh measurements recover the FSE results. The reference study is Roham Koohestani, Ali Al-Kaswan, Jonathan Katzy, and Maliheh Izadi, *AST-PAC: AST-guided Membership Inference for Code*, FSE Companion 2026. [Proceedings paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication package](https://doi.org/10.5281/zenodo.18348152)
+
+The method reports link to the standalone ML4SETK reproduction tests. This page preserves the earlier joint benchmark, which used the FSE authors’ external Java augmentation function for AST-PAC. [Reproduction reports and test environment](index.md)
 
 ## Four-model results
 
@@ -48,9 +50,9 @@ With identical seeded neighbors on those two files per model, the corrected adap
 - **RQ2 and RQ3.** Check the full set of eligible strata across three membership scenarios and three grouping dimensions. Compare all 1,152 area estimates in the six deposited tables at three decimals. PAC appears in both comparisons. Compute 95% percentile intervals with 1,000 row-wise bootstrap resamples, using seed 42. The authors' unseeded intervals are stochastic.
 - **Figure 3.** Recompute the 72 median and quartile values for the PAC and AST-PAC character change ratios from newly generated neighbors. Compare to the saved RQ3 notebook at six decimals.
 
-As an analysis control, feeding the authors' saved scores and ratios into the same evaluator reproduced all 1,152 stratified point estimates, 144 RQ1 notebook metrics, and 72 Figure 3 statistics. The two discrepancies in printed Table 1 were the previously documented StarCoder2-7B PAC cells. [Archived-score comparison](../mia_reproduction_report.md)
+As an analysis control, feeding the authors' saved scores and ratios into the same evaluator reproduced all 1,152 stratified point estimates, 144 RQ1 notebook metrics, and 72 Figure 3 statistics. The two discrepancies in printed Table 1 were the previously documented StarCoder2-7B PAC cells. [Archived-score comparison](archived_scores.md)
 
-## Repeat the run
+## Repeat the historical run with the authors’ AST generator
 
 Use Python 3.13, a CUDA-capable GPU, and Poppler's `pdftotext`. From the repository root, extract the **entire** Zenodo archive after checking its MD5 (`2f137cfa98c98f1088d9454485840283`). Download the final proceedings PDF. The external Java augmentation dependency is `attacks/pac_ast_attack.py` in the pinned CC BY 4.0 deposit. ML4SETK imports it from the extracted artifact. The dependency, Java corpus, checkpoints, and per-file results remain external to the distribution. [Artifact and license](https://doi.org/10.5281/zenodo.18348152) · [Proceedings PDF](https://repository.tudelft.nl/file/File_af66d741-b167-4406-9bc1-7f4474f47fed)
 
@@ -69,3 +71,32 @@ done
 ```
 
 Each model saves completed batches in a separate SQLite file in the output directory. Repeating a command there resumes that run. An empty output directory starts a new experiment. The analysis requires complete per-model cohort coverage and writes the paper comparisons and per-file agreement summaries as aggregate CSVs per model.
+
+## Repeat the earlier fixed-input pilot
+
+For the earlier 225-file comparison with fixed neighbors, use a CUDA-capable
+GPU from the repository root. The experiment used two A40s
+with files distributed across devices. One GPU can process the entire stratum
+sequentially using the default `--gpus 1`. Download and verify the versioned
+artifact, then run the three methods together to share the original-file
+forward passes. The runner downloads the pinned model and tokenizer on first
+use. For an offline run, pass `--checkpoint /path/to/pinned/snapshot`.
+
+```bash
+curl -fL https://zenodo.org/api/records/18348152/files/ast-pac-fse-ivr-submission.zip/content -o /tmp/fse-mia.zip
+echo '2f137cfa98c98f1088d9454485840283  /tmp/fse-mia.zip' | md5sum -c -
+unzip -o /tmp/fse-mia.zip 'ast-pac-fse-ivr-submission/dataset/full.parquet' \
+    'ast-pac-fse-ivr-submission/results/results_sc2_3b_new_approach_orig_m_worker_0.parquet' -d /tmp
+uv run --python 3.13 --with torch==2.8.0 --with transformers==4.55.4 \
+    --with numpy==2.5.5 --with pandas==3.0.6 --with pyarrow==25.0.0 \
+    python scripts/reproduce_mia_stratum.py /tmp/ast-pac-fse-ivr-submission --gpus 2
+```
+
+The runner in `scripts/reproduce_mia_stratum.py` uses original
+ML4SETK experiment code and the package's three public evaluators. It joins
+the deposited complete cases to Java source by ID, repository, path, and
+membership label. PAC and AST-PAC use the five archived neighbor texts for
+each method and file. Reusing those texts holds random perturbations fixed
+while testing tokenization, model inference, scoring, and evaluation.
+The external inputs and model weights are downloaded separately.
+[Versioned dataset and reference results](https://doi.org/10.5281/zenodo.18348152) · [Model revision](https://huggingface.co/bigcode/starcoder2-3b/tree/733247c55e3f73af49ce8e9c7949bf14af205928)

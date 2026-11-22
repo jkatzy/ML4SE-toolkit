@@ -29,12 +29,13 @@ nav:
       - Chunked datasets: chunked_datasets.md
   - Membership inference:
       - Module guide: membership_inference.md
-      - Archived score evaluation: mia_reproduction_report.md
-      - Full benchmark through the shared API: mia_experiments/full_benchmark.md
-      - Model reproduction reports:
-          - Loss: mia_experiments/loss.md
-          - PAC: mia_experiments/pac.md
-          - AST-PAC: mia_experiments/ast_pac.md
+  - Reproduction reports:
+      - Running the checks: reproduction_reports/index.md
+      - Loss: reproduction_reports/loss.md
+      - PAC: reproduction_reports/pac.md
+      - AST-PAC: reproduction_reports/ast_pac.md
+      - Earlier four-model benchmark: reproduction_reports/full_benchmark.md
+      - Archived-score comparison: reproduction_reports/archived_scores.md
   - Architecture: architecture.md
   - Git workflow: git_workflow.md
 
