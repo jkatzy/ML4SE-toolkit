@@ -1,6 +1,50 @@
-# Loss reproduction on StarCoder2-3B
+# Loss reproduction on the FSE benchmark
 
-## Shared API run from original source
+## Full benchmark through the joint API
+
+This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
+
+| Reference | Metric values matching at reference precision | Maximum absolute difference |
+| --- | ---: | ---: |
+| Printed Table 1, aggregate areas | 24/24 | 0.000478 |
+| RQ1 notebook, aggregate areas | 19/24 | 0.000006 |
+| RQ1 notebook, threshold metrics | 36/48 | 0.000249 |
+| RQ2 stratified areas | 285/288 | 0.000536 |
+| RQ2 bootstrap endpoints | 145/576 | 0.009204 |
+
+Area estimates and interval endpoints in the deposited tables are rounded to three decimals. The notebooks report six decimals. The fresh bootstrap intervals use 1,000 resamples per comparison.
+
+All 288 fresh stratified area estimates fall inside the corresponding published 95% bootstrap intervals. These intervals describe sampling uncertainty for the authors’ evaluation cohort.
+
+| Model | Positive cohort | ROC-AUC, fresh / paper | PR-AUC, fresh / paper |
+| --- | --- | ---: | ---: |
+| StarCoder2-3B | Both | 0.625275 / 0.625 | 0.750389 / 0.75 |
+| StarCoder2-3B | Exact | 0.622010 / 0.622 | 0.599896 / 0.6 |
+| StarCoder2-3B | Near | 0.628686 / 0.629 | 0.605224 / 0.605 |
+| StarCoder2-7B | Both | 0.635365 / 0.635 | 0.758063 / 0.758 |
+| StarCoder2-7B | Exact | 0.633831 / 0.634 | 0.611207 / 0.611 |
+| StarCoder2-7B | Near | 0.636967 / 0.637 | 0.614178 / 0.614 |
+| Mellum-4B | Both | 0.627965 / 0.628 | 0.763710 / 0.764 |
+| Mellum-4B | Exact | 0.629433 / 0.629 | 0.627605 / 0.628 |
+| Mellum-4B | Near | 0.626431 / 0.626 | 0.616814 / 0.617 |
+| SmolLM3-3B | Both | 0.573088 / 0.573 | 0.700796 / 0.701 |
+| SmolLM3-3B | Exact | 0.571522 / 0.572 | 0.538924 / 0.539 |
+| SmolLM3-3B | Near | 0.574723 / 0.575 | 0.540711 / 0.541 |
+
+The three stratified areas that rounded differently all came from StarCoder2-3B. With both member groups combined, Mid-Low alphanumeric ROC-AUC was 0.641536 (paper 0.641) and Very Large file PR-AUC was 0.727502 (paper 0.727). With exact members, Medium file ROC-AUC was 0.685518 (paper 0.685).
+
+### Agreement on individual files
+
+Each row compares 12,422 fresh Loss scores with the corresponding archived scores after aligning score direction. The last column compares the two rankings of the same files.
+
+| Model | Median absolute score difference | Largest absolute score difference | Spearman correlation |
+| --- | ---: | ---: | ---: |
+| StarCoder2-3B | 6.327033e-05 | 0.0036132336 | 0.9999998344 |
+| StarCoder2-7B | 0 | 0 | 1.0000000000 |
+| Mellum-4B | 0 | 0 | 1.0000000000 |
+| SmolLM3-3B | 0 | 0 | 1.0000000000 |
+
+## StarCoder2-3B pilot on 225 files
 
 The corrected benchmark adapter supplied the authors' forward inputs and freshly scored all 225 Java files in the StarCoder2-3B Mid-Low exact-member comparison. The runner passed original source to inherited `MembershipScorer.score_many`, then evaluated its higher-is-member outputs with `evaluate_membership_scores`.
 

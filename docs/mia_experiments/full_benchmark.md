@@ -2,13 +2,29 @@
 
 This experiment tests whether a benchmark implementation of `MembershipScorer` can score Java source through `score_many`, whether the shared and method-specific evaluators agree, and how accurately fresh measurements recover the FSE results. The reference study is Roham Koohestani, Ali Al-Kaswan, Jonathan Katzy, and Maliheh Izadi, *AST-PAC: AST-guided Membership Inference for Code*, FSE Companion 2026. [Proceedings paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication package](https://doi.org/10.5281/zenodo.18348152)
 
+## Four-model results
+
+The November 21–22, 2026 run produced **149,064 fresh scores** across 49,688 model–file pairs on two NVIDIA A40 GPUs. Each model scored 12,422 files with all three methods. The joint evaluator and each method evaluator agreed exactly on every area they both computed. Their ROC-AUC and trapezoidal PR-AUC agreed with scikit-learn to an absolute tolerance of `1e-12`.
+
+| Method | Printed Table 1 areas matched | Stratified areas matched | Fresh areas inside reference 95% intervals | Largest stratified area difference |
+| --- | ---: | ---: | ---: | ---: |
+| [Loss](loss.md) | 24/24 | 285/288 | 288/288 | 0.000536 |
+| [PAC](pac.md) | 13/24 | 60/288 | 288/288 | 0.010324 |
+| [AST-PAC](ast_pac.md) | — | 34/288 | 288/288 | 0.010223 |
+
+The paper reports three decimals for these areas. Table 1 includes Loss and PAC. The 288 stratified areas per method comprise 36 strata-by-scenario comparisons on each model, with two areas per comparison. This summary uses RQ2 for Loss and PAC and RQ3 for AST-PAC. The six deposited tables also repeat the PAC point estimates in RQ3. Coverage by a published interval is descriptive and depends on the width of that interval.
+
+All ten Table 2 cutoffs matched. The per-method reports also compare bootstrap endpoints, RQ1 threshold metrics, and Figure 3 quartiles wherever the study reports them. The experiment exercises the public scoring and evaluation interfaces using a benchmark-specific scorer. The package exports the shared scorer interface and the evaluators.
+
+With exact and near members combined, PAC exceeded Loss on ROC-AUC on all four models. The median fraction of changed characters under AST-PAC rose from simple to moderate to complex files on all four models. These comparisons test the directions reported in RQ1 and Figure 3.
+
 ## Protocol
 
 For each of the four models, the notebooks' complete-case filter selects 12,422 of the 12,423 recorded observations. The runner joins their identifiers to `dataset/full.parquet` using ID, repository, path, and membership type. Each model sees 4,193 exact members, 4,014 near-members, and 4,215 nonmembers. The artifact supplies cohort selection and reference values. The new scoring path receives the original source and locally generated neighbors.
 
 The experiment adapter implements `score(model, source)`. The inherited `score_many` dispatches each source in order. Loss returns mean next-token log probability. PAC and AST-PAC return the mean neighbor polarized gap minus the original gap, giving the joint API its higher-is-member convention. The method-specific evaluators for archived PAC data take the opposite sign. Each model runs in evaluation mode, with float16 weights, scaled dot-product attention, and the artifact's 8,192-token cap. The original source and all five neighbors per perturbation method are tokenized independently.
 
-For each file the experiment derives a seed from the first eight bytes of the SHA-256 digest of its UTF-8 contents, interpreted as an unsigned big-endian integer. PAC uses the model tokenizer and the artifact's token-swap sampling rule. AST-PAC calls the external authors' Java augmentation function with that seed. The authors' draw sequence was unavailable. A difference in the final paper cells can arise even when two implementations of the metrics agree on identical inputs.
+For each file the experiment derives a seed from the first eight bytes of the SHA-256 digest of its UTF-8 contents, interpreted as an unsigned big-endian integer. PAC uses the model tokenizer and the artifact's token-swap sampling rule. AST-PAC calls the study authors’ Java augmentation function from the replication package with that seed. The authors' draw sequence was unavailable. A difference in the final paper cells can arise even when two implementations of the metrics agree on identical inputs.
 
 | Model | Pinned checkpoint and tokenizer |
 | --- | --- |

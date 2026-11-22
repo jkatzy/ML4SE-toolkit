@@ -1,6 +1,42 @@
-# AST-PAC reproduction on StarCoder2-3B
+# AST-PAC reproduction on the FSE benchmark
 
-## Shared API run from original source
+## Full benchmark through the joint API
+
+This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
+
+| Reference | Metric values matching at reference precision | Maximum absolute difference |
+| --- | ---: | ---: |
+| RQ3 stratified areas | 34/288 | 0.010223 |
+| RQ3 bootstrap endpoints | 62/576 | 0.015133 |
+| Figure 3 change-ratio quartiles and medians | 0/36 | 0.002962 |
+
+Area estimates and interval endpoints in the deposited tables are rounded to three decimals. The notebooks report six decimals. The fresh bootstrap intervals use 1,000 resamples per comparison.
+
+All 288 fresh stratified area estimates fall inside the corresponding published 95% bootstrap intervals. These intervals describe sampling uncertainty for the authors’ evaluation cohort.
+
+For the exact-member comparison, the RQ3 complex-files stratum gave the following values.
+
+| Model | ROC-AUC, fresh / reference | PR-AUC, fresh / reference |
+| --- | ---: | ---: |
+| StarCoder2-3B | 0.637354 / 0.638 | 0.601034 / 0.603 |
+| StarCoder2-7B | 0.653155 / 0.654 | 0.619708 / 0.622 |
+| Mellum-4B | 0.683106 / 0.680 | 0.662257 / 0.657 |
+| SmolLM3-3B | 0.563401 / 0.567 | 0.512381 / 0.513 |
+
+With both member groups combined, AST-PAC had higher complex-file ROC-AUC than PAC on SmolLM3-3B (0.556 versus 0.518). PAC had higher complex-file ROC-AUC on Mellum and both StarCoder2 models. The same ordering appears for each model in the deposited RQ3 table.
+
+### Agreement on individual files
+
+Each row compares 12,422 fresh AST-PAC scores with the corresponding archived scores after aligning score direction. The last column compares the two rankings of the same files.
+
+| Model | Median absolute score difference | Largest absolute score difference | Spearman correlation |
+| --- | ---: | ---: | ---: |
+| StarCoder2-3B | 0.12994472 | 1.7710032 | 0.9621466697 |
+| StarCoder2-7B | 0.13544278 | 1.667259 | 0.9622107848 |
+| Mellum-4B | 0.1447654 | 2.6817513 | 0.9649197228 |
+| SmolLM3-3B | 0.13642001 | 1.9597005 | 0.9546170826 |
+
+## StarCoder2-3B pilot on 225 files
 
 The corrected benchmark adapter supplied the authors' forward inputs and freshly scored all 225 Java files in the StarCoder2-3B Mid-Low exact-member comparison. The runner passed original source to inherited `MembershipScorer.score_many`, then evaluated its higher-is-member outputs with `evaluate_membership_scores`.
 

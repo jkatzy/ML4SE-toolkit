@@ -1,5 +1,9 @@
 # Reproduction report for Loss, PAC, and AST-PAC
 
+This report records the archived-score experiment at revision `8155474`.
+The subsequent four-model experiment starts from Java source and generates
+fresh scores through the shared API. [Full benchmark and method reports](mia_experiments/full_benchmark.md)
+
 **Verdict. None of the three methods reproduces end to end with ML4SETK revision
 `8155474`.** The package can recompute evaluation metrics from recorded scores.
 Its model-and-source API has an abstract `score` method, and the three method

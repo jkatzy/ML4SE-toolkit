@@ -1,25 +1,29 @@
 # Membership inference
 
-`ml4setk.MIA` evaluates recorded scores for examples with known training
-membership. Each method has its own import and citation. The
-[reproduction report](mia_reproduction_report.md) compares all three methods
-across all four models and identifies two discrepancies in the published paper.
-
-The [full FSE benchmark protocol](mia_experiments/full_benchmark.md) exercises the shared scoring interface on all four models with newly generated neighbors.
+`ml4setk.MIA` provides a shared model-and-source scoring interface and
+evaluates scores for examples with known training membership. The FSE
+benchmark adapter implements this interface for Loss, PAC, and AST-PAC.
 
 ## Experiments with fresh model scores
 
-Three reports compare independently scored StarCoder2-3B inputs with the
-FSE companion tables. Each covers the complete Mid-Low alphanumeric stratum
-for exact members versus nonmembers.
+The full benchmark compares fresh scores for StarCoder2-3B, StarCoder2-7B,
+Mellum-4B, and SmolLM3-3B against the FSE paper and its companion tables.
+The reports give the results for each method and retain the earlier
+225-file StarCoder2-3B comparisons. The protocol documents the models,
+cohorts, perturbations, and commands. [Full benchmark protocol](mia_experiments/full_benchmark.md)
 
 - [Loss experiment](mia_experiments/loss.md)
 - [PAC experiment](mia_experiments/pac.md)
 - [AST-PAC experiment](mia_experiments/ast_pac.md)
 
+An earlier evaluation used the authors’ saved scores to check the metric
+calculations and identified two discrepancies between the printed paper
+and its notebook. [Archived-score reproduction](mia_reproduction_report.md)
+
 ### Repeat the model run
 
-From the repository root, use a CUDA-capable GPU. The experiment used two A40s
+For the earlier 225-file comparison with fixed neighbors, use a CUDA-capable
+GPU from the repository root. The experiment used two A40s
 with files distributed across devices. One GPU can process the entire stratum
 sequentially using the default `--gpus 1`. Download and verify the versioned
 artifact, then run the three methods together to share the original-file
