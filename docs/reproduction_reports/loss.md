@@ -1,6 +1,6 @@
 # Loss reproduction report
 
-[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/79b61dc/reproductions/test_loss.py) · [Environment and inputs](index.md)
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/1293774/reproductions/test_loss.py) · [Environment and inputs](index.md)
 
 ```bash
 /tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_loss.py
@@ -17,13 +17,13 @@ Yeom, Giacomelli, Fredrikson, and Jha’s Figure 2b gives the theoretical member
 | 4 | 0.4852 | 0.485277 |
 | 8 | 0.5832 | 0.583213 |
 
-All four predictions passed the integration bound. This verifies the theoretical curve. The plotted empirical points require training the paper’s regression and tree models. The later FSE benchmark evaluates negative next-token loss on code and reports ROC-AUC and PR-AUC.
+All four theoretical comparisons pass the 1% rule. The zero-reference case matched exactly. All four also satisfied the integration bound. This verifies the theoretical curve. The plotted empirical points require training the paper’s regression and tree models. The later FSE benchmark evaluates negative next-token loss on code and reports ROC-AUC and PR-AUC.
 
 ## FSE baseline check
 
-The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. All 24 Table 1 areas and 285 of 288 RQ2 stratified areas matched at three decimals. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
+The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. All 24 Table 1 areas and all 288 RQ2 stratified areas pass at 1% relative tolerance. At three decimals the match counts were 24/24 and 285/288. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
 
-The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. All eight areas fell inside their reference intervals.
+The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. 8/8 pilot areas pass the 1% rule. All eight fell inside their reference intervals.
 
 | Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
 | --- | ---: | ---: |
@@ -36,13 +36,13 @@ The per-method script also scored the complete 225-file pilot on each model. The
 
 This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
 
-| Reference | Metric values matching at reference precision | Maximum absolute difference |
-| --- | ---: | ---: |
-| Printed Table 1, aggregate areas | 24/24 | 0.000478 |
-| RQ1 notebook, aggregate areas | 19/24 | 0.000006 |
-| RQ1 notebook, threshold metrics | 36/48 | 0.000249 |
-| RQ2 stratified areas | 285/288 | 0.000536 |
-| RQ2 bootstrap endpoints | 145/576 | 0.009204 |
+| Reference | Within 1% of reference | At reference precision | Maximum absolute difference |
+| --- | ---: | ---: | ---: |
+| Printed Table 1, aggregate areas | 24/24 | 24/24 | 0.000478 |
+| RQ1 notebook, aggregate areas | 24/24 | 19/24 | 0.000006 |
+| RQ1 notebook, threshold metrics | 48/48 | 36/48 | 0.000249 |
+| RQ2 stratified areas | 288/288 | 285/288 | 0.000536 |
+| RQ2 bootstrap endpoints | 570/576 | 145/576 | 0.009204 |
 
 Area estimates and interval endpoints in the deposited tables are rounded to three decimals. The notebooks report six decimals. The fresh bootstrap intervals use 1,000 resamples per comparison.
 

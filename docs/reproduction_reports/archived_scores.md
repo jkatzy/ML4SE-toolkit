@@ -116,7 +116,6 @@ uv run --locked --extra datasets --with pandas==2.3.3 --with lxml==6.0.2 \
   python scripts/check_mia_reproduction.py /path/to/ast-pac-fse-ivr-submission /path/to/paper.pdf
 ```
 
-The checker prints each discrepancy and per-method totals. With these inputs
-it exits with status 1 because the two printed cells differ. The MIA and smoke
+The checker reports counts both at printed precision and at 1% relative tolerance. At 1%, it exits with status 1 for the printed PAC PR-AUC of 6.74 and the Table 2 low alphanumeric cutoff (observed 0.1975083, published 0.2). The MIA and smoke
 test suites, including the existing artifact regression tests, passed all
 27 cases in the same checkout.

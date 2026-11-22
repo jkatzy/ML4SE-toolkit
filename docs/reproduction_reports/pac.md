@@ -1,6 +1,6 @@
 # PAC reproduction report
 
-[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/79b61dc/reproductions/test_pac.py) · [Environment and inputs](index.md)
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/1293774/reproductions/test_pac.py) · [Environment and inputs](index.md)
 
 ```bash
 /tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_pac.py
@@ -10,20 +10,20 @@
 
 Ye, Hu, Li, Wang, Chen, and Zhao report a ROC-AUC of 0.666 for PAC and 0.616 for perplexity in the GPT-Neo row of Table 1 on original WikiMIA text. Our check scores all 861 labeled members and 789 labeled nonmembers from the four length groups in Table 6 with GPT-Neo-2.7B. It verifies the two cohorts in each length group before scoring. [ACL 2024 paper](https://aclanthology.org/2024.findings-acl.644/) · [Dataset revision](https://huggingface.co/datasets/swj0419/WikiMIA/tree/a89ab76d88f704e9bc5870ac39cc9d458a2a70ac) · [Model revision](https://huggingface.co/EleutherAI/gpt-neo-2.7B/tree/e24fa291132763e59f4a5422741b424fb5d59056)
 
-The reproduction uses float32 model weights, five word-swap variants per text, and the top 5% and bottom 30% of next-token log probabilities. The random draws use seed 42. The authors did not publish their realized draws. We pool the four original-text splits and use the toolkit evaluators for both ROC-AUCs. Negative mean loss gives the same ranking as inverse perplexity. The test checks both the PAC advantage over perplexity and equality with the printed PAC area at three decimals. Other Table 1 models, synonymous rewrites, and StackMIAsub remain untested here.
+The reproduction uses float32 model weights, five word-swap variants per text, and the top 5% and bottom 30% of next-token log probabilities. The random draws use seed 42. The authors did not publish their realized draws. We pool the four original-text splits and use the toolkit evaluators for both ROC-AUCs. Negative mean loss gives the same ranking as inverse perplexity. The test checks both the PAC advantage over perplexity and agreement with the printed PAC and baseline areas within 1% of each reference. Other Table 1 models, synonymous rewrites, and StackMIAsub remain untested here.
 
 | Original WikiMIA, GPT-Neo-2.7B | Fresh ROC-AUC | ACL Table 1 |
 | --- | ---: | ---: |
 | PAC | 0.663491475 | 0.666 |
 | Perplexity baseline | 0.615686950 | 0.616 |
 
-The baseline matched at the paper’s precision. PAC exceeded it by 0.047805, reproducing the reported ordering. The strict PAC area check failed by 0.002509. The reproduction keeps the published target of 0.666 in the assertion.
+The baseline matched at the paper’s precision. PAC exceeded it by 0.047805, reproducing the reported ordering. Both areas pass the 1% rule. The PAC relative error is 0.377% and the baseline relative error is 0.051%.
 
 ## FSE baseline check
 
-The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. Thirteen of 24 Table 1 areas and 60 of 288 RQ2 stratified areas matched at three decimals. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
+The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. At 1% relative tolerance, 23/24 printed Table 1 areas and 281/288 RQ2 stratified areas pass. The printed exception is the StarCoder2-7B near-member PR-AUC of 6.74. All 24 aggregate areas pass against the deposited notebook. Of the seven stratified misses, six are on SmolLM3-3B and one is on StarCoder2-3B. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
 
-The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. All eight areas fell inside their reference intervals.
+The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. 7/8 pilot areas pass the 1% rule. All eight fell inside their reference intervals.
 
 | Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
 | --- | ---: | ---: |
@@ -36,16 +36,16 @@ The per-method script also scored the complete 225-file pilot on each model. The
 
 This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
 
-| Reference | Metric values matching at reference precision | Maximum absolute difference |
-| --- | ---: | ---: |
-| Printed Table 1, aggregate areas | 13/24 | 6.066388 |
-| RQ1 notebook, aggregate areas | 0/24 | 0.001141 |
-| RQ1 notebook, threshold metrics | 0/48 | 0.067763 |
-| RQ2 stratified areas | 60/288 | 0.010324 |
-| RQ2 bootstrap endpoints | 99/576 | 0.013290 |
-| RQ3 stratified areas | 60/288 | 0.010324 |
-| RQ3 bootstrap endpoints | 98/576 | 0.013848 |
-| Figure 3 change-ratio quartiles and medians | 0/36 | 0.000554 |
+| Reference | Within 1% of reference | At reference precision | Maximum absolute difference |
+| --- | ---: | ---: | ---: |
+| Printed Table 1, aggregate areas | 23/24 | 13/24 | 6.066388 |
+| RQ1 notebook, aggregate areas | 24/24 | 0/24 | 0.001141 |
+| RQ1 notebook, threshold metrics | 19/48 | 0/48 | 0.067763 |
+| RQ2 stratified areas | 281/288 | 60/288 | 0.010324 |
+| RQ2 bootstrap endpoints | 551/576 | 99/576 | 0.013290 |
+| RQ3 stratified areas | 281/288 | 60/288 | 0.010324 |
+| RQ3 bootstrap endpoints | 548/576 | 98/576 | 0.013848 |
+| Figure 3 change-ratio quartiles and medians | 36/36 | 0/36 | 0.000554 |
 
 Area estimates and interval endpoints in the deposited tables are rounded to three decimals. The notebooks report six decimals. The fresh bootstrap intervals use 1,000 resamples per comparison.
 

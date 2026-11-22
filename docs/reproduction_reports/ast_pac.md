@@ -1,6 +1,6 @@
 # AST-PAC reproduction report
 
-[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/79b61dc/reproductions/test_ast_pac.py) · [Environment and inputs](index.md)
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/1293774/reproductions/test_ast_pac.py) · [Environment and inputs](index.md)
 
 ```bash
 /tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_ast_pac.py
@@ -14,16 +14,16 @@ Fixing the five neighbor texts tests tokenization, the model forward pass, score
 
 ## Four-model reproduction with fixed AST neighbors
 
-The standalone test freshly scored all 12,422 files on each of the four models, using the original source and five published AST variants per file. Across the three membership comparisons, **274/288** ROC-AUC and PR-AUC values matched RQ3 at three decimals. **288/288** fell inside the published 95% bootstrap intervals. Each model test ran against a data-only extraction of the deposit and passed.
+The standalone test freshly scored all 12,422 files on each of the four models, using the original source and five published AST variants per file. Across the three membership comparisons, **274/288** ROC-AUC and PR-AUC values matched RQ3 at three decimals. **288/288** fell inside the published 95% bootstrap intervals. Each model test ran against a data-only extraction of the deposit. **274 are confirmed within 1%. The other 14 are unverified.** All published areas were at least 0.470, so matching at three decimals guarantees a difference smaller than 1% of the reference. The saved run retained match counts and interval coverage but omitted the individual values needed to check the other 14.
 
-| Model | Matching areas at three decimals | Inside published intervals |
-| --- | ---: | ---: |
-| StarCoder2-3B | 66/72 | 72/72 |
-| StarCoder2-7B | 71/72 | 72/72 |
-| Mellum-4B | 67/72 | 72/72 |
-| SmolLM3-3B | 70/72 | 72/72 |
+| Model | Confirmed within 1% by three-decimal match | Unverified at 1% | Inside published intervals |
+| --- | ---: | ---: | ---: |
+| StarCoder2-3B | 66/72 | 6 | 72/72 |
+| StarCoder2-7B | 71/72 | 1 | 72/72 |
+| Mellum-4B | 67/72 | 5 | 72/72 |
+| SmolLM3-3B | 70/72 | 2 | 72/72 |
 
-The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. All eight areas fell inside their reference intervals.
+The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. 8/8 pilot areas pass the 1% rule. All eight fell inside their reference intervals.
 
 | Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
 | --- | ---: | ---: |
@@ -36,11 +36,11 @@ The per-method script also scored the complete 225-file pilot on each model. The
 
 This earlier run called the authors’ Java neighbor generator and used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
 
-| Reference | Metric values matching at reference precision | Maximum absolute difference |
-| --- | ---: | ---: |
-| RQ3 stratified areas | 34/288 | 0.010223 |
-| RQ3 bootstrap endpoints | 62/576 | 0.015133 |
-| Figure 3 change-ratio quartiles and medians | 0/36 | 0.002962 |
+| Reference | Within 1% of reference | At reference precision | Maximum absolute difference |
+| --- | ---: | ---: | ---: |
+| RQ3 stratified areas | 262/288 | 34/288 | 0.010223 |
+| RQ3 bootstrap endpoints | 496/576 | 62/576 | 0.015133 |
+| Figure 3 change-ratio quartiles and medians | 22/36 | 0/36 | 0.002962 |
 
 Area estimates and interval endpoints in the deposited tables are rounded to three decimals. The notebooks report six decimals. The fresh bootstrap intervals use 1,000 resamples per comparison.
 

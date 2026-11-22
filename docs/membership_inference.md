@@ -7,8 +7,8 @@ benchmark adapter implements this interface for Loss, PAC, and AST-PAC.
 ## Reproduction reports
 
 Each report links to a runnable pytest script. The scripts score labeled benchmark
-inputs with ML4SETK and compare the results with the paper at its published
-precision. The FSE data archive supplies reference tables and file inputs.
+inputs with ML4SETK and compare the results with the published values using a 1% relative
+tolerance. The FSE data archive supplies reference tables and file inputs.
 [Setup and comparison criteria](reproduction_reports/index.md)
 
 - [Loss reproduction report](reproduction_reports/loss.md)
