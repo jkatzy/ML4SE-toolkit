@@ -7,14 +7,16 @@ import numpy as np
 import torch
 
 from ml4setk.MIA import MembershipScorer
+from ml4setk.MIA.pac import _polarized_distance
 
 
 def polarized_gap(values):
-    ordered = np.sort(values.astype(np.float64))
-    length = len(ordered)
+    length = len(values)
     low, high = min(30, length), min(5, length)
     scale = min(1.0, length / (low + high))
-    return ordered[-max(1, int(high * scale)) :].mean() - ordered[: max(1, int(low * scale))].mean()
+    return _polarized_distance(
+        values.tolist(), low_count=max(1, int(low * scale)), high_count=max(1, int(high * scale))
+    )
 
 
 def token_neighbors(source, tokenizer, seed):

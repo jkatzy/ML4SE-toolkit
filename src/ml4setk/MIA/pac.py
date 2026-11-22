@@ -9,8 +9,17 @@ https://doi.org/10.1145/3803437.3805588. Artifact: https://doi.org/10.5281/zenod
 """
 
 from collections.abc import Iterable
+from statistics import fmean
 
 from .evaluation import MembershipMetrics, evaluate_membership_scores
+
+
+def _polarized_distance(log_probs: Iterable[float], *, low_count: int, high_count: int) -> float:
+    """Mean of the highest minus mean of the lowest recorded token log probabilities."""
+    ordered = sorted(log_probs)
+    if not (1 <= low_count <= len(ordered) and 1 <= high_count <= len(ordered)):
+        raise ValueError("Both tail counts must be between one and the number of predictions")
+    return fmean(ordered[-high_count:]) - fmean(ordered[:low_count])
 
 
 def evaluate_pac_scores(

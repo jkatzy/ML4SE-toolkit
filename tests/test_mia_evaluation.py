@@ -45,3 +45,13 @@ def test_raw_pac_scores_favor_lower_values(evaluate):
 def test_archived_loss_scores_are_already_oriented():
     result = evaluate_loss_scores(members=[-2, -1], nonmembers=[-4, -3])
     assert (result.roc_auc, result.pr_auc) == (1, 1)
+
+
+def test_polarized_distance_uses_requested_tail_sizes():
+    from ml4setk.MIA.pac import _polarized_distance
+
+    values = [-1, -40, -2, -1, -5, -3]
+    assert _polarized_distance(iter(values), low_count=2, high_count=2) == 21.5
+    assert _polarized_distance(values, low_count=1, high_count=1) == 39
+    with pytest.raises(ValueError, match="tail counts"):
+        _polarized_distance(values, low_count=7, high_count=1)

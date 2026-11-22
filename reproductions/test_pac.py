@@ -6,6 +6,7 @@ from statistics import mean
 import pytest
 
 from ml4setk.MIA import evaluate_loss_scores, evaluate_pac_scores
+from ml4setk.MIA.pac import _polarized_distance
 
 
 def test_fse_pac(artifact, model_name, fse_cohort, fse_checkpoint, pytestconfig):
@@ -74,16 +75,15 @@ def wikimia_areas():
             values = logits.log_softmax(-1).gather(2, targets.unsqueeze(-1)).squeeze(-1)
             gaps = []
             for i, (row, mask) in enumerate(zip(values, batch.attention_mask[:, 1:])):
-                ordered = row[mask.bool()].sort().values.double()
-                n = len(ordered)
-                assert n > 0
-                gap = (
-                    ordered[-max(1, int(0.05 * n)) :].mean()
-                    - ordered[: max(1, int(0.30 * n))].mean()
+                log_probs = row[mask.bool()].tolist()
+                n = len(log_probs)
+                gaps.append(
+                    _polarized_distance(
+                        log_probs, low_count=max(1, int(0.30 * n)), high_count=max(1, int(0.05 * n))
+                    )
                 )
-                gaps.append(gap.item())
                 if i == 0:
-                    negative_loss.append(ordered.mean().item())
+                    negative_loss.append(mean(log_probs))
             raw.append(gaps[0] - mean(gaps[1:]))
     cohort = cohort.assign(pac=raw, loss=negative_loss)
     pos, neg = cohort[cohort.label == 1], cohort[cohort.label == 0]
