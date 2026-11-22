@@ -17,6 +17,7 @@ from check_mia_reproduction import (
     table2_cutoffs,
 )
 from fse_cohort import KEYS, complete_cases
+from paper_tolerance import within_one_percent
 from run_fse_api_benchmark import EVALUATORS, run_identity
 from sklearn.metrics import (
     accuracy_score,
@@ -148,6 +149,7 @@ def evaluate_model(root, pdf, out, model):
                 reference=float(expected),
                 digits=digits,
                 matches=f"{observed:.{digits}f}" == f"{float(expected):.{digits}f}",
+                within_one_percent=within_one_percent(observed, expected),
             )
         )
 
@@ -221,7 +223,12 @@ def evaluate_model(root, pdf, out, model):
     if len(result) != 12 + 36 + 864 + 18:
         raise ValueError(f"Unexpected reference coverage: {len(result)}")
     result.to_csv(out / f"{slug}-comparison.csv", index=False)
-    print(model, result.groupby("section").matches.agg(["sum", "count"]).to_string(), flush=True)
+    summary = result.groupby("section").agg(
+        within_one_percent=("within_one_percent", "sum"),
+        at_printed_precision=("matches", "sum"),
+        count=("matches", "size"),
+    )
+    print(model, summary.to_string(), flush=True)
 
 
 if __name__ == "__main__":
@@ -243,6 +250,7 @@ if __name__ == "__main__":
                     fresh=observed,
                     reference=target,
                     matches=f"{observed:.{digits}f}" == f"{target:.{digits}f}",
+                    within_one_percent=within_one_percent(observed, target),
                 )
             )
     if len(cutoffs) != 10:

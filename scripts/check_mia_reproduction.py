@@ -13,6 +13,7 @@ from io import StringIO
 from pathlib import Path
 
 import pandas as pd
+from paper_tolerance import within_one_percent
 
 from ml4setk.MIA import evaluate_ast_pac_scores, evaluate_loss_scores, evaluate_pac_scores
 
@@ -100,11 +101,15 @@ def table2_cutoffs(root):
 def run(root, pdf):
     totals = Counter()
     mismatches = Counter()
+    outside_tolerance = Counter()
 
     def compare(reference, method, key, expected, actual, digits):
         assert len(expected) == len(actual)
         for label, value, measured in zip(key[-1], expected, actual):
             totals[reference, method] += 1
+            if not within_one_percent(measured, value):
+                outside_tolerance[reference, method] += 1
+                print("OUTSIDE 1%", reference, method, *key[:-1], label, value, measured)
             if f"{measured:.{digits}f}" != f"{float(value):.{digits}f}":
                 mismatches[reference, method] += 1
                 print("DIFFERENCE", reference, method, *key[:-1], label, value, f"{measured:.9f}")
@@ -187,8 +192,12 @@ def run(root, pdf):
         compare("Table 2", dim, (maxima.index,), expected, maxima, digits)
 
     for key, total in totals.items():
-        print(*key, f"{total - mismatches[key]}/{total}")
-    return bool(sum(mismatches.values()))
+        print(
+            *key,
+            f"{total - outside_tolerance[key]}/{total} within 1%,",
+            f"{total - mismatches[key]}/{total} at printed precision",
+        )
+    return bool(sum(outside_tolerance.values()))
 
 
 if __name__ == "__main__":

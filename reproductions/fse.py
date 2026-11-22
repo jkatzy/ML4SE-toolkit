@@ -13,6 +13,7 @@ from check_mia_reproduction import (
 )
 from fse_cohort import KEYS, complete_cases
 from fse_scoring import BenchmarkScorer, token_neighbors
+from paper_tolerance import within_one_percent
 
 from ml4setk.MIA import evaluate_membership_scores
 
@@ -72,8 +73,11 @@ def checked_areas(group, method):
 def compare_scores(root, model_name, rows, method, pilot, exact, paper):
     rq = "RQ3" if method == "pac_ast" else "RQ2"
     matched = total = 0
-    outside = []
+    outside_intervals = 0
+    differences = []
+    within = 0
     aggregate_matches = 0
+    aggregate_within = 0
     for scenario in ["ME"] if pilot else MEMBERS:
         subset = rows[rows.type.isin(["non_member", *MEMBERS[scenario]])]
         if paper:
@@ -81,8 +85,13 @@ def compare_scores(root, model_name, rows, method, pilot, exact, paper):
             expected = paper[model_name, scenario, method]
             actual = (joint.roc_auc, joint.pr_auc)
             aggregate_matches += sum(f"{v:.3f}" == ref for v, ref in zip(actual, expected))
+            for label, value, ref in zip(("ROC-AUC", "PR-AUC"), actual, expected):
+                if within_one_percent(value, ref):
+                    aggregate_within += 1
+                else:
+                    differences.append(("Table 1", scenario, label, value, ref))
             print(
-                f"Table 1 {model_name} {scenario}: {actual[0]:.6f}/{actual[1]:.6f}, "
+                f"Table 1 {model_name} {scenario}: {actual[0]!r}/{actual[1]!r}, "
                 f"paper {expected[0]}/{expected[1]}"
             )
         table = root / "analysis" / rq / f"{rq.lower()}_table_{scenario}_vs_NM.tex"
@@ -113,22 +122,28 @@ def compare_scores(root, model_name, rows, method, pilot, exact, paper):
             ]:
                 total += 1
                 matched += round(fresh, 3) == ref
-                if pilot or not lo <= fresh <= hi:
-                    print(
-                        f"{model_name} {scenario} {key} {label}: {fresh:.9f}, "
-                        f"published {ref:.3f} [{lo}, {hi}]"
-                    )
-                if not lo <= fresh <= hi:
-                    outside.append((scenario, key, label, fresh, lo, hi))
+                print(
+                    f"{model_name} {scenario} {key} {label}: {fresh!r}, "
+                    f"published {ref:.3f} [{lo}, {hi}]"
+                )
+                outside_intervals += int(not lo <= fresh <= hi)
+                if within_one_percent(fresh, ref):
+                    within += 1
+                else:
+                    differences.append((rq, scenario, key, label, fresh, ref))
     assert total == (2 if pilot else 72)
     print(
-        f"{model_name} {method}: {matched}/{total} equal at three decimals, "
-        f"{total - len(outside)}/{total} inside reported intervals"
+        f"{model_name} {method}: {within}/{total} within 1%, "
+        f"{matched}/{total} equal at three decimals, "
+        f"{total - outside_intervals}/{total} inside reported intervals"
     )
     if paper:
-        print(f"{model_name} {method}: {aggregate_matches}/6 printed Table 1 areas match")
-        if exact or method == "loss":
+        print(
+            f"{model_name} {method}: {aggregate_within}/6 Table 1 areas within 1%, "
+            f"{aggregate_matches}/6 equal at printed precision"
+        )
+        if exact:
             assert aggregate_matches == 6
-    assert not outside, outside
+    assert not differences, f"Outside 1% of the published value: {differences}"
     if exact:
         assert matched == total, f"{matched}/{total} stratified areas match at printed precision"

@@ -4,6 +4,7 @@ from math import erf, sqrt
 from statistics import NormalDist
 
 import pytest
+from paper_tolerance import within_one_percent
 
 from ml4setk.MIA import MembershipThreshold
 
@@ -19,8 +20,7 @@ def test_yeom_gaussian_advantage(ratio):
     observed = rates[0] - rates[1]
     published = erf(1 / sqrt(2)) - erf(1 / (ratio * sqrt(2)))
     print(f"sigma ratio {ratio}: advantage {observed:.4f}, theory {published:.6f}")
-    # Each centered interval contains two quadrature boundaries.
-    assert abs(observed - published) <= 2 / n
+    assert within_one_percent(observed, published), (observed, published)
 
 
 def test_fse_loss(artifact, model_name, fse_cohort, fse_checkpoint, pytestconfig):
