@@ -23,6 +23,15 @@ The baseline matched at the paper’s precision. PAC exceeded it by 0.047805, re
 
 The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. Thirteen of 24 Table 1 areas and 60 of 288 RQ2 stratified areas matched at three decimals. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
 
+The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. All eight areas fell inside their reference intervals.
+
+| Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
+| --- | ---: | ---: |
+| StarCoder2-3B | 0.703649 / 0.698 | 0.790301 / 0.788 |
+| StarCoder2-7B | 0.719616 / 0.717 | 0.812720 / 0.811 |
+| Mellum-4B | 0.730368 / 0.726 | 0.812511 / 0.809 |
+| SmolLM3-3B | 0.625204 / 0.627 | 0.703676 / 0.714 |
+
 ## Earlier four-model FSE run with fresh scores
 
 This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)

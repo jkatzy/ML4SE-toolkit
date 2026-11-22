@@ -12,6 +12,15 @@ Koohestani, Al-Kaswan, Katzy, and Izadi report stratified ROC-AUC and PR-AUC in 
 
 Fixing the five neighbor texts tests tokenization, the model forward pass, score calibration, and the reported areas independently of the authors’ Python implementation. Independently generating the syntax edits in Algorithm 1 remains outside this check. The earlier fresh-neighbor run below used the authors’ implementation for that step.
 
+The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. All eight areas fell inside their reference intervals.
+
+| Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
+| --- | ---: | ---: |
+| StarCoder2-3B | 0.609604 / 0.610 | 0.706842 / 0.707 |
+| StarCoder2-7B | 0.626792 / 0.627 | 0.723929 / 0.724 |
+| Mellum-4B | 0.637260 / 0.637 | 0.726284 / 0.726 |
+| SmolLM3-3B | 0.585044 / 0.585 | 0.641550 / 0.642 |
+
 ## Earlier four-model FSE run with fresh scores
 
 This earlier run called the authors’ Java neighbor generator and used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
