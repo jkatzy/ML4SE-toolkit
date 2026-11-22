@@ -1,6 +1,6 @@
 # Loss reproduction report
 
-[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/d2d6958/reproductions/test_loss.py) · [Environment and inputs](index.md)
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/79b61dc/reproductions/test_loss.py) · [Environment and inputs](index.md)
 
 ```bash
 /tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_loss.py
