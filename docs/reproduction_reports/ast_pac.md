@@ -12,6 +12,17 @@ Koohestani, Al-Kaswan, Katzy, and Izadi report stratified ROC-AUC and PR-AUC in 
 
 Fixing the five neighbor texts tests tokenization, the model forward pass, score calibration, and the reported areas independently of the authors’ Python implementation. Independently generating the syntax edits in Algorithm 1 remains outside this check. The earlier fresh-neighbor run below used the authors’ implementation for that step.
 
+## Four-model reproduction with fixed AST neighbors
+
+The standalone test freshly scored all 12,422 files on each of the four models, using the original source and five published AST variants per file. Across the three membership comparisons, **274/288** ROC-AUC and PR-AUC values matched RQ3 at three decimals. **288/288** fell inside the published 95% bootstrap intervals. Each model test ran against a data-only extraction of the deposit and passed.
+
+| Model | Matching areas at three decimals | Inside published intervals |
+| --- | ---: | ---: |
+| StarCoder2-3B | 66/72 | 72/72 |
+| StarCoder2-7B | 71/72 | 72/72 |
+| Mellum-4B | 67/72 | 72/72 |
+| SmolLM3-3B | 70/72 | 72/72 |
+
 The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. All eight areas fell inside their reference intervals.
 
 | Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
