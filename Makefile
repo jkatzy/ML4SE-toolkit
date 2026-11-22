@@ -77,8 +77,8 @@ test-optional:
 	$(UV) run pytest -m "optional_dependency" --no-cov
 
 lint:
-	$(UV) run ruff check src tests examples
-	$(UV) run ruff format --check src tests examples scripts
+	$(UV) run ruff check src tests examples reproductions
+	$(UV) run ruff format --check src tests examples scripts reproductions
 
 smoke:
 	$(UV) run pytest tests/test_smoke.py -q --no-cov

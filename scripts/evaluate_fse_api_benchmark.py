@@ -16,7 +16,8 @@ from check_mia_reproduction import (
     published_table,
     table2_cutoffs,
 )
-from run_fse_api_benchmark import EVALUATORS, KEYS, complete_cases, run_identity
+from fse_cohort import KEYS, complete_cases
+from run_fse_api_benchmark import EVALUATORS, run_identity
 from sklearn.metrics import (
     accuracy_score,
     auc,

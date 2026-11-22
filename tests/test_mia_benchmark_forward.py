@@ -11,10 +11,9 @@ pytestmark = pytest.mark.optional_dependency
 def test_joint_benchmark_scoring_preserves_tokenizer_attention_mask(monkeypatch):
     torch = pytest.importorskip("torch")
     transformers = pytest.importorskip("transformers")
-    pytest.importorskip("sklearn")
-    pytest.importorskip("pandas")
+    pytest.importorskip("numpy")
     monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / "scripts"))
-    from validate_mia_api import BenchmarkScorer
+    from fse_scoring import BenchmarkScorer
 
     ids = torch.tensor([[0, 1, 0]])
     mask = torch.ones_like(ids)

@@ -12,6 +12,7 @@ from statistics import mean
 import numpy as np
 import pandas as pd
 import torch
+from fse_scoring import polarized_gap
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from ml4setk.MIA import evaluate_ast_pac_scores, evaluate_loss_scores, evaluate_pac_scores
@@ -42,14 +43,6 @@ def cohort(root):
     }:
         raise ValueError("Incomplete FSE comparison cohort")
     return joined
-
-
-def polarized_gap(values):
-    ordered = np.sort(values.astype(np.float64))
-    length = len(ordered)
-    low, high = min(30, length), min(5, length)
-    scale = min(1.0, length / (low + high))
-    return ordered[-max(1, int(high * scale)) :].mean() - ordered[: max(1, int(low * scale))].mean()
 
 
 @torch.inference_mode()
