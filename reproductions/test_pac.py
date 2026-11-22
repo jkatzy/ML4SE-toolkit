@@ -96,8 +96,9 @@ def wikimia_areas():
     return pac, loss
 
 
-def test_acl_pac_exceeds_perplexity(wikimia_areas):
+def test_acl_perplexity_control_and_pac_order(wikimia_areas):
     pac, loss = wikimia_areas
+    assert round(loss, 3) == 0.616
     assert pac > loss
 
 
