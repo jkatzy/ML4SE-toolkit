@@ -128,3 +128,22 @@ def test_table_two_6b_from_archived_confusion_matrices():
             precision, recall = tp / (tp + fp), tp / (tp + fn)
             print(f"6.9b,{stage},svg,{precision:.6f},{recall:.6f}")
             assert (round(precision, 3), round(recall, 3)) == expected
+
+
+def test_final_model_correlations_and_rates():
+    from itertools import combinations
+    from math import sqrt
+
+    import numpy as np
+
+    # The paper's Figure 1a correlates binary final-checkpoint agreement flags.
+    ids = {size: np.sort(read_ids(f"duped.{size}")) for size in [*SIZES, "12b"]}
+    for a, b in combinations(ids, 2):
+        left, right = ids[a], ids[b]
+        n_a, n_b = len(left), len(right)
+        both = len(np.intersect1d(left, right, assume_unique=True))
+        corr = (TOTAL * both - n_a * n_b) / sqrt(n_a * n_b * (TOTAL - n_a) * (TOTAL - n_b))
+        print(f"Figure1a,{a},{b},{corr:.6f}")
+    for size, values in ids.items():
+        for suite, count in [("duped", len(values)), ("deduped", len(read_ids(f"deduped.{size}")))]:
+            print(f"Figure7,{suite},{size},{count},{count / TOTAL:.8f}")
