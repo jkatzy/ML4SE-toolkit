@@ -8,6 +8,16 @@ Each report pairs one paper’s figures or tables with measurements from ML4SETK
 | [PAC · Ye et al., Table 1](pac.md), GPT-Neo on original WikiMIA | ROC-AUC | 0.666 | 0.663491 |
 | [AST-PAC · Koohestani et al., RQ3](ast_pac.md), StarCoder2-3B, Mid-Low stratum, exact members | ROC-AUC | 0.610 | 0.609604 |
 
+## Coverage across the three papers
+
+All three independent reproductions are partial. None has a documented hardware exception.
+
+| Paper | Available measurements | Outstanding coverage |
+| --- | --- | --- |
+| [Loss inventory](loss.md#coverage-of-the-original-paper) | Four points on the Figure 2b theoretical curve | All empirical panels and Table I |
+| [PAC inventory](pac.md#coverage-of-the-original-paper) | Two of 224 model-specific Table 1 AUCs and the Table 6 cohort counts | Remaining Table 1 conditions, all seven empirical figures, and other table comparisons |
+| [AST-PAC inventory](ast_pac.md#coverage-of-the-original-paper) | All published figures and tables have historical comparisons across the benchmark. Four models also scored fixed AST edits. | Fully independent fresh AST generation and individual values for 14 fixed-neighbor comparisons |
+
 ## Adding a paper
 
 1. Inventory every experimental figure and table in the paper and its appendices. For each panel or table, list the models, datasets, baselines, sweep values, and repeats that produced its series, cells, and uncertainty estimates. Attribute each baseline experiment to the paper that ran it.

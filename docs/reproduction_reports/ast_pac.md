@@ -4,7 +4,27 @@
 
 Koohestani et al. evaluated AST-PAC alongside two baselines on Java code. [Loss baseline](#loss-baseline) · [PAC baseline](#pac-baseline)
 
-## Koohestani et al., Figure 2 · Scoring the published AST neighbors
+## Coverage of the original paper
+
+**Partial independent reproduction.** Both tables and all three figures have numerical comparisons from the four-model benchmark. Its fresh AST edits came from the authors’ generator. The paper-specific toolkit script separately checks scoring on deposited edits. End-to-end generation and evaluation of fresh AST edits using only the toolkit remain pending. No hardware exception is documented. [Final paper](https://repository.tudelft.nl/file/File_af66d741-b167-4406-9bc1-7f4474f47fed) · [Historical benchmark command](full_benchmark.md#repeat-the-historical-run-with-the-authors-ast-generator) · [Toolkit scoring command](#reproduce-these-measurements)
+
+| Published item | Experiments covered | Measurements and gaps |
+| --- | --- | --- |
+| Table 1 | Loss and PAC, four models, three membership cohorts, two metrics | All 48 published AUCs are paired below. The printed StarCoder2-7B PAC near-member PR-AUC is 6.74. The deposited notebook gives 0.674191 and the toolkit measured 0.673612. [Loss](#loss-baseline) · [PAC](#pac-baseline) |
+| Table 2 | Bucket boundaries from the full Java dataset | All ten numeric cutoffs checked across 12,484 rows. Values below. |
+| Figure 1 | Six panels for Loss and PAC, crossing file size, alphanumeric fraction, and AST node count with ROC-AUC and PR-AUC | Fresh estimates and bootstrap endpoints for all four models and three cohort comparisons. [Loss pairs](data/loss_fse.csv) · [PAC pairs](data/pac_fse.csv) |
+| Figure 2 | Same six panels for PAC and AST-PAC | Historical fresh-neighbor estimates and interval endpoints available. The fixed-neighbor pilot retained eight paired AUCs. The full fixed-neighbor run retained summary counts, leaving 14 individual comparisons unverified. [PAC pairs](data/pac_fse.csv) · [AST-PAC pairs](data/ast_pac_fse.csv) · [Pilot pairs](data/ast_pac_fixed_pilot.csv) |
+| Figure 3 | Change ratio for two methods, four models, and three AST size groups | All 72 medians and quartiles paired in the historical run. Independent AST generation remains pending. [PAC change ratios](data/pac_fse.csv) · [AST-PAC change ratios](data/ast_pac_fse.csv) |
+
+### Table 2 bucket boundaries
+
+| Dimension | Paper cutoffs | Measured cutoffs |
+| --- | --- | --- |
+| File size | 1074, 1946, 3369, 6844 | 1074, 1946, 3369, 6844 |
+| AST node count | 58, 211 | 58, 211 |
+| Alphanumeric fraction | 0.2, 0.4, 0.6, 0.8 | 0.1975083, 0.4, 0.6, 0.8 |
+
+## Figure 2 companion table · Scoring the published AST neighbors
 
 On the StarCoder2-3B pilot, the FSE companion table gives **0.610 ROC-AUC and 0.707 PR-AUC**. ML4SETK measured **0.609604 and 0.706842**. The same comparison below covers all four models on 132 exact members and 93 nonmembers in the Mid-Low alphanumeric stratum. Each file was scored with the five AST variants supplied in the deposit. [Koohestani et al., FSE Companion 2026](https://doi.org/10.1145/3803437.3805588) · [RQ3 exact-member companion table](https://doi.org/10.5281/zenodo.18348152)
 
