@@ -10,26 +10,26 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 
-REPORTS = Path(__file__).resolve().parents[1] / "docs/reproduction_reports"
+REPORTS = Path(__file__).resolve().parents[3] / "docs/reproduction_reports/ml4setk/MIA"
 PAPER = "#214567"
 REPRODUCED = "#ad4826"
 GRID = "#dbe2e5"
 
 
-def rows(filename):
-    with (REPORTS / "data" / filename).open(encoding="utf-8") as source:
+def rows(module, filename):
+    with (REPORTS / module / "data" / filename).open(encoding="utf-8") as source:
         return list(csv.DictReader(source))
 
 
-def save(figure, name):
-    target = REPORTS / "figures"
+def save(figure, module, name):
+    target = REPORTS / module / "figures"
     target.mkdir(exist_ok=True)
     figure.savefig(target / name, dpi=160, bbox_inches="tight", pad_inches=0.18)
     plt.close(figure)
 
 
 def loss():
-    data = rows("loss_figure2b.csv")
+    data = rows("loss", "loss_figure2b.csv")
     fig, ax = plt.subplots(figsize=(7.3, 3.2), layout="constrained")
     ratios = [1 + i / 50 for i in range(351)]
     curve = [erf(1 / sqrt(2)) - erf(1 / (r * sqrt(2))) for r in ratios]
@@ -51,11 +51,11 @@ def loss():
     )
     ax.grid(axis="y", color=GRID)
     ax.legend(loc="lower right", frameon=False)
-    save(fig, "loss_figure2b.png")
+    save(fig, "loss", "loss_figure2b.png")
 
 
 def pac():
-    data = {r["method"]: r for r in rows("pac_table1.csv")}
+    data = {r["method"]: r for r in rows("pac", "pac_table1.csv")}
     fig, ax = plt.subplots(figsize=(7.3, 2.55), layout="constrained")
     for y, field in enumerate(["reproduced_roc_auc", "paper_roc_auc"]):
         a, b = (float(data[m][field]) for m in ("Perplexity", "PAC"))
@@ -74,11 +74,11 @@ def pac():
     )
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.24), ncol=2, frameon=False)
     ax.grid(axis="x", color=GRID, alpha=0.7)
-    save(fig, "pac_table1.png")
+    save(fig, "pac", "pac_table1.png")
 
 
 def ast_pac():
-    data = rows("ast_pac_fixed_pilot.csv")
+    data = rows("ast_pac", "ast_pac_fixed_pilot.csv")
     fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.0), sharey=True, sharex=True)
     fig.subplots_adjust(left=0.19, right=0.98, bottom=0.16, top=0.76, wspace=0.14)
     for ax, metric in zip(axes, ["ROC-AUC", "PR-AUC"]):
@@ -120,7 +120,7 @@ def ast_pac():
         ax.grid(axis="x", color=GRID)
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="upper center", ncol=2, frameon=False)
-    save(fig, "ast_pac_fixed_pilot.png")
+    save(fig, "ast_pac", "ast_pac_fixed_pilot.png")
 
 
 def fse_strata():
@@ -131,7 +131,7 @@ def fse_strata():
     for col, (name, title, section) in enumerate(
         [("loss", "Loss", "RQ2"), ("pac", "PAC", "RQ2"), ("ast_pac", "AST-PAC", "RQ3")]
     ):
-        data = rows(f"{name}_fse.csv")
+        data = rows("ast_pac", f"{name}_fse.csv")
         for row, metric in enumerate(["ROC-AUC", "PR-AUC"]):
             ax = axes[row, col]
             pairs = [
@@ -164,7 +164,7 @@ def fse_strata():
                 ax.set_xlabel("FSE companion table")
     limits = (min(values) - 0.02, max(values) + 0.02)
     axes[0, 0].set(xlim=limits, ylim=limits)
-    save(fig, "fse_strata.png")
+    save(fig, "ast_pac", "fse_strata.png")
 
 
 if __name__ == "__main__":
