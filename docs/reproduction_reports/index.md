@@ -1,28 +1,16 @@
 # Reproduction reports
 
-Each report pairs one paper’s figures or tables with measurements from ML4SETK. Follow the study link for its scope, plots, comparison data, and reproduction command. The table gives one result from each study.
+Reports follow the Python module path under `src/`. Each paper-backed module has its own report, comparison data, figures, and linked reproduction script.
 
-| Study and comparison | Metric | Paper | ML4SETK |
-| --- | --- | ---: | ---: |
-| [Loss · Yeom et al., Figure 2b](loss.md), standard deviation ratio 8 | Theoretical / measured membership advantage | 0.583213 | 0.5832 |
-| [PAC · Ye et al., Table 1](pac.md), GPT-Neo on original WikiMIA | ROC-AUC | 0.666 | 0.663491 |
-| [AST-PAC · Koohestani et al., RQ3](ast_pac.md), StarCoder2-3B, Mid-Low stratum, exact members | ROC-AUC | 0.610 | 0.609604 |
-
-## Coverage across the three papers
-
-All three independent reproductions are partial. None has a documented hardware exception.
-
-| Paper | Available measurements | Outstanding coverage |
-| --- | --- | --- |
-| [Loss inventory](loss.md#coverage-of-the-original-paper) | Four points on the Figure 2b theoretical curve | All empirical panels and Table I |
-| [PAC inventory](pac.md#coverage-of-the-original-paper) | Two of 224 model-specific Table 1 AUCs and the Table 6 cohort counts | Remaining Table 1 conditions, all seven empirical figures, and other table comparisons |
-| [AST-PAC inventory](ast_pac.md#coverage-of-the-original-paper) | All published figures and tables have historical comparisons across the benchmark. Four models also scored fixed AST edits. | Fully independent fresh AST generation and individual values for 14 fixed-neighbor comparisons |
+| Source package | Module reports |
+| --- | --- |
+| [ml4setk.MIA](ml4setk/MIA/index.md) | [loss](ml4setk/MIA/loss/index.md) · [pac](ml4setk/MIA/pac/index.md) · [ast_pac](ml4setk/MIA/ast_pac/index.md) |
 
 ## Adding a paper
+
+For `src/<package>/<module>.py`, put the report in `docs/reproduction_reports/<package>/<module>/index.md` and its runnable script in `reproductions/<package>/test_<module>.py`. Preserve the spelling and case of every package directory. Keep figures, data and appendices beside the report for the paper that produced the comparison. Link the report from the package index and the documentation navigation.
 
 1. Inventory every experimental figure and table in the paper and its appendices. For each panel or table, list the models, datasets, baselines, sweep values, and repeats that produced its series, cells, and uncertainty estimates. Attribute each baseline experiment to the paper that ran it.
 2. Run every listed experiment with the paper’s dedicated toolkit script. When multiple plots use the same measurements, link them to the same run. Record the command, dataset and model revisions, seeds, cohort sizes, metric conventions, and any use of the authors’ code or saved outputs.
 3. Show published and measured values side by side with units and source locations. Identify theoretical predictions, fresh measurements, and results calculated from archived scores. Keep partially run panels or tables open and name the outstanding conditions.
 4. Allow an exception only for a configuration that cannot fit the available hardware. Record the exact configuration, the limiting resource, available capacity, and the observed failure or calculation establishing the requirement. Run the remaining configurations that fit. Missing data, unavailable checkpoints or APIs, and unfinished runs stay pending. Close the inventory only when every entry has paired measurements or a documented hardware exception.
-
-To redraw these figures from the included CSVs, run `uv run --with matplotlib python reproductions/plot_reports.py` from the repository root.

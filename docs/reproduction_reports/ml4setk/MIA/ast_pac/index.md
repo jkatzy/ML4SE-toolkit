@@ -1,5 +1,7 @@
 # AST-PAC reproduction report
 
+[Source module `ml4setk.MIA.ast_pac`](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/src/ml4setk/MIA/ast_pac.py) · [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/reproductions/ml4setk/MIA/test_ast_pac.py)
+
 *AST-PAC: AST-guided Membership Inference for Code*. Roham Koohestani, Ali Al-Kaswan, Jonathan Katzy, and Maliheh Izadi. FSE Companion 2026. [Paper](https://doi.org/10.1145/3803437.3805588)
 
 Koohestani et al. evaluated AST-PAC alongside two baselines on Java code. [Loss baseline](#loss-baseline) · [PAC baseline](#pac-baseline)
@@ -151,7 +153,7 @@ The earlier 225-file run used a different model forward call. The last column re
 
 ## Reproduce these measurements
 
-The script scores the published AST neighbors and both baselines with ML4SETK. From the repository root, prepare a CUDA environment. [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/2e976ea/reproductions/test_ast_pac.py)
+The script scores the published AST neighbors and both baselines with ML4SETK. From the repository root, prepare a CUDA environment.
 
 ```bash
 uv venv --python 3.13 /tmp/ml4setk-repro
@@ -173,7 +175,7 @@ export ML4SETK_FSE_PDF="$PWD/fse.pdf"
 Back at the repository root, run the pytest command below. The full FSE entry points score all 12,422 complete cases per model. Table 1 comparison uses Poppler’s `pdftotext`. For a shorter run, add `--fse-pilot` to score the published 225-file exact-member Mid-Low stratum on each model. Add `--fse-model SC2-3B` to select one model.
 
 ```bash
-/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_ast_pac.py
+/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/ml4setk/MIA/test_ast_pac.py
 ```
 
 The earlier runs have separate commands and inputs. [Historical four-model run](full_benchmark.md#repeat-the-historical-run-with-the-authors-ast-generator) · [Archived-score audit](archived_scores.md#repeat-the-comparison)

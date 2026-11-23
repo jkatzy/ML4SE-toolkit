@@ -57,7 +57,11 @@ Work under `src/ml4setk/MIA/`. Use the AST-PAC, PAC, and Loss entries in
    blockers leave the experiment pending and the paper reproduction incomplete.
 6. **Record the reproduction.** Name the exact paper table or artifact result,
    model, cohorts, metric definition, comparison precision, command, and
-   observed result. Give each paper its own report and runnable script. Put a
+   observed result. Mirror the path of each paper-backed module under `src/`.
+   For `src/<package>/<module>.py`, publish its report at
+   `docs/reproduction_reports/<package>/<module>/index.md` and its script at
+   `reproductions/<package>/test_<module>.py`. Keep data, figures, and appendices
+   with the owning report. Add it to the package index and MkDocs navigation. Put a
    baseline comparison in the report and script for the paper that ran it.
    Pair each reference value with the measured toolkit value in a table or plot.
    Link each result in the inventory to its script command and paired measurements.

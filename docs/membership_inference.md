@@ -8,9 +8,9 @@ benchmark adapter implements this interface for Loss, PAC, and AST-PAC.
 
 Each report pairs an original paper’s results with ML4SETK measurements and links to the script and inputs for that study.
 
-- [Yeom et al. (CSF 2018), loss threshold and the Figure 2b theoretical curve](reproduction_reports/loss.md)
-- [Ye et al. (Findings of ACL 2024), PAC and perplexity on WikiMIA](reproduction_reports/pac.md)
-- [Koohestani et al. (FSE Companion 2026), AST-PAC and both Java baselines](reproduction_reports/ast_pac.md)
+- [Yeom et al. (CSF 2018), loss threshold and the Figure 2b theoretical curve](reproduction_reports/ml4setk/MIA/loss/index.md)
+- [Ye et al. (Findings of ACL 2024), PAC and perplexity on WikiMIA](reproduction_reports/ml4setk/MIA/pac/index.md)
+- [Koohestani et al. (FSE Companion 2026), AST-PAC and both Java baselines](reproduction_reports/ml4setk/MIA/ast_pac/index.md)
 
 ## Shared scoring API
 
@@ -77,7 +77,7 @@ notebook. Across the 12 reported StarCoder2-3B strata for exact members versus
 nonmembers, both area estimates match the archived table to three decimal
 places. For example, the complex-files stratum yields ROC-AUC 0.638 and
 PR-AUC 0.603 for 1,063 members and 1,189 nonmembers. The observed agreement
-covers the archived scores and point estimates. A separate report checks fresh model scores on the deposited neighbor texts. [AST-PAC reproduction report](reproduction_reports/ast_pac.md) · [Versioned replication package, deposited by Roham Koohestani](https://doi.org/10.5281/zenodo.18348152)
+covers the archived scores and point estimates. A separate report checks fresh model scores on the deposited neighbor texts. [AST-PAC reproduction report](reproduction_reports/ml4setk/MIA/ast_pac/index.md) · [Versioned replication package, deposited by Roham Koohestani](https://doi.org/10.5281/zenodo.18348152)
 
 **Rights and reuse.** The final paper and the Zenodo software deposit each
 declare CC BY 4.0. The ZIP contains no separate LICENSE, COPYING, or NOTICE
@@ -101,7 +101,7 @@ study. Lower raw PAC scores favor membership. The three StarCoder2-3B
 comparisons agree with both metrics in Table 1 at the printed precision.
 The separate reproduction report checks Ye et al.’s original GPT-Neo row on WikiMIA. The pinned PAC repository contains no
 saved score file, and the linked StackMIAsub benchmark provides snippets and
-labels. [PAC reproduction report](reproduction_reports/pac.md) · [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [Original benchmark revision](https://huggingface.co/datasets/darklight03/StackMIAsub/tree/c87c55d8b93fcf525fbf5fbf9b3bff6808b30ac6)
+labels. [PAC reproduction report](reproduction_reports/ml4setk/MIA/pac/index.md) · [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [Original benchmark revision](https://huggingface.co/datasets/darklight03/StackMIAsub/tree/c87c55d8b93fcf525fbf5fbf9b3bff6808b30ac6)
 
 **Rights and reuse.** The authors' PAC repository carries MIT, copyright
 2024 Wentao Ye, at commit `79c6eca`. The MIT terms permit incorporation
@@ -128,7 +128,7 @@ Models.” *USENIX Security 2021*. [Proceedings](https://www.usenix.org/conferen
 in Table 1 at the printed precision. This verifies the FSE benchmark's use of
 Loss. The separate reproduction report checks the theoretical curve in Yeom et al.’s Figure 2b. The empirical private-data extraction experiment in the 2021 paper remains outside its scope.
 Yeom's pinned repository contains experiment scripts and input data. Its
-README describes generating the result files locally. [Loss reproduction report](reproduction_reports/loss.md) · [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [CSF artifact README](https://github.com/sam-yeom/ml-privacy-csf18/blob/7b302fb80b853b040941eb90b37c0491f55e4928/README.md)
+README describes generating the result files locally. [Loss reproduction report](reproduction_reports/ml4setk/MIA/loss/index.md) · [FSE evaluation](https://doi.org/10.1145/3803437.3805588) · [CSF artifact README](https://github.com/sam-yeom/ml-privacy-csf18/blob/7b302fb80b853b040941eb90b37c0491f55e4928/README.md)
 
 **Rights and reuse.** Yeom's CSF artifact carries MIT, copyright 2019 Samuel
 Yeom, at commit `7b302fb`. The same MIT notice obligations apply to reuse of

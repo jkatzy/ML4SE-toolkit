@@ -1,5 +1,7 @@
 # Loss reproduction report
 
+[Source module `ml4setk.MIA.loss`](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/src/ml4setk/MIA/loss.py) · [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/reproductions/ml4setk/MIA/test_loss.py)
+
 *Privacy Risk in Machine Learning: Analyzing the Connection to Overfitting*. Samuel Yeom, Irene Giacomelli, Matt Fredrikson, and Somesh Jha. IEEE CSF 2018. [Paper](https://doi.org/10.1109/CSF.2018.00027)
 
 ## Yeom et al., Figure 2b · Membership advantage
@@ -35,10 +37,10 @@ The four measured points check the theoretical curve. The trained regression and
 
 ## Reproduce these measurements
 
-Run from the repository root on CPU. [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/2e976ea/reproductions/test_loss.py)
+Run from the repository root on CPU.
 
 ```bash
 uv venv --python 3.13 /tmp/ml4setk-repro
 uv pip install --python /tmp/ml4setk-repro/bin/python -e . pytest==9.0.2
-/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_loss.py
+/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/ml4setk/MIA/test_loss.py
 ```

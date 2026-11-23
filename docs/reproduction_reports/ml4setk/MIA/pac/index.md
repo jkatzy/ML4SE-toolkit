@@ -1,5 +1,7 @@
 # PAC reproduction report
 
+[Source module `ml4setk.MIA.pac`](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/src/ml4setk/MIA/pac.py) · [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/reproductions/ml4setk/MIA/test_pac.py)
+
 *Data Contamination Calibration for Black-box LLMs*. Wentao Ye, Jiaqi Hu, Liyao Li, Haobo Wang, Gang Chen, and Junbo Zhao. Findings of ACL 2024. [Paper](https://doi.org/10.18653/v1/2024.findings-acl.644)
 
 ## Ye et al., Table 1 · GPT-Neo-2.7B on WikiMIA
@@ -51,11 +53,11 @@ The reproduction script checks the labels in the pinned original-text files befo
 
 ## Reproduce these measurements
 
-Run from the repository root with a CUDA GPU. The script downloads the pinned WikiMIA texts and GPT-Neo checkpoint on first use. [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/2e976ea/reproductions/test_pac.py)
+Run from the repository root with a CUDA GPU. The script downloads the pinned WikiMIA texts and GPT-Neo checkpoint on first use.
 
 ```bash
 uv venv --python 3.13 /tmp/ml4setk-repro
 uv pip install --python /tmp/ml4setk-repro/bin/python -e . pytest==9.0.2 \
   torch==2.8.0 transformers==4.55.4 pandas==3.0.6 pyarrow==25.0.0 numpy==2.5.5
-/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_pac.py
+/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/ml4setk/MIA/test_pac.py
 ```

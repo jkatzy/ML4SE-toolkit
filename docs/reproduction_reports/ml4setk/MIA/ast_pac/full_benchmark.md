@@ -2,7 +2,7 @@
 
 This experiment tests whether a benchmark implementation of `MembershipScorer` can score Java source through `score_many`, whether the shared and method-specific evaluators agree, and how accurately fresh measurements recover the FSE results. The reference study is Roham Koohestani, Ali Al-Kaswan, Jonathan Katzy, and Maliheh Izadi, *AST-PAC: AST-guided Membership Inference for Code*, FSE Companion 2026. [Proceedings paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication package](https://doi.org/10.5281/zenodo.18348152)
 
-This benchmark supplements the AST-PAC paper report. This page preserves the earlier joint benchmark, which used the FSE authors’ external Java augmentation function for AST-PAC. [AST-PAC report and reproduction script](ast_pac.md)
+This benchmark supplements the AST-PAC paper report. This page preserves the earlier joint benchmark, which used the FSE authors’ external Java augmentation function for AST-PAC. [AST-PAC report and reproduction script](index.md)
 
 ## Four-model results
 
@@ -16,9 +16,9 @@ The tables below are downloadable aggregates from the same run. Each row identif
 
 | Method | Paired aggregate values | Comparison in the FSE report |
 | --- | --- | --- |
-| Loss | [Download CSV](data/loss_fse.csv) | [Loss baseline](ast_pac.md#loss-baseline) |
-| PAC | [Download CSV](data/pac_fse.csv) | [PAC baseline](ast_pac.md#pac-baseline) |
-| AST-PAC | [Download CSV](data/ast_pac_fse.csv) | [AST-PAC](ast_pac.md) |
+| Loss | [Download CSV](data/loss_fse.csv) | [Loss baseline](index.md#loss-baseline) |
+| PAC | [Download CSV](data/pac_fse.csv) | [PAC baseline](index.md#pac-baseline) |
+| AST-PAC | [Download CSV](data/ast_pac_fse.csv) | [AST-PAC](index.md) |
 
 ## Protocol
 
