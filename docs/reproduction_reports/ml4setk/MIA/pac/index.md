@@ -4,6 +4,18 @@
 
 *Data Contamination Calibration for Black-box LLMs*. Wentao Ye, Jiaqi Hu, Liyao Li, Haobo Wang, Gang Chen, and Junbo Zhao. Findings of ACL 2024. [Paper](https://doi.org/10.18653/v1/2024.findings-acl.644)
 
+## Model selection and toolkit API
+
+Ye et al. evaluated ten target models across Table 1. The paper specifies a model for each row. The authors’ released program requires the user to select a local checkpoint or a hosted model. GPT-Neo-2.7B is the checkpoint chosen for the ML4SETK reproduction of one row. [Paper, §5.1 and Table 1](https://aclanthology.org/2024.findings-acl.644.pdf) · [Authors’ model selection code](https://github.com/yyy01/PAC/blob/79c6eca14fed3a64a7a4201cdca263de52501dae/src/prob.py#L40-L46)
+
+| Table 1 datasets | Target models |
+| --- | --- |
+| Both WikiMIA and StackMIAsub | LLaMA-13B, LLaMA2-13B, GPT-J-6B, GPT-Neo-2.7B, OPT-6.7B, Pythia-6.9B |
+| WikiMIA only | davinci-002, babbage-002 |
+| StackMIAsub only | StableLM-7B, Falcon-7B |
+
+**The installed PAC module currently evaluates precomputed scores.** Its public function, `evaluate_pac_scores(members=..., nonmembers=...)`, returns aggregate metrics. Model loading and text scoring for the GPT-Neo comparison live in the reproduction script. The package still needs text-scoring calls for both the configuration’s default checkpoint and a caller-supplied model and tokenizer.
+
 ## Ye et al., Table 1 · GPT-Neo-2.7B on WikiMIA
 
 The paper reports a ROC-AUC increase of **0.050** from perplexity to PAC. ML4SETK measured an increase of **0.047805** on the same original-text WikiMIA benchmark. The comparison pools 861 members and 789 nonmembers across the four length groups in Table 6. [Ye et al., Findings of ACL 2024](https://aclanthology.org/2024.findings-acl.644/)
@@ -12,6 +24,8 @@ The paper reports a ROC-AUC increase of **0.050** from perplexity to PAC. ML4SET
 | --- | ---: | ---: |
 | Perplexity | 0.616 | 0.615686950 |
 | PAC | 0.666 | 0.663491475 |
+
+The closest published baseline in this row is Min-K% at 0.648. Its ML4SETK measurement is pending, so this run checks the gain over perplexity only. For ROC-AUC, the toolkit follows the authors’ released evaluator, which negates the raw PAC scores. Algorithm 1 in the paper presents a greater-than threshold on the raw score. The comparison above checks ranking under the released evaluator’s convention. [Table 1 and Algorithm 1](https://aclanthology.org/2024.findings-acl.644.pdf) · [Authors’ evaluation code](https://github.com/yyy01/PAC/blob/79c6eca14fed3a64a7a4201cdca263de52501dae/attack.py#L44-L49)
 
 ![WikiMIA ROC-AUC for perplexity and PAC in the paper and the ML4SETK run.](figures/pac_table1.png)
 
