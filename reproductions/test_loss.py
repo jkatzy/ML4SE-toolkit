@@ -1,4 +1,4 @@
-"""Yeom et al. (CSF 2018), Fig. 2b theoretical curve, and the FSE loss baseline."""
+"""Yeom et al. (CSF 2018), Fig. 2b theoretical membership advantage curve."""
 
 from math import erf, sqrt
 from statistics import NormalDist
@@ -21,16 +21,3 @@ def test_yeom_gaussian_advantage(ratio):
     published = erf(1 / sqrt(2)) - erf(1 / (ratio * sqrt(2)))
     print(f"sigma ratio {ratio}: advantage {observed:.4f}, theory {published:.6f}")
     assert within_one_percent(observed, published), (observed, published)
-
-
-def test_fse_loss(artifact, model_name, fse_cohort, fse_checkpoint, pytestconfig):
-    from fse import score_and_compare
-
-    score_and_compare(
-        artifact,
-        model_name,
-        fse_cohort,
-        fse_checkpoint,
-        "loss",
-        pytestconfig,
-    )

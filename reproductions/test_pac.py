@@ -1,4 +1,4 @@
-"""Ye et al. (Findings of ACL 2024), Table 1, and the FSE PAC baseline."""
+"""Ye et al. (Findings of ACL 2024), Table 1, original WikiMIA texts with GPT-Neo."""
 
 import random
 from statistics import mean
@@ -8,19 +8,6 @@ from paper_tolerance import within_one_percent
 
 from ml4setk.MIA import evaluate_loss_scores, evaluate_pac_scores
 from ml4setk.MIA.pac import _polarized_distance
-
-
-def test_fse_pac(artifact, model_name, fse_cohort, fse_checkpoint, pytestconfig):
-    from fse import score_and_compare
-
-    score_and_compare(
-        artifact,
-        model_name,
-        fse_cohort,
-        fse_checkpoint,
-        "pac",
-        pytestconfig,
-    )
 
 
 @pytest.fixture(scope="module")

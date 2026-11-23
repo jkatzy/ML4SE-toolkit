@@ -1,7 +1,10 @@
-"""Koohestani et al. (FSE Companion 2026), RQ3, with fixed published neighbor texts."""
+"""Koohestani et al. (FSE Companion 2026), Table 1 baselines and RQ2/RQ3 stratum comparisons."""
+
+import pytest
 
 
-def test_fse_ast_pac(artifact, model_name, fse_cohort, fse_checkpoint, pytestconfig):
+@pytest.mark.parametrize("method", ["loss", "pac", "pac_ast"])
+def test_fse_paper(method, artifact, model_name, fse_cohort, fse_checkpoint, pytestconfig):
     from fse import score_and_compare
 
     score_and_compare(
@@ -9,6 +12,6 @@ def test_fse_ast_pac(artifact, model_name, fse_cohort, fse_checkpoint, pytestcon
         model_name,
         fse_cohort,
         fse_checkpoint,
-        "pac_ast",
+        method,
         pytestconfig,
     )
