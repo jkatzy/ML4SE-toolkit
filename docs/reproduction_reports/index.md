@@ -1,12 +1,14 @@
 # Reproduction reports
 
-Each report links to one pytest file. Running that file exercises the named method and prints observed values beside their references. The reproduction suite lives in `reproductions/` so normal unit tests stay independent of model downloads.
+Each report opens with the original study’s figure or table and the corresponding ML4SETK measurements. The plots use published values, saved observations, and labeled axes. The linked CSVs provide the numbers for reuse.
 
-| Report | Original paper result checked | Additional FSE evidence |
-| --- | --- | --- |
-| [Loss](loss.md) | Yeom et al., Figure 2b, theoretical Gaussian curve | Negative-loss ROC-AUC and PR-AUC |
-| [PAC](pac.md) | Ye et al., Table 1, GPT-Neo-2.7B on original WikiMIA | Token-swap PAC on Java |
-| [AST-PAC](ast_pac.md) | Koohestani et al., RQ3 companion tables, fixed AST-neighbor texts | Four models and three membership comparisons |
+| Study and comparison | Metric | Paper | ML4SETK |
+| --- | --- | ---: | ---: |
+| [Loss · Yeom et al., Figure 2b](loss.md), standard deviation ratio 8 | Theoretical / measured membership advantage | 0.583213 | 0.5832 |
+| [PAC · Ye et al., Table 1](pac.md), GPT-Neo on original WikiMIA | ROC-AUC | 0.666 | 0.663491 |
+| [AST-PAC · Koohestani et al., RQ3](ast_pac.md), StarCoder2-3B, Mid-Low stratum, exact members | ROC-AUC | 0.610 | 0.609604 |
+
+The reports also link to their individual pytest scripts. The four-model FSE comparison includes a plot and downloadable paired values for every measured stratum in the earlier benchmark. [FSE plots and comparison tables](full_benchmark.md#four-model-results)
 
 ## Run a reproduction
 
@@ -31,8 +33,8 @@ export ML4SETK_FSE_PDF="$PWD/fse.pdf"
 
 Back at the repository root, run the command in the method report. The full FSE entry points score all 12,422 complete cases per model. Table 1 comparison uses Poppler’s `pdftotext`. For a shorter run, add `--fse-pilot` to score the published 225-file exact-member Mid-Low stratum on each model. Add `--fse-model SC2-3B` to select one model.
 
-A numerical paper result passes when `abs(observed − published) ≤ 0.01 × abs(published)`, using the unrounded observation. A published zero requires an observed zero. For example, the acceptable range around 0.666 is 0.65934 to 0.67266. The rule was adopted after the runs and is applied uniformly to the saved measurements.
+To redraw the report plots from the included aggregate CSVs, run `uv run --with matplotlib python reproductions/plot_reports.py` from the repository root. Model inference is only needed to generate new measurements.
 
-The FSE checks still require complete cohorts and exact agreement between the two toolkit evaluators. They print each area, its published reference and interval, and counts at both 1% and printed precision. Add `--exact-fse` to also require equality at printed precision. Confidence interval coverage is reported separately. The ACL PAC test checks the two ROC-AUCs and the ordering reported in the paper.
+The reproduction tests also check cohort coverage, evaluator agreement, and the paper comparisons using the project’s 1% relative tolerance. The reports display the measurements directly.
 
 The archived-score audit and the earlier fresh-neighbor experiment document two other comparisons on the same FSE data. The latter used an external Java augmentation implementation for AST-PAC. [Archived-score audit](archived_scores.md) · [Historical four-model protocol](full_benchmark.md)

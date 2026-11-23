@@ -8,17 +8,17 @@ The method reports link to the standalone ML4SETK reproduction tests. This page 
 
 The November 21–22, 2026 run produced **149,064 fresh scores** across 49,688 model–file pairs on two NVIDIA A40 GPUs. Each model scored 12,422 files with all three methods. The joint evaluator and each method evaluator agreed exactly on every area they both computed. Their ROC-AUC and trapezoidal PR-AUC agreed with scikit-learn to an absolute tolerance of `1e-12`.
 
-| Method | Printed Table 1 within 1% | Stratified areas within 1% | Stratified areas at printed precision | Fresh areas inside reference 95% intervals | Largest stratified area difference |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| [Loss](loss.md) | 24/24 | 288/288 | 285/288 | 288/288 | 0.000536 |
-| [PAC](pac.md) | 23/24 | 281/288 | 60/288 | 288/288 | 0.010324 |
-| [AST-PAC](ast_pac.md) | — | 262/288 | 34/288 | 288/288 | 0.010223 |
+![Published FSE stratum AUCs on the horizontal axis and reproduced AUCs on the vertical axis for Loss, PAC, and AST-PAC.](figures/fse_strata.png)
 
-The paper reports three decimals for these areas. Table 1 includes Loss and PAC. The 288 stratified areas per method comprise 36 strata-by-scenario comparisons on each model, with two areas per comparison. This summary uses RQ2 for Loss and PAC and RQ3 for AST-PAC. The six deposited tables also repeat the PAC point estimates in RQ3. Coverage by a published interval is descriptive and depends on the width of that interval.
+Each panel shows 144 paired estimates across four models, three membership comparisons and 12 eligible strata. The diagonal marks equal AUCs. The Loss and PAC references are from the RQ2 companion tables, and AST-PAC is from RQ3. For this full-benchmark run, PAC used newly drawn token swaps and AST-PAC used the authors’ Java neighbor generator.
 
-All ten Table 2 cutoffs matched at printed precision. Nine pass at 1% relative tolerance. The low alphanumeric cutoff was 0.1975083 against a printed 0.2 (1.246% relative error). The per-method reports also compare bootstrap endpoints, RQ1 threshold metrics, and Figure 3 quartiles wherever the study reports them. The experiment exercises the public scoring and evaluation interfaces using a benchmark-specific scorer. The package exports the shared scorer interface and the evaluators.
+The tables below are downloadable aggregates from the same run. Each row identifies the source (printed paper, companion table or notebook), model, positive cohort, stratum and metric, followed by the reference and ML4SETK values. ROC and PR lower/upper rows give bootstrap interval endpoints. For Figure 3, the entries are quantiles of the change ratio. The reference aggregates are from Koohestani et al.’s paper and Roham Koohestani’s versioned deposit (CC BY 4.0). The paired tables and figures combine these values with the toolkit measurements. [Replication package](https://doi.org/10.5281/zenodo.18348152) · [License](https://creativecommons.org/licenses/by/4.0/)
 
-With exact and near members combined, PAC exceeded Loss on ROC-AUC on all four models. The median fraction of changed characters under AST-PAC rose from simple to moderate to complex files on all four models. These comparisons test the directions reported in RQ1 and Figure 3.
+| Method | Paired aggregate values | Method report |
+| --- | --- | --- |
+| Loss | [Download CSV](data/loss_fse.csv) | [Loss](loss.md) |
+| PAC | [Download CSV](data/pac_fse.csv) | [PAC](pac.md) |
+| AST-PAC | [Download CSV](data/ast_pac_fse.csv) | [AST-PAC](ast_pac.md) |
 
 ## Protocol
 

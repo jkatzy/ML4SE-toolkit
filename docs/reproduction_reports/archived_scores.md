@@ -4,46 +4,18 @@ This report records the archived-score experiment at revision `8155474`.
 The subsequent four-model experiment starts from Java source and generates
 fresh scores through the shared API. [Full benchmark and method reports](full_benchmark.md)
 
-**Verdict. None of the three methods reproduces end to end with ML4SETK revision
-`8155474`.** The package can recompute evaluation metrics from recorded scores.
-Its model-and-source API has an abstract `score` method, and the three method
-modules supply evaluators only. Consequently, this run used the authors' saved
-scores for every observation. It provides no independent confirmation that
-ML4SETK can regenerate those scores from the four models and Java files.
+This historical check supplied the authors’ saved per-file scores to the toolkit evaluators. It tests the ROC-AUC and PR-AUC calculations. For the later source-to-score results, see the [Loss](loss.md), [PAC](pac.md), and [AST-PAC](ast_pac.md) reports.
 
-**The evaluation does reproduce for all three methods.** All 1,152 stratified
-area estimates matched the deposited reference tables at three decimal places.
-Of the 48 aggregate area estimates in the final FSE paper, 46 matched. The
-other two belong to one PAC row. All 48 matched the RQ1 notebook at its
-six-decimal precision. [Final proceedings paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication artifact](https://doi.org/10.5281/zenodo.18348152)
+## PAC on StarCoder2-7B near-members
 
-## Results by method
-
-Each count below is **matching metric values / reference metric values**.
-ROC-AUC and PR-AUC count separately. RQ2 and RQ3 each report PAC as a
-comparator, so the total counts those published comparisons in both places.
-
-| Method | Paper Table 1, aggregate | RQ1 notebook, aggregate | RQ2 tables, stratified | RQ3 tables, stratified |
-| --- | ---: | ---: | ---: | ---: |
-| Loss | 24/24 | 24/24 | 288/288 | — |
-| PAC | 22/24 | 24/24 | 288/288 | 288/288 |
-| AST-PAC | — | — | — | 288/288 |
-
-A dash means the study did not report that method in that comparison.
-In particular, Table 1 evaluates the two baselines. The AST-PAC reference
-values are in the RQ3 tables.
-
-### The two discrepancies
-
-Both concern **StarCoder2-7B, near-members versus nonmembers, PAC**.
 The printed cells were checked visually in the final proceedings PDF on
 page 1362. The printed PR-AUC is outside the metric's range of zero to one.
 [Paper, Table 1](https://repository.tudelft.nl/file/File_af66d741-b167-4406-9bc1-7f4474f47fed)
 
-| Metric | Printed Table 1 | Deposited RQ1 notebook | ML4SETK | ML4SETK at paper precision |
-| --- | ---: | ---: | ---: | ---: |
-| ROC-AUC | 0.672 | 0.672786 | 0.672786233 | 0.673 |
-| PR-AUC | 6.74 | 0.674191 | 0.674190972 | 0.674 |
+| Metric | Printed Table 1 | Deposited RQ1 notebook | ML4SETK on archived scores |
+| --- | ---: | ---: | ---: |
+| ROC-AUC | 0.672 | 0.672786 | 0.672786233 |
+| PR-AUC | 6.74 | 0.674191 | 0.674190972 |
 
 The notebook agrees with both recomputed values. The available evidence
 locates the discrepancies in the published table and does not establish

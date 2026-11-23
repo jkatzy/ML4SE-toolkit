@@ -1,107 +1,65 @@
 # Loss reproduction report
 
-[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/1293774/reproductions/test_loss.py) · [Environment and inputs](index.md)
+## Yeom et al., Figure 2b · Membership advantage
 
-```bash
-/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_loss.py
-```
+As the population standard deviation increases from one to eight times the training standard deviation, the paper’s theoretical membership advantage rises from 0 to 0.583213. The toolkit gives 0 to 0.5832. The line is the Gaussian curve from Figure 2b of *Privacy Risk in Machine Learning*. The four points come from applying ML4SETK’s loss threshold to 10,000 deterministic Gaussian quantiles per cohort. The empirical results for trained regression and tree models are outside this run. [Yeom et al., CSF 2018](https://par.nsf.gov/servlets/purl/10060215)
 
-## Original paper
+![The theoretical advantage curve through ratios one to eight, overlaid with the four ML4SETK measurements.](figures/loss_figure2b.png)
 
-Yeom, Giacomelli, Fredrikson, and Jha’s Figure 2b gives the theoretical membership advantage when only the training standard deviation is known. The script evaluates the toolkit’s inclusive loss threshold on 10,000 deterministic Gaussian quantiles per cohort. The reference is the paper’s closed form. The bound of 0.0002 follows from midpoint integration at the two interval boundaries in each cohort. [CSF 2018 paper](https://doi.org/10.1109/CSF.2018.00027) · [Figure 2b and derivation](https://par.nsf.gov/servlets/purl/10060215)
-
-| Population / training standard deviation | ML4SETK advantage | Theoretical advantage |
+| Population / training standard deviation | Paper advantage (theory) | ML4SETK advantage |
 | ---: | ---: | ---: |
-| 1 | 0.0000 | 0.000000 |
-| 2 | 0.2996 | 0.299765 |
-| 4 | 0.4852 | 0.485277 |
-| 8 | 0.5832 | 0.583213 |
+| 1 | 0.000000 | 0.0000 |
+| 2 | 0.299765 | 0.2996 |
+| 4 | 0.485277 | 0.4852 |
+| 8 | 0.583213 | 0.5832 |
 
-All four theoretical comparisons pass the 1% rule. The zero-reference case matched exactly. All four also satisfied the integration bound. This verifies the theoretical curve. The plotted empirical points require training the paper’s regression and tree models. The later FSE benchmark evaluates negative next-token loss on code and reports ROC-AUC and PR-AUC.
+[Figure 2b comparison data (CSV)](data/loss_figure2b.csv)
 
-## FSE baseline check
+## FSE Table 1 · Negative loss on Java
 
-The new comparison code rechecked all 49,688 stored model–file scores for this baseline from the preceding ML4SETK run. All 24 Table 1 areas and all 288 RQ2 stratified areas pass at 1% relative tolerance. At three decimals the match counts were 24/24 and 285/288. All 288 stratified estimates fell inside the published intervals. Running this report’s pytest script regenerates scores from the Java source.
+Table 1 compares exact members (4,193), near-members (4,014), and both groups combined with the same 4,215 nonmembers. Each model scored the same 12,422 Java files. PR-AUC uses trapezoidal integration. [FSE Table 1](https://doi.org/10.1145/3803437.3805588) · [Companion tables](https://doi.org/10.5281/zenodo.18348152)
 
-The per-method script also scored the complete 225-file pilot on each model. The pilot compares 132 exact members with 93 nonmembers in the Mid-Low alphanumeric stratum. 8/8 pilot areas pass the 1% rule. All eight fell inside their reference intervals.
+| Model | Members | Reference ROC-AUC | ML4SETK ROC-AUC | Reference PR-AUC | ML4SETK PR-AUC |
+| --- | --- | ---: | ---: | ---: | ---: |
+| StarCoder2-3B | Both | 0.625 | 0.625275 | 0.750 | 0.750389 |
+| StarCoder2-3B | Exact | 0.622 | 0.622010 | 0.600 | 0.599896 |
+| StarCoder2-3B | Near | 0.629 | 0.628686 | 0.605 | 0.605224 |
+| StarCoder2-7B | Both | 0.635 | 0.635365 | 0.758 | 0.758063 |
+| StarCoder2-7B | Exact | 0.634 | 0.633831 | 0.611 | 0.611207 |
+| StarCoder2-7B | Near | 0.637 | 0.636967 | 0.614 | 0.614178 |
+| Mellum-4B | Both | 0.628 | 0.627965 | 0.764 | 0.763710 |
+| Mellum-4B | Exact | 0.629 | 0.629433 | 0.628 | 0.627605 |
+| Mellum-4B | Near | 0.626 | 0.626431 | 0.617 | 0.616814 |
+| SmolLM3-3B | Both | 0.573 | 0.573088 | 0.701 | 0.700796 |
+| SmolLM3-3B | Exact | 0.572 | 0.571522 | 0.539 | 0.538924 |
+| SmolLM3-3B | Near | 0.575 | 0.574723 | 0.541 | 0.540711 |
 
-| Model | Pilot ROC-AUC, observed / paper | Pilot PR-AUC, observed / paper |
-| --- | ---: | ---: |
-| StarCoder2-3B | 0.621619 / 0.622 | 0.699924 / 0.700 |
-| StarCoder2-7B | 0.645080 / 0.645 | 0.716864 / 0.717 |
-| Mellum-4B | 0.620479 / 0.620 | 0.684496 / 0.684 |
-| SmolLM3-3B | 0.530140 / 0.530 | 0.605098 / 0.605 |
+[Full FSE comparison table (CSV)](data/loss_fse.csv) · [Four-model protocol and plots](full_benchmark.md)
 
-## Earlier four-model FSE run with fresh scores
+## RQ2 · Exact members in the Mid-Low alphanumeric stratum
 
-This run used newly generated scores for 12,422 Java files on each of four models. Exact members, near-members, and both member groups together were each compared with the same nonmembers. Every evaluated ROC-AUC and PR-AUC agreed with scikit-learn on the fresh scores within an absolute tolerance of `1e-12`. The shared and method-specific evaluators agreed for every comparison. [Protocol and reproduction command](full_benchmark.md)
+The pilot independently scored all 132 exact members and 93 nonmembers in this stratum. The reference columns come from the RQ2 companion table.
 
-| Reference | Within 1% of reference | At reference precision | Maximum absolute difference |
-| --- | ---: | ---: | ---: |
-| Printed Table 1, aggregate areas | 24/24 | 24/24 | 0.000478 |
-| RQ1 notebook, aggregate areas | 24/24 | 19/24 | 0.000006 |
-| RQ1 notebook, threshold metrics | 48/48 | 36/48 | 0.000249 |
-| RQ2 stratified areas | 288/288 | 285/288 | 0.000536 |
-| RQ2 bootstrap endpoints | 570/576 | 145/576 | 0.009204 |
+| Model | Reference ROC-AUC | ML4SETK ROC-AUC | Reference PR-AUC | ML4SETK PR-AUC |
+| --- | ---: | ---: | ---: | ---: |
+| StarCoder2-3B | 0.622 | 0.621619 | 0.700 | 0.699924 |
+| StarCoder2-7B | 0.645 | 0.645080 | 0.717 | 0.716864 |
+| Mellum-4B | 0.620 | 0.620479 | 0.684 | 0.684496 |
+| SmolLM3-3B | 0.530 | 0.530140 | 0.605 | 0.605098 |
 
-Area estimates and interval endpoints in the deposited tables are rounded to three decimals. The notebooks report six decimals. The fresh bootstrap intervals use 1,000 resamples per comparison.
+### Earlier StarCoder2-3B control
 
-All 288 fresh stratified area estimates fall inside the corresponding published 95% bootstrap intervals. These intervals describe sampling uncertainty for the authors’ evaluation cohort.
-
-| Model | Positive cohort | ROC-AUC, fresh / paper | PR-AUC, fresh / paper |
-| --- | --- | ---: | ---: |
-| StarCoder2-3B | Both | 0.625275 / 0.625 | 0.750389 / 0.75 |
-| StarCoder2-3B | Exact | 0.622010 / 0.622 | 0.599896 / 0.6 |
-| StarCoder2-3B | Near | 0.628686 / 0.629 | 0.605224 / 0.605 |
-| StarCoder2-7B | Both | 0.635365 / 0.635 | 0.758063 / 0.758 |
-| StarCoder2-7B | Exact | 0.633831 / 0.634 | 0.611207 / 0.611 |
-| StarCoder2-7B | Near | 0.636967 / 0.637 | 0.614178 / 0.614 |
-| Mellum-4B | Both | 0.627965 / 0.628 | 0.763710 / 0.764 |
-| Mellum-4B | Exact | 0.629433 / 0.629 | 0.627605 / 0.628 |
-| Mellum-4B | Near | 0.626431 / 0.626 | 0.616814 / 0.617 |
-| SmolLM3-3B | Both | 0.573088 / 0.573 | 0.700796 / 0.701 |
-| SmolLM3-3B | Exact | 0.571522 / 0.572 | 0.538924 / 0.539 |
-| SmolLM3-3B | Near | 0.574723 / 0.575 | 0.540711 / 0.541 |
-
-The three stratified areas that rounded differently all came from StarCoder2-3B. With both member groups combined, Mid-Low alphanumeric ROC-AUC was 0.641536 (paper 0.641) and Very Large file PR-AUC was 0.727502 (paper 0.727). With exact members, Medium file ROC-AUC was 0.685518 (paper 0.685).
-
-### Agreement on individual files
-
-Each row compares 12,422 fresh Loss scores with the corresponding archived scores after aligning score direction. The last column compares the two rankings of the same files.
-
-| Model | Median absolute score difference | Largest absolute score difference | Spearman correlation |
-| --- | ---: | ---: | ---: |
-| StarCoder2-3B | 6.327033e-05 | 0.0036132336 | 0.9999998344 |
-| StarCoder2-7B | 0 | 0 | 1.0000000000 |
-| Mellum-4B | 0 | 0 | 1.0000000000 |
-| SmolLM3-3B | 0 | 0 | 1.0000000000 |
-
-## StarCoder2-3B pilot on 225 files
-
-The corrected benchmark adapter supplied the authors' forward inputs and freshly scored all 225 Java files in the StarCoder2-3B Mid-Low exact-member comparison. The runner passed original source to inherited `MembershipScorer.score_many`, then evaluated its higher-is-member outputs with `evaluate_membership_scores`.
-
-| Metric | Shared API | Scikit-learn on the same scores | FSE reference |
-| --- | ---: | ---: | ---: |
-| ROC-AUC | 0.621619420 | 0.621619420 | 0.622 |
-| PR-AUC | 0.699924464 | 0.699924464 | 0.700 |
-
-Both estimates agree with the FSE table at its published three-decimal precision. Both metric checks against scikit-learn passed at an absolute tolerance of `1e-12`. The complete four-model protocol records the per-file score control, the attention-mask correction and the seed used to generate each file's neighbors. [Shared API protocol](full_benchmark.md)
-
-## Earlier fixed-input comparison
-
-**PR-AUC matches and ROC-AUC differs from the reference at three decimal places.** This run generated new scores for all 225 Java files in the Mid-Low alphanumeric stratum, comparing 132 exact members with 93 nonmembers. The reference is the StarCoder2-3B row for Loss in `analysis/RQ2/rq2_table_ME_vs_NM.tex`, the companion table for Figure 1 of Koohestani et al., *AST-PAC: AST-guided Membership Inference for Code*. [FSE paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication package](https://doi.org/10.5281/zenodo.18348152)
+The earlier 225-file run used a different model forward call. The last column recomputes areas from the authors’ saved scores. [Forward-pass control and earlier command](full_benchmark.md#forward-pass-control)
 
 | Metric | FSE companion table | Run with fresh model scores | Evaluator on archived scores |
 | --- | ---: | ---: | ---: |
 | ROC-AUC | 0.622 | 0.621456500 | 0.621537960 |
 | PR-AUC | 0.700 | 0.699859994 | 0.699899829 |
 
-Fresh PR-AUC rounds to 0.700. Fresh ROC-AUC rounds to 0.621. Its difference from the archived ROC-AUC is −0.00008146, equivalent to one member–nonmember pair out of 12,276 in the rank comparison.
+## Reproduce these measurements
 
-Across the 225 paired files, the median absolute difference between fresh and archived raw scores was 0.000066843 and the maximum was 0.001034659. ROC-AUC and trapezoidal PR-AUC use tied scores as a group. The comparison uses the published point estimates.
+[Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/1293774/reproductions/test_loss.py) · [Environment and inputs](index.md)
 
-### Earlier fixed-input protocol
-
-For each original Java file, ML4SETK computed the mean log probability of the observed next tokens. It applied a float32 log-softmax to the model's logits and accumulated the selected values in float64. Higher scores favor membership. This tests the negative cross-entropy baseline that Koohestani et al. use for code. The earlier CSF experiments use a different setting and remain outside this comparison. [Yeom et al., CSF 2018](https://doi.org/10.1109/CSF.2018.00027) · [Carlini et al., USENIX Security 2021](https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting)
-
-The run used two NVIDIA A40 GPUs, float16 StarCoder2-3B weights, and the checkpoint's tokenizer with an 8,192-token cap. The cap applied to 22 original files. The model revision was `733247c55e3f73af49ce8e9c7949bf14af205928`. The authors' archive matched its versioned checksum and the model weights matched their Hub SHA-256. The archive supplies the exact cohort and comparison scores. Only the model-derived scores feed the fresh estimates. [Earlier fixed-input command](full_benchmark.md#repeat-the-earlier-fixed-input-pilot)
+```bash
+/tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/test_loss.py
+```

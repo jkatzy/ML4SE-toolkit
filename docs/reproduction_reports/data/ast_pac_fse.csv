@@ -1,0 +1,901 @@
+reference_source,model,positive_cohort,dimension,stratum,metric,reference,reproduced
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,High,ROC-AUC,0.561,0.562108498071097
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,High,ROC lower,0.541,0.5406500737297664
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,High,ROC upper,0.581,0.5814472927536029
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,High,PR-AUC,0.707,0.7087865262233902
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,High,PR lower,0.685,0.6864232750010042
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,High,PR upper,0.730,0.7304481751908936
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid,ROC-AUC,0.605,0.6072176631577639
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid,ROC lower,0.588,0.5889700571340533
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid,ROC upper,0.623,0.6235854709131671
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid,PR-AUC,0.765,0.766060932795862
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid,PR lower,0.748,0.748966755901304
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid,PR upper,0.782,0.7838369264210209
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-High,ROC-AUC,0.565,0.5659729012090466
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-High,ROC lower,0.549,0.5496723518631594
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-High,ROC upper,0.582,0.5828975394385935
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-High,PR-AUC,0.736,0.7381391776081605
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-High,PR lower,0.719,0.7226607277406732
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-High,PR upper,0.751,0.7544225176987887
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-Low,ROC-AUC,0.651,0.6533072662104921
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-Low,ROC lower,0.587,0.5941431936805093
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-Low,ROC upper,0.713,0.7107918448073234
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-Low,PR-AUC,0.847,0.8480845124839206
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-Low,PR lower,0.799,0.7998603625081425
+RQ3 companion table,Mellum-4B,Both,alpha_bucket,Mid-Low,PR upper,0.889,0.886319981060474
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Complex,ROC-AUC,0.660,0.6642163555536138
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Complex,ROC lower,0.641,0.6457718874153986
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Complex,ROC upper,0.679,0.6823008941432
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Complex,PR-AUC,0.782,0.7853705821110539
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Complex,PR lower,0.764,0.7676711829866264
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Complex,PR upper,0.800,0.8040391210860621
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Moderate,ROC-AUC,0.628,0.6342199826525133
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Moderate,ROC lower,0.611,0.6185526121773316
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Moderate,ROC upper,0.644,0.6498128714767933
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Moderate,PR-AUC,0.773,0.7769268153020646
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Moderate,PR lower,0.758,0.7625425804029877
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Moderate,PR upper,0.788,0.7925864873624823
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Simple,ROC-AUC,0.579,0.5738582788459317
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Simple,ROC lower,0.562,0.555346177207973
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Simple,ROC upper,0.599,0.5921087949234773
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Simple,PR-AUC,0.749,0.7472487808728129
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Simple,PR lower,0.731,0.7283338443878377
+RQ3 companion table,Mellum-4B,Both,complexity_bucket,Simple,PR upper,0.768,0.7648294424699716
+RQ3 companion table,Mellum-4B,Both,size_bucket,Large,ROC-AUC,0.629,0.6324283540443772
+RQ3 companion table,Mellum-4B,Both,size_bucket,Large,ROC lower,0.608,0.6102609446769889
+RQ3 companion table,Mellum-4B,Both,size_bucket,Large,ROC upper,0.650,0.6550558792210696
+RQ3 companion table,Mellum-4B,Both,size_bucket,Large,PR-AUC,0.765,0.7681128279193487
+RQ3 companion table,Mellum-4B,Both,size_bucket,Large,PR lower,0.744,0.7461399441428967
+RQ3 companion table,Mellum-4B,Both,size_bucket,Large,PR upper,0.787,0.7898655477360571
+RQ3 companion table,Mellum-4B,Both,size_bucket,Medium,ROC-AUC,0.603,0.6012521043771044
+RQ3 companion table,Mellum-4B,Both,size_bucket,Medium,ROC lower,0.582,0.580138687831873
+RQ3 companion table,Mellum-4B,Both,size_bucket,Medium,ROC upper,0.625,0.6241660383512753
+RQ3 companion table,Mellum-4B,Both,size_bucket,Medium,PR-AUC,0.752,0.7533897463356231
+RQ3 companion table,Mellum-4B,Both,size_bucket,Medium,PR lower,0.729,0.7310124299263072
+RQ3 companion table,Mellum-4B,Both,size_bucket,Medium,PR upper,0.775,0.77510979703312
+RQ3 companion table,Mellum-4B,Both,size_bucket,Small,ROC-AUC,0.589,0.5907599598036912
+RQ3 companion table,Mellum-4B,Both,size_bucket,Small,ROC lower,0.566,0.5669805695876432
+RQ3 companion table,Mellum-4B,Both,size_bucket,Small,ROC upper,0.611,0.6145875077459101
+RQ3 companion table,Mellum-4B,Both,size_bucket,Small,PR-AUC,0.734,0.7357620653614757
+RQ3 companion table,Mellum-4B,Both,size_bucket,Small,PR lower,0.709,0.7133087402880492
+RQ3 companion table,Mellum-4B,Both,size_bucket,Small,PR upper,0.756,0.7595613222135562
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Large,ROC-AUC,0.575,0.5816257139242337
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Large,ROC lower,0.550,0.556562171639032
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Large,ROC upper,0.601,0.6074145051139848
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Large,PR-AUC,0.785,0.7886412541328585
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Large,PR lower,0.761,0.7641408133903834
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Large,PR upper,0.808,0.8121210095223
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Small,ROC-AUC,0.544,0.5448784187748182
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Small,ROC lower,0.521,0.5222298206778625
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Small,ROC upper,0.568,0.5685959280181213
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Small,PR-AUC,0.697,0.69975480869137
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Small,PR lower,0.670,0.6727501118170156
+RQ3 companion table,Mellum-4B,Both,size_bucket,Very Small,PR upper,0.724,0.724582267574843
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,High,ROC-AUC,0.558,0.5591708929611978
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,High,ROC lower,0.533,0.5334071327898502
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,High,ROC upper,0.583,0.5858525932293404
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,High,PR-AUC,0.553,0.5558938712722186
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,High,PR lower,0.518,0.5204351100266924
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,High,PR upper,0.585,0.589680686494384
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid,ROC-AUC,0.605,0.6081701840599549
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid,ROC lower,0.583,0.5882699235531781
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid,ROC upper,0.625,0.6291057445561662
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid,PR-AUC,0.641,0.6428028028809778
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid,PR lower,0.614,0.6166130390464305
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid,PR upper,0.667,0.6708016297471274
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-High,ROC-AUC,0.566,0.566425973338163
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-High,ROC lower,0.548,0.5463808253426151
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-High,ROC upper,0.587,0.5853840175142299
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-High,PR-AUC,0.586,0.5912491281442035
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-High,PR lower,0.561,0.5664994646161327
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-High,PR upper,0.611,0.6167820893539729
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-Low,ROC-AUC,0.637,0.6348159009449332
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-Low,ROC lower,0.565,0.5648176742585732
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-Low,ROC upper,0.702,0.7092831804123712
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-Low,PR-AUC,0.726,0.7268135921049959
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-Low,PR lower,0.643,0.6454650215904117
+RQ3 companion table,Mellum-4B,Exact,alpha_bucket,Mid-Low,PR upper,0.799,0.8019183337652305
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Complex,ROC-AUC,0.680,0.6831056398928086
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Complex,ROC lower,0.657,0.6628508252336485
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Complex,ROC upper,0.703,0.7030720782907205
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Complex,PR-AUC,0.657,0.6622567553759471
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Complex,PR lower,0.624,0.6331320883854406
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Complex,PR upper,0.688,0.6908169697426806
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Moderate,ROC-AUC,0.632,0.6376291505639246
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Moderate,ROC lower,0.613,0.6176462215264827
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Moderate,ROC upper,0.650,0.6563514635837563
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Moderate,PR-AUC,0.641,0.6462581641192549
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Moderate,PR lower,0.617,0.6224340910841102
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Moderate,PR upper,0.665,0.6695171000021726
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Simple,ROC-AUC,0.587,0.5822416590409075
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Simple,ROC lower,0.565,0.5614175721635375
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Simple,ROC upper,0.607,0.6034648236605651
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Simple,PR-AUC,0.630,0.6290639012166164
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Simple,PR lower,0.605,0.6010353947358451
+RQ3 companion table,Mellum-4B,Exact,complexity_bucket,Simple,PR upper,0.658,0.6587009671347998
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Large,ROC-AUC,0.631,0.6367567787182126
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Large,ROC lower,0.605,0.6102586602883777
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Large,ROC upper,0.656,0.6622535307399937
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Large,PR-AUC,0.638,0.6438423260405404
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Large,PR lower,0.604,0.6112068072964801
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Large,PR upper,0.671,0.6786786221216161
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Medium,ROC-AUC,0.611,0.6092738907398594
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Medium,ROC lower,0.585,0.5828454472782665
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Medium,ROC upper,0.636,0.6332849833483045
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Medium,PR-AUC,0.624,0.627478193998315
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Medium,PR lower,0.589,0.593508948411847
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Medium,PR upper,0.659,0.6608570629827203
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Small,ROC-AUC,0.600,0.5996055189090742
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Small,ROC lower,0.575,0.5716735995589892
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Small,ROC upper,0.627,0.6243778214029218
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Small,PR-AUC,0.600,0.6012881557489004
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Small,PR lower,0.566,0.566879882716638
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Small,PR upper,0.637,0.6368607995336357
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Large,ROC-AUC,0.557,0.5660228923162044
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Large,ROC lower,0.526,0.5348916240883174
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Large,ROC upper,0.588,0.5950953979514321
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Large,PR-AUC,0.640,0.6462918508699836
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Large,PR lower,0.604,0.6104134502323064
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Large,PR upper,0.676,0.6827067201961001
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Small,ROC-AUC,0.532,0.5324004325103622
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Small,ROC lower,0.504,0.5030675587058936
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Small,ROC upper,0.562,0.5635572052055963
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Small,PR-AUC,0.527,0.5260650345087574
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Small,PR lower,0.490,0.4893120604235886
+RQ3 companion table,Mellum-4B,Exact,size_bucket,Very Small,PR upper,0.568,0.567747010586763
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,High,ROC-AUC,0.564,0.5649519922621434
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,High,ROC lower,0.540,0.5394399648144569
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,High,ROC upper,0.590,0.5886354672368755
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,High,PR-AUC,0.563,0.5653324873227284
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,High,PR lower,0.531,0.533714309012322
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,High,PR upper,0.597,0.5980582171333141
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid,ROC-AUC,0.604,0.6061609150443908
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid,ROC lower,0.585,0.5844129518182977
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid,ROC upper,0.625,0.6280499845267611
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid,PR-AUC,0.611,0.6120037210165226
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid,PR lower,0.584,0.5821698538538109
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid,PR upper,0.640,0.6392277664430404
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-High,ROC-AUC,0.564,0.5655032074988621
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-High,ROC lower,0.545,0.5473817241984369
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-High,ROC upper,0.584,0.5844120390911516
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-High,PR-AUC,0.585,0.5881083268353207
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-High,PR lower,0.559,0.5628411637975993
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-High,PR upper,0.610,0.6119651501818534
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-Low,ROC-AUC,0.664,0.6717986314760508
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-Low,ROC lower,0.595,0.5960175220829885
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-Low,ROC upper,0.732,0.7398418127074559
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-Low,PR-AUC,0.754,0.7592065424837894
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-Low,PR lower,0.672,0.6834287958345422
+RQ3 companion table,Mellum-4B,Near,alpha_bucket,Mid-Low,PR upper,0.823,0.824879546553392
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Complex,ROC-AUC,0.642,0.6458455328156777
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Complex,ROC lower,0.620,0.621810888895356
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Complex,ROC upper,0.666,0.6667010712124387
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Complex,PR-AUC,0.646,0.6499672439759002
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Complex,PR lower,0.616,0.6192442631287097
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Complex,PR upper,0.676,0.6779540446176839
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Moderate,ROC-AUC,0.624,0.6307982656567656
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Moderate,ROC lower,0.606,0.6125469937134078
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Moderate,ROC upper,0.644,0.6505626963762376
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Moderate,PR-AUC,0.637,0.6417714013854874
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Moderate,PR lower,0.613,0.6162169383247565
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Moderate,PR upper,0.662,0.6669429501349768
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Simple,ROC-AUC,0.571,0.5641566754289729
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Simple,ROC lower,0.550,0.5415760425685004
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Simple,ROC upper,0.594,0.5850760781949443
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Simple,PR-AUC,0.571,0.5677413577393536
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Simple,PR lower,0.541,0.5372058107599482
+RQ3 companion table,Mellum-4B,Near,complexity_bucket,Simple,PR upper,0.599,0.5964453524006198
+RQ3 companion table,Mellum-4B,Near,size_bucket,Large,ROC-AUC,0.627,0.628003176348421
+RQ3 companion table,Mellum-4B,Near,size_bucket,Large,ROC lower,0.600,0.6028743373652918
+RQ3 companion table,Mellum-4B,Near,size_bucket,Large,ROC upper,0.652,0.6529841540913284
+RQ3 companion table,Mellum-4B,Near,size_bucket,Large,PR-AUC,0.620,0.6226610476978355
+RQ3 companion table,Mellum-4B,Near,size_bucket,Large,PR lower,0.583,0.5905914307881825
+RQ3 companion table,Mellum-4B,Near,size_bucket,Large,PR upper,0.653,0.6560152121308573
+RQ3 companion table,Mellum-4B,Near,size_bucket,Medium,ROC-AUC,0.594,0.592897899386449
+RQ3 companion table,Mellum-4B,Near,size_bucket,Medium,ROC lower,0.571,0.5677713380471066
+RQ3 companion table,Mellum-4B,Near,size_bucket,Medium,ROC upper,0.620,0.6179235349359089
+RQ3 companion table,Mellum-4B,Near,size_bucket,Medium,PR-AUC,0.594,0.596312699093085
+RQ3 companion table,Mellum-4B,Near,size_bucket,Medium,PR lower,0.559,0.5624860886453398
+RQ3 companion table,Mellum-4B,Near,size_bucket,Medium,PR upper,0.629,0.6281036219009197
+RQ3 companion table,Mellum-4B,Near,size_bucket,Small,ROC-AUC,0.578,0.5811611292416454
+RQ3 companion table,Mellum-4B,Near,size_bucket,Small,ROC lower,0.553,0.5535630892273203
+RQ3 companion table,Mellum-4B,Near,size_bucket,Small,ROC upper,0.604,0.6082569432489252
+RQ3 companion table,Mellum-4B,Near,size_bucket,Small,PR-AUC,0.565,0.5687543360216362
+RQ3 companion table,Mellum-4B,Near,size_bucket,Small,PR lower,0.529,0.5318537947809008
+RQ3 companion table,Mellum-4B,Near,size_bucket,Small,PR upper,0.601,0.605283293438109
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Large,ROC-AUC,0.594,0.5987102423324498
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Large,ROC lower,0.565,0.5684253719698757
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Large,ROC upper,0.624,0.6253483584265799
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Large,PR-AUC,0.668,0.671101886028312
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Large,PR lower,0.634,0.6351201801482939
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Large,PR upper,0.703,0.7026409408345113
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Small,ROC-AUC,0.555,0.5571171011931065
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Small,ROC lower,0.524,0.5273047390461101
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Small,ROC upper,0.582,0.5855012446001119
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Small,PR-AUC,0.546,0.5544015022705339
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Small,PR lower,0.506,0.5162619463046255
+RQ3 companion table,Mellum-4B,Near,size_bucket,Very Small,PR upper,0.584,0.5922649243634063
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Simple,p25,0.016911,0.017196653431168295
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Simple,median,0.055335,0.05530689550081501
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Simple,p75,0.116557,0.11523308780771467
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Moderate,p25,0.047611,0.04716349755031433
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Moderate,median,0.080000,0.07969671440606574
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Moderate,p75,0.120183,0.11921230320067114
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Complex,p25,0.124832,0.12406380027739253
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Complex,median,0.170205,0.17198443579766537
+Figure 3 companion notebook,Mellum-4B,All files,complexity_bucket,Complex,p75,0.221333,0.22357973990417523
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,High,ROC-AUC,0.552,0.5550957912861533
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,High,ROC lower,0.531,0.5349984800383522
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,High,ROC upper,0.574,0.5764284157852194
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,High,PR-AUC,0.691,0.6936512284851083
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,High,PR lower,0.669,0.669477092432857
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,High,PR upper,0.717,0.7177507390401009
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid,ROC-AUC,0.591,0.5927219444887575
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid,ROC lower,0.573,0.5756623713609894
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid,ROC upper,0.609,0.6099403098010802
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid,PR-AUC,0.753,0.7528470558380711
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid,PR lower,0.735,0.7350817698772237
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid,PR upper,0.771,0.7704758121479002
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-High,ROC-AUC,0.547,0.5477404754056229
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-High,ROC lower,0.531,0.5313662230509649
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-High,ROC upper,0.563,0.5641154319742312
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-High,PR-AUC,0.722,0.721790923306589
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-High,PR lower,0.705,0.704936196282191
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-High,PR upper,0.738,0.7383598623292188
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-Low,ROC-AUC,0.641,0.6404366243075921
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-Low,ROC lower,0.575,0.5800320927124305
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-Low,ROC upper,0.700,0.7027116493726357
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-Low,PR-AUC,0.844,0.843872888442803
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-Low,PR lower,0.791,0.8004098300896907
+RQ3 companion table,StarCoder2-3B,Both,alpha_bucket,Mid-Low,PR upper,0.885,0.8879718997910829
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Complex,ROC-AUC,0.639,0.6391766049641816
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Complex,ROC lower,0.621,0.6200796890147507
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Complex,ROC upper,0.658,0.6592289714326203
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Complex,PR-AUC,0.761,0.759202505933634
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Complex,PR lower,0.742,0.7393160691363081
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Complex,PR upper,0.780,0.777993509462684
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Moderate,ROC-AUC,0.612,0.6142982079651182
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Moderate,ROC lower,0.595,0.5979209656401456
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Moderate,ROC upper,0.628,0.6301039167457223
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Moderate,PR-AUC,0.755,0.7569988242592103
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Moderate,PR lower,0.740,0.7418257493564362
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Moderate,PR upper,0.771,0.7725407071387951
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Simple,ROC-AUC,0.558,0.5606140008725232
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Simple,ROC lower,0.538,0.5430016020467884
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Simple,ROC upper,0.578,0.5785285567449444
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Simple,PR-AUC,0.737,0.7401854708007692
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Simple,PR lower,0.719,0.7218620480870143
+RQ3 companion table,StarCoder2-3B,Both,complexity_bucket,Simple,PR upper,0.754,0.7585363306774707
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Large,ROC-AUC,0.614,0.6180438891697883
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Large,ROC lower,0.592,0.595470696556724
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Large,ROC upper,0.637,0.6389046000541788
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Large,PR-AUC,0.751,0.7530264721106643
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Large,PR lower,0.728,0.7309452449529716
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Large,PR upper,0.772,0.7747448342394262
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Medium,ROC-AUC,0.593,0.592211646378313
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Medium,ROC lower,0.573,0.5709492316297589
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Medium,ROC upper,0.615,0.6118059488869079
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Medium,PR-AUC,0.739,0.7402322003499884
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Medium,PR lower,0.717,0.7184474021200614
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Medium,PR upper,0.761,0.761379462081456
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Small,ROC-AUC,0.574,0.5796376093019675
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Small,ROC lower,0.552,0.5568232908495638
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Small,ROC upper,0.598,0.6013885550538755
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Small,PR-AUC,0.720,0.7241039606216
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Small,PR lower,0.696,0.6995335651496243
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Small,PR upper,0.743,0.7470018672094637
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Large,ROC-AUC,0.557,0.556653050896472
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Large,ROC lower,0.529,0.5300380512490844
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Large,ROC upper,0.581,0.5830184887915938
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Large,PR-AUC,0.772,0.7704715230956216
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Large,PR lower,0.750,0.7459700418346032
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Large,PR upper,0.794,0.7926751527438332
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Small,ROC-AUC,0.533,0.5301655289341007
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Small,ROC lower,0.508,0.5056665366880546
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Small,ROC upper,0.556,0.5561207336588542
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Small,PR-AUC,0.681,0.6792152133042646
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Small,PR lower,0.654,0.6524737872761255
+RQ3 companion table,StarCoder2-3B,Both,size_bucket,Very Small,PR upper,0.709,0.708053821123895
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,High,ROC-AUC,0.538,0.5454850102250848
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,High,ROC lower,0.512,0.5196628483861048
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,High,ROC upper,0.562,0.5701022814582177
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,High,PR-AUC,0.512,0.5134695673192353
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,High,PR lower,0.477,0.47883233146325177
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,High,PR upper,0.544,0.5506297493000087
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid,ROC-AUC,0.589,0.5902282776754675
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid,ROC lower,0.568,0.5687814878136499
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid,ROC upper,0.609,0.6102709110903473
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid,PR-AUC,0.622,0.6219796178202986
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid,PR lower,0.593,0.5938817727700271
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid,PR upper,0.650,0.6476964683408081
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-High,ROC-AUC,0.542,0.5416604924042853
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-High,ROC lower,0.522,0.5227137475553882
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-High,ROC upper,0.562,0.5611598935345005
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-High,PR-AUC,0.564,0.5640962837308062
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-High,PR lower,0.540,0.5393227600740063
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-High,PR upper,0.588,0.5890600539927696
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-Low,ROC-AUC,0.610,0.6068752036493972
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-Low,ROC lower,0.538,0.5271256580574497
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-Low,ROC upper,0.683,0.6794176070238162
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-Low,PR-AUC,0.707,0.7046376104646019
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-Low,PR lower,0.631,0.6171131084320195
+RQ3 companion table,StarCoder2-3B,Exact,alpha_bucket,Mid-Low,PR upper,0.784,0.7858391133269631
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Complex,ROC-AUC,0.638,0.63735385594035
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Complex,ROC lower,0.615,0.6148601062864572
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Complex,ROC upper,0.660,0.6599195049078369
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Complex,PR-AUC,0.603,0.6010339456591862
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Complex,PR lower,0.572,0.5713334959967385
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Complex,PR upper,0.635,0.6350045504187962
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Moderate,ROC-AUC,0.612,0.6141156816210054
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Moderate,ROC lower,0.592,0.595083066839128
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Moderate,ROC upper,0.630,0.6326578738211984
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Moderate,PR-AUC,0.612,0.6140562754770733
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Moderate,PR lower,0.586,0.5897788504401421
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Moderate,PR upper,0.635,0.6392847381644723
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Simple,ROC-AUC,0.559,0.5632717597617317
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Simple,ROC lower,0.538,0.5429133462343236
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Simple,ROC upper,0.580,0.5849009532549959
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Simple,PR-AUC,0.610,0.615555849517057
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Simple,PR lower,0.584,0.5893890494242435
+RQ3 companion table,StarCoder2-3B,Exact,complexity_bucket,Simple,PR upper,0.635,0.6388885659030191
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Large,ROC-AUC,0.610,0.6148381962294183
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Large,ROC lower,0.583,0.5875909358934887
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Large,ROC upper,0.634,0.6387056961314791
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Large,PR-AUC,0.614,0.6148134824257917
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Large,PR lower,0.579,0.576304594401068
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Large,PR upper,0.648,0.6480472441208612
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Medium,ROC-AUC,0.597,0.5953218044317521
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Medium,ROC lower,0.572,0.5704250294144735
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Medium,ROC upper,0.620,0.6203053512007483
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Medium,PR-AUC,0.605,0.6063202258805648
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Medium,PR lower,0.573,0.573062060171351
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Medium,PR upper,0.639,0.639298121327365
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Small,ROC-AUC,0.574,0.582885030380018
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Small,ROC lower,0.548,0.557066056416886
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Small,ROC upper,0.601,0.6125575102006519
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Small,PR-AUC,0.576,0.5825324514859704
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Small,PR lower,0.545,0.5481225456911325
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Small,PR upper,0.611,0.6187395324078389
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Large,ROC-AUC,0.521,0.5221142540977938
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Large,ROC lower,0.492,0.4919507261533569
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Large,ROC upper,0.551,0.554434473838981
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Large,PR-AUC,0.600,0.5980795133050636
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Large,PR lower,0.563,0.5618056270991981
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Large,PR upper,0.636,0.6381280506335645
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Small,ROC-AUC,0.517,0.512476121823752
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Small,ROC lower,0.487,0.4841529934787188
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Small,ROC upper,0.545,0.5436829733695648
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Small,PR-AUC,0.502,0.4955321585857683
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Small,PR lower,0.465,0.4608219145958634
+RQ3 companion table,StarCoder2-3B,Exact,size_bucket,Very Small,PR upper,0.538,0.5347503724862052
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,High,ROC-AUC,0.566,0.5643986754711235
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,High,ROC lower,0.540,0.5371025480083466
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,High,ROC upper,0.594,0.5885353507947401
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,High,PR-AUC,0.558,0.5599566329058463
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,High,PR lower,0.523,0.5261144601912876
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,High,PR upper,0.593,0.5924167825543796
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid,ROC-AUC,0.593,0.5954884745399759
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid,ROC lower,0.571,0.571435769238828
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid,ROC upper,0.615,0.6162501172957385
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid,PR-AUC,0.595,0.5957418145649148
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid,PR lower,0.568,0.5676487895150298
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid,PR upper,0.626,0.6263673904552454
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-High,ROC-AUC,0.552,0.5540435110377788
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-High,ROC lower,0.533,0.5339733174684463
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-High,ROC upper,0.572,0.5718575417897562
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-High,PR-AUC,0.573,0.5726167409933176
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-High,PR lower,0.549,0.546077858836026
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-High,PR upper,0.596,0.5970785191552728
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-Low,ROC-AUC,0.672,0.6739980449657869
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-Low,ROC lower,0.604,0.6036758758917851
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-Low,ROC upper,0.750,0.7348669144572182
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-Low,PR-AUC,0.766,0.7681620893496814
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-Low,PR lower,0.695,0.6950136459155631
+RQ3 companion table,StarCoder2-3B,Near,alpha_bucket,Mid-Low,PR upper,0.834,0.8297877059174849
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Complex,ROC-AUC,0.640,0.6409493242801312
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Complex,ROC lower,0.617,0.6197615723519625
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Complex,ROC upper,0.662,0.6643313230247144
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Complex,PR-AUC,0.635,0.6329754510895473
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Complex,PR lower,0.606,0.6026050232602401
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Complex,PR upper,0.664,0.6653729832606728
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Moderate,ROC-AUC,0.612,0.6144814061853444
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Moderate,ROC lower,0.592,0.5951881185731009
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Moderate,ROC upper,0.631,0.6318634589580964
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Moderate,PR-AUC,0.615,0.617146382980827
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Moderate,PR lower,0.590,0.5914328280550977
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Moderate,PR upper,0.641,0.6413892504539476
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Simple,ROC-AUC,0.557,0.5575383294701395
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Simple,ROC lower,0.534,0.5355563290102748
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Simple,ROC upper,0.579,0.5782907255407721
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Simple,PR-AUC,0.562,0.5656821318403957
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Simple,PR lower,0.535,0.5359467915901092
+RQ3 companion table,StarCoder2-3B,Near,complexity_bucket,Simple,PR upper,0.590,0.5955151524998394
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Large,ROC-AUC,0.617,0.6213212387758842
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Large,ROC lower,0.589,0.5966019037093958
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Large,ROC upper,0.641,0.6478405895454198
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Large,PR-AUC,0.605,0.608012737565155
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Large,PR lower,0.570,0.5745750391201984
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Large,PR upper,0.640,0.6446809577996796
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Medium,ROC-AUC,0.589,0.5889726050031393
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Medium,ROC lower,0.563,0.5628697830635289
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Medium,ROC upper,0.616,0.6158594847426734
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Medium,PR-AUC,0.578,0.5799014812645068
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Medium,PR lower,0.545,0.5465395279182997
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Medium,PR upper,0.613,0.6156984477285852
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Small,ROC-AUC,0.574,0.5761136438498736
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Small,ROC lower,0.546,0.5462663805910221
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Small,ROC upper,0.601,0.6028223792813545
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Small,PR-AUC,0.555,0.5582282796293264
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Small,PR lower,0.519,0.5230963756315911
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Small,PR upper,0.590,0.5911742009895776
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Large,ROC-AUC,0.595,0.594471790988262
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Large,ROC lower,0.565,0.5637982206941455
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Large,ROC upper,0.626,0.6264374679146157
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Large,PR-AUC,0.669,0.6649631112189925
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Large,PR lower,0.629,0.6282222831457703
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Large,PR upper,0.702,0.7001593078963989
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Small,ROC-AUC,0.547,0.5475156871409633
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Small,ROC lower,0.519,0.5177918920564908
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Small,ROC upper,0.576,0.5768944031353952
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Small,PR-AUC,0.532,0.534485475911344
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Small,PR lower,0.496,0.4990318552787932
+RQ3 companion table,StarCoder2-3B,Near,size_bucket,Very Small,PR upper,0.571,0.5719126775982252
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Simple,p25,0.017340,0.017196653431168295
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Simple,median,0.054435,0.05530689550081501
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Simple,p75,0.117416,0.11523308780771467
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Moderate,p25,0.046566,0.04716349755031433
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Moderate,median,0.079376,0.07969671440606574
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Moderate,p75,0.118981,0.11921230320067114
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Complex,p25,0.125441,0.12406380027739253
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Complex,median,0.169022,0.17198443579766537
+Figure 3 companion notebook,StarCoder2-3B,All files,complexity_bucket,Complex,p75,0.221823,0.22357973990417523
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,High,ROC-AUC,0.557,0.5609680477757677
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,High,ROC lower,0.535,0.5412596311151175
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,High,ROC upper,0.577,0.5837706601931677
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,High,PR-AUC,0.696,0.7000400380159613
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,High,PR lower,0.672,0.6770824193775118
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,High,PR upper,0.718,0.7246165447197656
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid,ROC-AUC,0.598,0.6028122844055134
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid,ROC lower,0.581,0.5843387213668466
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid,ROC upper,0.616,0.6205481886076861
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid,PR-AUC,0.758,0.7593405965745942
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid,PR lower,0.740,0.7413244494084543
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid,PR upper,0.777,0.7758991640705581
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-High,ROC-AUC,0.554,0.554560044473249
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-High,ROC lower,0.538,0.5376427062110065
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-High,ROC upper,0.570,0.571324470448431
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-High,PR-AUC,0.727,0.7285833285600665
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-High,PR lower,0.713,0.7118658820087802
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-High,PR upper,0.743,0.7438999018592163
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-Low,ROC-AUC,0.648,0.6481345715216683
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-Low,ROC lower,0.582,0.5853088839510313
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-Low,ROC upper,0.710,0.7087526065718109
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-Low,PR-AUC,0.848,0.8465399623943841
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-Low,PR lower,0.801,0.8002078802385689
+RQ3 companion table,StarCoder2-7B,Both,alpha_bucket,Mid-Low,PR upper,0.887,0.8862293241702934
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Complex,ROC-AUC,0.652,0.6535523529696304
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Complex,ROC lower,0.635,0.6316252428496338
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Complex,ROC upper,0.671,0.6717184776579631
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Complex,PR-AUC,0.771,0.7706005277375174
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Complex,PR lower,0.754,0.7506300596426588
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Complex,PR upper,0.789,0.7886846368997056
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Moderate,ROC-AUC,0.618,0.6251480193156901
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Moderate,ROC lower,0.602,0.6076924258018044
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Moderate,ROC upper,0.634,0.6412409909269391
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Moderate,PR-AUC,0.761,0.7662244931430907
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Moderate,PR lower,0.745,0.7516679275578686
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Moderate,PR upper,0.776,0.7806959634347193
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Simple,ROC-AUC,0.567,0.5672673305273057
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Simple,ROC lower,0.549,0.5499685268822448
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Simple,ROC upper,0.585,0.5853292217667824
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Simple,PR-AUC,0.746,0.7463634465922399
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Simple,PR lower,0.727,0.7283244761801649
+RQ3 companion table,StarCoder2-7B,Both,complexity_bucket,Simple,PR upper,0.763,0.7636286325665635
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Large,ROC-AUC,0.626,0.63089760341477
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Large,ROC lower,0.606,0.6095801457257107
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Large,ROC upper,0.648,0.6518038864814919
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Large,PR-AUC,0.761,0.7627735700787347
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Large,PR lower,0.740,0.7414804793830481
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Large,PR upper,0.783,0.7837744406021807
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Medium,ROC-AUC,0.601,0.6006054131054132
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Medium,ROC lower,0.580,0.5792772138091886
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Medium,ROC upper,0.622,0.6215903209293877
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Medium,PR-AUC,0.749,0.7482938382570739
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Medium,PR lower,0.728,0.7263885559609384
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Medium,PR upper,0.772,0.7713005225382478
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Small,ROC-AUC,0.585,0.5908452508485961
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Small,ROC lower,0.562,0.566015332379527
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Small,ROC upper,0.607,0.6141613016777732
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Small,PR-AUC,0.723,0.7285362690365359
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Small,PR lower,0.700,0.7021876918632126
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Small,PR upper,0.746,0.750935122793029
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Large,ROC-AUC,0.564,0.5661396580393291
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Large,ROC lower,0.537,0.5420919997272227
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Large,ROC upper,0.591,0.5921885398735616
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Large,PR-AUC,0.777,0.7790463919862262
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Large,PR lower,0.754,0.7552098497294647
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Large,PR upper,0.799,0.8021776595142623
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Small,ROC-AUC,0.526,0.5308387989113461
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Small,ROC lower,0.502,0.5068904614025647
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Small,ROC upper,0.550,0.5545187237943949
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Small,PR-AUC,0.679,0.6827896636963119
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Small,PR lower,0.652,0.655812140444659
+RQ3 companion table,StarCoder2-7B,Both,size_bucket,Very Small,PR upper,0.707,0.710029445901486
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,High,ROC-AUC,0.550,0.5531150504828943
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,High,ROC lower,0.524,0.5273278579677639
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,High,ROC upper,0.576,0.5796630420679076
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,High,PR-AUC,0.519,0.5234258885451634
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,High,PR lower,0.488,0.4904725004966778
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,High,PR upper,0.552,0.5614999224581126
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid,ROC-AUC,0.598,0.599649409609722
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid,ROC lower,0.576,0.5787730942650366
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid,ROC upper,0.619,0.6214248589181803
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid,PR-AUC,0.631,0.6293579600964734
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid,PR lower,0.604,0.6026955732881434
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid,PR upper,0.658,0.6563599627913383
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-High,ROC-AUC,0.549,0.5489053032797682
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-High,ROC lower,0.531,0.530245026151454
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-High,ROC upper,0.569,0.5688465635804739
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-High,PR-AUC,0.573,0.5745310602167866
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-High,PR lower,0.551,0.5509155382013431
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-High,PR upper,0.598,0.6011463708235383
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-Low,ROC-AUC,0.627,0.6259367872271098
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-Low,ROC lower,0.554,0.5467526114873499
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-Low,ROC upper,0.698,0.6981278360062602
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-Low,PR-AUC,0.724,0.7213966306606773
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-Low,PR lower,0.640,0.6375495179834677
+RQ3 companion table,StarCoder2-7B,Exact,alpha_bucket,Mid-Low,PR upper,0.798,0.7959287991701015
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Complex,ROC-AUC,0.654,0.6531548602863977
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Complex,ROC lower,0.631,0.6314358250245872
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Complex,ROC upper,0.677,0.6764219511517631
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Complex,PR-AUC,0.622,0.6197075522429384
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Complex,PR lower,0.589,0.5885113989733427
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Complex,PR upper,0.655,0.6502867138314395
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Moderate,ROC-AUC,0.622,0.6253868243122127
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Moderate,ROC lower,0.602,0.6066025570384048
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Moderate,ROC upper,0.641,0.6444826694112689
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Moderate,PR-AUC,0.622,0.6269881873759382
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Moderate,PR lower,0.598,0.6027836373543108
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Moderate,PR upper,0.647,0.651045419931246
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Simple,ROC-AUC,0.570,0.5714797114270861
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Simple,ROC lower,0.549,0.5502118179830698
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Simple,ROC upper,0.591,0.5917794410157446
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Simple,PR-AUC,0.623,0.6250138527567305
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Simple,PR lower,0.598,0.5985208282620694
+RQ3 companion table,StarCoder2-7B,Exact,complexity_bucket,Simple,PR upper,0.649,0.6490076972738044
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Large,ROC-AUC,0.622,0.6277228692939092
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Large,ROC lower,0.598,0.6026672751292652
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Large,ROC upper,0.649,0.6530439497301476
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Large,PR-AUC,0.629,0.6293232372355075
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Large,PR lower,0.596,0.591822903740819
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Large,PR upper,0.666,0.6626783682333995
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Medium,ROC-AUC,0.606,0.605111851499286
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Medium,ROC lower,0.580,0.5827507950853505
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Medium,ROC upper,0.629,0.6299500548428587
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Medium,PR-AUC,0.619,0.6179511458414225
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Medium,PR lower,0.587,0.5870746432595685
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Medium,PR upper,0.651,0.6495168965743703
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Small,ROC-AUC,0.592,0.5946958682155119
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Small,ROC lower,0.565,0.5684898214971336
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Small,ROC upper,0.618,0.6193018472769521
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Small,PR-AUC,0.585,0.5875304134415014
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Small,PR lower,0.549,0.5521533690473667
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Small,PR upper,0.620,0.623471281868598
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Large,ROC-AUC,0.531,0.5319567397468704
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Large,ROC lower,0.501,0.5016398396149828
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Large,ROC upper,0.561,0.564121631738912
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Large,PR-AUC,0.609,0.6124019224693754
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Large,PR lower,0.572,0.57832659614522
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Large,PR upper,0.646,0.653222602091207
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Small,ROC-AUC,0.512,0.5151324562984322
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Small,ROC lower,0.484,0.48634897782924497
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Small,ROC upper,0.540,0.5441564288100593
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Small,PR-AUC,0.501,0.5008609386690619
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Small,PR lower,0.465,0.46519335179885923
+RQ3 companion table,StarCoder2-7B,Exact,size_bucket,Very Small,PR upper,0.535,0.5408301805949701
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,High,ROC-AUC,0.563,0.5685694616313409
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,High,ROC lower,0.538,0.5423597723141753
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,High,ROC upper,0.589,0.595298673375957
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,High,PR-AUC,0.561,0.5677013510567964
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,High,PR lower,0.528,0.5374594066163628
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,High,PR upper,0.594,0.6020902955156694
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid,ROC-AUC,0.599,0.6063212488446134
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid,ROC lower,0.579,0.5867321123338302
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid,ROC upper,0.621,0.6269770580255838
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid,PR-AUC,0.600,0.6056843548878412
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid,PR lower,0.572,0.5776497619710727
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid,PR upper,0.629,0.635172201694842
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-High,ROC-AUC,0.559,0.5604222377105144
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-High,ROC lower,0.539,0.5419116047788303
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-High,ROC upper,0.578,0.5798878905772722
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-High,PR-AUC,0.579,0.5801724834184224
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-High,PR lower,0.554,0.5561449740232308
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-High,PR upper,0.602,0.6044992039676654
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-Low,ROC-AUC,0.669,0.6703323558162267
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-Low,ROC lower,0.595,0.5987429423868313
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-Low,ROC upper,0.734,0.738637246021369
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-Low,PR-AUC,0.764,0.7618272715362823
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-Low,PR lower,0.685,0.6881169215720889
+RQ3 companion table,StarCoder2-7B,Near,alpha_bucket,Mid-Low,PR upper,0.827,0.8273923378142567
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Complex,ROC-AUC,0.650,0.6539389355151715
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Complex,ROC lower,0.627,0.6317251810798759
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Complex,ROC upper,0.672,0.6749319442372418
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Complex,PR-AUC,0.646,0.6461571499850346
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Complex,PR lower,0.615,0.6177361114556547
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Complex,PR upper,0.674,0.674792467046447
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Moderate,ROC-AUC,0.615,0.6249083352823706
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Moderate,ROC lower,0.595,0.6068059176460437
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Moderate,ROC upper,0.634,0.6432099565891789
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Moderate,PR-AUC,0.621,0.6297789633794298
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Moderate,PR lower,0.595,0.6060867612244574
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Moderate,PR upper,0.646,0.6547221690389999
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Simple,ROC-AUC,0.564,0.5623925845441363
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Simple,ROC lower,0.541,0.5397737282132486
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Simple,ROC upper,0.587,0.5827541521684837
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Simple,PR-AUC,0.572,0.5726939799018463
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Simple,PR lower,0.545,0.5445700130334119
+RQ3 companion table,StarCoder2-7B,Near,complexity_bucket,Simple,PR upper,0.602,0.6024820897575148
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Large,ROC-AUC,0.631,0.6341433021806854
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Large,ROC lower,0.604,0.6079499142172989
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Large,ROC upper,0.657,0.6608400661254487
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Large,PR-AUC,0.616,0.6203076301993219
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Large,PR lower,0.580,0.5854411322457972
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Large,PR upper,0.650,0.654586823281278
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Medium,ROC-AUC,0.595,0.5959122302633753
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Medium,ROC lower,0.569,0.5710648740597515
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Medium,ROC upper,0.620,0.6194394768959994
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Medium,PR-AUC,0.592,0.5900159281174691
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Medium,PR lower,0.558,0.5550411432751204
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Medium,PR upper,0.627,0.6223040854755422
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Small,ROC-AUC,0.578,0.5866667220270768
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Small,ROC lower,0.552,0.5605391781283628
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Small,ROC upper,0.604,0.6112917892570016
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Small,PR-AUC,0.553,0.5632225801193232
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Small,PR lower,0.520,0.5294396264486462
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Small,PR upper,0.589,0.5992454290194221
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Large,ROC-AUC,0.600,0.6035687239681938
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Large,ROC lower,0.570,0.5741028329145326
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Large,ROC upper,0.633,0.6350335720866995
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Large,PR-AUC,0.674,0.6766584543691372
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Large,PR lower,0.639,0.6384833324419321
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Large,PR upper,0.712,0.7112052619539632
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Small,ROC-AUC,0.539,0.5462439239946973
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Small,ROC lower,0.511,0.5203473052647307
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Small,ROC upper,0.568,0.575222969090439
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Small,PR-AUC,0.530,0.5380044695068181
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Small,PR lower,0.494,0.5012589510217383
+RQ3 companion table,StarCoder2-7B,Near,size_bucket,Very Small,PR upper,0.567,0.5761876921073902
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Simple,p25,0.016994,0.017196653431168295
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Simple,median,0.055105,0.05530689550081501
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Simple,p75,0.114798,0.11523308780771467
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Moderate,p25,0.046034,0.04716349755031433
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Moderate,median,0.080377,0.07969671440606574
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Moderate,p75,0.120308,0.11921230320067114
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Complex,p25,0.124396,0.12406380027739253
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Complex,median,0.171149,0.17198443579766537
+Figure 3 companion notebook,StarCoder2-7B,All files,complexity_bucket,Complex,p75,0.222495,0.22357973990417523
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,High,ROC-AUC,0.522,0.523560678712321
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,High,ROC lower,0.501,0.5027337601776477
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,High,ROC upper,0.544,0.5467306694423307
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,High,PR-AUC,0.650,0.6502565068165475
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,High,PR lower,0.625,0.6256279516982632
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,High,PR upper,0.674,0.6758585599369591
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid,ROC-AUC,0.550,0.5462950637797119
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid,ROC lower,0.532,0.5281897522299752
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid,ROC upper,0.568,0.5657675701035705
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid,PR-AUC,0.707,0.701843077333757
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid,PR lower,0.688,0.6819107549801231
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid,PR upper,0.727,0.7220512808774123
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-High,ROC-AUC,0.514,0.5161599640191302
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-High,ROC lower,0.497,0.5002070350717479
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-High,ROC upper,0.530,0.5328291859835811
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-High,PR-AUC,0.688,0.6907683780870197
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-High,PR lower,0.669,0.6730227484604935
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-High,PR upper,0.706,0.7074095296047829
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-Low,ROC-AUC,0.616,0.6166503747148908
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-Low,ROC lower,0.554,0.5514906953386384
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-Low,ROC upper,0.683,0.6817394174316663
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-Low,PR-AUC,0.810,0.8067616086850933
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-Low,PR lower,0.752,0.7507893263109049
+RQ3 companion table,SmolLM3-3B,Both,alpha_bucket,Mid-Low,PR upper,0.864,0.863379985414954
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Complex,ROC-AUC,0.559,0.555513512079654
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Complex,ROC lower,0.538,0.5328435235411576
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Complex,ROC upper,0.580,0.5756942896880144
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Complex,PR-AUC,0.684,0.6833610017495657
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Complex,PR lower,0.662,0.6599131171836203
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Complex,PR upper,0.706,0.7064548973211462
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Moderate,ROC-AUC,0.568,0.5739070275279113
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Moderate,ROC lower,0.552,0.5575388018341924
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Moderate,ROC upper,0.585,0.5897393331406333
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Moderate,PR-AUC,0.719,0.7192826720131069
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Moderate,PR lower,0.701,0.7030593098485071
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Moderate,PR upper,0.735,0.7380437204724214
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Simple,ROC-AUC,0.531,0.5329739044872431
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Simple,ROC lower,0.513,0.515243473183309
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Simple,ROC upper,0.551,0.5508269292251056
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Simple,PR-AUC,0.711,0.7113843365300866
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Simple,PR lower,0.692,0.6930363609849166
+RQ3 companion table,SmolLM3-3B,Both,complexity_bucket,Simple,PR upper,0.730,0.729708615835858
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Large,ROC-AUC,0.563,0.5647805330080942
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Large,ROC lower,0.540,0.5427305171948917
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Large,ROC upper,0.585,0.5860806523837016
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Large,PR-AUC,0.702,0.702751662758415
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Large,PR lower,0.679,0.6796658845136799
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Large,PR upper,0.728,0.7276453153636695
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Medium,ROC-AUC,0.540,0.5394700207200207
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Medium,ROC lower,0.516,0.5167616314108329
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Medium,ROC upper,0.561,0.5611684139836683
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Medium,PR-AUC,0.691,0.6884104304026543
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Medium,PR lower,0.666,0.6653807915467178
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Medium,PR upper,0.716,0.7103290936227159
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Small,ROC-AUC,0.550,0.5497216923336293
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Small,ROC lower,0.525,0.5272805793582019
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Small,ROC upper,0.575,0.572877835644093
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Small,PR-AUC,0.693,0.6924950132323182
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Small,PR lower,0.668,0.6667836482128686
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Small,PR upper,0.720,0.7180469057554351
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Large,ROC-AUC,0.493,0.4941202917148641
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Large,ROC lower,0.467,0.46576847572596825
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Large,ROC upper,0.519,0.5213082889904168
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Large,PR-AUC,0.709,0.7097150516548983
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Large,PR lower,0.682,0.6818748083571967
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Large,PR upper,0.737,0.737709071620919
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Small,ROC-AUC,0.524,0.5239066613126311
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Small,ROC lower,0.499,0.4996958436095215
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Small,ROC upper,0.547,0.5484812120206185
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Small,PR-AUC,0.677,0.6771754459105485
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Small,PR lower,0.651,0.6497104794307135
+RQ3 companion table,SmolLM3-3B,Both,size_bucket,Very Small,PR upper,0.705,0.7054825926066108
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,High,ROC-AUC,0.520,0.5216648830928278
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,High,ROC lower,0.493,0.4938512154667049
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,High,ROC upper,0.546,0.5485075946891379
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,High,PR-AUC,0.473,0.4733725202713817
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,High,PR lower,0.440,0.4409776302421076
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,High,PR upper,0.509,0.5073677050523799
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid,ROC-AUC,0.543,0.5403348827590282
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid,ROC lower,0.521,0.5184713867891904
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid,ROC upper,0.564,0.5597343769547516
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid,PR-AUC,0.555,0.5482681857389945
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid,PR lower,0.528,0.5203874591800836
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid,PR upper,0.582,0.5727009119928346
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-High,ROC-AUC,0.510,0.5104410207016158
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-High,ROC lower,0.491,0.4889981370026674
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-High,ROC upper,0.529,0.5305794269026985
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-High,PR-AUC,0.521,0.5251733471821963
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-High,PR lower,0.498,0.5000189879699621
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-High,PR upper,0.545,0.5497551999610851
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-Low,ROC-AUC,0.585,0.593841642228739
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-Low,ROC lower,0.507,0.5142667551426675
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-Low,ROC upper,0.656,0.6691420539574326
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-Low,PR-AUC,0.642,0.6385436820195552
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-Low,PR lower,0.560,0.5500545285325364
+RQ3 companion table,SmolLM3-3B,Exact,alpha_bucket,Mid-Low,PR upper,0.742,0.7387866752991911
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Complex,ROC-AUC,0.567,0.5634014211488662
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Complex,ROC lower,0.544,0.5389554887621589
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Complex,ROC upper,0.591,0.5871580097989603
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Complex,PR-AUC,0.513,0.5123812385091309
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Complex,PR lower,0.483,0.4834570996720856
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Complex,PR upper,0.544,0.5422587972811009
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Moderate,ROC-AUC,0.561,0.5670839039499818
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Moderate,ROC lower,0.542,0.548468034860538
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Moderate,ROC upper,0.580,0.5866220740910804
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Moderate,PR-AUC,0.551,0.5529671764057608
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Moderate,PR lower,0.526,0.5289526453982905
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Moderate,PR upper,0.579,0.5758136097471238
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Simple,ROC-AUC,0.538,0.5398310374984673
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Simple,ROC lower,0.516,0.5192035993786719
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Simple,ROC upper,0.559,0.5602962405356944
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Simple,PR-AUC,0.580,0.5803552152939674
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Simple,PR lower,0.551,0.5550927266162671
+RQ3 companion table,SmolLM3-3B,Exact,complexity_bucket,Simple,PR upper,0.607,0.6054462612248696
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Large,ROC-AUC,0.566,0.5686702587211282
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Large,ROC lower,0.538,0.5433056026811629
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Large,ROC upper,0.594,0.5946996392646811
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Large,PR-AUC,0.551,0.5486668615388294
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Large,PR lower,0.512,0.5142730343245148
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Large,PR upper,0.588,0.5851553556394051
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Medium,ROC-AUC,0.546,0.5444095404304828
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Medium,ROC lower,0.521,0.5176937020584311
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Medium,ROC upper,0.572,0.5688211262098224
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Medium,PR-AUC,0.540,0.5355645566683563
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Medium,PR lower,0.509,0.5051725053416872
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Medium,PR upper,0.573,0.5673558815875751
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Small,ROC-AUC,0.554,0.5485168378252907
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Small,ROC lower,0.527,0.5198002839881546
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Small,ROC upper,0.582,0.5744194738746512
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Small,PR-AUC,0.539,0.5370511237630042
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Small,PR lower,0.506,0.5045700602270627
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Small,PR upper,0.574,0.5734723397321044
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Large,ROC-AUC,0.470,0.474457950065703
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Large,ROC lower,0.439,0.44241691292640023
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Large,ROC upper,0.502,0.5044757092625757
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Large,PR-AUC,0.533,0.5368038817830424
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Large,PR lower,0.498,0.5013285015274014
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Large,PR upper,0.571,0.5720161922365481
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Small,ROC-AUC,0.499,0.5035844296269598
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Small,ROC lower,0.471,0.4742853539968607
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Small,ROC upper,0.528,0.5331897475043695
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Small,PR-AUC,0.484,0.486624488067501
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Small,PR lower,0.450,0.4533707056547346
+RQ3 companion table,SmolLM3-3B,Exact,size_bucket,Very Small,PR upper,0.525,0.5227473171915223
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,High,ROC-AUC,0.523,0.5253957394607092
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,High,ROC lower,0.500,0.4994459770747644
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,High,ROC upper,0.549,0.5522348744281671
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,High,PR-AUC,0.492,0.4923481316028529
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,High,PR lower,0.462,0.4564924122208715
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,High,PR upper,0.528,0.5257439274262715
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid,ROC-AUC,0.559,0.5529074226628412
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid,ROC lower,0.537,0.5314167629258404
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid,ROC upper,0.581,0.5740921280093291
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid,PR-AUC,0.541,0.5345090495009931
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid,PR lower,0.516,0.5063126458714626
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid,PR upper,0.569,0.563435818783651
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-High,ROC-AUC,0.519,0.5220887147246245
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-High,ROC lower,0.499,0.5021183876729155
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-High,ROC upper,0.540,0.5406710077148695
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-High,PR-AUC,0.529,0.5320555598212577
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-High,PR lower,0.504,0.5078859491421042
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-High,PR upper,0.556,0.5547296769319482
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-Low,ROC-AUC,0.646,0.6394591072010427
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-Low,ROC lower,0.575,0.5630955845360113
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-Low,ROC upper,0.722,0.7150524607692837
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-Low,PR-AUC,0.714,0.70721152078401
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-Low,PR lower,0.633,0.6245949115516742
+RQ3 companion table,SmolLM3-3B,Near,alpha_bucket,Mid-Low,PR upper,0.794,0.7915942905266513
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Complex,ROC-AUC,0.551,0.5478421055466509
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Complex,ROC lower,0.528,0.5228827525727214
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Complex,ROC upper,0.572,0.5708939827464901
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Complex,PR-AUC,0.529,0.5274766401658382
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Complex,PR lower,0.498,0.4986383679829071
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Complex,PR upper,0.558,0.5582501644362315
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Moderate,ROC-AUC,0.576,0.5807552668981523
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Moderate,ROC lower,0.556,0.5612212371048503
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Moderate,ROC upper,0.596,0.6005172086301719
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Moderate,PR-AUC,0.576,0.5752396376811477
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Moderate,PR lower,0.550,0.5493034066622505
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Moderate,PR upper,0.603,0.6016582115406424
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Simple,ROC-AUC,0.524,0.525038539097027
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Simple,ROC lower,0.503,0.5022896555195104
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Simple,ROC upper,0.546,0.5492227659308871
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Simple,PR-AUC,0.523,0.5234140914603219
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Simple,PR lower,0.496,0.4961661991330492
+RQ3 companion table,SmolLM3-3B,Near,complexity_bucket,Simple,PR upper,0.555,0.5519327051598688
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Large,ROC-AUC,0.559,0.560803860485004
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Large,ROC lower,0.534,0.5368143811767158
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Large,ROC upper,0.584,0.5880039252450714
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Large,PR-AUC,0.538,0.5401776557793121
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Large,PR lower,0.503,0.5077558042298405
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Large,PR upper,0.572,0.5777383206374886
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Medium,ROC-AUC,0.533,0.534325809898329
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Medium,ROC lower,0.508,0.5091914085284573
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Medium,ROC upper,0.558,0.5592160662253487
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Medium,PR-AUC,0.520,0.5167033134404811
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Medium,PR lower,0.486,0.4838882250991675
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Medium,PR upper,0.554,0.5482915206181455
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Small,ROC-AUC,0.546,0.5510291500239434
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Small,ROC lower,0.516,0.5242204020080709
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Small,ROC upper,0.571,0.5805858370564354
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Small,PR-AUC,0.523,0.5233595301516922
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Small,PR lower,0.490,0.49124346069107155
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Small,PR upper,0.559,0.5597938752281424
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Large,ROC-AUC,0.518,0.5156498485422188
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Large,ROC lower,0.486,0.48535805621118144
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Large,ROC upper,0.552,0.5450234525297418
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Large,PR-AUC,0.567,0.5651832814858522
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Large,PR lower,0.525,0.5257843951103519
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Large,PR upper,0.607,0.6043347528768103
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Small,ROC-AUC,0.547,0.5438391515687141
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Small,ROC lower,0.519,0.5155495822540616
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Small,ROC upper,0.577,0.5732005502108058
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Small,PR-AUC,0.540,0.5379761946047238
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Small,PR lower,0.500,0.5037094844631231
+RQ3 companion table,SmolLM3-3B,Near,size_bucket,Very Small,PR upper,0.576,0.5773819097785468
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Simple,p25,0.016938,0.017196653431168295
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Simple,median,0.053983,0.05530689550081501
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Simple,p75,0.115062,0.11523308780771467
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Moderate,p25,0.046419,0.04716349755031433
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Moderate,median,0.079661,0.07969671440606574
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Moderate,p75,0.118853,0.11921230320067114
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Complex,p25,0.124342,0.12406380027739253
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Complex,median,0.171182,0.17198443579766537
+Figure 3 companion notebook,SmolLM3-3B,All files,complexity_bucket,Complex,p75,0.222106,0.22357973990417523
