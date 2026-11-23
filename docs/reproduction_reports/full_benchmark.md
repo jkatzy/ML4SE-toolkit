@@ -2,7 +2,7 @@
 
 This experiment tests whether a benchmark implementation of `MembershipScorer` can score Java source through `score_many`, whether the shared and method-specific evaluators agree, and how accurately fresh measurements recover the FSE results. The reference study is Roham Koohestani, Ali Al-Kaswan, Jonathan Katzy, and Maliheh Izadi, *AST-PAC: AST-guided Membership Inference for Code*, FSE Companion 2026. [Proceedings paper](https://doi.org/10.1145/3803437.3805588) · [Versioned replication package](https://doi.org/10.5281/zenodo.18348152)
 
-The method reports link to the standalone ML4SETK reproduction tests. This page preserves the earlier joint benchmark, which used the FSE authors’ external Java augmentation function for AST-PAC. [Reproduction reports and test environment](index.md)
+This benchmark supplements the AST-PAC paper report. This page preserves the earlier joint benchmark, which used the FSE authors’ external Java augmentation function for AST-PAC. [AST-PAC report and reproduction script](ast_pac.md)
 
 ## Four-model results
 
@@ -14,10 +14,10 @@ Each panel shows 144 paired estimates across four models, three membership compa
 
 The tables below are downloadable aggregates from the same run. Each row identifies the source (printed paper, companion table or notebook), model, positive cohort, stratum and metric, followed by the reference and ML4SETK values. ROC and PR lower/upper rows give bootstrap interval endpoints. For Figure 3, the entries are quantiles of the change ratio. The reference aggregates are from Koohestani et al.’s paper and Roham Koohestani’s versioned deposit (CC BY 4.0). The paired tables and figures combine these values with the toolkit measurements. [Replication package](https://doi.org/10.5281/zenodo.18348152) · [License](https://creativecommons.org/licenses/by/4.0/)
 
-| Method | Paired aggregate values | Method report |
+| Method | Paired aggregate values | Comparison in the FSE report |
 | --- | --- | --- |
-| Loss | [Download CSV](data/loss_fse.csv) | [Loss](loss.md) |
-| PAC | [Download CSV](data/pac_fse.csv) | [PAC](pac.md) |
+| Loss | [Download CSV](data/loss_fse.csv) | [Loss baseline](ast_pac.md#loss-baseline) |
+| PAC | [Download CSV](data/pac_fse.csv) | [PAC baseline](ast_pac.md#pac-baseline) |
 | AST-PAC | [Download CSV](data/ast_pac_fse.csv) | [AST-PAC](ast_pac.md) |
 
 ## Protocol

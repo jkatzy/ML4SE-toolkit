@@ -2,9 +2,9 @@
 
 This report records the archived-score experiment at revision `8155474`.
 The subsequent four-model experiment starts from Java source and generates
-fresh scores through the shared API. [Full benchmark and method reports](full_benchmark.md)
+fresh scores through the shared API. [Four-model FSE benchmark](full_benchmark.md)
 
-This historical check supplied the authors’ saved per-file scores to the toolkit evaluators. It tests the ROC-AUC and PR-AUC calculations. For the later source-to-score results, see the [Loss](loss.md), [PAC](pac.md), and [AST-PAC](ast_pac.md) reports.
+This historical check supplied the authors’ saved per-file scores to the toolkit evaluators. It tests the ROC-AUC and PR-AUC calculations. The paper report compares fresh model scores with the FSE tables for all three methods. [AST-PAC paper report](ast_pac.md)
 
 ## PAC on StarCoder2-7B near-members
 
@@ -64,14 +64,12 @@ source dataset, or upstream implementation. [Paper](https://doi.org/10.1145/3803
 - **PAC.** Wentao Ye, Jiaqi Hu, Liyao Li, Haobo Wang, Gang Chen, and Junbo Zhao,
   *Data Contamination Calibration for Black-box LLMs*, Findings of ACL 2024.
   The FSE comparison verifies PAC's evaluation for four models on a Java
-  benchmark. Reproducing the ACL study's WikiMIA and StackMIAsub experiments
-  remains open. The pinned authors' repository contains no saved score file.
+  benchmark. The [ACL paper report](pac.md) covers GPT-Neo on original WikiMIA. The pinned authors' repository contains no saved score file.
   [Original paper](https://doi.org/10.18653/v1/2024.findings-acl.644) · [Original artifact](https://github.com/yyy01/PAC/tree/79c6eca14fed3a64a7a4201cdca263de52501dae)
 - **Loss.** Samuel Yeom, Irene Giacomelli, Matt Fredrikson, and Somesh Jha,
   *Privacy Risk in Machine Learning: Analyzing the Connection to Overfitting*,
   IEEE CSF 2018. The FSE comparison verifies the archived negative-loss
-  baseline. The original CSF experiments and the language-model experiments
-  cited by the FSE authors remain unreplicated here. The CSF artifact contains
+  baseline. The [CSF paper report](loss.md) covers the theoretical curve in Figure 2b. The CSF artifact contains
   input data and scripts that generate results. [Original paper](https://doi.org/10.1109/CSF.2018.00027) · [Original artifact](https://github.com/sam-yeom/ml-privacy-csf18/tree/7b302fb80b853b040941eb90b37c0491f55e4928) · [Language-model reference](https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting)
 
 ## Repeat the comparison

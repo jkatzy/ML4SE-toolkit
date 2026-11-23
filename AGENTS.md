@@ -48,7 +48,10 @@ Work under `src/ml4setk/MIA/`. Use the AST-PAC, PAC, and Loss entries in
    Keep large reference artifacts external and optional imports local.
 5. **Record the reproduction.** Name the exact paper table or artifact result,
    model, cohorts, metric definition, comparison precision, command, and
-   observed result. State which original claims have actually been checked.
+   observed result. Give each paper its own report and runnable script. Put a
+   baseline comparison in the report and script for the paper that ran it.
+   Pair each reference value with the measured toolkit value in a table or plot.
+   State which original claims have actually been checked.
    Publish the citation and reuse record beside the example in the MIA guide.
    Run the focused tests, `make lint`, and `make smoke`.
 

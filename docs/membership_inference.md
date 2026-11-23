@@ -6,14 +6,11 @@ benchmark adapter implements this interface for Loss, PAC, and AST-PAC.
 
 ## Reproduction reports
 
-Each report links to a runnable pytest script. The scripts score labeled benchmark
-inputs with ML4SETK and compare the results with the published values using a 1% relative
-tolerance. The FSE data archive supplies reference tables and file inputs.
-[Setup and comparison criteria](reproduction_reports/index.md)
+Each report pairs an original paper’s results with ML4SETK measurements and links to the script and inputs for that study.
 
-- [Loss reproduction report](reproduction_reports/loss.md)
-- [PAC reproduction report](reproduction_reports/pac.md)
-- [AST-PAC reproduction report](reproduction_reports/ast_pac.md)
+- [Yeom et al. (CSF 2018), loss threshold and the Figure 2b theoretical curve](reproduction_reports/loss.md)
+- [Ye et al. (Findings of ACL 2024), PAC and perplexity on WikiMIA](reproduction_reports/pac.md)
+- [Koohestani et al. (FSE Companion 2026), AST-PAC and both Java baselines](reproduction_reports/ast_pac.md)
 
 ## Shared scoring API
 

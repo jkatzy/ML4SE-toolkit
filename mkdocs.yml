@@ -30,12 +30,13 @@ nav:
   - Membership inference:
       - Module guide: membership_inference.md
   - Reproduction reports:
-      - Running the checks: reproduction_reports/index.md
-      - Loss: reproduction_reports/loss.md
-      - PAC: reproduction_reports/pac.md
-      - AST-PAC: reproduction_reports/ast_pac.md
-      - Earlier four-model benchmark: reproduction_reports/full_benchmark.md
-      - Archived-score comparison: reproduction_reports/archived_scores.md
+      - Studies: reproduction_reports/index.md
+      - Loss (CSF 2018): reproduction_reports/loss.md
+      - PAC (Findings of ACL 2024): reproduction_reports/pac.md
+      - AST-PAC (FSE Companion 2026):
+          - Paper report: reproduction_reports/ast_pac.md
+          - Earlier four-model benchmark: reproduction_reports/full_benchmark.md
+          - Archived-score comparison: reproduction_reports/archived_scores.md
   - Architecture: architecture.md
   - Git workflow: git_workflow.md
 
