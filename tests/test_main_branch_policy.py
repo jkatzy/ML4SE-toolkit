@@ -16,6 +16,7 @@ def test_find_disallowed_paths_flags_development_only_artifacts():
     paths = [
         ".idea/workspace.xml",
         "AGENTS.md",
+        "agents/ml4setk/reproduction.md",
         "docs/comment_research/chunk_0_nonalpha_a_report.md",
         "docs/comment_research/stack_v3_full/batch_00.md",
         "docs/comment_testing/chunk_0_findings.md",
@@ -39,6 +40,7 @@ def test_find_disallowed_paths_flags_development_only_artifacts():
     assert MODULE.find_disallowed_paths(paths) == [
         ".idea/workspace.xml",
         "AGENTS.md",
+        "agents/ml4setk/reproduction.md",
         "docs/comment_research/chunk_0_nonalpha_a_report.md",
         "docs/comment_research/stack_v3_full/batch_00.md",
         "docs/comment_syntax_matrix.md",
@@ -63,6 +65,7 @@ def test_find_disallowed_paths_ignores_normal_repository_files():
     paths = [
         "README.md",
         "docs/comment_extractor.md",
+        "docs/reproduction_reports/ml4setk/MIA/pac/index.md",
         "scripts/build_comment_cleaning_fixtures.py",
         "scripts/fuzz_comment_parsers.py",
         "src/ml4setk/Parsing/Comments/registry.py",

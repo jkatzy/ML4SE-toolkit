@@ -8,6 +8,7 @@ import sys
 from pathlib import PurePosixPath
 
 DISALLOWED_MAIN_DIRECTORIES = (
+    "agents",
     "docs/comment_research",
     "docs/comment_testing",
     "scratch",

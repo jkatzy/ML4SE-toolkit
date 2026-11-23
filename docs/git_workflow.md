@@ -22,7 +22,7 @@ Keep on `main`:
 
 Do not keep on `main`:
 
-- `AGENTS.md`
+- `AGENTS.md` and role instructions under `agents/`
 - comment research workbooks or evidence staging
 - adversarial prompt packets, agent reports, or judge ledgers
 - operational LLM-judge documentation
@@ -42,7 +42,7 @@ make build
 ## Dev branch standard
 
 `dev` contains everything on `main`, plus the development-only material under
-`docs/comment_research/` and `docs/comment_testing/`, the root `AGENTS.md`,
+`docs/comment_research/` and `docs/comment_testing/`, the root `AGENTS.md` and the role instructions under `agents/`,
 and the prompt-packet and LLM-judge scripts under `scripts/` (with their tests
 and Makefile targets). Comment extraction or cleaning changes begin on `dev`; confirmed
 failures become deterministic tests and fixtures before promotion to `main`.
