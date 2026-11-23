@@ -1,4 +1,4 @@
-"""Redraw the three original-study figures from the aggregate tables in the documentation."""
+"""Redraw the original-study figures from the aggregate tables in the documentation."""
 
 import csv
 from math import erf, sqrt
@@ -58,9 +58,13 @@ def pac():
     data = {r["method"]: r for r in rows("pac", "pac_table1.csv")}
     fig, ax = plt.subplots(figsize=(7.3, 2.55), layout="constrained")
     for y, field in enumerate(["reproduced_roc_auc", "paper_roc_auc"]):
-        a, b = (float(data[m][field]) for m in ("Perplexity", "PAC"))
-        ax.plot([a, b], [y, y], color=GRID, lw=3, zorder=1)
-        for x, name, marker, color in [(a, "Perplexity", "o", PAPER), (b, "PAC", "D", REPRODUCED)]:
+        ax.hlines(y, float(data["Perplexity"][field]), float(data["PAC"][field]), color=GRID, lw=3)
+        for name, marker, color in [
+            ("Perplexity", "o", PAPER),
+            ("Min-K%", "s", "#32786d"),
+            ("PAC", "D", REPRODUCED),
+        ]:
+            x = float(data[name][field])
             ax.scatter(
                 x, y, marker=marker, color=color, s=54, zorder=2, label=name if y == 1 else None
             )
@@ -72,15 +76,15 @@ def pac():
         xlim=(0.605, 0.677),
         xlabel="ROC-AUC",
     )
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.24), ncol=2, frameon=False)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, 1.24), ncol=3, frameon=False)
     ax.grid(axis="x", color=GRID, alpha=0.7)
     save(fig, "pac", "pac_table1.png")
 
 
 def pac_by_length():
     data = rows("pac", "pac_figure7_gpt_neo.csv")
-    fig, axes = plt.subplots(1, 2, figsize=(8.2, 3.1), layout="constrained", sharey=True)
-    for ax, method in zip(axes, ["Perplexity", "PAC"]):
+    fig, axes = plt.subplots(1, 3, figsize=(10.3, 3.1), layout="constrained", sharey=True)
+    for ax, method in zip(axes, ["Perplexity", "Min-K%", "PAC"]):
         series = [r for r in data if r["method"] == method]
         lengths = [r["length"] for r in series]
         for field, label, color, marker in [
@@ -93,8 +97,39 @@ def pac_by_length():
         ax.set(title=method, xlabel="WikiMIA length group")
         ax.grid(axis="y", color=GRID)
     axes[0].set_ylabel("ROC-AUC")
-    axes[1].legend(loc="lower right", frameon=False)
+    axes[-1].legend(loc="lower right", frameon=False)
     save(fig, "pac", "pac_figure7_gpt_neo.png")
+
+
+def min_k():
+    data = rows("min_k", "pythia_original.csv")
+    fig, axes = plt.subplots(1, 2, figsize=(8.0, 2.9), layout="constrained")
+    for ax, metric, title in zip(axes, ["auc", "tpr_percent"], ["ROC-AUC", "TPR at 5% FPR (%)"]):
+        compared = [row for row in data if row[f"paper_{metric}"]]
+        for y, row in enumerate(compared):
+            paper, measured = (float(row[f"{source}_{metric}"]) for source in ["paper", "ml4setk"])
+            ax.hlines(y, paper, measured, color=GRID)
+            ax.scatter(
+                paper,
+                y,
+                marker="o",
+                facecolors="none",
+                edgecolors=PAPER,
+                s=90,
+                label="Shi et al." if y == 0 else None,
+            )
+            ax.scatter(
+                measured, y, marker="x", color=REPRODUCED, s=32, label="ML4SETK" if y == 0 else None
+            )
+        ax.set(
+            yticks=range(len(compared)),
+            yticklabels=[r["method"] for r in compared],
+            ylim=(-0.55, 1.55),
+            xlabel=title,
+        )
+        ax.grid(axis="x", color=GRID)
+    axes[0].legend(loc="upper left", frameon=False, ncol=2)
+    save(fig, "min_k", "pythia_original.png")
 
 
 def ast_pac():
@@ -200,5 +235,6 @@ if __name__ == "__main__":
     loss()
     pac()
     pac_by_length()
+    min_k()
     ast_pac()
     fse_strata()

@@ -40,9 +40,9 @@ def compare_figures(page):
 
 
 def print_gpt_neo(left):
-    # Series colours come from the PPL and Ours legend strokes. Tick positions
+    # Series colours come from the published legend strokes. Tick positions
     # are in PDF points, measured downwards from the top of the published page.
-    palette = {(243, 114, 44): "Perplexity", (87, 117, 144): "PAC"}
+    palette = {(243, 114, 44): "Perplexity", (67, 170, 139): "Min-K%", (87, 117, 144): "PAC"}
     methods = set()
     for path in left:
         vertices = points(path)

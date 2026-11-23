@@ -9,7 +9,12 @@ from statistics import mean
 import pytest
 from paper_tolerance import within_one_percent
 
-from ml4setk.MIA import evaluate_loss_scores, evaluate_pac_scores
+from ml4setk.MIA import (
+    evaluate_loss_scores,
+    evaluate_membership_scores,
+    evaluate_pac_scores,
+    min_k_score,
+)
 from ml4setk.MIA.pac import _polarized_distance
 
 
@@ -86,7 +91,7 @@ def wikimia_areas(wikimia_cohort):
         .to("cuda")
     )
     rng = random.Random(42)
-    raw, negative_loss = [], []
+    raw, negative_loss, min_k = [], [], []
     with torch.inference_mode():
         for text in cohort.input:
             words = text.split(" ")
@@ -112,32 +117,43 @@ def wikimia_areas(wikimia_cohort):
                 )
                 if i == 0:
                     negative_loss.append(mean(log_probs))
+                    min_k.append(min_k_score(log_probs))
             raw.append(gaps[0] - mean(gaps[1:]))
-    cohort = cohort.assign(pac=raw, loss=negative_loss)
+    cohort = cohort.assign(pac=raw, loss=negative_loss, min_k=min_k)
 
     def areas(group):
         pos, neg = group[group.label == 1], group[group.label == 0]
         pac = evaluate_pac_scores(members=pos.pac, nonmembers=neg.pac).roc_auc
         loss = evaluate_loss_scores(members=pos.loss, nonmembers=neg.loss).roc_auc
-        return pac, loss
+        baseline = evaluate_membership_scores(members=pos.min_k, nonmembers=neg.min_k).roc_auc
+        return pac, loss, baseline
 
     for length, group in cohort.groupby("length_group"):
-        pac, loss = areas(group)
-        print(f"Figure 7, GPT-Neo length {length}: PAC {pac:.9f}, PPL {loss:.9f}")
-    pac, loss = areas(cohort)
+        pac, loss, baseline = areas(group)
+        print(
+            f"Figure 7, GPT-Neo length {length}: PAC {pac:.9f}, PPL {loss:.9f}, "
+            f"Min-K% {baseline:.9f}"
+        )
+    pac, loss, baseline = areas(cohort)
     print(
         f"ACL Table 1, GPT-Neo, original WikiMIA: PAC {pac:.9f} (paper 0.666), "
-        f"PPL {loss:.9f} (paper 0.616)"
+        f"PPL {loss:.9f} (paper 0.616), Min-K% {baseline:.9f} (paper 0.648)"
     )
-    return pac, loss
+    return pac, loss, baseline
 
 
 def test_acl_perplexity_control_and_pac_order(wikimia_areas):
-    pac, loss = wikimia_areas
+    pac, loss, _ = wikimia_areas
     assert within_one_percent(loss, 0.616), loss
     assert pac > loss
 
 
 def test_acl_pac_table1_within_one_percent(wikimia_areas):
-    pac, _ = wikimia_areas
+    pac, _, _ = wikimia_areas
     assert within_one_percent(pac, 0.666), pac
+
+
+def test_acl_table1_min_k_baseline(wikimia_areas):
+    pac, _, min_k = wikimia_areas
+    assert within_one_percent(min_k, 0.648), min_k
+    assert pac > min_k

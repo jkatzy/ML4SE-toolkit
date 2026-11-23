@@ -3,6 +3,7 @@
 from .ast_pac import evaluate_ast_pac_scores
 from .evaluation import MembershipMetrics, evaluate_membership_scores
 from .loss import evaluate_loss_scores
+from .min_k import min_k_score
 from .pac import evaluate_pac_scores
 from .scoring import MembershipScorer, MembershipThreshold
 
@@ -14,4 +15,5 @@ __all__ = [
     "evaluate_loss_scores",
     "evaluate_membership_scores",
     "evaluate_pac_scores",
+    "min_k_score",
 ]
