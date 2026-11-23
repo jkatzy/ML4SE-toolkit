@@ -4,7 +4,7 @@ Reports follow the Python module path under `src/`. Each paper-backed module has
 
 | Source package | Module reports |
 | --- | --- |
-| [ml4setk.MIA](ml4setk/MIA/index.md) | [loss](ml4setk/MIA/loss/index.md) · [pac](ml4setk/MIA/pac/index.md) · [ast_pac](ml4setk/MIA/ast_pac/index.md) |
+| [ml4setk.MIA](ml4setk/MIA/index.md) | [loss](ml4setk/MIA/loss/index.md) · [min_k](ml4setk/MIA/min_k/index.md) · [pac](ml4setk/MIA/pac/index.md) · [ast_pac](ml4setk/MIA/ast_pac/index.md) |
 
 ## Adding a paper
 

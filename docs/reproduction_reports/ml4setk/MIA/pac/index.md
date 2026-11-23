@@ -1,6 +1,6 @@
 # PAC reproduction report
 
-[Source module `ml4setk.MIA.pac`](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/src/ml4setk/MIA/pac.py) · [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/65fdb41/reproductions/ml4setk/MIA/test_pac.py)
+[Source module `ml4setk.MIA.pac`](https://github.com/jkatzy/ML4SE-toolkit/blob/fdd40a7/src/ml4setk/MIA/pac.py) · [Reproduction script](https://github.com/jkatzy/ML4SE-toolkit/blob/d92635c/reproductions/ml4setk/MIA/test_pac.py)
 
 *Data Contamination Calibration for Black-box LLMs*. Wentao Ye, Jiaqi Hu, Liyao Li, Haobo Wang, Gang Chen, and Junbo Zhao. Findings of ACL 2024. [Paper](https://doi.org/10.18653/v1/2024.findings-acl.644)
 
@@ -23,28 +23,29 @@ The paper reports a ROC-AUC increase of **0.050** from perplexity to PAC. ML4SET
 | Method | Paper ROC-AUC | ML4SETK ROC-AUC |
 | --- | ---: | ---: |
 | Perplexity | 0.616 | 0.615686950 |
+| Min-K% | 0.648 | 0.648345647 |
 | PAC | 0.666 | 0.663491475 |
 
-The closest published baseline in this row is Min-K% at 0.648. Its ML4SETK measurement is pending, so this run checks the gain over perplexity only. For ROC-AUC, the toolkit follows the authors’ released evaluator, which negates the raw PAC scores. Algorithm 1 in the paper presents a greater-than threshold on the raw score. The comparison above checks ranking under the released evaluator’s convention. [Table 1 and Algorithm 1](https://aclanthology.org/2024.findings-acl.644.pdf) · [Authors’ evaluation code](https://github.com/yyy01/PAC/blob/79c6eca14fed3a64a7a4201cdca263de52501dae/attack.py#L44-L49)
+Against Min-K%, the closest published baseline in this row, PAC gains 0.018 ROC-AUC in the paper and 0.015146 in the fresh run. The baseline uses the bottom 20% of token log probabilities, as specified in Appendix E.3. For ROC-AUC, the toolkit follows the authors’ released evaluator, which negates the raw PAC scores. Algorithm 1 in the paper presents a greater-than threshold on the raw score. The comparison above checks ranking under the released evaluator’s convention. [Table 1 and Algorithm 1](https://aclanthology.org/2024.findings-acl.644.pdf) · [Authors’ evaluation code](https://github.com/yyy01/PAC/blob/79c6eca14fed3a64a7a4201cdca263de52501dae/attack.py#L44-L49)
 
-![WikiMIA ROC-AUC for perplexity and PAC in the paper and the ML4SETK run.](figures/pac_table1.png)
+![WikiMIA ROC-AUC for perplexity, Min-K%, and PAC in the paper and the ML4SETK run.](figures/pac_table1.png)
 
 The run used float32 weights, five word-swap variants per text, and the highest 5% and lowest 30% of next-token log probabilities. The script computes scores from model outputs and calls ML4SETK’s PAC and loss evaluators for ROC-AUC. It used seed 42. The authors’ realized draws were unavailable. [Table 1 comparison data (CSV)](data/pac_table1.csv) · [Dataset revision](https://huggingface.co/datasets/swj0419/WikiMIA/tree/a89ab76d88f704e9bc5870ac39cc9d458a2a70ac) · [Model revision](https://huggingface.co/EleutherAI/gpt-neo-2.7B/tree/e24fa291132763e59f4a5422741b424fb5d59056)
 
 ## Figure 7 · GPT-Neo on WikiMIA by text length
 
-The fresh run scored all 1,650 original WikiMIA texts on one NVIDIA A40. Each of the four perplexity AUCs agrees with the published curve at three decimals. PAC is higher than the plotted value in the 32 group and lower in the other three groups. The largest gap is in the 64 group, where the run gives 0.6384 and the digitized curve gives about 0.6566. The pooled point in Figure 7 uses all texts and is reported in the Table 1 comparison above.
+The fresh run scored all 1,650 original WikiMIA texts on one NVIDIA A40. All four perplexity AUCs and all four Min-K% AUCs agree with the corresponding digitized curves at three decimals. PAC is higher than the plotted value in the 32 group and lower in the other three groups. The largest gap is in the 64 group, where the run gives 0.6384 and the digitized curve gives about 0.6566. The pooled point in Figure 7 uses all texts and is reported in the Table 1 comparison above.
 
-| Length | Paper perplexity | ML4SETK perplexity | Paper PAC | ML4SETK PAC |
-| ---: | ---: | ---: | ---: | ---: |
-| 32 | 0.620 | 0.619584 | 0.675 | 0.685578 |
-| 64 | 0.585 | 0.585449 | 0.657 | 0.638443 |
-| 128 | 0.640 | 0.640417 | 0.666 | 0.647806 |
-| 256 | 0.669 | 0.669197 | 0.703 | 0.693232 |
+| Length | Paper perplexity | ML4SETK perplexity | Paper Min-K% | ML4SETK Min-K% | Paper PAC | ML4SETK PAC |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 32 | 0.620 | 0.619584 | 0.639 | 0.638907 | 0.675 | 0.685578 |
+| 64 | 0.585 | 0.585449 | 0.628 | 0.627784 | 0.657 | 0.638443 |
+| 128 | 0.640 | 0.640417 | 0.683 | 0.683259 | 0.666 | 0.647806 |
+| 256 | 0.669 | 0.669197 | 0.694 | 0.693865 | 0.703 | 0.693232 |
 
-![Published and measured ROC-AUC for GPT-Neo across four WikiMIA length groups, in separate perplexity and PAC panels.](figures/pac_figure7_gpt_neo.png)
+![Published and measured ROC-AUC for GPT-Neo across four WikiMIA length groups, in separate perplexity, Min-K%, and PAC panels.](figures/pac_figure7_gpt_neo.png)
 
-Paper values are approximate. The figure check reads the PPL and Ours line vertices against the GPT-Neo panel’s y-axis tick marks in the proceedings PDF and rounds to three decimals. The new measurements use the same seed and checkpoint as the pooled run. [Paired values (CSV)](data/pac_figure7_gpt_neo.csv) · [Published Figure 7](https://aclanthology.org/2024.findings-acl.644.pdf#page=16)
+Paper values are approximate. The figure check reads the PPL, Min-K%, and Ours line vertices against the GPT-Neo panel’s y-axis tick marks in the proceedings PDF and rounds to three decimals. The new measurements use the same seed and checkpoint as the pooled run. [Paired values (CSV)](data/pac_figure7_gpt_neo.csv) · [Published Figure 7](https://aclanthology.org/2024.findings-acl.644.pdf#page=16)
 
 ## Table 1 mean improvements
 
@@ -59,7 +60,7 @@ The authors give a relative gain over the strongest baseline for each dataset an
 
 ## Coverage of the original paper
 
-**Partial reproduction.** The comparison above covers two of the 224 model-specific AUC values in Table 1. Each dataset has eight evaluated models, two text variants and seven methods. The mean rows and improvement percentages are derived summaries. The CPU checks independently reproduce the cohort counts in Tables 5 and 6. All seven empirical figures in the paper still have experiments pending. No hardware exception has been established. [Published figures, tables, and appendices](https://aclanthology.org/2024.findings-acl.644.pdf)
+**Partial reproduction.** The comparison above covers three of the 224 model-specific AUC values in Table 1. Each dataset has eight evaluated models, two text variants and seven methods. The mean rows and improvement percentages are derived summaries. The CPU checks independently reproduce the cohort counts in Tables 5 and 6. All seven empirical figures in the paper still have experiments pending. No hardware exception has been established. [Published figures, tables, and appendices](https://aclanthology.org/2024.findings-acl.644.pdf)
 
 | Published item | Experiment or evidence | Current coverage |
 | --- | --- | --- |
@@ -69,9 +70,9 @@ The authors give a relative gain over the strongest baseline for each dataset an
 | Figure 4 | Whole-sample and output-only detection after five epochs of LLaMA-13B fine-tuning on Platypus | Pending |
 | Figure 5 | GPT-3 contamination estimates for selected TOXIGEN examples | Pending |
 | Figure 6 | Detection score and sentiment on WikiMIA and StackMIA | Pending. Appendix G gives the plotted axes but no sentiment model or per-example values. |
-| Figure 7 | WikiMIA AUC by model, method, and text length | GPT-Neo perplexity and PAC curves measured below. Other methods and model panels remain pending. |
+| Figure 7 | WikiMIA AUC by model, method, and text length | GPT-Neo perplexity, Min-K%, and PAC curves measured above. Other methods and model panels remain pending. |
 | Figure 8 | StackMIAsub AUC by model, method, and text length | StackMIAsub inference is pending. The published plot repeats all 48 curves from Figure 7, including the same axis labels. |
-| Table 1 | Detection AUC across models, methods, datasets, and original or rewritten inputs | Two model-specific cells measured. Four published mean gains checked arithmetically above. |
+| Table 1 | Detection AUC across models, methods, datasets, and original or rewritten inputs | Three model-specific cells measured. Four published mean gains checked arithmetically above. |
 | Table 2 | Five augmentation settings and five score choices on each dataset | Both ablations pending |
 | Table 3 | Threshold selection on subsets from 10% to 50% in five-percentage-point steps | Accuracy and threshold variability pending |
 | Table 4 | Four GPT models on GSM8K, AQuA, and TOXIGEN | All four weighted averages checked below. Per-example model measurements pending. |
@@ -131,7 +132,7 @@ uv pip install --python /tmp/ml4setk-repro/bin/python -e . pytest==9.0.2 \
 /tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/ml4setk/MIA/test_pac.py
 ```
 
-For the arithmetic and example provenance checks, use the original paper and the same pinned StackMIAsub file. The table checker uses Python 3 and Poppler’s `pdftotext`. The figure checker reads the vector paths in the same PDF using PyMuPDF. [Table check script](https://github.com/jkatzy/ML4SE-toolkit/blob/65fdb41/reproductions/ml4setk/MIA/check_pac_tables.py) · [Figure check script](https://github.com/jkatzy/ML4SE-toolkit/blob/65fdb41/reproductions/ml4setk/MIA/check_pac_figures.py)
+For the arithmetic and example provenance checks, use the original paper and the same pinned StackMIAsub file. The table checker uses Python 3 and Poppler’s `pdftotext`. The figure checker reads the vector paths in the same PDF using PyMuPDF. [Table check script](https://github.com/jkatzy/ML4SE-toolkit/blob/65fdb41/reproductions/ml4setk/MIA/check_pac_tables.py) · [Figure check script](https://github.com/jkatzy/ML4SE-toolkit/blob/d92635c/reproductions/ml4setk/MIA/check_pac_figures.py)
 
 ```bash
 curl -fL https://aclanthology.org/2024.findings-acl.644.pdf -o /tmp/pac-acl.pdf

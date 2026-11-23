@@ -40,4 +40,4 @@ that a user can run from an installed ML4SE-TK package on their own inputs.
    comparison pending.
 
 The [MIA reports](../../docs/reproduction_reports/ml4setk/MIA/index.md)
-show how one package uses this shared role for three independent papers.
+show how one package uses this shared role for independent papers.

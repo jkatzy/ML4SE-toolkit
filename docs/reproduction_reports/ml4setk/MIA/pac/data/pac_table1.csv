@@ -1,3 +1,4 @@
 method,paper_roc_auc,reproduced_roc_auc
 Perplexity,0.616,0.6156869499167561
+Min-K%,0.648,0.648345647
 PAC,0.666,0.6634914746757462

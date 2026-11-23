@@ -35,6 +35,7 @@ nav:
           - MIA:
               - Overview: reproduction_reports/ml4setk/MIA/index.md
               - loss: reproduction_reports/ml4setk/MIA/loss/index.md
+              - min_k: reproduction_reports/ml4setk/MIA/min_k/index.md
               - pac: reproduction_reports/ml4setk/MIA/pac/index.md
               - ast_pac:
                   - Report: reproduction_reports/ml4setk/MIA/ast_pac/index.md

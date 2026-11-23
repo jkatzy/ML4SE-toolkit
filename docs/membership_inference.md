@@ -9,6 +9,7 @@ benchmark adapter implements this interface for Loss, PAC, and AST-PAC.
 Each report pairs an original paper’s results with ML4SETK measurements and links to the script and inputs for that study.
 
 - [Yeom et al. (CSF 2018), loss threshold and the Figure 2b theoretical curve](reproduction_reports/ml4setk/MIA/loss/index.md)
+- [Shi et al. (ICLR 2024), Min-K% Prob on WikiMIA](reproduction_reports/ml4setk/MIA/min_k/index.md)
 - [Ye et al. (Findings of ACL 2024), PAC and perplexity on WikiMIA](reproduction_reports/ml4setk/MIA/pac/index.md)
 - [Koohestani et al. (FSE Companion 2026), AST-PAC and both Java baselines](reproduction_reports/ml4setk/MIA/ast_pac/index.md)
 
@@ -88,6 +89,21 @@ outputs, and notebooks from the deposit are not bundled. Direct redistribution
 of covered material would require attribution, a license link and change
 indications where applicable. The deposit's grant extends only to rights its
 licensor can grant. [Paper and rights](https://research.tudelft.nl/en/publications/ast-pac-ast-guided-membership-inference-for-code/) · [Software rights record](https://api.datacite.org/dois/10.5281/zenodo.18348152) · [CC BY 4.0 terms](https://creativecommons.org/licenses/by/4.0/)
+
+## Min-K% Prob
+
+Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, and Luke Zettlemoyer introduced Min-K% Prob in *Detecting Pretraining Data from Large Language Models*, ICLR 2024. Ye et al. later evaluated it as a baseline for PAC. [Original paper](https://proceedings.iclr.cc/paper_files/paper/2024/hash/e32ad85fa27be4a9868d55703f01323e-Abstract-Conference.html) · [PAC paper](https://aclanthology.org/2024.findings-acl.644/)
+
+Pass one example’s observed-token natural log probabilities, omitting padding and positions without a prediction. The function returns the mean of the lowest k percent, with a higher score favoring membership. It defaults to the paper’s 20%. Use `evaluate_membership_scores` to compare scores from labeled cohorts. [Min-K% reproduction report](reproduction_reports/ml4setk/MIA/min_k/index.md)
+
+```python
+from ml4setk.MIA import min_k_score
+
+log_probs = [-0.25, -4, -0.5, -2, -1, -0.75, -3, -1.5, -0.1, -0.8]
+print(min_k_score(log_probs))  # -3.5
+```
+
+**Rights and reuse.** ML4SETK implements Equation 1 independently. The unit fixtures are original synthetic values. The authors’ Apache-2.0 repository supplies the rounding and evaluation conventions. The toolkit license file declares Apache-2.0 and its distribution metadata declares MIT. This addition ships original code, original plots, and aggregate comparisons. The reproduction fetches WikiMIA (dataset card: MIT) and Pythia-2.8B (model card: Apache-2.0) externally. [Pinned authors’ code and license](https://github.com/swj0419/detect-pretrain-code/tree/a5048f93c4fa6491aab0638bb3e6fd5a662d7698) · [Dataset card](https://huggingface.co/datasets/swj0419/WikiMIA/blob/a89ab76d88f704e9bc5870ac39cc9d458a2a70ac/README.md) · [Model card](https://huggingface.co/EleutherAI/pythia-2.8b/blob/2a259cdd96a4beb1cdf467512e3904197345f6a9/README.md)
 
 ## PAC baseline
 
