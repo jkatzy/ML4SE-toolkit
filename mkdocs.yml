@@ -32,6 +32,11 @@ nav:
   - Reproduction reports:
       - Module index: reproduction_reports/index.md
       - ml4setk:
+          - Extraction:
+              - Overview: reproduction_reports/ml4setk/Extraction/index.md
+              - exposure: reproduction_reports/ml4setk/Extraction/exposure/index.md
+              - verbatim: reproduction_reports/ml4setk/Extraction/verbatim/index.md
+              - predictable: reproduction_reports/ml4setk/Extraction/predictable/index.md
           - MIA:
               - Overview: reproduction_reports/ml4setk/MIA/index.md
               - loss: reproduction_reports/ml4setk/MIA/loss/index.md

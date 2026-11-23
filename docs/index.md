@@ -25,4 +25,5 @@ pip install ML4SE-ToolKit
   points.
 - [Membership inference](membership_inference.md) covers the AST-PAC benchmark
   and its Loss and PAC baselines.
+- [Training-example extraction](reproduction_reports/ml4setk/Extraction/index.md) measures planted-canary exposure and verifies known training continuations.
 - [Git workflow](git_workflow.md): how `dev` and `main` relate.
