@@ -15,7 +15,7 @@ All three independent reproductions are partial. None has a documented hardware 
 | Paper | Available measurements | Outstanding coverage |
 | --- | --- | --- |
 | [Loss inventory](loss/index.md#coverage-of-the-original-paper) | Four points on the Figure 2b theoretical curve | All empirical panels and Table I |
-| [PAC inventory](pac/index.md#coverage-of-the-original-paper) | Two of 224 model-specific Table 1 AUCs and the Table 6 cohort counts | Remaining Table 1 conditions, all seven empirical figures, and other table comparisons |
+| [PAC inventory](pac/index.md#coverage-of-the-original-paper) | Two Table 1 AUCs, two GPT-Neo series in Figure 7, and all cohort counts in Tables 5 and 6 | Other model conditions and figures, ablation and threshold experiments, and raw hosted-model measurements |
 | [AST-PAC inventory](ast_pac/index.md#coverage-of-the-original-paper) | All published figures and tables have historical comparisons across the benchmark. Four models also scored fixed AST edits. | Fully independent fresh AST generation and individual values for 14 fixed-neighbor comparisons |
 
 To redraw these figures from the included CSVs, run `uv run --with matplotlib python reproductions/ml4setk/MIA/plot_reports.py` from the repository root.

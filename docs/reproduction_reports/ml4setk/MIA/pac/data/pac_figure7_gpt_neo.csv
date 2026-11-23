@@ -1,0 +1,9 @@
+length,method,paper_roc_auc,reproduced_roc_auc
+32,Perplexity,0.620,0.619583773
+32,PAC,0.675,0.685578207
+64,Perplexity,0.585,0.585448739
+64,PAC,0.657,0.638443061
+128,Perplexity,0.640,0.640417396
+128,PAC,0.666,0.647806079
+256,Perplexity,0.669,0.669196711
+256,PAC,0.703,0.693232132

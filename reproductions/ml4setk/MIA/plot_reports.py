@@ -77,6 +77,26 @@ def pac():
     save(fig, "pac", "pac_table1.png")
 
 
+def pac_by_length():
+    data = rows("pac", "pac_figure7_gpt_neo.csv")
+    fig, axes = plt.subplots(1, 2, figsize=(8.2, 3.1), layout="constrained", sharey=True)
+    for ax, method in zip(axes, ["Perplexity", "PAC"]):
+        series = [r for r in data if r["method"] == method]
+        lengths = [r["length"] for r in series]
+        for field, label, color, marker in [
+            ("paper_roc_auc", "Paper (digitized)", PAPER, "o"),
+            ("reproduced_roc_auc", "ML4SETK", REPRODUCED, "x"),
+        ]:
+            ax.plot(
+                lengths, [float(r[field]) for r in series], marker=marker, color=color, label=label
+            )
+        ax.set(title=method, xlabel="WikiMIA length group")
+        ax.grid(axis="y", color=GRID)
+    axes[0].set_ylabel("ROC-AUC")
+    axes[1].legend(loc="lower right", frameon=False)
+    save(fig, "pac", "pac_figure7_gpt_neo.png")
+
+
 def ast_pac():
     data = rows("ast_pac", "ast_pac_fixed_pilot.csv")
     fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.0), sharey=True, sharex=True)
@@ -179,5 +199,6 @@ if __name__ == "__main__":
     )
     loss()
     pac()
+    pac_by_length()
     ast_pac()
     fse_strata()
