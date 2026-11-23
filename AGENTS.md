@@ -46,12 +46,22 @@ Work under `src/ml4setk/MIA/`. Use the AST-PAC, PAC, and Loss entries in
    method citation in its module docstring and user documentation. Add
    deterministic tests for the conventions most likely to change results.
    Keep large reference artifacts external and optional imports local.
-5. **Record the reproduction.** Name the exact paper table or artifact result,
+5. **Run every experiment behind every plot.** Inventory the published paper
+   and appendices by figure, panel, series, and experimental condition. Include
+   experimental tables. Run each configuration with the toolkit, including the
+   baselines, sweeps, and repeats used for uncertainty estimates. A single run
+   can support multiple panels when they use the same measurements.
+   The only exception is a configuration that cannot fit the available hardware.
+   Record the configuration, hardware capacity, and measured usage, failure log,
+   or defensible resource estimate. Run all configurations that fit. Other
+   blockers leave the experiment pending and the paper reproduction incomplete.
+6. **Record the reproduction.** Name the exact paper table or artifact result,
    model, cohorts, metric definition, comparison precision, command, and
    observed result. Give each paper its own report and runnable script. Put a
    baseline comparison in the report and script for the paper that ran it.
    Pair each reference value with the measured toolkit value in a table or plot.
-   State which original claims have actually been checked.
+   Link each result in the inventory to its script command and paired measurements.
+   Report outstanding experiments and hardware exceptions explicitly.
    Publish the citation and reuse record beside the example in the MIA guide.
    Run the focused tests, `make lint`, and `make smoke`.
 
