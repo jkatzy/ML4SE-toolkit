@@ -26,6 +26,11 @@ package guide. For membership-inference methods, see the
    method citation in its module docstring and user documentation. Add
    deterministic tests for the conventions most likely to change results.
    Keep large reference artifacts external and optional imports local.
-5. Publish the citation and reuse record beside the example in the module guide.
+5. Deliver the reusable method under `src/ml4setk/` with a public entry point
+   that accepts the documented inputs and returns the method's result. Keep
+   benchmark setup and paper comparisons in the reproduction script. Run a
+   minimal example against the installed package and document the invocation
+   and observed output.
+6. Publish the citation and reuse record beside the example in the module guide.
    Run the focused tests, `make lint`, and `make smoke`. Use the shared
    [reproduction workflow](reproduction.md) to check the published experiments.

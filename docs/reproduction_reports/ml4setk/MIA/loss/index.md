@@ -44,3 +44,14 @@ uv venv --python 3.13 /tmp/ml4setk-repro
 uv pip install --python /tmp/ml4setk-repro/bin/python -e . pytest==9.0.2
 /tmp/ml4setk-repro/bin/python -m pytest -o addopts= -qs reproductions/ml4setk/MIA/test_loss.py
 ```
+
+With the toolkit installed, the Figure 2b threshold rule is also callable
+directly. For two negative squared errors, the first reaches the cutoff of
+−1 and the second falls below it.
+
+```python
+from ml4setk.MIA import MembershipThreshold
+
+print(MembershipThreshold(-1).predict_many([-0.25, -4.0]))
+# [True, False]
+```
