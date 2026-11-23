@@ -30,6 +30,14 @@ that a user can run from an installed ML4SE-TK package on their own inputs.
    input outside the test harness. Put the exact invocation, input or input
    reference, and observed output in the report so a user can repeat it.
    When auditing, record package runnability and paper coverage separately.
+6. For a method that uses an external model, exercise both public API paths.
+   First omit the model and verify which published checkpoint and revision
+   the selected paper configuration loads. Then pass a compatible model
+   directly, with its tokenizer or preprocessor if needed, and verify that
+   the method uses it. Show both calls in the report. Label the custom-model
+   run as an API check and use the corresponding paper checkpoint for each
+   published comparison. If that checkpoint is unavailable, keep its
+   comparison pending.
 
 The [MIA reports](../../docs/reproduction_reports/ml4setk/MIA/index.md)
 show how one package uses this shared role for three independent papers.

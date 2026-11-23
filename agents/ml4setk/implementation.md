@@ -31,6 +31,15 @@ package guide. For membership-inference methods, see the
    benchmark setup and paper comparisons in the reproduction script. Run a
    minimal example against the installed package and document the invocation
    and observed output.
-6. Publish the citation and reuse record beside the example in the module guide.
+6. If the method requires an external model, make the model argument optional.
+   Omitting it selects the paper's checkpoint for the chosen experiment. Record
+   the model identifier, revision, and matching tokenizer or preprocessor when
+   applicable. If the paper uses multiple models, expose named configurations
+   and document which one the default call selects. If a paper checkpoint is
+   unavailable, identify it and explain how to supply a compatible model.
+   Accept a caller-supplied model through the same public API. Load the default
+   only when needed. Test that supplying a model uses it without fetching or
+   initializing the default, including its preprocessing assets.
+7. Publish the citation and reuse record beside the example in the module guide.
    Run the focused tests, `make lint`, and `make smoke`. Use the shared
    [reproduction workflow](reproduction.md) to check the published experiments.

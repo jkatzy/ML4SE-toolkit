@@ -12,6 +12,8 @@ For `src/<package>/<module>.py`, put the report in `docs/reproduction_reports/<p
 
 The deliverable is a method users can run through the installed toolkit. Include a minimal working example in the report with installation instructions, the public API call or package command, a representative input, and the output observed when running it. The paper comparisons must exercise that same entry point. Track this runnable example and the paper’s experimental coverage separately.
 
+For methods that use external models, show two calls to the same public API. Omitting the model uses the paper’s checkpoint for the selected experiment. Passing a compatible model uses the caller’s instance and any matching tokenizer or preprocessor they supply. Identify the default model and revision, list the paper configurations when there are several, and record which checkpoint produced each published comparison.
+
 1. Inventory every experimental figure and table in the paper and its appendices. For each panel or table, list the models, datasets, baselines, sweep values, and repeats that produced its series, cells, and uncertainty estimates. Attribute each baseline experiment to the paper that ran it.
 2. Run every listed experiment with the paper’s dedicated toolkit script. When multiple plots use the same measurements, link them to the same run. Record the command, dataset and model revisions, seeds, cohort sizes, metric conventions, and any use of the authors’ code or saved outputs.
 3. Show published and measured values side by side with units and source locations. Identify theoretical predictions, fresh measurements, and results calculated from archived scores. Keep partially run panels or tables open and name the outstanding conditions.
