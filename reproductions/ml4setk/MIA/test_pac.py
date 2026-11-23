@@ -1,6 +1,9 @@
-"""Ye et al. (Findings of ACL 2024), Table 1, original WikiMIA texts with GPT-Neo."""
+"""Ye et al. (ACL 2024), Tables 1, 5, and 6 and the GPT-Neo panel in Figure 7."""
 
+import json
 import random
+from bisect import bisect_left
+from collections import Counter
 from statistics import mean
 
 import pytest
@@ -10,13 +13,37 @@ from ml4setk.MIA import evaluate_loss_scores, evaluate_pac_scores
 from ml4setk.MIA.pac import _polarized_distance
 
 
-@pytest.fixture(scope="module")
-def wikimia_areas():
-    """Score the pinned Table 6 cohort using ACL token fractions and Table 1 orientation."""
-    import pandas as pd
-    import torch
+def test_stackmia_table5():
     from huggingface_hub import hf_hub_download
-    from transformers import AutoModelForCausalLM, AutoTokenizer
+
+    path = hf_hub_download(
+        "darklight03/StackMIAsub",
+        "StackMIAsub.jsonl",
+        repo_type="dataset",
+        revision="c87c55d8b93fcf525fbf5fbf9b3bff6808b30ac6",
+    )
+    counts = Counter()
+    with open(path, encoding="utf-8") as source:
+        for line in source:
+            row = json.loads(line)
+            length = len(row["snippet"].split())
+            assert length > 32 and row["label"] in (0, 1)
+            bucket = (32, 64, 128, 256)[bisect_left((64, 128, 256), length)]
+            counts[bucket, row["label"]] += 1
+    for bucket, member, nonmember in [
+        (32, 1596, 1615),
+        (64, 1740, 1740),
+        (128, 680, 720),
+        (256, 90, 86),
+    ]:
+        print(f"Table 5, {bucket}: {counts[bucket, 1]} members, {counts[bucket, 0]} nonmembers")
+        assert (counts[bucket, 1], counts[bucket, 0]) == (member, nonmember)
+
+
+@pytest.fixture(scope="module")
+def wikimia_cohort():
+    import pandas as pd
+    from huggingface_hub import hf_hub_download
 
     parts = []
     for length, suffix, member, nonmember in [
@@ -34,8 +61,21 @@ def wikimia_areas():
         frame = pd.read_parquet(path, columns=["input", "label"])
         assert len(frame) == member + nonmember and frame.input.notna().all()
         assert frame.label.value_counts().to_dict() == {1: member, 0: nonmember}
-        parts.append(frame)
-    cohort = pd.concat(parts, ignore_index=True)
+        parts.append(frame.assign(length_group=length))
+    return pd.concat(parts, ignore_index=True)
+
+
+def test_wikimia_table6(wikimia_cohort):
+    assert wikimia_cohort.label.value_counts().to_dict() == {1: 861, 0: 789}
+
+
+@pytest.fixture(scope="module")
+def wikimia_areas(wikimia_cohort):
+    """Score the pinned cohort for Table 1 and the length groups in Figure 7."""
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
+    cohort = wikimia_cohort
     name = "EleutherAI/gpt-neo-2.7B"
     rev = "e24fa291132763e59f4a5422741b424fb5d59056"
     tok = AutoTokenizer.from_pretrained(name, revision=rev)
@@ -74,9 +114,17 @@ def wikimia_areas():
                     negative_loss.append(mean(log_probs))
             raw.append(gaps[0] - mean(gaps[1:]))
     cohort = cohort.assign(pac=raw, loss=negative_loss)
-    pos, neg = cohort[cohort.label == 1], cohort[cohort.label == 0]
-    pac = evaluate_pac_scores(members=pos.pac, nonmembers=neg.pac).roc_auc
-    loss = evaluate_loss_scores(members=pos.loss, nonmembers=neg.loss).roc_auc
+
+    def areas(group):
+        pos, neg = group[group.label == 1], group[group.label == 0]
+        pac = evaluate_pac_scores(members=pos.pac, nonmembers=neg.pac).roc_auc
+        loss = evaluate_loss_scores(members=pos.loss, nonmembers=neg.loss).roc_auc
+        return pac, loss
+
+    for length, group in cohort.groupby("length_group"):
+        pac, loss = areas(group)
+        print(f"Figure 7, GPT-Neo length {length}: PAC {pac:.9f}, PPL {loss:.9f}")
+    pac, loss = areas(cohort)
     print(
         f"ACL Table 1, GPT-Neo, original WikiMIA: PAC {pac:.9f} (paper 0.666), "
         f"PPL {loss:.9f} (paper 0.616)"
